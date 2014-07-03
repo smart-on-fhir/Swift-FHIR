@@ -27,11 +27,13 @@ class {{ klass.className }}: {{ klass.superclass|default('FHIRElement') }} {
 	
 	init(
 	{%- for nonop in klass.nonoptional -%}
-		{{ nonop.name }}: {{ nonop.className }}
+		{{ nonop.name }}: {{ nonop.className }}{{ nonop.modArray }}
 		{%- if not loop.last %}, {% endif -%}
 	{%- endfor -%}
 	) {
-		
+	{%- for nonop in klass.nonoptional %}
+		self.{{ nonop.name }} = {{ nonop.name }}
+	{%- endfor %}
 	}
 {%- endif %}
 }

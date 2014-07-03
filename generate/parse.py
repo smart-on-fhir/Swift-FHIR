@@ -18,12 +18,29 @@ classmap = {
 	
 	'boolean': 'Bool',
 	'integer': 'Int',
+	'date': 'NSDate',
+	'dateTime': 'NSDate',
+	'instant': 'Int',
+	'Age': 'Double',
+	'decimal':' NSDecimalNumber',
+	
 	'string': 'String',
-	'dateTime': 'NSDate'
+	'id': 'String',
+	'oid': 'String',
+	'idref': 'String',
+	'uri': 'NSURL',
+	'base64Binary': 'String',
+	'xhtml': 'String',
+	'code': 'String',		# for now we're not generating enums for these
+}
+reserved = {
+	'class': 'classification',
+	'import': 'importFrom',
+	'protocol': 'proto',
 }
 skip_properties = [
 	'extension',
-	'modifierExtension'
+	'modifierExtension',
 ]
 
 jinjaenv = Environment(loader=PackageLoader('parse', '.'))
@@ -175,10 +192,13 @@ def parse_elem(path, name, definition, klass):
 	# add as properties to class
 	for tp in types:
 		myname = name
+		if '*' == tp:
+			tp = 'FHIRElement'
+			myname = name.replace('[x]', '')
 		if '[x]' in myname:
 			myname = name.replace('[x]', '{}{}'.format(tp[:1].upper(), tp[1:]))
 		prop = {
-			'name': myname,
+			'name': reserved.get(myname, myname),
 			'short': short,
 			'className': classmap.get(tp, tp),
 			'modArray': '[]' if '*' == n_max else '',
@@ -213,7 +233,10 @@ def _wrap(text):
 		return None
 	lines = []
 	for line in text.split("\r\n"):		# The spec uses "\r\n"
-		lines.extend(textwrap.wrap(line, width=110))
+		if line:
+			lines.extend(textwrap.wrap(line, width=110))
+		else:
+			lines.append('')
 	
 	return "\r\n".join(lines)
 

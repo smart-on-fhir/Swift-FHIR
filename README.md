@@ -8,4 +8,4 @@ Classes are generated from the FHIR resource profiles and at one point should be
 SMART on FHIR
 -------------
 
-The [SMART on FHIR](http://smartplatforms.org/smart-on-fhir/) Cocoa framework utilizes these classes.
+The [SMART on FHIR](https://github.com/p2/SMART-on-FHIR-Cocoa) Cocoa framework utilizes these classes.

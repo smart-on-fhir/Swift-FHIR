@@ -16,15 +16,20 @@ import Foundation
  *  {{ klass.formal|replace("\n", "\n *  ") }}
 {%- endif %}
  */
-class {{ klass.className }}: {{ klass.superclass|default('FHIRElement') }} {
+class {{ klass.className }}: {{ klass.superclass|default('FHIRElement') }}
+{
+{%- if klass.resourceName %}
+	override var resourceName: String {
+		get { return "{{ klass.resourceName }}" }
+	}
+{% endif -%}
+
 {%- for prop in klass.properties %}
-	
 	/*! {{ prop.short }} */
 	var {{ prop.name }}: {{ prop.className }}{{ prop.modArray }}{{ prop.modOptional }}
-{%- endfor %}
+{% endfor -%}
 
 {%- if klass.nonoptional|length > 0 %}
-	
 	init(
 	{%- for nonop in klass.nonoptional -%}
 		{{ nonop.name }}: {{ nonop.className }}{{ nonop.modArray }}

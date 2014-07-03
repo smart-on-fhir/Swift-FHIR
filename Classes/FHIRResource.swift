@@ -1,5 +1,5 @@
 //
-//  FHIRBaseResource.swift
+//  FHIRResource.swift
 //  SMART-on-FHIR
 //
 //  Created by Pascal Pfiffner on 7/2/14.
@@ -10,6 +10,7 @@
 /*!
  *  Abstract superclass for all FHIR resource models.
  */
-class FHIRBaseResource: FHIRElement {
-
+class FHIRResource: FHIRElement
+{
+	
 }

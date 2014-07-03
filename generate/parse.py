@@ -14,7 +14,7 @@ cache = 'downloads'
 
 classmap = {
 	'Structure': 'FHIRElement',
-	'Resource': 'FHIRBaseResource',
+	'Resource': 'FHIRResource',
 	
 	'boolean': 'Bool',
 	'integer': 'Int',
@@ -151,6 +151,7 @@ def parse_profile(path, info):
 			
 			# is this the resource description itself?
 			if path == mainClass:
+				newklass['resourceName'] = mainClass
 				newklass['formal'] = _wrap(requirements)
 	
 	info['mainClass'] = mainClass

@@ -1,0 +1,11 @@
+.DS_Store
+__pycache__
+
+# generated classes
+Models/
+
+# downloads
+generate/downloads/fhir-spec*
+generate/downloads/index.html
+generate/downloads/site
+

@@ -2,7 +2,7 @@
 //  Media.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-03.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -33,54 +33,110 @@ class Media: FHIRResource
 	override var resourceName: String {
 		get { return "Media" }
 	}
-
+	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-
+	
 	/*! Contained, inline Resources */
 	var contained: FHIRResource[]?
-
+	
 	/*! photo | video | audio */
-	var type: String
-
+	var type: String?
+	
 	/*! The type of acquisition equipment/process */
 	var subtype: CodeableConcept?
-
+	
 	/*! Identifier(s) for the image */
 	var identifier: Identifier[]?
-
+	
 	/*! When the media was taken/recorded (end) */
 	var dateTime: NSDate?
-
+	
 	/*! Who/What this Media is a record of */
 	var subject: ResourceReference?
-
+	
 	/*! The person who generated the image */
 	var operator: ResourceReference?
-
+	
 	/*! Imaging view e.g Lateral or Antero-posterior */
 	var view: CodeableConcept?
-
+	
 	/*! Name of the device/manufacturer */
 	var deviceName: String?
-
+	
 	/*! Height of the image in pixels(photo/video) */
 	var height: Int?
-
+	
 	/*! Width of the image in pixels (photo/video) */
 	var width: Int?
-
+	
 	/*! Number of frames if > 1 (photo) */
 	var frames: Int?
-
+	
 	/*! Length in seconds (audio / video) */
 	var length: Int?
-
+	
 	/*! Actual Media - reference or data */
-	var content: Attachment
-
-	init(type: String, content: Attachment) {
-		self.type = type
-		self.content = content
+	var content: Attachment?
+	
+	convenience init(type: String?, content: Attachment?) {
+		self.init(json: nil)
+		if type {
+			self.type = type
+		}
+		if content {
+			self.content = content
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["contained"] as? Array<NSDictionary> {
+				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			}
+			if let val = js["type"] as? String {
+				self.type = val
+			}
+			if let val = js["subtype"] as? NSDictionary {
+				self.subtype = CodeableConcept(json: val)
+			}
+			if let val = js["identifier"] as? Array<NSDictionary> {
+				self.identifier = Identifier.from(val) as? Identifier[]
+			}
+			if let val = js["dateTime"] as? String {
+				self.dateTime = NSDate(json: val)
+			}
+			if let val = js["subject"] as? NSDictionary {
+				self.subject = ResourceReference(json: val)
+			}
+			if let val = js["operator"] as? NSDictionary {
+				self.operator = ResourceReference(json: val)
+			}
+			if let val = js["view"] as? NSDictionary {
+				self.view = CodeableConcept(json: val)
+			}
+			if let val = js["deviceName"] as? String {
+				self.deviceName = val
+			}
+			if let val = js["height"] as? Int {
+				self.height = val
+			}
+			if let val = js["width"] as? Int {
+				self.width = val
+			}
+			if let val = js["frames"] as? Int {
+				self.frames = val
+			}
+			if let val = js["length"] as? Int {
+				self.length = val
+			}
+			if let val = js["content"] as? NSDictionary {
+				self.content = Attachment(json: val)
+			}
+		}
+		super.init(json: json)
 	}
 }

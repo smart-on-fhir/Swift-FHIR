@@ -2,7 +2,7 @@
 //  Alert.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-03.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -28,34 +28,71 @@ class Alert: FHIRResource
 	override var resourceName: String {
 		get { return "Alert" }
 	}
-
+	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-
+	
 	/*! Contained, inline Resources */
 	var contained: FHIRResource[]?
-
+	
 	/*! Business identifier */
 	var identifier: Identifier[]?
-
+	
 	/*! Clinical, administrative, etc. */
 	var category: CodeableConcept?
-
+	
 	/*! active | inactive | entered in error */
-	var status: String
-
+	var status: String?
+	
 	/*! Who is alert about? */
-	var subject: ResourceReference
-
+	var subject: ResourceReference?
+	
 	/*! Alert creator */
 	var author: ResourceReference?
-
+	
 	/*! Text of alert */
-	var note: String
-
-	init(status: String, subject: ResourceReference, note: String) {
-		self.status = status
-		self.subject = subject
-		self.note = note
+	var note: String?
+	
+	convenience init(status: String?, subject: ResourceReference?, note: String?) {
+		self.init(json: nil)
+		if status {
+			self.status = status
+		}
+		if subject {
+			self.subject = subject
+		}
+		if note {
+			self.note = note
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["contained"] as? Array<NSDictionary> {
+				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			}
+			if let val = js["identifier"] as? Array<NSDictionary> {
+				self.identifier = Identifier.from(val) as? Identifier[]
+			}
+			if let val = js["category"] as? NSDictionary {
+				self.category = CodeableConcept(json: val)
+			}
+			if let val = js["status"] as? String {
+				self.status = val
+			}
+			if let val = js["subject"] as? NSDictionary {
+				self.subject = ResourceReference(json: val)
+			}
+			if let val = js["author"] as? NSDictionary {
+				self.author = ResourceReference(json: val)
+			}
+			if let val = js["note"] as? String {
+				self.note = val
+			}
+		}
+		super.init(json: json)
 	}
 }

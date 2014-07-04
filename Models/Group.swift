@@ -2,7 +2,7 @@
 //  Group.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-03.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -28,40 +28,81 @@ class Group: FHIRResource
 	override var resourceName: String {
 		get { return "Group" }
 	}
-
+	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-
+	
 	/*! Contained, inline Resources */
 	var contained: FHIRResource[]?
-
+	
 	/*! Unique id */
 	var identifier: Identifier?
-
+	
 	/*! person | animal | practitioner | device | medication | substance */
-	var type: String
-
+	var type: String?
+	
 	/*! Descriptive or actual */
-	var actual: Bool
-
+	var actual: Bool?
+	
 	/*! Kind of Group members */
 	var code: CodeableConcept?
-
+	
 	/*! Label for Group */
 	var name: String?
-
+	
 	/*! Number of members */
 	var quantity: Int?
-
+	
 	/*! Trait of group members */
 	var characteristic: GroupCharacteristic[]?
-
+	
 	/*! Who is in group */
 	var member: ResourceReference[]?
-
-	init(type: String, actual: Bool) {
-		self.type = type
-		self.actual = actual
+	
+	convenience init(type: String?, actual: Bool?) {
+		self.init(json: nil)
+		if type {
+			self.type = type
+		}
+		if actual {
+			self.actual = actual
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["contained"] as? Array<NSDictionary> {
+				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			}
+			if let val = js["identifier"] as? NSDictionary {
+				self.identifier = Identifier(json: val)
+			}
+			if let val = js["type"] as? String {
+				self.type = val
+			}
+			if let val = js["actual"] as? Int {
+				self.actual = (1 == val)
+			}
+			if let val = js["code"] as? NSDictionary {
+				self.code = CodeableConcept(json: val)
+			}
+			if let val = js["name"] as? String {
+				self.name = val
+			}
+			if let val = js["quantity"] as? Int {
+				self.quantity = val
+			}
+			if let val = js["characteristic"] as? Array<NSDictionary> {
+				self.characteristic = GroupCharacteristic.from(val) as? GroupCharacteristic[]
+			}
+			if let val = js["member"] as? Array<NSDictionary> {
+				self.member = ResourceReference.from(val) as? ResourceReference[]
+			}
+		}
+		super.init(json: json)
 	}
 }
 
@@ -72,31 +113,68 @@ class Group: FHIRResource
  *  Identifies the traits shared by members of the group.
  */
 class GroupCharacteristic: FHIRElement
-{
+{	
 	/*! Kind of characteristic */
-	var code: CodeableConcept
-
+	var code: CodeableConcept?
+	
 	/*! Value held by characteristic */
-	var valueCodeableConcept: CodeableConcept
-
+	var valueRange: Range?
+	
 	/*! Value held by characteristic */
-	var valueQuantity: Quantity
-
+	var valueCodeableConcept: CodeableConcept?
+	
 	/*! Value held by characteristic */
-	var valueBoolean: Bool
-
+	var valueBoolean: Bool?
+	
 	/*! Value held by characteristic */
-	var valueRange: Range
-
+	var valueQuantity: Quantity?
+	
 	/*! Group includes or excludes */
-	var exclude: Bool
-
-	init(code: CodeableConcept, valueCodeableConcept: CodeableConcept, valueQuantity: Quantity, valueBoolean: Bool, valueRange: Range, exclude: Bool) {
-		self.code = code
-		self.valueCodeableConcept = valueCodeableConcept
-		self.valueQuantity = valueQuantity
-		self.valueBoolean = valueBoolean
-		self.valueRange = valueRange
-		self.exclude = exclude
+	var exclude: Bool?
+	
+	convenience init(code: CodeableConcept?, valueRange: Range?, valueCodeableConcept: CodeableConcept?, valueBoolean: Bool?, valueQuantity: Quantity?, exclude: Bool?) {
+		self.init(json: nil)
+		if code {
+			self.code = code
+		}
+		if valueRange {
+			self.valueRange = valueRange
+		}
+		if valueCodeableConcept {
+			self.valueCodeableConcept = valueCodeableConcept
+		}
+		if valueBoolean {
+			self.valueBoolean = valueBoolean
+		}
+		if valueQuantity {
+			self.valueQuantity = valueQuantity
+		}
+		if exclude {
+			self.exclude = exclude
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["code"] as? NSDictionary {
+				self.code = CodeableConcept(json: val)
+			}
+			if let val = js["valueRange"] as? NSDictionary {
+				self.valueRange = Range(json: val)
+			}
+			if let val = js["valueCodeableConcept"] as? NSDictionary {
+				self.valueCodeableConcept = CodeableConcept(json: val)
+			}
+			if let val = js["valueBoolean"] as? Int {
+				self.valueBoolean = (1 == val)
+			}
+			if let val = js["valueQuantity"] as? NSDictionary {
+				self.valueQuantity = Quantity(json: val)
+			}
+			if let val = js["exclude"] as? Int {
+				self.exclude = (1 == val)
+			}
+		}
+		super.init(json: json)
 	}
 }

@@ -6,11 +6,15 @@
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
+import Foundation
+
 
 /*!
  *  Abstract superclass for all FHIR resource models.
  */
 class FHIRResource: FHIRElement
 {
-	
+	init(json: NSDictionary?) {
+		super.init(json: json)
+	}
 }

@@ -2,7 +2,7 @@
 //  FamilyHistory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-03.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -28,27 +28,54 @@ class FamilyHistory: FHIRResource
 	override var resourceName: String {
 		get { return "FamilyHistory" }
 	}
-
+	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-
+	
 	/*! Contained, inline Resources */
 	var contained: FHIRResource[]?
-
+	
 	/*! External Id(s) for this record */
 	var identifier: Identifier[]?
-
+	
 	/*! Patient history is about */
-	var subject: ResourceReference
-
+	var subject: ResourceReference?
+	
 	/*! Additional details not covered elsewhere */
 	var note: String?
-
+	
 	/*! Relative described by history */
 	var relation: FamilyHistoryRelation[]?
-
-	init(subject: ResourceReference) {
-		self.subject = subject
+	
+	convenience init(subject: ResourceReference?) {
+		self.init(json: nil)
+		if subject {
+			self.subject = subject
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["contained"] as? Array<NSDictionary> {
+				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			}
+			if let val = js["identifier"] as? Array<NSDictionary> {
+				self.identifier = Identifier.from(val) as? Identifier[]
+			}
+			if let val = js["subject"] as? NSDictionary {
+				self.subject = ResourceReference(json: val)
+			}
+			if let val = js["note"] as? String {
+				self.note = val
+			}
+			if let val = js["relation"] as? Array<NSDictionary> {
+				self.relation = FamilyHistoryRelation.from(val) as? FamilyHistoryRelation[]
+			}
+		}
+		super.init(json: json)
 	}
 }
 
@@ -59,45 +86,90 @@ class FamilyHistory: FHIRResource
  *  The related person. Each FamilyHistory resource contains the entire family history for a single person.
  */
 class FamilyHistoryRelation: FHIRElement
-{
+{	
 	/*! The family member described */
 	var name: String?
-
+	
 	/*! Relationship to the subject */
-	var relationship: CodeableConcept
-
+	var relationship: CodeableConcept?
+	
 	/*! (approximate) date of birth */
 	var bornString: String?
-
+	
 	/*! (approximate) date of birth */
 	var bornDate: NSDate?
-
+	
 	/*! (approximate) date of birth */
 	var bornPeriod: Period?
-
-	/*! Dead? How old/when? */
-	var deceasedDate: NSDate?
-
+	
 	/*! Dead? How old/when? */
 	var deceasedString: String?
-
+	
+	/*! Dead? How old/when? */
+	var deceasedDate: NSDate?
+	
 	/*! Dead? How old/when? */
 	var deceasedAge: Double?
-
+	
 	/*! Dead? How old/when? */
 	var deceasedBoolean: Bool?
-
+	
 	/*! Dead? How old/when? */
 	var deceasedRange: Range?
-
+	
 	/*! General note about related person */
 	var note: String?
-
+	
 	/*! Condition that the related person had */
 	var condition: FamilyHistoryRelationCondition[]?
-
-	init(relationship: CodeableConcept) {
-		self.relationship = relationship
+	
+	convenience init(relationship: CodeableConcept?) {
+		self.init(json: nil)
+		if relationship {
+			self.relationship = relationship
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["name"] as? String {
+				self.name = val
+			}
+			if let val = js["relationship"] as? NSDictionary {
+				self.relationship = CodeableConcept(json: val)
+			}
+			if let val = js["bornString"] as? String {
+				self.bornString = val
+			}
+			if let val = js["bornDate"] as? String {
+				self.bornDate = NSDate(json: val)
+			}
+			if let val = js["bornPeriod"] as? NSDictionary {
+				self.bornPeriod = Period(json: val)
+			}
+			if let val = js["deceasedString"] as? String {
+				self.deceasedString = val
+			}
+			if let val = js["deceasedDate"] as? String {
+				self.deceasedDate = NSDate(json: val)
+			}
+			if let val = js["deceasedAge"] as? NSNumber {
+				self.deceasedAge = Double(val)
+			}
+			if let val = js["deceasedBoolean"] as? Int {
+				self.deceasedBoolean = (1 == val)
+			}
+			if let val = js["deceasedRange"] as? NSDictionary {
+				self.deceasedRange = Range(json: val)
+			}
+			if let val = js["note"] as? String {
+				self.note = val
+			}
+			if let val = js["condition"] as? Array<NSDictionary> {
+				self.condition = FamilyHistoryRelationCondition.from(val) as? FamilyHistoryRelationCondition[]
+			}
+		}
+		super.init(json: json)
 	}
 }
 
@@ -110,26 +182,53 @@ class FamilyHistoryRelation: FHIRElement
  *  - one per condition.
  */
 class FamilyHistoryRelationCondition: FHIRElement
-{
+{	
 	/*! Condition suffered by relation */
-	var type: CodeableConcept
-
+	var type: CodeableConcept?
+	
 	/*! deceased | permanent disability | etc. */
 	var outcome: CodeableConcept?
-
+	
 	/*! When condition first manifested */
 	var onsetString: String?
-
+	
 	/*! When condition first manifested */
 	var onsetAge: Double?
-
+	
 	/*! When condition first manifested */
 	var onsetRange: Range?
-
+	
 	/*! Extra information about condition */
 	var note: String?
-
-	init(type: CodeableConcept) {
-		self.type = type
+	
+	convenience init(type: CodeableConcept?) {
+		self.init(json: nil)
+		if type {
+			self.type = type
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["type"] as? NSDictionary {
+				self.type = CodeableConcept(json: val)
+			}
+			if let val = js["outcome"] as? NSDictionary {
+				self.outcome = CodeableConcept(json: val)
+			}
+			if let val = js["onsetString"] as? String {
+				self.onsetString = val
+			}
+			if let val = js["onsetAge"] as? NSNumber {
+				self.onsetAge = Double(val)
+			}
+			if let val = js["onsetRange"] as? NSDictionary {
+				self.onsetRange = Range(json: val)
+			}
+			if let val = js["note"] as? String {
+				self.note = val
+			}
+		}
+		super.init(json: json)
 	}
 }

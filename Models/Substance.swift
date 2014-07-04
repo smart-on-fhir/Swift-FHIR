@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-03.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -24,27 +24,54 @@ class Substance: FHIRResource
 	override var resourceName: String {
 		get { return "Substance" }
 	}
-
+	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-
+	
 	/*! Contained, inline Resources */
 	var contained: FHIRResource[]?
-
+	
 	/*! What kind of substance this is */
-	var type: CodeableConcept
-
+	var type: CodeableConcept?
+	
 	/*! Textual description of the substance, comments */
 	var description: String?
-
+	
 	/*! If this describes a specific package/container of the substance */
 	var instance: SubstanceInstance?
-
+	
 	/*! Composition information about the substance */
 	var ingredient: SubstanceIngredient[]?
-
-	init(type: CodeableConcept) {
-		self.type = type
+	
+	convenience init(type: CodeableConcept?) {
+		self.init(json: nil)
+		if type {
+			self.type = type
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["contained"] as? Array<NSDictionary> {
+				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			}
+			if let val = js["type"] as? NSDictionary {
+				self.type = CodeableConcept(json: val)
+			}
+			if let val = js["description"] as? String {
+				self.description = val
+			}
+			if let val = js["instance"] as? NSDictionary {
+				self.instance = SubstanceInstance(json: val)
+			}
+			if let val = js["ingredient"] as? Array<NSDictionary> {
+				self.ingredient = SubstanceIngredient.from(val) as? SubstanceIngredient[]
+			}
+		}
+		super.init(json: json)
 	}
 }
 
@@ -56,16 +83,31 @@ class Substance: FHIRResource
  *  instance.
  */
 class SubstanceInstance: FHIRElement
-{
+{	
 	/*! Identifier of the package/container */
 	var identifier: Identifier?
-
+	
 	/*! When no longer valid to use */
 	var expiry: NSDate?
-
+	
 	/*! Amount of substance in the package */
 	var quantity: Quantity?
-
+	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["identifier"] as? NSDictionary {
+				self.identifier = Identifier(json: val)
+			}
+			if let val = js["expiry"] as? String {
+				self.expiry = NSDate(json: val)
+			}
+			if let val = js["quantity"] as? NSDictionary {
+				self.quantity = Quantity(json: val)
+			}
+		}
+		super.init(json: json)
+	}
 }
 
 
@@ -75,14 +117,29 @@ class SubstanceInstance: FHIRElement
  *  A substance can be composed of other substances.
  */
 class SubstanceIngredient: FHIRElement
-{
+{	
 	/*! Optional amount (concentration) */
 	var quantity: Ratio?
-
+	
 	/*! A component of the substance */
-	var substance: ResourceReference
-
-	init(substance: ResourceReference) {
-		self.substance = substance
+	var substance: ResourceReference?
+	
+	convenience init(substance: ResourceReference?) {
+		self.init(json: nil)
+		if substance {
+			self.substance = substance
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["quantity"] as? NSDictionary {
+				self.quantity = Ratio(json: val)
+			}
+			if let val = js["substance"] as? NSDictionary {
+				self.substance = ResourceReference(json: val)
+			}
+		}
+		super.init(json: json)
 	}
 }

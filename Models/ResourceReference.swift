@@ -2,7 +2,7 @@
 //  ResourceReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-03.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -17,11 +17,23 @@ class ResourceReference: FHIRElement
 	override var resourceName: String {
 		get { return "ResourceReference" }
 	}
-
+	
 	/*! Relative, internal or absolute URL reference */
 	var reference: String?
-
+	
 	/*! Text alternative for the resource */
 	var display: String?
-
+	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["reference"] as? String {
+				self.reference = val
+			}
+			if let val = js["display"] as? String {
+				self.display = val
+			}
+		}
+		super.init(json: json)
+	}
 }

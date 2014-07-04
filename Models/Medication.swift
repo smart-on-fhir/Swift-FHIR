@@ -2,7 +2,7 @@
 //  Medication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-03.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -40,34 +40,67 @@ class Medication: FHIRResource
 	override var resourceName: String {
 		get { return "Medication" }
 	}
-
+	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-
+	
 	/*! Contained, inline Resources */
 	var contained: FHIRResource[]?
-
+	
 	/*! Common / Commercial name */
 	var name: String?
-
+	
 	/*! Codes that identify this medication */
 	var code: CodeableConcept?
-
+	
 	/*! True if a brand */
 	var isBrand: Bool?
-
+	
 	/*! Manufacturer of the item */
 	var manufacturer: ResourceReference?
-
+	
 	/*! product | package */
 	var kind: String?
-
+	
 	/*! Administrable medication details */
 	var product: MedicationProduct?
-
+	
 	/*! Details about packaged medications */
 	var package: MedicationPackage?
-
+	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["contained"] as? Array<NSDictionary> {
+				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			}
+			if let val = js["name"] as? String {
+				self.name = val
+			}
+			if let val = js["code"] as? NSDictionary {
+				self.code = CodeableConcept(json: val)
+			}
+			if let val = js["isBrand"] as? Int {
+				self.isBrand = (1 == val)
+			}
+			if let val = js["manufacturer"] as? NSDictionary {
+				self.manufacturer = ResourceReference(json: val)
+			}
+			if let val = js["kind"] as? String {
+				self.kind = val
+			}
+			if let val = js["product"] as? NSDictionary {
+				self.product = MedicationProduct(json: val)
+			}
+			if let val = js["package"] as? NSDictionary {
+				self.package = MedicationPackage(json: val)
+			}
+		}
+		super.init(json: json)
+	}
 }
 
 
@@ -77,13 +110,25 @@ class Medication: FHIRResource
  *  Information that only applies to products (not packages).
  */
 class MedicationProduct: FHIRElement
-{
+{	
 	/*! powder | tablets | carton + */
 	var form: CodeableConcept?
-
+	
 	/*! Active or inactive ingredient */
 	var ingredient: MedicationProductIngredient[]?
-
+	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["form"] as? NSDictionary {
+				self.form = CodeableConcept(json: val)
+			}
+			if let val = js["ingredient"] as? Array<NSDictionary> {
+				self.ingredient = MedicationProductIngredient.from(val) as? MedicationProductIngredient[]
+			}
+		}
+		super.init(json: json)
+	}
 }
 
 
@@ -93,15 +138,30 @@ class MedicationProduct: FHIRElement
  *  Identifies a particular constituent of interest in the product.
  */
 class MedicationProductIngredient: FHIRElement
-{
+{	
 	/*! The product contained */
-	var item: ResourceReference
-
+	var item: ResourceReference?
+	
 	/*! How much ingredient in product */
 	var amount: Ratio?
-
-	init(item: ResourceReference) {
-		self.item = item
+	
+	convenience init(item: ResourceReference?) {
+		self.init(json: nil)
+		if item {
+			self.item = item
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["item"] as? NSDictionary {
+				self.item = ResourceReference(json: val)
+			}
+			if let val = js["amount"] as? NSDictionary {
+				self.amount = Ratio(json: val)
+			}
+		}
+		super.init(json: json)
 	}
 }
 
@@ -112,13 +172,25 @@ class MedicationProductIngredient: FHIRElement
  *  Information that only applies to packages (not products).
  */
 class MedicationPackage: FHIRElement
-{
+{	
 	/*! E.g. box, vial, blister-pack */
 	var container: CodeableConcept?
-
+	
 	/*! What is  in the package? */
 	var content: MedicationPackageContent[]?
-
+	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["container"] as? NSDictionary {
+				self.container = CodeableConcept(json: val)
+			}
+			if let val = js["content"] as? Array<NSDictionary> {
+				self.content = MedicationPackageContent.from(val) as? MedicationPackageContent[]
+			}
+		}
+		super.init(json: json)
+	}
 }
 
 
@@ -128,14 +200,29 @@ class MedicationPackage: FHIRElement
  *  A set of components that go to make up the described item.
  */
 class MedicationPackageContent: FHIRElement
-{
+{	
 	/*! A product in the package */
-	var item: ResourceReference
-
+	var item: ResourceReference?
+	
 	/*! How many are in the package? */
 	var amount: Quantity?
-
-	init(item: ResourceReference) {
-		self.item = item
+	
+	convenience init(item: ResourceReference?) {
+		self.init(json: nil)
+		if item {
+			self.item = item
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["item"] as? NSDictionary {
+				self.item = ResourceReference(json: val)
+			}
+			if let val = js["amount"] as? NSDictionary {
+				self.amount = Quantity(json: val)
+			}
+		}
+		super.init(json: json)
 	}
 }

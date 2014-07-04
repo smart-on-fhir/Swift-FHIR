@@ -22,7 +22,8 @@ classmap = {
 	'dateTime': 'NSDate',
 	'instant': 'Int',
 	'Age': 'Double',
-	'decimal':' NSDecimalNumber',
+	'Duration': 'Double',
+	'decimal': 'NSDecimalNumber',
 	
 	'string': 'String',
 	'id': 'String',
@@ -33,11 +34,29 @@ classmap = {
 	'xhtml': 'String',
 	'code': 'String',		# for now we're not generating enums for these
 }
+
+jsonmap = {
+	'FHIRElement': 'NSDictionary',
+	'FHIRResource': 'NSDictionary',
+	
+	'Int': 'Int',
+	'Bool': 'Int',
+	'Double': 'NSNumber',
+	
+	'String': 'String',
+	'NSDate': 'String',
+	'NSDecimalNumber': 'String',
+	'NSDate': 'String',
+	'NSURL': 'String',
+}
+
 reserved = {
 	'class': 'classification',
 	'import': 'importFrom',
 	'protocol': 'proto',
+	'extension': 'ext',
 }
+
 skip_properties = [
 	'extension',
 	'modifierExtension',
@@ -198,12 +217,14 @@ def parse_elem(path, name, definition, klass):
 			myname = name.replace('[x]', '')
 		if '[x]' in myname:
 			myname = name.replace('[x]', '{}{}'.format(tp[:1].upper(), tp[1:]))
+		mappedClass = classmap.get(tp, tp)
 		prop = {
 			'name': reserved.get(myname, myname),
 			'short': short,
-			'className': classmap.get(tp, tp),
-			'modArray': '[]' if '*' == n_max else '',
-			'modOptional': '?' if int(n_min) < 1 else ''
+			'className': mappedClass,
+			'jsonClass': jsonmap.get(mappedClass, 'NSDictionary'),
+			'isArray': True if '*' == n_max else False,
+			#'modOptional': '?' if int(n_min) < 1 else ''
 		}
 		
 		if klass is not None:

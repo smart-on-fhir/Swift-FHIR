@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-03.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -36,77 +36,156 @@ class Condition: FHIRResource
 	override var resourceName: String {
 		get { return "Condition" }
 	}
-
+	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-
+	
 	/*! Contained, inline Resources */
 	var contained: FHIRResource[]?
-
+	
 	/*! External Ids for this condition */
 	var identifier: Identifier[]?
-
+	
 	/*! Who has the condition? */
-	var subject: ResourceReference
-
+	var subject: ResourceReference?
+	
 	/*! Encounter when condition first asserted */
 	var encounter: ResourceReference?
-
+	
 	/*! Person who asserts this condition */
 	var asserter: ResourceReference?
-
+	
 	/*! When first detected/suspected/entered */
 	var dateAsserted: NSDate?
-
+	
 	/*! Identification of the condition, problem or diagnosis */
-	var code: CodeableConcept
-
+	var code: CodeableConcept?
+	
 	/*! E.g. complaint | symptom | finding | diagnosis */
 	var category: CodeableConcept?
-
+	
 	/*! provisional | working | confirmed | refuted */
-	var status: String
-
+	var status: String?
+	
 	/*! Degree of confidence */
 	var certainty: CodeableConcept?
-
+	
 	/*! Subjective severity of condition */
 	var severity: CodeableConcept?
-
-	/*! Estimated or actual date, or age */
-	var onsetAge: Double?
-
+	
 	/*! Estimated or actual date, or age */
 	var onsetDate: NSDate?
-
-	/*! If/when in resolution/remission */
-	var abatementAge: Double?
-
+	
+	/*! Estimated or actual date, or age */
+	var onsetAge: Double?
+	
 	/*! If/when in resolution/remission */
 	var abatementDate: NSDate?
-
+	
+	/*! If/when in resolution/remission */
+	var abatementAge: Double?
+	
 	/*! If/when in resolution/remission */
 	var abatementBoolean: Bool?
-
+	
 	/*! Stage/grade, usually assessed formally */
 	var stage: ConditionStage?
-
+	
 	/*! Supporting evidence */
 	var evidence: ConditionEvidence[]?
-
+	
 	/*! Anatomical location, if relevant */
 	var location: ConditionLocation[]?
-
+	
 	/*! Causes or precedents for this Condition */
 	var relatedItem: ConditionRelatedItem[]?
-
+	
 	/*! Additional information about the Condition */
 	var notes: String?
-
-	init(subject: ResourceReference, code: CodeableConcept, status: String) {
-		self.subject = subject
-		self.code = code
-		self.status = status
+	
+	convenience init(subject: ResourceReference?, code: CodeableConcept?, status: String?) {
+		self.init(json: nil)
+		if subject {
+			self.subject = subject
+		}
+		if code {
+			self.code = code
+		}
+		if status {
+			self.status = status
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["contained"] as? Array<NSDictionary> {
+				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			}
+			if let val = js["identifier"] as? Array<NSDictionary> {
+				self.identifier = Identifier.from(val) as? Identifier[]
+			}
+			if let val = js["subject"] as? NSDictionary {
+				self.subject = ResourceReference(json: val)
+			}
+			if let val = js["encounter"] as? NSDictionary {
+				self.encounter = ResourceReference(json: val)
+			}
+			if let val = js["asserter"] as? NSDictionary {
+				self.asserter = ResourceReference(json: val)
+			}
+			if let val = js["dateAsserted"] as? String {
+				self.dateAsserted = NSDate(json: val)
+			}
+			if let val = js["code"] as? NSDictionary {
+				self.code = CodeableConcept(json: val)
+			}
+			if let val = js["category"] as? NSDictionary {
+				self.category = CodeableConcept(json: val)
+			}
+			if let val = js["status"] as? String {
+				self.status = val
+			}
+			if let val = js["certainty"] as? NSDictionary {
+				self.certainty = CodeableConcept(json: val)
+			}
+			if let val = js["severity"] as? NSDictionary {
+				self.severity = CodeableConcept(json: val)
+			}
+			if let val = js["onsetDate"] as? String {
+				self.onsetDate = NSDate(json: val)
+			}
+			if let val = js["onsetAge"] as? NSNumber {
+				self.onsetAge = Double(val)
+			}
+			if let val = js["abatementDate"] as? String {
+				self.abatementDate = NSDate(json: val)
+			}
+			if let val = js["abatementAge"] as? NSNumber {
+				self.abatementAge = Double(val)
+			}
+			if let val = js["abatementBoolean"] as? Int {
+				self.abatementBoolean = (1 == val)
+			}
+			if let val = js["stage"] as? NSDictionary {
+				self.stage = ConditionStage(json: val)
+			}
+			if let val = js["evidence"] as? Array<NSDictionary> {
+				self.evidence = ConditionEvidence.from(val) as? ConditionEvidence[]
+			}
+			if let val = js["location"] as? Array<NSDictionary> {
+				self.location = ConditionLocation.from(val) as? ConditionLocation[]
+			}
+			if let val = js["relatedItem"] as? Array<NSDictionary> {
+				self.relatedItem = ConditionRelatedItem.from(val) as? ConditionRelatedItem[]
+			}
+			if let val = js["notes"] as? String {
+				self.notes = val
+			}
+		}
+		super.init(json: json)
 	}
 }
 
@@ -117,13 +196,25 @@ class Condition: FHIRResource
  *  Clinical stage or grade of a condition. May include formal severity assessments.
  */
 class ConditionStage: FHIRElement
-{
+{	
 	/*! Simple summary (disease specific) */
 	var summary: CodeableConcept?
-
+	
 	/*! Formal record of assessment */
 	var assessment: ResourceReference[]?
-
+	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["summary"] as? NSDictionary {
+				self.summary = CodeableConcept(json: val)
+			}
+			if let val = js["assessment"] as? Array<NSDictionary> {
+				self.assessment = ResourceReference.from(val) as? ResourceReference[]
+			}
+		}
+		super.init(json: json)
+	}
 }
 
 
@@ -133,13 +224,25 @@ class ConditionStage: FHIRElement
  *  Supporting Evidence / manifestations that are the basis on which this condition is suspected or confirmed.
  */
 class ConditionEvidence: FHIRElement
-{
+{	
 	/*! Manifestation/symptom */
 	var code: CodeableConcept?
-
+	
 	/*! Supporting information found elsewhere */
 	var detail: ResourceReference[]?
-
+	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["code"] as? NSDictionary {
+				self.code = CodeableConcept(json: val)
+			}
+			if let val = js["detail"] as? Array<NSDictionary> {
+				self.detail = ResourceReference.from(val) as? ResourceReference[]
+			}
+		}
+		super.init(json: json)
+	}
 }
 
 
@@ -149,13 +252,25 @@ class ConditionEvidence: FHIRElement
  *  The anatomical location where this condition manifests itself.
  */
 class ConditionLocation: FHIRElement
-{
+{	
 	/*! Location - may include laterality */
 	var code: CodeableConcept?
-
+	
 	/*! Precise location details */
 	var detail: String?
-
+	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["code"] as? NSDictionary {
+				self.code = CodeableConcept(json: val)
+			}
+			if let val = js["detail"] as? String {
+				self.detail = val
+			}
+		}
+		super.init(json: json)
+	}
 }
 
 
@@ -166,17 +281,35 @@ class ConditionLocation: FHIRElement
  *  or the substance that caused/triggered this Condition.
  */
 class ConditionRelatedItem: FHIRElement
-{
+{	
 	/*! due-to | following */
-	var type: String
-
+	var type: String?
+	
 	/*! Relationship target by means of a predefined code */
 	var code: CodeableConcept?
-
+	
 	/*! Relationship target resource */
 	var target: ResourceReference?
-
-	init(type: String) {
-		self.type = type
+	
+	convenience init(type: String?) {
+		self.init(json: nil)
+		if type {
+			self.type = type
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["type"] as? String {
+				self.type = val
+			}
+			if let val = js["code"] as? NSDictionary {
+				self.code = CodeableConcept(json: val)
+			}
+			if let val = js["target"] as? NSDictionary {
+				self.target = ResourceReference(json: val)
+			}
+		}
+		super.init(json: json)
 	}
 }

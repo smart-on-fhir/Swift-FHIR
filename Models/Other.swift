@@ -2,7 +2,7 @@
 //  Other.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-03.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -39,29 +39,59 @@ class Other: FHIRResource
 	override var resourceName: String {
 		get { return "Other" }
 	}
-
+	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-
+	
 	/*! Contained, inline Resources */
 	var contained: FHIRResource[]?
-
+	
 	/*! Business identifier */
 	var identifier: Identifier[]?
-
+	
 	/*! Kind of Resource */
-	var code: CodeableConcept
-
+	var code: CodeableConcept?
+	
 	/*! Identifies the */
 	var subject: ResourceReference?
-
+	
 	/*! Who created */
 	var author: ResourceReference?
-
+	
 	/*! When created */
 	var created: NSDate?
-
-	init(code: CodeableConcept) {
-		self.code = code
+	
+	convenience init(code: CodeableConcept?) {
+		self.init(json: nil)
+		if code {
+			self.code = code
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["contained"] as? Array<NSDictionary> {
+				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			}
+			if let val = js["identifier"] as? Array<NSDictionary> {
+				self.identifier = Identifier.from(val) as? Identifier[]
+			}
+			if let val = js["code"] as? NSDictionary {
+				self.code = CodeableConcept(json: val)
+			}
+			if let val = js["subject"] as? NSDictionary {
+				self.subject = ResourceReference(json: val)
+			}
+			if let val = js["author"] as? NSDictionary {
+				self.author = ResourceReference(json: val)
+			}
+			if let val = js["created"] as? String {
+				self.created = NSDate(json: val)
+			}
+		}
+		super.init(json: json)
 	}
 }

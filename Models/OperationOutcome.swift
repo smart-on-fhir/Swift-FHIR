@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-03.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -27,18 +27,36 @@ class OperationOutcome: FHIRResource
 	override var resourceName: String {
 		get { return "OperationOutcome" }
 	}
-
+	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-
+	
 	/*! Contained, inline Resources */
 	var contained: FHIRResource[]?
-
+	
 	/*! A single issue associated with the action */
-	var issue: OperationOutcomeIssue[]
-
-	init(issue: OperationOutcomeIssue[]) {
-		self.issue = issue
+	var issue: OperationOutcomeIssue[]?
+	
+	convenience init(issue: OperationOutcomeIssue[]?) {
+		self.init(json: nil)
+		if issue {
+			self.issue = issue
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["contained"] as? Array<NSDictionary> {
+				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			}
+			if let val = js["issue"] as? Array<NSDictionary> {
+				self.issue = OperationOutcomeIssue.from(val) as? OperationOutcomeIssue[]
+			}
+		}
+		super.init(json: json)
 	}
 }
 
@@ -49,20 +67,41 @@ class OperationOutcome: FHIRResource
  *  An error, warning or information message that results from a system action.
  */
 class OperationOutcomeIssue: FHIRElement
-{
+{	
 	/*! fatal | error | warning | information */
-	var severity: String
-
+	var severity: String?
+	
 	/*! Error or warning code */
 	var type: Coding?
-
+	
 	/*! Additional description of the issue */
 	var details: String?
-
+	
 	/*! XPath of element(s) related to issue */
 	var location: String[]?
-
-	init(severity: String) {
-		self.severity = severity
+	
+	convenience init(severity: String?) {
+		self.init(json: nil)
+		if severity {
+			self.severity = severity
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["severity"] as? String {
+				self.severity = val
+			}
+			if let val = js["type"] as? NSDictionary {
+				self.type = Coding(json: val)
+			}
+			if let val = js["details"] as? String {
+				self.details = val
+			}
+			if let val = js["location"] as? Array<String> {
+				self.location = val
+			}
+		}
+		super.init(json: json)
 	}
 }

@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-03.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -41,47 +41,98 @@ class AllergyIntolerance: FHIRResource
 	override var resourceName: String {
 		get { return "AllergyIntolerance" }
 	}
-
+	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-
+	
 	/*! Contained, inline Resources */
 	var contained: FHIRResource[]?
-
+	
 	/*! External Ids for this item */
 	var identifier: Identifier[]?
-
+	
 	/*! fatal | high | medium | low */
 	var criticality: String?
-
+	
 	/*! allergy | intolerance | unknown */
-	var sensitivityType: String
-
+	var sensitivityType: String?
+	
 	/*! When recorded */
 	var recordedDate: NSDate?
-
+	
 	/*! suspected | confirmed | refuted | resolved */
-	var status: String
-
+	var status: String?
+	
 	/*! Who the sensitivity is for */
-	var subject: ResourceReference
-
+	var subject: ResourceReference?
+	
 	/*! Who recorded the sensitivity */
 	var recorder: ResourceReference?
-
+	
 	/*! The substance that causes the sensitivity */
-	var substance: ResourceReference
-
+	var substance: ResourceReference?
+	
 	/*! Reactions associated with the sensitivity */
 	var reaction: ResourceReference[]?
-
+	
 	/*! Observations that confirm or refute */
 	var sensitivityTest: ResourceReference[]?
-
-	init(sensitivityType: String, status: String, subject: ResourceReference, substance: ResourceReference) {
-		self.sensitivityType = sensitivityType
-		self.status = status
-		self.subject = subject
-		self.substance = substance
+	
+	convenience init(sensitivityType: String?, status: String?, subject: ResourceReference?, substance: ResourceReference?) {
+		self.init(json: nil)
+		if sensitivityType {
+			self.sensitivityType = sensitivityType
+		}
+		if status {
+			self.status = status
+		}
+		if subject {
+			self.subject = subject
+		}
+		if substance {
+			self.substance = substance
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["contained"] as? Array<NSDictionary> {
+				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			}
+			if let val = js["identifier"] as? Array<NSDictionary> {
+				self.identifier = Identifier.from(val) as? Identifier[]
+			}
+			if let val = js["criticality"] as? String {
+				self.criticality = val
+			}
+			if let val = js["sensitivityType"] as? String {
+				self.sensitivityType = val
+			}
+			if let val = js["recordedDate"] as? String {
+				self.recordedDate = NSDate(json: val)
+			}
+			if let val = js["status"] as? String {
+				self.status = val
+			}
+			if let val = js["subject"] as? NSDictionary {
+				self.subject = ResourceReference(json: val)
+			}
+			if let val = js["recorder"] as? NSDictionary {
+				self.recorder = ResourceReference(json: val)
+			}
+			if let val = js["substance"] as? NSDictionary {
+				self.substance = ResourceReference(json: val)
+			}
+			if let val = js["reaction"] as? Array<NSDictionary> {
+				self.reaction = ResourceReference.from(val) as? ResourceReference[]
+			}
+			if let val = js["sensitivityTest"] as? Array<NSDictionary> {
+				self.sensitivityTest = ResourceReference.from(val) as? ResourceReference[]
+			}
+		}
+		super.init(json: json)
 	}
 }

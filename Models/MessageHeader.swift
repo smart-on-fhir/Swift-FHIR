@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-03.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -25,54 +25,111 @@ class MessageHeader: FHIRResource
 	override var resourceName: String {
 		get { return "MessageHeader" }
 	}
-
+	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-
+	
 	/*! Contained, inline Resources */
 	var contained: FHIRResource[]?
-
+	
 	/*! Id of this message */
-	var identifier: String
-
+	var identifier: String?
+	
 	/*! Time that the message was sent */
-	var timestamp: Int
-
+	var timestamp: Int?
+	
 	/*! Code for the event this message represents */
-	var event: Coding
-
+	var event: Coding?
+	
 	/*! If this is a reply to prior message */
 	var response: MessageHeaderResponse?
-
+	
 	/*! Message Source Application */
-	var source: MessageHeaderSource
-
+	var source: MessageHeaderSource?
+	
 	/*! Message Destination Application(s) */
 	var destination: MessageHeaderDestination[]?
-
+	
 	/*! The source of the data entry */
 	var enterer: ResourceReference?
-
+	
 	/*! The source of the decision */
 	var author: ResourceReference?
-
+	
 	/*! Intended "real-world" recipient for the data */
 	var receiver: ResourceReference?
-
+	
 	/*! Final responsibility for event */
 	var responsible: ResourceReference?
-
+	
 	/*! Cause of event */
 	var reason: CodeableConcept?
-
+	
 	/*! The actual content of the message */
 	var data: ResourceReference[]?
-
-	init(identifier: String, timestamp: Int, event: Coding, source: MessageHeaderSource) {
-		self.identifier = identifier
-		self.timestamp = timestamp
-		self.event = event
-		self.source = source
+	
+	convenience init(identifier: String?, timestamp: Int?, event: Coding?, source: MessageHeaderSource?) {
+		self.init(json: nil)
+		if identifier {
+			self.identifier = identifier
+		}
+		if timestamp {
+			self.timestamp = timestamp
+		}
+		if event {
+			self.event = event
+		}
+		if source {
+			self.source = source
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["contained"] as? Array<NSDictionary> {
+				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			}
+			if let val = js["identifier"] as? String {
+				self.identifier = val
+			}
+			if let val = js["timestamp"] as? Int {
+				self.timestamp = val
+			}
+			if let val = js["event"] as? NSDictionary {
+				self.event = Coding(json: val)
+			}
+			if let val = js["response"] as? NSDictionary {
+				self.response = MessageHeaderResponse(json: val)
+			}
+			if let val = js["source"] as? NSDictionary {
+				self.source = MessageHeaderSource(json: val)
+			}
+			if let val = js["destination"] as? Array<NSDictionary> {
+				self.destination = MessageHeaderDestination.from(val) as? MessageHeaderDestination[]
+			}
+			if let val = js["enterer"] as? NSDictionary {
+				self.enterer = ResourceReference(json: val)
+			}
+			if let val = js["author"] as? NSDictionary {
+				self.author = ResourceReference(json: val)
+			}
+			if let val = js["receiver"] as? NSDictionary {
+				self.receiver = ResourceReference(json: val)
+			}
+			if let val = js["responsible"] as? NSDictionary {
+				self.responsible = ResourceReference(json: val)
+			}
+			if let val = js["reason"] as? NSDictionary {
+				self.reason = CodeableConcept(json: val)
+			}
+			if let val = js["data"] as? Array<NSDictionary> {
+				self.data = ResourceReference.from(val) as? ResourceReference[]
+			}
+		}
+		super.init(json: json)
 	}
 }
 
@@ -83,19 +140,39 @@ class MessageHeader: FHIRResource
  *  Information about the message that this message is a response to.  Only present if this message is a response.
  */
 class MessageHeaderResponse: FHIRElement
-{
+{	
 	/*! Id of original message */
-	var identifier: String
-
+	var identifier: String?
+	
 	/*! ok | transient-error | fatal-error */
-	var code: String
-
+	var code: String?
+	
 	/*! Specific list of hints/warnings/errors */
 	var details: ResourceReference?
-
-	init(identifier: String, code: String) {
-		self.identifier = identifier
-		self.code = code
+	
+	convenience init(identifier: String?, code: String?) {
+		self.init(json: nil)
+		if identifier {
+			self.identifier = identifier
+		}
+		if code {
+			self.code = code
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["identifier"] as? String {
+				self.identifier = val
+			}
+			if let val = js["code"] as? String {
+				self.code = val
+			}
+			if let val = js["details"] as? NSDictionary {
+				self.details = ResourceReference(json: val)
+			}
+		}
+		super.init(json: json)
 	}
 }
 
@@ -106,25 +183,51 @@ class MessageHeaderResponse: FHIRElement
  *  The source application from which this message originated.
  */
 class MessageHeaderSource: FHIRElement
-{
+{	
 	/*! Name of system */
 	var name: String?
-
+	
 	/*! Name of software running the system */
-	var software: String
-
+	var software: String?
+	
 	/*! Version of software running */
 	var version: String?
-
+	
 	/*! Human contact for problems */
 	var contact: Contact?
-
+	
 	/*! Actual message source address or id */
-	var endpoint: NSURL
-
-	init(software: String, endpoint: NSURL) {
-		self.software = software
-		self.endpoint = endpoint
+	var endpoint: NSURL?
+	
+	convenience init(software: String?, endpoint: NSURL?) {
+		self.init(json: nil)
+		if software {
+			self.software = software
+		}
+		if endpoint {
+			self.endpoint = endpoint
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["name"] as? String {
+				self.name = val
+			}
+			if let val = js["software"] as? String {
+				self.software = val
+			}
+			if let val = js["version"] as? String {
+				self.version = val
+			}
+			if let val = js["contact"] as? NSDictionary {
+				self.contact = Contact(json: val)
+			}
+			if let val = js["endpoint"] as? String {
+				self.endpoint = NSURL(json: val)
+			}
+		}
+		super.init(json: json)
 	}
 }
 
@@ -135,17 +238,35 @@ class MessageHeaderSource: FHIRElement
  *  The destination application which the message is intended for.
  */
 class MessageHeaderDestination: FHIRElement
-{
+{	
 	/*! Name of system */
 	var name: String?
-
+	
 	/*! Particular delivery destination within the destination */
 	var target: ResourceReference?
-
+	
 	/*! Actual destination address or id */
-	var endpoint: NSURL
-
-	init(endpoint: NSURL) {
-		self.endpoint = endpoint
+	var endpoint: NSURL?
+	
+	convenience init(endpoint: NSURL?) {
+		self.init(json: nil)
+		if endpoint {
+			self.endpoint = endpoint
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["name"] as? String {
+				self.name = val
+			}
+			if let val = js["target"] as? NSDictionary {
+				self.target = ResourceReference(json: val)
+			}
+			if let val = js["endpoint"] as? String {
+				self.endpoint = NSURL(json: val)
+			}
+		}
+		super.init(json: json)
 	}
 }

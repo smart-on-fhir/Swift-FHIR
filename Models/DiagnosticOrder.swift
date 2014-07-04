@@ -2,7 +2,7 @@
 //  DiagnosticOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-03.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -34,45 +34,90 @@ class DiagnosticOrder: FHIRResource
 	override var resourceName: String {
 		get { return "DiagnosticOrder" }
 	}
-
+	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-
+	
 	/*! Contained, inline Resources */
 	var contained: FHIRResource[]?
-
+	
 	/*! Who and/or what test is about */
-	var subject: ResourceReference
-
+	var subject: ResourceReference?
+	
 	/*! Who ordered the test */
 	var orderer: ResourceReference?
-
+	
 	/*! Identifiers assigned to this order */
 	var identifier: Identifier[]?
-
+	
 	/*! The encounter that this diagnostic order is associated with */
 	var encounter: ResourceReference?
-
+	
 	/*! Explanation/Justification for test */
 	var clinicalNotes: String?
-
+	
 	/*! If the whole order relates to specific specimens */
 	var specimen: ResourceReference[]?
-
+	
 	/*! requested | received | accepted | in progress | review | completed | suspended | rejected | failed */
 	var status: String?
-
+	
 	/*! routine | urgent | stat | asap */
 	var priority: String?
-
+	
 	/*! A list of events of interest in the lifecycle */
 	var event: DiagnosticOrderEvent[]?
-
+	
 	/*! The items the orderer requested */
 	var item: DiagnosticOrderItem[]?
-
-	init(subject: ResourceReference) {
-		self.subject = subject
+	
+	convenience init(subject: ResourceReference?) {
+		self.init(json: nil)
+		if subject {
+			self.subject = subject
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["contained"] as? Array<NSDictionary> {
+				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			}
+			if let val = js["subject"] as? NSDictionary {
+				self.subject = ResourceReference(json: val)
+			}
+			if let val = js["orderer"] as? NSDictionary {
+				self.orderer = ResourceReference(json: val)
+			}
+			if let val = js["identifier"] as? Array<NSDictionary> {
+				self.identifier = Identifier.from(val) as? Identifier[]
+			}
+			if let val = js["encounter"] as? NSDictionary {
+				self.encounter = ResourceReference(json: val)
+			}
+			if let val = js["clinicalNotes"] as? String {
+				self.clinicalNotes = val
+			}
+			if let val = js["specimen"] as? Array<NSDictionary> {
+				self.specimen = ResourceReference.from(val) as? ResourceReference[]
+			}
+			if let val = js["status"] as? String {
+				self.status = val
+			}
+			if let val = js["priority"] as? String {
+				self.priority = val
+			}
+			if let val = js["event"] as? Array<NSDictionary> {
+				self.event = DiagnosticOrderEvent.from(val) as? DiagnosticOrderEvent[]
+			}
+			if let val = js["item"] as? Array<NSDictionary> {
+				self.item = DiagnosticOrderItem.from(val) as? DiagnosticOrderItem[]
+			}
+		}
+		super.init(json: json)
 	}
 }
 
@@ -84,22 +129,45 @@ class DiagnosticOrder: FHIRResource
  *  made, various processing steps (specimens received), when it was completed.
  */
 class DiagnosticOrderEvent: FHIRElement
-{
+{	
 	/*! requested | received | accepted | in progress | review | completed | suspended | rejected | failed */
-	var status: String
-
+	var status: String?
+	
 	/*! More information about the event and it's context */
 	var description: CodeableConcept?
-
+	
 	/*! The date at which the event happened */
-	var dateTime: NSDate
-
+	var dateTime: NSDate?
+	
 	/*! Who recorded or did this */
 	var actor: ResourceReference?
-
-	init(status: String, dateTime: NSDate) {
-		self.status = status
-		self.dateTime = dateTime
+	
+	convenience init(status: String?, dateTime: NSDate?) {
+		self.init(json: nil)
+		if status {
+			self.status = status
+		}
+		if dateTime {
+			self.dateTime = dateTime
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["status"] as? String {
+				self.status = val
+			}
+			if let val = js["description"] as? NSDictionary {
+				self.description = CodeableConcept(json: val)
+			}
+			if let val = js["dateTime"] as? String {
+				self.dateTime = NSDate(json: val)
+			}
+			if let val = js["actor"] as? NSDictionary {
+				self.actor = ResourceReference(json: val)
+			}
+		}
+		super.init(json: json)
 	}
 }
 
@@ -111,24 +179,48 @@ class DiagnosticOrderEvent: FHIRElement
  *  be one item per request, but in most contexts, more than one investigation can be requested.
  */
 class DiagnosticOrderItem: FHIRElement
-{
+{	
 	/*! Code to indicate the item (test or panel) being ordered */
-	var code: CodeableConcept
-
+	var code: CodeableConcept?
+	
 	/*! If this item relates to specific specimens */
 	var specimen: ResourceReference[]?
-
+	
 	/*! Location of requested test (if applicable) */
 	var bodySite: CodeableConcept?
-
+	
 	/*! requested | received | accepted | in progress | review | completed | suspended | rejected | failed */
 	var status: String?
-
+	
 	/*! Events specific to this item */
 	var event: DiagnosticOrderItemEvent[]?
-
-	init(code: CodeableConcept) {
-		self.code = code
+	
+	convenience init(code: CodeableConcept?) {
+		self.init(json: nil)
+		if code {
+			self.code = code
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["code"] as? NSDictionary {
+				self.code = CodeableConcept(json: val)
+			}
+			if let val = js["specimen"] as? Array<NSDictionary> {
+				self.specimen = ResourceReference.from(val) as? ResourceReference[]
+			}
+			if let val = js["bodySite"] as? NSDictionary {
+				self.bodySite = CodeableConcept(json: val)
+			}
+			if let val = js["status"] as? String {
+				self.status = val
+			}
+			if let val = js["event"] as? Array<NSDictionary> {
+				self.event = DiagnosticOrderItemEvent.from(val) as? DiagnosticOrderItemEvent[]
+			}
+		}
+		super.init(json: json)
 	}
 }
 
@@ -139,5 +231,11 @@ class DiagnosticOrderItem: FHIRElement
  *  A summary of the events of interest that have occurred as this item of the request is processed.
  */
 class DiagnosticOrderItemEvent: FHIRElement
-{
+{	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+		}
+		super.init(json: json)
+	}
 }

@@ -2,7 +2,7 @@
 //  RelatedPerson.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-03.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -30,38 +30,77 @@ class RelatedPerson: FHIRResource
 	override var resourceName: String {
 		get { return "RelatedPerson" }
 	}
-
+	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-
+	
 	/*! Contained, inline Resources */
 	var contained: FHIRResource[]?
-
+	
 	/*! A Human identifier for this person */
 	var identifier: Identifier[]?
-
+	
 	/*! The patient this person is related to */
-	var patient: ResourceReference
-
+	var patient: ResourceReference?
+	
 	/*! The nature of the relationship */
 	var relationship: CodeableConcept?
-
+	
 	/*! A name associated with the person */
 	var name: HumanName?
-
+	
 	/*! A contact detail for the person */
 	var telecom: Contact[]?
-
+	
 	/*! Gender for administrative purposes */
 	var gender: CodeableConcept?
-
+	
 	/*! Address where the related person can be contacted or visited */
 	var address: Address?
-
+	
 	/*! Image of the person */
 	var photo: Attachment[]?
-
-	init(patient: ResourceReference) {
-		self.patient = patient
+	
+	convenience init(patient: ResourceReference?) {
+		self.init(json: nil)
+		if patient {
+			self.patient = patient
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["contained"] as? Array<NSDictionary> {
+				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			}
+			if let val = js["identifier"] as? Array<NSDictionary> {
+				self.identifier = Identifier.from(val) as? Identifier[]
+			}
+			if let val = js["patient"] as? NSDictionary {
+				self.patient = ResourceReference(json: val)
+			}
+			if let val = js["relationship"] as? NSDictionary {
+				self.relationship = CodeableConcept(json: val)
+			}
+			if let val = js["name"] as? NSDictionary {
+				self.name = HumanName(json: val)
+			}
+			if let val = js["telecom"] as? Array<NSDictionary> {
+				self.telecom = Contact.from(val) as? Contact[]
+			}
+			if let val = js["gender"] as? NSDictionary {
+				self.gender = CodeableConcept(json: val)
+			}
+			if let val = js["address"] as? NSDictionary {
+				self.address = Address(json: val)
+			}
+			if let val = js["photo"] as? Array<NSDictionary> {
+				self.photo = Attachment.from(val) as? Attachment[]
+			}
+		}
+		super.init(json: json)
 	}
 }

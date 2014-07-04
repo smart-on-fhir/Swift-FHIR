@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-03.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -40,61 +40,123 @@ class Encounter: FHIRResource
 	override var resourceName: String {
 		get { return "Encounter" }
 	}
-
+	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-
+	
 	/*! Contained, inline Resources */
 	var contained: FHIRResource[]?
-
+	
 	/*! Identifier(s) by which this encounter is known */
 	var identifier: Identifier[]?
-
+	
 	/*! planned | in progress | onleave | finished | cancelled */
-	var status: String
-
+	var status: String?
+	
 	/*! inpatient | outpatient | ambulatory | emergency + */
-	var classification: String
-
+	var classification: String?
+	
 	/*! Specific type of encounter */
 	var type: CodeableConcept[]?
-
+	
 	/*! The patient present at the encounter */
 	var subject: ResourceReference?
-
+	
 	/*! List of participants involved in the encounter */
 	var participant: EncounterParticipant[]?
-
+	
 	/*! The start and end time of the encounter */
 	var period: Period?
-
+	
 	/*! Quantity of time the encounter lasted */
-	var length: Duration?
-
+	var length: Double?
+	
 	/*! Reason the encounter takes place (code) */
 	var reason: CodeableConcept?
-
+	
 	/*! Reason the encounter takes place (resource) */
 	var indication: ResourceReference?
-
+	
 	/*! Indicates the urgency of the encounter */
 	var priority: CodeableConcept?
-
+	
 	/*! Details about an admission to a clinic */
 	var hospitalization: EncounterHospitalization?
-
+	
 	/*! List of locations the patient has been at */
 	var location: EncounterLocation[]?
-
+	
 	/*! Department or team providing care */
 	var serviceProvider: ResourceReference?
-
+	
 	/*! Another Encounter this encounter is part of */
 	var partOf: ResourceReference?
-
-	init(status: String, classification: String) {
-		self.status = status
-		self.classification = classification
+	
+	convenience init(status: String?, classification: String?) {
+		self.init(json: nil)
+		if status {
+			self.status = status
+		}
+		if classification {
+			self.classification = classification
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["contained"] as? Array<NSDictionary> {
+				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			}
+			if let val = js["identifier"] as? Array<NSDictionary> {
+				self.identifier = Identifier.from(val) as? Identifier[]
+			}
+			if let val = js["status"] as? String {
+				self.status = val
+			}
+			if let val = js["classification"] as? String {
+				self.classification = val
+			}
+			if let val = js["type"] as? Array<NSDictionary> {
+				self.type = CodeableConcept.from(val) as? CodeableConcept[]
+			}
+			if let val = js["subject"] as? NSDictionary {
+				self.subject = ResourceReference(json: val)
+			}
+			if let val = js["participant"] as? Array<NSDictionary> {
+				self.participant = EncounterParticipant.from(val) as? EncounterParticipant[]
+			}
+			if let val = js["period"] as? NSDictionary {
+				self.period = Period(json: val)
+			}
+			if let val = js["length"] as? NSNumber {
+				self.length = Double(val)
+			}
+			if let val = js["reason"] as? NSDictionary {
+				self.reason = CodeableConcept(json: val)
+			}
+			if let val = js["indication"] as? NSDictionary {
+				self.indication = ResourceReference(json: val)
+			}
+			if let val = js["priority"] as? NSDictionary {
+				self.priority = CodeableConcept(json: val)
+			}
+			if let val = js["hospitalization"] as? NSDictionary {
+				self.hospitalization = EncounterHospitalization(json: val)
+			}
+			if let val = js["location"] as? Array<NSDictionary> {
+				self.location = EncounterLocation.from(val) as? EncounterLocation[]
+			}
+			if let val = js["serviceProvider"] as? NSDictionary {
+				self.serviceProvider = ResourceReference(json: val)
+			}
+			if let val = js["partOf"] as? NSDictionary {
+				self.partOf = ResourceReference(json: val)
+			}
+		}
+		super.init(json: json)
 	}
 }
 
@@ -105,13 +167,25 @@ class Encounter: FHIRResource
  *  The main practitioner responsible for providing the service.
  */
 class EncounterParticipant: FHIRElement
-{
+{	
 	/*! Role of participant in encounter */
 	var type: CodeableConcept[]?
-
+	
 	/*! Persons involved in the encounter other than the patient */
 	var individual: ResourceReference?
-
+	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["type"] as? Array<NSDictionary> {
+				self.type = CodeableConcept.from(val) as? CodeableConcept[]
+			}
+			if let val = js["individual"] as? NSDictionary {
+				self.individual = ResourceReference(json: val)
+			}
+		}
+		super.init(json: json)
+	}
 }
 
 
@@ -119,43 +193,85 @@ class EncounterParticipant: FHIRElement
  *  Details about an admission to a clinic.
  */
 class EncounterHospitalization: FHIRElement
-{
+{	
 	/*! Pre-admission identifier */
 	var preAdmissionIdentifier: Identifier?
-
+	
 	/*! The location from which the patient came before admission */
 	var origin: ResourceReference?
-
+	
 	/*! From where patient was admitted (physician referral, transfer) */
 	var admitSource: CodeableConcept?
-
+	
 	/*! Period during which the patient was admitted */
 	var period: Period?
-
+	
 	/*! Where the patient stays during this encounter */
 	var accomodation: EncounterHospitalizationAccomodation[]?
-
+	
 	/*! Dietary restrictions for the patient */
 	var diet: CodeableConcept?
-
+	
 	/*! Special courtesies (VIP, board member) */
 	var specialCourtesy: CodeableConcept[]?
-
+	
 	/*! Wheelchair, translator, stretcher, etc */
 	var specialArrangement: CodeableConcept[]?
-
+	
 	/*! Location to which the patient is discharged */
 	var destination: ResourceReference?
-
+	
 	/*! Category or kind of location after discharge */
 	var dischargeDisposition: CodeableConcept?
-
+	
 	/*! The final diagnosis given a patient before release from the hospital after all testing, surgery, and workup are complete */
 	var dischargeDiagnosis: ResourceReference?
-
+	
 	/*! Is this hospitalization a readmission? */
 	var reAdmission: Bool?
-
+	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["preAdmissionIdentifier"] as? NSDictionary {
+				self.preAdmissionIdentifier = Identifier(json: val)
+			}
+			if let val = js["origin"] as? NSDictionary {
+				self.origin = ResourceReference(json: val)
+			}
+			if let val = js["admitSource"] as? NSDictionary {
+				self.admitSource = CodeableConcept(json: val)
+			}
+			if let val = js["period"] as? NSDictionary {
+				self.period = Period(json: val)
+			}
+			if let val = js["accomodation"] as? Array<NSDictionary> {
+				self.accomodation = EncounterHospitalizationAccomodation.from(val) as? EncounterHospitalizationAccomodation[]
+			}
+			if let val = js["diet"] as? NSDictionary {
+				self.diet = CodeableConcept(json: val)
+			}
+			if let val = js["specialCourtesy"] as? Array<NSDictionary> {
+				self.specialCourtesy = CodeableConcept.from(val) as? CodeableConcept[]
+			}
+			if let val = js["specialArrangement"] as? Array<NSDictionary> {
+				self.specialArrangement = CodeableConcept.from(val) as? CodeableConcept[]
+			}
+			if let val = js["destination"] as? NSDictionary {
+				self.destination = ResourceReference(json: val)
+			}
+			if let val = js["dischargeDisposition"] as? NSDictionary {
+				self.dischargeDisposition = CodeableConcept(json: val)
+			}
+			if let val = js["dischargeDiagnosis"] as? NSDictionary {
+				self.dischargeDiagnosis = ResourceReference(json: val)
+			}
+			if let val = js["reAdmission"] as? Int {
+				self.reAdmission = (1 == val)
+			}
+		}
+		super.init(json: json)
+	}
 }
 
 
@@ -163,13 +279,25 @@ class EncounterHospitalization: FHIRElement
  *  Where the patient stays during this encounter.
  */
 class EncounterHospitalizationAccomodation: FHIRElement
-{
+{	
 	/*! The bed that is assigned to the patient */
 	var bed: ResourceReference?
-
+	
 	/*! Period during which the patient was assigned the bed */
 	var period: Period?
-
+	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["bed"] as? NSDictionary {
+				self.bed = ResourceReference(json: val)
+			}
+			if let val = js["period"] as? NSDictionary {
+				self.period = Period(json: val)
+			}
+		}
+		super.init(json: json)
+	}
 }
 
 
@@ -179,15 +307,32 @@ class EncounterHospitalizationAccomodation: FHIRElement
  *  List of locations at which the patient has been.
  */
 class EncounterLocation: FHIRElement
-{
+{	
 	/*! Location the encounter takes place */
-	var location: ResourceReference
-
+	var location: ResourceReference?
+	
 	/*! Time period during which the patient was present at the location */
-	var period: Period
-
-	init(location: ResourceReference, period: Period) {
-		self.location = location
-		self.period = period
+	var period: Period?
+	
+	convenience init(location: ResourceReference?, period: Period?) {
+		self.init(json: nil)
+		if location {
+			self.location = location
+		}
+		if period {
+			self.period = period
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["location"] as? NSDictionary {
+				self.location = ResourceReference(json: val)
+			}
+			if let val = js["period"] as? NSDictionary {
+				self.period = Period(json: val)
+			}
+		}
+		super.init(json: json)
 	}
 }

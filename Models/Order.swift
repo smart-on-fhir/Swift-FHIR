@@ -2,7 +2,7 @@
 //  Order.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-03.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -29,45 +29,90 @@ class Order: FHIRResource
 	override var resourceName: String {
 		get { return "Order" }
 	}
-
+	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-
+	
 	/*! Contained, inline Resources */
 	var contained: FHIRResource[]?
-
+	
 	/*! Identifiers assigned to this order by the orderer or by the receiver */
 	var identifier: Identifier[]?
-
+	
 	/*! When the order was made */
 	var date: NSDate?
-
+	
 	/*! Patient this order is about */
 	var subject: ResourceReference?
-
+	
 	/*! Who initiated the order */
 	var source: ResourceReference?
-
+	
 	/*! Who is intended to fulfill the order */
 	var target: ResourceReference?
-
+	
 	/*! Text - why the order was made */
 	var reasonResourceReference: ResourceReference?
-
+	
 	/*! Text - why the order was made */
 	var reasonCodeableConcept: CodeableConcept?
-
+	
 	/*! If required by policy */
 	var authority: ResourceReference?
-
+	
 	/*! When order should be fulfilled */
 	var when: OrderWhen?
-
+	
 	/*! What action is being ordered */
-	var detail: ResourceReference[]
-
-	init(detail: ResourceReference[]) {
-		self.detail = detail
+	var detail: ResourceReference[]?
+	
+	convenience init(detail: ResourceReference[]?) {
+		self.init(json: nil)
+		if detail {
+			self.detail = detail
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["contained"] as? Array<NSDictionary> {
+				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			}
+			if let val = js["identifier"] as? Array<NSDictionary> {
+				self.identifier = Identifier.from(val) as? Identifier[]
+			}
+			if let val = js["date"] as? String {
+				self.date = NSDate(json: val)
+			}
+			if let val = js["subject"] as? NSDictionary {
+				self.subject = ResourceReference(json: val)
+			}
+			if let val = js["source"] as? NSDictionary {
+				self.source = ResourceReference(json: val)
+			}
+			if let val = js["target"] as? NSDictionary {
+				self.target = ResourceReference(json: val)
+			}
+			if let val = js["reasonResourceReference"] as? NSDictionary {
+				self.reasonResourceReference = ResourceReference(json: val)
+			}
+			if let val = js["reasonCodeableConcept"] as? NSDictionary {
+				self.reasonCodeableConcept = CodeableConcept(json: val)
+			}
+			if let val = js["authority"] as? NSDictionary {
+				self.authority = ResourceReference(json: val)
+			}
+			if let val = js["when"] as? NSDictionary {
+				self.when = OrderWhen(json: val)
+			}
+			if let val = js["detail"] as? Array<NSDictionary> {
+				self.detail = ResourceReference.from(val) as? ResourceReference[]
+			}
+		}
+		super.init(json: json)
 	}
 }
 
@@ -76,11 +121,23 @@ class Order: FHIRResource
  *  When order should be fulfilled.
  */
 class OrderWhen: FHIRElement
-{
+{	
 	/*! Code specifies when request should be done. The code may simply be a priority code */
 	var code: CodeableConcept?
-
+	
 	/*! A formal schedule */
 	var schedule: Schedule?
-
+	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["code"] as? NSDictionary {
+				self.code = CodeableConcept(json: val)
+			}
+			if let val = js["schedule"] as? NSDictionary {
+				self.schedule = Schedule(json: val)
+			}
+		}
+		super.init(json: json)
+	}
 }

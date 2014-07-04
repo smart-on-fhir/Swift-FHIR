@@ -2,7 +2,7 @@
 //  MedicationAdministration.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-03.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -24,55 +24,114 @@ class MedicationAdministration: FHIRResource
 	override var resourceName: String {
 		get { return "MedicationAdministration" }
 	}
-
+	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-
+	
 	/*! Contained, inline Resources */
 	var contained: FHIRResource[]?
-
+	
 	/*! External identifier */
 	var identifier: Identifier[]?
-
+	
 	/*! in progress | on hold | completed | entered in error | stopped */
-	var status: String
-
+	var status: String?
+	
 	/*! Who received medication? */
-	var patient: ResourceReference
-
+	var patient: ResourceReference?
+	
 	/*! Who administered substance? */
-	var practitioner: ResourceReference
-
+	var practitioner: ResourceReference?
+	
 	/*! Encounter administered as part of */
 	var encounter: ResourceReference?
-
+	
 	/*! Order administration performed against */
-	var prescription: ResourceReference
-
+	var prescription: ResourceReference?
+	
 	/*! True if medication not administered */
 	var wasNotGiven: Bool?
-
+	
 	/*! Reason administration not performed */
 	var reasonNotGiven: CodeableConcept[]?
-
+	
 	/*! Start and end time of administration */
-	var whenGiven: Period
-
+	var whenGiven: Period?
+	
 	/*! What was administered? */
 	var medication: ResourceReference?
-
+	
 	/*! Device used to administer */
 	var device: ResourceReference[]?
-
+	
 	/*! Medicine administration instructions to the patient/carer */
 	var dosage: MedicationAdministrationDosage[]?
-
-	init(status: String, patient: ResourceReference, practitioner: ResourceReference, prescription: ResourceReference, whenGiven: Period) {
-		self.status = status
-		self.patient = patient
-		self.practitioner = practitioner
-		self.prescription = prescription
-		self.whenGiven = whenGiven
+	
+	convenience init(status: String?, patient: ResourceReference?, practitioner: ResourceReference?, prescription: ResourceReference?, whenGiven: Period?) {
+		self.init(json: nil)
+		if status {
+			self.status = status
+		}
+		if patient {
+			self.patient = patient
+		}
+		if practitioner {
+			self.practitioner = practitioner
+		}
+		if prescription {
+			self.prescription = prescription
+		}
+		if whenGiven {
+			self.whenGiven = whenGiven
+		}
+	}	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["contained"] as? Array<NSDictionary> {
+				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			}
+			if let val = js["identifier"] as? Array<NSDictionary> {
+				self.identifier = Identifier.from(val) as? Identifier[]
+			}
+			if let val = js["status"] as? String {
+				self.status = val
+			}
+			if let val = js["patient"] as? NSDictionary {
+				self.patient = ResourceReference(json: val)
+			}
+			if let val = js["practitioner"] as? NSDictionary {
+				self.practitioner = ResourceReference(json: val)
+			}
+			if let val = js["encounter"] as? NSDictionary {
+				self.encounter = ResourceReference(json: val)
+			}
+			if let val = js["prescription"] as? NSDictionary {
+				self.prescription = ResourceReference(json: val)
+			}
+			if let val = js["wasNotGiven"] as? Int {
+				self.wasNotGiven = (1 == val)
+			}
+			if let val = js["reasonNotGiven"] as? Array<NSDictionary> {
+				self.reasonNotGiven = CodeableConcept.from(val) as? CodeableConcept[]
+			}
+			if let val = js["whenGiven"] as? NSDictionary {
+				self.whenGiven = Period(json: val)
+			}
+			if let val = js["medication"] as? NSDictionary {
+				self.medication = ResourceReference(json: val)
+			}
+			if let val = js["device"] as? Array<NSDictionary> {
+				self.device = ResourceReference.from(val) as? ResourceReference[]
+			}
+			if let val = js["dosage"] as? Array<NSDictionary> {
+				self.dosage = MedicationAdministrationDosage.from(val) as? MedicationAdministrationDosage[]
+			}
+		}
+		super.init(json: json)
 	}
 }
 
@@ -83,35 +142,71 @@ class MedicationAdministration: FHIRResource
  *  Provides details of how much of the medication was administered.
  */
 class MedicationAdministrationDosage: FHIRElement
-{
+{	
 	/*! When dose(s) were given */
 	var timingDateTime: NSDate?
-
+	
 	/*! When dose(s) were given */
 	var timingPeriod: Period?
-
+	
 	/*! Take "as needed" f(or x) */
 	var asNeededCodeableConcept: CodeableConcept?
-
+	
 	/*! Take "as needed" f(or x) */
 	var asNeededBoolean: Bool?
-
+	
 	/*! Body site administered to */
 	var site: CodeableConcept?
-
+	
 	/*! Path of substance into body */
 	var route: CodeableConcept?
-
+	
 	/*! How drug was administered */
 	var method: CodeableConcept?
-
+	
 	/*! Amount administered in one dose */
 	var quantity: Quantity?
-
+	
 	/*! Dose quantity per unit of time */
 	var rate: Ratio?
-
+	
 	/*! Total dose that was consumed per unit of time */
 	var maxDosePerPeriod: Ratio?
-
+	
+	
+	init(json: NSDictionary?) {
+		if let js = json {
+			if let val = js["timingDateTime"] as? String {
+				self.timingDateTime = NSDate(json: val)
+			}
+			if let val = js["timingPeriod"] as? NSDictionary {
+				self.timingPeriod = Period(json: val)
+			}
+			if let val = js["asNeededCodeableConcept"] as? NSDictionary {
+				self.asNeededCodeableConcept = CodeableConcept(json: val)
+			}
+			if let val = js["asNeededBoolean"] as? Int {
+				self.asNeededBoolean = (1 == val)
+			}
+			if let val = js["site"] as? NSDictionary {
+				self.site = CodeableConcept(json: val)
+			}
+			if let val = js["route"] as? NSDictionary {
+				self.route = CodeableConcept(json: val)
+			}
+			if let val = js["method"] as? NSDictionary {
+				self.method = CodeableConcept(json: val)
+			}
+			if let val = js["quantity"] as? NSDictionary {
+				self.quantity = Quantity(json: val)
+			}
+			if let val = js["rate"] as? NSDictionary {
+				self.rate = Ratio(json: val)
+			}
+			if let val = js["maxDosePerPeriod"] as? NSDictionary {
+				self.maxDosePerPeriod = Ratio(json: val)
+			}
+		}
+		super.init(json: json)
+	}
 }

@@ -34,8 +34,8 @@ class FHIRResource: FHIRElement
 	 *  Reads the resource with the given id from the given server.
 	 */
 	class func read(id: String, server: FHIRServer, callback: ((resource: FHIRResource?, error: NSError?) -> ())) {
-		let url = server.baseURL.URLByAppendingPathComponent(resourceName).URLByAppendingPathComponent(id)
-		server.requestJSON(url) { json, error in
+		let path = "\(resourceName)/\(id)"
+		server.requestJSON(path) { json, error in
 			if error {
 				callback(resource: nil, error: error)
 			}
@@ -58,6 +58,9 @@ protocol FHIRServer {
 	/*! A server object must always have a base URL. */
 	var baseURL: NSURL { get }
 	
-	/*! Instance method that needs to take a URL, retrieve data from that URL and return a decoded NSDictionary or an error in a callback. */
-	func requestJSON(url: NSURL, callback: ((json: NSDictionary?, error: NSError?) -> Void))
+	/*!
+	 *  Instance method that needs to take a path, which is relative to `baseURL`, retrieve data from that URL and
+	 *  return a decoded NSDictionary or an error in a callback.
+	 */
+	func requestJSON(path: String, callback: ((json: NSDictionary?, error: NSError?) -> Void))
 }

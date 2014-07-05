@@ -27,7 +27,7 @@ import Foundation
  */
 class RelatedPerson: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "RelatedPerson" }
 	}
 	

@@ -37,7 +37,7 @@ import Foundation
  */
 class Encounter: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "Encounter" }
 	}
 	

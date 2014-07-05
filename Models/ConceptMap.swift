@@ -18,7 +18,7 @@ import Foundation
  */
 class ConceptMap: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "ConceptMap" }
 	}
 	

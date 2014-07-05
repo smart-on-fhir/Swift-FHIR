@@ -22,7 +22,7 @@ import Foundation
  */
 class Device: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "Device" }
 	}
 	

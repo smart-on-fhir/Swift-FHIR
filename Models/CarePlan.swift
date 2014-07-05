@@ -26,7 +26,7 @@ import Foundation
  */
 class CarePlan: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "CarePlan" }
 	}
 	
@@ -277,13 +277,13 @@ class CarePlanActivitySimple: FHIRElement
 	var code: CodeableConcept?
 	
 	/*! When activity is to occur */
-	var timingString: String?
-	
-	/*! When activity is to occur */
 	var timingSchedule: Schedule?
 	
 	/*! When activity is to occur */
 	var timingPeriod: Period?
+	
+	/*! When activity is to occur */
+	var timingString: String?
 	
 	/*! Where it should happen */
 	var location: ResourceReference?
@@ -318,14 +318,14 @@ class CarePlanActivitySimple: FHIRElement
 			if let val = js["code"] as? NSDictionary {
 				self.code = CodeableConcept(json: val)
 			}
-			if let val = js["timingString"] as? String {
-				self.timingString = val
-			}
 			if let val = js["timingSchedule"] as? NSDictionary {
 				self.timingSchedule = Schedule(json: val)
 			}
 			if let val = js["timingPeriod"] as? NSDictionary {
 				self.timingPeriod = Period(json: val)
+			}
+			if let val = js["timingString"] as? String {
+				self.timingString = val
 			}
 			if let val = js["location"] as? NSDictionary {
 				self.location = ResourceReference(json: val)

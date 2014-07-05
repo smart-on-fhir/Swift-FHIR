@@ -25,7 +25,7 @@ import Foundation
  */
 class Group: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "Group" }
 	}
 	
@@ -118,9 +118,6 @@ class GroupCharacteristic: FHIRElement
 	var code: CodeableConcept?
 	
 	/*! Value held by characteristic */
-	var valueRange: Range?
-	
-	/*! Value held by characteristic */
 	var valueCodeableConcept: CodeableConcept?
 	
 	/*! Value held by characteristic */
@@ -129,16 +126,16 @@ class GroupCharacteristic: FHIRElement
 	/*! Value held by characteristic */
 	var valueQuantity: Quantity?
 	
+	/*! Value held by characteristic */
+	var valueRange: Range?
+	
 	/*! Group includes or excludes */
 	var exclude: Bool?
 	
-	convenience init(code: CodeableConcept?, valueRange: Range?, valueCodeableConcept: CodeableConcept?, valueBoolean: Bool?, valueQuantity: Quantity?, exclude: Bool?) {
+	convenience init(code: CodeableConcept?, valueCodeableConcept: CodeableConcept?, valueBoolean: Bool?, valueQuantity: Quantity?, valueRange: Range?, exclude: Bool?) {
 		self.init(json: nil)
 		if code {
 			self.code = code
-		}
-		if valueRange {
-			self.valueRange = valueRange
 		}
 		if valueCodeableConcept {
 			self.valueCodeableConcept = valueCodeableConcept
@@ -148,6 +145,9 @@ class GroupCharacteristic: FHIRElement
 		}
 		if valueQuantity {
 			self.valueQuantity = valueQuantity
+		}
+		if valueRange {
+			self.valueRange = valueRange
 		}
 		if exclude {
 			self.exclude = exclude
@@ -159,9 +159,6 @@ class GroupCharacteristic: FHIRElement
 			if let val = js["code"] as? NSDictionary {
 				self.code = CodeableConcept(json: val)
 			}
-			if let val = js["valueRange"] as? NSDictionary {
-				self.valueRange = Range(json: val)
-			}
 			if let val = js["valueCodeableConcept"] as? NSDictionary {
 				self.valueCodeableConcept = CodeableConcept(json: val)
 			}
@@ -170,6 +167,9 @@ class GroupCharacteristic: FHIRElement
 			}
 			if let val = js["valueQuantity"] as? NSDictionary {
 				self.valueQuantity = Quantity(json: val)
+			}
+			if let val = js["valueRange"] as? NSDictionary {
+				self.valueRange = Range(json: val)
 			}
 			if let val = js["exclude"] as? Int {
 				self.exclude = (1 == val)

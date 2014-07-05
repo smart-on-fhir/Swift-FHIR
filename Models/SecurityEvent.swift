@@ -21,7 +21,7 @@ import Foundation
  */
 class SecurityEvent: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "SecurityEvent" }
 	}
 	

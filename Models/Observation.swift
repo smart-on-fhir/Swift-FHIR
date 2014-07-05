@@ -31,7 +31,7 @@ import Foundation
  */
 class Observation: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "Observation" }
 	}
 	
@@ -45,25 +45,25 @@ class Observation: FHIRResource
 	var name: CodeableConcept?
 	
 	/*! Actual result */
-	var valueSampledData: SampledData?
-	
-	/*! Actual result */
-	var valuePeriod: Period?
+	var valueQuantity: Quantity?
 	
 	/*! Actual result */
 	var valueCodeableConcept: CodeableConcept?
 	
 	/*! Actual result */
-	var valueQuantity: Quantity?
+	var valueAttachment: Attachment?
 	
 	/*! Actual result */
 	var valueRatio: Ratio?
 	
 	/*! Actual result */
-	var valueString: String?
+	var valuePeriod: Period?
 	
 	/*! Actual result */
-	var valueAttachment: Attachment?
+	var valueSampledData: SampledData?
+	
+	/*! Actual result */
+	var valueString: String?
 	
 	/*! High, low, normal, etc. */
 	var interpretation: CodeableConcept?
@@ -134,26 +134,26 @@ class Observation: FHIRResource
 			if let val = js["name"] as? NSDictionary {
 				self.name = CodeableConcept(json: val)
 			}
-			if let val = js["valueSampledData"] as? NSDictionary {
-				self.valueSampledData = SampledData(json: val)
-			}
-			if let val = js["valuePeriod"] as? NSDictionary {
-				self.valuePeriod = Period(json: val)
+			if let val = js["valueQuantity"] as? NSDictionary {
+				self.valueQuantity = Quantity(json: val)
 			}
 			if let val = js["valueCodeableConcept"] as? NSDictionary {
 				self.valueCodeableConcept = CodeableConcept(json: val)
 			}
-			if let val = js["valueQuantity"] as? NSDictionary {
-				self.valueQuantity = Quantity(json: val)
+			if let val = js["valueAttachment"] as? NSDictionary {
+				self.valueAttachment = Attachment(json: val)
 			}
 			if let val = js["valueRatio"] as? NSDictionary {
 				self.valueRatio = Ratio(json: val)
 			}
+			if let val = js["valuePeriod"] as? NSDictionary {
+				self.valuePeriod = Period(json: val)
+			}
+			if let val = js["valueSampledData"] as? NSDictionary {
+				self.valueSampledData = SampledData(json: val)
+			}
 			if let val = js["valueString"] as? String {
 				self.valueString = val
-			}
-			if let val = js["valueAttachment"] as? NSDictionary {
-				self.valueAttachment = Attachment(json: val)
 			}
 			if let val = js["interpretation"] as? NSDictionary {
 				self.interpretation = CodeableConcept(json: val)

@@ -19,7 +19,7 @@ import Foundation
  */
 class Organization: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "Organization" }
 	}
 	

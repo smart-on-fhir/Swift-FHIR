@@ -14,7 +14,7 @@ import Foundation
  */
 class ResourceReference: FHIRElement
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "ResourceReference" }
 	}
 	

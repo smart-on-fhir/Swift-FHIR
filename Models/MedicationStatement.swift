@@ -20,7 +20,7 @@ import Foundation
  */
 class MedicationStatement: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "MedicationStatement" }
 	}
 	
@@ -104,10 +104,10 @@ class MedicationStatementDosage: FHIRElement
 	var timing: Schedule?
 	
 	/*! Take "as needed" f(or x) */
-	var asNeededCodeableConcept: CodeableConcept?
+	var asNeededBoolean: Bool?
 	
 	/*! Take "as needed" f(or x) */
-	var asNeededBoolean: Bool?
+	var asNeededCodeableConcept: CodeableConcept?
 	
 	/*! Where on body was medication administered? */
 	var site: CodeableConcept?
@@ -133,11 +133,11 @@ class MedicationStatementDosage: FHIRElement
 			if let val = js["timing"] as? NSDictionary {
 				self.timing = Schedule(json: val)
 			}
-			if let val = js["asNeededCodeableConcept"] as? NSDictionary {
-				self.asNeededCodeableConcept = CodeableConcept(json: val)
-			}
 			if let val = js["asNeededBoolean"] as? Int {
 				self.asNeededBoolean = (1 == val)
+			}
+			if let val = js["asNeededCodeableConcept"] as? NSDictionary {
+				self.asNeededCodeableConcept = CodeableConcept(json: val)
 			}
 			if let val = js["site"] as? NSDictionary {
 				self.site = CodeableConcept(json: val)

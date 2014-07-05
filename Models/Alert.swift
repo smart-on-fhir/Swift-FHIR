@@ -25,7 +25,7 @@ import Foundation
  */
 class Alert: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "Alert" }
 	}
 	

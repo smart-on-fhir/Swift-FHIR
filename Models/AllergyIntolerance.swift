@@ -38,7 +38,7 @@ import Foundation
  */
 class AllergyIntolerance: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "AllergyIntolerance" }
 	}
 	

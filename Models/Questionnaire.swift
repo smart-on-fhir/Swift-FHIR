@@ -35,7 +35,7 @@ import Foundation
  */
 class Questionnaire: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "Questionnaire" }
 	}
 	
@@ -205,25 +205,25 @@ class QuestionnaireGroupQuestion: FHIRElement
 	var text: String?
 	
 	/*! Single-valued answer to the question */
-	var answerInstant: Int?
-	
-	/*! Single-valued answer to the question */
-	var answerBoolean: Bool?
-	
-	/*! Single-valued answer to the question */
-	var answerDateTime: NSDate?
+	var answerDecimal: NSDecimalNumber?
 	
 	/*! Single-valued answer to the question */
 	var answerInteger: Int?
 	
 	/*! Single-valued answer to the question */
-	var answerDecimal: NSDecimalNumber?
+	var answerBoolean: Bool?
+	
+	/*! Single-valued answer to the question */
+	var answerDate: NSDate?
 	
 	/*! Single-valued answer to the question */
 	var answerString: String?
 	
 	/*! Single-valued answer to the question */
-	var answerDate: NSDate?
+	var answerDateTime: NSDate?
+	
+	/*! Single-valued answer to the question */
+	var answerInstant: Int?
 	
 	/*! Selected options */
 	var choice: Coding[]?
@@ -249,26 +249,26 @@ class QuestionnaireGroupQuestion: FHIRElement
 			if let val = js["text"] as? String {
 				self.text = val
 			}
-			if let val = js["answerInstant"] as? Int {
-				self.answerInstant = val
-			}
-			if let val = js["answerBoolean"] as? Int {
-				self.answerBoolean = (1 == val)
-			}
-			if let val = js["answerDateTime"] as? String {
-				self.answerDateTime = NSDate(json: val)
+			if let val = js["answerDecimal"] as? String {
+				self.answerDecimal = NSDecimalNumber(json: val)
 			}
 			if let val = js["answerInteger"] as? Int {
 				self.answerInteger = val
 			}
-			if let val = js["answerDecimal"] as? String {
-				self.answerDecimal = NSDecimalNumber(json: val)
+			if let val = js["answerBoolean"] as? Int {
+				self.answerBoolean = (1 == val)
+			}
+			if let val = js["answerDate"] as? String {
+				self.answerDate = NSDate(json: val)
 			}
 			if let val = js["answerString"] as? String {
 				self.answerString = val
 			}
-			if let val = js["answerDate"] as? String {
-				self.answerDate = NSDate(json: val)
+			if let val = js["answerDateTime"] as? String {
+				self.answerDateTime = NSDate(json: val)
+			}
+			if let val = js["answerInstant"] as? Int {
+				self.answerInstant = val
 			}
 			if let val = js["choice"] as? Array<NSDictionary> {
 				self.choice = Coding.from(val) as? Coding[]

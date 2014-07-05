@@ -33,7 +33,7 @@ import Foundation
  */
 class Condition: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "Condition" }
 	}
 	

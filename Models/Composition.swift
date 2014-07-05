@@ -23,7 +23,7 @@ import Foundation
  */
 class Composition: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "Composition" }
 	}
 	

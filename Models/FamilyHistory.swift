@@ -25,7 +25,7 @@ import Foundation
  */
 class FamilyHistory: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "FamilyHistory" }
 	}
 	
@@ -94,28 +94,28 @@ class FamilyHistoryRelation: FHIRElement
 	var relationship: CodeableConcept?
 	
 	/*! (approximate) date of birth */
-	var bornString: String?
+	var bornPeriod: Period?
 	
 	/*! (approximate) date of birth */
 	var bornDate: NSDate?
 	
 	/*! (approximate) date of birth */
-	var bornPeriod: Period?
-	
-	/*! Dead? How old/when? */
-	var deceasedString: String?
-	
-	/*! Dead? How old/when? */
-	var deceasedDate: NSDate?
-	
-	/*! Dead? How old/when? */
-	var deceasedAge: Double?
+	var bornString: String?
 	
 	/*! Dead? How old/when? */
 	var deceasedBoolean: Bool?
 	
 	/*! Dead? How old/when? */
+	var deceasedAge: Double?
+	
+	/*! Dead? How old/when? */
 	var deceasedRange: Range?
+	
+	/*! Dead? How old/when? */
+	var deceasedDate: NSDate?
+	
+	/*! Dead? How old/when? */
+	var deceasedString: String?
 	
 	/*! General note about related person */
 	var note: String?
@@ -138,29 +138,29 @@ class FamilyHistoryRelation: FHIRElement
 			if let val = js["relationship"] as? NSDictionary {
 				self.relationship = CodeableConcept(json: val)
 			}
-			if let val = js["bornString"] as? String {
-				self.bornString = val
+			if let val = js["bornPeriod"] as? NSDictionary {
+				self.bornPeriod = Period(json: val)
 			}
 			if let val = js["bornDate"] as? String {
 				self.bornDate = NSDate(json: val)
 			}
-			if let val = js["bornPeriod"] as? NSDictionary {
-				self.bornPeriod = Period(json: val)
-			}
-			if let val = js["deceasedString"] as? String {
-				self.deceasedString = val
-			}
-			if let val = js["deceasedDate"] as? String {
-				self.deceasedDate = NSDate(json: val)
-			}
-			if let val = js["deceasedAge"] as? NSNumber {
-				self.deceasedAge = Double(val)
+			if let val = js["bornString"] as? String {
+				self.bornString = val
 			}
 			if let val = js["deceasedBoolean"] as? Int {
 				self.deceasedBoolean = (1 == val)
 			}
+			if let val = js["deceasedAge"] as? NSNumber {
+				self.deceasedAge = Double(val)
+			}
 			if let val = js["deceasedRange"] as? NSDictionary {
 				self.deceasedRange = Range(json: val)
+			}
+			if let val = js["deceasedDate"] as? String {
+				self.deceasedDate = NSDate(json: val)
+			}
+			if let val = js["deceasedString"] as? String {
+				self.deceasedString = val
 			}
 			if let val = js["note"] as? String {
 				self.note = val
@@ -190,13 +190,13 @@ class FamilyHistoryRelationCondition: FHIRElement
 	var outcome: CodeableConcept?
 	
 	/*! When condition first manifested */
-	var onsetString: String?
-	
-	/*! When condition first manifested */
 	var onsetAge: Double?
 	
 	/*! When condition first manifested */
 	var onsetRange: Range?
+	
+	/*! When condition first manifested */
+	var onsetString: String?
 	
 	/*! Extra information about condition */
 	var note: String?
@@ -216,14 +216,14 @@ class FamilyHistoryRelationCondition: FHIRElement
 			if let val = js["outcome"] as? NSDictionary {
 				self.outcome = CodeableConcept(json: val)
 			}
-			if let val = js["onsetString"] as? String {
-				self.onsetString = val
-			}
 			if let val = js["onsetAge"] as? NSNumber {
 				self.onsetAge = Double(val)
 			}
 			if let val = js["onsetRange"] as? NSDictionary {
 				self.onsetRange = Range(json: val)
+			}
+			if let val = js["onsetString"] as? String {
+				self.onsetString = val
 			}
 			if let val = js["note"] as? String {
 				self.note = val

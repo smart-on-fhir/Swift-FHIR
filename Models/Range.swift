@@ -14,7 +14,7 @@ import Foundation
  */
 class Range: FHIRElement
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "Range" }
 	}
 	

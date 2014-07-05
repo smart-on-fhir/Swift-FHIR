@@ -21,7 +21,7 @@ import Foundation
  */
 class Substance: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "Substance" }
 	}
 	

@@ -18,7 +18,7 @@ import Foundation
  */
 class MedicationDispense: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "MedicationDispense" }
 	}
 	
@@ -175,16 +175,16 @@ class MedicationDispenseDispenseDosage: FHIRElement
 	var timingDateTime: NSDate?
 	
 	/*! When medication should be administered */
-	var timingSchedule: Schedule?
-	
-	/*! When medication should be administered */
 	var timingPeriod: Period?
 	
-	/*! Take "as needed" f(or x) */
-	var asNeededCodeableConcept: CodeableConcept?
+	/*! When medication should be administered */
+	var timingSchedule: Schedule?
 	
 	/*! Take "as needed" f(or x) */
 	var asNeededBoolean: Bool?
+	
+	/*! Take "as needed" f(or x) */
+	var asNeededCodeableConcept: CodeableConcept?
 	
 	/*! Body site to administer to */
 	var site: CodeableConcept?
@@ -213,17 +213,17 @@ class MedicationDispenseDispenseDosage: FHIRElement
 			if let val = js["timingDateTime"] as? String {
 				self.timingDateTime = NSDate(json: val)
 			}
-			if let val = js["timingSchedule"] as? NSDictionary {
-				self.timingSchedule = Schedule(json: val)
-			}
 			if let val = js["timingPeriod"] as? NSDictionary {
 				self.timingPeriod = Period(json: val)
 			}
-			if let val = js["asNeededCodeableConcept"] as? NSDictionary {
-				self.asNeededCodeableConcept = CodeableConcept(json: val)
+			if let val = js["timingSchedule"] as? NSDictionary {
+				self.timingSchedule = Schedule(json: val)
 			}
 			if let val = js["asNeededBoolean"] as? Int {
 				self.asNeededBoolean = (1 == val)
+			}
+			if let val = js["asNeededCodeableConcept"] as? NSDictionary {
+				self.asNeededCodeableConcept = CodeableConcept(json: val)
 			}
 			if let val = js["site"] as? NSDictionary {
 				self.site = CodeableConcept(json: val)

@@ -30,7 +30,7 @@ import Foundation
  */
 class Patient: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "Patient" }
 	}
 	
@@ -56,10 +56,10 @@ class Patient: FHIRResource
 	var birthDate: NSDate?
 	
 	/*! Indicates if the individual is deceased or not */
-	var deceasedDateTime: NSDate?
+	var deceasedBoolean: Bool?
 	
 	/*! Indicates if the individual is deceased or not */
-	var deceasedBoolean: Bool?
+	var deceasedDateTime: NSDate?
 	
 	/*! Addresses for the individual */
 	var address: Address[]?
@@ -68,10 +68,10 @@ class Patient: FHIRResource
 	var maritalStatus: CodeableConcept?
 	
 	/*! Whether patient is part of a multiple birth */
-	var multipleBirthInteger: Int?
+	var multipleBirthBoolean: Bool?
 	
 	/*! Whether patient is part of a multiple birth */
-	var multipleBirthBoolean: Bool?
+	var multipleBirthInteger: Int?
 	
 	/*! Image of the person */
 	var photo: Attachment[]?
@@ -121,11 +121,11 @@ class Patient: FHIRResource
 			if let val = js["birthDate"] as? String {
 				self.birthDate = NSDate(json: val)
 			}
-			if let val = js["deceasedDateTime"] as? String {
-				self.deceasedDateTime = NSDate(json: val)
-			}
 			if let val = js["deceasedBoolean"] as? Int {
 				self.deceasedBoolean = (1 == val)
+			}
+			if let val = js["deceasedDateTime"] as? String {
+				self.deceasedDateTime = NSDate(json: val)
 			}
 			if let val = js["address"] as? Array<NSDictionary> {
 				self.address = Address.from(val) as? Address[]
@@ -133,11 +133,11 @@ class Patient: FHIRResource
 			if let val = js["maritalStatus"] as? NSDictionary {
 				self.maritalStatus = CodeableConcept(json: val)
 			}
-			if let val = js["multipleBirthInteger"] as? Int {
-				self.multipleBirthInteger = val
-			}
 			if let val = js["multipleBirthBoolean"] as? Int {
 				self.multipleBirthBoolean = (1 == val)
+			}
+			if let val = js["multipleBirthInteger"] as? Int {
+				self.multipleBirthInteger = val
 			}
 			if let val = js["photo"] as? Array<NSDictionary> {
 				self.photo = Attachment.from(val) as? Attachment[]

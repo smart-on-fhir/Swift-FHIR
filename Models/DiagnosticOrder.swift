@@ -31,7 +31,7 @@ import Foundation
  */
 class DiagnosticOrder: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "DiagnosticOrder" }
 	}
 	

@@ -24,7 +24,7 @@ import Foundation
  */
 class ImagingStudy: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "ImagingStudy" }
 	}
 	

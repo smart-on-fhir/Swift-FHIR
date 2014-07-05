@@ -19,7 +19,7 @@ import Foundation
  */
 class OrderResponse: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "OrderResponse" }
 	}
 	
@@ -42,10 +42,10 @@ class OrderResponse: FHIRResource
 	var who: ResourceReference?
 	
 	/*! If required by policy */
-	var authorityResourceReference: ResourceReference?
+	var authorityCodeableConcept: CodeableConcept?
 	
 	/*! If required by policy */
-	var authorityCodeableConcept: CodeableConcept?
+	var authorityResourceReference: ResourceReference?
 	
 	/*! pending | review | rejected | error | accepted | cancelled | replaced | aborted | complete */
 	var code: String?
@@ -86,11 +86,11 @@ class OrderResponse: FHIRResource
 			if let val = js["who"] as? NSDictionary {
 				self.who = ResourceReference(json: val)
 			}
-			if let val = js["authorityResourceReference"] as? NSDictionary {
-				self.authorityResourceReference = ResourceReference(json: val)
-			}
 			if let val = js["authorityCodeableConcept"] as? NSDictionary {
 				self.authorityCodeableConcept = CodeableConcept(json: val)
+			}
+			if let val = js["authorityResourceReference"] as? NSDictionary {
+				self.authorityResourceReference = ResourceReference(json: val)
 			}
 			if let val = js["code"] as? String {
 				self.code = val

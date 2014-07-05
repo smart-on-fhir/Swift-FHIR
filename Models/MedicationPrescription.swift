@@ -20,7 +20,7 @@ import Foundation
  */
 class MedicationPrescription: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "MedicationPrescription" }
 	}
 	
@@ -49,10 +49,10 @@ class MedicationPrescription: FHIRResource
 	var encounter: ResourceReference?
 	
 	/*! Reason or indication for writing the prescription */
-	var reasonResourceReference: ResourceReference?
+	var reasonCodeableConcept: CodeableConcept?
 	
 	/*! Reason or indication for writing the prescription */
-	var reasonCodeableConcept: CodeableConcept?
+	var reasonResourceReference: ResourceReference?
 	
 	/*! Medication to be taken */
 	var medication: ResourceReference?
@@ -93,11 +93,11 @@ class MedicationPrescription: FHIRResource
 			if let val = js["encounter"] as? NSDictionary {
 				self.encounter = ResourceReference(json: val)
 			}
-			if let val = js["reasonResourceReference"] as? NSDictionary {
-				self.reasonResourceReference = ResourceReference(json: val)
-			}
 			if let val = js["reasonCodeableConcept"] as? NSDictionary {
 				self.reasonCodeableConcept = CodeableConcept(json: val)
+			}
+			if let val = js["reasonResourceReference"] as? NSDictionary {
+				self.reasonResourceReference = ResourceReference(json: val)
 			}
 			if let val = js["medication"] as? NSDictionary {
 				self.medication = ResourceReference(json: val)
@@ -134,16 +134,16 @@ class MedicationPrescriptionDosageInstruction: FHIRElement
 	var timingDateTime: NSDate?
 	
 	/*! When medication should be administered */
-	var timingSchedule: Schedule?
-	
-	/*! When medication should be administered */
 	var timingPeriod: Period?
 	
-	/*! Take "as needed" f(or x) */
-	var asNeededCodeableConcept: CodeableConcept?
+	/*! When medication should be administered */
+	var timingSchedule: Schedule?
 	
 	/*! Take "as needed" f(or x) */
 	var asNeededBoolean: Bool?
+	
+	/*! Take "as needed" f(or x) */
+	var asNeededCodeableConcept: CodeableConcept?
 	
 	/*! Body site to administer to */
 	var site: CodeableConcept?
@@ -175,17 +175,17 @@ class MedicationPrescriptionDosageInstruction: FHIRElement
 			if let val = js["timingDateTime"] as? String {
 				self.timingDateTime = NSDate(json: val)
 			}
-			if let val = js["timingSchedule"] as? NSDictionary {
-				self.timingSchedule = Schedule(json: val)
-			}
 			if let val = js["timingPeriod"] as? NSDictionary {
 				self.timingPeriod = Period(json: val)
 			}
-			if let val = js["asNeededCodeableConcept"] as? NSDictionary {
-				self.asNeededCodeableConcept = CodeableConcept(json: val)
+			if let val = js["timingSchedule"] as? NSDictionary {
+				self.timingSchedule = Schedule(json: val)
 			}
 			if let val = js["asNeededBoolean"] as? Int {
 				self.asNeededBoolean = (1 == val)
+			}
+			if let val = js["asNeededCodeableConcept"] as? NSDictionary {
+				self.asNeededCodeableConcept = CodeableConcept(json: val)
 			}
 			if let val = js["site"] as? NSDictionary {
 				self.site = CodeableConcept(json: val)

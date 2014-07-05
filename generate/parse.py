@@ -188,9 +188,10 @@ def parse_elem(path, name, definition, klass):
 	n_max = definition['max']
 	
 	# determine property class(es)
-	types = set()
+	types = []
 	for tp in definition.get('type', []):
-		types.add(tp['code'])
+		if tp['code'] not in types:			# TODO: how to handle same type.code but different type.profile?
+			types.append(tp['code'])
 	
 	# no type means this is an inline-defined subtype, create a class for it
 	newklass = None
@@ -199,7 +200,7 @@ def parse_elem(path, name, definition, klass):
 		newklass = {
 			'path': path,
 			'className': className,
-			'superclass': classmap.get(types.pop(), 'FHIRElement') if len(types) > 0 else 'FHIRElement',
+			'superclass': classmap.get(types[0], 'FHIRElement') if len(types) > 0 else 'FHIRElement',
 			'short': _wrap(short),
 			'formal': _wrap(formal),
 			'properties': [],
@@ -207,7 +208,7 @@ def parse_elem(path, name, definition, klass):
 		}
 		
 		if 0 == len(types):
-			types.add(className)
+			types.append(className)
 	
 	# add as properties to class
 	for tp in types:

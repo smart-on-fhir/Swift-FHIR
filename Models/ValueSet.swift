@@ -23,7 +23,7 @@ import Foundation
  */
 class ValueSet: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "ValueSet" }
 	}
 	

@@ -14,7 +14,7 @@ import Foundation
  */
 class Contact: FHIRElement
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "Contact" }
 	}
 	

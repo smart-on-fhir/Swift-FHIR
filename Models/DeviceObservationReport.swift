@@ -25,7 +25,7 @@ import Foundation
  */
 class DeviceObservationReport: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "DeviceObservationReport" }
 	}
 	

@@ -14,7 +14,7 @@ import Foundation
  */
 class Attachment: FHIRElement
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "Attachment" }
 	}
 	

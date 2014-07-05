@@ -19,7 +19,7 @@ import Foundation
 class {{ klass.className }}: {{ klass.superclass|default('FHIRElement') }}
 {
 {%- if klass.resourceName %}
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "{{ klass.resourceName }}" }
 	}
 {% endif -%}

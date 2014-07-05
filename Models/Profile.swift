@@ -33,7 +33,7 @@ import Foundation
  */
 class Profile: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "Profile" }
 	}
 	

@@ -22,7 +22,7 @@ import Foundation
  */
 class MessageHeader: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "MessageHeader" }
 	}
 	

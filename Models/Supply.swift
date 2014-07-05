@@ -19,7 +19,7 @@ import Foundation
  */
 class Supply: FHIRResource
 {
-	override var resourceName: String {
+	override class var resourceName: String {
 		get { return "Supply" }
 	}
 	

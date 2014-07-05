@@ -14,7 +14,7 @@ import Foundation
  */
 class FHIRElement
 {
-	var resourceName: String {
+	class var resourceName: String {
 		get { return "FHIRElement" }
 	}
 	

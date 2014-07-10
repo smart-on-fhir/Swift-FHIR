@@ -21,8 +21,8 @@ extension NSURL {
 		self.init(string: json)
 	}
 	
-	class func from(json: String[]) -> NSURL[] {
-		var arr: NSURL[] = []
+	class func from(json: [String]) -> [NSURL] {
+		var arr: [NSURL] = []
 		return arr
 	}
 }

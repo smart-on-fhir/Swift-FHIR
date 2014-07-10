@@ -2,7 +2,7 @@
 //  Device.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -30,10 +30,10 @@ class Device: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Instance id from manufacturer, owner and others */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! What kind of device this is */
 	var type: CodeableConcept?
@@ -66,7 +66,7 @@ class Device: FHIRResource
 	var patient: ResourceReference?
 	
 	/*! Details for human/organization for support */
-	var contact: Contact[]?
+	var contact: [Contact]?
 	
 	/*! Network address to contact device */
 	var url: NSURL?
@@ -83,11 +83,11 @@ class Device: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val)
@@ -119,8 +119,8 @@ class Device: FHIRResource
 			if let val = js["patient"] as? NSDictionary {
 				self.patient = ResourceReference(json: val)
 			}
-			if let val = js["contact"] as? Array<NSDictionary> {
-				self.contact = Contact.from(val) as? Contact[]
+			if let val = js["contact"] as? [NSDictionary] {
+				self.contact = Contact.from(val) as? [Contact]
 			}
 			if let val = js["url"] as? String {
 				self.url = NSURL(json: val)

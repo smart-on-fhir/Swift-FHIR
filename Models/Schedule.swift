@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -19,7 +19,7 @@ class Schedule: FHIRElement
 	}
 	
 	/*! When the event occurs */
-	var event: Period[]?
+	var event: [Period]?
 	
 	/*! Only if there is none or one event */
 	var repeat: ScheduleRepeat?
@@ -27,8 +27,8 @@ class Schedule: FHIRElement
 	
 	init(json: NSDictionary?) {
 		if let js = json {
-			if let val = js["event"] as? Array<NSDictionary> {
-				self.event = Period.from(val) as? Period[]
+			if let val = js["event"] as? [NSDictionary] {
+				self.event = Period.from(val) as? [Period]
 			}
 			if let val = js["repeat"] as? NSDictionary {
 				self.repeat = ScheduleRepeat(json: val)

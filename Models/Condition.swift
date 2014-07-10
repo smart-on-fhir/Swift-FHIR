@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -41,10 +41,10 @@ class Condition: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! External Ids for this condition */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! Who has the condition? */
 	var subject: ResourceReference?
@@ -92,13 +92,13 @@ class Condition: FHIRResource
 	var stage: ConditionStage?
 	
 	/*! Supporting evidence */
-	var evidence: ConditionEvidence[]?
+	var evidence: [ConditionEvidence]?
 	
 	/*! Anatomical location, if relevant */
-	var location: ConditionLocation[]?
+	var location: [ConditionLocation]?
 	
 	/*! Causes or precedents for this Condition */
-	var relatedItem: ConditionRelatedItem[]?
+	var relatedItem: [ConditionRelatedItem]?
 	
 	/*! Additional information about the Condition */
 	var notes: String?
@@ -121,11 +121,11 @@ class Condition: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = ResourceReference(json: val)
@@ -172,14 +172,14 @@ class Condition: FHIRResource
 			if let val = js["stage"] as? NSDictionary {
 				self.stage = ConditionStage(json: val)
 			}
-			if let val = js["evidence"] as? Array<NSDictionary> {
-				self.evidence = ConditionEvidence.from(val) as? ConditionEvidence[]
+			if let val = js["evidence"] as? [NSDictionary] {
+				self.evidence = ConditionEvidence.from(val) as? [ConditionEvidence]
 			}
-			if let val = js["location"] as? Array<NSDictionary> {
-				self.location = ConditionLocation.from(val) as? ConditionLocation[]
+			if let val = js["location"] as? [NSDictionary] {
+				self.location = ConditionLocation.from(val) as? [ConditionLocation]
 			}
-			if let val = js["relatedItem"] as? Array<NSDictionary> {
-				self.relatedItem = ConditionRelatedItem.from(val) as? ConditionRelatedItem[]
+			if let val = js["relatedItem"] as? [NSDictionary] {
+				self.relatedItem = ConditionRelatedItem.from(val) as? [ConditionRelatedItem]
 			}
 			if let val = js["notes"] as? String {
 				self.notes = val
@@ -201,7 +201,7 @@ class ConditionStage: FHIRElement
 	var summary: CodeableConcept?
 	
 	/*! Formal record of assessment */
-	var assessment: ResourceReference[]?
+	var assessment: [ResourceReference]?
 	
 	
 	init(json: NSDictionary?) {
@@ -209,8 +209,8 @@ class ConditionStage: FHIRElement
 			if let val = js["summary"] as? NSDictionary {
 				self.summary = CodeableConcept(json: val)
 			}
-			if let val = js["assessment"] as? Array<NSDictionary> {
-				self.assessment = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["assessment"] as? [NSDictionary] {
+				self.assessment = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
 		super.init(json: json)
@@ -229,7 +229,7 @@ class ConditionEvidence: FHIRElement
 	var code: CodeableConcept?
 	
 	/*! Supporting information found elsewhere */
-	var detail: ResourceReference[]?
+	var detail: [ResourceReference]?
 	
 	
 	init(json: NSDictionary?) {
@@ -237,8 +237,8 @@ class ConditionEvidence: FHIRElement
 			if let val = js["code"] as? NSDictionary {
 				self.code = CodeableConcept(json: val)
 			}
-			if let val = js["detail"] as? Array<NSDictionary> {
-				self.detail = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["detail"] as? [NSDictionary] {
+				self.detail = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
 		super.init(json: json)

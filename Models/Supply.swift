@@ -2,7 +2,7 @@
 //  Supply.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -27,7 +27,7 @@ class Supply: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! The kind of supply (central, non-stock, etc) */
 	var kind: CodeableConcept?
@@ -45,7 +45,7 @@ class Supply: FHIRResource
 	var patient: ResourceReference?
 	
 	/*! Supply details */
-	var dispense: SupplyDispense[]?
+	var dispense: [SupplyDispense]?
 	
 	
 	init(json: NSDictionary?) {
@@ -53,8 +53,8 @@ class Supply: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["kind"] as? NSDictionary {
 				self.kind = CodeableConcept(json: val)
@@ -71,8 +71,8 @@ class Supply: FHIRResource
 			if let val = js["patient"] as? NSDictionary {
 				self.patient = ResourceReference(json: val)
 			}
-			if let val = js["dispense"] as? Array<NSDictionary> {
-				self.dispense = SupplyDispense.from(val) as? SupplyDispense[]
+			if let val = js["dispense"] as? [NSDictionary] {
+				self.dispense = SupplyDispense.from(val) as? [SupplyDispense]
 			}
 		}
 		super.init(json: json)
@@ -115,7 +115,7 @@ class SupplyDispense: FHIRElement
 	var destination: ResourceReference?
 	
 	/*! Who collected the Supply */
-	var receiver: ResourceReference[]?
+	var receiver: [ResourceReference]?
 	
 	
 	init(json: NSDictionary?) {
@@ -147,8 +147,8 @@ class SupplyDispense: FHIRElement
 			if let val = js["destination"] as? NSDictionary {
 				self.destination = ResourceReference(json: val)
 			}
-			if let val = js["receiver"] as? Array<NSDictionary> {
-				self.receiver = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["receiver"] as? [NSDictionary] {
+				self.receiver = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
 		super.init(json: json)

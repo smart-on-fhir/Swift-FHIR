@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -65,7 +65,7 @@ class Conformance: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Logical id to reference this statement */
 	var identifier: String?
@@ -80,7 +80,7 @@ class Conformance: FHIRResource
 	var publisher: String?
 	
 	/*! Contacts for Organization */
-	var telecom: Contact[]?
+	var telecom: [Contact]?
 	
 	/*! Human description of the conformance statement */
 	var description: String?
@@ -107,21 +107,21 @@ class Conformance: FHIRResource
 	var acceptUnknown: Bool?
 	
 	/*! formats supported (xml | json | mime type) */
-	var format: String[]?
+	var format: [String]?
 	
 	/*! Profiles supported by the system */
-	var profile: ResourceReference[]?
+	var profile: [ResourceReference]?
 	
 	/*! If the endpoint is a RESTful one */
-	var rest: ConformanceRest[]?
+	var rest: [ConformanceRest]?
 	
 	/*! If messaging is supported */
-	var messaging: ConformanceMessaging[]?
+	var messaging: [ConformanceMessaging]?
 	
 	/*! Document definition */
-	var document: ConformanceDocument[]?
+	var document: [ConformanceDocument]?
 	
-	convenience init(publisher: String?, date: NSDate?, fhirVersion: String?, acceptUnknown: Bool?, format: String[]?) {
+	convenience init(publisher: String?, date: NSDate?, fhirVersion: String?, acceptUnknown: Bool?, format: [String]?) {
 		self.init(json: nil)
 		if publisher {
 			self.publisher = publisher
@@ -145,8 +145,8 @@ class Conformance: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["identifier"] as? String {
 				self.identifier = val
@@ -160,8 +160,8 @@ class Conformance: FHIRResource
 			if let val = js["publisher"] as? String {
 				self.publisher = val
 			}
-			if let val = js["telecom"] as? Array<NSDictionary> {
-				self.telecom = Contact.from(val) as? Contact[]
+			if let val = js["telecom"] as? [NSDictionary] {
+				self.telecom = Contact.from(val) as? [Contact]
 			}
 			if let val = js["description"] as? String {
 				self.description = val
@@ -187,20 +187,20 @@ class Conformance: FHIRResource
 			if let val = js["acceptUnknown"] as? Int {
 				self.acceptUnknown = (1 == val)
 			}
-			if let val = js["format"] as? Array<String> {
+			if let val = js["format"] as? [String] {
 				self.format = val
 			}
-			if let val = js["profile"] as? Array<NSDictionary> {
-				self.profile = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["profile"] as? [NSDictionary] {
+				self.profile = ResourceReference.from(val) as? [ResourceReference]
 			}
-			if let val = js["rest"] as? Array<NSDictionary> {
-				self.rest = ConformanceRest.from(val) as? ConformanceRest[]
+			if let val = js["rest"] as? [NSDictionary] {
+				self.rest = ConformanceRest.from(val) as? [ConformanceRest]
 			}
-			if let val = js["messaging"] as? Array<NSDictionary> {
-				self.messaging = ConformanceMessaging.from(val) as? ConformanceMessaging[]
+			if let val = js["messaging"] as? [NSDictionary] {
+				self.messaging = ConformanceMessaging.from(val) as? [ConformanceMessaging]
 			}
-			if let val = js["document"] as? Array<NSDictionary> {
-				self.document = ConformanceDocument.from(val) as? ConformanceDocument[]
+			if let val = js["document"] as? [NSDictionary] {
+				self.document = ConformanceDocument.from(val) as? [ConformanceDocument]
 			}
 		}
 		super.init(json: json)
@@ -301,18 +301,18 @@ class ConformanceRest: FHIRElement
 	var security: ConformanceRestSecurity?
 	
 	/*! Resource served on the REST interface */
-	var resource: ConformanceRestResource[]?
+	var resource: [ConformanceRestResource]?
 	
 	/*! What operations are supported? */
-	var operation: ConformanceRestOperation[]?
+	var operation: [ConformanceRestOperation]?
 	
 	/*! Definition of a named query */
-	var query: ConformanceRestQuery[]?
+	var query: [ConformanceRestQuery]?
 	
 	/*! How documents are accepted in /Mailbox */
-	var documentMailbox: NSURL[]?
+	var documentMailbox: [NSURL]?
 	
-	convenience init(mode: String?, resource: ConformanceRestResource[]?) {
+	convenience init(mode: String?, resource: [ConformanceRestResource]?) {
 		self.init(json: nil)
 		if mode {
 			self.mode = mode
@@ -333,16 +333,16 @@ class ConformanceRest: FHIRElement
 			if let val = js["security"] as? NSDictionary {
 				self.security = ConformanceRestSecurity(json: val)
 			}
-			if let val = js["resource"] as? Array<NSDictionary> {
-				self.resource = ConformanceRestResource.from(val) as? ConformanceRestResource[]
+			if let val = js["resource"] as? [NSDictionary] {
+				self.resource = ConformanceRestResource.from(val) as? [ConformanceRestResource]
 			}
-			if let val = js["operation"] as? Array<NSDictionary> {
-				self.operation = ConformanceRestOperation.from(val) as? ConformanceRestOperation[]
+			if let val = js["operation"] as? [NSDictionary] {
+				self.operation = ConformanceRestOperation.from(val) as? [ConformanceRestOperation]
 			}
-			if let val = js["query"] as? Array<NSDictionary> {
-				self.query = ConformanceRestQuery.from(val) as? ConformanceRestQuery[]
+			if let val = js["query"] as? [NSDictionary] {
+				self.query = ConformanceRestQuery.from(val) as? [ConformanceRestQuery]
 			}
-			if let val = js["documentMailbox"] as? Array<String> {
+			if let val = js["documentMailbox"] as? [String] {
 				self.documentMailbox = NSURL.from(val)
 			}
 		}
@@ -360,13 +360,13 @@ class ConformanceRestSecurity: FHIRElement
 	var cors: Bool?
 	
 	/*! OAuth | OAuth2 | NTLM | Basic | Kerberos */
-	var service: CodeableConcept[]?
+	var service: [CodeableConcept]?
 	
 	/*! General description of how security works */
 	var description: String?
 	
 	/*! Certificates associated with security profiles */
-	var certificate: ConformanceRestSecurityCertificate[]?
+	var certificate: [ConformanceRestSecurityCertificate]?
 	
 	
 	init(json: NSDictionary?) {
@@ -374,14 +374,14 @@ class ConformanceRestSecurity: FHIRElement
 			if let val = js["cors"] as? Int {
 				self.cors = (1 == val)
 			}
-			if let val = js["service"] as? Array<NSDictionary> {
-				self.service = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["service"] as? [NSDictionary] {
+				self.service = CodeableConcept.from(val) as? [CodeableConcept]
 			}
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["certificate"] as? Array<NSDictionary> {
-				self.certificate = ConformanceRestSecurityCertificate.from(val) as? ConformanceRestSecurityCertificate[]
+			if let val = js["certificate"] as? [NSDictionary] {
+				self.certificate = ConformanceRestSecurityCertificate.from(val) as? [ConformanceRestSecurityCertificate]
 			}
 		}
 		super.init(json: json)
@@ -429,7 +429,7 @@ class ConformanceRestResource: FHIRElement
 	var profile: ResourceReference?
 	
 	/*! What operations are supported? */
-	var operation: ConformanceRestResourceOperation[]?
+	var operation: [ConformanceRestResourceOperation]?
 	
 	/*! Whether vRead can return past versions */
 	var readHistory: Bool?
@@ -438,12 +438,12 @@ class ConformanceRestResource: FHIRElement
 	var updateCreate: Bool?
 	
 	/*! _include values supported by the server */
-	var searchInclude: String[]?
+	var searchInclude: [String]?
 	
 	/*! Additional search params defined */
-	var searchParam: ConformanceRestResourceSearchParam[]?
+	var searchParam: [ConformanceRestResourceSearchParam]?
 	
-	convenience init(type: String?, operation: ConformanceRestResourceOperation[]?) {
+	convenience init(type: String?, operation: [ConformanceRestResourceOperation]?) {
 		self.init(json: nil)
 		if type {
 			self.type = type
@@ -461,8 +461,8 @@ class ConformanceRestResource: FHIRElement
 			if let val = js["profile"] as? NSDictionary {
 				self.profile = ResourceReference(json: val)
 			}
-			if let val = js["operation"] as? Array<NSDictionary> {
-				self.operation = ConformanceRestResourceOperation.from(val) as? ConformanceRestResourceOperation[]
+			if let val = js["operation"] as? [NSDictionary] {
+				self.operation = ConformanceRestResourceOperation.from(val) as? [ConformanceRestResourceOperation]
 			}
 			if let val = js["readHistory"] as? Int {
 				self.readHistory = (1 == val)
@@ -470,11 +470,11 @@ class ConformanceRestResource: FHIRElement
 			if let val = js["updateCreate"] as? Int {
 				self.updateCreate = (1 == val)
 			}
-			if let val = js["searchInclude"] as? Array<String> {
+			if let val = js["searchInclude"] as? [String] {
 				self.searchInclude = val
 			}
-			if let val = js["searchParam"] as? Array<NSDictionary> {
-				self.searchParam = ConformanceRestResourceSearchParam.from(val) as? ConformanceRestResourceSearchParam[]
+			if let val = js["searchParam"] as? [NSDictionary] {
+				self.searchParam = ConformanceRestResourceSearchParam.from(val) as? [ConformanceRestResourceSearchParam]
 			}
 		}
 		super.init(json: json)
@@ -536,10 +536,10 @@ class ConformanceRestResourceSearchParam: FHIRElement
 	var documentation: String?
 	
 	/*! Types of resource (if a resource reference) */
-	var target: String[]?
+	var target: [String]?
 	
 	/*! Chained names supported */
-	var chain: String[]?
+	var chain: [String]?
 	
 	convenience init(name: String?, type: String?) {
 		self.init(json: nil)
@@ -565,10 +565,10 @@ class ConformanceRestResourceSearchParam: FHIRElement
 			if let val = js["documentation"] as? String {
 				self.documentation = val
 			}
-			if let val = js["target"] as? Array<String> {
+			if let val = js["target"] as? [String] {
 				self.target = val
 			}
-			if let val = js["chain"] as? Array<String> {
+			if let val = js["chain"] as? [String] {
 				self.chain = val
 			}
 		}
@@ -628,7 +628,7 @@ class ConformanceRestQuery: FHIRElement
 	var documentation: String?
 	
 	/*! Parameter for the named query */
-	var parameter: ConformanceRestQueryParameter[]?
+	var parameter: [ConformanceRestQueryParameter]?
 	
 	convenience init(name: String?, definition: NSURL?) {
 		self.init(json: nil)
@@ -651,8 +651,8 @@ class ConformanceRestQuery: FHIRElement
 			if let val = js["documentation"] as? String {
 				self.documentation = val
 			}
-			if let val = js["parameter"] as? Array<NSDictionary> {
-				self.parameter = ConformanceRestQueryParameter.from(val) as? ConformanceRestQueryParameter[]
+			if let val = js["parameter"] as? [NSDictionary] {
+				self.parameter = ConformanceRestQueryParameter.from(val) as? [ConformanceRestQueryParameter]
 			}
 		}
 		super.init(json: json)
@@ -693,9 +693,9 @@ class ConformanceMessaging: FHIRElement
 	var documentation: String?
 	
 	/*! Declare support for this event */
-	var event: ConformanceMessagingEvent[]?
+	var event: [ConformanceMessagingEvent]?
 	
-	convenience init(event: ConformanceMessagingEvent[]?) {
+	convenience init(event: [ConformanceMessagingEvent]?) {
 		self.init(json: nil)
 		if event {
 			self.event = event
@@ -713,8 +713,8 @@ class ConformanceMessaging: FHIRElement
 			if let val = js["documentation"] as? String {
 				self.documentation = val
 			}
-			if let val = js["event"] as? Array<NSDictionary> {
-				self.event = ConformanceMessagingEvent.from(val) as? ConformanceMessagingEvent[]
+			if let val = js["event"] as? [NSDictionary] {
+				self.event = ConformanceMessagingEvent.from(val) as? [ConformanceMessagingEvent]
 			}
 		}
 		super.init(json: json)
@@ -739,7 +739,7 @@ class ConformanceMessagingEvent: FHIRElement
 	var mode: String?
 	
 	/*! http | ftp | mllp + */
-	var proto: Coding[]?
+	var proto: [Coding]?
 	
 	/*! Resource that's focus of message */
 	var focus: String?
@@ -783,8 +783,8 @@ class ConformanceMessagingEvent: FHIRElement
 			if let val = js["mode"] as? String {
 				self.mode = val
 			}
-			if let val = js["proto"] as? Array<NSDictionary> {
-				self.proto = Coding.from(val) as? Coding[]
+			if let val = js["proto"] as? [NSDictionary] {
+				self.proto = Coding.from(val) as? [Coding]
 			}
 			if let val = js["focus"] as? String {
 				self.focus = val

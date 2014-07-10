@@ -2,7 +2,7 @@
 //  SecurityEvent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -29,21 +29,21 @@ class SecurityEvent: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! What was done */
 	var event: SecurityEventEvent?
 	
 	/*! A person, a hardware device or software process */
-	var participant: SecurityEventParticipant[]?
+	var participant: [SecurityEventParticipant]?
 	
 	/*! Application systems and processes */
 	var source: SecurityEventSource?
 	
 	/*! Specific instances of data or objects that have been accessed */
-	var object: SecurityEventObject[]?
+	var object: [SecurityEventObject]?
 	
-	convenience init(event: SecurityEventEvent?, participant: SecurityEventParticipant[]?, source: SecurityEventSource?) {
+	convenience init(event: SecurityEventEvent?, participant: [SecurityEventParticipant]?, source: SecurityEventSource?) {
 		self.init(json: nil)
 		if event {
 			self.event = event
@@ -61,20 +61,20 @@ class SecurityEvent: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["event"] as? NSDictionary {
 				self.event = SecurityEventEvent(json: val)
 			}
-			if let val = js["participant"] as? Array<NSDictionary> {
-				self.participant = SecurityEventParticipant.from(val) as? SecurityEventParticipant[]
+			if let val = js["participant"] as? [NSDictionary] {
+				self.participant = SecurityEventParticipant.from(val) as? [SecurityEventParticipant]
 			}
 			if let val = js["source"] as? NSDictionary {
 				self.source = SecurityEventSource(json: val)
 			}
-			if let val = js["object"] as? Array<NSDictionary> {
-				self.object = SecurityEventObject.from(val) as? SecurityEventObject[]
+			if let val = js["object"] as? [NSDictionary] {
+				self.object = SecurityEventObject.from(val) as? [SecurityEventObject]
 			}
 		}
 		super.init(json: json)
@@ -93,7 +93,7 @@ class SecurityEventEvent: FHIRElement
 	var type: CodeableConcept?
 	
 	/*! More specific type/id for the event */
-	var subtype: CodeableConcept[]?
+	var subtype: [CodeableConcept]?
 	
 	/*! Type of action performed during the event */
 	var action: String?
@@ -122,8 +122,8 @@ class SecurityEventEvent: FHIRElement
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val)
 			}
-			if let val = js["subtype"] as? Array<NSDictionary> {
-				self.subtype = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["subtype"] as? [NSDictionary] {
+				self.subtype = CodeableConcept.from(val) as? [CodeableConcept]
 			}
 			if let val = js["action"] as? String {
 				self.action = val
@@ -149,7 +149,7 @@ class SecurityEventEvent: FHIRElement
 class SecurityEventParticipant: FHIRElement
 {	
 	/*! User roles (e.g. local RBAC codes) */
-	var role: CodeableConcept[]?
+	var role: [CodeableConcept]?
 	
 	/*! Direct reference to resource */
 	var reference: ResourceReference?
@@ -181,8 +181,8 @@ class SecurityEventParticipant: FHIRElement
 	
 	init(json: NSDictionary?) {
 		if let js = json {
-			if let val = js["role"] as? Array<NSDictionary> {
-				self.role = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["role"] as? [NSDictionary] {
+				self.role = CodeableConcept.from(val) as? [CodeableConcept]
 			}
 			if let val = js["reference"] as? NSDictionary {
 				self.reference = ResourceReference(json: val)
@@ -251,7 +251,7 @@ class SecurityEventSource: FHIRElement
 	var identifier: String?
 	
 	/*! The type of source where event originated */
-	var type: Coding[]?
+	var type: [Coding]?
 	
 	convenience init(identifier: String?) {
 		self.init(json: nil)
@@ -268,8 +268,8 @@ class SecurityEventSource: FHIRElement
 			if let val = js["identifier"] as? String {
 				self.identifier = val
 			}
-			if let val = js["type"] as? Array<NSDictionary> {
-				self.type = Coding.from(val) as? Coding[]
+			if let val = js["type"] as? [NSDictionary] {
+				self.type = Coding.from(val) as? [Coding]
 			}
 		}
 		super.init(json: json)
@@ -310,7 +310,7 @@ class SecurityEventObject: FHIRElement
 	var query: String?
 	
 	/*! Additional Information about the Object */
-	var detail: SecurityEventObjectDetail[]?
+	var detail: [SecurityEventObjectDetail]?
 	
 	
 	init(json: NSDictionary?) {
@@ -342,8 +342,8 @@ class SecurityEventObject: FHIRElement
 			if let val = js["query"] as? String {
 				self.query = val
 			}
-			if let val = js["detail"] as? Array<NSDictionary> {
-				self.detail = SecurityEventObjectDetail.from(val) as? SecurityEventObjectDetail[]
+			if let val = js["detail"] as? [NSDictionary] {
+				self.detail = SecurityEventObjectDetail.from(val) as? [SecurityEventObjectDetail]
 			}
 		}
 		super.init(json: json)

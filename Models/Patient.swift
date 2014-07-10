@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -38,16 +38,16 @@ class Patient: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! An identifier for the person as this patient */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! A name associated with the patient */
-	var name: HumanName[]?
+	var name: [HumanName]?
 	
 	/*! A contact detail for the individual */
-	var telecom: Contact[]?
+	var telecom: [Contact]?
 	
 	/*! Gender for administrative purposes */
 	var gender: CodeableConcept?
@@ -62,7 +62,7 @@ class Patient: FHIRResource
 	var deceasedDateTime: NSDate?
 	
 	/*! Addresses for the individual */
-	var address: Address[]?
+	var address: [Address]?
 	
 	/*! Marital (civil) status of a person */
 	var maritalStatus: CodeableConcept?
@@ -74,25 +74,25 @@ class Patient: FHIRResource
 	var multipleBirthInteger: Int?
 	
 	/*! Image of the person */
-	var photo: Attachment[]?
+	var photo: [Attachment]?
 	
 	/*! A contact party (e.g. guardian, partner, friend) for the patient */
-	var contact: PatientContact[]?
+	var contact: [PatientContact]?
 	
 	/*! If this patient is an animal (non-human) */
 	var animal: PatientAnimal?
 	
 	/*! Languages which may be used to communicate with the patient about his or her health */
-	var communication: CodeableConcept[]?
+	var communication: [CodeableConcept]?
 	
 	/*! Patient's nominated care provider */
-	var careProvider: ResourceReference[]?
+	var careProvider: [ResourceReference]?
 	
 	/*! Organization that is the custodian of the patient record */
 	var managingOrganization: ResourceReference?
 	
 	/*! Link to another patient resource that concerns the same actual person */
-	var link: PatientLink[]?
+	var link: [PatientLink]?
 	
 	/*! Whether this patient's record is in active use */
 	var active: Bool?
@@ -103,17 +103,17 @@ class Patient: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
-			if let val = js["name"] as? Array<NSDictionary> {
-				self.name = HumanName.from(val) as? HumanName[]
+			if let val = js["name"] as? [NSDictionary] {
+				self.name = HumanName.from(val) as? [HumanName]
 			}
-			if let val = js["telecom"] as? Array<NSDictionary> {
-				self.telecom = Contact.from(val) as? Contact[]
+			if let val = js["telecom"] as? [NSDictionary] {
+				self.telecom = Contact.from(val) as? [Contact]
 			}
 			if let val = js["gender"] as? NSDictionary {
 				self.gender = CodeableConcept(json: val)
@@ -127,8 +127,8 @@ class Patient: FHIRResource
 			if let val = js["deceasedDateTime"] as? String {
 				self.deceasedDateTime = NSDate(json: val)
 			}
-			if let val = js["address"] as? Array<NSDictionary> {
-				self.address = Address.from(val) as? Address[]
+			if let val = js["address"] as? [NSDictionary] {
+				self.address = Address.from(val) as? [Address]
 			}
 			if let val = js["maritalStatus"] as? NSDictionary {
 				self.maritalStatus = CodeableConcept(json: val)
@@ -139,26 +139,26 @@ class Patient: FHIRResource
 			if let val = js["multipleBirthInteger"] as? Int {
 				self.multipleBirthInteger = val
 			}
-			if let val = js["photo"] as? Array<NSDictionary> {
-				self.photo = Attachment.from(val) as? Attachment[]
+			if let val = js["photo"] as? [NSDictionary] {
+				self.photo = Attachment.from(val) as? [Attachment]
 			}
-			if let val = js["contact"] as? Array<NSDictionary> {
-				self.contact = PatientContact.from(val) as? PatientContact[]
+			if let val = js["contact"] as? [NSDictionary] {
+				self.contact = PatientContact.from(val) as? [PatientContact]
 			}
 			if let val = js["animal"] as? NSDictionary {
 				self.animal = PatientAnimal(json: val)
 			}
-			if let val = js["communication"] as? Array<NSDictionary> {
-				self.communication = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["communication"] as? [NSDictionary] {
+				self.communication = CodeableConcept.from(val) as? [CodeableConcept]
 			}
-			if let val = js["careProvider"] as? Array<NSDictionary> {
-				self.careProvider = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["careProvider"] as? [NSDictionary] {
+				self.careProvider = ResourceReference.from(val) as? [ResourceReference]
 			}
 			if let val = js["managingOrganization"] as? NSDictionary {
 				self.managingOrganization = ResourceReference(json: val)
 			}
-			if let val = js["link"] as? Array<NSDictionary> {
-				self.link = PatientLink.from(val) as? PatientLink[]
+			if let val = js["link"] as? [NSDictionary] {
+				self.link = PatientLink.from(val) as? [PatientLink]
 			}
 			if let val = js["active"] as? Int {
 				self.active = (1 == val)
@@ -175,13 +175,13 @@ class Patient: FHIRResource
 class PatientContact: FHIRElement
 {	
 	/*! The kind of relationship */
-	var relationship: CodeableConcept[]?
+	var relationship: [CodeableConcept]?
 	
 	/*! A name associated with the person */
 	var name: HumanName?
 	
 	/*! A contact detail for the person */
-	var telecom: Contact[]?
+	var telecom: [Contact]?
 	
 	/*! Address for the contact person */
 	var address: Address?
@@ -195,14 +195,14 @@ class PatientContact: FHIRElement
 	
 	init(json: NSDictionary?) {
 		if let js = json {
-			if let val = js["relationship"] as? Array<NSDictionary> {
-				self.relationship = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["relationship"] as? [NSDictionary] {
+				self.relationship = CodeableConcept.from(val) as? [CodeableConcept]
 			}
 			if let val = js["name"] as? NSDictionary {
 				self.name = HumanName(json: val)
 			}
-			if let val = js["telecom"] as? Array<NSDictionary> {
-				self.telecom = Contact.from(val) as? Contact[]
+			if let val = js["telecom"] as? [NSDictionary] {
+				self.telecom = Contact.from(val) as? [Contact]
 			}
 			if let val = js["address"] as? NSDictionary {
 				self.address = Address(json: val)

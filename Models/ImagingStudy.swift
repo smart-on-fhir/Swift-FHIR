@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -32,7 +32,7 @@ class ImagingStudy: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! When the study was performed */
 	var dateTime: NSDate?
@@ -47,13 +47,13 @@ class ImagingStudy: FHIRResource
 	var accessionNo: Identifier?
 	
 	/*! Other identifiers for the study (0020,0010) */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! Order(s) that caused this study to be performed */
-	var order: ResourceReference[]?
+	var order: [ResourceReference]?
 	
 	/*! All series.modality if actual acquisition modalities */
-	var modality: String[]?
+	var modality: [String]?
 	
 	/*! Referring physician (0008,0090) */
 	var referrer: ResourceReference?
@@ -74,7 +74,7 @@ class ImagingStudy: FHIRResource
 	var clinicalInformation: String?
 	
 	/*! Type of procedure performed (0008,1032) */
-	var procedure: Coding[]?
+	var procedure: [Coding]?
 	
 	/*! Who interpreted images (0008,1060) */
 	var interpreter: ResourceReference?
@@ -83,7 +83,7 @@ class ImagingStudy: FHIRResource
 	var description: String?
 	
 	/*! Each study has one or more series of instances */
-	var series: ImagingStudySeries[]?
+	var series: [ImagingStudySeries]?
 	
 	convenience init(subject: ResourceReference?, uid: String?, numberOfSeries: Int?, numberOfInstances: Int?) {
 		self.init(json: nil)
@@ -106,8 +106,8 @@ class ImagingStudy: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["dateTime"] as? String {
 				self.dateTime = NSDate(json: val)
@@ -121,13 +121,13 @@ class ImagingStudy: FHIRResource
 			if let val = js["accessionNo"] as? NSDictionary {
 				self.accessionNo = Identifier(json: val)
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
-			if let val = js["order"] as? Array<NSDictionary> {
-				self.order = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["order"] as? [NSDictionary] {
+				self.order = ResourceReference.from(val) as? [ResourceReference]
 			}
-			if let val = js["modality"] as? Array<String> {
+			if let val = js["modality"] as? [String] {
 				self.modality = val
 			}
 			if let val = js["referrer"] as? NSDictionary {
@@ -148,8 +148,8 @@ class ImagingStudy: FHIRResource
 			if let val = js["clinicalInformation"] as? String {
 				self.clinicalInformation = val
 			}
-			if let val = js["procedure"] as? Array<NSDictionary> {
-				self.procedure = Coding.from(val) as? Coding[]
+			if let val = js["procedure"] as? [NSDictionary] {
+				self.procedure = Coding.from(val) as? [Coding]
 			}
 			if let val = js["interpreter"] as? NSDictionary {
 				self.interpreter = ResourceReference(json: val)
@@ -157,8 +157,8 @@ class ImagingStudy: FHIRResource
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["series"] as? Array<NSDictionary> {
-				self.series = ImagingStudySeries.from(val) as? ImagingStudySeries[]
+			if let val = js["series"] as? [NSDictionary] {
+				self.series = ImagingStudySeries.from(val) as? [ImagingStudySeries]
 			}
 		}
 		super.init(json: json)
@@ -201,9 +201,9 @@ class ImagingStudySeries: FHIRElement
 	var dateTime: NSDate?
 	
 	/*! A single instance taken from a patient (image or other) */
-	var instance: ImagingStudySeriesInstance[]?
+	var instance: [ImagingStudySeriesInstance]?
 	
-	convenience init(modality: String?, uid: String?, numberOfInstances: Int?, instance: ImagingStudySeriesInstance[]?) {
+	convenience init(modality: String?, uid: String?, numberOfInstances: Int?, instance: [ImagingStudySeriesInstance]?) {
 		self.init(json: nil)
 		if modality {
 			self.modality = modality
@@ -248,8 +248,8 @@ class ImagingStudySeries: FHIRElement
 			if let val = js["dateTime"] as? String {
 				self.dateTime = NSDate(json: val)
 			}
-			if let val = js["instance"] as? Array<NSDictionary> {
-				self.instance = ImagingStudySeriesInstance.from(val) as? ImagingStudySeriesInstance[]
+			if let val = js["instance"] as? [NSDictionary] {
+				self.instance = ImagingStudySeriesInstance.from(val) as? [ImagingStudySeriesInstance]
 			}
 		}
 		super.init(json: json)

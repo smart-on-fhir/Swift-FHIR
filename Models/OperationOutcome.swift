@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -32,12 +32,12 @@ class OperationOutcome: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! A single issue associated with the action */
-	var issue: OperationOutcomeIssue[]?
+	var issue: [OperationOutcomeIssue]?
 	
-	convenience init(issue: OperationOutcomeIssue[]?) {
+	convenience init(issue: [OperationOutcomeIssue]?) {
 		self.init(json: nil)
 		if issue {
 			self.issue = issue
@@ -49,11 +49,11 @@ class OperationOutcome: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["issue"] as? Array<NSDictionary> {
-				self.issue = OperationOutcomeIssue.from(val) as? OperationOutcomeIssue[]
+			if let val = js["issue"] as? [NSDictionary] {
+				self.issue = OperationOutcomeIssue.from(val) as? [OperationOutcomeIssue]
 			}
 		}
 		super.init(json: json)
@@ -78,7 +78,7 @@ class OperationOutcomeIssue: FHIRElement
 	var details: String?
 	
 	/*! XPath of element(s) related to issue */
-	var location: String[]?
+	var location: [String]?
 	
 	convenience init(severity: String?) {
 		self.init(json: nil)
@@ -98,7 +98,7 @@ class OperationOutcomeIssue: FHIRElement
 			if let val = js["details"] as? String {
 				self.details = val
 			}
-			if let val = js["location"] as? Array<String> {
+			if let val = js["location"] as? [String] {
 				self.location = val
 			}
 		}

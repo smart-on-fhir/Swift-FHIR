@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -31,18 +31,18 @@ class ImmunizationRecommendation: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Business identifier */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! Who this profile is for */
 	var subject: ResourceReference?
 	
 	/*! Vaccine administration recommendations */
-	var recommendation: ImmunizationRecommendationRecommendation[]?
+	var recommendation: [ImmunizationRecommendationRecommendation]?
 	
-	convenience init(subject: ResourceReference?, recommendation: ImmunizationRecommendationRecommendation[]?) {
+	convenience init(subject: ResourceReference?, recommendation: [ImmunizationRecommendationRecommendation]?) {
 		self.init(json: nil)
 		if subject {
 			self.subject = subject
@@ -57,17 +57,17 @@ class ImmunizationRecommendation: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = ResourceReference(json: val)
 			}
-			if let val = js["recommendation"] as? Array<NSDictionary> {
-				self.recommendation = ImmunizationRecommendationRecommendation.from(val) as? ImmunizationRecommendationRecommendation[]
+			if let val = js["recommendation"] as? [NSDictionary] {
+				self.recommendation = ImmunizationRecommendationRecommendation.from(val) as? [ImmunizationRecommendationRecommendation]
 			}
 		}
 		super.init(json: json)
@@ -93,16 +93,16 @@ class ImmunizationRecommendationRecommendation: FHIRElement
 	var forecastStatus: CodeableConcept?
 	
 	/*! Dates governing proposed immunization */
-	var dateCriterion: ImmunizationRecommendationRecommendationDateCriterion[]?
+	var dateCriterion: [ImmunizationRecommendationRecommendationDateCriterion]?
 	
 	/*! Protocol used by recommendation */
 	var proto: ImmunizationRecommendationRecommendationProtocol?
 	
 	/*! Past immunizations supporting recommendation */
-	var supportingImmunization: ResourceReference[]?
+	var supportingImmunization: [ResourceReference]?
 	
 	/*! Patient observations supporting recommendation */
-	var supportingPatientInformation: ResourceReference[]?
+	var supportingPatientInformation: [ResourceReference]?
 	
 	convenience init(date: NSDate?, vaccineType: CodeableConcept?, forecastStatus: CodeableConcept?) {
 		self.init(json: nil)
@@ -131,17 +131,17 @@ class ImmunizationRecommendationRecommendation: FHIRElement
 			if let val = js["forecastStatus"] as? NSDictionary {
 				self.forecastStatus = CodeableConcept(json: val)
 			}
-			if let val = js["dateCriterion"] as? Array<NSDictionary> {
-				self.dateCriterion = ImmunizationRecommendationRecommendationDateCriterion.from(val) as? ImmunizationRecommendationRecommendationDateCriterion[]
+			if let val = js["dateCriterion"] as? [NSDictionary] {
+				self.dateCriterion = ImmunizationRecommendationRecommendationDateCriterion.from(val) as? [ImmunizationRecommendationRecommendationDateCriterion]
 			}
 			if let val = js["proto"] as? NSDictionary {
 				self.proto = ImmunizationRecommendationRecommendationProtocol(json: val)
 			}
-			if let val = js["supportingImmunization"] as? Array<NSDictionary> {
-				self.supportingImmunization = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["supportingImmunization"] as? [NSDictionary] {
+				self.supportingImmunization = ResourceReference.from(val) as? [ResourceReference]
 			}
-			if let val = js["supportingPatientInformation"] as? Array<NSDictionary> {
-				self.supportingPatientInformation = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["supportingPatientInformation"] as? [NSDictionary] {
+				self.supportingPatientInformation = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
 		super.init(json: json)

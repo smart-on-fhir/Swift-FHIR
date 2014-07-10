@@ -2,7 +2,7 @@
 //  FamilyHistory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -33,10 +33,10 @@ class FamilyHistory: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! External Id(s) for this record */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! Patient history is about */
 	var subject: ResourceReference?
@@ -45,7 +45,7 @@ class FamilyHistory: FHIRResource
 	var note: String?
 	
 	/*! Relative described by history */
-	var relation: FamilyHistoryRelation[]?
+	var relation: [FamilyHistoryRelation]?
 	
 	convenience init(subject: ResourceReference?) {
 		self.init(json: nil)
@@ -59,11 +59,11 @@ class FamilyHistory: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = ResourceReference(json: val)
@@ -71,8 +71,8 @@ class FamilyHistory: FHIRResource
 			if let val = js["note"] as? String {
 				self.note = val
 			}
-			if let val = js["relation"] as? Array<NSDictionary> {
-				self.relation = FamilyHistoryRelation.from(val) as? FamilyHistoryRelation[]
+			if let val = js["relation"] as? [NSDictionary] {
+				self.relation = FamilyHistoryRelation.from(val) as? [FamilyHistoryRelation]
 			}
 		}
 		super.init(json: json)
@@ -121,7 +121,7 @@ class FamilyHistoryRelation: FHIRElement
 	var note: String?
 	
 	/*! Condition that the related person had */
-	var condition: FamilyHistoryRelationCondition[]?
+	var condition: [FamilyHistoryRelationCondition]?
 	
 	convenience init(relationship: CodeableConcept?) {
 		self.init(json: nil)
@@ -165,8 +165,8 @@ class FamilyHistoryRelation: FHIRElement
 			if let val = js["note"] as? String {
 				self.note = val
 			}
-			if let val = js["condition"] as? Array<NSDictionary> {
-				self.condition = FamilyHistoryRelationCondition.from(val) as? FamilyHistoryRelationCondition[]
+			if let val = js["condition"] as? [NSDictionary] {
+				self.condition = FamilyHistoryRelationCondition.from(val) as? [FamilyHistoryRelationCondition]
 			}
 		}
 		super.init(json: json)

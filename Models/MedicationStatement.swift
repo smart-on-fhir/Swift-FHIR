@@ -2,7 +2,7 @@
 //  MedicationStatement.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -28,10 +28,10 @@ class MedicationStatement: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! External Identifier */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! Who was/is taking medication */
 	var patient: ResourceReference?
@@ -40,7 +40,7 @@ class MedicationStatement: FHIRResource
 	var wasNotGiven: Bool?
 	
 	/*! True if asserting medication was not given */
-	var reasonNotGiven: CodeableConcept[]?
+	var reasonNotGiven: [CodeableConcept]?
 	
 	/*! Over what period was medication consumed? */
 	var whenGiven: Period?
@@ -49,10 +49,10 @@ class MedicationStatement: FHIRResource
 	var medication: ResourceReference?
 	
 	/*! E.g. infusion pump */
-	var device: ResourceReference[]?
+	var device: [ResourceReference]?
 	
 	/*! Details of how medication was taken */
-	var dosage: MedicationStatementDosage[]?
+	var dosage: [MedicationStatementDosage]?
 	
 	
 	init(json: NSDictionary?) {
@@ -60,11 +60,11 @@ class MedicationStatement: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["patient"] as? NSDictionary {
 				self.patient = ResourceReference(json: val)
@@ -72,8 +72,8 @@ class MedicationStatement: FHIRResource
 			if let val = js["wasNotGiven"] as? Int {
 				self.wasNotGiven = (1 == val)
 			}
-			if let val = js["reasonNotGiven"] as? Array<NSDictionary> {
-				self.reasonNotGiven = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["reasonNotGiven"] as? [NSDictionary] {
+				self.reasonNotGiven = CodeableConcept.from(val) as? [CodeableConcept]
 			}
 			if let val = js["whenGiven"] as? NSDictionary {
 				self.whenGiven = Period(json: val)
@@ -81,11 +81,11 @@ class MedicationStatement: FHIRResource
 			if let val = js["medication"] as? NSDictionary {
 				self.medication = ResourceReference(json: val)
 			}
-			if let val = js["device"] as? Array<NSDictionary> {
-				self.device = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["device"] as? [NSDictionary] {
+				self.device = ResourceReference.from(val) as? [ResourceReference]
 			}
-			if let val = js["dosage"] as? Array<NSDictionary> {
-				self.dosage = MedicationStatementDosage.from(val) as? MedicationStatementDosage[]
+			if let val = js["dosage"] as? [NSDictionary] {
+				self.dosage = MedicationStatementDosage.from(val) as? [MedicationStatementDosage]
 			}
 		}
 		super.init(json: json)

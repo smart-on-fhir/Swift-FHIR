@@ -2,7 +2,7 @@
 //  Address.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -25,7 +25,7 @@ class Address: FHIRElement
 	var text: String?
 	
 	/*! Street name, number, direction & P.O. Box etc */
-	var line: String[]?
+	var line: [String]?
 	
 	/*! Name of city, town etc. */
 	var city: String?
@@ -51,7 +51,7 @@ class Address: FHIRElement
 			if let val = js["text"] as? String {
 				self.text = val
 			}
-			if let val = js["line"] as? Array<String> {
+			if let val = js["line"] as? [String] {
 				self.line = val
 			}
 			if let val = js["city"] as? String {

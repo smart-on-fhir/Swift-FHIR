@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -27,10 +27,10 @@ class OrderResponse: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Identifiers assigned to this order by the orderer or by the receiver */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! The order that this is a response to */
 	var request: ResourceReference?
@@ -54,7 +54,7 @@ class OrderResponse: FHIRResource
 	var description: String?
 	
 	/*! Details of the outcome of performing the order */
-	var fulfillment: ResourceReference[]?
+	var fulfillment: [ResourceReference]?
 	
 	convenience init(request: ResourceReference?, code: String?) {
 		self.init(json: nil)
@@ -71,11 +71,11 @@ class OrderResponse: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["request"] as? NSDictionary {
 				self.request = ResourceReference(json: val)
@@ -98,8 +98,8 @@ class OrderResponse: FHIRResource
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["fulfillment"] as? Array<NSDictionary> {
-				self.fulfillment = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["fulfillment"] as? [NSDictionary] {
+				self.fulfillment = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
 		super.init(json: json)

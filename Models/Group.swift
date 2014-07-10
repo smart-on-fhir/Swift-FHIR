@@ -2,7 +2,7 @@
 //  Group.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -33,7 +33,7 @@ class Group: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Unique id */
 	var identifier: Identifier?
@@ -54,10 +54,10 @@ class Group: FHIRResource
 	var quantity: Int?
 	
 	/*! Trait of group members */
-	var characteristic: GroupCharacteristic[]?
+	var characteristic: [GroupCharacteristic]?
 	
 	/*! Who is in group */
-	var member: ResourceReference[]?
+	var member: [ResourceReference]?
 	
 	convenience init(type: String?, actual: Bool?) {
 		self.init(json: nil)
@@ -74,8 +74,8 @@ class Group: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["identifier"] as? NSDictionary {
 				self.identifier = Identifier(json: val)
@@ -95,11 +95,11 @@ class Group: FHIRResource
 			if let val = js["quantity"] as? Int {
 				self.quantity = val
 			}
-			if let val = js["characteristic"] as? Array<NSDictionary> {
-				self.characteristic = GroupCharacteristic.from(val) as? GroupCharacteristic[]
+			if let val = js["characteristic"] as? [NSDictionary] {
+				self.characteristic = GroupCharacteristic.from(val) as? [GroupCharacteristic]
 			}
-			if let val = js["member"] as? Array<NSDictionary> {
-				self.member = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["member"] as? [NSDictionary] {
+				self.member = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
 		super.init(json: json)

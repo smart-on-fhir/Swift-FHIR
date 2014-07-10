@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -32,10 +32,10 @@ class Immunization: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Business identifier */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! Vaccination administration date */
 	var date: NSDate?
@@ -83,10 +83,10 @@ class Immunization: FHIRResource
 	var explanation: ImmunizationExplanation?
 	
 	/*! Details of a reaction that follows immunization */
-	var reaction: ImmunizationReaction[]?
+	var reaction: [ImmunizationReaction]?
 	
 	/*! What protocol was followed */
-	var vaccinationProtocol: ImmunizationVaccinationProtocol[]?
+	var vaccinationProtocol: [ImmunizationVaccinationProtocol]?
 	
 	convenience init(date: NSDate?, vaccineType: CodeableConcept?, subject: ResourceReference?, refusedIndicator: Bool?, reported: Bool?) {
 		self.init(json: nil)
@@ -112,11 +112,11 @@ class Immunization: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
@@ -163,11 +163,11 @@ class Immunization: FHIRResource
 			if let val = js["explanation"] as? NSDictionary {
 				self.explanation = ImmunizationExplanation(json: val)
 			}
-			if let val = js["reaction"] as? Array<NSDictionary> {
-				self.reaction = ImmunizationReaction.from(val) as? ImmunizationReaction[]
+			if let val = js["reaction"] as? [NSDictionary] {
+				self.reaction = ImmunizationReaction.from(val) as? [ImmunizationReaction]
 			}
-			if let val = js["vaccinationProtocol"] as? Array<NSDictionary> {
-				self.vaccinationProtocol = ImmunizationVaccinationProtocol.from(val) as? ImmunizationVaccinationProtocol[]
+			if let val = js["vaccinationProtocol"] as? [NSDictionary] {
+				self.vaccinationProtocol = ImmunizationVaccinationProtocol.from(val) as? [ImmunizationVaccinationProtocol]
 			}
 		}
 		super.init(json: json)
@@ -183,19 +183,19 @@ class Immunization: FHIRResource
 class ImmunizationExplanation: FHIRElement
 {	
 	/*! Why immunization occurred */
-	var reason: CodeableConcept[]?
+	var reason: [CodeableConcept]?
 	
 	/*! Why immunization did not occur */
-	var refusalReason: CodeableConcept[]?
+	var refusalReason: [CodeableConcept]?
 	
 	
 	init(json: NSDictionary?) {
 		if let js = json {
-			if let val = js["reason"] as? Array<NSDictionary> {
-				self.reason = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["reason"] as? [NSDictionary] {
+				self.reason = CodeableConcept.from(val) as? [CodeableConcept]
 			}
-			if let val = js["refusalReason"] as? Array<NSDictionary> {
-				self.refusalReason = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["refusalReason"] as? [NSDictionary] {
+				self.refusalReason = CodeableConcept.from(val) as? [CodeableConcept]
 			}
 		}
 		super.init(json: json)

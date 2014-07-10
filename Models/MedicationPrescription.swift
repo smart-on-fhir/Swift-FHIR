@@ -2,7 +2,7 @@
 //  MedicationPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -28,10 +28,10 @@ class MedicationPrescription: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! External identifier */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! When prescription was authorized */
 	var dateWritten: NSDate?
@@ -58,7 +58,7 @@ class MedicationPrescription: FHIRResource
 	var medication: ResourceReference?
 	
 	/*! How medication should be taken */
-	var dosageInstruction: MedicationPrescriptionDosageInstruction[]?
+	var dosageInstruction: [MedicationPrescriptionDosageInstruction]?
 	
 	/*! Medication supply authorization */
 	var dispense: MedicationPrescriptionDispense?
@@ -72,11 +72,11 @@ class MedicationPrescription: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["dateWritten"] as? String {
 				self.dateWritten = NSDate(json: val)
@@ -102,8 +102,8 @@ class MedicationPrescription: FHIRResource
 			if let val = js["medication"] as? NSDictionary {
 				self.medication = ResourceReference(json: val)
 			}
-			if let val = js["dosageInstruction"] as? Array<NSDictionary> {
-				self.dosageInstruction = MedicationPrescriptionDosageInstruction.from(val) as? MedicationPrescriptionDosageInstruction[]
+			if let val = js["dosageInstruction"] as? [NSDictionary] {
+				self.dosageInstruction = MedicationPrescriptionDosageInstruction.from(val) as? [MedicationPrescriptionDosageInstruction]
 			}
 			if let val = js["dispense"] as? NSDictionary {
 				self.dispense = MedicationPrescriptionDispense(json: val)

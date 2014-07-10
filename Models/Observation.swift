@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -39,7 +39,7 @@ class Observation: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Type of observation (code / type) */
 	var name: CodeableConcept?
@@ -102,13 +102,13 @@ class Observation: FHIRResource
 	var specimen: ResourceReference?
 	
 	/*! Who did the observation */
-	var performer: ResourceReference[]?
+	var performer: [ResourceReference]?
 	
 	/*! Provides guide for interpretation */
-	var referenceRange: ObservationReferenceRange[]?
+	var referenceRange: [ObservationReferenceRange]?
 	
 	/*! Observations related to this observation */
-	var related: ObservationRelated[]?
+	var related: [ObservationRelated]?
 	
 	convenience init(name: CodeableConcept?, status: String?, reliability: String?) {
 		self.init(json: nil)
@@ -128,8 +128,8 @@ class Observation: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["name"] as? NSDictionary {
 				self.name = CodeableConcept(json: val)
@@ -191,14 +191,14 @@ class Observation: FHIRResource
 			if let val = js["specimen"] as? NSDictionary {
 				self.specimen = ResourceReference(json: val)
 			}
-			if let val = js["performer"] as? Array<NSDictionary> {
-				self.performer = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["performer"] as? [NSDictionary] {
+				self.performer = ResourceReference.from(val) as? [ResourceReference]
 			}
-			if let val = js["referenceRange"] as? Array<NSDictionary> {
-				self.referenceRange = ObservationReferenceRange.from(val) as? ObservationReferenceRange[]
+			if let val = js["referenceRange"] as? [NSDictionary] {
+				self.referenceRange = ObservationReferenceRange.from(val) as? [ObservationReferenceRange]
 			}
-			if let val = js["related"] as? Array<NSDictionary> {
-				self.related = ObservationRelated.from(val) as? ObservationRelated[]
+			if let val = js["related"] as? [NSDictionary] {
+				self.related = ObservationRelated.from(val) as? [ObservationRelated]
 			}
 		}
 		super.init(json: json)

@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -26,7 +26,7 @@ class ConceptMap: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Logical id to reference this concept map */
 	var identifier: String?
@@ -41,7 +41,7 @@ class ConceptMap: FHIRResource
 	var publisher: String?
 	
 	/*! Contact information of the publisher */
-	var telecom: Contact[]?
+	var telecom: [Contact]?
 	
 	/*! Human language description of the concept map */
 	var description: String?
@@ -65,7 +65,7 @@ class ConceptMap: FHIRResource
 	var target: ResourceReference?
 	
 	/*! Mappings for a concept from the source valueset */
-	var concept: ConceptMapConcept[]?
+	var concept: [ConceptMapConcept]?
 	
 	convenience init(name: String?, status: String?, source: ResourceReference?, target: ResourceReference?) {
 		self.init(json: nil)
@@ -88,8 +88,8 @@ class ConceptMap: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["identifier"] as? String {
 				self.identifier = val
@@ -103,8 +103,8 @@ class ConceptMap: FHIRResource
 			if let val = js["publisher"] as? String {
 				self.publisher = val
 			}
-			if let val = js["telecom"] as? Array<NSDictionary> {
-				self.telecom = Contact.from(val) as? Contact[]
+			if let val = js["telecom"] as? [NSDictionary] {
+				self.telecom = Contact.from(val) as? [Contact]
 			}
 			if let val = js["description"] as? String {
 				self.description = val
@@ -127,8 +127,8 @@ class ConceptMap: FHIRResource
 			if let val = js["target"] as? NSDictionary {
 				self.target = ResourceReference(json: val)
 			}
-			if let val = js["concept"] as? Array<NSDictionary> {
-				self.concept = ConceptMapConcept.from(val) as? ConceptMapConcept[]
+			if let val = js["concept"] as? [NSDictionary] {
+				self.concept = ConceptMapConcept.from(val) as? [ConceptMapConcept]
 			}
 		}
 		super.init(json: json)
@@ -148,10 +148,10 @@ class ConceptMapConcept: FHIRElement
 	var code: String?
 	
 	/*! Other concepts required for this mapping (from context) */
-	var dependsOn: ConceptMapConceptDependsOn[]?
+	var dependsOn: [ConceptMapConceptDependsOn]?
 	
 	/*! A concept from the target value set that this concept maps to */
-	var map: ConceptMapConceptMap[]?
+	var map: [ConceptMapConceptMap]?
 	
 	convenience init(system: NSURL?) {
 		self.init(json: nil)
@@ -168,11 +168,11 @@ class ConceptMapConcept: FHIRElement
 			if let val = js["code"] as? String {
 				self.code = val
 			}
-			if let val = js["dependsOn"] as? Array<NSDictionary> {
-				self.dependsOn = ConceptMapConceptDependsOn.from(val) as? ConceptMapConceptDependsOn[]
+			if let val = js["dependsOn"] as? [NSDictionary] {
+				self.dependsOn = ConceptMapConceptDependsOn.from(val) as? [ConceptMapConceptDependsOn]
 			}
-			if let val = js["map"] as? Array<NSDictionary> {
-				self.map = ConceptMapConceptMap.from(val) as? ConceptMapConceptMap[]
+			if let val = js["map"] as? [NSDictionary] {
+				self.map = ConceptMapConceptMap.from(val) as? [ConceptMapConceptMap]
 			}
 		}
 		super.init(json: json)
@@ -245,7 +245,7 @@ class ConceptMapConceptMap: FHIRElement
 	var comments: String?
 	
 	/*! Other concepts that this mapping also produces */
-	var product: ConceptMapConceptMapProduct[]?
+	var product: [ConceptMapConceptMapProduct]?
 	
 	convenience init(equivalence: String?) {
 		self.init(json: nil)
@@ -268,8 +268,8 @@ class ConceptMapConceptMap: FHIRElement
 			if let val = js["comments"] as? String {
 				self.comments = val
 			}
-			if let val = js["product"] as? Array<NSDictionary> {
-				self.product = ConceptMapConceptMapProduct.from(val) as? ConceptMapConceptMapProduct[]
+			if let val = js["product"] as? [NSDictionary] {
+				self.product = ConceptMapConceptMapProduct.from(val) as? [ConceptMapConceptMapProduct]
 			}
 		}
 		super.init(json: json)

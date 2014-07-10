@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -43,7 +43,7 @@ class Questionnaire: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! draft | published | retired | in progress | completed | amended */
 	var status: String?
@@ -64,7 +64,7 @@ class Questionnaire: FHIRResource
 	var name: CodeableConcept?
 	
 	/*! External Ids for this questionnaire */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! Primary encounter during which the answers were collected */
 	var encounter: ResourceReference?
@@ -87,8 +87,8 @@ class Questionnaire: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
@@ -108,8 +108,8 @@ class Questionnaire: FHIRResource
 			if let val = js["name"] as? NSDictionary {
 				self.name = CodeableConcept(json: val)
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["encounter"] as? NSDictionary {
 				self.encounter = ResourceReference(json: val)
@@ -143,10 +143,10 @@ class QuestionnaireGroup: FHIRElement
 	var subject: ResourceReference?
 	
 	/*! Nested questionnaire group */
-	var group: QuestionnaireGroupGroup[]?
+	var group: [QuestionnaireGroupGroup]?
 	
 	/*! Questions in this group */
-	var question: QuestionnaireGroupQuestion[]?
+	var question: [QuestionnaireGroupQuestion]?
 	
 	
 	init(json: NSDictionary?) {
@@ -163,11 +163,11 @@ class QuestionnaireGroup: FHIRElement
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = ResourceReference(json: val)
 			}
-			if let val = js["group"] as? Array<NSDictionary> {
-				self.group = QuestionnaireGroupGroup.from(val) as? QuestionnaireGroupGroup[]
+			if let val = js["group"] as? [NSDictionary] {
+				self.group = QuestionnaireGroupGroup.from(val) as? [QuestionnaireGroupGroup]
 			}
-			if let val = js["question"] as? Array<NSDictionary> {
-				self.question = QuestionnaireGroupQuestion.from(val) as? QuestionnaireGroupQuestion[]
+			if let val = js["question"] as? [NSDictionary] {
+				self.question = QuestionnaireGroupQuestion.from(val) as? [QuestionnaireGroupQuestion]
 			}
 		}
 		super.init(json: json)
@@ -226,7 +226,7 @@ class QuestionnaireGroupQuestion: FHIRElement
 	var answerInstant: Int?
 	
 	/*! Selected options */
-	var choice: Coding[]?
+	var choice: [Coding]?
 	
 	/*! Valueset containing the possible options */
 	var options: ResourceReference?
@@ -238,7 +238,7 @@ class QuestionnaireGroupQuestion: FHIRElement
 	var remarks: String?
 	
 	/*! Nested questionnaire group */
-	var group: QuestionnaireGroupQuestionGroup[]?
+	var group: [QuestionnaireGroupQuestionGroup]?
 	
 	
 	init(json: NSDictionary?) {
@@ -270,8 +270,8 @@ class QuestionnaireGroupQuestion: FHIRElement
 			if let val = js["answerInstant"] as? Int {
 				self.answerInstant = val
 			}
-			if let val = js["choice"] as? Array<NSDictionary> {
-				self.choice = Coding.from(val) as? Coding[]
+			if let val = js["choice"] as? [NSDictionary] {
+				self.choice = Coding.from(val) as? [Coding]
 			}
 			if let val = js["options"] as? NSDictionary {
 				self.options = ResourceReference(json: val)
@@ -282,8 +282,8 @@ class QuestionnaireGroupQuestion: FHIRElement
 			if let val = js["remarks"] as? String {
 				self.remarks = val
 			}
-			if let val = js["group"] as? Array<NSDictionary> {
-				self.group = QuestionnaireGroupQuestionGroup.from(val) as? QuestionnaireGroupQuestionGroup[]
+			if let val = js["group"] as? [NSDictionary] {
+				self.group = QuestionnaireGroupQuestionGroup.from(val) as? [QuestionnaireGroupQuestionGroup]
 			}
 		}
 		super.init(json: json)

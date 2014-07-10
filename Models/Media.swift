@@ -2,7 +2,7 @@
 //  Media.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -38,7 +38,7 @@ class Media: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! photo | video | audio */
 	var type: String?
@@ -47,7 +47,7 @@ class Media: FHIRResource
 	var subtype: CodeableConcept?
 	
 	/*! Identifier(s) for the image */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! When the media was taken/recorded (end) */
 	var dateTime: NSDate?
@@ -94,8 +94,8 @@ class Media: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["type"] as? String {
 				self.type = val
@@ -103,8 +103,8 @@ class Media: FHIRResource
 			if let val = js["subtype"] as? NSDictionary {
 				self.subtype = CodeableConcept(json: val)
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["dateTime"] as? String {
 				self.dateTime = NSDate(json: val)

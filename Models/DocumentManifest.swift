@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -28,25 +28,25 @@ class DocumentManifest: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Unique Identifier for the set of documents */
 	var masterIdentifier: Identifier?
 	
 	/*! Other identifiers for the manifest */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! The subject of the set of documents */
-	var subject: ResourceReference[]?
+	var subject: [ResourceReference]?
 	
 	/*! Intended to get notified about this set of documents */
-	var recipient: ResourceReference[]?
+	var recipient: [ResourceReference]?
 	
 	/*! What kind of document set this is */
 	var type: CodeableConcept?
 	
 	/*! Who and/or what authored the document */
-	var author: ResourceReference[]?
+	var author: [ResourceReference]?
 	
 	/*! When this document manifest created */
 	var created: NSDate?
@@ -67,9 +67,9 @@ class DocumentManifest: FHIRResource
 	var confidentiality: CodeableConcept?
 	
 	/*! Contents of this set of documents */
-	var content: ResourceReference[]?
+	var content: [ResourceReference]?
 	
-	convenience init(masterIdentifier: Identifier?, subject: ResourceReference[]?, status: String?, content: ResourceReference[]?) {
+	convenience init(masterIdentifier: Identifier?, subject: [ResourceReference]?, status: String?, content: [ResourceReference]?) {
 		self.init(json: nil)
 		if masterIdentifier {
 			self.masterIdentifier = masterIdentifier
@@ -90,26 +90,26 @@ class DocumentManifest: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["masterIdentifier"] as? NSDictionary {
 				self.masterIdentifier = Identifier(json: val)
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
-			if let val = js["subject"] as? Array<NSDictionary> {
-				self.subject = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["subject"] as? [NSDictionary] {
+				self.subject = ResourceReference.from(val) as? [ResourceReference]
 			}
-			if let val = js["recipient"] as? Array<NSDictionary> {
-				self.recipient = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["recipient"] as? [NSDictionary] {
+				self.recipient = ResourceReference.from(val) as? [ResourceReference]
 			}
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val)
 			}
-			if let val = js["author"] as? Array<NSDictionary> {
-				self.author = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["author"] as? [NSDictionary] {
+				self.author = ResourceReference.from(val) as? [ResourceReference]
 			}
 			if let val = js["created"] as? String {
 				self.created = NSDate(json: val)
@@ -129,8 +129,8 @@ class DocumentManifest: FHIRResource
 			if let val = js["confidentiality"] as? NSDictionary {
 				self.confidentiality = CodeableConcept(json: val)
 			}
-			if let val = js["content"] as? Array<NSDictionary> {
-				self.content = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["content"] as? [NSDictionary] {
+				self.content = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
 		super.init(json: json)

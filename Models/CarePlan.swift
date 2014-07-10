@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -34,10 +34,10 @@ class CarePlan: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! External Ids for this plan */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! Who care plan is for */
 	var patient: ResourceReference?
@@ -52,16 +52,16 @@ class CarePlan: FHIRResource
 	var modified: NSDate?
 	
 	/*! Health issues this plan addresses */
-	var concern: ResourceReference[]?
+	var concern: [ResourceReference]?
 	
 	/*! Who's involved in plan? */
-	var participant: CarePlanParticipant[]?
+	var participant: [CarePlanParticipant]?
 	
 	/*! Desired outcome of plan */
-	var goal: CarePlanGoal[]?
+	var goal: [CarePlanGoal]?
 	
 	/*! Action to occur as part of plan */
-	var activity: CarePlanActivity[]?
+	var activity: [CarePlanActivity]?
 	
 	/*! Comments about the plan */
 	var notes: String?
@@ -78,11 +78,11 @@ class CarePlan: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["patient"] as? NSDictionary {
 				self.patient = ResourceReference(json: val)
@@ -96,17 +96,17 @@ class CarePlan: FHIRResource
 			if let val = js["modified"] as? String {
 				self.modified = NSDate(json: val)
 			}
-			if let val = js["concern"] as? Array<NSDictionary> {
-				self.concern = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["concern"] as? [NSDictionary] {
+				self.concern = ResourceReference.from(val) as? [ResourceReference]
 			}
-			if let val = js["participant"] as? Array<NSDictionary> {
-				self.participant = CarePlanParticipant.from(val) as? CarePlanParticipant[]
+			if let val = js["participant"] as? [NSDictionary] {
+				self.participant = CarePlanParticipant.from(val) as? [CarePlanParticipant]
 			}
-			if let val = js["goal"] as? Array<NSDictionary> {
-				self.goal = CarePlanGoal.from(val) as? CarePlanGoal[]
+			if let val = js["goal"] as? [NSDictionary] {
+				self.goal = CarePlanGoal.from(val) as? [CarePlanGoal]
 			}
-			if let val = js["activity"] as? Array<NSDictionary> {
-				self.activity = CarePlanActivity.from(val) as? CarePlanActivity[]
+			if let val = js["activity"] as? [NSDictionary] {
+				self.activity = CarePlanActivity.from(val) as? [CarePlanActivity]
 			}
 			if let val = js["notes"] as? String {
 				self.notes = val
@@ -168,7 +168,7 @@ class CarePlanGoal: FHIRElement
 	var notes: String?
 	
 	/*! Health issues this goal addresses */
-	var concern: ResourceReference[]?
+	var concern: [ResourceReference]?
 	
 	convenience init(description: String?) {
 		self.init(json: nil)
@@ -188,8 +188,8 @@ class CarePlanGoal: FHIRElement
 			if let val = js["notes"] as? String {
 				self.notes = val
 			}
-			if let val = js["concern"] as? Array<NSDictionary> {
-				self.concern = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["concern"] as? [NSDictionary] {
+				self.concern = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
 		super.init(json: json)
@@ -206,7 +206,7 @@ class CarePlanGoal: FHIRElement
 class CarePlanActivity: FHIRElement
 {	
 	/*! Goals this activity relates to */
-	var goal: String[]?
+	var goal: [String]?
 	
 	/*! not started | scheduled | in progress | on hold | completed | cancelled */
 	var status: String?
@@ -215,7 +215,7 @@ class CarePlanActivity: FHIRElement
 	var prohibited: Bool?
 	
 	/*! Appointments, orders, etc. */
-	var actionResulting: ResourceReference[]?
+	var actionResulting: [ResourceReference]?
 	
 	/*! Comments about the activity */
 	var notes: String?
@@ -235,7 +235,7 @@ class CarePlanActivity: FHIRElement
 	
 	init(json: NSDictionary?) {
 		if let js = json {
-			if let val = js["goal"] as? Array<String> {
+			if let val = js["goal"] as? [String] {
 				self.goal = val
 			}
 			if let val = js["status"] as? String {
@@ -244,8 +244,8 @@ class CarePlanActivity: FHIRElement
 			if let val = js["prohibited"] as? Int {
 				self.prohibited = (1 == val)
 			}
-			if let val = js["actionResulting"] as? Array<NSDictionary> {
-				self.actionResulting = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["actionResulting"] as? [NSDictionary] {
+				self.actionResulting = ResourceReference.from(val) as? [ResourceReference]
 			}
 			if let val = js["notes"] as? String {
 				self.notes = val
@@ -289,7 +289,7 @@ class CarePlanActivitySimple: FHIRElement
 	var location: ResourceReference?
 	
 	/*! Who's responsible? */
-	var performer: ResourceReference[]?
+	var performer: [ResourceReference]?
 	
 	/*! What's administered/supplied */
 	var product: ResourceReference?
@@ -330,8 +330,8 @@ class CarePlanActivitySimple: FHIRElement
 			if let val = js["location"] as? NSDictionary {
 				self.location = ResourceReference(json: val)
 			}
-			if let val = js["performer"] as? Array<NSDictionary> {
-				self.performer = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["performer"] as? [NSDictionary] {
+				self.performer = ResourceReference.from(val) as? [ResourceReference]
 			}
 			if let val = js["product"] as? NSDictionary {
 				self.product = ResourceReference(json: val)

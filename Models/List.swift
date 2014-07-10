@@ -2,7 +2,7 @@
 //  List.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -25,10 +25,10 @@ class List: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Business identifier */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! What the purpose of this list is */
 	var code: CodeableConcept?
@@ -49,7 +49,7 @@ class List: FHIRResource
 	var mode: String?
 	
 	/*! Entries in the list */
-	var entry: ListEntry[]?
+	var entry: [ListEntry]?
 	
 	/*! Why list is empty */
 	var emptyReason: CodeableConcept?
@@ -66,11 +66,11 @@ class List: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["code"] as? NSDictionary {
 				self.code = CodeableConcept(json: val)
@@ -90,8 +90,8 @@ class List: FHIRResource
 			if let val = js["mode"] as? String {
 				self.mode = val
 			}
-			if let val = js["entry"] as? Array<NSDictionary> {
-				self.entry = ListEntry.from(val) as? ListEntry[]
+			if let val = js["entry"] as? [NSDictionary] {
+				self.entry = ListEntry.from(val) as? [ListEntry]
 			}
 			if let val = js["emptyReason"] as? NSDictionary {
 				self.emptyReason = CodeableConcept(json: val)
@@ -110,7 +110,7 @@ class List: FHIRResource
 class ListEntry: FHIRElement
 {	
 	/*! Workflow information about this item */
-	var flag: CodeableConcept[]?
+	var flag: [CodeableConcept]?
 	
 	/*! If this item is actually marked as deleted */
 	var deleted: Bool?
@@ -130,8 +130,8 @@ class ListEntry: FHIRElement
 	
 	init(json: NSDictionary?) {
 		if let js = json {
-			if let val = js["flag"] as? Array<NSDictionary> {
-				self.flag = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["flag"] as? [NSDictionary] {
+				self.flag = CodeableConcept.from(val) as? [CodeableConcept]
 			}
 			if let val = js["deleted"] as? Int {
 				self.deleted = (1 == val)

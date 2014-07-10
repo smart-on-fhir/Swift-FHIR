@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -34,16 +34,16 @@ class Specimen: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! External Identifier */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! Kind of material that forms the specimen */
 	var type: CodeableConcept?
 	
 	/*! Parent of specimen */
-	var source: SpecimenSource[]?
+	var source: [SpecimenSource]?
 	
 	/*! Where the specimen came from. This may be the patient(s) or from the environment or  a device */
 	var subject: ResourceReference?
@@ -58,10 +58,10 @@ class Specimen: FHIRResource
 	var collection: SpecimenCollection?
 	
 	/*! Treatment and processing step details */
-	var treatment: SpecimenTreatment[]?
+	var treatment: [SpecimenTreatment]?
 	
 	/*! Direct container of specimen (tube/slide, etc) */
-	var container: SpecimenContainer[]?
+	var container: [SpecimenContainer]?
 	
 	convenience init(subject: ResourceReference?, collection: SpecimenCollection?) {
 		self.init(json: nil)
@@ -78,17 +78,17 @@ class Specimen: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val)
 			}
-			if let val = js["source"] as? Array<NSDictionary> {
-				self.source = SpecimenSource.from(val) as? SpecimenSource[]
+			if let val = js["source"] as? [NSDictionary] {
+				self.source = SpecimenSource.from(val) as? [SpecimenSource]
 			}
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = ResourceReference(json: val)
@@ -102,11 +102,11 @@ class Specimen: FHIRResource
 			if let val = js["collection"] as? NSDictionary {
 				self.collection = SpecimenCollection(json: val)
 			}
-			if let val = js["treatment"] as? Array<NSDictionary> {
-				self.treatment = SpecimenTreatment.from(val) as? SpecimenTreatment[]
+			if let val = js["treatment"] as? [NSDictionary] {
+				self.treatment = SpecimenTreatment.from(val) as? [SpecimenTreatment]
 			}
-			if let val = js["container"] as? Array<NSDictionary> {
-				self.container = SpecimenContainer.from(val) as? SpecimenContainer[]
+			if let val = js["container"] as? [NSDictionary] {
+				self.container = SpecimenContainer.from(val) as? [SpecimenContainer]
 			}
 		}
 		super.init(json: json)
@@ -125,7 +125,7 @@ class SpecimenSource: FHIRElement
 	var relationship: String?
 	
 	/*! The subject of the relationship */
-	var target: ResourceReference[]?
+	var target: [ResourceReference]?
 	
 	convenience init(relationship: String?) {
 		self.init(json: nil)
@@ -139,8 +139,8 @@ class SpecimenSource: FHIRElement
 			if let val = js["relationship"] as? String {
 				self.relationship = val
 			}
-			if let val = js["target"] as? Array<NSDictionary> {
-				self.target = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["target"] as? [NSDictionary] {
+				self.target = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
 		super.init(json: json)
@@ -159,7 +159,7 @@ class SpecimenCollection: FHIRElement
 	var collector: ResourceReference?
 	
 	/*! Collector comments */
-	var comment: String[]?
+	var comment: [String]?
 	
 	/*! Collection time */
 	var collectedDateTime: NSDate?
@@ -182,7 +182,7 @@ class SpecimenCollection: FHIRElement
 			if let val = js["collector"] as? NSDictionary {
 				self.collector = ResourceReference(json: val)
 			}
-			if let val = js["comment"] as? Array<String> {
+			if let val = js["comment"] as? [String] {
 				self.comment = val
 			}
 			if let val = js["collectedDateTime"] as? String {
@@ -220,7 +220,7 @@ class SpecimenTreatment: FHIRElement
 	var procedure: CodeableConcept?
 	
 	/*! Material used in the processing step */
-	var additive: ResourceReference[]?
+	var additive: [ResourceReference]?
 	
 	
 	init(json: NSDictionary?) {
@@ -231,8 +231,8 @@ class SpecimenTreatment: FHIRElement
 			if let val = js["procedure"] as? NSDictionary {
 				self.procedure = CodeableConcept(json: val)
 			}
-			if let val = js["additive"] as? Array<NSDictionary> {
-				self.additive = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["additive"] as? [NSDictionary] {
+				self.additive = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
 		super.init(json: json)
@@ -249,7 +249,7 @@ class SpecimenTreatment: FHIRElement
 class SpecimenContainer: FHIRElement
 {	
 	/*! Id for the container */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! Textual description of the container */
 	var description: String?
@@ -269,8 +269,8 @@ class SpecimenContainer: FHIRElement
 	
 	init(json: NSDictionary?) {
 		if let js = json {
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["description"] as? String {
 				self.description = val

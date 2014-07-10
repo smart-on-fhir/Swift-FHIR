@@ -2,7 +2,7 @@
 //  Profile.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -41,7 +41,7 @@ class Profile: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Logical id to reference this profile */
 	var identifier: String?
@@ -56,13 +56,13 @@ class Profile: FHIRResource
 	var publisher: String?
 	
 	/*! Contact information of the publisher */
-	var telecom: Contact[]?
+	var telecom: [Contact]?
 	
 	/*! Natural language description of the profile */
 	var description: String?
 	
 	/*! Assist with indexing and finding */
-	var code: Coding[]?
+	var code: [Coding]?
 	
 	/*! draft | active | retired */
 	var status: String?
@@ -80,16 +80,16 @@ class Profile: FHIRResource
 	var fhirVersion: String?
 	
 	/*! External specification that the content is mapped to */
-	var mapping: ProfileMapping[]?
+	var mapping: [ProfileMapping]?
 	
 	/*! A constraint on a resource or a data type */
-	var structure: ProfileStructure[]?
+	var structure: [ProfileStructure]?
 	
 	/*! Definition of an extension */
-	var extensionDefn: ProfileExtensionDefn[]?
+	var extensionDefn: [ProfileExtensionDefn]?
 	
 	/*! Definition of a named query */
-	var query: ProfileQuery[]?
+	var query: [ProfileQuery]?
 	
 	convenience init(name: String?, status: String?) {
 		self.init(json: nil)
@@ -106,8 +106,8 @@ class Profile: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["identifier"] as? String {
 				self.identifier = val
@@ -121,14 +121,14 @@ class Profile: FHIRResource
 			if let val = js["publisher"] as? String {
 				self.publisher = val
 			}
-			if let val = js["telecom"] as? Array<NSDictionary> {
-				self.telecom = Contact.from(val) as? Contact[]
+			if let val = js["telecom"] as? [NSDictionary] {
+				self.telecom = Contact.from(val) as? [Contact]
 			}
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["code"] as? Array<NSDictionary> {
-				self.code = Coding.from(val) as? Coding[]
+			if let val = js["code"] as? [NSDictionary] {
+				self.code = Coding.from(val) as? [Coding]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
@@ -145,17 +145,17 @@ class Profile: FHIRResource
 			if let val = js["fhirVersion"] as? String {
 				self.fhirVersion = val
 			}
-			if let val = js["mapping"] as? Array<NSDictionary> {
-				self.mapping = ProfileMapping.from(val) as? ProfileMapping[]
+			if let val = js["mapping"] as? [NSDictionary] {
+				self.mapping = ProfileMapping.from(val) as? [ProfileMapping]
 			}
-			if let val = js["structure"] as? Array<NSDictionary> {
-				self.structure = ProfileStructure.from(val) as? ProfileStructure[]
+			if let val = js["structure"] as? [NSDictionary] {
+				self.structure = ProfileStructure.from(val) as? [ProfileStructure]
 			}
-			if let val = js["extensionDefn"] as? Array<NSDictionary> {
-				self.extensionDefn = ProfileExtensionDefn.from(val) as? ProfileExtensionDefn[]
+			if let val = js["extensionDefn"] as? [NSDictionary] {
+				self.extensionDefn = ProfileExtensionDefn.from(val) as? [ProfileExtensionDefn]
 			}
-			if let val = js["query"] as? Array<NSDictionary> {
-				self.query = ProfileQuery.from(val) as? ProfileQuery[]
+			if let val = js["query"] as? [NSDictionary] {
+				self.query = ProfileQuery.from(val) as? [ProfileQuery]
 			}
 		}
 		super.init(json: json)
@@ -229,10 +229,10 @@ class ProfileStructure: FHIRElement
 	var purpose: String?
 	
 	/*! Definition of elements in the resource (if no profile) */
-	var element: ProfileStructureElement[]?
+	var element: [ProfileStructureElement]?
 	
 	/*! Search params defined */
-	var searchParam: ProfileStructureSearchParam[]?
+	var searchParam: [ProfileStructureSearchParam]?
 	
 	convenience init(type: String?) {
 		self.init(json: nil)
@@ -255,11 +255,11 @@ class ProfileStructure: FHIRElement
 			if let val = js["purpose"] as? String {
 				self.purpose = val
 			}
-			if let val = js["element"] as? Array<NSDictionary> {
-				self.element = ProfileStructureElement.from(val) as? ProfileStructureElement[]
+			if let val = js["element"] as? [NSDictionary] {
+				self.element = ProfileStructureElement.from(val) as? [ProfileStructureElement]
 			}
-			if let val = js["searchParam"] as? Array<NSDictionary> {
-				self.searchParam = ProfileStructureSearchParam.from(val) as? ProfileStructureSearchParam[]
+			if let val = js["searchParam"] as? [NSDictionary] {
+				self.searchParam = ProfileStructureSearchParam.from(val) as? [ProfileStructureSearchParam]
 			}
 		}
 		super.init(json: json)
@@ -278,7 +278,7 @@ class ProfileStructureElement: FHIRElement
 	var path: String?
 	
 	/*! How this element is represented in instances */
-	var representation: String[]?
+	var representation: [String]?
 	
 	/*! Name for this particular element definition (reference target) */
 	var name: String?
@@ -301,7 +301,7 @@ class ProfileStructureElement: FHIRElement
 			if let val = js["path"] as? String {
 				self.path = val
 			}
-			if let val = js["representation"] as? Array<String> {
+			if let val = js["representation"] as? [String] {
 				self.representation = val
 			}
 			if let val = js["name"] as? String {
@@ -388,7 +388,7 @@ class ProfileStructureElementDefinition: FHIRElement
 	var requirements: String?
 	
 	/*! Other names */
-	var synonym: String[]?
+	var synonym: [String]?
 	
 	/*! Minimum Cardinality */
 	var min: Int?
@@ -397,7 +397,7 @@ class ProfileStructureElementDefinition: FHIRElement
 	var max: String?
 	
 	/*! Data type and Profile for this element */
-	var type: ProfileStructureElementDefinitionType[]?
+	var type: [ProfileStructureElementDefinitionType]?
 	
 	/*! To another element constraint (by element.name) */
 	var nameReference: String?
@@ -412,10 +412,10 @@ class ProfileStructureElementDefinition: FHIRElement
 	var maxLength: Int?
 	
 	/*! Reference to invariant about presence */
-	var condition: String[]?
+	var condition: [String]?
 	
 	/*! Condition that must evaluate to true */
-	var constraint: ProfileStructureElementDefinitionConstraint[]?
+	var constraint: [ProfileStructureElementDefinitionConstraint]?
 	
 	/*! If the element must supported */
 	var mustSupport: Bool?
@@ -427,7 +427,7 @@ class ProfileStructureElementDefinition: FHIRElement
 	var binding: ProfileStructureElementDefinitionBinding?
 	
 	/*! Map element to another set of definitions */
-	var mapping: ProfileStructureElementDefinitionMapping[]?
+	var mapping: [ProfileStructureElementDefinitionMapping]?
 	
 	convenience init(short: String?, formal: String?, min: Int?, max: String?, isModifier: Bool?) {
 		self.init(json: nil)
@@ -462,7 +462,7 @@ class ProfileStructureElementDefinition: FHIRElement
 			if let val = js["requirements"] as? String {
 				self.requirements = val
 			}
-			if let val = js["synonym"] as? Array<String> {
+			if let val = js["synonym"] as? [String] {
 				self.synonym = val
 			}
 			if let val = js["min"] as? Int {
@@ -471,8 +471,8 @@ class ProfileStructureElementDefinition: FHIRElement
 			if let val = js["max"] as? String {
 				self.max = val
 			}
-			if let val = js["type"] as? Array<NSDictionary> {
-				self.type = ProfileStructureElementDefinitionType.from(val) as? ProfileStructureElementDefinitionType[]
+			if let val = js["type"] as? [NSDictionary] {
+				self.type = ProfileStructureElementDefinitionType.from(val) as? [ProfileStructureElementDefinitionType]
 			}
 			if let val = js["nameReference"] as? String {
 				self.nameReference = val
@@ -486,11 +486,11 @@ class ProfileStructureElementDefinition: FHIRElement
 			if let val = js["maxLength"] as? Int {
 				self.maxLength = val
 			}
-			if let val = js["condition"] as? Array<String> {
+			if let val = js["condition"] as? [String] {
 				self.condition = val
 			}
-			if let val = js["constraint"] as? Array<NSDictionary> {
-				self.constraint = ProfileStructureElementDefinitionConstraint.from(val) as? ProfileStructureElementDefinitionConstraint[]
+			if let val = js["constraint"] as? [NSDictionary] {
+				self.constraint = ProfileStructureElementDefinitionConstraint.from(val) as? [ProfileStructureElementDefinitionConstraint]
 			}
 			if let val = js["mustSupport"] as? Int {
 				self.mustSupport = (1 == val)
@@ -501,8 +501,8 @@ class ProfileStructureElementDefinition: FHIRElement
 			if let val = js["binding"] as? NSDictionary {
 				self.binding = ProfileStructureElementDefinitionBinding(json: val)
 			}
-			if let val = js["mapping"] as? Array<NSDictionary> {
-				self.mapping = ProfileStructureElementDefinitionMapping.from(val) as? ProfileStructureElementDefinitionMapping[]
+			if let val = js["mapping"] as? [NSDictionary] {
+				self.mapping = ProfileStructureElementDefinitionMapping.from(val) as? [ProfileStructureElementDefinitionMapping]
 			}
 		}
 		super.init(json: json)
@@ -524,7 +524,7 @@ class ProfileStructureElementDefinitionType: FHIRElement
 	var profile: NSURL?
 	
 	/*! contained | referenced | bundled - how aggregated */
-	var aggregation: String[]?
+	var aggregation: [String]?
 	
 	convenience init(code: String?) {
 		self.init(json: nil)
@@ -541,7 +541,7 @@ class ProfileStructureElementDefinitionType: FHIRElement
 			if let val = js["profile"] as? String {
 				self.profile = NSURL(json: val)
 			}
-			if let val = js["aggregation"] as? Array<String> {
+			if let val = js["aggregation"] as? [String] {
 				self.aggregation = val
 			}
 		}
@@ -730,7 +730,7 @@ class ProfileStructureSearchParam: FHIRElement
 	var xpath: String?
 	
 	/*! Types of resource (if a resource reference) */
-	var target: String[]?
+	var target: [String]?
 	
 	convenience init(name: String?, type: String?, documentation: String?) {
 		self.init(json: nil)
@@ -759,7 +759,7 @@ class ProfileStructureSearchParam: FHIRElement
 			if let val = js["xpath"] as? String {
 				self.xpath = val
 			}
-			if let val = js["target"] as? Array<String> {
+			if let val = js["target"] as? [String] {
 				self.target = val
 			}
 		}
@@ -785,12 +785,12 @@ class ProfileExtensionDefn: FHIRElement
 	var contextType: String?
 	
 	/*! Where the extension can be used in instances */
-	var context: String[]?
+	var context: [String]?
 	
 	/*! Definition of the extension and its content */
 	var definition: ProfileExtensionDefnDefinition?
 	
-	convenience init(code: String?, contextType: String?, context: String[]?, definition: ProfileExtensionDefnDefinition?) {
+	convenience init(code: String?, contextType: String?, context: [String]?, definition: ProfileExtensionDefnDefinition?) {
 		self.init(json: nil)
 		if code {
 			self.code = code
@@ -817,7 +817,7 @@ class ProfileExtensionDefn: FHIRElement
 			if let val = js["contextType"] as? String {
 				self.contextType = val
 			}
-			if let val = js["context"] as? Array<String> {
+			if let val = js["context"] as? [String] {
 				self.context = val
 			}
 			if let val = js["definition"] as? NSDictionary {
@@ -857,7 +857,7 @@ class ProfileQuery: FHIRElement
 	var documentation: String?
 	
 	/*! Parameter for the named query */
-	var parameter: ProfileQueryParameter[]?
+	var parameter: [ProfileQueryParameter]?
 	
 	convenience init(name: String?, documentation: String?) {
 		self.init(json: nil)
@@ -877,8 +877,8 @@ class ProfileQuery: FHIRElement
 			if let val = js["documentation"] as? String {
 				self.documentation = val
 			}
-			if let val = js["parameter"] as? Array<NSDictionary> {
-				self.parameter = ProfileQueryParameter.from(val) as? ProfileQueryParameter[]
+			if let val = js["parameter"] as? [NSDictionary] {
+				self.parameter = ProfileQueryParameter.from(val) as? [ProfileQueryParameter]
 			}
 		}
 		super.init(json: json)

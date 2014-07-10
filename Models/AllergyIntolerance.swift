@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -46,10 +46,10 @@ class AllergyIntolerance: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! External Ids for this item */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! fatal | high | medium | low */
 	var criticality: String?
@@ -73,10 +73,10 @@ class AllergyIntolerance: FHIRResource
 	var substance: ResourceReference?
 	
 	/*! Reactions associated with the sensitivity */
-	var reaction: ResourceReference[]?
+	var reaction: [ResourceReference]?
 	
 	/*! Observations that confirm or refute */
-	var sensitivityTest: ResourceReference[]?
+	var sensitivityTest: [ResourceReference]?
 	
 	convenience init(sensitivityType: String?, status: String?, subject: ResourceReference?, substance: ResourceReference?) {
 		self.init(json: nil)
@@ -99,11 +99,11 @@ class AllergyIntolerance: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["criticality"] as? String {
 				self.criticality = val
@@ -126,11 +126,11 @@ class AllergyIntolerance: FHIRResource
 			if let val = js["substance"] as? NSDictionary {
 				self.substance = ResourceReference(json: val)
 			}
-			if let val = js["reaction"] as? Array<NSDictionary> {
-				self.reaction = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["reaction"] as? [NSDictionary] {
+				self.reaction = ResourceReference.from(val) as? [ResourceReference]
 			}
-			if let val = js["sensitivityTest"] as? Array<NSDictionary> {
-				self.sensitivityTest = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["sensitivityTest"] as? [NSDictionary] {
+				self.sensitivityTest = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
 		super.init(json: json)

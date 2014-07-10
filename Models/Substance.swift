@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -29,7 +29,7 @@ class Substance: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! What kind of substance this is */
 	var type: CodeableConcept?
@@ -41,7 +41,7 @@ class Substance: FHIRResource
 	var instance: SubstanceInstance?
 	
 	/*! Composition information about the substance */
-	var ingredient: SubstanceIngredient[]?
+	var ingredient: [SubstanceIngredient]?
 	
 	convenience init(type: CodeableConcept?) {
 		self.init(json: nil)
@@ -55,8 +55,8 @@ class Substance: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val)
@@ -67,8 +67,8 @@ class Substance: FHIRResource
 			if let val = js["instance"] as? NSDictionary {
 				self.instance = SubstanceInstance(json: val)
 			}
-			if let val = js["ingredient"] as? Array<NSDictionary> {
-				self.ingredient = SubstanceIngredient.from(val) as? SubstanceIngredient[]
+			if let val = js["ingredient"] as? [NSDictionary] {
+				self.ingredient = SubstanceIngredient.from(val) as? [SubstanceIngredient]
 			}
 		}
 		super.init(json: json)

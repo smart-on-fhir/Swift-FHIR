@@ -2,7 +2,7 @@
 //  DeviceObservationReport.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -33,7 +33,7 @@ class DeviceObservationReport: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! When the data values are reported */
 	var instant: Int?
@@ -48,7 +48,7 @@ class DeviceObservationReport: FHIRResource
 	var subject: ResourceReference?
 	
 	/*! A medical-related subsystem of a medical device */
-	var virtualDevice: DeviceObservationReportVirtualDevice[]?
+	var virtualDevice: [DeviceObservationReportVirtualDevice]?
 	
 	convenience init(instant: Int?, source: ResourceReference?) {
 		self.init(json: nil)
@@ -65,8 +65,8 @@ class DeviceObservationReport: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["instant"] as? Int {
 				self.instant = val
@@ -80,8 +80,8 @@ class DeviceObservationReport: FHIRResource
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = ResourceReference(json: val)
 			}
-			if let val = js["virtualDevice"] as? Array<NSDictionary> {
-				self.virtualDevice = DeviceObservationReportVirtualDevice.from(val) as? DeviceObservationReportVirtualDevice[]
+			if let val = js["virtualDevice"] as? [NSDictionary] {
+				self.virtualDevice = DeviceObservationReportVirtualDevice.from(val) as? [DeviceObservationReportVirtualDevice]
 			}
 		}
 		super.init(json: json)
@@ -98,7 +98,7 @@ class DeviceObservationReportVirtualDevice: FHIRElement
 	var code: CodeableConcept?
 	
 	/*! Groups related data items */
-	var channel: DeviceObservationReportVirtualDeviceChannel[]?
+	var channel: [DeviceObservationReportVirtualDeviceChannel]?
 	
 	
 	init(json: NSDictionary?) {
@@ -106,8 +106,8 @@ class DeviceObservationReportVirtualDevice: FHIRElement
 			if let val = js["code"] as? NSDictionary {
 				self.code = CodeableConcept(json: val)
 			}
-			if let val = js["channel"] as? Array<NSDictionary> {
-				self.channel = DeviceObservationReportVirtualDeviceChannel.from(val) as? DeviceObservationReportVirtualDeviceChannel[]
+			if let val = js["channel"] as? [NSDictionary] {
+				self.channel = DeviceObservationReportVirtualDeviceChannel.from(val) as? [DeviceObservationReportVirtualDeviceChannel]
 			}
 		}
 		super.init(json: json)
@@ -126,7 +126,7 @@ class DeviceObservationReportVirtualDeviceChannel: FHIRElement
 	var code: CodeableConcept?
 	
 	/*! Piece of data reported by device */
-	var metric: DeviceObservationReportVirtualDeviceChannelMetric[]?
+	var metric: [DeviceObservationReportVirtualDeviceChannelMetric]?
 	
 	
 	init(json: NSDictionary?) {
@@ -134,8 +134,8 @@ class DeviceObservationReportVirtualDeviceChannel: FHIRElement
 			if let val = js["code"] as? NSDictionary {
 				self.code = CodeableConcept(json: val)
 			}
-			if let val = js["metric"] as? Array<NSDictionary> {
-				self.metric = DeviceObservationReportVirtualDeviceChannelMetric.from(val) as? DeviceObservationReportVirtualDeviceChannelMetric[]
+			if let val = js["metric"] as? [NSDictionary] {
+				self.metric = DeviceObservationReportVirtualDeviceChannelMetric.from(val) as? [DeviceObservationReportVirtualDeviceChannelMetric]
 			}
 		}
 		super.init(json: json)

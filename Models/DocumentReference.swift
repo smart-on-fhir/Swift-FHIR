@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -22,13 +22,13 @@ class DocumentReference: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! XDSDocumentEntry.uniqueId */
 	var masterIdentifier: Identifier?
 	
 	/*! XDSDocumentEntry.referenceIdList */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! XDSDocumentEntry.patientId + sourcePatientId/sourcePatientInfo */
 	var subject: ResourceReference?
@@ -40,7 +40,7 @@ class DocumentReference: FHIRResource
 	var classification: CodeableConcept?
 	
 	/*! XDSDocumentEntry.author */
-	var author: ResourceReference[]?
+	var author: [ResourceReference]?
 	
 	/*! n/a */
 	var custodian: ResourceReference?
@@ -64,7 +64,7 @@ class DocumentReference: FHIRResource
 	var docStatus: CodeableConcept?
 	
 	/*! Relationships that this document has with other document references that already exist */
-	var relatesTo: DocumentReferenceRelatesTo[]?
+	var relatesTo: [DocumentReferenceRelatesTo]?
 	
 	/*! XDSDocumentEntry.title */
 	var description: String?
@@ -96,7 +96,7 @@ class DocumentReference: FHIRResource
 	/*! event codes, service Start & Stop time, and facility type */
 	var context: DocumentReferenceContext?
 	
-	convenience init(masterIdentifier: Identifier?, subject: ResourceReference?, type: CodeableConcept?, classification: CodeableConcept?, author: ResourceReference[]?, created: NSDate?, indexed: Int?, status: String?, confidentiality: CodeableConcept?, mimeType: String?, format: CodeableConcept?) {
+	convenience init(masterIdentifier: Identifier?, subject: ResourceReference?, type: CodeableConcept?, classification: CodeableConcept?, author: [ResourceReference]?, created: NSDate?, indexed: Int?, status: String?, confidentiality: CodeableConcept?, mimeType: String?, format: CodeableConcept?) {
 		self.init(json: nil)
 		if masterIdentifier {
 			self.masterIdentifier = masterIdentifier
@@ -138,20 +138,20 @@ class DocumentReference: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["masterIdentifier"] as? NSDictionary {
 				self.masterIdentifier = Identifier(json: val)
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = ResourceReference(json: val)
@@ -162,8 +162,8 @@ class DocumentReference: FHIRResource
 			if let val = js["classification"] as? NSDictionary {
 				self.classification = CodeableConcept(json: val)
 			}
-			if let val = js["author"] as? Array<NSDictionary> {
-				self.author = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["author"] as? [NSDictionary] {
+				self.author = ResourceReference.from(val) as? [ResourceReference]
 			}
 			if let val = js["custodian"] as? NSDictionary {
 				self.custodian = ResourceReference(json: val)
@@ -186,8 +186,8 @@ class DocumentReference: FHIRResource
 			if let val = js["docStatus"] as? NSDictionary {
 				self.docStatus = CodeableConcept(json: val)
 			}
-			if let val = js["relatesTo"] as? Array<NSDictionary> {
-				self.relatesTo = DocumentReferenceRelatesTo.from(val) as? DocumentReferenceRelatesTo[]
+			if let val = js["relatesTo"] as? [NSDictionary] {
+				self.relatesTo = DocumentReferenceRelatesTo.from(val) as? [DocumentReferenceRelatesTo]
 			}
 			if let val = js["description"] as? String {
 				self.description = val
@@ -276,7 +276,7 @@ class DocumentReferenceService: FHIRElement
 	var address: String?
 	
 	/*! Service call parameters */
-	var parameter: DocumentReferenceServiceParameter[]?
+	var parameter: [DocumentReferenceServiceParameter]?
 	
 	convenience init(type: CodeableConcept?) {
 		self.init(json: nil)
@@ -293,8 +293,8 @@ class DocumentReferenceService: FHIRElement
 			if let val = js["address"] as? String {
 				self.address = val
 			}
-			if let val = js["parameter"] as? Array<NSDictionary> {
-				self.parameter = DocumentReferenceServiceParameter.from(val) as? DocumentReferenceServiceParameter[]
+			if let val = js["parameter"] as? [NSDictionary] {
+				self.parameter = DocumentReferenceServiceParameter.from(val) as? [DocumentReferenceServiceParameter]
 			}
 		}
 		super.init(json: json)
@@ -344,7 +344,7 @@ class DocumentReferenceServiceParameter: FHIRElement
 class DocumentReferenceContext: FHIRElement
 {	
 	/*! XDSDocumentEntry.eventCodeList */
-	var event: CodeableConcept[]?
+	var event: [CodeableConcept]?
 	
 	/*! XDSDocumentEntry.serviceStartTime & XDSDocumentEntry.serviceStopTime */
 	var period: Period?
@@ -361,8 +361,8 @@ class DocumentReferenceContext: FHIRElement
 	
 	init(json: NSDictionary?) {
 		if let js = json {
-			if let val = js["event"] as? Array<NSDictionary> {
-				self.event = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["event"] as? [NSDictionary] {
+				self.event = CodeableConcept.from(val) as? [CodeableConcept]
 			}
 			if let val = js["period"] as? NSDictionary {
 				self.period = Period(json: val)

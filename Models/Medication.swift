@@ -2,7 +2,7 @@
 //  Medication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -45,7 +45,7 @@ class Medication: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Common / Commercial name */
 	var name: String?
@@ -74,8 +74,8 @@ class Medication: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["name"] as? String {
 				self.name = val
@@ -115,7 +115,7 @@ class MedicationProduct: FHIRElement
 	var form: CodeableConcept?
 	
 	/*! Active or inactive ingredient */
-	var ingredient: MedicationProductIngredient[]?
+	var ingredient: [MedicationProductIngredient]?
 	
 	
 	init(json: NSDictionary?) {
@@ -123,8 +123,8 @@ class MedicationProduct: FHIRElement
 			if let val = js["form"] as? NSDictionary {
 				self.form = CodeableConcept(json: val)
 			}
-			if let val = js["ingredient"] as? Array<NSDictionary> {
-				self.ingredient = MedicationProductIngredient.from(val) as? MedicationProductIngredient[]
+			if let val = js["ingredient"] as? [NSDictionary] {
+				self.ingredient = MedicationProductIngredient.from(val) as? [MedicationProductIngredient]
 			}
 		}
 		super.init(json: json)
@@ -177,7 +177,7 @@ class MedicationPackage: FHIRElement
 	var container: CodeableConcept?
 	
 	/*! What is  in the package? */
-	var content: MedicationPackageContent[]?
+	var content: [MedicationPackageContent]?
 	
 	
 	init(json: NSDictionary?) {
@@ -185,8 +185,8 @@ class MedicationPackage: FHIRElement
 			if let val = js["container"] as? NSDictionary {
 				self.container = CodeableConcept(json: val)
 			}
-			if let val = js["content"] as? Array<NSDictionary> {
-				self.content = MedicationPackageContent.from(val) as? MedicationPackageContent[]
+			if let val = js["content"] as? [NSDictionary] {
+				self.content = MedicationPackageContent.from(val) as? [MedicationPackageContent]
 			}
 		}
 		super.init(json: json)

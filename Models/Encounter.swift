@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -45,10 +45,10 @@ class Encounter: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Identifier(s) by which this encounter is known */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! planned | in progress | onleave | finished | cancelled */
 	var status: String?
@@ -57,13 +57,13 @@ class Encounter: FHIRResource
 	var classification: String?
 	
 	/*! Specific type of encounter */
-	var type: CodeableConcept[]?
+	var type: [CodeableConcept]?
 	
 	/*! The patient present at the encounter */
 	var subject: ResourceReference?
 	
 	/*! List of participants involved in the encounter */
-	var participant: EncounterParticipant[]?
+	var participant: [EncounterParticipant]?
 	
 	/*! The start and end time of the encounter */
 	var period: Period?
@@ -84,7 +84,7 @@ class Encounter: FHIRResource
 	var hospitalization: EncounterHospitalization?
 	
 	/*! List of locations the patient has been at */
-	var location: EncounterLocation[]?
+	var location: [EncounterLocation]?
 	
 	/*! Department or team providing care */
 	var serviceProvider: ResourceReference?
@@ -107,11 +107,11 @@ class Encounter: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
@@ -119,14 +119,14 @@ class Encounter: FHIRResource
 			if let val = js["classification"] as? String {
 				self.classification = val
 			}
-			if let val = js["type"] as? Array<NSDictionary> {
-				self.type = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["type"] as? [NSDictionary] {
+				self.type = CodeableConcept.from(val) as? [CodeableConcept]
 			}
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = ResourceReference(json: val)
 			}
-			if let val = js["participant"] as? Array<NSDictionary> {
-				self.participant = EncounterParticipant.from(val) as? EncounterParticipant[]
+			if let val = js["participant"] as? [NSDictionary] {
+				self.participant = EncounterParticipant.from(val) as? [EncounterParticipant]
 			}
 			if let val = js["period"] as? NSDictionary {
 				self.period = Period(json: val)
@@ -146,8 +146,8 @@ class Encounter: FHIRResource
 			if let val = js["hospitalization"] as? NSDictionary {
 				self.hospitalization = EncounterHospitalization(json: val)
 			}
-			if let val = js["location"] as? Array<NSDictionary> {
-				self.location = EncounterLocation.from(val) as? EncounterLocation[]
+			if let val = js["location"] as? [NSDictionary] {
+				self.location = EncounterLocation.from(val) as? [EncounterLocation]
 			}
 			if let val = js["serviceProvider"] as? NSDictionary {
 				self.serviceProvider = ResourceReference(json: val)
@@ -169,7 +169,7 @@ class Encounter: FHIRResource
 class EncounterParticipant: FHIRElement
 {	
 	/*! Role of participant in encounter */
-	var type: CodeableConcept[]?
+	var type: [CodeableConcept]?
 	
 	/*! Persons involved in the encounter other than the patient */
 	var individual: ResourceReference?
@@ -177,8 +177,8 @@ class EncounterParticipant: FHIRElement
 	
 	init(json: NSDictionary?) {
 		if let js = json {
-			if let val = js["type"] as? Array<NSDictionary> {
-				self.type = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["type"] as? [NSDictionary] {
+				self.type = CodeableConcept.from(val) as? [CodeableConcept]
 			}
 			if let val = js["individual"] as? NSDictionary {
 				self.individual = ResourceReference(json: val)
@@ -207,16 +207,16 @@ class EncounterHospitalization: FHIRElement
 	var period: Period?
 	
 	/*! Where the patient stays during this encounter */
-	var accomodation: EncounterHospitalizationAccomodation[]?
+	var accomodation: [EncounterHospitalizationAccomodation]?
 	
 	/*! Dietary restrictions for the patient */
 	var diet: CodeableConcept?
 	
 	/*! Special courtesies (VIP, board member) */
-	var specialCourtesy: CodeableConcept[]?
+	var specialCourtesy: [CodeableConcept]?
 	
 	/*! Wheelchair, translator, stretcher, etc */
-	var specialArrangement: CodeableConcept[]?
+	var specialArrangement: [CodeableConcept]?
 	
 	/*! Location to which the patient is discharged */
 	var destination: ResourceReference?
@@ -245,17 +245,17 @@ class EncounterHospitalization: FHIRElement
 			if let val = js["period"] as? NSDictionary {
 				self.period = Period(json: val)
 			}
-			if let val = js["accomodation"] as? Array<NSDictionary> {
-				self.accomodation = EncounterHospitalizationAccomodation.from(val) as? EncounterHospitalizationAccomodation[]
+			if let val = js["accomodation"] as? [NSDictionary] {
+				self.accomodation = EncounterHospitalizationAccomodation.from(val) as? [EncounterHospitalizationAccomodation]
 			}
 			if let val = js["diet"] as? NSDictionary {
 				self.diet = CodeableConcept(json: val)
 			}
-			if let val = js["specialCourtesy"] as? Array<NSDictionary> {
-				self.specialCourtesy = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["specialCourtesy"] as? [NSDictionary] {
+				self.specialCourtesy = CodeableConcept.from(val) as? [CodeableConcept]
 			}
-			if let val = js["specialArrangement"] as? Array<NSDictionary> {
-				self.specialArrangement = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["specialArrangement"] as? [NSDictionary] {
+				self.specialArrangement = CodeableConcept.from(val) as? [CodeableConcept]
 			}
 			if let val = js["destination"] as? NSDictionary {
 				self.destination = ResourceReference(json: val)

@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -33,10 +33,10 @@ class Provenance: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Target resource(s) (usually version specific) */
-	var target: ResourceReference[]?
+	var target: [ResourceReference]?
 	
 	/*! When the activity occurred */
 	var period: Period?
@@ -51,18 +51,18 @@ class Provenance: FHIRResource
 	var location: ResourceReference?
 	
 	/*! Policy or plan the activity was defined by */
-	var policy: NSURL[]?
+	var policy: [NSURL]?
 	
 	/*! Person, organization, records, etc. involved in creating resource */
-	var agent: ProvenanceAgent[]?
+	var agent: [ProvenanceAgent]?
 	
 	/*! An entity used in this activity */
-	var entity: ProvenanceEntity[]?
+	var entity: [ProvenanceEntity]?
 	
 	/*! Base64 signature (DigSig) - integrity check */
 	var integritySignature: String?
 	
-	convenience init(target: ResourceReference[]?, recorded: Int?) {
+	convenience init(target: [ResourceReference]?, recorded: Int?) {
 		self.init(json: nil)
 		if target {
 			self.target = target
@@ -77,11 +77,11 @@ class Provenance: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["target"] as? Array<NSDictionary> {
-				self.target = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["target"] as? [NSDictionary] {
+				self.target = ResourceReference.from(val) as? [ResourceReference]
 			}
 			if let val = js["period"] as? NSDictionary {
 				self.period = Period(json: val)
@@ -95,14 +95,14 @@ class Provenance: FHIRResource
 			if let val = js["location"] as? NSDictionary {
 				self.location = ResourceReference(json: val)
 			}
-			if let val = js["policy"] as? Array<String> {
+			if let val = js["policy"] as? [String] {
 				self.policy = NSURL.from(val)
 			}
-			if let val = js["agent"] as? Array<NSDictionary> {
-				self.agent = ProvenanceAgent.from(val) as? ProvenanceAgent[]
+			if let val = js["agent"] as? [NSDictionary] {
+				self.agent = ProvenanceAgent.from(val) as? [ProvenanceAgent]
 			}
-			if let val = js["entity"] as? Array<NSDictionary> {
-				self.entity = ProvenanceEntity.from(val) as? ProvenanceEntity[]
+			if let val = js["entity"] as? [NSDictionary] {
+				self.entity = ProvenanceEntity.from(val) as? [ProvenanceEntity]
 			}
 			if let val = js["integritySignature"] as? String {
 				self.integritySignature = val

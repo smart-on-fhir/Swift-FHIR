@@ -2,7 +2,7 @@
 //  DiagnosticOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -39,7 +39,7 @@ class DiagnosticOrder: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Who and/or what test is about */
 	var subject: ResourceReference?
@@ -48,7 +48,7 @@ class DiagnosticOrder: FHIRResource
 	var orderer: ResourceReference?
 	
 	/*! Identifiers assigned to this order */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! The encounter that this diagnostic order is associated with */
 	var encounter: ResourceReference?
@@ -57,7 +57,7 @@ class DiagnosticOrder: FHIRResource
 	var clinicalNotes: String?
 	
 	/*! If the whole order relates to specific specimens */
-	var specimen: ResourceReference[]?
+	var specimen: [ResourceReference]?
 	
 	/*! requested | received | accepted | in progress | review | completed | suspended | rejected | failed */
 	var status: String?
@@ -66,10 +66,10 @@ class DiagnosticOrder: FHIRResource
 	var priority: String?
 	
 	/*! A list of events of interest in the lifecycle */
-	var event: DiagnosticOrderEvent[]?
+	var event: [DiagnosticOrderEvent]?
 	
 	/*! The items the orderer requested */
-	var item: DiagnosticOrderItem[]?
+	var item: [DiagnosticOrderItem]?
 	
 	convenience init(subject: ResourceReference?) {
 		self.init(json: nil)
@@ -83,8 +83,8 @@ class DiagnosticOrder: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = ResourceReference(json: val)
@@ -92,8 +92,8 @@ class DiagnosticOrder: FHIRResource
 			if let val = js["orderer"] as? NSDictionary {
 				self.orderer = ResourceReference(json: val)
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["encounter"] as? NSDictionary {
 				self.encounter = ResourceReference(json: val)
@@ -101,8 +101,8 @@ class DiagnosticOrder: FHIRResource
 			if let val = js["clinicalNotes"] as? String {
 				self.clinicalNotes = val
 			}
-			if let val = js["specimen"] as? Array<NSDictionary> {
-				self.specimen = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["specimen"] as? [NSDictionary] {
+				self.specimen = ResourceReference.from(val) as? [ResourceReference]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
@@ -110,11 +110,11 @@ class DiagnosticOrder: FHIRResource
 			if let val = js["priority"] as? String {
 				self.priority = val
 			}
-			if let val = js["event"] as? Array<NSDictionary> {
-				self.event = DiagnosticOrderEvent.from(val) as? DiagnosticOrderEvent[]
+			if let val = js["event"] as? [NSDictionary] {
+				self.event = DiagnosticOrderEvent.from(val) as? [DiagnosticOrderEvent]
 			}
-			if let val = js["item"] as? Array<NSDictionary> {
-				self.item = DiagnosticOrderItem.from(val) as? DiagnosticOrderItem[]
+			if let val = js["item"] as? [NSDictionary] {
+				self.item = DiagnosticOrderItem.from(val) as? [DiagnosticOrderItem]
 			}
 		}
 		super.init(json: json)
@@ -184,7 +184,7 @@ class DiagnosticOrderItem: FHIRElement
 	var code: CodeableConcept?
 	
 	/*! If this item relates to specific specimens */
-	var specimen: ResourceReference[]?
+	var specimen: [ResourceReference]?
 	
 	/*! Location of requested test (if applicable) */
 	var bodySite: CodeableConcept?
@@ -193,7 +193,7 @@ class DiagnosticOrderItem: FHIRElement
 	var status: String?
 	
 	/*! Events specific to this item */
-	var event: DiagnosticOrderItemEvent[]?
+	var event: [DiagnosticOrderItemEvent]?
 	
 	convenience init(code: CodeableConcept?) {
 		self.init(json: nil)
@@ -207,8 +207,8 @@ class DiagnosticOrderItem: FHIRElement
 			if let val = js["code"] as? NSDictionary {
 				self.code = CodeableConcept(json: val)
 			}
-			if let val = js["specimen"] as? Array<NSDictionary> {
-				self.specimen = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["specimen"] as? [NSDictionary] {
+				self.specimen = ResourceReference.from(val) as? [ResourceReference]
 			}
 			if let val = js["bodySite"] as? NSDictionary {
 				self.bodySite = CodeableConcept(json: val)
@@ -216,8 +216,8 @@ class DiagnosticOrderItem: FHIRElement
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["event"] as? Array<NSDictionary> {
-				self.event = DiagnosticOrderItemEvent.from(val) as? DiagnosticOrderItemEvent[]
+			if let val = js["event"] as? [NSDictionary] {
+				self.event = DiagnosticOrderItemEvent.from(val) as? [DiagnosticOrderItemEvent]
 			}
 		}
 		super.init(json: json)

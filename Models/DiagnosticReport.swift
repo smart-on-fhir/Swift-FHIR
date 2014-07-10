@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -38,7 +38,7 @@ class DiagnosticReport: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Name/Code for this diagnostic report */
 	var name: CodeableConcept?
@@ -59,7 +59,7 @@ class DiagnosticReport: FHIRResource
 	var identifier: Identifier?
 	
 	/*! What was requested */
-	var requestDetail: ResourceReference[]?
+	var requestDetail: [ResourceReference]?
 	
 	/*! Biochemistry, Hematology etc. */
 	var serviceCategory: CodeableConcept?
@@ -71,25 +71,25 @@ class DiagnosticReport: FHIRResource
 	var diagnosticPeriod: Period?
 	
 	/*! Specimens this report is based on */
-	var specimen: ResourceReference[]?
+	var specimen: [ResourceReference]?
 	
 	/*! Observations - simple, or complex nested groups */
-	var result: ResourceReference[]?
+	var result: [ResourceReference]?
 	
 	/*! Reference to full details of imaging associated with the diagnostic report */
-	var imagingStudy: ResourceReference[]?
+	var imagingStudy: [ResourceReference]?
 	
 	/*! Key images associated with this report */
-	var image: DiagnosticReportImage[]?
+	var image: [DiagnosticReportImage]?
 	
 	/*! Clinical Interpretation of test results */
 	var conclusion: String?
 	
 	/*! Codes for the conclusion */
-	var codedDiagnosis: CodeableConcept[]?
+	var codedDiagnosis: [CodeableConcept]?
 	
 	/*! Entire Report as issued */
-	var presentedForm: Attachment[]?
+	var presentedForm: [Attachment]?
 	
 	convenience init(name: CodeableConcept?, status: String?, issued: NSDate?, subject: ResourceReference?, performer: ResourceReference?, diagnosticDateTime: NSDate?, diagnosticPeriod: Period?) {
 		self.init(json: nil)
@@ -121,8 +121,8 @@ class DiagnosticReport: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["name"] as? NSDictionary {
 				self.name = CodeableConcept(json: val)
@@ -142,8 +142,8 @@ class DiagnosticReport: FHIRResource
 			if let val = js["identifier"] as? NSDictionary {
 				self.identifier = Identifier(json: val)
 			}
-			if let val = js["requestDetail"] as? Array<NSDictionary> {
-				self.requestDetail = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["requestDetail"] as? [NSDictionary] {
+				self.requestDetail = ResourceReference.from(val) as? [ResourceReference]
 			}
 			if let val = js["serviceCategory"] as? NSDictionary {
 				self.serviceCategory = CodeableConcept(json: val)
@@ -154,26 +154,26 @@ class DiagnosticReport: FHIRResource
 			if let val = js["diagnosticPeriod"] as? NSDictionary {
 				self.diagnosticPeriod = Period(json: val)
 			}
-			if let val = js["specimen"] as? Array<NSDictionary> {
-				self.specimen = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["specimen"] as? [NSDictionary] {
+				self.specimen = ResourceReference.from(val) as? [ResourceReference]
 			}
-			if let val = js["result"] as? Array<NSDictionary> {
-				self.result = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["result"] as? [NSDictionary] {
+				self.result = ResourceReference.from(val) as? [ResourceReference]
 			}
-			if let val = js["imagingStudy"] as? Array<NSDictionary> {
-				self.imagingStudy = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["imagingStudy"] as? [NSDictionary] {
+				self.imagingStudy = ResourceReference.from(val) as? [ResourceReference]
 			}
-			if let val = js["image"] as? Array<NSDictionary> {
-				self.image = DiagnosticReportImage.from(val) as? DiagnosticReportImage[]
+			if let val = js["image"] as? [NSDictionary] {
+				self.image = DiagnosticReportImage.from(val) as? [DiagnosticReportImage]
 			}
 			if let val = js["conclusion"] as? String {
 				self.conclusion = val
 			}
-			if let val = js["codedDiagnosis"] as? Array<NSDictionary> {
-				self.codedDiagnosis = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["codedDiagnosis"] as? [NSDictionary] {
+				self.codedDiagnosis = CodeableConcept.from(val) as? [CodeableConcept]
 			}
-			if let val = js["presentedForm"] as? Array<NSDictionary> {
-				self.presentedForm = Attachment.from(val) as? Attachment[]
+			if let val = js["presentedForm"] as? [NSDictionary] {
+				self.presentedForm = Attachment.from(val) as? [Attachment]
 			}
 		}
 		super.init(json: json)

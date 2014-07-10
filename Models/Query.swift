@@ -2,7 +2,7 @@
 //  Query.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -25,18 +25,18 @@ class Query: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Links query and its response(s) */
 	var identifier: NSURL?
 	
 	/*! Set of query parameters with values */
-	var parameter: Extension[]?
+	var parameter: [Extension]?
 	
 	/*! If this is a response to a query */
 	var response: QueryResponse?
 	
-	convenience init(identifier: NSURL?, parameter: Extension[]?) {
+	convenience init(identifier: NSURL?, parameter: [Extension]?) {
 		self.init(json: nil)
 		if identifier {
 			self.identifier = identifier
@@ -51,14 +51,14 @@ class Query: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["identifier"] as? String {
 				self.identifier = NSURL(json: val)
 			}
-			if let val = js["parameter"] as? Array<NSDictionary> {
-				self.parameter = Extension.from(val) as? Extension[]
+			if let val = js["parameter"] as? [NSDictionary] {
+				self.parameter = Extension.from(val) as? [Extension]
 			}
 			if let val = js["response"] as? NSDictionary {
 				self.response = QueryResponse(json: val)
@@ -84,22 +84,22 @@ class QueryResponse: FHIRElement
 	var total: Int?
 	
 	/*! Parameters server used */
-	var parameter: Extension[]?
+	var parameter: [Extension]?
 	
 	/*! To get first page (if paged) */
-	var first: Extension[]?
+	var first: [Extension]?
 	
 	/*! To get previous page (if paged) */
-	var previous: Extension[]?
+	var previous: [Extension]?
 	
 	/*! To get next page (if paged) */
-	var next: Extension[]?
+	var next: [Extension]?
 	
 	/*! To get last page (if paged) */
-	var last: Extension[]?
+	var last: [Extension]?
 	
 	/*! Resources that are the results of the search */
-	var reference: ResourceReference[]?
+	var reference: [ResourceReference]?
 	
 	convenience init(identifier: NSURL?, outcome: String?) {
 		self.init(json: nil)
@@ -122,23 +122,23 @@ class QueryResponse: FHIRElement
 			if let val = js["total"] as? Int {
 				self.total = val
 			}
-			if let val = js["parameter"] as? Array<NSDictionary> {
-				self.parameter = Extension.from(val) as? Extension[]
+			if let val = js["parameter"] as? [NSDictionary] {
+				self.parameter = Extension.from(val) as? [Extension]
 			}
-			if let val = js["first"] as? Array<NSDictionary> {
-				self.first = Extension.from(val) as? Extension[]
+			if let val = js["first"] as? [NSDictionary] {
+				self.first = Extension.from(val) as? [Extension]
 			}
-			if let val = js["previous"] as? Array<NSDictionary> {
-				self.previous = Extension.from(val) as? Extension[]
+			if let val = js["previous"] as? [NSDictionary] {
+				self.previous = Extension.from(val) as? [Extension]
 			}
-			if let val = js["next"] as? Array<NSDictionary> {
-				self.next = Extension.from(val) as? Extension[]
+			if let val = js["next"] as? [NSDictionary] {
+				self.next = Extension.from(val) as? [Extension]
 			}
-			if let val = js["last"] as? Array<NSDictionary> {
-				self.last = Extension.from(val) as? Extension[]
+			if let val = js["last"] as? [NSDictionary] {
+				self.last = Extension.from(val) as? [Extension]
 			}
-			if let val = js["reference"] as? Array<NSDictionary> {
-				self.reference = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["reference"] as? [NSDictionary] {
+				self.reference = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
 		super.init(json: json)

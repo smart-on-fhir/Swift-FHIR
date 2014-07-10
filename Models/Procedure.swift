@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -31,10 +31,10 @@ class Procedure: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! External Ids for this procedure */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! Who procedure was performed on */
 	var subject: ResourceReference?
@@ -43,13 +43,13 @@ class Procedure: FHIRResource
 	var type: CodeableConcept?
 	
 	/*! Precise location details */
-	var bodySite: CodeableConcept[]?
+	var bodySite: [CodeableConcept]?
 	
 	/*! Reason procedure performed */
-	var indication: CodeableConcept[]?
+	var indication: [CodeableConcept]?
 	
 	/*! The people who performed the procedure */
-	var performer: ProcedurePerformer[]?
+	var performer: [ProcedurePerformer]?
 	
 	/*! The date the procedure was performed */
 	var date: Period?
@@ -61,16 +61,16 @@ class Procedure: FHIRResource
 	var outcome: String?
 	
 	/*! Any report that results from the procedure */
-	var report: ResourceReference[]?
+	var report: [ResourceReference]?
 	
 	/*! Complication following the procedure */
-	var complication: CodeableConcept[]?
+	var complication: [CodeableConcept]?
 	
 	/*! Instructions for follow up */
 	var followUp: String?
 	
 	/*! A procedure that is related to this one */
-	var relatedItem: ProcedureRelatedItem[]?
+	var relatedItem: [ProcedureRelatedItem]?
 	
 	/*! Additional information about procedure */
 	var notes: String?
@@ -90,11 +90,11 @@ class Procedure: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = ResourceReference(json: val)
@@ -102,14 +102,14 @@ class Procedure: FHIRResource
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val)
 			}
-			if let val = js["bodySite"] as? Array<NSDictionary> {
-				self.bodySite = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["bodySite"] as? [NSDictionary] {
+				self.bodySite = CodeableConcept.from(val) as? [CodeableConcept]
 			}
-			if let val = js["indication"] as? Array<NSDictionary> {
-				self.indication = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["indication"] as? [NSDictionary] {
+				self.indication = CodeableConcept.from(val) as? [CodeableConcept]
 			}
-			if let val = js["performer"] as? Array<NSDictionary> {
-				self.performer = ProcedurePerformer.from(val) as? ProcedurePerformer[]
+			if let val = js["performer"] as? [NSDictionary] {
+				self.performer = ProcedurePerformer.from(val) as? [ProcedurePerformer]
 			}
 			if let val = js["date"] as? NSDictionary {
 				self.date = Period(json: val)
@@ -120,17 +120,17 @@ class Procedure: FHIRResource
 			if let val = js["outcome"] as? String {
 				self.outcome = val
 			}
-			if let val = js["report"] as? Array<NSDictionary> {
-				self.report = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["report"] as? [NSDictionary] {
+				self.report = ResourceReference.from(val) as? [ResourceReference]
 			}
-			if let val = js["complication"] as? Array<NSDictionary> {
-				self.complication = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["complication"] as? [NSDictionary] {
+				self.complication = CodeableConcept.from(val) as? [CodeableConcept]
 			}
 			if let val = js["followUp"] as? String {
 				self.followUp = val
 			}
-			if let val = js["relatedItem"] as? Array<NSDictionary> {
-				self.relatedItem = ProcedureRelatedItem.from(val) as? ProcedureRelatedItem[]
+			if let val = js["relatedItem"] as? [NSDictionary] {
+				self.relatedItem = ProcedureRelatedItem.from(val) as? [ProcedureRelatedItem]
 			}
 			if let val = js["notes"] as? String {
 				self.notes = val

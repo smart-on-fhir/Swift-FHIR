@@ -2,7 +2,7 @@
 //  MedicationDispense.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -26,7 +26,7 @@ class MedicationDispense: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! External identifier */
 	var identifier: Identifier?
@@ -41,10 +41,10 @@ class MedicationDispense: FHIRResource
 	var dispenser: ResourceReference?
 	
 	/*! Medication order that authorizes the dispense */
-	var authorizingPrescription: ResourceReference[]?
+	var authorizingPrescription: [ResourceReference]?
 	
 	/*! Details for individual dispensed medicationdetails */
-	var dispense: MedicationDispenseDispense[]?
+	var dispense: [MedicationDispenseDispense]?
 	
 	/*! Deals with substitution of one medicine for another */
 	var substitution: MedicationDispenseSubstitution?
@@ -55,8 +55,8 @@ class MedicationDispense: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["identifier"] as? NSDictionary {
 				self.identifier = Identifier(json: val)
@@ -70,11 +70,11 @@ class MedicationDispense: FHIRResource
 			if let val = js["dispenser"] as? NSDictionary {
 				self.dispenser = ResourceReference(json: val)
 			}
-			if let val = js["authorizingPrescription"] as? Array<NSDictionary> {
-				self.authorizingPrescription = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["authorizingPrescription"] as? [NSDictionary] {
+				self.authorizingPrescription = ResourceReference.from(val) as? [ResourceReference]
 			}
-			if let val = js["dispense"] as? Array<NSDictionary> {
-				self.dispense = MedicationDispenseDispense.from(val) as? MedicationDispenseDispense[]
+			if let val = js["dispense"] as? [NSDictionary] {
+				self.dispense = MedicationDispenseDispense.from(val) as? [MedicationDispenseDispense]
 			}
 			if let val = js["substitution"] as? NSDictionary {
 				self.substitution = MedicationDispenseSubstitution(json: val)
@@ -117,10 +117,10 @@ class MedicationDispenseDispense: FHIRElement
 	var destination: ResourceReference?
 	
 	/*! Who collected the medication */
-	var receiver: ResourceReference[]?
+	var receiver: [ResourceReference]?
 	
 	/*! Medicine administration instructions to the patient/carer */
-	var dosage: MedicationDispenseDispenseDosage[]?
+	var dosage: [MedicationDispenseDispenseDosage]?
 	
 	
 	init(json: NSDictionary?) {
@@ -149,11 +149,11 @@ class MedicationDispenseDispense: FHIRElement
 			if let val = js["destination"] as? NSDictionary {
 				self.destination = ResourceReference(json: val)
 			}
-			if let val = js["receiver"] as? Array<NSDictionary> {
-				self.receiver = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["receiver"] as? [NSDictionary] {
+				self.receiver = ResourceReference.from(val) as? [ResourceReference]
 			}
-			if let val = js["dosage"] as? Array<NSDictionary> {
-				self.dosage = MedicationDispenseDispenseDosage.from(val) as? MedicationDispenseDispenseDosage[]
+			if let val = js["dosage"] as? [NSDictionary] {
+				self.dosage = MedicationDispenseDispenseDosage.from(val) as? [MedicationDispenseDispenseDosage]
 			}
 		}
 		super.init(json: json)
@@ -262,10 +262,10 @@ class MedicationDispenseSubstitution: FHIRElement
 	var type: CodeableConcept?
 	
 	/*! Why was substitution made */
-	var reason: CodeableConcept[]?
+	var reason: [CodeableConcept]?
 	
 	/*! Who is responsible for the substitution */
-	var responsibleParty: ResourceReference[]?
+	var responsibleParty: [ResourceReference]?
 	
 	convenience init(type: CodeableConcept?) {
 		self.init(json: nil)
@@ -279,11 +279,11 @@ class MedicationDispenseSubstitution: FHIRElement
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val)
 			}
-			if let val = js["reason"] as? Array<NSDictionary> {
-				self.reason = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["reason"] as? [NSDictionary] {
+				self.reason = CodeableConcept.from(val) as? [CodeableConcept]
 			}
-			if let val = js["responsibleParty"] as? Array<NSDictionary> {
-				self.responsibleParty = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["responsibleParty"] as? [NSDictionary] {
+				self.responsibleParty = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
 		super.init(json: json)

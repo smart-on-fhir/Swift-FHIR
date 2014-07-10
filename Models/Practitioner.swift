@@ -2,7 +2,7 @@
 //  Practitioner.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -34,16 +34,16 @@ class Practitioner: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! A identifier for the person as this agent */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! A name associated with the person */
 	var name: HumanName?
 	
 	/*! A contact detail for the practitioner */
-	var telecom: Contact[]?
+	var telecom: [Contact]?
 	
 	/*! Where practitioner can be found/visited */
 	var address: Address?
@@ -55,28 +55,28 @@ class Practitioner: FHIRResource
 	var birthDate: NSDate?
 	
 	/*! Image of the person */
-	var photo: Attachment[]?
+	var photo: [Attachment]?
 	
 	/*! The represented organization */
 	var organization: ResourceReference?
 	
 	/*! Roles which this practitioner may perform */
-	var role: CodeableConcept[]?
+	var role: [CodeableConcept]?
 	
 	/*! Specific specialty of the practitioner */
-	var specialty: CodeableConcept[]?
+	var specialty: [CodeableConcept]?
 	
 	/*! The period during which the practitioner is authorized to perform in these role(s) */
 	var period: Period?
 	
 	/*! The location(s) at which this practitioner provides care */
-	var location: ResourceReference[]?
+	var location: [ResourceReference]?
 	
 	/*! Qualifications obtained by training and certification */
-	var qualification: PractitionerQualification[]?
+	var qualification: [PractitionerQualification]?
 	
 	/*! A language the practitioner is able to use in patient communication */
-	var communication: CodeableConcept[]?
+	var communication: [CodeableConcept]?
 	
 	
 	init(json: NSDictionary?) {
@@ -84,17 +84,17 @@ class Practitioner: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["name"] as? NSDictionary {
 				self.name = HumanName(json: val)
 			}
-			if let val = js["telecom"] as? Array<NSDictionary> {
-				self.telecom = Contact.from(val) as? Contact[]
+			if let val = js["telecom"] as? [NSDictionary] {
+				self.telecom = Contact.from(val) as? [Contact]
 			}
 			if let val = js["address"] as? NSDictionary {
 				self.address = Address(json: val)
@@ -105,29 +105,29 @@ class Practitioner: FHIRResource
 			if let val = js["birthDate"] as? String {
 				self.birthDate = NSDate(json: val)
 			}
-			if let val = js["photo"] as? Array<NSDictionary> {
-				self.photo = Attachment.from(val) as? Attachment[]
+			if let val = js["photo"] as? [NSDictionary] {
+				self.photo = Attachment.from(val) as? [Attachment]
 			}
 			if let val = js["organization"] as? NSDictionary {
 				self.organization = ResourceReference(json: val)
 			}
-			if let val = js["role"] as? Array<NSDictionary> {
-				self.role = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["role"] as? [NSDictionary] {
+				self.role = CodeableConcept.from(val) as? [CodeableConcept]
 			}
-			if let val = js["specialty"] as? Array<NSDictionary> {
-				self.specialty = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["specialty"] as? [NSDictionary] {
+				self.specialty = CodeableConcept.from(val) as? [CodeableConcept]
 			}
 			if let val = js["period"] as? NSDictionary {
 				self.period = Period(json: val)
 			}
-			if let val = js["location"] as? Array<NSDictionary> {
-				self.location = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["location"] as? [NSDictionary] {
+				self.location = ResourceReference.from(val) as? [ResourceReference]
 			}
-			if let val = js["qualification"] as? Array<NSDictionary> {
-				self.qualification = PractitionerQualification.from(val) as? PractitionerQualification[]
+			if let val = js["qualification"] as? [NSDictionary] {
+				self.qualification = PractitionerQualification.from(val) as? [PractitionerQualification]
 			}
-			if let val = js["communication"] as? Array<NSDictionary> {
-				self.communication = CodeableConcept.from(val) as? CodeableConcept[]
+			if let val = js["communication"] as? [NSDictionary] {
+				self.communication = CodeableConcept.from(val) as? [CodeableConcept]
 			}
 		}
 		super.init(json: json)

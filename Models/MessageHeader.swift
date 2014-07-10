@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -30,7 +30,7 @@ class MessageHeader: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Id of this message */
 	var identifier: String?
@@ -48,7 +48,7 @@ class MessageHeader: FHIRResource
 	var source: MessageHeaderSource?
 	
 	/*! Message Destination Application(s) */
-	var destination: MessageHeaderDestination[]?
+	var destination: [MessageHeaderDestination]?
 	
 	/*! The source of the data entry */
 	var enterer: ResourceReference?
@@ -66,7 +66,7 @@ class MessageHeader: FHIRResource
 	var reason: CodeableConcept?
 	
 	/*! The actual content of the message */
-	var data: ResourceReference[]?
+	var data: [ResourceReference]?
 	
 	convenience init(identifier: String?, timestamp: Int?, event: Coding?, source: MessageHeaderSource?) {
 		self.init(json: nil)
@@ -89,8 +89,8 @@ class MessageHeader: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["identifier"] as? String {
 				self.identifier = val
@@ -107,8 +107,8 @@ class MessageHeader: FHIRResource
 			if let val = js["source"] as? NSDictionary {
 				self.source = MessageHeaderSource(json: val)
 			}
-			if let val = js["destination"] as? Array<NSDictionary> {
-				self.destination = MessageHeaderDestination.from(val) as? MessageHeaderDestination[]
+			if let val = js["destination"] as? [NSDictionary] {
+				self.destination = MessageHeaderDestination.from(val) as? [MessageHeaderDestination]
 			}
 			if let val = js["enterer"] as? NSDictionary {
 				self.enterer = ResourceReference(json: val)
@@ -125,8 +125,8 @@ class MessageHeader: FHIRResource
 			if let val = js["reason"] as? NSDictionary {
 				self.reason = CodeableConcept(json: val)
 			}
-			if let val = js["data"] as? Array<NSDictionary> {
-				self.data = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["data"] as? [NSDictionary] {
+				self.data = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
 		super.init(json: json)

@@ -2,7 +2,7 @@
 //  RelatedPerson.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -35,10 +35,10 @@ class RelatedPerson: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! A Human identifier for this person */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! The patient this person is related to */
 	var patient: ResourceReference?
@@ -50,7 +50,7 @@ class RelatedPerson: FHIRResource
 	var name: HumanName?
 	
 	/*! A contact detail for the person */
-	var telecom: Contact[]?
+	var telecom: [Contact]?
 	
 	/*! Gender for administrative purposes */
 	var gender: CodeableConcept?
@@ -59,7 +59,7 @@ class RelatedPerson: FHIRResource
 	var address: Address?
 	
 	/*! Image of the person */
-	var photo: Attachment[]?
+	var photo: [Attachment]?
 	
 	convenience init(patient: ResourceReference?) {
 		self.init(json: nil)
@@ -73,11 +73,11 @@ class RelatedPerson: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["patient"] as? NSDictionary {
 				self.patient = ResourceReference(json: val)
@@ -88,8 +88,8 @@ class RelatedPerson: FHIRResource
 			if let val = js["name"] as? NSDictionary {
 				self.name = HumanName(json: val)
 			}
-			if let val = js["telecom"] as? Array<NSDictionary> {
-				self.telecom = Contact.from(val) as? Contact[]
+			if let val = js["telecom"] as? [NSDictionary] {
+				self.telecom = Contact.from(val) as? [Contact]
 			}
 			if let val = js["gender"] as? NSDictionary {
 				self.gender = CodeableConcept(json: val)
@@ -97,8 +97,8 @@ class RelatedPerson: FHIRResource
 			if let val = js["address"] as? NSDictionary {
 				self.address = Address(json: val)
 			}
-			if let val = js["photo"] as? Array<NSDictionary> {
-				self.photo = Attachment.from(val) as? Attachment[]
+			if let val = js["photo"] as? [NSDictionary] {
+				self.photo = Attachment.from(val) as? [Attachment]
 			}
 		}
 		super.init(json: json)

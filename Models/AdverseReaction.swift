@@ -2,7 +2,7 @@
 //  AdverseReaction.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -26,10 +26,10 @@ class AdverseReaction: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! External Ids for this adverse reaction */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! When the reaction occurred */
 	var date: NSDate?
@@ -44,10 +44,10 @@ class AdverseReaction: FHIRResource
 	var recorder: ResourceReference?
 	
 	/*! What was reaction? */
-	var symptom: AdverseReactionSymptom[]?
+	var symptom: [AdverseReactionSymptom]?
 	
 	/*! Suspected substance */
-	var exposure: AdverseReactionExposure[]?
+	var exposure: [AdverseReactionExposure]?
 	
 	convenience init(subject: ResourceReference?, didNotOccurFlag: Bool?) {
 		self.init(json: nil)
@@ -64,11 +64,11 @@ class AdverseReaction: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
@@ -82,11 +82,11 @@ class AdverseReaction: FHIRResource
 			if let val = js["recorder"] as? NSDictionary {
 				self.recorder = ResourceReference(json: val)
 			}
-			if let val = js["symptom"] as? Array<NSDictionary> {
-				self.symptom = AdverseReactionSymptom.from(val) as? AdverseReactionSymptom[]
+			if let val = js["symptom"] as? [NSDictionary] {
+				self.symptom = AdverseReactionSymptom.from(val) as? [AdverseReactionSymptom]
 			}
-			if let val = js["exposure"] as? Array<NSDictionary> {
-				self.exposure = AdverseReactionExposure.from(val) as? AdverseReactionExposure[]
+			if let val = js["exposure"] as? [NSDictionary] {
+				self.exposure = AdverseReactionExposure.from(val) as? [AdverseReactionExposure]
 			}
 		}
 		super.init(json: json)

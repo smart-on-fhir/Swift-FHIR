@@ -2,7 +2,7 @@
 //  Order.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -34,10 +34,10 @@ class Order: FHIRResource
 	var text: Narrative?
 	
 	/*! Contained, inline Resources */
-	var contained: FHIRResource[]?
+	var contained: [FHIRResource]?
 	
 	/*! Identifiers assigned to this order by the orderer or by the receiver */
-	var identifier: Identifier[]?
+	var identifier: [Identifier]?
 	
 	/*! When the order was made */
 	var date: NSDate?
@@ -64,9 +64,9 @@ class Order: FHIRResource
 	var when: OrderWhen?
 	
 	/*! What action is being ordered */
-	var detail: ResourceReference[]?
+	var detail: [ResourceReference]?
 	
-	convenience init(detail: ResourceReference[]?) {
+	convenience init(detail: [ResourceReference]?) {
 		self.init(json: nil)
 		if detail {
 			self.detail = detail
@@ -78,11 +78,11 @@ class Order: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? Array<NSDictionary> {
-				self.contained = FHIRResource.from(val) as? FHIRResource[]
+			if let val = js["contained"] as? [NSDictionary] {
+				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
-			if let val = js["identifier"] as? Array<NSDictionary> {
-				self.identifier = Identifier.from(val) as? Identifier[]
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
@@ -108,8 +108,8 @@ class Order: FHIRResource
 			if let val = js["when"] as? NSDictionary {
 				self.when = OrderWhen(json: val)
 			}
-			if let val = js["detail"] as? Array<NSDictionary> {
-				self.detail = ResourceReference.from(val) as? ResourceReference[]
+			if let val = js["detail"] as? [NSDictionary] {
+				self.detail = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
 		super.init(json: json)

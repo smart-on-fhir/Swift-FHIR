@@ -30,7 +30,7 @@ class FHIRElement
 	@required init(json: NSDictionary?) {
 	}
 	
-	@final class func from(array: Array<NSDictionary>) -> [FHIRElement] {
+	@final class func from(array: [NSDictionary]) -> [FHIRElement] {
 		var arr: [FHIRElement] = []
 		for arrJSON in array {
 			arr += self(json: arrJSON)

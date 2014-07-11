@@ -15,7 +15,7 @@ import Foundation
 class FHIRResource: FHIRElement
 {
 	/*! If this instance was read from a server, this is the identifier that was used. */
-	var _id: String?
+	var _localId: String?
 	
 	/*! A specific version id, if the instance was created using `vread`. */
 	var _versionId: String?
@@ -30,6 +30,13 @@ class FHIRResource: FHIRElement
 	
 	// MARK: Retrieving Resources
 	
+	func absoluteURI() -> NSURL? {
+		if _localId {
+			return _server?.baseURL.URLByAppendingPathComponent(self.dynamicType.resourceName).URLByAppendingPathComponent(_localId!)
+		}
+		return nil
+	}
+	
 	/*!
 	 *  Reads the resource with the given id from the given server.
 	 */
@@ -41,20 +48,35 @@ class FHIRResource: FHIRElement
 			}
 			else {
 				let resource = self(json: json)
-				resource._id = id
+				resource._localId = id
 				resource._server = server
 				callback(resource: resource, error: nil)
 			}
 		}
 	}
+	
+	
+	// MARK: Search
+	
+	func search() -> FHIRSearchParam {
+		if _localId {
+			return FHIRSearchParam(subject: "_id", reference: _localId!, type: self.dynamicType.resourceName)
+		}
+		return FHIRSearchParam(profileType: self.dynamicType.resourceName)
+	}
+	
+	class func search() -> FHIRSearchParam {
+		return FHIRSearchParam(profileType: self.resourceName)
+	}
 }
+
 
 
 /*!
  *  Protocol for server objects to be used by `FHIRResource` and subclasses.
  */
-protocol FHIRServer {
-	
+protocol FHIRServer
+{
 	/*! A server object must always have a base URL. */
 	var baseURL: NSURL { get }
 	

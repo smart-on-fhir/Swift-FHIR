@@ -4,6 +4,7 @@
 
 import os.path
 import glob
+import re
 import json
 import datetime
 import textwrap
@@ -51,7 +52,7 @@ jsonmap = {
 }
 
 reserved = {
-	'class': 'classification',
+	'class': 'klass',
 	'import': 'importFrom',
 	'protocol': 'proto',
 	'extension': 'ext',
@@ -90,7 +91,9 @@ def expand(path, target):
 
 
 def parse(path):
-	""" Parse all JSON profile definitions found in the given expanded directory.
+	""" Parse all JSON profile definitions found in the given expanded
+	directory, create classes for all found profiles, collect all search params
+	and generate the search param extension.
 	"""
 	assert(os.path.exists(path))
 	
@@ -114,12 +117,27 @@ def parse(path):
 	}
 	
 	# parse profiles
+	search_params = set()
+	in_profiles = {}
 	for prof in glob.glob(os.path.join(path, '*.profile.json')):
-		parse_profile(prof, info)
+		pn, srch, supp = process_profile(prof, info)
+		if srch is not None:
+			search_params |= srch
+			for spp in supp:
+				if spp in in_profiles:
+					in_profiles[spp].add(pn)
+				else:
+					in_profiles[spp] = set([pn])
+	
+	# process search parameters
+	process_search(search_params, in_profiles, info)
 
 
-def parse_profile(path, info):
-	""" Parse one profile file.
+def process_profile(path, info):
+	""" Parse one profile file, render the Swift class and return possible
+	search parameters.
+	
+	:returns: A tuple with (profile-name, "name|original-name|type", "name")
 	"""
 	assert(os.path.exists(path))
 	
@@ -134,7 +152,7 @@ def parse_profile(path, info):
 	structure_arr = profile.get('structure')
 	if structure_arr is None or 0 == len(structure_arr):
 		print('xx>  {} has no structure'.format(path))
-		return
+		return None, None, None
 	
 	requirements = profile.get('requirements')
 	structure = structure_arr[0]
@@ -174,7 +192,30 @@ def parse_profile(path, info):
 				newklass['formal'] = _wrap(requirements)
 	
 	info['mainClass'] = mainClass
-	render({'info': info, 'classes': classes}, 'template-resource.swift')
+#	render({'info': info, 'classes': classes}, 'template-resource.swift')
+	
+	# get search params
+	srch = set()
+	supported = set()
+	params = structure.get('searchParam', [])	# list of dictionaries with "name", "type" and "documentation"
+	for param in params:
+		name = param['name']
+		tp = param['type']
+		if name and tp:
+			orig = name
+			name = re.sub(r'[^\w\d\-]', '', name)
+			if '-' in name:
+				i = 0
+				for n in name.split('-'):
+					if i > 0:
+						name += n[0].upper() + n[1:]
+					else:
+						name = n
+					i += 1
+			srch.add('{}|{}|{}'.format(name, orig, tp))
+			supported.add(name)
+	
+	return mainClass, srch, supported
 
 
 def parse_elem(path, name, definition, klass):
@@ -236,6 +277,30 @@ def parse_elem(path, name, definition, klass):
 	return newklass
 
 
+def process_search(params, in_profiles, info):
+	""" Processes and renders the FHIR search params extension.
+	"""
+	extensions = []
+	dupes = set()
+	for param in sorted(params):
+		(name, orig, typ) = param.split('|')
+		finalname = reserved.get(name, name)
+		for d in extensions:
+			if finalname == d['name']:
+				dupes.add(finalname)
+		
+		extensions.append({'name': finalname, 'original': orig, 'type': typ})
+	
+	data = {
+		'filename': 'FHIRSearchParam+Params.swift',
+		'info': info,
+		'extensions': extensions,
+		'in_profiles': in_profiles,
+		'dupes': dupes,
+	}
+	render(data, 'template-searchparams.swift')
+
+
 def render(data, template):
 	""" Render the given class data using the given Jinja2 template, writing
 	the output into 'Models'.
@@ -243,7 +308,11 @@ def render(data, template):
 	assert(os.path.exists(template))
 	template = jinjaenv.get_template(template)
 	
-	filename = data['info']['mainClass'] + '.swift'
+	if 'filename' in data:
+		filename = data['filename']
+	else:
+		filename = data['info']['mainClass'] + '.swift'
+	
 	with open(os.path.join('..', 'Models', filename), 'w') as handle:
 		print('-->  Writing {}'.format(filename))
 		handle.write(template.render(data))

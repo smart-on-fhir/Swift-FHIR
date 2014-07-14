@@ -60,13 +60,13 @@ class FHIRResource: FHIRElement
 	
 	func search() -> FHIRSearchParam {
 		if _localId {
-			return FHIRSearchParam(subject: "_id", reference: _localId!, type: self.dynamicType.resourceName)
+			return FHIRSearchParam(subject: "_id", reference: _localId!, type: self.dynamicType)
 		}
-		return FHIRSearchParam(profileType: self.dynamicType.resourceName)
+		return FHIRSearchParam(profileType: self.dynamicType)
 	}
 	
 	class func search() -> FHIRSearchParam {
-		return FHIRSearchParam(profileType: self.resourceName)
+		return FHIRSearchParam(profileType: self)
 	}
 }
 

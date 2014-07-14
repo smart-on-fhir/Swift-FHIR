@@ -6,6 +6,10 @@
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
+import Foundation
+
+let FHIRSearchErrorDomain = "FHIRSearchErrorDomain"
+
 
 /*!
  *  Instances of this class are used to construct parameters for a FHIR search.
@@ -16,7 +20,7 @@ class FHIRSearchParam
 	var subject: String?
 	
 	/*! The first search parameter must define a profile type to which the search is applied. */
-	var profileType: String?
+	var profileType: FHIRResource.Type?
 	
 	/*! The preceding search param instance in a chain. */
 	var previous: FHIRSearchParam? {
@@ -101,7 +105,7 @@ class FHIRSearchParam
 		self.subject = subject
 	}
 	
-	convenience init(profileType: String) {
+	convenience init(profileType: FHIRResource.Type) {
 		self.init(subject: nil)
 		self.profileType = profileType
 	}
@@ -157,7 +161,7 @@ class FHIRSearchParam
 		self.reference = reference
 	}
 	
-	convenience init(subject: String, reference: String, type: String) {
+	convenience init(subject: String, reference: String, type: FHIRResource.Type) {
 		self.init(subject: subject, reference: reference)
 		profileType = type
 	}
@@ -180,6 +184,9 @@ class FHIRSearchParam
 	
 	func paramValue() -> String {
 		if string {
+			if stringExact {
+				return "\(string!):exact"
+			}
 			return string!
 		}
 		if token {
@@ -221,7 +228,7 @@ class FHIRSearchParam
 			}
 		}
 		else if profileType {
-			path = profileType!
+			path = profileType!.resourceName
 		}
 		else {
 			fatalError("The first search parameter needs to have \"profileType\" set")
@@ -231,7 +238,60 @@ class FHIRSearchParam
 	}
 	
 	
+	// MARK: Running Search
+	
+	func perform(server: FHIRServer, callback: ((results: [FHIRResource]?, error: NSError?) -> Void)) {
+		let type = first().profileType
+		if !type {
+			let err = NSError(domain: FHIRSearchErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Cannot find the profile type against which to run the search"])
+			callback(results: nil, error: err)
+			return
+		}
+		
+		server.requestJSON(construct()) { json, error in
+			if error {
+				callback(results: nil, error: error)
+			}
+			else {
+				var results: [FHIRResource]?
+				var error: NSError?
+				
+				// instantiate results
+				if let entries = json?["entry"] as? NSArray {
+					println("\(json)")
+					var res: [FHIRResource] = []
+					for dict in entries {
+						if let content = dict["content"] as? NSDictionary {
+							res += type!(json: content)
+						}
+					}
+					results = res
+				}
+					
+				// there's no "entry" array, should there be?
+				else if let total = json?["totalResults"] as? NSNumber {
+					if total.integerValue > 0 {
+						error = NSError(domain: FHIRSearchErrorDomain,
+						                  code: 0,
+							          userInfo: [NSLocalizedDescriptionKey: "There are \(total) results but no \"entry\" dictionary in the JSON response, cannot create \(type!.resourceName) instances"])
+					}
+				}
+				
+				// additional top level items: "id" (URL), "link" (array of dicts), "author" (array of dicts), "resourceType" (string), "title" (string), "updated" (isodate)
+				callback(results: results, error: error)
+			}
+		}
+	}
+	
+	
 	// MARK: Chaining
+	
+	func first() -> FHIRSearchParam {
+		if previous {
+			return previous!.first()
+		}
+		return self
+	}
 	
 	func last() -> FHIRSearchParam {
 		if next {

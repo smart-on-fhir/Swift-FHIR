@@ -211,7 +211,7 @@ class FHIRSearchParam
 	}
 	
 	/*!
-	 *  Construct the search param string, if the receiver is part of a chain UP TO the receiver but NOT beyond.
+	 *  Construct the search param string, if the receiver is part of a chain BACK TO the first search param in a chain.
 	 *
 	 *  Use the `last` method to get the last param of a chain, then construct the parameter string of the whole chain.
 	 */
@@ -240,6 +240,13 @@ class FHIRSearchParam
 	
 	// MARK: Running Search
 	
+	/*!
+	 *  Usually called on the **last** search param in a chain; creates the search URL from itself and its preceding
+	 *  siblings, then performs a GET on the server, returning an error or an array of resources in the callback.
+	 *
+	 *  TODO: it would be nice to have the callback's `results` type be the expected type instead of the FHIRResource
+	 *  superclass, I'm not sure how to achieve that elegantly.
+	 */
 	func perform(server: FHIRServer, callback: ((results: [FHIRResource]?, error: NSError?) -> Void)) {
 		let type = first().profileType
 		if !type {
@@ -258,11 +265,13 @@ class FHIRSearchParam
 				
 				// instantiate results
 				if let entries = json?["entry"] as? NSArray {
-					println("\(json)")
+					//println("JSON response: \(json)")
 					var res: [FHIRResource] = []
 					for dict in entries {
-						if let content = dict["content"] as? NSDictionary {
-							res += type!(json: content)
+						if let dc = dict as? NSDictionary {
+							if let content = dc["content"] as? NSDictionary {
+								res += type!(json: content)
+							}
 						}
 					}
 					results = res

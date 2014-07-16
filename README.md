@@ -51,10 +51,10 @@ Some examples of what we need to construct:
 
 ```
 [X] Patient?name=eve
-[ ] Patient?name:exact=Eve
+[X] Patient?name:exact=Eve
 [X] Patient?gender=male
 [~] Patient?gender=http://hl7.org/fhir/v2/0001|M
-[ ] Patient?gender:text=male
+[X] Patient?gender:text=male
 [X] Patient?gender:missing=true
 [ ] Patient?language=FR,NL              // French or Dutch
 [X] Patient?language=FR&language=NL     // French and Dutch
@@ -63,7 +63,7 @@ Some examples of what we need to construct:
 [ ] DiagnosticReport?subject.name=peter
 [ ] DiagnosticReport?subject:Patient.name=peter
 [ ] Observation?value=<5.4|http://unitsofmeasure.org|mg
-…
+...
 ```
 
 #### Compartments

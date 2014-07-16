@@ -2,7 +2,7 @@
 //  FHIRSearchParam+Properties.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-11.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-16.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -20,8 +20,7 @@ extension FHIRSearchParam
 	}
 	
 	func _id(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "_id", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "_id", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -33,8 +32,7 @@ extension FHIRSearchParam
 	}
 	
 	func _language(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "_language", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "_language", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -49,8 +47,7 @@ extension FHIRSearchParam
 	}
 	
 	func accession(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "accession", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "accession", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -71,8 +68,7 @@ extension FHIRSearchParam
 	}
 	
 	func action(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "action", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "action", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -86,16 +82,15 @@ extension FHIRSearchParam
 	func active(token: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "active", token: token)
 		p.supportedProfiles = [
-			"Patient",
-			"Organization"
+			"Organization",
+			"Patient"
 		]
 		p.previous = self
 		return p
 	}
 	
 	func active(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "active", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "active", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -116,8 +111,7 @@ extension FHIRSearchParam
 	}
 	
 	func activitycode(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "activitycode", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "activitycode", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -137,7 +131,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func activitydate(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "activitydate", missing: missing)
 		p.previous = self
@@ -153,7 +146,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func activitydetail(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "activitydetail", missing: missing)
 		p.previous = self
@@ -168,7 +160,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func actor(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "actor", missing: missing)
@@ -186,8 +177,7 @@ extension FHIRSearchParam
 	}
 	
 	func actual(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "actual", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "actual", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -201,16 +191,21 @@ extension FHIRSearchParam
 	func address(string: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "address", string: string)
 		p.supportedProfiles = [
+			"Location",
 			"Patient",
 			"Practitioner",
 			"RelatedPerson",
-			"SecurityEvent",
-			"Location"
+			"SecurityEvent"
 		]
 		p.previous = self
 		return p
 	}
 	
+	func address(# exact: String) -> FHIRSearchParam {
+		let p = FHIRSearchParam(subject: "address", exact: exact)
+		p.previous = self
+		return p
+	}
 	
 	func address(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "address", missing: missing)
@@ -221,19 +216,18 @@ extension FHIRSearchParam
 	func address(# token: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "address", token: token)
 		p.supportedProfiles = [
+			"Location",
 			"Patient",
 			"Practitioner",
 			"RelatedPerson",
-			"SecurityEvent",
-			"Location"
+			"SecurityEvent"
 		]
 		p.previous = self
 		return p
 	}
 	
 	func address(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "address", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "address", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -248,8 +242,7 @@ extension FHIRSearchParam
 	}
 	
 	func altid(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "altid", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "altid", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -270,8 +263,7 @@ extension FHIRSearchParam
 	}
 	
 	func animalBreed(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "animal-breed", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "animal-breed", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -292,8 +284,7 @@ extension FHIRSearchParam
 	}
 	
 	func animalSpecies(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "animal-species", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "animal-species", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -313,7 +304,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func asserter(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "asserter", missing: missing)
 		p.previous = self
@@ -328,7 +318,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func attester(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "attester", missing: missing)
@@ -345,7 +334,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func authenticator(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "authenticator", missing: missing)
 		p.previous = self
@@ -360,7 +348,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func authored(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "authored", missing: missing)
@@ -377,7 +364,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func authority(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "authority", missing: missing)
 		p.previous = self
@@ -387,15 +373,14 @@ extension FHIRSearchParam
 	func author(reference: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "author", reference: reference)
 		p.supportedProfiles = [
-			"Questionnaire",
 			"Composition",
 			"DocumentManifest",
-			"DocumentReference"
+			"DocumentReference",
+			"Questionnaire"
 		]
 		p.previous = self
 		return p
 	}
-	
 	
 	func author(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "author", missing: missing)
@@ -411,7 +396,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func birthdate(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "birthdate", missing: missing)
@@ -430,8 +414,7 @@ extension FHIRSearchParam
 	}
 	
 	func bodysite(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "bodysite", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "bodysite", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -452,8 +435,7 @@ extension FHIRSearchParam
 	}
 	
 	func category(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "category", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "category", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -474,8 +456,7 @@ extension FHIRSearchParam
 	}
 	
 	func channel(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "channel", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "channel", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -495,7 +476,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func characteristicValue(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "characteristic-value", missing: missing)
 		p.previous = self
@@ -512,8 +492,7 @@ extension FHIRSearchParam
 	}
 	
 	func characteristic(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "characteristic", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "characteristic", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -531,8 +510,7 @@ extension FHIRSearchParam
 	}
 	
 	func klass(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "class", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "class", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -546,24 +524,23 @@ extension FHIRSearchParam
 	func code(token: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "code", token: token)
 		p.supportedProfiles = [
-			"ValueSet",
-			"Group",
-			"Profile",
-			"List",
-			"DeviceObservationReport",
-			"OrderResponse",
 			"Condition",
-			"Other",
+			"DeviceObservationReport",
 			"DiagnosticOrder",
-			"Medication"
+			"Group",
+			"List",
+			"Medication",
+			"OrderResponse",
+			"Other",
+			"Profile",
+			"ValueSet"
 		]
 		p.previous = self
 		return p
 	}
 	
 	func code(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "code", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "code", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -583,7 +560,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func condition(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "condition", missing: missing)
 		p.previous = self
@@ -601,8 +577,7 @@ extension FHIRSearchParam
 	}
 	
 	func confidentiality(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "confidentiality", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "confidentiality", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -623,8 +598,7 @@ extension FHIRSearchParam
 	}
 	
 	func container(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "container", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "container", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -638,13 +612,12 @@ extension FHIRSearchParam
 	func content(reference: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "content", reference: reference)
 		p.supportedProfiles = [
-			"Medication",
-			"DocumentManifest"
+			"DocumentManifest",
+			"Medication"
 		]
 		p.previous = self
 		return p
 	}
-	
 	
 	func content(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "content", missing: missing)
@@ -662,8 +635,7 @@ extension FHIRSearchParam
 	}
 	
 	func context(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "context", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "context", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -677,14 +649,13 @@ extension FHIRSearchParam
 	func created(date: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "created", date: date)
 		p.supportedProfiles = [
-			"Other",
 			"DocumentManifest",
-			"DocumentReference"
+			"DocumentReference",
+			"Other"
 		]
 		p.previous = self
 		return p
 	}
-	
 	
 	func created(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "created", missing: missing)
@@ -701,7 +672,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func custodian(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "custodian", missing: missing)
 		p.previous = self
@@ -716,7 +686,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func dateAsserted(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "date-asserted", missing: missing)
@@ -733,7 +702,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func datewritten(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "datewritten", missing: missing)
 		p.previous = self
@@ -743,31 +711,30 @@ extension FHIRSearchParam
 	func date(date: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "date", date: date)
 		p.supportedProfiles = [
-			"DiagnosticReport",
-			"Encounter",
-			"Order",
-			"Immunization",
-			"ImmunizationRecommendation",
+			"AdverseReaction",
+			"AllergyIntolerance",
 			"CarePlan",
-			"List",
-			"ImagingStudy",
-			"Media",
 			"Composition",
 			"ConceptMap",
-			"Observation",
-			"Profile",
 			"Conformance",
-			"ValueSet",
+			"DiagnosticReport",
+			"Encounter",
+			"ImagingStudy",
+			"Immunization",
+			"ImmunizationRecommendation",
+			"List",
+			"Media",
+			"Observation",
+			"Order",
 			"OrderResponse",
-			"AllergyIntolerance",
 			"Procedure",
+			"Profile",
 			"SecurityEvent",
-			"AdverseReaction"
+			"ValueSet"
 		]
 		p.previous = self
 		return p
 	}
-	
 	
 	func date(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "date", missing: missing)
@@ -785,8 +752,7 @@ extension FHIRSearchParam
 	}
 	
 	func dependson(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "dependson", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "dependson", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -800,17 +766,22 @@ extension FHIRSearchParam
 	func description(string: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "description", string: string)
 		p.supportedProfiles = [
-			"ValueSet",
-			"DocumentReference",
-			"Conformance",
 			"ConceptMap",
+			"Conformance",
+			"DocumentManifest",
+			"DocumentReference",
 			"Profile",
-			"DocumentManifest"
+			"ValueSet"
 		]
 		p.previous = self
 		return p
 	}
 	
+	func description(# exact: String) -> FHIRSearchParam {
+		let p = FHIRSearchParam(subject: "description", exact: exact)
+		p.previous = self
+		return p
+	}
 	
 	func description(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "description", missing: missing)
@@ -827,6 +798,11 @@ extension FHIRSearchParam
 		return p
 	}
 	
+	func desc(# exact: String) -> FHIRSearchParam {
+		let p = FHIRSearchParam(subject: "desc", exact: exact)
+		p.previous = self
+		return p
+	}
 	
 	func desc(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "desc", missing: missing)
@@ -843,7 +819,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func destination(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "destination", missing: missing)
 		p.previous = self
@@ -858,7 +833,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func detail(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "detail", missing: missing)
@@ -876,7 +850,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func device(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "device", missing: missing)
 		p.previous = self
@@ -893,8 +866,7 @@ extension FHIRSearchParam
 	}
 	
 	func diagnosis(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "diagnosis", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "diagnosis", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -915,8 +887,7 @@ extension FHIRSearchParam
 	}
 	
 	func dicomClass(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "dicom-class", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "dicom-class", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -937,8 +908,7 @@ extension FHIRSearchParam
 	}
 	
 	func dispenseid(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "dispenseid", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "dispenseid", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -958,7 +928,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func dispenser(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "dispenser", missing: missing)
 		p.previous = self
@@ -975,8 +944,7 @@ extension FHIRSearchParam
 	}
 	
 	func dispensestatus(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "dispensestatus", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "dispensestatus", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -996,7 +964,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func doseNumber(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "dose-number", missing: missing)
 		p.previous = self
@@ -1013,7 +980,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func doseSequence(# token: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "dose-sequence", token: token)
 		p.supportedProfiles = [
@@ -1025,8 +991,7 @@ extension FHIRSearchParam
 	}
 	
 	func doseSequence(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "dose-sequence", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "dose-sequence", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1041,8 +1006,7 @@ extension FHIRSearchParam
 	}
 	
 	func emptyReason(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "empty-reason", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "empty-reason", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1056,16 +1020,15 @@ extension FHIRSearchParam
 	func encounter(reference: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "encounter", reference: reference)
 		p.supportedProfiles = [
+			"Condition",
 			"DiagnosticOrder",
 			"MedicationAdministration",
-			"Questionnaire",
 			"MedicationPrescription",
-			"Condition"
+			"Questionnaire"
 		]
 		p.previous = self
 		return p
 	}
-	
 	
 	func encounter(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "encounter", missing: missing)
@@ -1082,7 +1045,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func end(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "end", missing: missing)
 		p.previous = self
@@ -1098,7 +1060,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func eventDate(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "event-date", missing: missing)
 		p.previous = self
@@ -1113,7 +1074,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func eventStatusDate(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "event-status-date", missing: missing)
@@ -1131,8 +1091,7 @@ extension FHIRSearchParam
 	}
 	
 	func eventStatus(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "event-status", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "event-status", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1154,8 +1113,7 @@ extension FHIRSearchParam
 	}
 	
 	func event(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "event", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "event", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1176,8 +1134,7 @@ extension FHIRSearchParam
 	}
 	
 	func evidence(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "evidence", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "evidence", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1198,8 +1155,7 @@ extension FHIRSearchParam
 	}
 	
 	func exclude(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "exclude", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "exclude", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1219,7 +1175,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func expiry(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "expiry", missing: missing)
 		p.previous = self
@@ -1233,8 +1188,7 @@ extension FHIRSearchParam
 	}
 	
 	func ext(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "extension", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "extension", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1255,8 +1209,7 @@ extension FHIRSearchParam
 	}
 	
 	func facility(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "facility", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "facility", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1277,6 +1230,11 @@ extension FHIRSearchParam
 		return p
 	}
 	
+	func family(# exact: String) -> FHIRSearchParam {
+		let p = FHIRSearchParam(subject: "family", exact: exact)
+		p.previous = self
+		return p
+	}
 	
 	func family(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "family", missing: missing)
@@ -1294,8 +1252,7 @@ extension FHIRSearchParam
 	}
 	
 	func fhirversion(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "fhirversion", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "fhirversion", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1317,8 +1274,7 @@ extension FHIRSearchParam
 	}
 	
 	func format(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "format", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "format", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1339,8 +1295,7 @@ extension FHIRSearchParam
 	}
 	
 	func form(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "form", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "form", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1360,7 +1315,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func fulfillment(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "fulfillment", missing: missing)
 		p.previous = self
@@ -1379,8 +1333,7 @@ extension FHIRSearchParam
 	}
 	
 	func gender(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "gender", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "gender", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1401,6 +1354,11 @@ extension FHIRSearchParam
 		return p
 	}
 	
+	func given(# exact: String) -> FHIRSearchParam {
+		let p = FHIRSearchParam(subject: "given", exact: exact)
+		p.previous = self
+		return p
+	}
 	
 	func given(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "given", missing: missing)
@@ -1411,42 +1369,41 @@ extension FHIRSearchParam
 	func identifier(token: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "identifier", token: token)
 		p.supportedProfiles = [
-			"Media",
-			"Encounter",
-			"DocumentReference",
-			"Profile",
-			"ConceptMap",
-			"MedicationPrescription",
-			"DocumentManifest",
-			"DiagnosticReport",
-			"ValueSet",
-			"Group",
-			"Conformance",
-			"ImmunizationRecommendation",
 			"Composition",
-			"MedicationStatement",
-			"Query",
-			"RelatedPerson",
-			"Immunization",
-			"MedicationAdministration",
-			"DiagnosticOrder",
+			"ConceptMap",
+			"Conformance",
 			"Device",
-			"Organization",
-			"Supply",
-			"Substance",
+			"DiagnosticOrder",
+			"DiagnosticReport",
+			"DocumentManifest",
+			"DocumentReference",
+			"Encounter",
+			"Group",
+			"Immunization",
+			"ImmunizationRecommendation",
 			"Location",
-			"Practitioner",
+			"Media",
+			"MedicationAdministration",
 			"MedicationDispense",
+			"MedicationPrescription",
+			"MedicationStatement",
+			"Organization",
+			"Patient",
+			"Practitioner",
+			"Profile",
+			"Query",
 			"Questionnaire",
-			"Patient"
+			"RelatedPerson",
+			"Substance",
+			"Supply",
+			"ValueSet"
 		]
 		p.previous = self
 		return p
 	}
 	
 	func identifier(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "identifier", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "identifier", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1467,8 +1424,7 @@ extension FHIRSearchParam
 	}
 	
 	func identity(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "identity", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "identity", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1488,7 +1444,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func image(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "image", missing: missing)
 		p.previous = self
@@ -1503,7 +1458,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func indexed(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "indexed", missing: missing)
@@ -1520,7 +1474,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func indication(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "indication", missing: missing)
 		p.previous = self
@@ -1535,7 +1488,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func information(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "information", missing: missing)
@@ -1552,7 +1504,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func ingredient(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "ingredient", missing: missing)
 		p.previous = self
@@ -1568,7 +1519,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func issued(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "issued", missing: missing)
 		p.previous = self
@@ -1583,7 +1533,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func itemDate(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "item-date", missing: missing)
@@ -1601,8 +1550,7 @@ extension FHIRSearchParam
 	}
 	
 	func itemPastStatus(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "item-past-status", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "item-past-status", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1622,7 +1570,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func itemStatusDate(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "item-status-date", missing: missing)
 		p.previous = self
@@ -1639,8 +1586,7 @@ extension FHIRSearchParam
 	}
 	
 	func itemStatus(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "item-status", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "item-status", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1660,7 +1606,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func item(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "item", missing: missing)
 		p.previous = self
@@ -1677,8 +1622,7 @@ extension FHIRSearchParam
 	}
 	
 	func kind(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "kind", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "kind", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1692,16 +1636,15 @@ extension FHIRSearchParam
 	func language(token: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "language", token: token)
 		p.supportedProfiles = [
-			"Patient",
-			"DocumentReference"
+			"DocumentReference",
+			"Patient"
 		]
 		p.previous = self
 		return p
 	}
 	
 	func language(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "language", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "language", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1721,7 +1664,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func length(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "length", missing: missing)
 		p.previous = self
@@ -1736,7 +1678,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func link(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "link", missing: missing)
@@ -1753,7 +1694,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func locationPeriod(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "location-period", missing: missing)
 		p.previous = self
@@ -1763,32 +1703,36 @@ extension FHIRSearchParam
 	func location(# reference: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "location", reference: reference)
 		p.supportedProfiles = [
+			"Condition",
+			"Device",
+			"DocumentReference",
 			"Encounter",
 			"Immunization",
-			"DocumentReference",
-			"Device",
-			"Condition",
 			"Provenance"
 		]
 		p.previous = self
 		return p
 	}
-	
 	
 	func location(string: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "location", string: string)
 		p.supportedProfiles = [
+			"Condition",
+			"Device",
+			"DocumentReference",
 			"Encounter",
 			"Immunization",
-			"DocumentReference",
-			"Device",
-			"Condition",
 			"Provenance"
 		]
 		p.previous = self
 		return p
 	}
 	
+	func location(# exact: String) -> FHIRSearchParam {
+		let p = FHIRSearchParam(subject: "location", exact: exact)
+		p.previous = self
+		return p
+	}
 	
 	func location(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "location", missing: missing)
@@ -1799,11 +1743,11 @@ extension FHIRSearchParam
 	func location(# token: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "location", token: token)
 		p.supportedProfiles = [
+			"Condition",
+			"Device",
+			"DocumentReference",
 			"Encounter",
 			"Immunization",
-			"DocumentReference",
-			"Device",
-			"Condition",
 			"Provenance"
 		]
 		p.previous = self
@@ -1811,8 +1755,7 @@ extension FHIRSearchParam
 	}
 	
 	func location(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "location", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "location", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1826,6 +1769,11 @@ extension FHIRSearchParam
 		return p
 	}
 	
+	func lotNumber(# exact: String) -> FHIRSearchParam {
+		let p = FHIRSearchParam(subject: "lot-number", exact: exact)
+		p.previous = self
+		return p
+	}
 	
 	func lotNumber(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "lot-number", missing: missing)
@@ -1836,26 +1784,30 @@ extension FHIRSearchParam
 	func manufacturer(# reference: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "manufacturer", reference: reference)
 		p.supportedProfiles = [
-			"Medication",
 			"Device",
-			"Immunization"
+			"Immunization",
+			"Medication"
 		]
 		p.previous = self
 		return p
 	}
-	
 	
 	func manufacturer(string: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "manufacturer", string: string)
 		p.supportedProfiles = [
-			"Medication",
 			"Device",
-			"Immunization"
+			"Immunization",
+			"Medication"
 		]
 		p.previous = self
 		return p
 	}
 	
+	func manufacturer(# exact: String) -> FHIRSearchParam {
+		let p = FHIRSearchParam(subject: "manufacturer", exact: exact)
+		p.previous = self
+		return p
+	}
 	
 	func manufacturer(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "manufacturer", missing: missing)
@@ -1875,7 +1827,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func medication(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "medication", missing: missing)
 		p.previous = self
@@ -1890,7 +1841,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func member(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "member", missing: missing)
@@ -1908,8 +1858,7 @@ extension FHIRSearchParam
 	}
 	
 	func modality(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "modality", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "modality", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1929,6 +1878,11 @@ extension FHIRSearchParam
 		return p
 	}
 	
+	func model(# exact: String) -> FHIRSearchParam {
+		let p = FHIRSearchParam(subject: "model", exact: exact)
+		p.previous = self
+		return p
+	}
 	
 	func model(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "model", missing: missing)
@@ -1946,8 +1900,7 @@ extension FHIRSearchParam
 	}
 	
 	func mode(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "mode", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "mode", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -1967,7 +1920,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func nameValueX(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "name-value-[x]", missing: missing)
 		p.previous = self
@@ -1977,25 +1929,30 @@ extension FHIRSearchParam
 	func name(string: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "name", string: string)
 		p.supportedProfiles = [
-			"DiagnosticReport",
-			"SecurityEvent",
-			"Observation",
-			"Conformance",
-			"RelatedPerson",
 			"ConceptMap",
+			"Conformance",
+			"DiagnosticReport",
 			"Location",
-			"Profile",
-			"Practitioner",
-			"ValueSet",
-			"Questionnaire",
+			"Medication",
+			"Observation",
 			"Organization",
 			"Patient",
-			"Medication"
+			"Practitioner",
+			"Profile",
+			"Questionnaire",
+			"RelatedPerson",
+			"SecurityEvent",
+			"ValueSet"
 		]
 		p.previous = self
 		return p
 	}
 	
+	func name(# exact: String) -> FHIRSearchParam {
+		let p = FHIRSearchParam(subject: "name", exact: exact)
+		p.previous = self
+		return p
+	}
 	
 	func name(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "name", missing: missing)
@@ -2006,28 +1963,27 @@ extension FHIRSearchParam
 	func name(# token: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "name", token: token)
 		p.supportedProfiles = [
-			"DiagnosticReport",
-			"SecurityEvent",
-			"Observation",
-			"Conformance",
-			"RelatedPerson",
 			"ConceptMap",
+			"Conformance",
+			"DiagnosticReport",
 			"Location",
-			"Profile",
-			"Practitioner",
-			"ValueSet",
-			"Questionnaire",
+			"Medication",
+			"Observation",
 			"Organization",
 			"Patient",
-			"Medication"
+			"Practitioner",
+			"Profile",
+			"Questionnaire",
+			"RelatedPerson",
+			"SecurityEvent",
+			"ValueSet"
 		]
 		p.previous = self
 		return p
 	}
 	
 	func name(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "name", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "name", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2042,8 +1998,7 @@ extension FHIRSearchParam
 	}
 	
 	func nearDistance(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "near-distance", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "near-distance", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2064,8 +2019,7 @@ extension FHIRSearchParam
 	}
 	
 	func near(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "near", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "near", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2086,8 +2040,7 @@ extension FHIRSearchParam
 	}
 	
 	func notgiven(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "notgiven", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "notgiven", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2108,8 +2061,7 @@ extension FHIRSearchParam
 	}
 	
 	func objectType(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "object-type", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "object-type", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2129,7 +2081,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func observation(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "observation", missing: missing)
 		p.previous = self
@@ -2144,7 +2095,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func onset(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "onset", missing: missing)
@@ -2161,7 +2111,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func operator(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "operator", missing: missing)
 		p.previous = self
@@ -2176,7 +2125,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func orderer(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "orderer", missing: missing)
@@ -2194,7 +2142,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func organization(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "organization", missing: missing)
 		p.previous = self
@@ -2210,7 +2157,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func participant(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "participant", missing: missing)
 		p.previous = self
@@ -2220,13 +2166,12 @@ extension FHIRSearchParam
 	func partof(reference: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "partof", reference: reference)
 		p.supportedProfiles = [
-			"Organization",
-			"Location"
+			"Location",
+			"Organization"
 		]
 		p.previous = self
 		return p
 	}
-	
 	
 	func partof(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "partof", missing: missing)
@@ -2244,8 +2189,7 @@ extension FHIRSearchParam
 	}
 	
 	func partytype(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "partytype", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "partytype", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2266,8 +2210,7 @@ extension FHIRSearchParam
 	}
 	
 	func party(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "party", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "party", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2288,8 +2231,7 @@ extension FHIRSearchParam
 	}
 	
 	func patientid(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "patientid", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "patientid", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2303,19 +2245,18 @@ extension FHIRSearchParam
 	func patient(reference: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "patient", reference: reference)
 		p.supportedProfiles = [
-			"Supply",
 			"CarePlan",
-			"MedicationAdministration",
-			"MedicationStatement",
 			"Device",
+			"MedicationAdministration",
 			"MedicationDispense",
+			"MedicationPrescription",
+			"MedicationStatement",
 			"RelatedPerson",
-			"MedicationPrescription"
+			"Supply"
 		]
 		p.previous = self
 		return p
 	}
-	
 	
 	func patient(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "patient", missing: missing)
@@ -2334,7 +2275,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func performer(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "performer", missing: missing)
 		p.previous = self
@@ -2350,7 +2290,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func period(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "period", missing: missing)
 		p.previous = self
@@ -2360,15 +2299,20 @@ extension FHIRSearchParam
 	func phonetic(string: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "phonetic", string: string)
 		p.supportedProfiles = [
+			"Organization",
 			"Patient",
 			"Practitioner",
-			"RelatedPerson",
-			"Organization"
+			"RelatedPerson"
 		]
 		p.previous = self
 		return p
 	}
 	
+	func phonetic(# exact: String) -> FHIRSearchParam {
+		let p = FHIRSearchParam(subject: "phonetic", exact: exact)
+		p.previous = self
+		return p
+	}
 	
 	func phonetic(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "phonetic", missing: missing)
@@ -2386,7 +2330,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func prescription(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "prescription", missing: missing)
 		p.previous = self
@@ -2403,8 +2346,7 @@ extension FHIRSearchParam
 	}
 	
 	func product(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "product", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "product", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2424,7 +2366,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func profile(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "profile", missing: missing)
 		p.previous = self
@@ -2440,7 +2381,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func provider(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "provider", missing: missing)
 		p.previous = self
@@ -2450,15 +2390,20 @@ extension FHIRSearchParam
 	func publisher(string: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "publisher", string: string)
 		p.supportedProfiles = [
+			"ConceptMap",
 			"Conformance",
 			"Profile",
-			"ValueSet",
-			"ConceptMap"
+			"ValueSet"
 		]
 		p.previous = self
 		return p
 	}
 	
+	func publisher(# exact: String) -> FHIRSearchParam {
+		let p = FHIRSearchParam(subject: "publisher", exact: exact)
+		p.previous = self
+		return p
+	}
 	
 	func publisher(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "publisher", missing: missing)
@@ -2475,7 +2420,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func quantity(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "quantity", missing: missing)
 		p.previous = self
@@ -2491,7 +2435,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func reactionDate(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "reaction-date", missing: missing)
 		p.previous = self
@@ -2506,7 +2449,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func reaction(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "reaction", missing: missing)
@@ -2524,8 +2466,7 @@ extension FHIRSearchParam
 	}
 	
 	func reason(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "reason", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "reason", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2545,7 +2486,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func recipient(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "recipient", missing: missing)
 		p.previous = self
@@ -2560,7 +2500,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func recorder(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "recorder", missing: missing)
@@ -2578,7 +2517,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func reference(# token: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "reference", token: token)
 		p.supportedProfiles = [
@@ -2590,8 +2528,7 @@ extension FHIRSearchParam
 	}
 	
 	func reference(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "reference", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "reference", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2606,8 +2543,7 @@ extension FHIRSearchParam
 	}
 	
 	func refusalReason(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "refusal-reason", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "refusal-reason", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2628,8 +2564,7 @@ extension FHIRSearchParam
 	}
 	
 	func refused(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "refused", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "refused", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2650,8 +2585,7 @@ extension FHIRSearchParam
 	}
 	
 	func relatedCode(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "related-code", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "related-code", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2671,7 +2605,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func relatedItem(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "related-item", missing: missing)
 		p.previous = self
@@ -2686,7 +2619,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func relatedTarget(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "related-target", missing: missing)
@@ -2704,8 +2636,7 @@ extension FHIRSearchParam
 	}
 	
 	func relatedType(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "related-type", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "related-type", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2725,7 +2656,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func related(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "related", missing: missing)
 		p.previous = self
@@ -2741,7 +2671,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func relatesto(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "relatesto", missing: missing)
 		p.previous = self
@@ -2756,7 +2685,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func relationship(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "relationship", missing: missing)
@@ -2774,8 +2702,7 @@ extension FHIRSearchParam
 	}
 	
 	func relation(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "relation", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "relation", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2796,8 +2723,7 @@ extension FHIRSearchParam
 	}
 	
 	func reliability(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "reliability", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "reliability", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2817,7 +2743,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func requester(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "requester", missing: missing)
 		p.previous = self
@@ -2833,7 +2758,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func request(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "request", missing: missing)
@@ -2851,8 +2775,7 @@ extension FHIRSearchParam
 	}
 	
 	func resource(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "resource", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "resource", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2873,8 +2796,7 @@ extension FHIRSearchParam
 	}
 	
 	func response(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "response", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "response", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2894,7 +2816,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func responsibleparty(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "responsibleparty", missing: missing)
 		p.previous = self
@@ -2910,7 +2831,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func result(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "result", missing: missing)
 		p.previous = self
@@ -2925,7 +2845,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func sectionContent(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "section-content", missing: missing)
@@ -2943,8 +2862,7 @@ extension FHIRSearchParam
 	}
 	
 	func sectionType(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "section-type", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "section-type", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2965,8 +2883,7 @@ extension FHIRSearchParam
 	}
 	
 	func security(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "security", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "security", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -2987,8 +2904,7 @@ extension FHIRSearchParam
 	}
 	
 	func series(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "series", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "series", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3009,8 +2925,7 @@ extension FHIRSearchParam
 	}
 	
 	func service(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "service", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "service", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3031,8 +2946,7 @@ extension FHIRSearchParam
 	}
 	
 	func severity(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "severity", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "severity", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3053,8 +2967,7 @@ extension FHIRSearchParam
 	}
 	
 	func site(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "site", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "site", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3068,13 +2981,12 @@ extension FHIRSearchParam
 	func size(number: Float) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "size", number: number)
 		p.supportedProfiles = [
-			"ImagingStudy",
-			"DocumentReference"
+			"DocumentReference",
+			"ImagingStudy"
 		]
 		p.previous = self
 		return p
 	}
-	
 	
 	func size(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "size", missing: missing)
@@ -3091,6 +3003,11 @@ extension FHIRSearchParam
 		return p
 	}
 	
+	func software(# exact: String) -> FHIRSearchParam {
+		let p = FHIRSearchParam(subject: "software", exact: exact)
+		p.previous = self
+		return p
+	}
 	
 	func software(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "software", missing: missing)
@@ -3101,33 +3018,31 @@ extension FHIRSearchParam
 	func source(# reference: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "source", reference: reference)
 		p.supportedProfiles = [
-			"List",
-			"SecurityEvent",
-			"DeviceObservationReport",
 			"ConceptMap",
-			"Order"
+			"DeviceObservationReport",
+			"List",
+			"Order",
+			"SecurityEvent"
 		]
 		p.previous = self
 		return p
 	}
 	
-	
 	func source(# token: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "source", token: token)
 		p.supportedProfiles = [
-			"List",
-			"SecurityEvent",
-			"DeviceObservationReport",
 			"ConceptMap",
-			"Order"
+			"DeviceObservationReport",
+			"List",
+			"Order",
+			"SecurityEvent"
 		]
 		p.previous = self
 		return p
 	}
 	
 	func source(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "source", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "source", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3142,7 +3057,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func specimen(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "specimen", missing: missing)
@@ -3160,8 +3074,7 @@ extension FHIRSearchParam
 	}
 	
 	func stage(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "stage", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "stage", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3181,7 +3094,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func start(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "start", missing: missing)
 		p.previous = self
@@ -3191,33 +3103,32 @@ extension FHIRSearchParam
 	func status(token: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "status", token: token)
 		p.supportedProfiles = [
-			"DiagnosticReport",
-			"Encounter",
-			"ValueSet",
-			"Questionnaire",
-			"DocumentReference",
-			"Conformance",
-			"MedicationAdministration",
-			"ImmunizationRecommendation",
-			"Observation",
-			"ConceptMap",
-			"Location",
-			"Profile",
-			"MedicationDispense",
 			"AllergyIntolerance",
+			"ConceptMap",
 			"Condition",
-			"Supply",
+			"Conformance",
 			"DiagnosticOrder",
+			"DiagnosticReport",
+			"DocumentManifest",
+			"DocumentReference",
+			"Encounter",
+			"ImmunizationRecommendation",
+			"Location",
+			"MedicationAdministration",
+			"MedicationDispense",
 			"MedicationPrescription",
-			"DocumentManifest"
+			"Observation",
+			"Profile",
+			"Questionnaire",
+			"Supply",
+			"ValueSet"
 		]
 		p.previous = self
 		return p
 	}
 	
 	func status(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "status", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "status", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3238,8 +3149,7 @@ extension FHIRSearchParam
 	}
 	
 	func study(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "study", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "study", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3253,34 +3163,33 @@ extension FHIRSearchParam
 	func subject(reference: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "subject", reference: reference)
 		p.supportedProfiles = [
-			"Media",
-			"Encounter",
-			"DocumentReference",
-			"List",
-			"ImagingStudy",
-			"Condition",
-			"Other",
-			"DocumentManifest",
-			"DiagnosticReport",
-			"ImmunizationRecommendation",
-			"Composition",
-			"Immunization",
-			"Questionnaire",
-			"FamilyHistory",
-			"DeviceObservationReport",
+			"AdverseReaction",
 			"Alert",
-			"Specimen",
+			"AllergyIntolerance",
+			"Composition",
+			"Condition",
+			"DeviceObservationReport",
+			"DiagnosticOrder",
+			"DiagnosticReport",
+			"DocumentManifest",
+			"DocumentReference",
+			"Encounter",
+			"FamilyHistory",
+			"ImagingStudy",
+			"Immunization",
+			"ImmunizationRecommendation",
+			"List",
+			"Media",
 			"Observation",
 			"Order",
-			"AllergyIntolerance",
+			"Other",
 			"Procedure",
-			"DiagnosticOrder",
-			"AdverseReaction"
+			"Questionnaire",
+			"Specimen"
 		]
 		p.previous = self
 		return p
 	}
-	
 	
 	func subject(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "subject", missing: missing)
@@ -3291,14 +3200,13 @@ extension FHIRSearchParam
 	func substance(reference: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "substance", reference: reference)
 		p.supportedProfiles = [
-			"Substance",
 			"AdverseReaction",
-			"AllergyIntolerance"
+			"AllergyIntolerance",
+			"Substance"
 		]
 		p.previous = self
 		return p
 	}
-	
 	
 	func substance(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "substance", missing: missing)
@@ -3317,8 +3225,7 @@ extension FHIRSearchParam
 	}
 	
 	func subtype(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "subtype", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "subtype", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3338,7 +3245,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func supersedes(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "supersedes", missing: missing)
 		p.previous = self
@@ -3353,7 +3259,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func supplier(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "supplier", missing: missing)
@@ -3370,7 +3275,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func supportedProfile(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "supported-profile", missing: missing)
 		p.previous = self
@@ -3385,7 +3289,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func support(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "support", missing: missing)
@@ -3403,8 +3306,7 @@ extension FHIRSearchParam
 	}
 	
 	func symptom(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "symptom", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "symptom", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3418,16 +3320,15 @@ extension FHIRSearchParam
 	func system(token: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "system", token: token)
 		p.supportedProfiles = [
-			"ValueSet",
-			"ConceptMap"
+			"ConceptMap",
+			"ValueSet"
 		]
 		p.previous = self
 		return p
 	}
 	
 	func system(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "system", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "system", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3441,14 +3342,13 @@ extension FHIRSearchParam
 	func target(reference: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "target", reference: reference)
 		p.supportedProfiles = [
-			"Provenance",
+			"ConceptMap",
 			"Order",
-			"ConceptMap"
+			"Provenance"
 		]
 		p.previous = self
 		return p
 	}
-	
 	
 	func target(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "target", missing: missing)
@@ -3467,6 +3367,11 @@ extension FHIRSearchParam
 		return p
 	}
 	
+	func telecom(# exact: String) -> FHIRSearchParam {
+		let p = FHIRSearchParam(subject: "telecom", exact: exact)
+		p.previous = self
+		return p
+	}
 	
 	func telecom(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "telecom", missing: missing)
@@ -3477,28 +3382,27 @@ extension FHIRSearchParam
 	func type(token: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "type", token: token)
 		p.supportedProfiles = [
-			"Media",
-			"Substance",
-			"Group",
+			"AllergyIntolerance",
+			"Composition",
+			"Device",
+			"DocumentManifest",
 			"DocumentReference",
+			"Group",
+			"Location",
+			"Media",
+			"MedicationDispense",
+			"Organization",
+			"Procedure",
 			"Profile",
 			"SecurityEvent",
-			"Composition",
-			"AllergyIntolerance",
-			"Location",
-			"Device",
-			"MedicationDispense",
-			"Procedure",
-			"Organization",
-			"DocumentManifest"
+			"Substance"
 		]
 		p.previous = self
 		return p
 	}
 	
 	func type(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "type", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "type", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3518,6 +3422,11 @@ extension FHIRSearchParam
 		return p
 	}
 	
+	func udi(# exact: String) -> FHIRSearchParam {
+		let p = FHIRSearchParam(subject: "udi", exact: exact)
+		p.previous = self
+		return p
+	}
 	
 	func udi(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "udi", missing: missing)
@@ -3535,8 +3444,7 @@ extension FHIRSearchParam
 	}
 	
 	func uid(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "uid", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "uid", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3557,8 +3465,7 @@ extension FHIRSearchParam
 	}
 	
 	func user(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "user", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "user", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3580,8 +3487,7 @@ extension FHIRSearchParam
 	}
 	
 	func vaccineType(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "vaccine-type", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "vaccine-type", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3602,8 +3508,7 @@ extension FHIRSearchParam
 	}
 	
 	func valueConcept(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "value-concept", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "value-concept", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3623,7 +3528,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func valueDate(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "value-date", missing: missing)
 		p.previous = self
@@ -3638,7 +3542,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func valueQuantity(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "value-quantity", missing: missing)
@@ -3655,6 +3558,11 @@ extension FHIRSearchParam
 		return p
 	}
 	
+	func valueString(# exact: String) -> FHIRSearchParam {
+		let p = FHIRSearchParam(subject: "value-string", exact: exact)
+		p.previous = self
+		return p
+	}
 	
 	func valueString(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "value-string", missing: missing)
@@ -3670,7 +3578,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func valueset(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "valueset", missing: missing)
@@ -3688,8 +3595,7 @@ extension FHIRSearchParam
 	}
 	
 	func value(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "value", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "value", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3703,18 +3609,17 @@ extension FHIRSearchParam
 	func version(token: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "version", token: token)
 		p.supportedProfiles = [
+			"ConceptMap",
 			"Conformance",
 			"Profile",
-			"ValueSet",
-			"ConceptMap"
+			"ValueSet"
 		]
 		p.previous = self
 		return p
 	}
 	
 	func version(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "version", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "version", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3735,8 +3640,7 @@ extension FHIRSearchParam
 	}
 	
 	func view(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "view", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "view", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3756,7 +3660,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func whenGiven(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "when-given", missing: missing)
 		p.previous = self
@@ -3773,8 +3676,7 @@ extension FHIRSearchParam
 	}
 	
 	func when_code(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "when_code", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "when_code", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
@@ -3794,7 +3696,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func whengiven(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "whengiven", missing: missing)
 		p.previous = self
@@ -3809,7 +3710,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func whenhandedover(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "whenhandedover", missing: missing)
@@ -3826,7 +3726,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func whenprepared(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "whenprepared", missing: missing)
 		p.previous = self
@@ -3842,7 +3741,6 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	
 	func when(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "when", missing: missing)
 		p.previous = self
@@ -3857,7 +3755,6 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	
 	
 	func who(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "who", missing: missing)

@@ -121,9 +121,9 @@ class FHIRSearchParam
 		self.token = token
 	}
 	
-	convenience init(subject: String, token: String, asText: Bool) {
-		self.init(subject: subject, token: token)
-		tokenAsText = asText
+	convenience init(subject: String, tokenAsText: String) {
+		self.init(subject: subject, token: tokenAsText)
+		self.tokenAsText = true
 	}
 	
 	
@@ -132,9 +132,9 @@ class FHIRSearchParam
 		self.string = string
 	}
 	
-	convenience init(subject: String, string: String, exact: Bool) {
-		self.init(subject: subject, string: string)
-		stringExact = exact
+	convenience init(subject: String, exact: String) {
+		self.init(subject: subject, string: exact)
+		stringExact = true
 	}
 	
 	

@@ -23,7 +23,7 @@ extension FHIRSearchParam
 		{%- if "_" != ext.name[0] %}
 		{%- if ext.name in in_profiles %}
 		p.supportedProfiles = [
-		{%- for prof in in_profiles[ext.name] %}
+		{%- for prof in in_profiles[ext.name]|sort %}
 			"{{ prof }}"
 			{%- if not loop.last %},{% endif -%}
 		{%- endfor %}
@@ -33,14 +33,22 @@ extension FHIRSearchParam
 		p.previous = self
 		return p
 	}
-	{% if "token" == ext.type %}
+	{%- if "token" == ext.type %}
+	
 	func {{ ext.name }}(# asText: String) -> FHIRSearchParam {
-		let p = FHIRSearchParam(subject: "{{ ext.original }}", token: asText)
-		p.tokenAsText = true
+		let p = FHIRSearchParam(subject: "{{ ext.original }}", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
-	{%- endif %}
+	{%- else %}
+	{%- if "string" == ext.type %}
+	
+	func {{ ext.name }}(# exact: String) -> FHIRSearchParam {
+		let p = FHIRSearchParam(subject: "{{ ext.original }}", exact: exact)
+		p.previous = self
+		return p
+	}
+	{%- endif %}{% endif %}
 	{%- if "_" != ext.name[0] and (ext.name not in dupes or "string" == ext.type) %}
 	
 	func {{ ext.name }}(# missing: Bool) -> FHIRSearchParam {

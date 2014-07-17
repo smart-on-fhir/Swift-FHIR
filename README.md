@@ -3,6 +3,8 @@ FHIR Swift Classes
 
 These are [Swift](https://developer.apple.com/swift/) classes for data models of [FHIR](http://hl7.org/implement/standards/fhir/) elements and resources.
 Classes are generated from the FHIR resource profiles and at one point should be able to instantiate themselves from JSON representations.
+Since this produces a framework the deployment targets will have to be OS X 10.9 and iOS 8.
+As soon as it's possible to build static libraries from Swift code we may be able to lower the iOS deployment target to iOS 7.
 
 
 SMART on FHIR

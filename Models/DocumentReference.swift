@@ -21,9 +21,6 @@ class DocumentReference: FHIRResource
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
-	
 	/*! XDSDocumentEntry.uniqueId */
 	var masterIdentifier: Identifier?
 	

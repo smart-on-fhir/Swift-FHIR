@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -44,9 +44,6 @@ class Encounter: FHIRResource
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
 	
-	/*! Contained, inline Resources */
-	var contained: [FHIRResource]?
-	
 	/*! Identifier(s) by which this encounter is known */
 	var identifier: [Identifier]?
 	
@@ -54,7 +51,7 @@ class Encounter: FHIRResource
 	var status: String?
 	
 	/*! inpatient | outpatient | ambulatory | emergency + */
-	var classification: String?
+	var klass: String?
 	
 	/*! Specific type of encounter */
 	var type: [CodeableConcept]?
@@ -92,13 +89,13 @@ class Encounter: FHIRResource
 	/*! Another Encounter this encounter is part of */
 	var partOf: ResourceReference?
 	
-	convenience init(status: String?, classification: String?) {
+	convenience init(status: String?, klass: String?) {
 		self.init(json: nil)
 		if status {
 			self.status = status
 		}
-		if classification {
-			self.classification = classification
+		if klass {
+			self.klass = klass
 		}
 	}	
 	
@@ -107,17 +104,14 @@ class Encounter: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? [NSDictionary] {
-				self.contained = FHIRResource.from(val) as? [FHIRResource]
-			}
 			if let val = js["identifier"] as? [NSDictionary] {
 				self.identifier = Identifier.from(val) as? [Identifier]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["classification"] as? String {
-				self.classification = val
+			if let val = js["klass"] as? String {
+				self.klass = val
 			}
 			if let val = js["type"] as? [NSDictionary] {
 				self.type = CodeableConcept.from(val) as? [CodeableConcept]

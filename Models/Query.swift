@@ -2,7 +2,7 @@
 //  Query.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -23,9 +23,6 @@ class Query: FHIRResource
 	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-	
-	/*! Contained, inline Resources */
-	var contained: [FHIRResource]?
 	
 	/*! Links query and its response(s) */
 	var identifier: NSURL?
@@ -50,9 +47,6 @@ class Query: FHIRResource
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
-			}
-			if let val = js["contained"] as? [NSDictionary] {
-				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["identifier"] as? String {
 				self.identifier = NSURL(json: val)

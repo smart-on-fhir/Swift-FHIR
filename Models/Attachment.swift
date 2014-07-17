@@ -2,7 +2,7 @@
 //  Attachment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -20,9 +20,6 @@ class Attachment: FHIRElement
 	
 	/*! Mime type of the content, with charset etc. */
 	var contentType: String?
-	
-	/*! Human language of the content (BCP-47) */
-	var language: String?
 	
 	/*! Data inline, base64ed */
 	var data: String?
@@ -50,9 +47,6 @@ class Attachment: FHIRElement
 		if let js = json {
 			if let val = js["contentType"] as? String {
 				self.contentType = val
-			}
-			if let val = js["language"] as? String {
-				self.language = val
 			}
 			if let val = js["data"] as? String {
 				self.data = val

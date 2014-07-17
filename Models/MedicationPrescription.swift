@@ -2,7 +2,7 @@
 //  MedicationPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -26,9 +26,6 @@ class MedicationPrescription: FHIRResource
 	
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
-	
-	/*! Contained, inline Resources */
-	var contained: [FHIRResource]?
 	
 	/*! External identifier */
 	var identifier: [Identifier]?
@@ -71,9 +68,6 @@ class MedicationPrescription: FHIRResource
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
-			}
-			if let val = js["contained"] as? [NSDictionary] {
-				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
 				self.identifier = Identifier.from(val) as? [Identifier]

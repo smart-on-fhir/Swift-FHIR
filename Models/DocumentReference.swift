@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -21,8 +21,8 @@ class DocumentReference: FHIRResource
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
 	
-	/*! Contained, inline Resources */
-	var contained: [FHIRResource]?
+	/*! Text summary of the resource, for human interpretation */
+	var text: Narrative?
 	
 	/*! XDSDocumentEntry.uniqueId */
 	var masterIdentifier: Identifier?
@@ -37,7 +37,7 @@ class DocumentReference: FHIRResource
 	var type: CodeableConcept?
 	
 	/*! XDSDocumentEntry.classCode */
-	var classification: CodeableConcept?
+	var klass: CodeableConcept?
 	
 	/*! XDSDocumentEntry.author */
 	var author: [ResourceReference]?
@@ -96,7 +96,7 @@ class DocumentReference: FHIRResource
 	/*! event codes, service Start & Stop time, and facility type */
 	var context: DocumentReferenceContext?
 	
-	convenience init(masterIdentifier: Identifier?, subject: ResourceReference?, type: CodeableConcept?, classification: CodeableConcept?, author: [ResourceReference]?, created: NSDate?, indexed: Int?, status: String?, confidentiality: CodeableConcept?, mimeType: String?, format: CodeableConcept?) {
+	convenience init(masterIdentifier: Identifier?, subject: ResourceReference?, type: CodeableConcept?, klass: CodeableConcept?, author: [ResourceReference]?, created: NSDate?, indexed: Int?, status: String?, confidentiality: CodeableConcept?, mimeType: String?, format: CodeableConcept?) {
 		self.init(json: nil)
 		if masterIdentifier {
 			self.masterIdentifier = masterIdentifier
@@ -107,8 +107,8 @@ class DocumentReference: FHIRResource
 		if type {
 			self.type = type
 		}
-		if classification {
-			self.classification = classification
+		if klass {
+			self.klass = klass
 		}
 		if author {
 			self.author = author
@@ -138,14 +138,8 @@ class DocumentReference: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? [NSDictionary] {
-				self.contained = FHIRResource.from(val) as? [FHIRResource]
-			}
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
-			}
-			if let val = js["contained"] as? [NSDictionary] {
-				self.contained = FHIRResource.from(val) as? [FHIRResource]
 			}
 			if let val = js["masterIdentifier"] as? NSDictionary {
 				self.masterIdentifier = Identifier(json: val)
@@ -159,8 +153,8 @@ class DocumentReference: FHIRResource
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val)
 			}
-			if let val = js["classification"] as? NSDictionary {
-				self.classification = CodeableConcept(json: val)
+			if let val = js["klass"] as? NSDictionary {
+				self.klass = CodeableConcept(json: val)
 			}
 			if let val = js["author"] as? [NSDictionary] {
 				self.author = ResourceReference.from(val) as? [ResourceReference]

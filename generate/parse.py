@@ -61,6 +61,8 @@ reserved = {
 skip_properties = [
 	'extension',
 	'modifierExtension',
+	'language',
+	'contained',
 ]
 
 jinjaenv = Environment(loader=PackageLoader('parse', '.'))
@@ -192,7 +194,7 @@ def process_profile(path, info):
 				newklass['formal'] = _wrap(requirements)
 	
 	info['mainClass'] = mainClass
-#	render({'info': info, 'classes': classes}, 'template-resource.swift')
+	render({'info': info, 'classes': classes}, 'template-resource.swift')
 	
 	# get search params
 	srch = set()

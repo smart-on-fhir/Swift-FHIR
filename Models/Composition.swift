@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-10.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -30,9 +30,6 @@ class Composition: FHIRResource
 	/*! Text summary of the resource, for human interpretation */
 	var text: Narrative?
 	
-	/*! Contained, inline Resources */
-	var contained: [FHIRResource]?
-	
 	/*! Logical identifier of composition (version-independent) */
 	var identifier: Identifier?
 	
@@ -43,7 +40,7 @@ class Composition: FHIRResource
 	var type: CodeableConcept?
 	
 	/*! Categorization of Composition */
-	var classification: CodeableConcept?
+	var klass: CodeableConcept?
 	
 	/*! Human Readable name/title */
 	var title: String?
@@ -102,9 +99,6 @@ class Composition: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["contained"] as? [NSDictionary] {
-				self.contained = FHIRResource.from(val) as? [FHIRResource]
-			}
 			if let val = js["identifier"] as? NSDictionary {
 				self.identifier = Identifier(json: val)
 			}
@@ -114,8 +108,8 @@ class Composition: FHIRResource
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val)
 			}
-			if let val = js["classification"] as? NSDictionary {
-				self.classification = CodeableConcept(json: val)
+			if let val = js["klass"] as? NSDictionary {
+				self.klass = CodeableConcept(json: val)
 			}
 			if let val = js["title"] as? String {
 				self.title = val

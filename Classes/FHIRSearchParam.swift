@@ -176,23 +176,26 @@ class FHIRSearchParam
 	// MARK: Construction
 	
 	func asParam() -> String {
-		if missing {
-			return "\(subject):missing=" + (missing! ? "true" : "false")
+		if subject {
+			if missing {
+				return "\(subject):missing=" + (missing! ? "true" : "false")
+			}
+			if string && stringExact {
+				return "\(subject):exact=\(paramValue())"
+			}
+			if token && tokenAsText {
+				return "\(subject):text=\(paramValue())"
+			}
+			return "\(subject)=\(paramValue())"
 		}
-		return "\(subject)=\(paramValue())"
+		return ""
 	}
 	
 	func paramValue() -> String {
 		if string {
-			if stringExact {
-				return "\(string!):exact"
-			}
 			return string!
 		}
 		if token {
-			if tokenAsText {
-				return "\(token!):text"
-			}
 			return token!
 		}
 		if number {

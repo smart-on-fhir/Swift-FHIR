@@ -32,7 +32,7 @@ For classes representing models with non-optional properties, a convenience init
 Search
 ------
 
-> Search is **work in progress** like nothing has ever been work in progress.
+> Search is **work in progress**.
 
 There is **preliminary** support for creating search query URLs in an object-oriented way.
 Using the `search()` method on either a FHIRResource instance or on a class itself returns a `FHIRSearchParam` instance, which has methods for all currently defined search params.
@@ -42,9 +42,20 @@ Calling the `construct()` method on the _last_ search parameter will construct t
 
 ```swift
 let id = "1288992"
-let path = MedicationPrescription.search().subject(id).construct()
-// path now is: MedicationPrescription?subject=1288992
+let path = MedicationPrescription.search().patient(id).construct()
+// path now is: MedicationPrescription?patient=1288992
 fhir_server.requestJSON(path) { json, error in
+    // ...
+}
+```
+
+There is a convenience method to construct the search URL and request data from the server in one go:
+
+```swift
+let id = "1288992"
+MedicationPrescription.search().patient(id).perform(fhir_server) {
+    results, error in
+    // on success `results` is an array of MedicationPrescriptions
     // ...
 }
 ```
@@ -53,18 +64,46 @@ Some examples of what we need to construct:
 
 ```
 [X] Patient?name=eve
+    Patient.search().name("eve")
+
 [X] Patient?name:exact=Eve
+    Patient.search().name(exact: "Eve")
+
 [X] Patient?gender=male
+    Patient.search().gender("male")
+
 [~] Patient?gender=http://hl7.org/fhir/v2/0001|M
+    Patient.search().gender("http://hl7.org/fhir/v2/0001|M")
+ !  Patient.search().gender("http://hl7.org/fhir/v2/0001", "M")
+
 [X] Patient?gender:text=male
+    Patient.search().gender(asText: "male")
+
 [X] Patient?gender:missing=true
+    Patient.search().gender(missing: true)
+
 [ ] Patient?language=FR,NL              // French or Dutch
+    Patient.search().language("FR", "NL")
+
 [X] Patient?language=FR&language=NL     // French and Dutch
+    Patient.search().language("FR").language("NL")
+
 [X] Condition?date-asserted=2014-03
+    Condition.search().dateAsserted("2014-03")
+
 [ ] DiagnosticReport?subject:Patient=23
+    DiagnosticReport.search().subject(???)
+
 [ ] DiagnosticReport?subject.name=peter
+    DiagnosticReport.search().???
+
 [ ] DiagnosticReport?subject:Patient.name=peter
-[ ] Observation?value=<5.4|http://unitsofmeasure.org|mg
+    DiagnosticReport.search().???
+
+[~] Observation?value-quantity=<5.4|http://unitsofmeasure.org|mg
+    Observation.search().valueQuantity("<5.4|http://unitsofmeasure.org|mg")
+ !  Observation.search().valueQuantity("<5.4", "mg")
+
 ...
 ```
 

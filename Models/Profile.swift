@@ -2,7 +2,7 @@
 //  Profile.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -99,6 +99,7 @@ class Profile: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -152,7 +153,6 @@ class Profile: FHIRResource
 				self.query = ProfileQuery.from(val) as? [ProfileQuery]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -184,6 +184,7 @@ class ProfileMapping: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["identity"] as? String {
 				self.identity = val
@@ -198,7 +199,6 @@ class ProfileMapping: FHIRElement
 				self.comments = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -236,6 +236,7 @@ class ProfileStructure: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {
 				self.type = val
@@ -256,7 +257,6 @@ class ProfileStructure: FHIRElement
 				self.searchParam = ProfileStructureSearchParam.from(val) as? [ProfileStructureSearchParam]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -291,6 +291,7 @@ class ProfileStructureElement: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["path"] as? String {
 				self.path = val
@@ -308,7 +309,6 @@ class ProfileStructureElement: FHIRElement
 				self.definition = ProfileStructureElementDefinition(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -345,6 +345,7 @@ class ProfileStructureElementSlicing: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["discriminator"] as? String {
 				self.discriminator = val
@@ -356,7 +357,6 @@ class ProfileStructureElementSlicing: FHIRElement
 				self.rules = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -443,6 +443,7 @@ class ProfileStructureElementDefinition: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["short"] as? String {
 				self.short = val
@@ -499,7 +500,6 @@ class ProfileStructureElementDefinition: FHIRElement
 				self.mapping = ProfileStructureElementDefinitionMapping.from(val) as? [ProfileStructureElementDefinitionMapping]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -528,6 +528,7 @@ class ProfileStructureElementDefinitionType: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
 				self.code = val
@@ -539,7 +540,6 @@ class ProfileStructureElementDefinitionType: FHIRElement
 				self.aggregation = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -584,6 +584,7 @@ class ProfileStructureElementDefinitionConstraint: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["key"] as? String {
 				self.key = val
@@ -601,7 +602,6 @@ class ProfileStructureElementDefinitionConstraint: FHIRElement
 				self.xpath = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -629,7 +629,14 @@ class ProfileStructureElementDefinitionBinding: FHIRElement
 	var referenceUri: NSURL?
 	
 	/*! Source of value set */
-	var referenceResourceReference: ResourceReference?
+	var referenceResourceReference: FHIRElement? {
+		get { return resolveReference("referenceResourceReference") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "referenceResourceReference")
+			}
+		}
+	}
 	
 	convenience init(name: String?, isExtensible: Bool?) {
 		self.init(json: nil)
@@ -642,6 +649,7 @@ class ProfileStructureElementDefinitionBinding: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
@@ -662,7 +670,6 @@ class ProfileStructureElementDefinitionBinding: FHIRElement
 				self.referenceResourceReference = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -691,6 +698,7 @@ class ProfileStructureElementDefinitionMapping: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["identity"] as? String {
 				self.identity = val
@@ -699,7 +707,6 @@ class ProfileStructureElementDefinitionMapping: FHIRElement
 				self.map = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -740,6 +747,7 @@ class ProfileStructureSearchParam: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
@@ -757,7 +765,6 @@ class ProfileStructureSearchParam: FHIRElement
 				self.target = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -801,6 +808,7 @@ class ProfileExtensionDefn: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
 				self.code = val
@@ -818,7 +826,6 @@ class ProfileExtensionDefn: FHIRElement
 				self.definition = ProfileExtensionDefnDefinition(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -830,9 +837,9 @@ class ProfileExtensionDefnDefinition: FHIRElement
 {	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 		}
-		super.init(json: json)
 	}
 }
 
@@ -864,6 +871,7 @@ class ProfileQuery: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
@@ -875,7 +883,6 @@ class ProfileQuery: FHIRElement
 				self.parameter = ProfileQueryParameter.from(val) as? [ProfileQueryParameter]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -889,8 +896,9 @@ class ProfileQueryParameter: FHIRElement
 {	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 		}
-		super.init(json: json)
 	}
 }
+

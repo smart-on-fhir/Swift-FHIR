@@ -2,7 +2,7 @@
 //  RelatedPerson.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -38,7 +38,14 @@ class RelatedPerson: FHIRResource
 	var identifier: [Identifier]?
 	
 	/*! The patient this person is related to */
-	var patient: ResourceReference?
+	var patient: FHIRElement? {
+		get { return resolveReference("patient") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "patient")
+			}
+		}
+	}
 	
 	/*! The nature of the relationship */
 	var relationship: CodeableConcept?
@@ -66,6 +73,7 @@ class RelatedPerson: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -95,6 +103,6 @@ class RelatedPerson: FHIRResource
 				self.photo = Attachment.from(val) as? [Attachment]
 			}
 		}
-		super.init(json: json)
 	}
 }
+

@@ -2,7 +2,7 @@
 //  AdverseReaction.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -32,13 +32,27 @@ class AdverseReaction: FHIRResource
 	var date: NSDate?
 	
 	/*! Who had the reaction */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Indicates lack of reaction */
 	var didNotOccurFlag: Bool?
 	
 	/*! Who recorded the reaction */
-	var recorder: ResourceReference?
+	var recorder: FHIRElement? {
+		get { return resolveReference("recorder") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "recorder")
+			}
+		}
+	}
 	
 	/*! What was reaction? */
 	var symptom: [AdverseReactionSymptom]?
@@ -57,6 +71,7 @@ class AdverseReaction: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -83,7 +98,6 @@ class AdverseReaction: FHIRResource
 				self.exposure = AdverseReactionExposure.from(val) as? [AdverseReactionExposure]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -109,6 +123,7 @@ class AdverseReactionSymptom: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
 				self.code = CodeableConcept(json: val)
@@ -117,7 +132,6 @@ class AdverseReactionSymptom: FHIRElement
 				self.severity = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -139,10 +153,18 @@ class AdverseReactionExposure: FHIRElement
 	var causalityExpectation: String?
 	
 	/*! Presumed causative substance */
-	var substance: ResourceReference?
+	var substance: FHIRElement? {
+		get { return resolveReference("substance") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "substance")
+			}
+		}
+	}
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
@@ -157,6 +179,6 @@ class AdverseReactionExposure: FHIRElement
 				self.substance = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

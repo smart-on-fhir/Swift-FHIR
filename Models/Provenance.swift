@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -33,7 +33,14 @@ class Provenance: FHIRResource
 	var text: Narrative?
 	
 	/*! Target resource(s) (usually version specific) */
-	var target: [ResourceReference]?
+	var target: [FHIRElement]? {
+		get { return resolveReferences("target") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "target")
+			}
+		}
+	}
 	
 	/*! When the activity occurred */
 	var period: Period?
@@ -45,7 +52,14 @@ class Provenance: FHIRResource
 	var reason: CodeableConcept?
 	
 	/*! Where the activity occurred, if relevant */
-	var location: ResourceReference?
+	var location: FHIRElement? {
+		get { return resolveReference("location") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "location")
+			}
+		}
+	}
 	
 	/*! Policy or plan the activity was defined by */
 	var policy: [NSURL]?
@@ -70,6 +84,7 @@ class Provenance: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -102,7 +117,6 @@ class Provenance: FHIRResource
 				self.integritySignature = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -142,6 +156,7 @@ class ProvenanceAgent: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["role"] as? NSDictionary {
 				self.role = Coding(json: val)
@@ -156,7 +171,6 @@ class ProvenanceAgent: FHIRElement
 				self.display = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -195,6 +209,7 @@ class ProvenanceEntity: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["role"] as? String {
 				self.role = val
@@ -212,7 +227,6 @@ class ProvenanceEntity: FHIRElement
 				self.agent = ProvenanceEntityAgent(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -228,8 +242,9 @@ class ProvenanceEntityAgent: FHIRElement
 {	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 		}
-		super.init(json: json)
 	}
 }
+

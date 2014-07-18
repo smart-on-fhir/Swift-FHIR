@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -26,6 +26,7 @@ class Schedule: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["event"] as? [NSDictionary] {
 				self.event = Period.from(val) as? [Period]
@@ -34,7 +35,6 @@ class Schedule: FHIRElement
 				self.repeat = ScheduleRepeat(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -75,6 +75,7 @@ class ScheduleRepeat: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["frequency"] as? Int {
 				self.frequency = val
@@ -95,6 +96,6 @@ class ScheduleRepeat: FHIRElement
 				self.end = NSDate(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

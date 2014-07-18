@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -44,13 +44,34 @@ class Condition: FHIRResource
 	var identifier: [Identifier]?
 	
 	/*! Who has the condition? */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Encounter when condition first asserted */
-	var encounter: ResourceReference?
+	var encounter: FHIRElement? {
+		get { return resolveReference("encounter") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "encounter")
+			}
+		}
+	}
 	
 	/*! Person who asserts this condition */
-	var asserter: ResourceReference?
+	var asserter: FHIRElement? {
+		get { return resolveReference("asserter") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "asserter")
+			}
+		}
+	}
 	
 	/*! When first detected/suspected/entered */
 	var dateAsserted: NSDate?
@@ -114,6 +135,7 @@ class Condition: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -179,7 +201,6 @@ class Condition: FHIRResource
 				self.notes = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -195,10 +216,18 @@ class ConditionStage: FHIRElement
 	var summary: CodeableConcept?
 	
 	/*! Formal record of assessment */
-	var assessment: [ResourceReference]?
+	var assessment: [FHIRElement]? {
+		get { return resolveReferences("assessment") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "assessment")
+			}
+		}
+	}
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["summary"] as? NSDictionary {
 				self.summary = CodeableConcept(json: val)
@@ -207,7 +236,6 @@ class ConditionStage: FHIRElement
 				self.assessment = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -223,10 +251,18 @@ class ConditionEvidence: FHIRElement
 	var code: CodeableConcept?
 	
 	/*! Supporting information found elsewhere */
-	var detail: [ResourceReference]?
+	var detail: [FHIRElement]? {
+		get { return resolveReferences("detail") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "detail")
+			}
+		}
+	}
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
 				self.code = CodeableConcept(json: val)
@@ -235,7 +271,6 @@ class ConditionEvidence: FHIRElement
 				self.detail = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -255,6 +290,7 @@ class ConditionLocation: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
 				self.code = CodeableConcept(json: val)
@@ -263,7 +299,6 @@ class ConditionLocation: FHIRElement
 				self.detail = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -283,7 +318,14 @@ class ConditionRelatedItem: FHIRElement
 	var code: CodeableConcept?
 	
 	/*! Relationship target resource */
-	var target: ResourceReference?
+	var target: FHIRElement? {
+		get { return resolveReference("target") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "target")
+			}
+		}
+	}
 	
 	convenience init(type: String?) {
 		self.init(json: nil)
@@ -293,6 +335,7 @@ class ConditionRelatedItem: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {
 				self.type = val
@@ -304,6 +347,6 @@ class ConditionRelatedItem: FHIRElement
 				self.target = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

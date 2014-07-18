@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -49,13 +49,34 @@ class Questionnaire: FHIRResource
 	var authored: NSDate?
 	
 	/*! The subject of the questions */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Person who received and recorded the answers */
-	var author: ResourceReference?
+	var author: FHIRElement? {
+		get { return resolveReference("author") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "author")
+			}
+		}
+	}
 	
 	/*! The person who answered the questions */
-	var source: ResourceReference?
+	var source: FHIRElement? {
+		get { return resolveReference("source") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "source")
+			}
+		}
+	}
 	
 	/*! Name/code for a predefined list of questions */
 	var name: CodeableConcept?
@@ -64,7 +85,14 @@ class Questionnaire: FHIRResource
 	var identifier: [Identifier]?
 	
 	/*! Primary encounter during which the answers were collected */
-	var encounter: ResourceReference?
+	var encounter: FHIRElement? {
+		get { return resolveReference("encounter") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "encounter")
+			}
+		}
+	}
 	
 	/*! Grouped questions */
 	var group: QuestionnaireGroup?
@@ -80,6 +108,7 @@ class Questionnaire: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -112,7 +141,6 @@ class Questionnaire: FHIRResource
 				self.group = QuestionnaireGroup(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -134,7 +162,14 @@ class QuestionnaireGroup: FHIRElement
 	var text: String?
 	
 	/*! The subject this group's answers are about */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Nested questionnaire group */
 	var group: [QuestionnaireGroupGroup]?
@@ -144,6 +179,7 @@ class QuestionnaireGroup: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? NSDictionary {
 				self.name = CodeableConcept(json: val)
@@ -164,7 +200,6 @@ class QuestionnaireGroup: FHIRElement
 				self.question = QuestionnaireGroupQuestion.from(val) as? [QuestionnaireGroupQuestion]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -178,9 +213,9 @@ class QuestionnaireGroupGroup: FHIRElement
 {	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 		}
-		super.init(json: json)
 	}
 }
 
@@ -223,7 +258,14 @@ class QuestionnaireGroupQuestion: FHIRElement
 	var choice: [Coding]?
 	
 	/*! Valueset containing the possible options */
-	var options: ResourceReference?
+	var options: FHIRElement? {
+		get { return resolveReference("options") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "options")
+			}
+		}
+	}
 	
 	/*! Structured answer */
 	var data: FHIRElement?
@@ -236,6 +278,7 @@ class QuestionnaireGroupQuestion: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? NSDictionary {
 				self.name = CodeableConcept(json: val)
@@ -280,7 +323,6 @@ class QuestionnaireGroupQuestion: FHIRElement
 				self.group = QuestionnaireGroupQuestionGroup.from(val) as? [QuestionnaireGroupQuestionGroup]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -295,8 +337,9 @@ class QuestionnaireGroupQuestionGroup: FHIRElement
 {	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 		}
-		super.init(json: json)
 	}
 }
+

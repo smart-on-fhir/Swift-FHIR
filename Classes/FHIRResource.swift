@@ -23,22 +23,16 @@ class FHIRResource: FHIRElement
 	/*! If this instance lives on a server, this property represents that server. */
 	var _server: FHIRServer?
 	
-	/*! Human language of the content (BCP-47) */
+	/*! Human language of the content (BCP-47). */
 	var language: String?
 	
-	/*! Contained, inline Resources */
-	var contained: [FHIRResource]?
-	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["language"] as? String {
 				self.language = val
 			}
-			if let val = js["contained"] as? [NSDictionary] {
-				self.contained = FHIRResource.from(val) as? [FHIRResource]
-			}
 		}
-		super.init(json: json)
 	}
 	
 	
@@ -100,3 +94,4 @@ protocol FHIRServer
 	 */
 	func requestJSON(path: String, callback: ((json: NSDictionary?, error: NSError?) -> Void))
 }
+

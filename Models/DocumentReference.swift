@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -28,7 +28,14 @@ class DocumentReference: FHIRResource
 	var identifier: [Identifier]?
 	
 	/*! XDSDocumentEntry.patientId + sourcePatientId/sourcePatientInfo */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! XDSDocumentEntry.typeCode */
 	var type: CodeableConcept?
@@ -37,16 +44,37 @@ class DocumentReference: FHIRResource
 	var klass: CodeableConcept?
 	
 	/*! XDSDocumentEntry.author */
-	var author: [ResourceReference]?
+	var author: [FHIRElement]? {
+		get { return resolveReferences("author") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "author")
+			}
+		}
+	}
 	
 	/*! n/a */
-	var custodian: ResourceReference?
+	var custodian: FHIRElement? {
+		get { return resolveReference("custodian") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "custodian")
+			}
+		}
+	}
 	
 	/*! XDSDocumentEntry.homeCommunityId */
 	var policyManager: NSURL?
 	
 	/*! ?? */
-	var authenticator: ResourceReference?
+	var authenticator: FHIRElement? {
+		get { return resolveReference("authenticator") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "authenticator")
+			}
+		}
+	}
 	
 	/*! XDSDocumentEntry.creationTime */
 	var created: NSDate?
@@ -131,6 +159,7 @@ class DocumentReference: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -211,7 +240,6 @@ class DocumentReference: FHIRResource
 				self.context = DocumentReferenceContext(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -227,7 +255,14 @@ class DocumentReferenceRelatesTo: FHIRElement
 	var code: String?
 	
 	/*! The target document of this relationship */
-	var target: ResourceReference?
+	var target: FHIRElement? {
+		get { return resolveReference("target") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "target")
+			}
+		}
+	}
 	
 	convenience init(code: String?, target: ResourceReference?) {
 		self.init(json: nil)
@@ -240,6 +275,7 @@ class DocumentReferenceRelatesTo: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
 				self.code = val
@@ -248,7 +284,6 @@ class DocumentReferenceRelatesTo: FHIRElement
 				self.target = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -277,6 +312,7 @@ class DocumentReferenceService: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val)
@@ -288,7 +324,6 @@ class DocumentReferenceService: FHIRElement
 				self.parameter = DocumentReferenceServiceParameter.from(val) as? [DocumentReferenceServiceParameter]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -314,6 +349,7 @@ class DocumentReferenceServiceParameter: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
@@ -322,7 +358,6 @@ class DocumentReferenceServiceParameter: FHIRElement
 				self.value = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -351,6 +386,7 @@ class DocumentReferenceContext: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["event"] as? [NSDictionary] {
 				self.event = CodeableConcept.from(val) as? [CodeableConcept]
@@ -362,6 +398,6 @@ class DocumentReferenceContext: FHIRElement
 				self.facilityType = CodeableConcept(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -34,16 +34,37 @@ class DocumentManifest: FHIRResource
 	var identifier: [Identifier]?
 	
 	/*! The subject of the set of documents */
-	var subject: [ResourceReference]?
+	var subject: [FHIRElement]? {
+		get { return resolveReferences("subject") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Intended to get notified about this set of documents */
-	var recipient: [ResourceReference]?
+	var recipient: [FHIRElement]? {
+		get { return resolveReferences("recipient") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "recipient")
+			}
+		}
+	}
 	
 	/*! What kind of document set this is */
 	var type: CodeableConcept?
 	
 	/*! Who and/or what authored the document */
-	var author: [ResourceReference]?
+	var author: [FHIRElement]? {
+		get { return resolveReferences("author") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "author")
+			}
+		}
+	}
 	
 	/*! When this document manifest created */
 	var created: NSDate?
@@ -55,7 +76,14 @@ class DocumentManifest: FHIRResource
 	var status: String?
 	
 	/*! If this document manifest replaces another */
-	var supercedes: ResourceReference?
+	var supercedes: FHIRElement? {
+		get { return resolveReference("supercedes") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "supercedes")
+			}
+		}
+	}
 	
 	/*! Human-readable description (title) */
 	var description: String?
@@ -64,7 +92,14 @@ class DocumentManifest: FHIRResource
 	var confidentiality: CodeableConcept?
 	
 	/*! Contents of this set of documents */
-	var content: [ResourceReference]?
+	var content: [FHIRElement]? {
+		get { return resolveReferences("content") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "content")
+			}
+		}
+	}
 	
 	convenience init(masterIdentifier: Identifier?, subject: [ResourceReference]?, status: String?, content: [ResourceReference]?) {
 		self.init(json: nil)
@@ -83,6 +118,7 @@ class DocumentManifest: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -127,6 +163,6 @@ class DocumentManifest: FHIRResource
 				self.content = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
-		super.init(json: json)
 	}
 }
+

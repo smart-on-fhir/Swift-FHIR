@@ -2,7 +2,7 @@
 //  Device.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -54,13 +54,34 @@ class Device: FHIRResource
 	var lotNumber: String?
 	
 	/*! Organization responsible for device */
-	var owner: ResourceReference?
+	var owner: FHIRElement? {
+		get { return resolveReference("owner") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "owner")
+			}
+		}
+	}
 	
 	/*! Where the resource is found */
-	var location: ResourceReference?
+	var location: FHIRElement? {
+		get { return resolveReference("location") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "location")
+			}
+		}
+	}
 	
 	/*! If the resource is affixed to a person */
-	var patient: ResourceReference?
+	var patient: FHIRElement? {
+		get { return resolveReference("patient") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "patient")
+			}
+		}
+	}
 	
 	/*! Details for human/organization for support */
 	var contact: [Contact]?
@@ -76,6 +97,7 @@ class Device: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -120,6 +142,6 @@ class Device: FHIRResource
 				self.url = NSURL(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

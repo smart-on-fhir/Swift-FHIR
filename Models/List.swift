@@ -2,7 +2,7 @@
 //  List.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -31,10 +31,24 @@ class List: FHIRResource
 	var code: CodeableConcept?
 	
 	/*! If all resources have the same subject */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Who and/or what defined the list contents */
-	var source: ResourceReference?
+	var source: FHIRElement? {
+		get { return resolveReference("source") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "source")
+			}
+		}
+	}
 	
 	/*! When the list was prepared */
 	var date: NSDate?
@@ -59,6 +73,7 @@ class List: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -91,7 +106,6 @@ class List: FHIRResource
 				self.emptyReason = CodeableConcept(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -113,7 +127,14 @@ class ListEntry: FHIRElement
 	var date: NSDate?
 	
 	/*! Actual entry */
-	var item: ResourceReference?
+	var item: FHIRElement? {
+		get { return resolveReference("item") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "item")
+			}
+		}
+	}
 	
 	convenience init(item: ResourceReference?) {
 		self.init(json: nil)
@@ -123,6 +144,7 @@ class ListEntry: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["flag"] as? [NSDictionary] {
 				self.flag = CodeableConcept.from(val) as? [CodeableConcept]
@@ -137,6 +159,6 @@ class ListEntry: FHIRElement
 				self.item = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

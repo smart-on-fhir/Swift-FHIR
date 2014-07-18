@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -42,19 +42,34 @@ class Organization: FHIRResource
 	var address: [Address]?
 	
 	/*! The organization of which this organization forms a part */
-	var partOf: ResourceReference?
+	var partOf: FHIRElement? {
+		get { return resolveReference("partOf") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "partOf")
+			}
+		}
+	}
 	
 	/*! Contact for the organization for a certain purpose */
 	var contact: [OrganizationContact]?
 	
 	/*! Location(s) the organization uses to provide services */
-	var location: [ResourceReference]?
+	var location: [FHIRElement]? {
+		get { return resolveReferences("location") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "location")
+			}
+		}
+	}
 	
 	/*! Whether the organization's record is still in active use */
 	var active: Bool?
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -87,7 +102,6 @@ class Organization: FHIRResource
 				self.active = (1 == val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -114,6 +128,7 @@ class OrganizationContact: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["purpose"] as? NSDictionary {
 				self.purpose = CodeableConcept(json: val)
@@ -131,6 +146,6 @@ class OrganizationContact: FHIRElement
 				self.gender = CodeableConcept(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

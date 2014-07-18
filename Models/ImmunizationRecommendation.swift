@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -34,7 +34,14 @@ class ImmunizationRecommendation: FHIRResource
 	var identifier: [Identifier]?
 	
 	/*! Who this profile is for */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Vaccine administration recommendations */
 	var recommendation: [ImmunizationRecommendationRecommendation]?
@@ -50,6 +57,7 @@ class ImmunizationRecommendation: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -64,7 +72,6 @@ class ImmunizationRecommendation: FHIRResource
 				self.recommendation = ImmunizationRecommendationRecommendation.from(val) as? [ImmunizationRecommendationRecommendation]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -93,10 +100,24 @@ class ImmunizationRecommendationRecommendation: FHIRElement
 	var proto: ImmunizationRecommendationRecommendationProtocol?
 	
 	/*! Past immunizations supporting recommendation */
-	var supportingImmunization: [ResourceReference]?
+	var supportingImmunization: [FHIRElement]? {
+		get { return resolveReferences("supportingImmunization") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "supportingImmunization")
+			}
+		}
+	}
 	
 	/*! Patient observations supporting recommendation */
-	var supportingPatientInformation: [ResourceReference]?
+	var supportingPatientInformation: [FHIRElement]? {
+		get { return resolveReferences("supportingPatientInformation") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "supportingPatientInformation")
+			}
+		}
+	}
 	
 	convenience init(date: NSDate?, vaccineType: CodeableConcept?, forecastStatus: CodeableConcept?) {
 		self.init(json: nil)
@@ -112,6 +133,7 @@ class ImmunizationRecommendationRecommendation: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
@@ -138,7 +160,6 @@ class ImmunizationRecommendationRecommendation: FHIRElement
 				self.supportingPatientInformation = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -167,6 +188,7 @@ class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
 				self.code = CodeableConcept(json: val)
@@ -175,7 +197,6 @@ class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
 				self.value = NSDate(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -194,13 +215,21 @@ class ImmunizationRecommendationRecommendationProtocol: FHIRElement
 	var description: String?
 	
 	/*! Who is responsible for protocol */
-	var authority: ResourceReference?
+	var authority: FHIRElement? {
+		get { return resolveReference("authority") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "authority")
+			}
+		}
+	}
 	
 	/*! Name of vaccination series */
 	var series: String?
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["doseSequence"] as? Int {
 				self.doseSequence = val
@@ -215,6 +244,6 @@ class ImmunizationRecommendationRecommendationProtocol: FHIRElement
 				self.series = val
 			}
 		}
-		super.init(json: json)
 	}
 }
+

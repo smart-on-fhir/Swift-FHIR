@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -52,22 +52,50 @@ class Composition: FHIRResource
 	var confidentiality: Coding?
 	
 	/*! Who and/or what the composition is about */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Who and/or what authored the composition */
-	var author: [ResourceReference]?
+	var author: [FHIRElement]? {
+		get { return resolveReferences("author") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "author")
+			}
+		}
+	}
 	
 	/*! Attests to accuracy of composition */
 	var attester: [CompositionAttester]?
 	
 	/*! Org which maintains the composition */
-	var custodian: ResourceReference?
+	var custodian: FHIRElement? {
+		get { return resolveReference("custodian") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "custodian")
+			}
+		}
+	}
 	
 	/*! The clinical event/act/item being documented */
 	var event: CompositionEvent?
 	
 	/*! Context of the conposition */
-	var encounter: ResourceReference?
+	var encounter: FHIRElement? {
+		get { return resolveReference("encounter") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "encounter")
+			}
+		}
+	}
 	
 	/*! Composition is broken into sections */
 	var section: [CompositionSection]?
@@ -95,6 +123,7 @@ class Composition: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -142,7 +171,6 @@ class Composition: FHIRResource
 				self.section = CompositionSection.from(val) as? [CompositionSection]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -161,7 +189,14 @@ class CompositionAttester: FHIRElement
 	var time: NSDate?
 	
 	/*! Who attested the composition */
-	var party: ResourceReference?
+	var party: FHIRElement? {
+		get { return resolveReference("party") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "party")
+			}
+		}
+	}
 	
 	convenience init(mode: [String]?) {
 		self.init(json: nil)
@@ -171,6 +206,7 @@ class CompositionAttester: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["mode"] as? [String] {
 				self.mode = val
@@ -182,7 +218,6 @@ class CompositionAttester: FHIRElement
 				self.party = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -201,10 +236,18 @@ class CompositionEvent: FHIRElement
 	var period: Period?
 	
 	/*! Full details for the event(s) the composition consents */
-	var detail: [ResourceReference]?
+	var detail: [FHIRElement]? {
+		get { return resolveReferences("detail") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "detail")
+			}
+		}
+	}
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? [NSDictionary] {
 				self.code = CodeableConcept.from(val) as? [CodeableConcept]
@@ -216,7 +259,6 @@ class CompositionEvent: FHIRElement
 				self.detail = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -235,16 +277,31 @@ class CompositionSection: FHIRElement
 	var code: CodeableConcept?
 	
 	/*! If section different to composition */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! The actual data for the section */
-	var content: ResourceReference?
+	var content: FHIRElement? {
+		get { return resolveReference("content") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "content")
+			}
+		}
+	}
 	
 	/*! Nested Section */
 	var section: [CompositionSectionSection]?
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["title"] as? String {
 				self.title = val
@@ -262,7 +319,6 @@ class CompositionSection: FHIRElement
 				self.section = CompositionSectionSection.from(val) as? [CompositionSectionSection]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -276,8 +332,9 @@ class CompositionSectionSection: FHIRElement
 {	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 		}
-		super.init(json: json)
 	}
 }
+

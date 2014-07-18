@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -48,6 +48,7 @@ class Substance: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -65,7 +66,6 @@ class Substance: FHIRResource
 				self.ingredient = SubstanceIngredient.from(val) as? [SubstanceIngredient]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -89,6 +89,7 @@ class SubstanceInstance: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? NSDictionary {
 				self.identifier = Identifier(json: val)
@@ -100,7 +101,6 @@ class SubstanceInstance: FHIRElement
 				self.quantity = Quantity(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -116,7 +116,14 @@ class SubstanceIngredient: FHIRElement
 	var quantity: Ratio?
 	
 	/*! A component of the substance */
-	var substance: ResourceReference?
+	var substance: FHIRElement? {
+		get { return resolveReference("substance") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "substance")
+			}
+		}
+	}
 	
 	convenience init(substance: ResourceReference?) {
 		self.init(json: nil)
@@ -126,6 +133,7 @@ class SubstanceIngredient: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["quantity"] as? NSDictionary {
 				self.quantity = Ratio(json: val)
@@ -134,6 +142,6 @@ class SubstanceIngredient: FHIRElement
 				self.substance = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

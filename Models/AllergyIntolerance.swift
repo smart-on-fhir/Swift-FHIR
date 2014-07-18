@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -61,19 +61,54 @@ class AllergyIntolerance: FHIRResource
 	var status: String?
 	
 	/*! Who the sensitivity is for */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Who recorded the sensitivity */
-	var recorder: ResourceReference?
+	var recorder: FHIRElement? {
+		get { return resolveReference("recorder") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "recorder")
+			}
+		}
+	}
 	
 	/*! The substance that causes the sensitivity */
-	var substance: ResourceReference?
+	var substance: FHIRElement? {
+		get { return resolveReference("substance") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "substance")
+			}
+		}
+	}
 	
 	/*! Reactions associated with the sensitivity */
-	var reaction: [ResourceReference]?
+	var reaction: [FHIRElement]? {
+		get { return resolveReferences("reaction") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "reaction")
+			}
+		}
+	}
 	
 	/*! Observations that confirm or refute */
-	var sensitivityTest: [ResourceReference]?
+	var sensitivityTest: [FHIRElement]? {
+		get { return resolveReferences("sensitivityTest") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "sensitivityTest")
+			}
+		}
+	}
 	
 	convenience init(sensitivityType: String?, status: String?, subject: ResourceReference?, substance: ResourceReference?) {
 		self.init(json: nil)
@@ -92,6 +127,7 @@ class AllergyIntolerance: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -127,6 +163,6 @@ class AllergyIntolerance: FHIRResource
 				self.sensitivityTest = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
-		super.init(json: json)
 	}
 }
+

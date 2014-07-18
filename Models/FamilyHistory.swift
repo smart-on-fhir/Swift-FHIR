@@ -2,7 +2,7 @@
 //  FamilyHistory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -36,7 +36,14 @@ class FamilyHistory: FHIRResource
 	var identifier: [Identifier]?
 	
 	/*! Patient history is about */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Additional details not covered elsewhere */
 	var note: String?
@@ -52,6 +59,7 @@ class FamilyHistory: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -69,7 +77,6 @@ class FamilyHistory: FHIRResource
 				self.relation = FamilyHistoryRelation.from(val) as? [FamilyHistoryRelation]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -125,6 +132,7 @@ class FamilyHistoryRelation: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
@@ -163,7 +171,6 @@ class FamilyHistoryRelation: FHIRElement
 				self.condition = FamilyHistoryRelationCondition.from(val) as? [FamilyHistoryRelationCondition]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -203,6 +210,7 @@ class FamilyHistoryRelationCondition: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val)
@@ -223,6 +231,6 @@ class FamilyHistoryRelationCondition: FHIRElement
 				self.note = val
 			}
 		}
-		super.init(json: json)
 	}
 }
+

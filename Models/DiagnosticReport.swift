@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -47,16 +47,37 @@ class DiagnosticReport: FHIRResource
 	var issued: NSDate?
 	
 	/*! The subject of the report, usually, but not always, the patient */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Responsible Diagnostic Service */
-	var performer: ResourceReference?
+	var performer: FHIRElement? {
+		get { return resolveReference("performer") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "performer")
+			}
+		}
+	}
 	
 	/*! Id for external references to this report */
 	var identifier: Identifier?
 	
 	/*! What was requested */
-	var requestDetail: [ResourceReference]?
+	var requestDetail: [FHIRElement]? {
+		get { return resolveReferences("requestDetail") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "requestDetail")
+			}
+		}
+	}
 	
 	/*! Biochemistry, Hematology etc. */
 	var serviceCategory: CodeableConcept?
@@ -68,13 +89,34 @@ class DiagnosticReport: FHIRResource
 	var diagnosticPeriod: Period?
 	
 	/*! Specimens this report is based on */
-	var specimen: [ResourceReference]?
+	var specimen: [FHIRElement]? {
+		get { return resolveReferences("specimen") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "specimen")
+			}
+		}
+	}
 	
 	/*! Observations - simple, or complex nested groups */
-	var result: [ResourceReference]?
+	var result: [FHIRElement]? {
+		get { return resolveReferences("result") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "result")
+			}
+		}
+	}
 	
 	/*! Reference to full details of imaging associated with the diagnostic report */
-	var imagingStudy: [ResourceReference]?
+	var imagingStudy: [FHIRElement]? {
+		get { return resolveReferences("imagingStudy") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "imagingStudy")
+			}
+		}
+	}
 	
 	/*! Key images associated with this report */
 	var image: [DiagnosticReportImage]?
@@ -114,6 +156,7 @@ class DiagnosticReport: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -170,7 +213,6 @@ class DiagnosticReport: FHIRResource
 				self.presentedForm = Attachment.from(val) as? [Attachment]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -187,7 +229,14 @@ class DiagnosticReportImage: FHIRElement
 	var comment: String?
 	
 	/*! Reference to the image source */
-	var link: ResourceReference?
+	var link: FHIRElement? {
+		get { return resolveReference("link") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "link")
+			}
+		}
+	}
 	
 	convenience init(link: ResourceReference?) {
 		self.init(json: nil)
@@ -197,6 +246,7 @@ class DiagnosticReportImage: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["comment"] as? String {
 				self.comment = val
@@ -205,6 +255,6 @@ class DiagnosticReportImage: FHIRElement
 				self.link = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

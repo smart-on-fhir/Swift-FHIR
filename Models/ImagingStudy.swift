@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -35,7 +35,14 @@ class ImagingStudy: FHIRResource
 	var dateTime: NSDate?
 	
 	/*! Who the images are of */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Formal identifier for the study (0020,000D) */
 	var uid: String?
@@ -47,13 +54,27 @@ class ImagingStudy: FHIRResource
 	var identifier: [Identifier]?
 	
 	/*! Order(s) that caused this study to be performed */
-	var order: [ResourceReference]?
+	var order: [FHIRElement]? {
+		get { return resolveReferences("order") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "order")
+			}
+		}
+	}
 	
 	/*! All series.modality if actual acquisition modalities */
 	var modality: [String]?
 	
 	/*! Referring physician (0008,0090) */
-	var referrer: ResourceReference?
+	var referrer: FHIRElement? {
+		get { return resolveReference("referrer") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "referrer")
+			}
+		}
+	}
 	
 	/*! ONLINE | OFFLINE | NEARLINE | UNAVAILABLE (0008,0056) */
 	var availability: String?
@@ -74,7 +95,14 @@ class ImagingStudy: FHIRResource
 	var procedure: [Coding]?
 	
 	/*! Who interpreted images (0008,1060) */
-	var interpreter: ResourceReference?
+	var interpreter: FHIRElement? {
+		get { return resolveReference("interpreter") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "interpreter")
+			}
+		}
+	}
 	
 	/*! Institution-generated description (0008,1030) */
 	var description: String?
@@ -99,6 +127,7 @@ class ImagingStudy: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -155,7 +184,6 @@ class ImagingStudy: FHIRResource
 				self.series = ImagingStudySeries.from(val) as? [ImagingStudySeries]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -214,6 +242,7 @@ class ImagingStudySeries: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["number"] as? Int {
 				self.number = val
@@ -246,7 +275,6 @@ class ImagingStudySeries: FHIRElement
 				self.instance = ImagingStudySeriesInstance.from(val) as? [ImagingStudySeriesInstance]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -277,7 +305,14 @@ class ImagingStudySeriesInstance: FHIRElement
 	var url: NSURL?
 	
 	/*! A FHIR resource with content for this instance */
-	var attachment: ResourceReference?
+	var attachment: FHIRElement? {
+		get { return resolveReference("attachment") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "attachment")
+			}
+		}
+	}
 	
 	convenience init(uid: String?, sopclass: String?) {
 		self.init(json: nil)
@@ -290,6 +325,7 @@ class ImagingStudySeriesInstance: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["number"] as? Int {
 				self.number = val
@@ -313,6 +349,6 @@ class ImagingStudySeriesInstance: FHIRElement
 				self.attachment = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

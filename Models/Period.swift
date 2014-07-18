@@ -2,7 +2,7 @@
 //  Period.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -26,6 +26,7 @@ class Period: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["start"] as? String {
 				self.start = NSDate(json: val)
@@ -34,6 +35,6 @@ class Period: FHIRElement
 				self.end = NSDate(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

@@ -2,7 +2,7 @@
 //  Medication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -54,7 +54,14 @@ class Medication: FHIRResource
 	var isBrand: Bool?
 	
 	/*! Manufacturer of the item */
-	var manufacturer: ResourceReference?
+	var manufacturer: FHIRElement? {
+		get { return resolveReference("manufacturer") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "manufacturer")
+			}
+		}
+	}
 	
 	/*! product | package */
 	var kind: String?
@@ -67,6 +74,7 @@ class Medication: FHIRResource
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -93,7 +101,6 @@ class Medication: FHIRResource
 				self.package = MedicationPackage(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -113,6 +120,7 @@ class MedicationProduct: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["form"] as? NSDictionary {
 				self.form = CodeableConcept(json: val)
@@ -121,7 +129,6 @@ class MedicationProduct: FHIRElement
 				self.ingredient = MedicationProductIngredient.from(val) as? [MedicationProductIngredient]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -134,7 +141,14 @@ class MedicationProduct: FHIRElement
 class MedicationProductIngredient: FHIRElement
 {	
 	/*! The product contained */
-	var item: ResourceReference?
+	var item: FHIRElement? {
+		get { return resolveReference("item") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "item")
+			}
+		}
+	}
 	
 	/*! How much ingredient in product */
 	var amount: Ratio?
@@ -147,6 +161,7 @@ class MedicationProductIngredient: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["item"] as? NSDictionary {
 				self.item = ResourceReference(json: val)
@@ -155,7 +170,6 @@ class MedicationProductIngredient: FHIRElement
 				self.amount = Ratio(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -175,6 +189,7 @@ class MedicationPackage: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["container"] as? NSDictionary {
 				self.container = CodeableConcept(json: val)
@@ -183,7 +198,6 @@ class MedicationPackage: FHIRElement
 				self.content = MedicationPackageContent.from(val) as? [MedicationPackageContent]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -196,7 +210,14 @@ class MedicationPackage: FHIRElement
 class MedicationPackageContent: FHIRElement
 {	
 	/*! A product in the package */
-	var item: ResourceReference?
+	var item: FHIRElement? {
+		get { return resolveReference("item") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "item")
+			}
+		}
+	}
 	
 	/*! How many are in the package? */
 	var amount: Quantity?
@@ -209,6 +230,7 @@ class MedicationPackageContent: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["item"] as? NSDictionary {
 				self.item = ResourceReference(json: val)
@@ -217,6 +239,6 @@ class MedicationPackageContent: FHIRElement
 				self.amount = Quantity(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

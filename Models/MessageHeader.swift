@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -48,22 +48,57 @@ class MessageHeader: FHIRResource
 	var destination: [MessageHeaderDestination]?
 	
 	/*! The source of the data entry */
-	var enterer: ResourceReference?
+	var enterer: FHIRElement? {
+		get { return resolveReference("enterer") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "enterer")
+			}
+		}
+	}
 	
 	/*! The source of the decision */
-	var author: ResourceReference?
+	var author: FHIRElement? {
+		get { return resolveReference("author") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "author")
+			}
+		}
+	}
 	
 	/*! Intended "real-world" recipient for the data */
-	var receiver: ResourceReference?
+	var receiver: FHIRElement? {
+		get { return resolveReference("receiver") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "receiver")
+			}
+		}
+	}
 	
 	/*! Final responsibility for event */
-	var responsible: ResourceReference?
+	var responsible: FHIRElement? {
+		get { return resolveReference("responsible") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "responsible")
+			}
+		}
+	}
 	
 	/*! Cause of event */
 	var reason: CodeableConcept?
 	
 	/*! The actual content of the message */
-	var data: [ResourceReference]?
+	var data: [FHIRElement]? {
+		get { return resolveReferences("data") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "data")
+			}
+		}
+	}
 	
 	convenience init(identifier: String?, timestamp: Int?, event: Coding?, source: MessageHeaderSource?) {
 		self.init(json: nil)
@@ -82,6 +117,7 @@ class MessageHeader: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -123,7 +159,6 @@ class MessageHeader: FHIRResource
 				self.data = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -142,7 +177,14 @@ class MessageHeaderResponse: FHIRElement
 	var code: String?
 	
 	/*! Specific list of hints/warnings/errors */
-	var details: ResourceReference?
+	var details: FHIRElement? {
+		get { return resolveReference("details") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "details")
+			}
+		}
+	}
 	
 	convenience init(identifier: String?, code: String?) {
 		self.init(json: nil)
@@ -155,6 +197,7 @@ class MessageHeaderResponse: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? String {
 				self.identifier = val
@@ -166,7 +209,6 @@ class MessageHeaderResponse: FHIRElement
 				self.details = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -204,6 +246,7 @@ class MessageHeaderSource: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
@@ -221,7 +264,6 @@ class MessageHeaderSource: FHIRElement
 				self.endpoint = NSURL(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -237,7 +279,14 @@ class MessageHeaderDestination: FHIRElement
 	var name: String?
 	
 	/*! Particular delivery destination within the destination */
-	var target: ResourceReference?
+	var target: FHIRElement? {
+		get { return resolveReference("target") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "target")
+			}
+		}
+	}
 	
 	/*! Actual destination address or id */
 	var endpoint: NSURL?
@@ -250,6 +299,7 @@ class MessageHeaderDestination: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
@@ -261,6 +311,6 @@ class MessageHeaderDestination: FHIRElement
 				self.endpoint = NSURL(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

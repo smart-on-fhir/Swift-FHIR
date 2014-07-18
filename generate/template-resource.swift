@@ -26,7 +26,18 @@ class {{ klass.className }}: {{ klass.superclass|default('FHIRElement') }}
 	
 {%- for prop in klass.properties %}	
 	/*! {{ prop.short }} */
+	{%- if prop.isReference %}
+	var {{ prop.name }}: {% if prop.isArray %}[{% endif %}FHIRElement{% if prop.isArray %}]{% endif %}? {
+		get { return resolveReference{% if prop.isArray %}s{% endif %}("{{ prop.name }}") }
+		set {
+			if newValue {
+				didSetReference{% if prop.isArray %}s{% endif %}(newValue!, name: "{{ prop.name }}")
+			}
+		}
+	}
+	{%- else %}
 	var {{ prop.name }}: {% if prop.isArray %}[{% endif %}{{ prop.className }}{% if prop.isArray %}]{% endif %}?
+	{%- endif %}
 {% endfor -%}
 {% if klass.nonoptional|length > 0 %}	
 	convenience init(
@@ -45,6 +56,7 @@ class {{ klass.className }}: {{ klass.superclass|default('FHIRElement') }}
 {%- endif %}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 		{%- for prop in klass.properties %}
 			if let val = js["{{ prop.name }}"] as? {% if prop.isArray %}[{% endif %}{{ prop.jsonClass }}{% if prop.isArray %}]{% endif %} {
@@ -64,7 +76,7 @@ class {{ klass.className }}: {{ klass.superclass|default('FHIRElement') }}
 			}
 		{%- endfor %}
 		}
-		super.init(json: json)
 	}
 }
 {% endfor %}
+

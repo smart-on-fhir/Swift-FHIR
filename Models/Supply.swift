@@ -2,7 +2,7 @@
 //  Supply.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -36,16 +36,31 @@ class Supply: FHIRResource
 	var status: String?
 	
 	/*! Medication, Substance, or Device requested to be supplied */
-	var orderedItem: ResourceReference?
+	var orderedItem: FHIRElement? {
+		get { return resolveReference("orderedItem") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "orderedItem")
+			}
+		}
+	}
 	
 	/*! Patient for whom the item is supplied */
-	var patient: ResourceReference?
+	var patient: FHIRElement? {
+		get { return resolveReference("patient") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "patient")
+			}
+		}
+	}
 	
 	/*! Supply details */
 	var dispense: [SupplyDispense]?
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -69,7 +84,6 @@ class Supply: FHIRResource
 				self.dispense = SupplyDispense.from(val) as? [SupplyDispense]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -94,10 +108,24 @@ class SupplyDispense: FHIRElement
 	var quantity: Quantity?
 	
 	/*! Medication, Substance, or Device supplied */
-	var suppliedItem: ResourceReference?
+	var suppliedItem: FHIRElement? {
+		get { return resolveReference("suppliedItem") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "suppliedItem")
+			}
+		}
+	}
 	
 	/*! Dispenser */
-	var supplier: ResourceReference?
+	var supplier: FHIRElement? {
+		get { return resolveReference("supplier") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "supplier")
+			}
+		}
+	}
 	
 	/*! Dispensing time */
 	var whenPrepared: Period?
@@ -106,13 +134,28 @@ class SupplyDispense: FHIRElement
 	var whenHandedOver: Period?
 	
 	/*! Where the Supply was sent */
-	var destination: ResourceReference?
+	var destination: FHIRElement? {
+		get { return resolveReference("destination") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "destination")
+			}
+		}
+	}
 	
 	/*! Who collected the Supply */
-	var receiver: [ResourceReference]?
+	var receiver: [FHIRElement]? {
+		get { return resolveReferences("receiver") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "receiver")
+			}
+		}
+	}
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? NSDictionary {
 				self.identifier = Identifier(json: val)
@@ -145,6 +188,6 @@ class SupplyDispense: FHIRElement
 				self.receiver = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
-		super.init(json: json)
 	}
 }
+

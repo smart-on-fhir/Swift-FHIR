@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -56,10 +56,24 @@ class ConceptMap: FHIRResource
 	var date: NSDate?
 	
 	/*! Identifies the source value set which is being mapped */
-	var source: ResourceReference?
+	var source: FHIRElement? {
+		get { return resolveReference("source") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "source")
+			}
+		}
+	}
 	
 	/*! Provides context to the mappings */
-	var target: ResourceReference?
+	var target: FHIRElement? {
+		get { return resolveReference("target") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "target")
+			}
+		}
+	}
 	
 	/*! Mappings for a concept from the source valueset */
 	var concept: [ConceptMapConcept]?
@@ -81,6 +95,7 @@ class ConceptMap: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -125,7 +140,6 @@ class ConceptMap: FHIRResource
 				self.concept = ConceptMapConcept.from(val) as? [ConceptMapConcept]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -155,6 +169,7 @@ class ConceptMapConcept: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {
 				self.system = NSURL(json: val)
@@ -169,7 +184,6 @@ class ConceptMapConcept: FHIRElement
 				self.map = ConceptMapConceptMap.from(val) as? [ConceptMapConceptMap]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -205,6 +219,7 @@ class ConceptMapConceptDependsOn: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["concept"] as? String {
 				self.concept = NSURL(json: val)
@@ -216,7 +231,6 @@ class ConceptMapConceptDependsOn: FHIRElement
 				self.code = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -249,6 +263,7 @@ class ConceptMapConceptMap: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {
 				self.system = NSURL(json: val)
@@ -266,7 +281,6 @@ class ConceptMapConceptMap: FHIRElement
 				self.product = ConceptMapConceptMapProduct.from(val) as? [ConceptMapConceptMapProduct]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -282,8 +296,9 @@ class ConceptMapConceptMapProduct: FHIRElement
 {	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 		}
-		super.init(json: json)
 	}
 }
+

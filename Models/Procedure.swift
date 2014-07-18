@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -34,7 +34,14 @@ class Procedure: FHIRResource
 	var identifier: [Identifier]?
 	
 	/*! Who procedure was performed on */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Identification of the procedure */
 	var type: CodeableConcept?
@@ -52,13 +59,27 @@ class Procedure: FHIRResource
 	var date: Period?
 	
 	/*! The encounter when procedure performed */
-	var encounter: ResourceReference?
+	var encounter: FHIRElement? {
+		get { return resolveReference("encounter") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "encounter")
+			}
+		}
+	}
 	
 	/*! What was result of procedure? */
 	var outcome: String?
 	
 	/*! Any report that results from the procedure */
-	var report: [ResourceReference]?
+	var report: [FHIRElement]? {
+		get { return resolveReferences("report") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "report")
+			}
+		}
+	}
 	
 	/*! Complication following the procedure */
 	var complication: [CodeableConcept]?
@@ -83,6 +104,7 @@ class Procedure: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -130,7 +152,6 @@ class Procedure: FHIRResource
 				self.notes = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -143,13 +164,21 @@ class Procedure: FHIRResource
 class ProcedurePerformer: FHIRElement
 {	
 	/*! The reference to the practitioner */
-	var person: ResourceReference?
+	var person: FHIRElement? {
+		get { return resolveReference("person") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "person")
+			}
+		}
+	}
 	
 	/*! The role the person was in */
 	var role: CodeableConcept?
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["person"] as? NSDictionary {
 				self.person = ResourceReference(json: val)
@@ -158,7 +187,6 @@ class ProcedurePerformer: FHIRElement
 				self.role = CodeableConcept(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -175,10 +203,18 @@ class ProcedureRelatedItem: FHIRElement
 	var type: String?
 	
 	/*! The related item - e.g. a procedure */
-	var target: ResourceReference?
+	var target: FHIRElement? {
+		get { return resolveReference("target") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "target")
+			}
+		}
+	}
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {
 				self.type = val
@@ -187,6 +223,6 @@ class ProcedureRelatedItem: FHIRElement
 				self.target = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

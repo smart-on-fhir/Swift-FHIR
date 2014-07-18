@@ -2,7 +2,7 @@
 //  MedicationPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -37,22 +37,57 @@ class MedicationPrescription: FHIRResource
 	var status: String?
 	
 	/*! Who prescription is for */
-	var patient: ResourceReference?
+	var patient: FHIRElement? {
+		get { return resolveReference("patient") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "patient")
+			}
+		}
+	}
 	
 	/*! Who ordered the medication(s) */
-	var prescriber: ResourceReference?
+	var prescriber: FHIRElement? {
+		get { return resolveReference("prescriber") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "prescriber")
+			}
+		}
+	}
 	
 	/*! Created during encounter / admission / stay */
-	var encounter: ResourceReference?
+	var encounter: FHIRElement? {
+		get { return resolveReference("encounter") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "encounter")
+			}
+		}
+	}
 	
 	/*! Reason or indication for writing the prescription */
 	var reasonCodeableConcept: CodeableConcept?
 	
 	/*! Reason or indication for writing the prescription */
-	var reasonResourceReference: ResourceReference?
+	var reasonResourceReference: FHIRElement? {
+		get { return resolveReference("reasonResourceReference") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "reasonResourceReference")
+			}
+		}
+	}
 	
 	/*! Medication to be taken */
-	var medication: ResourceReference?
+	var medication: FHIRElement? {
+		get { return resolveReference("medication") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "medication")
+			}
+		}
+	}
 	
 	/*! How medication should be taken */
 	var dosageInstruction: [MedicationPrescriptionDosageInstruction]?
@@ -65,6 +100,7 @@ class MedicationPrescription: FHIRResource
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -106,7 +142,6 @@ class MedicationPrescription: FHIRResource
 				self.substitution = MedicationPrescriptionSubstitution(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -159,6 +194,7 @@ class MedicationPrescriptionDosageInstruction: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? String {
 				self.text = val
@@ -200,7 +236,6 @@ class MedicationPrescriptionDosageInstruction: FHIRElement
 				self.maxDosePerPeriod = Ratio(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -213,7 +248,14 @@ class MedicationPrescriptionDosageInstruction: FHIRElement
 class MedicationPrescriptionDispense: FHIRElement
 {	
 	/*! Product to be supplied */
-	var medication: ResourceReference?
+	var medication: FHIRElement? {
+		get { return resolveReference("medication") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "medication")
+			}
+		}
+	}
 	
 	/*! Time period supply is authorized for */
 	var validityPeriod: Period?
@@ -229,6 +271,7 @@ class MedicationPrescriptionDispense: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["medication"] as? NSDictionary {
 				self.medication = ResourceReference(json: val)
@@ -246,7 +289,6 @@ class MedicationPrescriptionDispense: FHIRElement
 				self.expectedSupplyDuration = Double(val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -274,6 +316,7 @@ class MedicationPrescriptionSubstitution: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val)
@@ -282,6 +325,6 @@ class MedicationPrescriptionSubstitution: FHIRElement
 				self.reason = CodeableConcept(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

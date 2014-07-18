@@ -2,7 +2,7 @@
 //  MedicationDispense.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -32,13 +32,34 @@ class MedicationDispense: FHIRResource
 	var status: String?
 	
 	/*! Who the dispense is for */
-	var patient: ResourceReference?
+	var patient: FHIRElement? {
+		get { return resolveReference("patient") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "patient")
+			}
+		}
+	}
 	
 	/*! Practitioner responsible for dispensing medication */
-	var dispenser: ResourceReference?
+	var dispenser: FHIRElement? {
+		get { return resolveReference("dispenser") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "dispenser")
+			}
+		}
+	}
 	
 	/*! Medication order that authorizes the dispense */
-	var authorizingPrescription: [ResourceReference]?
+	var authorizingPrescription: [FHIRElement]? {
+		get { return resolveReferences("authorizingPrescription") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "authorizingPrescription")
+			}
+		}
+	}
 	
 	/*! Details for individual dispensed medicationdetails */
 	var dispense: [MedicationDispenseDispense]?
@@ -48,6 +69,7 @@ class MedicationDispense: FHIRResource
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -74,7 +96,6 @@ class MedicationDispense: FHIRResource
 				self.substitution = MedicationDispenseSubstitution(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -99,7 +120,14 @@ class MedicationDispenseDispense: FHIRElement
 	var quantity: Quantity?
 	
 	/*! What medication was supplied */
-	var medication: ResourceReference?
+	var medication: FHIRElement? {
+		get { return resolveReference("medication") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "medication")
+			}
+		}
+	}
 	
 	/*! Dispense processing time */
 	var whenPrepared: NSDate?
@@ -108,16 +136,31 @@ class MedicationDispenseDispense: FHIRElement
 	var whenHandedOver: NSDate?
 	
 	/*! Where the medication was sent */
-	var destination: ResourceReference?
+	var destination: FHIRElement? {
+		get { return resolveReference("destination") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "destination")
+			}
+		}
+	}
 	
 	/*! Who collected the medication */
-	var receiver: [ResourceReference]?
+	var receiver: [FHIRElement]? {
+		get { return resolveReferences("receiver") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "receiver")
+			}
+		}
+	}
 	
 	/*! Medicine administration instructions to the patient/carer */
 	var dosage: [MedicationDispenseDispenseDosage]?
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? NSDictionary {
 				self.identifier = Identifier(json: val)
@@ -150,7 +193,6 @@ class MedicationDispenseDispense: FHIRElement
 				self.dosage = MedicationDispenseDispenseDosage.from(val) as? [MedicationDispenseDispenseDosage]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -200,6 +242,7 @@ class MedicationDispenseDispenseDosage: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["additionalInstructions"] as? NSDictionary {
 				self.additionalInstructions = CodeableConcept(json: val)
@@ -238,7 +281,6 @@ class MedicationDispenseDispenseDosage: FHIRElement
 				self.maxDosePerPeriod = Ratio(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -259,7 +301,14 @@ class MedicationDispenseSubstitution: FHIRElement
 	var reason: [CodeableConcept]?
 	
 	/*! Who is responsible for the substitution */
-	var responsibleParty: [ResourceReference]?
+	var responsibleParty: [FHIRElement]? {
+		get { return resolveReferences("responsibleParty") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "responsibleParty")
+			}
+		}
+	}
 	
 	convenience init(type: CodeableConcept?) {
 		self.init(json: nil)
@@ -269,6 +318,7 @@ class MedicationDispenseSubstitution: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val)
@@ -280,6 +330,6 @@ class MedicationDispenseSubstitution: FHIRElement
 				self.responsibleParty = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
-		super.init(json: json)
 	}
 }
+

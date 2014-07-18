@@ -2,7 +2,7 @@
 //  MedicationStatement.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -31,7 +31,14 @@ class MedicationStatement: FHIRResource
 	var identifier: [Identifier]?
 	
 	/*! Who was/is taking medication */
-	var patient: ResourceReference?
+	var patient: FHIRElement? {
+		get { return resolveReference("patient") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "patient")
+			}
+		}
+	}
 	
 	/*! True if medication is/was not being taken */
 	var wasNotGiven: Bool?
@@ -43,16 +50,31 @@ class MedicationStatement: FHIRResource
 	var whenGiven: Period?
 	
 	/*! What medication was taken? */
-	var medication: ResourceReference?
+	var medication: FHIRElement? {
+		get { return resolveReference("medication") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "medication")
+			}
+		}
+	}
 	
 	/*! E.g. infusion pump */
-	var device: [ResourceReference]?
+	var device: [FHIRElement]? {
+		get { return resolveReferences("device") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "device")
+			}
+		}
+	}
 	
 	/*! Details of how medication was taken */
 	var dosage: [MedicationStatementDosage]?
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -82,7 +104,6 @@ class MedicationStatement: FHIRResource
 				self.dosage = MedicationStatementDosage.from(val) as? [MedicationStatementDosage]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -123,6 +144,7 @@ class MedicationStatementDosage: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["timing"] as? NSDictionary {
 				self.timing = Schedule(json: val)
@@ -152,6 +174,6 @@ class MedicationStatementDosage: FHIRElement
 				self.maxDosePerPeriod = Ratio(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

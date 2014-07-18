@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -83,10 +83,24 @@ class Patient: FHIRResource
 	var communication: [CodeableConcept]?
 	
 	/*! Patient's nominated care provider */
-	var careProvider: [ResourceReference]?
+	var careProvider: [FHIRElement]? {
+		get { return resolveReferences("careProvider") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "careProvider")
+			}
+		}
+	}
 	
 	/*! Organization that is the custodian of the patient record */
-	var managingOrganization: ResourceReference?
+	var managingOrganization: FHIRElement? {
+		get { return resolveReference("managingOrganization") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "managingOrganization")
+			}
+		}
+	}
 	
 	/*! Link to another patient resource that concerns the same actual person */
 	var link: [PatientLink]?
@@ -96,6 +110,7 @@ class Patient: FHIRResource
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -158,7 +173,6 @@ class Patient: FHIRResource
 				self.active = (1 == val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -184,10 +198,18 @@ class PatientContact: FHIRElement
 	var gender: CodeableConcept?
 	
 	/*! Organization that is associated with the contact */
-	var organization: ResourceReference?
+	var organization: FHIRElement? {
+		get { return resolveReference("organization") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "organization")
+			}
+		}
+	}
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["relationship"] as? [NSDictionary] {
 				self.relationship = CodeableConcept.from(val) as? [CodeableConcept]
@@ -208,7 +230,6 @@ class PatientContact: FHIRElement
 				self.organization = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -237,6 +258,7 @@ class PatientAnimal: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["species"] as? NSDictionary {
 				self.species = CodeableConcept(json: val)
@@ -248,7 +270,6 @@ class PatientAnimal: FHIRElement
 				self.genderStatus = CodeableConcept(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -259,7 +280,14 @@ class PatientAnimal: FHIRElement
 class PatientLink: FHIRElement
 {	
 	/*! The other patient resource that the link refers to */
-	var other: ResourceReference?
+	var other: FHIRElement? {
+		get { return resolveReference("other") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "other")
+			}
+		}
+	}
 	
 	/*! replace | refer | seealso - type of link */
 	var type: String?
@@ -275,6 +303,7 @@ class PatientLink: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["other"] as? NSDictionary {
 				self.other = ResourceReference(json: val)
@@ -283,6 +312,6 @@ class PatientLink: FHIRElement
 				self.type = val
 			}
 		}
-		super.init(json: json)
 	}
 }
+

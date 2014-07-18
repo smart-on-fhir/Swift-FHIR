@@ -2,7 +2,7 @@
 //  Group.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -54,7 +54,14 @@ class Group: FHIRResource
 	var characteristic: [GroupCharacteristic]?
 	
 	/*! Who is in group */
-	var member: [ResourceReference]?
+	var member: [FHIRElement]? {
+		get { return resolveReferences("member") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "member")
+			}
+		}
+	}
 	
 	convenience init(type: String?, actual: Bool?) {
 		self.init(json: nil)
@@ -67,6 +74,7 @@ class Group: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -96,7 +104,6 @@ class Group: FHIRResource
 				self.member = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -149,6 +156,7 @@ class GroupCharacteristic: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
 				self.code = CodeableConcept(json: val)
@@ -169,6 +177,6 @@ class GroupCharacteristic: FHIRElement
 				self.exclude = (1 == val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

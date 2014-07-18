@@ -2,7 +2,7 @@
 //  DiagnosticOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -39,22 +39,50 @@ class DiagnosticOrder: FHIRResource
 	var text: Narrative?
 	
 	/*! Who and/or what test is about */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Who ordered the test */
-	var orderer: ResourceReference?
+	var orderer: FHIRElement? {
+		get { return resolveReference("orderer") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "orderer")
+			}
+		}
+	}
 	
 	/*! Identifiers assigned to this order */
 	var identifier: [Identifier]?
 	
 	/*! The encounter that this diagnostic order is associated with */
-	var encounter: ResourceReference?
+	var encounter: FHIRElement? {
+		get { return resolveReference("encounter") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "encounter")
+			}
+		}
+	}
 	
 	/*! Explanation/Justification for test */
 	var clinicalNotes: String?
 	
 	/*! If the whole order relates to specific specimens */
-	var specimen: [ResourceReference]?
+	var specimen: [FHIRElement]? {
+		get { return resolveReferences("specimen") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "specimen")
+			}
+		}
+	}
 	
 	/*! requested | received | accepted | in progress | review | completed | suspended | rejected | failed */
 	var status: String?
@@ -76,6 +104,7 @@ class DiagnosticOrder: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -111,7 +140,6 @@ class DiagnosticOrder: FHIRResource
 				self.item = DiagnosticOrderItem.from(val) as? [DiagnosticOrderItem]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -134,7 +162,14 @@ class DiagnosticOrderEvent: FHIRElement
 	var dateTime: NSDate?
 	
 	/*! Who recorded or did this */
-	var actor: ResourceReference?
+	var actor: FHIRElement? {
+		get { return resolveReference("actor") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "actor")
+			}
+		}
+	}
 	
 	convenience init(status: String?, dateTime: NSDate?) {
 		self.init(json: nil)
@@ -147,6 +182,7 @@ class DiagnosticOrderEvent: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["status"] as? String {
 				self.status = val
@@ -161,7 +197,6 @@ class DiagnosticOrderEvent: FHIRElement
 				self.actor = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -178,7 +213,14 @@ class DiagnosticOrderItem: FHIRElement
 	var code: CodeableConcept?
 	
 	/*! If this item relates to specific specimens */
-	var specimen: [ResourceReference]?
+	var specimen: [FHIRElement]? {
+		get { return resolveReferences("specimen") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "specimen")
+			}
+		}
+	}
 	
 	/*! Location of requested test (if applicable) */
 	var bodySite: CodeableConcept?
@@ -197,6 +239,7 @@ class DiagnosticOrderItem: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
 				self.code = CodeableConcept(json: val)
@@ -214,7 +257,6 @@ class DiagnosticOrderItem: FHIRElement
 				self.event = DiagnosticOrderItemEvent.from(val) as? [DiagnosticOrderItemEvent]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -228,8 +270,9 @@ class DiagnosticOrderItemEvent: FHIRElement
 {	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 		}
-		super.init(json: json)
 	}
 }
+

@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -57,7 +57,14 @@ class Encounter: FHIRResource
 	var type: [CodeableConcept]?
 	
 	/*! The patient present at the encounter */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! List of participants involved in the encounter */
 	var participant: [EncounterParticipant]?
@@ -72,7 +79,14 @@ class Encounter: FHIRResource
 	var reason: CodeableConcept?
 	
 	/*! Reason the encounter takes place (resource) */
-	var indication: ResourceReference?
+	var indication: FHIRElement? {
+		get { return resolveReference("indication") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "indication")
+			}
+		}
+	}
 	
 	/*! Indicates the urgency of the encounter */
 	var priority: CodeableConcept?
@@ -84,10 +98,24 @@ class Encounter: FHIRResource
 	var location: [EncounterLocation]?
 	
 	/*! Department or team providing care */
-	var serviceProvider: ResourceReference?
+	var serviceProvider: FHIRElement? {
+		get { return resolveReference("serviceProvider") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "serviceProvider")
+			}
+		}
+	}
 	
 	/*! Another Encounter this encounter is part of */
-	var partOf: ResourceReference?
+	var partOf: FHIRElement? {
+		get { return resolveReference("partOf") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "partOf")
+			}
+		}
+	}
 	
 	convenience init(status: String?, klass: String?) {
 		self.init(json: nil)
@@ -100,6 +128,7 @@ class Encounter: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -150,7 +179,6 @@ class Encounter: FHIRResource
 				self.partOf = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -166,10 +194,18 @@ class EncounterParticipant: FHIRElement
 	var type: [CodeableConcept]?
 	
 	/*! Persons involved in the encounter other than the patient */
-	var individual: ResourceReference?
+	var individual: FHIRElement? {
+		get { return resolveReference("individual") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "individual")
+			}
+		}
+	}
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? [NSDictionary] {
 				self.type = CodeableConcept.from(val) as? [CodeableConcept]
@@ -178,7 +214,6 @@ class EncounterParticipant: FHIRElement
 				self.individual = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -192,7 +227,14 @@ class EncounterHospitalization: FHIRElement
 	var preAdmissionIdentifier: Identifier?
 	
 	/*! The location from which the patient came before admission */
-	var origin: ResourceReference?
+	var origin: FHIRElement? {
+		get { return resolveReference("origin") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "origin")
+			}
+		}
+	}
 	
 	/*! From where patient was admitted (physician referral, transfer) */
 	var admitSource: CodeableConcept?
@@ -213,19 +255,34 @@ class EncounterHospitalization: FHIRElement
 	var specialArrangement: [CodeableConcept]?
 	
 	/*! Location to which the patient is discharged */
-	var destination: ResourceReference?
+	var destination: FHIRElement? {
+		get { return resolveReference("destination") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "destination")
+			}
+		}
+	}
 	
 	/*! Category or kind of location after discharge */
 	var dischargeDisposition: CodeableConcept?
 	
 	/*! The final diagnosis given a patient before release from the hospital after all testing, surgery, and workup are complete */
-	var dischargeDiagnosis: ResourceReference?
+	var dischargeDiagnosis: FHIRElement? {
+		get { return resolveReference("dischargeDiagnosis") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "dischargeDiagnosis")
+			}
+		}
+	}
 	
 	/*! Is this hospitalization a readmission? */
 	var reAdmission: Bool?
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["preAdmissionIdentifier"] as? NSDictionary {
 				self.preAdmissionIdentifier = Identifier(json: val)
@@ -264,7 +321,6 @@ class EncounterHospitalization: FHIRElement
 				self.reAdmission = (1 == val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -275,13 +331,21 @@ class EncounterHospitalization: FHIRElement
 class EncounterHospitalizationAccomodation: FHIRElement
 {	
 	/*! The bed that is assigned to the patient */
-	var bed: ResourceReference?
+	var bed: FHIRElement? {
+		get { return resolveReference("bed") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "bed")
+			}
+		}
+	}
 	
 	/*! Period during which the patient was assigned the bed */
 	var period: Period?
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["bed"] as? NSDictionary {
 				self.bed = ResourceReference(json: val)
@@ -290,7 +354,6 @@ class EncounterHospitalizationAccomodation: FHIRElement
 				self.period = Period(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -303,7 +366,14 @@ class EncounterHospitalizationAccomodation: FHIRElement
 class EncounterLocation: FHIRElement
 {	
 	/*! Location the encounter takes place */
-	var location: ResourceReference?
+	var location: FHIRElement? {
+		get { return resolveReference("location") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "location")
+			}
+		}
+	}
 	
 	/*! Time period during which the patient was present at the location */
 	var period: Period?
@@ -319,6 +389,7 @@ class EncounterLocation: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["location"] as? NSDictionary {
 				self.location = ResourceReference(json: val)
@@ -327,6 +398,6 @@ class EncounterLocation: FHIRElement
 				self.period = Period(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

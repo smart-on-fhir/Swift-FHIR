@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -93,13 +93,34 @@ class Observation: FHIRResource
 	var identifier: Identifier?
 	
 	/*! Who and/or what this is about */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Specimen used for this observation */
-	var specimen: ResourceReference?
+	var specimen: FHIRElement? {
+		get { return resolveReference("specimen") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "specimen")
+			}
+		}
+	}
 	
 	/*! Who did the observation */
-	var performer: [ResourceReference]?
+	var performer: [FHIRElement]? {
+		get { return resolveReferences("performer") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "performer")
+			}
+		}
+	}
 	
 	/*! Provides guide for interpretation */
 	var referenceRange: [ObservationReferenceRange]?
@@ -121,6 +142,7 @@ class Observation: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -195,7 +217,6 @@ class Observation: FHIRResource
 				self.related = ObservationRelated.from(val) as? [ObservationRelated]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -221,6 +242,7 @@ class ObservationReferenceRange: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["low"] as? NSDictionary {
 				self.low = Quantity(json: val)
@@ -235,7 +257,6 @@ class ObservationReferenceRange: FHIRElement
 				self.age = Range(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -251,7 +272,14 @@ class ObservationRelated: FHIRElement
 	var type: String?
 	
 	/*! Observation that is related to this one */
-	var target: ResourceReference?
+	var target: FHIRElement? {
+		get { return resolveReference("target") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "target")
+			}
+		}
+	}
 	
 	convenience init(target: ResourceReference?) {
 		self.init(json: nil)
@@ -261,6 +289,7 @@ class ObservationRelated: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {
 				self.type = val
@@ -269,6 +298,6 @@ class ObservationRelated: FHIRElement
 				self.target = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

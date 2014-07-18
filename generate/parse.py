@@ -119,17 +119,25 @@ def parse(path):
 	}
 	
 	# parse profiles
+	factories = set()
 	search_params = set()
 	in_profiles = {}
 	for prof in glob.glob(os.path.join(path, '*.profile.json')):
-		pn, srch, supp = process_profile(prof, info)
+		profile_name, srch, supp = process_profile(prof, info)
+		
+		if profile_name is not None:
+			factories.add(profile_name)
+		
 		if srch is not None:
 			search_params |= srch
 			for spp in supp:
 				if spp in in_profiles:
-					in_profiles[spp].add(pn)
+					in_profiles[spp].add(profile_name)
 				else:
-					in_profiles[spp] = set([pn])
+					in_profiles[spp] = set([profile_name])
+	
+	# process element factory
+	process_factories(factories, info)
 	
 	# process search parameters
 	process_search(search_params, in_profiles, info)
@@ -232,9 +240,11 @@ def parse_elem(path, name, definition, klass):
 	
 	# determine property class(es)
 	types = []
+	haz = set()
 	for tp in definition.get('type', []):
-		if tp['code'] not in types:			# TODO: how to handle same type.code but different type.profile?
-			types.append(tp['code'])
+		if tp['code'] not in haz:
+			haz.add(tp['code'])
+			types.append((tp['code'], tp.get('profile', None) is not None))
 	
 	# no type means this is an inline-defined subtype, create a class for it
 	newklass = None
@@ -243,7 +253,7 @@ def parse_elem(path, name, definition, klass):
 		newklass = {
 			'path': path,
 			'className': className,
-			'superclass': classmap.get(types[0], 'FHIRElement') if len(types) > 0 else 'FHIRElement',
+			'superclass': classmap.get(types[0][0], 'FHIRElement') if len(types) > 0 else 'FHIRElement',
 			'short': _wrap(short),
 			'formal': _wrap(formal),
 			'properties': [],
@@ -251,10 +261,10 @@ def parse_elem(path, name, definition, klass):
 		}
 		
 		if 0 == len(types):
-			types.append(className)
+			types.append((className, False))
 	
 	# add as properties to class
-	for tp in types:
+	for tp, isRef in types:
 		myname = name
 		if '*' == tp:
 			tp = 'FHIRElement'
@@ -268,6 +278,7 @@ def parse_elem(path, name, definition, klass):
 			'className': mappedClass,
 			'jsonClass': jsonmap.get(mappedClass, 'NSDictionary'),
 			'isArray': True if '*' == n_max else False,
+			'isReference': isRef,
 			#'modOptional': '?' if int(n_min) < 1 else ''
 		}
 		
@@ -277,6 +288,18 @@ def parse_elem(path, name, definition, klass):
 				klass['nonoptional'].append(prop)
 	
 	return newklass
+
+
+def process_factories(factories, info):
+	""" Renders a template which creates an extension to FHIRElement that has
+	a factory method with all FHIR resource types.
+	"""
+	data = {
+		'filename': 'FHIRElement+Factory.swift',
+		'info': info,
+		'classes': factories,
+	}
+	render(data, 'template-elementfactory.swift')
 
 
 def process_search(params, in_profiles, info):

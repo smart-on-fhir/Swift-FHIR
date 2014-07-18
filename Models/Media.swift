@@ -2,7 +2,7 @@
 //  Media.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -50,10 +50,24 @@ class Media: FHIRResource
 	var dateTime: NSDate?
 	
 	/*! Who/What this Media is a record of */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! The person who generated the image */
-	var operator: ResourceReference?
+	var operator: FHIRElement? {
+		get { return resolveReference("operator") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "operator")
+			}
+		}
+	}
 	
 	/*! Imaging view e.g Lateral or Antero-posterior */
 	var view: CodeableConcept?
@@ -87,6 +101,7 @@ class Media: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -131,6 +146,6 @@ class Media: FHIRResource
 				self.content = Attachment(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -41,7 +41,14 @@ class Immunization: FHIRResource
 	var vaccineType: CodeableConcept?
 	
 	/*! Who was immunized? */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Was immunization refused? */
 	var refusedIndicator: Bool?
@@ -50,16 +57,44 @@ class Immunization: FHIRResource
 	var reported: Bool?
 	
 	/*! Who administered vaccine? */
-	var performer: ResourceReference?
+	var performer: FHIRElement? {
+		get { return resolveReference("performer") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "performer")
+			}
+		}
+	}
 	
 	/*! Who ordered vaccination? */
-	var requester: ResourceReference?
+	var requester: FHIRElement? {
+		get { return resolveReference("requester") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "requester")
+			}
+		}
+	}
 	
 	/*! Vaccine manufacturer */
-	var manufacturer: ResourceReference?
+	var manufacturer: FHIRElement? {
+		get { return resolveReference("manufacturer") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "manufacturer")
+			}
+		}
+	}
 	
 	/*! Where did vaccination occur? */
-	var location: ResourceReference?
+	var location: FHIRElement? {
+		get { return resolveReference("location") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "location")
+			}
+		}
+	}
 	
 	/*! Vaccine lot number */
 	var lotNumber: String?
@@ -105,6 +140,7 @@ class Immunization: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -164,7 +200,6 @@ class Immunization: FHIRResource
 				self.vaccinationProtocol = ImmunizationVaccinationProtocol.from(val) as? [ImmunizationVaccinationProtocol]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -184,6 +219,7 @@ class ImmunizationExplanation: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["reason"] as? [NSDictionary] {
 				self.reason = CodeableConcept.from(val) as? [CodeableConcept]
@@ -192,7 +228,6 @@ class ImmunizationExplanation: FHIRElement
 				self.refusalReason = CodeableConcept.from(val) as? [CodeableConcept]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -208,13 +243,21 @@ class ImmunizationReaction: FHIRElement
 	var date: NSDate?
 	
 	/*! Additional information on reaction */
-	var detail: ResourceReference?
+	var detail: FHIRElement? {
+		get { return resolveReference("detail") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "detail")
+			}
+		}
+	}
 	
 	/*! Was reaction self-reported? */
 	var reported: Bool?
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
@@ -226,7 +269,6 @@ class ImmunizationReaction: FHIRElement
 				self.reported = (1 == val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -245,7 +287,14 @@ class ImmunizationVaccinationProtocol: FHIRElement
 	var description: String?
 	
 	/*! Who is responsible for protocol */
-	var authority: ResourceReference?
+	var authority: FHIRElement? {
+		get { return resolveReference("authority") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "authority")
+			}
+		}
+	}
 	
 	/*! Name of vaccine series */
 	var series: String?
@@ -276,6 +325,7 @@ class ImmunizationVaccinationProtocol: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["doseSequence"] as? Int {
 				self.doseSequence = val
@@ -302,6 +352,6 @@ class ImmunizationVaccinationProtocol: FHIRElement
 				self.doseStatusReason = CodeableConcept(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

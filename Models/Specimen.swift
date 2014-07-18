@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -43,7 +43,14 @@ class Specimen: FHIRResource
 	var source: [SpecimenSource]?
 	
 	/*! Where the specimen came from. This may be the patient(s) or from the environment or  a device */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Identifier assigned by the lab */
 	var accessionIdentifier: Identifier?
@@ -71,6 +78,7 @@ class Specimen: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -103,7 +111,6 @@ class Specimen: FHIRResource
 				self.container = SpecimenContainer.from(val) as? [SpecimenContainer]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -119,7 +126,14 @@ class SpecimenSource: FHIRElement
 	var relationship: String?
 	
 	/*! The subject of the relationship */
-	var target: [ResourceReference]?
+	var target: [FHIRElement]? {
+		get { return resolveReferences("target") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "target")
+			}
+		}
+	}
 	
 	convenience init(relationship: String?) {
 		self.init(json: nil)
@@ -129,6 +143,7 @@ class SpecimenSource: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["relationship"] as? String {
 				self.relationship = val
@@ -137,7 +152,6 @@ class SpecimenSource: FHIRElement
 				self.target = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -150,7 +164,14 @@ class SpecimenSource: FHIRElement
 class SpecimenCollection: FHIRElement
 {	
 	/*! Who collected the specimen */
-	var collector: ResourceReference?
+	var collector: FHIRElement? {
+		get { return resolveReference("collector") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "collector")
+			}
+		}
+	}
 	
 	/*! Collector comments */
 	var comment: [String]?
@@ -172,6 +193,7 @@ class SpecimenCollection: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["collector"] as? NSDictionary {
 				self.collector = ResourceReference(json: val)
@@ -195,7 +217,6 @@ class SpecimenCollection: FHIRElement
 				self.sourceSite = CodeableConcept(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -214,10 +235,18 @@ class SpecimenTreatment: FHIRElement
 	var procedure: CodeableConcept?
 	
 	/*! Material used in the processing step */
-	var additive: [ResourceReference]?
+	var additive: [FHIRElement]? {
+		get { return resolveReferences("additive") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "additive")
+			}
+		}
+	}
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
 				self.description = val
@@ -229,7 +258,6 @@ class SpecimenTreatment: FHIRElement
 				self.additive = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -258,10 +286,18 @@ class SpecimenContainer: FHIRElement
 	var specimenQuantity: Quantity?
 	
 	/*! Additive associated with container */
-	var additive: ResourceReference?
+	var additive: FHIRElement? {
+		get { return resolveReference("additive") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "additive")
+			}
+		}
+	}
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? [NSDictionary] {
 				self.identifier = Identifier.from(val) as? [Identifier]
@@ -282,6 +318,6 @@ class SpecimenContainer: FHIRElement
 				self.additive = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

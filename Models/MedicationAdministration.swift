@@ -2,7 +2,7 @@
 //  MedicationAdministration.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -35,16 +35,44 @@ class MedicationAdministration: FHIRResource
 	var status: String?
 	
 	/*! Who received medication? */
-	var patient: ResourceReference?
+	var patient: FHIRElement? {
+		get { return resolveReference("patient") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "patient")
+			}
+		}
+	}
 	
 	/*! Who administered substance? */
-	var practitioner: ResourceReference?
+	var practitioner: FHIRElement? {
+		get { return resolveReference("practitioner") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "practitioner")
+			}
+		}
+	}
 	
 	/*! Encounter administered as part of */
-	var encounter: ResourceReference?
+	var encounter: FHIRElement? {
+		get { return resolveReference("encounter") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "encounter")
+			}
+		}
+	}
 	
 	/*! Order administration performed against */
-	var prescription: ResourceReference?
+	var prescription: FHIRElement? {
+		get { return resolveReference("prescription") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "prescription")
+			}
+		}
+	}
 	
 	/*! True if medication not administered */
 	var wasNotGiven: Bool?
@@ -56,10 +84,24 @@ class MedicationAdministration: FHIRResource
 	var whenGiven: Period?
 	
 	/*! What was administered? */
-	var medication: ResourceReference?
+	var medication: FHIRElement? {
+		get { return resolveReference("medication") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "medication")
+			}
+		}
+	}
 	
 	/*! Device used to administer */
-	var device: [ResourceReference]?
+	var device: [FHIRElement]? {
+		get { return resolveReferences("device") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "device")
+			}
+		}
+	}
 	
 	/*! Medicine administration instructions to the patient/carer */
 	var dosage: [MedicationAdministrationDosage]?
@@ -84,6 +126,7 @@ class MedicationAdministration: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -125,7 +168,6 @@ class MedicationAdministration: FHIRResource
 				self.dosage = MedicationAdministrationDosage.from(val) as? [MedicationAdministrationDosage]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -169,6 +211,7 @@ class MedicationAdministrationDosage: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["timingDateTime"] as? String {
 				self.timingDateTime = NSDate(json: val)
@@ -201,6 +244,6 @@ class MedicationAdministrationDosage: FHIRElement
 				self.maxDosePerPeriod = Ratio(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

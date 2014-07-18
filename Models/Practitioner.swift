@@ -2,7 +2,7 @@
 //  Practitioner.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -55,7 +55,14 @@ class Practitioner: FHIRResource
 	var photo: [Attachment]?
 	
 	/*! The represented organization */
-	var organization: ResourceReference?
+	var organization: FHIRElement? {
+		get { return resolveReference("organization") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "organization")
+			}
+		}
+	}
 	
 	/*! Roles which this practitioner may perform */
 	var role: [CodeableConcept]?
@@ -67,7 +74,14 @@ class Practitioner: FHIRResource
 	var period: Period?
 	
 	/*! The location(s) at which this practitioner provides care */
-	var location: [ResourceReference]?
+	var location: [FHIRElement]? {
+		get { return resolveReferences("location") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "location")
+			}
+		}
+	}
 	
 	/*! Qualifications obtained by training and certification */
 	var qualification: [PractitionerQualification]?
@@ -77,6 +91,7 @@ class Practitioner: FHIRResource
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -124,7 +139,6 @@ class Practitioner: FHIRResource
 				self.communication = CodeableConcept.from(val) as? [CodeableConcept]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -141,7 +155,14 @@ class PractitionerQualification: FHIRElement
 	var period: Period?
 	
 	/*! Organization that regulates and issues the qualification */
-	var issuer: ResourceReference?
+	var issuer: FHIRElement? {
+		get { return resolveReference("issuer") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "issuer")
+			}
+		}
+	}
 	
 	convenience init(code: CodeableConcept?) {
 		self.init(json: nil)
@@ -151,6 +172,7 @@ class PractitionerQualification: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
 				self.code = CodeableConcept(json: val)
@@ -162,6 +184,6 @@ class PractitionerQualification: FHIRElement
 				self.issuer = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

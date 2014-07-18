@@ -2,7 +2,7 @@
 //  DeviceObservationReport.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -39,10 +39,24 @@ class DeviceObservationReport: FHIRResource
 	var identifier: Identifier?
 	
 	/*! Identifies/describes where the data came from */
-	var source: ResourceReference?
+	var source: FHIRElement? {
+		get { return resolveReference("source") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "source")
+			}
+		}
+	}
 	
 	/*! Subject of the measurement */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! A medical-related subsystem of a medical device */
 	var virtualDevice: [DeviceObservationReportVirtualDevice]?
@@ -58,6 +72,7 @@ class DeviceObservationReport: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -78,7 +93,6 @@ class DeviceObservationReport: FHIRResource
 				self.virtualDevice = DeviceObservationReportVirtualDevice.from(val) as? [DeviceObservationReportVirtualDevice]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -96,6 +110,7 @@ class DeviceObservationReportVirtualDevice: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
 				self.code = CodeableConcept(json: val)
@@ -104,7 +119,6 @@ class DeviceObservationReportVirtualDevice: FHIRElement
 				self.channel = DeviceObservationReportVirtualDeviceChannel.from(val) as? [DeviceObservationReportVirtualDeviceChannel]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -124,6 +138,7 @@ class DeviceObservationReportVirtualDeviceChannel: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
 				self.code = CodeableConcept(json: val)
@@ -132,7 +147,6 @@ class DeviceObservationReportVirtualDeviceChannel: FHIRElement
 				self.metric = DeviceObservationReportVirtualDeviceChannelMetric.from(val) as? [DeviceObservationReportVirtualDeviceChannelMetric]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -145,7 +159,14 @@ class DeviceObservationReportVirtualDeviceChannel: FHIRElement
 class DeviceObservationReportVirtualDeviceChannelMetric: FHIRElement
 {	
 	/*! The data for the metric */
-	var observation: ResourceReference?
+	var observation: FHIRElement? {
+		get { return resolveReference("observation") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "observation")
+			}
+		}
+	}
 	
 	convenience init(observation: ResourceReference?) {
 		self.init(json: nil)
@@ -155,11 +176,12 @@ class DeviceObservationReportVirtualDeviceChannelMetric: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["observation"] as? NSDictionary {
 				self.observation = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

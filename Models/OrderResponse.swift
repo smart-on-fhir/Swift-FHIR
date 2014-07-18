@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -30,19 +30,40 @@ class OrderResponse: FHIRResource
 	var identifier: [Identifier]?
 	
 	/*! The order that this is a response to */
-	var request: ResourceReference?
+	var request: FHIRElement? {
+		get { return resolveReference("request") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "request")
+			}
+		}
+	}
 	
 	/*! When the response was made */
 	var date: NSDate?
 	
 	/*! Who made the response */
-	var who: ResourceReference?
+	var who: FHIRElement? {
+		get { return resolveReference("who") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "who")
+			}
+		}
+	}
 	
 	/*! If required by policy */
 	var authorityCodeableConcept: CodeableConcept?
 	
 	/*! If required by policy */
-	var authorityResourceReference: ResourceReference?
+	var authorityResourceReference: FHIRElement? {
+		get { return resolveReference("authorityResourceReference") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "authorityResourceReference")
+			}
+		}
+	}
 	
 	/*! pending | review | rejected | error | accepted | cancelled | replaced | aborted | complete */
 	var code: String?
@@ -51,7 +72,14 @@ class OrderResponse: FHIRResource
 	var description: String?
 	
 	/*! Details of the outcome of performing the order */
-	var fulfillment: [ResourceReference]?
+	var fulfillment: [FHIRElement]? {
+		get { return resolveReferences("fulfillment") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "fulfillment")
+			}
+		}
+	}
 	
 	convenience init(request: ResourceReference?, code: String?) {
 		self.init(json: nil)
@@ -64,6 +92,7 @@ class OrderResponse: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -96,6 +125,6 @@ class OrderResponse: FHIRResource
 				self.fulfillment = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
-		super.init(json: json)
 	}
 }
+

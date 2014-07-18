@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -86,6 +86,7 @@ class ValueSet: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -133,7 +134,6 @@ class ValueSet: FHIRResource
 				self.expansion = ValueSetExpansion(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -163,6 +163,7 @@ class ValueSetDefine: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {
 				self.system = NSURL(json: val)
@@ -177,7 +178,6 @@ class ValueSetDefine: FHIRElement
 				self.concept = ValueSetDefineConcept.from(val) as? [ValueSetDefineConcept]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -210,6 +210,7 @@ class ValueSetDefineConcept: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
 				self.code = val
@@ -227,7 +228,6 @@ class ValueSetDefineConcept: FHIRElement
 				self.concept = ValueSetDefineConceptConcept.from(val) as? [ValueSetDefineConceptConcept]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -239,9 +239,9 @@ class ValueSetDefineConceptConcept: FHIRElement
 {	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 		}
-		super.init(json: json)
 	}
 }
 
@@ -262,6 +262,7 @@ class ValueSetCompose: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["importFrom"] as? [String] {
 				self.importFrom = NSURL.from(val)
@@ -273,7 +274,6 @@ class ValueSetCompose: FHIRElement
 				self.exclude = ValueSetComposeExclude.from(val) as? [ValueSetComposeExclude]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -303,6 +303,7 @@ class ValueSetComposeInclude: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {
 				self.system = NSURL(json: val)
@@ -317,7 +318,6 @@ class ValueSetComposeInclude: FHIRElement
 				self.filter = ValueSetComposeIncludeFilter.from(val) as? [ValueSetComposeIncludeFilter]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -353,6 +353,7 @@ class ValueSetComposeIncludeFilter: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["property"] as? String {
 				self.property = val
@@ -364,7 +365,6 @@ class ValueSetComposeIncludeFilter: FHIRElement
 				self.value = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -378,9 +378,9 @@ class ValueSetComposeExclude: FHIRElement
 {	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 		}
-		super.init(json: json)
 	}
 }
 
@@ -407,6 +407,7 @@ class ValueSetExpansion: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? NSDictionary {
 				self.identifier = Identifier(json: val)
@@ -418,7 +419,6 @@ class ValueSetExpansion: FHIRElement
 				self.contains = ValueSetExpansionContains.from(val) as? [ValueSetExpansionContains]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -442,6 +442,7 @@ class ValueSetExpansionContains: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {
 				self.system = NSURL(json: val)
@@ -456,7 +457,6 @@ class ValueSetExpansionContains: FHIRElement
 				self.contains = ValueSetExpansionContainsContains.from(val) as? [ValueSetExpansionContainsContains]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -468,8 +468,9 @@ class ValueSetExpansionContainsContains: FHIRElement
 {	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 		}
-		super.init(json: json)
 	}
 }
+

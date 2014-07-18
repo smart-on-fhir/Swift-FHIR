@@ -2,7 +2,7 @@
 //  Location.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -58,19 +58,34 @@ class Location: FHIRResource
 	var position: LocationPosition?
 	
 	/*! The organization that is responsible for the provisioning and upkeep of the location */
-	var managingOrganization: ResourceReference?
+	var managingOrganization: FHIRElement? {
+		get { return resolveReference("managingOrganization") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "managingOrganization")
+			}
+		}
+	}
 	
 	/*! active | suspended | inactive */
 	var status: String?
 	
 	/*! Another Location which this Location is physically part of */
-	var partOf: ResourceReference?
+	var partOf: FHIRElement? {
+		get { return resolveReference("partOf") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "partOf")
+			}
+		}
+	}
 	
 	/*! instance | kind */
 	var mode: String?
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -112,7 +127,6 @@ class Location: FHIRResource
 				self.mode = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -145,6 +159,7 @@ class LocationPosition: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["longitude"] as? String {
 				self.longitude = NSDecimalNumber(json: val)
@@ -156,6 +171,6 @@ class LocationPosition: FHIRElement
 				self.altitude = NSDecimalNumber(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

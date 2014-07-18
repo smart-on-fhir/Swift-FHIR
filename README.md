@@ -2,7 +2,7 @@ FHIR Swift Classes
 ==================
 
 These are [Swift](https://developer.apple.com/swift/) classes for data models of [FHIR](http://hl7.org/implement/standards/fhir/) elements and resources.
-Classes are generated from the FHIR resource profiles and at one point should be able to instantiate themselves from JSON representations.
+Classes are generated from the FHIR resource profiles and instantiate themselves from JSON representations.
 Since this produces a framework the deployment targets will have to be OS X 10.9 and iOS 8.
 As soon as it's possible to build static libraries from Swift code we may be able to lower the iOS deployment target to iOS 7.
 
@@ -13,6 +13,24 @@ SMART on FHIR
 The [SMART on FHIR](https://github.com/p2/SMART-on-FHIR-Cocoa) Cocoa framework utilizes these classes.
 
 
+Progress
+--------
+
+Here's a rough list of what should be done.
+Things that have an `X` are done in the sense that they work but have not necessarily been tested extensively.
+
+```
+[X] Create classes for all FHIR profiles/resources from spec
+[X] Write deserializer that instantiates from JSON
+[X] Reference resolver: resolve inline referenced resources
+[~] Construct search URL parameters in code with properties (see below)
+[ ] Write serializer
+[ ] Add validation capability to serialized JSON?
+[ ] Write unit tests that use the example JSONs
+[ ] Write a real nice documentation
+```
+
+
 Class Generation
 ----------------
 
@@ -21,12 +39,16 @@ Class Generation
 Swift is **statically typed** and introspection is _very_ limited at the time.
 Therefore the generator needs to be a bit more verbose and create class-level serializers/deserializers, rather than looking at class properties at runtime and figure out how to serialize/deserialize.
 
-
 ### Cardinality
 
 Some data models have properties with a cardinality of a minimum of 1.
 While these can be enforced to never be nil in Swift by **not** making them _Optionals_, they are currently still made optional to enable uniform initializers that only take a JSON dictionary.
 For classes representing models with non-optional properties, a convenience initializer is supplied to reflect the need to set those properties without enforcing it.
+
+### Contained Resources
+
+FHIR makes use of [contained resources](http://hl7.org/implement/standards/fhir/references.html#contained).
+There is a mechanism in place that resolves those lazily in a way that they can still be used like standard properties, but they may need to be casted to specific classes.
 
 
 Search
@@ -109,7 +131,7 @@ Some examples of what we need to construct:
 
 #### Compartments
 
-These are not yet supported in the SMART server:
+Search can be restricted to [compartments](http://hl7.org/implement/standards/fhir/extras.html#compartment), these however are not yet supported in the SMART server nor in these classes.
 
 ```
 [ ] Patient/23/procedure?date=>2010-01-01&date=<2011-12-31

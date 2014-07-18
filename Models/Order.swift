@@ -2,7 +2,7 @@
 //  Order.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -40,28 +40,70 @@ class Order: FHIRResource
 	var date: NSDate?
 	
 	/*! Patient this order is about */
-	var subject: ResourceReference?
+	var subject: FHIRElement? {
+		get { return resolveReference("subject") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "subject")
+			}
+		}
+	}
 	
 	/*! Who initiated the order */
-	var source: ResourceReference?
+	var source: FHIRElement? {
+		get { return resolveReference("source") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "source")
+			}
+		}
+	}
 	
 	/*! Who is intended to fulfill the order */
-	var target: ResourceReference?
+	var target: FHIRElement? {
+		get { return resolveReference("target") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "target")
+			}
+		}
+	}
 	
 	/*! Text - why the order was made */
 	var reasonCodeableConcept: CodeableConcept?
 	
 	/*! Text - why the order was made */
-	var reasonResourceReference: ResourceReference?
+	var reasonResourceReference: FHIRElement? {
+		get { return resolveReference("reasonResourceReference") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "reasonResourceReference")
+			}
+		}
+	}
 	
 	/*! If required by policy */
-	var authority: ResourceReference?
+	var authority: FHIRElement? {
+		get { return resolveReference("authority") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "authority")
+			}
+		}
+	}
 	
 	/*! When order should be fulfilled */
 	var when: OrderWhen?
 	
 	/*! What action is being ordered */
-	var detail: [ResourceReference]?
+	var detail: [FHIRElement]? {
+		get { return resolveReferences("detail") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "detail")
+			}
+		}
+	}
 	
 	convenience init(detail: [ResourceReference]?) {
 		self.init(json: nil)
@@ -71,6 +113,7 @@ class Order: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -106,7 +149,6 @@ class Order: FHIRResource
 				self.detail = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -124,6 +166,7 @@ class OrderWhen: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
 				self.code = CodeableConcept(json: val)
@@ -132,6 +175,6 @@ class OrderWhen: FHIRElement
 				self.schedule = Schedule(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

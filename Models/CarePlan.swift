@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -37,7 +37,14 @@ class CarePlan: FHIRResource
 	var identifier: [Identifier]?
 	
 	/*! Who care plan is for */
-	var patient: ResourceReference?
+	var patient: FHIRElement? {
+		get { return resolveReference("patient") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "patient")
+			}
+		}
+	}
 	
 	/*! planned | active | completed */
 	var status: String?
@@ -49,7 +56,14 @@ class CarePlan: FHIRResource
 	var modified: NSDate?
 	
 	/*! Health issues this plan addresses */
-	var concern: [ResourceReference]?
+	var concern: [FHIRElement]? {
+		get { return resolveReferences("concern") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "concern")
+			}
+		}
+	}
 	
 	/*! Who's involved in plan? */
 	var participant: [CarePlanParticipant]?
@@ -71,6 +85,7 @@ class CarePlan: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -106,7 +121,6 @@ class CarePlan: FHIRResource
 				self.notes = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -122,7 +136,14 @@ class CarePlanParticipant: FHIRElement
 	var role: CodeableConcept?
 	
 	/*! Who is involved */
-	var member: ResourceReference?
+	var member: FHIRElement? {
+		get { return resolveReference("member") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "member")
+			}
+		}
+	}
 	
 	convenience init(member: ResourceReference?) {
 		self.init(json: nil)
@@ -132,6 +153,7 @@ class CarePlanParticipant: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["role"] as? NSDictionary {
 				self.role = CodeableConcept(json: val)
@@ -140,7 +162,6 @@ class CarePlanParticipant: FHIRElement
 				self.member = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -162,7 +183,14 @@ class CarePlanGoal: FHIRElement
 	var notes: String?
 	
 	/*! Health issues this goal addresses */
-	var concern: [ResourceReference]?
+	var concern: [FHIRElement]? {
+		get { return resolveReferences("concern") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "concern")
+			}
+		}
+	}
 	
 	convenience init(description: String?) {
 		self.init(json: nil)
@@ -172,6 +200,7 @@ class CarePlanGoal: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
 				self.description = val
@@ -186,7 +215,6 @@ class CarePlanGoal: FHIRElement
 				self.concern = ResourceReference.from(val) as? [ResourceReference]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -209,13 +237,27 @@ class CarePlanActivity: FHIRElement
 	var prohibited: Bool?
 	
 	/*! Appointments, orders, etc. */
-	var actionResulting: [ResourceReference]?
+	var actionResulting: [FHIRElement]? {
+		get { return resolveReferences("actionResulting") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "actionResulting")
+			}
+		}
+	}
 	
 	/*! Comments about the activity */
 	var notes: String?
 	
 	/*! Activity details defined in specific resource */
-	var detail: ResourceReference?
+	var detail: FHIRElement? {
+		get { return resolveReference("detail") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "detail")
+			}
+		}
+	}
 	
 	/*! Activity details summarised here */
 	var simple: CarePlanActivitySimple?
@@ -228,6 +270,7 @@ class CarePlanActivity: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["goal"] as? [String] {
 				self.goal = val
@@ -251,7 +294,6 @@ class CarePlanActivity: FHIRElement
 				self.simple = CarePlanActivitySimple(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -280,13 +322,34 @@ class CarePlanActivitySimple: FHIRElement
 	var timingString: String?
 	
 	/*! Where it should happen */
-	var location: ResourceReference?
+	var location: FHIRElement? {
+		get { return resolveReference("location") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "location")
+			}
+		}
+	}
 	
 	/*! Who's responsible? */
-	var performer: [ResourceReference]?
+	var performer: [FHIRElement]? {
+		get { return resolveReferences("performer") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "performer")
+			}
+		}
+	}
 	
 	/*! What's administered/supplied */
-	var product: ResourceReference?
+	var product: FHIRElement? {
+		get { return resolveReference("product") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "product")
+			}
+		}
+	}
 	
 	/*! How much consumed/day? */
 	var dailyAmount: Quantity?
@@ -305,6 +368,7 @@ class CarePlanActivitySimple: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["category"] as? String {
 				self.category = val
@@ -340,6 +404,6 @@ class CarePlanActivitySimple: FHIRElement
 				self.details = val
 			}
 		}
-		super.init(json: json)
 	}
 }
+

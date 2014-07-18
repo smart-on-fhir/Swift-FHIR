@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -107,7 +107,14 @@ class Conformance: FHIRResource
 	var format: [String]?
 	
 	/*! Profiles supported by the system */
-	var profile: [ResourceReference]?
+	var profile: [FHIRElement]? {
+		get { return resolveReferences("profile") }
+		set {
+			if newValue {
+				didSetReferences(newValue!, name: "profile")
+			}
+		}
+	}
 	
 	/*! If the endpoint is a RESTful one */
 	var rest: [ConformanceRest]?
@@ -138,6 +145,7 @@ class Conformance: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -197,7 +205,6 @@ class Conformance: FHIRResource
 				self.document = ConformanceDocument.from(val) as? [ConformanceDocument]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -227,6 +234,7 @@ class ConformanceSoftware: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
@@ -238,7 +246,6 @@ class ConformanceSoftware: FHIRElement
 				self.releaseDate = NSDate(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -265,6 +272,7 @@ class ConformanceImplementation: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
 				self.description = val
@@ -273,7 +281,6 @@ class ConformanceImplementation: FHIRElement
 				self.url = NSURL(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -317,6 +324,7 @@ class ConformanceRest: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["mode"] as? String {
 				self.mode = val
@@ -340,7 +348,6 @@ class ConformanceRest: FHIRElement
 				self.documentMailbox = NSURL.from(val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -364,6 +371,7 @@ class ConformanceRestSecurity: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["cors"] as? Int {
 				self.cors = (1 == val)
@@ -378,7 +386,6 @@ class ConformanceRestSecurity: FHIRElement
 				self.certificate = ConformanceRestSecurityCertificate.from(val) as? [ConformanceRestSecurityCertificate]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -396,6 +403,7 @@ class ConformanceRestSecurityCertificate: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {
 				self.type = val
@@ -404,7 +412,6 @@ class ConformanceRestSecurityCertificate: FHIRElement
 				self.blob = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -420,7 +427,14 @@ class ConformanceRestResource: FHIRElement
 	var type: String?
 	
 	/*! What structural features are supported */
-	var profile: ResourceReference?
+	var profile: FHIRElement? {
+		get { return resolveReference("profile") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "profile")
+			}
+		}
+	}
 	
 	/*! What operations are supported? */
 	var operation: [ConformanceRestResourceOperation]?
@@ -448,6 +462,7 @@ class ConformanceRestResource: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {
 				self.type = val
@@ -471,7 +486,6 @@ class ConformanceRestResource: FHIRElement
 				self.searchParam = ConformanceRestResourceSearchParam.from(val) as? [ConformanceRestResourceSearchParam]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -497,6 +511,7 @@ class ConformanceRestResourceOperation: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
 				self.code = val
@@ -505,7 +520,6 @@ class ConformanceRestResourceOperation: FHIRElement
 				self.documentation = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -546,6 +560,7 @@ class ConformanceRestResourceSearchParam: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
@@ -566,7 +581,6 @@ class ConformanceRestResourceSearchParam: FHIRElement
 				self.chain = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -592,6 +606,7 @@ class ConformanceRestOperation: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
 				self.code = val
@@ -600,7 +615,6 @@ class ConformanceRestOperation: FHIRElement
 				self.documentation = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -635,6 +649,7 @@ class ConformanceRestQuery: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
@@ -649,7 +664,6 @@ class ConformanceRestQuery: FHIRElement
 				self.parameter = ConformanceRestQueryParameter.from(val) as? [ConformanceRestQueryParameter]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -663,9 +677,9 @@ class ConformanceRestQueryParameter: FHIRElement
 {	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 		}
-		super.init(json: json)
 	}
 }
 
@@ -697,6 +711,7 @@ class ConformanceMessaging: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["endpoint"] as? String {
 				self.endpoint = NSURL(json: val)
@@ -711,7 +726,6 @@ class ConformanceMessaging: FHIRElement
 				self.event = ConformanceMessagingEvent.from(val) as? [ConformanceMessagingEvent]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -739,10 +753,24 @@ class ConformanceMessagingEvent: FHIRElement
 	var focus: String?
 	
 	/*! Profile that describes the request */
-	var request: ResourceReference?
+	var request: FHIRElement? {
+		get { return resolveReference("request") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "request")
+			}
+		}
+	}
 	
 	/*! Profile that describes the response */
-	var response: ResourceReference?
+	var response: FHIRElement? {
+		get { return resolveReference("response") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "response")
+			}
+		}
+	}
 	
 	/*! Endpoint-specific event documentation */
 	var documentation: String?
@@ -767,6 +795,7 @@ class ConformanceMessagingEvent: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
 				self.code = Coding(json: val)
@@ -793,7 +822,6 @@ class ConformanceMessagingEvent: FHIRElement
 				self.documentation = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -812,7 +840,14 @@ class ConformanceDocument: FHIRElement
 	var documentation: String?
 	
 	/*! Constraint on a resource used in the document */
-	var profile: ResourceReference?
+	var profile: FHIRElement? {
+		get { return resolveReference("profile") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "profile")
+			}
+		}
+	}
 	
 	convenience init(mode: String?, profile: ResourceReference?) {
 		self.init(json: nil)
@@ -825,6 +860,7 @@ class ConformanceDocument: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["mode"] as? String {
 				self.mode = val
@@ -836,6 +872,6 @@ class ConformanceDocument: FHIRElement
 				self.profile = ResourceReference(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
+

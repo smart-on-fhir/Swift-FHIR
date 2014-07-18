@@ -2,7 +2,7 @@
 //  SecurityEvent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-17.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -54,6 +54,7 @@ class SecurityEvent: FHIRResource
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
@@ -71,7 +72,6 @@ class SecurityEvent: FHIRResource
 				self.object = SecurityEventObject.from(val) as? [SecurityEventObject]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -112,6 +112,7 @@ class SecurityEventEvent: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val)
@@ -132,7 +133,6 @@ class SecurityEventEvent: FHIRElement
 				self.outcomeDesc = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -146,7 +146,14 @@ class SecurityEventParticipant: FHIRElement
 	var role: [CodeableConcept]?
 	
 	/*! Direct reference to resource */
-	var reference: ResourceReference?
+	var reference: FHIRElement? {
+		get { return resolveReference("reference") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "reference")
+			}
+		}
+	}
 	
 	/*! Unique identifier for the user */
 	var userId: String?
@@ -174,6 +181,7 @@ class SecurityEventParticipant: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["role"] as? [NSDictionary] {
 				self.role = CodeableConcept.from(val) as? [CodeableConcept]
@@ -200,7 +208,6 @@ class SecurityEventParticipant: FHIRElement
 				self.network = SecurityEventParticipantNetwork(json: val)
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -220,6 +227,7 @@ class SecurityEventParticipantNetwork: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? String {
 				self.identifier = val
@@ -228,7 +236,6 @@ class SecurityEventParticipantNetwork: FHIRElement
 				self.type = val
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -255,6 +262,7 @@ class SecurityEventSource: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["site"] as? String {
 				self.site = val
@@ -266,7 +274,6 @@ class SecurityEventSource: FHIRElement
 				self.type = Coding.from(val) as? [Coding]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -280,7 +287,14 @@ class SecurityEventObject: FHIRElement
 	var identifier: Identifier?
 	
 	/*! Specific instance of resource (e.g. versioned) */
-	var reference: ResourceReference?
+	var reference: FHIRElement? {
+		get { return resolveReference("reference") }
+		set {
+			if newValue {
+				didSetReference(newValue!, name: "reference")
+			}
+		}
+	}
 	
 	/*! Object type being audited */
 	var type: String?
@@ -308,6 +322,7 @@ class SecurityEventObject: FHIRElement
 	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? NSDictionary {
 				self.identifier = Identifier(json: val)
@@ -340,7 +355,6 @@ class SecurityEventObject: FHIRElement
 				self.detail = SecurityEventObjectDetail.from(val) as? [SecurityEventObjectDetail]
 			}
 		}
-		super.init(json: json)
 	}
 }
 
@@ -367,6 +381,7 @@ class SecurityEventObjectDetail: FHIRElement
 	}	
 	
 	init(json: NSDictionary?) {
+		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {
 				self.type = val
@@ -375,6 +390,6 @@ class SecurityEventObjectDetail: FHIRElement
 				self.value = val
 			}
 		}
-		super.init(json: json)
 	}
 }
+

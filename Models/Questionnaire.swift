@@ -286,7 +286,7 @@ public class QuestionnaireGroupQuestion: FHIRElement
 			if let val = js["text"] as? String {
 				self.text = val
 			}
-			if let val = js["answerDecimal"] as? String {
+			if let val = js["answerDecimal"] as? Double {
 				self.answerDecimal = NSDecimalNumber(json: val)
 			}
 			if let val = js["answerInteger"] as? Int {

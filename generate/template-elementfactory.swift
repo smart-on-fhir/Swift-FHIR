@@ -16,7 +16,7 @@ extension FHIRElement
 {
 	public class func factory(className: String, json: NSDictionary) -> FHIRElement {
 		switch className {
-		{%- for klass in classes %}
+		{%- for klass in classes|sort %}
 			case "{{ klass }}":	return {{ klass }}(json: json)
 		{%- endfor %}
 			default:	return FHIRElement(json: json)

@@ -83,7 +83,7 @@ public class ScheduleRepeat: FHIRElement
 			if let val = js["when"] as? String {
 				self.when = val
 			}
-			if let val = js["duration"] as? String {
+			if let val = js["duration"] as? Double {
 				self.duration = NSDecimalNumber(json: val)
 			}
 			if let val = js["units"] as? String {

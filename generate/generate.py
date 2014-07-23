@@ -48,7 +48,7 @@ jsonmap = {
 	
 	'String': 'String',
 	'NSDate': 'String',
-	'NSDecimalNumber': 'String',
+	'NSDecimalNumber': 'Double',
 	'NSDate': 'String',
 	'NSURL': 'String',
 }

@@ -11,8 +11,21 @@ import Foundation
 
 extension NSDate {
 	convenience init(json: String) {
-		// TODO: parse ISO date
-		self.init(timeInterval: 0, sinceDate: NSDate())
+		let parsed = NSDate.dateFromISOString(json)
+		self.init(timeInterval: 0, sinceDate: parsed ? parsed! : NSDate())
+	}
+	
+	class func dateFromISOString(string: String) -> NSDate? {
+		let formatter = NSDateFormatter()
+		formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+		
+		var date = formatter.dateFromString(string)
+		if !date {
+			formatter.dateFormat = "yyyy-MM-dd"
+			date = formatter.dateFromString(string)
+		}
+		
+		return date
 	}
 }
 
@@ -28,8 +41,8 @@ extension NSURL {
 }
 
 extension NSDecimalNumber {
-	convenience init(json: String) {
-		self.init(string: json)
+	convenience init(json: Double) {
+		self.init(string: "\(json)")
 	}
 }
 

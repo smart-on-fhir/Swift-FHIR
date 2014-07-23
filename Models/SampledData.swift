@@ -61,16 +61,16 @@ public class SampledData: FHIRElement
 			if let val = js["origin"] as? NSDictionary {
 				self.origin = Quantity(json: val)
 			}
-			if let val = js["period"] as? String {
+			if let val = js["period"] as? Double {
 				self.period = NSDecimalNumber(json: val)
 			}
-			if let val = js["factor"] as? String {
+			if let val = js["factor"] as? Double {
 				self.factor = NSDecimalNumber(json: val)
 			}
-			if let val = js["lowerLimit"] as? String {
+			if let val = js["lowerLimit"] as? Double {
 				self.lowerLimit = NSDecimalNumber(json: val)
 			}
-			if let val = js["upperLimit"] as? String {
+			if let val = js["upperLimit"] as? Double {
 				self.upperLimit = NSDecimalNumber(json: val)
 			}
 			if let val = js["dimensions"] as? Int {

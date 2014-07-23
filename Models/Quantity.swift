@@ -37,7 +37,7 @@ public class Quantity: FHIRElement
 	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["value"] as? String {
+			if let val = js["value"] as? Double {
 				self.value = NSDecimalNumber(json: val)
 			}
 			if let val = js["comparator"] as? String {

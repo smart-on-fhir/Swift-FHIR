@@ -161,13 +161,13 @@ public class LocationPosition: FHIRElement
 	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["longitude"] as? String {
+			if let val = js["longitude"] as? Double {
 				self.longitude = NSDecimalNumber(json: val)
 			}
-			if let val = js["latitude"] as? String {
+			if let val = js["latitude"] as? Double {
 				self.latitude = NSDecimalNumber(json: val)
 			}
-			if let val = js["altitude"] as? String {
+			if let val = js["altitude"] as? Double {
 				self.altitude = NSDecimalNumber(json: val)
 			}
 		}

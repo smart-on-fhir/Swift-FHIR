@@ -11,18 +11,18 @@ import Foundation
 let FHIRSearchErrorDomain = "FHIRSearchErrorDomain"
 
 
-/*!
+/**
  *  Instances of this class are used to construct parameters for a FHIR search.
  */
-class FHIRSearchParam
+public class FHIRSearchParam
 {
-	/*! The name of the search parameter. */
-	var subject: String?
+	/** The name of the search parameter. */
+	public var subject: String?
 	
-	/*! The first search parameter must define a profile type to which the search is applied. */
-	var profileType: FHIRResource.Type?
+	/** The first search parameter must define a profile type to which the search is applied. */
+	public var profileType: FHIRResource.Type?
 	
-	/*! The preceding search param instance in a chain. */
+	/** The preceding search param instance in a chain. */
 	var previous: FHIRSearchParam? {
 	didSet(oldPrev) {
 		if previous && self !== previous!.next {
@@ -34,7 +34,7 @@ class FHIRSearchParam
 	}
 	}
 	
-	/*! The next search param in a chain. */
+	/** The next search param in a chain. */
 	weak var next: FHIRSearchParam? {
 	didSet(oldNext) {
 		if next && self !== next!.previous {
@@ -46,59 +46,59 @@ class FHIRSearchParam
 	}
 	}
 	
-	/*! On which profiles the receiver's subject is supported; can be used for validation. */
-	var supportedProfiles: [String]?
+	/** On which profiles the receiver's subject is supported; can be used for validation. */
+	public var supportedProfiles: [String]?
 	
 	
-	/*! The param's value is a string.
+	/** The param's value is a string.
 	 *  http://www.hl7.org/implement/standards/fhir/search.html#string
 	 */
-	var string: String?
+	public var string: String?
 	
-	/*! The param's value is a token. Can be modified with `tokenAsText`.
+	/** The param's value is a token. Can be modified with `tokenAsText`.
 	 *  http://www.hl7.org/implement/standards/fhir/search.html#token
 	 */
-	var token: String?
+	public var token: String?
 	
-	/*! The param describes a numerical value.
+	/** The param describes a numerical value.
 	 *  http://www.hl7.org/implement/standards/fhir/search.html#number
 	 */
-	var number: Float?
+	public var number: Float?
 	
-	/*! The param's value is a date string.
+	/** The param's value is a date string.
 	 *  http://www.hl7.org/implement/standards/fhir/search.html#date
 	 */
-	var date: String?
+	public var date: String?
 	
-	/*! The param describes a numerical quantity.
+	/** The param describes a numerical quantity.
 	 *  http://www.hl7.org/implement/standards/fhir/search.html#quantity
 	 */
-	var quantity: String?
+	public var quantity: String?
 	
-	/*! The param's value is a reference.
+	/** The param's value is a reference.
 	 *  http://www.hl7.org/implement/standards/fhir/search.html#reference
 	 */
-	var reference: String?
+	public var reference: String?
 	
-	/*! A composite search parameter.
+	/** A composite search parameter.
 	 *  http://www.hl7.org/implement/standards/fhir/search.html#combining
 	 */
-	var composite: [String: String]?
+	public var composite: [String: String]?
 	
 	
 	// Modifiers: http://www.hl7.org/implement/standards/fhir/search.html#modifiers
 	
-	/*! If `true` we're looking for a missing parameter. */
-	var missing: Bool?
+	/** If `true` we're looking for a missing parameter. */
+	public var missing: Bool?
 	
-	/*! Only needed for strings; if `true` the match must be exact. */
-	var stringExact = false
+	/** Only needed for strings; if `true` the match must be exact. */
+	public var stringExact = false
 	
-	/*! Only needed for tokens; if `true` the token should be queried like text. */
-	var tokenAsText = false
+	/** Only needed for tokens; if `true` the token should be queried like text. */
+	public var tokenAsText = false
 	
-	/*! Only needed for references: the type of the reference. */
-	var referenceType: String?
+	/** Only needed for references: the type of the reference. */
+	public var referenceType: String?
 	
 	
 	init(subject: String?) {
@@ -173,20 +173,20 @@ class FHIRSearchParam
 	}
 	
 	
-	// MARK: Construction
+	// MARK: - Construction
 	
 	func asParam() -> String {
 		if subject {
 			if missing {
-				return "\(subject):missing=" + (missing! ? "true" : "false")
+				return "\(subject!):missing=" + (missing! ? "true" : "false")		// TODO: bug in beta 4, `subject` should implicitly unwrap
 			}
 			if string && stringExact {
-				return "\(subject):exact=\(paramValue())"
+				return "\(subject!):exact=\(paramValue())"
 			}
 			if token && tokenAsText {
-				return "\(subject):text=\(paramValue())"
+				return "\(subject!):text=\(paramValue())"
 			}
-			return "\(subject)=\(paramValue())"
+			return "\(subject!)=\(paramValue())"
 		}
 		return ""
 	}
@@ -213,12 +213,12 @@ class FHIRSearchParam
 		return ""
 	}
 	
-	/*!
+	/**
 	 *  Construct the search param string, if the receiver is part of a chain BACK TO the first search param in a chain.
 	 *
 	 *  Use the `last` method to get the last param of a chain, then construct the parameter string of the whole chain.
 	 */
-	func construct() -> String {
+	public func construct() -> String {
 		var path = ""
 		if previous {
 			if subject {
@@ -241,16 +241,16 @@ class FHIRSearchParam
 	}
 	
 	
-	// MARK: Running Search
+	// MARK: - Running Search
 	
-	/*!
+	/**
 	 *  Usually called on the **last** search param in a chain; creates the search URL from itself and its preceding
 	 *  siblings, then performs a GET on the server, returning an error or an array of resources in the callback.
 	 *
 	 *  TODO: it would be nice to have the callback's `results` type be the expected type instead of the FHIRResource
 	 *  superclass, I'm not sure how to achieve that elegantly.
 	 */
-	func perform(server: FHIRServer, callback: ((results: [FHIRResource]?, error: NSError?) -> Void)) {
+	public func perform(server: FHIRServer, callback: ((results: [FHIRResource]?, error: NSError?) -> Void)) {
 		let type = first().profileType
 		if !type {
 			let err = NSError(domain: FHIRSearchErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Cannot find the profile type against which to run the search"])
@@ -268,7 +268,7 @@ class FHIRSearchParam
 				
 				// instantiate results
 				if let entries = json?["entry"] as? NSArray {
-					//println("JSON response: \(json)")
+					println("JSON response: \(json)")
 					var res: [FHIRResource] = []
 					for dict in entries {
 						if let dc = dict as? NSDictionary {
@@ -296,7 +296,7 @@ class FHIRSearchParam
 	}
 	
 	
-	// MARK: Chaining
+	// MARK: - Chaining
 	
 	func first() -> FHIRSearchParam {
 		if previous {

@@ -2,14 +2,14 @@
 //  Immunization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Immunization event information.
  *
  *  Scope and Usage The immunization resource is intended to cover the administration of vaccines to patients
@@ -22,26 +22,26 @@ import Foundation
  *  group - is believed to meet key use cases and information requirements as defined in the existing HL7 v2.x
  *  immunization implementation guide, HL7 v3 POIZ domain and Immunization Domain Analysis Model.
  */
-class Immunization: FHIRResource
+public class Immunization: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Immunization" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Business identifier */
-	var identifier: [Identifier]?
+	/** Business identifier */
+	public var identifier: [Identifier]?
 	
-	/*! Vaccination administration date */
-	var date: NSDate?
+	/** Vaccination administration date */
+	public var date: NSDate?
 	
-	/*! Vaccine product administered */
-	var vaccineType: CodeableConcept?
+	/** Vaccine product administered */
+	public var vaccineType: CodeableConcept?
 	
-	/*! Who was immunized? */
-	var subject: FHIRElement? {
+	/** Who was immunized? */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -50,14 +50,14 @@ class Immunization: FHIRResource
 		}
 	}
 	
-	/*! Was immunization refused? */
-	var refusedIndicator: Bool?
+	/** Was immunization refused? */
+	public var refusedIndicator: Bool?
 	
-	/*! Is this a self-reported record? */
-	var reported: Bool?
+	/** Is this a self-reported record? */
+	public var reported: Bool?
 	
-	/*! Who administered vaccine? */
-	var performer: FHIRElement? {
+	/** Who administered vaccine? */
+	public var performer: FHIRElement? {
 		get { return resolveReference("performer") }
 		set {
 			if newValue {
@@ -66,8 +66,8 @@ class Immunization: FHIRResource
 		}
 	}
 	
-	/*! Who ordered vaccination? */
-	var requester: FHIRElement? {
+	/** Who ordered vaccination? */
+	public var requester: FHIRElement? {
 		get { return resolveReference("requester") }
 		set {
 			if newValue {
@@ -76,8 +76,8 @@ class Immunization: FHIRResource
 		}
 	}
 	
-	/*! Vaccine manufacturer */
-	var manufacturer: FHIRElement? {
+	/** Vaccine manufacturer */
+	public var manufacturer: FHIRElement? {
 		get { return resolveReference("manufacturer") }
 		set {
 			if newValue {
@@ -86,8 +86,8 @@ class Immunization: FHIRResource
 		}
 	}
 	
-	/*! Where did vaccination occur? */
-	var location: FHIRElement? {
+	/** Where did vaccination occur? */
+	public var location: FHIRElement? {
 		get { return resolveReference("location") }
 		set {
 			if newValue {
@@ -96,31 +96,31 @@ class Immunization: FHIRResource
 		}
 	}
 	
-	/*! Vaccine lot number */
-	var lotNumber: String?
+	/** Vaccine lot number */
+	public var lotNumber: String?
 	
-	/*! Vaccine expiration date */
-	var expirationDate: NSDate?
+	/** Vaccine expiration date */
+	public var expirationDate: NSDate?
 	
-	/*! Body site vaccine  was administered */
-	var site: CodeableConcept?
+	/** Body site vaccine  was administered */
+	public var site: CodeableConcept?
 	
-	/*! How vaccine entered body */
-	var route: CodeableConcept?
+	/** How vaccine entered body */
+	public var route: CodeableConcept?
 	
-	/*! Amount of vaccine administered */
-	var doseQuantity: Quantity?
+	/** Amount of vaccine administered */
+	public var doseQuantity: Quantity?
 	
-	/*! Administration / refusal reasons */
-	var explanation: ImmunizationExplanation?
+	/** Administration / refusal reasons */
+	public var explanation: ImmunizationExplanation?
 	
-	/*! Details of a reaction that follows immunization */
-	var reaction: [ImmunizationReaction]?
+	/** Details of a reaction that follows immunization */
+	public var reaction: [ImmunizationReaction]?
 	
-	/*! What protocol was followed */
-	var vaccinationProtocol: [ImmunizationVaccinationProtocol]?
+	/** What protocol was followed */
+	public var vaccinationProtocol: [ImmunizationVaccinationProtocol]?
 	
-	convenience init(date: NSDate?, vaccineType: CodeableConcept?, subject: ResourceReference?, refusedIndicator: Bool?, reported: Bool?) {
+	public convenience init(date: NSDate?, vaccineType: CodeableConcept?, subject: ResourceReference?, refusedIndicator: Bool?, reported: Bool?) {
 		self.init(json: nil)
 		if date {
 			self.date = date
@@ -139,7 +139,7 @@ class Immunization: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -204,21 +204,21 @@ class Immunization: FHIRResource
 }
 
 
-/*!
+/**
  *  Administration / refusal reasons.
  *
  *  Reasons why a vaccine was administered or refused.
  */
-class ImmunizationExplanation: FHIRElement
+public class ImmunizationExplanation: FHIRElement
 {	
-	/*! Why immunization occurred */
-	var reason: [CodeableConcept]?
+	/** Why immunization occurred */
+	public var reason: [CodeableConcept]?
 	
-	/*! Why immunization did not occur */
-	var refusalReason: [CodeableConcept]?
+	/** Why immunization did not occur */
+	public var refusalReason: [CodeableConcept]?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["reason"] as? [NSDictionary] {
@@ -232,18 +232,18 @@ class ImmunizationExplanation: FHIRElement
 }
 
 
-/*!
+/**
  *  Details of a reaction that follows immunization.
  *
  *  Categorical data indicating that an adverse event is associated in time to an immunization.
  */
-class ImmunizationReaction: FHIRElement
+public class ImmunizationReaction: FHIRElement
 {	
-	/*! When did reaction start? */
-	var date: NSDate?
+	/** When did reaction start? */
+	public var date: NSDate?
 	
-	/*! Additional information on reaction */
-	var detail: FHIRElement? {
+	/** Additional information on reaction */
+	public var detail: FHIRElement? {
 		get { return resolveReference("detail") }
 		set {
 			if newValue {
@@ -252,11 +252,11 @@ class ImmunizationReaction: FHIRElement
 		}
 	}
 	
-	/*! Was reaction self-reported? */
-	var reported: Bool?
+	/** Was reaction self-reported? */
+	public var reported: Bool?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
@@ -273,21 +273,21 @@ class ImmunizationReaction: FHIRElement
 }
 
 
-/*!
+/**
  *  What protocol was followed.
  *
  *  Contains information about the protocol(s) under which the vaccine was administered.
  */
-class ImmunizationVaccinationProtocol: FHIRElement
+public class ImmunizationVaccinationProtocol: FHIRElement
 {	
-	/*! What dose number within series? */
-	var doseSequence: Int?
+	/** What dose number within series? */
+	public var doseSequence: Int?
 	
-	/*! Details of vaccine protocol */
-	var description: String?
+	/** Details of vaccine protocol */
+	public var description: String?
 	
-	/*! Who is responsible for protocol */
-	var authority: FHIRElement? {
+	/** Who is responsible for protocol */
+	public var authority: FHIRElement? {
 		get { return resolveReference("authority") }
 		set {
 			if newValue {
@@ -296,22 +296,22 @@ class ImmunizationVaccinationProtocol: FHIRElement
 		}
 	}
 	
-	/*! Name of vaccine series */
-	var series: String?
+	/** Name of vaccine series */
+	public var series: String?
 	
-	/*! Recommended number of doses for immunity */
-	var seriesDoses: Int?
+	/** Recommended number of doses for immunity */
+	public var seriesDoses: Int?
 	
-	/*! Disease immunized against */
-	var doseTarget: CodeableConcept?
+	/** Disease immunized against */
+	public var doseTarget: CodeableConcept?
 	
-	/*! Does dose count towards immunity? */
-	var doseStatus: CodeableConcept?
+	/** Does dose count towards immunity? */
+	public var doseStatus: CodeableConcept?
 	
-	/*! Why does does count/not count? */
-	var doseStatusReason: CodeableConcept?
+	/** Why does does count/not count? */
+	public var doseStatusReason: CodeableConcept?
 	
-	convenience init(doseSequence: Int?, doseTarget: CodeableConcept?, doseStatus: CodeableConcept?) {
+	public convenience init(doseSequence: Int?, doseTarget: CodeableConcept?, doseStatus: CodeableConcept?) {
 		self.init(json: nil)
 		if doseSequence {
 			self.doseSequence = doseSequence
@@ -324,7 +324,7 @@ class ImmunizationVaccinationProtocol: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["doseSequence"] as? Int {

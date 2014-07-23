@@ -2,48 +2,48 @@
 //  Address.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A postal address.
  */
-class Address: FHIRElement
+public class Address: FHIRElement
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Address" }
 	}
 	
-	/*! home | work | temp | old - purpose of this address */
-	var use: String?
+	/** home | work | temp | old - purpose of this address */
+	public var use: String?
 	
-	/*! Text representation of the address */
-	var text: String?
+	/** Text representation of the address */
+	public var text: String?
 	
-	/*! Street name, number, direction & P.O. Box etc */
-	var line: [String]?
+	/** Street name, number, direction & P.O. Box etc */
+	public var line: [String]?
 	
-	/*! Name of city, town etc. */
-	var city: String?
+	/** Name of city, town etc. */
+	public var city: String?
 	
-	/*! Sub-unit of country (abreviations ok) */
-	var state: String?
+	/** Sub-unit of country (abreviations ok) */
+	public var state: String?
 	
-	/*! Postal code for area */
-	var zip: String?
+	/** Postal code for area */
+	public var zip: String?
 	
-	/*! Country (can be ISO 3166 3 letter code) */
-	var country: String?
+	/** Country (can be ISO 3166 3 letter code) */
+	public var country: String?
 	
-	/*! Time period when address was/is in use */
-	var period: Period?
+	/** Time period when address was/is in use */
+	public var period: Period?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["use"] as? String {

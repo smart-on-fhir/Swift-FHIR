@@ -2,14 +2,14 @@
 //  DiagnosticReport.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A Diagnostic report - a combination of request information, atomic results, images, interpretation, as well as
  *  formatted reports.
  *
@@ -28,26 +28,26 @@ import Foundation
  *  of past and present results in the resource). The Diagnostic Report resource does not yet provide full support
  *  for detailed structured reports of sequencing; this is planned for a future release.
  */
-class DiagnosticReport: FHIRResource
+public class DiagnosticReport: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "DiagnosticReport" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Name/Code for this diagnostic report */
-	var name: CodeableConcept?
+	/** Name/Code for this diagnostic report */
+	public var name: CodeableConcept?
 	
-	/*! registered | partial | final | corrected + */
-	var status: String?
+	/** registered | partial | final | corrected + */
+	public var status: String?
 	
-	/*! Date this version was released */
-	var issued: NSDate?
+	/** Date this version was released */
+	public var issued: NSDate?
 	
-	/*! The subject of the report, usually, but not always, the patient */
-	var subject: FHIRElement? {
+	/** The subject of the report, usually, but not always, the patient */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -56,8 +56,8 @@ class DiagnosticReport: FHIRResource
 		}
 	}
 	
-	/*! Responsible Diagnostic Service */
-	var performer: FHIRElement? {
+	/** Responsible Diagnostic Service */
+	public var performer: FHIRElement? {
 		get { return resolveReference("performer") }
 		set {
 			if newValue {
@@ -66,11 +66,11 @@ class DiagnosticReport: FHIRResource
 		}
 	}
 	
-	/*! Id for external references to this report */
-	var identifier: Identifier?
+	/** Id for external references to this report */
+	public var identifier: Identifier?
 	
-	/*! What was requested */
-	var requestDetail: [FHIRElement]? {
+	/** What was requested */
+	public var requestDetail: [FHIRElement]? {
 		get { return resolveReferences("requestDetail") }
 		set {
 			if newValue {
@@ -79,17 +79,17 @@ class DiagnosticReport: FHIRResource
 		}
 	}
 	
-	/*! Biochemistry, Hematology etc. */
-	var serviceCategory: CodeableConcept?
+	/** Biochemistry, Hematology etc. */
+	public var serviceCategory: CodeableConcept?
 	
-	/*! Physiologically Relevant time/time-period for report */
-	var diagnosticDateTime: NSDate?
+	/** Physiologically Relevant time/time-period for report */
+	public var diagnosticDateTime: NSDate?
 	
-	/*! Physiologically Relevant time/time-period for report */
-	var diagnosticPeriod: Period?
+	/** Physiologically Relevant time/time-period for report */
+	public var diagnosticPeriod: Period?
 	
-	/*! Specimens this report is based on */
-	var specimen: [FHIRElement]? {
+	/** Specimens this report is based on */
+	public var specimen: [FHIRElement]? {
 		get { return resolveReferences("specimen") }
 		set {
 			if newValue {
@@ -98,8 +98,8 @@ class DiagnosticReport: FHIRResource
 		}
 	}
 	
-	/*! Observations - simple, or complex nested groups */
-	var result: [FHIRElement]? {
+	/** Observations - simple, or complex nested groups */
+	public var result: [FHIRElement]? {
 		get { return resolveReferences("result") }
 		set {
 			if newValue {
@@ -108,8 +108,8 @@ class DiagnosticReport: FHIRResource
 		}
 	}
 	
-	/*! Reference to full details of imaging associated with the diagnostic report */
-	var imagingStudy: [FHIRElement]? {
+	/** Reference to full details of imaging associated with the diagnostic report */
+	public var imagingStudy: [FHIRElement]? {
 		get { return resolveReferences("imagingStudy") }
 		set {
 			if newValue {
@@ -118,19 +118,19 @@ class DiagnosticReport: FHIRResource
 		}
 	}
 	
-	/*! Key images associated with this report */
-	var image: [DiagnosticReportImage]?
+	/** Key images associated with this report */
+	public var image: [DiagnosticReportImage]?
 	
-	/*! Clinical Interpretation of test results */
-	var conclusion: String?
+	/** Clinical Interpretation of test results */
+	public var conclusion: String?
 	
-	/*! Codes for the conclusion */
-	var codedDiagnosis: [CodeableConcept]?
+	/** Codes for the conclusion */
+	public var codedDiagnosis: [CodeableConcept]?
 	
-	/*! Entire Report as issued */
-	var presentedForm: [Attachment]?
+	/** Entire Report as issued */
+	public var presentedForm: [Attachment]?
 	
-	convenience init(name: CodeableConcept?, status: String?, issued: NSDate?, subject: ResourceReference?, performer: ResourceReference?, diagnosticDateTime: NSDate?, diagnosticPeriod: Period?) {
+	public convenience init(name: CodeableConcept?, status: String?, issued: NSDate?, subject: ResourceReference?, performer: ResourceReference?, diagnosticDateTime: NSDate?, diagnosticPeriod: Period?) {
 		self.init(json: nil)
 		if name {
 			self.name = name
@@ -155,7 +155,7 @@ class DiagnosticReport: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -217,19 +217,19 @@ class DiagnosticReport: FHIRResource
 }
 
 
-/*!
+/**
  *  Key images associated with this report.
  *
  *  A list of key images associated with this report. The images are generally created during the diagnostic
  *  process, and may be directly of the patient, or of treated specimens (i.e. slides of interest).
  */
-class DiagnosticReportImage: FHIRElement
+public class DiagnosticReportImage: FHIRElement
 {	
-	/*! Comment about the image (e.g. explanation) */
-	var comment: String?
+	/** Comment about the image (e.g. explanation) */
+	public var comment: String?
 	
-	/*! Reference to the image source */
-	var link: FHIRElement? {
+	/** Reference to the image source */
+	public var link: FHIRElement? {
 		get { return resolveReference("link") }
 		set {
 			if newValue {
@@ -238,14 +238,14 @@ class DiagnosticReportImage: FHIRElement
 		}
 	}
 	
-	convenience init(link: ResourceReference?) {
+	public convenience init(link: ResourceReference?) {
 		self.init(json: nil)
 		if link {
 			self.link = link
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["comment"] as? String {

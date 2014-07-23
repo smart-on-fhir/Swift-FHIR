@@ -2,14 +2,14 @@
 //  Medication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Definition of a Medication.
  *
  *  Scope and Usage Representing Medication in the majority of healthcare settings is a matter of identifying an
@@ -35,26 +35,26 @@ import Foundation
  *  ingredients may be other medications or substances. A package has a container (vacuum packed box, jar, etc.)
  *  and a list of the products or other packages that are in the package.
  */
-class Medication: FHIRResource
+public class Medication: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Medication" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Common / Commercial name */
-	var name: String?
+	/** Common / Commercial name */
+	public var name: String?
 	
-	/*! Codes that identify this medication */
-	var code: CodeableConcept?
+	/** Codes that identify this medication */
+	public var code: CodeableConcept?
 	
-	/*! True if a brand */
-	var isBrand: Bool?
+	/** True if a brand */
+	public var isBrand: Bool?
 	
-	/*! Manufacturer of the item */
-	var manufacturer: FHIRElement? {
+	/** Manufacturer of the item */
+	public var manufacturer: FHIRElement? {
 		get { return resolveReference("manufacturer") }
 		set {
 			if newValue {
@@ -63,17 +63,17 @@ class Medication: FHIRResource
 		}
 	}
 	
-	/*! product | package */
-	var kind: String?
+	/** product | package */
+	public var kind: String?
 	
-	/*! Administrable medication details */
-	var product: MedicationProduct?
+	/** Administrable medication details */
+	public var product: MedicationProduct?
 	
-	/*! Details about packaged medications */
-	var package: MedicationPackage?
+	/** Details about packaged medications */
+	public var package: MedicationPackage?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -105,21 +105,21 @@ class Medication: FHIRResource
 }
 
 
-/*!
+/**
  *  Administrable medication details.
  *
  *  Information that only applies to products (not packages).
  */
-class MedicationProduct: FHIRElement
+public class MedicationProduct: FHIRElement
 {	
-	/*! powder | tablets | carton + */
-	var form: CodeableConcept?
+	/** powder | tablets | carton + */
+	public var form: CodeableConcept?
 	
-	/*! Active or inactive ingredient */
-	var ingredient: [MedicationProductIngredient]?
+	/** Active or inactive ingredient */
+	public var ingredient: [MedicationProductIngredient]?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["form"] as? NSDictionary {
@@ -133,15 +133,15 @@ class MedicationProduct: FHIRElement
 }
 
 
-/*!
+/**
  *  Active or inactive ingredient.
  *
  *  Identifies a particular constituent of interest in the product.
  */
-class MedicationProductIngredient: FHIRElement
+public class MedicationProductIngredient: FHIRElement
 {	
-	/*! The product contained */
-	var item: FHIRElement? {
+	/** The product contained */
+	public var item: FHIRElement? {
 		get { return resolveReference("item") }
 		set {
 			if newValue {
@@ -150,17 +150,17 @@ class MedicationProductIngredient: FHIRElement
 		}
 	}
 	
-	/*! How much ingredient in product */
-	var amount: Ratio?
+	/** How much ingredient in product */
+	public var amount: Ratio?
 	
-	convenience init(item: ResourceReference?) {
+	public convenience init(item: ResourceReference?) {
 		self.init(json: nil)
 		if item {
 			self.item = item
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["item"] as? NSDictionary {
@@ -174,21 +174,21 @@ class MedicationProductIngredient: FHIRElement
 }
 
 
-/*!
+/**
  *  Details about packaged medications.
  *
  *  Information that only applies to packages (not products).
  */
-class MedicationPackage: FHIRElement
+public class MedicationPackage: FHIRElement
 {	
-	/*! E.g. box, vial, blister-pack */
-	var container: CodeableConcept?
+	/** E.g. box, vial, blister-pack */
+	public var container: CodeableConcept?
 	
-	/*! What is  in the package? */
-	var content: [MedicationPackageContent]?
+	/** What is  in the package? */
+	public var content: [MedicationPackageContent]?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["container"] as? NSDictionary {
@@ -202,15 +202,15 @@ class MedicationPackage: FHIRElement
 }
 
 
-/*!
+/**
  *  What is  in the package?.
  *
  *  A set of components that go to make up the described item.
  */
-class MedicationPackageContent: FHIRElement
+public class MedicationPackageContent: FHIRElement
 {	
-	/*! A product in the package */
-	var item: FHIRElement? {
+	/** A product in the package */
+	public var item: FHIRElement? {
 		get { return resolveReference("item") }
 		set {
 			if newValue {
@@ -219,17 +219,17 @@ class MedicationPackageContent: FHIRElement
 		}
 	}
 	
-	/*! How many are in the package? */
-	var amount: Quantity?
+	/** How many are in the package? */
+	public var amount: Quantity?
 	
-	convenience init(item: ResourceReference?) {
+	public convenience init(item: ResourceReference?) {
 		self.init(json: nil)
 		if item {
 			self.item = item
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["item"] as? NSDictionary {

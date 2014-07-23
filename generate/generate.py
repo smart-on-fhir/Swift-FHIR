@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 #
 #  Download and parse FHIR resource definitions
+#  Supply "-f" to force a redownload of the spec
 
+import sys
 import os.path
 import glob
 import re
@@ -65,7 +67,7 @@ skip_properties = [
 	'contained',
 ]
 
-jinjaenv = Environment(loader=PackageLoader('parse', '.'))
+jinjaenv = Environment(loader=PackageLoader('generate', '.'))
 
 
 def download(url, path):
@@ -359,6 +361,11 @@ def _wrap(text):
 
 
 if '__main__' == __name__:
+	
+	# start from scratch?
+	if len(sys.argv) > 1 and '-f' == sys.argv[1]:
+		if os.path.isdir(cache):
+			os.rmdir(cache)
 	
 	# download spec if needed and extract
 	path_spec = os.path.join(cache, os.path.split(url_spec)[1])

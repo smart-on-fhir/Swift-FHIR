@@ -2,14 +2,14 @@
 //  Specimen.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Sample for analysis.
  *
  *  Scope and Usage Any material sample:
@@ -24,26 +24,26 @@ import Foundation
  *  specimen originated. This is distinct from the use of Substance which is only used when these other aspects
  *  are not relevant.
  */
-class Specimen: FHIRResource
+public class Specimen: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Specimen" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! External Identifier */
-	var identifier: [Identifier]?
+	/** External Identifier */
+	public var identifier: [Identifier]?
 	
-	/*! Kind of material that forms the specimen */
-	var type: CodeableConcept?
+	/** Kind of material that forms the specimen */
+	public var type: CodeableConcept?
 	
-	/*! Parent of specimen */
-	var source: [SpecimenSource]?
+	/** Parent of specimen */
+	public var source: [SpecimenSource]?
 	
-	/*! Where the specimen came from. This may be the patient(s) or from the environment or  a device */
-	var subject: FHIRElement? {
+	/** Where the specimen came from. This may be the patient(s) or from the environment or  a device */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -52,22 +52,22 @@ class Specimen: FHIRResource
 		}
 	}
 	
-	/*! Identifier assigned by the lab */
-	var accessionIdentifier: Identifier?
+	/** Identifier assigned by the lab */
+	public var accessionIdentifier: Identifier?
 	
-	/*! The time when specimen was received for processing */
-	var receivedTime: NSDate?
+	/** The time when specimen was received for processing */
+	public var receivedTime: NSDate?
 	
-	/*! Collection details */
-	var collection: SpecimenCollection?
+	/** Collection details */
+	public var collection: SpecimenCollection?
 	
-	/*! Treatment and processing step details */
-	var treatment: [SpecimenTreatment]?
+	/** Treatment and processing step details */
+	public var treatment: [SpecimenTreatment]?
 	
-	/*! Direct container of specimen (tube/slide, etc) */
-	var container: [SpecimenContainer]?
+	/** Direct container of specimen (tube/slide, etc) */
+	public var container: [SpecimenContainer]?
 	
-	convenience init(subject: ResourceReference?, collection: SpecimenCollection?) {
+	public convenience init(subject: ResourceReference?, collection: SpecimenCollection?) {
 		self.init(json: nil)
 		if subject {
 			self.subject = subject
@@ -77,7 +77,7 @@ class Specimen: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -115,18 +115,18 @@ class Specimen: FHIRResource
 }
 
 
-/*!
+/**
  *  Parent of specimen.
  *
  *  Parent specimen from which the focal specimen was a component.
  */
-class SpecimenSource: FHIRElement
+public class SpecimenSource: FHIRElement
 {	
-	/*! parent | child */
-	var relationship: String?
+	/** parent | child */
+	public var relationship: String?
 	
-	/*! The subject of the relationship */
-	var target: [FHIRElement]? {
+	/** The subject of the relationship */
+	public var target: [FHIRElement]? {
 		get { return resolveReferences("target") }
 		set {
 			if newValue {
@@ -135,14 +135,14 @@ class SpecimenSource: FHIRElement
 		}
 	}
 	
-	convenience init(relationship: String?) {
+	public convenience init(relationship: String?) {
 		self.init(json: nil)
 		if relationship {
 			self.relationship = relationship
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["relationship"] as? String {
@@ -156,15 +156,15 @@ class SpecimenSource: FHIRElement
 }
 
 
-/*!
+/**
  *  Collection details.
  *
  *  Details concerning the specimen collection.
  */
-class SpecimenCollection: FHIRElement
+public class SpecimenCollection: FHIRElement
 {	
-	/*! Who collected the specimen */
-	var collector: FHIRElement? {
+	/** Who collected the specimen */
+	public var collector: FHIRElement? {
 		get { return resolveReference("collector") }
 		set {
 			if newValue {
@@ -173,26 +173,26 @@ class SpecimenCollection: FHIRElement
 		}
 	}
 	
-	/*! Collector comments */
-	var comment: [String]?
+	/** Collector comments */
+	public var comment: [String]?
 	
-	/*! Collection time */
-	var collectedDateTime: NSDate?
+	/** Collection time */
+	public var collectedDateTime: NSDate?
 	
-	/*! Collection time */
-	var collectedPeriod: Period?
+	/** Collection time */
+	public var collectedPeriod: Period?
 	
-	/*! The quantity of specimen collected */
-	var quantity: Quantity?
+	/** The quantity of specimen collected */
+	public var quantity: Quantity?
 	
-	/*! Technique used to perform collection */
-	var method: CodeableConcept?
+	/** Technique used to perform collection */
+	public var method: CodeableConcept?
 	
-	/*! Anatomical collection site */
-	var sourceSite: CodeableConcept?
+	/** Anatomical collection site */
+	public var sourceSite: CodeableConcept?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["collector"] as? NSDictionary {
@@ -221,21 +221,21 @@ class SpecimenCollection: FHIRElement
 }
 
 
-/*!
+/**
  *  Treatment and processing step details.
  *
  *  Details concerning treatment and processing steps for the specimen.
  */
-class SpecimenTreatment: FHIRElement
+public class SpecimenTreatment: FHIRElement
 {	
-	/*! Textual description of procedure */
-	var description: String?
+	/** Textual description of procedure */
+	public var description: String?
 	
-	/*! Indicates the treatment or processing step  applied to the specimen */
-	var procedure: CodeableConcept?
+	/** Indicates the treatment or processing step  applied to the specimen */
+	public var procedure: CodeableConcept?
 	
-	/*! Material used in the processing step */
-	var additive: [FHIRElement]? {
+	/** Material used in the processing step */
+	public var additive: [FHIRElement]? {
 		get { return resolveReferences("additive") }
 		set {
 			if newValue {
@@ -245,7 +245,7 @@ class SpecimenTreatment: FHIRElement
 	}
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
@@ -262,31 +262,31 @@ class SpecimenTreatment: FHIRElement
 }
 
 
-/*!
+/**
  *  Direct container of specimen (tube/slide, etc).
  *
  *  The container holding the specimen.  The recursive nature of containers; i.e. blood in tube in tray in rack is
  *  not addressed here.
  */
-class SpecimenContainer: FHIRElement
+public class SpecimenContainer: FHIRElement
 {	
-	/*! Id for the container */
-	var identifier: [Identifier]?
+	/** Id for the container */
+	public var identifier: [Identifier]?
 	
-	/*! Textual description of the container */
-	var description: String?
+	/** Textual description of the container */
+	public var description: String?
 	
-	/*! Kind of container directly associated with specimen */
-	var type: CodeableConcept?
+	/** Kind of container directly associated with specimen */
+	public var type: CodeableConcept?
 	
-	/*! Container volume or size */
-	var capacity: Quantity?
+	/** Container volume or size */
+	public var capacity: Quantity?
 	
-	/*! Quantity of specimen within container */
-	var specimenQuantity: Quantity?
+	/** Quantity of specimen within container */
+	public var specimenQuantity: Quantity?
 	
-	/*! Additive associated with container */
-	var additive: FHIRElement? {
+	/** Additive associated with container */
+	public var additive: FHIRElement? {
 		get { return resolveReference("additive") }
 		set {
 			if newValue {
@@ -296,7 +296,7 @@ class SpecimenContainer: FHIRElement
 	}
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? [NSDictionary] {

@@ -2,14 +2,14 @@
 //  Encounter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  An interaction during which services are provided to the patient.
  *
  *  Scope and Usage A patient encounter is further characterized by the setting in which it takes place. Amongst
@@ -35,29 +35,29 @@ import Foundation
  *  including using Encounters elements to reflect the planned start date, planned accommodation or planned
  *  encounter locations. In this case the status element is set to 'planned'.
  */
-class Encounter: FHIRResource
+public class Encounter: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Encounter" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Identifier(s) by which this encounter is known */
-	var identifier: [Identifier]?
+	/** Identifier(s) by which this encounter is known */
+	public var identifier: [Identifier]?
 	
-	/*! planned | in progress | onleave | finished | cancelled */
-	var status: String?
+	/** planned | in progress | onleave | finished | cancelled */
+	public var status: String?
 	
-	/*! inpatient | outpatient | ambulatory | emergency + */
-	var klass: String?
+	/** inpatient | outpatient | ambulatory | emergency + */
+	public var klass: String?
 	
-	/*! Specific type of encounter */
-	var type: [CodeableConcept]?
+	/** Specific type of encounter */
+	public var type: [CodeableConcept]?
 	
-	/*! The patient present at the encounter */
-	var subject: FHIRElement? {
+	/** The patient present at the encounter */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -66,20 +66,20 @@ class Encounter: FHIRResource
 		}
 	}
 	
-	/*! List of participants involved in the encounter */
-	var participant: [EncounterParticipant]?
+	/** List of participants involved in the encounter */
+	public var participant: [EncounterParticipant]?
 	
-	/*! The start and end time of the encounter */
-	var period: Period?
+	/** The start and end time of the encounter */
+	public var period: Period?
 	
-	/*! Quantity of time the encounter lasted */
-	var length: Double?
+	/** Quantity of time the encounter lasted */
+	public var length: Double?
 	
-	/*! Reason the encounter takes place (code) */
-	var reason: CodeableConcept?
+	/** Reason the encounter takes place (code) */
+	public var reason: CodeableConcept?
 	
-	/*! Reason the encounter takes place (resource) */
-	var indication: FHIRElement? {
+	/** Reason the encounter takes place (resource) */
+	public var indication: FHIRElement? {
 		get { return resolveReference("indication") }
 		set {
 			if newValue {
@@ -88,17 +88,17 @@ class Encounter: FHIRResource
 		}
 	}
 	
-	/*! Indicates the urgency of the encounter */
-	var priority: CodeableConcept?
+	/** Indicates the urgency of the encounter */
+	public var priority: CodeableConcept?
 	
-	/*! Details about an admission to a clinic */
-	var hospitalization: EncounterHospitalization?
+	/** Details about an admission to a clinic */
+	public var hospitalization: EncounterHospitalization?
 	
-	/*! List of locations the patient has been at */
-	var location: [EncounterLocation]?
+	/** List of locations the patient has been at */
+	public var location: [EncounterLocation]?
 	
-	/*! Department or team providing care */
-	var serviceProvider: FHIRElement? {
+	/** Department or team providing care */
+	public var serviceProvider: FHIRElement? {
 		get { return resolveReference("serviceProvider") }
 		set {
 			if newValue {
@@ -107,8 +107,8 @@ class Encounter: FHIRResource
 		}
 	}
 	
-	/*! Another Encounter this encounter is part of */
-	var partOf: FHIRElement? {
+	/** Another Encounter this encounter is part of */
+	public var partOf: FHIRElement? {
 		get { return resolveReference("partOf") }
 		set {
 			if newValue {
@@ -117,7 +117,7 @@ class Encounter: FHIRResource
 		}
 	}
 	
-	convenience init(status: String?, klass: String?) {
+	public convenience init(status: String?, klass: String?) {
 		self.init(json: nil)
 		if status {
 			self.status = status
@@ -127,7 +127,7 @@ class Encounter: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -183,18 +183,18 @@ class Encounter: FHIRResource
 }
 
 
-/*!
+/**
  *  List of participants involved in the encounter.
  *
  *  The main practitioner responsible for providing the service.
  */
-class EncounterParticipant: FHIRElement
+public class EncounterParticipant: FHIRElement
 {	
-	/*! Role of participant in encounter */
-	var type: [CodeableConcept]?
+	/** Role of participant in encounter */
+	public var type: [CodeableConcept]?
 	
-	/*! Persons involved in the encounter other than the patient */
-	var individual: FHIRElement? {
+	/** Persons involved in the encounter other than the patient */
+	public var individual: FHIRElement? {
 		get { return resolveReference("individual") }
 		set {
 			if newValue {
@@ -204,7 +204,7 @@ class EncounterParticipant: FHIRElement
 	}
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? [NSDictionary] {
@@ -218,16 +218,16 @@ class EncounterParticipant: FHIRElement
 }
 
 
-/*!
+/**
  *  Details about an admission to a clinic.
  */
-class EncounterHospitalization: FHIRElement
+public class EncounterHospitalization: FHIRElement
 {	
-	/*! Pre-admission identifier */
-	var preAdmissionIdentifier: Identifier?
+	/** Pre-admission identifier */
+	public var preAdmissionIdentifier: Identifier?
 	
-	/*! The location from which the patient came before admission */
-	var origin: FHIRElement? {
+	/** The location from which the patient came before admission */
+	public var origin: FHIRElement? {
 		get { return resolveReference("origin") }
 		set {
 			if newValue {
@@ -236,26 +236,26 @@ class EncounterHospitalization: FHIRElement
 		}
 	}
 	
-	/*! From where patient was admitted (physician referral, transfer) */
-	var admitSource: CodeableConcept?
+	/** From where patient was admitted (physician referral, transfer) */
+	public var admitSource: CodeableConcept?
 	
-	/*! Period during which the patient was admitted */
-	var period: Period?
+	/** Period during which the patient was admitted */
+	public var period: Period?
 	
-	/*! Where the patient stays during this encounter */
-	var accomodation: [EncounterHospitalizationAccomodation]?
+	/** Where the patient stays during this encounter */
+	public var accomodation: [EncounterHospitalizationAccomodation]?
 	
-	/*! Dietary restrictions for the patient */
-	var diet: CodeableConcept?
+	/** Dietary restrictions for the patient */
+	public var diet: CodeableConcept?
 	
-	/*! Special courtesies (VIP, board member) */
-	var specialCourtesy: [CodeableConcept]?
+	/** Special courtesies (VIP, board member) */
+	public var specialCourtesy: [CodeableConcept]?
 	
-	/*! Wheelchair, translator, stretcher, etc */
-	var specialArrangement: [CodeableConcept]?
+	/** Wheelchair, translator, stretcher, etc */
+	public var specialArrangement: [CodeableConcept]?
 	
-	/*! Location to which the patient is discharged */
-	var destination: FHIRElement? {
+	/** Location to which the patient is discharged */
+	public var destination: FHIRElement? {
 		get { return resolveReference("destination") }
 		set {
 			if newValue {
@@ -264,11 +264,11 @@ class EncounterHospitalization: FHIRElement
 		}
 	}
 	
-	/*! Category or kind of location after discharge */
-	var dischargeDisposition: CodeableConcept?
+	/** Category or kind of location after discharge */
+	public var dischargeDisposition: CodeableConcept?
 	
-	/*! The final diagnosis given a patient before release from the hospital after all testing, surgery, and workup are complete */
-	var dischargeDiagnosis: FHIRElement? {
+	/** The final diagnosis given a patient before release from the hospital after all testing, surgery, and workup are complete */
+	public var dischargeDiagnosis: FHIRElement? {
 		get { return resolveReference("dischargeDiagnosis") }
 		set {
 			if newValue {
@@ -277,11 +277,11 @@ class EncounterHospitalization: FHIRElement
 		}
 	}
 	
-	/*! Is this hospitalization a readmission? */
-	var reAdmission: Bool?
+	/** Is this hospitalization a readmission? */
+	public var reAdmission: Bool?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["preAdmissionIdentifier"] as? NSDictionary {
@@ -325,13 +325,13 @@ class EncounterHospitalization: FHIRElement
 }
 
 
-/*!
+/**
  *  Where the patient stays during this encounter.
  */
-class EncounterHospitalizationAccomodation: FHIRElement
+public class EncounterHospitalizationAccomodation: FHIRElement
 {	
-	/*! The bed that is assigned to the patient */
-	var bed: FHIRElement? {
+	/** The bed that is assigned to the patient */
+	public var bed: FHIRElement? {
 		get { return resolveReference("bed") }
 		set {
 			if newValue {
@@ -340,11 +340,11 @@ class EncounterHospitalizationAccomodation: FHIRElement
 		}
 	}
 	
-	/*! Period during which the patient was assigned the bed */
-	var period: Period?
+	/** Period during which the patient was assigned the bed */
+	public var period: Period?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["bed"] as? NSDictionary {
@@ -358,15 +358,15 @@ class EncounterHospitalizationAccomodation: FHIRElement
 }
 
 
-/*!
+/**
  *  List of locations the patient has been at.
  *
  *  List of locations at which the patient has been.
  */
-class EncounterLocation: FHIRElement
+public class EncounterLocation: FHIRElement
 {	
-	/*! Location the encounter takes place */
-	var location: FHIRElement? {
+	/** Location the encounter takes place */
+	public var location: FHIRElement? {
 		get { return resolveReference("location") }
 		set {
 			if newValue {
@@ -375,10 +375,10 @@ class EncounterLocation: FHIRElement
 		}
 	}
 	
-	/*! Time period during which the patient was present at the location */
-	var period: Period?
+	/** Time period during which the patient was present at the location */
+	public var period: Period?
 	
-	convenience init(location: ResourceReference?, period: Period?) {
+	public convenience init(location: ResourceReference?, period: Period?) {
 		self.init(json: nil)
 		if location {
 			self.location = location
@@ -388,7 +388,7 @@ class EncounterLocation: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["location"] as? NSDictionary {

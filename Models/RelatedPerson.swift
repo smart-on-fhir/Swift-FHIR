@@ -2,14 +2,14 @@
 //  RelatedPerson.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  An person that is related to a patient, but who is not a direct target of care.
  *
  *  Scope and Usage RelatedPersons typically have a personal or non-healthcare-specific professional relationship
@@ -25,20 +25,20 @@ import Foundation
  *  * The owner or trainer of a horse
  *  * A patient's attorney or guardian
  */
-class RelatedPerson: FHIRResource
+public class RelatedPerson: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "RelatedPerson" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! A Human identifier for this person */
-	var identifier: [Identifier]?
+	/** A Human identifier for this person */
+	public var identifier: [Identifier]?
 	
-	/*! The patient this person is related to */
-	var patient: FHIRElement? {
+	/** The patient this person is related to */
+	public var patient: FHIRElement? {
 		get { return resolveReference("patient") }
 		set {
 			if newValue {
@@ -47,32 +47,32 @@ class RelatedPerson: FHIRResource
 		}
 	}
 	
-	/*! The nature of the relationship */
-	var relationship: CodeableConcept?
+	/** The nature of the relationship */
+	public var relationship: CodeableConcept?
 	
-	/*! A name associated with the person */
-	var name: HumanName?
+	/** A name associated with the person */
+	public var name: HumanName?
 	
-	/*! A contact detail for the person */
-	var telecom: [Contact]?
+	/** A contact detail for the person */
+	public var telecom: [Contact]?
 	
-	/*! Gender for administrative purposes */
-	var gender: CodeableConcept?
+	/** Gender for administrative purposes */
+	public var gender: CodeableConcept?
 	
-	/*! Address where the related person can be contacted or visited */
-	var address: Address?
+	/** Address where the related person can be contacted or visited */
+	public var address: Address?
 	
-	/*! Image of the person */
-	var photo: [Attachment]?
+	/** Image of the person */
+	public var photo: [Attachment]?
 	
-	convenience init(patient: ResourceReference?) {
+	public convenience init(patient: ResourceReference?) {
 		self.init(json: nil)
 		if patient {
 			self.patient = patient
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {

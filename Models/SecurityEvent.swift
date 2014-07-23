@@ -2,14 +2,14 @@
 //  SecurityEvent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Event record kept for security purposes.
  *
  *  Scope and Usage The security event is based on the ATNA Audit record definitions, originally from RFC 3881,
@@ -19,28 +19,28 @@ import Foundation
  *  The primary purpose of this resource is the maintenance of audit log information. However, it can also be used
  *  for simple event-based notification or even general indexing of resources stored in a variety of repositories.
  */
-class SecurityEvent: FHIRResource
+public class SecurityEvent: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "SecurityEvent" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! What was done */
-	var event: SecurityEventEvent?
+	/** What was done */
+	public var event: SecurityEventEvent?
 	
-	/*! A person, a hardware device or software process */
-	var participant: [SecurityEventParticipant]?
+	/** A person, a hardware device or software process */
+	public var participant: [SecurityEventParticipant]?
 	
-	/*! Application systems and processes */
-	var source: SecurityEventSource?
+	/** Application systems and processes */
+	public var source: SecurityEventSource?
 	
-	/*! Specific instances of data or objects that have been accessed */
-	var object: [SecurityEventObject]?
+	/** Specific instances of data or objects that have been accessed */
+	public var object: [SecurityEventObject]?
 	
-	convenience init(event: SecurityEventEvent?, participant: [SecurityEventParticipant]?, source: SecurityEventSource?) {
+	public convenience init(event: SecurityEventEvent?, participant: [SecurityEventParticipant]?, source: SecurityEventSource?) {
 		self.init(json: nil)
 		if event {
 			self.event = event
@@ -53,7 +53,7 @@ class SecurityEvent: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -76,32 +76,32 @@ class SecurityEvent: FHIRResource
 }
 
 
-/*!
+/**
  *  What was done.
  *
  *  Identifies the name, action type, time, and disposition of the audited event.
  */
-class SecurityEventEvent: FHIRElement
+public class SecurityEventEvent: FHIRElement
 {	
-	/*! Type/identifier of event */
-	var type: CodeableConcept?
+	/** Type/identifier of event */
+	public var type: CodeableConcept?
 	
-	/*! More specific type/id for the event */
-	var subtype: [CodeableConcept]?
+	/** More specific type/id for the event */
+	public var subtype: [CodeableConcept]?
 	
-	/*! Type of action performed during the event */
-	var action: String?
+	/** Type of action performed during the event */
+	public var action: String?
 	
-	/*! Time when the event occurred on source */
-	var dateTime: Int?
+	/** Time when the event occurred on source */
+	public var dateTime: Int?
 	
-	/*! Whether the event succeeded or failed */
-	var outcome: String?
+	/** Whether the event succeeded or failed */
+	public var outcome: String?
 	
-	/*! Description of the event outcome */
-	var outcomeDesc: String?
+	/** Description of the event outcome */
+	public var outcomeDesc: String?
 	
-	convenience init(type: CodeableConcept?, dateTime: Int?) {
+	public convenience init(type: CodeableConcept?, dateTime: Int?) {
 		self.init(json: nil)
 		if type {
 			self.type = type
@@ -111,7 +111,7 @@ class SecurityEventEvent: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? NSDictionary {
@@ -137,16 +137,16 @@ class SecurityEventEvent: FHIRElement
 }
 
 
-/*!
+/**
  *  A person, a hardware device or software process.
  */
-class SecurityEventParticipant: FHIRElement
+public class SecurityEventParticipant: FHIRElement
 {	
-	/*! User roles (e.g. local RBAC codes) */
-	var role: [CodeableConcept]?
+	/** User roles (e.g. local RBAC codes) */
+	public var role: [CodeableConcept]?
 	
-	/*! Direct reference to resource */
-	var reference: FHIRElement? {
+	/** Direct reference to resource */
+	public var reference: FHIRElement? {
 		get { return resolveReference("reference") }
 		set {
 			if newValue {
@@ -155,32 +155,32 @@ class SecurityEventParticipant: FHIRElement
 		}
 	}
 	
-	/*! Unique identifier for the user */
-	var userId: String?
+	/** Unique identifier for the user */
+	public var userId: String?
 	
-	/*! Alternative User id e.g. authentication */
-	var altId: String?
+	/** Alternative User id e.g. authentication */
+	public var altId: String?
 	
-	/*! Human-meaningful name for the user */
-	var name: String?
+	/** Human-meaningful name for the user */
+	public var name: String?
 	
-	/*! Whether user is initiator */
-	var requestor: Bool?
+	/** Whether user is initiator */
+	public var requestor: Bool?
 	
-	/*! Type of media */
-	var media: Coding?
+	/** Type of media */
+	public var media: Coding?
 	
-	/*! Logical network location for application activity */
-	var network: SecurityEventParticipantNetwork?
+	/** Logical network location for application activity */
+	public var network: SecurityEventParticipantNetwork?
 	
-	convenience init(requestor: Bool?) {
+	public convenience init(requestor: Bool?) {
 		self.init(json: nil)
 		if requestor {
 			self.requestor = requestor
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["role"] as? [NSDictionary] {
@@ -212,21 +212,21 @@ class SecurityEventParticipant: FHIRElement
 }
 
 
-/*!
+/**
  *  Logical network location for application activity.
  *
  *  Logical network location for application activity, if the activity has a network location.
  */
-class SecurityEventParticipantNetwork: FHIRElement
+public class SecurityEventParticipantNetwork: FHIRElement
 {	
-	/*! Identifier for the network access point of the user device */
-	var identifier: String?
+	/** Identifier for the network access point of the user device */
+	public var identifier: String?
 	
-	/*! The type of network access point */
-	var type: String?
+	/** The type of network access point */
+	public var type: String?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? String {
@@ -240,28 +240,28 @@ class SecurityEventParticipantNetwork: FHIRElement
 }
 
 
-/*!
+/**
  *  Application systems and processes.
  */
-class SecurityEventSource: FHIRElement
+public class SecurityEventSource: FHIRElement
 {	
-	/*! Logical source location within the enterprise */
-	var site: String?
+	/** Logical source location within the enterprise */
+	public var site: String?
 	
-	/*! The id of source where event originated */
-	var identifier: String?
+	/** The id of source where event originated */
+	public var identifier: String?
 	
-	/*! The type of source where event originated */
-	var type: [Coding]?
+	/** The type of source where event originated */
+	public var type: [Coding]?
 	
-	convenience init(identifier: String?) {
+	public convenience init(identifier: String?) {
 		self.init(json: nil)
 		if identifier {
 			self.identifier = identifier
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["site"] as? String {
@@ -278,16 +278,16 @@ class SecurityEventSource: FHIRElement
 }
 
 
-/*!
+/**
  *  Specific instances of data or objects that have been accessed.
  */
-class SecurityEventObject: FHIRElement
+public class SecurityEventObject: FHIRElement
 {	
-	/*! Specific instance of object (e.g. versioned) */
-	var identifier: Identifier?
+	/** Specific instance of object (e.g. versioned) */
+	public var identifier: Identifier?
 	
-	/*! Specific instance of resource (e.g. versioned) */
-	var reference: FHIRElement? {
+	/** Specific instance of resource (e.g. versioned) */
+	public var reference: FHIRElement? {
 		get { return resolveReference("reference") }
 		set {
 			if newValue {
@@ -296,32 +296,32 @@ class SecurityEventObject: FHIRElement
 		}
 	}
 	
-	/*! Object type being audited */
-	var type: String?
+	/** Object type being audited */
+	public var type: String?
 	
-	/*! Functional application role of Object */
-	var role: String?
+	/** Functional application role of Object */
+	public var role: String?
 	
-	/*! Life-cycle stage for the object */
-	var lifecycle: String?
+	/** Life-cycle stage for the object */
+	public var lifecycle: String?
 	
-	/*! Policy-defined sensitivity for the object */
-	var sensitivity: CodeableConcept?
+	/** Policy-defined sensitivity for the object */
+	public var sensitivity: CodeableConcept?
 	
-	/*! Instance-specific descriptor for Object */
-	var name: String?
+	/** Instance-specific descriptor for Object */
+	public var name: String?
 	
-	/*! Descriptive text */
-	var description: String?
+	/** Descriptive text */
+	public var description: String?
 	
-	/*! Actual query for object */
-	var query: String?
+	/** Actual query for object */
+	public var query: String?
 	
-	/*! Additional Information about the Object */
-	var detail: [SecurityEventObjectDetail]?
+	/** Additional Information about the Object */
+	public var detail: [SecurityEventObjectDetail]?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? NSDictionary {
@@ -359,18 +359,18 @@ class SecurityEventObject: FHIRElement
 }
 
 
-/*!
+/**
  *  Additional Information about the Object.
  */
-class SecurityEventObjectDetail: FHIRElement
+public class SecurityEventObjectDetail: FHIRElement
 {	
-	/*! Name of the property */
-	var type: String?
+	/** Name of the property */
+	public var type: String?
 	
-	/*! Property value */
-	var value: String?
+	/** Property value */
+	public var value: String?
 	
-	convenience init(type: String?, value: String?) {
+	public convenience init(type: String?, value: String?) {
 		self.init(json: nil)
 		if type {
 			self.type = type
@@ -380,7 +380,7 @@ class SecurityEventObjectDetail: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {

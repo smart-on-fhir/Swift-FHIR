@@ -2,14 +2,14 @@
 //  OperationOutcome.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Information about the success/failure of an action.
  *
  *  Scope and Usage Operation Outcomes are sets of error, warning and information messages that provide detailed
@@ -22,26 +22,26 @@ import Foundation
  *  * As the response on a validation operation, to provide information about the outcomes
  *  * As part of a message response, usually when the message has not been processed correctly
  */
-class OperationOutcome: FHIRResource
+public class OperationOutcome: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "OperationOutcome" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! A single issue associated with the action */
-	var issue: [OperationOutcomeIssue]?
+	/** A single issue associated with the action */
+	public var issue: [OperationOutcomeIssue]?
 	
-	convenience init(issue: [OperationOutcomeIssue]?) {
+	public convenience init(issue: [OperationOutcomeIssue]?) {
 		self.init(json: nil)
 		if issue {
 			self.issue = issue
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -55,33 +55,33 @@ class OperationOutcome: FHIRResource
 }
 
 
-/*!
+/**
  *  A single issue associated with the action.
  *
  *  An error, warning or information message that results from a system action.
  */
-class OperationOutcomeIssue: FHIRElement
+public class OperationOutcomeIssue: FHIRElement
 {	
-	/*! fatal | error | warning | information */
-	var severity: String?
+	/** fatal | error | warning | information */
+	public var severity: String?
 	
-	/*! Error or warning code */
-	var type: Coding?
+	/** Error or warning code */
+	public var type: Coding?
 	
-	/*! Additional description of the issue */
-	var details: String?
+	/** Additional description of the issue */
+	public var details: String?
 	
-	/*! XPath of element(s) related to issue */
-	var location: [String]?
+	/** XPath of element(s) related to issue */
+	public var location: [String]?
 	
-	convenience init(severity: String?) {
+	public convenience init(severity: String?) {
 		self.init(json: nil)
 		if severity {
 			self.severity = severity
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["severity"] as? String {

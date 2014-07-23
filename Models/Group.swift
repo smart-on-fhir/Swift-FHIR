@@ -2,14 +2,14 @@
 //  Group.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Group of multiple entities.
  *
  *  Scope and Usage Use Cases The group resource is used in one of two ways:
@@ -23,38 +23,38 @@ import Foundation
  *  
  *  Both use cases are handled by a single resource because the data elements captured tend to be similar.
  */
-class Group: FHIRResource
+public class Group: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Group" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Unique id */
-	var identifier: Identifier?
+	/** Unique id */
+	public var identifier: Identifier?
 	
-	/*! person | animal | practitioner | device | medication | substance */
-	var type: String?
+	/** person | animal | practitioner | device | medication | substance */
+	public var type: String?
 	
-	/*! Descriptive or actual */
-	var actual: Bool?
+	/** Descriptive or actual */
+	public var actual: Bool?
 	
-	/*! Kind of Group members */
-	var code: CodeableConcept?
+	/** Kind of Group members */
+	public var code: CodeableConcept?
 	
-	/*! Label for Group */
-	var name: String?
+	/** Label for Group */
+	public var name: String?
 	
-	/*! Number of members */
-	var quantity: Int?
+	/** Number of members */
+	public var quantity: Int?
 	
-	/*! Trait of group members */
-	var characteristic: [GroupCharacteristic]?
+	/** Trait of group members */
+	public var characteristic: [GroupCharacteristic]?
 	
-	/*! Who is in group */
-	var member: [FHIRElement]? {
+	/** Who is in group */
+	public var member: [FHIRElement]? {
 		get { return resolveReferences("member") }
 		set {
 			if newValue {
@@ -63,7 +63,7 @@ class Group: FHIRResource
 		}
 	}
 	
-	convenience init(type: String?, actual: Bool?) {
+	public convenience init(type: String?, actual: Bool?) {
 		self.init(json: nil)
 		if type {
 			self.type = type
@@ -73,7 +73,7 @@ class Group: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -108,32 +108,32 @@ class Group: FHIRResource
 }
 
 
-/*!
+/**
  *  Trait of group members.
  *
  *  Identifies the traits shared by members of the group.
  */
-class GroupCharacteristic: FHIRElement
+public class GroupCharacteristic: FHIRElement
 {	
-	/*! Kind of characteristic */
-	var code: CodeableConcept?
+	/** Kind of characteristic */
+	public var code: CodeableConcept?
 	
-	/*! Value held by characteristic */
-	var valueCodeableConcept: CodeableConcept?
+	/** Value held by characteristic */
+	public var valueCodeableConcept: CodeableConcept?
 	
-	/*! Value held by characteristic */
-	var valueBoolean: Bool?
+	/** Value held by characteristic */
+	public var valueBoolean: Bool?
 	
-	/*! Value held by characteristic */
-	var valueQuantity: Quantity?
+	/** Value held by characteristic */
+	public var valueQuantity: Quantity?
 	
-	/*! Value held by characteristic */
-	var valueRange: Range?
+	/** Value held by characteristic */
+	public var valueRange: Range?
 	
-	/*! Group includes or excludes */
-	var exclude: Bool?
+	/** Group includes or excludes */
+	public var exclude: Bool?
 	
-	convenience init(code: CodeableConcept?, valueCodeableConcept: CodeableConcept?, valueBoolean: Bool?, valueQuantity: Quantity?, valueRange: Range?, exclude: Bool?) {
+	public convenience init(code: CodeableConcept?, valueCodeableConcept: CodeableConcept?, valueBoolean: Bool?, valueQuantity: Quantity?, valueRange: Range?, exclude: Bool?) {
 		self.init(json: nil)
 		if code {
 			self.code = code
@@ -155,7 +155,7 @@ class GroupCharacteristic: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {

@@ -2,14 +2,14 @@
 //  MedicationStatement.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Administration of medication to a patient.
  *
  *  Scope and Usage Common usage includes:
@@ -18,20 +18,20 @@ import Foundation
  *  * the recording of an intake medication list upon admission to hospital
  *  * the summarization of a patient's "active medications" in a patient profile
  */
-class MedicationStatement: FHIRResource
+public class MedicationStatement: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "MedicationStatement" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! External Identifier */
-	var identifier: [Identifier]?
+	/** External Identifier */
+	public var identifier: [Identifier]?
 	
-	/*! Who was/is taking medication */
-	var patient: FHIRElement? {
+	/** Who was/is taking medication */
+	public var patient: FHIRElement? {
 		get { return resolveReference("patient") }
 		set {
 			if newValue {
@@ -40,17 +40,17 @@ class MedicationStatement: FHIRResource
 		}
 	}
 	
-	/*! True if medication is/was not being taken */
-	var wasNotGiven: Bool?
+	/** True if medication is/was not being taken */
+	public var wasNotGiven: Bool?
 	
-	/*! True if asserting medication was not given */
-	var reasonNotGiven: [CodeableConcept]?
+	/** True if asserting medication was not given */
+	public var reasonNotGiven: [CodeableConcept]?
 	
-	/*! Over what period was medication consumed? */
-	var whenGiven: Period?
+	/** Over what period was medication consumed? */
+	public var whenGiven: Period?
 	
-	/*! What medication was taken? */
-	var medication: FHIRElement? {
+	/** What medication was taken? */
+	public var medication: FHIRElement? {
 		get { return resolveReference("medication") }
 		set {
 			if newValue {
@@ -59,8 +59,8 @@ class MedicationStatement: FHIRResource
 		}
 	}
 	
-	/*! E.g. infusion pump */
-	var device: [FHIRElement]? {
+	/** E.g. infusion pump */
+	public var device: [FHIRElement]? {
 		get { return resolveReferences("device") }
 		set {
 			if newValue {
@@ -69,11 +69,11 @@ class MedicationStatement: FHIRResource
 		}
 	}
 	
-	/*! Details of how medication was taken */
-	var dosage: [MedicationStatementDosage]?
+	/** Details of how medication was taken */
+	public var dosage: [MedicationStatementDosage]?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -108,42 +108,42 @@ class MedicationStatement: FHIRResource
 }
 
 
-/*!
+/**
  *  Details of how medication was taken.
  *
  *  Indicates how the medication is/was used by the patient.
  */
-class MedicationStatementDosage: FHIRElement
+public class MedicationStatementDosage: FHIRElement
 {	
-	/*! When/how often was medication taken? */
-	var timing: Schedule?
+	/** When/how often was medication taken? */
+	public var timing: Schedule?
 	
-	/*! Take "as needed" f(or x) */
-	var asNeededBoolean: Bool?
+	/** Take "as needed" f(or x) */
+	public var asNeededBoolean: Bool?
 	
-	/*! Take "as needed" f(or x) */
-	var asNeededCodeableConcept: CodeableConcept?
+	/** Take "as needed" f(or x) */
+	public var asNeededCodeableConcept: CodeableConcept?
 	
-	/*! Where on body was medication administered? */
-	var site: CodeableConcept?
+	/** Where on body was medication administered? */
+	public var site: CodeableConcept?
 	
-	/*! How did the medication enter the body? */
-	var route: CodeableConcept?
+	/** How did the medication enter the body? */
+	public var route: CodeableConcept?
 	
-	/*! Technique used to administer medication */
-	var method: CodeableConcept?
+	/** Technique used to administer medication */
+	public var method: CodeableConcept?
 	
-	/*! Amount administered in one dose */
-	var quantity: Quantity?
+	/** Amount administered in one dose */
+	public var quantity: Quantity?
 	
-	/*! Dose quantity per unit of time */
-	var rate: Ratio?
+	/** Dose quantity per unit of time */
+	public var rate: Ratio?
 	
-	/*! Maximum dose that was consumed per unit of time */
-	var maxDosePerPeriod: Ratio?
+	/** Maximum dose that was consumed per unit of time */
+	public var maxDosePerPeriod: Ratio?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["timing"] as? NSDictionary {

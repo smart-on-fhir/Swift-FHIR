@@ -2,39 +2,39 @@
 //  Identifier.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  An identifier intended for computation.
  */
-class Identifier: FHIRElement
+public class Identifier: FHIRElement
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Identifier" }
 	}
 	
-	/*! usual | official | temp | secondary (If known) */
-	var use: String?
+	/** usual | official | temp | secondary (If known) */
+	public var use: String?
 	
-	/*! Description of identifier */
-	var label: String?
+	/** Description of identifier */
+	public var label: String?
 	
-	/*! The namespace for the identifier */
-	var system: NSURL?
+	/** The namespace for the identifier */
+	public var system: NSURL?
 	
-	/*! The value that is unique */
-	var value: String?
+	/** The value that is unique */
+	public var value: String?
 	
-	/*! Time period when id is/was valid for use */
-	var period: Period?
+	/** Time period when id is/was valid for use */
+	public var period: Period?
 	
-	/*! Organization that issued id (may be just text) */
-	var assigner: FHIRElement? {
+	/** Organization that issued id (may be just text) */
+	public var assigner: FHIRElement? {
 		get { return resolveReference("assigner") }
 		set {
 			if newValue {
@@ -44,7 +44,7 @@ class Identifier: FHIRElement
 	}
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["use"] as? String {

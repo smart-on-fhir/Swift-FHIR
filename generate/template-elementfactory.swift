@@ -9,12 +9,12 @@
 import Foundation
 
 
-/*!
+/**
  *  Extension to FHIRElement to be able to instantiate by class name.
  */
 extension FHIRElement
 {
-	class func factory(className: String, json: NSDictionary) -> FHIRElement {
+	public class func factory(className: String, json: NSDictionary) -> FHIRElement {
 		switch className {
 		{%- for klass in classes %}
 			case "{{ klass }}":	return {{ klass }}(json: json)

@@ -2,14 +2,14 @@
 //  DeviceObservationReport.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Describes the data produced by a device at a point in time.
  *
  *  Scope and Usage This resource carries a set of data from a device that is observing a subject. Most commonly,
@@ -23,23 +23,23 @@ import Foundation
  *  This capability is expected to be subject of additional resources that are yet to be developed, and implmenter
  *  input on this is welcome.
  */
-class DeviceObservationReport: FHIRResource
+public class DeviceObservationReport: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "DeviceObservationReport" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! When the data values are reported */
-	var instant: Int?
+	/** When the data values are reported */
+	public var instant: Int?
 	
-	/*! As assigned by the source device */
-	var identifier: Identifier?
+	/** As assigned by the source device */
+	public var identifier: Identifier?
 	
-	/*! Identifies/describes where the data came from */
-	var source: FHIRElement? {
+	/** Identifies/describes where the data came from */
+	public var source: FHIRElement? {
 		get { return resolveReference("source") }
 		set {
 			if newValue {
@@ -48,8 +48,8 @@ class DeviceObservationReport: FHIRResource
 		}
 	}
 	
-	/*! Subject of the measurement */
-	var subject: FHIRElement? {
+	/** Subject of the measurement */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -58,10 +58,10 @@ class DeviceObservationReport: FHIRResource
 		}
 	}
 	
-	/*! A medical-related subsystem of a medical device */
-	var virtualDevice: [DeviceObservationReportVirtualDevice]?
+	/** A medical-related subsystem of a medical device */
+	public var virtualDevice: [DeviceObservationReportVirtualDevice]?
 	
-	convenience init(instant: Int?, source: ResourceReference?) {
+	public convenience init(instant: Int?, source: ResourceReference?) {
 		self.init(json: nil)
 		if instant {
 			self.instant = instant
@@ -71,7 +71,7 @@ class DeviceObservationReport: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -97,19 +97,19 @@ class DeviceObservationReport: FHIRResource
 }
 
 
-/*!
+/**
  *  A medical-related subsystem of a medical device.
  */
-class DeviceObservationReportVirtualDevice: FHIRElement
+public class DeviceObservationReportVirtualDevice: FHIRElement
 {	
-	/*! Describes the compartment */
-	var code: CodeableConcept?
+	/** Describes the compartment */
+	public var code: CodeableConcept?
 	
-	/*! Groups related data items */
-	var channel: [DeviceObservationReportVirtualDeviceChannel]?
+	/** Groups related data items */
+	public var channel: [DeviceObservationReportVirtualDeviceChannel]?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
@@ -123,21 +123,21 @@ class DeviceObservationReportVirtualDevice: FHIRElement
 }
 
 
-/*!
+/**
  *  Groups related data items.
  *
  *  Groups together physiological measurement data and derived data.
  */
-class DeviceObservationReportVirtualDeviceChannel: FHIRElement
+public class DeviceObservationReportVirtualDeviceChannel: FHIRElement
 {	
-	/*! Describes the channel */
-	var code: CodeableConcept?
+	/** Describes the channel */
+	public var code: CodeableConcept?
 	
-	/*! Piece of data reported by device */
-	var metric: [DeviceObservationReportVirtualDeviceChannelMetric]?
+	/** Piece of data reported by device */
+	public var metric: [DeviceObservationReportVirtualDeviceChannelMetric]?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
@@ -151,15 +151,15 @@ class DeviceObservationReportVirtualDeviceChannel: FHIRElement
 }
 
 
-/*!
+/**
  *  Piece of data reported by device.
  *
  *  A piece of measured or derived data that is reported by the machine.
  */
-class DeviceObservationReportVirtualDeviceChannelMetric: FHIRElement
+public class DeviceObservationReportVirtualDeviceChannelMetric: FHIRElement
 {	
-	/*! The data for the metric */
-	var observation: FHIRElement? {
+	/** The data for the metric */
+	public var observation: FHIRElement? {
 		get { return resolveReference("observation") }
 		set {
 			if newValue {
@@ -168,14 +168,14 @@ class DeviceObservationReportVirtualDeviceChannelMetric: FHIRElement
 		}
 	}
 	
-	convenience init(observation: ResourceReference?) {
+	public convenience init(observation: ResourceReference?) {
 		self.init(json: nil)
 		if observation {
 			self.observation = observation
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["observation"] as? NSDictionary {

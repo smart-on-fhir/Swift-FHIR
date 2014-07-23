@@ -2,38 +2,38 @@
 //  Query.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A description of a query with a set of parameters.
  *
  *  Scope and Usage The resource is used to perform queries using messaging-based exchanges, and to perform
  *  asynchronous searches using the RESTful interface.
  */
-class Query: FHIRResource
+public class Query: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Query" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Links query and its response(s) */
-	var identifier: NSURL?
+	/** Links query and its response(s) */
+	public var identifier: NSURL?
 	
-	/*! Set of query parameters with values */
-	var parameter: [Extension]?
+	/** Set of query parameters with values */
+	public var parameter: [Extension]?
 	
-	/*! If this is a response to a query */
-	var response: QueryResponse?
+	/** If this is a response to a query */
+	public var response: QueryResponse?
 	
-	convenience init(identifier: NSURL?, parameter: [Extension]?) {
+	public convenience init(identifier: NSURL?, parameter: [Extension]?) {
 		self.init(json: nil)
 		if identifier {
 			self.identifier = identifier
@@ -43,7 +43,7 @@ class Query: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -63,37 +63,37 @@ class Query: FHIRResource
 }
 
 
-/*!
+/**
  *  If this is a response to a query.
  */
-class QueryResponse: FHIRElement
+public class QueryResponse: FHIRElement
 {	
-	/*! Links response to source query */
-	var identifier: NSURL?
+	/** Links response to source query */
+	public var identifier: NSURL?
 	
-	/*! ok | limited | refused | error */
-	var outcome: String?
+	/** ok | limited | refused | error */
+	public var outcome: String?
 	
-	/*! Total number of matching records */
-	var total: Int?
+	/** Total number of matching records */
+	public var total: Int?
 	
-	/*! Parameters server used */
-	var parameter: [Extension]?
+	/** Parameters server used */
+	public var parameter: [Extension]?
 	
-	/*! To get first page (if paged) */
-	var first: [Extension]?
+	/** To get first page (if paged) */
+	public var first: [Extension]?
 	
-	/*! To get previous page (if paged) */
-	var previous: [Extension]?
+	/** To get previous page (if paged) */
+	public var previous: [Extension]?
 	
-	/*! To get next page (if paged) */
-	var next: [Extension]?
+	/** To get next page (if paged) */
+	public var next: [Extension]?
 	
-	/*! To get last page (if paged) */
-	var last: [Extension]?
+	/** To get last page (if paged) */
+	public var last: [Extension]?
 	
-	/*! Resources that are the results of the search */
-	var reference: [FHIRElement]? {
+	/** Resources that are the results of the search */
+	public var reference: [FHIRElement]? {
 		get { return resolveReferences("reference") }
 		set {
 			if newValue {
@@ -102,7 +102,7 @@ class QueryResponse: FHIRElement
 		}
 	}
 	
-	convenience init(identifier: NSURL?, outcome: String?) {
+	public convenience init(identifier: NSURL?, outcome: String?) {
 		self.init(json: nil)
 		if identifier {
 			self.identifier = identifier
@@ -112,7 +112,7 @@ class QueryResponse: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? String {

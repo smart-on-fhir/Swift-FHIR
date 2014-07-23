@@ -2,14 +2,14 @@
 //  ValueSet.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A set of codes drawn from one or more code systems.
  *
  *  Scope and Usage Value sets may be constructed in one of two ways:
@@ -21,58 +21,58 @@ import Foundation
  *  codes. This operation is performed to produce a collection of codes that are ready to use for data entry or
  *  validation. An expanded value set may also contain the original definition as well.
  */
-class ValueSet: FHIRResource
+public class ValueSet: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "ValueSet" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Logical id to reference this value set */
-	var identifier: String?
+	/** Logical id to reference this value set */
+	public var identifier: String?
 	
-	/*! Logical id for this version of the value set */
-	var version: String?
+	/** Logical id for this version of the value set */
+	public var version: String?
 	
-	/*! Informal name for this value set */
-	var name: String?
+	/** Informal name for this value set */
+	public var name: String?
 	
-	/*! Name of the publisher (Organization or individual) */
-	var publisher: String?
+	/** Name of the publisher (Organization or individual) */
+	public var publisher: String?
 	
-	/*! Contact information of the publisher */
-	var telecom: [Contact]?
+	/** Contact information of the publisher */
+	public var telecom: [Contact]?
 	
-	/*! Human language description of the value set */
-	var description: String?
+	/** Human language description of the value set */
+	public var description: String?
 	
-	/*! About the value set or its content */
-	var copyright: String?
+	/** About the value set or its content */
+	public var copyright: String?
 	
-	/*! draft | active | retired */
-	var status: String?
+	/** draft | active | retired */
+	public var status: String?
 	
-	/*! If for testing purposes, not real usage */
-	var experimental: Bool?
+	/** If for testing purposes, not real usage */
+	public var experimental: Bool?
 	
-	/*! Whether this is intended to be used with an extensible binding */
-	var extensible: Bool?
+	/** Whether this is intended to be used with an extensible binding */
+	public var extensible: Bool?
 	
-	/*! Date for given status */
-	var date: NSDate?
+	/** Date for given status */
+	public var date: NSDate?
 	
-	/*! When value set defines its own codes */
-	var define: ValueSetDefine?
+	/** When value set defines its own codes */
+	public var define: ValueSetDefine?
 	
-	/*! When value set includes codes from elsewhere */
-	var compose: ValueSetCompose?
+	/** When value set includes codes from elsewhere */
+	public var compose: ValueSetCompose?
 	
-	/*! When value set is an expansion */
-	var expansion: ValueSetExpansion?
+	/** When value set is an expansion */
+	public var expansion: ValueSetExpansion?
 	
-	convenience init(name: String?, description: String?, status: String?) {
+	public convenience init(name: String?, description: String?, status: String?) {
 		self.init(json: nil)
 		if name {
 			self.name = name
@@ -85,7 +85,7 @@ class ValueSet: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -138,31 +138,31 @@ class ValueSet: FHIRResource
 }
 
 
-/*!
+/**
  *  When value set defines its own codes.
  */
-class ValueSetDefine: FHIRElement
+public class ValueSetDefine: FHIRElement
 {	
-	/*! URI to identify the code system */
-	var system: NSURL?
+	/** URI to identify the code system */
+	public var system: NSURL?
 	
-	/*! Version of this system */
-	var version: String?
+	/** Version of this system */
+	public var version: String?
 	
-	/*! If code comparison is case sensitive */
-	var caseSensitive: Bool?
+	/** If code comparison is case sensitive */
+	public var caseSensitive: Bool?
 	
-	/*! Concepts in the code system */
-	var concept: [ValueSetDefineConcept]?
+	/** Concepts in the code system */
+	public var concept: [ValueSetDefineConcept]?
 	
-	convenience init(system: NSURL?) {
+	public convenience init(system: NSURL?) {
 		self.init(json: nil)
 		if system {
 			self.system = system
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {
@@ -182,34 +182,34 @@ class ValueSetDefine: FHIRElement
 }
 
 
-/*!
+/**
  *  Concepts in the code system.
  */
-class ValueSetDefineConcept: FHIRElement
+public class ValueSetDefineConcept: FHIRElement
 {	
-	/*! Code that identifies concept */
-	var code: String?
+	/** Code that identifies concept */
+	public var code: String?
 	
-	/*! If this code is not for use as a real concept */
-	var abstract: Bool?
+	/** If this code is not for use as a real concept */
+	public var abstract: Bool?
 	
-	/*! Text to Display to the user */
-	var display: String?
+	/** Text to Display to the user */
+	public var display: String?
 	
-	/*! Formal Definition */
-	var definition: String?
+	/** Formal Definition */
+	public var definition: String?
 	
-	/*! Child Concepts (is-a / contains) */
-	var concept: [ValueSetDefineConceptConcept]?
+	/** Child Concepts (is-a / contains) */
+	public var concept: [ValueSetDefineConceptConcept]?
 	
-	convenience init(code: String?) {
+	public convenience init(code: String?) {
 		self.init(json: nil)
 		if code {
 			self.code = code
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -232,13 +232,13 @@ class ValueSetDefineConcept: FHIRElement
 }
 
 
-/*!
+/**
  *  Child Concepts (is-a / contains).
  */
-class ValueSetDefineConceptConcept: FHIRElement
+public class ValueSetDefineConceptConcept: FHIRElement
 {	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}
@@ -246,22 +246,22 @@ class ValueSetDefineConceptConcept: FHIRElement
 }
 
 
-/*!
+/**
  *  When value set includes codes from elsewhere.
  */
-class ValueSetCompose: FHIRElement
+public class ValueSetCompose: FHIRElement
 {	
-	/*! Import the contents of another value set */
-	var importFrom: [NSURL]?
+	/** Import the contents of another value set */
+	public var importFrom: [NSURL]?
 	
-	/*! Include one or more codes from a code system */
-	var include: [ValueSetComposeInclude]?
+	/** Include one or more codes from a code system */
+	public var include: [ValueSetComposeInclude]?
 	
-	/*! Explicitly exclude codes */
-	var exclude: [ValueSetComposeExclude]?
+	/** Explicitly exclude codes */
+	public var exclude: [ValueSetComposeExclude]?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["importFrom"] as? [String] {
@@ -278,31 +278,31 @@ class ValueSetCompose: FHIRElement
 }
 
 
-/*!
+/**
  *  Include one or more codes from a code system.
  */
-class ValueSetComposeInclude: FHIRElement
+public class ValueSetComposeInclude: FHIRElement
 {	
-	/*! The system the codes come from */
-	var system: NSURL?
+	/** The system the codes come from */
+	public var system: NSURL?
 	
-	/*! Specific version of the code system referred to */
-	var version: String?
+	/** Specific version of the code system referred to */
+	public var version: String?
 	
-	/*! Code or concept from system */
-	var code: [String]?
+	/** Code or concept from system */
+	public var code: [String]?
 	
-	/*! Select codes/concepts by their properties (including relationships) */
-	var filter: [ValueSetComposeIncludeFilter]?
+	/** Select codes/concepts by their properties (including relationships) */
+	public var filter: [ValueSetComposeIncludeFilter]?
 	
-	convenience init(system: NSURL?) {
+	public convenience init(system: NSURL?) {
 		self.init(json: nil)
 		if system {
 			self.system = system
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {
@@ -322,24 +322,24 @@ class ValueSetComposeInclude: FHIRElement
 }
 
 
-/*!
+/**
  *  Select codes/concepts by their properties (including relationships).
  *
  *  Select concepts by specify a matching criteria based on the properties (including relationships) defined by
  *  the system. If multiple filters are specified, they SHALL all be true.
  */
-class ValueSetComposeIncludeFilter: FHIRElement
+public class ValueSetComposeIncludeFilter: FHIRElement
 {	
-	/*! A property defined by the code system */
-	var property: String?
+	/** A property defined by the code system */
+	public var property: String?
 	
-	/*! = | is-a | is-not-a | regex | in | not in */
-	var op: String?
+	/** = | is-a | is-not-a | regex | in | not in */
+	public var op: String?
 	
-	/*! Code from the system, or regex criteria */
-	var value: String?
+	/** Code from the system, or regex criteria */
+	public var value: String?
 	
-	convenience init(property: String?, op: String?, value: String?) {
+	public convenience init(property: String?, op: String?, value: String?) {
 		self.init(json: nil)
 		if property {
 			self.property = property
@@ -352,7 +352,7 @@ class ValueSetComposeIncludeFilter: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["property"] as? String {
@@ -369,15 +369,15 @@ class ValueSetComposeIncludeFilter: FHIRElement
 }
 
 
-/*!
+/**
  *  Explicitly exclude codes.
  *
  *  Exclude one or more codes from the value set.
  */
-class ValueSetComposeExclude: FHIRElement
+public class ValueSetComposeExclude: FHIRElement
 {	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}
@@ -385,28 +385,28 @@ class ValueSetComposeExclude: FHIRElement
 }
 
 
-/*!
+/**
  *  When value set is an expansion.
  */
-class ValueSetExpansion: FHIRElement
+public class ValueSetExpansion: FHIRElement
 {	
-	/*! Uniquely identifies this expansion */
-	var identifier: Identifier?
+	/** Uniquely identifies this expansion */
+	public var identifier: Identifier?
 	
-	/*! Time valueset expansion happened */
-	var timestamp: Int?
+	/** Time valueset expansion happened */
+	public var timestamp: Int?
 	
-	/*! Codes in the value set */
-	var contains: [ValueSetExpansionContains]?
+	/** Codes in the value set */
+	public var contains: [ValueSetExpansionContains]?
 	
-	convenience init(timestamp: Int?) {
+	public convenience init(timestamp: Int?) {
 		self.init(json: nil)
 		if timestamp {
 			self.timestamp = timestamp
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? NSDictionary {
@@ -423,25 +423,25 @@ class ValueSetExpansion: FHIRElement
 }
 
 
-/*!
+/**
  *  Codes in the value set.
  */
-class ValueSetExpansionContains: FHIRElement
+public class ValueSetExpansionContains: FHIRElement
 {	
-	/*! System value for the code */
-	var system: NSURL?
+	/** System value for the code */
+	public var system: NSURL?
 	
-	/*! Code - if blank, this is not a choosable code */
-	var code: String?
+	/** Code - if blank, this is not a choosable code */
+	public var code: String?
 	
-	/*! User display for the concept */
-	var display: String?
+	/** User display for the concept */
+	public var display: String?
 	
-	/*! Codes contained in this concept */
-	var contains: [ValueSetExpansionContainsContains]?
+	/** Codes contained in this concept */
+	public var contains: [ValueSetExpansionContainsContains]?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {
@@ -461,13 +461,13 @@ class ValueSetExpansionContains: FHIRElement
 }
 
 
-/*!
+/**
  *  Codes contained in this concept.
  */
-class ValueSetExpansionContainsContains: FHIRElement
+public class ValueSetExpansionContainsContains: FHIRElement
 {	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}

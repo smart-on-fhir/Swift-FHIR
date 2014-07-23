@@ -2,14 +2,14 @@
 //  DocumentManifest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A manifest that defines a set of documents.
  *
  *  Scope and Usage A document manifest gathers a set of Document Reference resources into a single package that
@@ -18,23 +18,23 @@ import Foundation
  *  Typically, Document Manifest Resources are used in document indexing systems, such as IHE XDS (see the XDS
  *  specific profile).
  */
-class DocumentManifest: FHIRResource
+public class DocumentManifest: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "DocumentManifest" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Unique Identifier for the set of documents */
-	var masterIdentifier: Identifier?
+	/** Unique Identifier for the set of documents */
+	public var masterIdentifier: Identifier?
 	
-	/*! Other identifiers for the manifest */
-	var identifier: [Identifier]?
+	/** Other identifiers for the manifest */
+	public var identifier: [Identifier]?
 	
-	/*! The subject of the set of documents */
-	var subject: [FHIRElement]? {
+	/** The subject of the set of documents */
+	public var subject: [FHIRElement]? {
 		get { return resolveReferences("subject") }
 		set {
 			if newValue {
@@ -43,8 +43,8 @@ class DocumentManifest: FHIRResource
 		}
 	}
 	
-	/*! Intended to get notified about this set of documents */
-	var recipient: [FHIRElement]? {
+	/** Intended to get notified about this set of documents */
+	public var recipient: [FHIRElement]? {
 		get { return resolveReferences("recipient") }
 		set {
 			if newValue {
@@ -53,11 +53,11 @@ class DocumentManifest: FHIRResource
 		}
 	}
 	
-	/*! What kind of document set this is */
-	var type: CodeableConcept?
+	/** What kind of document set this is */
+	public var type: CodeableConcept?
 	
-	/*! Who and/or what authored the document */
-	var author: [FHIRElement]? {
+	/** Who and/or what authored the document */
+	public var author: [FHIRElement]? {
 		get { return resolveReferences("author") }
 		set {
 			if newValue {
@@ -66,17 +66,17 @@ class DocumentManifest: FHIRResource
 		}
 	}
 	
-	/*! When this document manifest created */
-	var created: NSDate?
+	/** When this document manifest created */
+	public var created: NSDate?
 	
-	/*! The source system/application/software */
-	var source: NSURL?
+	/** The source system/application/software */
+	public var source: NSURL?
 	
-	/*! current | superceded | entered in error */
-	var status: String?
+	/** current | superceded | entered in error */
+	public var status: String?
 	
-	/*! If this document manifest replaces another */
-	var supercedes: FHIRElement? {
+	/** If this document manifest replaces another */
+	public var supercedes: FHIRElement? {
 		get { return resolveReference("supercedes") }
 		set {
 			if newValue {
@@ -85,14 +85,14 @@ class DocumentManifest: FHIRResource
 		}
 	}
 	
-	/*! Human-readable description (title) */
-	var description: String?
+	/** Human-readable description (title) */
+	public var description: String?
 	
-	/*! Sensitivity of set of documents */
-	var confidentiality: CodeableConcept?
+	/** Sensitivity of set of documents */
+	public var confidentiality: CodeableConcept?
 	
-	/*! Contents of this set of documents */
-	var content: [FHIRElement]? {
+	/** Contents of this set of documents */
+	public var content: [FHIRElement]? {
 		get { return resolveReferences("content") }
 		set {
 			if newValue {
@@ -101,7 +101,7 @@ class DocumentManifest: FHIRResource
 		}
 	}
 	
-	convenience init(masterIdentifier: Identifier?, subject: [ResourceReference]?, status: String?, content: [ResourceReference]?) {
+	public convenience init(masterIdentifier: Identifier?, subject: [ResourceReference]?, status: String?, content: [ResourceReference]?) {
 		self.init(json: nil)
 		if masterIdentifier {
 			self.masterIdentifier = masterIdentifier
@@ -117,7 +117,7 @@ class DocumentManifest: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {

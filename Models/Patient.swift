@@ -2,14 +2,14 @@
 //  Patient.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Information about a person or animal receiving health care services.
  *
  *  Scope and Usage This Resource covers data about persons and animals involved in a wide range of health-related
@@ -28,62 +28,62 @@ import Foundation
  *  animal receiving care at multiple organizations may therefore have its information present in multiple Patient
  *  Resources.
  */
-class Patient: FHIRResource
+public class Patient: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Patient" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! An identifier for the person as this patient */
-	var identifier: [Identifier]?
+	/** An identifier for the person as this patient */
+	public var identifier: [Identifier]?
 	
-	/*! A name associated with the patient */
-	var name: [HumanName]?
+	/** A name associated with the patient */
+	public var name: [HumanName]?
 	
-	/*! A contact detail for the individual */
-	var telecom: [Contact]?
+	/** A contact detail for the individual */
+	public var telecom: [Contact]?
 	
-	/*! Gender for administrative purposes */
-	var gender: CodeableConcept?
+	/** Gender for administrative purposes */
+	public var gender: CodeableConcept?
 	
-	/*! The date and time of birth for the individual */
-	var birthDate: NSDate?
+	/** The date and time of birth for the individual */
+	public var birthDate: NSDate?
 	
-	/*! Indicates if the individual is deceased or not */
-	var deceasedBoolean: Bool?
+	/** Indicates if the individual is deceased or not */
+	public var deceasedBoolean: Bool?
 	
-	/*! Indicates if the individual is deceased or not */
-	var deceasedDateTime: NSDate?
+	/** Indicates if the individual is deceased or not */
+	public var deceasedDateTime: NSDate?
 	
-	/*! Addresses for the individual */
-	var address: [Address]?
+	/** Addresses for the individual */
+	public var address: [Address]?
 	
-	/*! Marital (civil) status of a person */
-	var maritalStatus: CodeableConcept?
+	/** Marital (civil) status of a person */
+	public var maritalStatus: CodeableConcept?
 	
-	/*! Whether patient is part of a multiple birth */
-	var multipleBirthBoolean: Bool?
+	/** Whether patient is part of a multiple birth */
+	public var multipleBirthBoolean: Bool?
 	
-	/*! Whether patient is part of a multiple birth */
-	var multipleBirthInteger: Int?
+	/** Whether patient is part of a multiple birth */
+	public var multipleBirthInteger: Int?
 	
-	/*! Image of the person */
-	var photo: [Attachment]?
+	/** Image of the person */
+	public var photo: [Attachment]?
 	
-	/*! A contact party (e.g. guardian, partner, friend) for the patient */
-	var contact: [PatientContact]?
+	/** A contact party (e.g. guardian, partner, friend) for the patient */
+	public var contact: [PatientContact]?
 	
-	/*! If this patient is an animal (non-human) */
-	var animal: PatientAnimal?
+	/** If this patient is an animal (non-human) */
+	public var animal: PatientAnimal?
 	
-	/*! Languages which may be used to communicate with the patient about his or her health */
-	var communication: [CodeableConcept]?
+	/** Languages which may be used to communicate with the patient about his or her health */
+	public var communication: [CodeableConcept]?
 	
-	/*! Patient's nominated care provider */
-	var careProvider: [FHIRElement]? {
+	/** Patient's nominated care provider */
+	public var careProvider: [FHIRElement]? {
 		get { return resolveReferences("careProvider") }
 		set {
 			if newValue {
@@ -92,8 +92,8 @@ class Patient: FHIRResource
 		}
 	}
 	
-	/*! Organization that is the custodian of the patient record */
-	var managingOrganization: FHIRElement? {
+	/** Organization that is the custodian of the patient record */
+	public var managingOrganization: FHIRElement? {
 		get { return resolveReference("managingOrganization") }
 		set {
 			if newValue {
@@ -102,14 +102,14 @@ class Patient: FHIRResource
 		}
 	}
 	
-	/*! Link to another patient resource that concerns the same actual person */
-	var link: [PatientLink]?
+	/** Link to another patient resource that concerns the same actual person */
+	public var link: [PatientLink]?
 	
-	/*! Whether this patient's record is in active use */
-	var active: Bool?
+	/** Whether this patient's record is in active use */
+	public var active: Bool?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -177,28 +177,28 @@ class Patient: FHIRResource
 }
 
 
-/*!
+/**
  *  A contact party (e.g. guardian, partner, friend) for the patient.
  */
-class PatientContact: FHIRElement
+public class PatientContact: FHIRElement
 {	
-	/*! The kind of relationship */
-	var relationship: [CodeableConcept]?
+	/** The kind of relationship */
+	public var relationship: [CodeableConcept]?
 	
-	/*! A name associated with the person */
-	var name: HumanName?
+	/** A name associated with the person */
+	public var name: HumanName?
 	
-	/*! A contact detail for the person */
-	var telecom: [Contact]?
+	/** A contact detail for the person */
+	public var telecom: [Contact]?
 	
-	/*! Address for the contact person */
-	var address: Address?
+	/** Address for the contact person */
+	public var address: Address?
 	
-	/*! Gender for administrative purposes */
-	var gender: CodeableConcept?
+	/** Gender for administrative purposes */
+	public var gender: CodeableConcept?
 	
-	/*! Organization that is associated with the contact */
-	var organization: FHIRElement? {
+	/** Organization that is associated with the contact */
+	public var organization: FHIRElement? {
 		get { return resolveReference("organization") }
 		set {
 			if newValue {
@@ -208,7 +208,7 @@ class PatientContact: FHIRElement
 	}
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["relationship"] as? [NSDictionary] {
@@ -234,30 +234,30 @@ class PatientContact: FHIRElement
 }
 
 
-/*!
+/**
  *  If this patient is an animal (non-human).
  *
  *  This element has a value if the patient is an animal.
  */
-class PatientAnimal: FHIRElement
+public class PatientAnimal: FHIRElement
 {	
-	/*! E.g. Dog, Cow */
-	var species: CodeableConcept?
+	/** E.g. Dog, Cow */
+	public var species: CodeableConcept?
 	
-	/*! E.g. Poodle, Angus */
-	var breed: CodeableConcept?
+	/** E.g. Poodle, Angus */
+	public var breed: CodeableConcept?
 	
-	/*! E.g. Neutered, Intact */
-	var genderStatus: CodeableConcept?
+	/** E.g. Neutered, Intact */
+	public var genderStatus: CodeableConcept?
 	
-	convenience init(species: CodeableConcept?) {
+	public convenience init(species: CodeableConcept?) {
 		self.init(json: nil)
 		if species {
 			self.species = species
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["species"] as? NSDictionary {
@@ -274,13 +274,13 @@ class PatientAnimal: FHIRElement
 }
 
 
-/*!
+/**
  *  Link to another patient resource that concerns the same actual person.
  */
-class PatientLink: FHIRElement
+public class PatientLink: FHIRElement
 {	
-	/*! The other patient resource that the link refers to */
-	var other: FHIRElement? {
+	/** The other patient resource that the link refers to */
+	public var other: FHIRElement? {
 		get { return resolveReference("other") }
 		set {
 			if newValue {
@@ -289,10 +289,10 @@ class PatientLink: FHIRElement
 		}
 	}
 	
-	/*! replace | refer | seealso - type of link */
-	var type: String?
+	/** replace | refer | seealso - type of link */
+	public var type: String?
 	
-	convenience init(other: ResourceReference?, type: String?) {
+	public convenience init(other: ResourceReference?, type: String?) {
 		self.init(json: nil)
 		if other {
 			self.other = other
@@ -302,7 +302,7 @@ class PatientLink: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["other"] as? NSDictionary {

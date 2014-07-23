@@ -2,14 +2,14 @@
 //  ImmunizationRecommendation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Immunization profile.
  *
  *  Scope and Usage The ImmunizationRecommendation resource is intended to cover communication of a specified
@@ -21,20 +21,20 @@ import Foundation
  *  PHER work group - is believed to meet key use cases and information requirements as defined in the existing
  *  HL7 v3 POIZ domain and Immunization Domain Analysis Model.
  */
-class ImmunizationRecommendation: FHIRResource
+public class ImmunizationRecommendation: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "ImmunizationRecommendation" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Business identifier */
-	var identifier: [Identifier]?
+	/** Business identifier */
+	public var identifier: [Identifier]?
 	
-	/*! Who this profile is for */
-	var subject: FHIRElement? {
+	/** Who this profile is for */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -43,10 +43,10 @@ class ImmunizationRecommendation: FHIRResource
 		}
 	}
 	
-	/*! Vaccine administration recommendations */
-	var recommendation: [ImmunizationRecommendationRecommendation]?
+	/** Vaccine administration recommendations */
+	public var recommendation: [ImmunizationRecommendationRecommendation]?
 	
-	convenience init(subject: ResourceReference?, recommendation: [ImmunizationRecommendationRecommendation]?) {
+	public convenience init(subject: ResourceReference?, recommendation: [ImmunizationRecommendationRecommendation]?) {
 		self.init(json: nil)
 		if subject {
 			self.subject = subject
@@ -56,7 +56,7 @@ class ImmunizationRecommendation: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -76,31 +76,31 @@ class ImmunizationRecommendation: FHIRResource
 }
 
 
-/*!
+/**
  *  Vaccine administration recommendations.
  */
-class ImmunizationRecommendationRecommendation: FHIRElement
+public class ImmunizationRecommendationRecommendation: FHIRElement
 {	
-	/*! Date recommendation created */
-	var date: NSDate?
+	/** Date recommendation created */
+	public var date: NSDate?
 	
-	/*! Vaccine recommendation applies to */
-	var vaccineType: CodeableConcept?
+	/** Vaccine recommendation applies to */
+	public var vaccineType: CodeableConcept?
 	
-	/*! Recommended dose number */
-	var doseNumber: Int?
+	/** Recommended dose number */
+	public var doseNumber: Int?
 	
-	/*! Vaccine administration status */
-	var forecastStatus: CodeableConcept?
+	/** Vaccine administration status */
+	public var forecastStatus: CodeableConcept?
 	
-	/*! Dates governing proposed immunization */
-	var dateCriterion: [ImmunizationRecommendationRecommendationDateCriterion]?
+	/** Dates governing proposed immunization */
+	public var dateCriterion: [ImmunizationRecommendationRecommendationDateCriterion]?
 	
-	/*! Protocol used by recommendation */
-	var proto: ImmunizationRecommendationRecommendationProtocol?
+	/** Protocol used by recommendation */
+	public var proto: ImmunizationRecommendationRecommendationProtocol?
 	
-	/*! Past immunizations supporting recommendation */
-	var supportingImmunization: [FHIRElement]? {
+	/** Past immunizations supporting recommendation */
+	public var supportingImmunization: [FHIRElement]? {
 		get { return resolveReferences("supportingImmunization") }
 		set {
 			if newValue {
@@ -109,8 +109,8 @@ class ImmunizationRecommendationRecommendation: FHIRElement
 		}
 	}
 	
-	/*! Patient observations supporting recommendation */
-	var supportingPatientInformation: [FHIRElement]? {
+	/** Patient observations supporting recommendation */
+	public var supportingPatientInformation: [FHIRElement]? {
 		get { return resolveReferences("supportingPatientInformation") }
 		set {
 			if newValue {
@@ -119,7 +119,7 @@ class ImmunizationRecommendationRecommendation: FHIRElement
 		}
 	}
 	
-	convenience init(date: NSDate?, vaccineType: CodeableConcept?, forecastStatus: CodeableConcept?) {
+	public convenience init(date: NSDate?, vaccineType: CodeableConcept?, forecastStatus: CodeableConcept?) {
 		self.init(json: nil)
 		if date {
 			self.date = date
@@ -132,7 +132,7 @@ class ImmunizationRecommendationRecommendation: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
@@ -164,20 +164,20 @@ class ImmunizationRecommendationRecommendation: FHIRElement
 }
 
 
-/*!
+/**
  *  Dates governing proposed immunization.
  *
  *  Vaccine date recommendations - e.g. earliest date to administer, latest date to administer, etc.
  */
-class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
+public class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
 {	
-	/*! Type of date */
-	var code: CodeableConcept?
+	/** Type of date */
+	public var code: CodeableConcept?
 	
-	/*! Recommended date */
-	var value: NSDate?
+	/** Recommended date */
+	public var value: NSDate?
 	
-	convenience init(code: CodeableConcept?, value: NSDate?) {
+	public convenience init(code: CodeableConcept?, value: NSDate?) {
 		self.init(json: nil)
 		if code {
 			self.code = code
@@ -187,7 +187,7 @@ class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
@@ -201,21 +201,21 @@ class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
 }
 
 
-/*!
+/**
  *  Protocol used by recommendation.
  *
  *  Contains information about the protocol under which the vaccine was administered.
  */
-class ImmunizationRecommendationRecommendationProtocol: FHIRElement
+public class ImmunizationRecommendationRecommendationProtocol: FHIRElement
 {	
-	/*! Number of dose within sequence */
-	var doseSequence: Int?
+	/** Number of dose within sequence */
+	public var doseSequence: Int?
 	
-	/*! Protocol details */
-	var description: String?
+	/** Protocol details */
+	public var description: String?
 	
-	/*! Who is responsible for protocol */
-	var authority: FHIRElement? {
+	/** Who is responsible for protocol */
+	public var authority: FHIRElement? {
 		get { return resolveReference("authority") }
 		set {
 			if newValue {
@@ -224,11 +224,11 @@ class ImmunizationRecommendationRecommendationProtocol: FHIRElement
 		}
 	}
 	
-	/*! Name of vaccination series */
-	var series: String?
+	/** Name of vaccination series */
+	public var series: String?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["doseSequence"] as? Int {

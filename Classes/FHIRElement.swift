@@ -9,41 +9,41 @@
 import Foundation
 
 
-/*!
+/**
  *  Abstract superclass for all FHIR data elements.
  */
-class FHIRElement
+public class FHIRElement
 {
-	class var resourceName: String {
+	public class var resourceName: String {
 		get { return "FHIRElement" }
 	}
 	
-	/*! This should be `extension` but it is a keyword in Swift; renamed to `fhirExtension`. */
-	var fhirExtension: [Extension]?
+	/** This should be `extension` but it is a keyword in Swift; renamed to `fhirExtension`. */
+	public var fhirExtension: [Extension]?
 	
-	/*! Optional modifier extensions. */
-	var modifierExtension: [Extension]?
+	/** Optional modifier extensions. */
+	public var modifierExtension: [Extension]?
 	
-	/*! Contained, inline Resources, indexed by key. */
-	var contained: [String: FHIRContainedResource]?
+	/** Contained, inline Resources, indexed by key. */
+	public var contained: [String: FHIRContainedResource]?
 	
-	/*! Mapping ResourceReference instances to property names (singles).
+	/** Mapping ResourceReference instances to property names (singles).
 	 *  This is needed due to lack of introspection as of beta 3. */
 	var _referenceMap = [String: ResourceReference]()
 
-	/*! Mapping ResourceReference instances to property names (multiples). */
+	/** Mapping ResourceReference instances to property names (multiples). */
 	var _referencesMap = [String: [ResourceReference]]()
 	
-	/*! Resolved references (singles). */
+	/** Resolved references (singles). */
 	var _resolved: [String: FHIRElement]?
 	
-	/*! Resolved references (multiples). */
+	/** Resolved references (multiples). */
 	var _resolveds: [String: [FHIRElement]]?
 	
 	
-	// MARK: JSON Capabilities
+	// MARK: - JSON Capabilities
 	
-	@required init(json: NSDictionary?) {
+	required public init(json: NSDictionary?) {
 		if let js = json {
 			if let arr = js["contained"] as? [NSDictionary] {
 				var cont = contained ? contained! : [String: FHIRContainedResource]()
@@ -61,7 +61,7 @@ class FHIRElement
 		}
 	}
 	
-	@final class func from(array: [NSDictionary]) -> [FHIRElement] {
+	final class func from(array: [NSDictionary]) -> [FHIRElement] {
 		var arr: [FHIRElement] = []
 		for arrJSON in array {
 			arr += self(json: arrJSON)
@@ -70,7 +70,7 @@ class FHIRElement
 	}
 	
 	
-	// MARK: Handling References
+	// MARK: - Handling References
 	
 	func didSetReference(object: FHIRElement, name: String) {
 		if let obj = object as? ResourceReference {

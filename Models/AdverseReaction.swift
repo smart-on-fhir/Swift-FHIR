@@ -2,37 +2,37 @@
 //  AdverseReaction.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Specific reactions to a substance.
  *
  *  Scope and Usage Adverse Reaction resources are used to provide information about specific reactions to a
  *  substance. These are normally associated with an AllergyIntolerance resource, but can be reported on their own
  *  when no assumption of further reactions is being made, or when specific events are being described.
  */
-class AdverseReaction: FHIRResource
+public class AdverseReaction: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "AdverseReaction" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! External Ids for this adverse reaction */
-	var identifier: [Identifier]?
+	/** External Ids for this adverse reaction */
+	public var identifier: [Identifier]?
 	
-	/*! When the reaction occurred */
-	var date: NSDate?
+	/** When the reaction occurred */
+	public var date: NSDate?
 	
-	/*! Who had the reaction */
-	var subject: FHIRElement? {
+	/** Who had the reaction */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -41,11 +41,11 @@ class AdverseReaction: FHIRResource
 		}
 	}
 	
-	/*! Indicates lack of reaction */
-	var didNotOccurFlag: Bool?
+	/** Indicates lack of reaction */
+	public var didNotOccurFlag: Bool?
 	
-	/*! Who recorded the reaction */
-	var recorder: FHIRElement? {
+	/** Who recorded the reaction */
+	public var recorder: FHIRElement? {
 		get { return resolveReference("recorder") }
 		set {
 			if newValue {
@@ -54,13 +54,13 @@ class AdverseReaction: FHIRResource
 		}
 	}
 	
-	/*! What was reaction? */
-	var symptom: [AdverseReactionSymptom]?
+	/** What was reaction? */
+	public var symptom: [AdverseReactionSymptom]?
 	
-	/*! Suspected substance */
-	var exposure: [AdverseReactionExposure]?
+	/** Suspected substance */
+	public var exposure: [AdverseReactionExposure]?
 	
-	convenience init(subject: ResourceReference?, didNotOccurFlag: Bool?) {
+	public convenience init(subject: ResourceReference?, didNotOccurFlag: Bool?) {
 		self.init(json: nil)
 		if subject {
 			self.subject = subject
@@ -70,7 +70,7 @@ class AdverseReaction: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -102,27 +102,27 @@ class AdverseReaction: FHIRResource
 }
 
 
-/*!
+/**
  *  What was reaction?.
  *
  *  The signs and symptoms that were observed as part of the reaction.
  */
-class AdverseReactionSymptom: FHIRElement
+public class AdverseReactionSymptom: FHIRElement
 {	
-	/*! E.g. Rash, vomiting */
-	var code: CodeableConcept?
+	/** E.g. Rash, vomiting */
+	public var code: CodeableConcept?
 	
-	/*! severe | serious | moderate | minor */
-	var severity: String?
+	/** severe | serious | moderate | minor */
+	public var severity: String?
 	
-	convenience init(code: CodeableConcept?) {
+	public convenience init(code: CodeableConcept?) {
 		self.init(json: nil)
 		if code {
 			self.code = code
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
@@ -136,24 +136,24 @@ class AdverseReactionSymptom: FHIRElement
 }
 
 
-/*!
+/**
  *  Suspected substance.
  *
  *  An exposure to a substance that preceded a reaction occurrence.
  */
-class AdverseReactionExposure: FHIRElement
+public class AdverseReactionExposure: FHIRElement
 {	
-	/*! When the exposure occurred */
-	var date: NSDate?
+	/** When the exposure occurred */
+	public var date: NSDate?
 	
-	/*! drugadmin | immuniz | coincidental */
-	var type: String?
+	/** drugadmin | immuniz | coincidental */
+	public var type: String?
 	
-	/*! likely | unlikely | confirmed | unknown */
-	var causalityExpectation: String?
+	/** likely | unlikely | confirmed | unknown */
+	public var causalityExpectation: String?
 	
-	/*! Presumed causative substance */
-	var substance: FHIRElement? {
+	/** Presumed causative substance */
+	public var substance: FHIRElement? {
 		get { return resolveReference("substance") }
 		set {
 			if newValue {
@@ -163,7 +163,7 @@ class AdverseReactionExposure: FHIRElement
 	}
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {

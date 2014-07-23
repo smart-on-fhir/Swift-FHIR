@@ -2,14 +2,14 @@
 //  Media.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A photo, video, or audio recording acquired or used in healthcare. The actual content may be inline or
  *  provided by direct reference.
  *
@@ -28,29 +28,29 @@ import Foundation
  *  resource is allowed to contain images collected by a DICOM based system, DICOM images would preferentially be
  *  made available in a FHIR ecosystem by provision of a resource with references to a WADO-RS server.
  */
-class Media: FHIRResource
+public class Media: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Media" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! photo | video | audio */
-	var type: String?
+	/** photo | video | audio */
+	public var type: String?
 	
-	/*! The type of acquisition equipment/process */
-	var subtype: CodeableConcept?
+	/** The type of acquisition equipment/process */
+	public var subtype: CodeableConcept?
 	
-	/*! Identifier(s) for the image */
-	var identifier: [Identifier]?
+	/** Identifier(s) for the image */
+	public var identifier: [Identifier]?
 	
-	/*! When the media was taken/recorded (end) */
-	var dateTime: NSDate?
+	/** When the media was taken/recorded (end) */
+	public var dateTime: NSDate?
 	
-	/*! Who/What this Media is a record of */
-	var subject: FHIRElement? {
+	/** Who/What this Media is a record of */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -59,8 +59,8 @@ class Media: FHIRResource
 		}
 	}
 	
-	/*! The person who generated the image */
-	var operator: FHIRElement? {
+	/** The person who generated the image */
+	public var operator: FHIRElement? {
 		get { return resolveReference("operator") }
 		set {
 			if newValue {
@@ -69,28 +69,28 @@ class Media: FHIRResource
 		}
 	}
 	
-	/*! Imaging view e.g Lateral or Antero-posterior */
-	var view: CodeableConcept?
+	/** Imaging view e.g Lateral or Antero-posterior */
+	public var view: CodeableConcept?
 	
-	/*! Name of the device/manufacturer */
-	var deviceName: String?
+	/** Name of the device/manufacturer */
+	public var deviceName: String?
 	
-	/*! Height of the image in pixels(photo/video) */
-	var height: Int?
+	/** Height of the image in pixels(photo/video) */
+	public var height: Int?
 	
-	/*! Width of the image in pixels (photo/video) */
-	var width: Int?
+	/** Width of the image in pixels (photo/video) */
+	public var width: Int?
 	
-	/*! Number of frames if > 1 (photo) */
-	var frames: Int?
+	/** Number of frames if > 1 (photo) */
+	public var frames: Int?
 	
-	/*! Length in seconds (audio / video) */
-	var length: Int?
+	/** Length in seconds (audio / video) */
+	public var length: Int?
 	
-	/*! Actual Media - reference or data */
-	var content: Attachment?
+	/** Actual Media - reference or data */
+	public var content: Attachment?
 	
-	convenience init(type: String?, content: Attachment?) {
+	public convenience init(type: String?, content: Attachment?) {
 		self.init(json: nil)
 		if type {
 			self.type = type
@@ -100,7 +100,7 @@ class Media: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {

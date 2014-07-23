@@ -2,14 +2,14 @@
 //  CarePlan.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Healthcare plan for patient.
  *
  *  Scope and Usage Care Plans are used in many of areas of healthcare with a variety of scopes. They can be as
@@ -24,20 +24,20 @@ import Foundation
  *  Comments are welcome about the appropriateness of the proposed level of granularity, whether it's too much
  *  detail for what most systems need, or not sufficient for common essential use cases.
  */
-class CarePlan: FHIRResource
+public class CarePlan: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "CarePlan" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! External Ids for this plan */
-	var identifier: [Identifier]?
+	/** External Ids for this plan */
+	public var identifier: [Identifier]?
 	
-	/*! Who care plan is for */
-	var patient: FHIRElement? {
+	/** Who care plan is for */
+	public var patient: FHIRElement? {
 		get { return resolveReference("patient") }
 		set {
 			if newValue {
@@ -46,17 +46,17 @@ class CarePlan: FHIRResource
 		}
 	}
 	
-	/*! planned | active | completed */
-	var status: String?
+	/** planned | active | completed */
+	public var status: String?
 	
-	/*! Time period plan covers */
-	var period: Period?
+	/** Time period plan covers */
+	public var period: Period?
 	
-	/*! When last updated */
-	var modified: NSDate?
+	/** When last updated */
+	public var modified: NSDate?
 	
-	/*! Health issues this plan addresses */
-	var concern: [FHIRElement]? {
+	/** Health issues this plan addresses */
+	public var concern: [FHIRElement]? {
 		get { return resolveReferences("concern") }
 		set {
 			if newValue {
@@ -65,26 +65,26 @@ class CarePlan: FHIRResource
 		}
 	}
 	
-	/*! Who's involved in plan? */
-	var participant: [CarePlanParticipant]?
+	/** Who's involved in plan? */
+	public var participant: [CarePlanParticipant]?
 	
-	/*! Desired outcome of plan */
-	var goal: [CarePlanGoal]?
+	/** Desired outcome of plan */
+	public var goal: [CarePlanGoal]?
 	
-	/*! Action to occur as part of plan */
-	var activity: [CarePlanActivity]?
+	/** Action to occur as part of plan */
+	public var activity: [CarePlanActivity]?
 	
-	/*! Comments about the plan */
-	var notes: String?
+	/** Comments about the plan */
+	public var notes: String?
 	
-	convenience init(status: String?) {
+	public convenience init(status: String?) {
 		self.init(json: nil)
 		if status {
 			self.status = status
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -125,18 +125,18 @@ class CarePlan: FHIRResource
 }
 
 
-/*!
+/**
  *  Who's involved in plan?.
  *
  *  Identifies all people and organizations who are expected to be involved in the care envisioned by this plan.
  */
-class CarePlanParticipant: FHIRElement
+public class CarePlanParticipant: FHIRElement
 {	
-	/*! Type of involvement */
-	var role: CodeableConcept?
+	/** Type of involvement */
+	public var role: CodeableConcept?
 	
-	/*! Who is involved */
-	var member: FHIRElement? {
+	/** Who is involved */
+	public var member: FHIRElement? {
 		get { return resolveReference("member") }
 		set {
 			if newValue {
@@ -145,14 +145,14 @@ class CarePlanParticipant: FHIRElement
 		}
 	}
 	
-	convenience init(member: ResourceReference?) {
+	public convenience init(member: ResourceReference?) {
 		self.init(json: nil)
 		if member {
 			self.member = member
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["role"] as? NSDictionary {
@@ -166,24 +166,24 @@ class CarePlanParticipant: FHIRElement
 }
 
 
-/*!
+/**
  *  Desired outcome of plan.
  *
  *  Describes the intended objective(s) of carrying out the Care Plan.
  */
-class CarePlanGoal: FHIRElement
+public class CarePlanGoal: FHIRElement
 {	
-	/*! What's the desired outcome? */
-	var description: String?
+	/** What's the desired outcome? */
+	public var description: String?
 	
-	/*! in progress | achieved | sustaining | cancelled */
-	var status: String?
+	/** in progress | achieved | sustaining | cancelled */
+	public var status: String?
 	
-	/*! Comments about the goal */
-	var notes: String?
+	/** Comments about the goal */
+	public var notes: String?
 	
-	/*! Health issues this goal addresses */
-	var concern: [FHIRElement]? {
+	/** Health issues this goal addresses */
+	public var concern: [FHIRElement]? {
 		get { return resolveReferences("concern") }
 		set {
 			if newValue {
@@ -192,14 +192,14 @@ class CarePlanGoal: FHIRElement
 		}
 	}
 	
-	convenience init(description: String?) {
+	public convenience init(description: String?) {
 		self.init(json: nil)
 		if description {
 			self.description = description
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
@@ -219,25 +219,25 @@ class CarePlanGoal: FHIRElement
 }
 
 
-/*!
+/**
  *  Action to occur as part of plan.
  *
  *  Identifies a planned action to occur as part of the plan.  For example, a medication to be used, lab tests to
  *  perform, self-monitoring, education, etc.
  */
-class CarePlanActivity: FHIRElement
+public class CarePlanActivity: FHIRElement
 {	
-	/*! Goals this activity relates to */
-	var goal: [String]?
+	/** Goals this activity relates to */
+	public var goal: [String]?
 	
-	/*! not started | scheduled | in progress | on hold | completed | cancelled */
-	var status: String?
+	/** not started | scheduled | in progress | on hold | completed | cancelled */
+	public var status: String?
 	
-	/*! Do NOT do */
-	var prohibited: Bool?
+	/** Do NOT do */
+	public var prohibited: Bool?
 	
-	/*! Appointments, orders, etc. */
-	var actionResulting: [FHIRElement]? {
+	/** Appointments, orders, etc. */
+	public var actionResulting: [FHIRElement]? {
 		get { return resolveReferences("actionResulting") }
 		set {
 			if newValue {
@@ -246,11 +246,11 @@ class CarePlanActivity: FHIRElement
 		}
 	}
 	
-	/*! Comments about the activity */
-	var notes: String?
+	/** Comments about the activity */
+	public var notes: String?
 	
-	/*! Activity details defined in specific resource */
-	var detail: FHIRElement? {
+	/** Activity details defined in specific resource */
+	public var detail: FHIRElement? {
 		get { return resolveReference("detail") }
 		set {
 			if newValue {
@@ -259,17 +259,17 @@ class CarePlanActivity: FHIRElement
 		}
 	}
 	
-	/*! Activity details summarised here */
-	var simple: CarePlanActivitySimple?
+	/** Activity details summarised here */
+	public var simple: CarePlanActivitySimple?
 	
-	convenience init(prohibited: Bool?) {
+	public convenience init(prohibited: Bool?) {
 		self.init(json: nil)
 		if prohibited {
 			self.prohibited = prohibited
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["goal"] as? [String] {
@@ -298,31 +298,31 @@ class CarePlanActivity: FHIRElement
 }
 
 
-/*!
+/**
  *  Activity details summarised here.
  *
  *  A simple summary of details suitable for a general care plan system (e.g. form driven) that doesn't know about
  *  specific resources such as procedure etc.
  */
-class CarePlanActivitySimple: FHIRElement
+public class CarePlanActivitySimple: FHIRElement
 {	
-	/*! diet | drug | encounter | observation | procedure | supply | other */
-	var category: String?
+	/** diet | drug | encounter | observation | procedure | supply | other */
+	public var category: String?
 	
-	/*! Detail type of activity */
-	var code: CodeableConcept?
+	/** Detail type of activity */
+	public var code: CodeableConcept?
 	
-	/*! When activity is to occur */
-	var timingSchedule: Schedule?
+	/** When activity is to occur */
+	public var timingSchedule: Schedule?
 	
-	/*! When activity is to occur */
-	var timingPeriod: Period?
+	/** When activity is to occur */
+	public var timingPeriod: Period?
 	
-	/*! When activity is to occur */
-	var timingString: String?
+	/** When activity is to occur */
+	public var timingString: String?
 	
-	/*! Where it should happen */
-	var location: FHIRElement? {
+	/** Where it should happen */
+	public var location: FHIRElement? {
 		get { return resolveReference("location") }
 		set {
 			if newValue {
@@ -331,8 +331,8 @@ class CarePlanActivitySimple: FHIRElement
 		}
 	}
 	
-	/*! Who's responsible? */
-	var performer: [FHIRElement]? {
+	/** Who's responsible? */
+	public var performer: [FHIRElement]? {
 		get { return resolveReferences("performer") }
 		set {
 			if newValue {
@@ -341,8 +341,8 @@ class CarePlanActivitySimple: FHIRElement
 		}
 	}
 	
-	/*! What's administered/supplied */
-	var product: FHIRElement? {
+	/** What's administered/supplied */
+	public var product: FHIRElement? {
 		get { return resolveReference("product") }
 		set {
 			if newValue {
@@ -351,23 +351,23 @@ class CarePlanActivitySimple: FHIRElement
 		}
 	}
 	
-	/*! How much consumed/day? */
-	var dailyAmount: Quantity?
+	/** How much consumed/day? */
+	public var dailyAmount: Quantity?
 	
-	/*! How much is administered/supplied/consumed */
-	var quantity: Quantity?
+	/** How much is administered/supplied/consumed */
+	public var quantity: Quantity?
 	
-	/*! Extra info on activity occurrence */
-	var details: String?
+	/** Extra info on activity occurrence */
+	public var details: String?
 	
-	convenience init(category: String?) {
+	public convenience init(category: String?) {
 		self.init(json: nil)
 		if category {
 			self.category = category
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["category"] as? String {

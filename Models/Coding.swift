@@ -2,39 +2,39 @@
 //  Coding.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A reference to a code defined by a terminology system.
  */
-class Coding: FHIRElement
+public class Coding: FHIRElement
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Coding" }
 	}
 	
-	/*! Identity of the terminology system */
-	var system: NSURL?
+	/** Identity of the terminology system */
+	public var system: NSURL?
 	
-	/*! Version of the system - if relevant */
-	var version: String?
+	/** Version of the system - if relevant */
+	public var version: String?
 	
-	/*! Symbol in syntax defined by the system */
-	var code: String?
+	/** Symbol in syntax defined by the system */
+	public var code: String?
 	
-	/*! Representation defined by the system */
-	var display: String?
+	/** Representation defined by the system */
+	public var display: String?
 	
-	/*! If this code was chosen directly by the user */
-	var primary: Bool?
+	/** If this code was chosen directly by the user */
+	public var primary: Bool?
 	
-	/*! Set this coding was chosen from */
-	var valueSet: FHIRElement? {
+	/** Set this coding was chosen from */
+	public var valueSet: FHIRElement? {
 		get { return resolveReference("valueSet") }
 		set {
 			if newValue {
@@ -44,7 +44,7 @@ class Coding: FHIRElement
 	}
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {

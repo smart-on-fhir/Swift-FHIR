@@ -2,30 +2,30 @@
 //  Schedule.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A schedule that specifies an event that may occur multiple times.
  */
-class Schedule: FHIRElement
+public class Schedule: FHIRElement
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Schedule" }
 	}
 	
-	/*! When the event occurs */
-	var event: [Period]?
+	/** When the event occurs */
+	public var event: [Period]?
 	
-	/*! Only if there is none or one event */
-	var repeat: ScheduleRepeat?
+	/** Only if there is none or one event */
+	public var repeat: ScheduleRepeat?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["event"] as? [NSDictionary] {
@@ -39,32 +39,32 @@ class Schedule: FHIRElement
 }
 
 
-/*!
+/**
  *  Only if there is none or one event.
  *
  *  Identifies a repeating pattern to the intended time periods.
  */
-class ScheduleRepeat: FHIRElement
+public class ScheduleRepeat: FHIRElement
 {	
-	/*! Event occurs frequency times per duration */
-	var frequency: Int?
+	/** Event occurs frequency times per duration */
+	public var frequency: Int?
 	
-	/*! HS | WAKE | AC | ACM | ACD | ACV | PC | PCM | PCD | PCV - common life events */
-	var when: String?
+	/** HS | WAKE | AC | ACM | ACD | ACV | PC | PCM | PCD | PCV - common life events */
+	public var when: String?
 	
-	/*! Repeating or event-related duration */
-	var duration: NSDecimalNumber?
+	/** Repeating or event-related duration */
+	public var duration: NSDecimalNumber?
 	
-	/*! s | min | h | d | wk | mo | a - unit of time (UCUM) */
-	var units: String?
+	/** s | min | h | d | wk | mo | a - unit of time (UCUM) */
+	public var units: String?
 	
-	/*! Number of times to repeat */
-	var count: Int?
+	/** Number of times to repeat */
+	public var count: Int?
 	
-	/*! When to stop repeats */
-	var end: NSDate?
+	/** When to stop repeats */
+	public var end: NSDate?
 	
-	convenience init(duration: NSDecimalNumber?, units: String?) {
+	public convenience init(duration: NSDecimalNumber?, units: String?) {
 		self.init(json: nil)
 		if duration {
 			self.duration = duration
@@ -74,7 +74,7 @@ class ScheduleRepeat: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["frequency"] as? Int {

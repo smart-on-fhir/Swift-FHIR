@@ -2,36 +2,36 @@
 //  List.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Information summarized from a list of other resources.
  *
  *  Scope and Usage List resources are used in many places, including allergies, medications, alerts, medical
  *  history, etc.
  */
-class List: FHIRResource
+public class List: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "List" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Business identifier */
-	var identifier: [Identifier]?
+	/** Business identifier */
+	public var identifier: [Identifier]?
 	
-	/*! What the purpose of this list is */
-	var code: CodeableConcept?
+	/** What the purpose of this list is */
+	public var code: CodeableConcept?
 	
-	/*! If all resources have the same subject */
-	var subject: FHIRElement? {
+	/** If all resources have the same subject */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -40,8 +40,8 @@ class List: FHIRResource
 		}
 	}
 	
-	/*! Who and/or what defined the list contents */
-	var source: FHIRElement? {
+	/** Who and/or what defined the list contents */
+	public var source: FHIRElement? {
 		get { return resolveReference("source") }
 		set {
 			if newValue {
@@ -50,29 +50,29 @@ class List: FHIRResource
 		}
 	}
 	
-	/*! When the list was prepared */
-	var date: NSDate?
+	/** When the list was prepared */
+	public var date: NSDate?
 	
-	/*! Whether items in the list have a meaningful order */
-	var ordered: Bool?
+	/** Whether items in the list have a meaningful order */
+	public var ordered: Bool?
 	
-	/*! working | snapshot | changes */
-	var mode: String?
+	/** working | snapshot | changes */
+	public var mode: String?
 	
-	/*! Entries in the list */
-	var entry: [ListEntry]?
+	/** Entries in the list */
+	public var entry: [ListEntry]?
 	
-	/*! Why list is empty */
-	var emptyReason: CodeableConcept?
+	/** Why list is empty */
+	public var emptyReason: CodeableConcept?
 	
-	convenience init(mode: String?) {
+	public convenience init(mode: String?) {
 		self.init(json: nil)
 		if mode {
 			self.mode = mode
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -110,24 +110,24 @@ class List: FHIRResource
 }
 
 
-/*!
+/**
  *  Entries in the list.
  *
  *  Entries in this list.
  */
-class ListEntry: FHIRElement
+public class ListEntry: FHIRElement
 {	
-	/*! Workflow information about this item */
-	var flag: [CodeableConcept]?
+	/** Workflow information about this item */
+	public var flag: [CodeableConcept]?
 	
-	/*! If this item is actually marked as deleted */
-	var deleted: Bool?
+	/** If this item is actually marked as deleted */
+	public var deleted: Bool?
 	
-	/*! When item added to list */
-	var date: NSDate?
+	/** When item added to list */
+	public var date: NSDate?
 	
-	/*! Actual entry */
-	var item: FHIRElement? {
+	/** Actual entry */
+	public var item: FHIRElement? {
 		get { return resolveReference("item") }
 		set {
 			if newValue {
@@ -136,14 +136,14 @@ class ListEntry: FHIRElement
 		}
 	}
 	
-	convenience init(item: ResourceReference?) {
+	public convenience init(item: ResourceReference?) {
 		self.init(json: nil)
 		if item {
 			self.item = item
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["flag"] as? [NSDictionary] {

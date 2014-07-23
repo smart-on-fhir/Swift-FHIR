@@ -2,14 +2,14 @@
 //  FamilyHistory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Information about patient's relatives, relevant for patient.
  *
  *  Scope and Usage This resource records significant health events and conditions for people related to the
@@ -23,20 +23,20 @@ import Foundation
  *  
  *  The entire family history for an individual is stored in a single resource.
  */
-class FamilyHistory: FHIRResource
+public class FamilyHistory: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "FamilyHistory" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! External Id(s) for this record */
-	var identifier: [Identifier]?
+	/** External Id(s) for this record */
+	public var identifier: [Identifier]?
 	
-	/*! Patient history is about */
-	var subject: FHIRElement? {
+	/** Patient history is about */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -45,20 +45,20 @@ class FamilyHistory: FHIRResource
 		}
 	}
 	
-	/*! Additional details not covered elsewhere */
-	var note: String?
+	/** Additional details not covered elsewhere */
+	public var note: String?
 	
-	/*! Relative described by history */
-	var relation: [FamilyHistoryRelation]?
+	/** Relative described by history */
+	public var relation: [FamilyHistoryRelation]?
 	
-	convenience init(subject: ResourceReference?) {
+	public convenience init(subject: ResourceReference?) {
 		self.init(json: nil)
 		if subject {
 			self.subject = subject
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -81,57 +81,57 @@ class FamilyHistory: FHIRResource
 }
 
 
-/*!
+/**
  *  Relative described by history.
  *
  *  The related person. Each FamilyHistory resource contains the entire family history for a single person.
  */
-class FamilyHistoryRelation: FHIRElement
+public class FamilyHistoryRelation: FHIRElement
 {	
-	/*! The family member described */
-	var name: String?
+	/** The family member described */
+	public var name: String?
 	
-	/*! Relationship to the subject */
-	var relationship: CodeableConcept?
+	/** Relationship to the subject */
+	public var relationship: CodeableConcept?
 	
-	/*! (approximate) date of birth */
-	var bornPeriod: Period?
+	/** (approximate) date of birth */
+	public var bornPeriod: Period?
 	
-	/*! (approximate) date of birth */
-	var bornDate: NSDate?
+	/** (approximate) date of birth */
+	public var bornDate: NSDate?
 	
-	/*! (approximate) date of birth */
-	var bornString: String?
+	/** (approximate) date of birth */
+	public var bornString: String?
 	
-	/*! Dead? How old/when? */
-	var deceasedBoolean: Bool?
+	/** Dead? How old/when? */
+	public var deceasedBoolean: Bool?
 	
-	/*! Dead? How old/when? */
-	var deceasedAge: Double?
+	/** Dead? How old/when? */
+	public var deceasedAge: Double?
 	
-	/*! Dead? How old/when? */
-	var deceasedRange: Range?
+	/** Dead? How old/when? */
+	public var deceasedRange: Range?
 	
-	/*! Dead? How old/when? */
-	var deceasedDate: NSDate?
+	/** Dead? How old/when? */
+	public var deceasedDate: NSDate?
 	
-	/*! Dead? How old/when? */
-	var deceasedString: String?
+	/** Dead? How old/when? */
+	public var deceasedString: String?
 	
-	/*! General note about related person */
-	var note: String?
+	/** General note about related person */
+	public var note: String?
 	
-	/*! Condition that the related person had */
-	var condition: [FamilyHistoryRelationCondition]?
+	/** Condition that the related person had */
+	public var condition: [FamilyHistoryRelationCondition]?
 	
-	convenience init(relationship: CodeableConcept?) {
+	public convenience init(relationship: CodeableConcept?) {
 		self.init(json: nil)
 		if relationship {
 			self.relationship = relationship
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
@@ -175,41 +175,41 @@ class FamilyHistoryRelation: FHIRElement
 }
 
 
-/*!
+/**
  *  Condition that the related person had.
  *
  *  The significant Conditions (or condition) that the family member had. This is a repeating section to allow a
  *  system to represent more than one condition per resource, though there is nothing stopping multiple resources
  *  - one per condition.
  */
-class FamilyHistoryRelationCondition: FHIRElement
+public class FamilyHistoryRelationCondition: FHIRElement
 {	
-	/*! Condition suffered by relation */
-	var type: CodeableConcept?
+	/** Condition suffered by relation */
+	public var type: CodeableConcept?
 	
-	/*! deceased | permanent disability | etc. */
-	var outcome: CodeableConcept?
+	/** deceased | permanent disability | etc. */
+	public var outcome: CodeableConcept?
 	
-	/*! When condition first manifested */
-	var onsetAge: Double?
+	/** When condition first manifested */
+	public var onsetAge: Double?
 	
-	/*! When condition first manifested */
-	var onsetRange: Range?
+	/** When condition first manifested */
+	public var onsetRange: Range?
 	
-	/*! When condition first manifested */
-	var onsetString: String?
+	/** When condition first manifested */
+	public var onsetString: String?
 	
-	/*! Extra information about condition */
-	var note: String?
+	/** Extra information about condition */
+	public var note: String?
 	
-	convenience init(type: CodeableConcept?) {
+	public convenience init(type: CodeableConcept?) {
 		self.init(json: nil)
 		if type {
 			self.type = type
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? NSDictionary {

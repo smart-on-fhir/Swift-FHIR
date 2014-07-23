@@ -2,14 +2,14 @@
 //  MedicationPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Prescription of medication to for patient.
  *
  *  Scope and Usage This resource covers all orders for medications for a patient. This includes in-patient
@@ -18,26 +18,26 @@ import Foundation
  *  support the order of medication-related devices. It is not intended for use in prescribing particular diets,
  *  or for ordering non-medication-related items (eye-glasses, supplies, etc.)
  */
-class MedicationPrescription: FHIRResource
+public class MedicationPrescription: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "MedicationPrescription" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! External identifier */
-	var identifier: [Identifier]?
+	/** External identifier */
+	public var identifier: [Identifier]?
 	
-	/*! When prescription was authorized */
-	var dateWritten: NSDate?
+	/** When prescription was authorized */
+	public var dateWritten: NSDate?
 	
-	/*! active | on hold | completed | entered in error | stopped | superceded */
-	var status: String?
+	/** active | on hold | completed | entered in error | stopped | superceded */
+	public var status: String?
 	
-	/*! Who prescription is for */
-	var patient: FHIRElement? {
+	/** Who prescription is for */
+	public var patient: FHIRElement? {
 		get { return resolveReference("patient") }
 		set {
 			if newValue {
@@ -46,8 +46,8 @@ class MedicationPrescription: FHIRResource
 		}
 	}
 	
-	/*! Who ordered the medication(s) */
-	var prescriber: FHIRElement? {
+	/** Who ordered the medication(s) */
+	public var prescriber: FHIRElement? {
 		get { return resolveReference("prescriber") }
 		set {
 			if newValue {
@@ -56,8 +56,8 @@ class MedicationPrescription: FHIRResource
 		}
 	}
 	
-	/*! Created during encounter / admission / stay */
-	var encounter: FHIRElement? {
+	/** Created during encounter / admission / stay */
+	public var encounter: FHIRElement? {
 		get { return resolveReference("encounter") }
 		set {
 			if newValue {
@@ -66,11 +66,11 @@ class MedicationPrescription: FHIRResource
 		}
 	}
 	
-	/*! Reason or indication for writing the prescription */
-	var reasonCodeableConcept: CodeableConcept?
+	/** Reason or indication for writing the prescription */
+	public var reasonCodeableConcept: CodeableConcept?
 	
-	/*! Reason or indication for writing the prescription */
-	var reasonResourceReference: FHIRElement? {
+	/** Reason or indication for writing the prescription */
+	public var reasonResourceReference: FHIRElement? {
 		get { return resolveReference("reasonResourceReference") }
 		set {
 			if newValue {
@@ -79,8 +79,8 @@ class MedicationPrescription: FHIRResource
 		}
 	}
 	
-	/*! Medication to be taken */
-	var medication: FHIRElement? {
+	/** Medication to be taken */
+	public var medication: FHIRElement? {
 		get { return resolveReference("medication") }
 		set {
 			if newValue {
@@ -89,17 +89,17 @@ class MedicationPrescription: FHIRResource
 		}
 	}
 	
-	/*! How medication should be taken */
-	var dosageInstruction: [MedicationPrescriptionDosageInstruction]?
+	/** How medication should be taken */
+	public var dosageInstruction: [MedicationPrescriptionDosageInstruction]?
 	
-	/*! Medication supply authorization */
-	var dispense: MedicationPrescriptionDispense?
+	/** Medication supply authorization */
+	public var dispense: MedicationPrescriptionDispense?
 	
-	/*! Any restrictions on medication substitution? */
-	var substitution: MedicationPrescriptionSubstitution?
+	/** Any restrictions on medication substitution? */
+	public var substitution: MedicationPrescriptionSubstitution?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -146,54 +146,54 @@ class MedicationPrescription: FHIRResource
 }
 
 
-/*!
+/**
  *  How medication should be taken.
  *
  *  Indicates how the medication is to be used by the patient.
  */
-class MedicationPrescriptionDosageInstruction: FHIRElement
+public class MedicationPrescriptionDosageInstruction: FHIRElement
 {	
-	/*! Dosage instructions expressed as text */
-	var text: String?
+	/** Dosage instructions expressed as text */
+	public var text: String?
 	
-	/*! Supplemental instructions - e.g. "with meals" */
-	var additionalInstructions: CodeableConcept?
+	/** Supplemental instructions - e.g. "with meals" */
+	public var additionalInstructions: CodeableConcept?
 	
-	/*! When medication should be administered */
-	var timingDateTime: NSDate?
+	/** When medication should be administered */
+	public var timingDateTime: NSDate?
 	
-	/*! When medication should be administered */
-	var timingPeriod: Period?
+	/** When medication should be administered */
+	public var timingPeriod: Period?
 	
-	/*! When medication should be administered */
-	var timingSchedule: Schedule?
+	/** When medication should be administered */
+	public var timingSchedule: Schedule?
 	
-	/*! Take "as needed" f(or x) */
-	var asNeededBoolean: Bool?
+	/** Take "as needed" f(or x) */
+	public var asNeededBoolean: Bool?
 	
-	/*! Take "as needed" f(or x) */
-	var asNeededCodeableConcept: CodeableConcept?
+	/** Take "as needed" f(or x) */
+	public var asNeededCodeableConcept: CodeableConcept?
 	
-	/*! Body site to administer to */
-	var site: CodeableConcept?
+	/** Body site to administer to */
+	public var site: CodeableConcept?
 	
-	/*! How drug should enter body */
-	var route: CodeableConcept?
+	/** How drug should enter body */
+	public var route: CodeableConcept?
 	
-	/*! Technique for administering medication */
-	var method: CodeableConcept?
+	/** Technique for administering medication */
+	public var method: CodeableConcept?
 	
-	/*! Amount of medication per dose */
-	var doseQuantity: Quantity?
+	/** Amount of medication per dose */
+	public var doseQuantity: Quantity?
 	
-	/*! Amount of medication per unit of time */
-	var rate: Ratio?
+	/** Amount of medication per unit of time */
+	public var rate: Ratio?
 	
-	/*! Upper limit on medication per unit of time */
-	var maxDosePerPeriod: Ratio?
+	/** Upper limit on medication per unit of time */
+	public var maxDosePerPeriod: Ratio?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? String {
@@ -240,15 +240,15 @@ class MedicationPrescriptionDosageInstruction: FHIRElement
 }
 
 
-/*!
+/**
  *  Medication supply authorization.
  *
  *  Deals with details of the dispense part of the order.
  */
-class MedicationPrescriptionDispense: FHIRElement
+public class MedicationPrescriptionDispense: FHIRElement
 {	
-	/*! Product to be supplied */
-	var medication: FHIRElement? {
+	/** Product to be supplied */
+	public var medication: FHIRElement? {
 		get { return resolveReference("medication") }
 		set {
 			if newValue {
@@ -257,20 +257,20 @@ class MedicationPrescriptionDispense: FHIRElement
 		}
 	}
 	
-	/*! Time period supply is authorized for */
-	var validityPeriod: Period?
+	/** Time period supply is authorized for */
+	public var validityPeriod: Period?
 	
-	/*! # of refills authorized */
-	var numberOfRepeatsAllowed: Int?
+	/** # of refills authorized */
+	public var numberOfRepeatsAllowed: Int?
 	
-	/*! Amount of medication to supply per dispense */
-	var quantity: Quantity?
+	/** Amount of medication to supply per dispense */
+	public var quantity: Quantity?
 	
-	/*! Days supply per dispense */
-	var expectedSupplyDuration: Double?
+	/** Days supply per dispense */
+	public var expectedSupplyDuration: Double?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["medication"] as? NSDictionary {
@@ -293,29 +293,29 @@ class MedicationPrescriptionDispense: FHIRElement
 }
 
 
-/*!
+/**
  *  Any restrictions on medication substitution?.
  *
  *  Indicates whether or not substitution can or should be part of the dispense. In some cases substitution must
  *  happen, in other cases substitution must not happen, and in others it does not matter. This block explains the
  *  prescriber's intent. If nothing is specified substitution may be done.
  */
-class MedicationPrescriptionSubstitution: FHIRElement
+public class MedicationPrescriptionSubstitution: FHIRElement
 {	
-	/*! generic | formulary + */
-	var type: CodeableConcept?
+	/** generic | formulary + */
+	public var type: CodeableConcept?
 	
-	/*! Why should substitution (not) be made */
-	var reason: CodeableConcept?
+	/** Why should substitution (not) be made */
+	public var reason: CodeableConcept?
 	
-	convenience init(type: CodeableConcept?) {
+	public convenience init(type: CodeableConcept?) {
 		self.init(json: nil)
 		if type {
 			self.type = type
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? NSDictionary {

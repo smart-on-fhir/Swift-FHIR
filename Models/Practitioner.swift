@@ -2,14 +2,14 @@
 //  Practitioner.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A person with a  formal responsibility in the provisioning of healthcare or related services.
  *
  *  Scope and Usage Practitioner covers all individuals who are engaged in the healthcare process and healthcare-
@@ -24,38 +24,38 @@ import Foundation
  *  * receptionists handling patient registration
  *  * IT personnel merging or unmerging patient records
  */
-class Practitioner: FHIRResource
+public class Practitioner: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Practitioner" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! A identifier for the person as this agent */
-	var identifier: [Identifier]?
+	/** A identifier for the person as this agent */
+	public var identifier: [Identifier]?
 	
-	/*! A name associated with the person */
-	var name: HumanName?
+	/** A name associated with the person */
+	public var name: HumanName?
 	
-	/*! A contact detail for the practitioner */
-	var telecom: [Contact]?
+	/** A contact detail for the practitioner */
+	public var telecom: [Contact]?
 	
-	/*! Where practitioner can be found/visited */
-	var address: Address?
+	/** Where practitioner can be found/visited */
+	public var address: Address?
 	
-	/*! Gender for administrative purposes */
-	var gender: CodeableConcept?
+	/** Gender for administrative purposes */
+	public var gender: CodeableConcept?
 	
-	/*! The date and time of birth for the practitioner */
-	var birthDate: NSDate?
+	/** The date and time of birth for the practitioner */
+	public var birthDate: NSDate?
 	
-	/*! Image of the person */
-	var photo: [Attachment]?
+	/** Image of the person */
+	public var photo: [Attachment]?
 	
-	/*! The represented organization */
-	var organization: FHIRElement? {
+	/** The represented organization */
+	public var organization: FHIRElement? {
 		get { return resolveReference("organization") }
 		set {
 			if newValue {
@@ -64,17 +64,17 @@ class Practitioner: FHIRResource
 		}
 	}
 	
-	/*! Roles which this practitioner may perform */
-	var role: [CodeableConcept]?
+	/** Roles which this practitioner may perform */
+	public var role: [CodeableConcept]?
 	
-	/*! Specific specialty of the practitioner */
-	var specialty: [CodeableConcept]?
+	/** Specific specialty of the practitioner */
+	public var specialty: [CodeableConcept]?
 	
-	/*! The period during which the practitioner is authorized to perform in these role(s) */
-	var period: Period?
+	/** The period during which the practitioner is authorized to perform in these role(s) */
+	public var period: Period?
 	
-	/*! The location(s) at which this practitioner provides care */
-	var location: [FHIRElement]? {
+	/** The location(s) at which this practitioner provides care */
+	public var location: [FHIRElement]? {
 		get { return resolveReferences("location") }
 		set {
 			if newValue {
@@ -83,14 +83,14 @@ class Practitioner: FHIRResource
 		}
 	}
 	
-	/*! Qualifications obtained by training and certification */
-	var qualification: [PractitionerQualification]?
+	/** Qualifications obtained by training and certification */
+	public var qualification: [PractitionerQualification]?
 	
-	/*! A language the practitioner is able to use in patient communication */
-	var communication: [CodeableConcept]?
+	/** A language the practitioner is able to use in patient communication */
+	public var communication: [CodeableConcept]?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -143,19 +143,19 @@ class Practitioner: FHIRResource
 }
 
 
-/*!
+/**
  *  Qualifications obtained by training and certification.
  */
-class PractitionerQualification: FHIRElement
+public class PractitionerQualification: FHIRElement
 {	
-	/*! Coded representation of the qualification */
-	var code: CodeableConcept?
+	/** Coded representation of the qualification */
+	public var code: CodeableConcept?
 	
-	/*! Period during which the qualification is valid */
-	var period: Period?
+	/** Period during which the qualification is valid */
+	public var period: Period?
 	
-	/*! Organization that regulates and issues the qualification */
-	var issuer: FHIRElement? {
+	/** Organization that regulates and issues the qualification */
+	public var issuer: FHIRElement? {
 		get { return resolveReference("issuer") }
 		set {
 			if newValue {
@@ -164,14 +164,14 @@ class PractitionerQualification: FHIRElement
 		}
 	}
 	
-	convenience init(code: CodeableConcept?) {
+	public convenience init(code: CodeableConcept?) {
 		self.init(json: nil)
 		if code {
 			self.code = code
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {

@@ -2,36 +2,36 @@
 //  Extension.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Optional Extensions Element - found in all resources..
  */
-class Extension: FHIRElement
+public class Extension: FHIRElement
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Extension" }
 	}
 	
-	/*! identifies the meaning of the extension */
-	var url: NSURL?
+	/** identifies the meaning of the extension */
+	public var url: NSURL?
 	
-	/*! Value of extension */
-	var value: FHIRElement?
+	/** Value of extension */
+	public var value: FHIRElement?
 	
-	convenience init(url: NSURL?) {
+	public convenience init(url: NSURL?) {
 		self.init(json: nil)
 		if url {
 			self.url = url
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["url"] as? String {

@@ -2,14 +2,14 @@
 //  Organization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A grouping of people or organizations with a common purpose.
  *
  *  Scope and Usage This resource may be used in a shared registry of contact and other information for various
@@ -17,32 +17,32 @@ import Foundation
  *  perhaps as a document, message or as a contained resource. If using a registry approach, it's entirely
  *  possible for multiple registries to exist, each dealing with different types or levels of organization.
  */
-class Organization: FHIRResource
+public class Organization: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Organization" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Identifies this organization  across multiple systems */
-	var identifier: [Identifier]?
+	/** Identifies this organization  across multiple systems */
+	public var identifier: [Identifier]?
 	
-	/*! Name used for the organization */
-	var name: String?
+	/** Name used for the organization */
+	public var name: String?
 	
-	/*! Kind of organization */
-	var type: CodeableConcept?
+	/** Kind of organization */
+	public var type: CodeableConcept?
 	
-	/*! A contact detail for the organization */
-	var telecom: [Contact]?
+	/** A contact detail for the organization */
+	public var telecom: [Contact]?
 	
-	/*! An address for the organization */
-	var address: [Address]?
+	/** An address for the organization */
+	public var address: [Address]?
 	
-	/*! The organization of which this organization forms a part */
-	var partOf: FHIRElement? {
+	/** The organization of which this organization forms a part */
+	public var partOf: FHIRElement? {
 		get { return resolveReference("partOf") }
 		set {
 			if newValue {
@@ -51,11 +51,11 @@ class Organization: FHIRResource
 		}
 	}
 	
-	/*! Contact for the organization for a certain purpose */
-	var contact: [OrganizationContact]?
+	/** Contact for the organization for a certain purpose */
+	public var contact: [OrganizationContact]?
 	
-	/*! Location(s) the organization uses to provide services */
-	var location: [FHIRElement]? {
+	/** Location(s) the organization uses to provide services */
+	public var location: [FHIRElement]? {
 		get { return resolveReferences("location") }
 		set {
 			if newValue {
@@ -64,11 +64,11 @@ class Organization: FHIRResource
 		}
 	}
 	
-	/*! Whether the organization's record is still in active use */
-	var active: Bool?
+	/** Whether the organization's record is still in active use */
+	public var active: Bool?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -106,28 +106,28 @@ class Organization: FHIRResource
 }
 
 
-/*!
+/**
  *  Contact for the organization for a certain purpose.
  */
-class OrganizationContact: FHIRElement
+public class OrganizationContact: FHIRElement
 {	
-	/*! The type of contact */
-	var purpose: CodeableConcept?
+	/** The type of contact */
+	public var purpose: CodeableConcept?
 	
-	/*! A name associated with the contact */
-	var name: HumanName?
+	/** A name associated with the contact */
+	public var name: HumanName?
 	
-	/*! Contact details (telephone, email, etc)  for a contact */
-	var telecom: [Contact]?
+	/** Contact details (telephone, email, etc)  for a contact */
+	public var telecom: [Contact]?
 	
-	/*! Visiting or postal addresses for the contact */
-	var address: Address?
+	/** Visiting or postal addresses for the contact */
+	public var address: Address?
 	
-	/*! Gender for administrative purposes */
-	var gender: CodeableConcept?
+	/** Gender for administrative purposes */
+	public var gender: CodeableConcept?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["purpose"] as? NSDictionary {

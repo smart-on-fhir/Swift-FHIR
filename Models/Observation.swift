@@ -2,14 +2,14 @@
 //  Observation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Measurements and simple assertions.
  *
  *  Scope and Usage Observations are a central element in healthcare, used to support diagnosis, monitor progress,
@@ -29,71 +29,71 @@ import Foundation
  *  * Social history: tobacco use, family supports, cognitive status
  *  * Core characteristics: pregnancy status, death assertion
  */
-class Observation: FHIRResource
+public class Observation: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Observation" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Type of observation (code / type) */
-	var name: CodeableConcept?
+	/** Type of observation (code / type) */
+	public var name: CodeableConcept?
 	
-	/*! Actual result */
-	var valueQuantity: Quantity?
+	/** Actual result */
+	public var valueQuantity: Quantity?
 	
-	/*! Actual result */
-	var valueCodeableConcept: CodeableConcept?
+	/** Actual result */
+	public var valueCodeableConcept: CodeableConcept?
 	
-	/*! Actual result */
-	var valueAttachment: Attachment?
+	/** Actual result */
+	public var valueAttachment: Attachment?
 	
-	/*! Actual result */
-	var valueRatio: Ratio?
+	/** Actual result */
+	public var valueRatio: Ratio?
 	
-	/*! Actual result */
-	var valuePeriod: Period?
+	/** Actual result */
+	public var valuePeriod: Period?
 	
-	/*! Actual result */
-	var valueSampledData: SampledData?
+	/** Actual result */
+	public var valueSampledData: SampledData?
 	
-	/*! Actual result */
-	var valueString: String?
+	/** Actual result */
+	public var valueString: String?
 	
-	/*! High, low, normal, etc. */
-	var interpretation: CodeableConcept?
+	/** High, low, normal, etc. */
+	public var interpretation: CodeableConcept?
 	
-	/*! Comments about result */
-	var comments: String?
+	/** Comments about result */
+	public var comments: String?
 	
-	/*! Physiologically Relevant time/time-period for observation */
-	var appliesDateTime: NSDate?
+	/** Physiologically Relevant time/time-period for observation */
+	public var appliesDateTime: NSDate?
 	
-	/*! Physiologically Relevant time/time-period for observation */
-	var appliesPeriod: Period?
+	/** Physiologically Relevant time/time-period for observation */
+	public var appliesPeriod: Period?
 	
-	/*! Date/Time this was made available */
-	var issued: Int?
+	/** Date/Time this was made available */
+	public var issued: Int?
 	
-	/*! registered | preliminary | final | amended + */
-	var status: String?
+	/** registered | preliminary | final | amended + */
+	public var status: String?
 	
-	/*! ok | ongoing | early | questionable | calibrating | error + */
-	var reliability: String?
+	/** ok | ongoing | early | questionable | calibrating | error + */
+	public var reliability: String?
 	
-	/*! Observed body part */
-	var bodySite: CodeableConcept?
+	/** Observed body part */
+	public var bodySite: CodeableConcept?
 	
-	/*! How it was done */
-	var method: CodeableConcept?
+	/** How it was done */
+	public var method: CodeableConcept?
 	
-	/*! Unique Id for this particular observation */
-	var identifier: Identifier?
+	/** Unique Id for this particular observation */
+	public var identifier: Identifier?
 	
-	/*! Who and/or what this is about */
-	var subject: FHIRElement? {
+	/** Who and/or what this is about */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -102,8 +102,8 @@ class Observation: FHIRResource
 		}
 	}
 	
-	/*! Specimen used for this observation */
-	var specimen: FHIRElement? {
+	/** Specimen used for this observation */
+	public var specimen: FHIRElement? {
 		get { return resolveReference("specimen") }
 		set {
 			if newValue {
@@ -112,8 +112,8 @@ class Observation: FHIRResource
 		}
 	}
 	
-	/*! Who did the observation */
-	var performer: [FHIRElement]? {
+	/** Who did the observation */
+	public var performer: [FHIRElement]? {
 		get { return resolveReferences("performer") }
 		set {
 			if newValue {
@@ -122,13 +122,13 @@ class Observation: FHIRResource
 		}
 	}
 	
-	/*! Provides guide for interpretation */
-	var referenceRange: [ObservationReferenceRange]?
+	/** Provides guide for interpretation */
+	public var referenceRange: [ObservationReferenceRange]?
 	
-	/*! Observations related to this observation */
-	var related: [ObservationRelated]?
+	/** Observations related to this observation */
+	public var related: [ObservationRelated]?
 	
-	convenience init(name: CodeableConcept?, status: String?, reliability: String?) {
+	public convenience init(name: CodeableConcept?, status: String?, reliability: String?) {
 		self.init(json: nil)
 		if name {
 			self.name = name
@@ -141,7 +141,7 @@ class Observation: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -221,27 +221,27 @@ class Observation: FHIRResource
 }
 
 
-/*!
+/**
  *  Provides guide for interpretation.
  *
  *  Guidance on how to interpret the value by comparison to a normal or recommended range.
  */
-class ObservationReferenceRange: FHIRElement
+public class ObservationReferenceRange: FHIRElement
 {	
-	/*! Low Range, if relevant */
-	var low: Quantity?
+	/** Low Range, if relevant */
+	public var low: Quantity?
 	
-	/*! High Range, if relevant */
-	var high: Quantity?
+	/** High Range, if relevant */
+	public var high: Quantity?
 	
-	/*! Indicates the meaning/use of this range of this range */
-	var meaning: CodeableConcept?
+	/** Indicates the meaning/use of this range of this range */
+	public var meaning: CodeableConcept?
 	
-	/*! Applicable age range, if relevant */
-	var age: Range?
+	/** Applicable age range, if relevant */
+	public var age: Range?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["low"] as? NSDictionary {
@@ -261,18 +261,18 @@ class ObservationReferenceRange: FHIRElement
 }
 
 
-/*!
+/**
  *  Observations related to this observation.
  *
  *  Related observations - either components, or previous observations, or statements of derivation.
  */
-class ObservationRelated: FHIRElement
+public class ObservationRelated: FHIRElement
 {	
-	/*! has-component | has-member | derived-from | sequel-to | replaces | qualified-by | interfered-by */
-	var type: String?
+	/** has-component | has-member | derived-from | sequel-to | replaces | qualified-by | interfered-by */
+	public var type: String?
 	
-	/*! Observation that is related to this one */
-	var target: FHIRElement? {
+	/** Observation that is related to this one */
+	public var target: FHIRElement? {
 		get { return resolveReference("target") }
 		set {
 			if newValue {
@@ -281,14 +281,14 @@ class ObservationRelated: FHIRElement
 		}
 	}
 	
-	convenience init(target: ResourceReference?) {
+	public convenience init(target: ResourceReference?) {
 		self.init(json: nil)
 		if target {
 			self.target = target
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {

@@ -9,25 +9,25 @@
 import Foundation
 {% for klass in classes %}
 
-/*!
+/**
  *  {{ klass.short|replace("\n", "\n *  ") }}.
 {%- if klass.formal %}
  *
  *  {{ klass.formal|replace("\n", "\n *  ") }}
 {%- endif %}
  */
-class {{ klass.className }}: {{ klass.superclass|default('FHIRElement') }}
+public class {{ klass.className }}: {{ klass.superclass|default('FHIRElement') }}
 {
 {%- if klass.resourceName %}
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "{{ klass.resourceName }}" }
 	}
 {% endif -%}
 	
 {%- for prop in klass.properties %}	
-	/*! {{ prop.short }} */
+	/** {{ prop.short }} */
 	{%- if prop.isReference %}
-	var {{ prop.name }}: {% if prop.isArray %}[{% endif %}FHIRElement{% if prop.isArray %}]{% endif %}? {
+	public var {{ prop.name }}: {% if prop.isArray %}[{% endif %}FHIRElement{% if prop.isArray %}]{% endif %}? {
 		get { return resolveReference{% if prop.isArray %}s{% endif %}("{{ prop.name }}") }
 		set {
 			if newValue {
@@ -36,11 +36,11 @@ class {{ klass.className }}: {{ klass.superclass|default('FHIRElement') }}
 		}
 	}
 	{%- else %}
-	var {{ prop.name }}: {% if prop.isArray %}[{% endif %}{{ prop.className }}{% if prop.isArray %}]{% endif %}?
+	public var {{ prop.name }}: {% if prop.isArray %}[{% endif %}{{ prop.className }}{% if prop.isArray %}]{% endif %}?
 	{%- endif %}
 {% endfor -%}
 {% if klass.nonoptional|length > 0 %}	
-	convenience init(
+	public convenience init(
 	{%- for nonop in klass.nonoptional -%}
 		{{ nonop.name }}: {% if nonop.isArray %}[{% endif %}{{ nonop.className }}{% if nonop.isArray %}]{% endif %}?
 		{%- if not loop.last %}, {% endif -%}
@@ -55,7 +55,7 @@ class {{ klass.className }}: {{ klass.superclass|default('FHIRElement') }}
 	}
 {%- endif %}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		{%- for prop in klass.properties %}

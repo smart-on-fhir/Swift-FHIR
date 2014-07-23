@@ -2,14 +2,14 @@
 //  Condition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Detailed information about conditions, problems or diagnoses.
  *
  *  Scope and Usage This resource is used to record detailed information about a specific aspect of or issue with
@@ -31,20 +31,20 @@ import Foundation
  *  The conditions represented in this resources are sometimes described as "Problems", and kept as part of a
  *  problem list.
  */
-class Condition: FHIRResource
+public class Condition: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Condition" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! External Ids for this condition */
-	var identifier: [Identifier]?
+	/** External Ids for this condition */
+	public var identifier: [Identifier]?
 	
-	/*! Who has the condition? */
-	var subject: FHIRElement? {
+	/** Who has the condition? */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -53,8 +53,8 @@ class Condition: FHIRResource
 		}
 	}
 	
-	/*! Encounter when condition first asserted */
-	var encounter: FHIRElement? {
+	/** Encounter when condition first asserted */
+	public var encounter: FHIRElement? {
 		get { return resolveReference("encounter") }
 		set {
 			if newValue {
@@ -63,8 +63,8 @@ class Condition: FHIRResource
 		}
 	}
 	
-	/*! Person who asserts this condition */
-	var asserter: FHIRElement? {
+	/** Person who asserts this condition */
+	public var asserter: FHIRElement? {
 		get { return resolveReference("asserter") }
 		set {
 			if newValue {
@@ -73,55 +73,55 @@ class Condition: FHIRResource
 		}
 	}
 	
-	/*! When first detected/suspected/entered */
-	var dateAsserted: NSDate?
+	/** When first detected/suspected/entered */
+	public var dateAsserted: NSDate?
 	
-	/*! Identification of the condition, problem or diagnosis */
-	var code: CodeableConcept?
+	/** Identification of the condition, problem or diagnosis */
+	public var code: CodeableConcept?
 	
-	/*! E.g. complaint | symptom | finding | diagnosis */
-	var category: CodeableConcept?
+	/** E.g. complaint | symptom | finding | diagnosis */
+	public var category: CodeableConcept?
 	
-	/*! provisional | working | confirmed | refuted */
-	var status: String?
+	/** provisional | working | confirmed | refuted */
+	public var status: String?
 	
-	/*! Degree of confidence */
-	var certainty: CodeableConcept?
+	/** Degree of confidence */
+	public var certainty: CodeableConcept?
 	
-	/*! Subjective severity of condition */
-	var severity: CodeableConcept?
+	/** Subjective severity of condition */
+	public var severity: CodeableConcept?
 	
-	/*! Estimated or actual date, or age */
-	var onsetDate: NSDate?
+	/** Estimated or actual date, or age */
+	public var onsetDate: NSDate?
 	
-	/*! Estimated or actual date, or age */
-	var onsetAge: Double?
+	/** Estimated or actual date, or age */
+	public var onsetAge: Double?
 	
-	/*! If/when in resolution/remission */
-	var abatementDate: NSDate?
+	/** If/when in resolution/remission */
+	public var abatementDate: NSDate?
 	
-	/*! If/when in resolution/remission */
-	var abatementAge: Double?
+	/** If/when in resolution/remission */
+	public var abatementAge: Double?
 	
-	/*! If/when in resolution/remission */
-	var abatementBoolean: Bool?
+	/** If/when in resolution/remission */
+	public var abatementBoolean: Bool?
 	
-	/*! Stage/grade, usually assessed formally */
-	var stage: ConditionStage?
+	/** Stage/grade, usually assessed formally */
+	public var stage: ConditionStage?
 	
-	/*! Supporting evidence */
-	var evidence: [ConditionEvidence]?
+	/** Supporting evidence */
+	public var evidence: [ConditionEvidence]?
 	
-	/*! Anatomical location, if relevant */
-	var location: [ConditionLocation]?
+	/** Anatomical location, if relevant */
+	public var location: [ConditionLocation]?
 	
-	/*! Causes or precedents for this Condition */
-	var relatedItem: [ConditionRelatedItem]?
+	/** Causes or precedents for this Condition */
+	public var relatedItem: [ConditionRelatedItem]?
 	
-	/*! Additional information about the Condition */
-	var notes: String?
+	/** Additional information about the Condition */
+	public var notes: String?
 	
-	convenience init(subject: ResourceReference?, code: CodeableConcept?, status: String?) {
+	public convenience init(subject: ResourceReference?, code: CodeableConcept?, status: String?) {
 		self.init(json: nil)
 		if subject {
 			self.subject = subject
@@ -134,7 +134,7 @@ class Condition: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -205,18 +205,18 @@ class Condition: FHIRResource
 }
 
 
-/*!
+/**
  *  Stage/grade, usually assessed formally.
  *
  *  Clinical stage or grade of a condition. May include formal severity assessments.
  */
-class ConditionStage: FHIRElement
+public class ConditionStage: FHIRElement
 {	
-	/*! Simple summary (disease specific) */
-	var summary: CodeableConcept?
+	/** Simple summary (disease specific) */
+	public var summary: CodeableConcept?
 	
-	/*! Formal record of assessment */
-	var assessment: [FHIRElement]? {
+	/** Formal record of assessment */
+	public var assessment: [FHIRElement]? {
 		get { return resolveReferences("assessment") }
 		set {
 			if newValue {
@@ -226,7 +226,7 @@ class ConditionStage: FHIRElement
 	}
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["summary"] as? NSDictionary {
@@ -240,18 +240,18 @@ class ConditionStage: FHIRElement
 }
 
 
-/*!
+/**
  *  Supporting evidence.
  *
  *  Supporting Evidence / manifestations that are the basis on which this condition is suspected or confirmed.
  */
-class ConditionEvidence: FHIRElement
+public class ConditionEvidence: FHIRElement
 {	
-	/*! Manifestation/symptom */
-	var code: CodeableConcept?
+	/** Manifestation/symptom */
+	public var code: CodeableConcept?
 	
-	/*! Supporting information found elsewhere */
-	var detail: [FHIRElement]? {
+	/** Supporting information found elsewhere */
+	public var detail: [FHIRElement]? {
 		get { return resolveReferences("detail") }
 		set {
 			if newValue {
@@ -261,7 +261,7 @@ class ConditionEvidence: FHIRElement
 	}
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
@@ -275,21 +275,21 @@ class ConditionEvidence: FHIRElement
 }
 
 
-/*!
+/**
  *  Anatomical location, if relevant.
  *
  *  The anatomical location where this condition manifests itself.
  */
-class ConditionLocation: FHIRElement
+public class ConditionLocation: FHIRElement
 {	
-	/*! Location - may include laterality */
-	var code: CodeableConcept?
+	/** Location - may include laterality */
+	public var code: CodeableConcept?
 	
-	/*! Precise location details */
-	var detail: String?
+	/** Precise location details */
+	public var detail: String?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
@@ -303,22 +303,22 @@ class ConditionLocation: FHIRElement
 }
 
 
-/*!
+/**
  *  Causes or precedents for this Condition.
  *
  *  Further conditions, problems, diagnoses, procedures or events that are related in some way to this condition,
  *  or the substance that caused/triggered this Condition.
  */
-class ConditionRelatedItem: FHIRElement
+public class ConditionRelatedItem: FHIRElement
 {	
-	/*! due-to | following */
-	var type: String?
+	/** due-to | following */
+	public var type: String?
 	
-	/*! Relationship target by means of a predefined code */
-	var code: CodeableConcept?
+	/** Relationship target by means of a predefined code */
+	public var code: CodeableConcept?
 	
-	/*! Relationship target resource */
-	var target: FHIRElement? {
+	/** Relationship target resource */
+	public var target: FHIRElement? {
 		get { return resolveReference("target") }
 		set {
 			if newValue {
@@ -327,14 +327,14 @@ class ConditionRelatedItem: FHIRElement
 		}
 	}
 	
-	convenience init(type: String?) {
+	public convenience init(type: String?) {
 		self.init(json: nil)
 		if type {
 			self.type = type
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {

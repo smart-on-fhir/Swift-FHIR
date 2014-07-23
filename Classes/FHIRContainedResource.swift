@@ -9,36 +9,36 @@
 import Foundation
 
 
-/*!
+/**
  *  Contained resources are store to instances of this class until they need to be resolved.
  *
  *  http://hl7.org/implement/standards/fhir/references.html#contained
  */
-class FHIRContainedResource
+public class FHIRContainedResource
 {
-	/*! The id of the resource. */
-	var id: String?
+	/** The id of the resource. */
+	public var id: String?
 	
-	/*! The type of the resource. */
-	var type: String?
+	/** The type of the resource. */
+	public var type: String?
 	
-	/*! The complete JSON dictionary. */
+	/** The complete JSON dictionary. */
 	var json: NSDictionary?
 	
-	init(id: String?, type: String?, json: NSDictionary?) {
+	public init(id: String?, type: String?, json: NSDictionary?) {
 		self.id = id
 		self.type = type
 		self.json = json
 	}
 	
-	convenience init(json: NSDictionary) {
+	public convenience init(json: NSDictionary) {
 		let id = json["_id"] as? String
 		let type = json["resourceType"] as? String
 		self.init(id: id, type: type, json: json)
 	}
 	
 	
-	// MARK: Resolving References
+	// MARK: - Resolving References
 	
 	func resolve() -> FHIRElement? {
 		if type && json {
@@ -49,11 +49,11 @@ class FHIRContainedResource
 	}
 	
 	class func processIdentifier(identifier: String?) -> String? {
-		if identifier?.utf16count > 0 {
+		if identifier && countElements(identifier!) > 0 {
 			
 			// process fragment-only id
-			if "#" == identifier!.substringToIndex(1) {
-				return identifier!.substringFromIndex(1)
+			if "#" == identifier![identifier!.startIndex] {
+				return identifier![advance(identifier!.startIndex, 1)..<identifier!.endIndex]
 			}
 			
 			// TODO: resolve other

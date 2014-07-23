@@ -9,24 +9,24 @@
 import Foundation
 
 
-/*!
+/**
  *  Abstract superclass for all FHIR resource models.
  */
-class FHIRResource: FHIRElement
+public class FHIRResource: FHIRElement
 {
-	/*! If this instance was read from a server, this is the identifier that was used. */
-	var _localId: String?
+	/** If this instance was read from a server, this is the identifier that was used. */
+	public var _localId: String?
 	
-	/*! A specific version id, if the instance was created using `vread`. */
+	/** A specific version id, if the instance was created using `vread`. */
 	var _versionId: String?
 	
-	/*! If this instance lives on a server, this property represents that server. */
+	/** If this instance lives on a server, this property represents that server. */
 	var _server: FHIRServer?
 	
-	/*! Human language of the content (BCP-47). */
+	/** Human language of the content (BCP-47). */
 	var language: String?
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["language"] as? String {
@@ -36,19 +36,19 @@ class FHIRResource: FHIRElement
 	}
 	
 	
-	// MARK: Retrieving Resources
+	// MARK: - Retrieving Resources
 	
-	func absoluteURI() -> NSURL? {
+	public func absoluteURI() -> NSURL? {
 		if _localId {
 			return _server?.baseURL.URLByAppendingPathComponent(self.dynamicType.resourceName).URLByAppendingPathComponent(_localId!)
 		}
 		return nil
 	}
 	
-	/*!
+	/**
 	 *  Reads the resource with the given id from the given server.
 	 */
-	class func read(id: String, server: FHIRServer, callback: ((resource: FHIRResource?, error: NSError?) -> ())) {
+	public class func read(id: String, server: FHIRServer, callback: ((resource: FHIRResource?, error: NSError?) -> ())) {
 		let path = "\(resourceName)/\(id)"
 		server.requestJSON(path) { json, error in
 			if error {
@@ -64,31 +64,31 @@ class FHIRResource: FHIRElement
 	}
 	
 	
-	// MARK: Search
+	// MARK: - Search
 	
-	func search() -> FHIRSearchParam {
+	public func search() -> FHIRSearchParam {
 		if _localId {
 			return FHIRSearchParam(subject: "_id", reference: _localId!, type: self.dynamicType)
 		}
 		return FHIRSearchParam(profileType: self.dynamicType)
 	}
 	
-	class func search() -> FHIRSearchParam {
+	public class func search() -> FHIRSearchParam {
 		return FHIRSearchParam(profileType: self)
 	}
 }
 
 
 
-/*!
+/**
  *  Protocol for server objects to be used by `FHIRResource` and subclasses.
  */
-protocol FHIRServer
+public protocol FHIRServer
 {
-	/*! A server object must always have a base URL. */
+	/** A server object must always have a base URL. */
 	var baseURL: NSURL { get }
 	
-	/*!
+	/**
 	 *  Instance method that needs to take a path, which is relative to `baseURL`, retrieve data from that URL and
 	 *  return a decoded NSDictionary or an error in a callback.
 	 */

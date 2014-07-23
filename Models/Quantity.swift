@@ -2,39 +2,39 @@
 //  Quantity.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A measured or measurable amount.
  */
-class Quantity: FHIRElement
+public class Quantity: FHIRElement
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Quantity" }
 	}
 	
-	/*! Numerical value (with implicit precision) */
-	var value: NSDecimalNumber?
+	/** Numerical value (with implicit precision) */
+	public var value: NSDecimalNumber?
 	
-	/*! < | <= | >= | > - how to understand the value */
-	var comparator: String?
+	/** < | <= | >= | > - how to understand the value */
+	public var comparator: String?
 	
-	/*! Unit representation */
-	var units: String?
+	/** Unit representation */
+	public var units: String?
 	
-	/*! System that defines coded unit form */
-	var system: NSURL?
+	/** System that defines coded unit form */
+	public var system: NSURL?
 	
-	/*! Coded form of the unit */
-	var code: String?
+	/** Coded form of the unit */
+	public var code: String?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["value"] as? String {

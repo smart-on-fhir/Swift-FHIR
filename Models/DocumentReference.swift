@@ -2,33 +2,33 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  XDSDocumentEntry.
  */
-class DocumentReference: FHIRResource
+public class DocumentReference: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "DocumentReference" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! XDSDocumentEntry.uniqueId */
-	var masterIdentifier: Identifier?
+	/** XDSDocumentEntry.uniqueId */
+	public var masterIdentifier: Identifier?
 	
-	/*! XDSDocumentEntry.referenceIdList */
-	var identifier: [Identifier]?
+	/** XDSDocumentEntry.referenceIdList */
+	public var identifier: [Identifier]?
 	
-	/*! XDSDocumentEntry.patientId + sourcePatientId/sourcePatientInfo */
-	var subject: FHIRElement? {
+	/** XDSDocumentEntry.patientId + sourcePatientId/sourcePatientInfo */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -37,14 +37,14 @@ class DocumentReference: FHIRResource
 		}
 	}
 	
-	/*! XDSDocumentEntry.typeCode */
-	var type: CodeableConcept?
+	/** XDSDocumentEntry.typeCode */
+	public var type: CodeableConcept?
 	
-	/*! XDSDocumentEntry.classCode */
-	var klass: CodeableConcept?
+	/** XDSDocumentEntry.classCode */
+	public var klass: CodeableConcept?
 	
-	/*! XDSDocumentEntry.author */
-	var author: [FHIRElement]? {
+	/** XDSDocumentEntry.author */
+	public var author: [FHIRElement]? {
 		get { return resolveReferences("author") }
 		set {
 			if newValue {
@@ -53,8 +53,8 @@ class DocumentReference: FHIRResource
 		}
 	}
 	
-	/*! n/a */
-	var custodian: FHIRElement? {
+	/** n/a */
+	public var custodian: FHIRElement? {
 		get { return resolveReference("custodian") }
 		set {
 			if newValue {
@@ -63,11 +63,11 @@ class DocumentReference: FHIRResource
 		}
 	}
 	
-	/*! XDSDocumentEntry.homeCommunityId */
-	var policyManager: NSURL?
+	/** XDSDocumentEntry.homeCommunityId */
+	public var policyManager: NSURL?
 	
-	/*! ?? */
-	var authenticator: FHIRElement? {
+	/** ?? */
+	public var authenticator: FHIRElement? {
 		get { return resolveReference("authenticator") }
 		set {
 			if newValue {
@@ -76,52 +76,52 @@ class DocumentReference: FHIRResource
 		}
 	}
 	
-	/*! XDSDocumentEntry.creationTime */
-	var created: NSDate?
+	/** XDSDocumentEntry.creationTime */
+	public var created: NSDate?
 	
-	/*! XDS submission time or XDSDocumentEntry.creationTime  if unknown */
-	var indexed: Int?
+	/** XDS submission time or XDSDocumentEntry.creationTime  if unknown */
+	public var indexed: Int?
 	
-	/*! implied by XDS workflow */
-	var status: String?
+	/** implied by XDS workflow */
+	public var status: String?
 	
-	/*! preliminary | final | appended | amended | entered in error */
-	var docStatus: CodeableConcept?
+	/** preliminary | final | appended | amended | entered in error */
+	public var docStatus: CodeableConcept?
 	
-	/*! Relationships that this document has with other document references that already exist */
-	var relatesTo: [DocumentReferenceRelatesTo]?
+	/** Relationships that this document has with other document references that already exist */
+	public var relatesTo: [DocumentReferenceRelatesTo]?
 	
-	/*! XDSDocumentEntry.title */
-	var description: String?
+	/** XDSDocumentEntry.title */
+	public var description: String?
 	
-	/*! XDSDocumentEntry.confidentialityCode */
-	var confidentiality: CodeableConcept?
+	/** XDSDocumentEntry.confidentialityCode */
+	public var confidentiality: CodeableConcept?
 	
-	/*! XDSDocumentEntry.languageCode */
-	var primaryLanguage: String?
+	/** XDSDocumentEntry.languageCode */
+	public var primaryLanguage: String?
 	
-	/*! XDSDocumentEntry.mimeType */
-	var mimeType: String?
+	/** XDSDocumentEntry.mimeType */
+	public var mimeType: String?
 	
-	/*! XDSDocumentEntry.formatCode */
-	var format: CodeableConcept?
+	/** XDSDocumentEntry.formatCode */
+	public var format: CodeableConcept?
 	
-	/*! XDSDocumentEntry.size */
-	var size: Int?
+	/** XDSDocumentEntry.size */
+	public var size: Int?
 	
-	/*! XDSDocumentEntry.hash */
-	var hash: String?
+	/** XDSDocumentEntry.hash */
+	public var hash: String?
 	
-	/*! repository location (by implication & configuration) */
-	var location: NSURL?
+	/** repository location (by implication & configuration) */
+	public var location: NSURL?
 	
-	/*! can be determined from repository location + parameters */
-	var service: DocumentReferenceService?
+	/** can be determined from repository location + parameters */
+	public var service: DocumentReferenceService?
 	
-	/*! event codes, service Start & Stop time, and facility type */
-	var context: DocumentReferenceContext?
+	/** event codes, service Start & Stop time, and facility type */
+	public var context: DocumentReferenceContext?
 	
-	convenience init(masterIdentifier: Identifier?, subject: ResourceReference?, type: CodeableConcept?, klass: CodeableConcept?, author: [ResourceReference]?, created: NSDate?, indexed: Int?, status: String?, confidentiality: CodeableConcept?, mimeType: String?, format: CodeableConcept?) {
+	public convenience init(masterIdentifier: Identifier?, subject: ResourceReference?, type: CodeableConcept?, klass: CodeableConcept?, author: [ResourceReference]?, created: NSDate?, indexed: Int?, status: String?, confidentiality: CodeableConcept?, mimeType: String?, format: CodeableConcept?) {
 		self.init(json: nil)
 		if masterIdentifier {
 			self.masterIdentifier = masterIdentifier
@@ -158,7 +158,7 @@ class DocumentReference: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -244,18 +244,18 @@ class DocumentReference: FHIRResource
 }
 
 
-/*!
+/**
  *  Relationships that this document has with other document references that already exist.
  *
  *  Relationships to other documents.
  */
-class DocumentReferenceRelatesTo: FHIRElement
+public class DocumentReferenceRelatesTo: FHIRElement
 {	
-	/*! The type of relationship that this document has with anther document */
-	var code: String?
+	/** The type of relationship that this document has with anther document */
+	public var code: String?
 	
-	/*! The target document of this relationship */
-	var target: FHIRElement? {
+	/** The target document of this relationship */
+	public var target: FHIRElement? {
 		get { return resolveReference("target") }
 		set {
 			if newValue {
@@ -264,7 +264,7 @@ class DocumentReferenceRelatesTo: FHIRElement
 		}
 	}
 	
-	convenience init(code: String?, target: ResourceReference?) {
+	public convenience init(code: String?, target: ResourceReference?) {
 		self.init(json: nil)
 		if code {
 			self.code = code
@@ -274,7 +274,7 @@ class DocumentReferenceRelatesTo: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -288,30 +288,30 @@ class DocumentReferenceRelatesTo: FHIRElement
 }
 
 
-/*!
+/**
  *  can be determined from repository location + parameters.
  *
  *  If access is not fully described by location.
  */
-class DocumentReferenceService: FHIRElement
+public class DocumentReferenceService: FHIRElement
 {	
-	/*! Type of service (i.e. XDS.b) */
-	var type: CodeableConcept?
+	/** Type of service (i.e. XDS.b) */
+	public var type: CodeableConcept?
 	
-	/*! Where service is located (usually a URL) */
-	var address: String?
+	/** Where service is located (usually a URL) */
+	public var address: String?
 	
-	/*! Service call parameters */
-	var parameter: [DocumentReferenceServiceParameter]?
+	/** Service call parameters */
+	public var parameter: [DocumentReferenceServiceParameter]?
 	
-	convenience init(type: CodeableConcept?) {
+	public convenience init(type: CodeableConcept?) {
 		self.init(json: nil)
 		if type {
 			self.type = type
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? NSDictionary {
@@ -328,27 +328,27 @@ class DocumentReferenceService: FHIRElement
 }
 
 
-/*!
+/**
  *  Service call parameters.
  *
  *  A list of named parameters that is used in the service call.
  */
-class DocumentReferenceServiceParameter: FHIRElement
+public class DocumentReferenceServiceParameter: FHIRElement
 {	
-	/*! Parameter name in service call */
-	var name: String?
+	/** Parameter name in service call */
+	public var name: String?
 	
-	/*! Parameter value for the name */
-	var value: String?
+	/** Parameter value for the name */
+	public var value: String?
 	
-	convenience init(name: String?) {
+	public convenience init(name: String?) {
 		self.init(json: nil)
 		if name {
 			self.name = name
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
@@ -362,30 +362,30 @@ class DocumentReferenceServiceParameter: FHIRElement
 }
 
 
-/*!
+/**
  *  event codes, service Start & Stop time, and facility type.
  *
  *  Clinical context of document - eventCodeList, serviceStart & Stop time, and facility type.
  */
-class DocumentReferenceContext: FHIRElement
+public class DocumentReferenceContext: FHIRElement
 {	
-	/*! XDSDocumentEntry.eventCodeList */
-	var event: [CodeableConcept]?
+	/** XDSDocumentEntry.eventCodeList */
+	public var event: [CodeableConcept]?
 	
-	/*! XDSDocumentEntry.serviceStartTime & XDSDocumentEntry.serviceStopTime */
-	var period: Period?
+	/** XDSDocumentEntry.serviceStartTime & XDSDocumentEntry.serviceStopTime */
+	public var period: Period?
 	
-	/*! XDSDocumentEntry.healthCareFacilityTypeCode */
-	var facilityType: CodeableConcept?
+	/** XDSDocumentEntry.healthCareFacilityTypeCode */
+	public var facilityType: CodeableConcept?
 	
-	convenience init(period: Period?) {
+	public convenience init(period: Period?) {
 		self.init(json: nil)
 		if period {
 			self.period = period
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["event"] as? [NSDictionary] {

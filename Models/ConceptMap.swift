@@ -2,61 +2,61 @@
 //  ConceptMap.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A statement of relationships from one set of concepts to one or more other concept systems.
  *
  *  Scope and Usage A concept map defines a mapping from a concept defined in one system to one or more concepts
  *  defined in other systems. Mappings are always framed within the concept of value sets - they are specific to a
  *  context of use.
  */
-class ConceptMap: FHIRResource
+public class ConceptMap: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "ConceptMap" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Logical id to reference this concept map */
-	var identifier: String?
+	/** Logical id to reference this concept map */
+	public var identifier: String?
 	
-	/*! Logical id for this version of the concept map */
-	var version: String?
+	/** Logical id for this version of the concept map */
+	public var version: String?
 	
-	/*! Informal name for this concept map */
-	var name: String?
+	/** Informal name for this concept map */
+	public var name: String?
 	
-	/*! Name of the publisher (Organization or individual) */
-	var publisher: String?
+	/** Name of the publisher (Organization or individual) */
+	public var publisher: String?
 	
-	/*! Contact information of the publisher */
-	var telecom: [Contact]?
+	/** Contact information of the publisher */
+	public var telecom: [Contact]?
 	
-	/*! Human language description of the concept map */
-	var description: String?
+	/** Human language description of the concept map */
+	public var description: String?
 	
-	/*! About the concept map or its content */
-	var copyright: String?
+	/** About the concept map or its content */
+	public var copyright: String?
 	
-	/*! draft | active | retired */
-	var status: String?
+	/** draft | active | retired */
+	public var status: String?
 	
-	/*! If for testing purposes, not real usage */
-	var experimental: Bool?
+	/** If for testing purposes, not real usage */
+	public var experimental: Bool?
 	
-	/*! Date for given status */
-	var date: NSDate?
+	/** Date for given status */
+	public var date: NSDate?
 	
-	/*! Identifies the source value set which is being mapped */
-	var source: FHIRElement? {
+	/** Identifies the source value set which is being mapped */
+	public var source: FHIRElement? {
 		get { return resolveReference("source") }
 		set {
 			if newValue {
@@ -65,8 +65,8 @@ class ConceptMap: FHIRResource
 		}
 	}
 	
-	/*! Provides context to the mappings */
-	var target: FHIRElement? {
+	/** Provides context to the mappings */
+	public var target: FHIRElement? {
 		get { return resolveReference("target") }
 		set {
 			if newValue {
@@ -75,10 +75,10 @@ class ConceptMap: FHIRResource
 		}
 	}
 	
-	/*! Mappings for a concept from the source valueset */
-	var concept: [ConceptMapConcept]?
+	/** Mappings for a concept from the source valueset */
+	public var concept: [ConceptMapConcept]?
 	
-	convenience init(name: String?, status: String?, source: ResourceReference?, target: ResourceReference?) {
+	public convenience init(name: String?, status: String?, source: ResourceReference?, target: ResourceReference?) {
 		self.init(json: nil)
 		if name {
 			self.name = name
@@ -94,7 +94,7 @@ class ConceptMap: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -144,31 +144,31 @@ class ConceptMap: FHIRResource
 }
 
 
-/*!
+/**
  *  Mappings for a concept from the source valueset.
  */
-class ConceptMapConcept: FHIRElement
+public class ConceptMapConcept: FHIRElement
 {	
-	/*! System that defines the concept being mapped */
-	var system: NSURL?
+	/** System that defines the concept being mapped */
+	public var system: NSURL?
 	
-	/*! Identifies concept being mapped */
-	var code: String?
+	/** Identifies concept being mapped */
+	public var code: String?
 	
-	/*! Other concepts required for this mapping (from context) */
-	var dependsOn: [ConceptMapConceptDependsOn]?
+	/** Other concepts required for this mapping (from context) */
+	public var dependsOn: [ConceptMapConceptDependsOn]?
 	
-	/*! A concept from the target value set that this concept maps to */
-	var map: [ConceptMapConceptMap]?
+	/** A concept from the target value set that this concept maps to */
+	public var map: [ConceptMapConceptMap]?
 	
-	convenience init(system: NSURL?) {
+	public convenience init(system: NSURL?) {
 		self.init(json: nil)
 		if system {
 			self.system = system
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {
@@ -188,24 +188,24 @@ class ConceptMapConcept: FHIRElement
 }
 
 
-/*!
+/**
  *  Other concepts required for this mapping (from context).
  *
  *  A set of additional dependencies for this mapping to hold. This mapping is only applicable if the specified
  *  concept can be resolved, and it has the specified value.
  */
-class ConceptMapConceptDependsOn: FHIRElement
+public class ConceptMapConceptDependsOn: FHIRElement
 {	
-	/*! Reference to element/field/valueset provides the context */
-	var concept: NSURL?
+	/** Reference to element/field/valueset provides the context */
+	public var concept: NSURL?
 	
-	/*! System for a concept in the referenced concept */
-	var system: NSURL?
+	/** System for a concept in the referenced concept */
+	public var system: NSURL?
 	
-	/*! Code for a concept in the referenced concept */
-	var code: String?
+	/** Code for a concept in the referenced concept */
+	public var code: String?
 	
-	convenience init(concept: NSURL?, system: NSURL?, code: String?) {
+	public convenience init(concept: NSURL?, system: NSURL?, code: String?) {
 		self.init(json: nil)
 		if concept {
 			self.concept = concept
@@ -218,7 +218,7 @@ class ConceptMapConceptDependsOn: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["concept"] as? String {
@@ -235,34 +235,34 @@ class ConceptMapConceptDependsOn: FHIRElement
 }
 
 
-/*!
+/**
  *  A concept from the target value set that this concept maps to.
  */
-class ConceptMapConceptMap: FHIRElement
+public class ConceptMapConceptMap: FHIRElement
 {	
-	/*! System of the target */
-	var system: NSURL?
+	/** System of the target */
+	public var system: NSURL?
 	
-	/*! Code that identifies the target concept */
-	var code: String?
+	/** Code that identifies the target concept */
+	public var code: String?
 	
-	/*! equal | equivalent | wider | subsumes | narrower | specialises | inexact | unmatched | disjoint */
-	var equivalence: String?
+	/** equal | equivalent | wider | subsumes | narrower | specialises | inexact | unmatched | disjoint */
+	public var equivalence: String?
 	
-	/*! Description of status/issues in mapping */
-	var comments: String?
+	/** Description of status/issues in mapping */
+	public var comments: String?
 	
-	/*! Other concepts that this mapping also produces */
-	var product: [ConceptMapConceptMapProduct]?
+	/** Other concepts that this mapping also produces */
+	public var product: [ConceptMapConceptMapProduct]?
 	
-	convenience init(equivalence: String?) {
+	public convenience init(equivalence: String?) {
 		self.init(json: nil)
 		if equivalence {
 			self.equivalence = equivalence
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {
@@ -285,17 +285,17 @@ class ConceptMapConceptMap: FHIRElement
 }
 
 
-/*!
+/**
  *  Other concepts that this mapping also produces.
  *
  *  A set of additional outcomes from this mapping to other value sets. To properly execute this mapping, the
  *  specified value set must be mapped to some data element or source that is in context. The mapping may still be
  *  useful without a place for the additional data elements, but the equivalence cannot be relied on.
  */
-class ConceptMapConceptMapProduct: FHIRElement
+public class ConceptMapConceptMapProduct: FHIRElement
 {	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}

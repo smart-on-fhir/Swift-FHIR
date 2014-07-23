@@ -2,14 +2,14 @@
 //  Procedure.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  An action that is performed on a patient.
  *
  *  Scope and Usage This resource is used to record the details of procedures performed on a patient. A procedure
@@ -21,20 +21,20 @@ import Foundation
  *  existence of the procedure is assumed, but where there are details of interest about how the diagnostic
  *  procedure was performed, the procedure resource is used to describe the activity.
  */
-class Procedure: FHIRResource
+public class Procedure: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Procedure" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! External Ids for this procedure */
-	var identifier: [Identifier]?
+	/** External Ids for this procedure */
+	public var identifier: [Identifier]?
 	
-	/*! Who procedure was performed on */
-	var subject: FHIRElement? {
+	/** Who procedure was performed on */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -43,23 +43,23 @@ class Procedure: FHIRResource
 		}
 	}
 	
-	/*! Identification of the procedure */
-	var type: CodeableConcept?
+	/** Identification of the procedure */
+	public var type: CodeableConcept?
 	
-	/*! Precise location details */
-	var bodySite: [CodeableConcept]?
+	/** Precise location details */
+	public var bodySite: [CodeableConcept]?
 	
-	/*! Reason procedure performed */
-	var indication: [CodeableConcept]?
+	/** Reason procedure performed */
+	public var indication: [CodeableConcept]?
 	
-	/*! The people who performed the procedure */
-	var performer: [ProcedurePerformer]?
+	/** The people who performed the procedure */
+	public var performer: [ProcedurePerformer]?
 	
-	/*! The date the procedure was performed */
-	var date: Period?
+	/** The date the procedure was performed */
+	public var date: Period?
 	
-	/*! The encounter when procedure performed */
-	var encounter: FHIRElement? {
+	/** The encounter when procedure performed */
+	public var encounter: FHIRElement? {
 		get { return resolveReference("encounter") }
 		set {
 			if newValue {
@@ -68,11 +68,11 @@ class Procedure: FHIRResource
 		}
 	}
 	
-	/*! What was result of procedure? */
-	var outcome: String?
+	/** What was result of procedure? */
+	public var outcome: String?
 	
-	/*! Any report that results from the procedure */
-	var report: [FHIRElement]? {
+	/** Any report that results from the procedure */
+	public var report: [FHIRElement]? {
 		get { return resolveReferences("report") }
 		set {
 			if newValue {
@@ -81,19 +81,19 @@ class Procedure: FHIRResource
 		}
 	}
 	
-	/*! Complication following the procedure */
-	var complication: [CodeableConcept]?
+	/** Complication following the procedure */
+	public var complication: [CodeableConcept]?
 	
-	/*! Instructions for follow up */
-	var followUp: String?
+	/** Instructions for follow up */
+	public var followUp: String?
 	
-	/*! A procedure that is related to this one */
-	var relatedItem: [ProcedureRelatedItem]?
+	/** A procedure that is related to this one */
+	public var relatedItem: [ProcedureRelatedItem]?
 	
-	/*! Additional information about procedure */
-	var notes: String?
+	/** Additional information about procedure */
+	public var notes: String?
 	
-	convenience init(subject: ResourceReference?, type: CodeableConcept?) {
+	public convenience init(subject: ResourceReference?, type: CodeableConcept?) {
 		self.init(json: nil)
 		if subject {
 			self.subject = subject
@@ -103,7 +103,7 @@ class Procedure: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -156,15 +156,15 @@ class Procedure: FHIRResource
 }
 
 
-/*!
+/**
  *  The people who performed the procedure.
  *
  *  Limited to 'real' people rather than equipment.
  */
-class ProcedurePerformer: FHIRElement
+public class ProcedurePerformer: FHIRElement
 {	
-	/*! The reference to the practitioner */
-	var person: FHIRElement? {
+	/** The reference to the practitioner */
+	public var person: FHIRElement? {
 		get { return resolveReference("person") }
 		set {
 			if newValue {
@@ -173,11 +173,11 @@ class ProcedurePerformer: FHIRElement
 		}
 	}
 	
-	/*! The role the person was in */
-	var role: CodeableConcept?
+	/** The role the person was in */
+	public var role: CodeableConcept?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["person"] as? NSDictionary {
@@ -191,19 +191,19 @@ class ProcedurePerformer: FHIRElement
 }
 
 
-/*!
+/**
  *  A procedure that is related to this one.
  *
  *  Procedures may be related to other items such as procedures or medications. For example treating wound
  *  dehiscence following a previous procedure.
  */
-class ProcedureRelatedItem: FHIRElement
+public class ProcedureRelatedItem: FHIRElement
 {	
-	/*! caused-by | because-of */
-	var type: String?
+	/** caused-by | because-of */
+	public var type: String?
 	
-	/*! The related item - e.g. a procedure */
-	var target: FHIRElement? {
+	/** The related item - e.g. a procedure */
+	public var target: FHIRElement? {
 		get { return resolveReference("target") }
 		set {
 			if newValue {
@@ -213,7 +213,7 @@ class ProcedureRelatedItem: FHIRElement
 	}
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {

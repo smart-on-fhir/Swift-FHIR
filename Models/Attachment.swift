@@ -2,48 +2,48 @@
 //  Attachment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Content in a format defined elsewhere.
  */
-class Attachment: FHIRElement
+public class Attachment: FHIRElement
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Attachment" }
 	}
 	
-	/*! Mime type of the content, with charset etc. */
-	var contentType: String?
+	/** Mime type of the content, with charset etc. */
+	public var contentType: String?
 	
-	/*! Data inline, base64ed */
-	var data: String?
+	/** Data inline, base64ed */
+	public var data: String?
 	
-	/*! Uri where the data can be found */
-	var url: NSURL?
+	/** Uri where the data can be found */
+	public var url: NSURL?
 	
-	/*! Number of bytes of content (if url provided) */
-	var size: Int?
+	/** Number of bytes of content (if url provided) */
+	public var size: Int?
 	
-	/*! Hash of the data (sha-1, base64ed ) */
-	var hash: String?
+	/** Hash of the data (sha-1, base64ed ) */
+	public var hash: String?
 	
-	/*! Label to display in place of the data */
-	var title: String?
+	/** Label to display in place of the data */
+	public var title: String?
 	
-	convenience init(contentType: String?) {
+	public convenience init(contentType: String?) {
 		self.init(json: nil)
 		if contentType {
 			self.contentType = contentType
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["contentType"] as? String {

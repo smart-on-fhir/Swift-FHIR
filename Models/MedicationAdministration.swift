@@ -2,14 +2,14 @@
 //  MedicationAdministration.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Administration of medication to a patient.
  *
  *  Scope and Usage This resource covers the administration of all medications with the exception of vaccines. It
@@ -19,23 +19,23 @@ import Foundation
  *  it might be used for home-health reporting, such as recording self-administered or even device-administered
  *  insulin.
  */
-class MedicationAdministration: FHIRResource
+public class MedicationAdministration: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "MedicationAdministration" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! External identifier */
-	var identifier: [Identifier]?
+	/** External identifier */
+	public var identifier: [Identifier]?
 	
-	/*! in progress | on hold | completed | entered in error | stopped */
-	var status: String?
+	/** in progress | on hold | completed | entered in error | stopped */
+	public var status: String?
 	
-	/*! Who received medication? */
-	var patient: FHIRElement? {
+	/** Who received medication? */
+	public var patient: FHIRElement? {
 		get { return resolveReference("patient") }
 		set {
 			if newValue {
@@ -44,8 +44,8 @@ class MedicationAdministration: FHIRResource
 		}
 	}
 	
-	/*! Who administered substance? */
-	var practitioner: FHIRElement? {
+	/** Who administered substance? */
+	public var practitioner: FHIRElement? {
 		get { return resolveReference("practitioner") }
 		set {
 			if newValue {
@@ -54,8 +54,8 @@ class MedicationAdministration: FHIRResource
 		}
 	}
 	
-	/*! Encounter administered as part of */
-	var encounter: FHIRElement? {
+	/** Encounter administered as part of */
+	public var encounter: FHIRElement? {
 		get { return resolveReference("encounter") }
 		set {
 			if newValue {
@@ -64,8 +64,8 @@ class MedicationAdministration: FHIRResource
 		}
 	}
 	
-	/*! Order administration performed against */
-	var prescription: FHIRElement? {
+	/** Order administration performed against */
+	public var prescription: FHIRElement? {
 		get { return resolveReference("prescription") }
 		set {
 			if newValue {
@@ -74,17 +74,17 @@ class MedicationAdministration: FHIRResource
 		}
 	}
 	
-	/*! True if medication not administered */
-	var wasNotGiven: Bool?
+	/** True if medication not administered */
+	public var wasNotGiven: Bool?
 	
-	/*! Reason administration not performed */
-	var reasonNotGiven: [CodeableConcept]?
+	/** Reason administration not performed */
+	public var reasonNotGiven: [CodeableConcept]?
 	
-	/*! Start and end time of administration */
-	var whenGiven: Period?
+	/** Start and end time of administration */
+	public var whenGiven: Period?
 	
-	/*! What was administered? */
-	var medication: FHIRElement? {
+	/** What was administered? */
+	public var medication: FHIRElement? {
 		get { return resolveReference("medication") }
 		set {
 			if newValue {
@@ -93,8 +93,8 @@ class MedicationAdministration: FHIRResource
 		}
 	}
 	
-	/*! Device used to administer */
-	var device: [FHIRElement]? {
+	/** Device used to administer */
+	public var device: [FHIRElement]? {
 		get { return resolveReferences("device") }
 		set {
 			if newValue {
@@ -103,10 +103,10 @@ class MedicationAdministration: FHIRResource
 		}
 	}
 	
-	/*! Medicine administration instructions to the patient/carer */
-	var dosage: [MedicationAdministrationDosage]?
+	/** Medicine administration instructions to the patient/carer */
+	public var dosage: [MedicationAdministrationDosage]?
 	
-	convenience init(status: String?, patient: ResourceReference?, practitioner: ResourceReference?, prescription: ResourceReference?, whenGiven: Period?) {
+	public convenience init(status: String?, patient: ResourceReference?, practitioner: ResourceReference?, prescription: ResourceReference?, whenGiven: Period?) {
 		self.init(json: nil)
 		if status {
 			self.status = status
@@ -125,7 +125,7 @@ class MedicationAdministration: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -172,45 +172,45 @@ class MedicationAdministration: FHIRResource
 }
 
 
-/*!
+/**
  *  Medicine administration instructions to the patient/carer.
  *
  *  Provides details of how much of the medication was administered.
  */
-class MedicationAdministrationDosage: FHIRElement
+public class MedicationAdministrationDosage: FHIRElement
 {	
-	/*! When dose(s) were given */
-	var timingDateTime: NSDate?
+	/** When dose(s) were given */
+	public var timingDateTime: NSDate?
 	
-	/*! When dose(s) were given */
-	var timingPeriod: Period?
+	/** When dose(s) were given */
+	public var timingPeriod: Period?
 	
-	/*! Take "as needed" f(or x) */
-	var asNeededBoolean: Bool?
+	/** Take "as needed" f(or x) */
+	public var asNeededBoolean: Bool?
 	
-	/*! Take "as needed" f(or x) */
-	var asNeededCodeableConcept: CodeableConcept?
+	/** Take "as needed" f(or x) */
+	public var asNeededCodeableConcept: CodeableConcept?
 	
-	/*! Body site administered to */
-	var site: CodeableConcept?
+	/** Body site administered to */
+	public var site: CodeableConcept?
 	
-	/*! Path of substance into body */
-	var route: CodeableConcept?
+	/** Path of substance into body */
+	public var route: CodeableConcept?
 	
-	/*! How drug was administered */
-	var method: CodeableConcept?
+	/** How drug was administered */
+	public var method: CodeableConcept?
 	
-	/*! Amount administered in one dose */
-	var quantity: Quantity?
+	/** Amount administered in one dose */
+	public var quantity: Quantity?
 	
-	/*! Dose quantity per unit of time */
-	var rate: Ratio?
+	/** Dose quantity per unit of time */
+	public var rate: Ratio?
 	
-	/*! Total dose that was consumed per unit of time */
-	var maxDosePerPeriod: Ratio?
+	/** Total dose that was consumed per unit of time */
+	public var maxDosePerPeriod: Ratio?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["timingDateTime"] as? String {

@@ -2,36 +2,36 @@
 //  Contact.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Technology mediated contact details (phone, fax, email, etc).
  */
-class Contact: FHIRElement
+public class Contact: FHIRElement
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Contact" }
 	}
 	
-	/*! phone | fax | email | url */
-	var system: String?
+	/** phone | fax | email | url */
+	public var system: String?
 	
-	/*! The actual contact details */
-	var value: String?
+	/** The actual contact details */
+	public var value: String?
 	
-	/*! home | work | temp | old | mobile - purpose of this address */
-	var use: String?
+	/** home | work | temp | old | mobile - purpose of this address */
+	public var use: String?
 	
-	/*! Time period when the contact was/is in use */
-	var period: Period?
+	/** Time period when the contact was/is in use */
+	public var period: Period?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {

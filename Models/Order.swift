@@ -2,14 +2,14 @@
 //  Order.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A request to perform an action.
  *
  *  Scope and Usage An order resource describes a request that an action be performed. An order is expected to
@@ -24,23 +24,23 @@ import Foundation
  *  themselves so that the action to be performed can actually be performed. Often these real world dependencies
  *  are only implicit in the order details.
  */
-class Order: FHIRResource
+public class Order: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Order" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Identifiers assigned to this order by the orderer or by the receiver */
-	var identifier: [Identifier]?
+	/** Identifiers assigned to this order by the orderer or by the receiver */
+	public var identifier: [Identifier]?
 	
-	/*! When the order was made */
-	var date: NSDate?
+	/** When the order was made */
+	public var date: NSDate?
 	
-	/*! Patient this order is about */
-	var subject: FHIRElement? {
+	/** Patient this order is about */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -49,8 +49,8 @@ class Order: FHIRResource
 		}
 	}
 	
-	/*! Who initiated the order */
-	var source: FHIRElement? {
+	/** Who initiated the order */
+	public var source: FHIRElement? {
 		get { return resolveReference("source") }
 		set {
 			if newValue {
@@ -59,8 +59,8 @@ class Order: FHIRResource
 		}
 	}
 	
-	/*! Who is intended to fulfill the order */
-	var target: FHIRElement? {
+	/** Who is intended to fulfill the order */
+	public var target: FHIRElement? {
 		get { return resolveReference("target") }
 		set {
 			if newValue {
@@ -69,11 +69,11 @@ class Order: FHIRResource
 		}
 	}
 	
-	/*! Text - why the order was made */
-	var reasonCodeableConcept: CodeableConcept?
+	/** Text - why the order was made */
+	public var reasonCodeableConcept: CodeableConcept?
 	
-	/*! Text - why the order was made */
-	var reasonResourceReference: FHIRElement? {
+	/** Text - why the order was made */
+	public var reasonResourceReference: FHIRElement? {
 		get { return resolveReference("reasonResourceReference") }
 		set {
 			if newValue {
@@ -82,8 +82,8 @@ class Order: FHIRResource
 		}
 	}
 	
-	/*! If required by policy */
-	var authority: FHIRElement? {
+	/** If required by policy */
+	public var authority: FHIRElement? {
 		get { return resolveReference("authority") }
 		set {
 			if newValue {
@@ -92,11 +92,11 @@ class Order: FHIRResource
 		}
 	}
 	
-	/*! When order should be fulfilled */
-	var when: OrderWhen?
+	/** When order should be fulfilled */
+	public var when: OrderWhen?
 	
-	/*! What action is being ordered */
-	var detail: [FHIRElement]? {
+	/** What action is being ordered */
+	public var detail: [FHIRElement]? {
 		get { return resolveReferences("detail") }
 		set {
 			if newValue {
@@ -105,14 +105,14 @@ class Order: FHIRResource
 		}
 	}
 	
-	convenience init(detail: [ResourceReference]?) {
+	public convenience init(detail: [ResourceReference]?) {
 		self.init(json: nil)
 		if detail {
 			self.detail = detail
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -153,19 +153,19 @@ class Order: FHIRResource
 }
 
 
-/*!
+/**
  *  When order should be fulfilled.
  */
-class OrderWhen: FHIRElement
+public class OrderWhen: FHIRElement
 {	
-	/*! Code specifies when request should be done. The code may simply be a priority code */
-	var code: CodeableConcept?
+	/** Code specifies when request should be done. The code may simply be a priority code */
+	public var code: CodeableConcept?
 	
-	/*! A formal schedule */
-	var schedule: Schedule?
+	/** A formal schedule */
+	public var schedule: Schedule?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {

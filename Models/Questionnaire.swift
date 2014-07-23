@@ -2,14 +2,14 @@
 //  Questionnaire.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A structured set of questions and their answers.
  *
  *  Scope and Usage The Questionnaire may be a single list of questions, or can be hierarchically organized in
@@ -33,23 +33,23 @@ import Foundation
  *  Support for validation is outside the scope of this Resource, although basic structural features can be
  *  defined using the Questionnaire core extensions.
  */
-class Questionnaire: FHIRResource
+public class Questionnaire: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Questionnaire" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! draft | published | retired | in progress | completed | amended */
-	var status: String?
+	/** draft | published | retired | in progress | completed | amended */
+	public var status: String?
 	
-	/*! Date this version was authored */
-	var authored: NSDate?
+	/** Date this version was authored */
+	public var authored: NSDate?
 	
-	/*! The subject of the questions */
-	var subject: FHIRElement? {
+	/** The subject of the questions */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -58,8 +58,8 @@ class Questionnaire: FHIRResource
 		}
 	}
 	
-	/*! Person who received and recorded the answers */
-	var author: FHIRElement? {
+	/** Person who received and recorded the answers */
+	public var author: FHIRElement? {
 		get { return resolveReference("author") }
 		set {
 			if newValue {
@@ -68,8 +68,8 @@ class Questionnaire: FHIRResource
 		}
 	}
 	
-	/*! The person who answered the questions */
-	var source: FHIRElement? {
+	/** The person who answered the questions */
+	public var source: FHIRElement? {
 		get { return resolveReference("source") }
 		set {
 			if newValue {
@@ -78,14 +78,14 @@ class Questionnaire: FHIRResource
 		}
 	}
 	
-	/*! Name/code for a predefined list of questions */
-	var name: CodeableConcept?
+	/** Name/code for a predefined list of questions */
+	public var name: CodeableConcept?
 	
-	/*! External Ids for this questionnaire */
-	var identifier: [Identifier]?
+	/** External Ids for this questionnaire */
+	public var identifier: [Identifier]?
 	
-	/*! Primary encounter during which the answers were collected */
-	var encounter: FHIRElement? {
+	/** Primary encounter during which the answers were collected */
+	public var encounter: FHIRElement? {
 		get { return resolveReference("encounter") }
 		set {
 			if newValue {
@@ -94,10 +94,10 @@ class Questionnaire: FHIRResource
 		}
 	}
 	
-	/*! Grouped questions */
-	var group: QuestionnaireGroup?
+	/** Grouped questions */
+	public var group: QuestionnaireGroup?
 	
-	convenience init(status: String?, authored: NSDate?) {
+	public convenience init(status: String?, authored: NSDate?) {
 		self.init(json: nil)
 		if status {
 			self.status = status
@@ -107,7 +107,7 @@ class Questionnaire: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -145,24 +145,24 @@ class Questionnaire: FHIRResource
 }
 
 
-/*!
+/**
  *  Grouped questions.
  *
  *  A group of questions to a possibly similarly grouped set of questions in the questionnaire.
  */
-class QuestionnaireGroup: FHIRElement
+public class QuestionnaireGroup: FHIRElement
 {	
-	/*! Code or name of the section on a questionnaire */
-	var name: CodeableConcept?
+	/** Code or name of the section on a questionnaire */
+	public var name: CodeableConcept?
 	
-	/*! Text that is displayed above the contents of the group */
-	var header: String?
+	/** Text that is displayed above the contents of the group */
+	public var header: String?
 	
-	/*! Additional text for the group */
-	var text: String?
+	/** Additional text for the group */
+	public var text: String?
 	
-	/*! The subject this group's answers are about */
-	var subject: FHIRElement? {
+	/** The subject this group's answers are about */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -171,14 +171,14 @@ class QuestionnaireGroup: FHIRElement
 		}
 	}
 	
-	/*! Nested questionnaire group */
-	var group: [QuestionnaireGroupGroup]?
+	/** Nested questionnaire group */
+	public var group: [QuestionnaireGroupGroup]?
 	
-	/*! Questions in this group */
-	var question: [QuestionnaireGroupQuestion]?
+	/** Questions in this group */
+	public var question: [QuestionnaireGroupQuestion]?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? NSDictionary {
@@ -204,15 +204,15 @@ class QuestionnaireGroup: FHIRElement
 }
 
 
-/*!
+/**
  *  Nested questionnaire group.
  *
  *  A sub-group within a group. The ordering of groups within this group is relevant.
  */
-class QuestionnaireGroupGroup: FHIRElement
+public class QuestionnaireGroupGroup: FHIRElement
 {	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}
@@ -220,45 +220,45 @@ class QuestionnaireGroupGroup: FHIRElement
 }
 
 
-/*!
+/**
  *  Questions in this group.
  *
  *  Set of questions within this group. The order of questions within the group is relevant.
  */
-class QuestionnaireGroupQuestion: FHIRElement
+public class QuestionnaireGroupQuestion: FHIRElement
 {	
-	/*! Code or name of the question */
-	var name: CodeableConcept?
+	/** Code or name of the question */
+	public var name: CodeableConcept?
 	
-	/*! Text of the question as it is shown to the user */
-	var text: String?
+	/** Text of the question as it is shown to the user */
+	public var text: String?
 	
-	/*! Single-valued answer to the question */
-	var answerDecimal: NSDecimalNumber?
+	/** Single-valued answer to the question */
+	public var answerDecimal: NSDecimalNumber?
 	
-	/*! Single-valued answer to the question */
-	var answerInteger: Int?
+	/** Single-valued answer to the question */
+	public var answerInteger: Int?
 	
-	/*! Single-valued answer to the question */
-	var answerBoolean: Bool?
+	/** Single-valued answer to the question */
+	public var answerBoolean: Bool?
 	
-	/*! Single-valued answer to the question */
-	var answerDate: NSDate?
+	/** Single-valued answer to the question */
+	public var answerDate: NSDate?
 	
-	/*! Single-valued answer to the question */
-	var answerString: String?
+	/** Single-valued answer to the question */
+	public var answerString: String?
 	
-	/*! Single-valued answer to the question */
-	var answerDateTime: NSDate?
+	/** Single-valued answer to the question */
+	public var answerDateTime: NSDate?
 	
-	/*! Single-valued answer to the question */
-	var answerInstant: Int?
+	/** Single-valued answer to the question */
+	public var answerInstant: Int?
 	
-	/*! Selected options */
-	var choice: [Coding]?
+	/** Selected options */
+	public var choice: [Coding]?
 	
-	/*! Valueset containing the possible options */
-	var options: FHIRElement? {
+	/** Valueset containing the possible options */
+	public var options: FHIRElement? {
 		get { return resolveReference("options") }
 		set {
 			if newValue {
@@ -267,17 +267,17 @@ class QuestionnaireGroupQuestion: FHIRElement
 		}
 	}
 	
-	/*! Structured answer */
-	var data: FHIRElement?
+	/** Structured answer */
+	public var data: FHIRElement?
 	
-	/*! Remarks about the answer given */
-	var remarks: String?
+	/** Remarks about the answer given */
+	public var remarks: String?
 	
-	/*! Nested questionnaire group */
-	var group: [QuestionnaireGroupQuestionGroup]?
+	/** Nested questionnaire group */
+	public var group: [QuestionnaireGroupQuestionGroup]?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? NSDictionary {
@@ -327,16 +327,16 @@ class QuestionnaireGroupQuestion: FHIRElement
 }
 
 
-/*!
+/**
  *  Nested questionnaire group.
  *
  *  Nested group, containing nested question for this question. The order of groups within the question is
  *  relevant.
  */
-class QuestionnaireGroupQuestionGroup: FHIRElement
+public class QuestionnaireGroupQuestionGroup: FHIRElement
 {	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}

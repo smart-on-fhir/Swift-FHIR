@@ -2,14 +2,14 @@
 //  DiagnosticOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A request for a diagnostic service.
  *
  *  Scope and Usage A Diagnostic Order is a record of a request for a set of diagnostic investigations to be
@@ -29,17 +29,17 @@ import Foundation
  *  request as the work is performed, and then finally issue a report that references the requests that it
  *  fulfills.
  */
-class DiagnosticOrder: FHIRResource
+public class DiagnosticOrder: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "DiagnosticOrder" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Who and/or what test is about */
-	var subject: FHIRElement? {
+	/** Who and/or what test is about */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -48,8 +48,8 @@ class DiagnosticOrder: FHIRResource
 		}
 	}
 	
-	/*! Who ordered the test */
-	var orderer: FHIRElement? {
+	/** Who ordered the test */
+	public var orderer: FHIRElement? {
 		get { return resolveReference("orderer") }
 		set {
 			if newValue {
@@ -58,11 +58,11 @@ class DiagnosticOrder: FHIRResource
 		}
 	}
 	
-	/*! Identifiers assigned to this order */
-	var identifier: [Identifier]?
+	/** Identifiers assigned to this order */
+	public var identifier: [Identifier]?
 	
-	/*! The encounter that this diagnostic order is associated with */
-	var encounter: FHIRElement? {
+	/** The encounter that this diagnostic order is associated with */
+	public var encounter: FHIRElement? {
 		get { return resolveReference("encounter") }
 		set {
 			if newValue {
@@ -71,11 +71,11 @@ class DiagnosticOrder: FHIRResource
 		}
 	}
 	
-	/*! Explanation/Justification for test */
-	var clinicalNotes: String?
+	/** Explanation/Justification for test */
+	public var clinicalNotes: String?
 	
-	/*! If the whole order relates to specific specimens */
-	var specimen: [FHIRElement]? {
+	/** If the whole order relates to specific specimens */
+	public var specimen: [FHIRElement]? {
 		get { return resolveReferences("specimen") }
 		set {
 			if newValue {
@@ -84,26 +84,26 @@ class DiagnosticOrder: FHIRResource
 		}
 	}
 	
-	/*! requested | received | accepted | in progress | review | completed | suspended | rejected | failed */
-	var status: String?
+	/** requested | received | accepted | in progress | review | completed | suspended | rejected | failed */
+	public var status: String?
 	
-	/*! routine | urgent | stat | asap */
-	var priority: String?
+	/** routine | urgent | stat | asap */
+	public var priority: String?
 	
-	/*! A list of events of interest in the lifecycle */
-	var event: [DiagnosticOrderEvent]?
+	/** A list of events of interest in the lifecycle */
+	public var event: [DiagnosticOrderEvent]?
 	
-	/*! The items the orderer requested */
-	var item: [DiagnosticOrderItem]?
+	/** The items the orderer requested */
+	public var item: [DiagnosticOrderItem]?
 	
-	convenience init(subject: ResourceReference?) {
+	public convenience init(subject: ResourceReference?) {
 		self.init(json: nil)
 		if subject {
 			self.subject = subject
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -144,25 +144,25 @@ class DiagnosticOrder: FHIRResource
 }
 
 
-/*!
+/**
  *  A list of events of interest in the lifecycle.
  *
  *  A summary of the events of interest that have occurred as the request is processed. E.g. when the order was
  *  made, various processing steps (specimens received), when it was completed.
  */
-class DiagnosticOrderEvent: FHIRElement
+public class DiagnosticOrderEvent: FHIRElement
 {	
-	/*! requested | received | accepted | in progress | review | completed | suspended | rejected | failed */
-	var status: String?
+	/** requested | received | accepted | in progress | review | completed | suspended | rejected | failed */
+	public var status: String?
 	
-	/*! More information about the event and it's context */
-	var description: CodeableConcept?
+	/** More information about the event and it's context */
+	public var description: CodeableConcept?
 	
-	/*! The date at which the event happened */
-	var dateTime: NSDate?
+	/** The date at which the event happened */
+	public var dateTime: NSDate?
 	
-	/*! Who recorded or did this */
-	var actor: FHIRElement? {
+	/** Who recorded or did this */
+	public var actor: FHIRElement? {
 		get { return resolveReference("actor") }
 		set {
 			if newValue {
@@ -171,7 +171,7 @@ class DiagnosticOrderEvent: FHIRElement
 		}
 	}
 	
-	convenience init(status: String?, dateTime: NSDate?) {
+	public convenience init(status: String?, dateTime: NSDate?) {
 		self.init(json: nil)
 		if status {
 			self.status = status
@@ -181,7 +181,7 @@ class DiagnosticOrderEvent: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["status"] as? String {
@@ -201,19 +201,19 @@ class DiagnosticOrderEvent: FHIRElement
 }
 
 
-/*!
+/**
  *  The items the orderer requested.
  *
  *  The specific diagnostic investigations that are requested as part of this request. Sometimes, there can only
  *  be one item per request, but in most contexts, more than one investigation can be requested.
  */
-class DiagnosticOrderItem: FHIRElement
+public class DiagnosticOrderItem: FHIRElement
 {	
-	/*! Code to indicate the item (test or panel) being ordered */
-	var code: CodeableConcept?
+	/** Code to indicate the item (test or panel) being ordered */
+	public var code: CodeableConcept?
 	
-	/*! If this item relates to specific specimens */
-	var specimen: [FHIRElement]? {
+	/** If this item relates to specific specimens */
+	public var specimen: [FHIRElement]? {
 		get { return resolveReferences("specimen") }
 		set {
 			if newValue {
@@ -222,23 +222,23 @@ class DiagnosticOrderItem: FHIRElement
 		}
 	}
 	
-	/*! Location of requested test (if applicable) */
-	var bodySite: CodeableConcept?
+	/** Location of requested test (if applicable) */
+	public var bodySite: CodeableConcept?
 	
-	/*! requested | received | accepted | in progress | review | completed | suspended | rejected | failed */
-	var status: String?
+	/** requested | received | accepted | in progress | review | completed | suspended | rejected | failed */
+	public var status: String?
 	
-	/*! Events specific to this item */
-	var event: [DiagnosticOrderItemEvent]?
+	/** Events specific to this item */
+	public var event: [DiagnosticOrderItemEvent]?
 	
-	convenience init(code: CodeableConcept?) {
+	public convenience init(code: CodeableConcept?) {
 		self.init(json: nil)
 		if code {
 			self.code = code
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
@@ -261,15 +261,15 @@ class DiagnosticOrderItem: FHIRElement
 }
 
 
-/*!
+/**
  *  Events specific to this item.
  *
  *  A summary of the events of interest that have occurred as this item of the request is processed.
  */
-class DiagnosticOrderItemEvent: FHIRElement
+public class DiagnosticOrderItemEvent: FHIRElement
 {	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}

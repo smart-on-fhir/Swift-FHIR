@@ -2,14 +2,14 @@
 //  Substance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A homogeneous material with a definite composition.
  *
  *  Scope and Usage This resource allows for a material to be represented. The resource can be used to represent
@@ -19,35 +19,35 @@ import Foundation
  *  The composition of the material can be specified in terms of a mix of other materials, including with precise
  *  amounts if required.
  */
-class Substance: FHIRResource
+public class Substance: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Substance" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! What kind of substance this is */
-	var type: CodeableConcept?
+	/** What kind of substance this is */
+	public var type: CodeableConcept?
 	
-	/*! Textual description of the substance, comments */
-	var description: String?
+	/** Textual description of the substance, comments */
+	public var description: String?
 	
-	/*! If this describes a specific package/container of the substance */
-	var instance: SubstanceInstance?
+	/** If this describes a specific package/container of the substance */
+	public var instance: SubstanceInstance?
 	
-	/*! Composition information about the substance */
-	var ingredient: [SubstanceIngredient]?
+	/** Composition information about the substance */
+	public var ingredient: [SubstanceIngredient]?
 	
-	convenience init(type: CodeableConcept?) {
+	public convenience init(type: CodeableConcept?) {
 		self.init(json: nil)
 		if type {
 			self.type = type
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -70,25 +70,25 @@ class Substance: FHIRResource
 }
 
 
-/*!
+/**
  *  If this describes a specific package/container of the substance.
  *
  *  Substance may be used to describe a kind of substance, or a specific package/container of the substance: an
  *  instance.
  */
-class SubstanceInstance: FHIRElement
+public class SubstanceInstance: FHIRElement
 {	
-	/*! Identifier of the package/container */
-	var identifier: Identifier?
+	/** Identifier of the package/container */
+	public var identifier: Identifier?
 	
-	/*! When no longer valid to use */
-	var expiry: NSDate?
+	/** When no longer valid to use */
+	public var expiry: NSDate?
 	
-	/*! Amount of substance in the package */
-	var quantity: Quantity?
+	/** Amount of substance in the package */
+	public var quantity: Quantity?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? NSDictionary {
@@ -105,18 +105,18 @@ class SubstanceInstance: FHIRElement
 }
 
 
-/*!
+/**
  *  Composition information about the substance.
  *
  *  A substance can be composed of other substances.
  */
-class SubstanceIngredient: FHIRElement
+public class SubstanceIngredient: FHIRElement
 {	
-	/*! Optional amount (concentration) */
-	var quantity: Ratio?
+	/** Optional amount (concentration) */
+	public var quantity: Ratio?
 	
-	/*! A component of the substance */
-	var substance: FHIRElement? {
+	/** A component of the substance */
+	public var substance: FHIRElement? {
 		get { return resolveReference("substance") }
 		set {
 			if newValue {
@@ -125,14 +125,14 @@ class SubstanceIngredient: FHIRElement
 		}
 	}
 	
-	convenience init(substance: ResourceReference?) {
+	public convenience init(substance: ResourceReference?) {
 		self.init(json: nil)
 		if substance {
 			self.substance = substance
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["quantity"] as? NSDictionary {

@@ -2,14 +2,14 @@
 //  Device.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  An instance of a manufactured thing that is used in the provision of healthcare.
  *
  *  Scope and Usage This resource is primarily used for recording which device performed an action and can also be
@@ -20,41 +20,41 @@ import Foundation
  *  active in a patient in an ongoing fashion. The Medication resource SHOULD not be used to represent implanted
  *  devices.
  */
-class Device: FHIRResource
+public class Device: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Device" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Instance id from manufacturer, owner and others */
-	var identifier: [Identifier]?
+	/** Instance id from manufacturer, owner and others */
+	public var identifier: [Identifier]?
 	
-	/*! What kind of device this is */
-	var type: CodeableConcept?
+	/** What kind of device this is */
+	public var type: CodeableConcept?
 	
-	/*! Name of device manufacturer */
-	var manufacturer: String?
+	/** Name of device manufacturer */
+	public var manufacturer: String?
 	
-	/*! Model id assigned by the manufacturer */
-	var model: String?
+	/** Model id assigned by the manufacturer */
+	public var model: String?
 	
-	/*! Version number (i.e. software) */
-	var version: String?
+	/** Version number (i.e. software) */
+	public var version: String?
 	
-	/*! Date of expiry of this device (if applicable) */
-	var expiry: NSDate?
+	/** Date of expiry of this device (if applicable) */
+	public var expiry: NSDate?
 	
-	/*! FDA Mandated Unique Device Identifier */
-	var udi: String?
+	/** FDA Mandated Unique Device Identifier */
+	public var udi: String?
 	
-	/*! Lot number of manufacture */
-	var lotNumber: String?
+	/** Lot number of manufacture */
+	public var lotNumber: String?
 	
-	/*! Organization responsible for device */
-	var owner: FHIRElement? {
+	/** Organization responsible for device */
+	public var owner: FHIRElement? {
 		get { return resolveReference("owner") }
 		set {
 			if newValue {
@@ -63,8 +63,8 @@ class Device: FHIRResource
 		}
 	}
 	
-	/*! Where the resource is found */
-	var location: FHIRElement? {
+	/** Where the resource is found */
+	public var location: FHIRElement? {
 		get { return resolveReference("location") }
 		set {
 			if newValue {
@@ -73,8 +73,8 @@ class Device: FHIRResource
 		}
 	}
 	
-	/*! If the resource is affixed to a person */
-	var patient: FHIRElement? {
+	/** If the resource is affixed to a person */
+	public var patient: FHIRElement? {
 		get { return resolveReference("patient") }
 		set {
 			if newValue {
@@ -83,20 +83,20 @@ class Device: FHIRResource
 		}
 	}
 	
-	/*! Details for human/organization for support */
-	var contact: [Contact]?
+	/** Details for human/organization for support */
+	public var contact: [Contact]?
 	
-	/*! Network address to contact device */
-	var url: NSURL?
+	/** Network address to contact device */
+	public var url: NSURL?
 	
-	convenience init(type: CodeableConcept?) {
+	public convenience init(type: CodeableConcept?) {
 		self.init(json: nil)
 		if type {
 			self.type = type
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {

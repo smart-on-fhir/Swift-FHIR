@@ -2,29 +2,29 @@
 //  Narrative.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A human-readable formatted text, including images.
  */
-class Narrative: FHIRElement
+public class Narrative: FHIRElement
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Narrative" }
 	}
 	
-	/*! generated | extensions | additional */
-	var status: String?
+	/** generated | extensions | additional */
+	public var status: String?
 	
-	/*! Limited xhtml content */
-	var div: String?
+	/** Limited xhtml content */
+	public var div: String?
 	
-	convenience init(status: String?, div: String?) {
+	public convenience init(status: String?, div: String?) {
 		self.init(json: nil)
 		if status {
 			self.status = status
@@ -34,7 +34,7 @@ class Narrative: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["status"] as? String {

@@ -2,14 +2,14 @@
 //  Provenance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Who, What, When for a set of resources.
  *
  *  Scope and Usage The provenance resource tracks information about activity that created a version of a
@@ -23,17 +23,17 @@ import Foundation
  *  created as events occur, to track and audit the events. Security Event resources are often (though not
  *  exclusively) created by the application responding to the read/query/create/update etc. event.
  */
-class Provenance: FHIRResource
+public class Provenance: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Provenance" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Target resource(s) (usually version specific) */
-	var target: [FHIRElement]? {
+	/** Target resource(s) (usually version specific) */
+	public var target: [FHIRElement]? {
 		get { return resolveReferences("target") }
 		set {
 			if newValue {
@@ -42,17 +42,17 @@ class Provenance: FHIRResource
 		}
 	}
 	
-	/*! When the activity occurred */
-	var period: Period?
+	/** When the activity occurred */
+	public var period: Period?
 	
-	/*! When the activity was recorded / updated */
-	var recorded: Int?
+	/** When the activity was recorded / updated */
+	public var recorded: Int?
 	
-	/*! Reason the activity is occurring */
-	var reason: CodeableConcept?
+	/** Reason the activity is occurring */
+	public var reason: CodeableConcept?
 	
-	/*! Where the activity occurred, if relevant */
-	var location: FHIRElement? {
+	/** Where the activity occurred, if relevant */
+	public var location: FHIRElement? {
 		get { return resolveReference("location") }
 		set {
 			if newValue {
@@ -61,19 +61,19 @@ class Provenance: FHIRResource
 		}
 	}
 	
-	/*! Policy or plan the activity was defined by */
-	var policy: [NSURL]?
+	/** Policy or plan the activity was defined by */
+	public var policy: [NSURL]?
 	
-	/*! Person, organization, records, etc. involved in creating resource */
-	var agent: [ProvenanceAgent]?
+	/** Person, organization, records, etc. involved in creating resource */
+	public var agent: [ProvenanceAgent]?
 	
-	/*! An entity used in this activity */
-	var entity: [ProvenanceEntity]?
+	/** An entity used in this activity */
+	public var entity: [ProvenanceEntity]?
 	
-	/*! Base64 signature (DigSig) - integrity check */
-	var integritySignature: String?
+	/** Base64 signature (DigSig) - integrity check */
+	public var integritySignature: String?
 	
-	convenience init(target: [ResourceReference]?, recorded: Int?) {
+	public convenience init(target: [ResourceReference]?, recorded: Int?) {
 		self.init(json: nil)
 		if target {
 			self.target = target
@@ -83,7 +83,7 @@ class Provenance: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -121,28 +121,28 @@ class Provenance: FHIRResource
 }
 
 
-/*!
+/**
  *  Person, organization, records, etc. involved in creating resource.
  *
  *  An agent takes a role in an activity such that the agent can be assigned some degree of responsibility for the
  *  activity taking place. An agent can be a person, a piece of software, an inanimate object, an organization, or
  *  other entities that may be ascribed responsibility.
  */
-class ProvenanceAgent: FHIRElement
+public class ProvenanceAgent: FHIRElement
 {	
-	/*! e.g. author | overseer | enterer | attester | source | cc: + */
-	var role: Coding?
+	/** e.g. author | overseer | enterer | attester | source | cc: + */
+	public var role: Coding?
 	
-	/*! e.g. Resource | Person | Application | Record | Document + */
-	var type: Coding?
+	/** e.g. Resource | Person | Application | Record | Document + */
+	public var type: Coding?
 	
-	/*! Identity of agent (urn or url) */
-	var reference: NSURL?
+	/** Identity of agent (urn or url) */
+	public var reference: NSURL?
 	
-	/*! Human description of participant */
-	var display: String?
+	/** Human description of participant */
+	public var display: String?
 	
-	convenience init(role: Coding?, type: Coding?, reference: NSURL?) {
+	public convenience init(role: Coding?, type: Coding?, reference: NSURL?) {
 		self.init(json: nil)
 		if role {
 			self.role = role
@@ -155,7 +155,7 @@ class ProvenanceAgent: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["role"] as? NSDictionary {
@@ -175,27 +175,27 @@ class ProvenanceAgent: FHIRElement
 }
 
 
-/*!
+/**
  *  An entity used in this activity.
  */
-class ProvenanceEntity: FHIRElement
+public class ProvenanceEntity: FHIRElement
 {	
-	/*! derivation | revision | quotation | source */
-	var role: String?
+	/** derivation | revision | quotation | source */
+	public var role: String?
 	
-	/*! Resource Type, or something else */
-	var type: Coding?
+	/** Resource Type, or something else */
+	public var type: Coding?
 	
-	/*! Identity of participant (urn or url) */
-	var reference: NSURL?
+	/** Identity of participant (urn or url) */
+	public var reference: NSURL?
 	
-	/*! Human description of participant */
-	var display: String?
+	/** Human description of participant */
+	public var display: String?
 	
-	/*! Entity is attributed to this agent */
-	var agent: ProvenanceEntityAgent?
+	/** Entity is attributed to this agent */
+	public var agent: ProvenanceEntityAgent?
 	
-	convenience init(role: String?, type: Coding?, reference: NSURL?) {
+	public convenience init(role: String?, type: Coding?, reference: NSURL?) {
 		self.init(json: nil)
 		if role {
 			self.role = role
@@ -208,7 +208,7 @@ class ProvenanceEntity: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["role"] as? String {
@@ -231,17 +231,17 @@ class ProvenanceEntity: FHIRElement
 }
 
 
-/*!
+/**
  *  Entity is attributed to this agent.
  *
  *  The entity is attributed to an agent to express the agent's responsibility for that entity, possibly along
  *  with other agents. This description can be understood as shorthand for saying that the agent was responsible
  *  for the activity which generated the entity.
  */
-class ProvenanceEntityAgent: FHIRElement
+public class ProvenanceEntityAgent: FHIRElement
 {	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}

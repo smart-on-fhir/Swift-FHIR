@@ -2,14 +2,14 @@
 //  Profile.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Resource Profile.
  *
  *  Scope and Usage This specification describes a set of base resources that are used in many different contexts
@@ -31,64 +31,64 @@ import Foundation
  *  A FHIR RESTful server serving the profile resource is also a profile repository. HL7 hosts one for public
  *  registration of FHIR profiles at (yet to be done).
  */
-class Profile: FHIRResource
+public class Profile: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Profile" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Logical id to reference this profile */
-	var identifier: String?
+	/** Logical id to reference this profile */
+	public var identifier: String?
 	
-	/*! Logical id for this version of the profile */
-	var version: String?
+	/** Logical id for this version of the profile */
+	public var version: String?
 	
-	/*! Informal name for this profile */
-	var name: String?
+	/** Informal name for this profile */
+	public var name: String?
 	
-	/*! Name of the publisher (Organization or individual) */
-	var publisher: String?
+	/** Name of the publisher (Organization or individual) */
+	public var publisher: String?
 	
-	/*! Contact information of the publisher */
-	var telecom: [Contact]?
+	/** Contact information of the publisher */
+	public var telecom: [Contact]?
 	
-	/*! Natural language description of the profile */
-	var description: String?
+	/** Natural language description of the profile */
+	public var description: String?
 	
-	/*! Assist with indexing and finding */
-	var code: [Coding]?
+	/** Assist with indexing and finding */
+	public var code: [Coding]?
 	
-	/*! draft | active | retired */
-	var status: String?
+	/** draft | active | retired */
+	public var status: String?
 	
-	/*! If for testing purposes, not real usage */
-	var experimental: Bool?
+	/** If for testing purposes, not real usage */
+	public var experimental: Bool?
 	
-	/*! Date for this version of the profile */
-	var date: NSDate?
+	/** Date for this version of the profile */
+	public var date: NSDate?
 	
-	/*! Scope and Usage this profile is for */
-	var requirements: String?
+	/** Scope and Usage this profile is for */
+	public var requirements: String?
 	
-	/*! FHIR Version this profile targets */
-	var fhirVersion: String?
+	/** FHIR Version this profile targets */
+	public var fhirVersion: String?
 	
-	/*! External specification that the content is mapped to */
-	var mapping: [ProfileMapping]?
+	/** External specification that the content is mapped to */
+	public var mapping: [ProfileMapping]?
 	
-	/*! A constraint on a resource or a data type */
-	var structure: [ProfileStructure]?
+	/** A constraint on a resource or a data type */
+	public var structure: [ProfileStructure]?
 	
-	/*! Definition of an extension */
-	var extensionDefn: [ProfileExtensionDefn]?
+	/** Definition of an extension */
+	public var extensionDefn: [ProfileExtensionDefn]?
 	
-	/*! Definition of a named query */
-	var query: [ProfileQuery]?
+	/** Definition of a named query */
+	public var query: [ProfileQuery]?
 	
-	convenience init(name: String?, status: String?) {
+	public convenience init(name: String?, status: String?) {
 		self.init(json: nil)
 		if name {
 			self.name = name
@@ -98,7 +98,7 @@ class Profile: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -157,33 +157,33 @@ class Profile: FHIRResource
 }
 
 
-/*!
+/**
  *  External specification that the content is mapped to.
  *
  *  An external specification that the content is mapped to.
  */
-class ProfileMapping: FHIRElement
+public class ProfileMapping: FHIRElement
 {	
-	/*! Internal id when this mapping is used */
-	var identity: String?
+	/** Internal id when this mapping is used */
+	public var identity: String?
 	
-	/*! Identifies what this mapping refers to */
-	var uri: NSURL?
+	/** Identifies what this mapping refers to */
+	public var uri: NSURL?
 	
-	/*! Names what this mapping refers to */
-	var name: String?
+	/** Names what this mapping refers to */
+	public var name: String?
 	
-	/*! Versions, Issues, Scope limitations etc */
-	var comments: String?
+	/** Versions, Issues, Scope limitations etc */
+	public var comments: String?
 	
-	convenience init(identity: String?) {
+	public convenience init(identity: String?) {
 		self.init(json: nil)
 		if identity {
 			self.identity = identity
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identity"] as? String {
@@ -203,39 +203,39 @@ class ProfileMapping: FHIRElement
 }
 
 
-/*!
+/**
  *  A constraint on a resource or a data type.
  *
  *  A constraint statement about what contents a resource or data type may have.
  */
-class ProfileStructure: FHIRElement
+public class ProfileStructure: FHIRElement
 {	
-	/*! The Resource or Data Type being described */
-	var type: String?
+	/** The Resource or Data Type being described */
+	public var type: String?
 	
-	/*! Name for this particular structure (reference target) */
-	var name: String?
+	/** Name for this particular structure (reference target) */
+	public var name: String?
 	
-	/*! This definition is published (i.e. for validation) */
-	var publish: Bool?
+	/** This definition is published (i.e. for validation) */
+	public var publish: Bool?
 	
-	/*! Human summary: why describe this resource? */
-	var purpose: String?
+	/** Human summary: why describe this resource? */
+	public var purpose: String?
 	
-	/*! Definition of elements in the resource (if no profile) */
-	var element: [ProfileStructureElement]?
+	/** Definition of elements in the resource (if no profile) */
+	public var element: [ProfileStructureElement]?
 	
-	/*! Search params defined */
-	var searchParam: [ProfileStructureSearchParam]?
+	/** Search params defined */
+	public var searchParam: [ProfileStructureSearchParam]?
 	
-	convenience init(type: String?) {
+	public convenience init(type: String?) {
 		self.init(json: nil)
 		if type {
 			self.type = type
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {
@@ -261,36 +261,36 @@ class ProfileStructure: FHIRElement
 }
 
 
-/*!
+/**
  *  Definition of elements in the resource (if no profile).
  *
  *  Captures constraints on each element within the resource.
  */
-class ProfileStructureElement: FHIRElement
+public class ProfileStructureElement: FHIRElement
 {	
-	/*! The path of the element (see the formal definitions) */
-	var path: String?
+	/** The path of the element (see the formal definitions) */
+	public var path: String?
 	
-	/*! How this element is represented in instances */
-	var representation: [String]?
+	/** How this element is represented in instances */
+	public var representation: [String]?
 	
-	/*! Name for this particular element definition (reference target) */
-	var name: String?
+	/** Name for this particular element definition (reference target) */
+	public var name: String?
 	
-	/*! This element is sliced - slices follow */
-	var slicing: ProfileStructureElementSlicing?
+	/** This element is sliced - slices follow */
+	public var slicing: ProfileStructureElementSlicing?
 	
-	/*! More specific definition of the element */
-	var definition: ProfileStructureElementDefinition?
+	/** More specific definition of the element */
+	public var definition: ProfileStructureElementDefinition?
 	
-	convenience init(path: String?) {
+	public convenience init(path: String?) {
 		self.init(json: nil)
 		if path {
 			self.path = path
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["path"] as? String {
@@ -313,25 +313,25 @@ class ProfileStructureElement: FHIRElement
 }
 
 
-/*!
+/**
  *  This element is sliced - slices follow.
  *
  *  Indicates that the element is sliced into a set of alternative definitions (there are multiple definitions on
  *  a single element in the base resource). The set of slices is any elements that come after this in the element
  *  sequence that have the same path, until a shorter path occurs (the shorter path terminates the set).
  */
-class ProfileStructureElementSlicing: FHIRElement
+public class ProfileStructureElementSlicing: FHIRElement
 {	
-	/*! Element that used to distinguish the slices */
-	var discriminator: String?
+	/** Element that used to distinguish the slices */
+	public var discriminator: String?
 	
-	/*! If elements must be in same order as slices */
-	var ordered: Bool?
+	/** If elements must be in same order as slices */
+	public var ordered: Bool?
 	
-	/*! closed | open | openAtEnd */
-	var rules: String?
+	/** closed | open | openAtEnd */
+	public var rules: String?
 	
-	convenience init(discriminator: String?, ordered: Bool?, rules: String?) {
+	public convenience init(discriminator: String?, ordered: Bool?, rules: String?) {
 		self.init(json: nil)
 		if discriminator {
 			self.discriminator = discriminator
@@ -344,7 +344,7 @@ class ProfileStructureElementSlicing: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["discriminator"] as? String {
@@ -361,69 +361,69 @@ class ProfileStructureElementSlicing: FHIRElement
 }
 
 
-/*!
+/**
  *  More specific definition of the element.
  *
  *  Definition of the content of the element to provide a more specific definition than that contained for the
  *  element in the base resource.
  */
-class ProfileStructureElementDefinition: FHIRElement
+public class ProfileStructureElementDefinition: FHIRElement
 {	
-	/*! Concise definition for xml presentation */
-	var short: String?
+	/** Concise definition for xml presentation */
+	public var short: String?
 	
-	/*! Full formal definition in human language */
-	var formal: String?
+	/** Full formal definition in human language */
+	public var formal: String?
 	
-	/*! Comments about the use of this element */
-	var comments: String?
+	/** Comments about the use of this element */
+	public var comments: String?
 	
-	/*! Why is this needed? */
-	var requirements: String?
+	/** Why is this needed? */
+	public var requirements: String?
 	
-	/*! Other names */
-	var synonym: [String]?
+	/** Other names */
+	public var synonym: [String]?
 	
-	/*! Minimum Cardinality */
-	var min: Int?
+	/** Minimum Cardinality */
+	public var min: Int?
 	
-	/*! Maximum Cardinality (a number or *) */
-	var max: String?
+	/** Maximum Cardinality (a number or *) */
+	public var max: String?
 	
-	/*! Data type and Profile for this element */
-	var type: [ProfileStructureElementDefinitionType]?
+	/** Data type and Profile for this element */
+	public var type: [ProfileStructureElementDefinitionType]?
 	
-	/*! To another element constraint (by element.name) */
-	var nameReference: String?
+	/** To another element constraint (by element.name) */
+	public var nameReference: String?
 	
-	/*! Fixed value: [as defined for a primitive type] */
-	var value: FHIRElement?
+	/** Fixed value: [as defined for a primitive type] */
+	public var value: FHIRElement?
 	
-	/*! Example value: [as defined for type] */
-	var example: FHIRElement?
+	/** Example value: [as defined for type] */
+	public var example: FHIRElement?
 	
-	/*! Length for strings */
-	var maxLength: Int?
+	/** Length for strings */
+	public var maxLength: Int?
 	
-	/*! Reference to invariant about presence */
-	var condition: [String]?
+	/** Reference to invariant about presence */
+	public var condition: [String]?
 	
-	/*! Condition that must evaluate to true */
-	var constraint: [ProfileStructureElementDefinitionConstraint]?
+	/** Condition that must evaluate to true */
+	public var constraint: [ProfileStructureElementDefinitionConstraint]?
 	
-	/*! If the element must supported */
-	var mustSupport: Bool?
+	/** If the element must supported */
+	public var mustSupport: Bool?
 	
-	/*! If this modifies the meaning of other elements */
-	var isModifier: Bool?
+	/** If this modifies the meaning of other elements */
+	public var isModifier: Bool?
 	
-	/*! ValueSet details if this is coded */
-	var binding: ProfileStructureElementDefinitionBinding?
+	/** ValueSet details if this is coded */
+	public var binding: ProfileStructureElementDefinitionBinding?
 	
-	/*! Map element to another set of definitions */
-	var mapping: [ProfileStructureElementDefinitionMapping]?
+	/** Map element to another set of definitions */
+	public var mapping: [ProfileStructureElementDefinitionMapping]?
 	
-	convenience init(short: String?, formal: String?, min: Int?, max: String?, isModifier: Bool?) {
+	public convenience init(short: String?, formal: String?, min: Int?, max: String?, isModifier: Bool?) {
 		self.init(json: nil)
 		if short {
 			self.short = short
@@ -442,7 +442,7 @@ class ProfileStructureElementDefinition: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["short"] as? String {
@@ -504,30 +504,30 @@ class ProfileStructureElementDefinition: FHIRElement
 }
 
 
-/*!
+/**
  *  Data type and Profile for this element.
  *
  *  The data type or resource that the value of this element is permitted to be.
  */
-class ProfileStructureElementDefinitionType: FHIRElement
+public class ProfileStructureElementDefinitionType: FHIRElement
 {	
-	/*! Name of Data type or Resource */
-	var code: String?
+	/** Name of Data type or Resource */
+	public var code: String?
 	
-	/*! Profile.structure to apply */
-	var profile: NSURL?
+	/** Profile.structure to apply */
+	public var profile: NSURL?
 	
-	/*! contained | referenced | bundled - how aggregated */
-	var aggregation: [String]?
+	/** contained | referenced | bundled - how aggregated */
+	public var aggregation: [String]?
 	
-	convenience init(code: String?) {
+	public convenience init(code: String?) {
 		self.init(json: nil)
 		if code {
 			self.code = code
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -544,30 +544,30 @@ class ProfileStructureElementDefinitionType: FHIRElement
 }
 
 
-/*!
+/**
  *  Condition that must evaluate to true.
  *
  *  Formal constraints such as co-occurrence and other constraints that can be computationally evaluated within
  *  the context of the instance.
  */
-class ProfileStructureElementDefinitionConstraint: FHIRElement
+public class ProfileStructureElementDefinitionConstraint: FHIRElement
 {	
-	/*! Target of 'condition' reference above */
-	var key: String?
+	/** Target of 'condition' reference above */
+	public var key: String?
 	
-	/*! Short human label */
-	var name: String?
+	/** Short human label */
+	public var name: String?
 	
-	/*! error | warning */
-	var severity: String?
+	/** error | warning */
+	public var severity: String?
 	
-	/*! Human description of constraint */
-	var human: String?
+	/** Human description of constraint */
+	public var human: String?
 	
-	/*! XPath expression of constraint */
-	var xpath: String?
+	/** XPath expression of constraint */
+	public var xpath: String?
 	
-	convenience init(key: String?, severity: String?, human: String?, xpath: String?) {
+	public convenience init(key: String?, severity: String?, human: String?, xpath: String?) {
 		self.init(json: nil)
 		if key {
 			self.key = key
@@ -583,7 +583,7 @@ class ProfileStructureElementDefinitionConstraint: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["key"] as? String {
@@ -606,30 +606,30 @@ class ProfileStructureElementDefinitionConstraint: FHIRElement
 }
 
 
-/*!
+/**
  *  ValueSet details if this is coded.
  *
  *  Binds to a value set if this element is coded (code, Coding, CodeableConcept).
  */
-class ProfileStructureElementDefinitionBinding: FHIRElement
+public class ProfileStructureElementDefinitionBinding: FHIRElement
 {	
-	/*! Descriptive Name */
-	var name: String?
+	/** Descriptive Name */
+	public var name: String?
 	
-	/*! Can additional codes be used? */
-	var isExtensible: Bool?
+	/** Can additional codes be used? */
+	public var isExtensible: Bool?
 	
-	/*! required | preferred | example */
-	var conformance: String?
+	/** required | preferred | example */
+	public var conformance: String?
 	
-	/*! Human explanation of the value set */
-	var description: String?
+	/** Human explanation of the value set */
+	public var description: String?
 	
-	/*! Source of value set */
-	var referenceUri: NSURL?
+	/** Source of value set */
+	public var referenceUri: NSURL?
 	
-	/*! Source of value set */
-	var referenceResourceReference: FHIRElement? {
+	/** Source of value set */
+	public var referenceResourceReference: FHIRElement? {
 		get { return resolveReference("referenceResourceReference") }
 		set {
 			if newValue {
@@ -638,7 +638,7 @@ class ProfileStructureElementDefinitionBinding: FHIRElement
 		}
 	}
 	
-	convenience init(name: String?, isExtensible: Bool?) {
+	public convenience init(name: String?, isExtensible: Bool?) {
 		self.init(json: nil)
 		if name {
 			self.name = name
@@ -648,7 +648,7 @@ class ProfileStructureElementDefinitionBinding: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
@@ -674,20 +674,20 @@ class ProfileStructureElementDefinitionBinding: FHIRElement
 }
 
 
-/*!
+/**
  *  Map element to another set of definitions.
  *
  *  Identifies a concept from an external specification that roughly corresponds to this element.
  */
-class ProfileStructureElementDefinitionMapping: FHIRElement
+public class ProfileStructureElementDefinitionMapping: FHIRElement
 {	
-	/*! Reference to mapping declaration */
-	var identity: String?
+	/** Reference to mapping declaration */
+	public var identity: String?
 	
-	/*! Details of the mapping */
-	var map: String?
+	/** Details of the mapping */
+	public var map: String?
 	
-	convenience init(identity: String?, map: String?) {
+	public convenience init(identity: String?, map: String?) {
 		self.init(json: nil)
 		if identity {
 			self.identity = identity
@@ -697,7 +697,7 @@ class ProfileStructureElementDefinitionMapping: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identity"] as? String {
@@ -711,29 +711,29 @@ class ProfileStructureElementDefinitionMapping: FHIRElement
 }
 
 
-/*!
+/**
  *  Search params defined.
  *
  *  Additional search parameters for implementations to support and/or make use of.
  */
-class ProfileStructureSearchParam: FHIRElement
+public class ProfileStructureSearchParam: FHIRElement
 {	
-	/*! Name of search parameter */
-	var name: String?
+	/** Name of search parameter */
+	public var name: String?
 	
-	/*! number | date | string | token | reference | composite | quantity */
-	var type: String?
+	/** number | date | string | token | reference | composite | quantity */
+	public var type: String?
 	
-	/*! Contents and meaning of search parameter */
-	var documentation: String?
+	/** Contents and meaning of search parameter */
+	public var documentation: String?
 	
-	/*! XPath that extracts the parameter set */
-	var xpath: String?
+	/** XPath that extracts the parameter set */
+	public var xpath: String?
 	
-	/*! Types of resource (if a resource reference) */
-	var target: [String]?
+	/** Types of resource (if a resource reference) */
+	public var target: [String]?
 	
-	convenience init(name: String?, type: String?, documentation: String?) {
+	public convenience init(name: String?, type: String?, documentation: String?) {
 		self.init(json: nil)
 		if name {
 			self.name = name
@@ -746,7 +746,7 @@ class ProfileStructureSearchParam: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
@@ -769,29 +769,29 @@ class ProfileStructureSearchParam: FHIRElement
 }
 
 
-/*!
+/**
  *  Definition of an extension.
  *
  *  An extension defined as part of the profile.
  */
-class ProfileExtensionDefn: FHIRElement
+public class ProfileExtensionDefn: FHIRElement
 {	
-	/*! Identifies the extension in this profile */
-	var code: String?
+	/** Identifies the extension in this profile */
+	public var code: String?
 	
-	/*! Use this name when displaying the value */
-	var display: String?
+	/** Use this name when displaying the value */
+	public var display: String?
 	
-	/*! resource | datatype | mapping | extension */
-	var contextType: String?
+	/** resource | datatype | mapping | extension */
+	public var contextType: String?
 	
-	/*! Where the extension can be used in instances */
-	var context: [String]?
+	/** Where the extension can be used in instances */
+	public var context: [String]?
 	
-	/*! Definition of the extension and its content */
-	var definition: ProfileExtensionDefnDefinition?
+	/** Definition of the extension and its content */
+	public var definition: ProfileExtensionDefnDefinition?
 	
-	convenience init(code: String?, contextType: String?, context: [String]?, definition: ProfileExtensionDefnDefinition?) {
+	public convenience init(code: String?, contextType: String?, context: [String]?, definition: ProfileExtensionDefnDefinition?) {
 		self.init(json: nil)
 		if code {
 			self.code = code
@@ -807,7 +807,7 @@ class ProfileExtensionDefn: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -830,13 +830,13 @@ class ProfileExtensionDefn: FHIRElement
 }
 
 
-/*!
+/**
  *  Definition of the extension and its content.
  */
-class ProfileExtensionDefnDefinition: FHIRElement
+public class ProfileExtensionDefnDefinition: FHIRElement
 {	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}
@@ -844,23 +844,23 @@ class ProfileExtensionDefnDefinition: FHIRElement
 }
 
 
-/*!
+/**
  *  Definition of a named query.
  *
  *  Definition of a named query and its parameters and their meaning.
  */
-class ProfileQuery: FHIRElement
+public class ProfileQuery: FHIRElement
 {	
-	/*! Special named queries (_query=) */
-	var name: String?
+	/** Special named queries (_query=) */
+	public var name: String?
 	
-	/*! Describes the named query */
-	var documentation: String?
+	/** Describes the named query */
+	public var documentation: String?
 	
-	/*! Parameter for the named query */
-	var parameter: [ProfileQueryParameter]?
+	/** Parameter for the named query */
+	public var parameter: [ProfileQueryParameter]?
 	
-	convenience init(name: String?, documentation: String?) {
+	public convenience init(name: String?, documentation: String?) {
 		self.init(json: nil)
 		if name {
 			self.name = name
@@ -870,7 +870,7 @@ class ProfileQuery: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
@@ -887,15 +887,15 @@ class ProfileQuery: FHIRElement
 }
 
 
-/*!
+/**
  *  Parameter for the named query.
  *
  *  A parameter of a named query.
  */
-class ProfileQueryParameter: FHIRElement
+public class ProfileQueryParameter: FHIRElement
 {	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}

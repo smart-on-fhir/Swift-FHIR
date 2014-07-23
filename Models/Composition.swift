@@ -2,14 +2,14 @@
 //  Composition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  A set of resources composed into a single coherent clinical statement with clinical attestation.
  *
  *  Scope and Usage A Composition is also the basic structure from which FHIR Documents - immutable bundles with
@@ -21,38 +21,38 @@ import Foundation
  *  prescription form and a set of bedside nursing observations. These logical examples are all valid uses of a
  *  Composition resource, but it is not required that all the resources are updated in a single commit.
  */
-class Composition: FHIRResource
+public class Composition: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Composition" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Logical identifier of composition (version-independent) */
-	var identifier: Identifier?
+	/** Logical identifier of composition (version-independent) */
+	public var identifier: Identifier?
 	
-	/*! Composition editing time */
-	var date: NSDate?
+	/** Composition editing time */
+	public var date: NSDate?
 	
-	/*! Kind of composition (LOINC if possible) */
-	var type: CodeableConcept?
+	/** Kind of composition (LOINC if possible) */
+	public var type: CodeableConcept?
 	
-	/*! Categorization of Composition */
-	var klass: CodeableConcept?
+	/** Categorization of Composition */
+	public var klass: CodeableConcept?
 	
-	/*! Human Readable name/title */
-	var title: String?
+	/** Human Readable name/title */
+	public var title: String?
 	
-	/*! preliminary | final | appended | amended | entered in error */
-	var status: String?
+	/** preliminary | final | appended | amended | entered in error */
+	public var status: String?
 	
-	/*! As defined by affinity domain */
-	var confidentiality: Coding?
+	/** As defined by affinity domain */
+	public var confidentiality: Coding?
 	
-	/*! Who and/or what the composition is about */
-	var subject: FHIRElement? {
+	/** Who and/or what the composition is about */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -61,8 +61,8 @@ class Composition: FHIRResource
 		}
 	}
 	
-	/*! Who and/or what authored the composition */
-	var author: [FHIRElement]? {
+	/** Who and/or what authored the composition */
+	public var author: [FHIRElement]? {
 		get { return resolveReferences("author") }
 		set {
 			if newValue {
@@ -71,11 +71,11 @@ class Composition: FHIRResource
 		}
 	}
 	
-	/*! Attests to accuracy of composition */
-	var attester: [CompositionAttester]?
+	/** Attests to accuracy of composition */
+	public var attester: [CompositionAttester]?
 	
-	/*! Org which maintains the composition */
-	var custodian: FHIRElement? {
+	/** Org which maintains the composition */
+	public var custodian: FHIRElement? {
 		get { return resolveReference("custodian") }
 		set {
 			if newValue {
@@ -84,11 +84,11 @@ class Composition: FHIRResource
 		}
 	}
 	
-	/*! The clinical event/act/item being documented */
-	var event: CompositionEvent?
+	/** The clinical event/act/item being documented */
+	public var event: CompositionEvent?
 	
-	/*! Context of the conposition */
-	var encounter: FHIRElement? {
+	/** Context of the conposition */
+	public var encounter: FHIRElement? {
 		get { return resolveReference("encounter") }
 		set {
 			if newValue {
@@ -97,10 +97,10 @@ class Composition: FHIRResource
 		}
 	}
 	
-	/*! Composition is broken into sections */
-	var section: [CompositionSection]?
+	/** Composition is broken into sections */
+	public var section: [CompositionSection]?
 	
-	convenience init(date: NSDate?, type: CodeableConcept?, status: String?, confidentiality: Coding?, subject: ResourceReference?, author: [ResourceReference]?) {
+	public convenience init(date: NSDate?, type: CodeableConcept?, status: String?, confidentiality: Coding?, subject: ResourceReference?, author: [ResourceReference]?) {
 		self.init(json: nil)
 		if date {
 			self.date = date
@@ -122,7 +122,7 @@ class Composition: FHIRResource
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -175,21 +175,21 @@ class Composition: FHIRResource
 }
 
 
-/*!
+/**
  *  Attests to accuracy of composition.
  *
  *  A participant who has attested to the accuracy of the composition/document.
  */
-class CompositionAttester: FHIRElement
+public class CompositionAttester: FHIRElement
 {	
-	/*! personal | professional | legal | official */
-	var mode: [String]?
+	/** personal | professional | legal | official */
+	public var mode: [String]?
 	
-	/*! When composition attested */
-	var time: NSDate?
+	/** When composition attested */
+	public var time: NSDate?
 	
-	/*! Who attested the composition */
-	var party: FHIRElement? {
+	/** Who attested the composition */
+	public var party: FHIRElement? {
 		get { return resolveReference("party") }
 		set {
 			if newValue {
@@ -198,14 +198,14 @@ class CompositionAttester: FHIRElement
 		}
 	}
 	
-	convenience init(mode: [String]?) {
+	public convenience init(mode: [String]?) {
 		self.init(json: nil)
 		if mode {
 			self.mode = mode
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["mode"] as? [String] {
@@ -222,21 +222,21 @@ class CompositionAttester: FHIRElement
 }
 
 
-/*!
+/**
  *  The clinical event/act/item being documented.
  *
  *  The main event/act/item, such as a colonoscopy or an appendectomy, being documented.
  */
-class CompositionEvent: FHIRElement
+public class CompositionEvent: FHIRElement
 {	
-	/*! Code(s) that apply to the event being documented */
-	var code: [CodeableConcept]?
+	/** Code(s) that apply to the event being documented */
+	public var code: [CodeableConcept]?
 	
-	/*! The period covered by the documentation */
-	var period: Period?
+	/** The period covered by the documentation */
+	public var period: Period?
 	
-	/*! Full details for the event(s) the composition consents */
-	var detail: [FHIRElement]? {
+	/** Full details for the event(s) the composition consents */
+	public var detail: [FHIRElement]? {
 		get { return resolveReferences("detail") }
 		set {
 			if newValue {
@@ -246,7 +246,7 @@ class CompositionEvent: FHIRElement
 	}
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? [NSDictionary] {
@@ -263,21 +263,21 @@ class CompositionEvent: FHIRElement
 }
 
 
-/*!
+/**
  *  Composition is broken into sections.
  *
  *  The root of the sections that make up the composition.
  */
-class CompositionSection: FHIRElement
+public class CompositionSection: FHIRElement
 {	
-	/*! Label for section */
-	var title: String?
+	/** Label for section */
+	public var title: String?
 	
-	/*! Classification of section (recommended) */
-	var code: CodeableConcept?
+	/** Classification of section (recommended) */
+	public var code: CodeableConcept?
 	
-	/*! If section different to composition */
-	var subject: FHIRElement? {
+	/** If section different to composition */
+	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
 			if newValue {
@@ -286,8 +286,8 @@ class CompositionSection: FHIRElement
 		}
 	}
 	
-	/*! The actual data for the section */
-	var content: FHIRElement? {
+	/** The actual data for the section */
+	public var content: FHIRElement? {
 		get { return resolveReference("content") }
 		set {
 			if newValue {
@@ -296,11 +296,11 @@ class CompositionSection: FHIRElement
 		}
 	}
 	
-	/*! Nested Section */
-	var section: [CompositionSectionSection]?
+	/** Nested Section */
+	public var section: [CompositionSectionSection]?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["title"] as? String {
@@ -323,15 +323,15 @@ class CompositionSection: FHIRElement
 }
 
 
-/*!
+/**
  *  Nested Section.
  *
  *  A nested sub-section within this section.
  */
-class CompositionSectionSection: FHIRElement
+public class CompositionSectionSection: FHIRElement
 {	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}

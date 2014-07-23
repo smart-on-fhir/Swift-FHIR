@@ -2,14 +2,14 @@
 //  Location.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-18.
+//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
 import Foundation
 
 
-/*!
+/**
  *  Details and position information for a physical place.
  *
  *  Scope and Usage A Location includes both incidental locations (a place which is used for healthcare without
@@ -24,41 +24,41 @@ import Foundation
  *  * Home, shed, or a garage
  *  * Road, parking place, a park
  */
-class Location: FHIRResource
+public class Location: FHIRResource
 {
-	override class var resourceName: String {
+	override public class var resourceName: String {
 		get { return "Location" }
 	}
 	
-	/*! Text summary of the resource, for human interpretation */
-	var text: Narrative?
+	/** Text summary of the resource, for human interpretation */
+	public var text: Narrative?
 	
-	/*! Unique code or number identifying the location to its users */
-	var identifier: Identifier?
+	/** Unique code or number identifying the location to its users */
+	public var identifier: Identifier?
 	
-	/*! Name of the location as used by humans */
-	var name: String?
+	/** Name of the location as used by humans */
+	public var name: String?
 	
-	/*! Description of the Location, which helps in finding or referencing the place */
-	var description: String?
+	/** Description of the Location, which helps in finding or referencing the place */
+	public var description: String?
 	
-	/*! Indicates the type of function performed at the location */
-	var type: CodeableConcept?
+	/** Indicates the type of function performed at the location */
+	public var type: CodeableConcept?
 	
-	/*! Contact details of the location */
-	var telecom: [Contact]?
+	/** Contact details of the location */
+	public var telecom: [Contact]?
 	
-	/*! Physical location */
-	var address: Address?
+	/** Physical location */
+	public var address: Address?
 	
-	/*! Physical form of the location */
-	var physicalType: CodeableConcept?
+	/** Physical form of the location */
+	public var physicalType: CodeableConcept?
 	
-	/*! The absolute geographic location */
-	var position: LocationPosition?
+	/** The absolute geographic location */
+	public var position: LocationPosition?
 	
-	/*! The organization that is responsible for the provisioning and upkeep of the location */
-	var managingOrganization: FHIRElement? {
+	/** The organization that is responsible for the provisioning and upkeep of the location */
+	public var managingOrganization: FHIRElement? {
 		get { return resolveReference("managingOrganization") }
 		set {
 			if newValue {
@@ -67,11 +67,11 @@ class Location: FHIRResource
 		}
 	}
 	
-	/*! active | suspended | inactive */
-	var status: String?
+	/** active | suspended | inactive */
+	public var status: String?
 	
-	/*! Another Location which this Location is physically part of */
-	var partOf: FHIRElement? {
+	/** Another Location which this Location is physically part of */
+	public var partOf: FHIRElement? {
 		get { return resolveReference("partOf") }
 		set {
 			if newValue {
@@ -80,11 +80,11 @@ class Location: FHIRResource
 		}
 	}
 	
-	/*! instance | kind */
-	var mode: String?
+	/** instance | kind */
+	public var mode: String?
 	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -131,24 +131,24 @@ class Location: FHIRResource
 }
 
 
-/*!
+/**
  *  The absolute geographic location.
  *
  *  The absolute geographic location of the Location, expressed in a KML compatible manner (see notes below for
  *  KML).
  */
-class LocationPosition: FHIRElement
+public class LocationPosition: FHIRElement
 {	
-	/*! Longitude as expressed in KML */
-	var longitude: NSDecimalNumber?
+	/** Longitude as expressed in KML */
+	public var longitude: NSDecimalNumber?
 	
-	/*! Latitude as expressed in KML */
-	var latitude: NSDecimalNumber?
+	/** Latitude as expressed in KML */
+	public var latitude: NSDecimalNumber?
 	
-	/*! Altitude as expressed in KML */
-	var altitude: NSDecimalNumber?
+	/** Altitude as expressed in KML */
+	public var altitude: NSDecimalNumber?
 	
-	convenience init(longitude: NSDecimalNumber?, latitude: NSDecimalNumber?) {
+	public convenience init(longitude: NSDecimalNumber?, latitude: NSDecimalNumber?) {
 		self.init(json: nil)
 		if longitude {
 			self.longitude = longitude
@@ -158,7 +158,7 @@ class LocationPosition: FHIRElement
 		}
 	}	
 	
-	init(json: NSDictionary?) {
+	public init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["longitude"] as? String {

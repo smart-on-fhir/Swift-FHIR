@@ -2,7 +2,7 @@
 //  Medication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -57,7 +57,7 @@ public class Medication: FHIRResource
 	public var manufacturer: FHIRElement? {
 		get { return resolveReference("manufacturer") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "manufacturer")
 			}
 		}
@@ -73,7 +73,7 @@ public class Medication: FHIRResource
 	public var package: MedicationPackage?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -119,7 +119,7 @@ public class MedicationProduct: FHIRElement
 	public var ingredient: [MedicationProductIngredient]?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["form"] as? NSDictionary {
@@ -144,7 +144,7 @@ public class MedicationProductIngredient: FHIRElement
 	public var item: FHIRElement? {
 		get { return resolveReference("item") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "item")
 			}
 		}
@@ -155,12 +155,12 @@ public class MedicationProductIngredient: FHIRElement
 	
 	public convenience init(item: ResourceReference?) {
 		self.init(json: nil)
-		if item {
+		if nil != item {
 			self.item = item
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["item"] as? NSDictionary {
@@ -188,7 +188,7 @@ public class MedicationPackage: FHIRElement
 	public var content: [MedicationPackageContent]?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["container"] as? NSDictionary {
@@ -213,7 +213,7 @@ public class MedicationPackageContent: FHIRElement
 	public var item: FHIRElement? {
 		get { return resolveReference("item") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "item")
 			}
 		}
@@ -224,12 +224,12 @@ public class MedicationPackageContent: FHIRElement
 	
 	public convenience init(item: ResourceReference?) {
 		self.init(json: nil)
-		if item {
+		if nil != item {
 			self.item = item
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["item"] as? NSDictionary {

@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -37,7 +37,7 @@ public class Procedure: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -62,7 +62,7 @@ public class Procedure: FHIRResource
 	public var encounter: FHIRElement? {
 		get { return resolveReference("encounter") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "encounter")
 			}
 		}
@@ -75,7 +75,7 @@ public class Procedure: FHIRResource
 	public var report: [FHIRElement]? {
 		get { return resolveReferences("report") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "report")
 			}
 		}
@@ -95,15 +95,15 @@ public class Procedure: FHIRResource
 	
 	public convenience init(subject: ResourceReference?, type: CodeableConcept?) {
 		self.init(json: nil)
-		if subject {
+		if nil != subject {
 			self.subject = subject
 		}
-		if type {
+		if nil != type {
 			self.type = type
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -167,7 +167,7 @@ public class ProcedurePerformer: FHIRElement
 	public var person: FHIRElement? {
 		get { return resolveReference("person") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "person")
 			}
 		}
@@ -177,7 +177,7 @@ public class ProcedurePerformer: FHIRElement
 	public var role: CodeableConcept?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["person"] as? NSDictionary {
@@ -206,14 +206,14 @@ public class ProcedureRelatedItem: FHIRElement
 	public var target: FHIRElement? {
 		get { return resolveReference("target") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "target")
 			}
 		}
 	}
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {

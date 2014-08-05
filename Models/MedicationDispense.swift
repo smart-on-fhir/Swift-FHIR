@@ -2,7 +2,7 @@
 //  MedicationDispense.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -35,7 +35,7 @@ public class MedicationDispense: FHIRResource
 	public var patient: FHIRElement? {
 		get { return resolveReference("patient") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "patient")
 			}
 		}
@@ -45,7 +45,7 @@ public class MedicationDispense: FHIRResource
 	public var dispenser: FHIRElement? {
 		get { return resolveReference("dispenser") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "dispenser")
 			}
 		}
@@ -55,7 +55,7 @@ public class MedicationDispense: FHIRResource
 	public var authorizingPrescription: [FHIRElement]? {
 		get { return resolveReferences("authorizingPrescription") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "authorizingPrescription")
 			}
 		}
@@ -68,7 +68,7 @@ public class MedicationDispense: FHIRResource
 	public var substitution: MedicationDispenseSubstitution?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -123,7 +123,7 @@ public class MedicationDispenseDispense: FHIRElement
 	public var medication: FHIRElement? {
 		get { return resolveReference("medication") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "medication")
 			}
 		}
@@ -139,7 +139,7 @@ public class MedicationDispenseDispense: FHIRElement
 	public var destination: FHIRElement? {
 		get { return resolveReference("destination") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "destination")
 			}
 		}
@@ -149,7 +149,7 @@ public class MedicationDispenseDispense: FHIRElement
 	public var receiver: [FHIRElement]? {
 		get { return resolveReferences("receiver") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "receiver")
 			}
 		}
@@ -159,7 +159,7 @@ public class MedicationDispenseDispense: FHIRElement
 	public var dosage: [MedicationDispenseDispenseDosage]?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? NSDictionary {
@@ -241,7 +241,7 @@ public class MedicationDispenseDispenseDosage: FHIRElement
 	public var maxDosePerPeriod: Ratio?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["additionalInstructions"] as? NSDictionary {
@@ -304,7 +304,7 @@ public class MedicationDispenseSubstitution: FHIRElement
 	public var responsibleParty: [FHIRElement]? {
 		get { return resolveReferences("responsibleParty") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "responsibleParty")
 			}
 		}
@@ -312,12 +312,12 @@ public class MedicationDispenseSubstitution: FHIRElement
 	
 	public convenience init(type: CodeableConcept?) {
 		self.init(json: nil)
-		if type {
+		if nil != type {
 			self.type = type
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? NSDictionary {

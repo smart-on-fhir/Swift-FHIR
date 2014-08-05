@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -52,7 +52,7 @@ public class Questionnaire: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -62,7 +62,7 @@ public class Questionnaire: FHIRResource
 	public var author: FHIRElement? {
 		get { return resolveReference("author") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "author")
 			}
 		}
@@ -72,7 +72,7 @@ public class Questionnaire: FHIRResource
 	public var source: FHIRElement? {
 		get { return resolveReference("source") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "source")
 			}
 		}
@@ -88,7 +88,7 @@ public class Questionnaire: FHIRResource
 	public var encounter: FHIRElement? {
 		get { return resolveReference("encounter") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "encounter")
 			}
 		}
@@ -99,15 +99,15 @@ public class Questionnaire: FHIRResource
 	
 	public convenience init(status: String?, authored: NSDate?) {
 		self.init(json: nil)
-		if status {
+		if nil != status {
 			self.status = status
 		}
-		if authored {
+		if nil != authored {
 			self.authored = authored
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -165,7 +165,7 @@ public class QuestionnaireGroup: FHIRElement
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -178,7 +178,7 @@ public class QuestionnaireGroup: FHIRElement
 	public var question: [QuestionnaireGroupQuestion]?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? NSDictionary {
@@ -212,7 +212,7 @@ public class QuestionnaireGroup: FHIRElement
 public class QuestionnaireGroupGroup: FHIRElement
 {	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}
@@ -261,7 +261,7 @@ public class QuestionnaireGroupQuestion: FHIRElement
 	public var options: FHIRElement? {
 		get { return resolveReference("options") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "options")
 			}
 		}
@@ -277,7 +277,7 @@ public class QuestionnaireGroupQuestion: FHIRElement
 	public var group: [QuestionnaireGroupQuestionGroup]?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? NSDictionary {
@@ -336,7 +336,7 @@ public class QuestionnaireGroupQuestion: FHIRElement
 public class QuestionnaireGroupQuestionGroup: FHIRElement
 {	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}

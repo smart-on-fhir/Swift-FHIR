@@ -2,7 +2,7 @@
 //  Practitioner.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -58,7 +58,7 @@ public class Practitioner: FHIRResource
 	public var organization: FHIRElement? {
 		get { return resolveReference("organization") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "organization")
 			}
 		}
@@ -77,7 +77,7 @@ public class Practitioner: FHIRResource
 	public var location: [FHIRElement]? {
 		get { return resolveReferences("location") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "location")
 			}
 		}
@@ -90,7 +90,7 @@ public class Practitioner: FHIRResource
 	public var communication: [CodeableConcept]?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -158,7 +158,7 @@ public class PractitionerQualification: FHIRElement
 	public var issuer: FHIRElement? {
 		get { return resolveReference("issuer") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "issuer")
 			}
 		}
@@ -166,12 +166,12 @@ public class PractitionerQualification: FHIRElement
 	
 	public convenience init(code: CodeableConcept?) {
 		self.init(json: nil)
-		if code {
+		if nil != code {
 			self.code = code
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {

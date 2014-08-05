@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -74,18 +74,18 @@ public class ValueSet: FHIRResource
 	
 	public convenience init(name: String?, description: String?, status: String?) {
 		self.init(json: nil)
-		if name {
+		if nil != name {
 			self.name = name
 		}
-		if description {
+		if nil != description {
 			self.description = description
 		}
-		if status {
+		if nil != status {
 			self.status = status
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -157,12 +157,12 @@ public class ValueSetDefine: FHIRElement
 	
 	public convenience init(system: NSURL?) {
 		self.init(json: nil)
-		if system {
+		if nil != system {
 			self.system = system
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {
@@ -204,12 +204,12 @@ public class ValueSetDefineConcept: FHIRElement
 	
 	public convenience init(code: String?) {
 		self.init(json: nil)
-		if code {
+		if nil != code {
 			self.code = code
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -238,7 +238,7 @@ public class ValueSetDefineConcept: FHIRElement
 public class ValueSetDefineConceptConcept: FHIRElement
 {	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}
@@ -261,7 +261,7 @@ public class ValueSetCompose: FHIRElement
 	public var exclude: [ValueSetComposeExclude]?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["importFrom"] as? [String] {
@@ -297,12 +297,12 @@ public class ValueSetComposeInclude: FHIRElement
 	
 	public convenience init(system: NSURL?) {
 		self.init(json: nil)
-		if system {
+		if nil != system {
 			self.system = system
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {
@@ -341,18 +341,18 @@ public class ValueSetComposeIncludeFilter: FHIRElement
 	
 	public convenience init(property: String?, op: String?, value: String?) {
 		self.init(json: nil)
-		if property {
+		if nil != property {
 			self.property = property
 		}
-		if op {
+		if nil != op {
 			self.op = op
 		}
-		if value {
+		if nil != value {
 			self.value = value
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["property"] as? String {
@@ -377,7 +377,7 @@ public class ValueSetComposeIncludeFilter: FHIRElement
 public class ValueSetComposeExclude: FHIRElement
 {	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}
@@ -401,12 +401,12 @@ public class ValueSetExpansion: FHIRElement
 	
 	public convenience init(timestamp: Int?) {
 		self.init(json: nil)
-		if timestamp {
+		if nil != timestamp {
 			self.timestamp = timestamp
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? NSDictionary {
@@ -441,7 +441,7 @@ public class ValueSetExpansionContains: FHIRElement
 	public var contains: [ValueSetExpansionContainsContains]?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {
@@ -467,7 +467,7 @@ public class ValueSetExpansionContains: FHIRElement
 public class ValueSetExpansionContainsContains: FHIRElement
 {	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}

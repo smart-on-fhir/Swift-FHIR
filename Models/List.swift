@@ -2,7 +2,7 @@
 //  List.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -34,7 +34,7 @@ public class List: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -44,7 +44,7 @@ public class List: FHIRResource
 	public var source: FHIRElement? {
 		get { return resolveReference("source") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "source")
 			}
 		}
@@ -67,12 +67,12 @@ public class List: FHIRResource
 	
 	public convenience init(mode: String?) {
 		self.init(json: nil)
-		if mode {
+		if nil != mode {
 			self.mode = mode
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -130,7 +130,7 @@ public class ListEntry: FHIRElement
 	public var item: FHIRElement? {
 		get { return resolveReference("item") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "item")
 			}
 		}
@@ -138,12 +138,12 @@ public class ListEntry: FHIRElement
 	
 	public convenience init(item: ResourceReference?) {
 		self.init(json: nil)
-		if item {
+		if nil != item {
 			self.item = item
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["flag"] as? [NSDictionary] {

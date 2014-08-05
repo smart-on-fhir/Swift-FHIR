@@ -30,7 +30,7 @@ public class {{ klass.className }}: {{ klass.superclass|default('FHIRElement') }
 	public var {{ prop.name }}: {% if prop.isArray %}[{% endif %}FHIRElement{% if prop.isArray %}]{% endif %}? {
 		get { return resolveReference{% if prop.isArray %}s{% endif %}("{{ prop.name }}") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference{% if prop.isArray %}s{% endif %}(newValue!, name: "{{ prop.name }}")
 			}
 		}
@@ -48,14 +48,14 @@ public class {{ klass.className }}: {{ klass.superclass|default('FHIRElement') }
 	) {
 		self.init(json: nil)
 	{%- for nonop in klass.nonoptional %}
-		if {{ nonop.name }} {
+		if nil != {{ nonop.name }} {
 			self.{{ nonop.name }} = {{ nonop.name }}
 		}
 	{%- endfor %}
 	}
 {%- endif %}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		{%- for prop in klass.properties %}

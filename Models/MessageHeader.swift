@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -51,7 +51,7 @@ public class MessageHeader: FHIRResource
 	public var enterer: FHIRElement? {
 		get { return resolveReference("enterer") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "enterer")
 			}
 		}
@@ -61,7 +61,7 @@ public class MessageHeader: FHIRResource
 	public var author: FHIRElement? {
 		get { return resolveReference("author") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "author")
 			}
 		}
@@ -71,7 +71,7 @@ public class MessageHeader: FHIRResource
 	public var receiver: FHIRElement? {
 		get { return resolveReference("receiver") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "receiver")
 			}
 		}
@@ -81,7 +81,7 @@ public class MessageHeader: FHIRResource
 	public var responsible: FHIRElement? {
 		get { return resolveReference("responsible") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "responsible")
 			}
 		}
@@ -94,7 +94,7 @@ public class MessageHeader: FHIRResource
 	public var data: [FHIRElement]? {
 		get { return resolveReferences("data") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "data")
 			}
 		}
@@ -102,21 +102,21 @@ public class MessageHeader: FHIRResource
 	
 	public convenience init(identifier: String?, timestamp: Int?, event: Coding?, source: MessageHeaderSource?) {
 		self.init(json: nil)
-		if identifier {
+		if nil != identifier {
 			self.identifier = identifier
 		}
-		if timestamp {
+		if nil != timestamp {
 			self.timestamp = timestamp
 		}
-		if event {
+		if nil != event {
 			self.event = event
 		}
-		if source {
+		if nil != source {
 			self.source = source
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -180,7 +180,7 @@ public class MessageHeaderResponse: FHIRElement
 	public var details: FHIRElement? {
 		get { return resolveReference("details") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "details")
 			}
 		}
@@ -188,15 +188,15 @@ public class MessageHeaderResponse: FHIRElement
 	
 	public convenience init(identifier: String?, code: String?) {
 		self.init(json: nil)
-		if identifier {
+		if nil != identifier {
 			self.identifier = identifier
 		}
-		if code {
+		if nil != code {
 			self.code = code
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? String {
@@ -237,15 +237,15 @@ public class MessageHeaderSource: FHIRElement
 	
 	public convenience init(software: String?, endpoint: NSURL?) {
 		self.init(json: nil)
-		if software {
+		if nil != software {
 			self.software = software
 		}
-		if endpoint {
+		if nil != endpoint {
 			self.endpoint = endpoint
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
@@ -282,7 +282,7 @@ public class MessageHeaderDestination: FHIRElement
 	public var target: FHIRElement? {
 		get { return resolveReference("target") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "target")
 			}
 		}
@@ -293,12 +293,12 @@ public class MessageHeaderDestination: FHIRElement
 	
 	public convenience init(endpoint: NSURL?) {
 		self.init(json: nil)
-		if endpoint {
+		if nil != endpoint {
 			self.endpoint = endpoint
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {

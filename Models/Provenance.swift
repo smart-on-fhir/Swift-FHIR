@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -36,7 +36,7 @@ public class Provenance: FHIRResource
 	public var target: [FHIRElement]? {
 		get { return resolveReferences("target") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "target")
 			}
 		}
@@ -55,7 +55,7 @@ public class Provenance: FHIRResource
 	public var location: FHIRElement? {
 		get { return resolveReference("location") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "location")
 			}
 		}
@@ -75,15 +75,15 @@ public class Provenance: FHIRResource
 	
 	public convenience init(target: [ResourceReference]?, recorded: Int?) {
 		self.init(json: nil)
-		if target {
+		if nil != target {
 			self.target = target
 		}
-		if recorded {
+		if nil != recorded {
 			self.recorded = recorded
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -144,18 +144,18 @@ public class ProvenanceAgent: FHIRElement
 	
 	public convenience init(role: Coding?, type: Coding?, reference: NSURL?) {
 		self.init(json: nil)
-		if role {
+		if nil != role {
 			self.role = role
 		}
-		if type {
+		if nil != type {
 			self.type = type
 		}
-		if reference {
+		if nil != reference {
 			self.reference = reference
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["role"] as? NSDictionary {
@@ -197,18 +197,18 @@ public class ProvenanceEntity: FHIRElement
 	
 	public convenience init(role: String?, type: Coding?, reference: NSURL?) {
 		self.init(json: nil)
-		if role {
+		if nil != role {
 			self.role = role
 		}
-		if type {
+		if nil != type {
 			self.type = type
 		}
-		if reference {
+		if nil != reference {
 			self.reference = reference
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["role"] as? String {
@@ -241,7 +241,7 @@ public class ProvenanceEntity: FHIRElement
 public class ProvenanceEntityAgent: FHIRElement
 {	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}

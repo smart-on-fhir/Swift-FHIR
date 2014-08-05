@@ -2,7 +2,7 @@
 //  Supply.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -39,7 +39,7 @@ public class Supply: FHIRResource
 	public var orderedItem: FHIRElement? {
 		get { return resolveReference("orderedItem") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "orderedItem")
 			}
 		}
@@ -49,7 +49,7 @@ public class Supply: FHIRResource
 	public var patient: FHIRElement? {
 		get { return resolveReference("patient") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "patient")
 			}
 		}
@@ -59,7 +59,7 @@ public class Supply: FHIRResource
 	public var dispense: [SupplyDispense]?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -111,7 +111,7 @@ public class SupplyDispense: FHIRElement
 	public var suppliedItem: FHIRElement? {
 		get { return resolveReference("suppliedItem") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "suppliedItem")
 			}
 		}
@@ -121,7 +121,7 @@ public class SupplyDispense: FHIRElement
 	public var supplier: FHIRElement? {
 		get { return resolveReference("supplier") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "supplier")
 			}
 		}
@@ -137,7 +137,7 @@ public class SupplyDispense: FHIRElement
 	public var destination: FHIRElement? {
 		get { return resolveReference("destination") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "destination")
 			}
 		}
@@ -147,14 +147,14 @@ public class SupplyDispense: FHIRElement
 	public var receiver: [FHIRElement]? {
 		get { return resolveReferences("receiver") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "receiver")
 			}
 		}
 	}
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? NSDictionary {

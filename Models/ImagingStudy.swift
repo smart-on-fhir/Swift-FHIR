@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -38,7 +38,7 @@ public class ImagingStudy: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -57,7 +57,7 @@ public class ImagingStudy: FHIRResource
 	public var order: [FHIRElement]? {
 		get { return resolveReferences("order") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "order")
 			}
 		}
@@ -70,7 +70,7 @@ public class ImagingStudy: FHIRResource
 	public var referrer: FHIRElement? {
 		get { return resolveReference("referrer") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "referrer")
 			}
 		}
@@ -98,7 +98,7 @@ public class ImagingStudy: FHIRResource
 	public var interpreter: FHIRElement? {
 		get { return resolveReference("interpreter") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "interpreter")
 			}
 		}
@@ -112,21 +112,21 @@ public class ImagingStudy: FHIRResource
 	
 	public convenience init(subject: ResourceReference?, uid: String?, numberOfSeries: Int?, numberOfInstances: Int?) {
 		self.init(json: nil)
-		if subject {
+		if nil != subject {
 			self.subject = subject
 		}
-		if uid {
+		if nil != uid {
 			self.uid = uid
 		}
-		if numberOfSeries {
+		if nil != numberOfSeries {
 			self.numberOfSeries = numberOfSeries
 		}
-		if numberOfInstances {
+		if nil != numberOfInstances {
 			self.numberOfInstances = numberOfInstances
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -227,21 +227,21 @@ public class ImagingStudySeries: FHIRElement
 	
 	public convenience init(modality: String?, uid: String?, numberOfInstances: Int?, instance: [ImagingStudySeriesInstance]?) {
 		self.init(json: nil)
-		if modality {
+		if nil != modality {
 			self.modality = modality
 		}
-		if uid {
+		if nil != uid {
 			self.uid = uid
 		}
-		if numberOfInstances {
+		if nil != numberOfInstances {
 			self.numberOfInstances = numberOfInstances
 		}
-		if instance {
+		if nil != instance {
 			self.instance = instance
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["number"] as? Int {
@@ -308,7 +308,7 @@ public class ImagingStudySeriesInstance: FHIRElement
 	public var attachment: FHIRElement? {
 		get { return resolveReference("attachment") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "attachment")
 			}
 		}
@@ -316,15 +316,15 @@ public class ImagingStudySeriesInstance: FHIRElement
 	
 	public convenience init(uid: String?, sopclass: String?) {
 		self.init(json: nil)
-		if uid {
+		if nil != uid {
 			self.uid = uid
 		}
-		if sopclass {
+		if nil != sopclass {
 			self.sopclass = sopclass
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["number"] as? Int {

@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -64,7 +64,7 @@ public class AllergyIntolerance: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -74,7 +74,7 @@ public class AllergyIntolerance: FHIRResource
 	public var recorder: FHIRElement? {
 		get { return resolveReference("recorder") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "recorder")
 			}
 		}
@@ -84,7 +84,7 @@ public class AllergyIntolerance: FHIRResource
 	public var substance: FHIRElement? {
 		get { return resolveReference("substance") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "substance")
 			}
 		}
@@ -94,7 +94,7 @@ public class AllergyIntolerance: FHIRResource
 	public var reaction: [FHIRElement]? {
 		get { return resolveReferences("reaction") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "reaction")
 			}
 		}
@@ -104,7 +104,7 @@ public class AllergyIntolerance: FHIRResource
 	public var sensitivityTest: [FHIRElement]? {
 		get { return resolveReferences("sensitivityTest") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "sensitivityTest")
 			}
 		}
@@ -112,21 +112,21 @@ public class AllergyIntolerance: FHIRResource
 	
 	public convenience init(sensitivityType: String?, status: String?, subject: ResourceReference?, substance: ResourceReference?) {
 		self.init(json: nil)
-		if sensitivityType {
+		if nil != sensitivityType {
 			self.sensitivityType = sensitivityType
 		}
-		if status {
+		if nil != status {
 			self.status = status
 		}
-		if subject {
+		if nil != subject {
 			self.subject = subject
 		}
-		if substance {
+		if nil != substance {
 			self.substance = substance
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {

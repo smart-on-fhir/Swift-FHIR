@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -50,7 +50,7 @@ public class DiagnosticReport: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -60,7 +60,7 @@ public class DiagnosticReport: FHIRResource
 	public var performer: FHIRElement? {
 		get { return resolveReference("performer") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "performer")
 			}
 		}
@@ -73,7 +73,7 @@ public class DiagnosticReport: FHIRResource
 	public var requestDetail: [FHIRElement]? {
 		get { return resolveReferences("requestDetail") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "requestDetail")
 			}
 		}
@@ -92,7 +92,7 @@ public class DiagnosticReport: FHIRResource
 	public var specimen: [FHIRElement]? {
 		get { return resolveReferences("specimen") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "specimen")
 			}
 		}
@@ -102,7 +102,7 @@ public class DiagnosticReport: FHIRResource
 	public var result: [FHIRElement]? {
 		get { return resolveReferences("result") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "result")
 			}
 		}
@@ -112,7 +112,7 @@ public class DiagnosticReport: FHIRResource
 	public var imagingStudy: [FHIRElement]? {
 		get { return resolveReferences("imagingStudy") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "imagingStudy")
 			}
 		}
@@ -132,30 +132,30 @@ public class DiagnosticReport: FHIRResource
 	
 	public convenience init(name: CodeableConcept?, status: String?, issued: NSDate?, subject: ResourceReference?, performer: ResourceReference?, diagnosticDateTime: NSDate?, diagnosticPeriod: Period?) {
 		self.init(json: nil)
-		if name {
+		if nil != name {
 			self.name = name
 		}
-		if status {
+		if nil != status {
 			self.status = status
 		}
-		if issued {
+		if nil != issued {
 			self.issued = issued
 		}
-		if subject {
+		if nil != subject {
 			self.subject = subject
 		}
-		if performer {
+		if nil != performer {
 			self.performer = performer
 		}
-		if diagnosticDateTime {
+		if nil != diagnosticDateTime {
 			self.diagnosticDateTime = diagnosticDateTime
 		}
-		if diagnosticPeriod {
+		if nil != diagnosticPeriod {
 			self.diagnosticPeriod = diagnosticPeriod
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -232,7 +232,7 @@ public class DiagnosticReportImage: FHIRElement
 	public var link: FHIRElement? {
 		get { return resolveReference("link") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "link")
 			}
 		}
@@ -240,12 +240,12 @@ public class DiagnosticReportImage: FHIRElement
 	
 	public convenience init(link: ResourceReference?) {
 		self.init(json: nil)
-		if link {
+		if nil != link {
 			self.link = link
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["comment"] as? String {

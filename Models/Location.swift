@@ -2,7 +2,7 @@
 //  Location.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -61,7 +61,7 @@ public class Location: FHIRResource
 	public var managingOrganization: FHIRElement? {
 		get { return resolveReference("managingOrganization") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "managingOrganization")
 			}
 		}
@@ -74,7 +74,7 @@ public class Location: FHIRResource
 	public var partOf: FHIRElement? {
 		get { return resolveReference("partOf") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "partOf")
 			}
 		}
@@ -84,7 +84,7 @@ public class Location: FHIRResource
 	public var mode: String?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -150,15 +150,15 @@ public class LocationPosition: FHIRElement
 	
 	public convenience init(longitude: NSDecimalNumber?, latitude: NSDecimalNumber?) {
 		self.init(json: nil)
-		if longitude {
+		if nil != longitude {
 			self.longitude = longitude
 		}
-		if latitude {
+		if nil != latitude {
 			self.latitude = latitude
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["longitude"] as? Double {

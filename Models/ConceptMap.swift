@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -59,7 +59,7 @@ public class ConceptMap: FHIRResource
 	public var source: FHIRElement? {
 		get { return resolveReference("source") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "source")
 			}
 		}
@@ -69,7 +69,7 @@ public class ConceptMap: FHIRResource
 	public var target: FHIRElement? {
 		get { return resolveReference("target") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "target")
 			}
 		}
@@ -80,21 +80,21 @@ public class ConceptMap: FHIRResource
 	
 	public convenience init(name: String?, status: String?, source: ResourceReference?, target: ResourceReference?) {
 		self.init(json: nil)
-		if name {
+		if nil != name {
 			self.name = name
 		}
-		if status {
+		if nil != status {
 			self.status = status
 		}
-		if source {
+		if nil != source {
 			self.source = source
 		}
-		if target {
+		if nil != target {
 			self.target = target
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -163,12 +163,12 @@ public class ConceptMapConcept: FHIRElement
 	
 	public convenience init(system: NSURL?) {
 		self.init(json: nil)
-		if system {
+		if nil != system {
 			self.system = system
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {
@@ -207,18 +207,18 @@ public class ConceptMapConceptDependsOn: FHIRElement
 	
 	public convenience init(concept: NSURL?, system: NSURL?, code: String?) {
 		self.init(json: nil)
-		if concept {
+		if nil != concept {
 			self.concept = concept
 		}
-		if system {
+		if nil != system {
 			self.system = system
 		}
-		if code {
+		if nil != code {
 			self.code = code
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["concept"] as? String {
@@ -257,12 +257,12 @@ public class ConceptMapConceptMap: FHIRElement
 	
 	public convenience init(equivalence: String?) {
 		self.init(json: nil)
-		if equivalence {
+		if nil != equivalence {
 			self.equivalence = equivalence
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {
@@ -295,7 +295,7 @@ public class ConceptMapConceptMap: FHIRElement
 public class ConceptMapConceptMapProduct: FHIRElement
 {	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}

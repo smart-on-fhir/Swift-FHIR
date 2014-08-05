@@ -2,7 +2,7 @@
 //  Narrative.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -26,15 +26,15 @@ public class Narrative: FHIRElement
 	
 	public convenience init(status: String?, div: String?) {
 		self.init(json: nil)
-		if status {
+		if nil != status {
 			self.status = status
 		}
-		if div {
+		if nil != div {
 			self.div = div
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["status"] as? String {

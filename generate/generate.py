@@ -58,6 +58,7 @@ reserved = {
 	'import': 'importFrom',
 	'protocol': 'proto',
 	'extension': 'ext',
+	'operator': 'operatr',
 }
 
 skip_properties = [

@@ -2,7 +2,7 @@
 //  Group.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -57,7 +57,7 @@ public class Group: FHIRResource
 	public var member: [FHIRElement]? {
 		get { return resolveReferences("member") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "member")
 			}
 		}
@@ -65,15 +65,15 @@ public class Group: FHIRResource
 	
 	public convenience init(type: String?, actual: Bool?) {
 		self.init(json: nil)
-		if type {
+		if nil != type {
 			self.type = type
 		}
-		if actual {
+		if nil != actual {
 			self.actual = actual
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -135,27 +135,27 @@ public class GroupCharacteristic: FHIRElement
 	
 	public convenience init(code: CodeableConcept?, valueCodeableConcept: CodeableConcept?, valueBoolean: Bool?, valueQuantity: Quantity?, valueRange: Range?, exclude: Bool?) {
 		self.init(json: nil)
-		if code {
+		if nil != code {
 			self.code = code
 		}
-		if valueCodeableConcept {
+		if nil != valueCodeableConcept {
 			self.valueCodeableConcept = valueCodeableConcept
 		}
-		if valueBoolean {
+		if nil != valueBoolean {
 			self.valueBoolean = valueBoolean
 		}
-		if valueQuantity {
+		if nil != valueQuantity {
 			self.valueQuantity = valueQuantity
 		}
-		if valueRange {
+		if nil != valueRange {
 			self.valueRange = valueRange
 		}
-		if exclude {
+		if nil != exclude {
 			self.exclude = exclude
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {

@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -33,7 +33,7 @@ public class OrderResponse: FHIRResource
 	public var request: FHIRElement? {
 		get { return resolveReference("request") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "request")
 			}
 		}
@@ -46,7 +46,7 @@ public class OrderResponse: FHIRResource
 	public var who: FHIRElement? {
 		get { return resolveReference("who") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "who")
 			}
 		}
@@ -59,7 +59,7 @@ public class OrderResponse: FHIRResource
 	public var authorityResourceReference: FHIRElement? {
 		get { return resolveReference("authorityResourceReference") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "authorityResourceReference")
 			}
 		}
@@ -75,7 +75,7 @@ public class OrderResponse: FHIRResource
 	public var fulfillment: [FHIRElement]? {
 		get { return resolveReferences("fulfillment") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "fulfillment")
 			}
 		}
@@ -83,15 +83,15 @@ public class OrderResponse: FHIRResource
 	
 	public convenience init(request: ResourceReference?, code: String?) {
 		self.init(json: nil)
-		if request {
+		if nil != request {
 			self.request = request
 		}
-		if code {
+		if nil != code {
 			self.code = code
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {

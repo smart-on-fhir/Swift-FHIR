@@ -18,15 +18,15 @@ public class FHIRResource: FHIRElement
 	public var _localId: String?
 	
 	/** A specific version id, if the instance was created using `vread`. */
-	var _versionId: String?
+	public var _versionId: String?
 	
 	/** If this instance lives on a server, this property represents that server. */
-	var _server: FHIRServer?
+	public var _server: FHIRServer?
 	
 	/** Human language of the content (BCP-47). */
-	var language: String?
+	public var language: String?
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["language"] as? String {
@@ -39,7 +39,7 @@ public class FHIRResource: FHIRElement
 	// MARK: - Retrieving Resources
 	
 	public func absoluteURI() -> NSURL? {
-		if _localId {
+		if nil != _localId {
 			return _server?.baseURL.URLByAppendingPathComponent(self.dynamicType.resourceName).URLByAppendingPathComponent(_localId!)
 		}
 		return nil
@@ -51,7 +51,7 @@ public class FHIRResource: FHIRElement
 	public class func read(id: String, server: FHIRServer, callback: ((resource: FHIRResource?, error: NSError?) -> ())) {
 		let path = "\(resourceName)/\(id)"
 		server.requestJSON(path) { json, error in
-			if error {
+			if nil != error {
 				callback(resource: nil, error: error)
 			}
 			else {
@@ -67,7 +67,7 @@ public class FHIRResource: FHIRElement
 	// MARK: - Search
 	
 	public func search() -> FHIRSearchParam {
-		if _localId {
+		if nil != _localId {
 			return FHIRSearchParam(subject: "_id", reference: _localId!, type: self.dynamicType)
 		}
 		return FHIRSearchParam(profileType: self.dynamicType)

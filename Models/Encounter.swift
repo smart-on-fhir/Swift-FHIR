@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -60,7 +60,7 @@ public class Encounter: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -82,7 +82,7 @@ public class Encounter: FHIRResource
 	public var indication: FHIRElement? {
 		get { return resolveReference("indication") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "indication")
 			}
 		}
@@ -101,7 +101,7 @@ public class Encounter: FHIRResource
 	public var serviceProvider: FHIRElement? {
 		get { return resolveReference("serviceProvider") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "serviceProvider")
 			}
 		}
@@ -111,7 +111,7 @@ public class Encounter: FHIRResource
 	public var partOf: FHIRElement? {
 		get { return resolveReference("partOf") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "partOf")
 			}
 		}
@@ -119,15 +119,15 @@ public class Encounter: FHIRResource
 	
 	public convenience init(status: String?, klass: String?) {
 		self.init(json: nil)
-		if status {
+		if nil != status {
 			self.status = status
 		}
-		if klass {
+		if nil != klass {
 			self.klass = klass
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -197,14 +197,14 @@ public class EncounterParticipant: FHIRElement
 	public var individual: FHIRElement? {
 		get { return resolveReference("individual") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "individual")
 			}
 		}
 	}
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? [NSDictionary] {
@@ -230,7 +230,7 @@ public class EncounterHospitalization: FHIRElement
 	public var origin: FHIRElement? {
 		get { return resolveReference("origin") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "origin")
 			}
 		}
@@ -258,7 +258,7 @@ public class EncounterHospitalization: FHIRElement
 	public var destination: FHIRElement? {
 		get { return resolveReference("destination") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "destination")
 			}
 		}
@@ -271,7 +271,7 @@ public class EncounterHospitalization: FHIRElement
 	public var dischargeDiagnosis: FHIRElement? {
 		get { return resolveReference("dischargeDiagnosis") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "dischargeDiagnosis")
 			}
 		}
@@ -281,7 +281,7 @@ public class EncounterHospitalization: FHIRElement
 	public var reAdmission: Bool?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["preAdmissionIdentifier"] as? NSDictionary {
@@ -334,7 +334,7 @@ public class EncounterHospitalizationAccomodation: FHIRElement
 	public var bed: FHIRElement? {
 		get { return resolveReference("bed") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "bed")
 			}
 		}
@@ -344,7 +344,7 @@ public class EncounterHospitalizationAccomodation: FHIRElement
 	public var period: Period?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["bed"] as? NSDictionary {
@@ -369,7 +369,7 @@ public class EncounterLocation: FHIRElement
 	public var location: FHIRElement? {
 		get { return resolveReference("location") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "location")
 			}
 		}
@@ -380,15 +380,15 @@ public class EncounterLocation: FHIRElement
 	
 	public convenience init(location: ResourceReference?, period: Period?) {
 		self.init(json: nil)
-		if location {
+		if nil != location {
 			self.location = location
 		}
-		if period {
+		if nil != period {
 			self.period = period
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["location"] as? NSDictionary {

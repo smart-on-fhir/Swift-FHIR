@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -37,7 +37,7 @@ public class ImmunizationRecommendation: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -48,15 +48,15 @@ public class ImmunizationRecommendation: FHIRResource
 	
 	public convenience init(subject: ResourceReference?, recommendation: [ImmunizationRecommendationRecommendation]?) {
 		self.init(json: nil)
-		if subject {
+		if nil != subject {
 			self.subject = subject
 		}
-		if recommendation {
+		if nil != recommendation {
 			self.recommendation = recommendation
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -103,7 +103,7 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 	public var supportingImmunization: [FHIRElement]? {
 		get { return resolveReferences("supportingImmunization") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "supportingImmunization")
 			}
 		}
@@ -113,7 +113,7 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 	public var supportingPatientInformation: [FHIRElement]? {
 		get { return resolveReferences("supportingPatientInformation") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "supportingPatientInformation")
 			}
 		}
@@ -121,18 +121,18 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 	
 	public convenience init(date: NSDate?, vaccineType: CodeableConcept?, forecastStatus: CodeableConcept?) {
 		self.init(json: nil)
-		if date {
+		if nil != date {
 			self.date = date
 		}
-		if vaccineType {
+		if nil != vaccineType {
 			self.vaccineType = vaccineType
 		}
-		if forecastStatus {
+		if nil != forecastStatus {
 			self.forecastStatus = forecastStatus
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
@@ -179,15 +179,15 @@ public class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
 	
 	public convenience init(code: CodeableConcept?, value: NSDate?) {
 		self.init(json: nil)
-		if code {
+		if nil != code {
 			self.code = code
 		}
-		if value {
+		if nil != value {
 			self.value = value
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
@@ -218,7 +218,7 @@ public class ImmunizationRecommendationRecommendationProtocol: FHIRElement
 	public var authority: FHIRElement? {
 		get { return resolveReference("authority") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "authority")
 			}
 		}
@@ -228,7 +228,7 @@ public class ImmunizationRecommendationRecommendationProtocol: FHIRElement
 	public var series: String?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["doseSequence"] as? Int {

@@ -46,11 +46,11 @@ public class FHIRElement
 	required public init(json: NSDictionary?) {
 		if let js = json {
 			if let arr = js["contained"] as? [NSDictionary] {
-				var cont = contained ? contained! : [String: FHIRContainedResource]()
+				var cont = contained ?? [String: FHIRContainedResource]()
 				for dict in arr {
 					let res = FHIRContainedResource(json: dict)
-					if res.id {
-						cont[res.id!] = res			// TODO: not allowing me to use "contained!" as of beta3
+					if nil != res.id {
+						cont[res.id!] = res
 					}
 					else {
 						println("Contained resource in \(self) without \"_id\" will be ignored")
@@ -64,7 +64,7 @@ public class FHIRElement
 	final class func from(array: [NSDictionary]) -> [FHIRElement] {
 		var arr: [FHIRElement] = []
 		for arrJSON in array {
-			arr += self(json: arrJSON)
+			arr.append(self(json: arrJSON))
 		}
 		return arr
 	}
@@ -92,11 +92,11 @@ public class FHIRElement
 		// not yet resolved: get the ResourceReference instance for the property name from `_referenceMap`, find the
 		// FHIRContainedResource with the correct id in `contained`, instantiate from cached json and cached the
 		// instance in `_referenceMap`.
-		if let reference = _referenceMap[name] as? ResourceReference {
+		if let reference = _referenceMap[name] as ResourceReference? {
 			if let refid = FHIRContainedResource.processIdentifier(reference.reference) {
 				if let cont = contained?[refid] {
 					if let resolved = cont.resolve() {
-						var res = _resolved ? _resolved! : [String: FHIRElement]()
+						var res = _resolved ?? [String: FHIRElement]()
 						res[name] = resolved
 						_resolved = res
 						

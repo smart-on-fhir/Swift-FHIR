@@ -41,7 +41,7 @@ public class FHIRContainedResource
 	// MARK: - Resolving References
 	
 	func resolve() -> FHIRElement? {
-		if type && json {
+		if nil != type && nil != json {
 			return FHIRElement.factory(type!, json: json!)
 		}
 		
@@ -49,7 +49,7 @@ public class FHIRContainedResource
 	}
 	
 	class func processIdentifier(identifier: String?) -> String? {
-		if identifier && countElements(identifier!) > 0 {
+		if nil != identifier && countElements(identifier!) > 0 {
 			
 			// process fragment-only id
 			if "#" == identifier![identifier!.startIndex] {

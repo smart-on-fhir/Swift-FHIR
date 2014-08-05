@@ -2,7 +2,7 @@
 //  Alert.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -45,7 +45,7 @@ public class Alert: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -55,7 +55,7 @@ public class Alert: FHIRResource
 	public var author: FHIRElement? {
 		get { return resolveReference("author") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "author")
 			}
 		}
@@ -66,18 +66,18 @@ public class Alert: FHIRResource
 	
 	public convenience init(status: String?, subject: ResourceReference?, note: String?) {
 		self.init(json: nil)
-		if status {
+		if nil != status {
 			self.status = status
 		}
-		if subject {
+		if nil != subject {
 			self.subject = subject
 		}
-		if note {
+		if nil != note {
 			self.note = note
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {

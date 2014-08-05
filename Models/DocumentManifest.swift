@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -37,7 +37,7 @@ public class DocumentManifest: FHIRResource
 	public var subject: [FHIRElement]? {
 		get { return resolveReferences("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "subject")
 			}
 		}
@@ -47,7 +47,7 @@ public class DocumentManifest: FHIRResource
 	public var recipient: [FHIRElement]? {
 		get { return resolveReferences("recipient") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "recipient")
 			}
 		}
@@ -60,7 +60,7 @@ public class DocumentManifest: FHIRResource
 	public var author: [FHIRElement]? {
 		get { return resolveReferences("author") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "author")
 			}
 		}
@@ -79,7 +79,7 @@ public class DocumentManifest: FHIRResource
 	public var supercedes: FHIRElement? {
 		get { return resolveReference("supercedes") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "supercedes")
 			}
 		}
@@ -95,7 +95,7 @@ public class DocumentManifest: FHIRResource
 	public var content: [FHIRElement]? {
 		get { return resolveReferences("content") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "content")
 			}
 		}
@@ -103,21 +103,21 @@ public class DocumentManifest: FHIRResource
 	
 	public convenience init(masterIdentifier: Identifier?, subject: [ResourceReference]?, status: String?, content: [ResourceReference]?) {
 		self.init(json: nil)
-		if masterIdentifier {
+		if nil != masterIdentifier {
 			self.masterIdentifier = masterIdentifier
 		}
-		if subject {
+		if nil != subject {
 			self.subject = subject
 		}
-		if status {
+		if nil != status {
 			self.status = status
 		}
-		if content {
+		if nil != content {
 			self.content = content
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {

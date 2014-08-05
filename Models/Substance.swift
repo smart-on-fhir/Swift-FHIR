@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -42,12 +42,12 @@ public class Substance: FHIRResource
 	
 	public convenience init(type: CodeableConcept?) {
 		self.init(json: nil)
-		if type {
+		if nil != type {
 			self.type = type
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -88,7 +88,7 @@ public class SubstanceInstance: FHIRElement
 	public var quantity: Quantity?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? NSDictionary {
@@ -119,7 +119,7 @@ public class SubstanceIngredient: FHIRElement
 	public var substance: FHIRElement? {
 		get { return resolveReference("substance") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "substance")
 			}
 		}
@@ -127,12 +127,12 @@ public class SubstanceIngredient: FHIRElement
 	
 	public convenience init(substance: ResourceReference?) {
 		self.init(json: nil)
-		if substance {
+		if nil != substance {
 			self.substance = substance
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["quantity"] as? NSDictionary {

@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -36,12 +36,12 @@ public class OperationOutcome: FHIRResource
 	
 	public convenience init(issue: [OperationOutcomeIssue]?) {
 		self.init(json: nil)
-		if issue {
+		if nil != issue {
 			self.issue = issue
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -76,12 +76,12 @@ public class OperationOutcomeIssue: FHIRElement
 	
 	public convenience init(severity: String?) {
 		self.init(json: nil)
-		if severity {
+		if nil != severity {
 			self.severity = severity
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["severity"] as? String {

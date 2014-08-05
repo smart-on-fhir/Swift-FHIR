@@ -2,7 +2,7 @@
 //  SecurityEvent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -42,18 +42,18 @@ public class SecurityEvent: FHIRResource
 	
 	public convenience init(event: SecurityEventEvent?, participant: [SecurityEventParticipant]?, source: SecurityEventSource?) {
 		self.init(json: nil)
-		if event {
+		if nil != event {
 			self.event = event
 		}
-		if participant {
+		if nil != participant {
 			self.participant = participant
 		}
-		if source {
+		if nil != source {
 			self.source = source
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -103,15 +103,15 @@ public class SecurityEventEvent: FHIRElement
 	
 	public convenience init(type: CodeableConcept?, dateTime: Int?) {
 		self.init(json: nil)
-		if type {
+		if nil != type {
 			self.type = type
 		}
-		if dateTime {
+		if nil != dateTime {
 			self.dateTime = dateTime
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? NSDictionary {
@@ -149,7 +149,7 @@ public class SecurityEventParticipant: FHIRElement
 	public var reference: FHIRElement? {
 		get { return resolveReference("reference") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "reference")
 			}
 		}
@@ -175,12 +175,12 @@ public class SecurityEventParticipant: FHIRElement
 	
 	public convenience init(requestor: Bool?) {
 		self.init(json: nil)
-		if requestor {
+		if nil != requestor {
 			self.requestor = requestor
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["role"] as? [NSDictionary] {
@@ -226,7 +226,7 @@ public class SecurityEventParticipantNetwork: FHIRElement
 	public var type: String?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? String {
@@ -256,12 +256,12 @@ public class SecurityEventSource: FHIRElement
 	
 	public convenience init(identifier: String?) {
 		self.init(json: nil)
-		if identifier {
+		if nil != identifier {
 			self.identifier = identifier
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["site"] as? String {
@@ -290,7 +290,7 @@ public class SecurityEventObject: FHIRElement
 	public var reference: FHIRElement? {
 		get { return resolveReference("reference") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "reference")
 			}
 		}
@@ -321,7 +321,7 @@ public class SecurityEventObject: FHIRElement
 	public var detail: [SecurityEventObjectDetail]?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? NSDictionary {
@@ -372,15 +372,15 @@ public class SecurityEventObjectDetail: FHIRElement
 	
 	public convenience init(type: String?, value: String?) {
 		self.init(json: nil)
-		if type {
+		if nil != type {
 			self.type = type
 		}
-		if value {
+		if nil != value {
 			self.value = value
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {

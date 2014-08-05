@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -44,7 +44,7 @@ public class Immunization: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -60,7 +60,7 @@ public class Immunization: FHIRResource
 	public var performer: FHIRElement? {
 		get { return resolveReference("performer") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "performer")
 			}
 		}
@@ -70,7 +70,7 @@ public class Immunization: FHIRResource
 	public var requester: FHIRElement? {
 		get { return resolveReference("requester") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "requester")
 			}
 		}
@@ -80,7 +80,7 @@ public class Immunization: FHIRResource
 	public var manufacturer: FHIRElement? {
 		get { return resolveReference("manufacturer") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "manufacturer")
 			}
 		}
@@ -90,7 +90,7 @@ public class Immunization: FHIRResource
 	public var location: FHIRElement? {
 		get { return resolveReference("location") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "location")
 			}
 		}
@@ -122,24 +122,24 @@ public class Immunization: FHIRResource
 	
 	public convenience init(date: NSDate?, vaccineType: CodeableConcept?, subject: ResourceReference?, refusedIndicator: Bool?, reported: Bool?) {
 		self.init(json: nil)
-		if date {
+		if nil != date {
 			self.date = date
 		}
-		if vaccineType {
+		if nil != vaccineType {
 			self.vaccineType = vaccineType
 		}
-		if subject {
+		if nil != subject {
 			self.subject = subject
 		}
-		if refusedIndicator {
+		if nil != refusedIndicator {
 			self.refusedIndicator = refusedIndicator
 		}
-		if reported {
+		if nil != reported {
 			self.reported = reported
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -218,7 +218,7 @@ public class ImmunizationExplanation: FHIRElement
 	public var refusalReason: [CodeableConcept]?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["reason"] as? [NSDictionary] {
@@ -246,7 +246,7 @@ public class ImmunizationReaction: FHIRElement
 	public var detail: FHIRElement? {
 		get { return resolveReference("detail") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "detail")
 			}
 		}
@@ -256,7 +256,7 @@ public class ImmunizationReaction: FHIRElement
 	public var reported: Bool?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
@@ -290,7 +290,7 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 	public var authority: FHIRElement? {
 		get { return resolveReference("authority") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "authority")
 			}
 		}
@@ -313,18 +313,18 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 	
 	public convenience init(doseSequence: Int?, doseTarget: CodeableConcept?, doseStatus: CodeableConcept?) {
 		self.init(json: nil)
-		if doseSequence {
+		if nil != doseSequence {
 			self.doseSequence = doseSequence
 		}
-		if doseTarget {
+		if nil != doseTarget {
 			self.doseTarget = doseTarget
 		}
-		if doseStatus {
+		if nil != doseStatus {
 			self.doseStatus = doseStatus
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["doseSequence"] as? Int {

@@ -2,7 +2,7 @@
 //  Media.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -53,18 +53,18 @@ public class Media: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
 	}
 	
 	/** The person who generated the image */
-	public var operator: FHIRElement? {
-		get { return resolveReference("operator") }
+	public var operatr: FHIRElement? {
+		get { return resolveReference("operatr") }
 		set {
-			if newValue {
-				didSetReference(newValue!, name: "operator")
+			if nil != newValue {
+				didSetReference(newValue!, name: "operatr")
 			}
 		}
 	}
@@ -92,15 +92,15 @@ public class Media: FHIRResource
 	
 	public convenience init(type: String?, content: Attachment?) {
 		self.init(json: nil)
-		if type {
+		if nil != type {
 			self.type = type
 		}
-		if content {
+		if nil != content {
 			self.content = content
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -121,8 +121,8 @@ public class Media: FHIRResource
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = ResourceReference(json: val)
 			}
-			if let val = js["operator"] as? NSDictionary {
-				self.operator = ResourceReference(json: val)
+			if let val = js["operatr"] as? NSDictionary {
+				self.operatr = ResourceReference(json: val)
 			}
 			if let val = js["view"] as? NSDictionary {
 				self.view = CodeableConcept(json: val)

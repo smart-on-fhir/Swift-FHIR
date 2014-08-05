@@ -2,7 +2,7 @@
 //  Other.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -53,7 +53,7 @@ public class Other: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -63,7 +63,7 @@ public class Other: FHIRResource
 	public var author: FHIRElement? {
 		get { return resolveReference("author") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "author")
 			}
 		}
@@ -74,12 +74,12 @@ public class Other: FHIRResource
 	
 	public convenience init(code: CodeableConcept?) {
 		self.init(json: nil)
-		if code {
+		if nil != code {
 			self.code = code
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {

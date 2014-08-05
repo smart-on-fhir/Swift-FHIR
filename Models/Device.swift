@@ -2,7 +2,7 @@
 //  Device.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -57,7 +57,7 @@ public class Device: FHIRResource
 	public var owner: FHIRElement? {
 		get { return resolveReference("owner") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "owner")
 			}
 		}
@@ -67,7 +67,7 @@ public class Device: FHIRResource
 	public var location: FHIRElement? {
 		get { return resolveReference("location") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "location")
 			}
 		}
@@ -77,7 +77,7 @@ public class Device: FHIRResource
 	public var patient: FHIRElement? {
 		get { return resolveReference("patient") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "patient")
 			}
 		}
@@ -91,12 +91,12 @@ public class Device: FHIRResource
 	
 	public convenience init(type: CodeableConcept?) {
 		self.init(json: nil)
-		if type {
+		if nil != type {
 			self.type = type
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {

@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -96,7 +96,7 @@ public class Observation: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -106,7 +106,7 @@ public class Observation: FHIRResource
 	public var specimen: FHIRElement? {
 		get { return resolveReference("specimen") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "specimen")
 			}
 		}
@@ -116,7 +116,7 @@ public class Observation: FHIRResource
 	public var performer: [FHIRElement]? {
 		get { return resolveReferences("performer") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "performer")
 			}
 		}
@@ -130,18 +130,18 @@ public class Observation: FHIRResource
 	
 	public convenience init(name: CodeableConcept?, status: String?, reliability: String?) {
 		self.init(json: nil)
-		if name {
+		if nil != name {
 			self.name = name
 		}
-		if status {
+		if nil != status {
 			self.status = status
 		}
-		if reliability {
+		if nil != reliability {
 			self.reliability = reliability
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -241,7 +241,7 @@ public class ObservationReferenceRange: FHIRElement
 	public var age: Range?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["low"] as? NSDictionary {
@@ -275,7 +275,7 @@ public class ObservationRelated: FHIRElement
 	public var target: FHIRElement? {
 		get { return resolveReference("target") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "target")
 			}
 		}
@@ -283,12 +283,12 @@ public class ObservationRelated: FHIRElement
 	
 	public convenience init(target: ResourceReference?) {
 		self.init(json: nil)
-		if target {
+		if nil != target {
 			self.target = target
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {

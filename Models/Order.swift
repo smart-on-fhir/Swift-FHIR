@@ -2,7 +2,7 @@
 //  Order.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -43,7 +43,7 @@ public class Order: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -53,7 +53,7 @@ public class Order: FHIRResource
 	public var source: FHIRElement? {
 		get { return resolveReference("source") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "source")
 			}
 		}
@@ -63,7 +63,7 @@ public class Order: FHIRResource
 	public var target: FHIRElement? {
 		get { return resolveReference("target") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "target")
 			}
 		}
@@ -76,7 +76,7 @@ public class Order: FHIRResource
 	public var reasonResourceReference: FHIRElement? {
 		get { return resolveReference("reasonResourceReference") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "reasonResourceReference")
 			}
 		}
@@ -86,7 +86,7 @@ public class Order: FHIRResource
 	public var authority: FHIRElement? {
 		get { return resolveReference("authority") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "authority")
 			}
 		}
@@ -99,7 +99,7 @@ public class Order: FHIRResource
 	public var detail: [FHIRElement]? {
 		get { return resolveReferences("detail") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "detail")
 			}
 		}
@@ -107,12 +107,12 @@ public class Order: FHIRResource
 	
 	public convenience init(detail: [ResourceReference]?) {
 		self.init(json: nil)
-		if detail {
+		if nil != detail {
 			self.detail = detail
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -165,7 +165,7 @@ public class OrderWhen: FHIRElement
 	public var schedule: Schedule?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {

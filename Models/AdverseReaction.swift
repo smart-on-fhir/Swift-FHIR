@@ -2,7 +2,7 @@
 //  AdverseReaction.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -35,7 +35,7 @@ public class AdverseReaction: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -48,7 +48,7 @@ public class AdverseReaction: FHIRResource
 	public var recorder: FHIRElement? {
 		get { return resolveReference("recorder") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "recorder")
 			}
 		}
@@ -62,15 +62,15 @@ public class AdverseReaction: FHIRResource
 	
 	public convenience init(subject: ResourceReference?, didNotOccurFlag: Bool?) {
 		self.init(json: nil)
-		if subject {
+		if nil != subject {
 			self.subject = subject
 		}
-		if didNotOccurFlag {
+		if nil != didNotOccurFlag {
 			self.didNotOccurFlag = didNotOccurFlag
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -117,12 +117,12 @@ public class AdverseReactionSymptom: FHIRElement
 	
 	public convenience init(code: CodeableConcept?) {
 		self.init(json: nil)
-		if code {
+		if nil != code {
 			self.code = code
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
@@ -156,14 +156,14 @@ public class AdverseReactionExposure: FHIRElement
 	public var substance: FHIRElement? {
 		get { return resolveReference("substance") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "substance")
 			}
 		}
 	}
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {

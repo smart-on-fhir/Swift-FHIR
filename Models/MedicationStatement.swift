@@ -2,7 +2,7 @@
 //  MedicationStatement.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -34,7 +34,7 @@ public class MedicationStatement: FHIRResource
 	public var patient: FHIRElement? {
 		get { return resolveReference("patient") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "patient")
 			}
 		}
@@ -53,7 +53,7 @@ public class MedicationStatement: FHIRResource
 	public var medication: FHIRElement? {
 		get { return resolveReference("medication") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "medication")
 			}
 		}
@@ -63,7 +63,7 @@ public class MedicationStatement: FHIRResource
 	public var device: [FHIRElement]? {
 		get { return resolveReferences("device") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "device")
 			}
 		}
@@ -73,7 +73,7 @@ public class MedicationStatement: FHIRResource
 	public var dosage: [MedicationStatementDosage]?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -143,7 +143,7 @@ public class MedicationStatementDosage: FHIRElement
 	public var maxDosePerPeriod: Ratio?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["timing"] as? NSDictionary {

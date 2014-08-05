@@ -2,7 +2,7 @@
 //  Coding.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -37,14 +37,14 @@ public class Coding: FHIRElement
 	public var valueSet: FHIRElement? {
 		get { return resolveReference("valueSet") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "valueSet")
 			}
 		}
 	}
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["system"] as? String {

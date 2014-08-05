@@ -12,7 +12,7 @@ import Foundation
 extension NSDate {
 	convenience init(json: String) {
 		let parsed = NSDate.dateFromISOString(json)
-		self.init(timeInterval: 0, sinceDate: parsed ? parsed! : NSDate())
+		self.init(timeInterval: 0, sinceDate: parsed ?? NSDate())
 	}
 	
 	class func dateFromISOString(string: String) -> NSDate? {

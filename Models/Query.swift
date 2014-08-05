@@ -2,7 +2,7 @@
 //  Query.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -35,15 +35,15 @@ public class Query: FHIRResource
 	
 	public convenience init(identifier: NSURL?, parameter: [Extension]?) {
 		self.init(json: nil)
-		if identifier {
+		if nil != identifier {
 			self.identifier = identifier
 		}
-		if parameter {
+		if nil != parameter {
 			self.parameter = parameter
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -96,7 +96,7 @@ public class QueryResponse: FHIRElement
 	public var reference: [FHIRElement]? {
 		get { return resolveReferences("reference") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "reference")
 			}
 		}
@@ -104,15 +104,15 @@ public class QueryResponse: FHIRElement
 	
 	public convenience init(identifier: NSURL?, outcome: String?) {
 		self.init(json: nil)
-		if identifier {
+		if nil != identifier {
 			self.identifier = identifier
 		}
-		if outcome {
+		if nil != outcome {
 			self.outcome = outcome
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? String {

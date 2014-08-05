@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -55,7 +55,7 @@ public class Composition: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -65,7 +65,7 @@ public class Composition: FHIRResource
 	public var author: [FHIRElement]? {
 		get { return resolveReferences("author") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "author")
 			}
 		}
@@ -78,7 +78,7 @@ public class Composition: FHIRResource
 	public var custodian: FHIRElement? {
 		get { return resolveReference("custodian") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "custodian")
 			}
 		}
@@ -91,7 +91,7 @@ public class Composition: FHIRResource
 	public var encounter: FHIRElement? {
 		get { return resolveReference("encounter") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "encounter")
 			}
 		}
@@ -102,27 +102,27 @@ public class Composition: FHIRResource
 	
 	public convenience init(date: NSDate?, type: CodeableConcept?, status: String?, confidentiality: Coding?, subject: ResourceReference?, author: [ResourceReference]?) {
 		self.init(json: nil)
-		if date {
+		if nil != date {
 			self.date = date
 		}
-		if type {
+		if nil != type {
 			self.type = type
 		}
-		if status {
+		if nil != status {
 			self.status = status
 		}
-		if confidentiality {
+		if nil != confidentiality {
 			self.confidentiality = confidentiality
 		}
-		if subject {
+		if nil != subject {
 			self.subject = subject
 		}
-		if author {
+		if nil != author {
 			self.author = author
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -192,7 +192,7 @@ public class CompositionAttester: FHIRElement
 	public var party: FHIRElement? {
 		get { return resolveReference("party") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "party")
 			}
 		}
@@ -200,12 +200,12 @@ public class CompositionAttester: FHIRElement
 	
 	public convenience init(mode: [String]?) {
 		self.init(json: nil)
-		if mode {
+		if nil != mode {
 			self.mode = mode
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["mode"] as? [String] {
@@ -239,14 +239,14 @@ public class CompositionEvent: FHIRElement
 	public var detail: [FHIRElement]? {
 		get { return resolveReferences("detail") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "detail")
 			}
 		}
 	}
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? [NSDictionary] {
@@ -280,7 +280,7 @@ public class CompositionSection: FHIRElement
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -290,7 +290,7 @@ public class CompositionSection: FHIRElement
 	public var content: FHIRElement? {
 		get { return resolveReference("content") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "content")
 			}
 		}
@@ -300,7 +300,7 @@ public class CompositionSection: FHIRElement
 	public var section: [CompositionSectionSection]?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["title"] as? String {
@@ -331,7 +331,7 @@ public class CompositionSection: FHIRElement
 public class CompositionSectionSection: FHIRElement
 {	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}

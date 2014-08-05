@@ -2,7 +2,7 @@
 //  Profile.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -90,15 +90,15 @@ public class Profile: FHIRResource
 	
 	public convenience init(name: String?, status: String?) {
 		self.init(json: nil)
-		if name {
+		if nil != name {
 			self.name = name
 		}
-		if status {
+		if nil != status {
 			self.status = status
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -178,12 +178,12 @@ public class ProfileMapping: FHIRElement
 	
 	public convenience init(identity: String?) {
 		self.init(json: nil)
-		if identity {
+		if nil != identity {
 			self.identity = identity
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identity"] as? String {
@@ -230,12 +230,12 @@ public class ProfileStructure: FHIRElement
 	
 	public convenience init(type: String?) {
 		self.init(json: nil)
-		if type {
+		if nil != type {
 			self.type = type
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {
@@ -285,12 +285,12 @@ public class ProfileStructureElement: FHIRElement
 	
 	public convenience init(path: String?) {
 		self.init(json: nil)
-		if path {
+		if nil != path {
 			self.path = path
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["path"] as? String {
@@ -333,18 +333,18 @@ public class ProfileStructureElementSlicing: FHIRElement
 	
 	public convenience init(discriminator: String?, ordered: Bool?, rules: String?) {
 		self.init(json: nil)
-		if discriminator {
+		if nil != discriminator {
 			self.discriminator = discriminator
 		}
-		if ordered {
+		if nil != ordered {
 			self.ordered = ordered
 		}
-		if rules {
+		if nil != rules {
 			self.rules = rules
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["discriminator"] as? String {
@@ -425,24 +425,24 @@ public class ProfileStructureElementDefinition: FHIRElement
 	
 	public convenience init(short: String?, formal: String?, min: Int?, max: String?, isModifier: Bool?) {
 		self.init(json: nil)
-		if short {
+		if nil != short {
 			self.short = short
 		}
-		if formal {
+		if nil != formal {
 			self.formal = formal
 		}
-		if min {
+		if nil != min {
 			self.min = min
 		}
-		if max {
+		if nil != max {
 			self.max = max
 		}
-		if isModifier {
+		if nil != isModifier {
 			self.isModifier = isModifier
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["short"] as? String {
@@ -522,12 +522,12 @@ public class ProfileStructureElementDefinitionType: FHIRElement
 	
 	public convenience init(code: String?) {
 		self.init(json: nil)
-		if code {
+		if nil != code {
 			self.code = code
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -569,21 +569,21 @@ public class ProfileStructureElementDefinitionConstraint: FHIRElement
 	
 	public convenience init(key: String?, severity: String?, human: String?, xpath: String?) {
 		self.init(json: nil)
-		if key {
+		if nil != key {
 			self.key = key
 		}
-		if severity {
+		if nil != severity {
 			self.severity = severity
 		}
-		if human {
+		if nil != human {
 			self.human = human
 		}
-		if xpath {
+		if nil != xpath {
 			self.xpath = xpath
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["key"] as? String {
@@ -632,7 +632,7 @@ public class ProfileStructureElementDefinitionBinding: FHIRElement
 	public var referenceResourceReference: FHIRElement? {
 		get { return resolveReference("referenceResourceReference") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "referenceResourceReference")
 			}
 		}
@@ -640,15 +640,15 @@ public class ProfileStructureElementDefinitionBinding: FHIRElement
 	
 	public convenience init(name: String?, isExtensible: Bool?) {
 		self.init(json: nil)
-		if name {
+		if nil != name {
 			self.name = name
 		}
-		if isExtensible {
+		if nil != isExtensible {
 			self.isExtensible = isExtensible
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
@@ -689,15 +689,15 @@ public class ProfileStructureElementDefinitionMapping: FHIRElement
 	
 	public convenience init(identity: String?, map: String?) {
 		self.init(json: nil)
-		if identity {
+		if nil != identity {
 			self.identity = identity
 		}
-		if map {
+		if nil != map {
 			self.map = map
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identity"] as? String {
@@ -735,18 +735,18 @@ public class ProfileStructureSearchParam: FHIRElement
 	
 	public convenience init(name: String?, type: String?, documentation: String?) {
 		self.init(json: nil)
-		if name {
+		if nil != name {
 			self.name = name
 		}
-		if type {
+		if nil != type {
 			self.type = type
 		}
-		if documentation {
+		if nil != documentation {
 			self.documentation = documentation
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
@@ -793,21 +793,21 @@ public class ProfileExtensionDefn: FHIRElement
 	
 	public convenience init(code: String?, contextType: String?, context: [String]?, definition: ProfileExtensionDefnDefinition?) {
 		self.init(json: nil)
-		if code {
+		if nil != code {
 			self.code = code
 		}
-		if contextType {
+		if nil != contextType {
 			self.contextType = contextType
 		}
-		if context {
+		if nil != context {
 			self.context = context
 		}
-		if definition {
+		if nil != definition {
 			self.definition = definition
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -836,7 +836,7 @@ public class ProfileExtensionDefn: FHIRElement
 public class ProfileExtensionDefnDefinition: FHIRElement
 {	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}
@@ -862,15 +862,15 @@ public class ProfileQuery: FHIRElement
 	
 	public convenience init(name: String?, documentation: String?) {
 		self.init(json: nil)
-		if name {
+		if nil != name {
 			self.name = name
 		}
-		if documentation {
+		if nil != documentation {
 			self.documentation = documentation
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
@@ -895,7 +895,7 @@ public class ProfileQuery: FHIRElement
 public class ProfileQueryParameter: FHIRElement
 {	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}

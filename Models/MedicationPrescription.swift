@@ -2,7 +2,7 @@
 //  MedicationPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -40,7 +40,7 @@ public class MedicationPrescription: FHIRResource
 	public var patient: FHIRElement? {
 		get { return resolveReference("patient") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "patient")
 			}
 		}
@@ -50,7 +50,7 @@ public class MedicationPrescription: FHIRResource
 	public var prescriber: FHIRElement? {
 		get { return resolveReference("prescriber") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "prescriber")
 			}
 		}
@@ -60,7 +60,7 @@ public class MedicationPrescription: FHIRResource
 	public var encounter: FHIRElement? {
 		get { return resolveReference("encounter") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "encounter")
 			}
 		}
@@ -73,7 +73,7 @@ public class MedicationPrescription: FHIRResource
 	public var reasonResourceReference: FHIRElement? {
 		get { return resolveReference("reasonResourceReference") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "reasonResourceReference")
 			}
 		}
@@ -83,7 +83,7 @@ public class MedicationPrescription: FHIRResource
 	public var medication: FHIRElement? {
 		get { return resolveReference("medication") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "medication")
 			}
 		}
@@ -99,7 +99,7 @@ public class MedicationPrescription: FHIRResource
 	public var substitution: MedicationPrescriptionSubstitution?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -193,7 +193,7 @@ public class MedicationPrescriptionDosageInstruction: FHIRElement
 	public var maxDosePerPeriod: Ratio?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? String {
@@ -251,7 +251,7 @@ public class MedicationPrescriptionDispense: FHIRElement
 	public var medication: FHIRElement? {
 		get { return resolveReference("medication") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "medication")
 			}
 		}
@@ -270,7 +270,7 @@ public class MedicationPrescriptionDispense: FHIRElement
 	public var expectedSupplyDuration: Double?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["medication"] as? NSDictionary {
@@ -310,12 +310,12 @@ public class MedicationPrescriptionSubstitution: FHIRElement
 	
 	public convenience init(type: CodeableConcept?) {
 		self.init(json: nil)
-		if type {
+		if nil != type {
 			self.type = type
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? NSDictionary {

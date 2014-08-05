@@ -2,7 +2,7 @@
 //  SampledData.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -41,21 +41,21 @@ public class SampledData: FHIRElement
 	
 	public convenience init(origin: Quantity?, period: NSDecimalNumber?, dimensions: Int?, data: String?) {
 		self.init(json: nil)
-		if origin {
+		if nil != origin {
 			self.origin = origin
 		}
-		if period {
+		if nil != period {
 			self.period = period
 		}
-		if dimensions {
+		if nil != dimensions {
 			self.dimensions = dimensions
 		}
-		if data {
+		if nil != data {
 			self.data = data
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["origin"] as? NSDictionary {

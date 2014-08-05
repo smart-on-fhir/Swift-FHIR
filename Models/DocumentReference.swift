@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -31,7 +31,7 @@ public class DocumentReference: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -47,7 +47,7 @@ public class DocumentReference: FHIRResource
 	public var author: [FHIRElement]? {
 		get { return resolveReferences("author") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "author")
 			}
 		}
@@ -57,7 +57,7 @@ public class DocumentReference: FHIRResource
 	public var custodian: FHIRElement? {
 		get { return resolveReference("custodian") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "custodian")
 			}
 		}
@@ -70,7 +70,7 @@ public class DocumentReference: FHIRResource
 	public var authenticator: FHIRElement? {
 		get { return resolveReference("authenticator") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "authenticator")
 			}
 		}
@@ -123,42 +123,42 @@ public class DocumentReference: FHIRResource
 	
 	public convenience init(masterIdentifier: Identifier?, subject: ResourceReference?, type: CodeableConcept?, klass: CodeableConcept?, author: [ResourceReference]?, created: NSDate?, indexed: Int?, status: String?, confidentiality: CodeableConcept?, mimeType: String?, format: CodeableConcept?) {
 		self.init(json: nil)
-		if masterIdentifier {
+		if nil != masterIdentifier {
 			self.masterIdentifier = masterIdentifier
 		}
-		if subject {
+		if nil != subject {
 			self.subject = subject
 		}
-		if type {
+		if nil != type {
 			self.type = type
 		}
-		if klass {
+		if nil != klass {
 			self.klass = klass
 		}
-		if author {
+		if nil != author {
 			self.author = author
 		}
-		if created {
+		if nil != created {
 			self.created = created
 		}
-		if indexed {
+		if nil != indexed {
 			self.indexed = indexed
 		}
-		if status {
+		if nil != status {
 			self.status = status
 		}
-		if confidentiality {
+		if nil != confidentiality {
 			self.confidentiality = confidentiality
 		}
-		if mimeType {
+		if nil != mimeType {
 			self.mimeType = mimeType
 		}
-		if format {
+		if nil != format {
 			self.format = format
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -258,7 +258,7 @@ public class DocumentReferenceRelatesTo: FHIRElement
 	public var target: FHIRElement? {
 		get { return resolveReference("target") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "target")
 			}
 		}
@@ -266,15 +266,15 @@ public class DocumentReferenceRelatesTo: FHIRElement
 	
 	public convenience init(code: String?, target: ResourceReference?) {
 		self.init(json: nil)
-		if code {
+		if nil != code {
 			self.code = code
 		}
-		if target {
+		if nil != target {
 			self.target = target
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -306,12 +306,12 @@ public class DocumentReferenceService: FHIRElement
 	
 	public convenience init(type: CodeableConcept?) {
 		self.init(json: nil)
-		if type {
+		if nil != type {
 			self.type = type
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? NSDictionary {
@@ -343,12 +343,12 @@ public class DocumentReferenceServiceParameter: FHIRElement
 	
 	public convenience init(name: String?) {
 		self.init(json: nil)
-		if name {
+		if nil != name {
 			self.name = name
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
@@ -380,12 +380,12 @@ public class DocumentReferenceContext: FHIRElement
 	
 	public convenience init(period: Period?) {
 		self.init(json: nil)
-		if period {
+		if nil != period {
 			self.period = period
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["event"] as? [NSDictionary] {

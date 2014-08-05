@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -86,7 +86,7 @@ public class Patient: FHIRResource
 	public var careProvider: [FHIRElement]? {
 		get { return resolveReferences("careProvider") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "careProvider")
 			}
 		}
@@ -96,7 +96,7 @@ public class Patient: FHIRResource
 	public var managingOrganization: FHIRElement? {
 		get { return resolveReference("managingOrganization") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "managingOrganization")
 			}
 		}
@@ -109,7 +109,7 @@ public class Patient: FHIRResource
 	public var active: Bool?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -201,14 +201,14 @@ public class PatientContact: FHIRElement
 	public var organization: FHIRElement? {
 		get { return resolveReference("organization") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "organization")
 			}
 		}
 	}
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["relationship"] as? [NSDictionary] {
@@ -252,12 +252,12 @@ public class PatientAnimal: FHIRElement
 	
 	public convenience init(species: CodeableConcept?) {
 		self.init(json: nil)
-		if species {
+		if nil != species {
 			self.species = species
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["species"] as? NSDictionary {
@@ -283,7 +283,7 @@ public class PatientLink: FHIRElement
 	public var other: FHIRElement? {
 		get { return resolveReference("other") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "other")
 			}
 		}
@@ -294,15 +294,15 @@ public class PatientLink: FHIRElement
 	
 	public convenience init(other: ResourceReference?, type: String?) {
 		self.init(json: nil)
-		if other {
+		if nil != other {
 			self.other = other
 		}
-		if type {
+		if nil != type {
 			self.type = type
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["other"] as? NSDictionary {

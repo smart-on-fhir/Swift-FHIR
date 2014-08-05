@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -45,7 +45,7 @@ public class Organization: FHIRResource
 	public var partOf: FHIRElement? {
 		get { return resolveReference("partOf") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "partOf")
 			}
 		}
@@ -58,7 +58,7 @@ public class Organization: FHIRResource
 	public var location: [FHIRElement]? {
 		get { return resolveReferences("location") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "location")
 			}
 		}
@@ -68,7 +68,7 @@ public class Organization: FHIRResource
 	public var active: Bool?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -127,7 +127,7 @@ public class OrganizationContact: FHIRElement
 	public var gender: CodeableConcept?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["purpose"] as? NSDictionary {

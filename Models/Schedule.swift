@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -25,7 +25,7 @@ public class Schedule: FHIRElement
 	public var repeat: ScheduleRepeat?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["event"] as? [NSDictionary] {
@@ -66,15 +66,15 @@ public class ScheduleRepeat: FHIRElement
 	
 	public convenience init(duration: NSDecimalNumber?, units: String?) {
 		self.init(json: nil)
-		if duration {
+		if nil != duration {
 			self.duration = duration
 		}
-		if units {
+		if nil != units {
 			self.units = units
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["frequency"] as? Int {

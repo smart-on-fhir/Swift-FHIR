@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -40,7 +40,7 @@ public class CarePlan: FHIRResource
 	public var patient: FHIRElement? {
 		get { return resolveReference("patient") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "patient")
 			}
 		}
@@ -59,7 +59,7 @@ public class CarePlan: FHIRResource
 	public var concern: [FHIRElement]? {
 		get { return resolveReferences("concern") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "concern")
 			}
 		}
@@ -79,12 +79,12 @@ public class CarePlan: FHIRResource
 	
 	public convenience init(status: String?) {
 		self.init(json: nil)
-		if status {
+		if nil != status {
 			self.status = status
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -139,7 +139,7 @@ public class CarePlanParticipant: FHIRElement
 	public var member: FHIRElement? {
 		get { return resolveReference("member") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "member")
 			}
 		}
@@ -147,12 +147,12 @@ public class CarePlanParticipant: FHIRElement
 	
 	public convenience init(member: ResourceReference?) {
 		self.init(json: nil)
-		if member {
+		if nil != member {
 			self.member = member
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["role"] as? NSDictionary {
@@ -186,7 +186,7 @@ public class CarePlanGoal: FHIRElement
 	public var concern: [FHIRElement]? {
 		get { return resolveReferences("concern") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "concern")
 			}
 		}
@@ -194,12 +194,12 @@ public class CarePlanGoal: FHIRElement
 	
 	public convenience init(description: String?) {
 		self.init(json: nil)
-		if description {
+		if nil != description {
 			self.description = description
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
@@ -240,7 +240,7 @@ public class CarePlanActivity: FHIRElement
 	public var actionResulting: [FHIRElement]? {
 		get { return resolveReferences("actionResulting") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "actionResulting")
 			}
 		}
@@ -253,7 +253,7 @@ public class CarePlanActivity: FHIRElement
 	public var detail: FHIRElement? {
 		get { return resolveReference("detail") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "detail")
 			}
 		}
@@ -264,12 +264,12 @@ public class CarePlanActivity: FHIRElement
 	
 	public convenience init(prohibited: Bool?) {
 		self.init(json: nil)
-		if prohibited {
+		if nil != prohibited {
 			self.prohibited = prohibited
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["goal"] as? [String] {
@@ -325,7 +325,7 @@ public class CarePlanActivitySimple: FHIRElement
 	public var location: FHIRElement? {
 		get { return resolveReference("location") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "location")
 			}
 		}
@@ -335,7 +335,7 @@ public class CarePlanActivitySimple: FHIRElement
 	public var performer: [FHIRElement]? {
 		get { return resolveReferences("performer") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "performer")
 			}
 		}
@@ -345,7 +345,7 @@ public class CarePlanActivitySimple: FHIRElement
 	public var product: FHIRElement? {
 		get { return resolveReference("product") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "product")
 			}
 		}
@@ -362,12 +362,12 @@ public class CarePlanActivitySimple: FHIRElement
 	
 	public convenience init(category: String?) {
 		self.init(json: nil)
-		if category {
+		if nil != category {
 			self.category = category
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["category"] as? String {

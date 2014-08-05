@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -46,7 +46,7 @@ public class Specimen: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -69,15 +69,15 @@ public class Specimen: FHIRResource
 	
 	public convenience init(subject: ResourceReference?, collection: SpecimenCollection?) {
 		self.init(json: nil)
-		if subject {
+		if nil != subject {
 			self.subject = subject
 		}
-		if collection {
+		if nil != collection {
 			self.collection = collection
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -129,7 +129,7 @@ public class SpecimenSource: FHIRElement
 	public var target: [FHIRElement]? {
 		get { return resolveReferences("target") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "target")
 			}
 		}
@@ -137,12 +137,12 @@ public class SpecimenSource: FHIRElement
 	
 	public convenience init(relationship: String?) {
 		self.init(json: nil)
-		if relationship {
+		if nil != relationship {
 			self.relationship = relationship
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["relationship"] as? String {
@@ -167,7 +167,7 @@ public class SpecimenCollection: FHIRElement
 	public var collector: FHIRElement? {
 		get { return resolveReference("collector") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "collector")
 			}
 		}
@@ -192,7 +192,7 @@ public class SpecimenCollection: FHIRElement
 	public var sourceSite: CodeableConcept?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["collector"] as? NSDictionary {
@@ -238,14 +238,14 @@ public class SpecimenTreatment: FHIRElement
 	public var additive: [FHIRElement]? {
 		get { return resolveReferences("additive") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "additive")
 			}
 		}
 	}
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
@@ -289,14 +289,14 @@ public class SpecimenContainer: FHIRElement
 	public var additive: FHIRElement? {
 		get { return resolveReference("additive") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "additive")
 			}
 		}
 	}
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? [NSDictionary] {

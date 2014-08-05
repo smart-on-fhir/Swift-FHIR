@@ -2,7 +2,7 @@
 //  FHIRSearchParam+Properties.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -2102,16 +2102,13 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	public func operator(reference: String) -> FHIRSearchParam {
+	public func operatr(reference: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "operator", reference: reference)
-		p.supportedProfiles = [
-			"Media"
-		]
 		p.previous = self
 		return p
 	}
 	
-	public func operator(# missing: Bool) -> FHIRSearchParam {
+	public func operatr(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "operator", missing: missing)
 		p.previous = self
 		return p

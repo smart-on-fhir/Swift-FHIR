@@ -2,7 +2,7 @@
 //  DiagnosticOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -42,7 +42,7 @@ public class DiagnosticOrder: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -52,7 +52,7 @@ public class DiagnosticOrder: FHIRResource
 	public var orderer: FHIRElement? {
 		get { return resolveReference("orderer") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "orderer")
 			}
 		}
@@ -65,7 +65,7 @@ public class DiagnosticOrder: FHIRResource
 	public var encounter: FHIRElement? {
 		get { return resolveReference("encounter") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "encounter")
 			}
 		}
@@ -78,7 +78,7 @@ public class DiagnosticOrder: FHIRResource
 	public var specimen: [FHIRElement]? {
 		get { return resolveReferences("specimen") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "specimen")
 			}
 		}
@@ -98,12 +98,12 @@ public class DiagnosticOrder: FHIRResource
 	
 	public convenience init(subject: ResourceReference?) {
 		self.init(json: nil)
-		if subject {
+		if nil != subject {
 			self.subject = subject
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -165,7 +165,7 @@ public class DiagnosticOrderEvent: FHIRElement
 	public var actor: FHIRElement? {
 		get { return resolveReference("actor") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "actor")
 			}
 		}
@@ -173,15 +173,15 @@ public class DiagnosticOrderEvent: FHIRElement
 	
 	public convenience init(status: String?, dateTime: NSDate?) {
 		self.init(json: nil)
-		if status {
+		if nil != status {
 			self.status = status
 		}
-		if dateTime {
+		if nil != dateTime {
 			self.dateTime = dateTime
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["status"] as? String {
@@ -216,7 +216,7 @@ public class DiagnosticOrderItem: FHIRElement
 	public var specimen: [FHIRElement]? {
 		get { return resolveReferences("specimen") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "specimen")
 			}
 		}
@@ -233,12 +233,12 @@ public class DiagnosticOrderItem: FHIRElement
 	
 	public convenience init(code: CodeableConcept?) {
 		self.init(json: nil)
-		if code {
+		if nil != code {
 			self.code = code
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
@@ -269,7 +269,7 @@ public class DiagnosticOrderItem: FHIRElement
 public class DiagnosticOrderItemEvent: FHIRElement
 {	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}

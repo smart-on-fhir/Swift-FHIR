@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -110,7 +110,7 @@ public class Conformance: FHIRResource
 	public var profile: [FHIRElement]? {
 		get { return resolveReferences("profile") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "profile")
 			}
 		}
@@ -127,24 +127,24 @@ public class Conformance: FHIRResource
 	
 	public convenience init(publisher: String?, date: NSDate?, fhirVersion: String?, acceptUnknown: Bool?, format: [String]?) {
 		self.init(json: nil)
-		if publisher {
+		if nil != publisher {
 			self.publisher = publisher
 		}
-		if date {
+		if nil != date {
 			self.date = date
 		}
-		if fhirVersion {
+		if nil != fhirVersion {
 			self.fhirVersion = fhirVersion
 		}
-		if acceptUnknown {
+		if nil != acceptUnknown {
 			self.acceptUnknown = acceptUnknown
 		}
-		if format {
+		if nil != format {
 			self.format = format
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -228,12 +228,12 @@ public class ConformanceSoftware: FHIRElement
 	
 	public convenience init(name: String?) {
 		self.init(json: nil)
-		if name {
+		if nil != name {
 			self.name = name
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
@@ -266,12 +266,12 @@ public class ConformanceImplementation: FHIRElement
 	
 	public convenience init(description: String?) {
 		self.init(json: nil)
-		if description {
+		if nil != description {
 			self.description = description
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
@@ -315,15 +315,15 @@ public class ConformanceRest: FHIRElement
 	
 	public convenience init(mode: String?, resource: [ConformanceRestResource]?) {
 		self.init(json: nil)
-		if mode {
+		if nil != mode {
 			self.mode = mode
 		}
-		if resource {
+		if nil != resource {
 			self.resource = resource
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["mode"] as? String {
@@ -370,7 +370,7 @@ public class ConformanceRestSecurity: FHIRElement
 	public var certificate: [ConformanceRestSecurityCertificate]?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["cors"] as? Int {
@@ -402,7 +402,7 @@ public class ConformanceRestSecurityCertificate: FHIRElement
 	public var blob: String?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {
@@ -430,7 +430,7 @@ public class ConformanceRestResource: FHIRElement
 	public var profile: FHIRElement? {
 		get { return resolveReference("profile") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "profile")
 			}
 		}
@@ -453,15 +453,15 @@ public class ConformanceRestResource: FHIRElement
 	
 	public convenience init(type: String?, operation: [ConformanceRestResourceOperation]?) {
 		self.init(json: nil)
-		if type {
+		if nil != type {
 			self.type = type
 		}
-		if operation {
+		if nil != operation {
 			self.operation = operation
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {
@@ -505,12 +505,12 @@ public class ConformanceRestResourceOperation: FHIRElement
 	
 	public convenience init(code: String?) {
 		self.init(json: nil)
-		if code {
+		if nil != code {
 			self.code = code
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -551,15 +551,15 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 	
 	public convenience init(name: String?, type: String?) {
 		self.init(json: nil)
-		if name {
+		if nil != name {
 			self.name = name
 		}
-		if type {
+		if nil != type {
 			self.type = type
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
@@ -600,12 +600,12 @@ public class ConformanceRestOperation: FHIRElement
 	
 	public convenience init(code: String?) {
 		self.init(json: nil)
-		if code {
+		if nil != code {
 			self.code = code
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -640,15 +640,15 @@ public class ConformanceRestQuery: FHIRElement
 	
 	public convenience init(name: String?, definition: NSURL?) {
 		self.init(json: nil)
-		if name {
+		if nil != name {
 			self.name = name
 		}
-		if definition {
+		if nil != definition {
 			self.definition = definition
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
@@ -676,7 +676,7 @@ public class ConformanceRestQuery: FHIRElement
 public class ConformanceRestQueryParameter: FHIRElement
 {	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 		}
@@ -705,12 +705,12 @@ public class ConformanceMessaging: FHIRElement
 	
 	public convenience init(event: [ConformanceMessagingEvent]?) {
 		self.init(json: nil)
-		if event {
+		if nil != event {
 			self.event = event
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["endpoint"] as? String {
@@ -756,7 +756,7 @@ public class ConformanceMessagingEvent: FHIRElement
 	public var request: FHIRElement? {
 		get { return resolveReference("request") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "request")
 			}
 		}
@@ -766,7 +766,7 @@ public class ConformanceMessagingEvent: FHIRElement
 	public var response: FHIRElement? {
 		get { return resolveReference("response") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "response")
 			}
 		}
@@ -777,24 +777,24 @@ public class ConformanceMessagingEvent: FHIRElement
 	
 	public convenience init(code: Coding?, mode: String?, focus: String?, request: ResourceReference?, response: ResourceReference?) {
 		self.init(json: nil)
-		if code {
+		if nil != code {
 			self.code = code
 		}
-		if mode {
+		if nil != mode {
 			self.mode = mode
 		}
-		if focus {
+		if nil != focus {
 			self.focus = focus
 		}
-		if request {
+		if nil != request {
 			self.request = request
 		}
-		if response {
+		if nil != response {
 			self.response = response
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
@@ -843,7 +843,7 @@ public class ConformanceDocument: FHIRElement
 	public var profile: FHIRElement? {
 		get { return resolveReference("profile") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "profile")
 			}
 		}
@@ -851,15 +851,15 @@ public class ConformanceDocument: FHIRElement
 	
 	public convenience init(mode: String?, profile: ResourceReference?) {
 		self.init(json: nil)
-		if mode {
+		if nil != mode {
 			self.mode = mode
 		}
-		if profile {
+		if nil != profile {
 			self.profile = profile
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["mode"] as? String {

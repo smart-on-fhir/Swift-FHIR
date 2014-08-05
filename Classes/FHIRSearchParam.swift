@@ -23,27 +23,27 @@ public class FHIRSearchParam
 	public var profileType: FHIRResource.Type?
 	
 	/** The preceding search param instance in a chain. */
-	var previous: FHIRSearchParam? {
-	didSet(oldPrev) {
-		if previous && self !== previous!.next {
-			previous!.next = self
+	public var previous: FHIRSearchParam? {							// `public` to enable unit testing
+		didSet(oldPrev) {
+			if nil != previous && self !== previous!.next {
+				previous!.next = self
+			}
+			if oldPrev !== previous && self === oldPrev?.next {
+				oldPrev!.next = nil
+			}
 		}
-		if oldPrev !== previous && self === oldPrev?.next {
-			oldPrev!.next = nil
-		}
-	}
 	}
 	
 	/** The next search param in a chain. */
-	weak var next: FHIRSearchParam? {
-	didSet(oldNext) {
-		if next && self !== next!.previous {
-			next!.previous = self
+	public weak var next: FHIRSearchParam? {						// `public` to enable unit testing
+		didSet(oldNext) {
+			if nil != next && self !== next!.previous {
+				next!.previous = self
+			}
+			if oldNext !== next && self === oldNext?.previous {
+				oldNext!.previous = nil
+			}
 		}
-		if oldNext !== next && self === oldNext?.previous {
-			oldNext!.previous = nil
-		}
-	}
 	}
 	
 	/** On which profiles the receiver's subject is supported; can be used for validation. */
@@ -101,73 +101,73 @@ public class FHIRSearchParam
 	public var referenceType: String?
 	
 	
-	init(subject: String?) {
+	public init(subject: String?) {
 		self.subject = subject
 	}
 	
-	convenience init(profileType: FHIRResource.Type) {
+	public convenience init(profileType: FHIRResource.Type) {
 		self.init(subject: nil)
 		self.profileType = profileType
 	}
 	
-	convenience init(subject: String, missing: Bool) {
+	public convenience init(subject: String, missing: Bool) {
 		self.init(subject: subject)
 		self.missing = missing
 	}
 	
 	
-	convenience init(subject: String, token: String) {
+	public convenience init(subject: String, token: String) {
 		self.init(subject: subject)
 		self.token = token
 	}
 	
-	convenience init(subject: String, tokenAsText: String) {
+	public convenience init(subject: String, tokenAsText: String) {
 		self.init(subject: subject, token: tokenAsText)
 		self.tokenAsText = true
 	}
 	
 	
-	convenience init(subject: String, string: String) {
+	public convenience init(subject: String, string: String) {
 		self.init(subject: subject)
 		self.string = string
 	}
 	
-	convenience init(subject: String, exact: String) {
+	public convenience init(subject: String, exact: String) {
 		self.init(subject: subject, string: exact)
 		stringExact = true
 	}
 	
 	
-	convenience init(subject: String, number: Float) {
+	public convenience init(subject: String, number: Float) {
 		self.init(subject: subject)
 		self.number = number
 	}
 	
 	
-	convenience init(subject: String, date: String) {
+	public convenience init(subject: String, date: String) {
 		self.init(subject: subject)
 		self.date = date
 	}
 	
 	
-	convenience init(subject: String, quantity: String) {
+	public convenience init(subject: String, quantity: String) {
 		self.init(subject: subject)
 		self.quantity = quantity
 	}
 	
 	
-	convenience init(subject: String, reference: String) {
+	public convenience init(subject: String, reference: String) {
 		self.init(subject: subject)
 		self.reference = reference
 	}
 	
-	convenience init(subject: String, reference: String, type: FHIRResource.Type) {
+	public convenience init(subject: String, reference: String, type: FHIRResource.Type) {
 		self.init(subject: subject, reference: reference)
 		profileType = type
 	}
 	
 	
-	convenience init(subject: String, composite: [String: String]) {
+	public convenience init(subject: String, composite: [String: String]) {
 		self.init(subject: subject)
 		self.composite = composite
 	}
@@ -176,14 +176,14 @@ public class FHIRSearchParam
 	// MARK: - Construction
 	
 	func asParam() -> String {
-		if subject {
-			if missing {
+		if nil != subject {
+			if nil != missing {
 				return "\(subject!):missing=" + (missing! ? "true" : "false")		// TODO: bug in beta 4, `subject` should implicitly unwrap
 			}
-			if string && stringExact {
+			if nil != string && stringExact {
 				return "\(subject!):exact=\(paramValue())"
 			}
-			if token && tokenAsText {
+			if nil != token && tokenAsText {
 				return "\(subject!):text=\(paramValue())"
 			}
 			return "\(subject!)=\(paramValue())"
@@ -192,22 +192,22 @@ public class FHIRSearchParam
 	}
 	
 	func paramValue() -> String {
-		if string {
+		if nil != string {
 			return string!
 		}
-		if token {
+		if nil != token {
 			return token!
 		}
-		if number {
+		if nil != number {
 			return number!.description
 		}
-		if date {
+		if nil != date {
 			return date!
 		}
-		if quantity {
+		if nil != quantity {
 			return quantity!
 		}
-		if reference {
+		if nil != reference {
 			return reference!
 		}
 		return ""
@@ -220,17 +220,17 @@ public class FHIRSearchParam
 	 */
 	public func construct() -> String {
 		var path = ""
-		if previous {
-			if subject {
+		if nil != previous {
+			if nil != subject {
 				let prev = previous!.construct()
-				let sep = previous!.previous ? "&" : "?"
+				let sep = (nil == previous!.previous) ? "?" : "&"
 				path = prev + "\(sep)\(asParam())"
 			}
 			else {
 				fatalError("Need a subject to construct a search URL for the 2nd or later argument")
 			}
 		}
-		else if profileType {
+		else if nil != profileType {
 			path = profileType!.resourceName
 		}
 		else {
@@ -252,14 +252,14 @@ public class FHIRSearchParam
 	 */
 	public func perform(server: FHIRServer, callback: ((results: [FHIRResource]?, error: NSError?) -> Void)) {
 		let type = first().profileType
-		if !type {
+		if nil == type {
 			let err = NSError(domain: FHIRSearchErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Cannot find the profile type against which to run the search"])
 			callback(results: nil, error: err)
 			return
 		}
 		
 		server.requestJSON(construct()) { json, error in
-			if error {
+			if nil != error {
 				callback(results: nil, error: error)
 			}
 			else {
@@ -273,7 +273,7 @@ public class FHIRSearchParam
 					for dict in entries {
 						if let dc = dict as? NSDictionary {
 							if let content = dc["content"] as? NSDictionary {
-								res += type!(json: content)
+								res.append(type!(json: content))
 							}
 						}
 					}
@@ -299,14 +299,14 @@ public class FHIRSearchParam
 	// MARK: - Chaining
 	
 	func first() -> FHIRSearchParam {
-		if previous {
+		if nil != previous {
 			return previous!.first()
 		}
 		return self
 	}
 	
-	func last() -> FHIRSearchParam {
-		if next {
+	public func last() -> FHIRSearchParam {				// `public` to enable unit testing
+		if nil != next {
 			return next!.last()
 		}
 		return self

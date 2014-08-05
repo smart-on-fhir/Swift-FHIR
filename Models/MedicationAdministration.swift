@@ -2,7 +2,7 @@
 //  MedicationAdministration.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -38,7 +38,7 @@ public class MedicationAdministration: FHIRResource
 	public var patient: FHIRElement? {
 		get { return resolveReference("patient") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "patient")
 			}
 		}
@@ -48,7 +48,7 @@ public class MedicationAdministration: FHIRResource
 	public var practitioner: FHIRElement? {
 		get { return resolveReference("practitioner") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "practitioner")
 			}
 		}
@@ -58,7 +58,7 @@ public class MedicationAdministration: FHIRResource
 	public var encounter: FHIRElement? {
 		get { return resolveReference("encounter") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "encounter")
 			}
 		}
@@ -68,7 +68,7 @@ public class MedicationAdministration: FHIRResource
 	public var prescription: FHIRElement? {
 		get { return resolveReference("prescription") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "prescription")
 			}
 		}
@@ -87,7 +87,7 @@ public class MedicationAdministration: FHIRResource
 	public var medication: FHIRElement? {
 		get { return resolveReference("medication") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "medication")
 			}
 		}
@@ -97,7 +97,7 @@ public class MedicationAdministration: FHIRResource
 	public var device: [FHIRElement]? {
 		get { return resolveReferences("device") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReferences(newValue!, name: "device")
 			}
 		}
@@ -108,24 +108,24 @@ public class MedicationAdministration: FHIRResource
 	
 	public convenience init(status: String?, patient: ResourceReference?, practitioner: ResourceReference?, prescription: ResourceReference?, whenGiven: Period?) {
 		self.init(json: nil)
-		if status {
+		if nil != status {
 			self.status = status
 		}
-		if patient {
+		if nil != patient {
 			self.patient = patient
 		}
-		if practitioner {
+		if nil != practitioner {
 			self.practitioner = practitioner
 		}
-		if prescription {
+		if nil != prescription {
 			self.prescription = prescription
 		}
-		if whenGiven {
+		if nil != whenGiven {
 			self.whenGiven = whenGiven
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -210,7 +210,7 @@ public class MedicationAdministrationDosage: FHIRElement
 	public var maxDosePerPeriod: Ratio?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["timingDateTime"] as? String {

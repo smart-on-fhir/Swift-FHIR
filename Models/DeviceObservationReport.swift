@@ -2,7 +2,7 @@
 //  DeviceObservationReport.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-07-23.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -42,7 +42,7 @@ public class DeviceObservationReport: FHIRResource
 	public var source: FHIRElement? {
 		get { return resolveReference("source") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "source")
 			}
 		}
@@ -52,7 +52,7 @@ public class DeviceObservationReport: FHIRResource
 	public var subject: FHIRElement? {
 		get { return resolveReference("subject") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "subject")
 			}
 		}
@@ -63,15 +63,15 @@ public class DeviceObservationReport: FHIRResource
 	
 	public convenience init(instant: Int?, source: ResourceReference?) {
 		self.init(json: nil)
-		if instant {
+		if nil != instant {
 			self.instant = instant
 		}
-		if source {
+		if nil != source {
 			self.source = source
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? NSDictionary {
@@ -109,7 +109,7 @@ public class DeviceObservationReportVirtualDevice: FHIRElement
 	public var channel: [DeviceObservationReportVirtualDeviceChannel]?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
@@ -137,7 +137,7 @@ public class DeviceObservationReportVirtualDeviceChannel: FHIRElement
 	public var metric: [DeviceObservationReportVirtualDeviceChannelMetric]?
 	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
@@ -162,7 +162,7 @@ public class DeviceObservationReportVirtualDeviceChannelMetric: FHIRElement
 	public var observation: FHIRElement? {
 		get { return resolveReference("observation") }
 		set {
-			if newValue {
+			if nil != newValue {
 				didSetReference(newValue!, name: "observation")
 			}
 		}
@@ -170,12 +170,12 @@ public class DeviceObservationReportVirtualDeviceChannelMetric: FHIRElement
 	
 	public convenience init(observation: ResourceReference?) {
 		self.init(json: nil)
-		if observation {
+		if nil != observation {
 			self.observation = observation
 		}
 	}	
 	
-	public init(json: NSDictionary?) {
+	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["observation"] as? NSDictionary {

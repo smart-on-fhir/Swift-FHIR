@@ -3,7 +3,8 @@ FHIR Swift Classes
 
 These are [Swift](https://developer.apple.com/swift/) classes for data models of [FHIR](http://hl7.org/implement/standards/fhir/) elements and resources.
 Classes are generated from the FHIR resource profiles and instantiate themselves from JSON representations.
-Since this produces a framework the deployment targets will have to be OS X 10.9 and iOS 8.
+
+This repo contains a framework target for both OS X and iOS, hence the deployment targets will have to be OS X 10.9 and iOS 8.
 As soon as it's possible to build static libraries from Swift code we may be able to lower the iOS deployment target to iOS 7.
 
 
@@ -146,7 +147,8 @@ If search is restricted to a reference property, this applies:
 - If the search token does contain a forward slash it is assumed to be an absolute reference and no `:InstanceType` will be appended:  
     `GET {base-url}/Thing?referenced={uri}`
 
-#### Weirdnesses
+
+### Weirdnesses
 
 _Observation_ has the search parameter `name-value-[x]` which can adapt to certain types (to replace `[x]`).
 This has yet to be implemented.

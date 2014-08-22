@@ -6,3 +6,9 @@ generate/downloads/fhir-spec*
 generate/downloads/index.html
 generate/downloads/site
 
+# Xcode user data
+**.pbxuser
+**.mode?v?
+**.perspectivev?
+xcuserdata
+

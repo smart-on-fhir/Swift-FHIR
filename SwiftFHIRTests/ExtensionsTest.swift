@@ -29,4 +29,20 @@ class ExtensionsTest: XCTestCase
 		let d4 = NSDate.dateFromISOString("2013-05-25")
 		XCTAssertNotNil(d4, "Must parse ISO date 4")
 	}
+	
+	func testNSURL() {
+		let url1: NSURL? = NSURL(string: "http://api.io")
+		let url2: NSURL? = NSURL(json: "http://api.io")
+		XCTAssertNotNil(url1)
+		XCTAssertNotNil(url2)
+		XCTAssertEqual(url1!, url2!)
+		
+		let url = NSURL.from([
+			"http://api.io",
+			"https://smartplatforms.org",
+			"not a URL",
+			"ftp://plate.org"
+		])
+		XCTAssertTrue(3 == url.count, "Expecting 3 URLs")
+	}
 }

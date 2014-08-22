@@ -38,6 +38,12 @@ extension NSURL {
 	
 	public class func from(json: [String]) -> [NSURL] {
 		var arr: [NSURL] = []
+		for string in json {
+			let url: NSURL? = NSURL(string: string)
+			if nil != url {
+				arr.append(url!)
+			}
+		}
 		return arr
 	}
 }

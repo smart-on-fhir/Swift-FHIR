@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (xds-profile.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -157,7 +157,7 @@ public class DocumentReference: FHIRResource
 			self.format = format
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -273,7 +273,7 @@ public class DocumentReferenceRelatesTo: FHIRElement
 			self.target = target
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -310,7 +310,7 @@ public class DocumentReferenceService: FHIRElement
 			self.type = type
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -347,7 +347,7 @@ public class DocumentReferenceServiceParameter: FHIRElement
 			self.name = name
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -384,7 +384,7 @@ public class DocumentReferenceContext: FHIRElement
 			self.period = period
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

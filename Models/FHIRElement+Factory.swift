@@ -2,7 +2,7 @@
 //  FHIRElement+Factory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -18,6 +18,7 @@ extension FHIRElement
 		switch className {
 			case "Address":	return Address(json: json)
 			case "AdverseReaction":	return AdverseReaction(json: json)
+			case "Age":	return Age(json: json)
 			case "Alert":	return Alert(json: json)
 			case "AllergyIntolerance":	return AllergyIntolerance(json: json)
 			case "Attachment":	return Attachment(json: json)
@@ -29,12 +30,15 @@ extension FHIRElement
 			case "Condition":	return Condition(json: json)
 			case "Conformance":	return Conformance(json: json)
 			case "Contact":	return Contact(json: json)
+			case "Count":	return Count(json: json)
 			case "Device":	return Device(json: json)
 			case "DeviceObservationReport":	return DeviceObservationReport(json: json)
 			case "DiagnosticOrder":	return DiagnosticOrder(json: json)
 			case "DiagnosticReport":	return DiagnosticReport(json: json)
+			case "Distance":	return Distance(json: json)
 			case "DocumentManifest":	return DocumentManifest(json: json)
 			case "DocumentReference":	return DocumentReference(json: json)
+			case "Duration":	return Duration(json: json)
 			case "Encounter":	return Encounter(json: json)
 			case "Extension":	return Extension(json: json)
 			case "FamilyHistory":	return FamilyHistory(json: json)
@@ -53,6 +57,7 @@ extension FHIRElement
 			case "MedicationPrescription":	return MedicationPrescription(json: json)
 			case "MedicationStatement":	return MedicationStatement(json: json)
 			case "MessageHeader":	return MessageHeader(json: json)
+			case "Money":	return Money(json: json)
 			case "Narrative":	return Narrative(json: json)
 			case "Observation":	return Observation(json: json)
 			case "OperationOutcome":	return OperationOutcome(json: json)

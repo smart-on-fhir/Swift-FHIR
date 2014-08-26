@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (substance.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -46,7 +46,7 @@ public class Substance: FHIRResource
 			self.type = type
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -87,7 +87,7 @@ public class SubstanceInstance: FHIRElement
 	/** Amount of substance in the package */
 	public var quantity: Quantity?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -131,7 +131,7 @@ public class SubstanceIngredient: FHIRElement
 			self.substance = substance
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

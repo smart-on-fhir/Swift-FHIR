@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (immunizationrecommendation.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -55,7 +55,7 @@ public class ImmunizationRecommendation: FHIRResource
 			self.recommendation = recommendation
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -131,7 +131,7 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 			self.forecastStatus = forecastStatus
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -186,7 +186,7 @@ public class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
 			self.value = value
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -227,7 +227,7 @@ public class ImmunizationRecommendationRecommendationProtocol: FHIRElement
 	/** Name of vaccination series */
 	public var series: String?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

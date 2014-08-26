@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (conformance.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -143,7 +143,7 @@ public class Conformance: FHIRResource
 			self.format = format
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -232,7 +232,7 @@ public class ConformanceSoftware: FHIRElement
 			self.name = name
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -270,7 +270,7 @@ public class ConformanceImplementation: FHIRElement
 			self.description = description
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -322,7 +322,7 @@ public class ConformanceRest: FHIRElement
 			self.resource = resource
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -369,7 +369,7 @@ public class ConformanceRestSecurity: FHIRElement
 	/** Certificates associated with security profiles */
 	public var certificate: [ConformanceRestSecurityCertificate]?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -401,7 +401,7 @@ public class ConformanceRestSecurityCertificate: FHIRElement
 	/** Actual certificate */
 	public var blob: String?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -460,7 +460,7 @@ public class ConformanceRestResource: FHIRElement
 			self.operation = operation
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -509,7 +509,7 @@ public class ConformanceRestResourceOperation: FHIRElement
 			self.code = code
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -558,7 +558,7 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 			self.type = type
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -604,7 +604,7 @@ public class ConformanceRestOperation: FHIRElement
 			self.code = code
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -647,7 +647,7 @@ public class ConformanceRestQuery: FHIRElement
 			self.definition = definition
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -675,12 +675,7 @@ public class ConformanceRestQuery: FHIRElement
  */
 public class ConformanceRestQueryParameter: FHIRElement
 {	
-	
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-		}
-	}
+
 }
 
 
@@ -709,7 +704,7 @@ public class ConformanceMessaging: FHIRElement
 			self.event = event
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -793,7 +788,7 @@ public class ConformanceMessagingEvent: FHIRElement
 			self.response = response
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -858,7 +853,7 @@ public class ConformanceDocument: FHIRElement
 			self.profile = profile
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

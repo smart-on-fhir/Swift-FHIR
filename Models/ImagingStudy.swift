@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (imagingstudy.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -125,7 +125,7 @@ public class ImagingStudy: FHIRResource
 			self.numberOfInstances = numberOfInstances
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -240,7 +240,7 @@ public class ImagingStudySeries: FHIRElement
 			self.instance = instance
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -323,7 +323,7 @@ public class ImagingStudySeriesInstance: FHIRElement
 			self.sopclass = sopclass
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

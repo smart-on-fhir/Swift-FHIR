@@ -2,7 +2,7 @@
 //  SecurityEvent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (securityevent.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -52,7 +52,7 @@ public class SecurityEvent: FHIRResource
 			self.source = source
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -110,7 +110,7 @@ public class SecurityEventEvent: FHIRElement
 			self.dateTime = dateTime
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -179,7 +179,7 @@ public class SecurityEventParticipant: FHIRElement
 			self.requestor = requestor
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -225,7 +225,7 @@ public class SecurityEventParticipantNetwork: FHIRElement
 	/** The type of network access point */
 	public var type: String?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -260,7 +260,7 @@ public class SecurityEventSource: FHIRElement
 			self.identifier = identifier
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -320,7 +320,7 @@ public class SecurityEventObject: FHIRElement
 	/** Additional Information about the Object */
 	public var detail: [SecurityEventObjectDetail]?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -379,7 +379,7 @@ public class SecurityEventObjectDetail: FHIRElement
 			self.value = value
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

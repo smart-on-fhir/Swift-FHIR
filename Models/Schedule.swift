@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (type-Schedule.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -24,7 +24,7 @@ public class Schedule: FHIRElement
 	/** Only if there is none or one event */
 	public var repeat: ScheduleRepeat?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -73,7 +73,7 @@ public class ScheduleRepeat: FHIRElement
 			self.units = units
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

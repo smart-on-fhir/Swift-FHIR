@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 #
 #  Download and parse FHIR resource definitions
 #  Supply "-f" to force a redownload of the spec
@@ -25,7 +26,6 @@ classmap = {
 	'dateTime': 'NSDate',
 	'instant': 'Int',
 	'Age': 'Double',
-	'Duration': 'Double',
 	'decimal': 'NSDecimalNumber',
 	
 	'string': 'String',
@@ -69,6 +69,11 @@ skip_properties = [
 ]
 
 jinjaenv = Environment(loader=PackageLoader('generate', '.'))
+loglevel = 0
+
+def log1(*logstring):
+	if loglevel > 0:
+		print(' '.join(str(s) for s in logstring))
 
 
 def download(url, path):
@@ -106,7 +111,7 @@ def parse(path):
 	version = None
 	with open(os.path.join(path, 'version.info'), 'r') as handle:
 		text = handle.read()
-		for line in text.split("\n"):
+		for line in text.split("\r\n"):
 			if '=' in line:
 				(n, v) = line.split('=', 2)
 				if 'FhirVersion' == n:
@@ -167,17 +172,36 @@ def process_profile(path, info):
 		print('xx>  {} has no structure'.format(path))
 		return None, None, None
 	
+	info['filename'] = filename = os.path.basename(path)
 	requirements = profile.get('requirements')
 	structure = structure_arr[0]
-	mainClass = structure['type']
-	elements = structure.get('element', [])
-	print('-->  Parsing {}'.format(mainClass))
 	
-	mapping = {}
+	# figure out which type/class this is
+	
+	# Some profiles, such as "Age", basically define a subclass of a type, like
+	# "Quantity", which is not apparent from inside the `element` definitions.
+	# OTOH, "LipidProfile" on "DiagnosticReport" extends a profile - we are
+	#
+	# NOT YET
+	#
+	# handling these - well we are dumping these as well, but not handling any
+	# additional attributes. Not yet sure if that's correct and we're not
+	# adding these classes to the repo
+	is_subclass = False
+	superclass = structure['type']
+	main = structure.get('name')
+	if main is None:
+		main = superclass
+	elif main != superclass:
+		is_subclass = True
+	
+	print('-->  Parsing {}  --  {}'.format(main, filename))
 	classes = []
 	
-	# loop properties
-	curr_props = properties = []
+	# loop elements
+	mapping = {}
+	elements = structure.get('element', [])
+	
 	for element in elements:
 		path = element['path']
 		parts = path.split('.')
@@ -185,6 +209,7 @@ def process_profile(path, info):
 		name = parts[-1]
 		
 		if name in skip_properties:
+			log1('--->  Skipping {} property'.format(name))
 			continue
 		
 		definition = element.get('definition')
@@ -195,16 +220,27 @@ def process_profile(path, info):
 		k = mapping.get(classpath)
 		newklass = parse_elem(path, name, definition, k)
 		
+		# element describes a new class
 		if newklass is not None:
 			mapping[newklass['path']] = newklass
 			classes.append(newklass)
 			
 			# is this the resource description itself?
-			if path == mainClass:
-				newklass['resourceName'] = mainClass
+			if path == main:
+				newklass['resourceName'] = main
 				newklass['formal'] = _wrap(requirements)
+			
+			# this is a "subclass", such as "Age" on "Quantity"
+			elif is_subclass:
+				log1('--->  Treating {} as subclass of {}'.format(main, superclass))
+				newklass['className'] = main
+				newklass['superclass'] = superclass
+				newklass['is_subclass'] = True
+				newklass['short'] = _wrap(profile.get('name'))
+				newklass['formal'] = _wrap(profile.get('description'))
+				break
 	
-	info['mainClass'] = mainClass
+	info['main'] = main
 	render({'info': info, 'classes': classes}, 'template-resource.swift')
 	
 	# get search params
@@ -228,11 +264,21 @@ def process_profile(path, info):
 			srch.add('{}|{}|{}'.format(name, orig, tp))
 			supported.add(name)
 	
-	return mainClass, srch, supported
+	return main, srch, supported
 
 
 def parse_elem(path, name, definition, klass):
 	""" Parse one profile element (which will become a class property).
+	A `klass` dictionary may be passed in, in which case the element's
+	definitions will be interpreted in its context. A new class may be returned
+	if an inline defined subtype is detected.
+	
+	:param path: The path to the element, like "MedicationPrescription.identifier"
+	:param name: The name of the property, like "identifier"
+	:param definition: The element's definition
+	:param klass: The owning class of the element, if it has just been parsed
+	:returns: A dictionary with class attributes, if and only if an inline-
+		defined subtype is detected
 	"""
 	short = definition['short']
 	formal = definition['formal']
@@ -245,9 +291,10 @@ def parse_elem(path, name, definition, klass):
 	types = []
 	haz = set()
 	for tp in definition.get('type', []):
-		if tp['code'] not in haz:
-			haz.add(tp['code'])
-			types.append((tp['code'], tp.get('profile', None) is not None))
+		code = tp['code']
+		if code not in haz:
+			haz.add(code)
+			types.append((code, tp.get('profile', None) is not None))
 	
 	# no type means this is an inline-defined subtype, create a class for it
 	newklass = None
@@ -267,25 +314,25 @@ def parse_elem(path, name, definition, klass):
 			types.append((className, False))
 	
 	# add as properties to class
-	for tp, isRef in types:
-		myname = name
-		if '*' == tp:
-			tp = 'FHIRElement'
-			myname = name.replace('[x]', '')
-		if '[x]' in myname:
-			myname = name.replace('[x]', '{}{}'.format(tp[:1].upper(), tp[1:]))
-		mappedClass = classmap.get(tp, tp)
-		prop = {
-			'name': reserved.get(myname, myname),
-			'short': short,
-			'className': mappedClass,
-			'jsonClass': jsonmap.get(mappedClass, 'NSDictionary'),
-			'isArray': True if '*' == n_max else False,
-			'isReference': isRef,
-			#'modOptional': '?' if int(n_min) < 1 else ''
-		}
-		
-		if klass is not None:
+	if klass is not None:
+		for tp, isRef in types:
+			myname = name
+			if '*' == tp:
+				tp = 'FHIRElement'
+				myname = name.replace('[x]', '')
+			if '[x]' in myname:
+				myname = name.replace('[x]', '{}{}'.format(tp[:1].upper(), tp[1:]))
+			mappedClass = classmap.get(tp, tp)
+			prop = {
+				'name': reserved.get(myname, myname),
+				'short': short,
+				'className': mappedClass,
+				'jsonClass': jsonmap.get(mappedClass, 'NSDictionary'),
+				'isArray': True if '*' == n_max else False,
+				'isReference': isRef,
+				#'modOptional': '?' if int(n_min) < 1 else ''
+			}
+			
 			klass['properties'].append(prop)
 			if 0 != int(n_min):
 				klass['nonoptional'].append(prop)
@@ -339,7 +386,7 @@ def render(data, template):
 	if 'filename' in data:
 		filename = data['filename']
 	else:
-		filename = data['info']['mainClass'] + '.swift'
+		filename = data['info']['main'] + '.swift'
 	
 	with open(os.path.join('..', 'Models', filename), 'w') as handle:
 		print('-->  Writing {}'.format(filename))
@@ -354,6 +401,7 @@ def _wrap(text):
 	lines = []
 	for line in text.split("\r\n"):		# The spec uses "\r\n"
 		if line:
+			line = line.replace(u'\xa0', u' ')				# getting into the unicode trouble land when leaving this in place
 			lines.extend(textwrap.wrap(line, width=110))
 		else:
 			lines.append('')

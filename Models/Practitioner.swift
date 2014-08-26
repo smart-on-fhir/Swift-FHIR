@@ -2,7 +2,7 @@
 //  Practitioner.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (practitioner.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -16,10 +16,10 @@ import Foundation
  *  related services as part of their formal responsibilities and this Resource is used for attribution of
  *  activities and responsibilities to these individuals. Practitioners include (but are not limited to):
  *  
- *  * physicians, dentists, pharmacists
- *  * physician assistants, nurses, scribes
- *  * midwives, dietitians, therapists, optometrists, paramedics
- *  * medical technicians, laboratory scientists, prosthetic technicians, radiographers
+ *  * physicians, dentists, pharmacists
+ *  * physician assistants, nurses, scribes
+ *  * midwives, dietitians, therapists, optometrists, paramedics
+ *  * medical technicians, laboratory scientists, prosthetic technicians, radiographers
  *  * social workers, professional home carers, official volunteers
  *  * receptionists handling patient registration
  *  * IT personnel merging or unmerging patient records
@@ -89,7 +89,7 @@ public class Practitioner: FHIRResource
 	/** A language the practitioner is able to use in patient communication */
 	public var communication: [CodeableConcept]?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -170,7 +170,7 @@ public class PractitionerQualification: FHIRElement
 			self.code = code
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

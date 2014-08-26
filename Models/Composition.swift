@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (composition.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -121,7 +121,7 @@ public class Composition: FHIRResource
 			self.author = author
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -204,7 +204,7 @@ public class CompositionAttester: FHIRElement
 			self.mode = mode
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -245,7 +245,7 @@ public class CompositionEvent: FHIRElement
 		}
 	}
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -299,7 +299,7 @@ public class CompositionSection: FHIRElement
 	/** Nested Section */
 	public var section: [CompositionSectionSection]?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -330,11 +330,6 @@ public class CompositionSection: FHIRElement
  */
 public class CompositionSectionSection: FHIRElement
 {	
-	
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-		}
-	}
+
 }
 

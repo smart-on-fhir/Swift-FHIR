@@ -2,7 +2,7 @@
 //  Medication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (medication.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -72,7 +72,7 @@ public class Medication: FHIRResource
 	/** Details about packaged medications */
 	public var package: MedicationPackage?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -118,7 +118,7 @@ public class MedicationProduct: FHIRElement
 	/** Active or inactive ingredient */
 	public var ingredient: [MedicationProductIngredient]?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -159,7 +159,7 @@ public class MedicationProductIngredient: FHIRElement
 			self.item = item
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -187,7 +187,7 @@ public class MedicationPackage: FHIRElement
 	/** What is  in the package? */
 	public var content: [MedicationPackageContent]?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -228,7 +228,7 @@ public class MedicationPackageContent: FHIRElement
 			self.item = item
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

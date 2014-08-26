@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (specimen.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -76,7 +76,7 @@ public class Specimen: FHIRResource
 			self.collection = collection
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -141,7 +141,7 @@ public class SpecimenSource: FHIRElement
 			self.relationship = relationship
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -191,7 +191,7 @@ public class SpecimenCollection: FHIRElement
 	/** Anatomical collection site */
 	public var sourceSite: CodeableConcept?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -244,7 +244,7 @@ public class SpecimenTreatment: FHIRElement
 		}
 	}
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -295,7 +295,7 @@ public class SpecimenContainer: FHIRElement
 		}
 	}
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

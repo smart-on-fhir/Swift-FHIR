@@ -1,8 +1,8 @@
 //
-//  {{ info.mainClass }}.swift
+//  {{ info.main }}.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR {{ info.version }} on {{ info.date }}.
+//  Generated from FHIR {{ info.version }} ({{ info.filename }}) on {{ info.date }}.
 //  Copyright (c) {{ info.year }} SMART Platforms. All rights reserved.
 //
 
@@ -54,7 +54,7 @@ public class {{ klass.className }}: {{ klass.superclass|default('FHIRElement') }
 	{%- endfor %}
 	}
 {%- endif %}	
-	
+{% if klass.properties %}
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -77,6 +77,7 @@ public class {{ klass.className }}: {{ klass.superclass|default('FHIRElement') }
 		{%- endfor %}
 		}
 	}
+{%- endif %}
 }
 {% endfor %}
 

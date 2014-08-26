@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (questionnaire.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -106,7 +106,7 @@ public class Questionnaire: FHIRResource
 			self.authored = authored
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -177,7 +177,7 @@ public class QuestionnaireGroup: FHIRElement
 	/** Questions in this group */
 	public var question: [QuestionnaireGroupQuestion]?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -211,12 +211,7 @@ public class QuestionnaireGroup: FHIRElement
  */
 public class QuestionnaireGroupGroup: FHIRElement
 {	
-	
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-		}
-	}
+
 }
 
 
@@ -276,7 +271,7 @@ public class QuestionnaireGroupQuestion: FHIRElement
 	/** Nested questionnaire group */
 	public var group: [QuestionnaireGroupQuestionGroup]?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -335,11 +330,6 @@ public class QuestionnaireGroupQuestion: FHIRElement
  */
 public class QuestionnaireGroupQuestionGroup: FHIRElement
 {	
-	
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-		}
-	}
+
 }
 

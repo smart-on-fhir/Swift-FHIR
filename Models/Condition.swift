@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (condition.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -133,7 +133,7 @@ public class Condition: FHIRResource
 			self.status = status
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -225,7 +225,7 @@ public class ConditionStage: FHIRElement
 		}
 	}
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -260,7 +260,7 @@ public class ConditionEvidence: FHIRElement
 		}
 	}
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -288,7 +288,7 @@ public class ConditionLocation: FHIRElement
 	/** Precise location details */
 	public var detail: String?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -333,7 +333,7 @@ public class ConditionRelatedItem: FHIRElement
 			self.type = type
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

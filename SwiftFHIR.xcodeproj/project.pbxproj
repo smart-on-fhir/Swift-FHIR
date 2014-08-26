@@ -81,6 +81,11 @@
 		EE684CC619A78AEE00B5A2C0 /* ValueSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C8419A78AEE00B5A2C0 /* ValueSet.swift */; };
 		EE684CCD19A78CCF00B5A2C0 /* SwiftFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE684C1E19A789BA00B5A2C0 /* SwiftFHIR.framework */; };
 		EE684CCF19A7CEF000B5A2C0 /* ExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684CCE19A7CEF000B5A2C0 /* ExtensionsTest.swift */; };
+		EEEB096619AD1D5F00C324FC /* Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB096219AD1D5F00C324FC /* Age.swift */; };
+		EEEB096719AD1D5F00C324FC /* Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB096319AD1D5F00C324FC /* Count.swift */; };
+		EEEB096819AD1D5F00C324FC /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB096419AD1D5F00C324FC /* Distance.swift */; };
+		EEEB096919AD1D5F00C324FC /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB096519AD1D5F00C324FC /* Duration.swift */; };
+		EEEB096B19AD1D7300C324FC /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB096A19AD1D7300C324FC /* Money.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +176,11 @@
 		EE684C8319A78AEE00B5A2C0 /* Supply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supply.swift; sourceTree = "<group>"; };
 		EE684C8419A78AEE00B5A2C0 /* ValueSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueSet.swift; sourceTree = "<group>"; };
 		EE684CCE19A7CEF000B5A2C0 /* ExtensionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionsTest.swift; sourceTree = "<group>"; };
+		EEEB096219AD1D5F00C324FC /* Age.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Age.swift; sourceTree = "<group>"; };
+		EEEB096319AD1D5F00C324FC /* Count.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Count.swift; sourceTree = "<group>"; };
+		EEEB096419AD1D5F00C324FC /* Distance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distance.swift; sourceTree = "<group>"; };
+		EEEB096519AD1D5F00C324FC /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
+		EEEB096A19AD1D7300C324FC /* Money.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +257,7 @@
 			children = (
 				EE684C4319A78AEE00B5A2C0 /* Address.swift */,
 				EE684C4419A78AEE00B5A2C0 /* AdverseReaction.swift */,
+				EEEB096219AD1D5F00C324FC /* Age.swift */,
 				EE684C4519A78AEE00B5A2C0 /* Alert.swift */,
 				EE684C4619A78AEE00B5A2C0 /* AllergyIntolerance.swift */,
 				EE684C4719A78AEE00B5A2C0 /* Attachment.swift */,
@@ -258,12 +269,15 @@
 				EE684C4D19A78AEE00B5A2C0 /* Condition.swift */,
 				EE684C4E19A78AEE00B5A2C0 /* Conformance.swift */,
 				EE684C4F19A78AEE00B5A2C0 /* Contact.swift */,
+				EEEB096319AD1D5F00C324FC /* Count.swift */,
 				EE684C5019A78AEE00B5A2C0 /* Device.swift */,
 				EE684C5119A78AEE00B5A2C0 /* DeviceObservationReport.swift */,
 				EE684C5219A78AEE00B5A2C0 /* DiagnosticOrder.swift */,
 				EE684C5319A78AEE00B5A2C0 /* DiagnosticReport.swift */,
+				EEEB096419AD1D5F00C324FC /* Distance.swift */,
 				EE684C5419A78AEE00B5A2C0 /* DocumentManifest.swift */,
 				EE684C5519A78AEE00B5A2C0 /* DocumentReference.swift */,
+				EEEB096519AD1D5F00C324FC /* Duration.swift */,
 				EE684C5619A78AEE00B5A2C0 /* Encounter.swift */,
 				EE684C5719A78AEE00B5A2C0 /* Extension.swift */,
 				EE684C5819A78AEE00B5A2C0 /* FamilyHistory.swift */,
@@ -284,6 +298,7 @@
 				EE684C6719A78AEE00B5A2C0 /* MedicationPrescription.swift */,
 				EE684C6819A78AEE00B5A2C0 /* MedicationStatement.swift */,
 				EE684C6919A78AEE00B5A2C0 /* MessageHeader.swift */,
+				EEEB096A19AD1D7300C324FC /* Money.swift */,
 				EE684C6A19A78AEE00B5A2C0 /* Narrative.swift */,
 				EE684C6B19A78AEE00B5A2C0 /* Observation.swift */,
 				EE684C6C19A78AEE00B5A2C0 /* OperationOutcome.swift */,
@@ -431,6 +446,7 @@
 				EE684C8F19A78AEE00B5A2C0 /* Condition.swift in Sources */,
 				EE684CBD19A78AEE00B5A2C0 /* Ratio.swift in Sources */,
 				EE684CBB19A78AEE00B5A2C0 /* Questionnaire.swift in Sources */,
+				EEEB096619AD1D5F00C324FC /* Age.swift in Sources */,
 				EE684CAD19A78AEE00B5A2C0 /* Observation.swift in Sources */,
 				EE684CBF19A78AEE00B5A2C0 /* ResourceReference.swift in Sources */,
 				EE684C9D19A78AEE00B5A2C0 /* Group.swift in Sources */,
@@ -455,6 +471,7 @@
 				EE684CC219A78AEE00B5A2C0 /* SecurityEvent.swift in Sources */,
 				EE684CC619A78AEE00B5A2C0 /* ValueSet.swift in Sources */,
 				EE684CB119A78AEE00B5A2C0 /* Organization.swift in Sources */,
+				EEEB096719AD1D5F00C324FC /* Count.swift in Sources */,
 				EE684CAF19A78AEE00B5A2C0 /* Order.swift in Sources */,
 				EE684CA419A78AEE00B5A2C0 /* Location.swift in Sources */,
 				EE684CAC19A78AEE00B5A2C0 /* Narrative.swift in Sources */,
@@ -480,6 +497,8 @@
 				EE684CA919A78AEE00B5A2C0 /* MedicationPrescription.swift in Sources */,
 				EE684C9219A78AEE00B5A2C0 /* Device.swift in Sources */,
 				EE684C3E19A78AE600B5A2C0 /* FHIRElement.swift in Sources */,
+				EEEB096919AD1D5F00C324FC /* Duration.swift in Sources */,
+				EEEB096819AD1D5F00C324FC /* Distance.swift in Sources */,
 				EE684CC419A78AEE00B5A2C0 /* Substance.swift in Sources */,
 				EE684C8719A78AEE00B5A2C0 /* Alert.swift in Sources */,
 				EE684C9A19A78AEE00B5A2C0 /* FamilyHistory.swift in Sources */,
@@ -488,6 +507,7 @@
 				EE684C3F19A78AE600B5A2C0 /* FHIRResource.swift in Sources */,
 				EE684C8819A78AEE00B5A2C0 /* AllergyIntolerance.swift in Sources */,
 				EE684CA719A78AEE00B5A2C0 /* MedicationAdministration.swift in Sources */,
+				EEEB096B19AD1D7300C324FC /* Money.swift in Sources */,
 				EE684CAB19A78AEE00B5A2C0 /* MessageHeader.swift in Sources */,
 				EE684CBA19A78AEE00B5A2C0 /* Query.swift in Sources */,
 				EE684C9819A78AEE00B5A2C0 /* Encounter.swift in Sources */,

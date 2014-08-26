@@ -2,7 +2,7 @@
 //  Profile.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (profile.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -97,7 +97,7 @@ public class Profile: FHIRResource
 			self.status = status
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -182,7 +182,7 @@ public class ProfileMapping: FHIRElement
 			self.identity = identity
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -234,7 +234,7 @@ public class ProfileStructure: FHIRElement
 			self.type = type
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -289,7 +289,7 @@ public class ProfileStructureElement: FHIRElement
 			self.path = path
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -343,7 +343,7 @@ public class ProfileStructureElementSlicing: FHIRElement
 			self.rules = rules
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -441,7 +441,7 @@ public class ProfileStructureElementDefinition: FHIRElement
 			self.isModifier = isModifier
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -526,7 +526,7 @@ public class ProfileStructureElementDefinitionType: FHIRElement
 			self.code = code
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -582,7 +582,7 @@ public class ProfileStructureElementDefinitionConstraint: FHIRElement
 			self.xpath = xpath
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -647,7 +647,7 @@ public class ProfileStructureElementDefinitionBinding: FHIRElement
 			self.isExtensible = isExtensible
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -696,7 +696,7 @@ public class ProfileStructureElementDefinitionMapping: FHIRElement
 			self.map = map
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -745,7 +745,7 @@ public class ProfileStructureSearchParam: FHIRElement
 			self.documentation = documentation
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -806,7 +806,7 @@ public class ProfileExtensionDefn: FHIRElement
 			self.definition = definition
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -835,12 +835,7 @@ public class ProfileExtensionDefn: FHIRElement
  */
 public class ProfileExtensionDefnDefinition: FHIRElement
 {	
-	
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-		}
-	}
+
 }
 
 
@@ -869,7 +864,7 @@ public class ProfileQuery: FHIRElement
 			self.documentation = documentation
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -894,11 +889,6 @@ public class ProfileQuery: FHIRElement
  */
 public class ProfileQueryParameter: FHIRElement
 {	
-	
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-		}
-	}
+
 }
 

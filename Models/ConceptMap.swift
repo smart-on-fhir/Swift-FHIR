@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (conceptmap.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -93,7 +93,7 @@ public class ConceptMap: FHIRResource
 			self.target = target
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -167,7 +167,7 @@ public class ConceptMapConcept: FHIRElement
 			self.system = system
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -217,7 +217,7 @@ public class ConceptMapConceptDependsOn: FHIRElement
 			self.code = code
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -261,7 +261,7 @@ public class ConceptMapConceptMap: FHIRElement
 			self.equivalence = equivalence
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -294,11 +294,6 @@ public class ConceptMapConceptMap: FHIRElement
  */
 public class ConceptMapConceptMapProduct: FHIRElement
 {	
-	
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-		}
-	}
+
 }
 

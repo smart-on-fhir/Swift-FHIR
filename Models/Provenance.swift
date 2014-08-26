@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (provenance.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -82,7 +82,7 @@ public class Provenance: FHIRResource
 			self.recorded = recorded
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -154,7 +154,7 @@ public class ProvenanceAgent: FHIRElement
 			self.reference = reference
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -207,7 +207,7 @@ public class ProvenanceEntity: FHIRElement
 			self.reference = reference
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -240,11 +240,6 @@ public class ProvenanceEntity: FHIRElement
  */
 public class ProvenanceEntityAgent: FHIRElement
 {	
-	
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-		}
-	}
+
 }
 

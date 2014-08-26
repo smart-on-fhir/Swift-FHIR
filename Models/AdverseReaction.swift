@@ -2,7 +2,7 @@
 //  AdverseReaction.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (adversereaction.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -69,7 +69,7 @@ public class AdverseReaction: FHIRResource
 			self.didNotOccurFlag = didNotOccurFlag
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -121,7 +121,7 @@ public class AdverseReactionSymptom: FHIRElement
 			self.code = code
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -162,7 +162,7 @@ public class AdverseReactionExposure: FHIRElement
 		}
 	}
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

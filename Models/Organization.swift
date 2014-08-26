@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (organization.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -67,7 +67,7 @@ public class Organization: FHIRResource
 	/** Whether the organization's record is still in active use */
 	public var active: Bool?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -126,7 +126,7 @@ public class OrganizationContact: FHIRElement
 	/** Gender for administrative purposes */
 	public var gender: CodeableConcept?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

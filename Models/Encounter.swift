@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-08-04.
+//  Generated from FHIR 0.0.81.2382 (encounter.profile.json) on 2014-08-26.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -73,7 +73,7 @@ public class Encounter: FHIRResource
 	public var period: Period?
 	
 	/** Quantity of time the encounter lasted */
-	public var length: Double?
+	public var length: Duration?
 	
 	/** Reason the encounter takes place (code) */
 	public var reason: CodeableConcept?
@@ -126,7 +126,7 @@ public class Encounter: FHIRResource
 			self.klass = klass
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -154,8 +154,8 @@ public class Encounter: FHIRResource
 			if let val = js["period"] as? NSDictionary {
 				self.period = Period(json: val)
 			}
-			if let val = js["length"] as? NSNumber {
-				self.length = Double(val)
+			if let val = js["length"] as? NSDictionary {
+				self.length = Duration(json: val)
 			}
 			if let val = js["reason"] as? NSDictionary {
 				self.reason = CodeableConcept(json: val)
@@ -203,7 +203,7 @@ public class EncounterParticipant: FHIRElement
 		}
 	}
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -280,7 +280,7 @@ public class EncounterHospitalization: FHIRElement
 	/** Is this hospitalization a readmission? */
 	public var reAdmission: Bool?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -343,7 +343,7 @@ public class EncounterHospitalizationAccomodation: FHIRElement
 	/** Period during which the patient was assigned the bed */
 	public var period: Period?
 	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -387,7 +387,7 @@ public class EncounterLocation: FHIRElement
 			self.period = period
 		}
 	}	
-	
+
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

@@ -19,6 +19,7 @@ Progress
 
 Here's a rough list of what should be done.
 Things that have an `X` are done in the sense that they work but have not necessarily been tested extensively.
+The `generate.py` script also has a few `TODO`s to point out unresolved issues.
 
 ```
 [X] Create classes for all FHIR profiles/resources from spec
@@ -27,7 +28,7 @@ Things that have an `X` are done in the sense that they work but have not necess
 [~] Construct search URL parameters in code with properties (see below)
 [ ] Write serializer
 [ ] Add validation capability to serialized JSON?
-[ ] Write unit tests that use the example JSONs
+[~] Write unit tests that use the example JSONs
 [ ] Write a real nice documentation
 ```
 

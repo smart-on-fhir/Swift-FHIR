@@ -2,7 +2,7 @@
 //  SecurityEvent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (securityevent.profile.json) on 2014-08-26.
+//  Generated from FHIR 0.0.81.2382 (securityevent.profile.json) on 2014-08-27.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -93,7 +93,7 @@ public class SecurityEventEvent: FHIRElement
 	public var action: String?
 	
 	/** Time when the event occurred on source */
-	public var dateTime: Int?
+	public var dateTime: NSDate?
 	
 	/** Whether the event succeeded or failed */
 	public var outcome: String?
@@ -101,7 +101,7 @@ public class SecurityEventEvent: FHIRElement
 	/** Description of the event outcome */
 	public var outcomeDesc: String?
 	
-	public convenience init(type: CodeableConcept?, dateTime: Int?) {
+	public convenience init(type: CodeableConcept?, dateTime: NSDate?) {
 		self.init(json: nil)
 		if nil != type {
 			self.type = type
@@ -123,8 +123,8 @@ public class SecurityEventEvent: FHIRElement
 			if let val = js["action"] as? String {
 				self.action = val
 			}
-			if let val = js["dateTime"] as? Int {
-				self.dateTime = val
+			if let val = js["dateTime"] as? String {
+				self.dateTime = NSDate(json: val)
 			}
 			if let val = js["outcome"] as? String {
 				self.outcome = val

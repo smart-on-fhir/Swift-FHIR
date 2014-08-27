@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (messageheader.profile.json) on 2014-08-26.
+//  Generated from FHIR 0.0.81.2382 (messageheader.profile.json) on 2014-08-27.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -33,7 +33,7 @@ public class MessageHeader: FHIRResource
 	public var identifier: String?
 	
 	/** Time that the message was sent */
-	public var timestamp: Int?
+	public var timestamp: NSDate?
 	
 	/** Code for the event this message represents */
 	public var event: Coding?
@@ -100,7 +100,7 @@ public class MessageHeader: FHIRResource
 		}
 	}
 	
-	public convenience init(identifier: String?, timestamp: Int?, event: Coding?, source: MessageHeaderSource?) {
+	public convenience init(identifier: String?, timestamp: NSDate?, event: Coding?, source: MessageHeaderSource?) {
 		self.init(json: nil)
 		if nil != identifier {
 			self.identifier = identifier
@@ -125,8 +125,8 @@ public class MessageHeader: FHIRResource
 			if let val = js["identifier"] as? String {
 				self.identifier = val
 			}
-			if let val = js["timestamp"] as? Int {
-				self.timestamp = val
+			if let val = js["timestamp"] as? String {
+				self.timestamp = NSDate(json: val)
 			}
 			if let val = js["event"] as? NSDictionary {
 				self.event = Coding(json: val)

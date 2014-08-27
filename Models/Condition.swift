@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (condition.profile.json) on 2014-08-26.
+//  Generated from FHIR 0.0.81.2382 (condition.profile.json) on 2014-08-27.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -95,13 +95,13 @@ public class Condition: FHIRResource
 	public var onsetDate: NSDate?
 	
 	/** Estimated or actual date, or age */
-	public var onsetAge: Double?
+	public var onsetAge: Age?
 	
 	/** If/when in resolution/remission */
 	public var abatementDate: NSDate?
 	
 	/** If/when in resolution/remission */
-	public var abatementAge: Double?
+	public var abatementAge: Age?
 	
 	/** If/when in resolution/remission */
 	public var abatementBoolean: Bool?
@@ -173,14 +173,14 @@ public class Condition: FHIRResource
 			if let val = js["onsetDate"] as? String {
 				self.onsetDate = NSDate(json: val)
 			}
-			if let val = js["onsetAge"] as? NSNumber {
-				self.onsetAge = Double(val)
+			if let val = js["onsetAge"] as? NSDictionary {
+				self.onsetAge = Age(json: val)
 			}
 			if let val = js["abatementDate"] as? String {
 				self.abatementDate = NSDate(json: val)
 			}
-			if let val = js["abatementAge"] as? NSNumber {
-				self.abatementAge = Double(val)
+			if let val = js["abatementAge"] as? NSDictionary {
+				self.abatementAge = Age(json: val)
 			}
 			if let val = js["abatementBoolean"] as? Int {
 				self.abatementBoolean = (1 == val)

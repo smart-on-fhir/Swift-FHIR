@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (questionnaire.profile.json) on 2014-08-26.
+//  Generated from FHIR 0.0.81.2382 (questionnaire.profile.json) on 2014-08-27.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -247,7 +247,7 @@ public class QuestionnaireGroupQuestion: FHIRElement
 	public var answerDateTime: NSDate?
 	
 	/** Single-valued answer to the question */
-	public var answerInstant: Int?
+	public var answerInstant: NSDate?
 	
 	/** Selected options */
 	public var choice: [Coding]?
@@ -299,8 +299,8 @@ public class QuestionnaireGroupQuestion: FHIRElement
 			if let val = js["answerDateTime"] as? String {
 				self.answerDateTime = NSDate(json: val)
 			}
-			if let val = js["answerInstant"] as? Int {
-				self.answerInstant = val
+			if let val = js["answerInstant"] as? String {
+				self.answerInstant = NSDate(json: val)
 			}
 			if let val = js["choice"] as? [NSDictionary] {
 				self.choice = Coding.from(val) as? [Coding]

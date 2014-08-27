@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (observation.profile.json) on 2014-08-26.
+//  Generated from FHIR 0.0.81.2382 (observation.profile.json) on 2014-08-27.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -75,7 +75,7 @@ public class Observation: FHIRResource
 	public var appliesPeriod: Period?
 	
 	/** Date/Time this was made available */
-	public var issued: Int?
+	public var issued: NSDate?
 	
 	/** registered | preliminary | final | amended + */
 	public var status: String?
@@ -183,8 +183,8 @@ public class Observation: FHIRResource
 			if let val = js["appliesPeriod"] as? NSDictionary {
 				self.appliesPeriod = Period(json: val)
 			}
-			if let val = js["issued"] as? Int {
-				self.issued = val
+			if let val = js["issued"] as? String {
+				self.issued = NSDate(json: val)
 			}
 			if let val = js["status"] as? String {
 				self.status = val

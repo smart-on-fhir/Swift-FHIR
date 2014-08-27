@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (valueset.profile.json) on 2014-08-26.
+//  Generated from FHIR 0.0.81.2382 (valueset.profile.json) on 2014-08-27.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -384,12 +384,12 @@ public class ValueSetExpansion: FHIRElement
 	public var identifier: Identifier?
 	
 	/** Time valueset expansion happened */
-	public var timestamp: Int?
+	public var timestamp: NSDate?
 	
 	/** Codes in the value set */
 	public var contains: [ValueSetExpansionContains]?
 	
-	public convenience init(timestamp: Int?) {
+	public convenience init(timestamp: NSDate?) {
 		self.init(json: nil)
 		if nil != timestamp {
 			self.timestamp = timestamp
@@ -402,8 +402,8 @@ public class ValueSetExpansion: FHIRElement
 			if let val = js["identifier"] as? NSDictionary {
 				self.identifier = Identifier(json: val)
 			}
-			if let val = js["timestamp"] as? Int {
-				self.timestamp = val
+			if let val = js["timestamp"] as? String {
+				self.timestamp = NSDate(json: val)
 			}
 			if let val = js["contains"] as? [NSDictionary] {
 				self.contains = ValueSetExpansionContains.from(val) as? [ValueSetExpansionContains]

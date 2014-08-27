@@ -2,7 +2,7 @@
 //  DeviceObservationReport.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (deviceobservationreport.profile.json) on 2014-08-26.
+//  Generated from FHIR 0.0.81.2382 (deviceobservationreport.profile.json) on 2014-08-27.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -33,7 +33,7 @@ public class DeviceObservationReport: FHIRResource
 	public var text: Narrative?
 	
 	/** When the data values are reported */
-	public var instant: Int?
+	public var instant: NSDate?
 	
 	/** As assigned by the source device */
 	public var identifier: Identifier?
@@ -61,7 +61,7 @@ public class DeviceObservationReport: FHIRResource
 	/** A medical-related subsystem of a medical device */
 	public var virtualDevice: [DeviceObservationReportVirtualDevice]?
 	
-	public convenience init(instant: Int?, source: ResourceReference?) {
+	public convenience init(instant: NSDate?, source: ResourceReference?) {
 		self.init(json: nil)
 		if nil != instant {
 			self.instant = instant
@@ -77,8 +77,8 @@ public class DeviceObservationReport: FHIRResource
 			if let val = js["text"] as? NSDictionary {
 				self.text = Narrative(json: val)
 			}
-			if let val = js["instant"] as? Int {
-				self.instant = val
+			if let val = js["instant"] as? String {
+				self.instant = NSDate(json: val)
 			}
 			if let val = js["identifier"] as? NSDictionary {
 				self.identifier = Identifier(json: val)

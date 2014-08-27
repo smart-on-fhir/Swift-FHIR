@@ -2,7 +2,7 @@
 //  MedicationPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (medicationprescription.profile.json) on 2014-08-26.
+//  Generated from FHIR 0.0.81.2382 (medicationprescription.profile.json) on 2014-08-27.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -70,11 +70,11 @@ public class MedicationPrescription: FHIRResource
 	public var reasonCodeableConcept: CodeableConcept?
 	
 	/** Reason or indication for writing the prescription */
-	public var reasonResourceReference: FHIRElement? {
-		get { return resolveReference("reasonResourceReference") }
+	public var reasonResource: FHIRElement? {
+		get { return resolveReference("reasonResource") }
 		set {
 			if nil != newValue {
-				didSetReference(newValue!, name: "reasonResourceReference")
+				didSetReference(newValue!, name: "reasonResource")
 			}
 		}
 	}
@@ -126,8 +126,8 @@ public class MedicationPrescription: FHIRResource
 			if let val = js["reasonCodeableConcept"] as? NSDictionary {
 				self.reasonCodeableConcept = CodeableConcept(json: val)
 			}
-			if let val = js["reasonResourceReference"] as? NSDictionary {
-				self.reasonResourceReference = ResourceReference(json: val)
+			if let val = js["reasonResource"] as? NSDictionary {
+				self.reasonResource = FHIRResource(json: val)
 			}
 			if let val = js["medication"] as? NSDictionary {
 				self.medication = ResourceReference(json: val)

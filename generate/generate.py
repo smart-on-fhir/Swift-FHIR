@@ -16,9 +16,9 @@ from jinja2 import Environment, PackageLoader
 url_spec = 'http://hl7.org/documentcenter/public/standards/FHIR/fhir-spec.zip'
 cache = 'downloads'
 loglevel = 0
-write_classes = False
-write_factory = False
-write_searchparams = False
+write_classes = True
+write_factory = True
+write_searchparams = True
 write_unittests = True
 
 classmap = {
@@ -29,8 +29,7 @@ classmap = {
 	'integer': 'Int',
 	'date': 'NSDate',
 	'dateTime': 'NSDate',
-	'instant': 'Int',
-	'Age': 'Double',
+	'instant': 'NSDate',
 	'decimal': 'NSDecimalNumber',
 	
 	'string': 'String',
@@ -185,7 +184,7 @@ def process_profile(path, info):
 	
 	structure_arr = profile.get('structure')
 	if structure_arr is None or 0 == len(structure_arr):
-		print('xx>  {} has no structure'.format(path))
+		print('xx>  Profile {} has no structure'.format(path))
 		return None, None, None, None
 	
 	info['filename'] = filename = os.path.basename(path)
@@ -211,7 +210,7 @@ def process_profile(path, info):
 	elif main != superclass:
 		is_subclass = True
 	
-	print('-->  Parsing {}  --  {}'.format(main, filename))
+	print('-->  Parsing profile {}  --  {}'.format(main, filename))
 	classes = []
 	
 	# loop elements
@@ -306,7 +305,7 @@ def parse_elem(path, name, definition, klass):
 		code = tp['code']
 		if code not in haz:
 			haz.add(code)
-			types.append((code, tp.get('profile', None) is not None))
+			types.append((code, tp.get('profile', None)))
 	
 	# no type means this is an inline-defined subtype, create a class for it
 	newklass = None
@@ -323,16 +322,20 @@ def parse_elem(path, name, definition, klass):
 		}
 		
 		if 0 == len(types):
-			types.append((className, False))
+			types.append((className, None))
 	
 	# add as properties to class
 	if klass is not None:
-		for tp, isRef in types:
+		for tp, ref in types:
 			myname = name
 			if '*' == tp:
 				tp = 'FHIRElement'
 				myname = name.replace('[x]', '')
 			if '[x]' in myname:
+				# TODO: "MedicationPrescription.reason[x]" can be a "ResourceReference" but apparently
+				# should be called "reasonResource", NOT "reasonResourceReference". Interesting.
+				if 'ResourceReference' == tp:
+					tp = 'Resource'
 				myname = name.replace('[x]', '{}{}'.format(tp[:1].upper(), tp[1:]))
 			mappedClass = classmap.get(tp, tp)
 			prop = {
@@ -341,7 +344,7 @@ def parse_elem(path, name, definition, klass):
 				'className': mappedClass,
 				'jsonClass': jsonmap.get(mappedClass, 'NSDictionary'),
 				'isArray': True if '*' == n_max else False,
-				'isReference': isRef,
+				'isReferenceTo': ref,
 				#'modOptional': '?' if int(n_min) < 1 else ''
 			}
 			
@@ -403,6 +406,7 @@ def process_unittests(path, classes, info):
 	"""
 	all_tests = {}
 	for utest in glob.glob(os.path.join(path, '*-example-*.json')):
+		print('-->  Parsing unit test {}'.format(os.path.basename(utest)))
 		class_name, tests = process_unittest(utest, classes)
 		if class_name is not None:
 			test = {
@@ -448,6 +452,9 @@ def process_unittest(path, classes):
 		print('xx>  There is no class for "{}"'.format(className))
 		return None, None
 	
+	# TODO: some "subclasses" like Age are empty because all their definitons are in their parent (Quantity). This
+	# means that later on, the property lookup fails to find the properties for "Age", so fix this please.
+	
 	# gather properties and 
 	tests = process_unittest_properties(utest, klass, classes)
 	return className, tests
@@ -463,7 +470,7 @@ def process_unittest_properties(utest, klass, classes, prefix=None):
 	for cp in klass.get('properties', []):		# could cache this, but... lazy
 		props[cp['name']] = cp
 	
-	# loop top properties
+	# loop item's properties
 	tests = []
 	for key, val in utest.items():
 		prop = props.get(key)
@@ -471,41 +478,59 @@ def process_unittest_properties(utest, klass, classes, prefix=None):
 			print('xxx>  Unknown property "{}" in unit test on {}'.format(key, klass.get('className')))
 		else:
 			propClass = prop['className']
+			refTo = prop.get('isReferenceTo')
+			if refTo is not None and 'http://hl7.org/fhir/profiles/' in refTo:		# could be cleaner
+				propClass = refTo.replace('http://hl7.org/fhir/profiles/', '')
+			
 			path = u'{}.{}'.format(prefix, key) if prefix else key
 			
 			# property is an array
 			if list == type(val):
 				i = 0
 				for v in val:
-					subklass = classes.get(propClass)
-					if subklass is None:
-						print('xxx>  No class found for "{}"'.format(propClass))
-					else:
-						path = '{}![{}]'.format(path, i)
-						tests.extend(process_unittest_properties(v, subklass, classes, path))
+					mypath = '{}![{}]'.format(path, i)
+					handle_unittest_property(tests, mypath, v, propClass, refTo is not None, classes)
 					i += 1
-			
-			# property is another element
-			elif dict == type(val):
-				subklass = classes.get(propClass)
-				if subklass is None:
-					print('xxx>  No class found for "{}"'.format(propClass))
-				else:
-					path = '{}!'.format(path)
-					tests.extend(process_unittest_properties(val, subklass, classes, path))
-						
-			# generate correct code for the respective type
-			elif 'String' == propClass:
-				tests.append({'path': path, 'expr': u'"{}"'.format(val.replace('"', '\\"'))})
-			elif 'Double' == propClass:
-				tests.append({'path': path, 'expr': val})
-			elif 'NSDate' == propClass:
-				tests.append({'path': path, 'expr': u'NSDate.dateFromISOString("{}")'.format(val)})
 			else:
-				print("xxx>  Don't know how to handle \"{}\":".format(key))
-				print(prop)
+				handle_unittest_property(tests, path + '!', val, propClass, refTo is not None, classes)
 	
 	return tests
+
+
+def handle_unittest_property(tests, path, value, klass, is_reference, classes):
+	assert(path is not None)
+	assert(value is not None)
+	assert(klass is not None)
+	
+	# property is another element
+	if dict == type(value):
+		subklass = classes.get(klass)
+		if subklass is None:
+			print('xxx>  No class {} found for "{}"'.format(klass, path))
+			# print(value)
+		else:
+			# TODO: the `reference` and `display` properties on references are not yet supported
+			if is_reference:
+				if 'reference' in value:
+					del value['reference']
+				if 'display' in value:
+					del value['display']
+			
+			tests.extend(process_unittest_properties(value, subklass, classes, path))
+				
+	# generate correct code for the respective type
+	elif 'String' == klass:
+		tests.append({'path': path, 'expr': u'"{}"'.format(value.replace('"', '\\"'))})
+	elif 'Int' == klass or 'Double' == klass or 'NSDecimalNumber' == klass:
+		tests.append({'path': path, 'expr': value})
+	elif 'Bool' == klass:
+		tests.append({'path': path, 'expr': 'true' if value else 'false'})
+	elif 'NSDate' == klass:
+		tests.append({'path': path, 'expr': u'NSDate.dateFromISOString("{}")!'.format(value)})
+	elif 'NSURL' == klass:
+		tests.append({'path': path, 'expr': u'NSURL(string: "{}")'.format(value)})
+	else:
+		print("xxx>  Don't know how to handle \"{}\":".format(path))
 
 
 def render(data, template, path='Models'):

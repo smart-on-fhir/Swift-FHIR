@@ -2,7 +2,7 @@
 //  FamilyHistory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (familyhistory.profile.json) on 2014-08-26.
+//  Generated from FHIR 0.0.81.2382 (familyhistory.profile.json) on 2014-08-27.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -107,7 +107,7 @@ public class FamilyHistoryRelation: FHIRElement
 	public var deceasedBoolean: Bool?
 	
 	/** Dead? How old/when? */
-	public var deceasedAge: Double?
+	public var deceasedAge: Age?
 	
 	/** Dead? How old/when? */
 	public var deceasedRange: Range?
@@ -152,8 +152,8 @@ public class FamilyHistoryRelation: FHIRElement
 			if let val = js["deceasedBoolean"] as? Int {
 				self.deceasedBoolean = (1 == val)
 			}
-			if let val = js["deceasedAge"] as? NSNumber {
-				self.deceasedAge = Double(val)
+			if let val = js["deceasedAge"] as? NSDictionary {
+				self.deceasedAge = Age(json: val)
 			}
 			if let val = js["deceasedRange"] as? NSDictionary {
 				self.deceasedRange = Range(json: val)
@@ -191,7 +191,7 @@ public class FamilyHistoryRelationCondition: FHIRElement
 	public var outcome: CodeableConcept?
 	
 	/** When condition first manifested */
-	public var onsetAge: Double?
+	public var onsetAge: Age?
 	
 	/** When condition first manifested */
 	public var onsetRange: Range?
@@ -218,8 +218,8 @@ public class FamilyHistoryRelationCondition: FHIRElement
 			if let val = js["outcome"] as? NSDictionary {
 				self.outcome = CodeableConcept(json: val)
 			}
-			if let val = js["onsetAge"] as? NSNumber {
-				self.onsetAge = Double(val)
+			if let val = js["onsetAge"] as? NSDictionary {
+				self.onsetAge = Age(json: val)
 			}
 			if let val = js["onsetRange"] as? NSDictionary {
 				self.onsetRange = Range(json: val)

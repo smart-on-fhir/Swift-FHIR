@@ -2,7 +2,7 @@
 //  Profile.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (profile.profile.json) on 2014-08-26.
+//  Generated from FHIR 0.0.81.2382 (profile.profile.json) on 2014-08-27.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -629,11 +629,11 @@ public class ProfileStructureElementDefinitionBinding: FHIRElement
 	public var referenceUri: NSURL?
 	
 	/** Source of value set */
-	public var referenceResourceReference: FHIRElement? {
-		get { return resolveReference("referenceResourceReference") }
+	public var referenceResource: FHIRElement? {
+		get { return resolveReference("referenceResource") }
 		set {
 			if nil != newValue {
-				didSetReference(newValue!, name: "referenceResourceReference")
+				didSetReference(newValue!, name: "referenceResource")
 			}
 		}
 	}
@@ -666,8 +666,8 @@ public class ProfileStructureElementDefinitionBinding: FHIRElement
 			if let val = js["referenceUri"] as? String {
 				self.referenceUri = NSURL(json: val)
 			}
-			if let val = js["referenceResourceReference"] as? NSDictionary {
-				self.referenceResourceReference = ResourceReference(json: val)
+			if let val = js["referenceResource"] as? NSDictionary {
+				self.referenceResource = FHIRResource(json: val)
 			}
 		}
 	}

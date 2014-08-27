@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (xds-profile.profile.json) on 2014-08-26.
+//  Generated from FHIR 0.0.81.2382 (xds-profile.profile.json) on 2014-08-27.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -80,7 +80,7 @@ public class DocumentReference: FHIRResource
 	public var created: NSDate?
 	
 	/** XDS submission time or XDSDocumentEntry.creationTime  if unknown */
-	public var indexed: Int?
+	public var indexed: NSDate?
 	
 	/** implied by XDS workflow */
 	public var status: String?
@@ -121,7 +121,7 @@ public class DocumentReference: FHIRResource
 	/** event codes, service Start & Stop time, and facility type */
 	public var context: DocumentReferenceContext?
 	
-	public convenience init(masterIdentifier: Identifier?, subject: ResourceReference?, type: CodeableConcept?, klass: CodeableConcept?, author: [ResourceReference]?, created: NSDate?, indexed: Int?, status: String?, confidentiality: CodeableConcept?, mimeType: String?, format: CodeableConcept?) {
+	public convenience init(masterIdentifier: Identifier?, subject: ResourceReference?, type: CodeableConcept?, klass: CodeableConcept?, author: [ResourceReference]?, created: NSDate?, indexed: NSDate?, status: String?, confidentiality: CodeableConcept?, mimeType: String?, format: CodeableConcept?) {
 		self.init(json: nil)
 		if nil != masterIdentifier {
 			self.masterIdentifier = masterIdentifier
@@ -197,8 +197,8 @@ public class DocumentReference: FHIRResource
 			if let val = js["created"] as? String {
 				self.created = NSDate(json: val)
 			}
-			if let val = js["indexed"] as? Int {
-				self.indexed = val
+			if let val = js["indexed"] as? String {
+				self.indexed = NSDate(json: val)
 			}
 			if let val = js["status"] as? String {
 				self.status = val

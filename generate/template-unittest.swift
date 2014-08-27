@@ -13,7 +13,7 @@ import SwiftFHIR
 
 class {{ class }}Tests: FHIRModelTestCase
 {
-	func instantiateFrom(filename: String) -> {{ class }} {
+	func instantiateFrom(filename: String) -> {{ class }}? {
 		let json = readJSONFile(filename)
 		let instance = {{ class }}(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
@@ -24,8 +24,9 @@ class {{ class }}Tests: FHIRModelTestCase
 	
 	func test{{ class }}{{ loop.index }}() {
 		let inst = instantiateFrom("{{ tcase.filename }}")
+		XCTAssertNotNil(inst, "Must have instantiated a {{ class }} instance")
 	{% for onetest in tcase.tests %}	
-		XCTAssertEqual(inst.{{ onetest.path }}!, {{ onetest.expr | replace("\n", "\\n") }})
+		XCTAssertEqual(inst!.{{ onetest.path }}, {{ onetest.expr | replace("\n", "\\n") }})
 	{%- endfor %}
 	}
 {%- endfor %}

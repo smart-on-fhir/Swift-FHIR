@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (provenance.profile.json) on 2014-08-26.
+//  Generated from FHIR 0.0.81.2382 (provenance.profile.json) on 2014-08-27.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -46,7 +46,7 @@ public class Provenance: FHIRResource
 	public var period: Period?
 	
 	/** When the activity was recorded / updated */
-	public var recorded: Int?
+	public var recorded: NSDate?
 	
 	/** Reason the activity is occurring */
 	public var reason: CodeableConcept?
@@ -73,7 +73,7 @@ public class Provenance: FHIRResource
 	/** Base64 signature (DigSig) - integrity check */
 	public var integritySignature: String?
 	
-	public convenience init(target: [ResourceReference]?, recorded: Int?) {
+	public convenience init(target: [ResourceReference]?, recorded: NSDate?) {
 		self.init(json: nil)
 		if nil != target {
 			self.target = target
@@ -95,8 +95,8 @@ public class Provenance: FHIRResource
 			if let val = js["period"] as? NSDictionary {
 				self.period = Period(json: val)
 			}
-			if let val = js["recorded"] as? Int {
-				self.recorded = val
+			if let val = js["recorded"] as? String {
+				self.recorded = NSDate(json: val)
 			}
 			if let val = js["reason"] as? NSDictionary {
 				self.reason = CodeableConcept(json: val)

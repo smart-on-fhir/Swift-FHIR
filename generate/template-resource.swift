@@ -26,7 +26,7 @@ public class {{ klass.className }}: {{ klass.superclass|default('FHIRElement') }
 	
 {%- for prop in klass.properties %}	
 	/** {{ prop.short }} */
-	{%- if prop.isReference %}
+	{%- if prop.isReferenceTo %}
 	public var {{ prop.name }}: {% if prop.isArray %}[{% endif %}FHIRElement{% if prop.isArray %}]{% endif %}? {
 		get { return resolveReference{% if prop.isArray %}s{% endif %}("{{ prop.name }}") }
 		set {

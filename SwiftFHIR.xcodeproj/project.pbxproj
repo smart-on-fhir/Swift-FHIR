@@ -7,6 +7,151 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE67C6C519AE1E720077EDBE /* FHIRModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C6C419AE1E720077EDBE /* FHIRModelTestCase.swift */; };
+		EE67C73E19AE55670077EDBE /* allergyintolerance-example-dust-f201.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6C619AE55670077EDBE /* allergyintolerance-example-dust-f201.json */; };
+		EE67C73F19AE55670077EDBE /* careplan-example-f001-heart.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6C719AE55670077EDBE /* careplan-example-f001-heart.json */; };
+		EE67C74019AE55670077EDBE /* careplan-example-f002-lung.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6C819AE55670077EDBE /* careplan-example-f002-lung.json */; };
+		EE67C74119AE55670077EDBE /* careplan-example-f003-pharynx.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6C919AE55670077EDBE /* careplan-example-f003-pharynx.json */; };
+		EE67C74219AE55670077EDBE /* careplan-example-f201-renal.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6CA19AE55670077EDBE /* careplan-example-f201-renal.json */; };
+		EE67C74319AE55670077EDBE /* careplan-example-f202-malignancy.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6CB19AE55670077EDBE /* careplan-example-f202-malignancy.json */; };
+		EE67C74419AE55670077EDBE /* careplan-example-f203-sepsis.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6CC19AE55670077EDBE /* careplan-example-f203-sepsis.json */; };
+		EE67C74519AE55670077EDBE /* careplan-example-GPVisit.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6CD19AE55670077EDBE /* careplan-example-GPVisit.json */; };
+		EE67C74619AE55670077EDBE /* careplan-example-integrated.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6CE19AE55670077EDBE /* careplan-example-integrated.json */; };
+		EE67C74719AE55670077EDBE /* careplan-example-pregnancy.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6CF19AE55670077EDBE /* careplan-example-pregnancy.json */; };
+		EE67C74819AE55670077EDBE /* conceptmap-example-specimen-type.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6D019AE55670077EDBE /* conceptmap-example-specimen-type.json */; };
+		EE67C74919AE55670077EDBE /* condition-example-f001-heart.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6D119AE55670077EDBE /* condition-example-f001-heart.json */; };
+		EE67C74A19AE55670077EDBE /* condition-example-f002-lung.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6D219AE55670077EDBE /* condition-example-f002-lung.json */; };
+		EE67C74B19AE55670077EDBE /* condition-example-f003-abscess.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6D319AE55670077EDBE /* condition-example-f003-abscess.json */; };
+		EE67C74C19AE55670077EDBE /* condition-example-f201-fever.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6D419AE55670077EDBE /* condition-example-f201-fever.json */; };
+		EE67C74D19AE55670077EDBE /* condition-example-f202-malignancy.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6D519AE55670077EDBE /* condition-example-f202-malignancy.json */; };
+		EE67C74E19AE55670077EDBE /* condition-example-f203-sepsis.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6D619AE55670077EDBE /* condition-example-f203-sepsis.json */; };
+		EE67C74F19AE55670077EDBE /* condition-example-f204-renal.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6D719AE55670077EDBE /* condition-example-f204-renal.json */; };
+		EE67C75019AE55670077EDBE /* condition-example-f205-infection.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6D819AE55670077EDBE /* condition-example-f205-infection.json */; };
+		EE67C75119AE55670077EDBE /* device-example-f001-feedingtube.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6D919AE55670077EDBE /* device-example-f001-feedingtube.json */; };
+		EE67C75219AE55670077EDBE /* device-example-ihe-pcd.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6DA19AE55670077EDBE /* device-example-ihe-pcd.json */; };
+		EE67C75319AE55670077EDBE /* diagnosticreport-example-dxa.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6DB19AE55670077EDBE /* diagnosticreport-example-dxa.json */; };
+		EE67C75419AE55670077EDBE /* diagnosticreport-example-f001-bloodexam.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6DC19AE55670077EDBE /* diagnosticreport-example-f001-bloodexam.json */; };
+		EE67C75519AE55670077EDBE /* diagnosticreport-example-f201-brainct.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6DD19AE55670077EDBE /* diagnosticreport-example-f201-brainct.json */; };
+		EE67C75619AE55670077EDBE /* diagnosticreport-example-f202-bloodculture.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6DE19AE55670077EDBE /* diagnosticreport-example-f202-bloodculture.json */; };
+		EE67C75719AE55670077EDBE /* diagnosticreport-example-lipids.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6DF19AE55670077EDBE /* diagnosticreport-example-lipids.json */; };
+		EE67C75819AE55670077EDBE /* document-example-dischargesummary.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6E019AE55670077EDBE /* document-example-dischargesummary.json */; };
+		EE67C75919AE55670077EDBE /* encounter-example-f001-heart.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6E119AE55670077EDBE /* encounter-example-f001-heart.json */; };
+		EE67C75A19AE55670077EDBE /* encounter-example-f002-lung.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6E219AE55670077EDBE /* encounter-example-f002-lung.json */; };
+		EE67C75B19AE55670077EDBE /* encounter-example-f003-abscess.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6E319AE55670077EDBE /* encounter-example-f003-abscess.json */; };
+		EE67C75C19AE55670077EDBE /* encounter-example-f201-20130404.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6E419AE55670077EDBE /* encounter-example-f201-20130404.json */; };
+		EE67C75D19AE55670077EDBE /* encounter-example-f202-20130128.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6E519AE55670077EDBE /* encounter-example-f202-20130128.json */; };
+		EE67C75E19AE55670077EDBE /* encounter-example-f203-20130311.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6E619AE55670077EDBE /* encounter-example-f203-20130311.json */; };
+		EE67C75F19AE55670077EDBE /* familyhistory-example-f201-roel.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6E719AE55670077EDBE /* familyhistory-example-f201-roel.json */; };
+		EE67C76019AE55670077EDBE /* familyhistory-example-mother.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6E819AE55670077EDBE /* familyhistory-example-mother.json */; };
+		EE67C76119AE55670077EDBE /* list-example-empty.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6E919AE55670077EDBE /* list-example-empty.json */; };
+		EE67C76219AE55670077EDBE /* list-example-medlist.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6EA19AE55670077EDBE /* list-example-medlist.json */; };
+		EE67C76319AE55670077EDBE /* location-example-room.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6EB19AE55670077EDBE /* location-example-room.json */; };
+		EE67C76419AE55670077EDBE /* media-example-dicom.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6EC19AE55670077EDBE /* media-example-dicom.json */; };
+		EE67C76519AE55670077EDBE /* medication-example-f001-combivent.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6ED19AE55670077EDBE /* medication-example-f001-combivent.json */; };
+		EE67C76619AE55670077EDBE /* medication-example-f002-crestor.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6EE19AE55670077EDBE /* medication-example-f002-crestor.json */; };
+		EE67C76719AE55670077EDBE /* medication-example-f003-tolbutamide.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6EF19AE55670077EDBE /* medication-example-f003-tolbutamide.json */; };
+		EE67C76819AE55670077EDBE /* medication-example-f004-metoprolol.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6F019AE55670077EDBE /* medication-example-f004-metoprolol.json */; };
+		EE67C76919AE55670077EDBE /* medication-example-f005-enalapril.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6F119AE55670077EDBE /* medication-example-f005-enalapril.json */; };
+		EE67C76A19AE55670077EDBE /* medication-example-f201-salmeterol.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6F219AE55670077EDBE /* medication-example-f201-salmeterol.json */; };
+		EE67C76B19AE55670077EDBE /* medication-example-f202-flucloxacilline.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6F319AE55670077EDBE /* medication-example-f202-flucloxacilline.json */; };
+		EE67C76C19AE55670077EDBE /* medication-example-f203-paracetamol.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6F419AE55670077EDBE /* medication-example-f203-paracetamol.json */; };
+		EE67C76D19AE55670077EDBE /* medicationprescription-example-f001-combivent.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6F519AE55670077EDBE /* medicationprescription-example-f001-combivent.json */; };
+		EE67C76E19AE55670077EDBE /* medicationprescription-example-f002-crestor.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6F619AE55670077EDBE /* medicationprescription-example-f002-crestor.json */; };
+		EE67C76F19AE55670077EDBE /* medicationprescription-example-f003-tolbutamide.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6F719AE55670077EDBE /* medicationprescription-example-f003-tolbutamide.json */; };
+		EE67C77019AE55670077EDBE /* medicationprescription-example-f004-metoprolol.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6F819AE55670077EDBE /* medicationprescription-example-f004-metoprolol.json */; };
+		EE67C77119AE55670077EDBE /* medicationprescription-example-f005-enalapril.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6F919AE55670077EDBE /* medicationprescription-example-f005-enalapril.json */; };
+		EE67C77219AE55670077EDBE /* medicationprescription-example-f201-salmeterol.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6FA19AE55670077EDBE /* medicationprescription-example-f201-salmeterol.json */; };
+		EE67C77319AE55670077EDBE /* medicationprescription-example-f202-flucloxacilline.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6FB19AE55670077EDBE /* medicationprescription-example-f202-flucloxacilline.json */; };
+		EE67C77419AE55670077EDBE /* medicationprescription-example-f203-paracetamol.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6FC19AE55670077EDBE /* medicationprescription-example-f203-paracetamol.json */; };
+		EE67C77519AE55670077EDBE /* observation-example-bloodpressure.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6FD19AE55670077EDBE /* observation-example-bloodpressure.json */; };
+		EE67C77619AE55670077EDBE /* observation-example-f001-glucose.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6FE19AE55670077EDBE /* observation-example-f001-glucose.json */; };
+		EE67C77719AE55670077EDBE /* observation-example-f002-excess.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6FF19AE55670077EDBE /* observation-example-f002-excess.json */; };
+		EE67C77819AE55670077EDBE /* observation-example-f003-co2.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C70019AE55670077EDBE /* observation-example-f003-co2.json */; };
+		EE67C77919AE55670077EDBE /* observation-example-f004-hemoglobin.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C70119AE55670077EDBE /* observation-example-f004-hemoglobin.json */; };
+		EE67C77A19AE55670077EDBE /* observation-example-f005-hemoglobin.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C70219AE55670077EDBE /* observation-example-f005-hemoglobin.json */; };
+		EE67C77B19AE55670077EDBE /* observation-example-f201-bmi.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C70319AE55670077EDBE /* observation-example-f201-bmi.json */; };
+		EE67C77C19AE55670077EDBE /* observation-example-f202-temperature.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C70419AE55670077EDBE /* observation-example-f202-temperature.json */; };
+		EE67C77D19AE55670077EDBE /* observation-example-f203-bicarbonate.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C70519AE55670077EDBE /* observation-example-f203-bicarbonate.json */; };
+		EE67C77E19AE55670077EDBE /* observation-example-f204-creatinine.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C70619AE55670077EDBE /* observation-example-f204-creatinine.json */; };
+		EE67C77F19AE55670077EDBE /* observation-example-f205-egfr.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C70719AE55670077EDBE /* observation-example-f205-egfr.json */; };
+		EE67C78019AE55670077EDBE /* observation-example-f206-staphylococcus.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C70819AE55670077EDBE /* observation-example-f206-staphylococcus.json */; };
+		EE67C78119AE55670077EDBE /* order-example-f201-physiotherapy.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C70919AE55670077EDBE /* order-example-f201-physiotherapy.json */; };
+		EE67C78219AE55670077EDBE /* organization-example-f001-burgers.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C70A19AE55670077EDBE /* organization-example-f001-burgers.json */; };
+		EE67C78319AE55670077EDBE /* organization-example-f002-burgers-card.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C70B19AE55670077EDBE /* organization-example-f002-burgers-card.json */; };
+		EE67C78419AE55670077EDBE /* organization-example-f003-burgers-ENT.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C70C19AE55670077EDBE /* organization-example-f003-burgers-ENT.json */; };
+		EE67C78519AE55670077EDBE /* organization-example-f201-aumc.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C70D19AE55670077EDBE /* organization-example-f201-aumc.json */; };
+		EE67C78619AE55670077EDBE /* organization-example-f203-bumc.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C70E19AE55670077EDBE /* organization-example-f203-bumc.json */; };
+		EE67C78719AE55670077EDBE /* organization-example-gastro.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C70F19AE55670077EDBE /* organization-example-gastro.json */; };
+		EE67C78819AE55670077EDBE /* organization-example-good-health-care.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C71019AE55670077EDBE /* organization-example-good-health-care.json */; };
+		EE67C78919AE55670077EDBE /* organization-example-insurer.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C71119AE55670077EDBE /* organization-example-insurer.json */; };
+		EE67C78A19AE55670077EDBE /* organization-example-lab.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C71219AE55670077EDBE /* organization-example-lab.json */; };
+		EE67C78B19AE55670077EDBE /* other-example-narrative.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C71319AE55670077EDBE /* other-example-narrative.json */; };
+		EE67C78C19AE55670077EDBE /* patient-example-a.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C71419AE55670077EDBE /* patient-example-a.json */; };
+		EE67C78D19AE55670077EDBE /* patient-example-animal.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C71519AE55670077EDBE /* patient-example-animal.json */; };
+		EE67C78E19AE55670077EDBE /* patient-example-b.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C71619AE55670077EDBE /* patient-example-b.json */; };
+		EE67C78F19AE55670077EDBE /* patient-example-dicom.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C71719AE55670077EDBE /* patient-example-dicom.json */; };
+		EE67C79019AE55670077EDBE /* patient-example-f001-pieter.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C71819AE55670077EDBE /* patient-example-f001-pieter.json */; };
+		EE67C79119AE55670077EDBE /* patient-example-f201-roel.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C71919AE55670077EDBE /* patient-example-f201-roel.json */; };
+		EE67C79219AE55670077EDBE /* patient-example-ihe-pcd.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C71A19AE55670077EDBE /* patient-example-ihe-pcd.json */; };
+		EE67C79319AE55670077EDBE /* patient-example-us-extensions.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C71B19AE55670077EDBE /* patient-example-us-extensions.json */; };
+		EE67C79419AE55670077EDBE /* patient-example-xcda.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C71C19AE55670077EDBE /* patient-example-xcda.json */; };
+		EE67C79519AE55670077EDBE /* patient-example-xds.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C71D19AE55670077EDBE /* patient-example-xds.json */; };
+		EE67C79619AE55670077EDBE /* practitioner-example-f001-evdb.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C71E19AE55670077EDBE /* practitioner-example-f001-evdb.json */; };
+		EE67C79719AE55670077EDBE /* practitioner-example-f002-pv.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C71F19AE55670077EDBE /* practitioner-example-f002-pv.json */; };
+		EE67C79819AE55670077EDBE /* practitioner-example-f003-mv.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C72019AE55670077EDBE /* practitioner-example-f003-mv.json */; };
+		EE67C79919AE55670077EDBE /* practitioner-example-f004-rb.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C72119AE55670077EDBE /* practitioner-example-f004-rb.json */; };
+		EE67C79A19AE55670077EDBE /* practitioner-example-f005-al.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C72219AE55670077EDBE /* practitioner-example-f005-al.json */; };
+		EE67C79B19AE55670077EDBE /* practitioner-example-f006-rvdb.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C72319AE55670077EDBE /* practitioner-example-f006-rvdb.json */; };
+		EE67C79C19AE55670077EDBE /* practitioner-example-f007-sh.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C72419AE55670077EDBE /* practitioner-example-f007-sh.json */; };
+		EE67C79D19AE55670077EDBE /* practitioner-example-f201-ab.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C72519AE55670077EDBE /* practitioner-example-f201-ab.json */; };
+		EE67C79E19AE55670077EDBE /* practitioner-example-f202-lm.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C72619AE55670077EDBE /* practitioner-example-f202-lm.json */; };
+		EE67C79F19AE55670077EDBE /* practitioner-example-f203-jvg.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C72719AE55670077EDBE /* practitioner-example-f203-jvg.json */; };
+		EE67C7A019AE55670077EDBE /* practitioner-example-f204-ce.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C72819AE55670077EDBE /* practitioner-example-f204-ce.json */; };
+		EE67C7A119AE55670077EDBE /* practitioner-example-xcda-author.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C72919AE55670077EDBE /* practitioner-example-xcda-author.json */; };
+		EE67C7A219AE55670077EDBE /* procedure-example-biopsy.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C72A19AE55670077EDBE /* procedure-example-biopsy.json */; };
+		EE67C7A319AE55670077EDBE /* procedure-example-f001-heart.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C72B19AE55670077EDBE /* procedure-example-f001-heart.json */; };
+		EE67C7A419AE55670077EDBE /* procedure-example-f002-lung.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C72C19AE55670077EDBE /* procedure-example-f002-lung.json */; };
+		EE67C7A519AE55670077EDBE /* procedure-example-f003-abscess.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C72D19AE55670077EDBE /* procedure-example-f003-abscess.json */; };
+		EE67C7A619AE55670077EDBE /* procedure-example-f004-tracheotomy.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C72E19AE55670077EDBE /* procedure-example-f004-tracheotomy.json */; };
+		EE67C7A719AE55670077EDBE /* procedure-example-f201-tpf.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C72F19AE55670077EDBE /* procedure-example-f201-tpf.json */; };
+		EE67C7A819AE55670077EDBE /* query-example-request.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C73019AE55670077EDBE /* query-example-request.json */; };
+		EE67C7A919AE55670077EDBE /* query-example-response.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C73119AE55670077EDBE /* query-example-response.json */; };
+		EE67C7AA19AE55670077EDBE /* questionnaire-example-bluebook.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C73219AE55670077EDBE /* questionnaire-example-bluebook.json */; };
+		EE67C7AB19AE55670077EDBE /* questionnaire-example-f201-lifelines.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C73319AE55670077EDBE /* questionnaire-example-f201-lifelines.json */; };
+		EE67C7AC19AE55670077EDBE /* relatedperson-example-f001-sarah.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C73419AE55670077EDBE /* relatedperson-example-f001-sarah.json */; };
+		EE67C7AD19AE55670077EDBE /* relatedperson-example-f002-ariadne.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C73519AE55670077EDBE /* relatedperson-example-f002-ariadne.json */; };
+		EE67C7AE19AE55670077EDBE /* relatedperson-example-peter.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C73619AE55670077EDBE /* relatedperson-example-peter.json */; };
+		EE67C7AF19AE55670077EDBE /* security-event-example-login.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C73719AE55670077EDBE /* security-event-example-login.json */; };
+		EE67C7B019AE55670077EDBE /* security-event-example-logout.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C73819AE55670077EDBE /* security-event-example-logout.json */; };
+		EE67C7B119AE55670077EDBE /* security-event-example-vread.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C73919AE55670077EDBE /* security-event-example-vread.json */; };
+		EE67C7B219AE55670077EDBE /* substance-example-f201-dust.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C73A19AE55670077EDBE /* substance-example-f201-dust.json */; };
+		EE67C7B319AE55670077EDBE /* substance-example-f202-staphylococcus.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C73B19AE55670077EDBE /* substance-example-f202-staphylococcus.json */; };
+		EE67C7B419AE55670077EDBE /* substance-example-f203-potassium.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C73C19AE55670077EDBE /* substance-example-f203-potassium.json */; };
+		EE67C7B519AE55670077EDBE /* valueset-list-example-codes.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C73D19AE55670077EDBE /* valueset-list-example-codes.json */; };
+		EE67C7B919AE57C10077EDBE /* MedicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7B819AE57C10077EDBE /* MedicationTests.swift */; };
+		EE67C7BB19AE5EBE0077EDBE /* ConditionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7BA19AE5EBE0077EDBE /* ConditionTests.swift */; };
+		EE67C7D219AE84380077EDBE /* AllergyIntoleranceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7BC19AE84380077EDBE /* AllergyIntoleranceTests.swift */; };
+		EE67C7D319AE84380077EDBE /* CarePlanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7BD19AE84380077EDBE /* CarePlanTests.swift */; };
+		EE67C7D419AE84380077EDBE /* ConceptMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7BE19AE84380077EDBE /* ConceptMapTests.swift */; };
+		EE67C7D519AE84380077EDBE /* DeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7BF19AE84380077EDBE /* DeviceTests.swift */; };
+		EE67C7D619AE84380077EDBE /* DiagnosticReportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C019AE84380077EDBE /* DiagnosticReportTests.swift */; };
+		EE67C7D719AE84380077EDBE /* EncounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C119AE84380077EDBE /* EncounterTests.swift */; };
+		EE67C7D819AE84380077EDBE /* FamilyHistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C219AE84380077EDBE /* FamilyHistoryTests.swift */; };
+		EE67C7D919AE84380077EDBE /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C319AE84380077EDBE /* ListTests.swift */; };
+		EE67C7DA19AE84380077EDBE /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C419AE84380077EDBE /* LocationTests.swift */; };
+		EE67C7DB19AE84380077EDBE /* MediaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C519AE84380077EDBE /* MediaTests.swift */; };
+		EE67C7DC19AE84380077EDBE /* ObservationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C619AE84380077EDBE /* ObservationTests.swift */; };
+		EE67C7DD19AE84380077EDBE /* OrderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C719AE84380077EDBE /* OrderTests.swift */; };
+		EE67C7DE19AE84380077EDBE /* OrganizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C819AE84380077EDBE /* OrganizationTests.swift */; };
+		EE67C7DF19AE84380077EDBE /* OtherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C919AE84380077EDBE /* OtherTests.swift */; };
+		EE67C7E019AE84380077EDBE /* PatientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7CA19AE84380077EDBE /* PatientTests.swift */; };
+		EE67C7E119AE84380077EDBE /* PractitionerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7CB19AE84380077EDBE /* PractitionerTests.swift */; };
+		EE67C7E219AE84380077EDBE /* ProcedureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7CC19AE84380077EDBE /* ProcedureTests.swift */; };
+		EE67C7E319AE84380077EDBE /* QuestionnaireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7CD19AE84380077EDBE /* QuestionnaireTests.swift */; };
+		EE67C7E419AE84380077EDBE /* RelatedPersonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7CE19AE84380077EDBE /* RelatedPersonTests.swift */; };
+		EE67C7E519AE84380077EDBE /* SecurityEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7CF19AE84380077EDBE /* SecurityEventTests.swift */; };
+		EE67C7E619AE84380077EDBE /* SubstanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7D019AE84380077EDBE /* SubstanceTests.swift */; };
+		EE67C7E719AE84380077EDBE /* ValueSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7D119AE84380077EDBE /* ValueSetTests.swift */; };
 		EE684C2419A789BA00B5A2C0 /* SwiftFHIR.h in Headers */ = {isa = PBXBuildFile; fileRef = EE684C2319A789BA00B5A2C0 /* SwiftFHIR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE684C3D19A78AE600B5A2C0 /* FHIRContainedResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C3819A78AE600B5A2C0 /* FHIRContainedResource.swift */; };
 		EE684C3E19A78AE600B5A2C0 /* FHIRElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C3919A78AE600B5A2C0 /* FHIRElement.swift */; };
@@ -86,6 +231,7 @@
 		EEEB096819AD1D5F00C324FC /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB096419AD1D5F00C324FC /* Distance.swift */; };
 		EEEB096919AD1D5F00C324FC /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB096519AD1D5F00C324FC /* Duration.swift */; };
 		EEEB096B19AD1D7300C324FC /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB096A19AD1D7300C324FC /* Money.swift */; };
+		EEEB097119AD248700C324FC /* MedicationPrescriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB096F19AD248700C324FC /* MedicationPrescriptionTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +245,151 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE67C6C419AE1E720077EDBE /* FHIRModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRModelTestCase.swift; sourceTree = "<group>"; };
+		EE67C6C619AE55670077EDBE /* allergyintolerance-example-dust-f201.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "allergyintolerance-example-dust-f201.json"; path = "generate/downloads/site/allergyintolerance-example-dust-f201.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6C719AE55670077EDBE /* careplan-example-f001-heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "careplan-example-f001-heart.json"; path = "generate/downloads/site/careplan-example-f001-heart.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6C819AE55670077EDBE /* careplan-example-f002-lung.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "careplan-example-f002-lung.json"; path = "generate/downloads/site/careplan-example-f002-lung.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6C919AE55670077EDBE /* careplan-example-f003-pharynx.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "careplan-example-f003-pharynx.json"; path = "generate/downloads/site/careplan-example-f003-pharynx.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6CA19AE55670077EDBE /* careplan-example-f201-renal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "careplan-example-f201-renal.json"; path = "generate/downloads/site/careplan-example-f201-renal.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6CB19AE55670077EDBE /* careplan-example-f202-malignancy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "careplan-example-f202-malignancy.json"; path = "generate/downloads/site/careplan-example-f202-malignancy.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6CC19AE55670077EDBE /* careplan-example-f203-sepsis.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "careplan-example-f203-sepsis.json"; path = "generate/downloads/site/careplan-example-f203-sepsis.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6CD19AE55670077EDBE /* careplan-example-GPVisit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "careplan-example-GPVisit.json"; path = "generate/downloads/site/careplan-example-GPVisit.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6CE19AE55670077EDBE /* careplan-example-integrated.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "careplan-example-integrated.json"; path = "generate/downloads/site/careplan-example-integrated.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6CF19AE55670077EDBE /* careplan-example-pregnancy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "careplan-example-pregnancy.json"; path = "generate/downloads/site/careplan-example-pregnancy.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6D019AE55670077EDBE /* conceptmap-example-specimen-type.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "conceptmap-example-specimen-type.json"; path = "generate/downloads/site/conceptmap-example-specimen-type.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6D119AE55670077EDBE /* condition-example-f001-heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "condition-example-f001-heart.json"; path = "generate/downloads/site/condition-example-f001-heart.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6D219AE55670077EDBE /* condition-example-f002-lung.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "condition-example-f002-lung.json"; path = "generate/downloads/site/condition-example-f002-lung.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6D319AE55670077EDBE /* condition-example-f003-abscess.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "condition-example-f003-abscess.json"; path = "generate/downloads/site/condition-example-f003-abscess.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6D419AE55670077EDBE /* condition-example-f201-fever.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "condition-example-f201-fever.json"; path = "generate/downloads/site/condition-example-f201-fever.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6D519AE55670077EDBE /* condition-example-f202-malignancy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "condition-example-f202-malignancy.json"; path = "generate/downloads/site/condition-example-f202-malignancy.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6D619AE55670077EDBE /* condition-example-f203-sepsis.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "condition-example-f203-sepsis.json"; path = "generate/downloads/site/condition-example-f203-sepsis.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6D719AE55670077EDBE /* condition-example-f204-renal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "condition-example-f204-renal.json"; path = "generate/downloads/site/condition-example-f204-renal.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6D819AE55670077EDBE /* condition-example-f205-infection.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "condition-example-f205-infection.json"; path = "generate/downloads/site/condition-example-f205-infection.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6D919AE55670077EDBE /* device-example-f001-feedingtube.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "device-example-f001-feedingtube.json"; path = "generate/downloads/site/device-example-f001-feedingtube.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6DA19AE55670077EDBE /* device-example-ihe-pcd.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "device-example-ihe-pcd.json"; path = "generate/downloads/site/device-example-ihe-pcd.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6DB19AE55670077EDBE /* diagnosticreport-example-dxa.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "diagnosticreport-example-dxa.json"; path = "generate/downloads/site/diagnosticreport-example-dxa.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6DC19AE55670077EDBE /* diagnosticreport-example-f001-bloodexam.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "diagnosticreport-example-f001-bloodexam.json"; path = "generate/downloads/site/diagnosticreport-example-f001-bloodexam.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6DD19AE55670077EDBE /* diagnosticreport-example-f201-brainct.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "diagnosticreport-example-f201-brainct.json"; path = "generate/downloads/site/diagnosticreport-example-f201-brainct.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6DE19AE55670077EDBE /* diagnosticreport-example-f202-bloodculture.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "diagnosticreport-example-f202-bloodculture.json"; path = "generate/downloads/site/diagnosticreport-example-f202-bloodculture.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6DF19AE55670077EDBE /* diagnosticreport-example-lipids.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "diagnosticreport-example-lipids.json"; path = "generate/downloads/site/diagnosticreport-example-lipids.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6E019AE55670077EDBE /* document-example-dischargesummary.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "document-example-dischargesummary.json"; path = "generate/downloads/site/document-example-dischargesummary.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6E119AE55670077EDBE /* encounter-example-f001-heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "encounter-example-f001-heart.json"; path = "generate/downloads/site/encounter-example-f001-heart.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6E219AE55670077EDBE /* encounter-example-f002-lung.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "encounter-example-f002-lung.json"; path = "generate/downloads/site/encounter-example-f002-lung.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6E319AE55670077EDBE /* encounter-example-f003-abscess.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "encounter-example-f003-abscess.json"; path = "generate/downloads/site/encounter-example-f003-abscess.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6E419AE55670077EDBE /* encounter-example-f201-20130404.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "encounter-example-f201-20130404.json"; path = "generate/downloads/site/encounter-example-f201-20130404.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6E519AE55670077EDBE /* encounter-example-f202-20130128.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "encounter-example-f202-20130128.json"; path = "generate/downloads/site/encounter-example-f202-20130128.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6E619AE55670077EDBE /* encounter-example-f203-20130311.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "encounter-example-f203-20130311.json"; path = "generate/downloads/site/encounter-example-f203-20130311.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6E719AE55670077EDBE /* familyhistory-example-f201-roel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "familyhistory-example-f201-roel.json"; path = "generate/downloads/site/familyhistory-example-f201-roel.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6E819AE55670077EDBE /* familyhistory-example-mother.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "familyhistory-example-mother.json"; path = "generate/downloads/site/familyhistory-example-mother.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6E919AE55670077EDBE /* list-example-empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "list-example-empty.json"; path = "generate/downloads/site/list-example-empty.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6EA19AE55670077EDBE /* list-example-medlist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "list-example-medlist.json"; path = "generate/downloads/site/list-example-medlist.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6EB19AE55670077EDBE /* location-example-room.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "location-example-room.json"; path = "generate/downloads/site/location-example-room.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6EC19AE55670077EDBE /* media-example-dicom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "media-example-dicom.json"; path = "generate/downloads/site/media-example-dicom.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6ED19AE55670077EDBE /* medication-example-f001-combivent.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "medication-example-f001-combivent.json"; path = "generate/downloads/site/medication-example-f001-combivent.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6EE19AE55670077EDBE /* medication-example-f002-crestor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "medication-example-f002-crestor.json"; path = "generate/downloads/site/medication-example-f002-crestor.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6EF19AE55670077EDBE /* medication-example-f003-tolbutamide.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "medication-example-f003-tolbutamide.json"; path = "generate/downloads/site/medication-example-f003-tolbutamide.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6F019AE55670077EDBE /* medication-example-f004-metoprolol.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "medication-example-f004-metoprolol.json"; path = "generate/downloads/site/medication-example-f004-metoprolol.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6F119AE55670077EDBE /* medication-example-f005-enalapril.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "medication-example-f005-enalapril.json"; path = "generate/downloads/site/medication-example-f005-enalapril.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6F219AE55670077EDBE /* medication-example-f201-salmeterol.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "medication-example-f201-salmeterol.json"; path = "generate/downloads/site/medication-example-f201-salmeterol.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6F319AE55670077EDBE /* medication-example-f202-flucloxacilline.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "medication-example-f202-flucloxacilline.json"; path = "generate/downloads/site/medication-example-f202-flucloxacilline.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6F419AE55670077EDBE /* medication-example-f203-paracetamol.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "medication-example-f203-paracetamol.json"; path = "generate/downloads/site/medication-example-f203-paracetamol.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6F519AE55670077EDBE /* medicationprescription-example-f001-combivent.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "medicationprescription-example-f001-combivent.json"; path = "generate/downloads/site/medicationprescription-example-f001-combivent.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6F619AE55670077EDBE /* medicationprescription-example-f002-crestor.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "medicationprescription-example-f002-crestor.json"; path = "generate/downloads/site/medicationprescription-example-f002-crestor.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6F719AE55670077EDBE /* medicationprescription-example-f003-tolbutamide.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "medicationprescription-example-f003-tolbutamide.json"; path = "generate/downloads/site/medicationprescription-example-f003-tolbutamide.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6F819AE55670077EDBE /* medicationprescription-example-f004-metoprolol.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "medicationprescription-example-f004-metoprolol.json"; path = "generate/downloads/site/medicationprescription-example-f004-metoprolol.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6F919AE55670077EDBE /* medicationprescription-example-f005-enalapril.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "medicationprescription-example-f005-enalapril.json"; path = "generate/downloads/site/medicationprescription-example-f005-enalapril.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6FA19AE55670077EDBE /* medicationprescription-example-f201-salmeterol.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "medicationprescription-example-f201-salmeterol.json"; path = "generate/downloads/site/medicationprescription-example-f201-salmeterol.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6FB19AE55670077EDBE /* medicationprescription-example-f202-flucloxacilline.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "medicationprescription-example-f202-flucloxacilline.json"; path = "generate/downloads/site/medicationprescription-example-f202-flucloxacilline.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6FC19AE55670077EDBE /* medicationprescription-example-f203-paracetamol.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "medicationprescription-example-f203-paracetamol.json"; path = "generate/downloads/site/medicationprescription-example-f203-paracetamol.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6FD19AE55670077EDBE /* observation-example-bloodpressure.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "observation-example-bloodpressure.json"; path = "generate/downloads/site/observation-example-bloodpressure.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6FE19AE55670077EDBE /* observation-example-f001-glucose.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "observation-example-f001-glucose.json"; path = "generate/downloads/site/observation-example-f001-glucose.json"; sourceTree = SOURCE_ROOT; };
+		EE67C6FF19AE55670077EDBE /* observation-example-f002-excess.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "observation-example-f002-excess.json"; path = "generate/downloads/site/observation-example-f002-excess.json"; sourceTree = SOURCE_ROOT; };
+		EE67C70019AE55670077EDBE /* observation-example-f003-co2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "observation-example-f003-co2.json"; path = "generate/downloads/site/observation-example-f003-co2.json"; sourceTree = SOURCE_ROOT; };
+		EE67C70119AE55670077EDBE /* observation-example-f004-hemoglobin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "observation-example-f004-hemoglobin.json"; path = "generate/downloads/site/observation-example-f004-hemoglobin.json"; sourceTree = SOURCE_ROOT; };
+		EE67C70219AE55670077EDBE /* observation-example-f005-hemoglobin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "observation-example-f005-hemoglobin.json"; path = "generate/downloads/site/observation-example-f005-hemoglobin.json"; sourceTree = SOURCE_ROOT; };
+		EE67C70319AE55670077EDBE /* observation-example-f201-bmi.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "observation-example-f201-bmi.json"; path = "generate/downloads/site/observation-example-f201-bmi.json"; sourceTree = SOURCE_ROOT; };
+		EE67C70419AE55670077EDBE /* observation-example-f202-temperature.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "observation-example-f202-temperature.json"; path = "generate/downloads/site/observation-example-f202-temperature.json"; sourceTree = SOURCE_ROOT; };
+		EE67C70519AE55670077EDBE /* observation-example-f203-bicarbonate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "observation-example-f203-bicarbonate.json"; path = "generate/downloads/site/observation-example-f203-bicarbonate.json"; sourceTree = SOURCE_ROOT; };
+		EE67C70619AE55670077EDBE /* observation-example-f204-creatinine.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "observation-example-f204-creatinine.json"; path = "generate/downloads/site/observation-example-f204-creatinine.json"; sourceTree = SOURCE_ROOT; };
+		EE67C70719AE55670077EDBE /* observation-example-f205-egfr.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "observation-example-f205-egfr.json"; path = "generate/downloads/site/observation-example-f205-egfr.json"; sourceTree = SOURCE_ROOT; };
+		EE67C70819AE55670077EDBE /* observation-example-f206-staphylococcus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "observation-example-f206-staphylococcus.json"; path = "generate/downloads/site/observation-example-f206-staphylococcus.json"; sourceTree = SOURCE_ROOT; };
+		EE67C70919AE55670077EDBE /* order-example-f201-physiotherapy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "order-example-f201-physiotherapy.json"; path = "generate/downloads/site/order-example-f201-physiotherapy.json"; sourceTree = SOURCE_ROOT; };
+		EE67C70A19AE55670077EDBE /* organization-example-f001-burgers.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "organization-example-f001-burgers.json"; path = "generate/downloads/site/organization-example-f001-burgers.json"; sourceTree = SOURCE_ROOT; };
+		EE67C70B19AE55670077EDBE /* organization-example-f002-burgers-card.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "organization-example-f002-burgers-card.json"; path = "generate/downloads/site/organization-example-f002-burgers-card.json"; sourceTree = SOURCE_ROOT; };
+		EE67C70C19AE55670077EDBE /* organization-example-f003-burgers-ENT.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "organization-example-f003-burgers-ENT.json"; path = "generate/downloads/site/organization-example-f003-burgers-ENT.json"; sourceTree = SOURCE_ROOT; };
+		EE67C70D19AE55670077EDBE /* organization-example-f201-aumc.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "organization-example-f201-aumc.json"; path = "generate/downloads/site/organization-example-f201-aumc.json"; sourceTree = SOURCE_ROOT; };
+		EE67C70E19AE55670077EDBE /* organization-example-f203-bumc.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "organization-example-f203-bumc.json"; path = "generate/downloads/site/organization-example-f203-bumc.json"; sourceTree = SOURCE_ROOT; };
+		EE67C70F19AE55670077EDBE /* organization-example-gastro.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "organization-example-gastro.json"; path = "generate/downloads/site/organization-example-gastro.json"; sourceTree = SOURCE_ROOT; };
+		EE67C71019AE55670077EDBE /* organization-example-good-health-care.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "organization-example-good-health-care.json"; path = "generate/downloads/site/organization-example-good-health-care.json"; sourceTree = SOURCE_ROOT; };
+		EE67C71119AE55670077EDBE /* organization-example-insurer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "organization-example-insurer.json"; path = "generate/downloads/site/organization-example-insurer.json"; sourceTree = SOURCE_ROOT; };
+		EE67C71219AE55670077EDBE /* organization-example-lab.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "organization-example-lab.json"; path = "generate/downloads/site/organization-example-lab.json"; sourceTree = SOURCE_ROOT; };
+		EE67C71319AE55670077EDBE /* other-example-narrative.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "other-example-narrative.json"; path = "generate/downloads/site/other-example-narrative.json"; sourceTree = SOURCE_ROOT; };
+		EE67C71419AE55670077EDBE /* patient-example-a.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "patient-example-a.json"; path = "generate/downloads/site/patient-example-a.json"; sourceTree = SOURCE_ROOT; };
+		EE67C71519AE55670077EDBE /* patient-example-animal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "patient-example-animal.json"; path = "generate/downloads/site/patient-example-animal.json"; sourceTree = SOURCE_ROOT; };
+		EE67C71619AE55670077EDBE /* patient-example-b.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "patient-example-b.json"; path = "generate/downloads/site/patient-example-b.json"; sourceTree = SOURCE_ROOT; };
+		EE67C71719AE55670077EDBE /* patient-example-dicom.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "patient-example-dicom.json"; path = "generate/downloads/site/patient-example-dicom.json"; sourceTree = SOURCE_ROOT; };
+		EE67C71819AE55670077EDBE /* patient-example-f001-pieter.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "patient-example-f001-pieter.json"; path = "generate/downloads/site/patient-example-f001-pieter.json"; sourceTree = SOURCE_ROOT; };
+		EE67C71919AE55670077EDBE /* patient-example-f201-roel.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "patient-example-f201-roel.json"; path = "generate/downloads/site/patient-example-f201-roel.json"; sourceTree = SOURCE_ROOT; };
+		EE67C71A19AE55670077EDBE /* patient-example-ihe-pcd.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "patient-example-ihe-pcd.json"; path = "generate/downloads/site/patient-example-ihe-pcd.json"; sourceTree = SOURCE_ROOT; };
+		EE67C71B19AE55670077EDBE /* patient-example-us-extensions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "patient-example-us-extensions.json"; path = "generate/downloads/site/patient-example-us-extensions.json"; sourceTree = SOURCE_ROOT; };
+		EE67C71C19AE55670077EDBE /* patient-example-xcda.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "patient-example-xcda.json"; path = "generate/downloads/site/patient-example-xcda.json"; sourceTree = SOURCE_ROOT; };
+		EE67C71D19AE55670077EDBE /* patient-example-xds.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "patient-example-xds.json"; path = "generate/downloads/site/patient-example-xds.json"; sourceTree = SOURCE_ROOT; };
+		EE67C71E19AE55670077EDBE /* practitioner-example-f001-evdb.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "practitioner-example-f001-evdb.json"; path = "generate/downloads/site/practitioner-example-f001-evdb.json"; sourceTree = SOURCE_ROOT; };
+		EE67C71F19AE55670077EDBE /* practitioner-example-f002-pv.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "practitioner-example-f002-pv.json"; path = "generate/downloads/site/practitioner-example-f002-pv.json"; sourceTree = SOURCE_ROOT; };
+		EE67C72019AE55670077EDBE /* practitioner-example-f003-mv.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "practitioner-example-f003-mv.json"; path = "generate/downloads/site/practitioner-example-f003-mv.json"; sourceTree = SOURCE_ROOT; };
+		EE67C72119AE55670077EDBE /* practitioner-example-f004-rb.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "practitioner-example-f004-rb.json"; path = "generate/downloads/site/practitioner-example-f004-rb.json"; sourceTree = SOURCE_ROOT; };
+		EE67C72219AE55670077EDBE /* practitioner-example-f005-al.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "practitioner-example-f005-al.json"; path = "generate/downloads/site/practitioner-example-f005-al.json"; sourceTree = SOURCE_ROOT; };
+		EE67C72319AE55670077EDBE /* practitioner-example-f006-rvdb.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "practitioner-example-f006-rvdb.json"; path = "generate/downloads/site/practitioner-example-f006-rvdb.json"; sourceTree = SOURCE_ROOT; };
+		EE67C72419AE55670077EDBE /* practitioner-example-f007-sh.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "practitioner-example-f007-sh.json"; path = "generate/downloads/site/practitioner-example-f007-sh.json"; sourceTree = SOURCE_ROOT; };
+		EE67C72519AE55670077EDBE /* practitioner-example-f201-ab.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "practitioner-example-f201-ab.json"; path = "generate/downloads/site/practitioner-example-f201-ab.json"; sourceTree = SOURCE_ROOT; };
+		EE67C72619AE55670077EDBE /* practitioner-example-f202-lm.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "practitioner-example-f202-lm.json"; path = "generate/downloads/site/practitioner-example-f202-lm.json"; sourceTree = SOURCE_ROOT; };
+		EE67C72719AE55670077EDBE /* practitioner-example-f203-jvg.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "practitioner-example-f203-jvg.json"; path = "generate/downloads/site/practitioner-example-f203-jvg.json"; sourceTree = SOURCE_ROOT; };
+		EE67C72819AE55670077EDBE /* practitioner-example-f204-ce.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "practitioner-example-f204-ce.json"; path = "generate/downloads/site/practitioner-example-f204-ce.json"; sourceTree = SOURCE_ROOT; };
+		EE67C72919AE55670077EDBE /* practitioner-example-xcda-author.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "practitioner-example-xcda-author.json"; path = "generate/downloads/site/practitioner-example-xcda-author.json"; sourceTree = SOURCE_ROOT; };
+		EE67C72A19AE55670077EDBE /* procedure-example-biopsy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "procedure-example-biopsy.json"; path = "generate/downloads/site/procedure-example-biopsy.json"; sourceTree = SOURCE_ROOT; };
+		EE67C72B19AE55670077EDBE /* procedure-example-f001-heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "procedure-example-f001-heart.json"; path = "generate/downloads/site/procedure-example-f001-heart.json"; sourceTree = SOURCE_ROOT; };
+		EE67C72C19AE55670077EDBE /* procedure-example-f002-lung.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "procedure-example-f002-lung.json"; path = "generate/downloads/site/procedure-example-f002-lung.json"; sourceTree = SOURCE_ROOT; };
+		EE67C72D19AE55670077EDBE /* procedure-example-f003-abscess.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "procedure-example-f003-abscess.json"; path = "generate/downloads/site/procedure-example-f003-abscess.json"; sourceTree = SOURCE_ROOT; };
+		EE67C72E19AE55670077EDBE /* procedure-example-f004-tracheotomy.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "procedure-example-f004-tracheotomy.json"; path = "generate/downloads/site/procedure-example-f004-tracheotomy.json"; sourceTree = SOURCE_ROOT; };
+		EE67C72F19AE55670077EDBE /* procedure-example-f201-tpf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "procedure-example-f201-tpf.json"; path = "generate/downloads/site/procedure-example-f201-tpf.json"; sourceTree = SOURCE_ROOT; };
+		EE67C73019AE55670077EDBE /* query-example-request.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "query-example-request.json"; path = "generate/downloads/site/query-example-request.json"; sourceTree = SOURCE_ROOT; };
+		EE67C73119AE55670077EDBE /* query-example-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "query-example-response.json"; path = "generate/downloads/site/query-example-response.json"; sourceTree = SOURCE_ROOT; };
+		EE67C73219AE55670077EDBE /* questionnaire-example-bluebook.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "questionnaire-example-bluebook.json"; path = "generate/downloads/site/questionnaire-example-bluebook.json"; sourceTree = SOURCE_ROOT; };
+		EE67C73319AE55670077EDBE /* questionnaire-example-f201-lifelines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "questionnaire-example-f201-lifelines.json"; path = "generate/downloads/site/questionnaire-example-f201-lifelines.json"; sourceTree = SOURCE_ROOT; };
+		EE67C73419AE55670077EDBE /* relatedperson-example-f001-sarah.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "relatedperson-example-f001-sarah.json"; path = "generate/downloads/site/relatedperson-example-f001-sarah.json"; sourceTree = SOURCE_ROOT; };
+		EE67C73519AE55670077EDBE /* relatedperson-example-f002-ariadne.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "relatedperson-example-f002-ariadne.json"; path = "generate/downloads/site/relatedperson-example-f002-ariadne.json"; sourceTree = SOURCE_ROOT; };
+		EE67C73619AE55670077EDBE /* relatedperson-example-peter.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "relatedperson-example-peter.json"; path = "generate/downloads/site/relatedperson-example-peter.json"; sourceTree = SOURCE_ROOT; };
+		EE67C73719AE55670077EDBE /* security-event-example-login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "security-event-example-login.json"; path = "generate/downloads/site/security-event-example-login.json"; sourceTree = SOURCE_ROOT; };
+		EE67C73819AE55670077EDBE /* security-event-example-logout.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "security-event-example-logout.json"; path = "generate/downloads/site/security-event-example-logout.json"; sourceTree = SOURCE_ROOT; };
+		EE67C73919AE55670077EDBE /* security-event-example-vread.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "security-event-example-vread.json"; path = "generate/downloads/site/security-event-example-vread.json"; sourceTree = SOURCE_ROOT; };
+		EE67C73A19AE55670077EDBE /* substance-example-f201-dust.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "substance-example-f201-dust.json"; path = "generate/downloads/site/substance-example-f201-dust.json"; sourceTree = SOURCE_ROOT; };
+		EE67C73B19AE55670077EDBE /* substance-example-f202-staphylococcus.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "substance-example-f202-staphylococcus.json"; path = "generate/downloads/site/substance-example-f202-staphylococcus.json"; sourceTree = SOURCE_ROOT; };
+		EE67C73C19AE55670077EDBE /* substance-example-f203-potassium.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "substance-example-f203-potassium.json"; path = "generate/downloads/site/substance-example-f203-potassium.json"; sourceTree = SOURCE_ROOT; };
+		EE67C73D19AE55670077EDBE /* valueset-list-example-codes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "valueset-list-example-codes.json"; path = "generate/downloads/site/valueset-list-example-codes.json"; sourceTree = SOURCE_ROOT; };
+		EE67C7B819AE57C10077EDBE /* MedicationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationTests.swift; sourceTree = "<group>"; };
+		EE67C7BA19AE5EBE0077EDBE /* ConditionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConditionTests.swift; sourceTree = "<group>"; };
+		EE67C7BC19AE84380077EDBE /* AllergyIntoleranceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllergyIntoleranceTests.swift; sourceTree = "<group>"; };
+		EE67C7BD19AE84380077EDBE /* CarePlanTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarePlanTests.swift; sourceTree = "<group>"; };
+		EE67C7BE19AE84380077EDBE /* ConceptMapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConceptMapTests.swift; sourceTree = "<group>"; };
+		EE67C7BF19AE84380077EDBE /* DeviceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTests.swift; sourceTree = "<group>"; };
+		EE67C7C019AE84380077EDBE /* DiagnosticReportTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiagnosticReportTests.swift; sourceTree = "<group>"; };
+		EE67C7C119AE84380077EDBE /* EncounterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncounterTests.swift; sourceTree = "<group>"; };
+		EE67C7C219AE84380077EDBE /* FamilyHistoryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyHistoryTests.swift; sourceTree = "<group>"; };
+		EE67C7C319AE84380077EDBE /* ListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTests.swift; sourceTree = "<group>"; };
+		EE67C7C419AE84380077EDBE /* LocationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
+		EE67C7C519AE84380077EDBE /* MediaTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaTests.swift; sourceTree = "<group>"; };
+		EE67C7C619AE84380077EDBE /* ObservationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservationTests.swift; sourceTree = "<group>"; };
+		EE67C7C719AE84380077EDBE /* OrderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTests.swift; sourceTree = "<group>"; };
+		EE67C7C819AE84380077EDBE /* OrganizationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationTests.swift; sourceTree = "<group>"; };
+		EE67C7C919AE84380077EDBE /* OtherTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherTests.swift; sourceTree = "<group>"; };
+		EE67C7CA19AE84380077EDBE /* PatientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientTests.swift; sourceTree = "<group>"; };
+		EE67C7CB19AE84380077EDBE /* PractitionerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PractitionerTests.swift; sourceTree = "<group>"; };
+		EE67C7CC19AE84380077EDBE /* ProcedureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcedureTests.swift; sourceTree = "<group>"; };
+		EE67C7CD19AE84380077EDBE /* QuestionnaireTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnaireTests.swift; sourceTree = "<group>"; };
+		EE67C7CE19AE84380077EDBE /* RelatedPersonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelatedPersonTests.swift; sourceTree = "<group>"; };
+		EE67C7CF19AE84380077EDBE /* SecurityEventTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityEventTests.swift; sourceTree = "<group>"; };
+		EE67C7D019AE84380077EDBE /* SubstanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubstanceTests.swift; sourceTree = "<group>"; };
+		EE67C7D119AE84380077EDBE /* ValueSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueSetTests.swift; sourceTree = "<group>"; };
 		EE684C1E19A789BA00B5A2C0 /* SwiftFHIR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftFHIR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE684C2219A789BA00B5A2C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE684C2319A789BA00B5A2C0 /* SwiftFHIR.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftFHIR.h; sourceTree = "<group>"; };
@@ -181,6 +472,7 @@
 		EEEB096419AD1D5F00C324FC /* Distance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distance.swift; sourceTree = "<group>"; };
 		EEEB096519AD1D5F00C324FC /* Duration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Duration.swift; sourceTree = "<group>"; };
 		EEEB096A19AD1D7300C324FC /* Money.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Money.swift; sourceTree = "<group>"; };
+		EEEB096F19AD248700C324FC /* MedicationPrescriptionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationPrescriptionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +528,9 @@
 			children = (
 				EE684C2C19A789BA00B5A2C0 /* Info.plist */,
 				EE684CCE19A7CEF000B5A2C0 /* ExtensionsTest.swift */,
+				EE67C6C419AE1E720077EDBE /* FHIRModelTestCase.swift */,
+				EEEB096E19AD248700C324FC /* ModelTests */,
+				EEEB096C19AD248700C324FC /* JSON */,
 			);
 			path = SwiftFHIRTests;
 			sourceTree = "<group>";
@@ -328,6 +623,165 @@
 				EE684C8419A78AEE00B5A2C0 /* ValueSet.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EEEB096C19AD248700C324FC /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				EE67C6C619AE55670077EDBE /* allergyintolerance-example-dust-f201.json */,
+				EE67C6C719AE55670077EDBE /* careplan-example-f001-heart.json */,
+				EE67C6C819AE55670077EDBE /* careplan-example-f002-lung.json */,
+				EE67C6C919AE55670077EDBE /* careplan-example-f003-pharynx.json */,
+				EE67C6CA19AE55670077EDBE /* careplan-example-f201-renal.json */,
+				EE67C6CB19AE55670077EDBE /* careplan-example-f202-malignancy.json */,
+				EE67C6CC19AE55670077EDBE /* careplan-example-f203-sepsis.json */,
+				EE67C6CD19AE55670077EDBE /* careplan-example-GPVisit.json */,
+				EE67C6CE19AE55670077EDBE /* careplan-example-integrated.json */,
+				EE67C6CF19AE55670077EDBE /* careplan-example-pregnancy.json */,
+				EE67C6D019AE55670077EDBE /* conceptmap-example-specimen-type.json */,
+				EE67C6D119AE55670077EDBE /* condition-example-f001-heart.json */,
+				EE67C6D219AE55670077EDBE /* condition-example-f002-lung.json */,
+				EE67C6D319AE55670077EDBE /* condition-example-f003-abscess.json */,
+				EE67C6D419AE55670077EDBE /* condition-example-f201-fever.json */,
+				EE67C6D519AE55670077EDBE /* condition-example-f202-malignancy.json */,
+				EE67C6D619AE55670077EDBE /* condition-example-f203-sepsis.json */,
+				EE67C6D719AE55670077EDBE /* condition-example-f204-renal.json */,
+				EE67C6D819AE55670077EDBE /* condition-example-f205-infection.json */,
+				EE67C6D919AE55670077EDBE /* device-example-f001-feedingtube.json */,
+				EE67C6DA19AE55670077EDBE /* device-example-ihe-pcd.json */,
+				EE67C6DB19AE55670077EDBE /* diagnosticreport-example-dxa.json */,
+				EE67C6DC19AE55670077EDBE /* diagnosticreport-example-f001-bloodexam.json */,
+				EE67C6DD19AE55670077EDBE /* diagnosticreport-example-f201-brainct.json */,
+				EE67C6DE19AE55670077EDBE /* diagnosticreport-example-f202-bloodculture.json */,
+				EE67C6DF19AE55670077EDBE /* diagnosticreport-example-lipids.json */,
+				EE67C6E019AE55670077EDBE /* document-example-dischargesummary.json */,
+				EE67C6E119AE55670077EDBE /* encounter-example-f001-heart.json */,
+				EE67C6E219AE55670077EDBE /* encounter-example-f002-lung.json */,
+				EE67C6E319AE55670077EDBE /* encounter-example-f003-abscess.json */,
+				EE67C6E419AE55670077EDBE /* encounter-example-f201-20130404.json */,
+				EE67C6E519AE55670077EDBE /* encounter-example-f202-20130128.json */,
+				EE67C6E619AE55670077EDBE /* encounter-example-f203-20130311.json */,
+				EE67C6E719AE55670077EDBE /* familyhistory-example-f201-roel.json */,
+				EE67C6E819AE55670077EDBE /* familyhistory-example-mother.json */,
+				EE67C6E919AE55670077EDBE /* list-example-empty.json */,
+				EE67C6EA19AE55670077EDBE /* list-example-medlist.json */,
+				EE67C6EB19AE55670077EDBE /* location-example-room.json */,
+				EE67C6EC19AE55670077EDBE /* media-example-dicom.json */,
+				EE67C6ED19AE55670077EDBE /* medication-example-f001-combivent.json */,
+				EE67C6EE19AE55670077EDBE /* medication-example-f002-crestor.json */,
+				EE67C6EF19AE55670077EDBE /* medication-example-f003-tolbutamide.json */,
+				EE67C6F019AE55670077EDBE /* medication-example-f004-metoprolol.json */,
+				EE67C6F119AE55670077EDBE /* medication-example-f005-enalapril.json */,
+				EE67C6F219AE55670077EDBE /* medication-example-f201-salmeterol.json */,
+				EE67C6F319AE55670077EDBE /* medication-example-f202-flucloxacilline.json */,
+				EE67C6F419AE55670077EDBE /* medication-example-f203-paracetamol.json */,
+				EE67C6F519AE55670077EDBE /* medicationprescription-example-f001-combivent.json */,
+				EE67C6F619AE55670077EDBE /* medicationprescription-example-f002-crestor.json */,
+				EE67C6F719AE55670077EDBE /* medicationprescription-example-f003-tolbutamide.json */,
+				EE67C6F819AE55670077EDBE /* medicationprescription-example-f004-metoprolol.json */,
+				EE67C6F919AE55670077EDBE /* medicationprescription-example-f005-enalapril.json */,
+				EE67C6FA19AE55670077EDBE /* medicationprescription-example-f201-salmeterol.json */,
+				EE67C6FB19AE55670077EDBE /* medicationprescription-example-f202-flucloxacilline.json */,
+				EE67C6FC19AE55670077EDBE /* medicationprescription-example-f203-paracetamol.json */,
+				EE67C6FD19AE55670077EDBE /* observation-example-bloodpressure.json */,
+				EE67C6FE19AE55670077EDBE /* observation-example-f001-glucose.json */,
+				EE67C6FF19AE55670077EDBE /* observation-example-f002-excess.json */,
+				EE67C70019AE55670077EDBE /* observation-example-f003-co2.json */,
+				EE67C70119AE55670077EDBE /* observation-example-f004-hemoglobin.json */,
+				EE67C70219AE55670077EDBE /* observation-example-f005-hemoglobin.json */,
+				EE67C70319AE55670077EDBE /* observation-example-f201-bmi.json */,
+				EE67C70419AE55670077EDBE /* observation-example-f202-temperature.json */,
+				EE67C70519AE55670077EDBE /* observation-example-f203-bicarbonate.json */,
+				EE67C70619AE55670077EDBE /* observation-example-f204-creatinine.json */,
+				EE67C70719AE55670077EDBE /* observation-example-f205-egfr.json */,
+				EE67C70819AE55670077EDBE /* observation-example-f206-staphylococcus.json */,
+				EE67C70919AE55670077EDBE /* order-example-f201-physiotherapy.json */,
+				EE67C70A19AE55670077EDBE /* organization-example-f001-burgers.json */,
+				EE67C70B19AE55670077EDBE /* organization-example-f002-burgers-card.json */,
+				EE67C70C19AE55670077EDBE /* organization-example-f003-burgers-ENT.json */,
+				EE67C70D19AE55670077EDBE /* organization-example-f201-aumc.json */,
+				EE67C70E19AE55670077EDBE /* organization-example-f203-bumc.json */,
+				EE67C70F19AE55670077EDBE /* organization-example-gastro.json */,
+				EE67C71019AE55670077EDBE /* organization-example-good-health-care.json */,
+				EE67C71119AE55670077EDBE /* organization-example-insurer.json */,
+				EE67C71219AE55670077EDBE /* organization-example-lab.json */,
+				EE67C71319AE55670077EDBE /* other-example-narrative.json */,
+				EE67C71419AE55670077EDBE /* patient-example-a.json */,
+				EE67C71519AE55670077EDBE /* patient-example-animal.json */,
+				EE67C71619AE55670077EDBE /* patient-example-b.json */,
+				EE67C71719AE55670077EDBE /* patient-example-dicom.json */,
+				EE67C71819AE55670077EDBE /* patient-example-f001-pieter.json */,
+				EE67C71919AE55670077EDBE /* patient-example-f201-roel.json */,
+				EE67C71A19AE55670077EDBE /* patient-example-ihe-pcd.json */,
+				EE67C71B19AE55670077EDBE /* patient-example-us-extensions.json */,
+				EE67C71C19AE55670077EDBE /* patient-example-xcda.json */,
+				EE67C71D19AE55670077EDBE /* patient-example-xds.json */,
+				EE67C71E19AE55670077EDBE /* practitioner-example-f001-evdb.json */,
+				EE67C71F19AE55670077EDBE /* practitioner-example-f002-pv.json */,
+				EE67C72019AE55670077EDBE /* practitioner-example-f003-mv.json */,
+				EE67C72119AE55670077EDBE /* practitioner-example-f004-rb.json */,
+				EE67C72219AE55670077EDBE /* practitioner-example-f005-al.json */,
+				EE67C72319AE55670077EDBE /* practitioner-example-f006-rvdb.json */,
+				EE67C72419AE55670077EDBE /* practitioner-example-f007-sh.json */,
+				EE67C72519AE55670077EDBE /* practitioner-example-f201-ab.json */,
+				EE67C72619AE55670077EDBE /* practitioner-example-f202-lm.json */,
+				EE67C72719AE55670077EDBE /* practitioner-example-f203-jvg.json */,
+				EE67C72819AE55670077EDBE /* practitioner-example-f204-ce.json */,
+				EE67C72919AE55670077EDBE /* practitioner-example-xcda-author.json */,
+				EE67C72A19AE55670077EDBE /* procedure-example-biopsy.json */,
+				EE67C72B19AE55670077EDBE /* procedure-example-f001-heart.json */,
+				EE67C72C19AE55670077EDBE /* procedure-example-f002-lung.json */,
+				EE67C72D19AE55670077EDBE /* procedure-example-f003-abscess.json */,
+				EE67C72E19AE55670077EDBE /* procedure-example-f004-tracheotomy.json */,
+				EE67C72F19AE55670077EDBE /* procedure-example-f201-tpf.json */,
+				EE67C73019AE55670077EDBE /* query-example-request.json */,
+				EE67C73119AE55670077EDBE /* query-example-response.json */,
+				EE67C73219AE55670077EDBE /* questionnaire-example-bluebook.json */,
+				EE67C73319AE55670077EDBE /* questionnaire-example-f201-lifelines.json */,
+				EE67C73419AE55670077EDBE /* relatedperson-example-f001-sarah.json */,
+				EE67C73519AE55670077EDBE /* relatedperson-example-f002-ariadne.json */,
+				EE67C73619AE55670077EDBE /* relatedperson-example-peter.json */,
+				EE67C73719AE55670077EDBE /* security-event-example-login.json */,
+				EE67C73819AE55670077EDBE /* security-event-example-logout.json */,
+				EE67C73919AE55670077EDBE /* security-event-example-vread.json */,
+				EE67C73A19AE55670077EDBE /* substance-example-f201-dust.json */,
+				EE67C73B19AE55670077EDBE /* substance-example-f202-staphylococcus.json */,
+				EE67C73C19AE55670077EDBE /* substance-example-f203-potassium.json */,
+				EE67C73D19AE55670077EDBE /* valueset-list-example-codes.json */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		EEEB096E19AD248700C324FC /* ModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				EE67C7BC19AE84380077EDBE /* AllergyIntoleranceTests.swift */,
+				EE67C7BD19AE84380077EDBE /* CarePlanTests.swift */,
+				EE67C7BE19AE84380077EDBE /* ConceptMapTests.swift */,
+				EE67C7BF19AE84380077EDBE /* DeviceTests.swift */,
+				EE67C7C019AE84380077EDBE /* DiagnosticReportTests.swift */,
+				EE67C7C119AE84380077EDBE /* EncounterTests.swift */,
+				EE67C7C219AE84380077EDBE /* FamilyHistoryTests.swift */,
+				EE67C7C319AE84380077EDBE /* ListTests.swift */,
+				EE67C7C419AE84380077EDBE /* LocationTests.swift */,
+				EE67C7C519AE84380077EDBE /* MediaTests.swift */,
+				EE67C7C619AE84380077EDBE /* ObservationTests.swift */,
+				EE67C7C719AE84380077EDBE /* OrderTests.swift */,
+				EE67C7C819AE84380077EDBE /* OrganizationTests.swift */,
+				EE67C7C919AE84380077EDBE /* OtherTests.swift */,
+				EE67C7CA19AE84380077EDBE /* PatientTests.swift */,
+				EE67C7CB19AE84380077EDBE /* PractitionerTests.swift */,
+				EE67C7CC19AE84380077EDBE /* ProcedureTests.swift */,
+				EE67C7CD19AE84380077EDBE /* QuestionnaireTests.swift */,
+				EE67C7CE19AE84380077EDBE /* RelatedPersonTests.swift */,
+				EE67C7CF19AE84380077EDBE /* SecurityEventTests.swift */,
+				EE67C7D019AE84380077EDBE /* SubstanceTests.swift */,
+				EE67C7D119AE84380077EDBE /* ValueSetTests.swift */,
+				EEEB096F19AD248700C324FC /* MedicationPrescriptionTests.swift */,
+				EE67C7BA19AE5EBE0077EDBE /* ConditionTests.swift */,
+				EE67C7B819AE57C10077EDBE /* MedicationTests.swift */,
+			);
+			path = ModelTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -427,6 +881,126 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE67C7A019AE55670077EDBE /* practitioner-example-f204-ce.json in Resources */,
+				EE67C79619AE55670077EDBE /* practitioner-example-f001-evdb.json in Resources */,
+				EE67C74D19AE55670077EDBE /* condition-example-f202-malignancy.json in Resources */,
+				EE67C78B19AE55670077EDBE /* other-example-narrative.json in Resources */,
+				EE67C75919AE55670077EDBE /* encounter-example-f001-heart.json in Resources */,
+				EE67C79A19AE55670077EDBE /* practitioner-example-f005-al.json in Resources */,
+				EE67C74719AE55670077EDBE /* careplan-example-pregnancy.json in Resources */,
+				EE67C7AD19AE55670077EDBE /* relatedperson-example-f002-ariadne.json in Resources */,
+				EE67C74B19AE55670077EDBE /* condition-example-f003-abscess.json in Resources */,
+				EE67C74119AE55670077EDBE /* careplan-example-f003-pharynx.json in Resources */,
+				EE67C74F19AE55670077EDBE /* condition-example-f204-renal.json in Resources */,
+				EE67C79819AE55670077EDBE /* practitioner-example-f003-mv.json in Resources */,
+				EE67C74519AE55670077EDBE /* careplan-example-GPVisit.json in Resources */,
+				EE67C74619AE55670077EDBE /* careplan-example-integrated.json in Resources */,
+				EE67C75019AE55670077EDBE /* condition-example-f205-infection.json in Resources */,
+				EE67C7AB19AE55670077EDBE /* questionnaire-example-f201-lifelines.json in Resources */,
+				EE67C75C19AE55670077EDBE /* encounter-example-f201-20130404.json in Resources */,
+				EE67C7A819AE55670077EDBE /* query-example-request.json in Resources */,
+				EE67C74819AE55670077EDBE /* conceptmap-example-specimen-type.json in Resources */,
+				EE67C78619AE55670077EDBE /* organization-example-f203-bumc.json in Resources */,
+				EE67C7B519AE55670077EDBE /* valueset-list-example-codes.json in Resources */,
+				EE67C75319AE55670077EDBE /* diagnosticreport-example-dxa.json in Resources */,
+				EE67C75419AE55670077EDBE /* diagnosticreport-example-f001-bloodexam.json in Resources */,
+				EE67C7B219AE55670077EDBE /* substance-example-f201-dust.json in Resources */,
+				EE67C77E19AE55670077EDBE /* observation-example-f204-creatinine.json in Resources */,
+				EE67C79E19AE55670077EDBE /* practitioner-example-f202-lm.json in Resources */,
+				EE67C79719AE55670077EDBE /* practitioner-example-f002-pv.json in Resources */,
+				EE67C78D19AE55670077EDBE /* patient-example-animal.json in Resources */,
+				EE67C79B19AE55670077EDBE /* practitioner-example-f006-rvdb.json in Resources */,
+				EE67C73F19AE55670077EDBE /* careplan-example-f001-heart.json in Resources */,
+				EE67C77219AE55670077EDBE /* medicationprescription-example-f201-salmeterol.json in Resources */,
+				EE67C76E19AE55670077EDBE /* medicationprescription-example-f002-crestor.json in Resources */,
+				EE67C78119AE55670077EDBE /* order-example-f201-physiotherapy.json in Resources */,
+				EE67C7AA19AE55670077EDBE /* questionnaire-example-bluebook.json in Resources */,
+				EE67C77D19AE55670077EDBE /* observation-example-f203-bicarbonate.json in Resources */,
+				EE67C7B119AE55670077EDBE /* security-event-example-vread.json in Resources */,
+				EE67C7AF19AE55670077EDBE /* security-event-example-login.json in Resources */,
+				EE67C78F19AE55670077EDBE /* patient-example-dicom.json in Resources */,
+				EE67C74319AE55670077EDBE /* careplan-example-f202-malignancy.json in Resources */,
+				EE67C75119AE55670077EDBE /* device-example-f001-feedingtube.json in Resources */,
+				EE67C74E19AE55670077EDBE /* condition-example-f203-sepsis.json in Resources */,
+				EE67C76719AE55670077EDBE /* medication-example-f003-tolbutamide.json in Resources */,
+				EE67C79419AE55670077EDBE /* patient-example-xcda.json in Resources */,
+				EE67C78319AE55670077EDBE /* organization-example-f002-burgers-card.json in Resources */,
+				EE67C74419AE55670077EDBE /* careplan-example-f203-sepsis.json in Resources */,
+				EE67C76519AE55670077EDBE /* medication-example-f001-combivent.json in Resources */,
+				EE67C77619AE55670077EDBE /* observation-example-f001-glucose.json in Resources */,
+				EE67C79319AE55670077EDBE /* patient-example-us-extensions.json in Resources */,
+				EE67C77C19AE55670077EDBE /* observation-example-f202-temperature.json in Resources */,
+				EE67C7A219AE55670077EDBE /* procedure-example-biopsy.json in Resources */,
+				EE67C77119AE55670077EDBE /* medicationprescription-example-f005-enalapril.json in Resources */,
+				EE67C75219AE55670077EDBE /* device-example-ihe-pcd.json in Resources */,
+				EE67C78919AE55670077EDBE /* organization-example-insurer.json in Resources */,
+				EE67C74019AE55670077EDBE /* careplan-example-f002-lung.json in Resources */,
+				EE67C77F19AE55670077EDBE /* observation-example-f205-egfr.json in Resources */,
+				EE67C77419AE55670077EDBE /* medicationprescription-example-f203-paracetamol.json in Resources */,
+				EE67C74A19AE55670077EDBE /* condition-example-f002-lung.json in Resources */,
+				EE67C75B19AE55670077EDBE /* encounter-example-f003-abscess.json in Resources */,
+				EE67C74C19AE55670077EDBE /* condition-example-f201-fever.json in Resources */,
+				EE67C77819AE55670077EDBE /* observation-example-f003-co2.json in Resources */,
+				EE67C7A919AE55670077EDBE /* query-example-response.json in Resources */,
+				EE67C79119AE55670077EDBE /* patient-example-f201-roel.json in Resources */,
+				EE67C78219AE55670077EDBE /* organization-example-f001-burgers.json in Resources */,
+				EE67C76919AE55670077EDBE /* medication-example-f005-enalapril.json in Resources */,
+				EE67C7A319AE55670077EDBE /* procedure-example-f001-heart.json in Resources */,
+				EE67C78819AE55670077EDBE /* organization-example-good-health-care.json in Resources */,
+				EE67C78019AE55670077EDBE /* observation-example-f206-staphylococcus.json in Resources */,
+				EE67C78419AE55670077EDBE /* organization-example-f003-burgers-ENT.json in Resources */,
+				EE67C79C19AE55670077EDBE /* practitioner-example-f007-sh.json in Resources */,
+				EE67C75E19AE55670077EDBE /* encounter-example-f203-20130311.json in Resources */,
+				EE67C77A19AE55670077EDBE /* observation-example-f005-hemoglobin.json in Resources */,
+				EE67C7B319AE55670077EDBE /* substance-example-f202-staphylococcus.json in Resources */,
+				EE67C79919AE55670077EDBE /* practitioner-example-f004-rb.json in Resources */,
+				EE67C78519AE55670077EDBE /* organization-example-f201-aumc.json in Resources */,
+				EE67C7A519AE55670077EDBE /* procedure-example-f003-abscess.json in Resources */,
+				EE67C76A19AE55670077EDBE /* medication-example-f201-salmeterol.json in Resources */,
+				EE67C75A19AE55670077EDBE /* encounter-example-f002-lung.json in Resources */,
+				EE67C75519AE55670077EDBE /* diagnosticreport-example-f201-brainct.json in Resources */,
+				EE67C76319AE55670077EDBE /* location-example-room.json in Resources */,
+				EE67C76219AE55670077EDBE /* list-example-medlist.json in Resources */,
+				EE67C79519AE55670077EDBE /* patient-example-xds.json in Resources */,
+				EE67C79019AE55670077EDBE /* patient-example-f001-pieter.json in Resources */,
+				EE67C7A119AE55670077EDBE /* practitioner-example-xcda-author.json in Resources */,
+				EE67C7AC19AE55670077EDBE /* relatedperson-example-f001-sarah.json in Resources */,
+				EE67C77719AE55670077EDBE /* observation-example-f002-excess.json in Resources */,
+				EE67C74219AE55670077EDBE /* careplan-example-f201-renal.json in Resources */,
+				EE67C78E19AE55670077EDBE /* patient-example-b.json in Resources */,
+				EE67C7A719AE55670077EDBE /* procedure-example-f201-tpf.json in Resources */,
+				EE67C75D19AE55670077EDBE /* encounter-example-f202-20130128.json in Resources */,
+				EE67C77919AE55670077EDBE /* observation-example-f004-hemoglobin.json in Resources */,
+				EE67C76D19AE55670077EDBE /* medicationprescription-example-f001-combivent.json in Resources */,
+				EE67C76619AE55670077EDBE /* medication-example-f002-crestor.json in Resources */,
+				EE67C76C19AE55670077EDBE /* medication-example-f203-paracetamol.json in Resources */,
+				EE67C77319AE55670077EDBE /* medicationprescription-example-f202-flucloxacilline.json in Resources */,
+				EE67C79219AE55670077EDBE /* patient-example-ihe-pcd.json in Resources */,
+				EE67C75819AE55670077EDBE /* document-example-dischargesummary.json in Resources */,
+				EE67C7B419AE55670077EDBE /* substance-example-f203-potassium.json in Resources */,
+				EE67C73E19AE55670077EDBE /* allergyintolerance-example-dust-f201.json in Resources */,
+				EE67C75F19AE55670077EDBE /* familyhistory-example-f201-roel.json in Resources */,
+				EE67C76419AE55670077EDBE /* media-example-dicom.json in Resources */,
+				EE67C7A619AE55670077EDBE /* procedure-example-f004-tracheotomy.json in Resources */,
+				EE67C7AE19AE55670077EDBE /* relatedperson-example-peter.json in Resources */,
+				EE67C76119AE55670077EDBE /* list-example-empty.json in Resources */,
+				EE67C74919AE55670077EDBE /* condition-example-f001-heart.json in Resources */,
+				EE67C75719AE55670077EDBE /* diagnosticreport-example-lipids.json in Resources */,
+				EE67C78719AE55670077EDBE /* organization-example-gastro.json in Resources */,
+				EE67C76F19AE55670077EDBE /* medicationprescription-example-f003-tolbutamide.json in Resources */,
+				EE67C7A419AE55670077EDBE /* procedure-example-f002-lung.json in Resources */,
+				EE67C79F19AE55670077EDBE /* practitioner-example-f203-jvg.json in Resources */,
+				EE67C79D19AE55670077EDBE /* practitioner-example-f201-ab.json in Resources */,
+				EE67C77519AE55670077EDBE /* observation-example-bloodpressure.json in Resources */,
+				EE67C76019AE55670077EDBE /* familyhistory-example-mother.json in Resources */,
+				EE67C77019AE55670077EDBE /* medicationprescription-example-f004-metoprolol.json in Resources */,
+				EE67C78C19AE55670077EDBE /* patient-example-a.json in Resources */,
+				EE67C78A19AE55670077EDBE /* organization-example-lab.json in Resources */,
+				EE67C76B19AE55670077EDBE /* medication-example-f202-flucloxacilline.json in Resources */,
+				EE67C76819AE55670077EDBE /* medication-example-f004-metoprolol.json in Resources */,
+				EE67C7B019AE55670077EDBE /* security-event-example-logout.json in Resources */,
+				EE67C75619AE55670077EDBE /* diagnosticreport-example-f202-bloodculture.json in Resources */,
+				EE67C77B19AE55670077EDBE /* observation-example-f201-bmi.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,7 +1094,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE67C7DC19AE84380077EDBE /* ObservationTests.swift in Sources */,
+				EE67C7B919AE57C10077EDBE /* MedicationTests.swift in Sources */,
+				EE67C7DB19AE84380077EDBE /* MediaTests.swift in Sources */,
+				EE67C7DF19AE84380077EDBE /* OtherTests.swift in Sources */,
+				EE67C7E119AE84380077EDBE /* PractitionerTests.swift in Sources */,
+				EEEB097119AD248700C324FC /* MedicationPrescriptionTests.swift in Sources */,
 				EE684CCF19A7CEF000B5A2C0 /* ExtensionsTest.swift in Sources */,
+				EE67C7E719AE84380077EDBE /* ValueSetTests.swift in Sources */,
+				EE67C7D219AE84380077EDBE /* AllergyIntoleranceTests.swift in Sources */,
+				EE67C7DA19AE84380077EDBE /* LocationTests.swift in Sources */,
+				EE67C7D919AE84380077EDBE /* ListTests.swift in Sources */,
+				EE67C7E319AE84380077EDBE /* QuestionnaireTests.swift in Sources */,
+				EE67C7E019AE84380077EDBE /* PatientTests.swift in Sources */,
+				EE67C7BB19AE5EBE0077EDBE /* ConditionTests.swift in Sources */,
+				EE67C7D419AE84380077EDBE /* ConceptMapTests.swift in Sources */,
+				EE67C7E519AE84380077EDBE /* SecurityEventTests.swift in Sources */,
+				EE67C7D819AE84380077EDBE /* FamilyHistoryTests.swift in Sources */,
+				EE67C7D719AE84380077EDBE /* EncounterTests.swift in Sources */,
+				EE67C7DD19AE84380077EDBE /* OrderTests.swift in Sources */,
+				EE67C7D619AE84380077EDBE /* DiagnosticReportTests.swift in Sources */,
+				EE67C7DE19AE84380077EDBE /* OrganizationTests.swift in Sources */,
+				EE67C6C519AE1E720077EDBE /* FHIRModelTestCase.swift in Sources */,
+				EE67C7E219AE84380077EDBE /* ProcedureTests.swift in Sources */,
+				EE67C7D319AE84380077EDBE /* CarePlanTests.swift in Sources */,
+				EE67C7E419AE84380077EDBE /* RelatedPersonTests.swift in Sources */,
+				EE67C7E619AE84380077EDBE /* SubstanceTests.swift in Sources */,
+				EE67C7D519AE84380077EDBE /* DeviceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

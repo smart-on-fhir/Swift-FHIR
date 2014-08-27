@@ -2,7 +2,7 @@
 //  Order.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (order.profile.json) on 2014-08-26.
+//  Generated from FHIR 0.0.81.2382 (order.profile.json) on 2014-08-27.
 //  Copyright (c) 2014 SMART Platforms. All rights reserved.
 //
 
@@ -73,11 +73,11 @@ public class Order: FHIRResource
 	public var reasonCodeableConcept: CodeableConcept?
 	
 	/** Text - why the order was made */
-	public var reasonResourceReference: FHIRElement? {
-		get { return resolveReference("reasonResourceReference") }
+	public var reasonResource: FHIRElement? {
+		get { return resolveReference("reasonResource") }
 		set {
 			if nil != newValue {
-				didSetReference(newValue!, name: "reasonResourceReference")
+				didSetReference(newValue!, name: "reasonResource")
 			}
 		}
 	}
@@ -136,8 +136,8 @@ public class Order: FHIRResource
 			if let val = js["reasonCodeableConcept"] as? NSDictionary {
 				self.reasonCodeableConcept = CodeableConcept(json: val)
 			}
-			if let val = js["reasonResourceReference"] as? NSDictionary {
-				self.reasonResourceReference = ResourceReference(json: val)
+			if let val = js["reasonResource"] as? NSDictionary {
+				self.reasonResource = FHIRResource(json: val)
 			}
 			if let val = js["authority"] as? NSDictionary {
 				self.authority = ResourceReference(json: val)

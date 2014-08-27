@@ -15,6 +15,11 @@ from jinja2 import Environment, PackageLoader
 
 url_spec = 'http://hl7.org/documentcenter/public/standards/FHIR/fhir-spec.zip'
 cache = 'downloads'
+loglevel = 0
+write_classes = False
+write_factory = False
+write_searchparams = False
+write_unittests = True
 
 classmap = {
 	'Structure': 'FHIRElement',
@@ -69,7 +74,6 @@ skip_properties = [
 ]
 
 jinjaenv = Environment(loader=PackageLoader('generate', '.'))
-loglevel = 0
 
 def log1(*logstring):
 	if loglevel > 0:
@@ -127,18 +131,26 @@ def parse(path):
 	}
 	
 	# parse profiles
+	all_classes = {}
 	factories = set()
 	search_params = set()
 	in_profiles = {}
 	for prof in glob.glob(os.path.join(path, '*.profile.json')):
-		profile_name, srch, supp = process_profile(prof, info)
+		profile_name, classes, srch_prms, supp_profs = process_profile(prof, info)
 		
 		if profile_name is not None:
 			factories.add(profile_name)
+			for klass in classes:
+				cn = klass.get('className')
+				assert(cn is not None)
+				if cn in all_classes:
+					log1("xxx>  Already have class {}".format(cn))
+				else:
+					all_classes[cn] = klass
 		
-		if srch is not None:
-			search_params |= srch
-			for spp in supp:
+		if srch_prms is not None:
+			search_params |= srch_prms
+			for spp in supp_profs:
 				if spp in in_profiles:
 					in_profiles[spp].add(profile_name)
 				else:
@@ -149,13 +161,17 @@ def parse(path):
 	
 	# process search parameters
 	process_search(search_params, in_profiles, info)
+	
+	# detect and process unit tests
+	process_unittests(path, all_classes, info)
 
 
 def process_profile(path, info):
 	""" Parse one profile file, render the Swift class and return possible
 	search parameters.
 	
-	:returns: A tuple with (profile-name, "name|original-name|type", "name")
+	:returns: A tuple with (profile-name, [found classes], "name|original-name|type", search-
+		param-list)
 	"""
 	assert(os.path.exists(path))
 	
@@ -170,7 +186,7 @@ def process_profile(path, info):
 	structure_arr = profile.get('structure')
 	if structure_arr is None or 0 == len(structure_arr):
 		print('xx>  {} has no structure'.format(path))
-		return None, None, None
+		return None, None, None, None
 	
 	info['filename'] = filename = os.path.basename(path)
 	requirements = profile.get('requirements')
@@ -203,8 +219,8 @@ def process_profile(path, info):
 	elements = structure.get('element', [])
 	
 	for element in elements:
-		path = element['path']
-		parts = path.split('.')
+		elem_path = element['path']
+		parts = elem_path.split('.')
 		classpath = '.'.join(parts[:-1]) if len(parts) > 1 else parts[0]
 		name = parts[-1]
 		
@@ -214,11 +230,11 @@ def process_profile(path, info):
 		
 		definition = element.get('definition')
 		if definition is None:
-			print('xx>  No definition for {}'.format(path))
+			print('xx>  No definition for {}'.format(elem_path))
 			continue
 		
 		k = mapping.get(classpath)
-		newklass = parse_elem(path, name, definition, k)
+		newklass = parse_elem(elem_path, name, definition, k)
 		
 		# element describes a new class
 		if newklass is not None:
@@ -226,7 +242,7 @@ def process_profile(path, info):
 			classes.append(newklass)
 			
 			# is this the resource description itself?
-			if path == main:
+			if elem_path == main:
 				newklass['resourceName'] = main
 				newklass['formal'] = _wrap(requirements)
 			
@@ -241,10 +257,11 @@ def process_profile(path, info):
 				break
 	
 	info['main'] = main
-	render({'info': info, 'classes': classes}, 'template-resource.swift')
+	if write_classes:
+		render({'info': info, 'classes': classes}, 'template-resource.swift')
 	
 	# get search params
-	srch = set()
+	search_params = set()
 	supported = set()
 	params = structure.get('searchParam', [])	# list of dictionaries with "name", "type" and "documentation"
 	for param in params:
@@ -254,17 +271,12 @@ def process_profile(path, info):
 			orig = name
 			name = re.sub(r'[^\w\d\-]', '', name)
 			if '-' in name:
-				i = 0
-				for n in name.split('-'):
-					if i > 0:
-						name += n[0].upper() + n[1:]
-					else:
-						name = n
-					i += 1
-			srch.add('{}|{}|{}'.format(name, orig, tp))
+				name = _camelCase(name, '-')
+			
+			search_params.add('{}|{}|{}'.format(name, orig, tp))
 			supported.add(name)
 	
-	return main, srch, supported
+	return main, classes, search_params, supported
 
 
 def parse_elem(path, name, definition, klass):
@@ -344,6 +356,10 @@ def process_factories(factories, info):
 	""" Renders a template which creates an extension to FHIRElement that has
 	a factory method with all FHIR resource types.
 	"""
+	if not write_factory:
+		log1("oo>  Skipping factory")
+		return
+	
 	data = {
 		'filename': 'FHIRElement+Factory.swift',
 		'info': info,
@@ -355,6 +371,10 @@ def process_factories(factories, info):
 def process_search(params, in_profiles, info):
 	""" Processes and renders the FHIR search params extension.
 	"""
+	if not write_searchparams:
+		log1("oo>  Skipping search parameters")
+		return
+	
 	extensions = []
 	dupes = set()
 	for param in sorted(params):
@@ -376,7 +396,119 @@ def process_search(params, in_profiles, info):
 	render(data, 'template-searchparams.swift')
 
 
-def render(data, template):
+def process_unittests(path, classes, info):
+	""" Finds all example JSON files and uses them for unit test generation.
+	Test files use the template "template-unittest.swift" and dump it into
+	../SwiftFHIRTests/ModelTests.
+	"""
+	all_tests = {}
+	for utest in glob.glob(os.path.join(path, '*-example-*.json')):
+		class_name, tests = process_unittest(utest, classes)
+		if class_name is not None:
+			test = {
+				'filename': os.path.basename(utest),
+				'tests': tests,
+			}
+			
+			if class_name in all_tests:
+				all_tests[class_name].append(test)
+			else:
+				all_tests[class_name] = [test]
+	
+	if write_unittests:
+		for klass, tests in all_tests.items():
+			data = {
+				'filename': '{}Tests.swift'.format(klass),
+				'info': info,
+				'class': klass,
+				'tests': tests,
+			}
+			render(data, 'template-unittest.swift', 'SwiftFHIRTests/ModelTests')
+	else:
+		log1('oo>  Not writing unit tests')
+
+
+def process_unittest(path, classes):
+	""" Process a unit test file at the given path with a given class.
+	
+	:returns: A tuple with (top-class-name, [test-dictionaries])
+	"""
+	utest = None
+	assert(os.path.exists(path))
+	with open(path, 'r') as handle:
+		utest = json.load(handle)
+	assert(utest != None)
+	
+	# find the class
+	className = utest.get('resourceType')
+	assert(className != None)
+	del utest['resourceType']
+	klass = classes.get(className)
+	if klass is None:
+		print('xx>  There is no class for "{}"'.format(className))
+		return None, None
+	
+	# gather properties and 
+	tests = process_unittest_properties(utest, klass, classes)
+	return className, tests
+
+
+def process_unittest_properties(utest, klass, classes, prefix=None):
+	""" Process one level of unit test properties interpreted for the given
+	class.
+	"""
+	assert(klass != None)
+	
+	props = {}
+	for cp in klass.get('properties', []):		# could cache this, but... lazy
+		props[cp['name']] = cp
+	
+	# loop top properties
+	tests = []
+	for key, val in utest.items():
+		prop = props.get(key)
+		if prop is None:
+			print('xxx>  Unknown property "{}" in unit test on {}'.format(key, klass.get('className')))
+		else:
+			propClass = prop['className']
+			path = u'{}.{}'.format(prefix, key) if prefix else key
+			
+			# property is an array
+			if list == type(val):
+				i = 0
+				for v in val:
+					subklass = classes.get(propClass)
+					if subklass is None:
+						print('xxx>  No class found for "{}"'.format(propClass))
+					else:
+						path = '{}![{}]'.format(path, i)
+						tests.extend(process_unittest_properties(v, subklass, classes, path))
+					i += 1
+			
+			# property is another element
+			elif dict == type(val):
+				subklass = classes.get(propClass)
+				if subklass is None:
+					print('xxx>  No class found for "{}"'.format(propClass))
+				else:
+					path = '{}!'.format(path)
+					tests.extend(process_unittest_properties(val, subklass, classes, path))
+						
+			# generate correct code for the respective type
+			elif 'String' == propClass:
+				tests.append({'path': path, 'expr': u'"{}"'.format(val.replace('"', '\\"'))})
+			elif 'Double' == propClass:
+				tests.append({'path': path, 'expr': val})
+			elif 'NSDate' == propClass:
+				tests.append({'path': path, 'expr': u'NSDate.dateFromISOString("{}")'.format(val)})
+			else:
+				print("xxx>  Don't know how to handle \"{}\":".format(key))
+				print(prop)
+	
+	return tests
+
+
+def render(data, template, path='Models'):
 	""" Render the given class data using the given Jinja2 template, writing
 	the output into 'Models'.
 	"""
@@ -388,9 +520,10 @@ def render(data, template):
 	else:
 		filename = data['info']['main'] + '.swift'
 	
-	with open(os.path.join('..', 'Models', filename), 'w') as handle:
+	with open(os.path.join('..', path, filename), 'w') as handle:
 		print('-->  Writing {}'.format(filename))
-		handle.write(template.render(data))
+		rendered = template.render(data)
+		handle.write(rendered.encode('utf-8'))
 
 
 def _wrap(text):
@@ -407,6 +540,25 @@ def _wrap(text):
 			lines.append('')
 	
 	return "\r\n".join(lines)
+
+
+def _camelCase(string, splitter='_'):
+	""" Turns a string into CamelCase form without changing the first part's
+	case.
+	"""
+	if not string:
+		return None
+	
+	name = ''
+	i = 0
+	for n in string.split(splitter):
+		if i > 0:
+			name += n[0].upper() + n[1:]
+		else:
+			name = n
+		i += 1
+	
+	return name
 
 
 if '__main__' == __name__:

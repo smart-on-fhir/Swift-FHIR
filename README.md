@@ -36,6 +36,8 @@ The `generate.py` script also has a few `TODO`s to point out unresolved issues.
 Class Generation
 ----------------
 
+Class generation is achieved with our [Python FHIR parser](https://github.com/smart-on-fhir/fhir-parser).
+
 ### Verbousness
 
 Swift is **statically typed** and introspection is _very_ limited at the time.

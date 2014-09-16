@@ -16,18 +16,41 @@ extension NSDate {
 	}
 	
 	public class func dateFromISOString(string: String) -> NSDate? {
-		let formatter = NSDateFormatter()
+		var date = isoDateTimeFormatter().dateFromString(string)
+		if nil == date {
+			date = isoDateFormatter().dateFromString(string)
+		}
+		
+		return date
+	}
+	
+	public func isoDateString() -> String {
+		return self.dynamicType.isoDateFormatter().stringFromDate(self)
+	}
+	
+	public func isoDateTimeString() -> String {
+		return self.dynamicType.isoDateTimeFormatter().stringFromDate(self)
+	}
+	
+	
+	// MARK: Date Formatter
+	
+	public class func isoDateTimeFormatter() -> NSDateFormatter {
+		let formatter = NSDateFormatter()							// class vars are not yet supported
 		formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 		formatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
 		formatter.calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
 		
-		var date = formatter.dateFromString(string)
-		if nil == date {
-			formatter.dateFormat = "yyyy-MM-dd"
-			date = formatter.dateFromString(string)
-		}
+		return formatter
+	}
+	
+	public class func isoDateFormatter() -> NSDateFormatter {
+		let formatter = NSDateFormatter()							// class vars are not yet supported
+		formatter.dateFormat = "yyyy-MM-dd"
+		formatter.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+		formatter.calendar = NSCalendar(calendarIdentifier: NSGregorianCalendar)
 		
-		return date
+		return formatter
 	}
 }
 

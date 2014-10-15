@@ -200,8 +200,7 @@ public class EncounterHospitalization: FHIRElement
 	/// Dietary restrictions for the patient
 	public var diet: CodeableConcept?
 	
-	/// The final diagnosis given a patient before release from the hospital after all testing, surgery, and workup are
-     *  complete
+	/// The final diagnosis given a patient before release from the hospital after all testing, surgery, and workup are complete
 	public var dischargeDiagnosis: FHIRReference<FHIRResource>?
 	
 	/// Category or kind of location after discharge

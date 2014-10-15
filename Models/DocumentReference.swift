@@ -90,9 +90,6 @@ public class DocumentReference: FHIRResource
 	/// Text summary of the resource, for human interpretation
 	public var text: Narrative?
 	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
-	
 	/// XDSDocumentEntry.typeCode
 	public var type: CodeableConcept?
 	

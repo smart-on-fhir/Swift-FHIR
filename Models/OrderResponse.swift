@@ -2,8 +2,8 @@
 //  OrderResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (orderresponse.profile.json) on 2014-08-27.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 (orderresponse.profile.json) on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Foundation
@@ -14,8 +14,8 @@ import Foundation
  *
  *  Scope and Usage The response to an order indicates the outcome of processing the order itself - whether it was
  *  accepted or rejected, or is still in process. The order response resource does not itself convey or represent
- *  information that arises as a result of performing the actual order, but it may have references to other
- *  resources that do have this information, in order to link between the original order and its outcome.
+ *  information that arises as a result of performing the actual order, but it may have references to other resources
+ *  that do have this information, in order to link between the original order and its outcome.
  */
 public class OrderResponse: FHIRResource
 {
@@ -23,106 +23,78 @@ public class OrderResponse: FHIRResource
 		get { return "OrderResponse" }
 	}
 	
-	/** Text summary of the resource, for human interpretation */
-	public var text: Narrative?
-	
-	/** Identifiers assigned to this order by the orderer or by the receiver */
-	public var identifier: [Identifier]?
-	
-	/** The order that this is a response to */
-	public var request: FHIRElement? {
-		get { return resolveReference("request") }
-		set {
-			if nil != newValue {
-				didSetReference(newValue!, name: "request")
-			}
-		}
-	}
-	
-	/** When the response was made */
-	public var date: NSDate?
-	
-	/** Who made the response */
-	public var who: FHIRElement? {
-		get { return resolveReference("who") }
-		set {
-			if nil != newValue {
-				didSetReference(newValue!, name: "who")
-			}
-		}
-	}
-	
-	/** If required by policy */
+	/// If required by policy
 	public var authorityCodeableConcept: CodeableConcept?
 	
-	/** If required by policy */
-	public var authorityResource: FHIRElement? {
-		get { return resolveReference("authorityResource") }
-		set {
-			if nil != newValue {
-				didSetReference(newValue!, name: "authorityResource")
-			}
-		}
-	}
+	/// If required by policy
+	public var authorityResource: FHIRReference<FHIRResource>?
 	
-	/** pending | review | rejected | error | accepted | cancelled | replaced | aborted | complete */
+	/// pending | review | rejected | error | accepted | cancelled | replaced | aborted | complete
 	public var code: String?
 	
-	/** Additional description of the response */
+	/// When the response was made
+	public var date: NSDate?
+	
+	/// Additional description of the response
 	public var description: String?
 	
-	/** Details of the outcome of performing the order */
-	public var fulfillment: [FHIRElement]? {
-		get { return resolveReferences("fulfillment") }
-		set {
-			if nil != newValue {
-				didSetReferences(newValue!, name: "fulfillment")
-			}
-		}
-	}
+	/// Details of the outcome of performing the order
+	public var fulfillment: [FHIRReference<FHIRResource>]?
 	
-	public convenience init(request: ResourceReference?, code: String?) {
+	/// Identifiers assigned to this order by the orderer or by the receiver
+	public var identifier: [Identifier]?
+	
+	/// The order that this is a response to
+	public var request: FHIRReference<Order>?
+	
+	/// Text summary of the resource, for human interpretation
+	public var text: Narrative?
+	
+	/// Who made the response
+	public var who: FHIRReference<Practitioner>?
+	
+	public convenience init(code: String?, request: FHIRReference<Order>?) {
 		self.init(json: nil)
-		if nil != request {
-			self.request = request
-		}
 		if nil != code {
 			self.code = code
+		}
+		if nil != request {
+			self.request = request
 		}
 	}	
 
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
-			}
-			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
-			}
-			if let val = js["request"] as? NSDictionary {
-				self.request = ResourceReference(json: val)
-			}
-			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
-			}
-			if let val = js["who"] as? NSDictionary {
-				self.who = ResourceReference(json: val)
-			}
 			if let val = js["authorityCodeableConcept"] as? NSDictionary {
 				self.authorityCodeableConcept = CodeableConcept(json: val)
 			}
 			if let val = js["authorityResource"] as? NSDictionary {
-				self.authorityResource = FHIRResource(json: val)
+				self.authorityResource = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["code"] as? String {
 				self.code = val
+			}
+			if let val = js["date"] as? String {
+				self.date = NSDate(json: val)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
 			}
 			if let val = js["fulfillment"] as? [NSDictionary] {
-				self.fulfillment = ResourceReference.from(val) as? [ResourceReference]
+				self.fulfillment = FHIRReference.from(val, owner: self)
+			}
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
+			}
+			if let val = js["request"] as? NSDictionary {
+				self.request = FHIRReference(json: val, owner: self)
+			}
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["who"] as? NSDictionary {
+				self.who = FHIRReference(json: val, owner: self)
 			}
 		}
 	}

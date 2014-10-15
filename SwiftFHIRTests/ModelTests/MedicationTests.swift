@@ -2,8 +2,8 @@
 //  MedicationTests.swift
 //  MedicationTests
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-09-16.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Cocoa
@@ -38,6 +38,8 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.product!.ingredient![0].amount!.numerator!.system!, NSURL(string: "http://unitsofmeasure.org"))	
 		XCTAssertEqual(inst!.product!.ingredient![0].amount!.numerator!.units!, "ml")
 		XCTAssertEqual(inst!.product!.ingredient![0].amount!.numerator!.value!, 100)	
+		XCTAssertEqual(inst!.product!.ingredient![0].item!.display!, "Combivent")	
+		XCTAssertEqual(inst!.product!.ingredient![0].item!.reference!, "Medication/f001")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>name</b>: Combivent\n      </p>\n      <p>\n        <b>code</b>: \n        <span title=\"Codes: {http://snomed.info/sct 320442002}\">Salbutamol+ipratropium bromide 100micrograms/20micrograms inhaler</span>\n      </p>\n      <p>\n        <b>isBrand</b>: true\n      </p>\n      <p>\n        <b>kind</b>: product\n      </p>\n      <blockquote>\n        <p>\n          <b>product</b>\n        </p>\n        <p>\n          <b>form</b>: \n          <span title=\"Codes: {http://snomed.info/sct 420317006}\">Inhaler (qualifier value)</span>\n        </p>\n        <h3>Ingredients</h3>\n        <table class=\"grid\">\n          <tr>\n            <td>\n              <b>Item</b>\n            </td>\n            <td>\n              <b>Amount</b>\n            </td>\n          </tr>\n          <tr>\n            <td>Combivent</td>\n            <td>100 ml/1 null</td>\n          </tr>\n        </table>\n      </blockquote>\n    </div>")	
 		XCTAssertEqual(inst!.text!.status!, "generated")
 	}
@@ -129,12 +131,14 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.product!.ingredient![0].amount!.numerator!.code!, "ug")
 		XCTAssertEqual(inst!.product!.ingredient![0].amount!.numerator!.system!, NSURL(string: "http://unitsofmeasure.org"))
 		XCTAssertEqual(inst!.product!.ingredient![0].amount!.numerator!.value!, 25)	
+		XCTAssertEqual(inst!.product!.ingredient![0].item!.display!, "flutacisone")	
 		XCTAssertEqual(inst!.product!.ingredient![1].amount!.denominator!.code!, "PUFF")
 		XCTAssertEqual(inst!.product!.ingredient![1].amount!.denominator!.system!, NSURL(string: "http://hl7.org/fhir/v3/orderableDrugForm"))
 		XCTAssertEqual(inst!.product!.ingredient![1].amount!.denominator!.value!, 1)	
 		XCTAssertEqual(inst!.product!.ingredient![1].amount!.numerator!.code!, "ug")
 		XCTAssertEqual(inst!.product!.ingredient![1].amount!.numerator!.system!, NSURL(string: "http://unitsofmeasure.org"))
 		XCTAssertEqual(inst!.product!.ingredient![1].amount!.numerator!.value!, 250)	
+		XCTAssertEqual(inst!.product!.ingredient![1].item!.display!, "salmeterol")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>name</b>: Salmeterol/fluticason\n      </p>\n      <p>\n        <b>code</b>: \n        <span title=\"Codes: {http://snomed.info/sct 411106009}\">25ug Flutacisone + 250ug Salmeterol</span>\n      </p>\n      <p>\n        <b>isBrand</b>: false\n      </p>\n      <p>\n        <b>kind</b>: product\n      </p>\n      <blockquote>\n        <p>\n          <b>product</b>\n        </p>\n        <p>\n          <b>form</b>: \n          <span title=\"Codes: {http://snomed.info/sct 421606006}\">Aerosol spray</span>\n        </p>\n        <h3>Ingredients</h3>\n        <table class=\"grid\">\n          <tr>\n            <td>\n              <b>Item</b>\n            </td>\n            <td>\n              <b>Amount</b>\n            </td>\n          </tr>\n          <tr>\n            <td>flutacisone</td>\n            <td>25 ug/1 PUFF</td>\n          </tr>\n          <tr>\n            <td>salmeterol</td>\n            <td>250 ug/1 PUFF</td>\n          </tr>\n        </table>\n      </blockquote>\n    </div>")	
 		XCTAssertEqual(inst!.text!.status!, "generated")
 	}

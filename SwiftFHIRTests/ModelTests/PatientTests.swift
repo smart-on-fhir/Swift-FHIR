@@ -2,8 +2,8 @@
 //  PatientTests.swift
 //  PatientTests
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-09-16.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Cocoa
@@ -25,6 +25,8 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertNotNil(inst, "Must have instantiated a Patient instance")
 	
 		XCTAssertTrue(inst!.active!)	
+		XCTAssertEqual(inst!.contact![0].organization!.display!, "Walt Disney Corporation")	
+		XCTAssertEqual(inst!.contact![0].organization!.reference!, "Organization/1")	
 		XCTAssertEqual(inst!.contact![0].relationship![0].coding![0].code!, "owner")
 		XCTAssertEqual(inst!.contact![0].relationship![0].coding![0].system!, NSURL(string: "http://hl7.org/fhir/patient-contact-relationship"))	
 		XCTAssertEqual(inst!.gender!.coding![0].code!, "M")	
@@ -34,7 +36,10 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:oid:0.1.2.3.4.5.6.7"))	
 		XCTAssertEqual(inst!.identifier![0].use!, "usual")	
 		XCTAssertEqual(inst!.identifier![0].value!, "654321")	
+		XCTAssertEqual(inst!.link![0].other!.reference!, "Patient/pat2")	
 		XCTAssertEqual(inst!.link![0].type!, "seealso")	
+		XCTAssertEqual(inst!.managingOrganization!.display!, "ACME Healthcare, Inc")	
+		XCTAssertEqual(inst!.managingOrganization!.reference!, "Organization/1")	
 		XCTAssertEqual(inst!.name![0].family![0], "Donald")	
 		XCTAssertEqual(inst!.name![0].given![0], "Duck")	
 		XCTAssertEqual(inst!.name![0].use!, "official")	
@@ -71,10 +76,12 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.contact![0].telecom![0].value!, "(03) 5555 6473")	
 		XCTAssertEqual(inst!.gender!.coding![0].code!, "F")
 		XCTAssertEqual(inst!.gender!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/AdministrativeGender"))	
+		XCTAssertEqual(inst!.identifier![0].assigner!.display!, "Maroondah City Council")	
 		XCTAssertEqual(inst!.identifier![0].label!, "Dog Tag")
 		XCTAssertEqual(inst!.identifier![0].period!.start!, NSDate.dateFromISOString("2010-05-31")!)
 		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.maroondah.vic.gov.au/AnimalRegFees.aspx"))	
 		XCTAssertEqual(inst!.identifier![0].value!, "1234123")	
+		XCTAssertEqual(inst!.managingOrganization!.display!, "Pete's Vetinary Services")	
 		XCTAssertEqual(inst!.name![0].given![0], "Kenzi")	
 		XCTAssertEqual(inst!.name![0].use!, "usual")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <table>\n        <tbody>\n          <tr>\n            <td>Id</td>\n            <td>Kenzi (Dog: Golden Retriever)</td>\n          </tr>\n          <tr>\n            <td>Owner</td>\n            <td>Peter Chalmers, 534 Erewhon, Pleasantville, Vic, 3999</td>\n          </tr>\n          <tr>\n            <td>Contacts</td>\n            <td>Work: (03) 5555 6473</td>\n          </tr>\n          <tr>\n            <td>Id</td>\n            <td>Dog Tag: 1234123 (Maroondah City Council)</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>")	
@@ -93,7 +100,10 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:oid:0.1.2.3.4.5.6.7"))	
 		XCTAssertEqual(inst!.identifier![0].use!, "usual")	
 		XCTAssertEqual(inst!.identifier![0].value!, "123456")	
+		XCTAssertEqual(inst!.link![0].other!.reference!, "Patient/pat1")	
 		XCTAssertEqual(inst!.link![0].type!, "seealso")	
+		XCTAssertEqual(inst!.managingOrganization!.display!, "ACME Healthcare, Inc")	
+		XCTAssertEqual(inst!.managingOrganization!.reference!, "Organization/1")	
 		XCTAssertEqual(inst!.name![0].family![0], "Donald")	
 		XCTAssertEqual(inst!.name![0].given![0], "Duck")	
 		XCTAssertEqual(inst!.name![0].given![1], "D")	
@@ -115,6 +125,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.gender!.coding![1].system!, NSURL(string: "http://nema.org/examples/gender"))
 		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://nema.org/examples/patients"))	
 		XCTAssertEqual(inst!.identifier![0].value!, "MINT1234")	
+		XCTAssertEqual(inst!.managingOrganization!.reference!, "Organization/1")	
 		XCTAssertEqual(inst!.name![0].family![0], "MINT_TEST")	
 		XCTAssertEqual(inst!.text!.div!, "<div> Patient MINT_TEST, ID = MINT1234. Age = 56y, Size =\n      1.83m, Weight = 72.58kg </div>")	
 		XCTAssertEqual(inst!.text!.status!, "generated")
@@ -152,6 +163,8 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.identifier![0].value!, "738472983")
 		XCTAssertEqual(inst!.identifier![1].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.6.3"))	
 		XCTAssertEqual(inst!.identifier![1].use!, "usual")	
+		XCTAssertEqual(inst!.managingOrganization!.display!, "Burgers University Medical Centre")	
+		XCTAssertEqual(inst!.managingOrganization!.reference!, "Organization/f001")	
 		XCTAssertEqual(inst!.maritalStatus!.coding![0].code!, "M")	
 		XCTAssertEqual(inst!.maritalStatus!.coding![0].display!, "Married")
 		XCTAssertEqual(inst!.maritalStatus!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/MaritalStatus"))	
@@ -210,6 +223,8 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.identifier![1].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.6.3"))	
 		XCTAssertEqual(inst!.identifier![1].use!, "official")	
 		XCTAssertEqual(inst!.identifier![1].value!, "123456789")	
+		XCTAssertEqual(inst!.managingOrganization!.display!, "AUMC")	
+		XCTAssertEqual(inst!.managingOrganization!.reference!, "Organization/f201")	
 		XCTAssertEqual(inst!.maritalStatus!.coding![0].code!, "36629006")	
 		XCTAssertEqual(inst!.maritalStatus!.coding![0].display!, "Legally married")
 		XCTAssertEqual(inst!.maritalStatus!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
@@ -277,6 +292,8 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.19.5"))	
 		XCTAssertEqual(inst!.identifier![0].use!, "usual")	
 		XCTAssertEqual(inst!.identifier![0].value!, "12345")	
+		XCTAssertEqual(inst!.managingOrganization!.display!, "Good Health Clinic")	
+		XCTAssertEqual(inst!.managingOrganization!.reference!, "Organization/2.16.840.1.113883.19.5")	
 		XCTAssertEqual(inst!.name![0].family![0], "Levin")	
 		XCTAssertEqual(inst!.name![0].given![0], "Henry")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>Henry Levin the 7th</p>\n    </div>")	
@@ -300,6 +317,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:oid:1.2.3.4.5"))	
 		XCTAssertEqual(inst!.identifier![0].use!, "usual")	
 		XCTAssertEqual(inst!.identifier![0].value!, "89765a87b")	
+		XCTAssertEqual(inst!.managingOrganization!.reference!, "Organization/2")	
 		XCTAssertEqual(inst!.name![0].family![0], "Doe")	
 		XCTAssertEqual(inst!.name![0].given![0], "John")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>Patient John Doe, M, 27-May 1956. ID: 89765a87b</p>\n    </div>")	

@@ -2,8 +2,8 @@
 //  SecurityEventTests.swift
 //  SecurityEventTests
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-09-16.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Cocoa
@@ -90,6 +90,7 @@ class SecurityEventTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.event!.type!.coding![0].display!, "Restful Operation")
 		XCTAssertEqual(inst!.event!.type!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/security-event-type"))	
 		XCTAssertEqual(inst!.object![0].lifecycle!, "6")	
+		XCTAssertEqual(inst!.object![0].reference!.reference!, "Patient/example/history/1")	
 		XCTAssertEqual(inst!.object![0].type!, "2")	
 		XCTAssertEqual(inst!.participant![0].altId!, "601847123")	
 		XCTAssertEqual(inst!.participant![0].name!, "Grahame Grieve")

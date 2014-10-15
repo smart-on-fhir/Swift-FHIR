@@ -2,8 +2,8 @@
 //  ValueSetTests.swift
 //  ValueSetTests
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-09-16.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Cocoa

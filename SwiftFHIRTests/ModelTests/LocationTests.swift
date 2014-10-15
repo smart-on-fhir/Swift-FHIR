@@ -2,8 +2,8 @@
 //  LocationTests.swift
 //  LocationTests
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-09-16.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Cocoa
@@ -26,7 +26,9 @@ class LocationTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst!.description!, "Old South Wing, Neuro Radiology Operation Room 1 on second floor")	
 		XCTAssertEqual(inst!.identifier!.value!, "B1-S.F2.1.00")	
+		XCTAssertEqual(inst!.managingOrganization!.reference!, "Organization/f001")	
 		XCTAssertEqual(inst!.name!, "South Wing Neuro OR 1")	
+		XCTAssertEqual(inst!.partOf!.reference!, "Location/1")	
 		XCTAssertEqual(inst!.physicalType!.coding![0].code!, "ro")	
 		XCTAssertEqual(inst!.physicalType!.coding![0].display!, "Room")
 		XCTAssertEqual(inst!.physicalType!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/location-physical-type"))	

@@ -2,8 +2,8 @@
 //  ListTests.swift
 //  ListTests
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-09-16.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Cocoa
@@ -34,6 +34,7 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.emptyReason!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/special-values"))	
 		XCTAssertEqual(inst!.emptyReason!.text!, "The patient is not on any medications")	
 		XCTAssertEqual(inst!.mode!, "snapshot")	
+		XCTAssertEqual(inst!.source!.reference!, "Patient/example")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>The patient is not on any medications</p>\n    </div>")	
 		XCTAssertEqual(inst!.text!.status!, "generated")
 	}
@@ -49,12 +50,15 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2013-11-20T23:10:23+11:00")!)	
 		XCTAssertEqual(inst!.entry![0].flag![0].coding![0].code!, "02")	
 		XCTAssertEqual(inst!.entry![0].flag![0].coding![0].display!, "Prescribed")
-		XCTAssertEqual(inst!.entry![0].flag![0].coding![0].system!, NSURL(string: "http://nehta.gov.au/codes/medications/changetype"))
+		XCTAssertEqual(inst!.entry![0].flag![0].coding![0].system!, NSURL(string: "http://nehta.gov.au/codes/medications/changetype"))	
+		XCTAssertEqual(inst!.entry![0].item!.display!, "hydroxocobalamin")
 		XCTAssertTrue(inst!.entry![1].deleted!)	
 		XCTAssertEqual(inst!.entry![1].flag![0].coding![0].code!, "02")	
 		XCTAssertEqual(inst!.entry![1].flag![0].coding![0].display!, "Cancelled")
 		XCTAssertEqual(inst!.entry![1].flag![0].coding![0].system!, NSURL(string: "http://nehta.gov.au/codes/medications/changetype"))	
+		XCTAssertEqual(inst!.entry![1].item!.display!, "Morphine Sulfate")	
 		XCTAssertEqual(inst!.mode!, "changes")	
+		XCTAssertEqual(inst!.source!.reference!, "Patient/example")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>The patient is not on any medications</p>\n    </div>")	
 		XCTAssertEqual(inst!.text!.status!, "generated")
 	}

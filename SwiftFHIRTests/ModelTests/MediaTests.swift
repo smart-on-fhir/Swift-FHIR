@@ -2,8 +2,8 @@
 //  MediaTests.swift
 //  MediaTests
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-09-16.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Cocoa
@@ -41,6 +41,7 @@ class MediaTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.identifier![3].label!, "seriesId")
 		XCTAssertEqual(inst!.identifier![3].system!, NSURL(string: "urn:ietf:rfc:3986"))	
 		XCTAssertEqual(inst!.identifier![3].value!, "urn:oid:1.2.840.113619.2.21.3408.700.0.757923840.3.0")	
+		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")	
 		XCTAssertEqual(inst!.subtype!.coding![0].code!, "US")
 		XCTAssertEqual(inst!.subtype!.coding![0].system!, NSURL(string: "http://nema.org/dicom/dcid"))	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      Ultrasound Image on patient &quot;James Chalmers&quot;:<br/>\n      <img alt=\"WADO reference to image\" src=\"http://imaging.acme.com/wado/server?requestType=WADO&amp;contentType=application%2Fdicom&amp;studyUid=1.2.840.113619.2.21.848.34082.0.538976288.3&amp;seriesUid=1.2.840.113619.2.21.3408.700.0.757923840.3.0&amp;objectUid=1.2.840.11361907579238403408700.3.0.14.19970327150033\"/>\n        \n    </div>")	

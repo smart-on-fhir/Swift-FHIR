@@ -2,8 +2,8 @@
 //  OperationOutcome.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (operationoutcome.profile.json) on 2014-08-26.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 (operationoutcome.profile.json) on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Foundation
@@ -13,8 +13,8 @@ import Foundation
  *  Information about the success/failure of an action.
  *
  *  Scope and Usage Operation Outcomes are sets of error, warning and information messages that provide detailed
- *  information about the outcome of some attempted system operation. They are provided as a direct system
- *  response, or component of one, where they provide information about the outcome of the operation.
+ *  information about the outcome of some attempted system operation. They are provided as a direct system response, or
+ *  component of one, where they provide information about the outcome of the operation.
  *  
  *  Specifically, OperationOutcomes are used in the following circumstances:
  *  
@@ -28,11 +28,11 @@ public class OperationOutcome: FHIRResource
 		get { return "OperationOutcome" }
 	}
 	
-	/** Text summary of the resource, for human interpretation */
-	public var text: Narrative?
-	
-	/** A single issue associated with the action */
+	/// A single issue associated with the action
 	public var issue: [OperationOutcomeIssue]?
+	
+	/// Text summary of the resource, for human interpretation
+	public var text: Narrative?
 	
 	public convenience init(issue: [OperationOutcomeIssue]?) {
 		self.init(json: nil)
@@ -44,11 +44,11 @@ public class OperationOutcome: FHIRResource
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
-			}
 			if let val = js["issue"] as? [NSDictionary] {
 				self.issue = OperationOutcomeIssue.from(val) as? [OperationOutcomeIssue]
+			}
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
 			}
 		}
 	}
@@ -62,17 +62,17 @@ public class OperationOutcome: FHIRResource
  */
 public class OperationOutcomeIssue: FHIRElement
 {	
-	/** fatal | error | warning | information */
-	public var severity: String?
-	
-	/** Error or warning code */
-	public var type: Coding?
-	
-	/** Additional description of the issue */
+	/// Additional description of the issue
 	public var details: String?
 	
-	/** XPath of element(s) related to issue */
+	/// XPath of element(s) related to issue
 	public var location: [String]?
+	
+	/// fatal | error | warning | information
+	public var severity: String?
+	
+	/// Error or warning code
+	public var type: Coding?
 	
 	public convenience init(severity: String?) {
 		self.init(json: nil)
@@ -84,17 +84,17 @@ public class OperationOutcomeIssue: FHIRElement
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["severity"] as? String {
-				self.severity = val
-			}
-			if let val = js["type"] as? NSDictionary {
-				self.type = Coding(json: val)
-			}
 			if let val = js["details"] as? String {
 				self.details = val
 			}
 			if let val = js["location"] as? [String] {
 				self.location = val
+			}
+			if let val = js["severity"] as? String {
+				self.severity = val
+			}
+			if let val = js["type"] as? NSDictionary {
+				self.type = Coding(json: val)
 			}
 		}
 	}

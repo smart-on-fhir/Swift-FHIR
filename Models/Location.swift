@@ -2,8 +2,8 @@
 //  Location.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (location.profile.json) on 2014-08-26.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 (location.profile.json) on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Foundation
@@ -12,9 +12,9 @@ import Foundation
 /**
  *  Details and position information for a physical place.
  *
- *  Scope and Usage A Location includes both incidental locations (a place which is used for healthcare without
- *  prior designation or authorization) and dedicated, formally appointed locations. Locations may be private,
- *  public, mobile or fixed and scale from small freezers to full hospital buildings or parking garages.
+ *  Scope and Usage A Location includes both incidental locations (a place which is used for healthcare without prior
+ *  designation or authorization) and dedicated, formally appointed locations. Locations may be private, public, mobile
+ *  or fixed and scale from small freezers to full hospital buildings or parking garages.
  *  
  *  Examples of Locations are:
  *  
@@ -30,83 +30,69 @@ public class Location: FHIRResource
 		get { return "Location" }
 	}
 	
-	/** Text summary of the resource, for human interpretation */
-	public var text: Narrative?
-	
-	/** Unique code or number identifying the location to its users */
-	public var identifier: Identifier?
-	
-	/** Name of the location as used by humans */
-	public var name: String?
-	
-	/** Description of the Location, which helps in finding or referencing the place */
-	public var description: String?
-	
-	/** Indicates the type of function performed at the location */
-	public var type: CodeableConcept?
-	
-	/** Contact details of the location */
-	public var telecom: [Contact]?
-	
-	/** Physical location */
+	/// Physical location
 	public var address: Address?
 	
-	/** Physical form of the location */
+	/// Description of the Location, which helps in finding or referencing the place
+	public var description: String?
+	
+	/// Unique code or number identifying the location to its users
+	public var identifier: Identifier?
+	
+	/// The organization that is responsible for the provisioning and upkeep of the location
+	public var managingOrganization: FHIRReference<Organization>?
+	
+	/// instance | kind
+	public var mode: String?
+	
+	/// Name of the location as used by humans
+	public var name: String?
+	
+	/// Another Location which this Location is physically part of
+	public var partOf: FHIRReference<Location>?
+	
+	/// Physical form of the location
 	public var physicalType: CodeableConcept?
 	
-	/** The absolute geographic location */
+	/// The absolute geographic location
 	public var position: LocationPosition?
 	
-	/** The organization that is responsible for the provisioning and upkeep of the location */
-	public var managingOrganization: FHIRElement? {
-		get { return resolveReference("managingOrganization") }
-		set {
-			if nil != newValue {
-				didSetReference(newValue!, name: "managingOrganization")
-			}
-		}
-	}
-	
-	/** active | suspended | inactive */
+	/// active | suspended | inactive
 	public var status: String?
 	
-	/** Another Location which this Location is physically part of */
-	public var partOf: FHIRElement? {
-		get { return resolveReference("partOf") }
-		set {
-			if nil != newValue {
-				didSetReference(newValue!, name: "partOf")
-			}
-		}
-	}
+	/// Contact details of the location
+	public var telecom: [Contact]?
 	
-	/** instance | kind */
-	public var mode: String?
+	/// Text summary of the resource, for human interpretation
+	public var text: Narrative?
+	
+	/// Indicates the type of function performed at the location
+	public var type: CodeableConcept?
 	
 
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
-			}
-			if let val = js["identifier"] as? NSDictionary {
-				self.identifier = Identifier(json: val)
-			}
-			if let val = js["name"] as? String {
-				self.name = val
+			if let val = js["address"] as? NSDictionary {
+				self.address = Address(json: val)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["type"] as? NSDictionary {
-				self.type = CodeableConcept(json: val)
+			if let val = js["identifier"] as? NSDictionary {
+				self.identifier = Identifier(json: val)
 			}
-			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val) as? [Contact]
+			if let val = js["managingOrganization"] as? NSDictionary {
+				self.managingOrganization = FHIRReference(json: val, owner: self)
 			}
-			if let val = js["address"] as? NSDictionary {
-				self.address = Address(json: val)
+			if let val = js["mode"] as? String {
+				self.mode = val
+			}
+			if let val = js["name"] as? String {
+				self.name = val
+			}
+			if let val = js["partOf"] as? NSDictionary {
+				self.partOf = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["physicalType"] as? NSDictionary {
 				self.physicalType = CodeableConcept(json: val)
@@ -114,17 +100,17 @@ public class Location: FHIRResource
 			if let val = js["position"] as? NSDictionary {
 				self.position = LocationPosition(json: val)
 			}
-			if let val = js["managingOrganization"] as? NSDictionary {
-				self.managingOrganization = ResourceReference(json: val)
-			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["partOf"] as? NSDictionary {
-				self.partOf = ResourceReference(json: val)
+			if let val = js["telecom"] as? [NSDictionary] {
+				self.telecom = Contact.from(val) as? [Contact]
 			}
-			if let val = js["mode"] as? String {
-				self.mode = val
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
+			}
+			if let val = js["type"] as? NSDictionary {
+				self.type = CodeableConcept(json: val)
 			}
 		}
 	}
@@ -134,41 +120,40 @@ public class Location: FHIRResource
 /**
  *  The absolute geographic location.
  *
- *  The absolute geographic location of the Location, expressed in a KML compatible manner (see notes below for
- *  KML).
+ *  The absolute geographic location of the Location, expressed in a KML compatible manner (see notes below for KML).
  */
 public class LocationPosition: FHIRElement
 {	
-	/** Longitude as expressed in KML */
-	public var longitude: NSDecimalNumber?
-	
-	/** Latitude as expressed in KML */
-	public var latitude: NSDecimalNumber?
-	
-	/** Altitude as expressed in KML */
+	/// Altitude as expressed in KML
 	public var altitude: NSDecimalNumber?
 	
-	public convenience init(longitude: NSDecimalNumber?, latitude: NSDecimalNumber?) {
+	/// Latitude as expressed in KML
+	public var latitude: NSDecimalNumber?
+	
+	/// Longitude as expressed in KML
+	public var longitude: NSDecimalNumber?
+	
+	public convenience init(latitude: NSDecimalNumber?, longitude: NSDecimalNumber?) {
 		self.init(json: nil)
-		if nil != longitude {
-			self.longitude = longitude
-		}
 		if nil != latitude {
 			self.latitude = latitude
+		}
+		if nil != longitude {
+			self.longitude = longitude
 		}
 	}	
 
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["longitude"] as? Double {
-				self.longitude = NSDecimalNumber(json: val)
+			if let val = js["altitude"] as? Double {
+				self.altitude = NSDecimalNumber(json: val)
 			}
 			if let val = js["latitude"] as? Double {
 				self.latitude = NSDecimalNumber(json: val)
 			}
-			if let val = js["altitude"] as? Double {
-				self.altitude = NSDecimalNumber(json: val)
+			if let val = js["longitude"] as? Double {
+				self.longitude = NSDecimalNumber(json: val)
 			}
 		}
 	}

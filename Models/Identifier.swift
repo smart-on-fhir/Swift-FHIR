@@ -2,8 +2,8 @@
 //  Identifier.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (type-Identifier.profile.json) on 2014-08-26.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 (type-Identifier.profile.json) on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Foundation
@@ -18,52 +18,45 @@ public class Identifier: FHIRElement
 		get { return "Identifier" }
 	}
 	
-	/** usual | official | temp | secondary (If known) */
-	public var use: String?
+	/// Organization that issued id (may be just text)
+	public var assigner: FHIRReference<Organization>?
 	
-	/** Description of identifier */
+	/// Description of identifier
 	public var label: String?
 	
-	/** The namespace for the identifier */
-	public var system: NSURL?
-	
-	/** The value that is unique */
-	public var value: String?
-	
-	/** Time period when id is/was valid for use */
+	/// Time period when id is/was valid for use
 	public var period: Period?
 	
-	/** Organization that issued id (may be just text) */
-	public var assigner: FHIRElement? {
-		get { return resolveReference("assigner") }
-		set {
-			if nil != newValue {
-				didSetReference(newValue!, name: "assigner")
-			}
-		}
-	}
+	/// The namespace for the identifier
+	public var system: NSURL?
+	
+	/// usual | official | temp | secondary (If known)
+	public var use: String?
+	
+	/// The value that is unique
+	public var value: String?
 	
 
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["use"] as? String {
-				self.use = val
+			if let val = js["assigner"] as? NSDictionary {
+				self.assigner = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["label"] as? String {
 				self.label = val
 			}
-			if let val = js["system"] as? String {
-				self.system = NSURL(json: val)
-			}
-			if let val = js["value"] as? String {
-				self.value = val
-			}
 			if let val = js["period"] as? NSDictionary {
 				self.period = Period(json: val)
 			}
-			if let val = js["assigner"] as? NSDictionary {
-				self.assigner = ResourceReference(json: val)
+			if let val = js["system"] as? String {
+				self.system = NSURL(json: val)
+			}
+			if let val = js["use"] as? String {
+				self.use = val
+			}
+			if let val = js["value"] as? String {
+				self.value = val
 			}
 		}
 	}

@@ -2,8 +2,8 @@
 //  RelatedPerson.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (relatedperson.profile.json) on 2014-08-26.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 (relatedperson.profile.json) on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Foundation
@@ -12,10 +12,10 @@ import Foundation
 /**
  *  An person that is related to a patient, but who is not a direct target of care.
  *
- *  Scope and Usage RelatedPersons typically have a personal or non-healthcare-specific professional relationship
- *  to the patient. A RelatedPerson resource is primarily used for attribution of information, since
- *  RelatedPersons are often a source of information about the patient. For keeping information about persons for
- *  contact purposes for a patient, use a Patient's Contact element instead.
+ *  Scope and Usage RelatedPersons typically have a personal or non-healthcare-specific professional relationship to the
+ *  patient. A RelatedPerson resource is primarily used for attribution of information, since RelatedPersons are often a
+ *  source of information about the patient. For keeping information about persons for contact purposes for a patient,
+ *  use a Patient's Contact element instead.
  *  
  *  Example RelatedPersons are:
  *  
@@ -31,41 +31,34 @@ public class RelatedPerson: FHIRResource
 		get { return "RelatedPerson" }
 	}
 	
-	/** Text summary of the resource, for human interpretation */
-	public var text: Narrative?
-	
-	/** A Human identifier for this person */
-	public var identifier: [Identifier]?
-	
-	/** The patient this person is related to */
-	public var patient: FHIRElement? {
-		get { return resolveReference("patient") }
-		set {
-			if nil != newValue {
-				didSetReference(newValue!, name: "patient")
-			}
-		}
-	}
-	
-	/** The nature of the relationship */
-	public var relationship: CodeableConcept?
-	
-	/** A name associated with the person */
-	public var name: HumanName?
-	
-	/** A contact detail for the person */
-	public var telecom: [Contact]?
-	
-	/** Gender for administrative purposes */
-	public var gender: CodeableConcept?
-	
-	/** Address where the related person can be contacted or visited */
+	/// Address where the related person can be contacted or visited
 	public var address: Address?
 	
-	/** Image of the person */
+	/// Gender for administrative purposes
+	public var gender: CodeableConcept?
+	
+	/// A Human identifier for this person
+	public var identifier: [Identifier]?
+	
+	/// A name associated with the person
+	public var name: HumanName?
+	
+	/// The patient this person is related to
+	public var patient: FHIRReference<Patient>?
+	
+	/// Image of the person
 	public var photo: [Attachment]?
 	
-	public convenience init(patient: ResourceReference?) {
+	/// The nature of the relationship
+	public var relationship: CodeableConcept?
+	
+	/// A contact detail for the person
+	public var telecom: [Contact]?
+	
+	/// Text summary of the resource, for human interpretation
+	public var text: Narrative?
+	
+	public convenience init(patient: FHIRReference<Patient>?) {
 		self.init(json: nil)
 		if nil != patient {
 			self.patient = patient
@@ -75,32 +68,32 @@ public class RelatedPerson: FHIRResource
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
-			}
-			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
-			}
-			if let val = js["patient"] as? NSDictionary {
-				self.patient = ResourceReference(json: val)
-			}
-			if let val = js["relationship"] as? NSDictionary {
-				self.relationship = CodeableConcept(json: val)
-			}
-			if let val = js["name"] as? NSDictionary {
-				self.name = HumanName(json: val)
-			}
-			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val) as? [Contact]
+			if let val = js["address"] as? NSDictionary {
+				self.address = Address(json: val)
 			}
 			if let val = js["gender"] as? NSDictionary {
 				self.gender = CodeableConcept(json: val)
 			}
-			if let val = js["address"] as? NSDictionary {
-				self.address = Address(json: val)
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
+			}
+			if let val = js["name"] as? NSDictionary {
+				self.name = HumanName(json: val)
+			}
+			if let val = js["patient"] as? NSDictionary {
+				self.patient = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["photo"] as? [NSDictionary] {
 				self.photo = Attachment.from(val) as? [Attachment]
+			}
+			if let val = js["relationship"] as? NSDictionary {
+				self.relationship = CodeableConcept(json: val)
+			}
+			if let val = js["telecom"] as? [NSDictionary] {
+				self.telecom = Contact.from(val) as? [Contact]
+			}
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
 			}
 		}
 	}

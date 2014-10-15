@@ -2,8 +2,8 @@
 //  PractitionerTests.swift
 //  PractitionerTests
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-09-16.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Cocoa
@@ -43,6 +43,8 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.name!.given![0], "Eric")	
 		XCTAssertEqual(inst!.name!.suffix![0], "MD")	
 		XCTAssertEqual(inst!.name!.use!, "official")	
+		XCTAssertEqual(inst!.organization!.display!, "BMC")	
+		XCTAssertEqual(inst!.organization!.reference!, "Organization/f001")	
 		XCTAssertEqual(inst!.role![0].coding![0].code!, "01.000")	
 		XCTAssertEqual(inst!.role![0].coding![0].display!, "Arts")
 		XCTAssertEqual(inst!.role![0].coding![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.15.111"))	
@@ -87,6 +89,8 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.name!.given![0], "Pieter")	
 		XCTAssertEqual(inst!.name!.suffix![0], "MD")	
 		XCTAssertEqual(inst!.name!.use!, "official")	
+		XCTAssertEqual(inst!.organization!.display!, "BMC")	
+		XCTAssertEqual(inst!.organization!.reference!, "Organization/f001")	
 		XCTAssertEqual(inst!.role![0].coding![0].code!, "01.000")	
 		XCTAssertEqual(inst!.role![0].coding![0].display!, "Arts")
 		XCTAssertEqual(inst!.role![0].coding![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.15.111"))	
@@ -134,6 +138,8 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.name!.given![0], "Marc")	
 		XCTAssertEqual(inst!.name!.suffix![0], "MD")	
 		XCTAssertEqual(inst!.name!.use!, "official")	
+		XCTAssertEqual(inst!.organization!.display!, "BMC")	
+		XCTAssertEqual(inst!.organization!.reference!, "Organization/f001")	
 		XCTAssertEqual(inst!.role![0].coding![0].code!, "01.000")	
 		XCTAssertEqual(inst!.role![0].coding![0].display!, "Arts")
 		XCTAssertEqual(inst!.role![0].coding![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.15.111"))	
@@ -182,6 +188,8 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.name!.given![0], "Ronald")	
 		XCTAssertEqual(inst!.name!.suffix![0], "MD")	
 		XCTAssertEqual(inst!.name!.use!, "official")	
+		XCTAssertEqual(inst!.organization!.display!, "BMC")	
+		XCTAssertEqual(inst!.organization!.reference!, "Organization/f001")	
 		XCTAssertEqual(inst!.role![0].coding![0].code!, "01.000")	
 		XCTAssertEqual(inst!.role![0].coding![0].display!, "Arts")
 		XCTAssertEqual(inst!.role![0].coding![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.15.111"))	
@@ -229,6 +237,8 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.name!.given![0], "Langeveld")	
 		XCTAssertEqual(inst!.name!.suffix![0], "MD")	
 		XCTAssertEqual(inst!.name!.use!, "official")	
+		XCTAssertEqual(inst!.organization!.display!, "BMC")	
+		XCTAssertEqual(inst!.organization!.reference!, "Organization/f001")	
 		XCTAssertEqual(inst!.role![0].coding![0].code!, "01.000")	
 		XCTAssertEqual(inst!.role![0].coding![0].display!, "Arts")
 		XCTAssertEqual(inst!.role![0].coding![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.15.111"))	
@@ -273,6 +283,8 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.name!.given![0], "Rob")	
 		XCTAssertEqual(inst!.name!.suffix![0], "MD")	
 		XCTAssertEqual(inst!.name!.use!, "official")	
+		XCTAssertEqual(inst!.organization!.display!, "BMC")	
+		XCTAssertEqual(inst!.organization!.reference!, "Organization/f001")	
 		XCTAssertEqual(inst!.role![0].coding![0].code!, "01.000")	
 		XCTAssertEqual(inst!.role![0].coding![0].display!, "Arts")
 		XCTAssertEqual(inst!.role![0].coding![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.15.111"))	
@@ -317,6 +329,8 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.name!.given![0], "Simone")	
 		XCTAssertEqual(inst!.name!.suffix![0], "MD")	
 		XCTAssertEqual(inst!.name!.use!, "official")	
+		XCTAssertEqual(inst!.organization!.display!, "BMC")	
+		XCTAssertEqual(inst!.organization!.reference!, "Organization/f001")	
 		XCTAssertEqual(inst!.role![0].coding![0].code!, "01.000")	
 		XCTAssertEqual(inst!.role![0].coding![0].display!, "Arts")
 		XCTAssertEqual(inst!.role![0].coding![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.15.111"))	
@@ -361,6 +375,8 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.name!.prefix![0], "Dr.")	
 		XCTAssertEqual(inst!.name!.text!, "Dokter Bronsig")	
 		XCTAssertEqual(inst!.name!.use!, "official")	
+		XCTAssertEqual(inst!.organization!.display!, "AUMC")	
+		XCTAssertEqual(inst!.organization!.reference!, "Organization/f201")	
 		XCTAssertEqual(inst!.qualification![0].code!.coding![0].code!, "41672002")	
 		XCTAssertEqual(inst!.qualification![0].code!.coding![0].display!, "Pulmonologist")
 		XCTAssertEqual(inst!.qualification![0].code!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
@@ -404,6 +420,8 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.name!.prefix![0], "Dr.")	
 		XCTAssertEqual(inst!.name!.text!, "Luigi Maas")	
 		XCTAssertEqual(inst!.name!.use!, "official")	
+		XCTAssertEqual(inst!.organization!.display!, "AUMC")	
+		XCTAssertEqual(inst!.organization!.reference!, "Organization/f201")	
 		XCTAssertEqual(inst!.role![0].coding![0].code!, "33526004")	
 		XCTAssertEqual(inst!.role![0].coding![0].display!, "Electronic laboratory reporting")
 		XCTAssertEqual(inst!.role![0].coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
@@ -440,6 +458,8 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.identifier![1].value!, "12345678903")	
 		XCTAssertEqual(inst!.name!.text!, "Juri van Gelder")	
 		XCTAssertEqual(inst!.name!.use!, "official")	
+		XCTAssertEqual(inst!.organization!.display!, "AUMC")	
+		XCTAssertEqual(inst!.organization!.reference!, "Organization/f201")	
 		XCTAssertEqual(inst!.role![0].coding![0].code!, "36682004")	
 		XCTAssertEqual(inst!.role![0].coding![0].display!, "Physical therapist")
 		XCTAssertEqual(inst!.role![0].coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
@@ -472,6 +492,8 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.identifier![0].value!, "12345678904")	
 		XCTAssertEqual(inst!.name!.text!, "Carla Espinosa")	
 		XCTAssertEqual(inst!.name!.use!, "usual")	
+		XCTAssertEqual(inst!.organization!.display!, "AUMC")	
+		XCTAssertEqual(inst!.organization!.reference!, "Organization/f201")	
 		XCTAssertEqual(inst!.role![0].coding![0].code!, "224565004")	
 		XCTAssertEqual(inst!.role![0].coding![0].display!, "Renal nurse")
 		XCTAssertEqual(inst!.role![0].coding![0].system!, NSURL(string: "http://snomed.info/sct"))	

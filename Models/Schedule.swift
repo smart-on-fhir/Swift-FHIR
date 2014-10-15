@@ -2,8 +2,8 @@
 //  Schedule.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (type-Schedule.profile.json) on 2014-08-26.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 (type-Schedule.profile.json) on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Foundation
@@ -18,10 +18,10 @@ public class Schedule: FHIRElement
 		get { return "Schedule" }
 	}
 	
-	/** When the event occurs */
+	/// When the event occurs
 	public var event: [Period]?
 	
-	/** Only if there is none or one event */
+	/// Only if there is none or one event
 	public var repeat: ScheduleRepeat?
 	
 
@@ -46,23 +46,23 @@ public class Schedule: FHIRElement
  */
 public class ScheduleRepeat: FHIRElement
 {	
-	/** Event occurs frequency times per duration */
-	public var frequency: Int?
-	
-	/** HS | WAKE | AC | ACM | ACD | ACV | PC | PCM | PCD | PCV - common life events */
-	public var when: String?
-	
-	/** Repeating or event-related duration */
-	public var duration: NSDecimalNumber?
-	
-	/** s | min | h | d | wk | mo | a - unit of time (UCUM) */
-	public var units: String?
-	
-	/** Number of times to repeat */
+	/// Number of times to repeat
 	public var count: Int?
 	
-	/** When to stop repeats */
+	/// Repeating or event-related duration
+	public var duration: NSDecimalNumber?
+	
+	/// When to stop repeats
 	public var end: NSDate?
+	
+	/// Event occurs frequency times per duration
+	public var frequency: Int?
+	
+	/// s | min | h | d | wk | mo | a - unit of time (UCUM)
+	public var units: String?
+	
+	/// HS | WAKE | AC | ACM | ACD | ACV | PC | PCM | PCD | PCV - common life events
+	public var when: String?
 	
 	public convenience init(duration: NSDecimalNumber?, units: String?) {
 		self.init(json: nil)
@@ -77,23 +77,23 @@ public class ScheduleRepeat: FHIRElement
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["frequency"] as? Int {
-				self.frequency = val
-			}
-			if let val = js["when"] as? String {
-				self.when = val
+			if let val = js["count"] as? Int {
+				self.count = val
 			}
 			if let val = js["duration"] as? Double {
 				self.duration = NSDecimalNumber(json: val)
 			}
+			if let val = js["end"] as? String {
+				self.end = NSDate(json: val)
+			}
+			if let val = js["frequency"] as? Int {
+				self.frequency = val
+			}
 			if let val = js["units"] as? String {
 				self.units = val
 			}
-			if let val = js["count"] as? Int {
-				self.count = val
-			}
-			if let val = js["end"] as? String {
-				self.end = NSDate(json: val)
+			if let val = js["when"] as? String {
+				self.when = val
 			}
 		}
 	}

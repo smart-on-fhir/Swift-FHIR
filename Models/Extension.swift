@@ -2,8 +2,8 @@
 //  Extension.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (type-Extension.profile.json) on 2014-08-26.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 (type-Extension.profile.json) on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Foundation
@@ -18,10 +18,10 @@ public class Extension: FHIRElement
 		get { return "Extension" }
 	}
 	
-	/** identifies the meaning of the extension */
+	/// identifies the meaning of the extension
 	public var url: NSURL?
 	
-	/** Value of extension */
+	/// Value of extension
 	public var value: FHIRElement?
 	
 	public convenience init(url: NSURL?) {

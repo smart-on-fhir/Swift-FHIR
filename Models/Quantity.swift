@@ -2,8 +2,8 @@
 //  Quantity.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (type-Quantity.profile.json) on 2014-08-26.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 (type-Quantity.profile.json) on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Foundation
@@ -18,39 +18,39 @@ public class Quantity: FHIRElement
 		get { return "Quantity" }
 	}
 	
-	/** Numerical value (with implicit precision) */
-	public var value: NSDecimalNumber?
+	/// Coded form of the unit
+	public var code: String?
 	
-	/** < | <= | >= | > - how to understand the value */
+	/// < | <= | >= | > - how to understand the value
 	public var comparator: String?
 	
-	/** Unit representation */
-	public var units: String?
-	
-	/** System that defines coded unit form */
+	/// System that defines coded unit form
 	public var system: NSURL?
 	
-	/** Coded form of the unit */
-	public var code: String?
+	/// Unit representation
+	public var units: String?
+	
+	/// Numerical value (with implicit precision)
+	public var value: NSDecimalNumber?
 	
 
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["value"] as? Double {
-				self.value = NSDecimalNumber(json: val)
+			if let val = js["code"] as? String {
+				self.code = val
 			}
 			if let val = js["comparator"] as? String {
 				self.comparator = val
 			}
-			if let val = js["units"] as? String {
-				self.units = val
-			}
 			if let val = js["system"] as? String {
 				self.system = NSURL(json: val)
 			}
-			if let val = js["code"] as? String {
-				self.code = val
+			if let val = js["units"] as? String {
+				self.units = val
+			}
+			if let val = js["value"] as? Double {
+				self.value = NSDecimalNumber(json: val)
 			}
 		}
 	}

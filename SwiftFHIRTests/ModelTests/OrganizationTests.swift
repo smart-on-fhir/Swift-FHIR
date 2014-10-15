@@ -2,8 +2,8 @@
 //  OrganizationTests.swift
 //  OrganizationTests
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-09-16.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Cocoa
@@ -79,6 +79,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.contact![0].telecom![2].system!, "fax")	
 		XCTAssertEqual(inst!.contact![0].telecom![2].value!, "022-655 2322")	
 		XCTAssertEqual(inst!.name!, "Burgers UMC Cardiology unit")	
+		XCTAssertEqual(inst!.partOf!.reference!, "Organization/f001")	
 		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
 		XCTAssertEqual(inst!.telecom![0].value!, "022-655 2320")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>name</b>: Burgers UMC Cardiology unit\n      </p>\n      <p>\n        <b>type</b>: \n        <span title=\"Codes: {http://hl7.org/fhir/organization-type dept}\">Hospital Department</span>\n      </p>\n      <p>\n        <b>telecom</b>: ph: 022-655 2320\n      </p>\n      <p>\n        <b>address</b>: South Wing, floor 2 \n      </p>\n      <p>\n        <b>partOf</b>: \n        <a href=\"organization-example-f001-burgers.html\">91654 (official), 17-0112278 (usual); name: Burgers University Medical Center; University Medical Hospital</a>\n      </p>\n      <h3>Contacts</h3>\n      <table class=\"grid\">\n        <tr>\n          <td>\n            <b>Purpose</b>\n          </td>\n          <td>\n            <b>Name</b>\n          </td>\n          <td>\n            <b>Telecom</b>\n          </td>\n          <td>\n            <b>Address</b>\n          </td>\n          <td>\n            <b>Gender</b>\n          </td>\n        </tr>\n        <tr>\n          <td>\n            <span title=\"Codes: {http://hl7.org/fhir/contactentity-type ADMIN}\">Administrative</span>\n          </td>\n          <td>mevr. D. de Haan</td>\n          <td>ph: 022-655 2321</td>\n          <td>South Wing, floor 2 </td>\n          <td> </td>\n        </tr>\n      </table>\n      <p>\n        <b>active</b>: false\n      </p>\n    </div>")	
@@ -105,6 +106,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.contact![0].telecom![2].system!, "fax")	
 		XCTAssertEqual(inst!.contact![0].telecom![2].value!, "022-655 0998")	
 		XCTAssertEqual(inst!.name!, "Burgers UMC Ear,Nose,Throat unit")	
+		XCTAssertEqual(inst!.partOf!.reference!, "Organization/f001")	
 		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
 		XCTAssertEqual(inst!.telecom![0].value!, "022-655 6780")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>name</b>: Burgers UMC Ear,Nose,Throat unit\n      </p>\n      <p>\n        <b>type</b>: \n        <span title=\"Codes: {http://hl7.org/fhir/organization-type dept}\">Hospital Department</span>\n      </p>\n      <p>\n        <b>telecom</b>: ph: 022-655 6780\n      </p>\n      <p>\n        <b>address</b>: West Wing, floor 5 \n      </p>\n      <p>\n        <b>partOf</b>: \n        <a href=\"organization-example-f001-burgers.html\">91654 (official), 17-0112278 (usual); name: Burgers University Medical Center; University Medical Hospital</a>\n      </p>\n      <h3>Contacts</h3>\n      <table class=\"grid\">\n        <tr>\n          <td>\n            <b>Purpose</b>\n          </td>\n          <td>\n            <b>Name</b>\n          </td>\n          <td>\n            <b>Telecom</b>\n          </td>\n          <td>\n            <b>Address</b>\n          </td>\n          <td>\n            <b>Gender</b>\n          </td>\n        </tr>\n        <tr>\n          <td>\n            <span title=\"Codes: {http://hl7.org/fhir/contactentity-type ADMIN}\">Administrative</span>\n          </td>\n          <td>mr. F. de Hond</td>\n          <td>ph: 022-655 7654</td>\n          <td>West Wing, floor 5 </td>\n          <td> </td>\n        </tr>\n      </table>\n      <p>\n        <b>active</b>: false\n      </p>\n    </div>")	
@@ -192,6 +194,8 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.acme.org.au/units"))	
 		XCTAssertEqual(inst!.identifier![0].value!, "Gastro")	
 		XCTAssertEqual(inst!.name!, "Gastroenterology")	
+		XCTAssertEqual(inst!.partOf!.display!, "ACME Healthcare, Inc")	
+		XCTAssertEqual(inst!.partOf!.reference!, "Organization/1")	
 		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
 		XCTAssertEqual(inst!.telecom![0].use!, "mobile")	
 		XCTAssertEqual(inst!.telecom![0].value!, "+1 555 234 3523")	

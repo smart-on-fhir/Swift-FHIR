@@ -2,8 +2,8 @@
 //  RelatedPersonTests.swift
 //  RelatedPersonTests
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-09-16.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Cocoa
@@ -33,6 +33,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.name!.family![0], "Abels")	
 		XCTAssertEqual(inst!.name!.given![0], "Sarah")	
 		XCTAssertEqual(inst!.name!.use!, "usual")	
+		XCTAssertEqual(inst!.patient!.reference!, "Patient/f001")	
 		XCTAssertEqual(inst!.relationship!.coding![0].code!, "SIGOTHR")
 		XCTAssertEqual(inst!.relationship!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/RoleCode"))	
 		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
@@ -54,6 +55,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.gender!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/AdministrativeGender"))	
 		XCTAssertEqual(inst!.name!.text!, "Ariadne Bor-Jansma")	
 		XCTAssertEqual(inst!.name!.use!, "usual")	
+		XCTAssertEqual(inst!.patient!.reference!, "Patient/f201")	
 		XCTAssertEqual(inst!.relationship!.coding![0].code!, "SIGOTHR")
 		XCTAssertEqual(inst!.relationship!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/RoleCode"))	
 		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
@@ -79,6 +81,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.name!.given![0], "Peter")	
 		XCTAssertEqual(inst!.name!.given![1], "James")	
 		XCTAssertEqual(inst!.name!.use!, "official")	
+		XCTAssertEqual(inst!.patient!.reference!, "Patient/animal")	
 		XCTAssertEqual(inst!.photo![0].contentType!, "image/jpeg")
 		XCTAssertEqual(inst!.photo![0].url!, NSURL(string: "binary/@f012"))	
 		XCTAssertEqual(inst!.relationship!.coding![0].code!, "owner")

@@ -2,8 +2,8 @@
 //  FamilyHistoryTests.swift
 //  FamilyHistoryTests
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-09-16.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Cocoa
@@ -42,6 +42,8 @@ class FamilyHistoryTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.relation![1].relationship!.coding![0].code!, "38048003")	
 		XCTAssertEqual(inst!.relation![1].relationship!.coding![0].display!, "Uncle")
 		XCTAssertEqual(inst!.relation![1].relationship!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
+		XCTAssertEqual(inst!.subject!.display!, "Roel")	
+		XCTAssertEqual(inst!.subject!.reference!, "Patient/f201")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>subject</b>: Roel\n      </p>\n      <p>\n        <b>note</b>: Both parents, both brothers and both children (twin) are still alive.\n      </p>\n      <blockquote>\n        <p>\n          <b>relation</b>\n        </p>\n        <p>\n          <b>relationship</b>: \n          <span title=\"Codes: {http://snomed.info/sct 72705000}\">Mother</span>\n        </p>\n        <p>\n          <b>deceased[x]</b>: false\n        </p>\n        <h3>Conditions</h3>\n        <table class=\"grid\">\n          <tr>\n            <td>\n              <b>Type</b>\n            </td>\n            <td>\n              <b>Outcome</b>\n            </td>\n            <td>\n              <b>Onset[x]</b>\n            </td>\n            <td>\n              <b>Note</b>\n            </td>\n          </tr>\n          <tr>\n            <td>\n              <span title=\"Codes: {http://snomed.info/sct 39839004}\">Diaphragmatic hernia</span>\n            </td>\n            <td> </td>\n            <td> </td>\n            <td> </td>\n          </tr>\n        </table>\n      </blockquote>\n      <blockquote>\n        <p>\n          <b>relation</b>\n        </p>\n        <p>\n          <b>relationship</b>: \n          <span title=\"Codes: {http://snomed.info/sct 38048003}\">Uncle</span>\n        </p>\n        <p>\n          <b>deceased[x]</b>: true\n        </p>\n        <h3>Conditions</h3>\n        <table class=\"grid\">\n          <tr>\n            <td>\n              <b>Type</b>\n            </td>\n            <td>\n              <b>Outcome</b>\n            </td>\n            <td>\n              <b>Onset[x]</b>\n            </td>\n            <td>\n              <b>Note</b>\n            </td>\n          </tr>\n          <tr>\n            <td>\n              <span title=\"Codes: {http://snomed.info/sct 115665000}\">Atopy</span>\n            </td>\n            <td>\n              <span title=\"Codes: {http://snomed.info/sct 419099009}\">Died</span>\n            </td>\n            <td> </td>\n            <td> </td>\n          </tr>\n        </table>\n      </blockquote>\n    </div>")	
 		XCTAssertEqual(inst!.text!.status!, "generated")
 	}
@@ -62,6 +64,8 @@ class FamilyHistoryTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.relation![1].condition![0].type!.text!, "Diabetes Mellitus")	
 		XCTAssertEqual(inst!.relation![1].relationship!.coding![0].code!, "brother")
 		XCTAssertEqual(inst!.relation![1].relationship!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/familial-relationship"))	
+		XCTAssertEqual(inst!.subject!.display!, "Peter Patient")	
+		XCTAssertEqual(inst!.subject!.reference!, "Patient/100")	
 		XCTAssertEqual(inst!.text!.div!, "<div>Mother died of a stroke aged 56. Brother has diabetes</div>")	
 		XCTAssertEqual(inst!.text!.status!, "generated")
 	}

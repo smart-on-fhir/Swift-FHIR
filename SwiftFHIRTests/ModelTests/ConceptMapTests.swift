@@ -2,8 +2,8 @@
 //  ConceptMapTests.swift
 //  ConceptMapTests
 //
-//  Generated from FHIR 0.0.81.2382 on 2014-09-16.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Cocoa
@@ -1436,7 +1436,9 @@ class ConceptMapTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.identifier!, "http://hl7.org/fhir/conceptmap-example-specimen-type.html")	
 		XCTAssertEqual(inst!.name!, "Specimen mapping from v2 table 0487 to SNOMED CT")	
 		XCTAssertEqual(inst!.publisher!, "FHIR project team (original source: LabMCoP)")	
+		XCTAssertEqual(inst!.source!.reference!, "http://hl7.org/fhir/v2/vs/0487")	
 		XCTAssertEqual(inst!.status!, "draft")	
+		XCTAssertEqual(inst!.target!.reference!, "http://snomed.info/id")	
 		XCTAssertEqual(inst!.telecom![0].system!, "url")	
 		XCTAssertEqual(inst!.telecom![0].value!, "http://hl7.org/fhir")	
 		XCTAssertEqual(inst!.telecom![1].system!, "url")	

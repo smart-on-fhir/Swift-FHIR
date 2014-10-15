@@ -2,8 +2,8 @@
 //  AdverseReaction.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (adversereaction.profile.json) on 2014-08-26.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 (adversereaction.profile.json) on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Foundation
@@ -12,9 +12,9 @@ import Foundation
 /**
  *  Specific reactions to a substance.
  *
- *  Scope and Usage Adverse Reaction resources are used to provide information about specific reactions to a
- *  substance. These are normally associated with an AllergyIntolerance resource, but can be reported on their own
- *  when no assumption of further reactions is being made, or when specific events are being described.
+ *  Scope and Usage Adverse Reaction resources are used to provide information about specific reactions to a substance.
+ *  These are normally associated with an AllergyIntolerance resource, but can be reported on their own when no
+ *  assumption of further reactions is being made, or when specific events are being described.
  */
 public class AdverseReaction: FHIRResource
 {
@@ -22,80 +22,66 @@ public class AdverseReaction: FHIRResource
 		get { return "AdverseReaction" }
 	}
 	
-	/** Text summary of the resource, for human interpretation */
-	public var text: Narrative?
-	
-	/** External Ids for this adverse reaction */
-	public var identifier: [Identifier]?
-	
-	/** When the reaction occurred */
+	/// When the reaction occurred
 	public var date: NSDate?
 	
-	/** Who had the reaction */
-	public var subject: FHIRElement? {
-		get { return resolveReference("subject") }
-		set {
-			if nil != newValue {
-				didSetReference(newValue!, name: "subject")
-			}
-		}
-	}
-	
-	/** Indicates lack of reaction */
+	/// Indicates lack of reaction
 	public var didNotOccurFlag: Bool?
 	
-	/** Who recorded the reaction */
-	public var recorder: FHIRElement? {
-		get { return resolveReference("recorder") }
-		set {
-			if nil != newValue {
-				didSetReference(newValue!, name: "recorder")
-			}
-		}
-	}
-	
-	/** What was reaction? */
-	public var symptom: [AdverseReactionSymptom]?
-	
-	/** Suspected substance */
+	/// Suspected substance
 	public var exposure: [AdverseReactionExposure]?
 	
-	public convenience init(subject: ResourceReference?, didNotOccurFlag: Bool?) {
+	/// External Ids for this adverse reaction
+	public var identifier: [Identifier]?
+	
+	/// Who recorded the reaction
+	public var recorder: FHIRReference<Practitioner>?
+	
+	/// Who had the reaction
+	public var subject: FHIRReference<Patient>?
+	
+	/// What was reaction?
+	public var symptom: [AdverseReactionSymptom]?
+	
+	/// Text summary of the resource, for human interpretation
+	public var text: Narrative?
+	
+	public convenience init(didNotOccurFlag: Bool?, subject: FHIRReference<Patient>?) {
 		self.init(json: nil)
-		if nil != subject {
-			self.subject = subject
-		}
 		if nil != didNotOccurFlag {
 			self.didNotOccurFlag = didNotOccurFlag
+		}
+		if nil != subject {
+			self.subject = subject
 		}
 	}	
 
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
-			}
-			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
-			}
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
-			}
-			if let val = js["subject"] as? NSDictionary {
-				self.subject = ResourceReference(json: val)
 			}
 			if let val = js["didNotOccurFlag"] as? Int {
 				self.didNotOccurFlag = (1 == val)
 			}
+			if let val = js["exposure"] as? [NSDictionary] {
+				self.exposure = AdverseReactionExposure.from(val) as? [AdverseReactionExposure]
+			}
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val) as? [Identifier]
+			}
 			if let val = js["recorder"] as? NSDictionary {
-				self.recorder = ResourceReference(json: val)
+				self.recorder = FHIRReference(json: val, owner: self)
+			}
+			if let val = js["subject"] as? NSDictionary {
+				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["symptom"] as? [NSDictionary] {
 				self.symptom = AdverseReactionSymptom.from(val) as? [AdverseReactionSymptom]
 			}
-			if let val = js["exposure"] as? [NSDictionary] {
-				self.exposure = AdverseReactionExposure.from(val) as? [AdverseReactionExposure]
+			if let val = js["text"] as? NSDictionary {
+				self.text = Narrative(json: val)
 			}
 		}
 	}
@@ -109,10 +95,10 @@ public class AdverseReaction: FHIRResource
  */
 public class AdverseReactionSymptom: FHIRElement
 {	
-	/** E.g. Rash, vomiting */
+	/// E.g. Rash, vomiting
 	public var code: CodeableConcept?
 	
-	/** severe | serious | moderate | minor */
+	/// severe | serious | moderate | minor
 	public var severity: String?
 	
 	public convenience init(code: CodeableConcept?) {
@@ -143,40 +129,33 @@ public class AdverseReactionSymptom: FHIRElement
  */
 public class AdverseReactionExposure: FHIRElement
 {	
-	/** When the exposure occurred */
-	public var date: NSDate?
-	
-	/** drugadmin | immuniz | coincidental */
-	public var type: String?
-	
-	/** likely | unlikely | confirmed | unknown */
+	/// likely | unlikely | confirmed | unknown
 	public var causalityExpectation: String?
 	
-	/** Presumed causative substance */
-	public var substance: FHIRElement? {
-		get { return resolveReference("substance") }
-		set {
-			if nil != newValue {
-				didSetReference(newValue!, name: "substance")
-			}
-		}
-	}
+	/// When the exposure occurred
+	public var date: NSDate?
+	
+	/// Presumed causative substance
+	public var substance: FHIRReference<Substance>?
+	
+	/// drugadmin | immuniz | coincidental
+	public var type: String?
 	
 
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
-			}
-			if let val = js["type"] as? String {
-				self.type = val
-			}
 			if let val = js["causalityExpectation"] as? String {
 				self.causalityExpectation = val
 			}
+			if let val = js["date"] as? String {
+				self.date = NSDate(json: val)
+			}
 			if let val = js["substance"] as? NSDictionary {
-				self.substance = ResourceReference(json: val)
+				self.substance = FHIRReference(json: val, owner: self)
+			}
+			if let val = js["type"] as? String {
+				self.type = val
 			}
 		}
 	}

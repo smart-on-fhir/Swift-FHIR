@@ -2,8 +2,8 @@
 //  Attachment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (type-Attachment.profile.json) on 2014-08-26.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 (type-Attachment.profile.json) on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Foundation
@@ -18,23 +18,23 @@ public class Attachment: FHIRElement
 		get { return "Attachment" }
 	}
 	
-	/** Mime type of the content, with charset etc. */
+	/// Mime type of the content, with charset etc.
 	public var contentType: String?
 	
-	/** Data inline, base64ed */
+	/// Data inline, base64ed
 	public var data: String?
 	
-	/** Uri where the data can be found */
-	public var url: NSURL?
-	
-	/** Number of bytes of content (if url provided) */
-	public var size: Int?
-	
-	/** Hash of the data (sha-1, base64ed ) */
+	/// Hash of the data (sha-1, base64ed )
 	public var hash: String?
 	
-	/** Label to display in place of the data */
+	/// Number of bytes of content (if url provided)
+	public var size: Int?
+	
+	/// Label to display in place of the data
 	public var title: String?
+	
+	/// Uri where the data can be found
+	public var url: NSURL?
 	
 	public convenience init(contentType: String?) {
 		self.init(json: nil)
@@ -52,17 +52,17 @@ public class Attachment: FHIRElement
 			if let val = js["data"] as? String {
 				self.data = val
 			}
-			if let val = js["url"] as? String {
-				self.url = NSURL(json: val)
+			if let val = js["hash"] as? String {
+				self.hash = val
 			}
 			if let val = js["size"] as? Int {
 				self.size = val
 			}
-			if let val = js["hash"] as? String {
-				self.hash = val
-			}
 			if let val = js["title"] as? String {
 				self.title = val
+			}
+			if let val = js["url"] as? String {
+				self.url = NSURL(json: val)
 			}
 		}
 	}

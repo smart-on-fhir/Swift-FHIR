@@ -2,8 +2,8 @@
 //  CodeableConcept.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.81.2382 (type-CodeableConcept.profile.json) on 2014-08-26.
-//  Copyright (c) 2014 SMART Platforms. All rights reserved.
+//  Generated from FHIR 0.0.82.2943 (type-CodeableConcept.profile.json) on 2014-10-15.
+//  2014, SMART Platforms.
 //
 
 import Foundation
@@ -18,10 +18,10 @@ public class CodeableConcept: FHIRElement
 		get { return "CodeableConcept" }
 	}
 	
-	/** Code defined by a terminology system */
+	/// Code defined by a terminology system
 	public var coding: [Coding]?
 	
-	/** Plain text representation of the concept */
+	/// Plain text representation of the concept
 	public var text: String?
 	
 

@@ -52,7 +52,8 @@ For classes representing models with non-optional properties, a convenience init
 ### Contained Resources
 
 FHIR makes use of [contained resources](http://hl7.org/implement/standards/fhir/references.html#contained).
-There is a mechanism in place that resolves those lazily in a way that they can still be used like standard properties, but they may need to be casted to specific classes.
+Such properties are represented as `FHIRReference` instances, a subclass of FHIR's `ResourceReference`.
+To resolve resource references, call `resolved()` on a FHIRReference property, which will return an instance of the referenced type, if resolving was successful.
 
 
 Search

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE652AC719FDEBDC006582EC /* FHIRReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE652AC619FDEBDC006582EC /* FHIRReference.swift */; };
 		EE67C6C519AE1E720077EDBE /* FHIRModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C6C419AE1E720077EDBE /* FHIRModelTestCase.swift */; };
 		EE67C73E19AE55670077EDBE /* allergyintolerance-example-dust-f201.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6C619AE55670077EDBE /* allergyintolerance-example-dust-f201.json */; };
 		EE67C73F19AE55670077EDBE /* careplan-example-f001-heart.json in Resources */ = {isa = PBXBuildFile; fileRef = EE67C6C719AE55670077EDBE /* careplan-example-f001-heart.json */; };
@@ -180,7 +181,6 @@
 		EE684C9819A78AEE00B5A2C0 /* Encounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C5619A78AEE00B5A2C0 /* Encounter.swift */; };
 		EE684C9919A78AEE00B5A2C0 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C5719A78AEE00B5A2C0 /* Extension.swift */; };
 		EE684C9A19A78AEE00B5A2C0 /* FamilyHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C5819A78AEE00B5A2C0 /* FamilyHistory.swift */; };
-		EE684C9B19A78AEE00B5A2C0 /* FHIRElement+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C5919A78AEE00B5A2C0 /* FHIRElement+Factory.swift */; };
 		EE684C9C19A78AEE00B5A2C0 /* FHIRSearchParam+Params.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C5A19A78AEE00B5A2C0 /* FHIRSearchParam+Params.swift */; };
 		EE684C9D19A78AEE00B5A2C0 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C5B19A78AEE00B5A2C0 /* Group.swift */; };
 		EE684C9E19A78AEE00B5A2C0 /* HumanName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C5C19A78AEE00B5A2C0 /* HumanName.swift */; };
@@ -245,6 +245,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE652AC619FDEBDC006582EC /* FHIRReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRReference.swift; sourceTree = "<group>"; };
 		EE67C6C419AE1E720077EDBE /* FHIRModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRModelTestCase.swift; sourceTree = "<group>"; };
 		EE67C6C619AE55670077EDBE /* allergyintolerance-example-dust-f201.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "allergyintolerance-example-dust-f201.json"; path = "generate/downloads/site/allergyintolerance-example-dust-f201.json"; sourceTree = SOURCE_ROOT; };
 		EE67C6C719AE55670077EDBE /* careplan-example-f001-heart.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "careplan-example-f001-heart.json"; path = "generate/downloads/site/careplan-example-f001-heart.json"; sourceTree = SOURCE_ROOT; };
@@ -422,7 +423,6 @@
 		EE684C5619A78AEE00B5A2C0 /* Encounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encounter.swift; sourceTree = "<group>"; };
 		EE684C5719A78AEE00B5A2C0 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		EE684C5819A78AEE00B5A2C0 /* FamilyHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyHistory.swift; sourceTree = "<group>"; };
-		EE684C5919A78AEE00B5A2C0 /* FHIRElement+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIRElement+Factory.swift"; sourceTree = "<group>"; };
 		EE684C5A19A78AEE00B5A2C0 /* FHIRSearchParam+Params.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIRSearchParam+Params.swift"; sourceTree = "<group>"; };
 		EE684C5B19A78AEE00B5A2C0 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		EE684C5C19A78AEE00B5A2C0 /* HumanName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HumanName.swift; sourceTree = "<group>"; };
@@ -538,13 +538,15 @@
 		EE684C3719A78AE600B5A2C0 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				EE684C3819A78AE600B5A2C0 /* FHIRContainedResource.swift */,
 				EE684C3919A78AE600B5A2C0 /* FHIRElement.swift */,
 				EE684C3A19A78AE600B5A2C0 /* FHIRResource.swift */,
+				EE684C3819A78AE600B5A2C0 /* FHIRContainedResource.swift */,
+				EE652AC619FDEBDC006582EC /* FHIRReference.swift */,
 				EE684C3B19A78AE600B5A2C0 /* FHIRSearchParam.swift */,
 				EE684C3C19A78AE600B5A2C0 /* JSON-extensions.swift */,
 			);
-			path = Classes;
+			name = Classes;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		EE684C4219A78AEE00B5A2C0 /* Models */ = {
@@ -576,7 +578,6 @@
 				EE684C5619A78AEE00B5A2C0 /* Encounter.swift */,
 				EE684C5719A78AEE00B5A2C0 /* Extension.swift */,
 				EE684C5819A78AEE00B5A2C0 /* FamilyHistory.swift */,
-				EE684C5919A78AEE00B5A2C0 /* FHIRElement+Factory.swift */,
 				EE684C5A19A78AEE00B5A2C0 /* FHIRSearchParam+Params.swift */,
 				EE684C5B19A78AEE00B5A2C0 /* Group.swift */,
 				EE684C5C19A78AEE00B5A2C0 /* HumanName.swift */,
@@ -1076,7 +1077,6 @@
 				EE684CC419A78AEE00B5A2C0 /* Substance.swift in Sources */,
 				EE684C8719A78AEE00B5A2C0 /* Alert.swift in Sources */,
 				EE684C9A19A78AEE00B5A2C0 /* FamilyHistory.swift in Sources */,
-				EE684C9B19A78AEE00B5A2C0 /* FHIRElement+Factory.swift in Sources */,
 				EE684CB919A78AEE00B5A2C0 /* Quantity.swift in Sources */,
 				EE684C3F19A78AE600B5A2C0 /* FHIRResource.swift in Sources */,
 				EE684C8819A78AEE00B5A2C0 /* AllergyIntolerance.swift in Sources */,
@@ -1086,6 +1086,7 @@
 				EE684CBA19A78AEE00B5A2C0 /* Query.swift in Sources */,
 				EE684C9819A78AEE00B5A2C0 /* Encounter.swift in Sources */,
 				EE684C8C19A78AEE00B5A2C0 /* Coding.swift in Sources */,
+				EE652AC719FDEBDC006582EC /* FHIRReference.swift in Sources */,
 				EE684C9419A78AEE00B5A2C0 /* DiagnosticOrder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

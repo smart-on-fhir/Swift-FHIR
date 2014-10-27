@@ -2,7 +2,7 @@
 //  LocationTests.swift
 //  LocationTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
 //  2014, SMART Platforms.
 //
 
@@ -31,7 +31,7 @@ class LocationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.partOf!.reference!, "Location/1")	
 		XCTAssertEqual(inst!.physicalType!.coding![0].code!, "ro")	
 		XCTAssertEqual(inst!.physicalType!.coding![0].display!, "Room")
-		XCTAssertEqual(inst!.physicalType!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/location-physical-type"))	
+		XCTAssertEqual(inst!.physicalType!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/location-physical-type")!)	
 		XCTAssertEqual(inst!.status!, "suspended")	
 		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
 		XCTAssertEqual(inst!.telecom![0].value!, "2329")	
@@ -39,6 +39,6 @@ class LocationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.text!.status!, "generated")	
 		XCTAssertEqual(inst!.type!.coding![0].code!, "RNEU")	
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Neuroradiology unit")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/RoleCode"))
+		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/RoleCode")!)
 	}
 }

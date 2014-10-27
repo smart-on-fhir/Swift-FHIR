@@ -2,7 +2,7 @@
 //  AllergyIntoleranceTests.swift
 //  AllergyIntoleranceTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
 //  2014, SMART Platforms.
 //
 
@@ -26,7 +26,7 @@ class AllergyIntoleranceTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst!.criticality!, "medium")	
 		XCTAssertEqual(inst!.identifier![0].label!, "House dust allergy")
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://snomed.info/sct"))	
+		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://snomed.info/sct")!)	
 		XCTAssertEqual(inst!.identifier![0].value!, "232349006")
 		XCTAssertEqual(inst!.recordedDate!, NSDate.dateFromISOString("2013-01-28")!)	
 		XCTAssertEqual(inst!.recorder!.reference!, "Practitioner/f201")	

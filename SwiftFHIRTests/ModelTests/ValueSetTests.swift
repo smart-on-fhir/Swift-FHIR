@@ -2,7 +2,7 @@
 //  ValueSetTests.swift
 //  ValueSetTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
 //  2014, SMART Platforms.
 //
 
@@ -51,7 +51,7 @@ class ValueSetTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.define!.concept![8].code!, "plans")	
 		XCTAssertEqual(inst!.define!.concept![8].definition!, "A set of care plans that apply in a particular context of care")	
 		XCTAssertEqual(inst!.define!.concept![8].display!, "Care Plans")
-		XCTAssertEqual(inst!.define!.system!, NSURL(string: "http://hl7.org/fhir/list-example-use-codes"))	
+		XCTAssertEqual(inst!.define!.system!, NSURL(string: "http://hl7.org/fhir/list-example-use-codes")!)	
 		XCTAssertEqual(inst!.description!, "Example use codes for the List resource - typical kinds of use. TODO: Does LOINC define useful codes?")	
 		XCTAssertEqual(inst!.identifier!, "http://hl7.org/fhir/vs/list-example-codes")	
 		XCTAssertEqual(inst!.name!, "Example Use Codes for List")	

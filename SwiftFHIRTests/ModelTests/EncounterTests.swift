@@ -2,7 +2,7 @@
 //  EncounterTests.swift
 //  EncounterTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
 //  2014, SMART Platforms.
 //
 
@@ -28,27 +28,27 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.hospitalization!.accomodation![0].period!.start!, NSDate.dateFromISOString("2011-06-26")!)	
 		XCTAssertEqual(inst!.hospitalization!.admitSource!.coding![0].code!, "305956004")	
 		XCTAssertEqual(inst!.hospitalization!.admitSource!.coding![0].display!, "Referral by physician")
-		XCTAssertEqual(inst!.hospitalization!.admitSource!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
+		XCTAssertEqual(inst!.hospitalization!.admitSource!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
 		XCTAssertEqual(inst!.hospitalization!.dischargeDisposition!.coding![0].code!, "306689006")	
 		XCTAssertEqual(inst!.hospitalization!.dischargeDisposition!.coding![0].display!, "Discharge to home")
-		XCTAssertEqual(inst!.hospitalization!.dischargeDisposition!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))
+		XCTAssertEqual(inst!.hospitalization!.dischargeDisposition!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
 		XCTAssertEqual(inst!.hospitalization!.period!.end!, NSDate.dateFromISOString("2011-06-30")!)
 		XCTAssertEqual(inst!.hospitalization!.period!.start!, NSDate.dateFromISOString("2011-06-26")!)
-		XCTAssertEqual(inst!.hospitalization!.preAdmissionIdentifier!.system!, NSURL(string: "http://www.amc.nl/zorgportal/identifiers/pre-admissions"))	
+		XCTAssertEqual(inst!.hospitalization!.preAdmissionIdentifier!.system!, NSURL(string: "http://www.amc.nl/zorgportal/identifiers/pre-admissions")!)	
 		XCTAssertEqual(inst!.hospitalization!.preAdmissionIdentifier!.use!, "official")	
 		XCTAssertEqual(inst!.hospitalization!.preAdmissionIdentifier!.value!, "93042")
 		XCTAssertFalse(inst!.hospitalization!.reAdmission!)
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.amc.nl/zorgportal/identifiers/visits"))	
+		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.amc.nl/zorgportal/identifiers/visits")!)	
 		XCTAssertEqual(inst!.identifier![0].use!, "official")	
 		XCTAssertEqual(inst!.identifier![0].value!, "v1451")	
 		XCTAssertEqual(inst!.participant![0].individual!.display!, "P. Voigt")	
 		XCTAssertEqual(inst!.participant![0].individual!.reference!, "Practitioner/f002")	
 		XCTAssertEqual(inst!.priority!.coding![0].code!, "310361003")	
 		XCTAssertEqual(inst!.priority!.coding![0].display!, "Non-urgent cardiological admission")
-		XCTAssertEqual(inst!.priority!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
+		XCTAssertEqual(inst!.priority!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
 		XCTAssertEqual(inst!.reason!.coding![0].code!, "34068001")	
 		XCTAssertEqual(inst!.reason!.coding![0].display!, "Heart valve replacement")
-		XCTAssertEqual(inst!.reason!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
+		XCTAssertEqual(inst!.reason!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
 		XCTAssertEqual(inst!.serviceProvider!.display!, "Burgers University Medical Center")	
 		XCTAssertEqual(inst!.serviceProvider!.reference!, "Organization/f001")	
 		XCTAssertEqual(inst!.status!, "finished")	
@@ -58,7 +58,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.text!.status!, "generated")	
 		XCTAssertEqual(inst!.type![0].coding![0].code!, "270427003")	
 		XCTAssertEqual(inst!.type![0].coding![0].display!, "Patient-initiated encounter")
-		XCTAssertEqual(inst!.type![0].coding![0].system!, NSURL(string: "http://snomed.info/sct"))
+		XCTAssertEqual(inst!.type![0].coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
 	}
 	
 	func testEncounter2() {
@@ -69,27 +69,27 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.hospitalization!.accomodation![0].period!.start!, NSDate.dateFromISOString("2012-07-06")!)	
 		XCTAssertEqual(inst!.hospitalization!.admitSource!.coding![0].code!, "305997006")	
 		XCTAssertEqual(inst!.hospitalization!.admitSource!.coding![0].display!, "Referral by radiologist")
-		XCTAssertEqual(inst!.hospitalization!.admitSource!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
+		XCTAssertEqual(inst!.hospitalization!.admitSource!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
 		XCTAssertEqual(inst!.hospitalization!.dischargeDisposition!.coding![0].code!, "306689006")	
 		XCTAssertEqual(inst!.hospitalization!.dischargeDisposition!.coding![0].display!, "Discharge to home")
-		XCTAssertEqual(inst!.hospitalization!.dischargeDisposition!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))
+		XCTAssertEqual(inst!.hospitalization!.dischargeDisposition!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
 		XCTAssertEqual(inst!.hospitalization!.period!.end!, NSDate.dateFromISOString("2012-07-13")!)
 		XCTAssertEqual(inst!.hospitalization!.period!.start!, NSDate.dateFromISOString("2012-07-06")!)
-		XCTAssertEqual(inst!.hospitalization!.preAdmissionIdentifier!.system!, NSURL(string: "http://www.bmc.nl/zorgportal/identifiers/pre-admissions"))	
+		XCTAssertEqual(inst!.hospitalization!.preAdmissionIdentifier!.system!, NSURL(string: "http://www.bmc.nl/zorgportal/identifiers/pre-admissions")!)	
 		XCTAssertEqual(inst!.hospitalization!.preAdmissionIdentifier!.use!, "official")	
 		XCTAssertEqual(inst!.hospitalization!.preAdmissionIdentifier!.value!, "98682")
 		XCTAssertFalse(inst!.hospitalization!.reAdmission!)
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.bmc.nl/zorgportal/identifiers/encounters"))	
+		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.bmc.nl/zorgportal/identifiers/encounters")!)	
 		XCTAssertEqual(inst!.identifier![0].use!, "official")	
 		XCTAssertEqual(inst!.identifier![0].value!, "v3251")	
 		XCTAssertEqual(inst!.participant![0].individual!.display!, "M.I.M Versteegh")	
 		XCTAssertEqual(inst!.participant![0].individual!.reference!, "Practitioner/f003")	
 		XCTAssertEqual(inst!.priority!.coding![0].code!, "103391001")	
 		XCTAssertEqual(inst!.priority!.coding![0].display!, "Urgent")
-		XCTAssertEqual(inst!.priority!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
+		XCTAssertEqual(inst!.priority!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
 		XCTAssertEqual(inst!.reason!.coding![0].code!, "34068001")	
 		XCTAssertEqual(inst!.reason!.coding![0].display!, "Partial lobectomy of lung")
-		XCTAssertEqual(inst!.reason!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
+		XCTAssertEqual(inst!.reason!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
 		XCTAssertEqual(inst!.serviceProvider!.display!, "BMC")	
 		XCTAssertEqual(inst!.serviceProvider!.reference!, "Organization/f001")	
 		XCTAssertEqual(inst!.status!, "finished")	
@@ -99,7 +99,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.text!.status!, "generated")	
 		XCTAssertEqual(inst!.type![0].coding![0].code!, "270427003")	
 		XCTAssertEqual(inst!.type![0].coding![0].display!, "Patient-initiated encounter")
-		XCTAssertEqual(inst!.type![0].coding![0].system!, NSURL(string: "http://snomed.info/sct"))
+		XCTAssertEqual(inst!.type![0].coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
 	}
 	
 	func testEncounter3() {
@@ -110,27 +110,27 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.hospitalization!.accomodation![0].period!.start!, NSDate.dateFromISOString("2011-06-26")!)	
 		XCTAssertEqual(inst!.hospitalization!.admitSource!.coding![0].code!, "305956004")	
 		XCTAssertEqual(inst!.hospitalization!.admitSource!.coding![0].display!, "Referral by physician")
-		XCTAssertEqual(inst!.hospitalization!.admitSource!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
+		XCTAssertEqual(inst!.hospitalization!.admitSource!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
 		XCTAssertEqual(inst!.hospitalization!.dischargeDisposition!.coding![0].code!, "306689006")	
 		XCTAssertEqual(inst!.hospitalization!.dischargeDisposition!.coding![0].display!, "Discharge to home")
-		XCTAssertEqual(inst!.hospitalization!.dischargeDisposition!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))
+		XCTAssertEqual(inst!.hospitalization!.dischargeDisposition!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
 		XCTAssertEqual(inst!.hospitalization!.period!.end!, NSDate.dateFromISOString("2011-06-30")!)
 		XCTAssertEqual(inst!.hospitalization!.period!.start!, NSDate.dateFromISOString("2011-06-26")!)
-		XCTAssertEqual(inst!.hospitalization!.preAdmissionIdentifier!.system!, NSURL(string: "http://www.bmc.nl/zorgportal/identifiers/pre-admissions"))	
+		XCTAssertEqual(inst!.hospitalization!.preAdmissionIdentifier!.system!, NSURL(string: "http://www.bmc.nl/zorgportal/identifiers/pre-admissions")!)	
 		XCTAssertEqual(inst!.hospitalization!.preAdmissionIdentifier!.use!, "official")	
 		XCTAssertEqual(inst!.hospitalization!.preAdmissionIdentifier!.value!, "93042")
 		XCTAssertFalse(inst!.hospitalization!.reAdmission!)
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.bmc.nl/zorgportal/identifiers/encounters"))	
+		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.bmc.nl/zorgportal/identifiers/encounters")!)	
 		XCTAssertEqual(inst!.identifier![0].use!, "official")	
 		XCTAssertEqual(inst!.identifier![0].value!, "v6751")	
 		XCTAssertEqual(inst!.participant![0].individual!.display!, "E.M. van den Broek")	
 		XCTAssertEqual(inst!.participant![0].individual!.reference!, "Practitioner/f001")	
 		XCTAssertEqual(inst!.priority!.coding![0].code!, "103391001")	
 		XCTAssertEqual(inst!.priority!.coding![0].display!, "Non-urgent ear, nose and throat admission")
-		XCTAssertEqual(inst!.priority!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
+		XCTAssertEqual(inst!.priority!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
 		XCTAssertEqual(inst!.reason!.coding![0].code!, "18099001")	
 		XCTAssertEqual(inst!.reason!.coding![0].display!, "Retropharyngeal abscess")
-		XCTAssertEqual(inst!.reason!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
+		XCTAssertEqual(inst!.reason!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
 		XCTAssertEqual(inst!.serviceProvider!.reference!, "Organization/f001")	
 		XCTAssertEqual(inst!.status!, "finished")	
 		XCTAssertEqual(inst!.subject!.display!, "P. van de Heuvel")	
@@ -139,7 +139,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.text!.status!, "generated")	
 		XCTAssertEqual(inst!.type![0].coding![0].code!, "270427003")	
 		XCTAssertEqual(inst!.type![0].coding![0].display!, "Patient-initiated encounter")
-		XCTAssertEqual(inst!.type![0].coding![0].system!, NSURL(string: "http://snomed.info/sct"))
+		XCTAssertEqual(inst!.type![0].coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
 	}
 	
 	func testEncounter4() {
@@ -152,7 +152,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.participant![0].individual!.reference!, "Practitioner/f201")	
 		XCTAssertEqual(inst!.priority!.coding![0].code!, "17621005")	
 		XCTAssertEqual(inst!.priority!.coding![0].display!, "Normal")
-		XCTAssertEqual(inst!.priority!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
+		XCTAssertEqual(inst!.priority!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
 		XCTAssertEqual(inst!.reason!.text!, "The patient had fever peaks over the last couple of days. He is worried about these peaks.")	
 		XCTAssertEqual(inst!.serviceProvider!.reference!, "Organization/f201")	
 		XCTAssertEqual(inst!.status!, "finished")	
@@ -162,7 +162,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.text!.status!, "generated")	
 		XCTAssertEqual(inst!.type![0].coding![0].code!, "11429006")	
 		XCTAssertEqual(inst!.type![0].coding![0].display!, "Consultation")
-		XCTAssertEqual(inst!.type![0].coding![0].system!, NSURL(string: "http://snomed.info/sct"))
+		XCTAssertEqual(inst!.type![0].coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
 	}
 	
 	func testEncounter5() {
@@ -177,7 +177,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.participant![0].individual!.reference!, "Practitioner/f201")	
 		XCTAssertEqual(inst!.priority!.coding![0].code!, "103391001")	
 		XCTAssertEqual(inst!.priority!.coding![0].display!, "Urgent")
-		XCTAssertEqual(inst!.priority!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
+		XCTAssertEqual(inst!.priority!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
 		XCTAssertEqual(inst!.reason!.text!, "The patient is treated for a tumor.")	
 		XCTAssertEqual(inst!.serviceProvider!.reference!, "Organization/f201")	
 		XCTAssertEqual(inst!.status!, "finished")	
@@ -187,7 +187,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.text!.status!, "generated")	
 		XCTAssertEqual(inst!.type![0].coding![0].code!, "367336001")	
 		XCTAssertEqual(inst!.type![0].coding![0].display!, "Chemotherapy")
-		XCTAssertEqual(inst!.type![0].coding![0].system!, NSURL(string: "http://snomed.info/sct"))
+		XCTAssertEqual(inst!.type![0].coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
 	}
 	
 	func testEncounter6() {
@@ -196,10 +196,10 @@ class EncounterTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst!.hospitalization!.admitSource!.coding![0].code!, "309902002")	
 		XCTAssertEqual(inst!.hospitalization!.admitSource!.coding![0].display!, "Clinical Oncology Department")
-		XCTAssertEqual(inst!.hospitalization!.admitSource!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
+		XCTAssertEqual(inst!.hospitalization!.admitSource!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
 		XCTAssertEqual(inst!.hospitalization!.diet!.coding![0].code!, "276026009")	
 		XCTAssertEqual(inst!.hospitalization!.diet!.coding![0].display!, "Fluid balance regulation")
-		XCTAssertEqual(inst!.hospitalization!.diet!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))
+		XCTAssertEqual(inst!.hospitalization!.diet!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
 		XCTAssertEqual(inst!.hospitalization!.period!.end!, NSDate.dateFromISOString("2013-03-20")!)
 		XCTAssertEqual(inst!.hospitalization!.period!.start!, NSDate.dateFromISOString("2013-03-11")!)
 		XCTAssertFalse(inst!.hospitalization!.reAdmission!)	
@@ -209,7 +209,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.participant![0].individual!.reference!, "Practitioner/f201")	
 		XCTAssertEqual(inst!.priority!.coding![0].code!, "394849002")	
 		XCTAssertEqual(inst!.priority!.coding![0].display!, "High priority")
-		XCTAssertEqual(inst!.priority!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
+		XCTAssertEqual(inst!.priority!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
 		XCTAssertEqual(inst!.reason!.text!, "The patient seems to suffer from bilateral pneumonia and renal insufficiency, most likely due to chemotherapy.")	
 		XCTAssertEqual(inst!.serviceProvider!.reference!, "Organization/f201")	
 		XCTAssertEqual(inst!.status!, "finished")	
@@ -219,6 +219,6 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.text!.status!, "generated")	
 		XCTAssertEqual(inst!.type![0].coding![0].code!, "183807002")	
 		XCTAssertEqual(inst!.type![0].coding![0].display!, "Inpatient stay for nine days")
-		XCTAssertEqual(inst!.type![0].coding![0].system!, NSURL(string: "http://snomed.info/sct"))
+		XCTAssertEqual(inst!.type![0].coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
 	}
 }

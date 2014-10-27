@@ -2,7 +2,7 @@
 //  QuestionnaireTests.swift
 //  QuestionnaireTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
 //  2014, SMART Platforms.
 //
 
@@ -43,7 +43,7 @@ class QuestionnaireTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.identifier![0].use!, "temp")	
 		XCTAssertEqual(inst!.name!.coding![0].code!, "VL 1-1, 18-65_1.2.2")	
 		XCTAssertEqual(inst!.name!.coding![0].display!, "Lifelines Questionnaire 1 part 1")
-		XCTAssertEqual(inst!.name!.coding![0].system!, NSURL(string: "https://lifelines.nl"))	
+		XCTAssertEqual(inst!.name!.coding![0].system!, NSURL(string: "https://lifelines.nl")!)	
 		XCTAssertEqual(inst!.source!.reference!, "Practitioner/f201")	
 		XCTAssertEqual(inst!.status!, "completed")	
 		XCTAssertEqual(inst!.subject!.display!, "Roel")	

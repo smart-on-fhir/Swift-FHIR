@@ -2,7 +2,7 @@
 //  OrderTests.swift
 //  OrderTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
 //  2014, SMART Platforms.
 //
 
@@ -36,6 +36,6 @@ class OrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.text!.status!, "generated")	
 		XCTAssertEqual(inst!.when!.code!.coding![0].code!, "394848005")	
 		XCTAssertEqual(inst!.when!.code!.coding![0].display!, "Normal priority")
-		XCTAssertEqual(inst!.when!.code!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))
+		XCTAssertEqual(inst!.when!.code!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
 	}
 }

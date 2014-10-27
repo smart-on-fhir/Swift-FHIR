@@ -2,7 +2,7 @@
 //  DeviceTests.swift
 //  DeviceTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
 //  2014, SMART Platforms.
 //
 
@@ -28,7 +28,7 @@ class DeviceTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.text!.status!, "generated")	
 		XCTAssertEqual(inst!.type!.coding![0].code!, "25062003")	
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Feeding tube, device")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))
+		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
 	}
 	
 	func testDevice2() {

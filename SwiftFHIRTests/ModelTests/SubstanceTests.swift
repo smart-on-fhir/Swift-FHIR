@@ -2,7 +2,7 @@
 //  SubstanceTests.swift
 //  SubstanceTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
 //  2014, SMART Platforms.
 //
 
@@ -28,7 +28,7 @@ class SubstanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.text!.status!, "generated")	
 		XCTAssertEqual(inst!.type!.coding![0].code!, "406466009")	
 		XCTAssertEqual(inst!.type!.coding![0].display!, "House dust allergen")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))
+		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
 	}
 	
 	func testSubstance2() {
@@ -39,7 +39,7 @@ class SubstanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.text!.status!, "generated")	
 		XCTAssertEqual(inst!.type!.coding![0].code!, "3092008")	
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Staphylococcus Aureus")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))
+		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
 	}
 	
 	func testSubstance3() {
@@ -50,6 +50,6 @@ class SubstanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.text!.status!, "generated")	
 		XCTAssertEqual(inst!.type!.coding![0].code!, "88480006")	
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Potassium")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))
+		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
 	}
 }

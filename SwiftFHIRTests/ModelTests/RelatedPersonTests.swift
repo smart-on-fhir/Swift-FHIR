@@ -2,7 +2,7 @@
 //  RelatedPersonTests.swift
 //  RelatedPersonTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
 //  2014, SMART Platforms.
 //
 
@@ -26,16 +26,16 @@ class RelatedPersonTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst!.gender!.coding![0].code!, "F")	
 		XCTAssertEqual(inst!.gender!.coding![0].display!, "Female")
-		XCTAssertEqual(inst!.gender!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/AdministrativeGender"))	
+		XCTAssertEqual(inst!.gender!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/AdministrativeGender")!)	
 		XCTAssertEqual(inst!.identifier![0].label!, "BSN")
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.6.3"))	
+		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.6.3")!)	
 		XCTAssertEqual(inst!.identifier![0].use!, "official")	
 		XCTAssertEqual(inst!.name!.family![0], "Abels")	
 		XCTAssertEqual(inst!.name!.given![0], "Sarah")	
 		XCTAssertEqual(inst!.name!.use!, "usual")	
 		XCTAssertEqual(inst!.patient!.reference!, "Patient/f001")	
 		XCTAssertEqual(inst!.relationship!.coding![0].code!, "SIGOTHR")
-		XCTAssertEqual(inst!.relationship!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/RoleCode"))	
+		XCTAssertEqual(inst!.relationship!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/RoleCode")!)	
 		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
 		XCTAssertEqual(inst!.telecom![0].use!, "mobile")	
 		XCTAssertEqual(inst!.telecom![0].value!, "0690383372")	
@@ -52,12 +52,12 @@ class RelatedPersonTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst!.gender!.coding![0].code!, "F")	
 		XCTAssertEqual(inst!.gender!.coding![0].display!, "Female")
-		XCTAssertEqual(inst!.gender!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/AdministrativeGender"))	
+		XCTAssertEqual(inst!.gender!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/AdministrativeGender")!)	
 		XCTAssertEqual(inst!.name!.text!, "Ariadne Bor-Jansma")	
 		XCTAssertEqual(inst!.name!.use!, "usual")	
 		XCTAssertEqual(inst!.patient!.reference!, "Patient/f201")	
 		XCTAssertEqual(inst!.relationship!.coding![0].code!, "SIGOTHR")
-		XCTAssertEqual(inst!.relationship!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/RoleCode"))	
+		XCTAssertEqual(inst!.relationship!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/RoleCode")!)	
 		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
 		XCTAssertEqual(inst!.telecom![0].use!, "home")	
 		XCTAssertEqual(inst!.telecom![0].value!, "+31201234567")	
@@ -76,16 +76,16 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.address!.zip!, "3999")	
 		XCTAssertEqual(inst!.gender!.coding![0].code!, "M")	
 		XCTAssertEqual(inst!.gender!.coding![0].display!, "Male")
-		XCTAssertEqual(inst!.gender!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/AdministrativeGender"))	
+		XCTAssertEqual(inst!.gender!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/AdministrativeGender")!)	
 		XCTAssertEqual(inst!.name!.family![0], "Chalmers")	
 		XCTAssertEqual(inst!.name!.given![0], "Peter")	
 		XCTAssertEqual(inst!.name!.given![1], "James")	
 		XCTAssertEqual(inst!.name!.use!, "official")	
 		XCTAssertEqual(inst!.patient!.reference!, "Patient/animal")	
 		XCTAssertEqual(inst!.photo![0].contentType!, "image/jpeg")
-		XCTAssertEqual(inst!.photo![0].url!, NSURL(string: "binary/@f012"))	
+		XCTAssertEqual(inst!.photo![0].url!, NSURL(string: "binary/@f012")!)	
 		XCTAssertEqual(inst!.relationship!.coding![0].code!, "owner")
-		XCTAssertEqual(inst!.relationship!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/patient-contact-relationship"))	
+		XCTAssertEqual(inst!.relationship!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/patient-contact-relationship")!)	
 		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
 		XCTAssertEqual(inst!.telecom![0].use!, "work")	
 		XCTAssertEqual(inst!.telecom![0].value!, "(03) 5555 6473")	

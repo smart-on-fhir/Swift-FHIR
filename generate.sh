@@ -9,5 +9,5 @@ fi
 # always copy our settings, then run the generator
 cd fhir-parser
 cp ../generator-settings.py ./settings.py
-python3 generate.py
+python3 generate.py $1
 cd ..

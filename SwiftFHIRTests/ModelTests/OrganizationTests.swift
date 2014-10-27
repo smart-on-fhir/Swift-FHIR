@@ -2,7 +2,7 @@
 //  OrganizationTests.swift
 //  OrganizationTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
 //  2014, SMART Platforms.
 //
 
@@ -35,17 +35,17 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.address![1].use!, "work")	
 		XCTAssertEqual(inst!.address![1].zip!, "9100 AA")	
 		XCTAssertEqual(inst!.contact![0].purpose!.coding![0].code!, "PRESS")
-		XCTAssertEqual(inst!.contact![0].purpose!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/contactentity-type"))	
+		XCTAssertEqual(inst!.contact![0].purpose!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/contactentity-type")!)	
 		XCTAssertEqual(inst!.contact![0].telecom![0].system!, "phone")	
 		XCTAssertEqual(inst!.contact![0].telecom![0].value!, "022-655 2334")	
 		XCTAssertEqual(inst!.contact![1].purpose!.coding![0].code!, "PATINF")
-		XCTAssertEqual(inst!.contact![1].purpose!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/contactentity-type"))	
+		XCTAssertEqual(inst!.contact![1].purpose!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/contactentity-type")!)	
 		XCTAssertEqual(inst!.contact![1].telecom![0].system!, "phone")	
 		XCTAssertEqual(inst!.contact![1].telecom![0].value!, "022-655 2335")
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:oid:2.16.528.1"))	
+		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:oid:2.16.528.1")!)	
 		XCTAssertEqual(inst!.identifier![0].use!, "official")	
 		XCTAssertEqual(inst!.identifier![0].value!, "91654")
-		XCTAssertEqual(inst!.identifier![1].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.6.1"))	
+		XCTAssertEqual(inst!.identifier![1].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.6.1")!)	
 		XCTAssertEqual(inst!.identifier![1].use!, "usual")	
 		XCTAssertEqual(inst!.identifier![1].value!, "17-0112278")	
 		XCTAssertEqual(inst!.name!, "Burgers University Medical Center")	
@@ -56,10 +56,10 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.text!.status!, "generated")	
 		XCTAssertEqual(inst!.type!.coding![0].code!, "V6")	
 		XCTAssertEqual(inst!.type!.coding![0].display!, "University Medical Hospital")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.15.1060"))	
+		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.15.1060")!)	
 		XCTAssertEqual(inst!.type!.coding![1].code!, "prov")	
 		XCTAssertEqual(inst!.type!.coding![1].display!, "Healthcare Provider")
-		XCTAssertEqual(inst!.type!.coding![1].system!, NSURL(string: "http://hl7.org/fhir/organization-type"))
+		XCTAssertEqual(inst!.type!.coding![1].system!, NSURL(string: "http://hl7.org/fhir/organization-type")!)
 	}
 	
 	func testOrganization2() {
@@ -71,7 +71,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.contact![0].address!.line![0], "South Wing, floor 2")	
 		XCTAssertEqual(inst!.contact![0].name!.text!, "mevr. D. de Haan")	
 		XCTAssertEqual(inst!.contact![0].purpose!.coding![0].code!, "ADMIN")
-		XCTAssertEqual(inst!.contact![0].purpose!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/contactentity-type"))	
+		XCTAssertEqual(inst!.contact![0].purpose!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/contactentity-type")!)	
 		XCTAssertEqual(inst!.contact![0].telecom![0].system!, "phone")	
 		XCTAssertEqual(inst!.contact![0].telecom![0].value!, "022-655 2321")	
 		XCTAssertEqual(inst!.contact![0].telecom![1].system!, "email")	
@@ -86,7 +86,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.text!.status!, "generated")	
 		XCTAssertEqual(inst!.type!.coding![0].code!, "dept")	
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Hospital Department")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/organization-type"))
+		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/organization-type")!)
 	}
 	
 	func testOrganization3() {
@@ -98,7 +98,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.contact![0].address!.line![0], "West Wing, floor 5")	
 		XCTAssertEqual(inst!.contact![0].name!.text!, "mr. F. de Hond")	
 		XCTAssertEqual(inst!.contact![0].purpose!.coding![0].code!, "ADMIN")
-		XCTAssertEqual(inst!.contact![0].purpose!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/contactentity-type"))	
+		XCTAssertEqual(inst!.contact![0].purpose!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/contactentity-type")!)	
 		XCTAssertEqual(inst!.contact![0].telecom![0].system!, "phone")	
 		XCTAssertEqual(inst!.contact![0].telecom![0].value!, "022-655 7654")	
 		XCTAssertEqual(inst!.contact![0].telecom![1].system!, "email")	
@@ -113,7 +113,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.text!.status!, "generated")	
 		XCTAssertEqual(inst!.type!.coding![0].code!, "dept")	
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Hospital Department")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/organization-type"))
+		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/organization-type")!)
 	}
 	
 	func testOrganization4() {
@@ -140,7 +140,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.contact![0].telecom![0].use!, "work")	
 		XCTAssertEqual(inst!.contact![0].telecom![0].value!, "+31715269702")	
 		XCTAssertEqual(inst!.identifier![0].label!, "Zorginstelling naam")
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.zorgkaartnederland.nl/"))	
+		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.zorgkaartnederland.nl/")!)	
 		XCTAssertEqual(inst!.identifier![0].use!, "official")	
 		XCTAssertEqual(inst!.identifier![0].value!, "Artis University Medical Center")	
 		XCTAssertEqual(inst!.name!, "Artis University Medical Center (AUMC)")	
@@ -151,13 +151,13 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.text!.status!, "generated")	
 		XCTAssertEqual(inst!.type!.coding![0].code!, "405608006")	
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Academic Medical Center")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
+		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
 		XCTAssertEqual(inst!.type!.coding![1].code!, "V6")	
 		XCTAssertEqual(inst!.type!.coding![1].display!, "University Medical Hospital")
-		XCTAssertEqual(inst!.type!.coding![1].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.15.1060"))	
+		XCTAssertEqual(inst!.type!.coding![1].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.15.1060")!)	
 		XCTAssertEqual(inst!.type!.coding![2].code!, "prov")	
 		XCTAssertEqual(inst!.type!.coding![2].display!, "Healthcare Provider")
-		XCTAssertEqual(inst!.type!.coding![2].system!, NSURL(string: "http://hl7.org/fhir/organization-type"))
+		XCTAssertEqual(inst!.type!.coding![2].system!, NSURL(string: "http://hl7.org/fhir/organization-type")!)
 	}
 	
 	func testOrganization5() {
@@ -171,7 +171,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.address![0].use!, "work")	
 		XCTAssertEqual(inst!.address![0].zip!, "3056BE")	
 		XCTAssertEqual(inst!.identifier![0].label!, "Zorginstelling naam")
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.zorgkaartnederland.nl/"))	
+		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.zorgkaartnederland.nl/")!)	
 		XCTAssertEqual(inst!.identifier![0].use!, "official")	
 		XCTAssertEqual(inst!.identifier![0].value!, "Blijdorp MC")	
 		XCTAssertEqual(inst!.name!, "Blijdorp Medisch Centrum (BUMC)")	
@@ -182,16 +182,16 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.text!.status!, "generated")	
 		XCTAssertEqual(inst!.type!.coding![0].code!, "405608006")	
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Academic Medical Center")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct"))	
+		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
 		XCTAssertEqual(inst!.type!.coding![1].code!, "prov")
-		XCTAssertEqual(inst!.type!.coding![1].system!, NSURL(string: "http://hl7.org/fhir/organization-type"))
+		XCTAssertEqual(inst!.type!.coding![1].system!, NSURL(string: "http://hl7.org/fhir/organization-type")!)
 	}
 	
 	func testOrganization6() {
 		let inst = instantiateFrom("organization-example-gastro.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Organization instance")
 	
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.acme.org.au/units"))	
+		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.acme.org.au/units")!)	
 		XCTAssertEqual(inst!.identifier![0].value!, "Gastro")	
 		XCTAssertEqual(inst!.name!, "Gastroenterology")	
 		XCTAssertEqual(inst!.partOf!.display!, "ACME Healthcare, Inc")	
@@ -210,7 +210,7 @@ class OrganizationTests: FHIRModelTestCase
 		let inst = instantiateFrom("organization-example-good-health-care.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Organization instance")
 	
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:ietf:rfc:3986"))	
+		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:ietf:rfc:3986")!)	
 		XCTAssertEqual(inst!.identifier![0].value!, "2.16.840.1.113883.19.5")	
 		XCTAssertEqual(inst!.name!, "Good Health Clinic")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>Good Health Clinic</p>\n    </div>")	
@@ -221,7 +221,7 @@ class OrganizationTests: FHIRModelTestCase
 		let inst = instantiateFrom("organization-example-insurer.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Organization instance")
 	
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.3.19.2.3"))	
+		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.3.19.2.3")!)	
 		XCTAssertEqual(inst!.identifier![0].value!, "666666")	
 		XCTAssertEqual(inst!.name!, "XYZ Insurance")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>XYZ Insurance</p>\n    </div>")	
@@ -232,7 +232,7 @@ class OrganizationTests: FHIRModelTestCase
 		let inst = instantiateFrom("organization-example-lab.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Organization instance")
 	
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.acme.org.au/units"))	
+		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.acme.org.au/units")!)	
 		XCTAssertEqual(inst!.identifier![0].value!, "ClinLab")	
 		XCTAssertEqual(inst!.name!, "Clinical Lab")	
 		XCTAssertEqual(inst!.telecom![0].system!, "phone")	

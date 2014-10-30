@@ -29,9 +29,12 @@ Things that have an `X` are done in the sense that they work but have not necess
 [ ] Reference resolver: resolve remote resources
 [~] Construct search URL parameters in code with properties (see below)
 [ ] Construct search URL parameters with NoSQL-like constructs
+[ ] Create a default behavior when a modifierExtension is detected
+[ ] Use non-optional properties and implement failable initializers (see @smart-on-fhir/fhir-parser:feature/swift-failable-init)
+[ ] Improve the Extension resource (see below)
 [ ] Write serializer
 [ ] Validate serialized JSON?
-[~] Write unit tests that use the example JSONs
+[x] Write unit tests that use the example JSONs
 [ ] Write a real nice documentation
 ```
 
@@ -57,6 +60,17 @@ For classes representing models with non-optional properties, a convenience init
 FHIR makes use of [contained resources](http://hl7.org/implement/standards/fhir/references.html#contained).
 Such properties are represented as `FHIRReference` instances, a subclass of FHIR's `ResourceReference`.
 To resolve resource references, call `resolved()` on a FHIRReference property, which will return an instance of the referenced type, if resolving was successful.
+
+
+Extensions
+----------
+
+All FHIR resources can have one or more [_Extension_](http://hl7.org/implement/standards/fhir/extensibility.html#extension) elements as their `extension` property. Two remarks:
+
+- Since **`extension` is a Swift keyword**, this property has been renamed to `fhirExtension`.
+- The actual extension element has one property named **`value[x]`**, with the _[x]_ part replaced with their CamelCased type.
+    The generator currently creates one `value` property of type `FHIRElement`, our superclass.
+    This should be improved, probably by creating all possible `value[x]` properties.
 
 
 Search

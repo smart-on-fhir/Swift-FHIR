@@ -2,7 +2,7 @@
 //  FHIRSearchParam+Properties.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 on 2014-10-30.
 //  2014, SMART Platforms.
 //
 
@@ -1181,19 +1181,19 @@ extension FHIRSearchParam
 		return p
 	}
 	
-	public func ext(token: String) -> FHIRSearchParam {
+	public func fhirExtension(token: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "extension", token: token)
 		p.previous = self
 		return p
 	}
 	
-	public func ext(# asText: String) -> FHIRSearchParam {
+	public func fhirExtension(# asText: String) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "extension", tokenAsText: asText)
 		p.previous = self
 		return p
 	}
 	
-	public func ext(# missing: Bool) -> FHIRSearchParam {
+	public func fhirExtension(# missing: Bool) -> FHIRSearchParam {
 		let p = FHIRSearchParam(subject: "extension", missing: missing)
 		p.previous = self
 		return p

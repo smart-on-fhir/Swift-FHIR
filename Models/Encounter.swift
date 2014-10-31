@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (encounter.profile.json) on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 (encounter.profile.json) on 2014-10-30.
 //  2014, SMART Platforms.
 //
 
@@ -111,7 +111,7 @@ public class Encounter: FHIRResource
 			if let val = js["indication"] as? NSDictionary {
 				self.indication = FHIRReference(json: val, owner: self)
 			}
-			if let val = js["klass"] as? String {
+			if let val = js["class"] as? String {
 				self.klass = val
 			}
 			if let val = js["length"] as? NSDictionary {

@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (composition.profile.json) on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 (composition.profile.json) on 2014-10-30.
 //  2014, SMART Platforms.
 //
 
@@ -121,7 +121,7 @@ public class Composition: FHIRResource
 			if let val = js["identifier"] as? NSDictionary {
 				self.identifier = Identifier(json: val)
 			}
-			if let val = js["klass"] as? NSDictionary {
+			if let val = js["class"] as? NSDictionary {
 				self.klass = CodeableConcept(json: val)
 			}
 			if let val = js["section"] as? [NSDictionary] {

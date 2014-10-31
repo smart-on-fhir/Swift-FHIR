@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (organization.profile.json) on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 (organization.profile.json) on 2014-10-30.
 //  2014, SMART Platforms.
 //
 

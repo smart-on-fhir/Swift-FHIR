@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (conformance.profile.json) on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 (conformance.profile.json) on 2014-10-30.
 //  2014, SMART Platforms.
 //
 
@@ -733,7 +733,7 @@ public class ConformanceMessagingEvent: FHIRElement
 	public var mode: String?
 	
 	/// http | ftp | mllp +
-	public var proto: [Coding]?
+	public var protokol: [Coding]?
 	
 	/// Profile that describes the request
 	public var request: FHIRReference<Profile>?
@@ -778,8 +778,8 @@ public class ConformanceMessagingEvent: FHIRElement
 			if let val = js["mode"] as? String {
 				self.mode = val
 			}
-			if let val = js["proto"] as? [NSDictionary] {
-				self.proto = Coding.from(val) as? [Coding]
+			if let val = js["protocol"] as? [NSDictionary] {
+				self.protokol = Coding.from(val) as? [Coding]
 			}
 			if let val = js["request"] as? NSDictionary {
 				self.request = FHIRReference(json: val, owner: self)

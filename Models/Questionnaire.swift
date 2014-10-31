@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (questionnaire.profile.json) on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 (questionnaire.profile.json) on 2014-10-30.
 //  2014, SMART Platforms.
 //
 
@@ -211,7 +211,73 @@ public class QuestionnaireGroupQuestion: FHIRElement
 	public var choice: [Coding]?
 	
 	/// Structured answer
-	public var data: FHIRElement?
+	public var dataAddress: Address?
+	
+	/// Structured answer
+	public var dataAttachment: Attachment?
+	
+	/// Structured answer
+	public var dataBase64Binary: String?
+	
+	/// Structured answer
+	public var dataBoolean: Bool?
+	
+	/// Structured answer
+	public var dataCode: String?
+	
+	/// Structured answer
+	public var dataCodeableConcept: CodeableConcept?
+	
+	/// Structured answer
+	public var dataCoding: Coding?
+	
+	/// Structured answer
+	public var dataContact: Contact?
+	
+	/// Structured answer
+	public var dataDate: NSDate?
+	
+	/// Structured answer
+	public var dataDateTime: NSDate?
+	
+	/// Structured answer
+	public var dataDecimal: NSDecimalNumber?
+	
+	/// Structured answer
+	public var dataHumanName: HumanName?
+	
+	/// Structured answer
+	public var dataIdentifier: Identifier?
+	
+	/// Structured answer
+	public var dataInstant: NSDate?
+	
+	/// Structured answer
+	public var dataInteger: Int?
+	
+	/// Structured answer
+	public var dataPeriod: Period?
+	
+	/// Structured answer
+	public var dataQuantity: Quantity?
+	
+	/// Structured answer
+	public var dataRange: Range?
+	
+	/// Structured answer
+	public var dataRatio: Ratio?
+	
+	/// Structured answer
+	public var dataResource: FHIRResource?
+	
+	/// Structured answer
+	public var dataSchedule: Schedule?
+	
+	/// Structured answer
+	public var dataString: String?
+	
+	/// Structured answer
+	public var dataUri: NSURL?
 	
 	/// Nested questionnaire group
 	public var group: [QuestionnaireGroupQuestionGroup]?
@@ -256,8 +322,74 @@ public class QuestionnaireGroupQuestion: FHIRElement
 			if let val = js["choice"] as? [NSDictionary] {
 				self.choice = Coding.from(val) as? [Coding]
 			}
-			if let val = js["data"] as? NSDictionary {
-				self.data = FHIRElement(json: val)
+			if let val = js["dataAddress"] as? NSDictionary {
+				self.dataAddress = Address(json: val)
+			}
+			if let val = js["dataAttachment"] as? NSDictionary {
+				self.dataAttachment = Attachment(json: val)
+			}
+			if let val = js["dataBase64Binary"] as? String {
+				self.dataBase64Binary = val
+			}
+			if let val = js["dataBoolean"] as? Int {
+				self.dataBoolean = (1 == val)
+			}
+			if let val = js["dataCode"] as? String {
+				self.dataCode = val
+			}
+			if let val = js["dataCodeableConcept"] as? NSDictionary {
+				self.dataCodeableConcept = CodeableConcept(json: val)
+			}
+			if let val = js["dataCoding"] as? NSDictionary {
+				self.dataCoding = Coding(json: val)
+			}
+			if let val = js["dataContact"] as? NSDictionary {
+				self.dataContact = Contact(json: val)
+			}
+			if let val = js["dataDate"] as? String {
+				self.dataDate = NSDate(json: val)
+			}
+			if let val = js["dataDateTime"] as? String {
+				self.dataDateTime = NSDate(json: val)
+			}
+			if let val = js["dataDecimal"] as? Double {
+				self.dataDecimal = NSDecimalNumber(json: val)
+			}
+			if let val = js["dataHumanName"] as? NSDictionary {
+				self.dataHumanName = HumanName(json: val)
+			}
+			if let val = js["dataIdentifier"] as? NSDictionary {
+				self.dataIdentifier = Identifier(json: val)
+			}
+			if let val = js["dataInstant"] as? String {
+				self.dataInstant = NSDate(json: val)
+			}
+			if let val = js["dataInteger"] as? Int {
+				self.dataInteger = val
+			}
+			if let val = js["dataPeriod"] as? NSDictionary {
+				self.dataPeriod = Period(json: val)
+			}
+			if let val = js["dataQuantity"] as? NSDictionary {
+				self.dataQuantity = Quantity(json: val)
+			}
+			if let val = js["dataRange"] as? NSDictionary {
+				self.dataRange = Range(json: val)
+			}
+			if let val = js["dataRatio"] as? NSDictionary {
+				self.dataRatio = Ratio(json: val)
+			}
+			if let val = js["dataResource"] as? NSDictionary {
+				self.dataResource = FHIRResource(json: val)
+			}
+			if let val = js["dataSchedule"] as? NSDictionary {
+				self.dataSchedule = Schedule(json: val)
+			}
+			if let val = js["dataString"] as? String {
+				self.dataString = val
+			}
+			if let val = js["dataUri"] as? String {
+				self.dataUri = NSURL(json: val)
 			}
 			if let val = js["group"] as? [NSDictionary] {
 				self.group = QuestionnaireGroupQuestionGroup.from(val) as? [QuestionnaireGroupQuestionGroup]

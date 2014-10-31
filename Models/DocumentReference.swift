@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (xds-profile.profile.json) on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 (xds-profile.profile.json) on 2014-10-30.
 //  2014, SMART Platforms.
 //
 
@@ -169,7 +169,7 @@ public class DocumentReference: FHIRResource
 			if let val = js["indexed"] as? String {
 				self.indexed = NSDate(json: val)
 			}
-			if let val = js["klass"] as? NSDictionary {
+			if let val = js["class"] as? NSDictionary {
 				self.klass = CodeableConcept(json: val)
 			}
 			if let val = js["location"] as? String {

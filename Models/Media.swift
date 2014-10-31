@@ -2,7 +2,7 @@
 //  Media.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (media.profile.json) on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 (media.profile.json) on 2014-10-30.
 //  2014, SMART Platforms.
 //
 
@@ -110,7 +110,7 @@ public class Media: FHIRResource
 			if let val = js["length"] as? Int {
 				self.length = val
 			}
-			if let val = js["operatr"] as? NSDictionary {
+			if let val = js["operator"] as? NSDictionary {
 				self.operatr = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["subject"] as? NSDictionary {

@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (valueset.profile.json) on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 (valueset.profile.json) on 2014-10-30.
 //  2014, SMART Platforms.
 //
 
@@ -262,7 +262,7 @@ public class ValueSetCompose: FHIRElement
 			if let val = js["exclude"] as? [NSDictionary] {
 				self.exclude = ValueSetComposeExclude.from(val) as? [ValueSetComposeExclude]
 			}
-			if let val = js["importFrom"] as? [String] {
+			if let val = js["import"] as? [String] {
 				self.importFrom = NSURL.from(val)
 			}
 			if let val = js["include"] as? [NSDictionary] {

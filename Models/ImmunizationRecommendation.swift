@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (immunizationrecommendation.profile.json) on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 (immunizationrecommendation.profile.json) on 2014-10-30.
 //  2014, SMART Platforms.
 //
 
@@ -86,7 +86,7 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 	public var forecastStatus: CodeableConcept?
 	
 	/// Protocol used by recommendation
-	public var proto: ImmunizationRecommendationRecommendationProtocol?
+	public var protokol: ImmunizationRecommendationRecommendationProtocol?
 	
 	/// Past immunizations supporting recommendation
 	public var supportingImmunization: [FHIRReference<Immunization>]?
@@ -125,8 +125,8 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 			if let val = js["forecastStatus"] as? NSDictionary {
 				self.forecastStatus = CodeableConcept(json: val)
 			}
-			if let val = js["proto"] as? NSDictionary {
-				self.proto = ImmunizationRecommendationRecommendationProtocol(json: val)
+			if let val = js["protocol"] as? NSDictionary {
+				self.protokol = ImmunizationRecommendationRecommendationProtocol(json: val)
 			}
 			if let val = js["supportingImmunization"] as? [NSDictionary] {
 				self.supportingImmunization = FHIRReference.from(val, owner: self)

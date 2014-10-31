@@ -2,7 +2,7 @@
 //  Profile.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (profile.profile.json) on 2014-10-15.
+//  Generated from FHIR 0.0.82.2943 (profile.profile.json) on 2014-10-30.
 //  2014, SMART Platforms.
 //
 
@@ -381,7 +381,73 @@ public class ProfileStructureElementDefinition: FHIRElement
 	public var constraint: [ProfileStructureElementDefinitionConstraint]?
 	
 	/// Example value: [as defined for type]
-	public var example: FHIRElement?
+	public var exampleAddress: Address?
+	
+	/// Example value: [as defined for type]
+	public var exampleAttachment: Attachment?
+	
+	/// Example value: [as defined for type]
+	public var exampleBase64Binary: String?
+	
+	/// Example value: [as defined for type]
+	public var exampleBoolean: Bool?
+	
+	/// Example value: [as defined for type]
+	public var exampleCode: String?
+	
+	/// Example value: [as defined for type]
+	public var exampleCodeableConcept: CodeableConcept?
+	
+	/// Example value: [as defined for type]
+	public var exampleCoding: Coding?
+	
+	/// Example value: [as defined for type]
+	public var exampleContact: Contact?
+	
+	/// Example value: [as defined for type]
+	public var exampleDate: NSDate?
+	
+	/// Example value: [as defined for type]
+	public var exampleDateTime: NSDate?
+	
+	/// Example value: [as defined for type]
+	public var exampleDecimal: NSDecimalNumber?
+	
+	/// Example value: [as defined for type]
+	public var exampleHumanName: HumanName?
+	
+	/// Example value: [as defined for type]
+	public var exampleIdentifier: Identifier?
+	
+	/// Example value: [as defined for type]
+	public var exampleInstant: NSDate?
+	
+	/// Example value: [as defined for type]
+	public var exampleInteger: Int?
+	
+	/// Example value: [as defined for type]
+	public var examplePeriod: Period?
+	
+	/// Example value: [as defined for type]
+	public var exampleQuantity: Quantity?
+	
+	/// Example value: [as defined for type]
+	public var exampleRange: Range?
+	
+	/// Example value: [as defined for type]
+	public var exampleRatio: Ratio?
+	
+	/// Example value: [as defined for type]
+	public var exampleResource: FHIRResource?
+	
+	/// Example value: [as defined for type]
+	public var exampleSchedule: Schedule?
+	
+	/// Example value: [as defined for type]
+	public var exampleString: String?
+	
+	/// Example value: [as defined for type]
+	public var exampleUri: NSURL?
 	
 	/// Full formal definition in human language
 	public var formal: String?
@@ -420,7 +486,73 @@ public class ProfileStructureElementDefinition: FHIRElement
 	public var type: [ProfileStructureElementDefinitionType]?
 	
 	/// Fixed value: [as defined for a primitive type]
-	public var value: FHIRElement?
+	public var valueAddress: Address?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueAttachment: Attachment?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueBase64Binary: String?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueBoolean: Bool?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueCode: String?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueCodeableConcept: CodeableConcept?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueCoding: Coding?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueContact: Contact?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueDate: NSDate?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueDateTime: NSDate?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueDecimal: NSDecimalNumber?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueHumanName: HumanName?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueIdentifier: Identifier?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueInstant: NSDate?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueInteger: Int?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valuePeriod: Period?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueQuantity: Quantity?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueRange: Range?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueRatio: Ratio?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueResource: FHIRResource?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueSchedule: Schedule?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueString: String?
+	
+	/// Fixed value: [as defined for a primitive type]
+	public var valueUri: NSURL?
 	
 	public convenience init(formal: String?, isModifier: Bool?, max: String?, min: Int?, short: String?) {
 		self.init(json: nil)
@@ -456,8 +588,74 @@ public class ProfileStructureElementDefinition: FHIRElement
 			if let val = js["constraint"] as? [NSDictionary] {
 				self.constraint = ProfileStructureElementDefinitionConstraint.from(val) as? [ProfileStructureElementDefinitionConstraint]
 			}
-			if let val = js["example"] as? NSDictionary {
-				self.example = FHIRElement(json: val)
+			if let val = js["exampleAddress"] as? NSDictionary {
+				self.exampleAddress = Address(json: val)
+			}
+			if let val = js["exampleAttachment"] as? NSDictionary {
+				self.exampleAttachment = Attachment(json: val)
+			}
+			if let val = js["exampleBase64Binary"] as? String {
+				self.exampleBase64Binary = val
+			}
+			if let val = js["exampleBoolean"] as? Int {
+				self.exampleBoolean = (1 == val)
+			}
+			if let val = js["exampleCode"] as? String {
+				self.exampleCode = val
+			}
+			if let val = js["exampleCodeableConcept"] as? NSDictionary {
+				self.exampleCodeableConcept = CodeableConcept(json: val)
+			}
+			if let val = js["exampleCoding"] as? NSDictionary {
+				self.exampleCoding = Coding(json: val)
+			}
+			if let val = js["exampleContact"] as? NSDictionary {
+				self.exampleContact = Contact(json: val)
+			}
+			if let val = js["exampleDate"] as? String {
+				self.exampleDate = NSDate(json: val)
+			}
+			if let val = js["exampleDateTime"] as? String {
+				self.exampleDateTime = NSDate(json: val)
+			}
+			if let val = js["exampleDecimal"] as? Double {
+				self.exampleDecimal = NSDecimalNumber(json: val)
+			}
+			if let val = js["exampleHumanName"] as? NSDictionary {
+				self.exampleHumanName = HumanName(json: val)
+			}
+			if let val = js["exampleIdentifier"] as? NSDictionary {
+				self.exampleIdentifier = Identifier(json: val)
+			}
+			if let val = js["exampleInstant"] as? String {
+				self.exampleInstant = NSDate(json: val)
+			}
+			if let val = js["exampleInteger"] as? Int {
+				self.exampleInteger = val
+			}
+			if let val = js["examplePeriod"] as? NSDictionary {
+				self.examplePeriod = Period(json: val)
+			}
+			if let val = js["exampleQuantity"] as? NSDictionary {
+				self.exampleQuantity = Quantity(json: val)
+			}
+			if let val = js["exampleRange"] as? NSDictionary {
+				self.exampleRange = Range(json: val)
+			}
+			if let val = js["exampleRatio"] as? NSDictionary {
+				self.exampleRatio = Ratio(json: val)
+			}
+			if let val = js["exampleResource"] as? NSDictionary {
+				self.exampleResource = FHIRResource(json: val)
+			}
+			if let val = js["exampleSchedule"] as? NSDictionary {
+				self.exampleSchedule = Schedule(json: val)
+			}
+			if let val = js["exampleString"] as? String {
+				self.exampleString = val
+			}
+			if let val = js["exampleUri"] as? String {
+				self.exampleUri = NSURL(json: val)
 			}
 			if let val = js["formal"] as? String {
 				self.formal = val
@@ -495,8 +693,74 @@ public class ProfileStructureElementDefinition: FHIRElement
 			if let val = js["type"] as? [NSDictionary] {
 				self.type = ProfileStructureElementDefinitionType.from(val) as? [ProfileStructureElementDefinitionType]
 			}
-			if let val = js["value"] as? NSDictionary {
-				self.value = FHIRElement(json: val)
+			if let val = js["valueAddress"] as? NSDictionary {
+				self.valueAddress = Address(json: val)
+			}
+			if let val = js["valueAttachment"] as? NSDictionary {
+				self.valueAttachment = Attachment(json: val)
+			}
+			if let val = js["valueBase64Binary"] as? String {
+				self.valueBase64Binary = val
+			}
+			if let val = js["valueBoolean"] as? Int {
+				self.valueBoolean = (1 == val)
+			}
+			if let val = js["valueCode"] as? String {
+				self.valueCode = val
+			}
+			if let val = js["valueCodeableConcept"] as? NSDictionary {
+				self.valueCodeableConcept = CodeableConcept(json: val)
+			}
+			if let val = js["valueCoding"] as? NSDictionary {
+				self.valueCoding = Coding(json: val)
+			}
+			if let val = js["valueContact"] as? NSDictionary {
+				self.valueContact = Contact(json: val)
+			}
+			if let val = js["valueDate"] as? String {
+				self.valueDate = NSDate(json: val)
+			}
+			if let val = js["valueDateTime"] as? String {
+				self.valueDateTime = NSDate(json: val)
+			}
+			if let val = js["valueDecimal"] as? Double {
+				self.valueDecimal = NSDecimalNumber(json: val)
+			}
+			if let val = js["valueHumanName"] as? NSDictionary {
+				self.valueHumanName = HumanName(json: val)
+			}
+			if let val = js["valueIdentifier"] as? NSDictionary {
+				self.valueIdentifier = Identifier(json: val)
+			}
+			if let val = js["valueInstant"] as? String {
+				self.valueInstant = NSDate(json: val)
+			}
+			if let val = js["valueInteger"] as? Int {
+				self.valueInteger = val
+			}
+			if let val = js["valuePeriod"] as? NSDictionary {
+				self.valuePeriod = Period(json: val)
+			}
+			if let val = js["valueQuantity"] as? NSDictionary {
+				self.valueQuantity = Quantity(json: val)
+			}
+			if let val = js["valueRange"] as? NSDictionary {
+				self.valueRange = Range(json: val)
+			}
+			if let val = js["valueRatio"] as? NSDictionary {
+				self.valueRatio = Ratio(json: val)
+			}
+			if let val = js["valueResource"] as? NSDictionary {
+				self.valueResource = FHIRResource(json: val)
+			}
+			if let val = js["valueSchedule"] as? NSDictionary {
+				self.valueSchedule = Schedule(json: val)
+			}
+			if let val = js["valueString"] as? String {
+				self.valueString = val
+			}
+			if let val = js["valueUri"] as? String {
+				self.valueUri = NSURL(json: val)
 			}
 		}
 	}

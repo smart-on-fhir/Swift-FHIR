@@ -2,7 +2,7 @@
 //  MedicationPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (medicationprescription.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (medicationprescription.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -71,16 +71,16 @@ public class MedicationPrescription: FHIRResource
 				self.dateWritten = NSDate(json: val)
 			}
 			if let val = js["dispense"] as? NSDictionary {
-				self.dispense = MedicationPrescriptionDispense(json: val)
+				self.dispense = MedicationPrescriptionDispense(json: val, owner: self)
 			}
 			if let val = js["dosageInstruction"] as? [NSDictionary] {
-				self.dosageInstruction = MedicationPrescriptionDosageInstruction.from(val) as? [MedicationPrescriptionDosageInstruction]
+				self.dosageInstruction = MedicationPrescriptionDosageInstruction.from(val, owner: self) as? [MedicationPrescriptionDosageInstruction]
 			}
 			if let val = js["encounter"] as? NSDictionary {
 				self.encounter = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["medication"] as? NSDictionary {
 				self.medication = FHIRReference(json: val, owner: self)
@@ -92,7 +92,7 @@ public class MedicationPrescription: FHIRResource
 				self.prescriber = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["reasonCodeableConcept"] as? NSDictionary {
-				self.reasonCodeableConcept = CodeableConcept(json: val)
+				self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["reasonResource"] as? NSDictionary {
 				self.reasonResource = FHIRReference(json: val, owner: self)
@@ -101,10 +101,10 @@ public class MedicationPrescription: FHIRResource
 				self.status = val
 			}
 			if let val = js["substitution"] as? NSDictionary {
-				self.substitution = MedicationPrescriptionSubstitution(json: val)
+				self.substitution = MedicationPrescriptionSubstitution(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}
@@ -162,31 +162,31 @@ public class MedicationPrescriptionDosageInstruction: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["additionalInstructions"] as? NSDictionary {
-				self.additionalInstructions = CodeableConcept(json: val)
+				self.additionalInstructions = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["asNeededBoolean"] as? Int {
-				self.asNeededBoolean = (1 == val)
+			if let val = js["asNeededBoolean"] as? Bool {
+				self.asNeededBoolean = val
 			}
 			if let val = js["asNeededCodeableConcept"] as? NSDictionary {
-				self.asNeededCodeableConcept = CodeableConcept(json: val)
+				self.asNeededCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["doseQuantity"] as? NSDictionary {
-				self.doseQuantity = Quantity(json: val)
+				self.doseQuantity = Quantity(json: val, owner: self)
 			}
 			if let val = js["maxDosePerPeriod"] as? NSDictionary {
-				self.maxDosePerPeriod = Ratio(json: val)
+				self.maxDosePerPeriod = Ratio(json: val, owner: self)
 			}
 			if let val = js["method"] as? NSDictionary {
-				self.method = CodeableConcept(json: val)
+				self.method = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["rate"] as? NSDictionary {
-				self.rate = Ratio(json: val)
+				self.rate = Ratio(json: val, owner: self)
 			}
 			if let val = js["route"] as? NSDictionary {
-				self.route = CodeableConcept(json: val)
+				self.route = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["site"] as? NSDictionary {
-				self.site = CodeableConcept(json: val)
+				self.site = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["text"] as? String {
 				self.text = val
@@ -195,10 +195,10 @@ public class MedicationPrescriptionDosageInstruction: FHIRElement
 				self.timingDateTime = NSDate(json: val)
 			}
 			if let val = js["timingPeriod"] as? NSDictionary {
-				self.timingPeriod = Period(json: val)
+				self.timingPeriod = Period(json: val, owner: self)
 			}
 			if let val = js["timingSchedule"] as? NSDictionary {
-				self.timingSchedule = Schedule(json: val)
+				self.timingSchedule = Schedule(json: val, owner: self)
 			}
 		}
 	}
@@ -232,7 +232,7 @@ public class MedicationPrescriptionDispense: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["expectedSupplyDuration"] as? NSDictionary {
-				self.expectedSupplyDuration = Duration(json: val)
+				self.expectedSupplyDuration = Duration(json: val, owner: self)
 			}
 			if let val = js["medication"] as? NSDictionary {
 				self.medication = FHIRReference(json: val, owner: self)
@@ -241,10 +241,10 @@ public class MedicationPrescriptionDispense: FHIRElement
 				self.numberOfRepeatsAllowed = val
 			}
 			if let val = js["quantity"] as? NSDictionary {
-				self.quantity = Quantity(json: val)
+				self.quantity = Quantity(json: val, owner: self)
 			}
 			if let val = js["validityPeriod"] as? NSDictionary {
-				self.validityPeriod = Period(json: val)
+				self.validityPeriod = Period(json: val, owner: self)
 			}
 		}
 	}
@@ -277,10 +277,10 @@ public class MedicationPrescriptionSubstitution: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["reason"] as? NSDictionary {
-				self.reason = CodeableConcept(json: val)
+				self.reason = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["type"] as? NSDictionary {
-				self.type = CodeableConcept(json: val)
+				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}

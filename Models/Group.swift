@@ -2,7 +2,7 @@
 //  Group.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (group.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (group.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -69,17 +69,17 @@ public class Group: FHIRResource
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["actual"] as? Int {
-				self.actual = (1 == val)
+			if let val = js["actual"] as? Bool {
+				self.actual = val
 			}
 			if let val = js["characteristic"] as? [NSDictionary] {
-				self.characteristic = GroupCharacteristic.from(val) as? [GroupCharacteristic]
+				self.characteristic = GroupCharacteristic.from(val, owner: self) as? [GroupCharacteristic]
 			}
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? NSDictionary {
-				self.identifier = Identifier(json: val)
+				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["member"] as? [NSDictionary] {
 				self.member = FHIRReference.from(val, owner: self)
@@ -91,7 +91,7 @@ public class Group: FHIRResource
 				self.quantity = val
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["type"] as? String {
 				self.type = val
@@ -152,22 +152,22 @@ public class GroupCharacteristic: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["exclude"] as? Int {
-				self.exclude = (1 == val)
+			if let val = js["exclude"] as? Bool {
+				self.exclude = val
 			}
-			if let val = js["valueBoolean"] as? Int {
-				self.valueBoolean = (1 == val)
+			if let val = js["valueBoolean"] as? Bool {
+				self.valueBoolean = val
 			}
 			if let val = js["valueCodeableConcept"] as? NSDictionary {
-				self.valueCodeableConcept = CodeableConcept(json: val)
+				self.valueCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["valueQuantity"] as? NSDictionary {
-				self.valueQuantity = Quantity(json: val)
+				self.valueQuantity = Quantity(json: val, owner: self)
 			}
 			if let val = js["valueRange"] as? NSDictionary {
-				self.valueRange = Range(json: val)
+				self.valueRange = Range(json: val, owner: self)
 			}
 		}
 	}

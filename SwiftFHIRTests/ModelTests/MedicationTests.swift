@@ -2,7 +2,7 @@
 //  MedicationTests.swift
 //  MedicationTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
+//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -174,6 +174,26 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.product!.form!.coding![0].display!, "Tablet")
 		XCTAssertEqual(inst!.product!.form!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>name</b>: Paracetamol\n      </p>\n      <p>\n        <b>code</b>: \n        <span title=\"Codes: {http://snomed.info/sct 387517004}\">Paracetamol</span>\n      </p>\n      <p>\n        <b>isBrand</b>: false\n      </p>\n      <p>\n        <b>kind</b>: product\n      </p>\n      <blockquote>\n        <p>\n          <b>product</b>\n        </p>\n        <p>\n          <b>form</b>: \n          <span title=\"Codes: {http://snomed.info/sct 385055001}\">Tablet</span>\n        </p>\n      </blockquote>\n    </div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")
+	}
+	
+	func testMedication9() {
+		let inst = instantiateFrom("medication-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a Medication instance")
+		
+		XCTAssertEqual(inst!.code!.coding![0].code!, "323418000")	
+		XCTAssertEqual(inst!.code!.coding![0].display!, "Phenoxymethylpenicillin 125mg/5mL oral solution (product)")
+		XCTAssertEqual(inst!.code!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
+		XCTAssertEqual(inst!.code!.coding![1].code!, "22571011000036102")	
+		XCTAssertEqual(inst!.code!.coding![1].display!, "phenoxymethylpenicillin 125 mg / 5 mL oral liquid, 5 mL measure")
+		XCTAssertEqual(inst!.code!.coding![1].system!, NSURL(string: "http://nehta.gov.au/amt/v2")!)
+		XCTAssertFalse(inst!.isBrand!)	
+		XCTAssertEqual(inst!.kind!, "product")	
+		XCTAssertEqual(inst!.name!, "Penicillin VK oral suspension 125mg/5ml")	
+		XCTAssertEqual(inst!.product!.form!.coding![0].code!, "37595005")	
+		XCTAssertEqual(inst!.product!.form!.coding![0].display!, "Suspension")
+		XCTAssertEqual(inst!.product!.form!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
+		XCTAssertEqual(inst!.text!.div!, "<div>123456789: Penicillin VK oral suspension 125mg/5ml</div>")	
 		XCTAssertEqual(inst!.text!.status!, "generated")
 	}
 }

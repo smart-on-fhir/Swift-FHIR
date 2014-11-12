@@ -2,7 +2,7 @@
 //  MedicationStatement.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (medicationstatement.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (medicationstatement.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -59,10 +59,10 @@ public class MedicationStatement: FHIRResource
 				self.device = FHIRReference.from(val, owner: self)
 			}
 			if let val = js["dosage"] as? [NSDictionary] {
-				self.dosage = MedicationStatementDosage.from(val) as? [MedicationStatementDosage]
+				self.dosage = MedicationStatementDosage.from(val, owner: self) as? [MedicationStatementDosage]
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["medication"] as? NSDictionary {
 				self.medication = FHIRReference(json: val, owner: self)
@@ -71,16 +71,16 @@ public class MedicationStatement: FHIRResource
 				self.patient = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["reasonNotGiven"] as? [NSDictionary] {
-				self.reasonNotGiven = CodeableConcept.from(val) as? [CodeableConcept]
+				self.reasonNotGiven = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
-			if let val = js["wasNotGiven"] as? Int {
-				self.wasNotGiven = (1 == val)
+			if let val = js["wasNotGiven"] as? Bool {
+				self.wasNotGiven = val
 			}
 			if let val = js["whenGiven"] as? NSDictionary {
-				self.whenGiven = Period(json: val)
+				self.whenGiven = Period(json: val, owner: self)
 			}
 		}
 	}
@@ -125,32 +125,32 @@ public class MedicationStatementDosage: FHIRElement
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["asNeededBoolean"] as? Int {
-				self.asNeededBoolean = (1 == val)
+			if let val = js["asNeededBoolean"] as? Bool {
+				self.asNeededBoolean = val
 			}
 			if let val = js["asNeededCodeableConcept"] as? NSDictionary {
-				self.asNeededCodeableConcept = CodeableConcept(json: val)
+				self.asNeededCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["maxDosePerPeriod"] as? NSDictionary {
-				self.maxDosePerPeriod = Ratio(json: val)
+				self.maxDosePerPeriod = Ratio(json: val, owner: self)
 			}
 			if let val = js["method"] as? NSDictionary {
-				self.method = CodeableConcept(json: val)
+				self.method = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["quantity"] as? NSDictionary {
-				self.quantity = Quantity(json: val)
+				self.quantity = Quantity(json: val, owner: self)
 			}
 			if let val = js["rate"] as? NSDictionary {
-				self.rate = Ratio(json: val)
+				self.rate = Ratio(json: val, owner: self)
 			}
 			if let val = js["route"] as? NSDictionary {
-				self.route = CodeableConcept(json: val)
+				self.route = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["site"] as? NSDictionary {
-				self.site = CodeableConcept(json: val)
+				self.site = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["timing"] as? NSDictionary {
-				self.timing = Schedule(json: val)
+				self.timing = Schedule(json: val, owner: self)
 			}
 		}
 	}

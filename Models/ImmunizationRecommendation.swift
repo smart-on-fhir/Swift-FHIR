@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (immunizationrecommendation.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (immunizationrecommendation.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -52,16 +52,16 @@ public class ImmunizationRecommendation: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["recommendation"] as? [NSDictionary] {
-				self.recommendation = ImmunizationRecommendationRecommendation.from(val) as? [ImmunizationRecommendationRecommendation]
+				self.recommendation = ImmunizationRecommendationRecommendation.from(val, owner: self) as? [ImmunizationRecommendationRecommendation]
 			}
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}
@@ -117,16 +117,16 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 				self.date = NSDate(json: val)
 			}
 			if let val = js["dateCriterion"] as? [NSDictionary] {
-				self.dateCriterion = ImmunizationRecommendationRecommendationDateCriterion.from(val) as? [ImmunizationRecommendationRecommendationDateCriterion]
+				self.dateCriterion = ImmunizationRecommendationRecommendationDateCriterion.from(val, owner: self) as? [ImmunizationRecommendationRecommendationDateCriterion]
 			}
 			if let val = js["doseNumber"] as? Int {
 				self.doseNumber = val
 			}
 			if let val = js["forecastStatus"] as? NSDictionary {
-				self.forecastStatus = CodeableConcept(json: val)
+				self.forecastStatus = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["protocol"] as? NSDictionary {
-				self.protokol = ImmunizationRecommendationRecommendationProtocol(json: val)
+				self.protokol = ImmunizationRecommendationRecommendationProtocol(json: val, owner: self)
 			}
 			if let val = js["supportingImmunization"] as? [NSDictionary] {
 				self.supportingImmunization = FHIRReference.from(val, owner: self)
@@ -135,7 +135,7 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 				self.supportingPatientInformation = FHIRReference.from(val, owner: self)
 			}
 			if let val = js["vaccineType"] as? NSDictionary {
-				self.vaccineType = CodeableConcept(json: val)
+				self.vaccineType = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -169,7 +169,7 @@ public class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["value"] as? String {
 				self.value = NSDate(json: val)

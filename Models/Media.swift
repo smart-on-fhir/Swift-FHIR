@@ -2,7 +2,7 @@
 //  Media.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (media.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (media.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -90,7 +90,7 @@ public class Media: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["content"] as? NSDictionary {
-				self.content = Attachment(json: val)
+				self.content = Attachment(json: val, owner: self)
 			}
 			if let val = js["dateTime"] as? String {
 				self.dateTime = NSDate(json: val)
@@ -105,7 +105,7 @@ public class Media: FHIRResource
 				self.height = val
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["length"] as? Int {
 				self.length = val
@@ -117,16 +117,16 @@ public class Media: FHIRResource
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["subtype"] as? NSDictionary {
-				self.subtype = CodeableConcept(json: val)
+				self.subtype = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["type"] as? String {
 				self.type = val
 			}
 			if let val = js["view"] as? NSDictionary {
-				self.view = CodeableConcept(json: val)
+				self.view = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["width"] as? Int {
 				self.width = val

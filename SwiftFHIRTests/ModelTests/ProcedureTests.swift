@@ -2,7 +2,7 @@
 //  ProcedureTests.swift
 //  ProcedureTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
+//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -188,5 +188,24 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.type!.coding![0].code!, "367336001")	
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Chemotherapy")
 		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+	}
+	
+	func testProcedure7() {
+		let inst = instantiateFrom("procedure-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a Procedure instance")
+	
+		XCTAssertEqual(inst!.date!.start!, NSDate.dateFromISOString("2013-04-05")!)	
+		XCTAssertEqual(inst!.followUp!, "ROS 5 days  - 2013-04-10")	
+		XCTAssertEqual(inst!.indication![0].text!, "Generalized abdominal pain 24 hours. Localized in RIF with rebound and guarding")	
+		XCTAssertEqual(inst!.notes!, "Routine Appendicectomy. Appendix was inflamed and in retro-caecal position")	
+		XCTAssertEqual(inst!.performer![0].person!.display!, "Dr Cyril Surgeon")	
+		XCTAssertEqual(inst!.performer![0].person!.reference!, "Practitioner/example")	
+		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")	
+		XCTAssertEqual(inst!.text!.div!, "<div>Routine appendicectomy</div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")	
+		XCTAssertEqual(inst!.type!.coding![0].code!, "80146002")	
+		XCTAssertEqual(inst!.type!.coding![0].display!, "Appendectomy (Procedure)")
+		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
+		XCTAssertEqual(inst!.type!.text!, "Appendicectomy")
 	}
 }

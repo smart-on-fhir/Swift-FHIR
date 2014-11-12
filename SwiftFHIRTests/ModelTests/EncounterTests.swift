@@ -2,7 +2,7 @@
 //  EncounterTests.swift
 //  EncounterTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
+//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -220,5 +220,15 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.type![0].coding![0].code!, "183807002")	
 		XCTAssertEqual(inst!.type![0].coding![0].display!, "Inpatient stay for nine days")
 		XCTAssertEqual(inst!.type![0].coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+	}
+	
+	func testEncounter7() {
+		let inst = instantiateFrom("encounter-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a Encounter instance")
+		
+		XCTAssertEqual(inst!.status!, "in progress")	
+		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")	
+		XCTAssertEqual(inst!.text!.div!, "<div>Encounter with patient @example</div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")
 	}
 }

@@ -2,7 +2,7 @@
 //  ConditionTests.swift
 //  ConditionTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
+//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -274,6 +274,52 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.subject!.display!, "Roel")	
 		XCTAssertEqual(inst!.subject!.reference!, "Patient/f201")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>subject</b>: Roel\n      </p>\n      <p>\n        <b>asserter</b>: \n        <a href=\"practitioner-example-f201-ab.html\">UZI-nummer = 12345678901 (official); Dokter Bronsig(official); Male; birthDate: 24-Dec 1956; Implementation of planned interventions; Medical oncologist</a>\n      </p>\n      <p>\n        <b>dateAsserted</b>: 4-Apr 2013\n      </p>\n      <p>\n        <b>code</b>: \n        <span title=\"Codes: {http://snomed.info/sct 87628006}\">Bacterial infectious disease</span>\n      </p>\n      <p>\n        <b>status</b>: working\n      </p>\n    </div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")
+	}
+	
+	func testCondition9() {
+		let inst = instantiateFrom("condition-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a Condition instance")
+		
+		XCTAssertEqual(inst!.category!.coding![0].code!, "diagnosis")	
+		XCTAssertEqual(inst!.category!.coding![0].display!, "Diagnosis")
+		XCTAssertEqual(inst!.category!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/condition-category")!)	
+		XCTAssertEqual(inst!.category!.coding![1].code!, "439401001")	
+		XCTAssertEqual(inst!.category!.coding![1].display!, "Diagnosis")
+		XCTAssertEqual(inst!.category!.coding![1].system!, NSURL(string: "http://snomed.info/sct")!)	
+		XCTAssertEqual(inst!.code!.coding![0].code!, "39065001")	
+		XCTAssertEqual(inst!.code!.coding![0].display!, "Burn of ear")
+		XCTAssertEqual(inst!.code!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
+		XCTAssertEqual(inst!.code!.text!, "Burnt Ear")	
+		XCTAssertEqual(inst!.location![0].code!.coding![0].code!, "49521004")	
+		XCTAssertEqual(inst!.location![0].code!.coding![0].display!, "Left external ear structure")
+		XCTAssertEqual(inst!.location![0].code!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
+		XCTAssertEqual(inst!.location![0].code!.text!, "Left Ear")
+		XCTAssertEqual(inst!.onsetDate!, NSDate.dateFromISOString("2012-05-24")!)	
+		XCTAssertEqual(inst!.severity!.coding![0].code!, "24484000")	
+		XCTAssertEqual(inst!.severity!.coding![0].display!, "Severe")
+		XCTAssertEqual(inst!.severity!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
+		XCTAssertEqual(inst!.status!, "confirmed")	
+		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")	
+		XCTAssertEqual(inst!.text!.div!, "<div>Severe burn of left ear (Date: 24-May 2012)</div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")
+	}
+	
+	func testCondition10() {
+		let inst = instantiateFrom("condition-example2.json")
+		XCTAssertNotNil(inst, "Must have instantiated a Condition instance")
+		
+		XCTAssertEqual(inst!.category!.coding![0].code!, "finding")	
+		XCTAssertEqual(inst!.category!.coding![0].display!, "Finding")
+		XCTAssertEqual(inst!.category!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/condition-category")!)	
+		XCTAssertEqual(inst!.code!.text!, "Asthma")
+		XCTAssertEqual(inst!.onsetDate!, NSDate.dateFromISOString("2012-11-12")!)	
+		XCTAssertEqual(inst!.severity!.coding![0].code!, "255604002")	
+		XCTAssertEqual(inst!.severity!.coding![0].display!, "Mild")
+		XCTAssertEqual(inst!.severity!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
+		XCTAssertEqual(inst!.status!, "confirmed")	
+		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")	
+		XCTAssertEqual(inst!.text!.div!, "<div>Mild Asthma (Date: 21-Nov 2012)</div>")	
 		XCTAssertEqual(inst!.text!.status!, "generated")
 	}
 }

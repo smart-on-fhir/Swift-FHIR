@@ -2,7 +2,7 @@
 //  PatientTests.swift
 //  PatientTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
+//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -321,6 +321,69 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.name![0].family![0], "Doe")	
 		XCTAssertEqual(inst!.name![0].given![0], "John")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>Patient John Doe, M, 27-May 1956. ID: 89765a87b</p>\n    </div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")
+	}
+	
+	func testPatient11() {
+		let inst = instantiateFrom("patient-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a Patient instance")
+	
+		XCTAssertTrue(inst!.active!)	
+		XCTAssertEqual(inst!.address![0].city!, "PleasantVille")	
+		XCTAssertEqual(inst!.address![0].line![0], "534 Erewhon St")	
+		XCTAssertEqual(inst!.address![0].state!, "Vic")	
+		XCTAssertEqual(inst!.address![0].use!, "home")	
+		XCTAssertEqual(inst!.address![0].zip!, "3999")
+		XCTAssertEqual(inst!.birthDate!, NSDate.dateFromISOString("1974-12-25")!)	
+		XCTAssertEqual(inst!.contact![0].name!.family![0], "du")	
+		XCTAssertEqual(inst!.contact![0].name!.family![1], "Marché")	
+		XCTAssertEqual(inst!.contact![0].name!.given![0], "Bénédicte")	
+		XCTAssertEqual(inst!.contact![0].relationship![0].coding![0].code!, "partner")
+		XCTAssertEqual(inst!.contact![0].relationship![0].coding![0].system!, NSURL(string: "http://hl7.org/fhir/patient-contact-relationship")!)	
+		XCTAssertEqual(inst!.contact![0].telecom![0].system!, "phone")	
+		XCTAssertEqual(inst!.contact![0].telecom![0].value!, "+33 (237) 998327")
+		XCTAssertFalse(inst!.deceasedBoolean!)	
+		XCTAssertEqual(inst!.gender!.coding![0].code!, "M")	
+		XCTAssertEqual(inst!.gender!.coding![0].display!, "Male")
+		XCTAssertEqual(inst!.gender!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/AdministrativeGender")!)	
+		XCTAssertEqual(inst!.identifier![0].assigner!.display!, "Acme Healthcare")	
+		XCTAssertEqual(inst!.identifier![0].label!, "MRN")
+		XCTAssertEqual(inst!.identifier![0].period!.start!, NSDate.dateFromISOString("2001-05-06")!)
+		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:oid:1.2.36.146.595.217.0.1")!)	
+		XCTAssertEqual(inst!.identifier![0].use!, "usual")	
+		XCTAssertEqual(inst!.identifier![0].value!, "12345")	
+		XCTAssertEqual(inst!.managingOrganization!.reference!, "Organization/1")	
+		XCTAssertEqual(inst!.name![0].family![0], "Chalmers")	
+		XCTAssertEqual(inst!.name![0].given![0], "Peter")	
+		XCTAssertEqual(inst!.name![0].given![1], "James")	
+		XCTAssertEqual(inst!.name![0].use!, "official")	
+		XCTAssertEqual(inst!.name![1].given![0], "Jim")	
+		XCTAssertEqual(inst!.name![1].use!, "usual")	
+		XCTAssertEqual(inst!.telecom![0].use!, "home")	
+		XCTAssertEqual(inst!.telecom![1].system!, "phone")	
+		XCTAssertEqual(inst!.telecom![1].use!, "work")	
+		XCTAssertEqual(inst!.telecom![1].value!, "(03) 5555 6473")	
+		XCTAssertEqual(inst!.text!.div!, "<div>\n      <table>\n        <tbody>\n          <tr>\n            <td>Name</td>\n            <td>Peter James <b>Chalmers</b> (&quot;Jim&quot;)</td>\n          </tr>\n          <tr>\n            <td>Address</td>\n            <td>534 Erewhon, Pleasantville, Vic, 3999</td>\n          </tr>\n          <tr>\n            <td>Contacts</td>\n            <td>Home: unknown. Work: (03) 5555 6473</td>\n          </tr>\n          <tr>\n            <td>Id</td>\n            <td>MRN: 12345 (Acme Healthcare)</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")
+	}
+	
+	func testPatient12() {
+		let inst = instantiateFrom("patient-glossy-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a Patient instance")
+	
+		XCTAssertTrue(inst!.active!)
+		XCTAssertEqual(inst!.birthDate!, NSDate.dateFromISOString("1932-09-24")!)	
+		XCTAssertEqual(inst!.gender!.text!, "Male")	
+		XCTAssertEqual(inst!.identifier![0].label!, "MRN")
+		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.goodhealth.org/identifiers/mrn")!)	
+		XCTAssertEqual(inst!.identifier![0].use!, "usual")	
+		XCTAssertEqual(inst!.identifier![0].value!, "123456")	
+		XCTAssertEqual(inst!.managingOrganization!.display!, "Good Health Clinic")	
+		XCTAssertEqual(inst!.managingOrganization!.reference!, "Organization/2")	
+		XCTAssertEqual(inst!.name![0].family![0], "Levin")	
+		XCTAssertEqual(inst!.name![0].given![0], "Henry")	
+		XCTAssertEqual(inst!.name![0].suffix![0], "The 7th")	
+		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>Henry Levin the 7th</p>\n      <p>MRN: 123456</p>\n    </div>")	
 		XCTAssertEqual(inst!.text!.status!, "generated")
 	}
 }

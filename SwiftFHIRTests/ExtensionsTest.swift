@@ -24,10 +24,17 @@ class ExtensionsTest: XCTestCase
 		XCTAssertNotNil(d2, "Must parse ISO date 2")
 		XCTAssertEqual(d1!, d2!)
 		
-		let d3 = NSDate.dateFromISOString("2013-05-25T18:32:52")
-		XCTAssertNil(d3, "Must not parse ISO date 3")
-		let d4 = NSDate.dateFromISOString("2013-05-25")
-		XCTAssertNotNil(d4, "Must parse ISO date 4")
+		let dNoTZ = NSDate.dateFromISOString("2013-05-25T18:32:52")
+		XCTAssertNotNil(dNoTZ, "Must parse ISO date without timezone")
+
+		let dNoSec = NSDate.dateFromISOString("2013-05-25T18:32")
+		XCTAssertNil(dNoSec, "Must not parse ISO date without seconds")
+		
+		let dDate = NSDate.dateFromISOString("2013-05-25")
+		XCTAssertNotNil(dDate, "Must parse ISO date only")
+
+		// FHIR allows many more date formats, we'll need to figure out how to support them. Possibly using Peter's
+		// Cocoa ISO Date (un)parser: https://github.com/boredzo/iso-8601-date-formatter (BSD license)
 	}
 	
 	func testNSURL() {

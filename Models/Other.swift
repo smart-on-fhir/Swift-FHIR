@@ -2,7 +2,7 @@
 //  Other.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (other.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (other.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -72,19 +72,19 @@ public class Other: FHIRResource
 				self.author = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["created"] as? String {
 				self.created = NSDate(json: val)
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}

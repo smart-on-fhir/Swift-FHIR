@@ -2,7 +2,7 @@
 //  Medication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (medication.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (medication.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -69,10 +69,10 @@ public class Medication: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["isBrand"] as? Int {
-				self.isBrand = (1 == val)
+			if let val = js["isBrand"] as? Bool {
+				self.isBrand = val
 			}
 			if let val = js["kind"] as? String {
 				self.kind = val
@@ -84,13 +84,13 @@ public class Medication: FHIRResource
 				self.name = val
 			}
 			if let val = js["package"] as? NSDictionary {
-				self.package = MedicationPackage(json: val)
+				self.package = MedicationPackage(json: val, owner: self)
 			}
 			if let val = js["product"] as? NSDictionary {
-				self.product = MedicationProduct(json: val)
+				self.product = MedicationProduct(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}
@@ -115,10 +115,10 @@ public class MedicationProduct: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["form"] as? NSDictionary {
-				self.form = CodeableConcept(json: val)
+				self.form = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["ingredient"] as? [NSDictionary] {
-				self.ingredient = MedicationProductIngredient.from(val) as? [MedicationProductIngredient]
+				self.ingredient = MedicationProductIngredient.from(val, owner: self) as? [MedicationProductIngredient]
 			}
 		}
 	}
@@ -149,7 +149,7 @@ public class MedicationProductIngredient: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["amount"] as? NSDictionary {
-				self.amount = Ratio(json: val)
+				self.amount = Ratio(json: val, owner: self)
 			}
 			if let val = js["item"] as? NSDictionary {
 				self.item = FHIRReference(json: val, owner: self)
@@ -177,10 +177,10 @@ public class MedicationPackage: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["container"] as? NSDictionary {
-				self.container = CodeableConcept(json: val)
+				self.container = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["content"] as? [NSDictionary] {
-				self.content = MedicationPackageContent.from(val) as? [MedicationPackageContent]
+				self.content = MedicationPackageContent.from(val, owner: self) as? [MedicationPackageContent]
 			}
 		}
 	}
@@ -211,7 +211,7 @@ public class MedicationPackageContent: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["amount"] as? NSDictionary {
-				self.amount = Quantity(json: val)
+				self.amount = Quantity(json: val, owner: self)
 			}
 			if let val = js["item"] as? NSDictionary {
 				self.item = FHIRReference(json: val, owner: self)

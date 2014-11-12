@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (conformance.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (conformance.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -139,8 +139,8 @@ public class Conformance: FHIRResource
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["acceptUnknown"] as? Int {
-				self.acceptUnknown = (1 == val)
+			if let val = js["acceptUnknown"] as? Bool {
+				self.acceptUnknown = val
 			}
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
@@ -149,10 +149,10 @@ public class Conformance: FHIRResource
 				self.description = val
 			}
 			if let val = js["document"] as? [NSDictionary] {
-				self.document = ConformanceDocument.from(val) as? [ConformanceDocument]
+				self.document = ConformanceDocument.from(val, owner: self) as? [ConformanceDocument]
 			}
-			if let val = js["experimental"] as? Int {
-				self.experimental = (1 == val)
+			if let val = js["experimental"] as? Bool {
+				self.experimental = val
 			}
 			if let val = js["fhirVersion"] as? String {
 				self.fhirVersion = val
@@ -164,10 +164,10 @@ public class Conformance: FHIRResource
 				self.identifier = val
 			}
 			if let val = js["implementation"] as? NSDictionary {
-				self.implementation = ConformanceImplementation(json: val)
+				self.implementation = ConformanceImplementation(json: val, owner: self)
 			}
 			if let val = js["messaging"] as? [NSDictionary] {
-				self.messaging = ConformanceMessaging.from(val) as? [ConformanceMessaging]
+				self.messaging = ConformanceMessaging.from(val, owner: self) as? [ConformanceMessaging]
 			}
 			if let val = js["name"] as? String {
 				self.name = val
@@ -179,19 +179,19 @@ public class Conformance: FHIRResource
 				self.publisher = val
 			}
 			if let val = js["rest"] as? [NSDictionary] {
-				self.rest = ConformanceRest.from(val) as? [ConformanceRest]
+				self.rest = ConformanceRest.from(val, owner: self) as? [ConformanceRest]
 			}
 			if let val = js["software"] as? NSDictionary {
-				self.software = ConformanceSoftware(json: val)
+				self.software = ConformanceSoftware(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
 			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val) as? [Contact]
+				self.telecom = Contact.from(val, owner: self) as? [Contact]
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["version"] as? String {
 				self.version = val
@@ -328,16 +328,16 @@ public class ConformanceRest: FHIRElement
 				self.mode = val
 			}
 			if let val = js["operation"] as? [NSDictionary] {
-				self.operation = ConformanceRestOperation.from(val) as? [ConformanceRestOperation]
+				self.operation = ConformanceRestOperation.from(val, owner: self) as? [ConformanceRestOperation]
 			}
 			if let val = js["query"] as? [NSDictionary] {
-				self.query = ConformanceRestQuery.from(val) as? [ConformanceRestQuery]
+				self.query = ConformanceRestQuery.from(val, owner: self) as? [ConformanceRestQuery]
 			}
 			if let val = js["resource"] as? [NSDictionary] {
-				self.resource = ConformanceRestResource.from(val) as? [ConformanceRestResource]
+				self.resource = ConformanceRestResource.from(val, owner: self) as? [ConformanceRestResource]
 			}
 			if let val = js["security"] as? NSDictionary {
-				self.security = ConformanceRestSecurity(json: val)
+				self.security = ConformanceRestSecurity(json: val, owner: self)
 			}
 		}
 	}
@@ -366,16 +366,16 @@ public class ConformanceRestSecurity: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["certificate"] as? [NSDictionary] {
-				self.certificate = ConformanceRestSecurityCertificate.from(val) as? [ConformanceRestSecurityCertificate]
+				self.certificate = ConformanceRestSecurityCertificate.from(val, owner: self) as? [ConformanceRestSecurityCertificate]
 			}
-			if let val = js["cors"] as? Int {
-				self.cors = (1 == val)
+			if let val = js["cors"] as? Bool {
+				self.cors = val
 			}
 			if let val = js["description"] as? String {
 				self.description = val
 			}
 			if let val = js["service"] as? [NSDictionary] {
-				self.service = CodeableConcept.from(val) as? [CodeableConcept]
+				self.service = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
 	}
@@ -450,25 +450,25 @@ public class ConformanceRestResource: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["operation"] as? [NSDictionary] {
-				self.operation = ConformanceRestResourceOperation.from(val) as? [ConformanceRestResourceOperation]
+				self.operation = ConformanceRestResourceOperation.from(val, owner: self) as? [ConformanceRestResourceOperation]
 			}
 			if let val = js["profile"] as? NSDictionary {
 				self.profile = FHIRReference(json: val, owner: self)
 			}
-			if let val = js["readHistory"] as? Int {
-				self.readHistory = (1 == val)
+			if let val = js["readHistory"] as? Bool {
+				self.readHistory = val
 			}
 			if let val = js["searchInclude"] as? [String] {
 				self.searchInclude = val
 			}
 			if let val = js["searchParam"] as? [NSDictionary] {
-				self.searchParam = ConformanceRestResourceSearchParam.from(val) as? [ConformanceRestResourceSearchParam]
+				self.searchParam = ConformanceRestResourceSearchParam.from(val, owner: self) as? [ConformanceRestResourceSearchParam]
 			}
 			if let val = js["type"] as? String {
 				self.type = val
 			}
-			if let val = js["updateCreate"] as? Int {
-				self.updateCreate = (1 == val)
+			if let val = js["updateCreate"] as? Bool {
+				self.updateCreate = val
 			}
 		}
 	}
@@ -646,7 +646,7 @@ public class ConformanceRestQuery: FHIRElement
 				self.name = val
 			}
 			if let val = js["parameter"] as? [NSDictionary] {
-				self.parameter = ConformanceRestQueryParameter.from(val) as? [ConformanceRestQueryParameter]
+				self.parameter = ConformanceRestQueryParameter.from(val, owner: self) as? [ConformanceRestQueryParameter]
 			}
 		}
 	}
@@ -700,7 +700,7 @@ public class ConformanceMessaging: FHIRElement
 				self.endpoint = NSURL(json: val)
 			}
 			if let val = js["event"] as? [NSDictionary] {
-				self.event = ConformanceMessagingEvent.from(val) as? [ConformanceMessagingEvent]
+				self.event = ConformanceMessagingEvent.from(val, owner: self) as? [ConformanceMessagingEvent]
 			}
 			if let val = js["reliableCache"] as? Int {
 				self.reliableCache = val
@@ -767,7 +767,7 @@ public class ConformanceMessagingEvent: FHIRElement
 				self.category = val
 			}
 			if let val = js["code"] as? NSDictionary {
-				self.code = Coding(json: val)
+				self.code = Coding(json: val, owner: self)
 			}
 			if let val = js["documentation"] as? String {
 				self.documentation = val
@@ -779,7 +779,7 @@ public class ConformanceMessagingEvent: FHIRElement
 				self.mode = val
 			}
 			if let val = js["protocol"] as? [NSDictionary] {
-				self.protokol = Coding.from(val) as? [Coding]
+				self.protokol = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["request"] as? NSDictionary {
 				self.request = FHIRReference(json: val, owner: self)

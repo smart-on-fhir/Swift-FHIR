@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (documentmanifest.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (documentmanifest.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -89,7 +89,7 @@ public class DocumentManifest: FHIRResource
 				self.author = FHIRReference.from(val, owner: self)
 			}
 			if let val = js["confidentiality"] as? NSDictionary {
-				self.confidentiality = CodeableConcept(json: val)
+				self.confidentiality = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["content"] as? [NSDictionary] {
 				self.content = FHIRReference.from(val, owner: self)
@@ -101,10 +101,10 @@ public class DocumentManifest: FHIRResource
 				self.description = val
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["masterIdentifier"] as? NSDictionary {
-				self.masterIdentifier = Identifier(json: val)
+				self.masterIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["recipient"] as? [NSDictionary] {
 				self.recipient = FHIRReference.from(val, owner: self)
@@ -122,10 +122,10 @@ public class DocumentManifest: FHIRResource
 				self.supercedes = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["type"] as? NSDictionary {
-				self.type = CodeableConcept(json: val)
+				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}

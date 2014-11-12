@@ -2,7 +2,7 @@
 //  Order.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (order.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (order.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -83,10 +83,10 @@ public class Order: FHIRResource
 				self.detail = FHIRReference.from(val, owner: self)
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["reasonCodeableConcept"] as? NSDictionary {
-				self.reasonCodeableConcept = CodeableConcept(json: val)
+				self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["reasonResource"] as? NSDictionary {
 				self.reasonResource = FHIRReference(json: val, owner: self)
@@ -101,10 +101,10 @@ public class Order: FHIRResource
 				self.target = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["when"] as? NSDictionary {
-				self.when = OrderWhen(json: val)
+				self.when = OrderWhen(json: val, owner: self)
 			}
 		}
 	}
@@ -127,10 +127,10 @@ public class OrderWhen: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["schedule"] as? NSDictionary {
-				self.schedule = Schedule(json: val)
+				self.schedule = Schedule(json: val, owner: self)
 			}
 		}
 	}

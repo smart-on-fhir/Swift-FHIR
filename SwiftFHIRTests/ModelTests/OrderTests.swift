@@ -2,7 +2,7 @@
 //  OrderTests.swift
 //  OrderTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
+//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -37,5 +37,20 @@ class OrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.when!.code!.coding![0].code!, "394848005")	
 		XCTAssertEqual(inst!.when!.code!.coding![0].display!, "Normal priority")
 		XCTAssertEqual(inst!.when!.code!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+	}
+	
+	func testOrder2() {
+		let inst = instantiateFrom("order-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a Order instance")
+	
+		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2012-12-28T09:03:04+11:00")!)	
+		XCTAssertEqual(inst!.detail![0].reference!, "MedicationPrescription/example")	
+		XCTAssertEqual(inst!.reasonCodeableConcept!.text!, "Standard admission testing")	
+		XCTAssertEqual(inst!.source!.reference!, "Practitioner/example")	
+		XCTAssertEqual(inst!.subject!.reference!, "Patient/pat2")	
+		XCTAssertEqual(inst!.text!.div!, "<div>Request for Prescription (on patient Donald DUCK @ Acme Healthcare, Inc. MR = 654321)</div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")	
+		XCTAssertEqual(inst!.when!.code!.coding![0].code!, "today")
+		XCTAssertEqual(inst!.when!.code!.coding![0].system!, NSURL(string: "http://acme.com/codes/request-priority")!)
 	}
 }

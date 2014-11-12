@@ -2,7 +2,7 @@
 //  Alert.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (alert.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (alert.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -70,10 +70,10 @@ public class Alert: FHIRResource
 				self.author = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["category"] as? NSDictionary {
-				self.category = CodeableConcept(json: val)
+				self.category = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["note"] as? String {
 				self.note = val
@@ -85,7 +85,7 @@ public class Alert: FHIRResource
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}

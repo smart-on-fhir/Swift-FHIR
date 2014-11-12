@@ -2,7 +2,7 @@
 //  Query.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (query.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (query.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -50,13 +50,13 @@ public class Query: FHIRResource
 				self.identifier = NSURL(json: val)
 			}
 			if let val = js["parameter"] as? [NSDictionary] {
-				self.parameter = Extension.from(val) as? [Extension]
+				self.parameter = Extension.from(val, owner: self) as? [Extension]
 			}
 			if let val = js["response"] as? NSDictionary {
-				self.response = QueryResponse(json: val)
+				self.response = QueryResponse(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}
@@ -109,25 +109,25 @@ public class QueryResponse: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["first"] as? [NSDictionary] {
-				self.first = Extension.from(val) as? [Extension]
+				self.first = Extension.from(val, owner: self) as? [Extension]
 			}
 			if let val = js["identifier"] as? String {
 				self.identifier = NSURL(json: val)
 			}
 			if let val = js["last"] as? [NSDictionary] {
-				self.last = Extension.from(val) as? [Extension]
+				self.last = Extension.from(val, owner: self) as? [Extension]
 			}
 			if let val = js["next"] as? [NSDictionary] {
-				self.next = Extension.from(val) as? [Extension]
+				self.next = Extension.from(val, owner: self) as? [Extension]
 			}
 			if let val = js["outcome"] as? String {
 				self.outcome = val
 			}
 			if let val = js["parameter"] as? [NSDictionary] {
-				self.parameter = Extension.from(val) as? [Extension]
+				self.parameter = Extension.from(val, owner: self) as? [Extension]
 			}
 			if let val = js["previous"] as? [NSDictionary] {
-				self.previous = Extension.from(val) as? [Extension]
+				self.previous = Extension.from(val, owner: self) as? [Extension]
 			}
 			if let val = js["reference"] as? [NSDictionary] {
 				self.reference = FHIRReference.from(val, owner: self)

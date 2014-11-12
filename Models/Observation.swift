@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (observation.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (observation.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -126,37 +126,37 @@ public class Observation: FHIRResource
 				self.appliesDateTime = NSDate(json: val)
 			}
 			if let val = js["appliesPeriod"] as? NSDictionary {
-				self.appliesPeriod = Period(json: val)
+				self.appliesPeriod = Period(json: val, owner: self)
 			}
 			if let val = js["bodySite"] as? NSDictionary {
-				self.bodySite = CodeableConcept(json: val)
+				self.bodySite = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["comments"] as? String {
 				self.comments = val
 			}
 			if let val = js["identifier"] as? NSDictionary {
-				self.identifier = Identifier(json: val)
+				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["interpretation"] as? NSDictionary {
-				self.interpretation = CodeableConcept(json: val)
+				self.interpretation = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["issued"] as? String {
 				self.issued = NSDate(json: val)
 			}
 			if let val = js["method"] as? NSDictionary {
-				self.method = CodeableConcept(json: val)
+				self.method = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["name"] as? NSDictionary {
-				self.name = CodeableConcept(json: val)
+				self.name = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["performer"] as? [NSDictionary] {
 				self.performer = FHIRReference.from(val, owner: self)
 			}
 			if let val = js["referenceRange"] as? [NSDictionary] {
-				self.referenceRange = ObservationReferenceRange.from(val) as? [ObservationReferenceRange]
+				self.referenceRange = ObservationReferenceRange.from(val, owner: self) as? [ObservationReferenceRange]
 			}
 			if let val = js["related"] as? [NSDictionary] {
-				self.related = ObservationRelated.from(val) as? [ObservationRelated]
+				self.related = ObservationRelated.from(val, owner: self) as? [ObservationRelated]
 			}
 			if let val = js["reliability"] as? String {
 				self.reliability = val
@@ -171,25 +171,25 @@ public class Observation: FHIRResource
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["valueAttachment"] as? NSDictionary {
-				self.valueAttachment = Attachment(json: val)
+				self.valueAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["valueCodeableConcept"] as? NSDictionary {
-				self.valueCodeableConcept = CodeableConcept(json: val)
+				self.valueCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["valuePeriod"] as? NSDictionary {
-				self.valuePeriod = Period(json: val)
+				self.valuePeriod = Period(json: val, owner: self)
 			}
 			if let val = js["valueQuantity"] as? NSDictionary {
-				self.valueQuantity = Quantity(json: val)
+				self.valueQuantity = Quantity(json: val, owner: self)
 			}
 			if let val = js["valueRatio"] as? NSDictionary {
-				self.valueRatio = Ratio(json: val)
+				self.valueRatio = Ratio(json: val, owner: self)
 			}
 			if let val = js["valueSampledData"] as? NSDictionary {
-				self.valueSampledData = SampledData(json: val)
+				self.valueSampledData = SampledData(json: val, owner: self)
 			}
 			if let val = js["valueString"] as? String {
 				self.valueString = val
@@ -223,16 +223,16 @@ public class ObservationReferenceRange: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["age"] as? NSDictionary {
-				self.age = Range(json: val)
+				self.age = Range(json: val, owner: self)
 			}
 			if let val = js["high"] as? NSDictionary {
-				self.high = Quantity(json: val)
+				self.high = Quantity(json: val, owner: self)
 			}
 			if let val = js["low"] as? NSDictionary {
-				self.low = Quantity(json: val)
+				self.low = Quantity(json: val, owner: self)
 			}
 			if let val = js["meaning"] as? NSDictionary {
-				self.meaning = CodeableConcept(json: val)
+				self.meaning = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}

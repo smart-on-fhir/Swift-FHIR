@@ -2,7 +2,7 @@
 //  ValueSetTests.swift
 //  ValueSetTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
+//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -21,6 +21,30 @@ class ValueSetTests: FHIRModelTestCase
 	}
 	
 	func testValueSet1() {
+		let inst = instantiateFrom("valueset-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a ValueSet instance")
+		
+		XCTAssertEqual(inst!.compose!.include![0].code![0], "14647-2")	
+		XCTAssertEqual(inst!.compose!.include![0].code![1], "2093-3")	
+		XCTAssertEqual(inst!.compose!.include![0].code![2], "35200-5")	
+		XCTAssertEqual(inst!.compose!.include![0].code![3], "9342-7")
+		XCTAssertEqual(inst!.compose!.include![0].system!, NSURL(string: "http://loinc.org")!)	
+		XCTAssertEqual(inst!.compose!.include![0].version!, "2.36")
+		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2012-06-13")!)	
+		XCTAssertEqual(inst!.description!, "This is an example value set that includes        all the LOINC codes for serum cholesterol from v2.36")
+		XCTAssertTrue(inst!.experimental!)	
+		XCTAssertEqual(inst!.identifier!, "256a5231-a2bb-49bd-9fea-f349d428b70d")	
+		XCTAssertEqual(inst!.name!, "LOINC Codes for Cholesterol")	
+		XCTAssertEqual(inst!.publisher!, "FHIR project team (example)")	
+		XCTAssertEqual(inst!.status!, "draft")	
+		XCTAssertEqual(inst!.telecom![0].system!, "url")	
+		XCTAssertEqual(inst!.telecom![0].value!, "http://hl7.org/fhir")	
+		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>Value set &quot;LOINC Codes for Cholesterol&quot;: This is an example value set that includes \n        all the LOINC codes for serum cholesterol from v2.36. \n        Developed by: FHIR project team (example)</p>\n      <p>Published for testing on 13-June 2012</p>\n      <p>This is a restriction on\n<a href=\"http://hl7.org/svc/fhir/ValueSet/03acace4-5206-4c8f-a8b4-df27a4c18b09?format=text/html\">\n        the value set &quot;all serum test codes&quot;</a>, and contains the following LOINC codes:</p>\n      <ul>\n        <li>14647-2</li>\n        <li>2093-3</li>\n        <li>35200-5</li>\n        <li>9342-7</li>\n      </ul>\n    </div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")	
+		XCTAssertEqual(inst!.version!, "20120613")
+	}
+	
+	func testValueSet2() {
 		let inst = instantiateFrom("valueset-list-example-codes.json")
 		XCTAssertNotNil(inst, "Must have instantiated a ValueSet instance")
 		

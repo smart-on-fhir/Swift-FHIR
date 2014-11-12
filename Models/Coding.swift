@@ -2,7 +2,7 @@
 //  Coding.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Coding.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (type-Coding.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -46,8 +46,8 @@ public class Coding: FHIRElement
 			if let val = js["display"] as? String {
 				self.display = val
 			}
-			if let val = js["primary"] as? Int {
-				self.primary = (1 == val)
+			if let val = js["primary"] as? Bool {
+				self.primary = val
 			}
 			if let val = js["system"] as? String {
 				self.system = NSURL(json: val)

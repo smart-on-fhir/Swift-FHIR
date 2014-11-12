@@ -2,7 +2,7 @@
 //  List.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (list.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (list.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -62,25 +62,25 @@ public class List: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
 			}
 			if let val = js["emptyReason"] as? NSDictionary {
-				self.emptyReason = CodeableConcept(json: val)
+				self.emptyReason = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["entry"] as? [NSDictionary] {
-				self.entry = ListEntry.from(val) as? [ListEntry]
+				self.entry = ListEntry.from(val, owner: self) as? [ListEntry]
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["mode"] as? String {
 				self.mode = val
 			}
-			if let val = js["ordered"] as? Int {
-				self.ordered = (1 == val)
+			if let val = js["ordered"] as? Bool {
+				self.ordered = val
 			}
 			if let val = js["source"] as? NSDictionary {
 				self.source = FHIRReference(json: val, owner: self)
@@ -89,7 +89,7 @@ public class List: FHIRResource
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}
@@ -128,11 +128,11 @@ public class ListEntry: FHIRElement
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
 			}
-			if let val = js["deleted"] as? Int {
-				self.deleted = (1 == val)
+			if let val = js["deleted"] as? Bool {
+				self.deleted = val
 			}
 			if let val = js["flag"] as? [NSDictionary] {
-				self.flag = CodeableConcept.from(val) as? [CodeableConcept]
+				self.flag = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["item"] as? NSDictionary {
 				self.item = FHIRReference(json: val, owner: self)

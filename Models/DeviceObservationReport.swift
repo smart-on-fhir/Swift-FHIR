@@ -2,7 +2,7 @@
 //  DeviceObservationReport.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (deviceobservationreport.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (deviceobservationreport.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -61,7 +61,7 @@ public class DeviceObservationReport: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? NSDictionary {
-				self.identifier = Identifier(json: val)
+				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["instant"] as? String {
 				self.instant = NSDate(json: val)
@@ -73,10 +73,10 @@ public class DeviceObservationReport: FHIRResource
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["virtualDevice"] as? [NSDictionary] {
-				self.virtualDevice = DeviceObservationReportVirtualDevice.from(val) as? [DeviceObservationReportVirtualDevice]
+				self.virtualDevice = DeviceObservationReportVirtualDevice.from(val, owner: self) as? [DeviceObservationReportVirtualDevice]
 			}
 		}
 	}
@@ -99,10 +99,10 @@ public class DeviceObservationReportVirtualDevice: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["channel"] as? [NSDictionary] {
-				self.channel = DeviceObservationReportVirtualDeviceChannel.from(val) as? [DeviceObservationReportVirtualDeviceChannel]
+				self.channel = DeviceObservationReportVirtualDeviceChannel.from(val, owner: self) as? [DeviceObservationReportVirtualDeviceChannel]
 			}
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -127,10 +127,10 @@ public class DeviceObservationReportVirtualDeviceChannel: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["metric"] as? [NSDictionary] {
-				self.metric = DeviceObservationReportVirtualDeviceChannelMetric.from(val) as? [DeviceObservationReportVirtualDeviceChannelMetric]
+				self.metric = DeviceObservationReportVirtualDeviceChannelMetric.from(val, owner: self) as? [DeviceObservationReportVirtualDeviceChannelMetric]
 			}
 		}
 	}

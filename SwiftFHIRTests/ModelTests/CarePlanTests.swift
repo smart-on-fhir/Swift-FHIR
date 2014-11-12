@@ -2,7 +2,7 @@
 //  CarePlanTests.swift
 //  CarePlanTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
+//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -427,6 +427,35 @@ class CarePlanTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.period!.start!, NSDate.dateFromISOString("2013-01-01")!)	
 		XCTAssertEqual(inst!.status!, "active")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n            <p>A maternity care plan (for a pregnant woman).</p>           \n            <p>LMP is 1st Jan, 2013 (a greaat new years party!) The plan has a scheduled first antenatal,\n            and 'placeholders' for the second antenatal and delivery (there would be lots of others of course)</p>\n            <p>Note that where is a proposed 'status' element against each activity</p>\n        </div>")	
+		XCTAssertEqual(inst!.text!.status!, "additional")
+	}
+	
+	func testCarePlan10() {
+		let inst = instantiateFrom("careplan-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a CarePlan instance")
+	
+		XCTAssertFalse(inst!.activity![0].prohibited!)	
+		XCTAssertEqual(inst!.activity![0].simple!.category!, "observation")	
+		XCTAssertEqual(inst!.activity![0].simple!.code!.text!, "a code for weight measurement")	
+		XCTAssertEqual(inst!.activity![0].simple!.performer![0].display!, "Peter James Chalmers")	
+		XCTAssertEqual(inst!.activity![0].simple!.performer![0].reference!, "Patient/example")
+		XCTAssertEqual(inst!.activity![0].simple!.timingSchedule!.repeat!.duration!, 1)
+		XCTAssertEqual(inst!.activity![0].simple!.timingSchedule!.repeat!.frequency!, 1)	
+		XCTAssertEqual(inst!.activity![0].simple!.timingSchedule!.repeat!.units!, "d")	
+		XCTAssertEqual(inst!.concern![0].display!, "obesity")	
+		XCTAssertEqual(inst!.concern![0].reference!, "#p1")	
+		XCTAssertEqual(inst!.goal![0].description!, "Target weight is 80 kg. Note: be nice if this could be coded")	
+		XCTAssertEqual(inst!.participant![0].member!.display!, "Peter James Chalmers")	
+		XCTAssertEqual(inst!.participant![0].member!.reference!, "Patient/example")	
+		XCTAssertEqual(inst!.participant![0].role!.text!, "responsiblePerson")	
+		XCTAssertEqual(inst!.participant![1].member!.display!, "Dorothy Dietition")	
+		XCTAssertEqual(inst!.participant![1].member!.reference!, "#pr1")	
+		XCTAssertEqual(inst!.participant![1].role!.text!, "adviser")	
+		XCTAssertEqual(inst!.patient!.display!, "Peter James Chalmers")	
+		XCTAssertEqual(inst!.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst!.period!.end!, NSDate.dateFromISOString("2013-01-01")!)	
+		XCTAssertEqual(inst!.status!, "active")	
+		XCTAssertEqual(inst!.text!.div!, "<div>\n           <p> A simple care plan to indicate a patient taking their weight once a day because of obesity.\n            Some Notes: </p>\n            <ul>\n            <li>It would be good to have some way of specifying/coding a goal. e.g. what the target weight is</li>\n            <li>In the codeable concepts I've been lazy and just put the text. There should, of course, be a code behind these</li>\n        </ul>\n        </div>")	
 		XCTAssertEqual(inst!.text!.status!, "additional")
 	}
 }

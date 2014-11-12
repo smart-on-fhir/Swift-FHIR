@@ -2,7 +2,7 @@
 //  MedicationPrescriptionTests.swift
 //  MedicationPrescriptionTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
+//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -344,6 +344,32 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.reasonResource!.reference!, "Condition/f201")	
 		XCTAssertEqual(inst!.status!, "active")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>dateWritten</b>: 4-Apr 2013\n      </p>\n      <p>\n        <b>status</b>: active\n      </p>\n      <p>\n        <b>patient</b>: Roel\n      </p>\n      <p>\n        <b>prescriber</b>: \n        <a href=\"practitioner-example-f201-ab.html\">UZI-nummer = 12345678901 (official); Dokter Bronsig(official); Male; birthDate: 24-Dec 1956; Implementation of planned interventions; Medical oncologist</a>\n      </p>\n      <p>\n        <b>encounter</b>: Roel's encounter on April fourth 2013\n      </p>\n      <p>\n        <b>reason[x]</b>: fever\n      </p>\n      <p>\n        <b>medication</b>: Paracetamol\n      </p>\n      <h3>DosageInstructions</h3>\n      <table class=\"grid\">\n        <tr>\n          <td>\n            <b>Text</b>\n          </td>\n          <td>\n            <b>AdditionalInstructions</b>\n          </td>\n          <td>\n            <b>Timing[x]</b>\n          </td>\n          <td>\n            <b>AsNeeded[x]</b>\n          </td>\n          <td>\n            <b>Site</b>\n          </td>\n          <td>\n            <b>Route</b>\n          </td>\n          <td>\n            <b>Method</b>\n          </td>\n          <td>\n            <b>DoseQuantity</b>\n          </td>\n          <td>\n            <b>Rate</b>\n          </td>\n          <td>\n            <b>MaxDosePerPeriod</b>\n          </td>\n        </tr>\n        <tr>\n          <td>Paracetamol 3xdaags 1000mg</td>\n          <td> </td>\n          <td> </td>\n          <td> </td>\n          <td> </td>\n          <td> </td>\n          <td>\n            <span title=\"Codes: {http://snomed.info/sct 322236009}\">Paracetamol 500mg tablet</span>\n          </td>\n          <td> </td>\n          <td> </td>\n          <td>3000 milligram/24 hours</td>\n        </tr>\n      </table>\n    </div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")
+	}
+	
+	func testMedicationPrescription9() {
+		let inst = instantiateFrom("medicationprescription-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a MedicationPrescription instance")
+		
+		XCTAssertEqual(inst!.dispense!.quantity!.code!, "ml")
+		XCTAssertEqual(inst!.dispense!.quantity!.system!, NSURL(string: "http://unitsofmeasure.org")!)	
+		XCTAssertEqual(inst!.dispense!.quantity!.units!, "ml")
+		XCTAssertEqual(inst!.dispense!.quantity!.value!, 100)	
+		XCTAssertEqual(inst!.dosageInstruction![0].doseQuantity!.code!, "ml")
+		XCTAssertEqual(inst!.dosageInstruction![0].doseQuantity!.system!, NSURL(string: "http://unitsofmeasure.org")!)	
+		XCTAssertEqual(inst!.dosageInstruction![0].doseQuantity!.units!, "ml")
+		XCTAssertEqual(inst!.dosageInstruction![0].doseQuantity!.value!, 5)	
+		XCTAssertEqual(inst!.dosageInstruction![0].route!.coding![0].code!, "394899003")	
+		XCTAssertEqual(inst!.dosageInstruction![0].route!.coding![0].display!, "oral administration of treatment")
+		XCTAssertEqual(inst!.dosageInstruction![0].route!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+		XCTAssertEqual(inst!.dosageInstruction![0].timingSchedule!.repeat!.duration!, 1)
+		XCTAssertEqual(inst!.dosageInstruction![0].timingSchedule!.repeat!.frequency!, 3)	
+		XCTAssertEqual(inst!.dosageInstruction![0].timingSchedule!.repeat!.units!, "d")	
+		XCTAssertEqual(inst!.medication!.reference!, "Medication/example")	
+		XCTAssertEqual(inst!.patient!.reference!, "Patient/example")	
+		XCTAssertEqual(inst!.prescriber!.reference!, "Practitioner/example")	
+		XCTAssertEqual(inst!.status!, "active")	
+		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>Penicillin VK 5ml suspension to be administered by oral route</p>\n      <p>ONE 5ml spoonful to be taken THREE times a day</p>\n      <p>100ml bottle</p>\n      <p>to patient ref: a23</p>\n      <p>by doctor X</p>\n    </div>")	
 		XCTAssertEqual(inst!.text!.status!, "generated")
 	}
 }

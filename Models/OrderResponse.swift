@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (orderresponse.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (orderresponse.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -67,7 +67,7 @@ public class OrderResponse: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["authorityCodeableConcept"] as? NSDictionary {
-				self.authorityCodeableConcept = CodeableConcept(json: val)
+				self.authorityCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["authorityResource"] as? NSDictionary {
 				self.authorityResource = FHIRReference(json: val, owner: self)
@@ -85,13 +85,13 @@ public class OrderResponse: FHIRResource
 				self.fulfillment = FHIRReference.from(val, owner: self)
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["request"] as? NSDictionary {
 				self.request = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["who"] as? NSDictionary {
 				self.who = FHIRReference(json: val, owner: self)

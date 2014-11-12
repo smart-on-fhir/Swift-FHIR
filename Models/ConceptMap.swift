@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (conceptmap.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (conceptmap.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -84,7 +84,7 @@ public class ConceptMap: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["concept"] as? [NSDictionary] {
-				self.concept = ConceptMapConcept.from(val) as? [ConceptMapConcept]
+				self.concept = ConceptMapConcept.from(val, owner: self) as? [ConceptMapConcept]
 			}
 			if let val = js["copyright"] as? String {
 				self.copyright = val
@@ -95,8 +95,8 @@ public class ConceptMap: FHIRResource
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["experimental"] as? Int {
-				self.experimental = (1 == val)
+			if let val = js["experimental"] as? Bool {
+				self.experimental = val
 			}
 			if let val = js["identifier"] as? String {
 				self.identifier = val
@@ -117,10 +117,10 @@ public class ConceptMap: FHIRResource
 				self.target = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val) as? [Contact]
+				self.telecom = Contact.from(val, owner: self) as? [Contact]
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["version"] as? String {
 				self.version = val
@@ -161,10 +161,10 @@ public class ConceptMapConcept: FHIRElement
 				self.code = val
 			}
 			if let val = js["dependsOn"] as? [NSDictionary] {
-				self.dependsOn = ConceptMapConceptDependsOn.from(val) as? [ConceptMapConceptDependsOn]
+				self.dependsOn = ConceptMapConceptDependsOn.from(val, owner: self) as? [ConceptMapConceptDependsOn]
 			}
 			if let val = js["map"] as? [NSDictionary] {
-				self.map = ConceptMapConceptMap.from(val) as? [ConceptMapConceptMap]
+				self.map = ConceptMapConceptMap.from(val, owner: self) as? [ConceptMapConceptMap]
 			}
 			if let val = js["system"] as? String {
 				self.system = NSURL(json: val)
@@ -261,7 +261,7 @@ public class ConceptMapConceptMap: FHIRElement
 				self.equivalence = val
 			}
 			if let val = js["product"] as? [NSDictionary] {
-				self.product = ConceptMapConceptMapProduct.from(val) as? [ConceptMapConceptMapProduct]
+				self.product = ConceptMapConceptMapProduct.from(val, owner: self) as? [ConceptMapConceptMapProduct]
 			}
 			if let val = js["system"] as? String {
 				self.system = NSURL(json: val)

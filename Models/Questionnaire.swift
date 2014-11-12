@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (questionnaire.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (questionnaire.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -91,13 +91,13 @@ public class Questionnaire: FHIRResource
 				self.encounter = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["group"] as? NSDictionary {
-				self.group = QuestionnaireGroup(json: val)
+				self.group = QuestionnaireGroup(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["name"] as? NSDictionary {
-				self.name = CodeableConcept(json: val)
+				self.name = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["source"] as? NSDictionary {
 				self.source = FHIRReference(json: val, owner: self)
@@ -109,7 +109,7 @@ public class Questionnaire: FHIRResource
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}
@@ -146,16 +146,16 @@ public class QuestionnaireGroup: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["group"] as? [NSDictionary] {
-				self.group = QuestionnaireGroupGroup.from(val) as? [QuestionnaireGroupGroup]
+				self.group = QuestionnaireGroupGroup.from(val, owner: self) as? [QuestionnaireGroupGroup]
 			}
 			if let val = js["header"] as? String {
 				self.header = val
 			}
 			if let val = js["name"] as? NSDictionary {
-				self.name = CodeableConcept(json: val)
+				self.name = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["question"] as? [NSDictionary] {
-				self.question = QuestionnaireGroupQuestion.from(val) as? [QuestionnaireGroupQuestion]
+				self.question = QuestionnaireGroupQuestion.from(val, owner: self) as? [QuestionnaireGroupQuestion]
 			}
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = FHIRReference(json: val, owner: self)
@@ -298,8 +298,8 @@ public class QuestionnaireGroupQuestion: FHIRElement
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["answerBoolean"] as? Int {
-				self.answerBoolean = (1 == val)
+			if let val = js["answerBoolean"] as? Bool {
+				self.answerBoolean = val
 			}
 			if let val = js["answerDate"] as? String {
 				self.answerDate = NSDate(json: val)
@@ -307,7 +307,7 @@ public class QuestionnaireGroupQuestion: FHIRElement
 			if let val = js["answerDateTime"] as? String {
 				self.answerDateTime = NSDate(json: val)
 			}
-			if let val = js["answerDecimal"] as? Double {
+			if let val = js["answerDecimal"] as? NSNumber {
 				self.answerDecimal = NSDecimalNumber(json: val)
 			}
 			if let val = js["answerInstant"] as? String {
@@ -320,31 +320,31 @@ public class QuestionnaireGroupQuestion: FHIRElement
 				self.answerString = val
 			}
 			if let val = js["choice"] as? [NSDictionary] {
-				self.choice = Coding.from(val) as? [Coding]
+				self.choice = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["dataAddress"] as? NSDictionary {
-				self.dataAddress = Address(json: val)
+				self.dataAddress = Address(json: val, owner: self)
 			}
 			if let val = js["dataAttachment"] as? NSDictionary {
-				self.dataAttachment = Attachment(json: val)
+				self.dataAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["dataBase64Binary"] as? String {
 				self.dataBase64Binary = val
 			}
-			if let val = js["dataBoolean"] as? Int {
-				self.dataBoolean = (1 == val)
+			if let val = js["dataBoolean"] as? Bool {
+				self.dataBoolean = val
 			}
 			if let val = js["dataCode"] as? String {
 				self.dataCode = val
 			}
 			if let val = js["dataCodeableConcept"] as? NSDictionary {
-				self.dataCodeableConcept = CodeableConcept(json: val)
+				self.dataCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["dataCoding"] as? NSDictionary {
-				self.dataCoding = Coding(json: val)
+				self.dataCoding = Coding(json: val, owner: self)
 			}
 			if let val = js["dataContact"] as? NSDictionary {
-				self.dataContact = Contact(json: val)
+				self.dataContact = Contact(json: val, owner: self)
 			}
 			if let val = js["dataDate"] as? String {
 				self.dataDate = NSDate(json: val)
@@ -352,14 +352,14 @@ public class QuestionnaireGroupQuestion: FHIRElement
 			if let val = js["dataDateTime"] as? String {
 				self.dataDateTime = NSDate(json: val)
 			}
-			if let val = js["dataDecimal"] as? Double {
+			if let val = js["dataDecimal"] as? NSNumber {
 				self.dataDecimal = NSDecimalNumber(json: val)
 			}
 			if let val = js["dataHumanName"] as? NSDictionary {
-				self.dataHumanName = HumanName(json: val)
+				self.dataHumanName = HumanName(json: val, owner: self)
 			}
 			if let val = js["dataIdentifier"] as? NSDictionary {
-				self.dataIdentifier = Identifier(json: val)
+				self.dataIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["dataInstant"] as? String {
 				self.dataInstant = NSDate(json: val)
@@ -368,22 +368,22 @@ public class QuestionnaireGroupQuestion: FHIRElement
 				self.dataInteger = val
 			}
 			if let val = js["dataPeriod"] as? NSDictionary {
-				self.dataPeriod = Period(json: val)
+				self.dataPeriod = Period(json: val, owner: self)
 			}
 			if let val = js["dataQuantity"] as? NSDictionary {
-				self.dataQuantity = Quantity(json: val)
+				self.dataQuantity = Quantity(json: val, owner: self)
 			}
 			if let val = js["dataRange"] as? NSDictionary {
-				self.dataRange = Range(json: val)
+				self.dataRange = Range(json: val, owner: self)
 			}
 			if let val = js["dataRatio"] as? NSDictionary {
-				self.dataRatio = Ratio(json: val)
+				self.dataRatio = Ratio(json: val, owner: self)
 			}
 			if let val = js["dataResource"] as? NSDictionary {
-				self.dataResource = FHIRResource(json: val)
+				self.dataResource = FHIRResource(json: val, owner: self)
 			}
 			if let val = js["dataSchedule"] as? NSDictionary {
-				self.dataSchedule = Schedule(json: val)
+				self.dataSchedule = Schedule(json: val, owner: self)
 			}
 			if let val = js["dataString"] as? String {
 				self.dataString = val
@@ -392,10 +392,10 @@ public class QuestionnaireGroupQuestion: FHIRElement
 				self.dataUri = NSURL(json: val)
 			}
 			if let val = js["group"] as? [NSDictionary] {
-				self.group = QuestionnaireGroupQuestionGroup.from(val) as? [QuestionnaireGroupQuestionGroup]
+				self.group = QuestionnaireGroupQuestionGroup.from(val, owner: self) as? [QuestionnaireGroupQuestionGroup]
 			}
 			if let val = js["name"] as? NSDictionary {
-				self.name = CodeableConcept(json: val)
+				self.name = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["options"] as? NSDictionary {
 				self.options = FHIRReference(json: val, owner: self)

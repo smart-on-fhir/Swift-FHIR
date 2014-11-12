@@ -2,7 +2,7 @@
 //  Practitioner.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (practitioner.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (practitioner.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -80,49 +80,49 @@ public class Practitioner: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["address"] as? NSDictionary {
-				self.address = Address(json: val)
+				self.address = Address(json: val, owner: self)
 			}
 			if let val = js["birthDate"] as? String {
 				self.birthDate = NSDate(json: val)
 			}
 			if let val = js["communication"] as? [NSDictionary] {
-				self.communication = CodeableConcept.from(val) as? [CodeableConcept]
+				self.communication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["gender"] as? NSDictionary {
-				self.gender = CodeableConcept(json: val)
+				self.gender = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["location"] as? [NSDictionary] {
 				self.location = FHIRReference.from(val, owner: self)
 			}
 			if let val = js["name"] as? NSDictionary {
-				self.name = HumanName(json: val)
+				self.name = HumanName(json: val, owner: self)
 			}
 			if let val = js["organization"] as? NSDictionary {
 				self.organization = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["period"] as? NSDictionary {
-				self.period = Period(json: val)
+				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["photo"] as? [NSDictionary] {
-				self.photo = Attachment.from(val) as? [Attachment]
+				self.photo = Attachment.from(val, owner: self) as? [Attachment]
 			}
 			if let val = js["qualification"] as? [NSDictionary] {
-				self.qualification = PractitionerQualification.from(val) as? [PractitionerQualification]
+				self.qualification = PractitionerQualification.from(val, owner: self) as? [PractitionerQualification]
 			}
 			if let val = js["role"] as? [NSDictionary] {
-				self.role = CodeableConcept.from(val) as? [CodeableConcept]
+				self.role = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["specialty"] as? [NSDictionary] {
-				self.specialty = CodeableConcept.from(val) as? [CodeableConcept]
+				self.specialty = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val) as? [Contact]
+				self.telecom = Contact.from(val, owner: self) as? [Contact]
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}
@@ -154,13 +154,13 @@ public class PractitionerQualification: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["issuer"] as? NSDictionary {
 				self.issuer = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["period"] as? NSDictionary {
-				self.period = Period(json: val)
+				self.period = Period(json: val, owner: self)
 			}
 		}
 	}

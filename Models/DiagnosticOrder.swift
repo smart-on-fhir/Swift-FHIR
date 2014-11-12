@@ -2,7 +2,7 @@
 //  DiagnosticOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (diagnosticorder.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (diagnosticorder.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -82,13 +82,13 @@ public class DiagnosticOrder: FHIRResource
 				self.encounter = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["event"] as? [NSDictionary] {
-				self.event = DiagnosticOrderEvent.from(val) as? [DiagnosticOrderEvent]
+				self.event = DiagnosticOrderEvent.from(val, owner: self) as? [DiagnosticOrderEvent]
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["item"] as? [NSDictionary] {
-				self.item = DiagnosticOrderItem.from(val) as? [DiagnosticOrderItem]
+				self.item = DiagnosticOrderItem.from(val, owner: self) as? [DiagnosticOrderItem]
 			}
 			if let val = js["orderer"] as? NSDictionary {
 				self.orderer = FHIRReference(json: val, owner: self)
@@ -106,7 +106,7 @@ public class DiagnosticOrder: FHIRResource
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}
@@ -153,7 +153,7 @@ public class DiagnosticOrderEvent: FHIRElement
 				self.dateTime = NSDate(json: val)
 			}
 			if let val = js["description"] as? NSDictionary {
-				self.description = CodeableConcept(json: val)
+				self.description = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
@@ -197,13 +197,13 @@ public class DiagnosticOrderItem: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["bodySite"] as? NSDictionary {
-				self.bodySite = CodeableConcept(json: val)
+				self.bodySite = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["event"] as? [NSDictionary] {
-				self.event = DiagnosticOrderItemEvent.from(val) as? [DiagnosticOrderItemEvent]
+				self.event = DiagnosticOrderItemEvent.from(val, owner: self) as? [DiagnosticOrderItemEvent]
 			}
 			if let val = js["specimen"] as? [NSDictionary] {
 				self.specimen = FHIRReference.from(val, owner: self)

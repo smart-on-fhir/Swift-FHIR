@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (encounter.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (encounter.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -103,10 +103,10 @@ public class Encounter: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["hospitalization"] as? NSDictionary {
-				self.hospitalization = EncounterHospitalization(json: val)
+				self.hospitalization = EncounterHospitalization(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["indication"] as? NSDictionary {
 				self.indication = FHIRReference(json: val, owner: self)
@@ -115,25 +115,25 @@ public class Encounter: FHIRResource
 				self.klass = val
 			}
 			if let val = js["length"] as? NSDictionary {
-				self.length = Duration(json: val)
+				self.length = Duration(json: val, owner: self)
 			}
 			if let val = js["location"] as? [NSDictionary] {
-				self.location = EncounterLocation.from(val) as? [EncounterLocation]
+				self.location = EncounterLocation.from(val, owner: self) as? [EncounterLocation]
 			}
 			if let val = js["partOf"] as? NSDictionary {
 				self.partOf = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["participant"] as? [NSDictionary] {
-				self.participant = EncounterParticipant.from(val) as? [EncounterParticipant]
+				self.participant = EncounterParticipant.from(val, owner: self) as? [EncounterParticipant]
 			}
 			if let val = js["period"] as? NSDictionary {
-				self.period = Period(json: val)
+				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["priority"] as? NSDictionary {
-				self.priority = CodeableConcept(json: val)
+				self.priority = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["reason"] as? NSDictionary {
-				self.reason = CodeableConcept(json: val)
+				self.reason = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["serviceProvider"] as? NSDictionary {
 				self.serviceProvider = FHIRReference(json: val, owner: self)
@@ -145,10 +145,10 @@ public class Encounter: FHIRResource
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["type"] as? [NSDictionary] {
-				self.type = CodeableConcept.from(val) as? [CodeableConcept]
+				self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
 	}
@@ -176,7 +176,7 @@ public class EncounterParticipant: FHIRElement
 				self.individual = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["type"] as? [NSDictionary] {
-				self.type = CodeableConcept.from(val) as? [CodeableConcept]
+				self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
 	}
@@ -229,40 +229,40 @@ public class EncounterHospitalization: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["accomodation"] as? [NSDictionary] {
-				self.accomodation = EncounterHospitalizationAccomodation.from(val) as? [EncounterHospitalizationAccomodation]
+				self.accomodation = EncounterHospitalizationAccomodation.from(val, owner: self) as? [EncounterHospitalizationAccomodation]
 			}
 			if let val = js["admitSource"] as? NSDictionary {
-				self.admitSource = CodeableConcept(json: val)
+				self.admitSource = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["destination"] as? NSDictionary {
 				self.destination = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["diet"] as? NSDictionary {
-				self.diet = CodeableConcept(json: val)
+				self.diet = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["dischargeDiagnosis"] as? NSDictionary {
 				self.dischargeDiagnosis = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["dischargeDisposition"] as? NSDictionary {
-				self.dischargeDisposition = CodeableConcept(json: val)
+				self.dischargeDisposition = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["origin"] as? NSDictionary {
 				self.origin = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["period"] as? NSDictionary {
-				self.period = Period(json: val)
+				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["preAdmissionIdentifier"] as? NSDictionary {
-				self.preAdmissionIdentifier = Identifier(json: val)
+				self.preAdmissionIdentifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["reAdmission"] as? Int {
-				self.reAdmission = (1 == val)
+			if let val = js["reAdmission"] as? Bool {
+				self.reAdmission = val
 			}
 			if let val = js["specialArrangement"] as? [NSDictionary] {
-				self.specialArrangement = CodeableConcept.from(val) as? [CodeableConcept]
+				self.specialArrangement = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["specialCourtesy"] as? [NSDictionary] {
-				self.specialCourtesy = CodeableConcept.from(val) as? [CodeableConcept]
+				self.specialCourtesy = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
 	}
@@ -288,7 +288,7 @@ public class EncounterHospitalizationAccomodation: FHIRElement
 				self.bed = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["period"] as? NSDictionary {
-				self.period = Period(json: val)
+				self.period = Period(json: val, owner: self)
 			}
 		}
 	}
@@ -325,7 +325,7 @@ public class EncounterLocation: FHIRElement
 				self.location = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["period"] as? NSDictionary {
-				self.period = Period(json: val)
+				self.period = Period(json: val, owner: self)
 			}
 		}
 	}

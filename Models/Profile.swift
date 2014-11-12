@@ -2,7 +2,7 @@
 //  Profile.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (profile.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (profile.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -101,7 +101,7 @@ public class Profile: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? [NSDictionary] {
-				self.code = Coding.from(val) as? [Coding]
+				self.code = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
@@ -109,11 +109,11 @@ public class Profile: FHIRResource
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["experimental"] as? Int {
-				self.experimental = (1 == val)
+			if let val = js["experimental"] as? Bool {
+				self.experimental = val
 			}
 			if let val = js["extensionDefn"] as? [NSDictionary] {
-				self.extensionDefn = ProfileExtensionDefn.from(val) as? [ProfileExtensionDefn]
+				self.extensionDefn = ProfileExtensionDefn.from(val, owner: self) as? [ProfileExtensionDefn]
 			}
 			if let val = js["fhirVersion"] as? String {
 				self.fhirVersion = val
@@ -122,7 +122,7 @@ public class Profile: FHIRResource
 				self.identifier = val
 			}
 			if let val = js["mapping"] as? [NSDictionary] {
-				self.mapping = ProfileMapping.from(val) as? [ProfileMapping]
+				self.mapping = ProfileMapping.from(val, owner: self) as? [ProfileMapping]
 			}
 			if let val = js["name"] as? String {
 				self.name = val
@@ -131,7 +131,7 @@ public class Profile: FHIRResource
 				self.publisher = val
 			}
 			if let val = js["query"] as? [NSDictionary] {
-				self.query = ProfileQuery.from(val) as? [ProfileQuery]
+				self.query = ProfileQuery.from(val, owner: self) as? [ProfileQuery]
 			}
 			if let val = js["requirements"] as? String {
 				self.requirements = val
@@ -140,13 +140,13 @@ public class Profile: FHIRResource
 				self.status = val
 			}
 			if let val = js["structure"] as? [NSDictionary] {
-				self.structure = ProfileStructure.from(val) as? [ProfileStructure]
+				self.structure = ProfileStructure.from(val, owner: self) as? [ProfileStructure]
 			}
 			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val) as? [Contact]
+				self.telecom = Contact.from(val, owner: self) as? [Contact]
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["version"] as? String {
 				self.version = val
@@ -238,19 +238,19 @@ public class ProfileStructure: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["element"] as? [NSDictionary] {
-				self.element = ProfileStructureElement.from(val) as? [ProfileStructureElement]
+				self.element = ProfileStructureElement.from(val, owner: self) as? [ProfileStructureElement]
 			}
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["publish"] as? Int {
-				self.publish = (1 == val)
+			if let val = js["publish"] as? Bool {
+				self.publish = val
 			}
 			if let val = js["purpose"] as? String {
 				self.purpose = val
 			}
 			if let val = js["searchParam"] as? [NSDictionary] {
-				self.searchParam = ProfileStructureSearchParam.from(val) as? [ProfileStructureSearchParam]
+				self.searchParam = ProfileStructureSearchParam.from(val, owner: self) as? [ProfileStructureSearchParam]
 			}
 			if let val = js["type"] as? String {
 				self.type = val
@@ -293,7 +293,7 @@ public class ProfileStructureElement: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["definition"] as? NSDictionary {
-				self.definition = ProfileStructureElementDefinition(json: val)
+				self.definition = ProfileStructureElementDefinition(json: val, owner: self)
 			}
 			if let val = js["name"] as? String {
 				self.name = val
@@ -305,7 +305,7 @@ public class ProfileStructureElement: FHIRElement
 				self.representation = val
 			}
 			if let val = js["slicing"] as? NSDictionary {
-				self.slicing = ProfileStructureElementSlicing(json: val)
+				self.slicing = ProfileStructureElementSlicing(json: val, owner: self)
 			}
 		}
 	}
@@ -349,8 +349,8 @@ public class ProfileStructureElementSlicing: FHIRElement
 			if let val = js["discriminator"] as? String {
 				self.discriminator = val
 			}
-			if let val = js["ordered"] as? Int {
-				self.ordered = (1 == val)
+			if let val = js["ordered"] as? Bool {
+				self.ordered = val
 			}
 			if let val = js["rules"] as? String {
 				self.rules = val
@@ -577,7 +577,7 @@ public class ProfileStructureElementDefinition: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["binding"] as? NSDictionary {
-				self.binding = ProfileStructureElementDefinitionBinding(json: val)
+				self.binding = ProfileStructureElementDefinitionBinding(json: val, owner: self)
 			}
 			if let val = js["comments"] as? String {
 				self.comments = val
@@ -586,31 +586,31 @@ public class ProfileStructureElementDefinition: FHIRElement
 				self.condition = val
 			}
 			if let val = js["constraint"] as? [NSDictionary] {
-				self.constraint = ProfileStructureElementDefinitionConstraint.from(val) as? [ProfileStructureElementDefinitionConstraint]
+				self.constraint = ProfileStructureElementDefinitionConstraint.from(val, owner: self) as? [ProfileStructureElementDefinitionConstraint]
 			}
 			if let val = js["exampleAddress"] as? NSDictionary {
-				self.exampleAddress = Address(json: val)
+				self.exampleAddress = Address(json: val, owner: self)
 			}
 			if let val = js["exampleAttachment"] as? NSDictionary {
-				self.exampleAttachment = Attachment(json: val)
+				self.exampleAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["exampleBase64Binary"] as? String {
 				self.exampleBase64Binary = val
 			}
-			if let val = js["exampleBoolean"] as? Int {
-				self.exampleBoolean = (1 == val)
+			if let val = js["exampleBoolean"] as? Bool {
+				self.exampleBoolean = val
 			}
 			if let val = js["exampleCode"] as? String {
 				self.exampleCode = val
 			}
 			if let val = js["exampleCodeableConcept"] as? NSDictionary {
-				self.exampleCodeableConcept = CodeableConcept(json: val)
+				self.exampleCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["exampleCoding"] as? NSDictionary {
-				self.exampleCoding = Coding(json: val)
+				self.exampleCoding = Coding(json: val, owner: self)
 			}
 			if let val = js["exampleContact"] as? NSDictionary {
-				self.exampleContact = Contact(json: val)
+				self.exampleContact = Contact(json: val, owner: self)
 			}
 			if let val = js["exampleDate"] as? String {
 				self.exampleDate = NSDate(json: val)
@@ -618,14 +618,14 @@ public class ProfileStructureElementDefinition: FHIRElement
 			if let val = js["exampleDateTime"] as? String {
 				self.exampleDateTime = NSDate(json: val)
 			}
-			if let val = js["exampleDecimal"] as? Double {
+			if let val = js["exampleDecimal"] as? NSNumber {
 				self.exampleDecimal = NSDecimalNumber(json: val)
 			}
 			if let val = js["exampleHumanName"] as? NSDictionary {
-				self.exampleHumanName = HumanName(json: val)
+				self.exampleHumanName = HumanName(json: val, owner: self)
 			}
 			if let val = js["exampleIdentifier"] as? NSDictionary {
-				self.exampleIdentifier = Identifier(json: val)
+				self.exampleIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["exampleInstant"] as? String {
 				self.exampleInstant = NSDate(json: val)
@@ -634,22 +634,22 @@ public class ProfileStructureElementDefinition: FHIRElement
 				self.exampleInteger = val
 			}
 			if let val = js["examplePeriod"] as? NSDictionary {
-				self.examplePeriod = Period(json: val)
+				self.examplePeriod = Period(json: val, owner: self)
 			}
 			if let val = js["exampleQuantity"] as? NSDictionary {
-				self.exampleQuantity = Quantity(json: val)
+				self.exampleQuantity = Quantity(json: val, owner: self)
 			}
 			if let val = js["exampleRange"] as? NSDictionary {
-				self.exampleRange = Range(json: val)
+				self.exampleRange = Range(json: val, owner: self)
 			}
 			if let val = js["exampleRatio"] as? NSDictionary {
-				self.exampleRatio = Ratio(json: val)
+				self.exampleRatio = Ratio(json: val, owner: self)
 			}
 			if let val = js["exampleResource"] as? NSDictionary {
-				self.exampleResource = FHIRResource(json: val)
+				self.exampleResource = FHIRResource(json: val, owner: self)
 			}
 			if let val = js["exampleSchedule"] as? NSDictionary {
-				self.exampleSchedule = Schedule(json: val)
+				self.exampleSchedule = Schedule(json: val, owner: self)
 			}
 			if let val = js["exampleString"] as? String {
 				self.exampleString = val
@@ -660,11 +660,11 @@ public class ProfileStructureElementDefinition: FHIRElement
 			if let val = js["formal"] as? String {
 				self.formal = val
 			}
-			if let val = js["isModifier"] as? Int {
-				self.isModifier = (1 == val)
+			if let val = js["isModifier"] as? Bool {
+				self.isModifier = val
 			}
 			if let val = js["mapping"] as? [NSDictionary] {
-				self.mapping = ProfileStructureElementDefinitionMapping.from(val) as? [ProfileStructureElementDefinitionMapping]
+				self.mapping = ProfileStructureElementDefinitionMapping.from(val, owner: self) as? [ProfileStructureElementDefinitionMapping]
 			}
 			if let val = js["max"] as? String {
 				self.max = val
@@ -675,8 +675,8 @@ public class ProfileStructureElementDefinition: FHIRElement
 			if let val = js["min"] as? Int {
 				self.min = val
 			}
-			if let val = js["mustSupport"] as? Int {
-				self.mustSupport = (1 == val)
+			if let val = js["mustSupport"] as? Bool {
+				self.mustSupport = val
 			}
 			if let val = js["nameReference"] as? String {
 				self.nameReference = val
@@ -691,31 +691,31 @@ public class ProfileStructureElementDefinition: FHIRElement
 				self.synonym = val
 			}
 			if let val = js["type"] as? [NSDictionary] {
-				self.type = ProfileStructureElementDefinitionType.from(val) as? [ProfileStructureElementDefinitionType]
+				self.type = ProfileStructureElementDefinitionType.from(val, owner: self) as? [ProfileStructureElementDefinitionType]
 			}
 			if let val = js["valueAddress"] as? NSDictionary {
-				self.valueAddress = Address(json: val)
+				self.valueAddress = Address(json: val, owner: self)
 			}
 			if let val = js["valueAttachment"] as? NSDictionary {
-				self.valueAttachment = Attachment(json: val)
+				self.valueAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["valueBase64Binary"] as? String {
 				self.valueBase64Binary = val
 			}
-			if let val = js["valueBoolean"] as? Int {
-				self.valueBoolean = (1 == val)
+			if let val = js["valueBoolean"] as? Bool {
+				self.valueBoolean = val
 			}
 			if let val = js["valueCode"] as? String {
 				self.valueCode = val
 			}
 			if let val = js["valueCodeableConcept"] as? NSDictionary {
-				self.valueCodeableConcept = CodeableConcept(json: val)
+				self.valueCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["valueCoding"] as? NSDictionary {
-				self.valueCoding = Coding(json: val)
+				self.valueCoding = Coding(json: val, owner: self)
 			}
 			if let val = js["valueContact"] as? NSDictionary {
-				self.valueContact = Contact(json: val)
+				self.valueContact = Contact(json: val, owner: self)
 			}
 			if let val = js["valueDate"] as? String {
 				self.valueDate = NSDate(json: val)
@@ -723,14 +723,14 @@ public class ProfileStructureElementDefinition: FHIRElement
 			if let val = js["valueDateTime"] as? String {
 				self.valueDateTime = NSDate(json: val)
 			}
-			if let val = js["valueDecimal"] as? Double {
+			if let val = js["valueDecimal"] as? NSNumber {
 				self.valueDecimal = NSDecimalNumber(json: val)
 			}
 			if let val = js["valueHumanName"] as? NSDictionary {
-				self.valueHumanName = HumanName(json: val)
+				self.valueHumanName = HumanName(json: val, owner: self)
 			}
 			if let val = js["valueIdentifier"] as? NSDictionary {
-				self.valueIdentifier = Identifier(json: val)
+				self.valueIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["valueInstant"] as? String {
 				self.valueInstant = NSDate(json: val)
@@ -739,22 +739,22 @@ public class ProfileStructureElementDefinition: FHIRElement
 				self.valueInteger = val
 			}
 			if let val = js["valuePeriod"] as? NSDictionary {
-				self.valuePeriod = Period(json: val)
+				self.valuePeriod = Period(json: val, owner: self)
 			}
 			if let val = js["valueQuantity"] as? NSDictionary {
-				self.valueQuantity = Quantity(json: val)
+				self.valueQuantity = Quantity(json: val, owner: self)
 			}
 			if let val = js["valueRange"] as? NSDictionary {
-				self.valueRange = Range(json: val)
+				self.valueRange = Range(json: val, owner: self)
 			}
 			if let val = js["valueRatio"] as? NSDictionary {
-				self.valueRatio = Ratio(json: val)
+				self.valueRatio = Ratio(json: val, owner: self)
 			}
 			if let val = js["valueResource"] as? NSDictionary {
-				self.valueResource = FHIRResource(json: val)
+				self.valueResource = FHIRResource(json: val, owner: self)
 			}
 			if let val = js["valueSchedule"] as? NSDictionary {
-				self.valueSchedule = Schedule(json: val)
+				self.valueSchedule = Schedule(json: val, owner: self)
 			}
 			if let val = js["valueString"] as? String {
 				self.valueString = val
@@ -913,8 +913,8 @@ public class ProfileStructureElementDefinitionBinding: FHIRElement
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["isExtensible"] as? Int {
-				self.isExtensible = (1 == val)
+			if let val = js["isExtensible"] as? Bool {
+				self.isExtensible = val
 			}
 			if let val = js["name"] as? String {
 				self.name = val
@@ -1076,7 +1076,7 @@ public class ProfileExtensionDefn: FHIRElement
 				self.contextType = val
 			}
 			if let val = js["definition"] as? NSDictionary {
-				self.definition = ProfileExtensionDefnDefinition(json: val)
+				self.definition = ProfileExtensionDefnDefinition(json: val, owner: self)
 			}
 			if let val = js["display"] as? String {
 				self.display = val
@@ -1131,7 +1131,7 @@ public class ProfileQuery: FHIRElement
 				self.name = val
 			}
 			if let val = js["parameter"] as? [NSDictionary] {
-				self.parameter = ProfileQueryParameter.from(val) as? [ProfileQueryParameter]
+				self.parameter = ProfileQueryParameter.from(val, owner: self) as? [ProfileQueryParameter]
 			}
 		}
 	}

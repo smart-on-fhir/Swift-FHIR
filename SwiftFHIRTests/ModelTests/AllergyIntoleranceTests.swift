@@ -2,7 +2,7 @@
 //  AllergyIntoleranceTests.swift
 //  AllergyIntoleranceTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
+//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -37,6 +37,23 @@ class AllergyIntoleranceTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.substance!.display!, "House dust allergen")	
 		XCTAssertEqual(inst!.substance!.reference!, "Substance/f201")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>identifier</b>: House dust allergy = 232349006\n      </p>\n      <p>\n        <b>criticality</b>: medium\n      </p>\n      <p>\n        <b>sensitivityType</b>: allergy\n      </p>\n      <p>\n        <b>recordedDate</b>: 28-Jan 2013\n      </p>\n      <p>\n        <b>status</b>: confirmed\n      </p>\n      <p>\n        <b>subject</b>: Roel\n      </p>\n      <p>\n        <b>recorder</b>: \n        <a href=\"practitioner-example-f201-ab.html\">UZI-nummer = 12345678901 (official); Dokter Bronsig(official); Male; birthDate: 24-Dec 1956; Implementation of planned interventions; Medical oncologist</a>\n      </p>\n      <p>\n        <b>substance</b>: House dust allergen\n      </p>\n    </div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")
+	}
+	
+	func testAllergyIntolerance2() {
+		let inst = instantiateFrom("allergyintolerance-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a AllergyIntolerance instance")
+		
+		XCTAssertEqual(inst!.criticality!, "fatal")	
+		XCTAssertEqual(inst!.reaction![0].reference!, "AdverseReaction/example")
+		XCTAssertEqual(inst!.recordedDate!, NSDate.dateFromISOString("2012-09-17")!)	
+		XCTAssertEqual(inst!.recorder!.reference!, "Practitioner/example")	
+		XCTAssertEqual(inst!.sensitivityTest![0].reference!, "Observation/example")	
+		XCTAssertEqual(inst!.sensitivityType!, "allergy")	
+		XCTAssertEqual(inst!.status!, "confirmed")	
+		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")	
+		XCTAssertEqual(inst!.substance!.reference!, "Substance/example")	
+		XCTAssertEqual(inst!.text!.div!, "<div>Sensitivity to Bee Stings</div>")	
 		XCTAssertEqual(inst!.text!.status!, "generated")
 	}
 }

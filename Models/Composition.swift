@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (composition.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (composition.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -98,13 +98,13 @@ public class Composition: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["attester"] as? [NSDictionary] {
-				self.attester = CompositionAttester.from(val) as? [CompositionAttester]
+				self.attester = CompositionAttester.from(val, owner: self) as? [CompositionAttester]
 			}
 			if let val = js["author"] as? [NSDictionary] {
 				self.author = FHIRReference.from(val, owner: self)
 			}
 			if let val = js["confidentiality"] as? NSDictionary {
-				self.confidentiality = Coding(json: val)
+				self.confidentiality = Coding(json: val, owner: self)
 			}
 			if let val = js["custodian"] as? NSDictionary {
 				self.custodian = FHIRReference(json: val, owner: self)
@@ -116,16 +116,16 @@ public class Composition: FHIRResource
 				self.encounter = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["event"] as? NSDictionary {
-				self.event = CompositionEvent(json: val)
+				self.event = CompositionEvent(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? NSDictionary {
-				self.identifier = Identifier(json: val)
+				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["class"] as? NSDictionary {
-				self.klass = CodeableConcept(json: val)
+				self.klass = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["section"] as? [NSDictionary] {
-				self.section = CompositionSection.from(val) as? [CompositionSection]
+				self.section = CompositionSection.from(val, owner: self) as? [CompositionSection]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
@@ -134,13 +134,13 @@ public class Composition: FHIRResource
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["title"] as? String {
 				self.title = val
 			}
 			if let val = js["type"] as? NSDictionary {
-				self.type = CodeableConcept(json: val)
+				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -208,13 +208,13 @@ public class CompositionEvent: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? [NSDictionary] {
-				self.code = CodeableConcept.from(val) as? [CodeableConcept]
+				self.code = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["detail"] as? [NSDictionary] {
 				self.detail = FHIRReference.from(val, owner: self)
 			}
 			if let val = js["period"] as? NSDictionary {
-				self.period = Period(json: val)
+				self.period = Period(json: val, owner: self)
 			}
 		}
 	}
@@ -248,13 +248,13 @@ public class CompositionSection: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["content"] as? NSDictionary {
 				self.content = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["section"] as? [NSDictionary] {
-				self.section = CompositionSectionSection.from(val) as? [CompositionSectionSection]
+				self.section = CompositionSectionSection.from(val, owner: self) as? [CompositionSectionSection]
 			}
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = FHIRReference(json: val, owner: self)

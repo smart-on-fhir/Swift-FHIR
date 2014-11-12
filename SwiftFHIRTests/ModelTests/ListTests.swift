@@ -2,7 +2,7 @@
 //  ListTests.swift
 //  ListTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
+//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -60,6 +60,23 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.mode!, "changes")	
 		XCTAssertEqual(inst!.source!.reference!, "Patient/example")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>The patient is not on any medications</p>\n    </div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")
+	}
+	
+	func testList3() {
+		let inst = instantiateFrom("list-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a List instance")
+	
+		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2012-11-25T22:17:00+11:00")!)
+		XCTAssertTrue(inst!.entry![0].deleted!)	
+		XCTAssertEqual(inst!.entry![0].flag![0].text!, "Deleted due to error")	
+		XCTAssertEqual(inst!.entry![0].item!.reference!, "Condition/example")	
+		XCTAssertEqual(inst!.entry![1].flag![0].text!, "Added")	
+		XCTAssertEqual(inst!.entry![1].item!.reference!, "Condition/example2")	
+		XCTAssertEqual(inst!.mode!, "changes")
+		XCTAssertFalse(inst!.ordered!)	
+		XCTAssertEqual(inst!.source!.reference!, "Patient/example")	
+		XCTAssertEqual(inst!.text!.div!, "<div>\n      <table>\n        <thead>\n          <tr>\n            <th>Condition</th>\n            <th>Severity</th>\n            <th>Date</th>\n            <th>Location</th>\n            <th>Status</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>Burnt Ear</td>\n            <td>Severe</td>\n            <td>24-May 2012</td>\n            <td>Left Ear</td>\n            <td>deleted</td>\n          </tr>\n          <tr>\n            <td>Asthma</td>\n            <td>Mild</td>\n            <td>21-Nov 2012</td>\n            <td>--</td>\n            <td>added</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>")	
 		XCTAssertEqual(inst!.text!.status!, "generated")
 	}
 }

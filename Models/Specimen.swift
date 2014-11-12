@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (specimen.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (specimen.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -73,34 +73,34 @@ public class Specimen: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["accessionIdentifier"] as? NSDictionary {
-				self.accessionIdentifier = Identifier(json: val)
+				self.accessionIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["collection"] as? NSDictionary {
-				self.collection = SpecimenCollection(json: val)
+				self.collection = SpecimenCollection(json: val, owner: self)
 			}
 			if let val = js["container"] as? [NSDictionary] {
-				self.container = SpecimenContainer.from(val) as? [SpecimenContainer]
+				self.container = SpecimenContainer.from(val, owner: self) as? [SpecimenContainer]
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["receivedTime"] as? String {
 				self.receivedTime = NSDate(json: val)
 			}
 			if let val = js["source"] as? [NSDictionary] {
-				self.source = SpecimenSource.from(val) as? [SpecimenSource]
+				self.source = SpecimenSource.from(val, owner: self) as? [SpecimenSource]
 			}
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["treatment"] as? [NSDictionary] {
-				self.treatment = SpecimenTreatment.from(val) as? [SpecimenTreatment]
+				self.treatment = SpecimenTreatment.from(val, owner: self) as? [SpecimenTreatment]
 			}
 			if let val = js["type"] as? NSDictionary {
-				self.type = CodeableConcept(json: val)
+				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -177,7 +177,7 @@ public class SpecimenCollection: FHIRElement
 				self.collectedDateTime = NSDate(json: val)
 			}
 			if let val = js["collectedPeriod"] as? NSDictionary {
-				self.collectedPeriod = Period(json: val)
+				self.collectedPeriod = Period(json: val, owner: self)
 			}
 			if let val = js["collector"] as? NSDictionary {
 				self.collector = FHIRReference(json: val, owner: self)
@@ -186,13 +186,13 @@ public class SpecimenCollection: FHIRElement
 				self.comment = val
 			}
 			if let val = js["method"] as? NSDictionary {
-				self.method = CodeableConcept(json: val)
+				self.method = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["quantity"] as? NSDictionary {
-				self.quantity = Quantity(json: val)
+				self.quantity = Quantity(json: val, owner: self)
 			}
 			if let val = js["sourceSite"] as? NSDictionary {
-				self.sourceSite = CodeableConcept(json: val)
+				self.sourceSite = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -226,7 +226,7 @@ public class SpecimenTreatment: FHIRElement
 				self.description = val
 			}
 			if let val = js["procedure"] as? NSDictionary {
-				self.procedure = CodeableConcept(json: val)
+				self.procedure = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -267,19 +267,19 @@ public class SpecimenContainer: FHIRElement
 				self.additive = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["capacity"] as? NSDictionary {
-				self.capacity = Quantity(json: val)
+				self.capacity = Quantity(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["specimenQuantity"] as? NSDictionary {
-				self.specimenQuantity = Quantity(json: val)
+				self.specimenQuantity = Quantity(json: val, owner: self)
 			}
 			if let val = js["type"] as? NSDictionary {
-				self.type = CodeableConcept(json: val)
+				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}

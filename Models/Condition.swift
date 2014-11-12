@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (condition.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (condition.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -116,10 +116,10 @@ public class Condition: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["abatementAge"] as? NSDictionary {
-				self.abatementAge = Age(json: val)
+				self.abatementAge = Age(json: val, owner: self)
 			}
-			if let val = js["abatementBoolean"] as? Int {
-				self.abatementBoolean = (1 == val)
+			if let val = js["abatementBoolean"] as? Bool {
+				self.abatementBoolean = val
 			}
 			if let val = js["abatementDate"] as? String {
 				self.abatementDate = NSDate(json: val)
@@ -128,13 +128,13 @@ public class Condition: FHIRResource
 				self.asserter = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["category"] as? NSDictionary {
-				self.category = CodeableConcept(json: val)
+				self.category = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["certainty"] as? NSDictionary {
-				self.certainty = CodeableConcept(json: val)
+				self.certainty = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["dateAsserted"] as? String {
 				self.dateAsserted = NSDate(json: val)
@@ -143,31 +143,31 @@ public class Condition: FHIRResource
 				self.encounter = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["evidence"] as? [NSDictionary] {
-				self.evidence = ConditionEvidence.from(val) as? [ConditionEvidence]
+				self.evidence = ConditionEvidence.from(val, owner: self) as? [ConditionEvidence]
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["location"] as? [NSDictionary] {
-				self.location = ConditionLocation.from(val) as? [ConditionLocation]
+				self.location = ConditionLocation.from(val, owner: self) as? [ConditionLocation]
 			}
 			if let val = js["notes"] as? String {
 				self.notes = val
 			}
 			if let val = js["onsetAge"] as? NSDictionary {
-				self.onsetAge = Age(json: val)
+				self.onsetAge = Age(json: val, owner: self)
 			}
 			if let val = js["onsetDate"] as? String {
 				self.onsetDate = NSDate(json: val)
 			}
 			if let val = js["relatedItem"] as? [NSDictionary] {
-				self.relatedItem = ConditionRelatedItem.from(val) as? [ConditionRelatedItem]
+				self.relatedItem = ConditionRelatedItem.from(val, owner: self) as? [ConditionRelatedItem]
 			}
 			if let val = js["severity"] as? NSDictionary {
-				self.severity = CodeableConcept(json: val)
+				self.severity = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["stage"] as? NSDictionary {
-				self.stage = ConditionStage(json: val)
+				self.stage = ConditionStage(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
@@ -176,7 +176,7 @@ public class Condition: FHIRResource
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}
@@ -204,7 +204,7 @@ public class ConditionStage: FHIRElement
 				self.assessment = FHIRReference.from(val, owner: self)
 			}
 			if let val = js["summary"] as? NSDictionary {
-				self.summary = CodeableConcept(json: val)
+				self.summary = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -229,7 +229,7 @@ public class ConditionEvidence: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["detail"] as? [NSDictionary] {
 				self.detail = FHIRReference.from(val, owner: self)
@@ -257,7 +257,7 @@ public class ConditionLocation: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["detail"] as? String {
 				self.detail = val
@@ -295,7 +295,7 @@ public class ConditionRelatedItem: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["target"] as? NSDictionary {
 				self.target = FHIRReference(json: val, owner: self)

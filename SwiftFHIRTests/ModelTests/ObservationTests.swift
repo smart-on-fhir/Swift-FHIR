@@ -2,7 +2,7 @@
 //  ObservationTests.swift
 //  ObservationTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
+//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -470,5 +470,28 @@ class ObservationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.valueCodeableConcept!.coding![0].code!, "8745002")	
 		XCTAssertEqual(inst!.valueCodeableConcept!.coding![0].display!, "Gram-positive bacteria")
 		XCTAssertEqual(inst!.valueCodeableConcept!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+	}
+	
+	func testObservation12() {
+		let inst = instantiateFrom("observation-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a Observation instance")
+		
+		XCTAssertEqual(inst!.name!.coding![0].code!, "3141-9")	
+		XCTAssertEqual(inst!.name!.coding![0].display!, "Weight Measured")
+		XCTAssertEqual(inst!.name!.coding![0].system!, NSURL(string: "http://loinc.org")!)	
+		XCTAssertEqual(inst!.name!.coding![1].code!, "27113001")	
+		XCTAssertEqual(inst!.name!.coding![1].display!, "Body weight")
+		XCTAssertEqual(inst!.name!.coding![1].system!, NSURL(string: "http://snomed.info/sct")!)	
+		XCTAssertEqual(inst!.name!.coding![2].code!, "body-weight")	
+		XCTAssertEqual(inst!.name!.coding![2].display!, "Body Weight")
+		XCTAssertEqual(inst!.name!.coding![2].system!, NSURL(string: "http://acme.org/devices/clinical-codes")!)	
+		XCTAssertEqual(inst!.reliability!, "ok")	
+		XCTAssertEqual(inst!.status!, "final")	
+		XCTAssertEqual(inst!.text!.div!, "<div>Jan 30 2014: Body Weight = 185 lbs</div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")	
+		XCTAssertEqual(inst!.valueQuantity!.code!, "[lb_av]")
+		XCTAssertEqual(inst!.valueQuantity!.system!, NSURL(string: "http://unitsofmeasure.org")!)	
+		XCTAssertEqual(inst!.valueQuantity!.units!, "lbs")
+		XCTAssertEqual(inst!.valueQuantity!.value!, 185)
 	}
 }

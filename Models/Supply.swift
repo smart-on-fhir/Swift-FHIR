@@ -2,7 +2,7 @@
 //  Supply.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (supply.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (supply.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -49,13 +49,13 @@ public class Supply: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["dispense"] as? [NSDictionary] {
-				self.dispense = SupplyDispense.from(val) as? [SupplyDispense]
+				self.dispense = SupplyDispense.from(val, owner: self) as? [SupplyDispense]
 			}
 			if let val = js["identifier"] as? NSDictionary {
-				self.identifier = Identifier(json: val)
+				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["kind"] as? NSDictionary {
-				self.kind = CodeableConcept(json: val)
+				self.kind = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["orderedItem"] as? NSDictionary {
 				self.orderedItem = FHIRReference(json: val, owner: self)
@@ -67,7 +67,7 @@ public class Supply: FHIRResource
 				self.status = val
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}
@@ -119,10 +119,10 @@ public class SupplyDispense: FHIRElement
 				self.destination = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? NSDictionary {
-				self.identifier = Identifier(json: val)
+				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["quantity"] as? NSDictionary {
-				self.quantity = Quantity(json: val)
+				self.quantity = Quantity(json: val, owner: self)
 			}
 			if let val = js["receiver"] as? [NSDictionary] {
 				self.receiver = FHIRReference.from(val, owner: self)
@@ -137,13 +137,13 @@ public class SupplyDispense: FHIRElement
 				self.supplier = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["type"] as? NSDictionary {
-				self.type = CodeableConcept(json: val)
+				self.type = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["whenHandedOver"] as? NSDictionary {
-				self.whenHandedOver = Period(json: val)
+				self.whenHandedOver = Period(json: val, owner: self)
 			}
 			if let val = js["whenPrepared"] as? NSDictionary {
-				self.whenPrepared = Period(json: val)
+				self.whenPrepared = Period(json: val, owner: self)
 			}
 		}
 	}

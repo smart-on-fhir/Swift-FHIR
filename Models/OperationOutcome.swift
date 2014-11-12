@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (operationoutcome.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (operationoutcome.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -45,10 +45,10 @@ public class OperationOutcome: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["issue"] as? [NSDictionary] {
-				self.issue = OperationOutcomeIssue.from(val) as? [OperationOutcomeIssue]
+				self.issue = OperationOutcomeIssue.from(val, owner: self) as? [OperationOutcomeIssue]
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}
@@ -94,7 +94,7 @@ public class OperationOutcomeIssue: FHIRElement
 				self.severity = val
 			}
 			if let val = js["type"] as? NSDictionary {
-				self.type = Coding(json: val)
+				self.type = Coding(json: val, owner: self)
 			}
 		}
 	}

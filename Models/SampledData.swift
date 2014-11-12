@@ -2,7 +2,7 @@
 //  SampledData.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-SampledData.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (type-SampledData.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -64,19 +64,19 @@ public class SampledData: FHIRElement
 			if let val = js["dimensions"] as? Int {
 				self.dimensions = val
 			}
-			if let val = js["factor"] as? Double {
+			if let val = js["factor"] as? NSNumber {
 				self.factor = NSDecimalNumber(json: val)
 			}
-			if let val = js["lowerLimit"] as? Double {
+			if let val = js["lowerLimit"] as? NSNumber {
 				self.lowerLimit = NSDecimalNumber(json: val)
 			}
 			if let val = js["origin"] as? NSDictionary {
-				self.origin = Quantity(json: val)
+				self.origin = Quantity(json: val, owner: self)
 			}
-			if let val = js["period"] as? Double {
+			if let val = js["period"] as? NSNumber {
 				self.period = NSDecimalNumber(json: val)
 			}
-			if let val = js["upperLimit"] as? Double {
+			if let val = js["upperLimit"] as? NSNumber {
 				self.upperLimit = NSDecimalNumber(json: val)
 			}
 		}

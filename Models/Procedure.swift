@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (procedure.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (procedure.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -86,13 +86,13 @@ public class Procedure: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["bodySite"] as? [NSDictionary] {
-				self.bodySite = CodeableConcept.from(val) as? [CodeableConcept]
+				self.bodySite = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["complication"] as? [NSDictionary] {
-				self.complication = CodeableConcept.from(val) as? [CodeableConcept]
+				self.complication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["date"] as? NSDictionary {
-				self.date = Period(json: val)
+				self.date = Period(json: val, owner: self)
 			}
 			if let val = js["encounter"] as? NSDictionary {
 				self.encounter = FHIRReference(json: val, owner: self)
@@ -101,10 +101,10 @@ public class Procedure: FHIRResource
 				self.followUp = val
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["indication"] as? [NSDictionary] {
-				self.indication = CodeableConcept.from(val) as? [CodeableConcept]
+				self.indication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["notes"] as? String {
 				self.notes = val
@@ -113,10 +113,10 @@ public class Procedure: FHIRResource
 				self.outcome = val
 			}
 			if let val = js["performer"] as? [NSDictionary] {
-				self.performer = ProcedurePerformer.from(val) as? [ProcedurePerformer]
+				self.performer = ProcedurePerformer.from(val, owner: self) as? [ProcedurePerformer]
 			}
 			if let val = js["relatedItem"] as? [NSDictionary] {
-				self.relatedItem = ProcedureRelatedItem.from(val) as? [ProcedureRelatedItem]
+				self.relatedItem = ProcedureRelatedItem.from(val, owner: self) as? [ProcedureRelatedItem]
 			}
 			if let val = js["report"] as? [NSDictionary] {
 				self.report = FHIRReference.from(val, owner: self)
@@ -125,10 +125,10 @@ public class Procedure: FHIRResource
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["type"] as? NSDictionary {
-				self.type = CodeableConcept(json: val)
+				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -156,7 +156,7 @@ public class ProcedurePerformer: FHIRElement
 				self.person = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["role"] as? NSDictionary {
-				self.role = CodeableConcept(json: val)
+				self.role = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}

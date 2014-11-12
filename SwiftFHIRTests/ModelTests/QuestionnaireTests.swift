@@ -2,7 +2,7 @@
 //  QuestionnaireTests.swift
 //  QuestionnaireTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
+//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -49,6 +49,32 @@ class QuestionnaireTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.subject!.display!, "Roel")	
 		XCTAssertEqual(inst!.subject!.reference!, "Patient/f201")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>status</b>: completed\n      </p>\n      <p>\n        <b>authored</b>: 18-Jun 2013 0:0\n      </p>\n      <p>\n        <b>subject</b>: Roel\n      </p>\n      <p>\n        <b>author</b>: \n        <a href=\"practitioner-example-f201-ab.html\">UZI-nummer = 12345678901 (official); Dokter Bronsig(official); Male; birthDate: 24-Dec 1956; Implementation of planned interventions; Medical oncologist</a>\n      </p>\n      <p>\n        <b>source</b>: \n        <a href=\"practitioner-example-f201-ab.html\">UZI-nummer = 12345678901 (official); Dokter Bronsig(official); Male; birthDate: 24-Dec 1956; Implementation of planned interventions; Medical oncologist</a>\n      </p>\n      <p>\n        <b>name</b>: \n        <span title=\"Codes: {https://lifelines.nl VL 1-1, 18-65_1.2.2}\">Lifelines Questionnaire 1 part 1</span>\n      </p>\n      <p>\n        <b>identifier</b>: Roel's VL 1-1, 18-65_1.2.2 = ?? (temp)\n      </p>\n      <blockquote>\n        <p>\n          <b>group</b>\n        </p>\n        <blockquote>\n          <p>\n            <b>group</b>\n          </p>\n        </blockquote>\n        <blockquote>\n          <p>\n            <b>group</b>\n          </p>\n        </blockquote>\n        <blockquote>\n          <p>\n            <b>group</b>\n          </p>\n        </blockquote>\n      </blockquote>\n    </div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")
+	}
+	
+	func testQuestionnaire3() {
+		let inst = instantiateFrom("questionnaire-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a Questionnaire instance")
+		
+		XCTAssertEqual(inst!.author!.reference!, "#questauth")
+		XCTAssertEqual(inst!.authored!, NSDate.dateFromISOString("2013-02-19T14:15:00")!)	
+		XCTAssertEqual(inst!.name!.text!, "Cancer Quality Forum Questionnaire 2012")	
+		XCTAssertEqual(inst!.status!, "completed")	
+		XCTAssertEqual(inst!.subject!.reference!, "#patsub")	
+		XCTAssertEqual(inst!.text!.div!, "<div>\n      <pre>\n            Comorbidity? YES\n              Cardial Comorbidity? YES\n                Angina? YES\n                MI? NO\n              Vascular Comorbidity?\n                (no answers)\n              ...\n            Histopathology\n              Abdominal\n                pT category: 1a\n              ...\n          </pre>\n    </div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")
+	}
+	
+	func testQuestionnaire4() {
+		let inst = instantiateFrom("questionnaire-extensions-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a Questionnaire instance")
+		
+		XCTAssertEqual(inst!.author!.reference!, "#questauth")
+		XCTAssertEqual(inst!.authored!, NSDate.dateFromISOString("2013-02-19T14:15:00")!)	
+		XCTAssertEqual(inst!.name!.text!, "Cancer Quality Forum Questionnaire 2012")	
+		XCTAssertEqual(inst!.status!, "completed")	
+		XCTAssertEqual(inst!.subject!.reference!, "#patsub")	
+		XCTAssertEqual(inst!.text!.div!, "<div>\n      <pre>\n            Comorbidity? YES\n              Cardial Comorbidity? YES\n                Angina? YES\n                MI? NO\n              Vascular Comorbidity?\n                (no answers)\n              ...\n            Histopathology\n              Abdominal\n                pT category: 1\n              ...\n          </pre>\n    </div>")	
 		XCTAssertEqual(inst!.text!.status!, "generated")
 	}
 }

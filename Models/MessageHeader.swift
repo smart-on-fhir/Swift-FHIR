@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (messageheader.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (messageheader.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -91,34 +91,34 @@ public class MessageHeader: FHIRResource
 				self.data = FHIRReference.from(val, owner: self)
 			}
 			if let val = js["destination"] as? [NSDictionary] {
-				self.destination = MessageHeaderDestination.from(val) as? [MessageHeaderDestination]
+				self.destination = MessageHeaderDestination.from(val, owner: self) as? [MessageHeaderDestination]
 			}
 			if let val = js["enterer"] as? NSDictionary {
 				self.enterer = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["event"] as? NSDictionary {
-				self.event = Coding(json: val)
+				self.event = Coding(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? String {
 				self.identifier = val
 			}
 			if let val = js["reason"] as? NSDictionary {
-				self.reason = CodeableConcept(json: val)
+				self.reason = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["receiver"] as? NSDictionary {
 				self.receiver = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["response"] as? NSDictionary {
-				self.response = MessageHeaderResponse(json: val)
+				self.response = MessageHeaderResponse(json: val, owner: self)
 			}
 			if let val = js["responsible"] as? NSDictionary {
 				self.responsible = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["source"] as? NSDictionary {
-				self.source = MessageHeaderSource(json: val)
+				self.source = MessageHeaderSource(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["timestamp"] as? String {
 				self.timestamp = NSDate(json: val)
@@ -207,7 +207,7 @@ public class MessageHeaderSource: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["contact"] as? NSDictionary {
-				self.contact = Contact(json: val)
+				self.contact = Contact(json: val, owner: self)
 			}
 			if let val = js["endpoint"] as? String {
 				self.endpoint = NSURL(json: val)

@@ -2,7 +2,7 @@
 //  Attachment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Attachment.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (type-Attachment.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 

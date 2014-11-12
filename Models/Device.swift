@@ -2,7 +2,7 @@
 //  Device.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (device.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (device.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -78,13 +78,13 @@ public class Device: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["contact"] as? [NSDictionary] {
-				self.contact = Contact.from(val) as? [Contact]
+				self.contact = Contact.from(val, owner: self) as? [Contact]
 			}
 			if let val = js["expiry"] as? String {
 				self.expiry = NSDate(json: val)
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["location"] as? NSDictionary {
 				self.location = FHIRReference(json: val, owner: self)
@@ -105,10 +105,10 @@ public class Device: FHIRResource
 				self.patient = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["type"] as? NSDictionary {
-				self.type = CodeableConcept(json: val)
+				self.type = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["udi"] as? String {
 				self.udi = val

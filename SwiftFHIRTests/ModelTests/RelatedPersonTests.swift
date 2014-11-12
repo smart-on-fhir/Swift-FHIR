@@ -2,7 +2,7 @@
 //  RelatedPersonTests.swift
 //  RelatedPersonTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
+//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -90,6 +90,37 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.telecom![0].use!, "work")	
 		XCTAssertEqual(inst!.telecom![0].value!, "(03) 5555 6473")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <table>\n        <tbody>\n          <tr>\n            <td>Name</td>\n            <td>Peter Chalmers</td>\n          </tr>\n          <tr>\n            <td>Address</td>\n            <td>534 Erewhon, Pleasantville, Vic, 3999</td>\n          </tr>\n          <tr>\n            <td>Contacts</td>\n            <td>Work: (03) 5555 6473</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")
+	}
+	
+	func testRelatedPerson4() {
+		let inst = instantiateFrom("relatedperson-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a RelatedPerson instance")
+		
+		XCTAssertEqual(inst!.address!.city!, "Paris")	
+		XCTAssertEqual(inst!.address!.country!, "FRA")	
+		XCTAssertEqual(inst!.address!.line![0], "43, Place du Marché Sainte Catherine")	
+		XCTAssertEqual(inst!.address!.zip!, "75004")	
+		XCTAssertEqual(inst!.gender!.coding![0].code!, "F")	
+		XCTAssertEqual(inst!.gender!.coding![0].display!, "Female")
+		XCTAssertEqual(inst!.gender!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/AdministrativeGender")!)	
+		XCTAssertEqual(inst!.identifier![0].label!, "INSEE")
+		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:oid:1.2.250.1.61")!)	
+		XCTAssertEqual(inst!.identifier![0].use!, "usual")	
+		XCTAssertEqual(inst!.identifier![0].value!, "272117510400399")	
+		XCTAssertEqual(inst!.name!.family![0], "du")	
+		XCTAssertEqual(inst!.name!.family![1], "Marché")	
+		XCTAssertEqual(inst!.name!.given![0], "Bénédicte")	
+		XCTAssertEqual(inst!.patient!.reference!, "Patient/example")	
+		XCTAssertEqual(inst!.photo![0].contentType!, "image/jpeg")
+		XCTAssertEqual(inst!.photo![0].url!, NSURL(string: "binary/@f016")!)	
+		XCTAssertEqual(inst!.relationship!.coding![0].code!, "partner")
+		XCTAssertEqual(inst!.relationship!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/patient-contact-relationship")!)	
+		XCTAssertEqual(inst!.relationship!.coding![1].code!, "WIFE")
+		XCTAssertEqual(inst!.relationship!.coding![1].system!, NSURL(string: "http://hl7.org/fhir/v3/RoleCode")!)	
+		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
+		XCTAssertEqual(inst!.telecom![0].value!, "+33 (237) 998327")	
+		XCTAssertEqual(inst!.text!.div!, "<div>\n      <table>\n        <tbody>\n          <tr>\n            <td>Name</td>\n            <td>Bénédicte du Marché</td>\n          </tr>\n          <tr>\n            <td>Address</td>\n            <td>43, Place du Marché Sainte Catherine, 75004 Paris, France</td>\n          </tr>\n          <tr>\n            <td>Contacts</td>\n            <td>Phone: +33 (237) 998327</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>")	
 		XCTAssertEqual(inst!.text!.status!, "generated")
 	}
 }

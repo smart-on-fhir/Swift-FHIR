@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (valueset.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (valueset.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -89,7 +89,7 @@ public class ValueSet: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["compose"] as? NSDictionary {
-				self.compose = ValueSetCompose(json: val)
+				self.compose = ValueSetCompose(json: val, owner: self)
 			}
 			if let val = js["copyright"] as? String {
 				self.copyright = val
@@ -98,19 +98,19 @@ public class ValueSet: FHIRResource
 				self.date = NSDate(json: val)
 			}
 			if let val = js["define"] as? NSDictionary {
-				self.define = ValueSetDefine(json: val)
+				self.define = ValueSetDefine(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
 			}
 			if let val = js["expansion"] as? NSDictionary {
-				self.expansion = ValueSetExpansion(json: val)
+				self.expansion = ValueSetExpansion(json: val, owner: self)
 			}
-			if let val = js["experimental"] as? Int {
-				self.experimental = (1 == val)
+			if let val = js["experimental"] as? Bool {
+				self.experimental = val
 			}
-			if let val = js["extensible"] as? Int {
-				self.extensible = (1 == val)
+			if let val = js["extensible"] as? Bool {
+				self.extensible = val
 			}
 			if let val = js["identifier"] as? String {
 				self.identifier = val
@@ -125,10 +125,10 @@ public class ValueSet: FHIRResource
 				self.status = val
 			}
 			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val) as? [Contact]
+				self.telecom = Contact.from(val, owner: self) as? [Contact]
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["version"] as? String {
 				self.version = val
@@ -165,11 +165,11 @@ public class ValueSetDefine: FHIRElement
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["caseSensitive"] as? Int {
-				self.caseSensitive = (1 == val)
+			if let val = js["caseSensitive"] as? Bool {
+				self.caseSensitive = val
 			}
 			if let val = js["concept"] as? [NSDictionary] {
-				self.concept = ValueSetDefineConcept.from(val) as? [ValueSetDefineConcept]
+				self.concept = ValueSetDefineConcept.from(val, owner: self) as? [ValueSetDefineConcept]
 			}
 			if let val = js["system"] as? String {
 				self.system = NSURL(json: val)
@@ -212,14 +212,14 @@ public class ValueSetDefineConcept: FHIRElement
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["abstract"] as? Int {
-				self.abstract = (1 == val)
+			if let val = js["abstract"] as? Bool {
+				self.abstract = val
 			}
 			if let val = js["code"] as? String {
 				self.code = val
 			}
 			if let val = js["concept"] as? [NSDictionary] {
-				self.concept = ValueSetDefineConceptConcept.from(val) as? [ValueSetDefineConceptConcept]
+				self.concept = ValueSetDefineConceptConcept.from(val, owner: self) as? [ValueSetDefineConceptConcept]
 			}
 			if let val = js["definition"] as? String {
 				self.definition = val
@@ -260,13 +260,13 @@ public class ValueSetCompose: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["exclude"] as? [NSDictionary] {
-				self.exclude = ValueSetComposeExclude.from(val) as? [ValueSetComposeExclude]
+				self.exclude = ValueSetComposeExclude.from(val, owner: self) as? [ValueSetComposeExclude]
 			}
 			if let val = js["import"] as? [String] {
 				self.importFrom = NSURL.from(val)
 			}
 			if let val = js["include"] as? [NSDictionary] {
-				self.include = ValueSetComposeInclude.from(val) as? [ValueSetComposeInclude]
+				self.include = ValueSetComposeInclude.from(val, owner: self) as? [ValueSetComposeInclude]
 			}
 		}
 	}
@@ -304,7 +304,7 @@ public class ValueSetComposeInclude: FHIRElement
 				self.code = val
 			}
 			if let val = js["filter"] as? [NSDictionary] {
-				self.filter = ValueSetComposeIncludeFilter.from(val) as? [ValueSetComposeIncludeFilter]
+				self.filter = ValueSetComposeIncludeFilter.from(val, owner: self) as? [ValueSetComposeIncludeFilter]
 			}
 			if let val = js["system"] as? String {
 				self.system = NSURL(json: val)
@@ -400,10 +400,10 @@ public class ValueSetExpansion: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["contains"] as? [NSDictionary] {
-				self.contains = ValueSetExpansionContains.from(val) as? [ValueSetExpansionContains]
+				self.contains = ValueSetExpansionContains.from(val, owner: self) as? [ValueSetExpansionContains]
 			}
 			if let val = js["identifier"] as? NSDictionary {
-				self.identifier = Identifier(json: val)
+				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["timestamp"] as? String {
 				self.timestamp = NSDate(json: val)
@@ -438,7 +438,7 @@ public class ValueSetExpansionContains: FHIRElement
 				self.code = val
 			}
 			if let val = js["contains"] as? [NSDictionary] {
-				self.contains = ValueSetExpansionContainsContains.from(val) as? [ValueSetExpansionContainsContains]
+				self.contains = ValueSetExpansionContainsContains.from(val, owner: self) as? [ValueSetExpansionContainsContains]
 			}
 			if let val = js["display"] as? String {
 				self.display = val

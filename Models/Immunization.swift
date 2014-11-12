@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (immunization.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (immunization.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -111,16 +111,16 @@ public class Immunization: FHIRResource
 				self.date = NSDate(json: val)
 			}
 			if let val = js["doseQuantity"] as? NSDictionary {
-				self.doseQuantity = Quantity(json: val)
+				self.doseQuantity = Quantity(json: val, owner: self)
 			}
 			if let val = js["expirationDate"] as? String {
 				self.expirationDate = NSDate(json: val)
 			}
 			if let val = js["explanation"] as? NSDictionary {
-				self.explanation = ImmunizationExplanation(json: val)
+				self.explanation = ImmunizationExplanation(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["location"] as? NSDictionary {
 				self.location = FHIRReference(json: val, owner: self)
@@ -135,34 +135,34 @@ public class Immunization: FHIRResource
 				self.performer = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["reaction"] as? [NSDictionary] {
-				self.reaction = ImmunizationReaction.from(val) as? [ImmunizationReaction]
+				self.reaction = ImmunizationReaction.from(val, owner: self) as? [ImmunizationReaction]
 			}
-			if let val = js["refusedIndicator"] as? Int {
-				self.refusedIndicator = (1 == val)
+			if let val = js["refusedIndicator"] as? Bool {
+				self.refusedIndicator = val
 			}
-			if let val = js["reported"] as? Int {
-				self.reported = (1 == val)
+			if let val = js["reported"] as? Bool {
+				self.reported = val
 			}
 			if let val = js["requester"] as? NSDictionary {
 				self.requester = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["route"] as? NSDictionary {
-				self.route = CodeableConcept(json: val)
+				self.route = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["site"] as? NSDictionary {
-				self.site = CodeableConcept(json: val)
+				self.site = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["vaccinationProtocol"] as? [NSDictionary] {
-				self.vaccinationProtocol = ImmunizationVaccinationProtocol.from(val) as? [ImmunizationVaccinationProtocol]
+				self.vaccinationProtocol = ImmunizationVaccinationProtocol.from(val, owner: self) as? [ImmunizationVaccinationProtocol]
 			}
 			if let val = js["vaccineType"] as? NSDictionary {
-				self.vaccineType = CodeableConcept(json: val)
+				self.vaccineType = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -187,10 +187,10 @@ public class ImmunizationExplanation: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["reason"] as? [NSDictionary] {
-				self.reason = CodeableConcept.from(val) as? [CodeableConcept]
+				self.reason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["refusalReason"] as? [NSDictionary] {
-				self.refusalReason = CodeableConcept.from(val) as? [CodeableConcept]
+				self.refusalReason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
 	}
@@ -223,8 +223,8 @@ public class ImmunizationReaction: FHIRElement
 			if let val = js["detail"] as? NSDictionary {
 				self.detail = FHIRReference(json: val, owner: self)
 			}
-			if let val = js["reported"] as? Int {
-				self.reported = (1 == val)
+			if let val = js["reported"] as? Bool {
+				self.reported = val
 			}
 		}
 	}
@@ -288,13 +288,13 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 				self.doseSequence = val
 			}
 			if let val = js["doseStatus"] as? NSDictionary {
-				self.doseStatus = CodeableConcept(json: val)
+				self.doseStatus = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["doseStatusReason"] as? NSDictionary {
-				self.doseStatusReason = CodeableConcept(json: val)
+				self.doseStatusReason = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["doseTarget"] as? NSDictionary {
-				self.doseTarget = CodeableConcept(json: val)
+				self.doseTarget = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["series"] as? String {
 				self.series = val

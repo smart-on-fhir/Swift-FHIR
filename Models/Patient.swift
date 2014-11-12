@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (patient.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (patient.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -97,14 +97,14 @@ public class Patient: FHIRResource
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["active"] as? Int {
-				self.active = (1 == val)
+			if let val = js["active"] as? Bool {
+				self.active = val
 			}
 			if let val = js["address"] as? [NSDictionary] {
-				self.address = Address.from(val) as? [Address]
+				self.address = Address.from(val, owner: self) as? [Address]
 			}
 			if let val = js["animal"] as? NSDictionary {
-				self.animal = PatientAnimal(json: val)
+				self.animal = PatientAnimal(json: val, owner: self)
 			}
 			if let val = js["birthDate"] as? String {
 				self.birthDate = NSDate(json: val)
@@ -113,49 +113,49 @@ public class Patient: FHIRResource
 				self.careProvider = FHIRReference.from(val, owner: self)
 			}
 			if let val = js["communication"] as? [NSDictionary] {
-				self.communication = CodeableConcept.from(val) as? [CodeableConcept]
+				self.communication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["contact"] as? [NSDictionary] {
-				self.contact = PatientContact.from(val) as? [PatientContact]
+				self.contact = PatientContact.from(val, owner: self) as? [PatientContact]
 			}
-			if let val = js["deceasedBoolean"] as? Int {
-				self.deceasedBoolean = (1 == val)
+			if let val = js["deceasedBoolean"] as? Bool {
+				self.deceasedBoolean = val
 			}
 			if let val = js["deceasedDateTime"] as? String {
 				self.deceasedDateTime = NSDate(json: val)
 			}
 			if let val = js["gender"] as? NSDictionary {
-				self.gender = CodeableConcept(json: val)
+				self.gender = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["link"] as? [NSDictionary] {
-				self.link = PatientLink.from(val) as? [PatientLink]
+				self.link = PatientLink.from(val, owner: self) as? [PatientLink]
 			}
 			if let val = js["managingOrganization"] as? NSDictionary {
 				self.managingOrganization = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["maritalStatus"] as? NSDictionary {
-				self.maritalStatus = CodeableConcept(json: val)
+				self.maritalStatus = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["multipleBirthBoolean"] as? Int {
-				self.multipleBirthBoolean = (1 == val)
+			if let val = js["multipleBirthBoolean"] as? Bool {
+				self.multipleBirthBoolean = val
 			}
 			if let val = js["multipleBirthInteger"] as? Int {
 				self.multipleBirthInteger = val
 			}
 			if let val = js["name"] as? [NSDictionary] {
-				self.name = HumanName.from(val) as? [HumanName]
+				self.name = HumanName.from(val, owner: self) as? [HumanName]
 			}
 			if let val = js["photo"] as? [NSDictionary] {
-				self.photo = Attachment.from(val) as? [Attachment]
+				self.photo = Attachment.from(val, owner: self) as? [Attachment]
 			}
 			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val) as? [Contact]
+				self.telecom = Contact.from(val, owner: self) as? [Contact]
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}
@@ -190,22 +190,22 @@ public class PatientContact: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["address"] as? NSDictionary {
-				self.address = Address(json: val)
+				self.address = Address(json: val, owner: self)
 			}
 			if let val = js["gender"] as? NSDictionary {
-				self.gender = CodeableConcept(json: val)
+				self.gender = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["name"] as? NSDictionary {
-				self.name = HumanName(json: val)
+				self.name = HumanName(json: val, owner: self)
 			}
 			if let val = js["organization"] as? NSDictionary {
 				self.organization = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["relationship"] as? [NSDictionary] {
-				self.relationship = CodeableConcept.from(val) as? [CodeableConcept]
+				self.relationship = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val) as? [Contact]
+				self.telecom = Contact.from(val, owner: self) as? [Contact]
 			}
 		}
 	}
@@ -239,13 +239,13 @@ public class PatientAnimal: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["breed"] as? NSDictionary {
-				self.breed = CodeableConcept(json: val)
+				self.breed = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["genderStatus"] as? NSDictionary {
-				self.genderStatus = CodeableConcept(json: val)
+				self.genderStatus = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["species"] as? NSDictionary {
-				self.species = CodeableConcept(json: val)
+				self.species = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}

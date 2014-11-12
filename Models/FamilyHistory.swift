@@ -2,7 +2,7 @@
 //  FamilyHistory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (familyhistory.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (familyhistory.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -55,19 +55,19 @@ public class FamilyHistory: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["note"] as? String {
 				self.note = val
 			}
 			if let val = js["relation"] as? [NSDictionary] {
-				self.relation = FamilyHistoryRelation.from(val) as? [FamilyHistoryRelation]
+				self.relation = FamilyHistoryRelation.from(val, owner: self) as? [FamilyHistoryRelation]
 			}
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}
@@ -131,25 +131,25 @@ public class FamilyHistoryRelation: FHIRElement
 				self.bornDate = NSDate(json: val)
 			}
 			if let val = js["bornPeriod"] as? NSDictionary {
-				self.bornPeriod = Period(json: val)
+				self.bornPeriod = Period(json: val, owner: self)
 			}
 			if let val = js["bornString"] as? String {
 				self.bornString = val
 			}
 			if let val = js["condition"] as? [NSDictionary] {
-				self.condition = FamilyHistoryRelationCondition.from(val) as? [FamilyHistoryRelationCondition]
+				self.condition = FamilyHistoryRelationCondition.from(val, owner: self) as? [FamilyHistoryRelationCondition]
 			}
 			if let val = js["deceasedAge"] as? NSDictionary {
-				self.deceasedAge = Age(json: val)
+				self.deceasedAge = Age(json: val, owner: self)
 			}
-			if let val = js["deceasedBoolean"] as? Int {
-				self.deceasedBoolean = (1 == val)
+			if let val = js["deceasedBoolean"] as? Bool {
+				self.deceasedBoolean = val
 			}
 			if let val = js["deceasedDate"] as? String {
 				self.deceasedDate = NSDate(json: val)
 			}
 			if let val = js["deceasedRange"] as? NSDictionary {
-				self.deceasedRange = Range(json: val)
+				self.deceasedRange = Range(json: val, owner: self)
 			}
 			if let val = js["deceasedString"] as? String {
 				self.deceasedString = val
@@ -161,7 +161,7 @@ public class FamilyHistoryRelation: FHIRElement
 				self.note = val
 			}
 			if let val = js["relationship"] as? NSDictionary {
-				self.relationship = CodeableConcept(json: val)
+				self.relationship = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -209,19 +209,19 @@ public class FamilyHistoryRelationCondition: FHIRElement
 				self.note = val
 			}
 			if let val = js["onsetAge"] as? NSDictionary {
-				self.onsetAge = Age(json: val)
+				self.onsetAge = Age(json: val, owner: self)
 			}
 			if let val = js["onsetRange"] as? NSDictionary {
-				self.onsetRange = Range(json: val)
+				self.onsetRange = Range(json: val, owner: self)
 			}
 			if let val = js["onsetString"] as? String {
 				self.onsetString = val
 			}
 			if let val = js["outcome"] as? NSDictionary {
-				self.outcome = CodeableConcept(json: val)
+				self.outcome = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["type"] as? NSDictionary {
-				self.type = CodeableConcept(json: val)
+				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}

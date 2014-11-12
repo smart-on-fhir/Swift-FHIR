@@ -2,7 +2,7 @@
 //  OrganizationTests.swift
 //  OrganizationTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
+//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -242,6 +242,25 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.telecom![1].use!, "work")	
 		XCTAssertEqual(inst!.telecom![1].value!, "contact@labs.acme.org")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>Clinical Laboratory @ Acme Hospital. ph: +1 555 234 1234, email: <a href=\"mailto:contact@labs.acme.org\">contact@labs.acme.org</a></p>\n    </div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")
+	}
+	
+	func testOrganization10() {
+		let inst = instantiateFrom("organization-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a Organization instance")
+		
+		XCTAssertEqual(inst!.address![0].city!, "Ann Arbor")	
+		XCTAssertEqual(inst!.address![0].country!, "USA")	
+		XCTAssertEqual(inst!.address![0].line![0], "3300 Washtenaw Avenue, Suite 227")	
+		XCTAssertEqual(inst!.address![0].state!, "MI")	
+		XCTAssertEqual(inst!.address![0].zip!, "48104")	
+		XCTAssertEqual(inst!.name!, "Health Level Seven International")	
+		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
+		XCTAssertEqual(inst!.telecom![0].value!, "(+1) 734-677-7777")	
+		XCTAssertEqual(inst!.telecom![1].system!, "fax")	
+		XCTAssertEqual(inst!.telecom![1].value!, "(+1) 734-677-6622")	
+		XCTAssertEqual(inst!.telecom![2].system!, "email")	
+		XCTAssertEqual(inst!.telecom![2].value!, "hq@HL7.org")	
 		XCTAssertEqual(inst!.text!.status!, "generated")
 	}
 }

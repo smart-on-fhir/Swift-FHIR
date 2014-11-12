@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (careplan.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (careplan.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -74,16 +74,16 @@ public class CarePlan: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["activity"] as? [NSDictionary] {
-				self.activity = CarePlanActivity.from(val) as? [CarePlanActivity]
+				self.activity = CarePlanActivity.from(val, owner: self) as? [CarePlanActivity]
 			}
 			if let val = js["concern"] as? [NSDictionary] {
 				self.concern = FHIRReference.from(val, owner: self)
 			}
 			if let val = js["goal"] as? [NSDictionary] {
-				self.goal = CarePlanGoal.from(val) as? [CarePlanGoal]
+				self.goal = CarePlanGoal.from(val, owner: self) as? [CarePlanGoal]
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["modified"] as? String {
 				self.modified = NSDate(json: val)
@@ -92,19 +92,19 @@ public class CarePlan: FHIRResource
 				self.notes = val
 			}
 			if let val = js["participant"] as? [NSDictionary] {
-				self.participant = CarePlanParticipant.from(val) as? [CarePlanParticipant]
+				self.participant = CarePlanParticipant.from(val, owner: self) as? [CarePlanParticipant]
 			}
 			if let val = js["patient"] as? NSDictionary {
 				self.patient = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["period"] as? NSDictionary {
-				self.period = Period(json: val)
+				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}
@@ -138,7 +138,7 @@ public class CarePlanParticipant: FHIRElement
 				self.member = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["role"] as? NSDictionary {
-				self.role = CodeableConcept(json: val)
+				self.role = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -242,11 +242,11 @@ public class CarePlanActivity: FHIRElement
 			if let val = js["notes"] as? String {
 				self.notes = val
 			}
-			if let val = js["prohibited"] as? Int {
-				self.prohibited = (1 == val)
+			if let val = js["prohibited"] as? Bool {
+				self.prohibited = val
 			}
 			if let val = js["simple"] as? NSDictionary {
-				self.simple = CarePlanActivitySimple(json: val)
+				self.simple = CarePlanActivitySimple(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
@@ -311,10 +311,10 @@ public class CarePlanActivitySimple: FHIRElement
 				self.category = val
 			}
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["dailyAmount"] as? NSDictionary {
-				self.dailyAmount = Quantity(json: val)
+				self.dailyAmount = Quantity(json: val, owner: self)
 			}
 			if let val = js["details"] as? String {
 				self.details = val
@@ -329,13 +329,13 @@ public class CarePlanActivitySimple: FHIRElement
 				self.product = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["quantity"] as? NSDictionary {
-				self.quantity = Quantity(json: val)
+				self.quantity = Quantity(json: val, owner: self)
 			}
 			if let val = js["timingPeriod"] as? NSDictionary {
-				self.timingPeriod = Period(json: val)
+				self.timingPeriod = Period(json: val, owner: self)
 			}
 			if let val = js["timingSchedule"] as? NSDictionary {
-				self.timingSchedule = Schedule(json: val)
+				self.timingSchedule = Schedule(json: val, owner: self)
 			}
 			if let val = js["timingString"] as? String {
 				self.timingString = val

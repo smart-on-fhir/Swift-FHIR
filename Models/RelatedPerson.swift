@@ -2,7 +2,7 @@
 //  RelatedPerson.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (relatedperson.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (relatedperson.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -69,31 +69,31 @@ public class RelatedPerson: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["address"] as? NSDictionary {
-				self.address = Address(json: val)
+				self.address = Address(json: val, owner: self)
 			}
 			if let val = js["gender"] as? NSDictionary {
-				self.gender = CodeableConcept(json: val)
+				self.gender = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["name"] as? NSDictionary {
-				self.name = HumanName(json: val)
+				self.name = HumanName(json: val, owner: self)
 			}
 			if let val = js["patient"] as? NSDictionary {
 				self.patient = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["photo"] as? [NSDictionary] {
-				self.photo = Attachment.from(val) as? [Attachment]
+				self.photo = Attachment.from(val, owner: self) as? [Attachment]
 			}
 			if let val = js["relationship"] as? NSDictionary {
-				self.relationship = CodeableConcept(json: val)
+				self.relationship = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val) as? [Contact]
+				self.telecom = Contact.from(val, owner: self) as? [Contact]
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}

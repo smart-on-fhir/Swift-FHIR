@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (xds-profile.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (xds-profile.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -140,10 +140,10 @@ public class DocumentReference: FHIRResource
 				self.author = FHIRReference.from(val, owner: self)
 			}
 			if let val = js["confidentiality"] as? NSDictionary {
-				self.confidentiality = CodeableConcept(json: val)
+				self.confidentiality = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["context"] as? NSDictionary {
-				self.context = DocumentReferenceContext(json: val)
+				self.context = DocumentReferenceContext(json: val, owner: self)
 			}
 			if let val = js["created"] as? String {
 				self.created = NSDate(json: val)
@@ -155,28 +155,28 @@ public class DocumentReference: FHIRResource
 				self.description = val
 			}
 			if let val = js["docStatus"] as? NSDictionary {
-				self.docStatus = CodeableConcept(json: val)
+				self.docStatus = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["format"] as? NSDictionary {
-				self.format = CodeableConcept(json: val)
+				self.format = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["hash"] as? String {
 				self.hash = val
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["indexed"] as? String {
 				self.indexed = NSDate(json: val)
 			}
 			if let val = js["class"] as? NSDictionary {
-				self.klass = CodeableConcept(json: val)
+				self.klass = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["location"] as? String {
 				self.location = NSURL(json: val)
 			}
 			if let val = js["masterIdentifier"] as? NSDictionary {
-				self.masterIdentifier = Identifier(json: val)
+				self.masterIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["mimeType"] as? String {
 				self.mimeType = val
@@ -188,10 +188,10 @@ public class DocumentReference: FHIRResource
 				self.primaryLanguage = val
 			}
 			if let val = js["relatesTo"] as? [NSDictionary] {
-				self.relatesTo = DocumentReferenceRelatesTo.from(val) as? [DocumentReferenceRelatesTo]
+				self.relatesTo = DocumentReferenceRelatesTo.from(val, owner: self) as? [DocumentReferenceRelatesTo]
 			}
 			if let val = js["service"] as? NSDictionary {
-				self.service = DocumentReferenceService(json: val)
+				self.service = DocumentReferenceService(json: val, owner: self)
 			}
 			if let val = js["size"] as? Int {
 				self.size = val
@@ -203,13 +203,13 @@ public class DocumentReference: FHIRResource
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["type"] as? NSDictionary {
-				self.type = CodeableConcept(json: val)
+				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -283,10 +283,10 @@ public class DocumentReferenceService: FHIRElement
 				self.address = val
 			}
 			if let val = js["parameter"] as? [NSDictionary] {
-				self.parameter = DocumentReferenceServiceParameter.from(val) as? [DocumentReferenceServiceParameter]
+				self.parameter = DocumentReferenceServiceParameter.from(val, owner: self) as? [DocumentReferenceServiceParameter]
 			}
 			if let val = js["type"] as? NSDictionary {
-				self.type = CodeableConcept(json: val)
+				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -354,13 +354,13 @@ public class DocumentReferenceContext: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["event"] as? [NSDictionary] {
-				self.event = CodeableConcept.from(val) as? [CodeableConcept]
+				self.event = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["facilityType"] as? NSDictionary {
-				self.facilityType = CodeableConcept(json: val)
+				self.facilityType = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["period"] as? NSDictionary {
-				self.period = Period(json: val)
+				self.period = Period(json: val, owner: self)
 			}
 		}
 	}

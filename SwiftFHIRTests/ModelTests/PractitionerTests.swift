@@ -2,7 +2,7 @@
 //  PractitionerTests.swift
 //  PractitionerTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
+//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -515,6 +515,24 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.name!.given![0], "Bob")	
 		XCTAssertEqual(inst!.name!.suffix![0], "MD")	
 		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>Bob Dolin, MD</p>\n    </div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")
+	}
+	
+	func testPractitioner13() {
+		let inst = instantiateFrom("practitioner-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a Practitioner instance")
+	
+		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.acme.org/practitioners")!)	
+		XCTAssertEqual(inst!.identifier![0].value!, "23")	
+		XCTAssertEqual(inst!.name!.family![0], "Careful")	
+		XCTAssertEqual(inst!.name!.given![0], "Adam")	
+		XCTAssertEqual(inst!.name!.prefix![0], "Dr")	
+		XCTAssertEqual(inst!.organization!.reference!, "Organization/1")
+		XCTAssertEqual(inst!.period!.end!, NSDate.dateFromISOString("2012-03-31")!)
+		XCTAssertEqual(inst!.period!.start!, NSDate.dateFromISOString("2012-01-01")!)	
+		XCTAssertEqual(inst!.role![0].coding![0].code!, "RP")
+		XCTAssertEqual(inst!.role![0].coding![0].system!, NSURL(string: "http://hl7.org/fhir/v2/0286")!)	
+		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>Dr Adam Careful is a Referring Practitioner for Acme Hospital from 1-Jan 2012 to 31-Mar\n        2012</p>\n    </div>")	
 		XCTAssertEqual(inst!.text!.status!, "generated")
 	}
 }

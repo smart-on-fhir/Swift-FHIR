@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (imagingstudy.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (imagingstudy.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -102,7 +102,7 @@ public class ImagingStudy: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["accessionNo"] as? NSDictionary {
-				self.accessionNo = Identifier(json: val)
+				self.accessionNo = Identifier(json: val, owner: self)
 			}
 			if let val = js["availability"] as? String {
 				self.availability = val
@@ -117,7 +117,7 @@ public class ImagingStudy: FHIRResource
 				self.description = val
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["interpreter"] as? NSDictionary {
 				self.interpreter = FHIRReference(json: val, owner: self)
@@ -135,19 +135,19 @@ public class ImagingStudy: FHIRResource
 				self.order = FHIRReference.from(val, owner: self)
 			}
 			if let val = js["procedure"] as? [NSDictionary] {
-				self.procedure = Coding.from(val) as? [Coding]
+				self.procedure = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["referrer"] as? NSDictionary {
 				self.referrer = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["series"] as? [NSDictionary] {
-				self.series = ImagingStudySeries.from(val) as? [ImagingStudySeries]
+				self.series = ImagingStudySeries.from(val, owner: self) as? [ImagingStudySeries]
 			}
 			if let val = js["subject"] as? NSDictionary {
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["uid"] as? String {
 				self.uid = val
@@ -220,7 +220,7 @@ public class ImagingStudySeries: FHIRElement
 				self.availability = val
 			}
 			if let val = js["bodySite"] as? NSDictionary {
-				self.bodySite = Coding(json: val)
+				self.bodySite = Coding(json: val, owner: self)
 			}
 			if let val = js["dateTime"] as? String {
 				self.dateTime = NSDate(json: val)
@@ -229,7 +229,7 @@ public class ImagingStudySeries: FHIRElement
 				self.description = val
 			}
 			if let val = js["instance"] as? [NSDictionary] {
-				self.instance = ImagingStudySeriesInstance.from(val) as? [ImagingStudySeriesInstance]
+				self.instance = ImagingStudySeriesInstance.from(val, owner: self) as? [ImagingStudySeriesInstance]
 			}
 			if let val = js["modality"] as? String {
 				self.modality = val

@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (diagnosticreport.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (diagnosticreport.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -117,7 +117,7 @@ public class DiagnosticReport: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["codedDiagnosis"] as? [NSDictionary] {
-				self.codedDiagnosis = CodeableConcept.from(val) as? [CodeableConcept]
+				self.codedDiagnosis = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["conclusion"] as? String {
 				self.conclusion = val
@@ -126,13 +126,13 @@ public class DiagnosticReport: FHIRResource
 				self.diagnosticDateTime = NSDate(json: val)
 			}
 			if let val = js["diagnosticPeriod"] as? NSDictionary {
-				self.diagnosticPeriod = Period(json: val)
+				self.diagnosticPeriod = Period(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? NSDictionary {
-				self.identifier = Identifier(json: val)
+				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["image"] as? [NSDictionary] {
-				self.image = DiagnosticReportImage.from(val) as? [DiagnosticReportImage]
+				self.image = DiagnosticReportImage.from(val, owner: self) as? [DiagnosticReportImage]
 			}
 			if let val = js["imagingStudy"] as? [NSDictionary] {
 				self.imagingStudy = FHIRReference.from(val, owner: self)
@@ -141,13 +141,13 @@ public class DiagnosticReport: FHIRResource
 				self.issued = NSDate(json: val)
 			}
 			if let val = js["name"] as? NSDictionary {
-				self.name = CodeableConcept(json: val)
+				self.name = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["performer"] as? NSDictionary {
 				self.performer = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["presentedForm"] as? [NSDictionary] {
-				self.presentedForm = Attachment.from(val) as? [Attachment]
+				self.presentedForm = Attachment.from(val, owner: self) as? [Attachment]
 			}
 			if let val = js["requestDetail"] as? [NSDictionary] {
 				self.requestDetail = FHIRReference.from(val, owner: self)
@@ -156,7 +156,7 @@ public class DiagnosticReport: FHIRResource
 				self.result = FHIRReference.from(val, owner: self)
 			}
 			if let val = js["serviceCategory"] as? NSDictionary {
-				self.serviceCategory = CodeableConcept(json: val)
+				self.serviceCategory = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["specimen"] as? [NSDictionary] {
 				self.specimen = FHIRReference.from(val, owner: self)
@@ -168,7 +168,7 @@ public class DiagnosticReport: FHIRResource
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}

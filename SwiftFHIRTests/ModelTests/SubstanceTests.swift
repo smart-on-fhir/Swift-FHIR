@@ -2,7 +2,7 @@
 //  SubstanceTests.swift
 //  SubstanceTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-10-26.
+//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -51,5 +51,14 @@ class SubstanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.type!.coding![0].code!, "88480006")	
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Potassium")
 		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+	}
+	
+	func testSubstance4() {
+		let inst = instantiateFrom("substance-example.json")
+		XCTAssertNotNil(inst, "Must have instantiated a Substance instance")
+		
+		XCTAssertEqual(inst!.text!.div!, "<div>Apitoxin (known as Honey Bee Venom)</div>")	
+		XCTAssertEqual(inst!.text!.status!, "generated")	
+		XCTAssertEqual(inst!.type!.text!, "apitoxin")
 	}
 }

@@ -2,7 +2,7 @@
 //  Location.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (location.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (location.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -74,13 +74,13 @@ public class Location: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["address"] as? NSDictionary {
-				self.address = Address(json: val)
+				self.address = Address(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
 			}
 			if let val = js["identifier"] as? NSDictionary {
-				self.identifier = Identifier(json: val)
+				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["managingOrganization"] as? NSDictionary {
 				self.managingOrganization = FHIRReference(json: val, owner: self)
@@ -95,22 +95,22 @@ public class Location: FHIRResource
 				self.partOf = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["physicalType"] as? NSDictionary {
-				self.physicalType = CodeableConcept(json: val)
+				self.physicalType = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["position"] as? NSDictionary {
-				self.position = LocationPosition(json: val)
+				self.position = LocationPosition(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
 			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val) as? [Contact]
+				self.telecom = Contact.from(val, owner: self) as? [Contact]
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["type"] as? NSDictionary {
-				self.type = CodeableConcept(json: val)
+				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -146,13 +146,13 @@ public class LocationPosition: FHIRElement
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["altitude"] as? Double {
+			if let val = js["altitude"] as? NSNumber {
 				self.altitude = NSDecimalNumber(json: val)
 			}
-			if let val = js["latitude"] as? Double {
+			if let val = js["latitude"] as? NSNumber {
 				self.latitude = NSDecimalNumber(json: val)
 			}
-			if let val = js["longitude"] as? Double {
+			if let val = js["longitude"] as? NSNumber {
 				self.longitude = NSDecimalNumber(json: val)
 			}
 		}

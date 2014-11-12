@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (substance.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (substance.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -54,16 +54,16 @@ public class Substance: FHIRResource
 				self.description = val
 			}
 			if let val = js["ingredient"] as? [NSDictionary] {
-				self.ingredient = SubstanceIngredient.from(val) as? [SubstanceIngredient]
+				self.ingredient = SubstanceIngredient.from(val, owner: self) as? [SubstanceIngredient]
 			}
 			if let val = js["instance"] as? NSDictionary {
-				self.instance = SubstanceInstance(json: val)
+				self.instance = SubstanceInstance(json: val, owner: self)
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["type"] as? NSDictionary {
-				self.type = CodeableConcept(json: val)
+				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -95,10 +95,10 @@ public class SubstanceInstance: FHIRElement
 				self.expiry = NSDate(json: val)
 			}
 			if let val = js["identifier"] as? NSDictionary {
-				self.identifier = Identifier(json: val)
+				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["quantity"] as? NSDictionary {
-				self.quantity = Quantity(json: val)
+				self.quantity = Quantity(json: val, owner: self)
 			}
 		}
 	}
@@ -129,7 +129,7 @@ public class SubstanceIngredient: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["quantity"] as? NSDictionary {
-				self.quantity = Ratio(json: val)
+				self.quantity = Ratio(json: val, owner: self)
 			}
 			if let val = js["substance"] as? NSDictionary {
 				self.substance = FHIRReference(json: val, owner: self)

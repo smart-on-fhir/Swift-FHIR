@@ -2,7 +2,7 @@
 //  Ratio.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Ratio.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (type-Ratio.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -29,10 +29,10 @@ public class Ratio: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["denominator"] as? NSDictionary {
-				self.denominator = Quantity(json: val)
+				self.denominator = Quantity(json: val, owner: self)
 			}
 			if let val = js["numerator"] as? NSDictionary {
-				self.numerator = Quantity(json: val)
+				self.numerator = Quantity(json: val, owner: self)
 			}
 		}
 	}

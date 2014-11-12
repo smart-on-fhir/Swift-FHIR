@@ -2,7 +2,7 @@
 //  Identifier.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Identifier.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (type-Identifier.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -47,7 +47,7 @@ public class Identifier: FHIRElement
 				self.label = val
 			}
 			if let val = js["period"] as? NSDictionary {
-				self.period = Period(json: val)
+				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["system"] as? String {
 				self.system = NSURL(json: val)

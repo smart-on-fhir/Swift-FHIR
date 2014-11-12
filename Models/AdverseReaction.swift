@@ -2,7 +2,7 @@
 //  AdverseReaction.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (adversereaction.profile.json) on 2014-10-30.
+//  Generated from FHIR 0.0.82.2943 (adversereaction.profile.json) on 2014-11-12.
 //  2014, SMART Platforms.
 //
 
@@ -62,14 +62,14 @@ public class AdverseReaction: FHIRResource
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
 			}
-			if let val = js["didNotOccurFlag"] as? Int {
-				self.didNotOccurFlag = (1 == val)
+			if let val = js["didNotOccurFlag"] as? Bool {
+				self.didNotOccurFlag = val
 			}
 			if let val = js["exposure"] as? [NSDictionary] {
-				self.exposure = AdverseReactionExposure.from(val) as? [AdverseReactionExposure]
+				self.exposure = AdverseReactionExposure.from(val, owner: self) as? [AdverseReactionExposure]
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val) as? [Identifier]
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["recorder"] as? NSDictionary {
 				self.recorder = FHIRReference(json: val, owner: self)
@@ -78,10 +78,10 @@ public class AdverseReaction: FHIRResource
 				self.subject = FHIRReference(json: val, owner: self)
 			}
 			if let val = js["symptom"] as? [NSDictionary] {
-				self.symptom = AdverseReactionSymptom.from(val) as? [AdverseReactionSymptom]
+				self.symptom = AdverseReactionSymptom.from(val, owner: self) as? [AdverseReactionSymptom]
 			}
 			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val)
+				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}
@@ -112,7 +112,7 @@ public class AdverseReactionSymptom: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val)
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["severity"] as? String {
 				self.severity = val

@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (organization.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (organization.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,10 +12,9 @@ import Foundation
 /**
  *  A grouping of people or organizations with a common purpose.
  *
- *  Scope and Usage This resource may be used in a shared registry of contact and other information for various
- *  organizations or it can be used merely as a support for other resources that need to reference organizations,
- *  perhaps as a document, message or as a contained resource. If using a registry approach, it's entirely possible for
- *  multiple registries to exist, each dealing with different types or levels of organization.
+ *  A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some
+ *  form of collective action.  Includes companies, institutions, corporations, departments, community groups,
+ *  healthcare practice groups, etc.
  */
 public class Organization: FHIRResource
 {
@@ -36,19 +35,16 @@ public class Organization: FHIRResource
 	public var identifier: [Identifier]?
 	
 	/// Location(s) the organization uses to provide services
-	public var location: [FHIRReference<Location>]?
+	public var location: [Reference]?
 	
 	/// Name used for the organization
 	public var name: String?
 	
 	/// The organization of which this organization forms a part
-	public var partOf: FHIRReference<Organization>?
+	public var partOf: Reference?
 	
 	/// A contact detail for the organization
-	public var telecom: [Contact]?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
+	public var telecom: [ContactPoint]?
 	
 	/// Kind of organization
 	public var type: CodeableConcept?
@@ -70,19 +66,16 @@ public class Organization: FHIRResource
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["location"] as? [NSDictionary] {
-				self.location = FHIRReference.from(val, owner: self)
+				self.location = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["name"] as? String {
 				self.name = val
 			}
 			if let val = js["partOf"] as? NSDictionary {
-				self.partOf = FHIRReference(json: val, owner: self)
+				self.partOf = Reference(json: val, owner: self)
 			}
 			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val, owner: self) as? [Contact]
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
@@ -96,12 +89,16 @@ public class Organization: FHIRResource
  *  Contact for the organization for a certain purpose.
  */
 public class OrganizationContact: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "OrganizationContact" }
+	}
+	
 	/// Visiting or postal addresses for the contact
 	public var address: Address?
 	
-	/// Gender for administrative purposes
-	public var gender: CodeableConcept?
+	/// male | female | other | unknown
+	public var gender: String?
 	
 	/// A name associated with the contact
 	public var name: HumanName?
@@ -110,7 +107,7 @@ public class OrganizationContact: FHIRElement
 	public var purpose: CodeableConcept?
 	
 	/// Contact details (telephone, email, etc)  for a contact
-	public var telecom: [Contact]?
+	public var telecom: [ContactPoint]?
 	
 
 	public required init(json: NSDictionary?) {
@@ -119,8 +116,8 @@ public class OrganizationContact: FHIRElement
 			if let val = js["address"] as? NSDictionary {
 				self.address = Address(json: val, owner: self)
 			}
-			if let val = js["gender"] as? NSDictionary {
-				self.gender = CodeableConcept(json: val, owner: self)
+			if let val = js["gender"] as? String {
+				self.gender = val
 			}
 			if let val = js["name"] as? NSDictionary {
 				self.name = HumanName(json: val, owner: self)
@@ -129,7 +126,7 @@ public class OrganizationContact: FHIRElement
 				self.purpose = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val, owner: self) as? [Contact]
+				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
 	}

@@ -2,7 +2,7 @@
 //  Money.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Money.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (Money.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -10,12 +10,17 @@ import Foundation
 
 
 /**
- *  Profile for Money on Quantity.
+ *  An amount of money. With regard to precision, see [[X]].
  *
- *  Basic Profile for Money on Quantity for validation support
+ *  There SHALL be a code if there is a value and it SHALL be an expression of currency.  If system is present, it SHALL
+ *  be ISO 4217 (system = "urn:std:iso:4217" - currency).
  */
 public class Money: Quantity
-{	
+{
+	override public class var resourceName: String {
+		get { return "Money" }
+	}
+	
 
 }
 

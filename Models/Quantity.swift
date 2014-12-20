@@ -2,7 +2,7 @@
 //  Quantity.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Quantity.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (Quantity.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -11,6 +11,9 @@ import Foundation
 
 /**
  *  A measured or measurable amount.
+ *
+ *  A measured amount (or an amount that can potentially be measured). Note that measured amounts include amounts that
+ *  are not precisely quantified, including amounts involving arbitrary units and floating currencies.
  */
 public class Quantity: FHIRElement
 {

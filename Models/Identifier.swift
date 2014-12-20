@@ -2,7 +2,7 @@
 //  Identifier.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Identifier.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (Identifier.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -11,6 +11,8 @@ import Foundation
 
 /**
  *  An identifier intended for computation.
+ *
+ *  A technical identifier - identifies some entity uniquely and unambiguously.
  */
 public class Identifier: FHIRElement
 {
@@ -19,7 +21,7 @@ public class Identifier: FHIRElement
 	}
 	
 	/// Organization that issued id (may be just text)
-	public var assigner: FHIRReference<Organization>?
+	public var assigner: Reference?
 	
 	/// Description of identifier
 	public var label: String?
@@ -41,7 +43,7 @@ public class Identifier: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["assigner"] as? NSDictionary {
-				self.assigner = FHIRReference(json: val, owner: self)
+				self.assigner = Reference(json: val, owner: self)
 			}
 			if let val = js["label"] as? String {
 				self.label = val

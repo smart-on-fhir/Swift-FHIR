@@ -2,7 +2,7 @@
 //  List.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (list.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (list.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,8 +12,7 @@ import Foundation
 /**
  *  Information summarized from a list of other resources.
  *
- *  Scope and Usage List resources are used in many places, including allergies, medications, alerts, medical history,
- *  etc.
+ *  A set of information summarized from a list of other resources.
  */
 public class List: FHIRResource
 {
@@ -43,13 +42,10 @@ public class List: FHIRResource
 	public var ordered: Bool?
 	
 	/// Who and/or what defined the list contents
-	public var source: FHIRReference<Practitioner>?
+	public var source: Reference?
 	
 	/// If all resources have the same subject
-	public var subject: FHIRReference<Patient>?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
+	public var subject: Reference?
 	
 	public convenience init(mode: String?) {
 		self.init(json: nil)
@@ -83,13 +79,10 @@ public class List: FHIRResource
 				self.ordered = val
 			}
 			if let val = js["source"] as? NSDictionary {
-				self.source = FHIRReference(json: val, owner: self)
+				self.source = Reference(json: val, owner: self)
 			}
 			if let val = js["subject"] as? NSDictionary {
-				self.subject = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+				self.subject = Reference(json: val, owner: self)
 			}
 		}
 	}
@@ -102,7 +95,11 @@ public class List: FHIRResource
  *  Entries in this list.
  */
 public class ListEntry: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ListEntry" }
+	}
+	
 	/// When item added to list
 	public var date: NSDate?
 	
@@ -113,9 +110,9 @@ public class ListEntry: FHIRElement
 	public var flag: [CodeableConcept]?
 	
 	/// Actual entry
-	public var item: FHIRReference<FHIRResource>?
+	public var item: Reference?
 	
-	public convenience init(item: FHIRReference<FHIRResource>?) {
+	public convenience init(item: Reference?) {
 		self.init(json: nil)
 		if nil != item {
 			self.item = item
@@ -135,7 +132,7 @@ public class ListEntry: FHIRElement
 				self.flag = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["item"] as? NSDictionary {
-				self.item = FHIRReference(json: val, owner: self)
+				self.item = Reference(json: val, owner: self)
 			}
 		}
 	}

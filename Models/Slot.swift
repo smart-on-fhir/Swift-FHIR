@@ -1,0 +1,97 @@
+//
+//  Slot.swift
+//  SMART-on-FHIR
+//
+//  Generated from FHIR 0.4.0.3898 (slot.profile.json) on 2014-12-20.
+//  2014, SMART Platforms.
+//
+
+import Foundation
+
+
+/**
+ *  A slot of time on a schedule that may be available for booking appointments.
+ */
+public class Slot: FHIRResource
+{
+	override public class var resourceName: String {
+		get { return "Slot" }
+	}
+	
+	/// Comments on the slot to describe any extended information. Such as custom constraints on the slot
+	public var comment: String?
+	
+	/// Date/Time that the slot is to conclude
+	public var end: NSDate?
+	
+	/// BUSY | FREE | BUSY-UNAVAILABLE | BUSY-TENTATIVE
+	public var freeBusyType: String?
+	
+	/// External Ids for this item
+	public var identifier: [Identifier]?
+	
+	/// When this slot was created, or last revised
+	public var lastModified: NSDate?
+	
+	/// This slot has already been overbooked, appointments are unlikely to be accepted for this time
+	public var overbooked: Bool?
+	
+	/// The schedule resource that this slot defines an interval of status information
+	public var schedule: Reference?
+	
+	/// Date/Time that the slot is to begin
+	public var start: NSDate?
+	
+	/// The type of appointments that can be booked into this slot (ideally this would be an identifiable service - which is at a location, rather than the location itself). If provided then this overrides the value provided on the availability resource
+	public var type: CodeableConcept?
+	
+	public convenience init(end: NSDate?, freeBusyType: String?, schedule: Reference?, start: NSDate?) {
+		self.init(json: nil)
+		if nil != end {
+			self.end = end
+		}
+		if nil != freeBusyType {
+			self.freeBusyType = freeBusyType
+		}
+		if nil != schedule {
+			self.schedule = schedule
+		}
+		if nil != start {
+			self.start = start
+		}
+	}	
+
+	public required init(json: NSDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["comment"] as? String {
+				self.comment = val
+			}
+			if let val = js["end"] as? String {
+				self.end = NSDate(json: val)
+			}
+			if let val = js["freeBusyType"] as? String {
+				self.freeBusyType = val
+			}
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+			}
+			if let val = js["lastModified"] as? String {
+				self.lastModified = NSDate(json: val)
+			}
+			if let val = js["overbooked"] as? Bool {
+				self.overbooked = val
+			}
+			if let val = js["schedule"] as? NSDictionary {
+				self.schedule = Reference(json: val, owner: self)
+			}
+			if let val = js["start"] as? String {
+				self.start = NSDate(json: val)
+			}
+			if let val = js["type"] as? NSDictionary {
+				self.type = CodeableConcept(json: val, owner: self)
+			}
+		}
+	}
+}
+

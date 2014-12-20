@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (patient.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (patient.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,20 +12,8 @@ import Foundation
 /**
  *  Information about a person or animal receiving health care services.
  *
- *  Scope and Usage This Resource covers data about persons and animals involved in a wide range of health-related
- *  activities, including:
- *  
- *  * Curative activities
- *  * Psychiatric care
- *  * Social services
- *  * Pregnancy care
- *  * Nursing and assisted living
- *  * Dietary services
- *  * Tracking of personal health and exercise data
- *  The data in the Resource covers the "who" information about the patient: its attributes are focused on the
- *  demographic information necessary to support the administrative, financial and logistic procedures. A Patient record
- *  is generally created and maintained by each organization providing care for a patient. A person or animal receiving
- *  care at multiple organizations may therefore have its information present in multiple Patient Resources.
+ *  Demographics and other administrative information about a person or animal receiving care or other health-related
+ *  services.
  */
 public class Patient: FHIRResource
 {
@@ -46,7 +34,7 @@ public class Patient: FHIRResource
 	public var birthDate: NSDate?
 	
 	/// Patient's nominated care provider
-	public var careProvider: [FHIRReference<Organization>]?
+	public var careProvider: [Reference]?
 	
 	/// Languages which may be used to communicate with the patient about his or her health
 	public var communication: [CodeableConcept]?
@@ -60,8 +48,8 @@ public class Patient: FHIRResource
 	/// Indicates if the individual is deceased or not
 	public var deceasedDateTime: NSDate?
 	
-	/// Gender for administrative purposes
-	public var gender: CodeableConcept?
+	/// male | female | other | unknown
+	public var gender: String?
 	
 	/// An identifier for the person as this patient
 	public var identifier: [Identifier]?
@@ -70,7 +58,7 @@ public class Patient: FHIRResource
 	public var link: [PatientLink]?
 	
 	/// Organization that is the custodian of the patient record
-	public var managingOrganization: FHIRReference<Organization>?
+	public var managingOrganization: Reference?
 	
 	/// Marital (civil) status of a person
 	public var maritalStatus: CodeableConcept?
@@ -88,10 +76,7 @@ public class Patient: FHIRResource
 	public var photo: [Attachment]?
 	
 	/// A contact detail for the individual
-	public var telecom: [Contact]?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
+	public var telecom: [ContactPoint]?
 	
 
 	public required init(json: NSDictionary?) {
@@ -110,7 +95,7 @@ public class Patient: FHIRResource
 				self.birthDate = NSDate(json: val)
 			}
 			if let val = js["careProvider"] as? [NSDictionary] {
-				self.careProvider = FHIRReference.from(val, owner: self)
+				self.careProvider = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["communication"] as? [NSDictionary] {
 				self.communication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
@@ -124,8 +109,8 @@ public class Patient: FHIRResource
 			if let val = js["deceasedDateTime"] as? String {
 				self.deceasedDateTime = NSDate(json: val)
 			}
-			if let val = js["gender"] as? NSDictionary {
-				self.gender = CodeableConcept(json: val, owner: self)
+			if let val = js["gender"] as? String {
+				self.gender = val
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
@@ -134,7 +119,7 @@ public class Patient: FHIRResource
 				self.link = PatientLink.from(val, owner: self) as? [PatientLink]
 			}
 			if let val = js["managingOrganization"] as? NSDictionary {
-				self.managingOrganization = FHIRReference(json: val, owner: self)
+				self.managingOrganization = Reference(json: val, owner: self)
 			}
 			if let val = js["maritalStatus"] as? NSDictionary {
 				self.maritalStatus = CodeableConcept(json: val, owner: self)
@@ -152,60 +137,7 @@ public class Patient: FHIRResource
 				self.photo = Attachment.from(val, owner: self) as? [Attachment]
 			}
 			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val, owner: self) as? [Contact]
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
-			}
-		}
-	}
-}
-
-
-/**
- *  A contact party (e.g. guardian, partner, friend) for the patient.
- */
-public class PatientContact: FHIRElement
-{	
-	/// Address for the contact person
-	public var address: Address?
-	
-	/// Gender for administrative purposes
-	public var gender: CodeableConcept?
-	
-	/// A name associated with the person
-	public var name: HumanName?
-	
-	/// Organization that is associated with the contact
-	public var organization: FHIRReference<Organization>?
-	
-	/// The kind of relationship
-	public var relationship: [CodeableConcept]?
-	
-	/// A contact detail for the person
-	public var telecom: [Contact]?
-	
-
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-			if let val = js["address"] as? NSDictionary {
-				self.address = Address(json: val, owner: self)
-			}
-			if let val = js["gender"] as? NSDictionary {
-				self.gender = CodeableConcept(json: val, owner: self)
-			}
-			if let val = js["name"] as? NSDictionary {
-				self.name = HumanName(json: val, owner: self)
-			}
-			if let val = js["organization"] as? NSDictionary {
-				self.organization = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["relationship"] as? [NSDictionary] {
-				self.relationship = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
-			}
-			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val, owner: self) as? [Contact]
+				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
 	}
@@ -218,7 +150,11 @@ public class PatientContact: FHIRElement
  *  This element has a value if the patient is an animal.
  */
 public class PatientAnimal: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "PatientAnimal" }
+	}
+	
 	/// E.g. Poodle, Angus
 	public var breed: CodeableConcept?
 	
@@ -253,17 +189,81 @@ public class PatientAnimal: FHIRElement
 
 
 /**
+ *  A contact party (e.g. guardian, partner, friend) for the patient.
+ */
+public class PatientContact: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "PatientContact" }
+	}
+	
+	/// Address for the contact person
+	public var address: Address?
+	
+	/// male | female | other | unknown
+	public var gender: String?
+	
+	/// A name associated with the person
+	public var name: HumanName?
+	
+	/// Organization that is associated with the contact
+	public var organization: Reference?
+	
+	/// The period during which this person or organization is valid to be contacted relating to this patient
+	public var period: Period?
+	
+	/// The kind of relationship
+	public var relationship: [CodeableConcept]?
+	
+	/// A contact detail for the person
+	public var telecom: [ContactPoint]?
+	
+
+	public required init(json: NSDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["address"] as? NSDictionary {
+				self.address = Address(json: val, owner: self)
+			}
+			if let val = js["gender"] as? String {
+				self.gender = val
+			}
+			if let val = js["name"] as? NSDictionary {
+				self.name = HumanName(json: val, owner: self)
+			}
+			if let val = js["organization"] as? NSDictionary {
+				self.organization = Reference(json: val, owner: self)
+			}
+			if let val = js["period"] as? NSDictionary {
+				self.period = Period(json: val, owner: self)
+			}
+			if let val = js["relationship"] as? [NSDictionary] {
+				self.relationship = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			}
+			if let val = js["telecom"] as? [NSDictionary] {
+				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+			}
+		}
+	}
+}
+
+
+/**
  *  Link to another patient resource that concerns the same actual person.
  */
 public class PatientLink: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "PatientLink" }
+	}
+	
 	/// The other patient resource that the link refers to
-	public var other: FHIRReference<Patient>?
+	public var other: Reference?
 	
 	/// replace | refer | seealso - type of link
 	public var type: String?
 	
-	public convenience init(other: FHIRReference<Patient>?, type: String?) {
+	public convenience init(other: Reference?, type: String?) {
 		self.init(json: nil)
 		if nil != other {
 			self.other = other
@@ -277,7 +277,7 @@ public class PatientLink: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["other"] as? NSDictionary {
-				self.other = FHIRReference(json: val, owner: self)
+				self.other = Reference(json: val, owner: self)
 			}
 			if let val = js["type"] as? String {
 				self.type = val

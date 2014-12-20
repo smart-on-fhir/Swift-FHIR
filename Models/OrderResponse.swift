@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (orderresponse.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (orderresponse.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -11,11 +11,6 @@ import Foundation
 
 /**
  *  A response to an order.
- *
- *  Scope and Usage The response to an order indicates the outcome of processing the order itself - whether it was
- *  accepted or rejected, or is still in process. The order response resource does not itself convey or represent
- *  information that arises as a result of performing the actual order, but it may have references to other resources
- *  that do have this information, in order to link between the original order and its outcome.
  */
 public class OrderResponse: FHIRResource
 {
@@ -27,7 +22,7 @@ public class OrderResponse: FHIRResource
 	public var authorityCodeableConcept: CodeableConcept?
 	
 	/// If required by policy
-	public var authorityResource: FHIRReference<FHIRResource>?
+	public var authorityReference: Reference?
 	
 	/// pending | review | rejected | error | accepted | cancelled | replaced | aborted | complete
 	public var code: String?
@@ -39,21 +34,18 @@ public class OrderResponse: FHIRResource
 	public var description: String?
 	
 	/// Details of the outcome of performing the order
-	public var fulfillment: [FHIRReference<FHIRResource>]?
+	public var fulfillment: [Reference]?
 	
 	/// Identifiers assigned to this order by the orderer or by the receiver
 	public var identifier: [Identifier]?
 	
 	/// The order that this is a response to
-	public var request: FHIRReference<Order>?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
+	public var request: Reference?
 	
 	/// Who made the response
-	public var who: FHIRReference<Practitioner>?
+	public var who: Reference?
 	
-	public convenience init(code: String?, request: FHIRReference<Order>?) {
+	public convenience init(code: String?, request: Reference?) {
 		self.init(json: nil)
 		if nil != code {
 			self.code = code
@@ -69,8 +61,8 @@ public class OrderResponse: FHIRResource
 			if let val = js["authorityCodeableConcept"] as? NSDictionary {
 				self.authorityCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["authorityResource"] as? NSDictionary {
-				self.authorityResource = FHIRReference(json: val, owner: self)
+			if let val = js["authorityReference"] as? NSDictionary {
+				self.authorityReference = Reference(json: val, owner: self)
 			}
 			if let val = js["code"] as? String {
 				self.code = val
@@ -82,19 +74,16 @@ public class OrderResponse: FHIRResource
 				self.description = val
 			}
 			if let val = js["fulfillment"] as? [NSDictionary] {
-				self.fulfillment = FHIRReference.from(val, owner: self)
+				self.fulfillment = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["request"] as? NSDictionary {
-				self.request = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+				self.request = Reference(json: val, owner: self)
 			}
 			if let val = js["who"] as? NSDictionary {
-				self.who = FHIRReference(json: val, owner: self)
+				self.who = Reference(json: val, owner: self)
 			}
 		}
 	}

@@ -2,7 +2,7 @@
 //  MedicationDispense.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (medicationdispense.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (medicationdispense.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,9 +12,8 @@ import Foundation
 /**
  *  Dispensing a medication to a named patient.
  *
- *  Scope and Usage This resource covers the supply of all medications to a patient. Examples include dispensing and
- *  pick-up from an out-patient pharmacy, dispensing patient-specific medications from in-patient pharmacy to ward as
- *  well as issuing a single dose from ward stock to a patient for consumption.
+ *  Dispensing a medication to a named patient.  This includes a description of the supply provided and the instructions
+ *  for administering the medication.
  */
 public class MedicationDispense: FHIRResource
 {
@@ -23,19 +22,19 @@ public class MedicationDispense: FHIRResource
 	}
 	
 	/// Medication order that authorizes the dispense
-	public var authorizingPrescription: [FHIRReference<MedicationPrescription>]?
+	public var authorizingPrescription: [Reference]?
 	
 	/// Details for individual dispensed medicationdetails
 	public var dispense: [MedicationDispenseDispense]?
 	
 	/// Practitioner responsible for dispensing medication
-	public var dispenser: FHIRReference<Practitioner>?
+	public var dispenser: Reference?
 	
 	/// External identifier
 	public var identifier: Identifier?
 	
 	/// Who the dispense is for
-	public var patient: FHIRReference<Patient>?
+	public var patient: Reference?
 	
 	/// in progress | on hold | completed | entered in error | stopped
 	public var status: String?
@@ -43,36 +42,30 @@ public class MedicationDispense: FHIRResource
 	/// Deals with substitution of one medicine for another
 	public var substitution: MedicationDispenseSubstitution?
 	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
-	
 
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["authorizingPrescription"] as? [NSDictionary] {
-				self.authorizingPrescription = FHIRReference.from(val, owner: self)
+				self.authorizingPrescription = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["dispense"] as? [NSDictionary] {
 				self.dispense = MedicationDispenseDispense.from(val, owner: self) as? [MedicationDispenseDispense]
 			}
 			if let val = js["dispenser"] as? NSDictionary {
-				self.dispenser = FHIRReference(json: val, owner: self)
+				self.dispenser = Reference(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? NSDictionary {
 				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["patient"] as? NSDictionary {
-				self.patient = FHIRReference(json: val, owner: self)
+				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
 			if let val = js["substitution"] as? NSDictionary {
 				self.substitution = MedicationDispenseSubstitution(json: val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}
@@ -85,9 +78,13 @@ public class MedicationDispense: FHIRResource
  *  Indicates the details of the dispense event such as the days supply and quantity of medication dispensed.
  */
 public class MedicationDispenseDispense: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "MedicationDispenseDispense" }
+	}
+	
 	/// Where the medication was sent
-	public var destination: FHIRReference<Location>?
+	public var destination: Reference?
 	
 	/// Medicine administration instructions to the patient/carer
 	public var dosage: [MedicationDispenseDispenseDosage]?
@@ -96,13 +93,13 @@ public class MedicationDispenseDispense: FHIRElement
 	public var identifier: Identifier?
 	
 	/// What medication was supplied
-	public var medication: FHIRReference<Medication>?
+	public var medication: Reference?
 	
 	/// Amount dispensed
 	public var quantity: Quantity?
 	
 	/// Who collected the medication
-	public var receiver: [FHIRReference<Patient>]?
+	public var receiver: [Reference]?
 	
 	/// in progress | on hold | completed | entered in error | stopped
 	public var status: String?
@@ -121,7 +118,7 @@ public class MedicationDispenseDispense: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["destination"] as? NSDictionary {
-				self.destination = FHIRReference(json: val, owner: self)
+				self.destination = Reference(json: val, owner: self)
 			}
 			if let val = js["dosage"] as? [NSDictionary] {
 				self.dosage = MedicationDispenseDispenseDosage.from(val, owner: self) as? [MedicationDispenseDispenseDosage]
@@ -130,13 +127,13 @@ public class MedicationDispenseDispense: FHIRElement
 				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["medication"] as? NSDictionary {
-				self.medication = FHIRReference(json: val, owner: self)
+				self.medication = Reference(json: val, owner: self)
 			}
 			if let val = js["quantity"] as? NSDictionary {
 				self.quantity = Quantity(json: val, owner: self)
 			}
 			if let val = js["receiver"] as? [NSDictionary] {
-				self.receiver = FHIRReference.from(val, owner: self)
+				self.receiver = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
@@ -161,7 +158,11 @@ public class MedicationDispenseDispense: FHIRElement
  *  Indicates how the medication is to be used by the patient.
  */
 public class MedicationDispenseDispenseDosage: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "MedicationDispenseDispenseDosage" }
+	}
+	
 	/// E.g. "Take with food"
 	public var additionalInstructions: CodeableConcept?
 	
@@ -186,17 +187,17 @@ public class MedicationDispenseDispenseDosage: FHIRElement
 	/// How drug should enter body
 	public var route: CodeableConcept?
 	
+	/// When medication should be administered
+	public var scheduleDateTime: NSDate?
+	
+	/// When medication should be administered
+	public var schedulePeriod: Period?
+	
+	/// When medication should be administered
+	public var scheduleTiming: Timing?
+	
 	/// Body site to administer to
 	public var site: CodeableConcept?
-	
-	/// When medication should be administered
-	public var timingDateTime: NSDate?
-	
-	/// When medication should be administered
-	public var timingPeriod: Period?
-	
-	/// When medication should be administered
-	public var timingSchedule: Schedule?
 	
 
 	public required init(json: NSDictionary?) {
@@ -226,17 +227,17 @@ public class MedicationDispenseDispenseDosage: FHIRElement
 			if let val = js["route"] as? NSDictionary {
 				self.route = CodeableConcept(json: val, owner: self)
 			}
+			if let val = js["scheduleDateTime"] as? String {
+				self.scheduleDateTime = NSDate(json: val)
+			}
+			if let val = js["schedulePeriod"] as? NSDictionary {
+				self.schedulePeriod = Period(json: val, owner: self)
+			}
+			if let val = js["scheduleTiming"] as? NSDictionary {
+				self.scheduleTiming = Timing(json: val, owner: self)
+			}
 			if let val = js["site"] as? NSDictionary {
 				self.site = CodeableConcept(json: val, owner: self)
-			}
-			if let val = js["timingDateTime"] as? String {
-				self.timingDateTime = NSDate(json: val)
-			}
-			if let val = js["timingPeriod"] as? NSDictionary {
-				self.timingPeriod = Period(json: val, owner: self)
-			}
-			if let val = js["timingSchedule"] as? NSDictionary {
-				self.timingSchedule = Schedule(json: val, owner: self)
 			}
 		}
 	}
@@ -251,12 +252,16 @@ public class MedicationDispenseDispenseDosage: FHIRElement
  *  substitition did or did not happen and why.
  */
 public class MedicationDispenseSubstitution: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "MedicationDispenseSubstitution" }
+	}
+	
 	/// Why was substitution made
 	public var reason: [CodeableConcept]?
 	
 	/// Who is responsible for the substitution
-	public var responsibleParty: [FHIRReference<Practitioner>]?
+	public var responsibleParty: [Reference]?
 	
 	/// Type of substitiution
 	public var type: CodeableConcept?
@@ -275,7 +280,7 @@ public class MedicationDispenseSubstitution: FHIRElement
 				self.reason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["responsibleParty"] as? [NSDictionary] {
-				self.responsibleParty = FHIRReference.from(val, owner: self)
+				self.responsibleParty = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val, owner: self)

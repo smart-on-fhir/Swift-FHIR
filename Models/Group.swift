@@ -2,7 +2,7 @@
 //  Group.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (group.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (group.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,16 +12,9 @@ import Foundation
 /**
  *  Group of multiple entities.
  *
- *  Scope and Usage Use Cases The group resource is used in one of two ways:
- *  
- *  * To define a group of specific people, animals, devices, etc. that is being tracked, examined or otherwise
- *  referenced as part of healthcare-related activities
- *  * To define a set of *possible* people, animals, devices, etc. that are of interest for some intended future
- *  healthcare-related activities
- *  Examples of the former could include group therapy or treatment sessions, exposed entities tracked as part of public
- *  health, etc. The latter might be used to define expected subjects for a clinical study.
- *  
- *  Both use cases are handled by a single resource because the data elements captured tend to be similar.
+ *  Represents a defined collection of entities that may be discussed or acted upon collectively but which are not
+ *  expected to act collectively and are not formally or legally recognized.  I.e. A collection of entities that isn't
+ *  an Organization.
  */
 public class Group: FHIRResource
 {
@@ -42,16 +35,13 @@ public class Group: FHIRResource
 	public var identifier: Identifier?
 	
 	/// Who is in group
-	public var member: [FHIRReference<Patient>]?
+	public var member: [Reference]?
 	
 	/// Label for Group
 	public var name: String?
 	
 	/// Number of members
 	public var quantity: Int?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
 	
 	/// person | animal | practitioner | device | medication | substance
 	public var type: String?
@@ -82,16 +72,13 @@ public class Group: FHIRResource
 				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["member"] as? [NSDictionary] {
-				self.member = FHIRReference.from(val, owner: self)
+				self.member = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["name"] as? String {
 				self.name = val
 			}
 			if let val = js["quantity"] as? Int {
 				self.quantity = val
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["type"] as? String {
 				self.type = val
@@ -107,7 +94,11 @@ public class Group: FHIRResource
  *  Identifies the traits shared by members of the group.
  */
 public class GroupCharacteristic: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "GroupCharacteristic" }
+	}
+	
 	/// Kind of characteristic
 	public var code: CodeableConcept?
 	

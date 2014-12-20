@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Schedule.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (schedule.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -10,90 +10,59 @@ import Foundation
 
 
 /**
- *  A schedule that specifies an event that may occur multiple times.
+ *  A container for slot(s) of time that may be available for booking appointments.
  */
-public class Schedule: FHIRElement
+public class Schedule: FHIRResource
 {
 	override public class var resourceName: String {
 		get { return "Schedule" }
 	}
 	
-	/// When the event occurs
-	public var event: [Period]?
+	/// The resource this Schedule resource is providing availability information for. These are expected to usually be one of HealthcareService, Location, Practitioner, Device, Patient or RelatedPerson
+	public var actor: Reference?
 	
-	/// Only if there is none or one event
-	public var repeat: ScheduleRepeat?
+	/// Comments on the availability to describe any extended information. Such as custom constraints on the slot(s) that may be associated
+	public var comment: String?
 	
-
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-			if let val = js["event"] as? [NSDictionary] {
-				self.event = Period.from(val, owner: self) as? [Period]
-			}
-			if let val = js["repeat"] as? NSDictionary {
-				self.repeat = ScheduleRepeat(json: val, owner: self)
-			}
-		}
-	}
-}
-
-
-/**
- *  Only if there is none or one event.
- *
- *  Identifies a repeating pattern to the intended time periods.
- */
-public class ScheduleRepeat: FHIRElement
-{	
-	/// Number of times to repeat
-	public var count: Int?
+	/// External Ids for this item
+	public var identifier: [Identifier]?
 	
-	/// Repeating or event-related duration
-	public var duration: NSDecimalNumber?
+	/// When this Schedule was created, or last revised
+	public var lastModified: NSDate?
 	
-	/// When to stop repeats
-	public var end: NSDate?
+	/// The period of time that the slots that are attached to this Schedule resource cover (even if none exist). These  cover the amount of time that an organization's planning horizon; the interval for which they are currently accepting appointments. This does not define a "template" for planning outside these dates
+	public var planningHorizon: Period?
 	
-	/// Event occurs frequency times per duration
-	public var frequency: Int?
+	/// The schedule type can be used for the categorization of healthcare services or other appointment types
+	public var type: [CodeableConcept]?
 	
-	/// s | min | h | d | wk | mo | a - unit of time (UCUM)
-	public var units: String?
-	
-	/// HS | WAKE | AC | ACM | ACD | ACV | PC | PCM | PCD | PCV - common life events
-	public var when: String?
-	
-	public convenience init(duration: NSDecimalNumber?, units: String?) {
+	public convenience init(actor: Reference?) {
 		self.init(json: nil)
-		if nil != duration {
-			self.duration = duration
-		}
-		if nil != units {
-			self.units = units
+		if nil != actor {
+			self.actor = actor
 		}
 	}	
 
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["count"] as? Int {
-				self.count = val
+			if let val = js["actor"] as? NSDictionary {
+				self.actor = Reference(json: val, owner: self)
 			}
-			if let val = js["duration"] as? NSNumber {
-				self.duration = NSDecimalNumber(json: val)
+			if let val = js["comment"] as? String {
+				self.comment = val
 			}
-			if let val = js["end"] as? String {
-				self.end = NSDate(json: val)
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["frequency"] as? Int {
-				self.frequency = val
+			if let val = js["lastModified"] as? String {
+				self.lastModified = NSDate(json: val)
 			}
-			if let val = js["units"] as? String {
-				self.units = val
+			if let val = js["planningHorizon"] as? NSDictionary {
+				self.planningHorizon = Period(json: val, owner: self)
 			}
-			if let val = js["when"] as? String {
-				self.when = val
+			if let val = js["type"] as? [NSDictionary] {
+				self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
 	}

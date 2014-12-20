@@ -2,7 +2,7 @@
 //  GroupTests.swift
 //  GroupTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -21,21 +21,53 @@ class GroupTests: FHIRModelTestCase
 	}
 	
 	func testGroup1() {
+		let inst = instantiateFrom("group-example.canonical.json")
+		XCTAssertNotNil(inst, "Must have instantiated a Group instance")
+	
+		XCTAssertTrue(inst!.actual!)
+		XCTAssertEqual(inst!.characteristic![0].code!.text!, "gender")
+		XCTAssertFalse(inst!.characteristic![0].exclude!)
+		XCTAssertEqual(inst!.characteristic![0].valueCodeableConcept!.text!, "mixed")
+		XCTAssertEqual(inst!.characteristic![1].code!.text!, "owner")
+		XCTAssertFalse(inst!.characteristic![1].exclude!)
+		XCTAssertEqual(inst!.characteristic![1].valueCodeableConcept!.text!, "John Smith")
+		XCTAssertEqual(inst!.code!.text!, "Horse")
+		XCTAssertEqual(inst!.name!, "John's herd")
+		XCTAssertEqual(inst!.quantity!, 25)
+		XCTAssertEqual(inst!.type!, "animal")
+	}
+	
+	func testGroup2() {
+		let inst = instantiateFrom("group-example.canonical.json")
+		XCTAssertNotNil(inst, "Must have instantiated a Group instance")
+	
+		XCTAssertTrue(inst!.actual!)
+		XCTAssertEqual(inst!.characteristic![0].code!.text!, "gender")
+		XCTAssertFalse(inst!.characteristic![0].exclude!)
+		XCTAssertEqual(inst!.characteristic![0].valueCodeableConcept!.text!, "mixed")
+		XCTAssertEqual(inst!.characteristic![1].code!.text!, "owner")
+		XCTAssertFalse(inst!.characteristic![1].exclude!)
+		XCTAssertEqual(inst!.characteristic![1].valueCodeableConcept!.text!, "John Smith")
+		XCTAssertEqual(inst!.code!.text!, "Horse")
+		XCTAssertEqual(inst!.name!, "John's herd")
+		XCTAssertEqual(inst!.quantity!, 25)
+		XCTAssertEqual(inst!.type!, "animal")
+	}
+	
+	func testGroup3() {
 		let inst = instantiateFrom("group-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Group instance")
 	
-		XCTAssertTrue(inst!.actual!)	
+		XCTAssertTrue(inst!.actual!)
 		XCTAssertEqual(inst!.characteristic![0].code!.text!, "gender")
-		XCTAssertFalse(inst!.characteristic![0].exclude!)	
-		XCTAssertEqual(inst!.characteristic![0].valueCodeableConcept!.text!, "mixed")	
+		XCTAssertFalse(inst!.characteristic![0].exclude!)
+		XCTAssertEqual(inst!.characteristic![0].valueCodeableConcept!.text!, "mixed")
 		XCTAssertEqual(inst!.characteristic![1].code!.text!, "owner")
-		XCTAssertFalse(inst!.characteristic![1].exclude!)	
-		XCTAssertEqual(inst!.characteristic![1].valueCodeableConcept!.text!, "John Smith")	
-		XCTAssertEqual(inst!.code!.text!, "Horse")	
+		XCTAssertFalse(inst!.characteristic![1].exclude!)
+		XCTAssertEqual(inst!.characteristic![1].valueCodeableConcept!.text!, "John Smith")
+		XCTAssertEqual(inst!.code!.text!, "Horse")
 		XCTAssertEqual(inst!.name!, "John's herd")
-		XCTAssertEqual(inst!.quantity!, 25)	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>Herd of 25 horses</p>\n      <p>Gender: mixed</p>\n      <p>Owner: John Smith</p>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "additional")	
+		XCTAssertEqual(inst!.quantity!, 25)
 		XCTAssertEqual(inst!.type!, "animal")
 	}
 }

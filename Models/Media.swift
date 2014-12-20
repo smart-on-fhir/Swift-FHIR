@@ -2,7 +2,7 @@
 //  Media.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (media.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (media.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,21 +12,6 @@ import Foundation
 /**
  *  A photo, video, or audio recording acquired or used in healthcare. The actual content may be inline or provided by
  *  direct reference.
- *
- *  Scope and Usage The Media resource contains photos, videos, and audio recordings. It is used with media acquired or
- *  used as part of the healthcare process. Here are some typical usages:
- *  
- *  * Photos of patients and staff for identification purposes
- *  * Photos and videos of diagnostic or care provision procedures for recording purposes
- *  * Storing scans and faxes of paper documents where not enough metadata exists to create a DocumentReference
- *  * Images on diagnostic reports
- *  The Media resource may contain medical images in a DICOM format. While such images may also be accessible through an
- *  ImagingStudy resource, the Media resource enables "ready for presentation" access to a specific image. Such images
- *  would preferentially be made available in a FHIR ecosystem by the Media.content.url providing a reference to a WADO-
- *  RS service to access the image. That WADO-RS service may include rendering the image with annotations and display
- *  parameters from an associated DICOM presentation state. Although the Media resource is allowed to contain images
- *  collected by a DICOM based system, DICOM images would preferentially be made available in a FHIR ecosystem by
- *  provision of a resource with references to a WADO-RS server.
  */
 public class Media: FHIRResource
 {
@@ -37,11 +22,14 @@ public class Media: FHIRResource
 	/// Actual Media - reference or data
 	public var content: Attachment?
 	
-	/// When the media was taken/recorded (end)
-	public var dateTime: NSDate?
+	/// When the media was taken/recorded (start)
+	public var created: NSDate?
 	
 	/// Name of the device/manufacturer
 	public var deviceName: String?
+	
+	/// Length in seconds (audio / video)
+	public var duration: Int?
 	
 	/// Number of frames if > 1 (photo)
 	public var frames: Int?
@@ -52,20 +40,14 @@ public class Media: FHIRResource
 	/// Identifier(s) for the image
 	public var identifier: [Identifier]?
 	
-	/// Length in seconds (audio / video)
-	public var length: Int?
-	
 	/// The person who generated the image
-	public var operatr: FHIRReference<Practitioner>?
+	public var operatr: Reference?
 	
 	/// Who/What this Media is a record of
-	public var subject: FHIRReference<Patient>?
+	public var subject: Reference?
 	
 	/// The type of acquisition equipment/process
 	public var subtype: CodeableConcept?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
 	
 	/// photo | video | audio
 	public var type: String?
@@ -92,11 +74,14 @@ public class Media: FHIRResource
 			if let val = js["content"] as? NSDictionary {
 				self.content = Attachment(json: val, owner: self)
 			}
-			if let val = js["dateTime"] as? String {
-				self.dateTime = NSDate(json: val)
+			if let val = js["created"] as? String {
+				self.created = NSDate(json: val)
 			}
 			if let val = js["deviceName"] as? String {
 				self.deviceName = val
+			}
+			if let val = js["duration"] as? Int {
+				self.duration = val
 			}
 			if let val = js["frames"] as? Int {
 				self.frames = val
@@ -107,20 +92,14 @@ public class Media: FHIRResource
 			if let val = js["identifier"] as? [NSDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["length"] as? Int {
-				self.length = val
-			}
 			if let val = js["operator"] as? NSDictionary {
-				self.operatr = FHIRReference(json: val, owner: self)
+				self.operatr = Reference(json: val, owner: self)
 			}
 			if let val = js["subject"] as? NSDictionary {
-				self.subject = FHIRReference(json: val, owner: self)
+				self.subject = Reference(json: val, owner: self)
 			}
 			if let val = js["subtype"] as? NSDictionary {
 				self.subtype = CodeableConcept(json: val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["type"] as? String {
 				self.type = val

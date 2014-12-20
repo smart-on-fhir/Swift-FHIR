@@ -2,7 +2,7 @@
 //  CodeableConcept.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-CodeableConcept.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (CodeableConcept.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -11,6 +11,8 @@ import Foundation
 
 /**
  *  Concept - reference to a terminology or just  text.
+ *
+ *  A concept that may be defined by a formal reference to a terminology or ontology or may be provided by text.
  */
 public class CodeableConcept: FHIRElement
 {

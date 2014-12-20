@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (conformance.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (conformance.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,47 +12,8 @@ import Foundation
 /**
  *  A conformance statement.
  *
- *  Scope and Usage Conformance statements are used in one of three ways:
- *  
- *  Describe an actual implementation In this scenario, the conformance statement describes the capabilities of a
- *  deployed and configured solution available at a particular access point or set of access points. The statement
- *  describes exactly how to interface with that deployed solution and thus provides for a degree of self-configuration
- *  of software solutions.
- *  
- *  This is the type of profile that FHIR restful solutions are expected to make available on invocation of the
- *  conformance operation. It is also the type of statement that forms a basis for the testing, certification or
- *  commissioning of specific software installations.
- *  
- *  A conformance statement is identified as being an implementation statement through the presence of the
- *  implementation element.
- *  
- *  Describe software solution capabilities In this scenario, the conformance statement describes generic capabilities
- *  of a software application or component solution. The solution might be available for purchase or other acquisition
- *  and might be deployed and configured at any number of independent sites. Because it is not dependent on any
- *  particular implementation, the profile cannot provide specific details such as endpoint addresses. It may also need
- *  to document various configurations in which the application can be set up or describe the degree of customizability
- *  associated with the solution.
- *  
- *  This type of statement may be used as a marketing tool by software and system developers to formally describe their
- *  capabilities. It can also be used as the basis for conformance testing of software solutions independent of a
- *  particular installation.
- *  
- *  A conformance statement is identified as being a software solution statement through the presence of the software
- *  element.
- *  
- *  Describe a desired solution In this scenario, the conformance statement describes the capabilities of a desired
- *  system. It might be used as part of an architectural design process to document needed system capabilities, or might
- *  be used as part of an RFP process to formally document the requirements of a requested solution and to document the
- *  criteria by which proposals will be evaluated.
- *  
- *  A conformance statement is identified as being a requirements statement through the presence of the proposal
- *  element.
- *  
- *  
- *  
- *  These three types of profiles can be used together. A requirements statement can be compared against the solution
- *  statements proffered by respondents to an RFP. A solution statement for a software package forms the starting point
- *  for the implementation statement associated with a particular installation of that software package.
+ *  A conformance statement is a set of requirements for a desired implementation or a description of how a target
+ *  application fulfills those requirements in a particular implementation.
  */
 public class Conformance: FHIRResource
 {
@@ -63,7 +24,7 @@ public class Conformance: FHIRResource
 	/// True if application accepts unknown elements
 	public var acceptUnknown: Bool?
 	
-	/// Publication Date
+	/// Publication Date(/time)
 	public var date: NSDate?
 	
 	/// Human description of the conformance statement
@@ -94,7 +55,7 @@ public class Conformance: FHIRResource
 	public var name: String?
 	
 	/// Profiles supported by the system
-	public var profile: [FHIRReference<Profile>]?
+	public var profile: [Reference]?
 	
 	/// Publishing Organization
 	public var publisher: String?
@@ -109,10 +70,7 @@ public class Conformance: FHIRResource
 	public var status: String?
 	
 	/// Contacts for Organization
-	public var telecom: [Contact]?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
+	public var telecom: [ContactPoint]?
 	
 	/// Logical id for this version of the statement
 	public var version: String?
@@ -173,7 +131,7 @@ public class Conformance: FHIRResource
 				self.name = val
 			}
 			if let val = js["profile"] as? [NSDictionary] {
-				self.profile = FHIRReference.from(val, owner: self)
+				self.profile = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["publisher"] as? String {
 				self.publisher = val
@@ -188,10 +146,7 @@ public class Conformance: FHIRResource
 				self.status = val
 			}
 			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val, owner: self) as? [Contact]
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 			if let val = js["version"] as? String {
 				self.version = val
@@ -202,40 +157,46 @@ public class Conformance: FHIRResource
 
 
 /**
- *  Software that is covered by this conformance statement.
+ *  Document definition.
  *
- *  Software that is covered by this conformance statement.  It is used when the profile describes the capabilities of a
- *  particular software version, independent of an installation.
+ *  A document definition.
  */
-public class ConformanceSoftware: FHIRElement
-{	
-	/// A name the software is known by
-	public var name: String?
+public class ConformanceDocument: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ConformanceDocument" }
+	}
 	
-	/// Date this version released
-	public var releaseDate: NSDate?
+	/// Description of document support
+	public var documentation: String?
 	
-	/// Version covered by this statement
-	public var version: String?
+	/// producer | consumer
+	public var mode: String?
 	
-	public convenience init(name: String?) {
+	/// Constraint on a resource used in the document
+	public var profile: Reference?
+	
+	public convenience init(mode: String?, profile: Reference?) {
 		self.init(json: nil)
-		if nil != name {
-			self.name = name
+		if nil != mode {
+			self.mode = mode
+		}
+		if nil != profile {
+			self.profile = profile
 		}
 	}	
 
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["name"] as? String {
-				self.name = val
+			if let val = js["documentation"] as? String {
+				self.documentation = val
 			}
-			if let val = js["releaseDate"] as? String {
-				self.releaseDate = NSDate(json: val)
+			if let val = js["mode"] as? String {
+				self.mode = val
 			}
-			if let val = js["version"] as? String {
-				self.version = val
+			if let val = js["profile"] as? NSDictionary {
+				self.profile = Reference(json: val, owner: self)
 			}
 		}
 	}
@@ -249,7 +210,11 @@ public class ConformanceSoftware: FHIRElement
  *  installation, rather than the capabilities of a software program.
  */
 public class ConformanceImplementation: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ConformanceImplementation" }
+	}
+	
 	/// Describes this specific instance
 	public var description: String?
 	
@@ -278,26 +243,166 @@ public class ConformanceImplementation: FHIRElement
 
 
 /**
+ *  If messaging is supported.
+ *
+ *  A description of the messaging capabilities of the solution.
+ */
+public class ConformanceMessaging: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ConformanceMessaging" }
+	}
+	
+	/// Messaging interface behavior details
+	public var documentation: String?
+	
+	/// Actual endpoint being described
+	public var endpoint: NSURL?
+	
+	/// Declare support for this event
+	public var event: [ConformanceMessagingEvent]?
+	
+	/// Reliable Message Cache Length (min)
+	public var reliableCache: Int?
+	
+	public convenience init(event: [ConformanceMessagingEvent]?) {
+		self.init(json: nil)
+		if nil != event {
+			self.event = event
+		}
+	}	
+
+	public required init(json: NSDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["documentation"] as? String {
+				self.documentation = val
+			}
+			if let val = js["endpoint"] as? String {
+				self.endpoint = NSURL(json: val)
+			}
+			if let val = js["event"] as? [NSDictionary] {
+				self.event = ConformanceMessagingEvent.from(val, owner: self) as? [ConformanceMessagingEvent]
+			}
+			if let val = js["reliableCache"] as? Int {
+				self.reliableCache = val
+			}
+		}
+	}
+}
+
+
+/**
+ *  Declare support for this event.
+ *
+ *  A description of the solution's support for an event at this end point.
+ */
+public class ConformanceMessagingEvent: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ConformanceMessagingEvent" }
+	}
+	
+	/// Consequence | Currency | Notification
+	public var category: String?
+	
+	/// Event type
+	public var code: Coding?
+	
+	/// Endpoint-specific event documentation
+	public var documentation: String?
+	
+	/// Resource that's focus of message
+	public var focus: String?
+	
+	/// sender | receiver
+	public var mode: String?
+	
+	/// http | ftp | mllp +
+	public var protokol: [Coding]?
+	
+	/// Profile that describes the request
+	public var request: Reference?
+	
+	/// Profile that describes the response
+	public var response: Reference?
+	
+	public convenience init(code: Coding?, focus: String?, mode: String?, request: Reference?, response: Reference?) {
+		self.init(json: nil)
+		if nil != code {
+			self.code = code
+		}
+		if nil != focus {
+			self.focus = focus
+		}
+		if nil != mode {
+			self.mode = mode
+		}
+		if nil != request {
+			self.request = request
+		}
+		if nil != response {
+			self.response = response
+		}
+	}	
+
+	public required init(json: NSDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["category"] as? String {
+				self.category = val
+			}
+			if let val = js["code"] as? NSDictionary {
+				self.code = Coding(json: val, owner: self)
+			}
+			if let val = js["documentation"] as? String {
+				self.documentation = val
+			}
+			if let val = js["focus"] as? String {
+				self.focus = val
+			}
+			if let val = js["mode"] as? String {
+				self.mode = val
+			}
+			if let val = js["protocol"] as? [NSDictionary] {
+				self.protokol = Coding.from(val, owner: self) as? [Coding]
+			}
+			if let val = js["request"] as? NSDictionary {
+				self.request = Reference(json: val, owner: self)
+			}
+			if let val = js["response"] as? NSDictionary {
+				self.response = Reference(json: val, owner: self)
+			}
+		}
+	}
+}
+
+
+/**
  *  If the endpoint is a RESTful one.
  *
  *  A definition of the restful capabilities of the solution, if any.
  */
 public class ConformanceRest: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ConformanceRest" }
+	}
+	
 	/// How documents are accepted in /Mailbox
 	public var documentMailbox: [NSURL]?
 	
 	/// General description of implementation
 	public var documentation: String?
 	
+	/// What operations are supported?
+	public var interaction: [ConformanceRestInteraction]?
+	
 	/// client | server
 	public var mode: String?
 	
-	/// What operations are supported?
+	/// Definition of an operation or a custom query
 	public var operation: [ConformanceRestOperation]?
-	
-	/// Definition of a named query
-	public var query: [ConformanceRestQuery]?
 	
 	/// Resource served on the REST interface
 	public var resource: [ConformanceRestResource]?
@@ -324,14 +429,14 @@ public class ConformanceRest: FHIRElement
 			if let val = js["documentation"] as? String {
 				self.documentation = val
 			}
+			if let val = js["interaction"] as? [NSDictionary] {
+				self.interaction = ConformanceRestInteraction.from(val, owner: self) as? [ConformanceRestInteraction]
+			}
 			if let val = js["mode"] as? String {
 				self.mode = val
 			}
 			if let val = js["operation"] as? [NSDictionary] {
 				self.operation = ConformanceRestOperation.from(val, owner: self) as? [ConformanceRestOperation]
-			}
-			if let val = js["query"] as? [NSDictionary] {
-				self.query = ConformanceRestQuery.from(val, owner: self) as? [ConformanceRestQuery]
 			}
 			if let val = js["resource"] as? [NSDictionary] {
 				self.resource = ConformanceRestResource.from(val, owner: self) as? [ConformanceRestResource]
@@ -345,37 +450,37 @@ public class ConformanceRest: FHIRElement
 
 
 /**
- *  Information about security of implementation.
+ *  What operations are supported?.
+ *
+ *  A specification of restful operations supported by the system.
  */
-public class ConformanceRestSecurity: FHIRElement
-{	
-	/// Certificates associated with security profiles
-	public var certificate: [ConformanceRestSecurityCertificate]?
+public class ConformanceRestInteraction: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ConformanceRestInteraction" }
+	}
 	
-	/// Adds CORS Headers (http://enable-cors.org/)
-	public var cors: Bool?
+	/// transaction | search-system | history-system
+	public var code: String?
 	
-	/// General description of how security works
-	public var description: String?
+	/// Anything special about operation behavior
+	public var documentation: String?
 	
-	/// OAuth | OAuth2 | NTLM | Basic | Kerberos
-	public var service: [CodeableConcept]?
-	
+	public convenience init(code: String?) {
+		self.init(json: nil)
+		if nil != code {
+			self.code = code
+		}
+	}	
 
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["certificate"] as? [NSDictionary] {
-				self.certificate = ConformanceRestSecurityCertificate.from(val, owner: self) as? [ConformanceRestSecurityCertificate]
+			if let val = js["code"] as? String {
+				self.code = val
 			}
-			if let val = js["cors"] as? Bool {
-				self.cors = val
-			}
-			if let val = js["description"] as? String {
-				self.description = val
-			}
-			if let val = js["service"] as? [NSDictionary] {
-				self.service = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			if let val = js["documentation"] as? String {
+				self.documentation = val
 			}
 		}
 	}
@@ -383,25 +488,40 @@ public class ConformanceRestSecurity: FHIRElement
 
 
 /**
- *  Certificates associated with security profiles.
+ *  Definition of an operation or a custom query.
+ *
+ *  Definition of an operation or a named query and with its parameters and their meaning and type.
  */
-public class ConformanceRestSecurityCertificate: FHIRElement
-{	
-	/// Actual certificate
-	public var blob: String?
+public class ConformanceRestOperation: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ConformanceRestOperation" }
+	}
 	
-	/// Mime type for certificate
-	public var type: String?
+	/// The the operation/query is defined
+	public var definition: Reference?
 	
+	/// Name by which the operation/query is invoked
+	public var name: String?
+	
+	public convenience init(definition: Reference?, name: String?) {
+		self.init(json: nil)
+		if nil != definition {
+			self.definition = definition
+		}
+		if nil != name {
+			self.name = name
+		}
+	}	
 
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["blob"] as? String {
-				self.blob = val
+			if let val = js["definition"] as? NSDictionary {
+				self.definition = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? String {
-				self.type = val
+			if let val = js["name"] as? String {
+				self.name = val
 			}
 		}
 	}
@@ -414,12 +534,16 @@ public class ConformanceRestSecurityCertificate: FHIRElement
  *  A specification of the restful capabilities of the solution for a specific resource type.
  */
 public class ConformanceRestResource: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ConformanceRestResource" }
+	}
+	
 	/// What operations are supported?
-	public var operation: [ConformanceRestResourceOperation]?
+	public var interaction: [ConformanceRestResourceInteraction]?
 	
 	/// What structural features are supported
-	public var profile: FHIRReference<Profile>?
+	public var profile: Reference?
 	
 	/// Whether vRead can return past versions
 	public var readHistory: Bool?
@@ -436,10 +560,13 @@ public class ConformanceRestResource: FHIRElement
 	/// If allows/uses update to a new location
 	public var updateCreate: Bool?
 	
-	public convenience init(operation: [ConformanceRestResourceOperation]?, type: String?) {
+	/// no-version | versioned | versioned-update
+	public var versioning: String?
+	
+	public convenience init(interaction: [ConformanceRestResourceInteraction]?, type: String?) {
 		self.init(json: nil)
-		if nil != operation {
-			self.operation = operation
+		if nil != interaction {
+			self.interaction = interaction
 		}
 		if nil != type {
 			self.type = type
@@ -449,11 +576,11 @@ public class ConformanceRestResource: FHIRElement
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["operation"] as? [NSDictionary] {
-				self.operation = ConformanceRestResourceOperation.from(val, owner: self) as? [ConformanceRestResourceOperation]
+			if let val = js["interaction"] as? [NSDictionary] {
+				self.interaction = ConformanceRestResourceInteraction.from(val, owner: self) as? [ConformanceRestResourceInteraction]
 			}
 			if let val = js["profile"] as? NSDictionary {
-				self.profile = FHIRReference(json: val, owner: self)
+				self.profile = Reference(json: val, owner: self)
 			}
 			if let val = js["readHistory"] as? Bool {
 				self.readHistory = val
@@ -470,6 +597,9 @@ public class ConformanceRestResource: FHIRElement
 			if let val = js["updateCreate"] as? Bool {
 				self.updateCreate = val
 			}
+			if let val = js["versioning"] as? String {
+				self.versioning = val
+			}
 		}
 	}
 }
@@ -480,8 +610,12 @@ public class ConformanceRestResource: FHIRElement
  *
  *  Identifies a restful operation supported by the solution.
  */
-public class ConformanceRestResourceOperation: FHIRElement
-{	
+public class ConformanceRestResourceInteraction: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ConformanceRestResourceInteraction" }
+	}
+	
 	/// read | vread | update | delete | history-instance | validate | history-type | create | search-type
 	public var code: String?
 	
@@ -515,7 +649,11 @@ public class ConformanceRestResourceOperation: FHIRElement
  *  Additional search parameters for implementations to support and/or make use of.
  */
 public class ConformanceRestResourceSearchParam: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ConformanceRestResourceSearchParam" }
+	}
+	
 	/// Chained names supported
 	public var chain: [String]?
 	
@@ -571,33 +709,41 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 
 
 /**
- *  What operations are supported?.
- *
- *  A specification of restful operations supported by the system.
+ *  Information about security of implementation.
  */
-public class ConformanceRestOperation: FHIRElement
-{	
-	/// transaction | search-system | history-system
-	public var code: String?
+public class ConformanceRestSecurity: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ConformanceRestSecurity" }
+	}
 	
-	/// Anything special about operation behavior
-	public var documentation: String?
+	/// Certificates associated with security profiles
+	public var certificate: [ConformanceRestSecurityCertificate]?
 	
-	public convenience init(code: String?) {
-		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
-	}	
+	/// Adds CORS Headers (http://enable-cors.org/)
+	public var cors: Bool?
+	
+	/// General description of how security works
+	public var description: String?
+	
+	/// OAuth | OAuth2 | NTLM | Basic | Kerberos
+	public var service: [CodeableConcept]?
+	
 
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? String {
-				self.code = val
+			if let val = js["certificate"] as? [NSDictionary] {
+				self.certificate = ConformanceRestSecurityCertificate.from(val, owner: self) as? [ConformanceRestSecurityCertificate]
 			}
-			if let val = js["documentation"] as? String {
-				self.documentation = val
+			if let val = js["cors"] as? Bool {
+				self.cors = val
+			}
+			if let val = js["description"] as? String {
+				self.description = val
+			}
+			if let val = js["service"] as? [NSDictionary] {
+				self.service = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
 	}
@@ -605,29 +751,58 @@ public class ConformanceRestOperation: FHIRElement
 
 
 /**
- *  Definition of a named query.
- *
- *  Definition of a named query and its parameters and their meaning.
+ *  Certificates associated with security profiles.
  */
-public class ConformanceRestQuery: FHIRElement
-{	
-	/// Where query is defined
-	public var definition: NSURL?
+public class ConformanceRestSecurityCertificate: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ConformanceRestSecurityCertificate" }
+	}
 	
-	/// Additional usage guidance
-	public var documentation: String?
+	/// Actual certificate
+	public var blob: Base64Binary?
 	
-	/// Special named queries (_query=)
+	/// Mime type for certificate
+	public var type: String?
+	
+
+	public required init(json: NSDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["blob"] as? String {
+				self.blob = Base64Binary(json: val)
+			}
+			if let val = js["type"] as? String {
+				self.type = val
+			}
+		}
+	}
+}
+
+
+/**
+ *  Software that is covered by this conformance statement.
+ *
+ *  Software that is covered by this conformance statement.  It is used when the profile describes the capabilities of a
+ *  particular software version, independent of an installation.
+ */
+public class ConformanceSoftware: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ConformanceSoftware" }
+	}
+	
+	/// A name the software is known by
 	public var name: String?
 	
-	/// Parameter for the named query
-	public var parameter: [ConformanceRestQueryParameter]?
+	/// Date this version released
+	public var releaseDate: NSDate?
 	
-	public convenience init(definition: NSURL?, name: String?) {
+	/// Version covered by this statement
+	public var version: String?
+	
+	public convenience init(name: String?) {
 		self.init(json: nil)
-		if nil != definition {
-			self.definition = definition
-		}
 		if nil != name {
 			self.name = name
 		}
@@ -636,199 +811,14 @@ public class ConformanceRestQuery: FHIRElement
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["definition"] as? String {
-				self.definition = NSURL(json: val)
-			}
-			if let val = js["documentation"] as? String {
-				self.documentation = val
-			}
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["parameter"] as? [NSDictionary] {
-				self.parameter = ConformanceRestQueryParameter.from(val, owner: self) as? [ConformanceRestQueryParameter]
+			if let val = js["releaseDate"] as? String {
+				self.releaseDate = NSDate(json: val)
 			}
-		}
-	}
-}
-
-
-/**
- *  Parameter for the named query.
- *
- *  Identifies which of the parameters for the named query are supported.
- */
-public class ConformanceRestQueryParameter: FHIRElement
-{	
-
-}
-
-
-/**
- *  If messaging is supported.
- *
- *  A description of the messaging capabilities of the solution.
- */
-public class ConformanceMessaging: FHIRElement
-{	
-	/// Messaging interface behavior details
-	public var documentation: String?
-	
-	/// Actual endpoint being described
-	public var endpoint: NSURL?
-	
-	/// Declare support for this event
-	public var event: [ConformanceMessagingEvent]?
-	
-	/// Reliable Message Cache Length
-	public var reliableCache: Int?
-	
-	public convenience init(event: [ConformanceMessagingEvent]?) {
-		self.init(json: nil)
-		if nil != event {
-			self.event = event
-		}
-	}	
-
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-			if let val = js["documentation"] as? String {
-				self.documentation = val
-			}
-			if let val = js["endpoint"] as? String {
-				self.endpoint = NSURL(json: val)
-			}
-			if let val = js["event"] as? [NSDictionary] {
-				self.event = ConformanceMessagingEvent.from(val, owner: self) as? [ConformanceMessagingEvent]
-			}
-			if let val = js["reliableCache"] as? Int {
-				self.reliableCache = val
-			}
-		}
-	}
-}
-
-
-/**
- *  Declare support for this event.
- *
- *  A description of the solution's support for an event at this end point.
- */
-public class ConformanceMessagingEvent: FHIRElement
-{	
-	/// Consequence | Currency | Notification
-	public var category: String?
-	
-	/// Event type
-	public var code: Coding?
-	
-	/// Endpoint-specific event documentation
-	public var documentation: String?
-	
-	/// Resource that's focus of message
-	public var focus: String?
-	
-	/// sender | receiver
-	public var mode: String?
-	
-	/// http | ftp | mllp +
-	public var protokol: [Coding]?
-	
-	/// Profile that describes the request
-	public var request: FHIRReference<Profile>?
-	
-	/// Profile that describes the response
-	public var response: FHIRReference<Profile>?
-	
-	public convenience init(code: Coding?, focus: String?, mode: String?, request: FHIRReference<Profile>?, response: FHIRReference<Profile>?) {
-		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
-		if nil != focus {
-			self.focus = focus
-		}
-		if nil != mode {
-			self.mode = mode
-		}
-		if nil != request {
-			self.request = request
-		}
-		if nil != response {
-			self.response = response
-		}
-	}	
-
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-			if let val = js["category"] as? String {
-				self.category = val
-			}
-			if let val = js["code"] as? NSDictionary {
-				self.code = Coding(json: val, owner: self)
-			}
-			if let val = js["documentation"] as? String {
-				self.documentation = val
-			}
-			if let val = js["focus"] as? String {
-				self.focus = val
-			}
-			if let val = js["mode"] as? String {
-				self.mode = val
-			}
-			if let val = js["protocol"] as? [NSDictionary] {
-				self.protokol = Coding.from(val, owner: self) as? [Coding]
-			}
-			if let val = js["request"] as? NSDictionary {
-				self.request = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["response"] as? NSDictionary {
-				self.response = FHIRReference(json: val, owner: self)
-			}
-		}
-	}
-}
-
-
-/**
- *  Document definition.
- *
- *  A document definition.
- */
-public class ConformanceDocument: FHIRElement
-{	
-	/// Description of document support
-	public var documentation: String?
-	
-	/// producer | consumer
-	public var mode: String?
-	
-	/// Constraint on a resource used in the document
-	public var profile: FHIRReference<Profile>?
-	
-	public convenience init(mode: String?, profile: FHIRReference<Profile>?) {
-		self.init(json: nil)
-		if nil != mode {
-			self.mode = mode
-		}
-		if nil != profile {
-			self.profile = profile
-		}
-	}	
-
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-			if let val = js["documentation"] as? String {
-				self.documentation = val
-			}
-			if let val = js["mode"] as? String {
-				self.mode = val
-			}
-			if let val = js["profile"] as? NSDictionary {
-				self.profile = FHIRReference(json: val, owner: self)
+			if let val = js["version"] as? String {
+				self.version = val
 			}
 		}
 	}

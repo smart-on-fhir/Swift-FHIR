@@ -2,7 +2,7 @@
 //  Attachment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Attachment.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (Attachment.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -11,6 +11,8 @@ import Foundation
 
 /**
  *  Content in a format defined elsewhere.
+ *
+ *  For referring to data content defined in other formats.
  */
 public class Attachment: FHIRElement
 {
@@ -22,10 +24,10 @@ public class Attachment: FHIRElement
 	public var contentType: String?
 	
 	/// Data inline, base64ed
-	public var data: String?
+	public var data: Base64Binary?
 	
 	/// Hash of the data (sha-1, base64ed )
-	public var hash: String?
+	public var hash: Base64Binary?
 	
 	/// Number of bytes of content (if url provided)
 	public var size: Int?
@@ -36,12 +38,6 @@ public class Attachment: FHIRElement
 	/// Uri where the data can be found
 	public var url: NSURL?
 	
-	public convenience init(contentType: String?) {
-		self.init(json: nil)
-		if nil != contentType {
-			self.contentType = contentType
-		}
-	}	
 
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
@@ -50,10 +46,10 @@ public class Attachment: FHIRElement
 				self.contentType = val
 			}
 			if let val = js["data"] as? String {
-				self.data = val
+				self.data = Base64Binary(json: val)
 			}
 			if let val = js["hash"] as? String {
-				self.hash = val
+				self.hash = Base64Binary(json: val)
 			}
 			if let val = js["size"] as? Int {
 				self.size = val

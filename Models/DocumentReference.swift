@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (xds-profile.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (documentreference.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- *  XDSDocumentEntry.
+ *  A reference to a document.
  */
 public class DocumentReference: FHIRResource
 {
@@ -18,100 +18,85 @@ public class DocumentReference: FHIRResource
 		get { return "DocumentReference" }
 	}
 	
-	/// ??
-	public var authenticator: FHIRReference<Practitioner>?
+	/// Who/What authenticated the document
+	public var authenticator: Reference?
 	
-	/// XDSDocumentEntry.author
-	public var author: [FHIRReference<Practitioner>]?
+	/// Who and/or what authored the document
+	public var author: [Reference]?
 	
-	/// XDSDocumentEntry.confidentialityCode
-	public var confidentiality: CodeableConcept?
+	/// Sensitivity of source document
+	public var confidentiality: [CodeableConcept]?
 	
-	/// event codes, service Start & Stop time, and facility type
+	/// Clinical context of document
 	public var context: DocumentReferenceContext?
 	
-	/// XDSDocumentEntry.creationTime
+	/// Document creation time
 	public var created: NSDate?
 	
-	/// n/a
-	public var custodian: FHIRReference<Organization>?
+	/// Org which maintains the document
+	public var custodian: Reference?
 	
-	/// XDSDocumentEntry.title
+	/// Human-readable description (title)
 	public var description: String?
 	
 	/// preliminary | final | appended | amended | entered in error
 	public var docStatus: CodeableConcept?
 	
-	/// XDSDocumentEntry.formatCode
-	public var format: CodeableConcept?
+	/// Format/content rules for the document
+	public var format: [NSURL]?
 	
-	/// XDSDocumentEntry.hash
-	public var hash: String?
+	/// Base64 representation of SHA1
+	public var hash: Base64Binary?
 	
-	/// XDSDocumentEntry.referenceIdList
+	/// Other identifiers for the document
 	public var identifier: [Identifier]?
 	
-	/// XDS submission time or XDSDocumentEntry.creationTime  if unknown
+	/// When this document reference created
 	public var indexed: NSDate?
 	
-	/// XDSDocumentEntry.classCode
+	/// Categorization of Document
 	public var klass: CodeableConcept?
 	
-	/// repository location (by implication & configuration)
+	/// Where to access the document
 	public var location: NSURL?
 	
-	/// XDSDocumentEntry.uniqueId
+	/// Master Version Specific Identifier
 	public var masterIdentifier: Identifier?
 	
-	/// XDSDocumentEntry.mimeType
+	/// Mime type, + maybe character encoding
 	public var mimeType: String?
 	
-	/// XDSDocumentEntry.homeCommunityId
+	/// Manages access policies for the document
 	public var policyManager: NSURL?
 	
-	/// XDSDocumentEntry.languageCode
+	/// The marked primary language for the document
 	public var primaryLanguage: String?
 	
-	/// Relationships that this document has with other document references that already exist
+	/// Relationships to other documents
 	public var relatesTo: [DocumentReferenceRelatesTo]?
 	
-	/// can be determined from repository location + parameters
+	/// If access is not fully described by location
 	public var service: DocumentReferenceService?
 	
-	/// XDSDocumentEntry.size
+	/// Size of the document in bytes
 	public var size: Int?
 	
-	/// implied by XDS workflow
+	/// current | superceded | entered in error
 	public var status: String?
 	
-	/// XDSDocumentEntry.patientId + sourcePatientId/sourcePatientInfo
-	public var subject: FHIRReference<Patient>?
+	/// Who|what is the subject of the document
+	public var subject: Reference?
 	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
-	
-	/// XDSDocumentEntry.typeCode
+	/// What kind of document this is (LOINC if possible)
 	public var type: CodeableConcept?
 	
-	public convenience init(author: [FHIRReference<Practitioner>]?, confidentiality: CodeableConcept?, created: NSDate?, format: CodeableConcept?, indexed: NSDate?, klass: CodeableConcept?, masterIdentifier: Identifier?, mimeType: String?, status: String?, subject: FHIRReference<Patient>?, type: CodeableConcept?) {
+	public convenience init(author: [Reference]?, indexed: NSDate?, masterIdentifier: Identifier?, mimeType: String?, status: String?, subject: Reference?, type: CodeableConcept?) {
 		self.init(json: nil)
 		if nil != author {
 			self.author = author
 		}
-		if nil != confidentiality {
-			self.confidentiality = confidentiality
-		}
-		if nil != created {
-			self.created = created
-		}
-		if nil != format {
-			self.format = format
-		}
 		if nil != indexed {
 			self.indexed = indexed
-		}
-		if nil != klass {
-			self.klass = klass
 		}
 		if nil != masterIdentifier {
 			self.masterIdentifier = masterIdentifier
@@ -134,13 +119,13 @@ public class DocumentReference: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["authenticator"] as? NSDictionary {
-				self.authenticator = FHIRReference(json: val, owner: self)
+				self.authenticator = Reference(json: val, owner: self)
 			}
 			if let val = js["author"] as? [NSDictionary] {
-				self.author = FHIRReference.from(val, owner: self)
+				self.author = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["confidentiality"] as? NSDictionary {
-				self.confidentiality = CodeableConcept(json: val, owner: self)
+			if let val = js["confidentiality"] as? [NSDictionary] {
+				self.confidentiality = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["context"] as? NSDictionary {
 				self.context = DocumentReferenceContext(json: val, owner: self)
@@ -149,7 +134,7 @@ public class DocumentReference: FHIRResource
 				self.created = NSDate(json: val)
 			}
 			if let val = js["custodian"] as? NSDictionary {
-				self.custodian = FHIRReference(json: val, owner: self)
+				self.custodian = Reference(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
@@ -157,11 +142,11 @@ public class DocumentReference: FHIRResource
 			if let val = js["docStatus"] as? NSDictionary {
 				self.docStatus = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["format"] as? NSDictionary {
-				self.format = CodeableConcept(json: val, owner: self)
+			if let val = js["format"] as? [String] {
+				self.format = NSURL.from(val)
 			}
 			if let val = js["hash"] as? String {
-				self.hash = val
+				self.hash = Base64Binary(json: val)
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
@@ -200,13 +185,7 @@ public class DocumentReference: FHIRResource
 				self.status = val
 			}
 			if let val = js["subject"] as? NSDictionary {
-				self.subject = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+				self.subject = Reference(json: val, owner: self)
 			}
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
@@ -217,19 +196,61 @@ public class DocumentReference: FHIRResource
 
 
 /**
- *  Relationships that this document has with other document references that already exist.
+ *  Clinical context of document.
  *
+ *  The clinical context in which the document was prepared.
+ */
+public class DocumentReferenceContext: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "DocumentReferenceContext" }
+	}
+	
+	/// Main Clinical Acts Documented
+	public var event: [CodeableConcept]?
+	
+	/// Kind of facility where patient was seen
+	public var facilityType: CodeableConcept?
+	
+	/// Time of service that is being documented
+	public var period: Period?
+	
+
+	public required init(json: NSDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["event"] as? [NSDictionary] {
+				self.event = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			}
+			if let val = js["facilityType"] as? NSDictionary {
+				self.facilityType = CodeableConcept(json: val, owner: self)
+			}
+			if let val = js["period"] as? NSDictionary {
+				self.period = Period(json: val, owner: self)
+			}
+		}
+	}
+}
+
+
+/**
  *  Relationships to other documents.
+ *
+ *  Relationships that this document has with other document references that already exist.
  */
 public class DocumentReferenceRelatesTo: FHIRElement
-{	
-	/// The type of relationship that this document has with anther document
+{
+	override public class var resourceName: String {
+		get { return "DocumentReferenceRelatesTo" }
+	}
+	
+	/// replaces | transforms | signs | appends
 	public var code: String?
 	
-	/// The target document of this relationship
-	public var target: FHIRReference<DocumentReference>?
+	/// Target of the relationship
+	public var target: Reference?
 	
-	public convenience init(code: String?, target: FHIRReference<DocumentReference>?) {
+	public convenience init(code: String?, target: Reference?) {
 		self.init(json: nil)
 		if nil != code {
 			self.code = code
@@ -246,7 +267,7 @@ public class DocumentReferenceRelatesTo: FHIRElement
 				self.code = val
 			}
 			if let val = js["target"] as? NSDictionary {
-				self.target = FHIRReference(json: val, owner: self)
+				self.target = Reference(json: val, owner: self)
 			}
 		}
 	}
@@ -254,12 +275,16 @@ public class DocumentReferenceRelatesTo: FHIRElement
 
 
 /**
- *  can be determined from repository location + parameters.
- *
  *  If access is not fully described by location.
+ *
+ *  A description of a service call that can be used to retrieve the document.
  */
 public class DocumentReferenceService: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "DocumentReferenceService" }
+	}
+	
 	/// Where service is located (usually a URL)
 	public var address: String?
 	
@@ -299,7 +324,11 @@ public class DocumentReferenceService: FHIRElement
  *  A list of named parameters that is used in the service call.
  */
 public class DocumentReferenceServiceParameter: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "DocumentReferenceServiceParameter" }
+	}
+	
 	/// Parameter name in service call
 	public var name: String?
 	
@@ -321,46 +350,6 @@ public class DocumentReferenceServiceParameter: FHIRElement
 			}
 			if let val = js["value"] as? String {
 				self.value = val
-			}
-		}
-	}
-}
-
-
-/**
- *  event codes, service Start & Stop time, and facility type.
- *
- *  Clinical context of document - eventCodeList, serviceStart & Stop time, and facility type.
- */
-public class DocumentReferenceContext: FHIRElement
-{	
-	/// XDSDocumentEntry.eventCodeList
-	public var event: [CodeableConcept]?
-	
-	/// XDSDocumentEntry.healthCareFacilityTypeCode
-	public var facilityType: CodeableConcept?
-	
-	/// XDSDocumentEntry.serviceStartTime & XDSDocumentEntry.serviceStopTime
-	public var period: Period?
-	
-	public convenience init(period: Period?) {
-		self.init(json: nil)
-		if nil != period {
-			self.period = period
-		}
-	}	
-
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-			if let val = js["event"] as? [NSDictionary] {
-				self.event = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
-			}
-			if let val = js["facilityType"] as? NSDictionary {
-				self.facilityType = CodeableConcept(json: val, owner: self)
-			}
-			if let val = js["period"] as? NSDictionary {
-				self.period = Period(json: val, owner: self)
 			}
 		}
 	}

@@ -2,7 +2,7 @@
 //  Range.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Range.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (Range.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -11,6 +11,8 @@ import Foundation
 
 /**
  *  Set of values bounded by low and high.
+ *
+ *  A set of ordered Quantities defined by a low and high limit.
  */
 public class Range: FHIRElement
 {

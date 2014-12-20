@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (provenance.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (provenance.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,16 +12,9 @@ import Foundation
 /**
  *  Who, What, When for a set of resources.
  *
- *  Scope and Usage The provenance resource tracks information about activity that created a version of a resource,
- *  including the entities, and agents involved in producing a resource. This information can be used to form
- *  assessments about its quality, reliability or trustworthiness, or to provide pointers for where to go to further
- *  investigate the origins of the resource and the information in it.
- *  
- *  Provenance resources are a record-keeping assertion that gathers information about the context in which the
- *  information in a resource was obtained. Provenance resources are prepared by the application that initiates the
- *  create/update etc. of the resource. A Security Event resource contains overlapping information, but is created as
- *  events occur, to track and audit the events. Security Event resources are often (though not exclusively) created by
- *  the application responding to the read/query/create/update etc. event.
+ *  Provenance information that describes the activity that led to the creation of a set of resources. This information
+ *  can be used to help determine their reliability or trace where the information in them came from. The focus of the
+ *  provenance resource is record keeping, audit and traceability, and not explicit statements of clinical significance.
  */
 public class Provenance: FHIRResource
 {
@@ -39,7 +32,7 @@ public class Provenance: FHIRResource
 	public var integritySignature: String?
 	
 	/// Where the activity occurred, if relevant
-	public var location: FHIRReference<Location>?
+	public var location: Reference?
 	
 	/// When the activity occurred
 	public var period: Period?
@@ -53,13 +46,10 @@ public class Provenance: FHIRResource
 	/// When the activity was recorded / updated
 	public var recorded: NSDate?
 	
-	/// Target resource(s) (usually version specific)
-	public var target: [FHIRReference<FHIRResource>]?
+	/// Target Reference(s) (usually version specific)
+	public var target: [Reference]?
 	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
-	
-	public convenience init(recorded: NSDate?, target: [FHIRReference<FHIRResource>]?) {
+	public convenience init(recorded: NSDate?, target: [Reference]?) {
 		self.init(json: nil)
 		if nil != recorded {
 			self.recorded = recorded
@@ -82,7 +72,7 @@ public class Provenance: FHIRResource
 				self.integritySignature = val
 			}
 			if let val = js["location"] as? NSDictionary {
-				self.location = FHIRReference(json: val, owner: self)
+				self.location = Reference(json: val, owner: self)
 			}
 			if let val = js["period"] as? NSDictionary {
 				self.period = Period(json: val, owner: self)
@@ -97,10 +87,7 @@ public class Provenance: FHIRResource
 				self.recorded = NSDate(json: val)
 			}
 			if let val = js["target"] as? [NSDictionary] {
-				self.target = FHIRReference.from(val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+				self.target = Reference.from(val, owner: self) as? [Reference]
 			}
 		}
 	}
@@ -115,7 +102,11 @@ public class Provenance: FHIRResource
  *  entities that may be ascribed responsibility.
  */
 public class ProvenanceAgent: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ProvenanceAgent" }
+	}
+	
 	/// Human description of participant
 	public var display: String?
 	
@@ -165,9 +156,13 @@ public class ProvenanceAgent: FHIRElement
  *  An entity used in this activity.
  */
 public class ProvenanceEntity: FHIRElement
-{	
-	/// Entity is attributed to this agent
-	public var agent: ProvenanceEntityAgent?
+{
+	override public class var resourceName: String {
+		get { return "ProvenanceEntity" }
+	}
+	
+	/// Person, organization, records, etc. involved in creating resource
+	public var agent: ProvenanceAgent?
 	
 	/// Human description of participant
 	public var display: String?
@@ -198,7 +193,7 @@ public class ProvenanceEntity: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["agent"] as? NSDictionary {
-				self.agent = ProvenanceEntityAgent(json: val, owner: self)
+				self.agent = ProvenanceAgent(json: val, owner: self)
 			}
 			if let val = js["display"] as? String {
 				self.display = val
@@ -214,18 +209,5 @@ public class ProvenanceEntity: FHIRElement
 			}
 		}
 	}
-}
-
-
-/**
- *  Entity is attributed to this agent.
- *
- *  The entity is attributed to an agent to express the agent's responsibility for that entity, possibly along with
- *  other agents. This description can be understood as shorthand for saying that the agent was responsible for the
- *  activity which generated the entity.
- */
-public class ProvenanceEntityAgent: FHIRElement
-{	
-
 }
 

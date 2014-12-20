@@ -2,7 +2,7 @@
 //  Period.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Period.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (Period.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -11,6 +11,8 @@ import Foundation
 
 /**
  *  Time range defined by start and end date/time.
+ *
+ *  A time period defined by a start and end date and optionally time.
  */
 public class Period: FHIRElement
 {

@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (procedure.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (procedure.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,14 +12,8 @@ import Foundation
 /**
  *  An action that is performed on a patient.
  *
- *  Scope and Usage This resource is used to record the details of procedures performed on a patient. A procedure is an
- *  activity that is performed with or on a patient as part of the provision of care. Examples include surgical
- *  procedures, diagnostic procedures, endoscopic procedures, biopsies, and exclude things for which there are specific
- *  resources, such as immunizations, drug administrations.
- *  
- *  Note that many diagnostic processes are procedures that generate observations and reports. In many cases, the
- *  existence of the procedure is assumed, but where there are details of interest about how the diagnostic procedure
- *  was performed, the procedure resource is used to describe the activity.
+ *  An action that is performed on a patient. This can be a physical 'thing' like an operation, or less invasive like
+ *  counseling or hypnotherapy.
  */
 public class Procedure: FHIRResource
 {
@@ -37,7 +31,7 @@ public class Procedure: FHIRResource
 	public var date: Period?
 	
 	/// The encounter when procedure performed
-	public var encounter: FHIRReference<Encounter>?
+	public var encounter: Reference?
 	
 	/// Instructions for follow up
 	public var followUp: String?
@@ -54,6 +48,9 @@ public class Procedure: FHIRResource
 	/// What was result of procedure?
 	public var outcome: String?
 	
+	/// Who procedure was performed on
+	public var patient: Reference?
+	
 	/// The people who performed the procedure
 	public var performer: [ProcedurePerformer]?
 	
@@ -61,21 +58,15 @@ public class Procedure: FHIRResource
 	public var relatedItem: [ProcedureRelatedItem]?
 	
 	/// Any report that results from the procedure
-	public var report: [FHIRReference<DiagnosticReport>]?
-	
-	/// Who procedure was performed on
-	public var subject: FHIRReference<Patient>?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
+	public var report: [Reference]?
 	
 	/// Identification of the procedure
 	public var type: CodeableConcept?
 	
-	public convenience init(subject: FHIRReference<Patient>?, type: CodeableConcept?) {
+	public convenience init(patient: Reference?, type: CodeableConcept?) {
 		self.init(json: nil)
-		if nil != subject {
-			self.subject = subject
+		if nil != patient {
+			self.patient = patient
 		}
 		if nil != type {
 			self.type = type
@@ -95,7 +86,7 @@ public class Procedure: FHIRResource
 				self.date = Period(json: val, owner: self)
 			}
 			if let val = js["encounter"] as? NSDictionary {
-				self.encounter = FHIRReference(json: val, owner: self)
+				self.encounter = Reference(json: val, owner: self)
 			}
 			if let val = js["followUp"] as? String {
 				self.followUp = val
@@ -112,6 +103,9 @@ public class Procedure: FHIRResource
 			if let val = js["outcome"] as? String {
 				self.outcome = val
 			}
+			if let val = js["patient"] as? NSDictionary {
+				self.patient = Reference(json: val, owner: self)
+			}
 			if let val = js["performer"] as? [NSDictionary] {
 				self.performer = ProcedurePerformer.from(val, owner: self) as? [ProcedurePerformer]
 			}
@@ -119,13 +113,7 @@ public class Procedure: FHIRResource
 				self.relatedItem = ProcedureRelatedItem.from(val, owner: self) as? [ProcedureRelatedItem]
 			}
 			if let val = js["report"] as? [NSDictionary] {
-				self.report = FHIRReference.from(val, owner: self)
-			}
-			if let val = js["subject"] as? NSDictionary {
-				self.subject = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+				self.report = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
@@ -141,9 +129,13 @@ public class Procedure: FHIRResource
  *  Limited to 'real' people rather than equipment.
  */
 public class ProcedurePerformer: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ProcedurePerformer" }
+	}
+	
 	/// The reference to the practitioner
-	public var person: FHIRReference<Practitioner>?
+	public var person: Reference?
 	
 	/// The role the person was in
 	public var role: CodeableConcept?
@@ -153,7 +145,7 @@ public class ProcedurePerformer: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["person"] as? NSDictionary {
-				self.person = FHIRReference(json: val, owner: self)
+				self.person = Reference(json: val, owner: self)
 			}
 			if let val = js["role"] as? NSDictionary {
 				self.role = CodeableConcept(json: val, owner: self)
@@ -170,9 +162,13 @@ public class ProcedurePerformer: FHIRElement
  *  following a previous procedure.
  */
 public class ProcedureRelatedItem: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ProcedureRelatedItem" }
+	}
+	
 	/// The related item - e.g. a procedure
-	public var target: FHIRReference<AdverseReaction>?
+	public var target: Reference?
 	
 	/// caused-by | because-of
 	public var type: String?
@@ -182,7 +178,7 @@ public class ProcedureRelatedItem: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["target"] as? NSDictionary {
-				self.target = FHIRReference(json: val, owner: self)
+				self.target = Reference(json: val, owner: self)
 			}
 			if let val = js["type"] as? String {
 				self.type = val

@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (documentmanifest.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (documentmanifest.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -11,12 +11,6 @@ import Foundation
 
 /**
  *  A manifest that defines a set of documents.
- *
- *  Scope and Usage A document manifest gathers a set of Document Reference resources into a single package that may be
- *  the subject of workflow such as access control, auditing, and targeted delivery.
- *  
- *  Typically, Document Manifest Resources are used in document indexing systems, such as IHE XDS (see the XDS specific
- *  profile).
  */
 public class DocumentManifest: FHIRResource
 {
@@ -25,13 +19,13 @@ public class DocumentManifest: FHIRResource
 	}
 	
 	/// Who and/or what authored the document
-	public var author: [FHIRReference<Practitioner>]?
+	public var author: [Reference]?
 	
 	/// Sensitivity of set of documents
 	public var confidentiality: CodeableConcept?
 	
 	/// Contents of this set of documents
-	public var content: [FHIRReference<DocumentReference>]?
+	public var content: [Reference]?
 	
 	/// When this document manifest created
 	public var created: NSDate?
@@ -46,7 +40,7 @@ public class DocumentManifest: FHIRResource
 	public var masterIdentifier: Identifier?
 	
 	/// Intended to get notified about this set of documents
-	public var recipient: [FHIRReference<Patient>]?
+	public var recipient: [Reference]?
 	
 	/// The source system/application/software
 	public var source: NSURL?
@@ -55,18 +49,15 @@ public class DocumentManifest: FHIRResource
 	public var status: String?
 	
 	/// The subject of the set of documents
-	public var subject: [FHIRReference<Patient>]?
+	public var subject: [Reference]?
 	
 	/// If this document manifest replaces another
-	public var supercedes: FHIRReference<DocumentManifest>?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
+	public var supercedes: Reference?
 	
 	/// What kind of document set this is
 	public var type: CodeableConcept?
 	
-	public convenience init(content: [FHIRReference<DocumentReference>]?, masterIdentifier: Identifier?, status: String?, subject: [FHIRReference<Patient>]?) {
+	public convenience init(content: [Reference]?, masterIdentifier: Identifier?, status: String?, subject: [Reference]?) {
 		self.init(json: nil)
 		if nil != content {
 			self.content = content
@@ -86,13 +77,13 @@ public class DocumentManifest: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["author"] as? [NSDictionary] {
-				self.author = FHIRReference.from(val, owner: self)
+				self.author = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["confidentiality"] as? NSDictionary {
 				self.confidentiality = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["content"] as? [NSDictionary] {
-				self.content = FHIRReference.from(val, owner: self)
+				self.content = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["created"] as? String {
 				self.created = NSDate(json: val)
@@ -107,7 +98,7 @@ public class DocumentManifest: FHIRResource
 				self.masterIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["recipient"] as? [NSDictionary] {
-				self.recipient = FHIRReference.from(val, owner: self)
+				self.recipient = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["source"] as? String {
 				self.source = NSURL(json: val)
@@ -116,13 +107,10 @@ public class DocumentManifest: FHIRResource
 				self.status = val
 			}
 			if let val = js["subject"] as? [NSDictionary] {
-				self.subject = FHIRReference.from(val, owner: self)
+				self.subject = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["supercedes"] as? NSDictionary {
-				self.supercedes = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+				self.supercedes = Reference(json: val, owner: self)
 			}
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val, owner: self)

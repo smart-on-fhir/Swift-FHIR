@@ -2,7 +2,7 @@
 //  SampledData.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-SampledData.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (SampledData.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -11,6 +11,9 @@ import Foundation
 
 /**
  *  A series of measurements taken by a device.
+ *
+ *  A series of measurements taken by a device, with upper and lower limits. There may be more than one dimension in the
+ *  data.
  */
 public class SampledData: FHIRElement
 {

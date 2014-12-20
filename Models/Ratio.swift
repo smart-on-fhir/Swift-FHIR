@@ -2,7 +2,7 @@
 //  Ratio.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Ratio.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (Ratio.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -11,6 +11,8 @@ import Foundation
 
 /**
  *  A ratio of two Quantity values - a numerator and a denominator.
+ *
+ *  A relationship of two Quantity values - expressed as a numerator and a denominator.
  */
 public class Ratio: FHIRElement
 {

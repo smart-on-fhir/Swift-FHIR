@@ -2,7 +2,7 @@
 //  MedicationAdministration.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (medicationadministration.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (medicationadministration.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,11 +12,11 @@ import Foundation
 /**
  *  Administration of medication to a patient.
  *
- *  Scope and Usage This resource covers the administration of all medications with the exception of vaccines. It will
- *  principally be used within inpatient settings to record the capture of medication administrations including self-
- *  administrations of oral medications, injections, intra-venous adjustments, etc. It can also be used in out-patient
- *  settings to record allergy shots and other non-immunization administrations. In some cases it might be used for
- *  home-health reporting, such as recording self-administered or even device-administered insulin.
+ *  Describes the event of a patient being given a dose of a medication.  This may be as simple as swallowing a tablet
+ *  or it may be a long running infusion.
+ *  
+ *  Related resources tie this event to the authorizing prescription, and the specific encounter between patient and
+ *  health care practitioner.
  */
 public class MedicationAdministration: FHIRResource
 {
@@ -25,28 +25,34 @@ public class MedicationAdministration: FHIRResource
 	}
 	
 	/// Device used to administer
-	public var device: [FHIRReference<Device>]?
+	public var device: [Reference]?
 	
 	/// Medicine administration instructions to the patient/carer
 	public var dosage: [MedicationAdministrationDosage]?
 	
+	/// Start and end time of administration
+	public var effectiveTimeDateTime: NSDate?
+	
+	/// Start and end time of administration
+	public var effectiveTimePeriod: Period?
+	
 	/// Encounter administered as part of
-	public var encounter: FHIRReference<Encounter>?
+	public var encounter: Reference?
 	
 	/// External identifier
 	public var identifier: [Identifier]?
 	
 	/// What was administered?
-	public var medication: FHIRReference<Medication>?
+	public var medication: Reference?
 	
 	/// Who received medication?
-	public var patient: FHIRReference<Patient>?
+	public var patient: Reference?
 	
 	/// Who administered substance?
-	public var practitioner: FHIRReference<Practitioner>?
+	public var practitioner: Reference?
 	
 	/// Order administration performed against
-	public var prescription: FHIRReference<MedicationPrescription>?
+	public var prescription: Reference?
 	
 	/// Reason administration not performed
 	public var reasonNotGiven: [CodeableConcept]?
@@ -54,17 +60,17 @@ public class MedicationAdministration: FHIRResource
 	/// in progress | on hold | completed | entered in error | stopped
 	public var status: String?
 	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
-	
 	/// True if medication not administered
 	public var wasNotGiven: Bool?
 	
-	/// Start and end time of administration
-	public var whenGiven: Period?
-	
-	public convenience init(patient: FHIRReference<Patient>?, practitioner: FHIRReference<Practitioner>?, prescription: FHIRReference<MedicationPrescription>?, status: String?, whenGiven: Period?) {
+	public convenience init(effectiveTimeDateTime: NSDate?, effectiveTimePeriod: Period?, patient: Reference?, practitioner: Reference?, prescription: Reference?, status: String?) {
 		self.init(json: nil)
+		if nil != effectiveTimeDateTime {
+			self.effectiveTimeDateTime = effectiveTimeDateTime
+		}
+		if nil != effectiveTimePeriod {
+			self.effectiveTimePeriod = effectiveTimePeriod
+		}
 		if nil != patient {
 			self.patient = patient
 		}
@@ -77,37 +83,40 @@ public class MedicationAdministration: FHIRResource
 		if nil != status {
 			self.status = status
 		}
-		if nil != whenGiven {
-			self.whenGiven = whenGiven
-		}
 	}	
 
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["device"] as? [NSDictionary] {
-				self.device = FHIRReference.from(val, owner: self)
+				self.device = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["dosage"] as? [NSDictionary] {
 				self.dosage = MedicationAdministrationDosage.from(val, owner: self) as? [MedicationAdministrationDosage]
 			}
+			if let val = js["effectiveTimeDateTime"] as? String {
+				self.effectiveTimeDateTime = NSDate(json: val)
+			}
+			if let val = js["effectiveTimePeriod"] as? NSDictionary {
+				self.effectiveTimePeriod = Period(json: val, owner: self)
+			}
 			if let val = js["encounter"] as? NSDictionary {
-				self.encounter = FHIRReference(json: val, owner: self)
+				self.encounter = Reference(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["medication"] as? NSDictionary {
-				self.medication = FHIRReference(json: val, owner: self)
+				self.medication = Reference(json: val, owner: self)
 			}
 			if let val = js["patient"] as? NSDictionary {
-				self.patient = FHIRReference(json: val, owner: self)
+				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["practitioner"] as? NSDictionary {
-				self.practitioner = FHIRReference(json: val, owner: self)
+				self.practitioner = Reference(json: val, owner: self)
 			}
 			if let val = js["prescription"] as? NSDictionary {
-				self.prescription = FHIRReference(json: val, owner: self)
+				self.prescription = Reference(json: val, owner: self)
 			}
 			if let val = js["reasonNotGiven"] as? [NSDictionary] {
 				self.reasonNotGiven = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
@@ -115,14 +124,8 @@ public class MedicationAdministration: FHIRResource
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
-			}
 			if let val = js["wasNotGiven"] as? Bool {
 				self.wasNotGiven = val
-			}
-			if let val = js["whenGiven"] as? NSDictionary {
-				self.whenGiven = Period(json: val, owner: self)
 			}
 		}
 	}
@@ -135,7 +138,11 @@ public class MedicationAdministration: FHIRResource
  *  Provides details of how much of the medication was administered.
  */
 public class MedicationAdministrationDosage: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "MedicationAdministrationDosage" }
+	}
+	
 	/// Take "as needed" f(or x)
 	public var asNeededBoolean: Bool?
 	

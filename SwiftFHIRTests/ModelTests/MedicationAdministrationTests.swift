@@ -2,7 +2,7 @@
 //  MedicationAdministrationTests.swift
 //  MedicationAdministrationTests
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -21,24 +21,62 @@ class MedicationAdministrationTests: FHIRModelTestCase
 	}
 	
 	func testMedicationAdministration1() {
+		let inst = instantiateFrom("medicationadministration-example.canonical.json")
+		XCTAssertNotNil(inst, "Must have instantiated a MedicationAdministration instance")
+	
+		XCTAssertEqual(inst!.dosage![0].quantity!.code!, "ml")
+		XCTAssertEqual(inst!.dosage![0].quantity!.system!, NSURL(string: "http://unitsofmeasure.org")!)
+		XCTAssertEqual(inst!.dosage![0].quantity!.units!, "ml")
+		XCTAssertEqual(inst!.dosage![0].quantity!.value!, NSDecimalNumber(string: "10"))
+		XCTAssertEqual(inst!.dosage![0].route!.coding![0].code!, "394899003")
+		XCTAssertEqual(inst!.dosage![0].route!.coding![0].display!, "oral administration of treatment")
+		XCTAssertEqual(inst!.dosage![0].route!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+		XCTAssertEqual(inst!.effectiveTimePeriod!.end!, NSDate.dateFromISOString("2012-06-01T14:30:00")!)
+		XCTAssertEqual(inst!.effectiveTimePeriod!.start!, NSDate.dateFromISOString("2012-06-01T14:30:00")!)
+		XCTAssertEqual(inst!.medication!.reference!, "Medication/example")
+		XCTAssertEqual(inst!.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst!.practitioner!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst!.prescription!.reference!, "MedicationPrescription/example")
+		XCTAssertEqual(inst!.status!, "completed")
+	}
+	
+	func testMedicationAdministration2() {
+		let inst = instantiateFrom("medicationadministration-example.canonical.json")
+		XCTAssertNotNil(inst, "Must have instantiated a MedicationAdministration instance")
+	
+		XCTAssertEqual(inst!.dosage![0].quantity!.code!, "ml")
+		XCTAssertEqual(inst!.dosage![0].quantity!.system!, NSURL(string: "http://unitsofmeasure.org")!)
+		XCTAssertEqual(inst!.dosage![0].quantity!.units!, "ml")
+		XCTAssertEqual(inst!.dosage![0].quantity!.value!, NSDecimalNumber(string: "10"))
+		XCTAssertEqual(inst!.dosage![0].route!.coding![0].code!, "394899003")
+		XCTAssertEqual(inst!.dosage![0].route!.coding![0].display!, "oral administration of treatment")
+		XCTAssertEqual(inst!.dosage![0].route!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+		XCTAssertEqual(inst!.effectiveTimePeriod!.end!, NSDate.dateFromISOString("2012-06-01T14:30:00")!)
+		XCTAssertEqual(inst!.effectiveTimePeriod!.start!, NSDate.dateFromISOString("2012-06-01T14:30:00")!)
+		XCTAssertEqual(inst!.medication!.reference!, "Medication/example")
+		XCTAssertEqual(inst!.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst!.practitioner!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst!.prescription!.reference!, "MedicationPrescription/example")
+		XCTAssertEqual(inst!.status!, "completed")
+	}
+	
+	func testMedicationAdministration3() {
 		let inst = instantiateFrom("medicationadministration-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a MedicationAdministration instance")
-		
+	
 		XCTAssertEqual(inst!.dosage![0].quantity!.code!, "ml")
-		XCTAssertEqual(inst!.dosage![0].quantity!.system!, NSURL(string: "http://unitsofmeasure.org")!)	
+		XCTAssertEqual(inst!.dosage![0].quantity!.system!, NSURL(string: "http://unitsofmeasure.org")!)
 		XCTAssertEqual(inst!.dosage![0].quantity!.units!, "ml")
-		XCTAssertEqual(inst!.dosage![0].quantity!.value!, 10)	
-		XCTAssertEqual(inst!.dosage![0].route!.coding![0].code!, "394899003")	
+		XCTAssertEqual(inst!.dosage![0].quantity!.value!, NSDecimalNumber(string: "10"))
+		XCTAssertEqual(inst!.dosage![0].route!.coding![0].code!, "394899003")
 		XCTAssertEqual(inst!.dosage![0].route!.coding![0].display!, "oral administration of treatment")
-		XCTAssertEqual(inst!.dosage![0].route!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
-		XCTAssertEqual(inst!.medication!.reference!, "Medication/example")	
-		XCTAssertEqual(inst!.patient!.reference!, "Patient/example")	
-		XCTAssertEqual(inst!.practitioner!.reference!, "Practitioner/example")	
-		XCTAssertEqual(inst!.prescription!.reference!, "MedicationPrescription/example")	
-		XCTAssertEqual(inst!.status!, "completed")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>Penicillin VK 10ml suspension administered by oral route at 14:30 on 1 June 2012</p>\n      <p>on the authority of prescription ref: example</p>\n      <p>to patient ref: a23</p>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")
-		XCTAssertEqual(inst!.whenGiven!.end!, NSDate.dateFromISOString("2012-06-01T14:30:00")!)
-		XCTAssertEqual(inst!.whenGiven!.start!, NSDate.dateFromISOString("2012-06-01T14:30:00")!)
+		XCTAssertEqual(inst!.dosage![0].route!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+		XCTAssertEqual(inst!.effectiveTimePeriod!.end!, NSDate.dateFromISOString("2012-06-01T14:30:00")!)
+		XCTAssertEqual(inst!.effectiveTimePeriod!.start!, NSDate.dateFromISOString("2012-06-01T14:30:00")!)
+		XCTAssertEqual(inst!.medication!.reference!, "Medication/example")
+		XCTAssertEqual(inst!.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst!.practitioner!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst!.prescription!.reference!, "MedicationPrescription/example")
+		XCTAssertEqual(inst!.status!, "completed")
 	}
 }

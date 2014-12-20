@@ -2,7 +2,7 @@
 //  HumanName.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-HumanName.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (HumanName.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -11,6 +11,8 @@ import Foundation
 
 /**
  *  Name of a human - parts and usage.
+ *
+ *  A human's name with the ability to identify parts and usage.
  */
 public class HumanName: FHIRElement
 {

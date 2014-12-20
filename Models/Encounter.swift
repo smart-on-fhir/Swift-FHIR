@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (encounter.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (encounter.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,34 +12,20 @@ import Foundation
 /**
  *  An interaction during which services are provided to the patient.
  *
- *  Scope and Usage A patient encounter is further characterized by the setting in which it takes place. Amongst them
- *  are ambulatory, emergency, home health, inpatient and virtual encounters. An Encounter encompasses the lifecycle
- *  from pre-admission, the actual encounter (for ambulatory encounters), and admission, stay and discharge (for
- *  inpatient encounters). During the encounter the patient may move from practitioner to practitioner and location to
- *  location.
- *  
- *  Because of the broad scope of Encounter, not all elements will be relevant in all settings. For this reason,
- *  admission/discharge related information is kept in a separate Hospitalization component within Encounter. The class
- *  element is used to distinguish between these settings, which will guide further validation and application of
- *  business rules.
- *  
- *  There is also substantial variance from organization to organization (and between jurisdictions and countries) on
- *  which business events translate to the start of a new Encounter, or what level of aggregation is used for Encounter.
- *  For example, each single visit of a practitioner during a hospitalization may lead to a new instance of Encounter,
- *  but depending on local practice and the systems involved, it may well be that this is aggregated to a single
- *  instance for a whole hospitalization. Even more aggregation may occur where jurisdictions introduce groups of
- *  Encounters for financial or other reasons. Encounters can be aggregated or grouped under other Encounters using the
- *  partOf element. See below for examples.
- *  
- *  Encounter instances may exist before the actual encounter takes place to convey pre-admission information, including
- *  using Encounters elements to reflect the planned start date, planned accommodation or planned encounter locations.
- *  In this case the status element is set to 'planned'.
+ *  An interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or
+ *  assessing the health status of a patient.
  */
 public class Encounter: FHIRResource
 {
 	override public class var resourceName: String {
 		get { return "Encounter" }
 	}
+	
+	/// An episode of care that this encounter should be recorded against
+	public var episodeOfCare: Reference?
+	
+	/// The appointment that scheduled this encounter
+	public var fulfills: Reference?
 	
 	/// Details about an admission to a clinic
 	public var hospitalization: EncounterHospitalization?
@@ -48,7 +34,7 @@ public class Encounter: FHIRResource
 	public var identifier: [Identifier]?
 	
 	/// Reason the encounter takes place (resource)
-	public var indication: FHIRReference<FHIRResource>?
+	public var indication: [Reference]?
 	
 	/// inpatient | outpatient | ambulatory | emergency +
 	public var klass: String?
@@ -60,10 +46,13 @@ public class Encounter: FHIRResource
 	public var location: [EncounterLocation]?
 	
 	/// Another Encounter this encounter is part of
-	public var partOf: FHIRReference<Encounter>?
+	public var partOf: Reference?
 	
 	/// List of participants involved in the encounter
 	public var participant: [EncounterParticipant]?
+	
+	/// The patient present at the encounter
+	public var patient: Reference?
 	
 	/// The start and end time of the encounter
 	public var period: Period?
@@ -75,16 +64,13 @@ public class Encounter: FHIRResource
 	public var reason: CodeableConcept?
 	
 	/// Department or team providing care
-	public var serviceProvider: FHIRReference<Organization>?
+	public var serviceProvider: Reference?
 	
-	/// planned | in progress | onleave | finished | cancelled
+	/// planned | arrived | in progress | onleave | finished | cancelled
 	public var status: String?
 	
-	/// The patient present at the encounter
-	public var subject: FHIRReference<Patient>?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
+	/// List of Encounter statuses
+	public var statusHistory: [EncounterStatusHistory]?
 	
 	/// Specific type of encounter
 	public var type: [CodeableConcept]?
@@ -102,14 +88,20 @@ public class Encounter: FHIRResource
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["episodeOfCare"] as? NSDictionary {
+				self.episodeOfCare = Reference(json: val, owner: self)
+			}
+			if let val = js["fulfills"] as? NSDictionary {
+				self.fulfills = Reference(json: val, owner: self)
+			}
 			if let val = js["hospitalization"] as? NSDictionary {
 				self.hospitalization = EncounterHospitalization(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["indication"] as? NSDictionary {
-				self.indication = FHIRReference(json: val, owner: self)
+			if let val = js["indication"] as? [NSDictionary] {
+				self.indication = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["class"] as? String {
 				self.klass = val
@@ -121,10 +113,13 @@ public class Encounter: FHIRResource
 				self.location = EncounterLocation.from(val, owner: self) as? [EncounterLocation]
 			}
 			if let val = js["partOf"] as? NSDictionary {
-				self.partOf = FHIRReference(json: val, owner: self)
+				self.partOf = Reference(json: val, owner: self)
 			}
 			if let val = js["participant"] as? [NSDictionary] {
 				self.participant = EncounterParticipant.from(val, owner: self) as? [EncounterParticipant]
+			}
+			if let val = js["patient"] as? NSDictionary {
+				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["period"] as? NSDictionary {
 				self.period = Period(json: val, owner: self)
@@ -136,44 +131,13 @@ public class Encounter: FHIRResource
 				self.reason = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["serviceProvider"] as? NSDictionary {
-				self.serviceProvider = FHIRReference(json: val, owner: self)
+				self.serviceProvider = Reference(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? NSDictionary {
-				self.subject = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
-			}
-			if let val = js["type"] as? [NSDictionary] {
-				self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
-			}
-		}
-	}
-}
-
-
-/**
- *  List of participants involved in the encounter.
- *
- *  The main practitioner responsible for providing the service.
- */
-public class EncounterParticipant: FHIRElement
-{	
-	/// Persons involved in the encounter other than the patient
-	public var individual: FHIRReference<Practitioner>?
-	
-	/// Role of participant in encounter
-	public var type: [CodeableConcept]?
-	
-
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-			if let val = js["individual"] as? NSDictionary {
-				self.individual = FHIRReference(json: val, owner: self)
+			if let val = js["statusHistory"] as? [NSDictionary] {
+				self.statusHistory = EncounterStatusHistory.from(val, owner: self) as? [EncounterStatusHistory]
 			}
 			if let val = js["type"] as? [NSDictionary] {
 				self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
@@ -187,30 +151,28 @@ public class EncounterParticipant: FHIRElement
  *  Details about an admission to a clinic.
  */
 public class EncounterHospitalization: FHIRElement
-{	
-	/// Where the patient stays during this encounter
-	public var accomodation: [EncounterHospitalizationAccomodation]?
+{
+	override public class var resourceName: String {
+		get { return "EncounterHospitalization" }
+	}
 	
 	/// From where patient was admitted (physician referral, transfer)
 	public var admitSource: CodeableConcept?
 	
 	/// Location to which the patient is discharged
-	public var destination: FHIRReference<Location>?
+	public var destination: Reference?
 	
 	/// Dietary restrictions for the patient
 	public var diet: CodeableConcept?
 	
 	/// The final diagnosis given a patient before release from the hospital after all testing, surgery, and workup are complete
-	public var dischargeDiagnosis: FHIRReference<FHIRResource>?
+	public var dischargeDiagnosis: Reference?
 	
 	/// Category or kind of location after discharge
 	public var dischargeDisposition: CodeableConcept?
 	
 	/// The location from which the patient came before admission
-	public var origin: FHIRReference<Location>?
-	
-	/// Period during which the patient was admitted
-	public var period: Period?
+	public var origin: Reference?
 	
 	/// Pre-admission identifier
 	public var preAdmissionIdentifier: Identifier?
@@ -228,29 +190,23 @@ public class EncounterHospitalization: FHIRElement
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["accomodation"] as? [NSDictionary] {
-				self.accomodation = EncounterHospitalizationAccomodation.from(val, owner: self) as? [EncounterHospitalizationAccomodation]
-			}
 			if let val = js["admitSource"] as? NSDictionary {
 				self.admitSource = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["destination"] as? NSDictionary {
-				self.destination = FHIRReference(json: val, owner: self)
+				self.destination = Reference(json: val, owner: self)
 			}
 			if let val = js["diet"] as? NSDictionary {
 				self.diet = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["dischargeDiagnosis"] as? NSDictionary {
-				self.dischargeDiagnosis = FHIRReference(json: val, owner: self)
+				self.dischargeDiagnosis = Reference(json: val, owner: self)
 			}
 			if let val = js["dischargeDisposition"] as? NSDictionary {
 				self.dischargeDisposition = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["origin"] as? NSDictionary {
-				self.origin = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["period"] as? NSDictionary {
-				self.period = Period(json: val, owner: self)
+				self.origin = Reference(json: val, owner: self)
 			}
 			if let val = js["preAdmissionIdentifier"] as? NSDictionary {
 				self.preAdmissionIdentifier = Identifier(json: val, owner: self)
@@ -270,51 +226,29 @@ public class EncounterHospitalization: FHIRElement
 
 
 /**
- *  Where the patient stays during this encounter.
- */
-public class EncounterHospitalizationAccomodation: FHIRElement
-{	
-	/// The bed that is assigned to the patient
-	public var bed: FHIRReference<Location>?
-	
-	/// Period during which the patient was assigned the bed
-	public var period: Period?
-	
-
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-			if let val = js["bed"] as? NSDictionary {
-				self.bed = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["period"] as? NSDictionary {
-				self.period = Period(json: val, owner: self)
-			}
-		}
-	}
-}
-
-
-/**
  *  List of locations the patient has been at.
  *
  *  List of locations at which the patient has been.
  */
 public class EncounterLocation: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "EncounterLocation" }
+	}
+	
 	/// Location the encounter takes place
-	public var location: FHIRReference<Location>?
+	public var location: Reference?
 	
 	/// Time period during which the patient was present at the location
 	public var period: Period?
 	
-	public convenience init(location: FHIRReference<Location>?, period: Period?) {
+	/// planned | present | reserved
+	public var status: String?
+	
+	public convenience init(location: Reference?) {
 		self.init(json: nil)
 		if nil != location {
 			self.location = location
-		}
-		if nil != period {
-			self.period = period
 		}
 	}	
 
@@ -322,10 +256,94 @@ public class EncounterLocation: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["location"] as? NSDictionary {
-				self.location = FHIRReference(json: val, owner: self)
+				self.location = Reference(json: val, owner: self)
 			}
 			if let val = js["period"] as? NSDictionary {
 				self.period = Period(json: val, owner: self)
+			}
+			if let val = js["status"] as? String {
+				self.status = val
+			}
+		}
+	}
+}
+
+
+/**
+ *  List of participants involved in the encounter.
+ *
+ *  The main practitioner responsible for providing the service.
+ */
+public class EncounterParticipant: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "EncounterParticipant" }
+	}
+	
+	/// Persons involved in the encounter other than the patient
+	public var individual: Reference?
+	
+	/// Period of time during the encounter participant was present
+	public var period: Period?
+	
+	/// Role of participant in encounter
+	public var type: [CodeableConcept]?
+	
+
+	public required init(json: NSDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["individual"] as? NSDictionary {
+				self.individual = Reference(json: val, owner: self)
+			}
+			if let val = js["period"] as? NSDictionary {
+				self.period = Period(json: val, owner: self)
+			}
+			if let val = js["type"] as? [NSDictionary] {
+				self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			}
+		}
+	}
+}
+
+
+/**
+ *  List of Encounter statuses.
+ *
+ *  The current status is always found in the current version of the resource. This status history permits the encounter
+ *  resource to contain the status history without the needing to read through the historical versions of the resource,
+ *  or even have the server store them.
+ */
+public class EncounterStatusHistory: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "EncounterStatusHistory" }
+	}
+	
+	/// The time that the episode was in the specified status
+	public var period: Period?
+	
+	/// planned | arrived | in progress | onleave | finished | cancelled
+	public var status: String?
+	
+	public convenience init(period: Period?, status: String?) {
+		self.init(json: nil)
+		if nil != period {
+			self.period = period
+		}
+		if nil != status {
+			self.status = status
+		}
+	}	
+
+	public required init(json: NSDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["period"] as? NSDictionary {
+				self.period = Period(json: val, owner: self)
+			}
+			if let val = js["status"] as? String {
+				self.status = val
 			}
 		}
 	}

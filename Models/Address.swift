@@ -2,7 +2,7 @@
 //  Address.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Address.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (Address.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -11,6 +11,9 @@ import Foundation
 
 /**
  *  A postal address.
+ *
+ *  There is a variety of postal address formats defined around the world. This format defines a superset that is the
+ *  basis for all addresses around the world.
  */
 public class Address: FHIRElement
 {
@@ -30,6 +33,9 @@ public class Address: FHIRElement
 	/// Time period when address was/is in use
 	public var period: Period?
 	
+	/// Postal code for area
+	public var postalCode: String?
+	
 	/// Sub-unit of country (abreviations ok)
 	public var state: String?
 	
@@ -38,9 +44,6 @@ public class Address: FHIRElement
 	
 	/// home | work | temp | old - purpose of this address
 	public var use: String?
-	
-	/// Postal code for area
-	public var zip: String?
 	
 
 	public required init(json: NSDictionary?) {
@@ -58,6 +61,9 @@ public class Address: FHIRElement
 			if let val = js["period"] as? NSDictionary {
 				self.period = Period(json: val, owner: self)
 			}
+			if let val = js["postalCode"] as? String {
+				self.postalCode = val
+			}
 			if let val = js["state"] as? String {
 				self.state = val
 			}
@@ -66,9 +72,6 @@ public class Address: FHIRElement
 			}
 			if let val = js["use"] as? String {
 				self.use = val
-			}
-			if let val = js["zip"] as? String {
-				self.zip = val
 			}
 		}
 	}

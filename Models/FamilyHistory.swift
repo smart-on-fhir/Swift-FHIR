@@ -2,7 +2,7 @@
 //  FamilyHistory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (familyhistory.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (familyhistory.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,16 +12,8 @@ import Foundation
 /**
  *  Information about patient's relatives, relevant for patient.
  *
- *  Scope and Usage This resource records significant health events and conditions for people related to the subject.
- *  This information can be known to different levels of accuracy. Sometimes the exact condition ('asthma') is known,
- *  and sometimes it is less precise ('some sort of cancer'). Equally, sometimes the person can be identified ('my aunt
- *  Agatha') and sometimes all that is known is that the person was an uncle.
- *  
- *  This resource represents a simple structure used to capture an 'elementary' family history. However, it can also be
- *  the basis for capturing a more rigorous history useful for genetic and other analysis - refer to the Genetic
- *  Pedigree profile for an example.
- *  
- *  The entire family history for an individual is stored in a single resource.
+ *  Significant health events and conditions for people related to the subject relevant in the context of care for the
+ *  subject.
  */
 public class FamilyHistory: FHIRResource
 {
@@ -29,45 +21,45 @@ public class FamilyHistory: FHIRResource
 		get { return "FamilyHistory" }
 	}
 	
+	/// When history was captured/updated
+	public var date: NSDate?
+	
 	/// External Id(s) for this record
 	public var identifier: [Identifier]?
 	
 	/// Additional details not covered elsewhere
 	public var note: String?
 	
+	/// Patient history is about
+	public var patient: Reference?
+	
 	/// Relative described by history
 	public var relation: [FamilyHistoryRelation]?
 	
-	/// Patient history is about
-	public var subject: FHIRReference<Patient>?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
-	
-	public convenience init(subject: FHIRReference<Patient>?) {
+	public convenience init(patient: Reference?) {
 		self.init(json: nil)
-		if nil != subject {
-			self.subject = subject
+		if nil != patient {
+			self.patient = patient
 		}
 	}	
 
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["date"] as? String {
+				self.date = NSDate(json: val)
+			}
 			if let val = js["identifier"] as? [NSDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["note"] as? String {
 				self.note = val
 			}
+			if let val = js["patient"] as? NSDictionary {
+				self.patient = Reference(json: val, owner: self)
+			}
 			if let val = js["relation"] as? [NSDictionary] {
 				self.relation = FamilyHistoryRelation.from(val, owner: self) as? [FamilyHistoryRelation]
-			}
-			if let val = js["subject"] as? NSDictionary {
-				self.subject = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
 			}
 		}
 	}
@@ -80,7 +72,20 @@ public class FamilyHistory: FHIRResource
  *  The related person. Each FamilyHistory resource contains the entire family history for a single person.
  */
 public class FamilyHistoryRelation: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "FamilyHistoryRelation" }
+	}
+	
+	/// (approximate) age
+	public var ageAge: Age?
+	
+	/// (approximate) age
+	public var ageRange: Range?
+	
+	/// (approximate) age
+	public var ageString: String?
+	
 	/// (approximate) date of birth
 	public var bornDate: NSDate?
 	
@@ -127,6 +132,15 @@ public class FamilyHistoryRelation: FHIRElement
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["ageAge"] as? NSDictionary {
+				self.ageAge = Age(json: val, owner: self)
+			}
+			if let val = js["ageRange"] as? NSDictionary {
+				self.ageRange = Range(json: val, owner: self)
+			}
+			if let val = js["ageString"] as? String {
+				self.ageString = val
+			}
 			if let val = js["bornDate"] as? String {
 				self.bornDate = NSDate(json: val)
 			}
@@ -176,7 +190,11 @@ public class FamilyHistoryRelation: FHIRElement
  *  condition.
  */
 public class FamilyHistoryRelationCondition: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "FamilyHistoryRelationCondition" }
+	}
+	
 	/// Extra information about condition
 	public var note: String?
 	

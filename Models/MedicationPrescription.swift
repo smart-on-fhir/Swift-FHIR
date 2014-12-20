@@ -2,7 +2,7 @@
 //  MedicationPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (medicationprescription.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (medicationprescription.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,11 +12,7 @@ import Foundation
 /**
  *  Prescription of medication to for patient.
  *
- *  Scope and Usage This resource covers all orders for medications for a patient. This includes in-patient medication
- *  orders as well as community orders (whether filled by the prescriber or by a pharmacy). It also includes orders for
- *  over-the-counter medications (e.g. Aspirin) and dietary supplements. It may be used to support the order of
- *  medication-related devices. It is not intended for use in prescribing particular diets, or for ordering non-
- *  medication-related items (eye-glasses, supplies, etc.)
+ *  An order for both supply of the medication and the instructions for administration of the medicine to a patient.
  */
 public class MedicationPrescription: FHIRResource
 {
@@ -34,34 +30,31 @@ public class MedicationPrescription: FHIRResource
 	public var dosageInstruction: [MedicationPrescriptionDosageInstruction]?
 	
 	/// Created during encounter / admission / stay
-	public var encounter: FHIRReference<Encounter>?
+	public var encounter: Reference?
 	
 	/// External identifier
 	public var identifier: [Identifier]?
 	
 	/// Medication to be taken
-	public var medication: FHIRReference<Medication>?
+	public var medication: Reference?
 	
 	/// Who prescription is for
-	public var patient: FHIRReference<Patient>?
+	public var patient: Reference?
 	
 	/// Who ordered the medication(s)
-	public var prescriber: FHIRReference<Practitioner>?
+	public var prescriber: Reference?
 	
 	/// Reason or indication for writing the prescription
 	public var reasonCodeableConcept: CodeableConcept?
 	
 	/// Reason or indication for writing the prescription
-	public var reasonResource: FHIRReference<Condition>?
+	public var reasonReference: Reference?
 	
 	/// active | on hold | completed | entered in error | stopped | superceded
 	public var status: String?
 	
 	/// Any restrictions on medication substitution?
 	public var substitution: MedicationPrescriptionSubstitution?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
 	
 
 	public required init(json: NSDictionary?) {
@@ -77,25 +70,25 @@ public class MedicationPrescription: FHIRResource
 				self.dosageInstruction = MedicationPrescriptionDosageInstruction.from(val, owner: self) as? [MedicationPrescriptionDosageInstruction]
 			}
 			if let val = js["encounter"] as? NSDictionary {
-				self.encounter = FHIRReference(json: val, owner: self)
+				self.encounter = Reference(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? [NSDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["medication"] as? NSDictionary {
-				self.medication = FHIRReference(json: val, owner: self)
+				self.medication = Reference(json: val, owner: self)
 			}
 			if let val = js["patient"] as? NSDictionary {
-				self.patient = FHIRReference(json: val, owner: self)
+				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["prescriber"] as? NSDictionary {
-				self.prescriber = FHIRReference(json: val, owner: self)
+				self.prescriber = Reference(json: val, owner: self)
 			}
 			if let val = js["reasonCodeableConcept"] as? NSDictionary {
 				self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["reasonResource"] as? NSDictionary {
-				self.reasonResource = FHIRReference(json: val, owner: self)
+			if let val = js["reasonReference"] as? NSDictionary {
+				self.reasonReference = Reference(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
@@ -103,8 +96,55 @@ public class MedicationPrescription: FHIRResource
 			if let val = js["substitution"] as? NSDictionary {
 				self.substitution = MedicationPrescriptionSubstitution(json: val, owner: self)
 			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+		}
+	}
+}
+
+
+/**
+ *  Medication supply authorization.
+ *
+ *  Deals with details of the dispense part of the order.
+ */
+public class MedicationPrescriptionDispense: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "MedicationPrescriptionDispense" }
+	}
+	
+	/// Days supply per dispense
+	public var expectedSupplyDuration: Duration?
+	
+	/// Product to be supplied
+	public var medication: Reference?
+	
+	/// # of refills authorized
+	public var numberOfRepeatsAllowed: Int?
+	
+	/// Amount of medication to supply per dispense
+	public var quantity: Quantity?
+	
+	/// Time period supply is authorized for
+	public var validityPeriod: Period?
+	
+
+	public required init(json: NSDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["expectedSupplyDuration"] as? NSDictionary {
+				self.expectedSupplyDuration = Duration(json: val, owner: self)
+			}
+			if let val = js["medication"] as? NSDictionary {
+				self.medication = Reference(json: val, owner: self)
+			}
+			if let val = js["numberOfRepeatsAllowed"] as? Int {
+				self.numberOfRepeatsAllowed = val
+			}
+			if let val = js["quantity"] as? NSDictionary {
+				self.quantity = Quantity(json: val, owner: self)
+			}
+			if let val = js["validityPeriod"] as? NSDictionary {
+				self.validityPeriod = Period(json: val, owner: self)
 			}
 		}
 	}
@@ -117,7 +157,11 @@ public class MedicationPrescription: FHIRResource
  *  Indicates how the medication is to be used by the patient.
  */
 public class MedicationPrescriptionDosageInstruction: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "MedicationPrescriptionDosageInstruction" }
+	}
+	
 	/// Supplemental instructions - e.g. "with meals"
 	public var additionalInstructions: CodeableConcept?
 	
@@ -142,20 +186,20 @@ public class MedicationPrescriptionDosageInstruction: FHIRElement
 	/// How drug should enter body
 	public var route: CodeableConcept?
 	
+	/// When medication should be administered
+	public var scheduledDateTime: NSDate?
+	
+	/// When medication should be administered
+	public var scheduledPeriod: Period?
+	
+	/// When medication should be administered
+	public var scheduledTiming: Timing?
+	
 	/// Body site to administer to
 	public var site: CodeableConcept?
 	
 	/// Dosage instructions expressed as text
 	public var text: String?
-	
-	/// When medication should be administered
-	public var timingDateTime: NSDate?
-	
-	/// When medication should be administered
-	public var timingPeriod: Period?
-	
-	/// When medication should be administered
-	public var timingSchedule: Schedule?
 	
 
 	public required init(json: NSDictionary?) {
@@ -185,66 +229,20 @@ public class MedicationPrescriptionDosageInstruction: FHIRElement
 			if let val = js["route"] as? NSDictionary {
 				self.route = CodeableConcept(json: val, owner: self)
 			}
+			if let val = js["scheduledDateTime"] as? String {
+				self.scheduledDateTime = NSDate(json: val)
+			}
+			if let val = js["scheduledPeriod"] as? NSDictionary {
+				self.scheduledPeriod = Period(json: val, owner: self)
+			}
+			if let val = js["scheduledTiming"] as? NSDictionary {
+				self.scheduledTiming = Timing(json: val, owner: self)
+			}
 			if let val = js["site"] as? NSDictionary {
 				self.site = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["text"] as? String {
 				self.text = val
-			}
-			if let val = js["timingDateTime"] as? String {
-				self.timingDateTime = NSDate(json: val)
-			}
-			if let val = js["timingPeriod"] as? NSDictionary {
-				self.timingPeriod = Period(json: val, owner: self)
-			}
-			if let val = js["timingSchedule"] as? NSDictionary {
-				self.timingSchedule = Schedule(json: val, owner: self)
-			}
-		}
-	}
-}
-
-
-/**
- *  Medication supply authorization.
- *
- *  Deals with details of the dispense part of the order.
- */
-public class MedicationPrescriptionDispense: FHIRElement
-{	
-	/// Days supply per dispense
-	public var expectedSupplyDuration: Duration?
-	
-	/// Product to be supplied
-	public var medication: FHIRReference<Medication>?
-	
-	/// # of refills authorized
-	public var numberOfRepeatsAllowed: Int?
-	
-	/// Amount of medication to supply per dispense
-	public var quantity: Quantity?
-	
-	/// Time period supply is authorized for
-	public var validityPeriod: Period?
-	
-
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-			if let val = js["expectedSupplyDuration"] as? NSDictionary {
-				self.expectedSupplyDuration = Duration(json: val, owner: self)
-			}
-			if let val = js["medication"] as? NSDictionary {
-				self.medication = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["numberOfRepeatsAllowed"] as? Int {
-				self.numberOfRepeatsAllowed = val
-			}
-			if let val = js["quantity"] as? NSDictionary {
-				self.quantity = Quantity(json: val, owner: self)
-			}
-			if let val = js["validityPeriod"] as? NSDictionary {
-				self.validityPeriod = Period(json: val, owner: self)
 			}
 		}
 	}
@@ -259,7 +257,11 @@ public class MedicationPrescriptionDispense: FHIRElement
  *  intent. If nothing is specified substitution may be done.
  */
 public class MedicationPrescriptionSubstitution: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "MedicationPrescriptionSubstitution" }
+	}
+	
 	/// Why should substitution (not) be made
 	public var reason: CodeableConcept?
 	

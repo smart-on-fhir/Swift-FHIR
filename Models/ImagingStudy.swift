@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (imagingstudy.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (imagingstudy.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,15 +12,10 @@ import Foundation
 /**
  *  A set of images produced in single study (one or more series of references images).
  *
- *  Scope and Usage This resource summarizes a series of images or other instances generated as part of an imaging
- *  study, and provides references to where the images are available using WADO-RS. This resource is used to make
- *  information concerning images etc. that are available in other clinical contexts such as diagnostic reports, Care
- *  Plans, etc. Also, see the use case description below.
- *  
- *  This resources has been specifically designed with use in DICOM contexts in mind. The content is closely based on
- *  the definitions of the equivalent DICOM constructs, and informed by usage patterns already established through DICOM
- *  implementation practices, including XDS-I. It is not, however, necessary to use DICOM infrastructure in order to use
- *  this resource.
+ *  Representation of the content produced in a DICOM imaging study. A study comprises a set of Series, each of which
+ *  includes a set of Service-Object Pair Instances (SOP Instances - images or other data) acquired or produced in a
+ *  common context.  A Series is of only one modality (e.g., X-ray, CT, MR, ultrasound), but a Study may have multiple
+ *  Series of different modalities.
  */
 public class ImagingStudy: FHIRResource
 {
@@ -29,16 +24,13 @@ public class ImagingStudy: FHIRResource
 	}
 	
 	/// Accession Number (0008,0050)
-	public var accessionNo: Identifier?
+	public var accession: Identifier?
 	
 	/// ONLINE | OFFLINE | NEARLINE | UNAVAILABLE (0008,0056)
 	public var availability: String?
 	
 	/// Diagnoses etc with request (0040,1002)
 	public var clinicalInformation: String?
-	
-	/// When the study was performed
-	public var dateTime: NSDate?
 	
 	/// Institution-generated description (0008,1030)
 	public var description: String?
@@ -47,10 +39,10 @@ public class ImagingStudy: FHIRResource
 	public var identifier: [Identifier]?
 	
 	/// Who interpreted images (0008,1060)
-	public var interpreter: FHIRReference<Practitioner>?
+	public var interpreter: Reference?
 	
 	/// All series.modality if actual acquisition modalities
-	public var modality: [String]?
+	public var modalityList: [String]?
 	
 	/// Number of Study Related Instances (0020,1208)
 	public var numberOfInstances: Int?
@@ -59,22 +51,22 @@ public class ImagingStudy: FHIRResource
 	public var numberOfSeries: Int?
 	
 	/// Order(s) that caused this study to be performed
-	public var order: [FHIRReference<DiagnosticOrder>]?
+	public var order: [Reference]?
+	
+	/// Who the images are of
+	public var patient: Reference?
 	
 	/// Type of procedure performed (0008,1032)
 	public var procedure: [Coding]?
 	
 	/// Referring physician (0008,0090)
-	public var referrer: FHIRReference<Practitioner>?
+	public var referrer: Reference?
 	
 	/// Each study has one or more series of instances
 	public var series: [ImagingStudySeries]?
 	
-	/// Who the images are of
-	public var subject: FHIRReference<Patient>?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
+	/// When the study was started (0008,0020)+(0008,0030)
+	public var started: NSDate?
 	
 	/// Formal identifier for the study (0020,000D)
 	public var uid: String?
@@ -82,7 +74,7 @@ public class ImagingStudy: FHIRResource
 	/// Retrieve URI (0008,1190)
 	public var url: NSURL?
 	
-	public convenience init(numberOfInstances: Int?, numberOfSeries: Int?, subject: FHIRReference<Patient>?, uid: String?) {
+	public convenience init(numberOfInstances: Int?, numberOfSeries: Int?, patient: Reference?, uid: String?) {
 		self.init(json: nil)
 		if nil != numberOfInstances {
 			self.numberOfInstances = numberOfInstances
@@ -90,8 +82,8 @@ public class ImagingStudy: FHIRResource
 		if nil != numberOfSeries {
 			self.numberOfSeries = numberOfSeries
 		}
-		if nil != subject {
-			self.subject = subject
+		if nil != patient {
+			self.patient = patient
 		}
 		if nil != uid {
 			self.uid = uid
@@ -101,17 +93,14 @@ public class ImagingStudy: FHIRResource
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["accessionNo"] as? NSDictionary {
-				self.accessionNo = Identifier(json: val, owner: self)
+			if let val = js["accession"] as? NSDictionary {
+				self.accession = Identifier(json: val, owner: self)
 			}
 			if let val = js["availability"] as? String {
 				self.availability = val
 			}
 			if let val = js["clinicalInformation"] as? String {
 				self.clinicalInformation = val
-			}
-			if let val = js["dateTime"] as? String {
-				self.dateTime = NSDate(json: val)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
@@ -120,10 +109,10 @@ public class ImagingStudy: FHIRResource
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["interpreter"] as? NSDictionary {
-				self.interpreter = FHIRReference(json: val, owner: self)
+				self.interpreter = Reference(json: val, owner: self)
 			}
-			if let val = js["modality"] as? [String] {
-				self.modality = val
+			if let val = js["modalityList"] as? [String] {
+				self.modalityList = val
 			}
 			if let val = js["numberOfInstances"] as? Int {
 				self.numberOfInstances = val
@@ -132,22 +121,22 @@ public class ImagingStudy: FHIRResource
 				self.numberOfSeries = val
 			}
 			if let val = js["order"] as? [NSDictionary] {
-				self.order = FHIRReference.from(val, owner: self)
+				self.order = Reference.from(val, owner: self) as? [Reference]
+			}
+			if let val = js["patient"] as? NSDictionary {
+				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["procedure"] as? [NSDictionary] {
 				self.procedure = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["referrer"] as? NSDictionary {
-				self.referrer = FHIRReference(json: val, owner: self)
+				self.referrer = Reference(json: val, owner: self)
 			}
 			if let val = js["series"] as? [NSDictionary] {
 				self.series = ImagingStudySeries.from(val, owner: self) as? [ImagingStudySeries]
 			}
-			if let val = js["subject"] as? NSDictionary {
-				self.subject = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+			if let val = js["started"] as? String {
+				self.started = NSDate(json: val)
 			}
 			if let val = js["uid"] as? String {
 				self.uid = val
@@ -166,7 +155,11 @@ public class ImagingStudy: FHIRResource
  *  Each study has one or more series of image instances.
  */
 public class ImagingStudySeries: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ImagingStudySeries" }
+	}
+	
 	/// ONLINE | OFFLINE | NEARLINE | UNAVAILABLE (0008,0056)
 	public var availability: String?
 	
@@ -185,7 +178,7 @@ public class ImagingStudySeries: FHIRElement
 	/// The modality of the instances in the series (0008,0060)
 	public var modality: String?
 	
-	/// Number of this series in overall sequence (0020,0011)
+	/// Numeric identifier of this series (0020,0011)
 	public var number: Int?
 	
 	/// Number of Series Related Instances (0020,1209)
@@ -197,11 +190,8 @@ public class ImagingStudySeries: FHIRElement
 	/// Retrieve URI (0008,1115 > 0008,1190)
 	public var url: NSURL?
 	
-	public convenience init(instance: [ImagingStudySeriesInstance]?, modality: String?, numberOfInstances: Int?, uid: String?) {
+	public convenience init(modality: String?, numberOfInstances: Int?, uid: String?) {
 		self.init(json: nil)
-		if nil != instance {
-			self.instance = instance
-		}
 		if nil != modality {
 			self.modality = modality
 		}
@@ -257,9 +247,13 @@ public class ImagingStudySeries: FHIRElement
  *  A single image taken from a patient.
  */
 public class ImagingStudySeriesInstance: FHIRElement
-{	
-	/// A FHIR resource with content for this instance
-	public var attachment: FHIRReference<FHIRResource>?
+{
+	override public class var resourceName: String {
+		get { return "ImagingStudySeriesInstance" }
+	}
+	
+	/// Content for this instance
+	public var attachment: Reference?
 	
 	/// The number of this instance in the series (0020,0013)
 	public var number: Int?
@@ -293,7 +287,7 @@ public class ImagingStudySeriesInstance: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["attachment"] as? NSDictionary {
-				self.attachment = FHIRReference(json: val, owner: self)
+				self.attachment = Reference(json: val, owner: self)
 			}
 			if let val = js["number"] as? Int {
 				self.number = val

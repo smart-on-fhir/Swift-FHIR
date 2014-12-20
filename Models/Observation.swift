@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (observation.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (observation.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,21 +12,7 @@ import Foundation
 /**
  *  Measurements and simple assertions.
  *
- *  Scope and Usage Observations are a central element in healthcare, used to support diagnosis, monitor progress,
- *  determine baselines and patterns and even capture demographic characteristics. Most observations are simple
- *  name/value pair assertions with some metadata, but some observations group other observations together logically, or
- *  even are multi-component observations. Note that the resources DiagnosticReport and DeviceObservationReport provide
- *  a clinical or workflow context for a set of observations. Expected uses for the Observation resource include:
- *  
- *  * Vital signs: temperature, blood pressure, respiration rate
- *  * Laboratory Data and other Diagnostic Measures
- *  * Measurements emitted by Devices
- *  * Clinical assessments such as APGAR
- *  * Personal characteristics: height, weight, eye-color
- *  * Diagnoses (Note: trackable conditions, allergies, adverse reactions and more complex structures are handled
- *  elsewhere)
- *  * Social history: tobacco use, family supports, cognitive status
- *  * Core characteristics: pregnancy status, death assertion
+ *  Measurements and simple assertions made about a patient, device or other subject.
  */
 public class Observation: FHIRResource
 {
@@ -46,6 +32,12 @@ public class Observation: FHIRResource
 	/// Comments about result
 	public var comments: String?
 	
+	/// unknown | asked | temp | notasked +
+	public var dataAbsentReason: String?
+	
+	/// Healthcare event related to the observation
+	public var encounter: Reference?
+	
 	/// Unique Id for this particular observation
 	public var identifier: Identifier?
 	
@@ -62,7 +54,7 @@ public class Observation: FHIRResource
 	public var name: CodeableConcept?
 	
 	/// Who did the observation
-	public var performer: [FHIRReference<Practitioner>]?
+	public var performer: [Reference]?
 	
 	/// Provides guide for interpretation
 	public var referenceRange: [ObservationReferenceRange]?
@@ -74,22 +66,22 @@ public class Observation: FHIRResource
 	public var reliability: String?
 	
 	/// Specimen used for this observation
-	public var specimen: FHIRReference<Specimen>?
+	public var specimen: Reference?
 	
 	/// registered | preliminary | final | amended +
 	public var status: String?
 	
 	/// Who and/or what this is about
-	public var subject: FHIRReference<Patient>?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
+	public var subject: Reference?
 	
 	/// Actual result
 	public var valueAttachment: Attachment?
 	
 	/// Actual result
 	public var valueCodeableConcept: CodeableConcept?
+	
+	/// Actual result
+	public var valueDateTime: NSDate?
 	
 	/// Actual result
 	public var valuePeriod: Period?
@@ -106,13 +98,13 @@ public class Observation: FHIRResource
 	/// Actual result
 	public var valueString: String?
 	
-	public convenience init(name: CodeableConcept?, reliability: String?, status: String?) {
+	/// Actual result
+	public var valueTime: NSDate?
+	
+	public convenience init(name: CodeableConcept?, status: String?) {
 		self.init(json: nil)
 		if nil != name {
 			self.name = name
-		}
-		if nil != reliability {
-			self.reliability = reliability
 		}
 		if nil != status {
 			self.status = status
@@ -134,6 +126,12 @@ public class Observation: FHIRResource
 			if let val = js["comments"] as? String {
 				self.comments = val
 			}
+			if let val = js["dataAbsentReason"] as? String {
+				self.dataAbsentReason = val
+			}
+			if let val = js["encounter"] as? NSDictionary {
+				self.encounter = Reference(json: val, owner: self)
+			}
 			if let val = js["identifier"] as? NSDictionary {
 				self.identifier = Identifier(json: val, owner: self)
 			}
@@ -150,7 +148,7 @@ public class Observation: FHIRResource
 				self.name = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["performer"] as? [NSDictionary] {
-				self.performer = FHIRReference.from(val, owner: self)
+				self.performer = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["referenceRange"] as? [NSDictionary] {
 				self.referenceRange = ObservationReferenceRange.from(val, owner: self) as? [ObservationReferenceRange]
@@ -162,22 +160,22 @@ public class Observation: FHIRResource
 				self.reliability = val
 			}
 			if let val = js["specimen"] as? NSDictionary {
-				self.specimen = FHIRReference(json: val, owner: self)
+				self.specimen = Reference(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
 			if let val = js["subject"] as? NSDictionary {
-				self.subject = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+				self.subject = Reference(json: val, owner: self)
 			}
 			if let val = js["valueAttachment"] as? NSDictionary {
 				self.valueAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["valueCodeableConcept"] as? NSDictionary {
 				self.valueCodeableConcept = CodeableConcept(json: val, owner: self)
+			}
+			if let val = js["valueDateTime"] as? String {
+				self.valueDateTime = NSDate(json: val)
 			}
 			if let val = js["valuePeriod"] as? NSDictionary {
 				self.valuePeriod = Period(json: val, owner: self)
@@ -194,6 +192,9 @@ public class Observation: FHIRResource
 			if let val = js["valueString"] as? String {
 				self.valueString = val
 			}
+			if let val = js["valueTime"] as? String {
+				self.valueTime = NSDate(json: val)
+			}
 		}
 	}
 }
@@ -205,7 +206,11 @@ public class Observation: FHIRResource
  *  Guidance on how to interpret the value by comparison to a normal or recommended range.
  */
 public class ObservationReferenceRange: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ObservationReferenceRange" }
+	}
+	
 	/// Applicable age range, if relevant
 	public var age: Range?
 	
@@ -217,6 +222,9 @@ public class ObservationReferenceRange: FHIRElement
 	
 	/// Indicates the meaning/use of this range of this range
 	public var meaning: CodeableConcept?
+	
+	/// Text based reference range in an observation
+	public var text: String?
 	
 
 	public required init(json: NSDictionary?) {
@@ -234,6 +242,9 @@ public class ObservationReferenceRange: FHIRElement
 			if let val = js["meaning"] as? NSDictionary {
 				self.meaning = CodeableConcept(json: val, owner: self)
 			}
+			if let val = js["text"] as? String {
+				self.text = val
+			}
 		}
 	}
 }
@@ -245,14 +256,18 @@ public class ObservationReferenceRange: FHIRElement
  *  Related observations - either components, or previous observations, or statements of derivation.
  */
 public class ObservationRelated: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ObservationRelated" }
+	}
+	
 	/// Observation that is related to this one
-	public var target: FHIRReference<Observation>?
+	public var target: Reference?
 	
 	/// has-component | has-member | derived-from | sequel-to | replaces | qualified-by | interfered-by
 	public var type: String?
 	
-	public convenience init(target: FHIRReference<Observation>?) {
+	public convenience init(target: Reference?) {
 		self.init(json: nil)
 		if nil != target {
 			self.target = target
@@ -263,7 +278,7 @@ public class ObservationRelated: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["target"] as? NSDictionary {
-				self.target = FHIRReference(json: val, owner: self)
+				self.target = Reference(json: val, owner: self)
 			}
 			if let val = js["type"] as? String {
 				self.type = val

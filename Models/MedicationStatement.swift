@@ -2,7 +2,7 @@
 //  MedicationStatement.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (medicationstatement.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (medicationstatement.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,11 +12,8 @@ import Foundation
 /**
  *  Administration of medication to a patient.
  *
- *  Scope and Usage Common usage includes:
- *  
- *  * the recording of non-prescription and/or recreational drugs
- *  * the recording of an intake medication list upon admission to hospital
- *  * the summarization of a patient's "active medications" in a patient profile
+ *  A record of medication being taken by a patient, or that the medication has been given to a patient where the record
+ *  is the result of a report from the patient or another clinician.
  */
 public class MedicationStatement: FHIRResource
 {
@@ -25,7 +22,7 @@ public class MedicationStatement: FHIRResource
 	}
 	
 	/// E.g. infusion pump
-	public var device: [FHIRReference<Device>]?
+	public var device: [Reference]?
 	
 	/// Details of how medication was taken
 	public var dosage: [MedicationStatementDosage]?
@@ -34,16 +31,13 @@ public class MedicationStatement: FHIRResource
 	public var identifier: [Identifier]?
 	
 	/// What medication was taken?
-	public var medication: FHIRReference<Medication>?
+	public var medication: Reference?
 	
 	/// Who was/is taking medication
-	public var patient: FHIRReference<Patient>?
+	public var patient: Reference?
 	
 	/// True if asserting medication was not given
 	public var reasonNotGiven: [CodeableConcept]?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
 	
 	/// True if medication is/was not being taken
 	public var wasNotGiven: Bool?
@@ -56,7 +50,7 @@ public class MedicationStatement: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["device"] as? [NSDictionary] {
-				self.device = FHIRReference.from(val, owner: self)
+				self.device = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["dosage"] as? [NSDictionary] {
 				self.dosage = MedicationStatementDosage.from(val, owner: self) as? [MedicationStatementDosage]
@@ -65,16 +59,13 @@ public class MedicationStatement: FHIRResource
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["medication"] as? NSDictionary {
-				self.medication = FHIRReference(json: val, owner: self)
+				self.medication = Reference(json: val, owner: self)
 			}
 			if let val = js["patient"] as? NSDictionary {
-				self.patient = FHIRReference(json: val, owner: self)
+				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["reasonNotGiven"] as? [NSDictionary] {
 				self.reasonNotGiven = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["wasNotGiven"] as? Bool {
 				self.wasNotGiven = val
@@ -93,7 +84,11 @@ public class MedicationStatement: FHIRResource
  *  Indicates how the medication is/was used by the patient.
  */
 public class MedicationStatementDosage: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "MedicationStatementDosage" }
+	}
+	
 	/// Take "as needed" f(or x)
 	public var asNeededBoolean: Bool?
 	
@@ -115,11 +110,11 @@ public class MedicationStatementDosage: FHIRElement
 	/// How did the medication enter the body?
 	public var route: CodeableConcept?
 	
+	/// When/how often was medication taken?
+	public var schedule: Timing?
+	
 	/// Where on body was medication administered?
 	public var site: CodeableConcept?
-	
-	/// When/how often was medication taken?
-	public var timing: Schedule?
 	
 
 	public required init(json: NSDictionary?) {
@@ -146,11 +141,11 @@ public class MedicationStatementDosage: FHIRElement
 			if let val = js["route"] as? NSDictionary {
 				self.route = CodeableConcept(json: val, owner: self)
 			}
+			if let val = js["schedule"] as? NSDictionary {
+				self.schedule = Timing(json: val, owner: self)
+			}
 			if let val = js["site"] as? NSDictionary {
 				self.site = CodeableConcept(json: val, owner: self)
-			}
-			if let val = js["timing"] as? NSDictionary {
-				self.timing = Schedule(json: val, owner: self)
 			}
 		}
 	}

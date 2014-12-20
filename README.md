@@ -8,6 +8,9 @@ Releases will be tagged accordingly.
 Written in _Swift_ the classes are compatible with **iOS 7** and **OS X 10.9** and later.
 Building Swift frameworks requires Xcode 6 or later.
 
+The `master` branch is currently on _DSTU 1_.  
+The `develop` branch is currently on _DSTU 2_ and WiP.
+
 
 SMART on FHIR
 -------------
@@ -27,7 +30,7 @@ Things that have an `X` are done in the sense that they work but have not necess
 [X] Write deserializer that instantiates from JSON
 [X] Reference resolver: resolve contained resources
 [ ] Reference resolver: resolve remote resources
-[~] Construct search URL parameters in code with properties (see below)
+[ ] Construct search URL parameters in code with properties (see below)
 [ ] Construct search URL parameters with NoSQL-like constructs
 [ ] Create a default behavior when a modifierExtension is detected
 [ ] Use non-optional properties and implement failable initializers (see @smart-on-fhir/fhir-parser:feature/swift-failable-init)
@@ -58,8 +61,8 @@ For classes representing models with non-optional properties, a convenience init
 ### Contained Resources
 
 FHIR makes use of [contained resources](http://hl7.org/implement/standards/fhir/references.html#contained).
-Such properties are represented as `FHIRReference` instances, a subclass of FHIR's `ResourceReference`.
-To resolve resource references, call `resolved()` on a FHIRReference property, which will return an instance of the referenced type, if resolving was successful.
+Such properties are represented as `FHIRReference` instances, a subclass of FHIR's `Reference`.
+To resolve resource references, call `resolved(ModelClass)` on a FHIRReference property, which will return an instance of the referenced type, if resolving successfully.
 
 
 Extensions
@@ -68,9 +71,8 @@ Extensions
 All FHIR resources can have one or more [_Extension_](http://hl7.org/implement/standards/fhir/extensibility.html#extension) elements as their `extension` property. Two remarks:
 
 - Since **`extension` is a Swift keyword**, this property has been renamed to `fhirExtension`.
-- The actual extension element has one property named **`value[x]`**, with the _[x]_ part replaced with their CamelCased type.
-    The generator currently creates one `value` property of type `FHIRElement`, our superclass.
-    This should be improved, probably by creating all possible `value[x]` properties.
+- The actual extension element has one property named **`value[x]`**, with the _[x]_ part intended to be replaced with their CamelCased type.
+    The generator expands this property according to the `starexpandtypes` setting in fhir-parser, taken from the extension documentation.
 
 
 Search
@@ -78,7 +80,8 @@ Search
 
 > Search is **work in progress**.
 
-There is **preliminary** support for creating search query URLs in an object-oriented way.
+There was **preliminary** support for creating search query URLs in an object-oriented way in DSTU 1:
+
 Using the `search()` method on either a FHIRResource instance or on a class itself returns a `FHIRSearchParam` instance, which has methods for all currently defined search params.
 These method calls can be chained and will eventually support all possible parameter combinations.
 
@@ -167,9 +170,3 @@ If search is restricted to a reference property, this applies:
     `GET {base-url}/Thing?referenced:InstanceType={id}`
 - If the search token does contain a forward slash it is assumed to be an absolute reference and no `:InstanceType` will be appended:  
     `GET {base-url}/Thing?referenced={uri}`
-
-
-### Weirdnesses
-
-_Observation_ has the search parameter `name-value-[x]` which can adapt to certain types (to replace `[x]`).
-This has yet to be implemented.

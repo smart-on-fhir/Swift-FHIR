@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (immunization.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (immunization.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -11,16 +11,6 @@ import Foundation
 
 /**
  *  Immunization event information.
- *
- *  Scope and Usage The immunization resource is intended to cover the administration of vaccines to patients across all
- *  healthcare disciplines in all care settings and all regions. This includes immunization of both humans and animals
- *  but does not include the administration of non-vaccine agents, even those that may have or claim immunological
- *  effects.
- *  
- *  Additionally, the immunization resource is expected to cover key concepts related to the creation, revision and
- *  querying of a patient's immunization history. This resource - through consultation with the PHER work group - is
- *  believed to meet key use cases and information requirements as defined in the existing HL7 v2.x immunization
- *  implementation guide, HL7 v3 POIZ domain and Immunization Domain Analysis Model.
  */
 public class Immunization: FHIRResource
 {
@@ -44,16 +34,16 @@ public class Immunization: FHIRResource
 	public var identifier: [Identifier]?
 	
 	/// Where did vaccination occur?
-	public var location: FHIRReference<Location>?
+	public var location: Reference?
 	
 	/// Vaccine lot number
 	public var lotNumber: String?
 	
 	/// Vaccine manufacturer
-	public var manufacturer: FHIRReference<Organization>?
+	public var manufacturer: Reference?
 	
 	/// Who administered vaccine?
-	public var performer: FHIRReference<Practitioner>?
+	public var performer: Reference?
 	
 	/// Details of a reaction that follows immunization
 	public var reaction: [ImmunizationReaction]?
@@ -65,7 +55,7 @@ public class Immunization: FHIRResource
 	public var reported: Bool?
 	
 	/// Who ordered vaccination?
-	public var requester: FHIRReference<Practitioner>?
+	public var requester: Reference?
 	
 	/// How vaccine entered body
 	public var route: CodeableConcept?
@@ -74,10 +64,7 @@ public class Immunization: FHIRResource
 	public var site: CodeableConcept?
 	
 	/// Who was immunized?
-	public var subject: FHIRReference<Patient>?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
+	public var subject: Reference?
 	
 	/// What protocol was followed
 	public var vaccinationProtocol: [ImmunizationVaccinationProtocol]?
@@ -85,7 +72,7 @@ public class Immunization: FHIRResource
 	/// Vaccine product administered
 	public var vaccineType: CodeableConcept?
 	
-	public convenience init(date: NSDate?, refusedIndicator: Bool?, reported: Bool?, subject: FHIRReference<Patient>?, vaccineType: CodeableConcept?) {
+	public convenience init(date: NSDate?, refusedIndicator: Bool?, reported: Bool?, subject: Reference?, vaccineType: CodeableConcept?) {
 		self.init(json: nil)
 		if nil != date {
 			self.date = date
@@ -123,16 +110,16 @@ public class Immunization: FHIRResource
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["location"] as? NSDictionary {
-				self.location = FHIRReference(json: val, owner: self)
+				self.location = Reference(json: val, owner: self)
 			}
 			if let val = js["lotNumber"] as? String {
 				self.lotNumber = val
 			}
 			if let val = js["manufacturer"] as? NSDictionary {
-				self.manufacturer = FHIRReference(json: val, owner: self)
+				self.manufacturer = Reference(json: val, owner: self)
 			}
 			if let val = js["performer"] as? NSDictionary {
-				self.performer = FHIRReference(json: val, owner: self)
+				self.performer = Reference(json: val, owner: self)
 			}
 			if let val = js["reaction"] as? [NSDictionary] {
 				self.reaction = ImmunizationReaction.from(val, owner: self) as? [ImmunizationReaction]
@@ -144,7 +131,7 @@ public class Immunization: FHIRResource
 				self.reported = val
 			}
 			if let val = js["requester"] as? NSDictionary {
-				self.requester = FHIRReference(json: val, owner: self)
+				self.requester = Reference(json: val, owner: self)
 			}
 			if let val = js["route"] as? NSDictionary {
 				self.route = CodeableConcept(json: val, owner: self)
@@ -153,10 +140,7 @@ public class Immunization: FHIRResource
 				self.site = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["subject"] as? NSDictionary {
-				self.subject = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+				self.subject = Reference(json: val, owner: self)
 			}
 			if let val = js["vaccinationProtocol"] as? [NSDictionary] {
 				self.vaccinationProtocol = ImmunizationVaccinationProtocol.from(val, owner: self) as? [ImmunizationVaccinationProtocol]
@@ -175,7 +159,11 @@ public class Immunization: FHIRResource
  *  Reasons why a vaccine was administered or refused.
  */
 public class ImmunizationExplanation: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ImmunizationExplanation" }
+	}
+	
 	/// Why immunization occurred
 	public var reason: [CodeableConcept]?
 	
@@ -203,12 +191,16 @@ public class ImmunizationExplanation: FHIRElement
  *  Categorical data indicating that an adverse event is associated in time to an immunization.
  */
 public class ImmunizationReaction: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ImmunizationReaction" }
+	}
+	
 	/// When did reaction start?
 	public var date: NSDate?
 	
 	/// Additional information on reaction
-	public var detail: FHIRReference<AdverseReaction>?
+	public var detail: Reference?
 	
 	/// Was reaction self-reported?
 	public var reported: Bool?
@@ -221,7 +213,7 @@ public class ImmunizationReaction: FHIRElement
 				self.date = NSDate(json: val)
 			}
 			if let val = js["detail"] as? NSDictionary {
-				self.detail = FHIRReference(json: val, owner: self)
+				self.detail = Reference(json: val, owner: self)
 			}
 			if let val = js["reported"] as? Bool {
 				self.reported = val
@@ -237,9 +229,13 @@ public class ImmunizationReaction: FHIRElement
  *  Contains information about the protocol(s) under which the vaccine was administered.
  */
 public class ImmunizationVaccinationProtocol: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ImmunizationVaccinationProtocol" }
+	}
+	
 	/// Who is responsible for protocol
-	public var authority: FHIRReference<Organization>?
+	public var authority: Reference?
 	
 	/// Details of vaccine protocol
 	public var description: String?
@@ -279,7 +275,7 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["authority"] as? NSDictionary {
-				self.authority = FHIRReference(json: val, owner: self)
+				self.authority = Reference(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
 				self.description = val

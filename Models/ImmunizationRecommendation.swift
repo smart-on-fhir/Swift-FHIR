@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (immunizationrecommendation.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (immunizationrecommendation.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,13 +12,7 @@ import Foundation
 /**
  *  Immunization profile.
  *
- *  Scope and Usage The ImmunizationRecommendation resource is intended to cover communication of a specified patient's
- *  immunization recommendation and status across all healthcare disciplines in all care settings and all regions.
- *  
- *  Additionally, the ImmunizationRecommendation resource is expected to cover key concepts related to the querying of a
- *  patient's immunization recommendation and status. This resource - through consultation with the PHER work group - is
- *  believed to meet key use cases and information requirements as defined in the existing HL7 v3 POIZ domain and
- *  Immunization Domain Analysis Model.
+ *  A patient's point-of-time immunization status and recommendation with optional supporting justification.
  */
 public class ImmunizationRecommendation: FHIRResource
 {
@@ -33,12 +27,9 @@ public class ImmunizationRecommendation: FHIRResource
 	public var recommendation: [ImmunizationRecommendationRecommendation]?
 	
 	/// Who this profile is for
-	public var subject: FHIRReference<Patient>?
+	public var subject: Reference?
 	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
-	
-	public convenience init(recommendation: [ImmunizationRecommendationRecommendation]?, subject: FHIRReference<Patient>?) {
+	public convenience init(recommendation: [ImmunizationRecommendationRecommendation]?, subject: Reference?) {
 		self.init(json: nil)
 		if nil != recommendation {
 			self.recommendation = recommendation
@@ -58,10 +49,7 @@ public class ImmunizationRecommendation: FHIRResource
 				self.recommendation = ImmunizationRecommendationRecommendation.from(val, owner: self) as? [ImmunizationRecommendationRecommendation]
 			}
 			if let val = js["subject"] as? NSDictionary {
-				self.subject = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+				self.subject = Reference(json: val, owner: self)
 			}
 		}
 	}
@@ -72,7 +60,11 @@ public class ImmunizationRecommendation: FHIRResource
  *  Vaccine administration recommendations.
  */
 public class ImmunizationRecommendationRecommendation: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ImmunizationRecommendationRecommendation" }
+	}
+	
 	/// Date recommendation created
 	public var date: NSDate?
 	
@@ -89,10 +81,10 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 	public var protokol: ImmunizationRecommendationRecommendationProtocol?
 	
 	/// Past immunizations supporting recommendation
-	public var supportingImmunization: [FHIRReference<Immunization>]?
+	public var supportingImmunization: [Reference]?
 	
 	/// Patient observations supporting recommendation
-	public var supportingPatientInformation: [FHIRReference<Observation>]?
+	public var supportingPatientInformation: [Reference]?
 	
 	/// Vaccine recommendation applies to
 	public var vaccineType: CodeableConcept?
@@ -129,10 +121,10 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 				self.protokol = ImmunizationRecommendationRecommendationProtocol(json: val, owner: self)
 			}
 			if let val = js["supportingImmunization"] as? [NSDictionary] {
-				self.supportingImmunization = FHIRReference.from(val, owner: self)
+				self.supportingImmunization = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["supportingPatientInformation"] as? [NSDictionary] {
-				self.supportingPatientInformation = FHIRReference.from(val, owner: self)
+				self.supportingPatientInformation = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["vaccineType"] as? NSDictionary {
 				self.vaccineType = CodeableConcept(json: val, owner: self)
@@ -148,7 +140,11 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
  *  Vaccine date recommendations - e.g. earliest date to administer, latest date to administer, etc.
  */
 public class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ImmunizationRecommendationRecommendationDateCriterion" }
+	}
+	
 	/// Type of date
 	public var code: CodeableConcept?
 	
@@ -185,9 +181,13 @@ public class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
  *  Contains information about the protocol under which the vaccine was administered.
  */
 public class ImmunizationRecommendationRecommendationProtocol: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ImmunizationRecommendationRecommendationProtocol" }
+	}
+	
 	/// Who is responsible for protocol
-	public var authority: FHIRReference<Organization>?
+	public var authority: Reference?
 	
 	/// Protocol details
 	public var description: String?
@@ -203,7 +203,7 @@ public class ImmunizationRecommendationRecommendationProtocol: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["authority"] as? NSDictionary {
-				self.authority = FHIRReference(json: val, owner: self)
+				self.authority = Reference(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
 				self.description = val

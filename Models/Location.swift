@@ -2,7 +2,7 @@
 //  Location.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.0.82.2943 (location.profile.json) on 2014-11-12.
+//  Generated from FHIR 0.4.0.3898 (location.profile.json) on 2014-12-20.
 //  2014, SMART Platforms.
 //
 
@@ -12,17 +12,8 @@ import Foundation
 /**
  *  Details and position information for a physical place.
  *
- *  Scope and Usage A Location includes both incidental locations (a place which is used for healthcare without prior
- *  designation or authorization) and dedicated, formally appointed locations. Locations may be private, public, mobile
- *  or fixed and scale from small freezers to full hospital buildings or parking garages.
- *  
- *  Examples of Locations are:
- *  
- *  * Building, ward, corridor or room
- *  * Freezer, incubator
- *  * Vehicle or lift
- *  * Home, shed, or a garage
- *  * Road, parking place, a park
+ *  Details and position information for a physical place where services are provided  and resources and participants
+ *  may be stored, found, contained or accommodated.
  */
 public class Location: FHIRResource
 {
@@ -37,10 +28,10 @@ public class Location: FHIRResource
 	public var description: String?
 	
 	/// Unique code or number identifying the location to its users
-	public var identifier: Identifier?
+	public var identifier: [Identifier]?
 	
 	/// The organization that is responsible for the provisioning and upkeep of the location
-	public var managingOrganization: FHIRReference<Organization>?
+	public var managingOrganization: Reference?
 	
 	/// instance | kind
 	public var mode: String?
@@ -49,7 +40,7 @@ public class Location: FHIRResource
 	public var name: String?
 	
 	/// Another Location which this Location is physically part of
-	public var partOf: FHIRReference<Location>?
+	public var partOf: Reference?
 	
 	/// Physical form of the location
 	public var physicalType: CodeableConcept?
@@ -61,10 +52,7 @@ public class Location: FHIRResource
 	public var status: String?
 	
 	/// Contact details of the location
-	public var telecom: [Contact]?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
+	public var telecom: [ContactPoint]?
 	
 	/// Indicates the type of function performed at the location
 	public var type: CodeableConcept?
@@ -79,11 +67,11 @@ public class Location: FHIRResource
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["identifier"] as? NSDictionary {
-				self.identifier = Identifier(json: val, owner: self)
+			if let val = js["identifier"] as? [NSDictionary] {
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["managingOrganization"] as? NSDictionary {
-				self.managingOrganization = FHIRReference(json: val, owner: self)
+				self.managingOrganization = Reference(json: val, owner: self)
 			}
 			if let val = js["mode"] as? String {
 				self.mode = val
@@ -92,7 +80,7 @@ public class Location: FHIRResource
 				self.name = val
 			}
 			if let val = js["partOf"] as? NSDictionary {
-				self.partOf = FHIRReference(json: val, owner: self)
+				self.partOf = Reference(json: val, owner: self)
 			}
 			if let val = js["physicalType"] as? NSDictionary {
 				self.physicalType = CodeableConcept(json: val, owner: self)
@@ -104,10 +92,7 @@ public class Location: FHIRResource
 				self.status = val
 			}
 			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val, owner: self) as? [Contact]
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 			if let val = js["type"] as? NSDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
@@ -123,7 +108,11 @@ public class Location: FHIRResource
  *  The absolute geographic location of the Location, expressed in a KML compatible manner (see notes below for KML).
  */
 public class LocationPosition: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "LocationPosition" }
+	}
+	
 	/// Altitude as expressed in KML
 	public var altitude: NSDecimalNumber?
 	

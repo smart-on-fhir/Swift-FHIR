@@ -2,7 +2,7 @@
 //  CarePlan2Tests.swift
 //  CarePlan2Tests
 //
-//  Generated from FHIR 0.4.0.3898 on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 on 2014-12-22.
 //  2014, SMART Platforms.
 //
 

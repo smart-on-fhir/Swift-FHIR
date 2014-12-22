@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (observation.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (observation.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -109,8 +109,8 @@ public class Observation: FHIRResource
 		if nil != status {
 			self.status = status
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -226,7 +226,6 @@ public class ObservationReferenceRange: FHIRElement
 	/// Text based reference range in an observation
 	public var text: String?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -272,8 +271,8 @@ public class ObservationRelated: FHIRElement
 		if nil != target {
 			self.target = target
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

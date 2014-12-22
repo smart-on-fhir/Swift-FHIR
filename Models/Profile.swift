@@ -2,7 +2,7 @@
 //  Profile.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (profile.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (profile.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -86,8 +86,8 @@ public class Profile: FHIRResource
 		if nil != url {
 			self.url = url
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -175,8 +175,8 @@ public class ProfileMapping: FHIRElement
 		if nil != identity {
 			self.identity = identity
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -212,7 +212,6 @@ public class ProfileSnapshot: FHIRElement
 	/// Definition of elements in the resource (if no profile)
 	public var element: [ElementDefinition]?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

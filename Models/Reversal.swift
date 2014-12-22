@@ -2,7 +2,7 @@
 //  Reversal.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (reversal.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (reversal.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -65,8 +65,8 @@ public class Reversal: FHIRResource
 		if nil != nullify {
 			self.nullify = nullify
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -151,8 +151,8 @@ public class ReversalCoverage: FHIRElement
 		if nil != sequence {
 			self.sequence = sequence
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -199,7 +199,6 @@ public class ReversalPayee: FHIRElement
 	/// Payee Type
 	public var type: Coding?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

@@ -2,7 +2,7 @@
 //  HealthcareService.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (healthcareservice.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (healthcareservice.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -98,8 +98,8 @@ public class HealthcareService: FHIRResource
 		if nil != location {
 			self.location = location
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -204,7 +204,6 @@ public class HealthcareServiceAvailableTime: FHIRElement
 	/// Indicates which Days of the week are available between the Start and End Times
 	public var daysOfWeek: [CodeableConcept]?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -248,8 +247,8 @@ public class HealthcareServiceNotAvailableTime: FHIRElement
 		if nil != description {
 			self.description = description
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -287,8 +286,8 @@ public class HealthcareServiceServiceType: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

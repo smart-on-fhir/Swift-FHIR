@@ -2,7 +2,7 @@
 //  Contract.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (contract.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (contract.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -107,7 +107,6 @@ public class Contract: FHIRResource
 	/// Witness to the contract
 	public var witness: [Reference]?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -228,8 +227,8 @@ public class ContractSigner: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -292,7 +291,6 @@ public class ContractTerm: FHIRElement
 	/// Fee, charge or cost per point
 	public var unitPrice: Money?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

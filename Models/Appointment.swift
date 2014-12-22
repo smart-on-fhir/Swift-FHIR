@@ -2,7 +2,7 @@
 //  Appointment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (appointment.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (appointment.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -78,8 +78,8 @@ public class Appointment: FHIRResource
 		if nil != status {
 			self.status = status
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -159,8 +159,8 @@ public class AppointmentParticipant: FHIRElement
 		if nil != status {
 			self.status = status
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

@@ -2,7 +2,7 @@
 //  HumanName.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (HumanName.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (HumanName.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -41,7 +41,6 @@ public class HumanName: FHIRElement
 	/// usual | official | temp | nickname | anonymous | old | maiden
 	public var use: String?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

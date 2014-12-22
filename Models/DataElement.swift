@@ -2,7 +2,7 @@
 //  DataElement.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (dataelement.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (dataelement.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -163,8 +163,8 @@ public class DataElement: FHIRResource
 		if nil != status {
 			self.status = status
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -339,8 +339,8 @@ public class DataElementBinding: FHIRElement
 		if nil != isExtensible {
 			self.isExtensible = isExtensible
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -392,8 +392,8 @@ public class DataElementMapping: FHIRElement
 		if nil != map {
 			self.map = map
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

@@ -2,7 +2,7 @@
 //  OralHealthClaim.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (oralhealthclaim.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (oralhealthclaim.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -107,8 +107,8 @@ public class OralHealthClaim: FHIRResource
 		if nil != patient {
 			self.patient = patient
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -247,8 +247,8 @@ public class OralHealthClaimCoverage: FHIRElement
 		if nil != sequence {
 			self.sequence = sequence
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -306,8 +306,8 @@ public class OralHealthClaimDiagnosis: FHIRElement
 		if nil != sequence {
 			self.sequence = sequence
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -395,8 +395,8 @@ public class OralHealthClaimItem: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -508,8 +508,8 @@ public class OralHealthClaimItemDetail: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -597,8 +597,8 @@ public class OralHealthClaimItemDetailSubDetail: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -654,7 +654,6 @@ public class OralHealthClaimItemProsthesis: FHIRElement
 	/// Prosthetic Material
 	public var priorMaterial: Coding?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -698,8 +697,8 @@ public class OralHealthClaimMissingteeth: FHIRElement
 		if nil != tooth {
 			self.tooth = tooth
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -749,7 +748,6 @@ public class OralHealthClaimOrthoPlan: FHIRElement
 	/// Start date
 	public var start: NSDate?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -802,7 +800,6 @@ public class OralHealthClaimPayee: FHIRElement
 	/// Party to be paid any benefits payable
 	public var type: Coding?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

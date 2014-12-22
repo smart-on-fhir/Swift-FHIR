@@ -2,7 +2,7 @@
 //  CarePlan2.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (careplan2.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (careplan2.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -56,8 +56,8 @@ public class CarePlan2: FHIRResource
 		if nil != status {
 			self.status = status
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -118,8 +118,8 @@ public class CarePlan2Participant: FHIRElement
 		if nil != member {
 			self.member = member
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

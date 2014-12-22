@@ -2,7 +2,7 @@
 //  SearchParameter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (searchparameter.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (searchparameter.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -67,8 +67,8 @@ public class SearchParameter: FHIRResource
 		if nil != url {
 			self.url = url
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

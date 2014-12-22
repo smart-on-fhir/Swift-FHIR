@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (messageheader.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (messageheader.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -72,8 +72,8 @@ public class MessageHeader: FHIRResource
 		if nil != timestamp {
 			self.timestamp = timestamp
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -143,8 +143,8 @@ public class MessageHeaderDestination: FHIRElement
 		if nil != endpoint {
 			self.endpoint = endpoint
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -190,8 +190,8 @@ public class MessageHeaderResponse: FHIRElement
 		if nil != identifier {
 			self.identifier = identifier
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -240,8 +240,8 @@ public class MessageHeaderSource: FHIRElement
 		if nil != endpoint {
 			self.endpoint = endpoint
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

@@ -2,7 +2,7 @@
 //  Distance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (Distance.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (Distance.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -20,7 +20,6 @@ public class Distance: Quantity
 	override public class var resourceName: String {
 		get { return "Distance" }
 	}
-	
 
 }
 

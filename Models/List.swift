@@ -2,7 +2,7 @@
 //  List.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (list.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (list.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -52,8 +52,8 @@ public class List: FHIRResource
 		if nil != mode {
 			self.mode = mode
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -117,8 +117,8 @@ public class ListEntry: FHIRElement
 		if nil != item {
 			self.item = item
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

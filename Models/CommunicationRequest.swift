@@ -2,7 +2,7 @@
 //  CommunicationRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (communicationrequest.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (communicationrequest.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -63,7 +63,6 @@ public class CommunicationRequest: FHIRResource
 	/// Focus of message
 	public var subject: Reference?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -145,8 +144,8 @@ public class CommunicationRequestPayload: FHIRElement
 		if nil != contentString {
 			self.contentString = contentString
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

@@ -2,7 +2,7 @@
 //  EligibilityRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (eligibilityrequest.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (eligibilityrequest.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -42,7 +42,6 @@ public class EligibilityRequest: FHIRResource
 	/// Insurer
 	public var target: Reference?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

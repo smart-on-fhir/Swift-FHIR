@@ -2,7 +2,7 @@
 //  FamilyHistory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (familyhistory.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (familyhistory.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -41,8 +41,8 @@ public class FamilyHistory: FHIRResource
 		if nil != patient {
 			self.patient = patient
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -127,8 +127,8 @@ public class FamilyHistoryRelation: FHIRElement
 		if nil != relationship {
 			self.relationship = relationship
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -218,8 +218,8 @@ public class FamilyHistoryRelationCondition: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

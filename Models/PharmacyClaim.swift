@@ -2,7 +2,7 @@
 //  PharmacyClaim.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (pharmacyclaim.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (pharmacyclaim.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -107,8 +107,8 @@ public class PharmacyClaim: FHIRResource
 		if nil != patient {
 			self.patient = patient
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -247,8 +247,8 @@ public class PharmacyClaimCoverage: FHIRElement
 		if nil != sequence {
 			self.sequence = sequence
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -306,8 +306,8 @@ public class PharmacyClaimDiagnosis: FHIRElement
 		if nil != sequence {
 			self.sequence = sequence
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -392,8 +392,8 @@ public class PharmacyClaimItem: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -502,8 +502,8 @@ public class PharmacyClaimItemDetail: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -591,8 +591,8 @@ public class PharmacyClaimItemDetailSubDetail: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -651,7 +651,6 @@ public class PharmacyClaimPayee: FHIRElement
 	/// Party to be paid any benefits payable
 	public var type: Coding?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

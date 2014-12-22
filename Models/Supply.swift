@@ -2,7 +2,7 @@
 //  Supply.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (supply.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (supply.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -38,7 +38,6 @@ public class Supply: FHIRResource
 	/// requested | dispensed | received | failed | cancelled
 	public var status: String?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -106,7 +105,6 @@ public class SupplyDispense: FHIRElement
 	/// Dispensing time
 	public var whenPrepared: Period?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

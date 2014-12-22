@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (composition.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (composition.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -84,8 +84,8 @@ public class Composition: FHIRResource
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -161,8 +161,8 @@ public class CompositionAttester: FHIRElement
 		if nil != mode {
 			self.mode = mode
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -200,7 +200,6 @@ public class CompositionEvent: FHIRElement
 	/// The period covered by the documentation
 	public var period: Period?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -241,7 +240,6 @@ public class CompositionSection: FHIRElement
 	/// Label for section (e.g. for ToC)
 	public var title: String?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

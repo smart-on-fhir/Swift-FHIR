@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (careplan.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (careplan.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -56,8 +56,8 @@ public class CarePlan: FHIRResource
 		if nil != status {
 			self.status = status
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -134,8 +134,8 @@ public class CarePlanActivity: FHIRElement
 		if nil != prohibited {
 			self.prohibited = prohibited
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -215,8 +215,8 @@ public class CarePlanActivitySimple: FHIRElement
 		if nil != category {
 			self.category = category
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -286,8 +286,8 @@ public class CarePlanGoal: FHIRElement
 		if nil != description {
 			self.description = description
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -330,8 +330,8 @@ public class CarePlanParticipant: FHIRElement
 		if nil != member {
 			self.member = member
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

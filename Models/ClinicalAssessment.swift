@@ -2,7 +2,7 @@
 //  ClinicalAssessment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (clinicalassessment.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (clinicalassessment.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -84,8 +84,8 @@ public class ClinicalAssessment: FHIRResource
 		if nil != patient {
 			self.patient = patient
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -167,8 +167,8 @@ public class ClinicalAssessmentDiagnosis: FHIRElement
 		if nil != item {
 			self.item = item
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -207,8 +207,8 @@ public class ClinicalAssessmentInvestigations: FHIRElement
 		if nil != code {
 			self.code = code
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -243,8 +243,8 @@ public class ClinicalAssessmentRuledOut: FHIRElement
 		if nil != item {
 			self.item = item
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

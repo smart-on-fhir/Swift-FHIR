@@ -2,7 +2,7 @@
 //  ContactPoint.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (ContactPoint.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (ContactPoint.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -33,7 +33,6 @@ public class ContactPoint: FHIRElement
 	/// The actual contact point details
 	public var value: String?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

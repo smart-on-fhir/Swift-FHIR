@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (questionnaire.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (questionnaire.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -47,8 +47,8 @@ public class Questionnaire: FHIRResource
 		if nil != status {
 			self.status = status
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -110,7 +110,6 @@ public class QuestionnaireGroup: FHIRElement
 	/// Name to be displayed for group
 	public var title: String?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -178,7 +177,6 @@ public class QuestionnaireGroupQuestion: FHIRElement
 	/// boolean | decimal | integer | date | dateTime +
 	public var type: String?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

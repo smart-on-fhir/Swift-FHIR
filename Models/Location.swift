@@ -2,7 +2,7 @@
 //  Location.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (location.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (location.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -57,7 +57,6 @@ public class Location: FHIRResource
 	/// Indicates the type of function performed at the location
 	public var type: CodeableConcept?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -130,8 +129,8 @@ public class LocationPosition: FHIRElement
 		if nil != longitude {
 			self.longitude = longitude
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

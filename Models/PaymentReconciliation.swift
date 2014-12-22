@@ -2,7 +2,7 @@
 //  PaymentReconciliation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (paymentreconciliation.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (paymentreconciliation.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -70,8 +70,8 @@ public class PaymentReconciliation: FHIRResource
 		if nil != total {
 			self.total = total
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -162,8 +162,8 @@ public class PaymentReconciliationDetail: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -210,7 +210,6 @@ public class PaymentReconciliationNote: FHIRElement
 	/// display | print | printoper
 	public var type: Coding?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

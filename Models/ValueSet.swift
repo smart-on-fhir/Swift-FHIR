@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (valueset.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (valueset.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -76,8 +76,8 @@ public class ValueSet: FHIRResource
 		if nil != status {
 			self.status = status
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -152,7 +152,6 @@ public class ValueSetCompose: FHIRElement
 	/// Include one or more codes from a code system
 	public var include: [ValueSetComposeInclude]?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -193,8 +192,8 @@ public class ValueSetComposeInclude: FHIRElement
 		if nil != system {
 			self.system = system
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -240,8 +239,8 @@ public class ValueSetComposeIncludeConcept: FHIRElement
 		if nil != code {
 			self.code = code
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -291,8 +290,8 @@ public class ValueSetComposeIncludeFilter: FHIRElement
 		if nil != value {
 			self.value = value
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -336,8 +335,8 @@ public class ValueSetDefine: FHIRElement
 		if nil != system {
 			self.system = system
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -390,8 +389,8 @@ public class ValueSetDefineConcept: FHIRElement
 		if nil != code {
 			self.code = code
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -441,8 +440,8 @@ public class ValueSetDefineConceptDesignation: FHIRElement
 		if nil != value {
 			self.value = value
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -483,8 +482,8 @@ public class ValueSetExpansion: FHIRElement
 		if nil != timestamp {
 			self.timestamp = timestamp
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -531,7 +530,6 @@ public class ValueSetExpansionContains: FHIRElement
 	/// Version in which this code / display is defined
 	public var version: String?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

@@ -2,7 +2,7 @@
 //  RiskAssessment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (riskassessment.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (riskassessment.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -47,7 +47,6 @@ public class RiskAssessment: FHIRResource
 	/// Who/what does assessment apply to?
 	public var subject: Reference?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -123,8 +122,8 @@ public class RiskAssessmentPrediction: FHIRElement
 		if nil != outcome {
 			self.outcome = outcome
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

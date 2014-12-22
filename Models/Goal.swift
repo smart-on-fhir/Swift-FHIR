@@ -2,7 +2,7 @@
 //  Goal.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (goal.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (goal.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -43,8 +43,8 @@ public class Goal: FHIRResource
 		if nil != description {
 			self.description = description
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

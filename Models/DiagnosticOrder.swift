@@ -2,7 +2,7 @@
 //  DiagnosticOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (diagnosticorder.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (diagnosticorder.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -58,8 +58,8 @@ public class DiagnosticOrder: FHIRResource
 		if nil != subject {
 			self.subject = subject
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -133,8 +133,8 @@ public class DiagnosticOrderEvent: FHIRElement
 		if nil != status {
 			self.status = status
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -187,8 +187,8 @@ public class DiagnosticOrderItem: FHIRElement
 		if nil != code {
 			self.code = code
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

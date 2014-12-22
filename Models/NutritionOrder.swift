@@ -2,7 +2,7 @@
 //  NutritionOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (nutritionorder.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (nutritionorder.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -58,8 +58,8 @@ public class NutritionOrder: FHIRResource
 		if nil != subject {
 			self.subject = subject
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -133,8 +133,8 @@ public class NutritionOrderItem: FHIRElement
 		if nil != isInEffect {
 			self.isInEffect = isInEffect
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -205,7 +205,6 @@ public class NutritionOrderItemEnteralFormula: FHIRElement
 	/// How the formula should enter the patient's gastrointestinal tract
 	public var routeofAdministration: CodeableConcept?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -273,7 +272,6 @@ public class NutritionOrderItemOralDiet: FHIRElement
 	/// Type of oral diet or diet restrictions that describe what can be consumed orally
 	public var type: [CodeableConcept]?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -317,7 +315,6 @@ public class NutritionOrderItemOralDietNutrients: FHIRElement
 	/// Type of nutrient that is being modified
 	public var modifier: CodeableConcept?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -353,7 +350,6 @@ public class NutritionOrderItemOralDietTexture: FHIRElement
 	/// Code to indicate how to alter the texture of the foods, e.g., pureed
 	public var modifier: CodeableConcept?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -388,7 +384,6 @@ public class NutritionOrderItemSupplement: FHIRElement
 	/// Type of supplement product requested
 	public var type: CodeableConcept?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

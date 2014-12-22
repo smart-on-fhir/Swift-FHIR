@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (immunization.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (immunization.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -89,8 +89,8 @@ public class Immunization: FHIRResource
 		if nil != vaccineType {
 			self.vaccineType = vaccineType
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -170,7 +170,6 @@ public class ImmunizationExplanation: FHIRElement
 	/// Why immunization did not occur
 	public var refusalReason: [CodeableConcept]?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -205,7 +204,6 @@ public class ImmunizationReaction: FHIRElement
 	/// Was reaction self-reported?
 	public var reported: Bool?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -269,8 +267,8 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 		if nil != doseTarget {
 			self.doseTarget = doseTarget
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

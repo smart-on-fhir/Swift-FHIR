@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (organization.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (organization.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -49,7 +49,6 @@ public class Organization: FHIRResource
 	/// Kind of organization
 	public var type: CodeableConcept?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -109,7 +108,6 @@ public class OrganizationContact: FHIRElement
 	/// Contact details (telephone, email, etc)  for a contact
 	public var telecom: [ContactPoint]?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (encounter.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (encounter.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -83,8 +83,8 @@ public class Encounter: FHIRResource
 		if nil != status {
 			self.status = status
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -186,7 +186,6 @@ public class EncounterHospitalization: FHIRElement
 	/// Special courtesies (VIP, board member)
 	public var specialCourtesy: [CodeableConcept]?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -250,8 +249,8 @@ public class EncounterLocation: FHIRElement
 		if nil != location {
 			self.location = location
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -289,7 +288,6 @@ public class EncounterParticipant: FHIRElement
 	/// Role of participant in encounter
 	public var type: [CodeableConcept]?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -334,8 +332,8 @@ public class EncounterStatusHistory: FHIRElement
 		if nil != status {
 			self.status = status
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

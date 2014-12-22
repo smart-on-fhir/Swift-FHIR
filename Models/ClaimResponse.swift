@@ -2,7 +2,7 @@
 //  ClaimResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (claimresponse.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (claimresponse.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -95,7 +95,6 @@ public class ClaimResponse: FHIRResource
 	/// Unallocated deductable
 	public var unallocDeductable: Money?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -213,8 +212,8 @@ public class ClaimResponseAdditem: FHIRElement
 		if nil != service {
 			self.service = service
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -266,8 +265,8 @@ public class ClaimResponseAdditemAdjudication: FHIRElement
 		if nil != code {
 			self.code = code
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -310,8 +309,8 @@ public class ClaimResponseAdditemDetail: FHIRElement
 		if nil != service {
 			self.service = service
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -354,8 +353,8 @@ public class ClaimResponseAdditemDetailAdjudication: FHIRElement
 		if nil != code {
 			self.code = code
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -401,8 +400,8 @@ public class ClaimResponseError: FHIRElement
 		if nil != code {
 			self.code = code
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -451,8 +450,8 @@ public class ClaimResponseItem: FHIRElement
 		if nil != sequenceLinkId {
 			self.sequenceLinkId = sequenceLinkId
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -498,8 +497,8 @@ public class ClaimResponseItemAdjudication: FHIRElement
 		if nil != code {
 			self.code = code
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -542,8 +541,8 @@ public class ClaimResponseItemDetail: FHIRElement
 		if nil != sequenceLinkId {
 			self.sequenceLinkId = sequenceLinkId
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -586,8 +585,8 @@ public class ClaimResponseItemDetailAdjudication: FHIRElement
 		if nil != code {
 			self.code = code
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -627,8 +626,8 @@ public class ClaimResponseItemDetailSubdetail: FHIRElement
 		if nil != sequenceLinkId {
 			self.sequenceLinkId = sequenceLinkId
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -668,8 +667,8 @@ public class ClaimResponseItemDetailSubdetailAdjudication: FHIRElement
 		if nil != code {
 			self.code = code
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -707,7 +706,6 @@ public class ClaimResponseNote: FHIRElement
 	/// display | print | printoper
 	public var type: Coding?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

@@ -2,7 +2,7 @@
 //  Readjudicate.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (readjudicate.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (readjudicate.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -53,7 +53,6 @@ public class Readjudicate: FHIRResource
 	/// Insurer
 	public var target: Reference?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -114,8 +113,8 @@ public class ReadjudicateItem: FHIRElement
 		if nil != sequenceLinkId {
 			self.sequenceLinkId = sequenceLinkId
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

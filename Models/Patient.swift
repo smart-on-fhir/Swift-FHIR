@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (patient.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (patient.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -78,7 +78,6 @@ public class Patient: FHIRResource
 	/// A contact detail for the individual
 	public var telecom: [ContactPoint]?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -169,8 +168,8 @@ public class PatientAnimal: FHIRElement
 		if nil != species {
 			self.species = species
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -218,7 +217,6 @@ public class PatientContact: FHIRElement
 	/// A contact detail for the person
 	public var telecom: [ContactPoint]?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -271,8 +269,8 @@ public class PatientLink: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

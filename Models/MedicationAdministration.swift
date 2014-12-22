@@ -2,7 +2,7 @@
 //  MedicationAdministration.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (medicationadministration.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (medicationadministration.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -83,8 +83,8 @@ public class MedicationAdministration: FHIRResource
 		if nil != status {
 			self.status = status
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -173,7 +173,6 @@ public class MedicationAdministrationDosage: FHIRElement
 	/// When dose(s) were given
 	public var timingPeriod: Period?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

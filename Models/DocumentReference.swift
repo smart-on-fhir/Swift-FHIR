@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (documentreference.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (documentreference.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -113,8 +113,8 @@ public class DocumentReference: FHIRResource
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -215,7 +215,6 @@ public class DocumentReferenceContext: FHIRElement
 	/// Time of service that is being documented
 	public var period: Period?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -258,8 +257,8 @@ public class DocumentReferenceRelatesTo: FHIRElement
 		if nil != target {
 			self.target = target
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -299,8 +298,8 @@ public class DocumentReferenceService: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -340,8 +339,8 @@ public class DocumentReferenceServiceParameter: FHIRElement
 		if nil != name {
 			self.name = name
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

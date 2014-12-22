@@ -2,7 +2,7 @@
 //  MedicationDispense.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (medicationdispense.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (medicationdispense.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -42,7 +42,6 @@ public class MedicationDispense: FHIRResource
 	/// Deals with substitution of one medicine for another
 	public var substitution: MedicationDispenseSubstitution?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -113,7 +112,6 @@ public class MedicationDispenseDispense: FHIRElement
 	/// Dispense processing time
 	public var whenPrepared: NSDate?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -199,7 +197,6 @@ public class MedicationDispenseDispenseDosage: FHIRElement
 	/// Body site to administer to
 	public var site: CodeableConcept?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -271,8 +268,8 @@ public class MedicationDispenseSubstitution: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

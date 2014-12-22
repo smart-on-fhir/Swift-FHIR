@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (conformance.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (conformance.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -92,8 +92,8 @@ public class Conformance: FHIRResource
 		if nil != publisher {
 			self.publisher = publisher
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -184,8 +184,8 @@ public class ConformanceDocument: FHIRElement
 		if nil != profile {
 			self.profile = profile
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -226,8 +226,8 @@ public class ConformanceImplementation: FHIRElement
 		if nil != description {
 			self.description = description
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -270,8 +270,8 @@ public class ConformanceMessaging: FHIRElement
 		if nil != event {
 			self.event = event
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -344,8 +344,8 @@ public class ConformanceMessagingEvent: FHIRElement
 		if nil != response {
 			self.response = response
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -418,8 +418,8 @@ public class ConformanceRest: FHIRElement
 		if nil != resource {
 			self.resource = resource
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -471,8 +471,8 @@ public class ConformanceRestInteraction: FHIRElement
 		if nil != code {
 			self.code = code
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -512,8 +512,8 @@ public class ConformanceRestOperation: FHIRElement
 		if nil != name {
 			self.name = name
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -571,8 +571,8 @@ public class ConformanceRestResource: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -627,8 +627,8 @@ public class ConformanceRestResourceInteraction: FHIRElement
 		if nil != code {
 			self.code = code
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -680,8 +680,8 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -729,7 +729,6 @@ public class ConformanceRestSecurity: FHIRElement
 	/// OAuth | OAuth2 | NTLM | Basic | Kerberos
 	public var service: [CodeableConcept]?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -765,7 +764,6 @@ public class ConformanceRestSecurityCertificate: FHIRElement
 	/// Mime type for certificate
 	public var type: String?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -806,8 +804,8 @@ public class ConformanceSoftware: FHIRElement
 		if nil != name {
 			self.name = name
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

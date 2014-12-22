@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (bundle.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (bundle.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -43,8 +43,8 @@ public class Bundle: FHIRResource
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -101,7 +101,6 @@ public class BundleEntry: FHIRElement
 	/// create | update | match | include - for search & transaction
 	public var status: String?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -112,7 +111,7 @@ public class BundleEntry: FHIRElement
 				self.deleted = BundleEntryDeleted(json: val, owner: self)
 			}
 			if let val = js["resource"] as? NSDictionary {
-				self.resource = FHIRResource(json: val, owner: self)
+				self.resource = FHIRResource.instantiateFrom(val, owner: self) as? FHIRResource
 			}
 			if let val = js["score"] as? NSNumber {
 				self.score = NSDecimalNumber(json: val)
@@ -166,8 +165,8 @@ public class BundleEntryDeleted: FHIRElement
 		if nil != versionId {
 			self.versionId = versionId
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -213,8 +212,8 @@ public class BundleLink: FHIRElement
 		if nil != url {
 			self.url = url
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

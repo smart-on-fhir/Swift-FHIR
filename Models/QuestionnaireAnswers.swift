@@ -2,7 +2,7 @@
 //  QuestionnaireAnswers.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (questionnaireanswers.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (questionnaireanswers.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -56,8 +56,8 @@ public class QuestionnaireAnswers: FHIRResource
 		if nil != status {
 			self.status = status
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -122,7 +122,6 @@ public class QuestionnaireAnswersGroup: FHIRElement
 	/// Name for this group
 	public var title: String?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -172,7 +171,6 @@ public class QuestionnaireAnswersGroupQuestion: FHIRElement
 	/// Text of the question as it is shown to the user
 	public var text: String?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -240,7 +238,6 @@ public class QuestionnaireAnswersGroupQuestionAnswer: FHIRElement
 	/// Single-valued answer to the question
 	public var valueTime: NSDate?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

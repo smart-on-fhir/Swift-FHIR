@@ -2,7 +2,7 @@
 //  Person.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (person.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (person.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -50,7 +50,6 @@ public class Person: FHIRResource
 	/// A contact detail for the person
 	public var telecom: [ContactPoint]?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -109,8 +108,8 @@ public class PersonLink: FHIRElement
 		if nil != other {
 			self.other = other
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

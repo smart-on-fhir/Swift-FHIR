@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (subscription.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (subscription.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -58,8 +58,8 @@ public class Subscription: FHIRResource
 		if nil != status {
 			self.status = status
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -123,8 +123,8 @@ public class SubscriptionChannel: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -173,8 +173,8 @@ public class SubscriptionTag: FHIRElement
 		if nil != term {
 			self.term = term
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

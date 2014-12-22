@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (condition.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (condition.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -96,8 +96,8 @@ public class Condition: FHIRResource
 		if nil != subject {
 			self.subject = subject
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -186,7 +186,6 @@ public class ConditionDueTo: FHIRElement
 	/// Relationship target resource
 	public var target: Reference?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -218,7 +217,6 @@ public class ConditionEvidence: FHIRElement
 	/// Supporting information found elsewhere
 	public var detail: [Reference]?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -250,7 +248,6 @@ public class ConditionLocation: FHIRElement
 	/// Precise location details
 	public var detail: String?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -282,7 +279,6 @@ public class ConditionOccurredFollowing: FHIRElement
 	/// Relationship target resource
 	public var target: Reference?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -314,7 +310,6 @@ public class ConditionStage: FHIRElement
 	/// Simple summary (disease specific)
 	public var summary: CodeableConcept?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

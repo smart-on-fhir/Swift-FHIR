@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (ElementDefinition.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (ElementDefinition.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -379,8 +379,8 @@ public class ElementDefinition: FHIRElement
 		if nil != path {
 			self.path = path
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -780,8 +780,8 @@ public class ElementDefinitionBinding: FHIRElement
 		if nil != name {
 			self.name = name
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -849,8 +849,8 @@ public class ElementDefinitionConstraint: FHIRElement
 		if nil != xpath {
 			self.xpath = xpath
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -899,8 +899,8 @@ public class ElementDefinitionMapping: FHIRElement
 		if nil != map {
 			self.map = map
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -945,8 +945,8 @@ public class ElementDefinitionSlicing: FHIRElement
 		if nil != rules {
 			self.rules = rules
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -992,8 +992,8 @@ public class ElementDefinitionType: FHIRElement
 		if nil != code {
 			self.code = code
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

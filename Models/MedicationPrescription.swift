@@ -2,7 +2,7 @@
 //  MedicationPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (medicationprescription.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (medicationprescription.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -56,7 +56,6 @@ public class MedicationPrescription: FHIRResource
 	/// Any restrictions on medication substitution?
 	public var substitution: MedicationPrescriptionSubstitution?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -127,7 +126,6 @@ public class MedicationPrescriptionDispense: FHIRElement
 	/// Time period supply is authorized for
 	public var validityPeriod: Period?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -201,7 +199,6 @@ public class MedicationPrescriptionDosageInstruction: FHIRElement
 	/// Dosage instructions expressed as text
 	public var text: String?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -273,8 +270,8 @@ public class MedicationPrescriptionSubstitution: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

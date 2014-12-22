@@ -2,7 +2,7 @@
 //  VisionClaim.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (visionclaim.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (visionclaim.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -104,8 +104,8 @@ public class VisionClaim: FHIRResource
 		if nil != patient {
 			self.patient = patient
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -241,8 +241,8 @@ public class VisionClaimCoverage: FHIRElement
 		if nil != sequence {
 			self.sequence = sequence
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -300,8 +300,8 @@ public class VisionClaimDiagnosis: FHIRElement
 		if nil != sequence {
 			self.sequence = sequence
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -386,8 +386,8 @@ public class VisionClaimItem: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -496,8 +496,8 @@ public class VisionClaimItemDetail: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -585,8 +585,8 @@ public class VisionClaimItemDetailSubDetail: FHIRElement
 		if nil != type {
 			self.type = type
 		}
-	}	
-
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -645,7 +645,6 @@ public class VisionClaimPayee: FHIRElement
 	/// Party to be paid any benefits payable
 	public var type: Coding?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

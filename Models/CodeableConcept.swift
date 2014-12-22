@@ -2,7 +2,7 @@
 //  CodeableConcept.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3898 (CodeableConcept.profile.json) on 2014-12-20.
+//  Generated from FHIR 0.4.0.3903 (CodeableConcept.profile.json) on 2014-12-22.
 //  2014, SMART Platforms.
 //
 
@@ -26,7 +26,6 @@ public class CodeableConcept: FHIRElement
 	/// Plain text representation of the concept
 	public var text: String?
 	
-
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {

@@ -14,7 +14,7 @@ let FHIRSearchErrorDomain = "FHIRSearchErrorDomain"
 /**
 	Instances of this class can perform searches on a server.
 
-	Searches are instantiated from MongoDB-like constructs, like:
+	Searches are instantiated from MongoDB-like query constructs, like:
 
 	    let srch = Patient.search(["address": "Boston", "gender": "male", "given": ["$exact": "Willis"]])
 
@@ -27,13 +27,20 @@ public class FHIRSearch
 	/// The first search parameter must define a profile type to which the search is applied.
 	public var profileType: FHIRResource.Type?
 	
-	/// The construct used to describe the search
+	/// The query construct used to describe the search
 	let construct: FHIRSearchConstruct
 	
 	/** Designated initializer. */
-	init(construct: AnyObject) {
-		self.construct = FHIRSearchConstruct(construct: construct)
+	init(query: AnyObject) {
+		self.construct = FHIRSearchConstruct(construct: query)
 	}
+	
+	/** Convenience initializer. */
+	convenience init(type: FHIRResource.Type, query: AnyObject) {
+		self.init(query: query)
+		profileType = type
+	}
+	
 	
 	// MARK: - Running Search
 	
@@ -45,14 +52,14 @@ public class FHIRSearch
 		:param: callback The callback, receives the response Bundle or an NSError message describing what went wrong
 	 */
 	public func perform(server: FHIRServer, callback: ((bundle: Bundle?, error: NSError?) -> Void)) {
-		let type = profileType
-		if nil == type {
+		if nil == profileType {
 			let err = NSError(domain: FHIRSearchErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Cannot find the profile type against which to run the search"])
 			callback(bundle: nil, error: err)
 			return
 		}
 		
-		server.requestJSON(construct.expand()) { json, error in
+		let path = "\(profileType!.resourceName)?\(construct.expand())"
+		server.requestJSON(path) { json, error in
 			if nil != error {
 				callback(bundle: nil, error: error)
 			}

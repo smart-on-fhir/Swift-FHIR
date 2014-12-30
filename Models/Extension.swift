@@ -2,7 +2,7 @@
 //  Extension.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (Extension.profile.json) on 2014-12-22.
+//  Generated from FHIR 0.4.0.3903 (Extension.profile.json) on 2014-12-30.
 //  2014, SMART Platforms.
 //
 
@@ -19,6 +19,9 @@ public class Extension: FHIRElement
 	override public class var resourceName: String {
 		get { return "Extension" }
 	}
+	
+	/// identifies the meaning of the extension
+	public var url: NSURL?
 	
 	/// Value of extension
 	public var valueAddress: Address?
@@ -92,9 +95,19 @@ public class Extension: FHIRElement
 	/// Value of extension
 	public var valueUri: NSURL?
 	
+	public convenience init(url: NSURL?) {
+		self.init(json: nil)
+		if nil != url {
+			self.url = url
+		}
+	}
+	
 	public required init(json: NSDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["url"] as? String {
+				self.url = NSURL(json: val)
+			}
 			if let val = js["valueAddress"] as? NSDictionary {
 				self.valueAddress = Address(json: val, owner: self)
 			}

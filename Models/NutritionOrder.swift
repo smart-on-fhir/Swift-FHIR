@@ -2,8 +2,8 @@
 //  NutritionOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (nutritionorder.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (nutritionorder.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -60,37 +60,37 @@ public class NutritionOrder: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["allergyIntolerance"] as? [NSDictionary] {
+			if let val = js["allergyIntolerance"] as? [JSONDictionary] {
 				self.allergyIntolerance = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["dateTime"] as? String {
 				self.dateTime = NSDate(json: val)
 			}
-			if let val = js["encounter"] as? NSDictionary {
+			if let val = js["encounter"] as? JSONDictionary {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["excludeFoodModifier"] as? [NSDictionary] {
+			if let val = js["excludeFoodModifier"] as? [JSONDictionary] {
 				self.excludeFoodModifier = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["foodPreferenceModifier"] as? [NSDictionary] {
+			if let val = js["foodPreferenceModifier"] as? [JSONDictionary] {
 				self.foodPreferenceModifier = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["item"] as? [NSDictionary] {
+			if let val = js["item"] as? [JSONDictionary] {
 				self.item = NutritionOrderItem.from(val, owner: self) as? [NutritionOrderItem]
 			}
-			if let val = js["orderer"] as? NSDictionary {
+			if let val = js["orderer"] as? JSONDictionary {
 				self.orderer = Reference(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? NSDictionary {
+			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
 			}
 		}
@@ -135,25 +135,25 @@ public class NutritionOrderItem: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["enteralFormula"] as? NSDictionary {
+			if let val = js["enteralFormula"] as? JSONDictionary {
 				self.enteralFormula = NutritionOrderItemEnteralFormula(json: val, owner: self)
 			}
 			if let val = js["isInEffect"] as? Bool {
 				self.isInEffect = val
 			}
-			if let val = js["oralDiet"] as? NSDictionary {
+			if let val = js["oralDiet"] as? JSONDictionary {
 				self.oralDiet = NutritionOrderItemOralDiet(json: val, owner: self)
 			}
-			if let val = js["scheduledPeriod"] as? NSDictionary {
+			if let val = js["scheduledPeriod"] as? JSONDictionary {
 				self.scheduledPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["scheduledTiming"] as? NSDictionary {
+			if let val = js["scheduledTiming"] as? JSONDictionary {
 				self.scheduledTiming = Timing(json: val, owner: self)
 			}
-			if let val = js["supplement"] as? NSDictionary {
+			if let val = js["supplement"] as? JSONDictionary {
 				self.supplement = NutritionOrderItemSupplement(json: val, owner: self)
 			}
 		}
@@ -205,13 +205,13 @@ public class NutritionOrderItemEnteralFormula: FHIRElement
 	/// How the formula should enter the patient's gastrointestinal tract
 	public var routeofAdministration: CodeableConcept?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["additiveName"] as? String {
 				self.additiveName = val
 			}
-			if let val = js["additiveType"] as? NSDictionary {
+			if let val = js["additiveType"] as? JSONDictionary {
 				self.additiveType = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["administrationInstructions"] as? String {
@@ -220,25 +220,25 @@ public class NutritionOrderItemEnteralFormula: FHIRElement
 			if let val = js["baseFormulaName"] as? String {
 				self.baseFormulaName = val
 			}
-			if let val = js["baseFormulaType"] as? NSDictionary {
+			if let val = js["baseFormulaType"] as? JSONDictionary {
 				self.baseFormulaType = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["caloricDensity"] as? NSDictionary {
+			if let val = js["caloricDensity"] as? JSONDictionary {
 				self.caloricDensity = Quantity(json: val, owner: self)
 			}
-			if let val = js["maxVolumeToDeliver"] as? NSDictionary {
+			if let val = js["maxVolumeToDeliver"] as? JSONDictionary {
 				self.maxVolumeToDeliver = Quantity(json: val, owner: self)
 			}
-			if let val = js["quantity"] as? NSDictionary {
+			if let val = js["quantity"] as? JSONDictionary {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["rate"] as? NSDictionary {
+			if let val = js["rate"] as? JSONDictionary {
 				self.rate = Ratio(json: val, owner: self)
 			}
-			if let val = js["rateAdjustment"] as? NSDictionary {
+			if let val = js["rateAdjustment"] as? JSONDictionary {
 				self.rateAdjustment = Quantity(json: val, owner: self)
 			}
-			if let val = js["routeofAdministration"] as? NSDictionary {
+			if let val = js["routeofAdministration"] as? JSONDictionary {
 				self.routeofAdministration = CodeableConcept(json: val, owner: self)
 			}
 		}
@@ -272,22 +272,22 @@ public class NutritionOrderItemOralDiet: FHIRElement
 	/// Type of oral diet or diet restrictions that describe what can be consumed orally
 	public var type: [CodeableConcept]?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["fluidConsistencyType"] as? [NSDictionary] {
+			if let val = js["fluidConsistencyType"] as? [JSONDictionary] {
 				self.fluidConsistencyType = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["instruction"] as? String {
 				self.instruction = val
 			}
-			if let val = js["nutrients"] as? [NSDictionary] {
+			if let val = js["nutrients"] as? [JSONDictionary] {
 				self.nutrients = NutritionOrderItemOralDietNutrients.from(val, owner: self) as? [NutritionOrderItemOralDietNutrients]
 			}
-			if let val = js["texture"] as? [NSDictionary] {
+			if let val = js["texture"] as? [JSONDictionary] {
 				self.texture = NutritionOrderItemOralDietTexture.from(val, owner: self) as? [NutritionOrderItemOralDietTexture]
 			}
-			if let val = js["type"] as? [NSDictionary] {
+			if let val = js["type"] as? [JSONDictionary] {
 				self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
@@ -313,19 +313,19 @@ public class NutritionOrderItemOralDietNutrients: FHIRElement
 	public var amountRange: Range?
 	
 	/// Type of nutrient that is being modified
-	public var modifier: CodeableConcept?
+	public var mod: CodeableConcept?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["amountQuantity"] as? NSDictionary {
+			if let val = js["amountQuantity"] as? JSONDictionary {
 				self.amountQuantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["amountRange"] as? NSDictionary {
+			if let val = js["amountRange"] as? JSONDictionary {
 				self.amountRange = Range(json: val, owner: self)
 			}
-			if let val = js["modifier"] as? NSDictionary {
-				self.modifier = CodeableConcept(json: val, owner: self)
+			if let val = js["modifier"] as? JSONDictionary {
+				self.mod = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -348,16 +348,16 @@ public class NutritionOrderItemOralDietTexture: FHIRElement
 	public var foodType: CodeableConcept?
 	
 	/// Code to indicate how to alter the texture of the foods, e.g., pureed
-	public var modifier: CodeableConcept?
+	public var mod: CodeableConcept?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["foodType"] as? NSDictionary {
+			if let val = js["foodType"] as? JSONDictionary {
 				self.foodType = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["modifier"] as? NSDictionary {
-				self.modifier = CodeableConcept(json: val, owner: self)
+			if let val = js["modifier"] as? JSONDictionary {
+				self.mod = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -384,16 +384,16 @@ public class NutritionOrderItemSupplement: FHIRElement
 	/// Type of supplement product requested
 	public var type: CodeableConcept?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["quantity"] as? NSDictionary {
+			if let val = js["quantity"] as? JSONDictionary {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}

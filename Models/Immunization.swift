@@ -2,8 +2,8 @@
 //  Immunization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (immunization.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (immunization.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -91,37 +91,37 @@ public class Immunization: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
 			}
-			if let val = js["doseQuantity"] as? NSDictionary {
+			if let val = js["doseQuantity"] as? JSONDictionary {
 				self.doseQuantity = Quantity(json: val, owner: self)
 			}
 			if let val = js["expirationDate"] as? String {
 				self.expirationDate = NSDate(json: val)
 			}
-			if let val = js["explanation"] as? NSDictionary {
+			if let val = js["explanation"] as? JSONDictionary {
 				self.explanation = ImmunizationExplanation(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["location"] as? NSDictionary {
+			if let val = js["location"] as? JSONDictionary {
 				self.location = Reference(json: val, owner: self)
 			}
 			if let val = js["lotNumber"] as? String {
 				self.lotNumber = val
 			}
-			if let val = js["manufacturer"] as? NSDictionary {
+			if let val = js["manufacturer"] as? JSONDictionary {
 				self.manufacturer = Reference(json: val, owner: self)
 			}
-			if let val = js["performer"] as? NSDictionary {
+			if let val = js["performer"] as? JSONDictionary {
 				self.performer = Reference(json: val, owner: self)
 			}
-			if let val = js["reaction"] as? [NSDictionary] {
+			if let val = js["reaction"] as? [JSONDictionary] {
 				self.reaction = ImmunizationReaction.from(val, owner: self) as? [ImmunizationReaction]
 			}
 			if let val = js["refusedIndicator"] as? Bool {
@@ -130,22 +130,22 @@ public class Immunization: FHIRResource
 			if let val = js["reported"] as? Bool {
 				self.reported = val
 			}
-			if let val = js["requester"] as? NSDictionary {
+			if let val = js["requester"] as? JSONDictionary {
 				self.requester = Reference(json: val, owner: self)
 			}
-			if let val = js["route"] as? NSDictionary {
+			if let val = js["route"] as? JSONDictionary {
 				self.route = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["site"] as? NSDictionary {
+			if let val = js["site"] as? JSONDictionary {
 				self.site = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["subject"] as? NSDictionary {
+			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
 			}
-			if let val = js["vaccinationProtocol"] as? [NSDictionary] {
+			if let val = js["vaccinationProtocol"] as? [JSONDictionary] {
 				self.vaccinationProtocol = ImmunizationVaccinationProtocol.from(val, owner: self) as? [ImmunizationVaccinationProtocol]
 			}
-			if let val = js["vaccineType"] as? NSDictionary {
+			if let val = js["vaccineType"] as? JSONDictionary {
 				self.vaccineType = CodeableConcept(json: val, owner: self)
 			}
 		}
@@ -170,13 +170,13 @@ public class ImmunizationExplanation: FHIRElement
 	/// Why immunization did not occur
 	public var refusalReason: [CodeableConcept]?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["reason"] as? [NSDictionary] {
+			if let val = js["reason"] as? [JSONDictionary] {
 				self.reason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["refusalReason"] as? [NSDictionary] {
+			if let val = js["refusalReason"] as? [JSONDictionary] {
 				self.refusalReason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
@@ -204,13 +204,13 @@ public class ImmunizationReaction: FHIRElement
 	/// Was reaction self-reported?
 	public var reported: Bool?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
 			}
-			if let val = js["detail"] as? NSDictionary {
+			if let val = js["detail"] as? JSONDictionary {
 				self.detail = Reference(json: val, owner: self)
 			}
 			if let val = js["reported"] as? Bool {
@@ -269,10 +269,10 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["authority"] as? NSDictionary {
+			if let val = js["authority"] as? JSONDictionary {
 				self.authority = Reference(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
@@ -281,13 +281,13 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 			if let val = js["doseSequence"] as? Int {
 				self.doseSequence = val
 			}
-			if let val = js["doseStatus"] as? NSDictionary {
+			if let val = js["doseStatus"] as? JSONDictionary {
 				self.doseStatus = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["doseStatusReason"] as? NSDictionary {
+			if let val = js["doseStatusReason"] as? JSONDictionary {
 				self.doseStatusReason = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["doseTarget"] as? NSDictionary {
+			if let val = js["doseTarget"] as? JSONDictionary {
 				self.doseTarget = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["series"] as? String {

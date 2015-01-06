@@ -2,8 +2,8 @@
 //  EnrollmentRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (enrollmentrequest.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (enrollmentrequest.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -63,37 +63,37 @@ public class EnrollmentRequest: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["coverage"] as? NSDictionary {
+			if let val = js["coverage"] as? JSONDictionary {
 				self.coverage = Reference(json: val, owner: self)
 			}
 			if let val = js["created"] as? String {
 				self.created = NSDate(json: val)
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["organization"] as? NSDictionary {
+			if let val = js["organization"] as? JSONDictionary {
 				self.organization = Reference(json: val, owner: self)
 			}
-			if let val = js["originalRuleset"] as? NSDictionary {
+			if let val = js["originalRuleset"] as? JSONDictionary {
 				self.originalRuleset = Coding(json: val, owner: self)
 			}
-			if let val = js["provider"] as? NSDictionary {
+			if let val = js["provider"] as? JSONDictionary {
 				self.provider = Reference(json: val, owner: self)
 			}
-			if let val = js["relationship"] as? NSDictionary {
+			if let val = js["relationship"] as? JSONDictionary {
 				self.relationship = Coding(json: val, owner: self)
 			}
-			if let val = js["ruleset"] as? NSDictionary {
+			if let val = js["ruleset"] as? JSONDictionary {
 				self.ruleset = Coding(json: val, owner: self)
 			}
-			if let val = js["subject"] as? NSDictionary {
+			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
 			}
-			if let val = js["target"] as? NSDictionary {
+			if let val = js["target"] as? JSONDictionary {
 				self.target = Reference(json: val, owner: self)
 			}
 		}

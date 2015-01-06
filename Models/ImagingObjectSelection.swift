@@ -2,8 +2,8 @@
 //  ImagingObjectSelection.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (imagingobjectselection.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (imagingobjectselection.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -58,10 +58,10 @@ public class ImagingObjectSelection: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["author"] as? NSDictionary {
+			if let val = js["author"] as? JSONDictionary {
 				self.author = Reference(json: val, owner: self)
 			}
 			if let val = js["authoringTime"] as? String {
@@ -70,13 +70,13 @@ public class ImagingObjectSelection: FHIRResource
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["patient"] as? NSDictionary {
+			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["study"] as? [NSDictionary] {
+			if let val = js["study"] as? [JSONDictionary] {
 				self.study = ImagingObjectSelectionStudy.from(val, owner: self) as? [ImagingObjectSelectionStudy]
 			}
-			if let val = js["title"] as? NSDictionary {
+			if let val = js["title"] as? JSONDictionary {
 				self.title = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["uid"] as? String {
@@ -120,7 +120,7 @@ public class ImagingObjectSelectionStudy: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["retrieveAETitle"] as? String {
@@ -129,7 +129,7 @@ public class ImagingObjectSelectionStudy: FHIRElement
 			if let val = js["retrieveUrl"] as? String {
 				self.retrieveUrl = NSURL(json: val)
 			}
-			if let val = js["series"] as? [NSDictionary] {
+			if let val = js["series"] as? [JSONDictionary] {
 				self.series = ImagingObjectSelectionStudySeries.from(val, owner: self) as? [ImagingObjectSelectionStudySeries]
 			}
 			if let val = js["uid"] as? String {
@@ -173,10 +173,10 @@ public class ImagingObjectSelectionStudySeries: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["instance"] as? [NSDictionary] {
+			if let val = js["instance"] as? [JSONDictionary] {
 				self.instance = ImagingObjectSelectionStudySeriesInstance.from(val, owner: self) as? [ImagingObjectSelectionStudySeriesInstance]
 			}
 			if let val = js["retrieveAETitle"] as? String {
@@ -226,7 +226,7 @@ public class ImagingObjectSelectionStudySeriesInstance: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["retrieveAETitle"] as? String {

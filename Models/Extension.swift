@@ -2,8 +2,8 @@
 //  Extension.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (Extension.profile.json) on 2014-12-30.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (Extension.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -102,16 +102,16 @@ public class Extension: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["url"] as? String {
 				self.url = NSURL(json: val)
 			}
-			if let val = js["valueAddress"] as? NSDictionary {
+			if let val = js["valueAddress"] as? JSONDictionary {
 				self.valueAddress = Address(json: val, owner: self)
 			}
-			if let val = js["valueAttachment"] as? NSDictionary {
+			if let val = js["valueAttachment"] as? JSONDictionary {
 				self.valueAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["valueBase64Binary"] as? String {
@@ -123,13 +123,13 @@ public class Extension: FHIRElement
 			if let val = js["valueCode"] as? String {
 				self.valueCode = val
 			}
-			if let val = js["valueCodeableConcept"] as? NSDictionary {
+			if let val = js["valueCodeableConcept"] as? JSONDictionary {
 				self.valueCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["valueCoding"] as? NSDictionary {
+			if let val = js["valueCoding"] as? JSONDictionary {
 				self.valueCoding = Coding(json: val, owner: self)
 			}
-			if let val = js["valueContactPoint"] as? NSDictionary {
+			if let val = js["valueContactPoint"] as? JSONDictionary {
 				self.valueContactPoint = ContactPoint(json: val, owner: self)
 			}
 			if let val = js["valueDate"] as? String {
@@ -141,10 +141,10 @@ public class Extension: FHIRElement
 			if let val = js["valueDecimal"] as? NSNumber {
 				self.valueDecimal = NSDecimalNumber(json: val)
 			}
-			if let val = js["valueHumanName"] as? NSDictionary {
+			if let val = js["valueHumanName"] as? JSONDictionary {
 				self.valueHumanName = HumanName(json: val, owner: self)
 			}
-			if let val = js["valueIdentifier"] as? NSDictionary {
+			if let val = js["valueIdentifier"] as? JSONDictionary {
 				self.valueIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["valueInstant"] as? String {
@@ -153,19 +153,19 @@ public class Extension: FHIRElement
 			if let val = js["valueInteger"] as? Int {
 				self.valueInteger = val
 			}
-			if let val = js["valuePeriod"] as? NSDictionary {
+			if let val = js["valuePeriod"] as? JSONDictionary {
 				self.valuePeriod = Period(json: val, owner: self)
 			}
-			if let val = js["valueQuantity"] as? NSDictionary {
+			if let val = js["valueQuantity"] as? JSONDictionary {
 				self.valueQuantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["valueRange"] as? NSDictionary {
+			if let val = js["valueRange"] as? JSONDictionary {
 				self.valueRange = Range(json: val, owner: self)
 			}
-			if let val = js["valueRatio"] as? NSDictionary {
+			if let val = js["valueRatio"] as? JSONDictionary {
 				self.valueRatio = Ratio(json: val, owner: self)
 			}
-			if let val = js["valueReference"] as? NSDictionary {
+			if let val = js["valueReference"] as? JSONDictionary {
 				self.valueReference = Reference(json: val, owner: self)
 			}
 			if let val = js["valueString"] as? String {
@@ -174,7 +174,7 @@ public class Extension: FHIRElement
 			if let val = js["valueTime"] as? String {
 				self.valueTime = NSDate(json: val)
 			}
-			if let val = js["valueTiming"] as? NSDictionary {
+			if let val = js["valueTiming"] as? JSONDictionary {
 				self.valueTiming = Timing(json: val, owner: self)
 			}
 			if let val = js["valueUri"] as? String {

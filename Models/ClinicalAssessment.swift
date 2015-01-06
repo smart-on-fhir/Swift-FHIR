@@ -2,8 +2,8 @@
 //  ClinicalAssessment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (clinicalassessment.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (clinicalassessment.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -86,16 +86,16 @@ public class ClinicalAssessment: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["action"] as? [NSDictionary] {
+			if let val = js["action"] as? [JSONDictionary] {
 				self.action = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["assessor"] as? NSDictionary {
+			if let val = js["assessor"] as? JSONDictionary {
 				self.assessor = Reference(json: val, owner: self)
 			}
-			if let val = js["careplan"] as? NSDictionary {
+			if let val = js["careplan"] as? JSONDictionary {
 				self.careplan = Reference(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
@@ -104,22 +104,22 @@ public class ClinicalAssessment: FHIRResource
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["diagnosis"] as? [NSDictionary] {
+			if let val = js["diagnosis"] as? [JSONDictionary] {
 				self.diagnosis = ClinicalAssessmentDiagnosis.from(val, owner: self) as? [ClinicalAssessmentDiagnosis]
 			}
-			if let val = js["investigations"] as? [NSDictionary] {
+			if let val = js["investigations"] as? [JSONDictionary] {
 				self.investigations = ClinicalAssessmentInvestigations.from(val, owner: self) as? [ClinicalAssessmentInvestigations]
 			}
-			if let val = js["patient"] as? NSDictionary {
+			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["plan"] as? NSDictionary {
+			if let val = js["plan"] as? JSONDictionary {
 				self.plan = Reference(json: val, owner: self)
 			}
-			if let val = js["previous"] as? NSDictionary {
+			if let val = js["previous"] as? JSONDictionary {
 				self.previous = Reference(json: val, owner: self)
 			}
-			if let val = js["problem"] as? [NSDictionary] {
+			if let val = js["problem"] as? [JSONDictionary] {
 				self.problem = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["prognosis"] as? String {
@@ -128,13 +128,13 @@ public class ClinicalAssessment: FHIRResource
 			if let val = js["protocol"] as? String {
 				self.protokol = NSURL(json: val)
 			}
-			if let val = js["referral"] as? NSDictionary {
+			if let val = js["referral"] as? JSONDictionary {
 				self.referral = Reference(json: val, owner: self)
 			}
-			if let val = js["resolved"] as? [NSDictionary] {
+			if let val = js["resolved"] as? [JSONDictionary] {
 				self.resolved = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["ruledOut"] as? [NSDictionary] {
+			if let val = js["ruledOut"] as? [JSONDictionary] {
 				self.ruledOut = ClinicalAssessmentRuledOut.from(val, owner: self) as? [ClinicalAssessmentRuledOut]
 			}
 			if let val = js["summary"] as? String {
@@ -169,13 +169,13 @@ public class ClinicalAssessmentDiagnosis: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["cause"] as? String {
 				self.cause = val
 			}
-			if let val = js["item"] as? NSDictionary {
+			if let val = js["item"] as? JSONDictionary {
 				self.item = CodeableConcept(json: val, owner: self)
 			}
 		}
@@ -209,13 +209,13 @@ public class ClinicalAssessmentInvestigations: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["code"] as? JSONDictionary {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["item"] as? [NSDictionary] {
+			if let val = js["item"] as? [JSONDictionary] {
 				self.item = Reference.from(val, owner: self) as? [Reference]
 			}
 		}
@@ -245,10 +245,10 @@ public class ClinicalAssessmentRuledOut: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["item"] as? NSDictionary {
+			if let val = js["item"] as? JSONDictionary {
 				self.item = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["reason"] as? String {

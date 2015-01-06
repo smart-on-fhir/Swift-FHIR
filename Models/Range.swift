@@ -2,8 +2,8 @@
 //  Range.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (Range.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (Range.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -26,13 +26,13 @@ public class Range: FHIRElement
 	/// Low limit
 	public var low: Quantity?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["high"] as? NSDictionary {
+			if let val = js["high"] as? JSONDictionary {
 				self.high = Quantity(json: val, owner: self)
 			}
-			if let val = js["low"] as? NSDictionary {
+			if let val = js["low"] as? JSONDictionary {
 				self.low = Quantity(json: val, owner: self)
 			}
 		}

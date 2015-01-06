@@ -2,8 +2,8 @@
 //  VisionPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (visionprescription.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (visionprescription.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -44,31 +44,31 @@ public class VisionPrescription: FHIRResource
 	/// Reason or indication for writing the prescription
 	public var reasonReference: Reference?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["dateWritten"] as? String {
 				self.dateWritten = NSDate(json: val)
 			}
-			if let val = js["dispense"] as? [NSDictionary] {
+			if let val = js["dispense"] as? [JSONDictionary] {
 				self.dispense = VisionPrescriptionDispense.from(val, owner: self) as? [VisionPrescriptionDispense]
 			}
-			if let val = js["encounter"] as? NSDictionary {
+			if let val = js["encounter"] as? JSONDictionary {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["patient"] as? NSDictionary {
+			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["prescriber"] as? NSDictionary {
+			if let val = js["prescriber"] as? JSONDictionary {
 				self.prescriber = Reference(json: val, owner: self)
 			}
-			if let val = js["reasonCodeableConcept"] as? NSDictionary {
+			if let val = js["reasonCodeableConcept"] as? JSONDictionary {
 				self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["reasonReference"] as? NSDictionary {
+			if let val = js["reasonReference"] as? JSONDictionary {
 				self.reasonReference = Reference(json: val, owner: self)
 			}
 		}
@@ -139,7 +139,7 @@ public class VisionPrescriptionDispense: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["add"] as? NSNumber {
@@ -166,7 +166,7 @@ public class VisionPrescriptionDispense: FHIRElement
 			if let val = js["diameter"] as? NSNumber {
 				self.diameter = NSDecimalNumber(json: val)
 			}
-			if let val = js["duration"] as? NSDictionary {
+			if let val = js["duration"] as? JSONDictionary {
 				self.duration = Quantity(json: val, owner: self)
 			}
 			if let val = js["eye"] as? String {
@@ -181,7 +181,7 @@ public class VisionPrescriptionDispense: FHIRElement
 			if let val = js["prism"] as? NSNumber {
 				self.prism = NSDecimalNumber(json: val)
 			}
-			if let val = js["product"] as? NSDictionary {
+			if let val = js["product"] as? JSONDictionary {
 				self.product = Coding(json: val, owner: self)
 			}
 			if let val = js["sphere"] as? NSNumber {

@@ -2,8 +2,8 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (documentreference.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (documentreference.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -115,31 +115,31 @@ public class DocumentReference: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["authenticator"] as? NSDictionary {
+			if let val = js["authenticator"] as? JSONDictionary {
 				self.authenticator = Reference(json: val, owner: self)
 			}
-			if let val = js["author"] as? [NSDictionary] {
+			if let val = js["author"] as? [JSONDictionary] {
 				self.author = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["confidentiality"] as? [NSDictionary] {
+			if let val = js["confidentiality"] as? [JSONDictionary] {
 				self.confidentiality = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["context"] as? NSDictionary {
+			if let val = js["context"] as? JSONDictionary {
 				self.context = DocumentReferenceContext(json: val, owner: self)
 			}
 			if let val = js["created"] as? String {
 				self.created = NSDate(json: val)
 			}
-			if let val = js["custodian"] as? NSDictionary {
+			if let val = js["custodian"] as? JSONDictionary {
 				self.custodian = Reference(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["docStatus"] as? NSDictionary {
+			if let val = js["docStatus"] as? JSONDictionary {
 				self.docStatus = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["format"] as? [String] {
@@ -148,19 +148,19 @@ public class DocumentReference: FHIRResource
 			if let val = js["hash"] as? String {
 				self.hash = Base64Binary(json: val)
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["indexed"] as? String {
 				self.indexed = NSDate(json: val)
 			}
-			if let val = js["class"] as? NSDictionary {
+			if let val = js["class"] as? JSONDictionary {
 				self.klass = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["location"] as? String {
 				self.location = NSURL(json: val)
 			}
-			if let val = js["masterIdentifier"] as? NSDictionary {
+			if let val = js["masterIdentifier"] as? JSONDictionary {
 				self.masterIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["mimeType"] as? String {
@@ -172,10 +172,10 @@ public class DocumentReference: FHIRResource
 			if let val = js["primaryLanguage"] as? String {
 				self.primaryLanguage = val
 			}
-			if let val = js["relatesTo"] as? [NSDictionary] {
+			if let val = js["relatesTo"] as? [JSONDictionary] {
 				self.relatesTo = DocumentReferenceRelatesTo.from(val, owner: self) as? [DocumentReferenceRelatesTo]
 			}
-			if let val = js["service"] as? NSDictionary {
+			if let val = js["service"] as? JSONDictionary {
 				self.service = DocumentReferenceService(json: val, owner: self)
 			}
 			if let val = js["size"] as? Int {
@@ -184,10 +184,10 @@ public class DocumentReference: FHIRResource
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? NSDictionary {
+			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
@@ -215,16 +215,16 @@ public class DocumentReferenceContext: FHIRElement
 	/// Time of service that is being documented
 	public var period: Period?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["event"] as? [NSDictionary] {
+			if let val = js["event"] as? [JSONDictionary] {
 				self.event = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["facilityType"] as? NSDictionary {
+			if let val = js["facilityType"] as? JSONDictionary {
 				self.facilityType = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["period"] as? NSDictionary {
+			if let val = js["period"] as? JSONDictionary {
 				self.period = Period(json: val, owner: self)
 			}
 		}
@@ -259,13 +259,13 @@ public class DocumentReferenceRelatesTo: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
 				self.code = val
 			}
-			if let val = js["target"] as? NSDictionary {
+			if let val = js["target"] as? JSONDictionary {
 				self.target = Reference(json: val, owner: self)
 			}
 		}
@@ -300,16 +300,16 @@ public class DocumentReferenceService: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["address"] as? String {
 				self.address = val
 			}
-			if let val = js["parameter"] as? [NSDictionary] {
+			if let val = js["parameter"] as? [JSONDictionary] {
 				self.parameter = DocumentReferenceServiceParameter.from(val, owner: self) as? [DocumentReferenceServiceParameter]
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
@@ -341,7 +341,7 @@ public class DocumentReferenceServiceParameter: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {

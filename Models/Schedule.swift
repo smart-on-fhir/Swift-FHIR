@@ -2,8 +2,8 @@
 //  Schedule.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (schedule.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (schedule.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -43,25 +43,25 @@ public class Schedule: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["actor"] as? NSDictionary {
+			if let val = js["actor"] as? JSONDictionary {
 				self.actor = Reference(json: val, owner: self)
 			}
 			if let val = js["comment"] as? String {
 				self.comment = val
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["lastModified"] as? String {
 				self.lastModified = NSDate(json: val)
 			}
-			if let val = js["planningHorizon"] as? NSDictionary {
+			if let val = js["planningHorizon"] as? JSONDictionary {
 				self.planningHorizon = Period(json: val, owner: self)
 			}
-			if let val = js["type"] as? [NSDictionary] {
+			if let val = js["type"] as? [JSONDictionary] {
 				self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}

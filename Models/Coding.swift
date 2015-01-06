@@ -2,8 +2,8 @@
 //  Coding.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (Coding.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (Coding.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -36,7 +36,7 @@ public class Coding: FHIRElement
 	/// Version of the system - if relevant
 	public var version: String?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -51,7 +51,7 @@ public class Coding: FHIRElement
 			if let val = js["system"] as? String {
 				self.system = NSURL(json: val)
 			}
-			if let val = js["valueSet"] as? NSDictionary {
+			if let val = js["valueSet"] as? JSONDictionary {
 				self.valueSet = Reference(json: val, owner: self)
 			}
 			if let val = js["version"] as? String {

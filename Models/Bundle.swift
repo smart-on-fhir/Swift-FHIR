@@ -2,8 +2,8 @@
 //  Bundle.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (bundle.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (bundle.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -45,16 +45,16 @@ public class Bundle: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["base"] as? String {
 				self.base = NSURL(json: val)
 			}
-			if let val = js["entry"] as? [NSDictionary] {
+			if let val = js["entry"] as? [JSONDictionary] {
 				self.entry = BundleEntry.from(val, owner: self) as? [BundleEntry]
 			}
-			if let val = js["link"] as? [NSDictionary] {
+			if let val = js["link"] as? [JSONDictionary] {
 				self.link = BundleLink.from(val, owner: self) as? [BundleLink]
 			}
 			if let val = js["signature"] as? String {
@@ -101,16 +101,16 @@ public class BundleEntry: FHIRElement
 	/// create | update | match | include - for search & transaction
 	public var status: String?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["base"] as? String {
 				self.base = NSURL(json: val)
 			}
-			if let val = js["deleted"] as? NSDictionary {
+			if let val = js["deleted"] as? JSONDictionary {
 				self.deleted = BundleEntryDeleted(json: val, owner: self)
 			}
-			if let val = js["resource"] as? NSDictionary {
+			if let val = js["resource"] as? JSONDictionary {
 				self.resource = FHIRResource.instantiateFrom(val, owner: self) as? FHIRResource
 			}
 			if let val = js["score"] as? NSNumber {
@@ -167,7 +167,7 @@ public class BundleEntryDeleted: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["instant"] as? String {
@@ -214,7 +214,7 @@ public class BundleLink: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["relation"] as? String {

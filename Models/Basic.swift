@@ -2,8 +2,8 @@
 //  Basic.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (basic.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (basic.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -43,22 +43,22 @@ public class Basic: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["author"] as? NSDictionary {
+			if let val = js["author"] as? JSONDictionary {
 				self.author = Reference(json: val, owner: self)
 			}
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["code"] as? JSONDictionary {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["created"] as? String {
 				self.created = NSDate(json: val)
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["subject"] as? NSDictionary {
+			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
 			}
 		}

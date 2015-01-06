@@ -2,8 +2,8 @@
 //  Device.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (device.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (device.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -69,19 +69,19 @@ public class Device: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["contact"] as? [NSDictionary] {
+			if let val = js["contact"] as? [JSONDictionary] {
 				self.contact = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 			if let val = js["expiry"] as? String {
 				self.expiry = NSDate(json: val)
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["location"] as? NSDictionary {
+			if let val = js["location"] as? JSONDictionary {
 				self.location = Reference(json: val, owner: self)
 			}
 			if let val = js["lotNumber"] as? String {
@@ -93,13 +93,13 @@ public class Device: FHIRResource
 			if let val = js["model"] as? String {
 				self.model = val
 			}
-			if let val = js["owner"] as? NSDictionary {
+			if let val = js["owner"] as? JSONDictionary {
 				self.owner = Reference(json: val, owner: self)
 			}
-			if let val = js["patient"] as? NSDictionary {
+			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["udi"] as? String {

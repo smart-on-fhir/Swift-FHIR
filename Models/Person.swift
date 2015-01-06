@@ -2,8 +2,8 @@
 //  Person.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (person.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (person.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -50,13 +50,13 @@ public class Person: FHIRResource
 	/// A contact detail for the person
 	public var telecom: [ContactPoint]?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["active"] as? Bool {
 				self.active = val
 			}
-			if let val = js["address"] as? [NSDictionary] {
+			if let val = js["address"] as? [JSONDictionary] {
 				self.address = Address.from(val, owner: self) as? [Address]
 			}
 			if let val = js["birthDate"] as? String {
@@ -65,22 +65,22 @@ public class Person: FHIRResource
 			if let val = js["gender"] as? String {
 				self.gender = val
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["link"] as? [NSDictionary] {
+			if let val = js["link"] as? [JSONDictionary] {
 				self.link = PersonLink.from(val, owner: self) as? [PersonLink]
 			}
-			if let val = js["managingOrganization"] as? NSDictionary {
+			if let val = js["managingOrganization"] as? JSONDictionary {
 				self.managingOrganization = Reference(json: val, owner: self)
 			}
-			if let val = js["name"] as? [NSDictionary] {
+			if let val = js["name"] as? [JSONDictionary] {
 				self.name = HumanName.from(val, owner: self) as? [HumanName]
 			}
-			if let val = js["photo"] as? NSDictionary {
+			if let val = js["photo"] as? JSONDictionary {
 				self.photo = Attachment(json: val, owner: self)
 			}
-			if let val = js["telecom"] as? [NSDictionary] {
+			if let val = js["telecom"] as? [JSONDictionary] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
@@ -110,13 +110,13 @@ public class PersonLink: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["assurance"] as? String {
 				self.assurance = val
 			}
-			if let val = js["other"] as? NSDictionary {
+			if let val = js["other"] as? JSONDictionary {
 				self.other = Reference(json: val, owner: self)
 			}
 		}

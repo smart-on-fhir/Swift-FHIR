@@ -2,8 +2,8 @@
 //  Address.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (Address.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (Address.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -45,7 +45,7 @@ public class Address: FHIRElement
 	/// home | work | temp | old - purpose of this address
 	public var use: String?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["city"] as? String {
@@ -57,7 +57,7 @@ public class Address: FHIRElement
 			if let val = js["line"] as? [String] {
 				self.line = val
 			}
-			if let val = js["period"] as? NSDictionary {
+			if let val = js["period"] as? JSONDictionary {
 				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["postalCode"] as? String {

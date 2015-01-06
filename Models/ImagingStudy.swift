@@ -2,8 +2,8 @@
 //  ImagingStudy.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (imagingstudy.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (imagingstudy.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -90,10 +90,10 @@ public class ImagingStudy: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["accession"] as? NSDictionary {
+			if let val = js["accession"] as? JSONDictionary {
 				self.accession = Identifier(json: val, owner: self)
 			}
 			if let val = js["availability"] as? String {
@@ -105,10 +105,10 @@ public class ImagingStudy: FHIRResource
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["interpreter"] as? NSDictionary {
+			if let val = js["interpreter"] as? JSONDictionary {
 				self.interpreter = Reference(json: val, owner: self)
 			}
 			if let val = js["modalityList"] as? [String] {
@@ -120,19 +120,19 @@ public class ImagingStudy: FHIRResource
 			if let val = js["numberOfSeries"] as? Int {
 				self.numberOfSeries = val
 			}
-			if let val = js["order"] as? [NSDictionary] {
+			if let val = js["order"] as? [JSONDictionary] {
 				self.order = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["patient"] as? NSDictionary {
+			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["procedure"] as? [NSDictionary] {
+			if let val = js["procedure"] as? [JSONDictionary] {
 				self.procedure = Coding.from(val, owner: self) as? [Coding]
 			}
-			if let val = js["referrer"] as? NSDictionary {
+			if let val = js["referrer"] as? JSONDictionary {
 				self.referrer = Reference(json: val, owner: self)
 			}
-			if let val = js["series"] as? [NSDictionary] {
+			if let val = js["series"] as? [JSONDictionary] {
 				self.series = ImagingStudySeries.from(val, owner: self) as? [ImagingStudySeries]
 			}
 			if let val = js["started"] as? String {
@@ -203,13 +203,13 @@ public class ImagingStudySeries: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["availability"] as? String {
 				self.availability = val
 			}
-			if let val = js["bodySite"] as? NSDictionary {
+			if let val = js["bodySite"] as? JSONDictionary {
 				self.bodySite = Coding(json: val, owner: self)
 			}
 			if let val = js["dateTime"] as? String {
@@ -218,7 +218,7 @@ public class ImagingStudySeries: FHIRElement
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["instance"] as? [NSDictionary] {
+			if let val = js["instance"] as? [JSONDictionary] {
 				self.instance = ImagingStudySeriesInstance.from(val, owner: self) as? [ImagingStudySeriesInstance]
 			}
 			if let val = js["modality"] as? String {
@@ -283,10 +283,10 @@ public class ImagingStudySeriesInstance: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["attachment"] as? NSDictionary {
+			if let val = js["attachment"] as? JSONDictionary {
 				self.attachment = Reference(json: val, owner: self)
 			}
 			if let val = js["number"] as? Int {

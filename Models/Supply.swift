@@ -2,8 +2,8 @@
 //  Supply.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (supply.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (supply.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -38,22 +38,22 @@ public class Supply: FHIRResource
 	/// requested | dispensed | received | failed | cancelled
 	public var status: String?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["dispense"] as? [NSDictionary] {
+			if let val = js["dispense"] as? [JSONDictionary] {
 				self.dispense = SupplyDispense.from(val, owner: self) as? [SupplyDispense]
 			}
-			if let val = js["identifier"] as? NSDictionary {
+			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["kind"] as? NSDictionary {
+			if let val = js["kind"] as? JSONDictionary {
 				self.kind = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["orderedItem"] as? NSDictionary {
+			if let val = js["orderedItem"] as? JSONDictionary {
 				self.orderedItem = Reference(json: val, owner: self)
 			}
-			if let val = js["patient"] as? NSDictionary {
+			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
@@ -105,37 +105,37 @@ public class SupplyDispense: FHIRElement
 	/// Dispensing time
 	public var whenPrepared: Period?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["destination"] as? NSDictionary {
+			if let val = js["destination"] as? JSONDictionary {
 				self.destination = Reference(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? NSDictionary {
+			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["quantity"] as? NSDictionary {
+			if let val = js["quantity"] as? JSONDictionary {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["receiver"] as? [NSDictionary] {
+			if let val = js["receiver"] as? [JSONDictionary] {
 				self.receiver = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["suppliedItem"] as? NSDictionary {
+			if let val = js["suppliedItem"] as? JSONDictionary {
 				self.suppliedItem = Reference(json: val, owner: self)
 			}
-			if let val = js["supplier"] as? NSDictionary {
+			if let val = js["supplier"] as? JSONDictionary {
 				self.supplier = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["whenHandedOver"] as? NSDictionary {
+			if let val = js["whenHandedOver"] as? JSONDictionary {
 				self.whenHandedOver = Period(json: val, owner: self)
 			}
-			if let val = js["whenPrepared"] as? NSDictionary {
+			if let val = js["whenPrepared"] as? JSONDictionary {
 				self.whenPrepared = Period(json: val, owner: self)
 			}
 		}

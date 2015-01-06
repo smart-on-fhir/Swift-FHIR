@@ -2,8 +2,8 @@
 //  HealthcareService.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (healthcareservice.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (healthcareservice.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -100,34 +100,34 @@ public class HealthcareService: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["appointmentRequired"] as? NSDictionary {
+			if let val = js["appointmentRequired"] as? JSONDictionary {
 				self.appointmentRequired = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["availabilityExceptions"] as? String {
 				self.availabilityExceptions = val
 			}
-			if let val = js["availableTime"] as? [NSDictionary] {
+			if let val = js["availableTime"] as? [JSONDictionary] {
 				self.availableTime = HealthcareServiceAvailableTime.from(val, owner: self) as? [HealthcareServiceAvailableTime]
 			}
-			if let val = js["catchmentArea"] as? [NSDictionary] {
+			if let val = js["catchmentArea"] as? [JSONDictionary] {
 				self.catchmentArea = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["characteristic"] as? [NSDictionary] {
+			if let val = js["characteristic"] as? [JSONDictionary] {
 				self.characteristic = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["comment"] as? String {
 				self.comment = val
 			}
-			if let val = js["contactPoint"] as? [NSDictionary] {
+			if let val = js["contactPoint"] as? [JSONDictionary] {
 				self.contactPoint = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
-			if let val = js["coverageArea"] as? [NSDictionary] {
+			if let val = js["coverageArea"] as? [JSONDictionary] {
 				self.coverageArea = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["eligibility"] as? NSDictionary {
+			if let val = js["eligibility"] as? JSONDictionary {
 				self.eligibility = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["eligibilityNote"] as? String {
@@ -136,19 +136,19 @@ public class HealthcareService: FHIRResource
 			if let val = js["extraDetails"] as? String {
 				self.extraDetails = val
 			}
-			if let val = js["freeProvisionCode"] as? NSDictionary {
+			if let val = js["freeProvisionCode"] as? JSONDictionary {
 				self.freeProvisionCode = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["imageURI"] as? String {
 				self.imageURI = NSURL(json: val)
 			}
-			if let val = js["location"] as? NSDictionary {
+			if let val = js["location"] as? JSONDictionary {
 				self.location = Reference(json: val, owner: self)
 			}
-			if let val = js["notAvailableTime"] as? [NSDictionary] {
+			if let val = js["notAvailableTime"] as? [JSONDictionary] {
 				self.notAvailableTime = HealthcareServiceNotAvailableTime.from(val, owner: self) as? [HealthcareServiceNotAvailableTime]
 			}
 			if let val = js["programName"] as? [String] {
@@ -157,25 +157,25 @@ public class HealthcareService: FHIRResource
 			if let val = js["publicKey"] as? String {
 				self.publicKey = val
 			}
-			if let val = js["referralMethod"] as? [NSDictionary] {
+			if let val = js["referralMethod"] as? [JSONDictionary] {
 				self.referralMethod = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["serviceCategory"] as? NSDictionary {
+			if let val = js["serviceCategory"] as? JSONDictionary {
 				self.serviceCategory = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["serviceCode"] as? [NSDictionary] {
+			if let val = js["serviceCode"] as? [JSONDictionary] {
 				self.serviceCode = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["serviceName"] as? String {
 				self.serviceName = val
 			}
-			if let val = js["serviceType"] as? [NSDictionary] {
+			if let val = js["serviceType"] as? [JSONDictionary] {
 				self.serviceType = HealthcareServiceServiceType.from(val, owner: self) as? [HealthcareServiceServiceType]
 			}
-			if let val = js["setting"] as? [NSDictionary] {
+			if let val = js["setting"] as? [JSONDictionary] {
 				self.setting = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["targetGroup"] as? [NSDictionary] {
+			if let val = js["targetGroup"] as? [JSONDictionary] {
 				self.targetGroup = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
@@ -204,7 +204,7 @@ public class HealthcareServiceAvailableTime: FHIRElement
 	/// Indicates which Days of the week are available between the Start and End Times
 	public var daysOfWeek: [CodeableConcept]?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["allDay"] as? Bool {
@@ -216,7 +216,7 @@ public class HealthcareServiceAvailableTime: FHIRElement
 			if let val = js["availableStartTime"] as? String {
 				self.availableStartTime = NSDate(json: val)
 			}
-			if let val = js["daysOfWeek"] as? [NSDictionary] {
+			if let val = js["daysOfWeek"] as? [JSONDictionary] {
 				self.daysOfWeek = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
@@ -249,7 +249,7 @@ public class HealthcareServiceNotAvailableTime: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
@@ -288,13 +288,13 @@ public class HealthcareServiceServiceType: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["specialty"] as? [NSDictionary] {
+			if let val = js["specialty"] as? [JSONDictionary] {
 				self.specialty = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}

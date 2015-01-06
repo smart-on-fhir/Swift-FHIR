@@ -2,8 +2,8 @@
 //  ConceptMap.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (conceptmap.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (conceptmap.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -85,7 +85,7 @@ public class ConceptMap: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["copyright"] as? String {
@@ -97,7 +97,7 @@ public class ConceptMap: FHIRResource
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["element"] as? [NSDictionary] {
+			if let val = js["element"] as? [JSONDictionary] {
 				self.element = ConceptMapElement.from(val, owner: self) as? [ConceptMapElement]
 			}
 			if let val = js["experimental"] as? Bool {
@@ -112,7 +112,7 @@ public class ConceptMap: FHIRResource
 			if let val = js["publisher"] as? String {
 				self.publisher = val
 			}
-			if let val = js["sourceReference"] as? NSDictionary {
+			if let val = js["sourceReference"] as? JSONDictionary {
 				self.sourceReference = Reference(json: val, owner: self)
 			}
 			if let val = js["sourceUri"] as? String {
@@ -121,13 +121,13 @@ public class ConceptMap: FHIRResource
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["targetReference"] as? NSDictionary {
+			if let val = js["targetReference"] as? JSONDictionary {
 				self.targetReference = Reference(json: val, owner: self)
 			}
 			if let val = js["targetUri"] as? String {
 				self.targetUri = NSURL(json: val)
 			}
-			if let val = js["telecom"] as? [NSDictionary] {
+			if let val = js["telecom"] as? [JSONDictionary] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 			if let val = js["version"] as? String {
@@ -161,7 +161,7 @@ public class ConceptMapElement: FHIRElement
 	/// Target of this map
 	public var map: [ConceptMapElementMap]?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -170,10 +170,10 @@ public class ConceptMapElement: FHIRElement
 			if let val = js["codeSystem"] as? String {
 				self.codeSystem = NSURL(json: val)
 			}
-			if let val = js["dependsOn"] as? [NSDictionary] {
+			if let val = js["dependsOn"] as? [JSONDictionary] {
 				self.dependsOn = ConceptMapElementDependsOn.from(val, owner: self) as? [ConceptMapElementDependsOn]
 			}
-			if let val = js["map"] as? [NSDictionary] {
+			if let val = js["map"] as? [JSONDictionary] {
 				self.map = ConceptMapElementMap.from(val, owner: self) as? [ConceptMapElementMap]
 			}
 		}
@@ -215,7 +215,7 @@ public class ConceptMapElementDependsOn: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -265,7 +265,7 @@ public class ConceptMapElementMap: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -277,7 +277,7 @@ public class ConceptMapElementMap: FHIRElement
 			if let val = js["comments"] as? String {
 				self.comments = val
 			}
-			if let val = js["dependsOn"] as? [NSDictionary] {
+			if let val = js["dependsOn"] as? [JSONDictionary] {
 				self.dependsOn = ConceptMapElementDependsOn.from(val, owner: self) as? [ConceptMapElementDependsOn]
 			}
 			if let val = js["equivalence"] as? String {

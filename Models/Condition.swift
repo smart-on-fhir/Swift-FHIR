@@ -2,8 +2,8 @@
 //  Condition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (condition.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (condition.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -98,10 +98,10 @@ public class Condition: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["abatementAge"] as? NSDictionary {
+			if let val = js["abatementAge"] as? JSONDictionary {
 				self.abatementAge = Age(json: val, owner: self)
 			}
 			if let val = js["abatementBoolean"] as? Bool {
@@ -110,58 +110,58 @@ public class Condition: FHIRResource
 			if let val = js["abatementDate"] as? String {
 				self.abatementDate = NSDate(json: val)
 			}
-			if let val = js["asserter"] as? NSDictionary {
+			if let val = js["asserter"] as? JSONDictionary {
 				self.asserter = Reference(json: val, owner: self)
 			}
-			if let val = js["category"] as? NSDictionary {
+			if let val = js["category"] as? JSONDictionary {
 				self.category = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["certainty"] as? NSDictionary {
+			if let val = js["certainty"] as? JSONDictionary {
 				self.certainty = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["code"] as? JSONDictionary {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["dateAsserted"] as? String {
 				self.dateAsserted = NSDate(json: val)
 			}
-			if let val = js["dueTo"] as? [NSDictionary] {
+			if let val = js["dueTo"] as? [JSONDictionary] {
 				self.dueTo = ConditionDueTo.from(val, owner: self) as? [ConditionDueTo]
 			}
-			if let val = js["encounter"] as? NSDictionary {
+			if let val = js["encounter"] as? JSONDictionary {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["evidence"] as? [NSDictionary] {
+			if let val = js["evidence"] as? [JSONDictionary] {
 				self.evidence = ConditionEvidence.from(val, owner: self) as? [ConditionEvidence]
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["location"] as? [NSDictionary] {
+			if let val = js["location"] as? [JSONDictionary] {
 				self.location = ConditionLocation.from(val, owner: self) as? [ConditionLocation]
 			}
 			if let val = js["notes"] as? String {
 				self.notes = val
 			}
-			if let val = js["occurredFollowing"] as? [NSDictionary] {
+			if let val = js["occurredFollowing"] as? [JSONDictionary] {
 				self.occurredFollowing = ConditionOccurredFollowing.from(val, owner: self) as? [ConditionOccurredFollowing]
 			}
-			if let val = js["onsetAge"] as? NSDictionary {
+			if let val = js["onsetAge"] as? JSONDictionary {
 				self.onsetAge = Age(json: val, owner: self)
 			}
 			if let val = js["onsetDateTime"] as? String {
 				self.onsetDateTime = NSDate(json: val)
 			}
-			if let val = js["severity"] as? NSDictionary {
+			if let val = js["severity"] as? JSONDictionary {
 				self.severity = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["stage"] as? NSDictionary {
+			if let val = js["stage"] as? JSONDictionary {
 				self.stage = ConditionStage(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? NSDictionary {
+			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
 			}
 		}
@@ -186,13 +186,13 @@ public class ConditionDueTo: FHIRElement
 	/// Relationship target resource
 	public var target: Reference?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["codeableConcept"] as? NSDictionary {
+			if let val = js["codeableConcept"] as? JSONDictionary {
 				self.codeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["target"] as? NSDictionary {
+			if let val = js["target"] as? JSONDictionary {
 				self.target = Reference(json: val, owner: self)
 			}
 		}
@@ -217,13 +217,13 @@ public class ConditionEvidence: FHIRElement
 	/// Supporting information found elsewhere
 	public var detail: [Reference]?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["code"] as? JSONDictionary {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["detail"] as? [NSDictionary] {
+			if let val = js["detail"] as? [JSONDictionary] {
 				self.detail = Reference.from(val, owner: self) as? [Reference]
 			}
 		}
@@ -248,10 +248,10 @@ public class ConditionLocation: FHIRElement
 	/// Precise location details
 	public var detail: String?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["code"] as? JSONDictionary {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["detail"] as? String {
@@ -279,13 +279,13 @@ public class ConditionOccurredFollowing: FHIRElement
 	/// Relationship target resource
 	public var target: Reference?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["codeableConcept"] as? NSDictionary {
+			if let val = js["codeableConcept"] as? JSONDictionary {
 				self.codeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["target"] as? NSDictionary {
+			if let val = js["target"] as? JSONDictionary {
 				self.target = Reference(json: val, owner: self)
 			}
 		}
@@ -310,13 +310,13 @@ public class ConditionStage: FHIRElement
 	/// Simple summary (disease specific)
 	public var summary: CodeableConcept?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["assessment"] as? [NSDictionary] {
+			if let val = js["assessment"] as? [JSONDictionary] {
 				self.assessment = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["summary"] as? NSDictionary {
+			if let val = js["summary"] as? JSONDictionary {
 				self.summary = CodeableConcept(json: val, owner: self)
 			}
 		}

@@ -2,8 +2,8 @@
 //  SearchParameter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (searchparameter.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (searchparameter.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -69,7 +69,7 @@ public class SearchParameter: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["base"] as? String {
@@ -90,7 +90,7 @@ public class SearchParameter: FHIRResource
 			if let val = js["target"] as? [String] {
 				self.target = val
 			}
-			if let val = js["telecom"] as? [NSDictionary] {
+			if let val = js["telecom"] as? [JSONDictionary] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 			if let val = js["type"] as? String {

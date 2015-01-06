@@ -2,8 +2,8 @@
 //  MessageHeader.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (messageheader.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (messageheader.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -74,40 +74,40 @@ public class MessageHeader: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["author"] as? NSDictionary {
+			if let val = js["author"] as? JSONDictionary {
 				self.author = Reference(json: val, owner: self)
 			}
-			if let val = js["data"] as? [NSDictionary] {
+			if let val = js["data"] as? [JSONDictionary] {
 				self.data = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["destination"] as? [NSDictionary] {
+			if let val = js["destination"] as? [JSONDictionary] {
 				self.destination = MessageHeaderDestination.from(val, owner: self) as? [MessageHeaderDestination]
 			}
-			if let val = js["enterer"] as? NSDictionary {
+			if let val = js["enterer"] as? JSONDictionary {
 				self.enterer = Reference(json: val, owner: self)
 			}
-			if let val = js["event"] as? NSDictionary {
+			if let val = js["event"] as? JSONDictionary {
 				self.event = Coding(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? String {
 				self.identifier = val
 			}
-			if let val = js["reason"] as? NSDictionary {
+			if let val = js["reason"] as? JSONDictionary {
 				self.reason = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["receiver"] as? NSDictionary {
+			if let val = js["receiver"] as? JSONDictionary {
 				self.receiver = Reference(json: val, owner: self)
 			}
-			if let val = js["response"] as? NSDictionary {
+			if let val = js["response"] as? JSONDictionary {
 				self.response = MessageHeaderResponse(json: val, owner: self)
 			}
-			if let val = js["responsible"] as? NSDictionary {
+			if let val = js["responsible"] as? JSONDictionary {
 				self.responsible = Reference(json: val, owner: self)
 			}
-			if let val = js["source"] as? NSDictionary {
+			if let val = js["source"] as? JSONDictionary {
 				self.source = MessageHeaderSource(json: val, owner: self)
 			}
 			if let val = js["timestamp"] as? String {
@@ -145,7 +145,7 @@ public class MessageHeaderDestination: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["endpoint"] as? String {
@@ -154,7 +154,7 @@ public class MessageHeaderDestination: FHIRElement
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["target"] as? NSDictionary {
+			if let val = js["target"] as? JSONDictionary {
 				self.target = Reference(json: val, owner: self)
 			}
 		}
@@ -192,13 +192,13 @@ public class MessageHeaderResponse: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
 				self.code = val
 			}
-			if let val = js["details"] as? NSDictionary {
+			if let val = js["details"] as? JSONDictionary {
 				self.details = Reference(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? String {
@@ -242,10 +242,10 @@ public class MessageHeaderSource: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["contact"] as? NSDictionary {
+			if let val = js["contact"] as? JSONDictionary {
 				self.contact = ContactPoint(json: val, owner: self)
 			}
 			if let val = js["endpoint"] as? String {

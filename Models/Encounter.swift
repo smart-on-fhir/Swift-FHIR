@@ -2,8 +2,8 @@
 //  Encounter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (encounter.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (encounter.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -85,61 +85,61 @@ public class Encounter: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["episodeOfCare"] as? NSDictionary {
+			if let val = js["episodeOfCare"] as? JSONDictionary {
 				self.episodeOfCare = Reference(json: val, owner: self)
 			}
-			if let val = js["fulfills"] as? NSDictionary {
+			if let val = js["fulfills"] as? JSONDictionary {
 				self.fulfills = Reference(json: val, owner: self)
 			}
-			if let val = js["hospitalization"] as? NSDictionary {
+			if let val = js["hospitalization"] as? JSONDictionary {
 				self.hospitalization = EncounterHospitalization(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["indication"] as? [NSDictionary] {
+			if let val = js["indication"] as? [JSONDictionary] {
 				self.indication = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["class"] as? String {
 				self.klass = val
 			}
-			if let val = js["length"] as? NSDictionary {
+			if let val = js["length"] as? JSONDictionary {
 				self.length = Duration(json: val, owner: self)
 			}
-			if let val = js["location"] as? [NSDictionary] {
+			if let val = js["location"] as? [JSONDictionary] {
 				self.location = EncounterLocation.from(val, owner: self) as? [EncounterLocation]
 			}
-			if let val = js["partOf"] as? NSDictionary {
+			if let val = js["partOf"] as? JSONDictionary {
 				self.partOf = Reference(json: val, owner: self)
 			}
-			if let val = js["participant"] as? [NSDictionary] {
+			if let val = js["participant"] as? [JSONDictionary] {
 				self.participant = EncounterParticipant.from(val, owner: self) as? [EncounterParticipant]
 			}
-			if let val = js["patient"] as? NSDictionary {
+			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["period"] as? NSDictionary {
+			if let val = js["period"] as? JSONDictionary {
 				self.period = Period(json: val, owner: self)
 			}
-			if let val = js["priority"] as? NSDictionary {
+			if let val = js["priority"] as? JSONDictionary {
 				self.priority = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["reason"] as? NSDictionary {
+			if let val = js["reason"] as? JSONDictionary {
 				self.reason = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["serviceProvider"] as? NSDictionary {
+			if let val = js["serviceProvider"] as? JSONDictionary {
 				self.serviceProvider = Reference(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["statusHistory"] as? [NSDictionary] {
+			if let val = js["statusHistory"] as? [JSONDictionary] {
 				self.statusHistory = EncounterStatusHistory.from(val, owner: self) as? [EncounterStatusHistory]
 			}
-			if let val = js["type"] as? [NSDictionary] {
+			if let val = js["type"] as? [JSONDictionary] {
 				self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
@@ -186,37 +186,37 @@ public class EncounterHospitalization: FHIRElement
 	/// Special courtesies (VIP, board member)
 	public var specialCourtesy: [CodeableConcept]?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["admitSource"] as? NSDictionary {
+			if let val = js["admitSource"] as? JSONDictionary {
 				self.admitSource = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["destination"] as? NSDictionary {
+			if let val = js["destination"] as? JSONDictionary {
 				self.destination = Reference(json: val, owner: self)
 			}
-			if let val = js["diet"] as? NSDictionary {
+			if let val = js["diet"] as? JSONDictionary {
 				self.diet = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["dischargeDiagnosis"] as? NSDictionary {
+			if let val = js["dischargeDiagnosis"] as? JSONDictionary {
 				self.dischargeDiagnosis = Reference(json: val, owner: self)
 			}
-			if let val = js["dischargeDisposition"] as? NSDictionary {
+			if let val = js["dischargeDisposition"] as? JSONDictionary {
 				self.dischargeDisposition = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["origin"] as? NSDictionary {
+			if let val = js["origin"] as? JSONDictionary {
 				self.origin = Reference(json: val, owner: self)
 			}
-			if let val = js["preAdmissionIdentifier"] as? NSDictionary {
+			if let val = js["preAdmissionIdentifier"] as? JSONDictionary {
 				self.preAdmissionIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["reAdmission"] as? Bool {
 				self.reAdmission = val
 			}
-			if let val = js["specialArrangement"] as? [NSDictionary] {
+			if let val = js["specialArrangement"] as? [JSONDictionary] {
 				self.specialArrangement = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["specialCourtesy"] as? [NSDictionary] {
+			if let val = js["specialCourtesy"] as? [JSONDictionary] {
 				self.specialCourtesy = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
@@ -251,13 +251,13 @@ public class EncounterLocation: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["location"] as? NSDictionary {
+			if let val = js["location"] as? JSONDictionary {
 				self.location = Reference(json: val, owner: self)
 			}
-			if let val = js["period"] as? NSDictionary {
+			if let val = js["period"] as? JSONDictionary {
 				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
@@ -288,16 +288,16 @@ public class EncounterParticipant: FHIRElement
 	/// Role of participant in encounter
 	public var type: [CodeableConcept]?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["individual"] as? NSDictionary {
+			if let val = js["individual"] as? JSONDictionary {
 				self.individual = Reference(json: val, owner: self)
 			}
-			if let val = js["period"] as? NSDictionary {
+			if let val = js["period"] as? JSONDictionary {
 				self.period = Period(json: val, owner: self)
 			}
-			if let val = js["type"] as? [NSDictionary] {
+			if let val = js["type"] as? [JSONDictionary] {
 				self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
@@ -334,10 +334,10 @@ public class EncounterStatusHistory: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["period"] as? NSDictionary {
+			if let val = js["period"] as? JSONDictionary {
 				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {

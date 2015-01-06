@@ -2,8 +2,8 @@
 //  DataElement.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (dataelement.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (dataelement.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -165,16 +165,16 @@ public class DataElement: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["binding"] as? NSDictionary {
+			if let val = js["binding"] as? JSONDictionary {
 				self.binding = DataElementBinding(json: val, owner: self)
 			}
-			if let val = js["category"] as? [NSDictionary] {
+			if let val = js["category"] as? [JSONDictionary] {
 				self.category = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["code"] as? [NSDictionary] {
+			if let val = js["code"] as? [JSONDictionary] {
 				self.code = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["comments"] as? String {
@@ -186,10 +186,10 @@ public class DataElement: FHIRResource
 			if let val = js["definition"] as? String {
 				self.definition = val
 			}
-			if let val = js["exampleAddress"] as? NSDictionary {
+			if let val = js["exampleAddress"] as? JSONDictionary {
 				self.exampleAddress = Address(json: val, owner: self)
 			}
-			if let val = js["exampleAttachment"] as? NSDictionary {
+			if let val = js["exampleAttachment"] as? JSONDictionary {
 				self.exampleAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["exampleBase64Binary"] as? String {
@@ -201,13 +201,13 @@ public class DataElement: FHIRResource
 			if let val = js["exampleCode"] as? String {
 				self.exampleCode = val
 			}
-			if let val = js["exampleCodeableConcept"] as? NSDictionary {
+			if let val = js["exampleCodeableConcept"] as? JSONDictionary {
 				self.exampleCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["exampleCoding"] as? NSDictionary {
+			if let val = js["exampleCoding"] as? JSONDictionary {
 				self.exampleCoding = Coding(json: val, owner: self)
 			}
-			if let val = js["exampleContactPoint"] as? NSDictionary {
+			if let val = js["exampleContactPoint"] as? JSONDictionary {
 				self.exampleContactPoint = ContactPoint(json: val, owner: self)
 			}
 			if let val = js["exampleDate"] as? String {
@@ -219,10 +219,10 @@ public class DataElement: FHIRResource
 			if let val = js["exampleDecimal"] as? NSNumber {
 				self.exampleDecimal = NSDecimalNumber(json: val)
 			}
-			if let val = js["exampleHumanName"] as? NSDictionary {
+			if let val = js["exampleHumanName"] as? JSONDictionary {
 				self.exampleHumanName = HumanName(json: val, owner: self)
 			}
-			if let val = js["exampleIdentifier"] as? NSDictionary {
+			if let val = js["exampleIdentifier"] as? JSONDictionary {
 				self.exampleIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["exampleInstant"] as? String {
@@ -231,19 +231,19 @@ public class DataElement: FHIRResource
 			if let val = js["exampleInteger"] as? Int {
 				self.exampleInteger = val
 			}
-			if let val = js["examplePeriod"] as? NSDictionary {
+			if let val = js["examplePeriod"] as? JSONDictionary {
 				self.examplePeriod = Period(json: val, owner: self)
 			}
-			if let val = js["exampleQuantity"] as? NSDictionary {
+			if let val = js["exampleQuantity"] as? JSONDictionary {
 				self.exampleQuantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["exampleRange"] as? NSDictionary {
+			if let val = js["exampleRange"] as? JSONDictionary {
 				self.exampleRange = Range(json: val, owner: self)
 			}
-			if let val = js["exampleRatio"] as? NSDictionary {
+			if let val = js["exampleRatio"] as? JSONDictionary {
 				self.exampleRatio = Ratio(json: val, owner: self)
 			}
-			if let val = js["exampleReference"] as? NSDictionary {
+			if let val = js["exampleReference"] as? JSONDictionary {
 				self.exampleReference = Reference(json: val, owner: self)
 			}
 			if let val = js["exampleString"] as? String {
@@ -252,7 +252,7 @@ public class DataElement: FHIRResource
 			if let val = js["exampleTime"] as? String {
 				self.exampleTime = NSDate(json: val)
 			}
-			if let val = js["exampleTiming"] as? NSDictionary {
+			if let val = js["exampleTiming"] as? JSONDictionary {
 				self.exampleTiming = Timing(json: val, owner: self)
 			}
 			if let val = js["exampleUri"] as? String {
@@ -261,13 +261,13 @@ public class DataElement: FHIRResource
 			if let val = js["granularity"] as? String {
 				self.granularity = val
 			}
-			if let val = js["identifier"] as? NSDictionary {
+			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["label"] as? String {
 				self.label = val
 			}
-			if let val = js["mapping"] as? [NSDictionary] {
+			if let val = js["mapping"] as? [JSONDictionary] {
 				self.mapping = DataElementMapping.from(val, owner: self) as? [DataElementMapping]
 			}
 			if let val = js["maxLength"] as? Int {
@@ -291,16 +291,16 @@ public class DataElement: FHIRResource
 			if let val = js["synonym"] as? [String] {
 				self.synonym = val
 			}
-			if let val = js["telecom"] as? [NSDictionary] {
+			if let val = js["telecom"] as? [JSONDictionary] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 			if let val = js["type"] as? String {
 				self.type = val
 			}
-			if let val = js["unitsCodeableConcept"] as? NSDictionary {
+			if let val = js["unitsCodeableConcept"] as? JSONDictionary {
 				self.unitsCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["unitsReference"] as? NSDictionary {
+			if let val = js["unitsReference"] as? JSONDictionary {
 				self.unitsReference = Reference(json: val, owner: self)
 			}
 			if let val = js["version"] as? String {
@@ -341,7 +341,7 @@ public class DataElementBinding: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["conformance"] as? String {
@@ -353,7 +353,7 @@ public class DataElementBinding: FHIRElement
 			if let val = js["isExtensible"] as? Bool {
 				self.isExtensible = val
 			}
-			if let val = js["valueSet"] as? NSDictionary {
+			if let val = js["valueSet"] as? JSONDictionary {
 				self.valueSet = Reference(json: val, owner: self)
 			}
 		}
@@ -394,7 +394,7 @@ public class DataElementMapping: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["comments"] as? String {

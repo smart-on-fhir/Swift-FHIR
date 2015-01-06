@@ -2,8 +2,8 @@
 //  Money.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (Money.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (Money.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation

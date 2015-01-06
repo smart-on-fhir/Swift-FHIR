@@ -2,8 +2,8 @@
 //  Media.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (media.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (media.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -68,10 +68,10 @@ public class Media: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["content"] as? NSDictionary {
+			if let val = js["content"] as? JSONDictionary {
 				self.content = Attachment(json: val, owner: self)
 			}
 			if let val = js["created"] as? String {
@@ -89,22 +89,22 @@ public class Media: FHIRResource
 			if let val = js["height"] as? Int {
 				self.height = val
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["operator"] as? NSDictionary {
+			if let val = js["operator"] as? JSONDictionary {
 				self.operatr = Reference(json: val, owner: self)
 			}
-			if let val = js["subject"] as? NSDictionary {
+			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
 			}
-			if let val = js["subtype"] as? NSDictionary {
+			if let val = js["subtype"] as? JSONDictionary {
 				self.subtype = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["type"] as? String {
 				self.type = val
 			}
-			if let val = js["view"] as? NSDictionary {
+			if let val = js["view"] as? JSONDictionary {
 				self.view = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["width"] as? Int {

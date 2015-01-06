@@ -2,8 +2,8 @@
 //  List.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (list.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (list.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -54,22 +54,22 @@ public class List: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["code"] as? JSONDictionary {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
 			}
-			if let val = js["emptyReason"] as? NSDictionary {
+			if let val = js["emptyReason"] as? JSONDictionary {
 				self.emptyReason = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["entry"] as? [NSDictionary] {
+			if let val = js["entry"] as? [JSONDictionary] {
 				self.entry = ListEntry.from(val, owner: self) as? [ListEntry]
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["mode"] as? String {
@@ -78,10 +78,10 @@ public class List: FHIRResource
 			if let val = js["ordered"] as? Bool {
 				self.ordered = val
 			}
-			if let val = js["source"] as? NSDictionary {
+			if let val = js["source"] as? JSONDictionary {
 				self.source = Reference(json: val, owner: self)
 			}
-			if let val = js["subject"] as? NSDictionary {
+			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
 			}
 		}
@@ -119,7 +119,7 @@ public class ListEntry: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
@@ -128,10 +128,10 @@ public class ListEntry: FHIRElement
 			if let val = js["deleted"] as? Bool {
 				self.deleted = val
 			}
-			if let val = js["flag"] as? [NSDictionary] {
+			if let val = js["flag"] as? [JSONDictionary] {
 				self.flag = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["item"] as? NSDictionary {
+			if let val = js["item"] as? JSONDictionary {
 				self.item = Reference(json: val, owner: self)
 			}
 		}

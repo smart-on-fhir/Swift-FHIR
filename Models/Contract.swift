@@ -2,8 +2,8 @@
 //  Contract.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (contract.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (contract.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -107,94 +107,94 @@ public class Contract: FHIRResource
 	/// Witness to the contract
 	public var witness: [Reference]?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["applies"] as? NSDictionary {
+			if let val = js["applies"] as? JSONDictionary {
 				self.applies = Period(json: val, owner: self)
 			}
-			if let val = js["author"] as? [NSDictionary] {
+			if let val = js["author"] as? [JSONDictionary] {
 				self.author = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["authority"] as? [NSDictionary] {
+			if let val = js["authority"] as? [JSONDictionary] {
 				self.authority = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["binding"] as? NSDictionary {
+			if let val = js["binding"] as? JSONDictionary {
 				self.binding = Attachment(json: val, owner: self)
 			}
 			if let val = js["bindingDateTime"] as? String {
 				self.bindingDateTime = NSDate(json: val)
 			}
-			if let val = js["domain"] as? [NSDictionary] {
+			if let val = js["domain"] as? [JSONDictionary] {
 				self.domain = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["executor"] as? [NSDictionary] {
+			if let val = js["executor"] as? [JSONDictionary] {
 				self.executor = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["factor"] as? NSNumber {
 				self.factor = NSDecimalNumber(json: val)
 			}
-			if let val = js["friendly"] as? [NSDictionary] {
+			if let val = js["friendly"] as? [JSONDictionary] {
 				self.friendly = Attachment.from(val, owner: self) as? [Attachment]
 			}
 			if let val = js["friendlyDateTime"] as? String {
 				self.friendlyDateTime = NSDate(json: val)
 			}
-			if let val = js["grantee"] as? [NSDictionary] {
+			if let val = js["grantee"] as? [JSONDictionary] {
 				self.grantee = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["grantor"] as? [NSDictionary] {
+			if let val = js["grantor"] as? [JSONDictionary] {
 				self.grantor = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["issued"] as? String {
 				self.issued = NSDate(json: val)
 			}
-			if let val = js["legal"] as? [NSDictionary] {
+			if let val = js["legal"] as? [JSONDictionary] {
 				self.legal = Attachment.from(val, owner: self) as? [Attachment]
 			}
 			if let val = js["legalDateTime"] as? String {
 				self.legalDateTime = NSDate(json: val)
 			}
-			if let val = js["net"] as? NSDictionary {
+			if let val = js["net"] as? JSONDictionary {
 				self.net = Money(json: val, owner: self)
 			}
-			if let val = js["notary"] as? [NSDictionary] {
+			if let val = js["notary"] as? [JSONDictionary] {
 				self.notary = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["points"] as? NSNumber {
 				self.points = NSDecimalNumber(json: val)
 			}
-			if let val = js["quantity"] as? NSDictionary {
+			if let val = js["quantity"] as? JSONDictionary {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["rule"] as? [NSDictionary] {
+			if let val = js["rule"] as? [JSONDictionary] {
 				self.rule = Attachment.from(val, owner: self) as? [Attachment]
 			}
 			if let val = js["ruleDateTime"] as? String {
 				self.ruleDateTime = NSDate(json: val)
 			}
-			if let val = js["signer"] as? [NSDictionary] {
+			if let val = js["signer"] as? [JSONDictionary] {
 				self.signer = ContractSigner.from(val, owner: self) as? [ContractSigner]
 			}
-			if let val = js["subject"] as? [NSDictionary] {
+			if let val = js["subject"] as? [JSONDictionary] {
 				self.subject = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["subtype"] as? [NSDictionary] {
+			if let val = js["subtype"] as? [JSONDictionary] {
 				self.subtype = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["term"] as? [NSDictionary] {
+			if let val = js["term"] as? [JSONDictionary] {
 				self.term = ContractTerm.from(val, owner: self) as? [ContractTerm]
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["unitPrice"] as? NSDictionary {
+			if let val = js["unitPrice"] as? JSONDictionary {
 				self.unitPrice = Money(json: val, owner: self)
 			}
-			if let val = js["witness"] as? [NSDictionary] {
+			if let val = js["witness"] as? [JSONDictionary] {
 				self.witness = Reference.from(val, owner: self) as? [Reference]
 			}
 		}
@@ -229,13 +229,13 @@ public class ContractSigner: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["signature"] as? String {
 				self.signature = val
 			}
-			if let val = js["type"] as? [NSDictionary] {
+			if let val = js["type"] as? [JSONDictionary] {
 				self.type = Coding.from(val, owner: self) as? [Coding]
 			}
 		}
@@ -291,43 +291,43 @@ public class ContractTerm: FHIRElement
 	/// Fee, charge or cost per point
 	public var unitPrice: Money?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["applies"] as? NSDictionary {
+			if let val = js["applies"] as? JSONDictionary {
 				self.applies = Period(json: val, owner: self)
 			}
 			if let val = js["factor"] as? NSNumber {
 				self.factor = NSDecimalNumber(json: val)
 			}
-			if let val = js["identifier"] as? NSDictionary {
+			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["issued"] as? String {
 				self.issued = NSDate(json: val)
 			}
-			if let val = js["net"] as? NSDictionary {
+			if let val = js["net"] as? JSONDictionary {
 				self.net = Money(json: val, owner: self)
 			}
 			if let val = js["points"] as? NSNumber {
 				self.points = NSDecimalNumber(json: val)
 			}
-			if let val = js["quantity"] as? NSDictionary {
+			if let val = js["quantity"] as? JSONDictionary {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["subject"] as? NSDictionary {
+			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
 			}
-			if let val = js["subtype"] as? NSDictionary {
+			if let val = js["subtype"] as? JSONDictionary {
 				self.subtype = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["text"] as? String {
 				self.text = val
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["unitPrice"] as? NSDictionary {
+			if let val = js["unitPrice"] as? JSONDictionary {
 				self.unitPrice = Money(json: val, owner: self)
 			}
 		}

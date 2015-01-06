@@ -2,8 +2,8 @@
 //  Period.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (Period.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (Period.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -26,7 +26,7 @@ public class Period: FHIRElement
 	/// Starting time with inclusive boundary
 	public var start: NSDate?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["end"] as? String {

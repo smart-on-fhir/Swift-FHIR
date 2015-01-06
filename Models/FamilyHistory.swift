@@ -2,8 +2,8 @@
 //  FamilyHistory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (familyhistory.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (familyhistory.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -43,22 +43,22 @@ public class FamilyHistory: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["note"] as? String {
 				self.note = val
 			}
-			if let val = js["patient"] as? NSDictionary {
+			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["relation"] as? [NSDictionary] {
+			if let val = js["relation"] as? [JSONDictionary] {
 				self.relation = FamilyHistoryRelation.from(val, owner: self) as? [FamilyHistoryRelation]
 			}
 		}
@@ -129,13 +129,13 @@ public class FamilyHistoryRelation: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["ageAge"] as? NSDictionary {
+			if let val = js["ageAge"] as? JSONDictionary {
 				self.ageAge = Age(json: val, owner: self)
 			}
-			if let val = js["ageRange"] as? NSDictionary {
+			if let val = js["ageRange"] as? JSONDictionary {
 				self.ageRange = Range(json: val, owner: self)
 			}
 			if let val = js["ageString"] as? String {
@@ -144,16 +144,16 @@ public class FamilyHistoryRelation: FHIRElement
 			if let val = js["bornDate"] as? String {
 				self.bornDate = NSDate(json: val)
 			}
-			if let val = js["bornPeriod"] as? NSDictionary {
+			if let val = js["bornPeriod"] as? JSONDictionary {
 				self.bornPeriod = Period(json: val, owner: self)
 			}
 			if let val = js["bornString"] as? String {
 				self.bornString = val
 			}
-			if let val = js["condition"] as? [NSDictionary] {
+			if let val = js["condition"] as? [JSONDictionary] {
 				self.condition = FamilyHistoryRelationCondition.from(val, owner: self) as? [FamilyHistoryRelationCondition]
 			}
-			if let val = js["deceasedAge"] as? NSDictionary {
+			if let val = js["deceasedAge"] as? JSONDictionary {
 				self.deceasedAge = Age(json: val, owner: self)
 			}
 			if let val = js["deceasedBoolean"] as? Bool {
@@ -162,7 +162,7 @@ public class FamilyHistoryRelation: FHIRElement
 			if let val = js["deceasedDate"] as? String {
 				self.deceasedDate = NSDate(json: val)
 			}
-			if let val = js["deceasedRange"] as? NSDictionary {
+			if let val = js["deceasedRange"] as? JSONDictionary {
 				self.deceasedRange = Range(json: val, owner: self)
 			}
 			if let val = js["deceasedString"] as? String {
@@ -174,7 +174,7 @@ public class FamilyHistoryRelation: FHIRElement
 			if let val = js["note"] as? String {
 				self.note = val
 			}
-			if let val = js["relationship"] as? NSDictionary {
+			if let val = js["relationship"] as? JSONDictionary {
 				self.relationship = CodeableConcept(json: val, owner: self)
 			}
 		}
@@ -220,25 +220,25 @@ public class FamilyHistoryRelationCondition: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["note"] as? String {
 				self.note = val
 			}
-			if let val = js["onsetAge"] as? NSDictionary {
+			if let val = js["onsetAge"] as? JSONDictionary {
 				self.onsetAge = Age(json: val, owner: self)
 			}
-			if let val = js["onsetRange"] as? NSDictionary {
+			if let val = js["onsetRange"] as? JSONDictionary {
 				self.onsetRange = Range(json: val, owner: self)
 			}
 			if let val = js["onsetString"] as? String {
 				self.onsetString = val
 			}
-			if let val = js["outcome"] as? NSDictionary {
+			if let val = js["outcome"] as? JSONDictionary {
 				self.outcome = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}

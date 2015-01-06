@@ -2,8 +2,8 @@
 //  DeviceComponent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (devicecomponent.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (devicecomponent.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -64,13 +64,13 @@ public class DeviceComponent: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["identifier"] as? NSDictionary {
+			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["languageCode"] as? NSDictionary {
+			if let val = js["languageCode"] as? JSONDictionary {
 				self.languageCode = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["lastSystemChange"] as? String {
@@ -79,22 +79,22 @@ public class DeviceComponent: FHIRResource
 			if let val = js["measurementPrinciple"] as? String {
 				self.measurementPrinciple = val
 			}
-			if let val = js["operationalStatus"] as? [NSDictionary] {
+			if let val = js["operationalStatus"] as? [JSONDictionary] {
 				self.operationalStatus = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["parameterGroup"] as? NSDictionary {
+			if let val = js["parameterGroup"] as? JSONDictionary {
 				self.parameterGroup = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["parent"] as? NSDictionary {
+			if let val = js["parent"] as? JSONDictionary {
 				self.parent = Reference(json: val, owner: self)
 			}
-			if let val = js["productionSpecification"] as? [NSDictionary] {
+			if let val = js["productionSpecification"] as? [JSONDictionary] {
 				self.productionSpecification = DeviceComponentProductionSpecification.from(val, owner: self) as? [DeviceComponentProductionSpecification]
 			}
-			if let val = js["source"] as? NSDictionary {
+			if let val = js["source"] as? JSONDictionary {
 				self.source = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
@@ -122,16 +122,16 @@ public class DeviceComponentProductionSpecification: FHIRElement
 	/// Specification type
 	public var specType: CodeableConcept?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["componentId"] as? NSDictionary {
+			if let val = js["componentId"] as? JSONDictionary {
 				self.componentId = Identifier(json: val, owner: self)
 			}
 			if let val = js["productionSpec"] as? String {
 				self.productionSpec = val
 			}
-			if let val = js["specType"] as? NSDictionary {
+			if let val = js["specType"] as? JSONDictionary {
 				self.specType = CodeableConcept(json: val, owner: self)
 			}
 		}

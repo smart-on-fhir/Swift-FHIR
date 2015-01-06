@@ -10,8 +10,8 @@ import Foundation
 
 
 /**
-*  Abstract superclass for all FHIR data elements.
-*/
+ *  Abstract superclass for all FHIR data elements.
+ */
 public class FHIRElement
 {
 	/// The name of the resource or element
@@ -37,9 +37,9 @@ public class FHIRElement
 	
 	// MARK: - JSON Capabilities
 	
-	public required init(json: NSDictionary?) {			// TODO: replace NSDictionary with [String: AnyObject] everywhere
-		if let js = json as? [String: AnyObject] {
-			if let arr = js["contained"] as? [NSDictionary] {
+	public required init(json: JSONDictionary?) {
+		if let js = json {
+			if let arr = js["contained"] as? [JSONDictionary] {
 				var cont = contained ?? [String: FHIRContainedResource]()
 				for dict in arr {
 					let res = FHIRContainedResource(json: dict)
@@ -56,9 +56,9 @@ public class FHIRElement
 			// extract (modifier) extensions. Non-modifier extensions have a URL as their JSON dictionary key.
 			var extensions = [Extension]()
 			for (key, val) in js {
-				if contains(key, ":") && val is [NSDictionary] {
+				if contains(key, ":") && val is [JSONDictionary] {
 					let url = NSURL(string: key)
-					for ext in Extension.from(val as [NSDictionary]) as [Extension] {
+					for ext in Extension.from(val as [JSONDictionary]) as [Extension] {
 						ext.url = url
 						extensions.append(ext)
 					}
@@ -68,16 +68,28 @@ public class FHIRElement
 				fhirExtension = extensions
 			}
 			
-			if let arr = js["modifier"] as? [NSDictionary] {
-				modifierExtension = Extension.from(arr) as? [Extension]
+			if let mod = js["modifier"] as? JSONDictionary {
+				var extensions = [Extension]()
+				for (key, val) in mod {
+					if val is [JSONDictionary] {
+						let url = NSURL(string: key)
+						for ext in Extension.from(val as [JSONDictionary]) as [Extension] {
+							ext.url = url
+							extensions.append(ext)
+						}
+					}
+				}
+				if countElements(extensions) > 0 {
+					modifierExtension = extensions
+				}
 			}
 		}
 	}
 	
 	/**
-	Convenience allocator to be used when allocating an element as part of another element.
-	*/
-	public convenience init(json: NSDictionary?, owner: FHIRElement?) {
+		Convenience allocator to be used when allocating an element as part of another element.
+	 */
+	public convenience init(json: JSONDictionary?, owner: FHIRElement?) {
 		self.init(json: json)
 		self._owner = owner
 	}
@@ -86,14 +98,14 @@ public class FHIRElement
 	// MARK: - Factories
 	
 	/**
-	Tries to find `resourceType` by inspecting the JSON dictionary, then instantiates the appropriate class for the
-	specified resource type, or instantiates the receiver's class otherwise.
-	
-	:param: json An NSDictionary decoded from a JSON response
-	:param: owner The FHIRElement owning the new instance, if appropriate
-	:returns: If possible the appropriate FHIRElement subclass, instantiated from the given JSON dictionary, Self otherwise
-	*/
-	final class func instantiateFrom(json: NSDictionary?, owner: FHIRElement?) -> FHIRElement {
+		Tries to find `resourceType` by inspecting the JSON dictionary, then instantiates the appropriate class for the
+		specified resource type, or instantiates the receiver's class otherwise.
+		
+		:param: json A JSONDictionary decoded from a JSON response
+		:param: owner The FHIRElement owning the new instance, if appropriate
+		:returns: If possible the appropriate FHIRElement subclass, instantiated from the given JSON dictionary, Self otherwise
+	 */
+	final class func instantiateFrom(json: JSONDictionary?, owner: FHIRElement?) -> FHIRElement {
 		if let type = json?["resourceType"] as? String {
 			return factory(type, json: json!, owner: owner)
 		}
@@ -103,10 +115,10 @@ public class FHIRElement
 	}
 	
 	/**
-	Instantiates an array of the receiver's type and returns it.
-	TODO: Returning [Self] is not yet possible (Xcode 6.2b3), too bad
-	*/
-	final class func from(array: [NSDictionary]) -> [FHIRElement] {
+		Instantiates an array of the receiver's type and returns it.
+		TODO: Returning [Self] is not yet possible (Xcode 6.2b3), too bad
+	 */
+	final class func from(array: [JSONDictionary]) -> [FHIRElement] {
 		var arr: [FHIRElement] = []
 		for arrJSON in array {
 			arr.append(self(json: arrJSON))
@@ -115,9 +127,9 @@ public class FHIRElement
 	}
 	
 	/**
-	Instantiates an array of the receiver's type and returns it.
-	*/
-	final class func from(array: [NSDictionary], owner: FHIRElement?) -> [FHIRElement] {
+		Instantiates an array of the receiver's type and returns it.
+	 */
+	final class func from(array: [JSONDictionary], owner: FHIRElement?) -> [FHIRElement] {
 		let arr = from(array)
 		for elem in arr {
 			elem._owner = owner			// would be neater to use init(json:owner:) but cannot use non-required init with dynamic type
@@ -145,13 +157,13 @@ public class FHIRElement
 	}
 	
 	/**
-	Stores the resolved reference into the `_resolved` dictionary.
+		Stores the resolved reference into the `_resolved` dictionary.
 	
-	Called by FHIRResource when it resolves a reference.
+		Called by FHIRResource when it resolves a reference.
 	
-	:param: refid The reference identifier as String
-	:param: resolved The element that was resolved
-	*/
+		:param: refid The reference identifier as String
+		:param: resolved The element that was resolved
+	 */
 	func didResolveReference(refid: String, resolved: FHIRElement) {
 		if let owner = _owner {
 			owner.didResolveReference(refid, resolved: resolved)

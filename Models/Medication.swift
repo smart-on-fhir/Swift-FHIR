@@ -2,8 +2,8 @@
 //  Medication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (medication.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (medication.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -41,10 +41,10 @@ public class Medication: FHIRResource
 	/// Administrable medication details
 	public var product: MedicationProduct?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["code"] as? JSONDictionary {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["isBrand"] as? Bool {
@@ -53,16 +53,16 @@ public class Medication: FHIRResource
 			if let val = js["kind"] as? String {
 				self.kind = val
 			}
-			if let val = js["manufacturer"] as? NSDictionary {
+			if let val = js["manufacturer"] as? JSONDictionary {
 				self.manufacturer = Reference(json: val, owner: self)
 			}
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["package"] as? NSDictionary {
+			if let val = js["package"] as? JSONDictionary {
 				self.package = MedicationPackage(json: val, owner: self)
 			}
-			if let val = js["product"] as? NSDictionary {
+			if let val = js["product"] as? JSONDictionary {
 				self.product = MedicationProduct(json: val, owner: self)
 			}
 		}
@@ -87,13 +87,13 @@ public class MedicationPackage: FHIRElement
 	/// What is  in the package?
 	public var content: [MedicationPackageContent]?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["container"] as? NSDictionary {
+			if let val = js["container"] as? JSONDictionary {
 				self.container = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["content"] as? [NSDictionary] {
+			if let val = js["content"] as? [JSONDictionary] {
 				self.content = MedicationPackageContent.from(val, owner: self) as? [MedicationPackageContent]
 			}
 		}
@@ -125,13 +125,13 @@ public class MedicationPackageContent: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["amount"] as? NSDictionary {
+			if let val = js["amount"] as? JSONDictionary {
 				self.amount = Quantity(json: val, owner: self)
 			}
-			if let val = js["item"] as? NSDictionary {
+			if let val = js["item"] as? JSONDictionary {
 				self.item = Reference(json: val, owner: self)
 			}
 		}
@@ -156,13 +156,13 @@ public class MedicationProduct: FHIRElement
 	/// Active or inactive ingredient
 	public var ingredient: [MedicationProductIngredient]?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["form"] as? NSDictionary {
+			if let val = js["form"] as? JSONDictionary {
 				self.form = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["ingredient"] as? [NSDictionary] {
+			if let val = js["ingredient"] as? [JSONDictionary] {
 				self.ingredient = MedicationProductIngredient.from(val, owner: self) as? [MedicationProductIngredient]
 			}
 		}
@@ -194,13 +194,13 @@ public class MedicationProductIngredient: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["amount"] as? NSDictionary {
+			if let val = js["amount"] as? JSONDictionary {
 				self.amount = Ratio(json: val, owner: self)
 			}
-			if let val = js["item"] as? NSDictionary {
+			if let val = js["item"] as? JSONDictionary {
 				self.item = Reference(json: val, owner: self)
 			}
 		}

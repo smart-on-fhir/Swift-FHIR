@@ -2,8 +2,8 @@
 //  Order.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (order.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (order.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -55,37 +55,37 @@ public class Order: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["authority"] as? NSDictionary {
+			if let val = js["authority"] as? JSONDictionary {
 				self.authority = Reference(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
 			}
-			if let val = js["detail"] as? [NSDictionary] {
+			if let val = js["detail"] as? [JSONDictionary] {
 				self.detail = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["reasonCodeableConcept"] as? NSDictionary {
+			if let val = js["reasonCodeableConcept"] as? JSONDictionary {
 				self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["reasonReference"] as? NSDictionary {
+			if let val = js["reasonReference"] as? JSONDictionary {
 				self.reasonReference = Reference(json: val, owner: self)
 			}
-			if let val = js["source"] as? NSDictionary {
+			if let val = js["source"] as? JSONDictionary {
 				self.source = Reference(json: val, owner: self)
 			}
-			if let val = js["subject"] as? NSDictionary {
+			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
 			}
-			if let val = js["target"] as? NSDictionary {
+			if let val = js["target"] as? JSONDictionary {
 				self.target = Reference(json: val, owner: self)
 			}
-			if let val = js["when"] as? NSDictionary {
+			if let val = js["when"] as? JSONDictionary {
 				self.when = OrderWhen(json: val, owner: self)
 			}
 		}
@@ -108,13 +108,13 @@ public class OrderWhen: FHIRElement
 	/// A formal schedule
 	public var schedule: Timing?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["code"] as? JSONDictionary {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["schedule"] as? NSDictionary {
+			if let val = js["schedule"] as? JSONDictionary {
 				self.schedule = Timing(json: val, owner: self)
 			}
 		}

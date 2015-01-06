@@ -2,8 +2,8 @@
 //  Timing.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (Timing.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (Timing.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -27,13 +27,13 @@ public class Timing: FHIRElement
 	/// Only if there is none or one event
 	public var repeat: TimingRepeat?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["event"] as? [NSDictionary] {
+			if let val = js["event"] as? [JSONDictionary] {
 				self.event = Period.from(val, owner: self) as? [Period]
 			}
-			if let val = js["repeat"] as? NSDictionary {
+			if let val = js["repeat"] as? JSONDictionary {
 				self.repeat = TimingRepeat(json: val, owner: self)
 			}
 		}
@@ -80,7 +80,7 @@ public class TimingRepeat: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["count"] as? Int {

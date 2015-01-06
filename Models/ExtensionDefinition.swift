@@ -2,8 +2,8 @@
 //  ExtensionDefinition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (extensiondefinition.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (extensiondefinition.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -90,10 +90,10 @@ public class ExtensionDefinition: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? [NSDictionary] {
+			if let val = js["code"] as? [JSONDictionary] {
 				self.code = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["context"] as? [String] {
@@ -111,16 +111,16 @@ public class ExtensionDefinition: FHIRResource
 			if let val = js["display"] as? String {
 				self.display = val
 			}
-			if let val = js["element"] as? [NSDictionary] {
+			if let val = js["element"] as? [JSONDictionary] {
 				self.element = ElementDefinition.from(val, owner: self) as? [ElementDefinition]
 			}
 			if let val = js["experimental"] as? Bool {
 				self.experimental = val
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["mapping"] as? [NSDictionary] {
+			if let val = js["mapping"] as? [JSONDictionary] {
 				self.mapping = ExtensionDefinitionMapping.from(val, owner: self) as? [ExtensionDefinitionMapping]
 			}
 			if let val = js["name"] as? String {
@@ -135,7 +135,7 @@ public class ExtensionDefinition: FHIRResource
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["telecom"] as? [NSDictionary] {
+			if let val = js["telecom"] as? [JSONDictionary] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 			if let val = js["url"] as? String {
@@ -176,7 +176,7 @@ public class ExtensionDefinitionMapping: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["comments"] as? String {

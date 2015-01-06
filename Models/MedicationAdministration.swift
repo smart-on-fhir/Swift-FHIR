@@ -2,8 +2,8 @@
 //  MedicationAdministration.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (medicationadministration.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (medicationadministration.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -85,40 +85,40 @@ public class MedicationAdministration: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["device"] as? [NSDictionary] {
+			if let val = js["device"] as? [JSONDictionary] {
 				self.device = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["dosage"] as? [NSDictionary] {
+			if let val = js["dosage"] as? [JSONDictionary] {
 				self.dosage = MedicationAdministrationDosage.from(val, owner: self) as? [MedicationAdministrationDosage]
 			}
 			if let val = js["effectiveTimeDateTime"] as? String {
 				self.effectiveTimeDateTime = NSDate(json: val)
 			}
-			if let val = js["effectiveTimePeriod"] as? NSDictionary {
+			if let val = js["effectiveTimePeriod"] as? JSONDictionary {
 				self.effectiveTimePeriod = Period(json: val, owner: self)
 			}
-			if let val = js["encounter"] as? NSDictionary {
+			if let val = js["encounter"] as? JSONDictionary {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["medication"] as? NSDictionary {
+			if let val = js["medication"] as? JSONDictionary {
 				self.medication = Reference(json: val, owner: self)
 			}
-			if let val = js["patient"] as? NSDictionary {
+			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["practitioner"] as? NSDictionary {
+			if let val = js["practitioner"] as? JSONDictionary {
 				self.practitioner = Reference(json: val, owner: self)
 			}
-			if let val = js["prescription"] as? NSDictionary {
+			if let val = js["prescription"] as? JSONDictionary {
 				self.prescription = Reference(json: val, owner: self)
 			}
-			if let val = js["reasonNotGiven"] as? [NSDictionary] {
+			if let val = js["reasonNotGiven"] as? [JSONDictionary] {
 				self.reasonNotGiven = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["status"] as? String {
@@ -173,37 +173,37 @@ public class MedicationAdministrationDosage: FHIRElement
 	/// When dose(s) were given
 	public var timingPeriod: Period?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["asNeededBoolean"] as? Bool {
 				self.asNeededBoolean = val
 			}
-			if let val = js["asNeededCodeableConcept"] as? NSDictionary {
+			if let val = js["asNeededCodeableConcept"] as? JSONDictionary {
 				self.asNeededCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["maxDosePerPeriod"] as? NSDictionary {
+			if let val = js["maxDosePerPeriod"] as? JSONDictionary {
 				self.maxDosePerPeriod = Ratio(json: val, owner: self)
 			}
-			if let val = js["method"] as? NSDictionary {
+			if let val = js["method"] as? JSONDictionary {
 				self.method = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["quantity"] as? NSDictionary {
+			if let val = js["quantity"] as? JSONDictionary {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["rate"] as? NSDictionary {
+			if let val = js["rate"] as? JSONDictionary {
 				self.rate = Ratio(json: val, owner: self)
 			}
-			if let val = js["route"] as? NSDictionary {
+			if let val = js["route"] as? JSONDictionary {
 				self.route = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["site"] as? NSDictionary {
+			if let val = js["site"] as? JSONDictionary {
 				self.site = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["timingDateTime"] as? String {
 				self.timingDateTime = NSDate(json: val)
 			}
-			if let val = js["timingPeriod"] as? NSDictionary {
+			if let val = js["timingPeriod"] as? JSONDictionary {
 				self.timingPeriod = Period(json: val, owner: self)
 			}
 		}

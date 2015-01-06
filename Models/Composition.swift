@@ -2,8 +2,8 @@
 //  Composition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (composition.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (composition.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -86,49 +86,49 @@ public class Composition: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["attester"] as? [NSDictionary] {
+			if let val = js["attester"] as? [JSONDictionary] {
 				self.attester = CompositionAttester.from(val, owner: self) as? [CompositionAttester]
 			}
-			if let val = js["author"] as? [NSDictionary] {
+			if let val = js["author"] as? [JSONDictionary] {
 				self.author = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["confidentiality"] as? NSDictionary {
+			if let val = js["confidentiality"] as? JSONDictionary {
 				self.confidentiality = Coding(json: val, owner: self)
 			}
-			if let val = js["custodian"] as? NSDictionary {
+			if let val = js["custodian"] as? JSONDictionary {
 				self.custodian = Reference(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
 			}
-			if let val = js["encounter"] as? NSDictionary {
+			if let val = js["encounter"] as? JSONDictionary {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["event"] as? [NSDictionary] {
+			if let val = js["event"] as? [JSONDictionary] {
 				self.event = CompositionEvent.from(val, owner: self) as? [CompositionEvent]
 			}
-			if let val = js["identifier"] as? NSDictionary {
+			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["class"] as? NSDictionary {
+			if let val = js["class"] as? JSONDictionary {
 				self.klass = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["section"] as? [NSDictionary] {
+			if let val = js["section"] as? [JSONDictionary] {
 				self.section = CompositionSection.from(val, owner: self) as? [CompositionSection]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? NSDictionary {
+			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
 			}
 			if let val = js["title"] as? String {
 				self.title = val
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
@@ -163,13 +163,13 @@ public class CompositionAttester: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["mode"] as? [String] {
 				self.mode = val
 			}
-			if let val = js["party"] as? NSDictionary {
+			if let val = js["party"] as? JSONDictionary {
 				self.party = Reference(json: val, owner: self)
 			}
 			if let val = js["time"] as? String {
@@ -200,16 +200,16 @@ public class CompositionEvent: FHIRElement
 	/// The period covered by the documentation
 	public var period: Period?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? [NSDictionary] {
+			if let val = js["code"] as? [JSONDictionary] {
 				self.code = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["detail"] as? [NSDictionary] {
+			if let val = js["detail"] as? [JSONDictionary] {
 				self.detail = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["period"] as? NSDictionary {
+			if let val = js["period"] as? JSONDictionary {
 				self.period = Period(json: val, owner: self)
 			}
 		}
@@ -240,16 +240,16 @@ public class CompositionSection: FHIRElement
 	/// Label for section (e.g. for ToC)
 	public var title: String?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["code"] as? JSONDictionary {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["content"] as? NSDictionary {
+			if let val = js["content"] as? JSONDictionary {
 				self.content = Reference(json: val, owner: self)
 			}
-			if let val = js["section"] as? [NSDictionary] {
+			if let val = js["section"] as? [JSONDictionary] {
 				self.section = CompositionSection.from(val, owner: self) as? [CompositionSection]
 			}
 			if let val = js["title"] as? String {

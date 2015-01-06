@@ -2,8 +2,8 @@
 //  Slot.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (slot.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (slot.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -61,7 +61,7 @@ public class Slot: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["comment"] as? String {
@@ -73,7 +73,7 @@ public class Slot: FHIRResource
 			if let val = js["freeBusyType"] as? String {
 				self.freeBusyType = val
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["lastModified"] as? String {
@@ -82,13 +82,13 @@ public class Slot: FHIRResource
 			if let val = js["overbooked"] as? Bool {
 				self.overbooked = val
 			}
-			if let val = js["schedule"] as? NSDictionary {
+			if let val = js["schedule"] as? JSONDictionary {
 				self.schedule = Reference(json: val, owner: self)
 			}
 			if let val = js["start"] as? String {
 				self.start = NSDate(json: val)
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}

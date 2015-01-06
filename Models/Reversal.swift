@@ -2,8 +2,8 @@
 //  Reversal.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (reversal.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (reversal.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -67,43 +67,43 @@ public class Reversal: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["coverage"] as? NSDictionary {
+			if let val = js["coverage"] as? JSONDictionary {
 				self.coverage = ReversalCoverage(json: val, owner: self)
 			}
 			if let val = js["created"] as? String {
 				self.created = NSDate(json: val)
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["nullify"] as? Bool {
 				self.nullify = val
 			}
-			if let val = js["organization"] as? NSDictionary {
+			if let val = js["organization"] as? JSONDictionary {
 				self.organization = Reference(json: val, owner: self)
 			}
-			if let val = js["originalRuleset"] as? NSDictionary {
+			if let val = js["originalRuleset"] as? JSONDictionary {
 				self.originalRuleset = Coding(json: val, owner: self)
 			}
-			if let val = js["payee"] as? NSDictionary {
+			if let val = js["payee"] as? JSONDictionary {
 				self.payee = ReversalPayee(json: val, owner: self)
 			}
-			if let val = js["provider"] as? NSDictionary {
+			if let val = js["provider"] as? JSONDictionary {
 				self.provider = Reference(json: val, owner: self)
 			}
-			if let val = js["request"] as? NSDictionary {
+			if let val = js["request"] as? JSONDictionary {
 				self.request = Reference(json: val, owner: self)
 			}
-			if let val = js["response"] as? NSDictionary {
+			if let val = js["response"] as? JSONDictionary {
 				self.response = Reference(json: val, owner: self)
 			}
-			if let val = js["ruleset"] as? NSDictionary {
+			if let val = js["ruleset"] as? JSONDictionary {
 				self.ruleset = Coding(json: val, owner: self)
 			}
-			if let val = js["target"] as? NSDictionary {
+			if let val = js["target"] as? JSONDictionary {
 				self.target = Reference(json: val, owner: self)
 			}
 		}
@@ -153,19 +153,19 @@ public class ReversalCoverage: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["businessArrangement"] as? String {
 				self.businessArrangement = val
 			}
-			if let val = js["coverage"] as? NSDictionary {
+			if let val = js["coverage"] as? JSONDictionary {
 				self.coverage = Reference(json: val, owner: self)
 			}
 			if let val = js["focal"] as? Bool {
 				self.focal = val
 			}
-			if let val = js["relationship"] as? NSDictionary {
+			if let val = js["relationship"] as? JSONDictionary {
 				self.relationship = Coding(json: val, owner: self)
 			}
 			if let val = js["sequence"] as? Int {
@@ -199,19 +199,19 @@ public class ReversalPayee: FHIRElement
 	/// Payee Type
 	public var type: Coding?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["organization"] as? NSDictionary {
+			if let val = js["organization"] as? JSONDictionary {
 				self.organization = Reference(json: val, owner: self)
 			}
-			if let val = js["person"] as? NSDictionary {
+			if let val = js["person"] as? JSONDictionary {
 				self.person = Reference(json: val, owner: self)
 			}
-			if let val = js["provider"] as? NSDictionary {
+			if let val = js["provider"] as? JSONDictionary {
 				self.provider = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = Coding(json: val, owner: self)
 			}
 		}

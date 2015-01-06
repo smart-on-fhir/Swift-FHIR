@@ -2,8 +2,8 @@
 //  ProcedureRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (procedurerequest.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (procedurerequest.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -81,25 +81,25 @@ public class ProcedureRequest: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["asNeededBoolean"] as? Bool {
 				self.asNeededBoolean = val
 			}
-			if let val = js["asNeededCodeableConcept"] as? NSDictionary {
+			if let val = js["asNeededCodeableConcept"] as? JSONDictionary {
 				self.asNeededCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["bodySite"] as? [NSDictionary] {
+			if let val = js["bodySite"] as? [JSONDictionary] {
 				self.bodySite = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["encounter"] as? NSDictionary {
+			if let val = js["encounter"] as? JSONDictionary {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["indication"] as? [NSDictionary] {
+			if let val = js["indication"] as? [JSONDictionary] {
 				self.indication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["notes"] as? [String] {
@@ -108,10 +108,10 @@ public class ProcedureRequest: FHIRResource
 			if let val = js["orderedOn"] as? String {
 				self.orderedOn = NSDate(json: val)
 			}
-			if let val = js["orderer"] as? NSDictionary {
+			if let val = js["orderer"] as? JSONDictionary {
 				self.orderer = Reference(json: val, owner: self)
 			}
-			if let val = js["performer"] as? NSDictionary {
+			if let val = js["performer"] as? JSONDictionary {
 				self.performer = Reference(json: val, owner: self)
 			}
 			if let val = js["priority"] as? String {
@@ -120,19 +120,19 @@ public class ProcedureRequest: FHIRResource
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? NSDictionary {
+			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
 			}
 			if let val = js["timingDateTime"] as? String {
 				self.timingDateTime = NSDate(json: val)
 			}
-			if let val = js["timingPeriod"] as? NSDictionary {
+			if let val = js["timingPeriod"] as? JSONDictionary {
 				self.timingPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["timingTiming"] as? NSDictionary {
+			if let val = js["timingTiming"] as? JSONDictionary {
 				self.timingTiming = Timing(json: val, owner: self)
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}

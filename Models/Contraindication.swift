@@ -2,8 +2,8 @@
 //  Contraindication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (contraindication.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (contraindication.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -51,13 +51,13 @@ public class Contraindication: FHIRResource
 	/// high | medium | low
 	public var severity: String?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["author"] as? NSDictionary {
+			if let val = js["author"] as? JSONDictionary {
 				self.author = Reference(json: val, owner: self)
 			}
-			if let val = js["category"] as? NSDictionary {
+			if let val = js["category"] as? JSONDictionary {
 				self.category = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
@@ -66,16 +66,16 @@ public class Contraindication: FHIRResource
 			if let val = js["detail"] as? String {
 				self.detail = val
 			}
-			if let val = js["identifier"] as? NSDictionary {
+			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["implicated"] as? [NSDictionary] {
+			if let val = js["implicated"] as? [JSONDictionary] {
 				self.implicated = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["mitigation"] as? [NSDictionary] {
+			if let val = js["mitigation"] as? [JSONDictionary] {
 				self.mitigation = ContraindicationMitigation.from(val, owner: self) as? [ContraindicationMitigation]
 			}
-			if let val = js["patient"] as? NSDictionary {
+			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["reference"] as? String {
@@ -118,13 +118,13 @@ public class ContraindicationMitigation: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["action"] as? NSDictionary {
+			if let val = js["action"] as? JSONDictionary {
 				self.action = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["author"] as? NSDictionary {
+			if let val = js["author"] as? JSONDictionary {
 				self.author = Reference(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {

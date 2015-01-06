@@ -2,11 +2,9 @@
 //  FHIRElement+Factory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 on 2015-01-06.
+//  2015, SMART Platforms.
 //
-
-import Foundation
 
 
 /**
@@ -14,7 +12,7 @@ import Foundation
  */
 extension FHIRElement
 {
-	public class func factory(className: String, json: NSDictionary, owner: FHIRElement?) -> FHIRElement {
+	public class func factory(className: String, json: JSONDictionary, owner: FHIRElement?) -> FHIRElement {
 		switch className {
 			case "Address":
 				return Address(json: json, owner: owner)

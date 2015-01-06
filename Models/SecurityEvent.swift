@@ -2,8 +2,8 @@
 //  SecurityEvent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (securityevent.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (securityevent.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -46,19 +46,19 @@ public class SecurityEvent: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["event"] as? NSDictionary {
+			if let val = js["event"] as? JSONDictionary {
 				self.event = SecurityEventEvent(json: val, owner: self)
 			}
-			if let val = js["object"] as? [NSDictionary] {
+			if let val = js["object"] as? [JSONDictionary] {
 				self.object = SecurityEventObject.from(val, owner: self) as? [SecurityEventObject]
 			}
-			if let val = js["participant"] as? [NSDictionary] {
+			if let val = js["participant"] as? [JSONDictionary] {
 				self.participant = SecurityEventParticipant.from(val, owner: self) as? [SecurityEventParticipant]
 			}
-			if let val = js["source"] as? NSDictionary {
+			if let val = js["source"] as? JSONDictionary {
 				self.source = SecurityEventSource(json: val, owner: self)
 			}
 		}
@@ -105,7 +105,7 @@ public class SecurityEventEvent: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["action"] as? String {
@@ -120,10 +120,10 @@ public class SecurityEventEvent: FHIRElement
 			if let val = js["outcomeDesc"] as? String {
 				self.outcomeDesc = val
 			}
-			if let val = js["subtype"] as? [NSDictionary] {
+			if let val = js["subtype"] as? [JSONDictionary] {
 				self.subtype = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
@@ -170,16 +170,16 @@ public class SecurityEventObject: FHIRElement
 	/// Object type being audited
 	public var type: String?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["detail"] as? [NSDictionary] {
+			if let val = js["detail"] as? [JSONDictionary] {
 				self.detail = SecurityEventObjectDetail.from(val, owner: self) as? [SecurityEventObjectDetail]
 			}
-			if let val = js["identifier"] as? NSDictionary {
+			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["lifecycle"] as? String {
@@ -191,13 +191,13 @@ public class SecurityEventObject: FHIRElement
 			if let val = js["query"] as? String {
 				self.query = Base64Binary(json: val)
 			}
-			if let val = js["reference"] as? NSDictionary {
+			if let val = js["reference"] as? JSONDictionary {
 				self.reference = Reference(json: val, owner: self)
 			}
 			if let val = js["role"] as? String {
 				self.role = val
 			}
-			if let val = js["sensitivity"] as? NSDictionary {
+			if let val = js["sensitivity"] as? JSONDictionary {
 				self.sensitivity = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["type"] as? String {
@@ -233,7 +233,7 @@ public class SecurityEventObjectDetail: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {
@@ -287,28 +287,28 @@ public class SecurityEventParticipant: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["altId"] as? String {
 				self.altId = val
 			}
-			if let val = js["media"] as? NSDictionary {
+			if let val = js["media"] as? JSONDictionary {
 				self.media = Coding(json: val, owner: self)
 			}
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["network"] as? NSDictionary {
+			if let val = js["network"] as? JSONDictionary {
 				self.network = SecurityEventParticipantNetwork(json: val, owner: self)
 			}
-			if let val = js["reference"] as? NSDictionary {
+			if let val = js["reference"] as? JSONDictionary {
 				self.reference = Reference(json: val, owner: self)
 			}
 			if let val = js["requestor"] as? Bool {
 				self.requestor = val
 			}
-			if let val = js["role"] as? [NSDictionary] {
+			if let val = js["role"] as? [JSONDictionary] {
 				self.role = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["userId"] as? String {
@@ -336,7 +336,7 @@ public class SecurityEventParticipantNetwork: FHIRElement
 	/// The type of network access point
 	public var type: String?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? String {
@@ -375,7 +375,7 @@ public class SecurityEventSource: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? String {
@@ -384,7 +384,7 @@ public class SecurityEventSource: FHIRElement
 			if let val = js["site"] as? String {
 				self.site = val
 			}
-			if let val = js["type"] as? [NSDictionary] {
+			if let val = js["type"] as? [JSONDictionary] {
 				self.type = Coding.from(val, owner: self) as? [Coding]
 			}
 		}

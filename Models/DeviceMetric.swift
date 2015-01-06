@@ -2,8 +2,8 @@
 //  DeviceMetric.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (devicemetric.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (devicemetric.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -66,40 +66,40 @@ public class DeviceMetric: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["calibrationInfo"] as? [NSDictionary] {
+			if let val = js["calibrationInfo"] as? [JSONDictionary] {
 				self.calibrationInfo = DeviceMetricCalibrationInfo.from(val, owner: self) as? [DeviceMetricCalibrationInfo]
 			}
 			if let val = js["category"] as? String {
 				self.category = val
 			}
-			if let val = js["color"] as? NSDictionary {
+			if let val = js["color"] as? JSONDictionary {
 				self.color = Identifier(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? NSDictionary {
+			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["measurementMode"] as? NSDictionary {
+			if let val = js["measurementMode"] as? JSONDictionary {
 				self.measurementMode = Identifier(json: val, owner: self)
 			}
-			if let val = js["measurementPeriod"] as? NSDictionary {
+			if let val = js["measurementPeriod"] as? JSONDictionary {
 				self.measurementPeriod = Timing(json: val, owner: self)
 			}
 			if let val = js["operationalState"] as? String {
 				self.operationalState = val
 			}
-			if let val = js["parent"] as? NSDictionary {
+			if let val = js["parent"] as? JSONDictionary {
 				self.parent = Reference(json: val, owner: self)
 			}
-			if let val = js["source"] as? NSDictionary {
+			if let val = js["source"] as? JSONDictionary {
 				self.source = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["unit"] as? NSDictionary {
+			if let val = js["unit"] as? JSONDictionary {
 				self.unit = CodeableConcept(json: val, owner: self)
 			}
 		}
@@ -125,7 +125,7 @@ public class DeviceMetricCalibrationInfo: FHIRElement
 	/// unspecified | offset | gain | two-point
 	public var type: String?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["state"] as? String {

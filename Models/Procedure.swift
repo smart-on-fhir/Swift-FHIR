@@ -2,8 +2,8 @@
 //  Procedure.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (procedure.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (procedure.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -73,28 +73,28 @@ public class Procedure: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["bodySite"] as? [NSDictionary] {
+			if let val = js["bodySite"] as? [JSONDictionary] {
 				self.bodySite = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["complication"] as? [NSDictionary] {
+			if let val = js["complication"] as? [JSONDictionary] {
 				self.complication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["date"] as? NSDictionary {
+			if let val = js["date"] as? JSONDictionary {
 				self.date = Period(json: val, owner: self)
 			}
-			if let val = js["encounter"] as? NSDictionary {
+			if let val = js["encounter"] as? JSONDictionary {
 				self.encounter = Reference(json: val, owner: self)
 			}
 			if let val = js["followUp"] as? String {
 				self.followUp = val
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["indication"] as? [NSDictionary] {
+			if let val = js["indication"] as? [JSONDictionary] {
 				self.indication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["notes"] as? String {
@@ -103,19 +103,19 @@ public class Procedure: FHIRResource
 			if let val = js["outcome"] as? String {
 				self.outcome = val
 			}
-			if let val = js["patient"] as? NSDictionary {
+			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["performer"] as? [NSDictionary] {
+			if let val = js["performer"] as? [JSONDictionary] {
 				self.performer = ProcedurePerformer.from(val, owner: self) as? [ProcedurePerformer]
 			}
-			if let val = js["relatedItem"] as? [NSDictionary] {
+			if let val = js["relatedItem"] as? [JSONDictionary] {
 				self.relatedItem = ProcedureRelatedItem.from(val, owner: self) as? [ProcedureRelatedItem]
 			}
-			if let val = js["report"] as? [NSDictionary] {
+			if let val = js["report"] as? [JSONDictionary] {
 				self.report = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
@@ -140,13 +140,13 @@ public class ProcedurePerformer: FHIRElement
 	/// The role the person was in
 	public var role: CodeableConcept?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["person"] as? NSDictionary {
+			if let val = js["person"] as? JSONDictionary {
 				self.person = Reference(json: val, owner: self)
 			}
-			if let val = js["role"] as? NSDictionary {
+			if let val = js["role"] as? JSONDictionary {
 				self.role = CodeableConcept(json: val, owner: self)
 			}
 		}
@@ -172,10 +172,10 @@ public class ProcedureRelatedItem: FHIRElement
 	/// caused-by | because-of
 	public var type: String?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["target"] as? NSDictionary {
+			if let val = js["target"] as? JSONDictionary {
 				self.target = Reference(json: val, owner: self)
 			}
 			if let val = js["type"] as? String {

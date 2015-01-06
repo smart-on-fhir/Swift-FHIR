@@ -2,8 +2,8 @@
 //  Profile.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (profile.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (profile.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -88,13 +88,13 @@ public class Profile: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["base"] as? String {
 				self.base = NSURL(json: val)
 			}
-			if let val = js["code"] as? [NSDictionary] {
+			if let val = js["code"] as? [JSONDictionary] {
 				self.code = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["date"] as? String {
@@ -109,10 +109,10 @@ public class Profile: FHIRResource
 			if let val = js["fhirVersion"] as? String {
 				self.fhirVersion = val
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["mapping"] as? [NSDictionary] {
+			if let val = js["mapping"] as? [JSONDictionary] {
 				self.mapping = ProfileMapping.from(val, owner: self) as? [ProfileMapping]
 			}
 			if let val = js["name"] as? String {
@@ -124,13 +124,13 @@ public class Profile: FHIRResource
 			if let val = js["requirements"] as? String {
 				self.requirements = val
 			}
-			if let val = js["snapshot"] as? NSDictionary {
+			if let val = js["snapshot"] as? JSONDictionary {
 				self.snapshot = ProfileSnapshot(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["telecom"] as? [NSDictionary] {
+			if let val = js["telecom"] as? [JSONDictionary] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 			if let val = js["type"] as? String {
@@ -177,7 +177,7 @@ public class ProfileMapping: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["comments"] as? String {
@@ -212,10 +212,10 @@ public class ProfileSnapshot: FHIRElement
 	/// Definition of elements in the resource (if no profile)
 	public var element: [ElementDefinition]?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["element"] as? [NSDictionary] {
+			if let val = js["element"] as? [JSONDictionary] {
 				self.element = ElementDefinition.from(val, owner: self) as? [ElementDefinition]
 			}
 		}

@@ -2,8 +2,8 @@
 //  OrderResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (orderresponse.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (orderresponse.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -55,13 +55,13 @@ public class OrderResponse: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["authorityCodeableConcept"] as? NSDictionary {
+			if let val = js["authorityCodeableConcept"] as? JSONDictionary {
 				self.authorityCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["authorityReference"] as? NSDictionary {
+			if let val = js["authorityReference"] as? JSONDictionary {
 				self.authorityReference = Reference(json: val, owner: self)
 			}
 			if let val = js["code"] as? String {
@@ -73,16 +73,16 @@ public class OrderResponse: FHIRResource
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["fulfillment"] as? [NSDictionary] {
+			if let val = js["fulfillment"] as? [JSONDictionary] {
 				self.fulfillment = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["request"] as? NSDictionary {
+			if let val = js["request"] as? JSONDictionary {
 				self.request = Reference(json: val, owner: self)
 			}
-			if let val = js["who"] as? NSDictionary {
+			if let val = js["who"] as? JSONDictionary {
 				self.who = Reference(json: val, owner: self)
 			}
 		}

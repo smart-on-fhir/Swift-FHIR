@@ -2,8 +2,8 @@
 //  Location.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (location.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (location.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -57,19 +57,19 @@ public class Location: FHIRResource
 	/// Indicates the type of function performed at the location
 	public var type: CodeableConcept?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["address"] as? NSDictionary {
+			if let val = js["address"] as? JSONDictionary {
 				self.address = Address(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["managingOrganization"] as? NSDictionary {
+			if let val = js["managingOrganization"] as? JSONDictionary {
 				self.managingOrganization = Reference(json: val, owner: self)
 			}
 			if let val = js["mode"] as? String {
@@ -78,22 +78,22 @@ public class Location: FHIRResource
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["partOf"] as? NSDictionary {
+			if let val = js["partOf"] as? JSONDictionary {
 				self.partOf = Reference(json: val, owner: self)
 			}
-			if let val = js["physicalType"] as? NSDictionary {
+			if let val = js["physicalType"] as? JSONDictionary {
 				self.physicalType = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["position"] as? NSDictionary {
+			if let val = js["position"] as? JSONDictionary {
 				self.position = LocationPosition(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["telecom"] as? [NSDictionary] {
+			if let val = js["telecom"] as? [JSONDictionary] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
@@ -131,7 +131,7 @@ public class LocationPosition: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["altitude"] as? NSNumber {

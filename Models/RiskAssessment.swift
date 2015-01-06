@@ -2,8 +2,8 @@
 //  RiskAssessment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (riskassessment.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (riskassessment.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -47,34 +47,34 @@ public class RiskAssessment: FHIRResource
 	/// Who/what does assessment apply to?
 	public var subject: Reference?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["basis"] as? [NSDictionary] {
+			if let val = js["basis"] as? [JSONDictionary] {
 				self.basis = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["condition"] as? NSDictionary {
+			if let val = js["condition"] as? JSONDictionary {
 				self.condition = Reference(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
 			}
-			if let val = js["identifier"] as? NSDictionary {
+			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["method"] as? NSDictionary {
+			if let val = js["method"] as? JSONDictionary {
 				self.method = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["mitigation"] as? String {
 				self.mitigation = val
 			}
-			if let val = js["performer"] as? NSDictionary {
+			if let val = js["performer"] as? JSONDictionary {
 				self.performer = Reference(json: val, owner: self)
 			}
-			if let val = js["prediction"] as? [NSDictionary] {
+			if let val = js["prediction"] as? [JSONDictionary] {
 				self.prediction = RiskAssessmentPrediction.from(val, owner: self) as? [RiskAssessmentPrediction]
 			}
-			if let val = js["subject"] as? NSDictionary {
+			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
 			}
 		}
@@ -124,19 +124,19 @@ public class RiskAssessmentPrediction: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["outcome"] as? NSDictionary {
+			if let val = js["outcome"] as? JSONDictionary {
 				self.outcome = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["probabilityCodeableConcept"] as? NSDictionary {
+			if let val = js["probabilityCodeableConcept"] as? JSONDictionary {
 				self.probabilityCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["probabilityDecimal"] as? NSNumber {
 				self.probabilityDecimal = NSDecimalNumber(json: val)
 			}
-			if let val = js["probabilityRange"] as? NSDictionary {
+			if let val = js["probabilityRange"] as? JSONDictionary {
 				self.probabilityRange = Range(json: val, owner: self)
 			}
 			if let val = js["rationale"] as? String {
@@ -145,10 +145,10 @@ public class RiskAssessmentPrediction: FHIRElement
 			if let val = js["relativeRisk"] as? NSNumber {
 				self.relativeRisk = NSDecimalNumber(json: val)
 			}
-			if let val = js["whenPeriod"] as? NSDictionary {
+			if let val = js["whenPeriod"] as? JSONDictionary {
 				self.whenPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["whenRange"] as? NSDictionary {
+			if let val = js["whenRange"] as? JSONDictionary {
 				self.whenRange = Range(json: val, owner: self)
 			}
 		}

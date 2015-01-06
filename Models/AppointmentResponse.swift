@@ -2,8 +2,8 @@
 //  AppointmentResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (appointmentresponse.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (appointmentresponse.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -58,10 +58,10 @@ public class AppointmentResponse: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["appointment"] as? NSDictionary {
+			if let val = js["appointment"] as? JSONDictionary {
 				self.appointment = Reference(json: val, owner: self)
 			}
 			if let val = js["comment"] as? String {
@@ -70,22 +70,22 @@ public class AppointmentResponse: FHIRResource
 			if let val = js["end"] as? String {
 				self.end = NSDate(json: val)
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["individual"] as? [NSDictionary] {
+			if let val = js["individual"] as? [JSONDictionary] {
 				self.individual = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["lastModified"] as? String {
 				self.lastModified = NSDate(json: val)
 			}
-			if let val = js["lastModifiedBy"] as? NSDictionary {
+			if let val = js["lastModifiedBy"] as? JSONDictionary {
 				self.lastModifiedBy = Reference(json: val, owner: self)
 			}
 			if let val = js["participantStatus"] as? String {
 				self.participantStatus = val
 			}
-			if let val = js["participantType"] as? [NSDictionary] {
+			if let val = js["participantType"] as? [JSONDictionary] {
 				self.participantType = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["start"] as? String {

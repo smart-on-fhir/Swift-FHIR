@@ -2,8 +2,8 @@
 //  Conformance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (conformance.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (conformance.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -94,7 +94,7 @@ public class Conformance: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["acceptUnknown"] as? Bool {
@@ -106,7 +106,7 @@ public class Conformance: FHIRResource
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["document"] as? [NSDictionary] {
+			if let val = js["document"] as? [JSONDictionary] {
 				self.document = ConformanceDocument.from(val, owner: self) as? [ConformanceDocument]
 			}
 			if let val = js["experimental"] as? Bool {
@@ -121,31 +121,31 @@ public class Conformance: FHIRResource
 			if let val = js["identifier"] as? String {
 				self.identifier = val
 			}
-			if let val = js["implementation"] as? NSDictionary {
+			if let val = js["implementation"] as? JSONDictionary {
 				self.implementation = ConformanceImplementation(json: val, owner: self)
 			}
-			if let val = js["messaging"] as? [NSDictionary] {
+			if let val = js["messaging"] as? [JSONDictionary] {
 				self.messaging = ConformanceMessaging.from(val, owner: self) as? [ConformanceMessaging]
 			}
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["profile"] as? [NSDictionary] {
+			if let val = js["profile"] as? [JSONDictionary] {
 				self.profile = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["publisher"] as? String {
 				self.publisher = val
 			}
-			if let val = js["rest"] as? [NSDictionary] {
+			if let val = js["rest"] as? [JSONDictionary] {
 				self.rest = ConformanceRest.from(val, owner: self) as? [ConformanceRest]
 			}
-			if let val = js["software"] as? NSDictionary {
+			if let val = js["software"] as? JSONDictionary {
 				self.software = ConformanceSoftware(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["telecom"] as? [NSDictionary] {
+			if let val = js["telecom"] as? [JSONDictionary] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 			if let val = js["version"] as? String {
@@ -186,7 +186,7 @@ public class ConformanceDocument: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["documentation"] as? String {
@@ -195,7 +195,7 @@ public class ConformanceDocument: FHIRElement
 			if let val = js["mode"] as? String {
 				self.mode = val
 			}
-			if let val = js["profile"] as? NSDictionary {
+			if let val = js["profile"] as? JSONDictionary {
 				self.profile = Reference(json: val, owner: self)
 			}
 		}
@@ -228,7 +228,7 @@ public class ConformanceImplementation: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
@@ -272,7 +272,7 @@ public class ConformanceMessaging: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["documentation"] as? String {
@@ -281,7 +281,7 @@ public class ConformanceMessaging: FHIRElement
 			if let val = js["endpoint"] as? String {
 				self.endpoint = NSURL(json: val)
 			}
-			if let val = js["event"] as? [NSDictionary] {
+			if let val = js["event"] as? [JSONDictionary] {
 				self.event = ConformanceMessagingEvent.from(val, owner: self) as? [ConformanceMessagingEvent]
 			}
 			if let val = js["reliableCache"] as? Int {
@@ -346,13 +346,13 @@ public class ConformanceMessagingEvent: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["category"] as? String {
 				self.category = val
 			}
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["code"] as? JSONDictionary {
 				self.code = Coding(json: val, owner: self)
 			}
 			if let val = js["documentation"] as? String {
@@ -364,13 +364,13 @@ public class ConformanceMessagingEvent: FHIRElement
 			if let val = js["mode"] as? String {
 				self.mode = val
 			}
-			if let val = js["protocol"] as? [NSDictionary] {
+			if let val = js["protocol"] as? [JSONDictionary] {
 				self.protokol = Coding.from(val, owner: self) as? [Coding]
 			}
-			if let val = js["request"] as? NSDictionary {
+			if let val = js["request"] as? JSONDictionary {
 				self.request = Reference(json: val, owner: self)
 			}
-			if let val = js["response"] as? NSDictionary {
+			if let val = js["response"] as? JSONDictionary {
 				self.response = Reference(json: val, owner: self)
 			}
 		}
@@ -420,7 +420,7 @@ public class ConformanceRest: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["documentMailbox"] as? [String] {
@@ -429,19 +429,19 @@ public class ConformanceRest: FHIRElement
 			if let val = js["documentation"] as? String {
 				self.documentation = val
 			}
-			if let val = js["interaction"] as? [NSDictionary] {
+			if let val = js["interaction"] as? [JSONDictionary] {
 				self.interaction = ConformanceRestInteraction.from(val, owner: self) as? [ConformanceRestInteraction]
 			}
 			if let val = js["mode"] as? String {
 				self.mode = val
 			}
-			if let val = js["operation"] as? [NSDictionary] {
+			if let val = js["operation"] as? [JSONDictionary] {
 				self.operation = ConformanceRestOperation.from(val, owner: self) as? [ConformanceRestOperation]
 			}
-			if let val = js["resource"] as? [NSDictionary] {
+			if let val = js["resource"] as? [JSONDictionary] {
 				self.resource = ConformanceRestResource.from(val, owner: self) as? [ConformanceRestResource]
 			}
-			if let val = js["security"] as? NSDictionary {
+			if let val = js["security"] as? JSONDictionary {
 				self.security = ConformanceRestSecurity(json: val, owner: self)
 			}
 		}
@@ -473,7 +473,7 @@ public class ConformanceRestInteraction: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -514,10 +514,10 @@ public class ConformanceRestOperation: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["definition"] as? NSDictionary {
+			if let val = js["definition"] as? JSONDictionary {
 				self.definition = Reference(json: val, owner: self)
 			}
 			if let val = js["name"] as? String {
@@ -573,13 +573,13 @@ public class ConformanceRestResource: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["interaction"] as? [NSDictionary] {
+			if let val = js["interaction"] as? [JSONDictionary] {
 				self.interaction = ConformanceRestResourceInteraction.from(val, owner: self) as? [ConformanceRestResourceInteraction]
 			}
-			if let val = js["profile"] as? NSDictionary {
+			if let val = js["profile"] as? JSONDictionary {
 				self.profile = Reference(json: val, owner: self)
 			}
 			if let val = js["readHistory"] as? Bool {
@@ -588,7 +588,7 @@ public class ConformanceRestResource: FHIRElement
 			if let val = js["searchInclude"] as? [String] {
 				self.searchInclude = val
 			}
-			if let val = js["searchParam"] as? [NSDictionary] {
+			if let val = js["searchParam"] as? [JSONDictionary] {
 				self.searchParam = ConformanceRestResourceSearchParam.from(val, owner: self) as? [ConformanceRestResourceSearchParam]
 			}
 			if let val = js["type"] as? String {
@@ -629,7 +629,7 @@ public class ConformanceRestResourceInteraction: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -682,7 +682,7 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["chain"] as? [String] {
@@ -729,10 +729,10 @@ public class ConformanceRestSecurity: FHIRElement
 	/// OAuth | OAuth2 | NTLM | Basic | Kerberos
 	public var service: [CodeableConcept]?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["certificate"] as? [NSDictionary] {
+			if let val = js["certificate"] as? [JSONDictionary] {
 				self.certificate = ConformanceRestSecurityCertificate.from(val, owner: self) as? [ConformanceRestSecurityCertificate]
 			}
 			if let val = js["cors"] as? Bool {
@@ -741,7 +741,7 @@ public class ConformanceRestSecurity: FHIRElement
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["service"] as? [NSDictionary] {
+			if let val = js["service"] as? [JSONDictionary] {
 				self.service = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
@@ -764,7 +764,7 @@ public class ConformanceRestSecurityCertificate: FHIRElement
 	/// Mime type for certificate
 	public var type: String?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["blob"] as? String {
@@ -806,7 +806,7 @@ public class ConformanceSoftware: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {

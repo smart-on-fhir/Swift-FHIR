@@ -2,8 +2,8 @@
 //  Specimen.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (specimen.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (specimen.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -52,34 +52,34 @@ public class Specimen: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["accessionIdentifier"] as? NSDictionary {
+			if let val = js["accessionIdentifier"] as? JSONDictionary {
 				self.accessionIdentifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["collection"] as? NSDictionary {
+			if let val = js["collection"] as? JSONDictionary {
 				self.collection = SpecimenCollection(json: val, owner: self)
 			}
-			if let val = js["container"] as? [NSDictionary] {
+			if let val = js["container"] as? [JSONDictionary] {
 				self.container = SpecimenContainer.from(val, owner: self) as? [SpecimenContainer]
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["receivedTime"] as? String {
 				self.receivedTime = NSDate(json: val)
 			}
-			if let val = js["source"] as? [NSDictionary] {
+			if let val = js["source"] as? [JSONDictionary] {
 				self.source = SpecimenSource.from(val, owner: self) as? [SpecimenSource]
 			}
-			if let val = js["subject"] as? NSDictionary {
+			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
 			}
-			if let val = js["treatment"] as? [NSDictionary] {
+			if let val = js["treatment"] as? [JSONDictionary] {
 				self.treatment = SpecimenTreatment.from(val, owner: self) as? [SpecimenTreatment]
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
@@ -119,28 +119,28 @@ public class SpecimenCollection: FHIRElement
 	/// Anatomical collection site
 	public var sourceSite: CodeableConcept?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["collectedDateTime"] as? String {
 				self.collectedDateTime = NSDate(json: val)
 			}
-			if let val = js["collectedPeriod"] as? NSDictionary {
+			if let val = js["collectedPeriod"] as? JSONDictionary {
 				self.collectedPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["collector"] as? NSDictionary {
+			if let val = js["collector"] as? JSONDictionary {
 				self.collector = Reference(json: val, owner: self)
 			}
 			if let val = js["comment"] as? [String] {
 				self.comment = val
 			}
-			if let val = js["method"] as? NSDictionary {
+			if let val = js["method"] as? JSONDictionary {
 				self.method = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["quantity"] as? NSDictionary {
+			if let val = js["quantity"] as? JSONDictionary {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["sourceSite"] as? NSDictionary {
+			if let val = js["sourceSite"] as? JSONDictionary {
 				self.sourceSite = CodeableConcept(json: val, owner: self)
 			}
 		}
@@ -181,28 +181,28 @@ public class SpecimenContainer: FHIRElement
 	/// Kind of container directly associated with specimen
 	public var type: CodeableConcept?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["additiveCodeableConcept"] as? NSDictionary {
+			if let val = js["additiveCodeableConcept"] as? JSONDictionary {
 				self.additiveCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["additiveReference"] as? NSDictionary {
+			if let val = js["additiveReference"] as? JSONDictionary {
 				self.additiveReference = Reference(json: val, owner: self)
 			}
-			if let val = js["capacity"] as? NSDictionary {
+			if let val = js["capacity"] as? JSONDictionary {
 				self.capacity = Quantity(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["specimenQuantity"] as? NSDictionary {
+			if let val = js["specimenQuantity"] as? JSONDictionary {
 				self.specimenQuantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
@@ -234,13 +234,13 @@ public class SpecimenSource: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["relationship"] as? String {
 				self.relationship = val
 			}
-			if let val = js["target"] as? [NSDictionary] {
+			if let val = js["target"] as? [JSONDictionary] {
 				self.target = Reference.from(val, owner: self) as? [Reference]
 			}
 		}
@@ -268,16 +268,16 @@ public class SpecimenTreatment: FHIRElement
 	/// Indicates the treatment or processing step  applied to the specimen
 	public var procedure: CodeableConcept?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["additive"] as? [NSDictionary] {
+			if let val = js["additive"] as? [JSONDictionary] {
 				self.additive = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["procedure"] as? NSDictionary {
+			if let val = js["procedure"] as? JSONDictionary {
 				self.procedure = CodeableConcept(json: val, owner: self)
 			}
 		}

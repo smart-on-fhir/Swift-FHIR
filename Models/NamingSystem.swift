@@ -2,8 +2,8 @@
 //  NamingSystem.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (namingsystem.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (namingsystem.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -70,13 +70,13 @@ public class NamingSystem: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["category"] as? NSDictionary {
+			if let val = js["category"] as? JSONDictionary {
 				self.category = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["contact"] as? NSDictionary {
+			if let val = js["contact"] as? JSONDictionary {
 				self.contact = NamingSystemContact(json: val, owner: self)
 			}
 			if let val = js["country"] as? String {
@@ -88,7 +88,7 @@ public class NamingSystem: FHIRResource
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["replacedBy"] as? NSDictionary {
+			if let val = js["replacedBy"] as? JSONDictionary {
 				self.replacedBy = Reference(json: val, owner: self)
 			}
 			if let val = js["responsible"] as? String {
@@ -100,7 +100,7 @@ public class NamingSystem: FHIRResource
 			if let val = js["type"] as? String {
 				self.type = val
 			}
-			if let val = js["uniqueId"] as? [NSDictionary] {
+			if let val = js["uniqueId"] as? [JSONDictionary] {
 				self.uniqueId = NamingSystemUniqueId.from(val, owner: self) as? [NamingSystemUniqueId]
 			}
 			if let val = js["usage"] as? String {
@@ -128,13 +128,13 @@ public class NamingSystemContact: FHIRElement
 	/// Phone, email, etc.
 	public var telecom: [ContactPoint]?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["name"] as? NSDictionary {
+			if let val = js["name"] as? JSONDictionary {
 				self.name = HumanName(json: val, owner: self)
 			}
-			if let val = js["telecom"] as? [NSDictionary] {
+			if let val = js["telecom"] as? [JSONDictionary] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
@@ -175,10 +175,10 @@ public class NamingSystemUniqueId: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["period"] as? NSDictionary {
+			if let val = js["period"] as? JSONDictionary {
 				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["preferred"] as? Bool {

@@ -2,8 +2,8 @@
 //  QuestionnaireAnswers.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (questionnaireanswers.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (questionnaireanswers.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -58,34 +58,34 @@ public class QuestionnaireAnswers: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["author"] as? NSDictionary {
+			if let val = js["author"] as? JSONDictionary {
 				self.author = Reference(json: val, owner: self)
 			}
 			if let val = js["authored"] as? String {
 				self.authored = NSDate(json: val)
 			}
-			if let val = js["encounter"] as? NSDictionary {
+			if let val = js["encounter"] as? JSONDictionary {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["group"] as? NSDictionary {
+			if let val = js["group"] as? JSONDictionary {
 				self.group = QuestionnaireAnswersGroup(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? NSDictionary {
+			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["questionnaire"] as? NSDictionary {
+			if let val = js["questionnaire"] as? JSONDictionary {
 				self.questionnaire = Reference(json: val, owner: self)
 			}
-			if let val = js["source"] as? NSDictionary {
+			if let val = js["source"] as? JSONDictionary {
 				self.source = Reference(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? NSDictionary {
+			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
 			}
 		}
@@ -122,19 +122,19 @@ public class QuestionnaireAnswersGroup: FHIRElement
 	/// Name for this group
 	public var title: String?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["group"] as? [NSDictionary] {
+			if let val = js["group"] as? [JSONDictionary] {
 				self.group = QuestionnaireAnswersGroup.from(val, owner: self) as? [QuestionnaireAnswersGroup]
 			}
 			if let val = js["linkId"] as? String {
 				self.linkId = val
 			}
-			if let val = js["question"] as? [NSDictionary] {
+			if let val = js["question"] as? [JSONDictionary] {
 				self.question = QuestionnaireAnswersGroupQuestion.from(val, owner: self) as? [QuestionnaireAnswersGroupQuestion]
 			}
-			if let val = js["subject"] as? NSDictionary {
+			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
 			}
 			if let val = js["text"] as? String {
@@ -171,13 +171,13 @@ public class QuestionnaireAnswersGroupQuestion: FHIRElement
 	/// Text of the question as it is shown to the user
 	public var text: String?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["answer"] as? [NSDictionary] {
+			if let val = js["answer"] as? [JSONDictionary] {
 				self.answer = QuestionnaireAnswersGroupQuestionAnswer.from(val, owner: self) as? [QuestionnaireAnswersGroupQuestionAnswer]
 			}
-			if let val = js["group"] as? [NSDictionary] {
+			if let val = js["group"] as? [JSONDictionary] {
 				self.group = QuestionnaireAnswersGroup.from(val, owner: self) as? [QuestionnaireAnswersGroup]
 			}
 			if let val = js["linkId"] as? String {
@@ -238,16 +238,16 @@ public class QuestionnaireAnswersGroupQuestionAnswer: FHIRElement
 	/// Single-valued answer to the question
 	public var valueTime: NSDate?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["valueAttachment"] as? NSDictionary {
+			if let val = js["valueAttachment"] as? JSONDictionary {
 				self.valueAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["valueBoolean"] as? Bool {
 				self.valueBoolean = val
 			}
-			if let val = js["valueCoding"] as? NSDictionary {
+			if let val = js["valueCoding"] as? JSONDictionary {
 				self.valueCoding = Coding(json: val, owner: self)
 			}
 			if let val = js["valueDate"] as? String {
@@ -265,10 +265,10 @@ public class QuestionnaireAnswersGroupQuestionAnswer: FHIRElement
 			if let val = js["valueInteger"] as? Int {
 				self.valueInteger = val
 			}
-			if let val = js["valueQuantity"] as? NSDictionary {
+			if let val = js["valueQuantity"] as? JSONDictionary {
 				self.valueQuantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["valueReference"] as? NSDictionary {
+			if let val = js["valueReference"] as? JSONDictionary {
 				self.valueReference = Reference(json: val, owner: self)
 			}
 			if let val = js["valueString"] as? String {

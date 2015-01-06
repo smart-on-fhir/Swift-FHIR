@@ -2,8 +2,8 @@
 //  ReferralRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (referralrequest.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (referralrequest.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -73,7 +73,7 @@ public class ReferralRequest: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["dateSent"] as? String {
@@ -82,43 +82,43 @@ public class ReferralRequest: FHIRResource
 			if let val = js["description"] as? String {
 				self.description = val
 			}
-			if let val = js["encounter"] as? NSDictionary {
+			if let val = js["encounter"] as? JSONDictionary {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["fulfillmentTime"] as? NSDictionary {
+			if let val = js["fulfillmentTime"] as? JSONDictionary {
 				self.fulfillmentTime = Period(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["patient"] as? NSDictionary {
+			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["priority"] as? NSDictionary {
+			if let val = js["priority"] as? JSONDictionary {
 				self.priority = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["reason"] as? NSDictionary {
+			if let val = js["reason"] as? JSONDictionary {
 				self.reason = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["recipient"] as? [NSDictionary] {
+			if let val = js["recipient"] as? [JSONDictionary] {
 				self.recipient = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["requester"] as? NSDictionary {
+			if let val = js["requester"] as? JSONDictionary {
 				self.requester = Reference(json: val, owner: self)
 			}
-			if let val = js["serviceRequested"] as? [NSDictionary] {
+			if let val = js["serviceRequested"] as? [JSONDictionary] {
 				self.serviceRequested = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["specialty"] as? NSDictionary {
+			if let val = js["specialty"] as? JSONDictionary {
 				self.specialty = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["supportingInformation"] as? [NSDictionary] {
+			if let val = js["supportingInformation"] as? [JSONDictionary] {
 				self.supportingInformation = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}

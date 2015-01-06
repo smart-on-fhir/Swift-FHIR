@@ -2,8 +2,8 @@
 //  Coverage.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (coverage.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (coverage.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -56,10 +56,10 @@ public class Coverage: FHIRResource
 	/// Type of coverage
 	public var type: Coding?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["contract"] as? [NSDictionary] {
+			if let val = js["contract"] as? [JSONDictionary] {
 				self.contract = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["dependent"] as? Int {
@@ -68,16 +68,16 @@ public class Coverage: FHIRResource
 			if let val = js["group"] as? String {
 				self.group = val
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["issuer"] as? NSDictionary {
+			if let val = js["issuer"] as? JSONDictionary {
 				self.issuer = Reference(json: val, owner: self)
 			}
-			if let val = js["network"] as? NSDictionary {
+			if let val = js["network"] as? JSONDictionary {
 				self.network = Identifier(json: val, owner: self)
 			}
-			if let val = js["period"] as? NSDictionary {
+			if let val = js["period"] as? JSONDictionary {
 				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["plan"] as? String {
@@ -89,10 +89,10 @@ public class Coverage: FHIRResource
 			if let val = js["subplan"] as? String {
 				self.subplan = val
 			}
-			if let val = js["subscriber"] as? NSDictionary {
+			if let val = js["subscriber"] as? JSONDictionary {
 				self.subscriber = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = Coding(json: val, owner: self)
 			}
 		}

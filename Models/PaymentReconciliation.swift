@@ -2,8 +2,8 @@
 //  PaymentReconciliation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3903 (paymentreconciliation.profile.json) on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 (paymentreconciliation.profile.json) on 2015-01-06.
+//  2015, SMART Platforms.
 //
 
 import Foundation
@@ -72,52 +72,52 @@ public class PaymentReconciliation: FHIRResource
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["created"] as? String {
 				self.created = NSDate(json: val)
 			}
-			if let val = js["detail"] as? [NSDictionary] {
+			if let val = js["detail"] as? [JSONDictionary] {
 				self.detail = PaymentReconciliationDetail.from(val, owner: self) as? [PaymentReconciliationDetail]
 			}
 			if let val = js["disposition"] as? String {
 				self.disposition = val
 			}
-			if let val = js["form"] as? NSDictionary {
+			if let val = js["form"] as? JSONDictionary {
 				self.form = Coding(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["note"] as? [NSDictionary] {
+			if let val = js["note"] as? [JSONDictionary] {
 				self.note = PaymentReconciliationNote.from(val, owner: self) as? [PaymentReconciliationNote]
 			}
-			if let val = js["organization"] as? NSDictionary {
+			if let val = js["organization"] as? JSONDictionary {
 				self.organization = Reference(json: val, owner: self)
 			}
-			if let val = js["originalRuleset"] as? NSDictionary {
+			if let val = js["originalRuleset"] as? JSONDictionary {
 				self.originalRuleset = Coding(json: val, owner: self)
 			}
 			if let val = js["outcome"] as? String {
 				self.outcome = val
 			}
-			if let val = js["period"] as? NSDictionary {
+			if let val = js["period"] as? JSONDictionary {
 				self.period = Period(json: val, owner: self)
 			}
-			if let val = js["request"] as? NSDictionary {
+			if let val = js["request"] as? JSONDictionary {
 				self.request = Reference(json: val, owner: self)
 			}
-			if let val = js["requestOrganization"] as? NSDictionary {
+			if let val = js["requestOrganization"] as? JSONDictionary {
 				self.requestOrganization = Reference(json: val, owner: self)
 			}
-			if let val = js["requestProvider"] as? NSDictionary {
+			if let val = js["requestProvider"] as? JSONDictionary {
 				self.requestProvider = Reference(json: val, owner: self)
 			}
-			if let val = js["ruleset"] as? NSDictionary {
+			if let val = js["ruleset"] as? JSONDictionary {
 				self.ruleset = Coding(json: val, owner: self)
 			}
-			if let val = js["total"] as? NSDictionary {
+			if let val = js["total"] as? JSONDictionary {
 				self.total = Money(json: val, owner: self)
 			}
 		}
@@ -164,28 +164,28 @@ public class PaymentReconciliationDetail: FHIRElement
 		}
 	}
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["amount"] as? NSDictionary {
+			if let val = js["amount"] as? JSONDictionary {
 				self.amount = Money(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
 				self.date = NSDate(json: val)
 			}
-			if let val = js["payee"] as? NSDictionary {
+			if let val = js["payee"] as? JSONDictionary {
 				self.payee = Reference(json: val, owner: self)
 			}
-			if let val = js["request"] as? NSDictionary {
+			if let val = js["request"] as? JSONDictionary {
 				self.request = Reference(json: val, owner: self)
 			}
-			if let val = js["responce"] as? NSDictionary {
+			if let val = js["responce"] as? JSONDictionary {
 				self.responce = Reference(json: val, owner: self)
 			}
-			if let val = js["submitter"] as? NSDictionary {
+			if let val = js["submitter"] as? JSONDictionary {
 				self.submitter = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = Coding(json: val, owner: self)
 			}
 		}
@@ -210,13 +210,13 @@ public class PaymentReconciliationNote: FHIRElement
 	/// display | print | printoper
 	public var type: Coding?
 	
-	public required init(json: NSDictionary?) {
+	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? String {
 				self.text = val
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? JSONDictionary {
 				self.type = Coding(json: val, owner: self)
 			}
 		}

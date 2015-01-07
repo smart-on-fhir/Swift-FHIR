@@ -551,6 +551,7 @@
 		EE6DA86B1A5D4BD700E00708 /* BaseTests+OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseTests+OSX.swift"; sourceTree = "<group>"; };
 		EE8F51751A441B66004D27C5 /* Reference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
 		EEEB096F19AD248700C324FC /* MedicationPrescriptionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationPrescriptionTests.swift; sourceTree = "<group>"; };
+		EEF20E151A5D4FFE009A6EDA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EEF40DBA1A41D02F00CA0452 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		EEF40DBB1A41D02F00CA0452 /* Age.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Age.swift; sourceTree = "<group>"; };
 		EEF40DBC1A41D02F00CA0452 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
@@ -764,6 +765,7 @@
 		EE684C1419A789BA00B5A2C0 = {
 			isa = PBXGroup;
 			children = (
+				EEF20E151A5D4FFE009A6EDA /* README.md */,
 				EE684C2019A789BA00B5A2C0 /* SwiftFHIR */,
 				EE684C2A19A789BA00B5A2C0 /* SwiftFHIRTests */,
 				EE684C1F19A789BA00B5A2C0 /* Products */,

@@ -2,11 +2,10 @@
 //  OrganizationTests.swift
 //  OrganizationTests
 //
-//  Generated from FHIR 0.4.0.3903 on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  2015, SMART Platforms.
 //
 
-import Cocoa
 import XCTest
 import SwiftFHIR
 
@@ -277,7 +276,7 @@ class OrganizationTests: FHIRModelTestCase
 		let inst = instantiateFrom("organization-example-f002-burgers-card.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Organization instance")
 	
-		XCTAssertFalse(inst!.active!)
+		XCTAssertTrue(inst!.active!)
 		XCTAssertEqual(inst!.address![0].line![0], "South Wing, floor 2")
 		XCTAssertEqual(inst!.contact![0].address!.line![0], "South Wing, floor 2")
 		XCTAssertEqual(inst!.contact![0].name!.text!, "mevr. D. de Haan")

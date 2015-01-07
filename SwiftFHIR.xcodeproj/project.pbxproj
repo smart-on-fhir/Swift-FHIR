@@ -60,6 +60,138 @@
 		EE684C4119A78AE600B5A2C0 /* JSON-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C3C19A78AE600B5A2C0 /* JSON-extensions.swift */; };
 		EE684CCD19A78CCF00B5A2C0 /* SwiftFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE684C1E19A789BA00B5A2C0 /* SwiftFHIR.framework */; };
 		EE684CCF19A7CEF000B5A2C0 /* ExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684CCE19A7CEF000B5A2C0 /* ExtensionsTest.swift */; };
+		EE6DA7CF1A5D4B1000E00708 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DBA1A41D02F00CA0452 /* Address.swift */; };
+		EE6DA7D01A5D4B1000E00708 /* HealthcareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E2C1A41D02F00CA0452 /* HealthcareService.swift */; };
+		EE6DA7D11A5D4B1000E00708 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DC31A41D02F00CA0452 /* Bundle.swift */; };
+		EE6DA7D21A5D4B1000E00708 /* Provenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E561A41D02F00CA0452 /* Provenance.swift */; };
+		EE6DA7D31A5D4B1000E00708 /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E581A41D02F00CA0452 /* Questionnaire.swift */; };
+		EE6DA7D41A5D4B1000E00708 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E0F1A41D02F00CA0452 /* Device.swift */; };
+		EE6DA7D51A5D4B1000E00708 /* FHIRSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5120531A4B317F002D434A /* FHIRSearch.swift */; };
+		EE6DA7D61A5D4B1000E00708 /* Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E491A41D02F00CA0452 /* Other.swift */; };
+		EE6DA7D71A5D4B1000E00708 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E2E1A41D02F00CA0452 /* Identifier.swift */; };
+		EE6DA7D81A5D4B1000E00708 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E371A41D02F00CA0452 /* Media.swift */; };
+		EE6DA7D91A5D4B1000E00708 /* ElementDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E1D1A41D02F00CA0452 /* ElementDefinition.swift */; };
+		EE6DA7DA1A5D4B1000E00708 /* PendedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E4D1A41D02F00CA0452 /* PendedRequest.swift */; };
+		EE6DA7DB1A5D4B1000E00708 /* SupportingDocumentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E701A41D02F00CA0452 /* SupportingDocumentation.swift */; };
+		EE6DA7DC1A5D4B1000E00708 /* DiagnosticOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E151A41D02F00CA0452 /* DiagnosticOrder.swift */; };
+		EE6DA7DD1A5D4B1000E00708 /* EnrollmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E221A41D02F00CA0452 /* EnrollmentResponse.swift */; };
+		EE6DA7DE1A5D4B1000E00708 /* Encounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E201A41D02F00CA0452 /* Encounter.swift */; };
+		EE6DA7DF1A5D4B1000E00708 /* Contraindication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DDD1A41D02F00CA0452 /* Contraindication.swift */; };
+		EE6DA7E01A5D4B1000E00708 /* MedicationAdministration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E391A41D02F00CA0452 /* MedicationAdministration.swift */; };
+		EE6DA7E11A5D4B1000E00708 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E6D1A41D02F00CA0452 /* Subscription.swift */; };
+		EE6DA7E21A5D4B1000E00708 /* CarePlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DC41A41D02F00CA0452 /* CarePlan.swift */; };
+		EE6DA7E31A5D4B1000E00708 /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E3E1A41D02F00CA0452 /* Money.swift */; };
+		EE6DA7E41A5D4B1000E00708 /* ValueSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E7A1A41D02F00CA0452 /* ValueSet.swift */; };
+		EE6DA7E51A5D4B1000E00708 /* Reversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E5F1A41D02F00CA0452 /* Reversal.swift */; };
+		EE6DA7E61A5D4B1000E00708 /* CommunicationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD51A41D02F00CA0452 /* CommunicationRequest.swift */; };
+		EE6DA7E71A5D4B1000E00708 /* ClinicalAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD11A41D02F00CA0452 /* ClinicalAssessment.swift */; };
+		EE6DA7E81A5D4B1000E00708 /* DataElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E0D1A41D02F00CA0452 /* DataElement.swift */; };
+		EE6DA7E91A5D4B1000E00708 /* DiagnosticReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E161A41D02F00CA0452 /* DiagnosticReport.swift */; };
+		EE6DA7EA1A5D4B1000E00708 /* OperationOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E441A41D02F00CA0452 /* OperationOutcome.swift */; };
+		EE6DA7EB1A5D4B1000E00708 /* FHIRTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E281A41D02F00CA0452 /* FHIRTypes.swift */; };
+		EE6DA7EC1A5D4B1000E00708 /* PaymentReconciliation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E4C1A41D02F00CA0452 /* PaymentReconciliation.swift */; };
+		EE6DA7ED1A5D4B1000E00708 /* MedicationStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E3C1A41D02F00CA0452 /* MedicationStatement.swift */; };
+		EE6DA7EE1A5D4B1000E00708 /* Specimen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E671A41D02F00CA0452 /* Specimen.swift */; };
+		EE6DA7EF1A5D4B1000E00708 /* SampledData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E611A41D02F00CA0452 /* SampledData.swift */; };
+		EE6DA7F01A5D4B1000E00708 /* ExplanationOfBenefit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E241A41D02F00CA0452 /* ExplanationOfBenefit.swift */; };
+		EE6DA7F11A5D4B1000E00708 /* HumanName.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E2D1A41D02F00CA0452 /* HumanName.swift */; };
+		EE6DA7F21A5D4B1000E00708 /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E5A1A41D02F00CA0452 /* Range.swift */; };
+		EE6DA7F31A5D4B1000E00708 /* EligibilityResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E1F1A41D02F00CA0452 /* EligibilityResponse.swift */; };
+		EE6DA7F41A5D4B1000E00708 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E4A1A41D02F00CA0452 /* Patient.swift */; };
+		EE6DA7F51A5D4B1000E00708 /* ConceptMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD71A41D02F00CA0452 /* ConceptMap.swift */; };
+		EE6DA7F61A5D4B1000E00708 /* ReferralRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E5D1A41D02F00CA0452 /* ReferralRequest.swift */; };
+		EE6DA7F71A5D4B1000E00708 /* DocumentManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E181A41D02F00CA0452 /* DocumentManifest.swift */; };
+		EE6DA7F81A5D4B1000E00708 /* ProcedureRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E531A41D02F00CA0452 /* ProcedureRequest.swift */; };
+		EE6DA7F91A5D4B1000E00708 /* StatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E681A41D02F00CA0452 /* StatusRequest.swift */; };
+		EE6DA7FA1A5D4B1000E00708 /* FamilyHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E271A41D02F00CA0452 /* FamilyHistory.swift */; };
+		EE6DA7FB1A5D4B1000E00708 /* ExtensionDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E261A41D02F00CA0452 /* ExtensionDefinition.swift */; };
+		EE6DA7FC1A5D4B1000E00708 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E481A41D02F00CA0452 /* Organization.swift */; };
+		EE6DA7FD1A5D4B1000E00708 /* Conformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD91A41D02F00CA0452 /* Conformance.swift */; };
+		EE6DA7FE1A5D4B1000E00708 /* PharmacyClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E501A41D02F00CA0452 /* PharmacyClaim.swift */; };
+		EE6DA7FF1A5D4B1000E00708 /* OralHealthClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E451A41D02F00CA0452 /* OralHealthClaim.swift */; };
+		EE6DA8001A5D4B1000E00708 /* Substance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E6E1A41D02F00CA0452 /* Substance.swift */; };
+		EE6DA8011A5D4B1000E00708 /* RelatedPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E5E1A41D02F00CA0452 /* RelatedPerson.swift */; };
+		EE6DA8021A5D4B1000E00708 /* FHIRElement+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5120551A4B3212002D434A /* FHIRElement+Factory.swift */; };
+		EE6DA8031A5D4B1000E00708 /* Supply.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E6F1A41D02F00CA0452 /* Supply.swift */; };
+		EE6DA8041A5D4B1000E00708 /* RiskAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E601A41D02F00CA0452 /* RiskAssessment.swift */; };
+		EE6DA8051A5D4B1000E00708 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E4F1A41D02F00CA0452 /* Person.swift */; };
+		EE6DA8061A5D4B1000E00708 /* Coding.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD31A41D02F00CA0452 /* Coding.swift */; };
+		EE6DA8071A5D4B1000E00708 /* Basic.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DC11A41D02F00CA0452 /* Basic.swift */; };
+		EE6DA8081A5D4B1000E00708 /* Immunization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E311A41D02F00CA0452 /* Immunization.swift */; };
+		EE6DA8091A5D4B1000E00708 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E351A41D02F00CA0452 /* Location.swift */; };
+		EE6DA80A1A5D4B1000E00708 /* FHIRContainedResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C3819A78AE600B5A2C0 /* FHIRContainedResource.swift */; };
+		EE6DA80B1A5D4B1000E00708 /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E421A41D02F00CA0452 /* Observation.swift */; };
+		EE6DA80C1A5D4B1000E00708 /* Period.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E4E1A41D02F00CA0452 /* Period.swift */; };
+		EE6DA80D1A5D4B1000E00708 /* Distance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E171A41D02F00CA0452 /* Distance.swift */; };
+		EE6DA80E1A5D4B1000E00708 /* DeviceUseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E131A41D02F00CA0452 /* DeviceUseRequest.swift */; };
+		EE6DA80F1A5D4B1000E00708 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DC01A41D02F00CA0452 /* Attachment.swift */; };
+		EE6DA8101A5D4B1000E00708 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E341A41D02F00CA0452 /* List.swift */; };
+		EE6DA8111A5D4B1000E00708 /* Coverage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DDF1A41D02F00CA0452 /* Coverage.swift */; };
+		EE6DA8121A5D4B1000E00708 /* JSON-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C3C19A78AE600B5A2C0 /* JSON-extensions.swift */; };
+		EE6DA8131A5D4B1000E00708 /* SecurityEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E651A41D02F00CA0452 /* SecurityEvent.swift */; };
+		EE6DA8141A5D4B1000E00708 /* ImagingStudy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E301A41D02F00CA0452 /* ImagingStudy.swift */; };
+		EE6DA8151A5D4B1000E00708 /* Binary.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DC21A41D02F00CA0452 /* Binary.swift */; };
+		EE6DA8161A5D4B1000E00708 /* NamingSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E3F1A41D02F00CA0452 /* NamingSystem.swift */; };
+		EE6DA8171A5D4B1000E00708 /* SearchParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E641A41D02F00CA0452 /* SearchParameter.swift */; };
+		EE6DA8181A5D4B1000E00708 /* Communication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD41A41D02F00CA0452 /* Communication.swift */; };
+		EE6DA8191A5D4B1000E00708 /* Reference.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8F51751A441B66004D27C5 /* Reference.swift */; };
+		EE6DA81A1A5D4B1000E00708 /* PaymentNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E4B1A41D02F00CA0452 /* PaymentNotice.swift */; };
+		EE6DA81B1A5D4B1000E00708 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E2A1A41D02F00CA0452 /* Goal.swift */; };
+		EE6DA81C1A5D4B1000E00708 /* ContactPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DDB1A41D02F00CA0452 /* ContactPoint.swift */; };
+		EE6DA81D1A5D4B1000E00708 /* MedicationDispense.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E3A1A41D02F00CA0452 /* MedicationDispense.swift */; };
+		EE6DA81E1A5D4B1000E00708 /* DeviceMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E111A41D02F00CA0452 /* DeviceMetric.swift */; };
+		EE6DA81F1A5D4B1000E00708 /* Readjudicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E5C1A41D02F00CA0452 /* Readjudicate.swift */; };
+		EE6DA8201A5D4B1000E00708 /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E381A41D02F00CA0452 /* Medication.swift */; };
+		EE6DA8211A5D4B1000E00708 /* Quantity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E571A41D02F00CA0452 /* Quantity.swift */; };
+		EE6DA8221A5D4B1000E00708 /* CarePlan2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DC51A41D02F00CA0452 /* CarePlan2.swift */; };
+		EE6DA8231A5D4B1000E00708 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E461A41D02F00CA0452 /* Order.swift */; };
+		EE6DA8241A5D4B1000E00708 /* Composition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD61A41D02F00CA0452 /* Composition.swift */; };
+		EE6DA8251A5D4B1000E00708 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E551A41D02F00CA0452 /* Profile.swift */; };
+		EE6DA8261A5D4B1000E00708 /* AppointmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DBF1A41D02F00CA0452 /* AppointmentResponse.swift */; };
+		EE6DA8271A5D4B1000E00708 /* DocumentReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E191A41D02F00CA0452 /* DocumentReference.swift */; };
+		EE6DA8281A5D4B1000E00708 /* StatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E691A41D02F00CA0452 /* StatusResponse.swift */; };
+		EE6DA8291A5D4B1000E00708 /* DeviceUseStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E141A41D02F00CA0452 /* DeviceUseStatement.swift */; };
+		EE6DA82A1A5D4B1000E00708 /* ClaimResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD01A41D02F00CA0452 /* ClaimResponse.swift */; };
+		EE6DA82B1A5D4B1000E00708 /* InstitutionalClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E331A41D02F00CA0452 /* InstitutionalClaim.swift */; };
+		EE6DA82C1A5D4B1000E00708 /* MessageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E3D1A41D02F00CA0452 /* MessageHeader.swift */; };
+		EE6DA82D1A5D4B1000E00708 /* OrderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E471A41D02F00CA0452 /* OrderResponse.swift */; };
+		EE6DA82E1A5D4B1000E00708 /* ProfessionalClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E541A41D02F00CA0452 /* ProfessionalClaim.swift */; };
+		EE6DA82F1A5D4B1000E00708 /* VisionPrescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E7C1A41D02F00CA0452 /* VisionPrescription.swift */; };
+		EE6DA8301A5D4B1000E00708 /* Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DDE1A41D02F00CA0452 /* Count.swift */; };
+		EE6DA8311A5D4B1000E00708 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E621A41D02F00CA0452 /* Schedule.swift */; };
+		EE6DA8321A5D4B1000E00708 /* AllergyIntolerance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DBD1A41D02F00CA0452 /* AllergyIntolerance.swift */; };
+		EE6DA8331A5D4B1000E00708 /* FHIRElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C3919A78AE600B5A2C0 /* FHIRElement.swift */; };
+		EE6DA8341A5D4B1000E00708 /* MedicationPrescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E3B1A41D02F00CA0452 /* MedicationPrescription.swift */; };
+		EE6DA8351A5D4B1000E00708 /* Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DDC1A41D02F00CA0452 /* Contract.swift */; };
+		EE6DA8361A5D4B1000E00708 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DBE1A41D02F00CA0452 /* Appointment.swift */; };
+		EE6DA8371A5D4B1000E00708 /* Narrative.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E401A41D02F00CA0452 /* Narrative.swift */; };
+		EE6DA8381A5D4B1000E00708 /* VisionClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E7B1A41D02F00CA0452 /* VisionClaim.swift */; };
+		EE6DA8391A5D4B1000E00708 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DBC1A41D02F00CA0452 /* Alert.swift */; };
+		EE6DA83A1A5D4B1000E00708 /* Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DBB1A41D02F00CA0452 /* Age.swift */; };
+		EE6DA83B1A5D4B1000E00708 /* OperationDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E431A41D02F00CA0452 /* OperationDefinition.swift */; };
+		EE6DA83C1A5D4B1000E00708 /* Practitioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E511A41D02F00CA0452 /* Practitioner.swift */; };
+		EE6DA83D1A5D4B1000E00708 /* FHIRResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C3A19A78AE600B5A2C0 /* FHIRResource.swift */; };
+		EE6DA83E1A5D4B1000E00708 /* EnrollmentRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E211A41D02F00CA0452 /* EnrollmentRequest.swift */; };
+		EE6DA83F1A5D4B1000E00708 /* EpisodeOfCare.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E231A41D02F00CA0452 /* EpisodeOfCare.swift */; };
+		EE6DA8401A5D4B1000E00708 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E2B1A41D02F00CA0452 /* Group.swift */; };
+		EE6DA8411A5D4B1000E00708 /* Procedure.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E521A41D02F00CA0452 /* Procedure.swift */; };
+		EE6DA8421A5D4B1000E00708 /* Timing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E711A41D02F00CA0452 /* Timing.swift */; };
+		EE6DA8431A5D4B1000E00708 /* FHIRReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE652AC619FDEBDC006582EC /* FHIRReference.swift */; };
+		EE6DA8441A5D4B1000E00708 /* Condition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD81A41D02F00CA0452 /* Condition.swift */; };
+		EE6DA8451A5D4B1000E00708 /* QuestionnaireAnswers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E591A41D02F00CA0452 /* QuestionnaireAnswers.swift */; };
+		EE6DA8461A5D4B1000E00708 /* Duration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E1A1A41D02F00CA0452 /* Duration.swift */; };
+		EE6DA8471A5D4B1000E00708 /* ImmunizationRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E321A41D02F00CA0452 /* ImmunizationRecommendation.swift */; };
+		EE6DA8481A5D4B1000E00708 /* NutritionOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E411A41D02F00CA0452 /* NutritionOrder.swift */; };
+		EE6DA8491A5D4B1000E00708 /* DeviceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E101A41D02F00CA0452 /* DeviceComponent.swift */; };
+		EE6DA84A1A5D4B1000E00708 /* Slot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E661A41D02F00CA0452 /* Slot.swift */; };
+		EE6DA84B1A5D4B1000E00708 /* Ratio.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E5B1A41D02F00CA0452 /* Ratio.swift */; };
+		EE6DA84C1A5D4B1000E00708 /* EligibilityRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E1E1A41D02F00CA0452 /* EligibilityRequest.swift */; };
+		EE6DA84D1A5D4B1000E00708 /* ImagingObjectSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E2F1A41D02F00CA0452 /* ImagingObjectSelection.swift */; };
+		EE6DA84E1A5D4B1000E00708 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E251A41D02F00CA0452 /* Extension.swift */; };
+		EE6DA84F1A5D4B1000E00708 /* CodeableConcept.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD21A41D02F00CA0452 /* CodeableConcept.swift */; };
+		EE6DA8631A5D4B3A00E00708 /* SwiftFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6DA8571A5D4B1000E00708 /* SwiftFHIR.framework */; };
+		EE6DA86A1A5D4BD000E00708 /* BaseTests+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6DA8691A5D4BD000E00708 /* BaseTests+iOS.swift */; };
+		EE6DA86C1A5D4BD700E00708 /* BaseTests+OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6DA86B1A5D4BD700E00708 /* BaseTests+OSX.swift */; };
 		EE8F517D1A446188004D27C5 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E251A41D02F00CA0452 /* Extension.swift */; };
 		EE8F517E1A446195004D27C5 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DBA1A41D02F00CA0452 /* Address.swift */; };
 		EE8F517F1A44619C004D27C5 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DC01A41D02F00CA0452 /* Attachment.swift */; };
@@ -182,6 +314,106 @@
 		EE8F52081A4464C0004D27C5 /* VisionClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E7B1A41D02F00CA0452 /* VisionClaim.swift */; };
 		EE8F52091A4464C0004D27C5 /* VisionPrescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E7C1A41D02F00CA0452 /* VisionPrescription.swift */; };
 		EEEB097119AD248700C324FC /* MedicationPrescriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB096F19AD248700C324FC /* MedicationPrescriptionTests.swift */; };
+		EEF20DAE1A5D4ECD009A6EDA /* ExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684CCE19A7CEF000B5A2C0 /* ExtensionsTest.swift */; };
+		EEF20DAF1A5D4ECF009A6EDA /* FHIRModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0118971A12AC2B002790C8 /* FHIRModelTestCase.swift */; };
+		EEF20DB01A5D4ED6009A6EDA /* AlertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01189A1A12AD61002790C8 /* AlertTests.swift */; };
+		EEF20DB11A5D4ED6009A6EDA /* AllergyIntoleranceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7BC19AE84380077EDBE /* AllergyIntoleranceTests.swift */; };
+		EEF20DB21A5D4ED6009A6EDA /* AppointmentResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F4E1A41D85A00CA0452 /* AppointmentResponseTests.swift */; };
+		EEF20DB31A5D4ED6009A6EDA /* AppointmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F4F1A41D85A00CA0452 /* AppointmentTests.swift */; };
+		EEF20DB41A5D4ED6009A6EDA /* BasicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F501A41D85B00CA0452 /* BasicTests.swift */; };
+		EEF20DB51A5D4ED6009A6EDA /* BinaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F511A41D85B00CA0452 /* BinaryTests.swift */; };
+		EEF20DB61A5D4ED6009A6EDA /* BundleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F521A41D85B00CA0452 /* BundleTests.swift */; };
+		EEF20DB71A5D4ED6009A6EDA /* CarePlan2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F531A41D85B00CA0452 /* CarePlan2Tests.swift */; };
+		EEF20DB81A5D4ED6009A6EDA /* CarePlanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7BD19AE84380077EDBE /* CarePlanTests.swift */; };
+		EEF20DB91A5D4ED6009A6EDA /* ClaimResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F541A41D85B00CA0452 /* ClaimResponseTests.swift */; };
+		EEF20DBA1A5D4ED6009A6EDA /* ClinicalAssessmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F551A41D85B00CA0452 /* ClinicalAssessmentTests.swift */; };
+		EEF20DBB1A5D4ED6009A6EDA /* CommunicationRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F561A41D85B00CA0452 /* CommunicationRequestTests.swift */; };
+		EEF20DBC1A5D4ED6009A6EDA /* CommunicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F571A41D85B00CA0452 /* CommunicationTests.swift */; };
+		EEF20DBD1A5D4ED6009A6EDA /* CompositionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01189B1A12AD61002790C8 /* CompositionTests.swift */; };
+		EEF20DBE1A5D4ED6009A6EDA /* ConceptMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7BE19AE84380077EDBE /* ConceptMapTests.swift */; };
+		EEF20DBF1A5D4ED6009A6EDA /* ConditionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7BA19AE5EBE0077EDBE /* ConditionTests.swift */; };
+		EEF20DC01A5D4ED6009A6EDA /* ConformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01189C1A12AD61002790C8 /* ConformanceTests.swift */; };
+		EEF20DC11A5D4ED6009A6EDA /* ContractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F581A41D85B00CA0452 /* ContractTests.swift */; };
+		EEF20DC21A5D4ED6009A6EDA /* ContraindicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F591A41D85B00CA0452 /* ContraindicationTests.swift */; };
+		EEF20DC31A5D4ED6009A6EDA /* CoverageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F5A1A41D85B00CA0452 /* CoverageTests.swift */; };
+		EEF20DC41A5D4ED6009A6EDA /* DataElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F5B1A41D85B00CA0452 /* DataElementTests.swift */; };
+		EEF20DC51A5D4ED6009A6EDA /* DeviceComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F5C1A41D85B00CA0452 /* DeviceComponentTests.swift */; };
+		EEF20DC61A5D4ED6009A6EDA /* DeviceMetricTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F5D1A41D85B00CA0452 /* DeviceMetricTests.swift */; };
+		EEF20DC71A5D4ED6009A6EDA /* DeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7BF19AE84380077EDBE /* DeviceTests.swift */; };
+		EEF20DC81A5D4ED6009A6EDA /* DeviceUseRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F5E1A41D85B00CA0452 /* DeviceUseRequestTests.swift */; };
+		EEF20DC91A5D4ED6009A6EDA /* DeviceUseStatementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F5F1A41D85B00CA0452 /* DeviceUseStatementTests.swift */; };
+		EEF20DCA1A5D4ED6009A6EDA /* DiagnosticOrderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01189E1A12AD61002790C8 /* DiagnosticOrderTests.swift */; };
+		EEF20DCB1A5D4ED6009A6EDA /* DiagnosticReportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C019AE84380077EDBE /* DiagnosticReportTests.swift */; };
+		EEF20DCC1A5D4ED6009A6EDA /* DocumentManifestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01189F1A12AD61002790C8 /* DocumentManifestTests.swift */; };
+		EEF20DCD1A5D4ED6009A6EDA /* DocumentReferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0118A01A12AD61002790C8 /* DocumentReferenceTests.swift */; };
+		EEF20DCE1A5D4ED6009A6EDA /* EligibilityRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F601A41D85B00CA0452 /* EligibilityRequestTests.swift */; };
+		EEF20DCF1A5D4ED6009A6EDA /* EligibilityResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F611A41D85B00CA0452 /* EligibilityResponseTests.swift */; };
+		EEF20DD01A5D4ED6009A6EDA /* EncounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C119AE84380077EDBE /* EncounterTests.swift */; };
+		EEF20DD11A5D4ED6009A6EDA /* EnrollmentRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F621A41D85B00CA0452 /* EnrollmentRequestTests.swift */; };
+		EEF20DD21A5D4ED6009A6EDA /* EnrollmentResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F631A41D85B00CA0452 /* EnrollmentResponseTests.swift */; };
+		EEF20DD31A5D4ED6009A6EDA /* EpisodeOfCareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F641A41D85B00CA0452 /* EpisodeOfCareTests.swift */; };
+		EEF20DD41A5D4ED6009A6EDA /* ExplanationOfBenefitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F651A41D85B00CA0452 /* ExplanationOfBenefitTests.swift */; };
+		EEF20DD51A5D4ED6009A6EDA /* ExtensionDefinitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F661A41D85B00CA0452 /* ExtensionDefinitionTests.swift */; };
+		EEF20DD61A5D4ED6009A6EDA /* FamilyHistoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C219AE84380077EDBE /* FamilyHistoryTests.swift */; };
+		EEF20DD71A5D4ED6009A6EDA /* GoalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F671A41D85B00CA0452 /* GoalTests.swift */; };
+		EEF20DD81A5D4ED6009A6EDA /* GroupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0118A11A12AD61002790C8 /* GroupTests.swift */; };
+		EEF20DD91A5D4ED6009A6EDA /* HealthcareServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F681A41D85B00CA0452 /* HealthcareServiceTests.swift */; };
+		EEF20DDA1A5D4ED6009A6EDA /* ImagingObjectSelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F691A41D85B00CA0452 /* ImagingObjectSelectionTests.swift */; };
+		EEF20DDB1A5D4ED6009A6EDA /* ImagingStudyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0118A21A12AD61002790C8 /* ImagingStudyTests.swift */; };
+		EEF20DDC1A5D4ED6009A6EDA /* ImmunizationRecommendationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0118A31A12AD61002790C8 /* ImmunizationRecommendationTests.swift */; };
+		EEF20DDD1A5D4ED6009A6EDA /* ImmunizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0118A41A12AD61002790C8 /* ImmunizationTests.swift */; };
+		EEF20DDE1A5D4ED6009A6EDA /* InstitutionalClaimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F6A1A41D85B00CA0452 /* InstitutionalClaimTests.swift */; };
+		EEF20DDF1A5D4ED6009A6EDA /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C319AE84380077EDBE /* ListTests.swift */; };
+		EEF20DE01A5D4ED6009A6EDA /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C419AE84380077EDBE /* LocationTests.swift */; };
+		EEF20DE11A5D4ED6009A6EDA /* MediaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C519AE84380077EDBE /* MediaTests.swift */; };
+		EEF20DE21A5D4ED6009A6EDA /* MedicationAdministrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0118A51A12AD61002790C8 /* MedicationAdministrationTests.swift */; };
+		EEF20DE31A5D4ED6009A6EDA /* MedicationDispenseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0118A61A12AD61002790C8 /* MedicationDispenseTests.swift */; };
+		EEF20DE41A5D4ED6009A6EDA /* MedicationPrescriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB096F19AD248700C324FC /* MedicationPrescriptionTests.swift */; };
+		EEF20DE51A5D4ED6009A6EDA /* MedicationStatementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0118A71A12AD61002790C8 /* MedicationStatementTests.swift */; };
+		EEF20DE61A5D4ED6009A6EDA /* MedicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7B819AE57C10077EDBE /* MedicationTests.swift */; };
+		EEF20DE71A5D4ED6009A6EDA /* MessageHeaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0118A81A12AD61002790C8 /* MessageHeaderTests.swift */; };
+		EEF20DE81A5D4ED6009A6EDA /* NamingSystemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F6B1A41D85B00CA0452 /* NamingSystemTests.swift */; };
+		EEF20DE91A5D4ED6009A6EDA /* NutritionOrderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F6C1A41D85B00CA0452 /* NutritionOrderTests.swift */; };
+		EEF20DEA1A5D4ED6009A6EDA /* ObservationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C619AE84380077EDBE /* ObservationTests.swift */; };
+		EEF20DEB1A5D4ED6009A6EDA /* OperationOutcomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0118A91A12AD61002790C8 /* OperationOutcomeTests.swift */; };
+		EEF20DEC1A5D4ED6009A6EDA /* OralHealthClaimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F6D1A41D85B00CA0452 /* OralHealthClaimTests.swift */; };
+		EEF20DED1A5D4ED6009A6EDA /* OrderResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0118AA1A12AD61002790C8 /* OrderResponseTests.swift */; };
+		EEF20DEE1A5D4ED6009A6EDA /* OrderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C719AE84380077EDBE /* OrderTests.swift */; };
+		EEF20DEF1A5D4ED6009A6EDA /* OrganizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C819AE84380077EDBE /* OrganizationTests.swift */; };
+		EEF20DF01A5D4ED6009A6EDA /* OtherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7C919AE84380077EDBE /* OtherTests.swift */; };
+		EEF20DF11A5D4ED6009A6EDA /* PatientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7CA19AE84380077EDBE /* PatientTests.swift */; };
+		EEF20DF21A5D4ED6009A6EDA /* PaymentNoticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F6E1A41D85B00CA0452 /* PaymentNoticeTests.swift */; };
+		EEF20DF31A5D4ED6009A6EDA /* PaymentReconciliationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F6F1A41D85B00CA0452 /* PaymentReconciliationTests.swift */; };
+		EEF20DF41A5D4ED6009A6EDA /* PendedRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F701A41D85B00CA0452 /* PendedRequestTests.swift */; };
+		EEF20DF51A5D4ED6009A6EDA /* PersonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F711A41D85B00CA0452 /* PersonTests.swift */; };
+		EEF20DF61A5D4ED6009A6EDA /* PharmacyClaimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F721A41D85B00CA0452 /* PharmacyClaimTests.swift */; };
+		EEF20DF71A5D4ED6009A6EDA /* PractitionerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7CB19AE84380077EDBE /* PractitionerTests.swift */; };
+		EEF20DF81A5D4ED6009A6EDA /* ProcedureRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F731A41D85B00CA0452 /* ProcedureRequestTests.swift */; };
+		EEF20DF91A5D4ED6009A6EDA /* ProcedureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7CC19AE84380077EDBE /* ProcedureTests.swift */; };
+		EEF20DFA1A5D4ED6009A6EDA /* ProfessionalClaimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F741A41D85B00CA0452 /* ProfessionalClaimTests.swift */; };
+		EEF20DFB1A5D4ED6009A6EDA /* ProvenanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0118AB1A12AD61002790C8 /* ProvenanceTests.swift */; };
+		EEF20DFC1A5D4ED6009A6EDA /* QuestionnaireAnswersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F751A41D85B00CA0452 /* QuestionnaireAnswersTests.swift */; };
+		EEF20DFD1A5D4ED6009A6EDA /* QuestionnaireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7CD19AE84380077EDBE /* QuestionnaireTests.swift */; };
+		EEF20DFE1A5D4ED6009A6EDA /* ReadjudicateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F761A41D85B00CA0452 /* ReadjudicateTests.swift */; };
+		EEF20DFF1A5D4ED6009A6EDA /* ReferralRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F771A41D85B00CA0452 /* ReferralRequestTests.swift */; };
+		EEF20E001A5D4ED6009A6EDA /* RelatedPersonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7CE19AE84380077EDBE /* RelatedPersonTests.swift */; };
+		EEF20E011A5D4ED6009A6EDA /* ReversalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F781A41D85B00CA0452 /* ReversalTests.swift */; };
+		EEF20E021A5D4ED6009A6EDA /* RiskAssessmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F791A41D85B00CA0452 /* RiskAssessmentTests.swift */; };
+		EEF20E031A5D4ED6009A6EDA /* ScheduleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F7A1A41D85B00CA0452 /* ScheduleTests.swift */; };
+		EEF20E041A5D4ED6009A6EDA /* SearchParameterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F7B1A41D85B00CA0452 /* SearchParameterTests.swift */; };
+		EEF20E051A5D4ED6009A6EDA /* SecurityEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7CF19AE84380077EDBE /* SecurityEventTests.swift */; };
+		EEF20E061A5D4ED6009A6EDA /* SlotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F7C1A41D85B00CA0452 /* SlotTests.swift */; };
+		EEF20E071A5D4ED6009A6EDA /* SpecimenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0118AD1A12AD61002790C8 /* SpecimenTests.swift */; };
+		EEF20E081A5D4ED6009A6EDA /* StatusRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F7D1A41D85B00CA0452 /* StatusRequestTests.swift */; };
+		EEF20E091A5D4ED6009A6EDA /* StatusResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F7E1A41D85B00CA0452 /* StatusResponseTests.swift */; };
+		EEF20E0A1A5D4ED6009A6EDA /* SubscriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F7F1A41D85B00CA0452 /* SubscriptionTests.swift */; };
+		EEF20E0B1A5D4ED6009A6EDA /* SubstanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7D019AE84380077EDBE /* SubstanceTests.swift */; };
+		EEF20E0C1A5D4ED6009A6EDA /* SupplyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0118AE1A12AD61002790C8 /* SupplyTests.swift */; };
+		EEF20E0D1A5D4ED6009A6EDA /* SupportingDocumentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F801A41D85B00CA0452 /* SupportingDocumentationTests.swift */; };
+		EEF20E0E1A5D4ED6009A6EDA /* ValueSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7D119AE84380077EDBE /* ValueSetTests.swift */; };
+		EEF20E0F1A5D4ED6009A6EDA /* VisionClaimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F811A41D85B00CA0452 /* VisionClaimTests.swift */; };
+		EEF20E101A5D4ED6009A6EDA /* VisionPrescriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F821A41D85B00CA0452 /* VisionPrescriptionTests.swift */; };
+		EEF20E111A5D4F12009A6EDA /* QuestionnaireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7CD19AE84380077EDBE /* QuestionnaireTests.swift */; };
 		EEF40EEB1A41D02F00CA0452 /* FHIRTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E281A41D02F00CA0452 /* FHIRTypes.swift */; };
 		EEF40F831A41D85B00CA0452 /* AppointmentResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F4E1A41D85A00CA0452 /* AppointmentResponseTests.swift */; };
 		EEF40F841A41D85B00CA0452 /* AppointmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40F4F1A41D85A00CA0452 /* AppointmentTests.swift */; };
@@ -246,6 +478,13 @@
 			remoteGlobalIDString = EE684C1D19A789BA00B5A2C0;
 			remoteInfo = SwiftFHIR;
 		};
+		EE6DA8641A5D4B3A00E00708 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE684C1519A789BA00B5A2C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EE6DA7CD1A5D4B1000E00708;
+			remoteInfo = SwiftFHIRiOS;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -306,6 +545,10 @@
 		EE684C3A19A78AE600B5A2C0 /* FHIRResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRResource.swift; sourceTree = "<group>"; };
 		EE684C3C19A78AE600B5A2C0 /* JSON-extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON-extensions.swift"; sourceTree = "<group>"; };
 		EE684CCE19A7CEF000B5A2C0 /* ExtensionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionsTest.swift; sourceTree = "<group>"; };
+		EE6DA8571A5D4B1000E00708 /* SwiftFHIR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftFHIR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE6DA85D1A5D4B3A00E00708 /* SwiftFHIRiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftFHIRiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE6DA8691A5D4BD000E00708 /* BaseTests+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseTests+iOS.swift"; sourceTree = "<group>"; };
+		EE6DA86B1A5D4BD700E00708 /* BaseTests+OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseTests+OSX.swift"; sourceTree = "<group>"; };
 		EE8F51751A441B66004D27C5 /* Reference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
 		EEEB096F19AD248700C324FC /* MedicationPrescriptionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationPrescriptionTests.swift; sourceTree = "<group>"; };
 		EEF40DBA1A41D02F00CA0452 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
@@ -500,6 +743,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EE6DA8501A5D4B1000E00708 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE6DA85A1A5D4B3A00E00708 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE6DA8631A5D4B3A00E00708 /* SwiftFHIR.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -517,6 +775,8 @@
 			children = (
 				EE684C1E19A789BA00B5A2C0 /* SwiftFHIR.framework */,
 				EE684C2919A789BA00B5A2C0 /* SwiftFHIRTests.xctest */,
+				EE6DA8571A5D4B1000E00708 /* SwiftFHIR.framework */,
+				EE6DA85D1A5D4B3A00E00708 /* SwiftFHIRiOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -536,6 +796,8 @@
 			isa = PBXGroup;
 			children = (
 				EE684C2C19A789BA00B5A2C0 /* Info.plist */,
+				EE6DA8691A5D4BD000E00708 /* BaseTests+iOS.swift */,
+				EE6DA86B1A5D4BD700E00708 /* BaseTests+OSX.swift */,
 				EE684CCE19A7CEF000B5A2C0 /* ExtensionsTest.swift */,
 				EE0118971A12AC2B002790C8 /* FHIRModelTestCase.swift */,
 				EEEB096E19AD248700C324FC /* ModelTests */,
@@ -802,6 +1064,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EE6DA8511A5D4B1000E00708 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -841,6 +1110,42 @@
 			productReference = EE684C2919A789BA00B5A2C0 /* SwiftFHIRTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		EE6DA7CD1A5D4B1000E00708 /* SwiftFHIRiOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE6DA8541A5D4B1000E00708 /* Build configuration list for PBXNativeTarget "SwiftFHIRiOS" */;
+			buildPhases = (
+				EE6DA7CE1A5D4B1000E00708 /* Sources */,
+				EE6DA8501A5D4B1000E00708 /* Frameworks */,
+				EE6DA8511A5D4B1000E00708 /* Headers */,
+				EE6DA8531A5D4B1000E00708 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftFHIRiOS;
+			productName = SwiftFHIR;
+			productReference = EE6DA8571A5D4B1000E00708 /* SwiftFHIR.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		EE6DA85C1A5D4B3A00E00708 /* SwiftFHIRiOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE6DA8661A5D4B3A00E00708 /* Build configuration list for PBXNativeTarget "SwiftFHIRiOSTests" */;
+			buildPhases = (
+				EE6DA8591A5D4B3A00E00708 /* Sources */,
+				EE6DA85A1A5D4B3A00E00708 /* Frameworks */,
+				EE6DA85B1A5D4B3A00E00708 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EE6DA8651A5D4B3A00E00708 /* PBXTargetDependency */,
+			);
+			name = SwiftFHIRiOSTests;
+			productName = SwiftFHIRiOSTests;
+			productReference = EE6DA85D1A5D4B3A00E00708 /* SwiftFHIRiOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -855,6 +1160,9 @@
 					};
 					EE684C2819A789BA00B5A2C0 = {
 						CreatedOnToolsVersion = 6.0;
+					};
+					EE6DA85C1A5D4B3A00E00708 = {
+						CreatedOnToolsVersion = 6.2;
 					};
 				};
 			};
@@ -872,6 +1180,8 @@
 			targets = (
 				EE684C1D19A789BA00B5A2C0 /* SwiftFHIR */,
 				EE684C2819A789BA00B5A2C0 /* SwiftFHIRTests */,
+				EE6DA7CD1A5D4B1000E00708 /* SwiftFHIRiOS */,
+				EE6DA85C1A5D4B3A00E00708 /* SwiftFHIRiOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -885,6 +1195,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		EE684C2719A789BA00B5A2C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE6DA8531A5D4B1000E00708 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE6DA85B1A5D4B3A00E00708 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1061,6 +1385,7 @@
 				EE684CCF19A7CEF000B5A2C0 /* ExtensionsTest.swift in Sources */,
 				EE0118B01A12AD61002790C8 /* AlertTests.swift in Sources */,
 				EE67C7E719AE84380077EDBE /* ValueSetTests.swift in Sources */,
+				EE6DA86C1A5D4BD700E00708 /* BaseTests+OSX.swift in Sources */,
 				EEF40F941A41D85B00CA0452 /* DeviceUseStatementTests.swift in Sources */,
 				EEF40F921A41D85B00CA0452 /* DeviceMetricTests.swift in Sources */,
 				EE0118981A12AC2B002790C8 /* FHIRModelTestCase.swift in Sources */,
@@ -1086,6 +1411,7 @@
 				EEF40FAC1A41D85B00CA0452 /* ReferralRequestTests.swift in Sources */,
 				EE0118B71A12AD61002790C8 /* GroupTests.swift in Sources */,
 				EEF40F841A41D85B00CA0452 /* AppointmentTests.swift in Sources */,
+				EEF20E111A5D4F12009A6EDA /* QuestionnaireTests.swift in Sources */,
 				EE0118C41A12AD61002790C8 /* SupplyTests.swift in Sources */,
 				EEF40FB71A41D85B00CA0452 /* VisionPrescriptionTests.swift in Sources */,
 				EEF40FA31A41D85B00CA0452 /* PaymentNoticeTests.swift in Sources */,
@@ -1135,6 +1461,249 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EE6DA7CE1A5D4B1000E00708 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE6DA7CF1A5D4B1000E00708 /* Address.swift in Sources */,
+				EE6DA7D01A5D4B1000E00708 /* HealthcareService.swift in Sources */,
+				EE6DA7D11A5D4B1000E00708 /* Bundle.swift in Sources */,
+				EE6DA7D21A5D4B1000E00708 /* Provenance.swift in Sources */,
+				EE6DA7D31A5D4B1000E00708 /* Questionnaire.swift in Sources */,
+				EE6DA7D41A5D4B1000E00708 /* Device.swift in Sources */,
+				EE6DA7D51A5D4B1000E00708 /* FHIRSearch.swift in Sources */,
+				EE6DA7D61A5D4B1000E00708 /* Other.swift in Sources */,
+				EE6DA7D71A5D4B1000E00708 /* Identifier.swift in Sources */,
+				EE6DA7D81A5D4B1000E00708 /* Media.swift in Sources */,
+				EE6DA7D91A5D4B1000E00708 /* ElementDefinition.swift in Sources */,
+				EE6DA7DA1A5D4B1000E00708 /* PendedRequest.swift in Sources */,
+				EE6DA7DB1A5D4B1000E00708 /* SupportingDocumentation.swift in Sources */,
+				EE6DA7DC1A5D4B1000E00708 /* DiagnosticOrder.swift in Sources */,
+				EE6DA7DD1A5D4B1000E00708 /* EnrollmentResponse.swift in Sources */,
+				EE6DA7DE1A5D4B1000E00708 /* Encounter.swift in Sources */,
+				EE6DA7DF1A5D4B1000E00708 /* Contraindication.swift in Sources */,
+				EE6DA7E01A5D4B1000E00708 /* MedicationAdministration.swift in Sources */,
+				EE6DA7E11A5D4B1000E00708 /* Subscription.swift in Sources */,
+				EE6DA7E21A5D4B1000E00708 /* CarePlan.swift in Sources */,
+				EE6DA7E31A5D4B1000E00708 /* Money.swift in Sources */,
+				EE6DA7E41A5D4B1000E00708 /* ValueSet.swift in Sources */,
+				EE6DA7E51A5D4B1000E00708 /* Reversal.swift in Sources */,
+				EE6DA7E61A5D4B1000E00708 /* CommunicationRequest.swift in Sources */,
+				EE6DA7E71A5D4B1000E00708 /* ClinicalAssessment.swift in Sources */,
+				EE6DA7E81A5D4B1000E00708 /* DataElement.swift in Sources */,
+				EE6DA7E91A5D4B1000E00708 /* DiagnosticReport.swift in Sources */,
+				EE6DA7EA1A5D4B1000E00708 /* OperationOutcome.swift in Sources */,
+				EE6DA7EB1A5D4B1000E00708 /* FHIRTypes.swift in Sources */,
+				EE6DA7EC1A5D4B1000E00708 /* PaymentReconciliation.swift in Sources */,
+				EE6DA7ED1A5D4B1000E00708 /* MedicationStatement.swift in Sources */,
+				EE6DA7EE1A5D4B1000E00708 /* Specimen.swift in Sources */,
+				EE6DA7EF1A5D4B1000E00708 /* SampledData.swift in Sources */,
+				EE6DA7F01A5D4B1000E00708 /* ExplanationOfBenefit.swift in Sources */,
+				EE6DA7F11A5D4B1000E00708 /* HumanName.swift in Sources */,
+				EE6DA7F21A5D4B1000E00708 /* Range.swift in Sources */,
+				EE6DA7F31A5D4B1000E00708 /* EligibilityResponse.swift in Sources */,
+				EE6DA7F41A5D4B1000E00708 /* Patient.swift in Sources */,
+				EE6DA7F51A5D4B1000E00708 /* ConceptMap.swift in Sources */,
+				EE6DA7F61A5D4B1000E00708 /* ReferralRequest.swift in Sources */,
+				EE6DA7F71A5D4B1000E00708 /* DocumentManifest.swift in Sources */,
+				EE6DA7F81A5D4B1000E00708 /* ProcedureRequest.swift in Sources */,
+				EE6DA7F91A5D4B1000E00708 /* StatusRequest.swift in Sources */,
+				EE6DA7FA1A5D4B1000E00708 /* FamilyHistory.swift in Sources */,
+				EE6DA7FB1A5D4B1000E00708 /* ExtensionDefinition.swift in Sources */,
+				EE6DA7FC1A5D4B1000E00708 /* Organization.swift in Sources */,
+				EE6DA7FD1A5D4B1000E00708 /* Conformance.swift in Sources */,
+				EE6DA7FE1A5D4B1000E00708 /* PharmacyClaim.swift in Sources */,
+				EE6DA7FF1A5D4B1000E00708 /* OralHealthClaim.swift in Sources */,
+				EE6DA8001A5D4B1000E00708 /* Substance.swift in Sources */,
+				EE6DA8011A5D4B1000E00708 /* RelatedPerson.swift in Sources */,
+				EE6DA8021A5D4B1000E00708 /* FHIRElement+Factory.swift in Sources */,
+				EE6DA8031A5D4B1000E00708 /* Supply.swift in Sources */,
+				EE6DA8041A5D4B1000E00708 /* RiskAssessment.swift in Sources */,
+				EE6DA8051A5D4B1000E00708 /* Person.swift in Sources */,
+				EE6DA8061A5D4B1000E00708 /* Coding.swift in Sources */,
+				EE6DA8071A5D4B1000E00708 /* Basic.swift in Sources */,
+				EE6DA8081A5D4B1000E00708 /* Immunization.swift in Sources */,
+				EE6DA8091A5D4B1000E00708 /* Location.swift in Sources */,
+				EE6DA80A1A5D4B1000E00708 /* FHIRContainedResource.swift in Sources */,
+				EE6DA80B1A5D4B1000E00708 /* Observation.swift in Sources */,
+				EE6DA80C1A5D4B1000E00708 /* Period.swift in Sources */,
+				EE6DA80D1A5D4B1000E00708 /* Distance.swift in Sources */,
+				EE6DA80E1A5D4B1000E00708 /* DeviceUseRequest.swift in Sources */,
+				EE6DA80F1A5D4B1000E00708 /* Attachment.swift in Sources */,
+				EE6DA8101A5D4B1000E00708 /* List.swift in Sources */,
+				EE6DA8111A5D4B1000E00708 /* Coverage.swift in Sources */,
+				EE6DA8121A5D4B1000E00708 /* JSON-extensions.swift in Sources */,
+				EE6DA8131A5D4B1000E00708 /* SecurityEvent.swift in Sources */,
+				EE6DA8141A5D4B1000E00708 /* ImagingStudy.swift in Sources */,
+				EE6DA8151A5D4B1000E00708 /* Binary.swift in Sources */,
+				EE6DA8161A5D4B1000E00708 /* NamingSystem.swift in Sources */,
+				EE6DA8171A5D4B1000E00708 /* SearchParameter.swift in Sources */,
+				EE6DA8181A5D4B1000E00708 /* Communication.swift in Sources */,
+				EE6DA8191A5D4B1000E00708 /* Reference.swift in Sources */,
+				EE6DA81A1A5D4B1000E00708 /* PaymentNotice.swift in Sources */,
+				EE6DA81B1A5D4B1000E00708 /* Goal.swift in Sources */,
+				EE6DA81C1A5D4B1000E00708 /* ContactPoint.swift in Sources */,
+				EE6DA81D1A5D4B1000E00708 /* MedicationDispense.swift in Sources */,
+				EE6DA81E1A5D4B1000E00708 /* DeviceMetric.swift in Sources */,
+				EE6DA81F1A5D4B1000E00708 /* Readjudicate.swift in Sources */,
+				EE6DA8201A5D4B1000E00708 /* Medication.swift in Sources */,
+				EE6DA8211A5D4B1000E00708 /* Quantity.swift in Sources */,
+				EE6DA8221A5D4B1000E00708 /* CarePlan2.swift in Sources */,
+				EE6DA8231A5D4B1000E00708 /* Order.swift in Sources */,
+				EE6DA8241A5D4B1000E00708 /* Composition.swift in Sources */,
+				EE6DA8251A5D4B1000E00708 /* Profile.swift in Sources */,
+				EE6DA8261A5D4B1000E00708 /* AppointmentResponse.swift in Sources */,
+				EE6DA8271A5D4B1000E00708 /* DocumentReference.swift in Sources */,
+				EE6DA8281A5D4B1000E00708 /* StatusResponse.swift in Sources */,
+				EE6DA8291A5D4B1000E00708 /* DeviceUseStatement.swift in Sources */,
+				EE6DA82A1A5D4B1000E00708 /* ClaimResponse.swift in Sources */,
+				EE6DA82B1A5D4B1000E00708 /* InstitutionalClaim.swift in Sources */,
+				EE6DA82C1A5D4B1000E00708 /* MessageHeader.swift in Sources */,
+				EE6DA82D1A5D4B1000E00708 /* OrderResponse.swift in Sources */,
+				EE6DA82E1A5D4B1000E00708 /* ProfessionalClaim.swift in Sources */,
+				EE6DA82F1A5D4B1000E00708 /* VisionPrescription.swift in Sources */,
+				EE6DA8301A5D4B1000E00708 /* Count.swift in Sources */,
+				EE6DA8311A5D4B1000E00708 /* Schedule.swift in Sources */,
+				EE6DA8321A5D4B1000E00708 /* AllergyIntolerance.swift in Sources */,
+				EE6DA8331A5D4B1000E00708 /* FHIRElement.swift in Sources */,
+				EE6DA8341A5D4B1000E00708 /* MedicationPrescription.swift in Sources */,
+				EE6DA8351A5D4B1000E00708 /* Contract.swift in Sources */,
+				EE6DA8361A5D4B1000E00708 /* Appointment.swift in Sources */,
+				EE6DA8371A5D4B1000E00708 /* Narrative.swift in Sources */,
+				EE6DA8381A5D4B1000E00708 /* VisionClaim.swift in Sources */,
+				EE6DA8391A5D4B1000E00708 /* Alert.swift in Sources */,
+				EE6DA83A1A5D4B1000E00708 /* Age.swift in Sources */,
+				EE6DA83B1A5D4B1000E00708 /* OperationDefinition.swift in Sources */,
+				EE6DA83C1A5D4B1000E00708 /* Practitioner.swift in Sources */,
+				EE6DA83D1A5D4B1000E00708 /* FHIRResource.swift in Sources */,
+				EE6DA83E1A5D4B1000E00708 /* EnrollmentRequest.swift in Sources */,
+				EE6DA83F1A5D4B1000E00708 /* EpisodeOfCare.swift in Sources */,
+				EE6DA8401A5D4B1000E00708 /* Group.swift in Sources */,
+				EE6DA8411A5D4B1000E00708 /* Procedure.swift in Sources */,
+				EE6DA8421A5D4B1000E00708 /* Timing.swift in Sources */,
+				EE6DA8431A5D4B1000E00708 /* FHIRReference.swift in Sources */,
+				EE6DA8441A5D4B1000E00708 /* Condition.swift in Sources */,
+				EE6DA8451A5D4B1000E00708 /* QuestionnaireAnswers.swift in Sources */,
+				EE6DA8461A5D4B1000E00708 /* Duration.swift in Sources */,
+				EE6DA8471A5D4B1000E00708 /* ImmunizationRecommendation.swift in Sources */,
+				EE6DA8481A5D4B1000E00708 /* NutritionOrder.swift in Sources */,
+				EE6DA8491A5D4B1000E00708 /* DeviceComponent.swift in Sources */,
+				EE6DA84A1A5D4B1000E00708 /* Slot.swift in Sources */,
+				EE6DA84B1A5D4B1000E00708 /* Ratio.swift in Sources */,
+				EE6DA84C1A5D4B1000E00708 /* EligibilityRequest.swift in Sources */,
+				EE6DA84D1A5D4B1000E00708 /* ImagingObjectSelection.swift in Sources */,
+				EE6DA84E1A5D4B1000E00708 /* Extension.swift in Sources */,
+				EE6DA84F1A5D4B1000E00708 /* CodeableConcept.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE6DA8591A5D4B3A00E00708 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EEF20DEE1A5D4ED6009A6EDA /* OrderTests.swift in Sources */,
+				EEF20DC41A5D4ED6009A6EDA /* DataElementTests.swift in Sources */,
+				EEF20E0B1A5D4ED6009A6EDA /* SubstanceTests.swift in Sources */,
+				EEF20DCE1A5D4ED6009A6EDA /* EligibilityRequestTests.swift in Sources */,
+				EEF20E091A5D4ED6009A6EDA /* StatusResponseTests.swift in Sources */,
+				EEF20DB41A5D4ED6009A6EDA /* BasicTests.swift in Sources */,
+				EEF20DF31A5D4ED6009A6EDA /* PaymentReconciliationTests.swift in Sources */,
+				EEF20DE71A5D4ED6009A6EDA /* MessageHeaderTests.swift in Sources */,
+				EEF20DE81A5D4ED6009A6EDA /* NamingSystemTests.swift in Sources */,
+				EEF20DDB1A5D4ED6009A6EDA /* ImagingStudyTests.swift in Sources */,
+				EEF20DB91A5D4ED6009A6EDA /* ClaimResponseTests.swift in Sources */,
+				EEF20DBA1A5D4ED6009A6EDA /* ClinicalAssessmentTests.swift in Sources */,
+				EEF20DD51A5D4ED6009A6EDA /* ExtensionDefinitionTests.swift in Sources */,
+				EEF20DE11A5D4ED6009A6EDA /* MediaTests.swift in Sources */,
+				EEF20DBF1A5D4ED6009A6EDA /* ConditionTests.swift in Sources */,
+				EEF20E011A5D4ED6009A6EDA /* ReversalTests.swift in Sources */,
+				EEF20DDF1A5D4ED6009A6EDA /* ListTests.swift in Sources */,
+				EEF20DBE1A5D4ED6009A6EDA /* ConceptMapTests.swift in Sources */,
+				EEF20DF41A5D4ED6009A6EDA /* PendedRequestTests.swift in Sources */,
+				EEF20DE01A5D4ED6009A6EDA /* LocationTests.swift in Sources */,
+				EE6DA86A1A5D4BD000E00708 /* BaseTests+iOS.swift in Sources */,
+				EEF20DF51A5D4ED6009A6EDA /* PersonTests.swift in Sources */,
+				EEF20DC61A5D4ED6009A6EDA /* DeviceMetricTests.swift in Sources */,
+				EEF20DBB1A5D4ED6009A6EDA /* CommunicationRequestTests.swift in Sources */,
+				EEF20DB51A5D4ED6009A6EDA /* BinaryTests.swift in Sources */,
+				EEF20E0F1A5D4ED6009A6EDA /* VisionClaimTests.swift in Sources */,
+				EEF20DEC1A5D4ED6009A6EDA /* OralHealthClaimTests.swift in Sources */,
+				EEF20DFF1A5D4ED6009A6EDA /* ReferralRequestTests.swift in Sources */,
+				EEF20DD71A5D4ED6009A6EDA /* GoalTests.swift in Sources */,
+				EEF20DAE1A5D4ECD009A6EDA /* ExtensionsTest.swift in Sources */,
+				EEF20DED1A5D4ED6009A6EDA /* OrderResponseTests.swift in Sources */,
+				EEF20DE41A5D4ED6009A6EDA /* MedicationPrescriptionTests.swift in Sources */,
+				EEF20DB01A5D4ED6009A6EDA /* AlertTests.swift in Sources */,
+				EEF20DB71A5D4ED6009A6EDA /* CarePlan2Tests.swift in Sources */,
+				EEF20DCB1A5D4ED6009A6EDA /* DiagnosticReportTests.swift in Sources */,
+				EEF20DFB1A5D4ED6009A6EDA /* ProvenanceTests.swift in Sources */,
+				EEF20DC51A5D4ED6009A6EDA /* DeviceComponentTests.swift in Sources */,
+				EEF20DF61A5D4ED6009A6EDA /* PharmacyClaimTests.swift in Sources */,
+				EEF20DAF1A5D4ECF009A6EDA /* FHIRModelTestCase.swift in Sources */,
+				EEF20DE61A5D4ED6009A6EDA /* MedicationTests.swift in Sources */,
+				EEF20DC81A5D4ED6009A6EDA /* DeviceUseRequestTests.swift in Sources */,
+				EEF20DD41A5D4ED6009A6EDA /* ExplanationOfBenefitTests.swift in Sources */,
+				EEF20E081A5D4ED6009A6EDA /* StatusRequestTests.swift in Sources */,
+				EEF20DD91A5D4ED6009A6EDA /* HealthcareServiceTests.swift in Sources */,
+				EEF20DEB1A5D4ED6009A6EDA /* OperationOutcomeTests.swift in Sources */,
+				EEF20E0C1A5D4ED6009A6EDA /* SupplyTests.swift in Sources */,
+				EEF20DD21A5D4ED6009A6EDA /* EnrollmentResponseTests.swift in Sources */,
+				EEF20DB21A5D4ED6009A6EDA /* AppointmentResponseTests.swift in Sources */,
+				EEF20DDD1A5D4ED6009A6EDA /* ImmunizationTests.swift in Sources */,
+				EEF20E0E1A5D4ED6009A6EDA /* ValueSetTests.swift in Sources */,
+				EEF20DB31A5D4ED6009A6EDA /* AppointmentTests.swift in Sources */,
+				EEF20DE31A5D4ED6009A6EDA /* MedicationDispenseTests.swift in Sources */,
+				EEF20DC21A5D4ED6009A6EDA /* ContraindicationTests.swift in Sources */,
+				EEF20DEF1A5D4ED6009A6EDA /* OrganizationTests.swift in Sources */,
+				EEF20DDA1A5D4ED6009A6EDA /* ImagingObjectSelectionTests.swift in Sources */,
+				EEF20DF71A5D4ED6009A6EDA /* PractitionerTests.swift in Sources */,
+				EEF20DD61A5D4ED6009A6EDA /* FamilyHistoryTests.swift in Sources */,
+				EEF20DEA1A5D4ED6009A6EDA /* ObservationTests.swift in Sources */,
+				EEF20DF11A5D4ED6009A6EDA /* PatientTests.swift in Sources */,
+				EEF20DC11A5D4ED6009A6EDA /* ContractTests.swift in Sources */,
+				EEF20E0A1A5D4ED6009A6EDA /* SubscriptionTests.swift in Sources */,
+				EEF20E071A5D4ED6009A6EDA /* SpecimenTests.swift in Sources */,
+				EEF20E051A5D4ED6009A6EDA /* SecurityEventTests.swift in Sources */,
+				EEF20DC91A5D4ED6009A6EDA /* DeviceUseStatementTests.swift in Sources */,
+				EEF20DBC1A5D4ED6009A6EDA /* CommunicationTests.swift in Sources */,
+				EEF20E021A5D4ED6009A6EDA /* RiskAssessmentTests.swift in Sources */,
+				EEF20DE91A5D4ED6009A6EDA /* NutritionOrderTests.swift in Sources */,
+				EEF20DF01A5D4ED6009A6EDA /* OtherTests.swift in Sources */,
+				EEF20DE21A5D4ED6009A6EDA /* MedicationAdministrationTests.swift in Sources */,
+				EEF20DC01A5D4ED6009A6EDA /* ConformanceTests.swift in Sources */,
+				EEF20DB11A5D4ED6009A6EDA /* AllergyIntoleranceTests.swift in Sources */,
+				EEF20DB61A5D4ED6009A6EDA /* BundleTests.swift in Sources */,
+				EEF20DCF1A5D4ED6009A6EDA /* EligibilityResponseTests.swift in Sources */,
+				EEF20E101A5D4ED6009A6EDA /* VisionPrescriptionTests.swift in Sources */,
+				EEF20DD11A5D4ED6009A6EDA /* EnrollmentRequestTests.swift in Sources */,
+				EEF20DF21A5D4ED6009A6EDA /* PaymentNoticeTests.swift in Sources */,
+				EEF20DC31A5D4ED6009A6EDA /* CoverageTests.swift in Sources */,
+				EEF20DD81A5D4ED6009A6EDA /* GroupTests.swift in Sources */,
+				EEF20DB81A5D4ED6009A6EDA /* CarePlanTests.swift in Sources */,
+				EEF20E0D1A5D4ED6009A6EDA /* SupportingDocumentationTests.swift in Sources */,
+				EEF20DBD1A5D4ED6009A6EDA /* CompositionTests.swift in Sources */,
+				EEF20DD31A5D4ED6009A6EDA /* EpisodeOfCareTests.swift in Sources */,
+				EEF20E041A5D4ED6009A6EDA /* SearchParameterTests.swift in Sources */,
+				EEF20DC71A5D4ED6009A6EDA /* DeviceTests.swift in Sources */,
+				EEF20DDE1A5D4ED6009A6EDA /* InstitutionalClaimTests.swift in Sources */,
+				EEF20DCD1A5D4ED6009A6EDA /* DocumentReferenceTests.swift in Sources */,
+				EEF20DFC1A5D4ED6009A6EDA /* QuestionnaireAnswersTests.swift in Sources */,
+				EEF20DFD1A5D4ED6009A6EDA /* QuestionnaireTests.swift in Sources */,
+				EEF20DDC1A5D4ED6009A6EDA /* ImmunizationRecommendationTests.swift in Sources */,
+				EEF20DD01A5D4ED6009A6EDA /* EncounterTests.swift in Sources */,
+				EEF20DCA1A5D4ED6009A6EDA /* DiagnosticOrderTests.swift in Sources */,
+				EEF20E061A5D4ED6009A6EDA /* SlotTests.swift in Sources */,
+				EEF20DFE1A5D4ED6009A6EDA /* ReadjudicateTests.swift in Sources */,
+				EEF20E031A5D4ED6009A6EDA /* ScheduleTests.swift in Sources */,
+				EEF20DFA1A5D4ED6009A6EDA /* ProfessionalClaimTests.swift in Sources */,
+				EEF20DE51A5D4ED6009A6EDA /* MedicationStatementTests.swift in Sources */,
+				EEF20DF91A5D4ED6009A6EDA /* ProcedureTests.swift in Sources */,
+				EEF20DCC1A5D4ED6009A6EDA /* DocumentManifestTests.swift in Sources */,
+				EEF20E001A5D4ED6009A6EDA /* RelatedPersonTests.swift in Sources */,
+				EEF20DF81A5D4ED6009A6EDA /* ProcedureRequestTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1142,6 +1711,11 @@
 			isa = PBXTargetDependency;
 			target = EE684C1D19A789BA00B5A2C0 /* SwiftFHIR */;
 			targetProxy = EE684CCB19A78CC700B5A2C0 /* PBXContainerItemProxy */;
+		};
+		EE6DA8651A5D4B3A00E00708 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EE6DA7CD1A5D4B1000E00708 /* SwiftFHIRiOS */;
+			targetProxy = EE6DA8641A5D4B3A00E00708 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1293,6 +1867,78 @@
 			};
 			name = Release;
 		};
+		EE6DA8551A5D4B1000E00708 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = SwiftFHIR;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		EE6DA8561A5D4B1000E00708 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = SwiftFHIR;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		EE6DA8671A5D4B3A00E00708 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SwiftFHIRTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		EE6DA8681A5D4B3A00E00708 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SwiftFHIRTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1319,6 +1965,24 @@
 			buildConfigurations = (
 				EE684C3519A789BA00B5A2C0 /* Debug */,
 				EE684C3619A789BA00B5A2C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EE6DA8541A5D4B1000E00708 /* Build configuration list for PBXNativeTarget "SwiftFHIRiOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE6DA8551A5D4B1000E00708 /* Debug */,
+				EE6DA8561A5D4B1000E00708 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EE6DA8661A5D4B3A00E00708 /* Build configuration list for PBXNativeTarget "SwiftFHIRiOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE6DA8671A5D4B3A00E00708 /* Debug */,
+				EE6DA8681A5D4B3A00E00708 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

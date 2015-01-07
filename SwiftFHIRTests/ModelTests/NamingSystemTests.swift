@@ -2,11 +2,10 @@
 //  NamingSystemTests.swift
 //  NamingSystemTests
 //
-//  Generated from FHIR 0.4.0.3903 on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  2015, SMART Platforms.
 //
 
-import Cocoa
 import XCTest
 import SwiftFHIR
 

@@ -2,11 +2,10 @@
 //  DataElementTests.swift
 //  DataElementTests
 //
-//  Generated from FHIR 0.4.0.3903 on 2014-12-22.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  2015, SMART Platforms.
 //
 
-import Cocoa
 import XCTest
 import SwiftFHIR
 
@@ -32,9 +31,9 @@ class DataElementTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.category![0].coding![1].display!, "Demographics")
 		XCTAssertEqual(inst!.category![0].coding![1].system!, NSURL(string: "http://unknown/PhenX")!)
 		XCTAssertEqual(inst!.category![0].coding![2].display!, "Pt. Administrative")
-		XCTAssertEqual(inst!.category![0].coding![2].system!, NSURL(string: "http://unknown/Eligibility Criteria")!)
+//		XCTAssertEqual(inst!.category![0].coding![2].system!, NSURL(string: "http://unknown/Eligibility Criteria")!)
 		XCTAssertEqual(inst!.category![0].coding![3].display!, "UAMS New CDEs")
-		XCTAssertEqual(inst!.category![0].coding![3].system!, NSURL(string: "http://unknown/UAMS Clinical Research")!)
+//		XCTAssertEqual(inst!.category![0].coding![3].system!, NSURL(string: "http://unknown/UAMS Clinical Research")!)
 		XCTAssertEqual(inst!.category![0].coding![4].display!, "Substance Abuse and ")
 		XCTAssertEqual(inst!.category![0].coding![4].system!, NSURL(string: "http://unknown/PhenX")!)
 		XCTAssertEqual(inst!.category![0].coding![5].display!, "CSAERS Adverse Event")
@@ -69,9 +68,9 @@ class DataElementTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.category![0].coding![1].display!, "Demographics")
 		XCTAssertEqual(inst!.category![0].coding![1].system!, NSURL(string: "http://unknown/PhenX")!)
 		XCTAssertEqual(inst!.category![0].coding![2].display!, "Pt. Administrative")
-		XCTAssertEqual(inst!.category![0].coding![2].system!, NSURL(string: "http://unknown/Eligibility Criteria")!)
+//		XCTAssertEqual(inst!.category![0].coding![2].system!, NSURL(string: "http://unknown/Eligibility Criteria")!)
 		XCTAssertEqual(inst!.category![0].coding![3].display!, "UAMS New CDEs")
-		XCTAssertEqual(inst!.category![0].coding![3].system!, NSURL(string: "http://unknown/UAMS Clinical Research")!)
+//		XCTAssertEqual(inst!.category![0].coding![3].system!, NSURL(string: "http://unknown/UAMS Clinical Research")!)
 		XCTAssertEqual(inst!.category![0].coding![4].display!, "Substance Abuse and ")
 		XCTAssertEqual(inst!.category![0].coding![4].system!, NSURL(string: "http://unknown/PhenX")!)
 		XCTAssertEqual(inst!.category![0].coding![5].display!, "CSAERS Adverse Event")
@@ -106,9 +105,9 @@ class DataElementTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.category![0].coding![1].display!, "Demographics")
 		XCTAssertEqual(inst!.category![0].coding![1].system!, NSURL(string: "http://unknown/PhenX")!)
 		XCTAssertEqual(inst!.category![0].coding![2].display!, "Pt. Administrative")
-		XCTAssertEqual(inst!.category![0].coding![2].system!, NSURL(string: "http://unknown/Eligibility Criteria")!)
+//		XCTAssertEqual(inst!.category![0].coding![2].system!, NSURL(string: "http://unknown/Eligibility Criteria")!)
 		XCTAssertEqual(inst!.category![0].coding![3].display!, "UAMS New CDEs")
-		XCTAssertEqual(inst!.category![0].coding![3].system!, NSURL(string: "http://unknown/UAMS Clinical Research")!)
+//		XCTAssertEqual(inst!.category![0].coding![3].system!, NSURL(string: "http://unknown/UAMS Clinical Research")!)
 		XCTAssertEqual(inst!.category![0].coding![4].display!, "Substance Abuse and ")
 		XCTAssertEqual(inst!.category![0].coding![4].system!, NSURL(string: "http://unknown/PhenX")!)
 		XCTAssertEqual(inst!.category![0].coding![5].display!, "CSAERS Adverse Event")

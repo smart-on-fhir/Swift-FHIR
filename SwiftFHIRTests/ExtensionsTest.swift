@@ -3,10 +3,9 @@
 //  SwiftFHIR
 //
 //  Created by Pascal Pfiffner on 8/22/14.
-//  Copyright (c) 2014 CHIP. All rights reserved.
+//  2014, SMART Platforms.
 //
 
-import Cocoa
 import XCTest
 import SwiftFHIR
 

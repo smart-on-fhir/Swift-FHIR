@@ -29,6 +29,7 @@
 		EE0118C41A12AD61002790C8 /* SupplyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0118AE1A12AD61002790C8 /* SupplyTests.swift */; };
 		EE5120541A4B317F002D434A /* FHIRSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5120531A4B317F002D434A /* FHIRSearch.swift */; };
 		EE5120561A4B3212002D434A /* FHIRElement+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5120551A4B3212002D434A /* FHIRElement+Factory.swift */; };
+		EE545F3B1A66805600E17B0C /* SwiftFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE684C1E19A789BA00B5A2C0 /* SwiftFHIR.framework */; };
 		EE652AC719FDEBDC006582EC /* FHIRReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE652AC619FDEBDC006582EC /* FHIRReference.swift */; };
 		EE67C7B919AE57C10077EDBE /* MedicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7B819AE57C10077EDBE /* MedicationTests.swift */; };
 		EE67C7BB19AE5EBE0077EDBE /* ConditionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE67C7BA19AE5EBE0077EDBE /* ConditionTests.swift */; };
@@ -58,7 +59,6 @@
 		EE684C3E19A78AE600B5A2C0 /* FHIRElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C3919A78AE600B5A2C0 /* FHIRElement.swift */; };
 		EE684C3F19A78AE600B5A2C0 /* FHIRResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C3A19A78AE600B5A2C0 /* FHIRResource.swift */; };
 		EE684C4119A78AE600B5A2C0 /* JSON-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C3C19A78AE600B5A2C0 /* JSON-extensions.swift */; };
-		EE684CCD19A78CCF00B5A2C0 /* SwiftFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE684C1E19A789BA00B5A2C0 /* SwiftFHIR.framework */; };
 		EE684CCF19A7CEF000B5A2C0 /* ExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684CCE19A7CEF000B5A2C0 /* ExtensionsTest.swift */; };
 		EE6DA7CF1A5D4B1000E00708 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DBA1A41D02F00CA0452 /* Address.swift */; };
 		EE6DA7D01A5D4B1000E00708 /* HealthcareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E2C1A41D02F00CA0452 /* HealthcareService.swift */; };
@@ -473,7 +473,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		EE684CCB19A78CC700B5A2C0 /* PBXContainerItemProxy */ = {
+		EE545F391A66805100E17B0C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = EE684C1519A789BA00B5A2C0 /* Project object */;
 			proxyType = 1;
@@ -743,7 +743,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE684CCD19A78CCF00B5A2C0 /* SwiftFHIR.framework in Frameworks */,
+				EE545F3B1A66805600E17B0C /* SwiftFHIR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1109,7 +1109,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				EE684CCC19A78CC700B5A2C0 /* PBXTargetDependency */,
+				EE545F3A1A66805100E17B0C /* PBXTargetDependency */,
 			);
 			name = SwiftFHIRTests;
 			productName = SwiftFHIRTests;
@@ -1715,10 +1715,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		EE684CCC19A78CC700B5A2C0 /* PBXTargetDependency */ = {
+		EE545F3A1A66805100E17B0C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = EE684C1D19A789BA00B5A2C0 /* SwiftFHIR */;
-			targetProxy = EE684CCB19A78CC700B5A2C0 /* PBXContainerItemProxy */;
+			targetProxy = EE545F391A66805100E17B0C /* PBXContainerItemProxy */;
 		};
 		EE6DA8651A5D4B3A00E00708 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1855,17 +1855,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = SwiftFHIRTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -1873,13 +1871,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = SwiftFHIRTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};

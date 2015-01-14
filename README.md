@@ -21,23 +21,31 @@ It also adds an implementation of this repo's _FHIRServer_ protocol to make the 
 Progress
 --------
 
-Here's a rough list of what should be done.
-Things that have an `X` are done in the sense that they work but have not necessarily been tested extensively.
+Here's a rough list of what still needs to be done.
 
 ```
-[X] Create classes for all FHIR profiles/resources from spec
-[X] Write deserializer that instantiates from JSON
+[ ] More dedicated handling of dates/times/instants
 [X] Reference resolver: resolve contained resources
+[ ] Reference resolver: resolve bundle-relative resources
 [ ] Reference resolver: resolve remote resources
-[ ] Construct search URL parameters in code with properties (see below)
-[X] Construct search URL parameters with NoSQL-like constructs
-[ ] Create a default behavior when a modifierExtension is detected
-[ ] Use non-optional properties and implement failable initializers (see @smart-on-fhir/fhir-parser:feature/swift-failable-init)
 [ ] Write serializer
 [ ] Validate serialized JSON?
-[x] Write unit tests that use the example JSONs
+[ ] Handle operations (especially $everything)
+[ ] Handle resource versions nicely
+[ ] Create a default behavior when a modifierExtension is detected
+[ ] Use non-optional properties and implement failable initializers (see @smart-on-fhir/fhir-parser:feature/swift-failable-init)
 [ ] Write a real nice documentation
 ```
+
+Working to some extent:
+
+- Classes generated for FHIR's base resources
+    + Try to use Swift native types whenever possible
+- Use a FHIR server protocol for REST interactions
+- Deserialize from JSON
+- Resolve contained resources
+- Construct searches with NoSQL-like statements (cf. fhir.js)
+- Use example resources for auto-created class unit tests
 
 
 Class Generation
@@ -61,16 +69,6 @@ For classes representing models with non-optional properties, a convenience init
 FHIR makes use of [contained resources](http://hl7.org/implement/standards/fhir/references.html#contained).
 Such properties are represented as `FHIRReference` instances, a subclass of FHIR's `Reference`.
 To resolve resource references, call `resolved(ModelClass)` on a FHIRReference property, which will return an instance of the referenced type, if resolving successfully.
-
-
-Extensions
-----------
-
-All FHIR resources can have one or more [_Extension_](http://hl7.org/implement/standards/fhir/extensibility.html#extension) elements as their `extension` property. Two remarks:
-
-- Since **`extension` is a Swift keyword**, this property has been renamed to `fhirExtension`.
-- The actual extension element has one property named **`value[x]`**, with the _[x]_ part intended to be replaced with their CamelCased type.
-    The generator expands this property according to the `starexpandtypes` setting in fhir-parser, taken from the extension documentation.
 
 
 Search

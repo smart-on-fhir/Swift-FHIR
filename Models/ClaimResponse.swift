@@ -2,7 +2,7 @@
 //  ClaimResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (claimresponse.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (claimresponse.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -24,7 +24,7 @@ public class ClaimResponse: FHIRResource
 	public var additem: [ClaimResponseAdditem]?
 	
 	/// Creation date
-	public var created: NSDate?
+	public var created: DateTime?
 	
 	/// Disposition Message
 	public var disposition: String?
@@ -66,7 +66,7 @@ public class ClaimResponse: FHIRResource
 	public var paymentAmount: Money?
 	
 	/// Expected data of Payment
-	public var paymentDate: NSDate?
+	public var paymentDate: Date?
 	
 	/// Payment identifier
 	public var paymentRef: Identifier?
@@ -102,7 +102,7 @@ public class ClaimResponse: FHIRResource
 				self.additem = ClaimResponseAdditem.from(val, owner: self) as? [ClaimResponseAdditem]
 			}
 			if let val = js["created"] as? String {
-				self.created = NSDate(json: val)
+				self.created = DateTime(string: val)
 			}
 			if let val = js["disposition"] as? String {
 				self.disposition = val
@@ -144,7 +144,7 @@ public class ClaimResponse: FHIRResource
 				self.paymentAmount = Money(json: val, owner: self)
 			}
 			if let val = js["paymentDate"] as? String {
-				self.paymentDate = NSDate(json: val)
+				self.paymentDate = Date(string: val)
 			}
 			if let val = js["paymentRef"] as? JSONDictionary {
 				self.paymentRef = Identifier(json: val, owner: self)

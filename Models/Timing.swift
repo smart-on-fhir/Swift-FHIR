@@ -2,7 +2,7 @@
 //  Timing.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (Timing.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (Timing.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -59,7 +59,7 @@ public class TimingRepeat: FHIRElement
 	public var duration: NSDecimalNumber?
 	
 	/// When to stop repeats
-	public var end: NSDate?
+	public var end: DateTime?
 	
 	/// Event occurs frequency times per duration
 	public var frequency: Int?
@@ -90,7 +90,7 @@ public class TimingRepeat: FHIRElement
 				self.duration = NSDecimalNumber(json: val)
 			}
 			if let val = js["end"] as? String {
-				self.end = NSDate(json: val)
+				self.end = DateTime(string: val)
 			}
 			if let val = js["frequency"] as? Int {
 				self.frequency = val

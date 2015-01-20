@@ -2,7 +2,7 @@
 //  DeviceTests.swift
 //  DeviceTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,34 +22,34 @@ class DeviceTests: FHIRModelTestCase
 	func testDevice1() {
 		let inst = instantiateFrom("device-example-f001-feedingtube.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Device instance")
-	
+		
 		XCTAssertEqual(inst!.type!.coding![0].code!, "25062003")
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Feeding tube, device")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+		XCTAssertEqual(inst!.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 	}
 	
 	func testDevice2() {
 		let inst = instantiateFrom("device-example-f001-feedingtube.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Device instance")
-	
+		
 		XCTAssertEqual(inst!.type!.coding![0].code!, "25062003")
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Feeding tube, device")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+		XCTAssertEqual(inst!.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 	}
 	
 	func testDevice3() {
 		let inst = instantiateFrom("device-example-f001-feedingtube.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Device instance")
-	
+		
 		XCTAssertEqual(inst!.type!.coding![0].code!, "25062003")
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Feeding tube, device")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+		XCTAssertEqual(inst!.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 	}
 	
 	func testDevice4() {
 		let inst = instantiateFrom("device-example-ihe-pcd.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Device instance")
-	
+		
 		XCTAssertEqual(inst!.identifier![0].label!, "serialNumber")
 		XCTAssertEqual(inst!.identifier![0].value!, "AMID-123-456")
 		XCTAssertEqual(inst!.lotNumber!, "12345")
@@ -61,7 +61,7 @@ class DeviceTests: FHIRModelTestCase
 	func testDevice5() {
 		let inst = instantiateFrom("device-example-ihe-pcd.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Device instance")
-	
+		
 		XCTAssertEqual(inst!.identifier![0].label!, "serialNumber")
 		XCTAssertEqual(inst!.identifier![0].value!, "AMID-123-456")
 		XCTAssertEqual(inst!.lotNumber!, "12345")
@@ -73,10 +73,10 @@ class DeviceTests: FHIRModelTestCase
 	func testDevice6() {
 		let inst = instantiateFrom("device-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Device instance")
-	
+		
 		XCTAssertEqual(inst!.contact![0].system!, "phone")
 		XCTAssertEqual(inst!.contact![0].value!, "ext 4352")
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://goodcare.org/devices/id")!)
+		XCTAssertEqual(inst!.identifier![0].system!.absoluteString!, "http://goodcare.org/devices/id")
 		XCTAssertEqual(inst!.identifier![0].value!, "345675")
 		XCTAssertEqual(inst!.identifier![1].label!, "Serial Number")
 		XCTAssertEqual(inst!.identifier![1].value!, "AMID-342135-8464")
@@ -85,17 +85,17 @@ class DeviceTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.model!, "AB 45-J")
 		XCTAssertEqual(inst!.type!.coding![0].code!, "86184003")
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Electrocardiographic monitor and recorder")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+		XCTAssertEqual(inst!.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst!.type!.text!, "ECG")
 	}
 	
 	func testDevice7() {
 		let inst = instantiateFrom("device-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Device instance")
-	
+		
 		XCTAssertEqual(inst!.contact![0].system!, "phone")
 		XCTAssertEqual(inst!.contact![0].value!, "ext 4352")
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://goodcare.org/devices/id")!)
+		XCTAssertEqual(inst!.identifier![0].system!.absoluteString!, "http://goodcare.org/devices/id")
 		XCTAssertEqual(inst!.identifier![0].value!, "345675")
 		XCTAssertEqual(inst!.identifier![1].label!, "Serial Number")
 		XCTAssertEqual(inst!.identifier![1].value!, "AMID-342135-8464")
@@ -104,7 +104,7 @@ class DeviceTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.model!, "AB 45-J")
 		XCTAssertEqual(inst!.type!.coding![0].code!, "86184003")
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Electrocardiographic monitor and recorder")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+		XCTAssertEqual(inst!.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst!.type!.text!, "ECG")
 	}
 }

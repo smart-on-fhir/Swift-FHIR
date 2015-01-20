@@ -2,7 +2,7 @@
 //  ReferralRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (referralrequest.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (referralrequest.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,7 +22,7 @@ public class ReferralRequest: FHIRResource
 	}
 	
 	/// Date referral/transfer of care request is sent
-	public var dateSent: NSDate?
+	public var dateSent: DateTime?
 	
 	/// A textual description of the referral
 	public var description: String?
@@ -77,7 +77,7 @@ public class ReferralRequest: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["dateSent"] as? String {
-				self.dateSent = NSDate(json: val)
+				self.dateSent = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
 				self.description = val

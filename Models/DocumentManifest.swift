@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (documentmanifest.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (documentmanifest.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -28,7 +28,7 @@ public class DocumentManifest: FHIRResource
 	public var content: [Reference]?
 	
 	/// When this document manifest created
-	public var created: NSDate?
+	public var created: DateTime?
 	
 	/// Human-readable description (title)
 	public var description: String?
@@ -86,7 +86,7 @@ public class DocumentManifest: FHIRResource
 				self.content = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["created"] as? String {
-				self.created = NSDate(json: val)
+				self.created = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
@@ -101,7 +101,7 @@ public class DocumentManifest: FHIRResource
 				self.recipient = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["source"] as? String {
-				self.source = NSURL(json: val)
+				self.source = NSURL(string: val)
 			}
 			if let val = js["status"] as? String {
 				self.status = val

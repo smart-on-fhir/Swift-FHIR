@@ -2,7 +2,7 @@
 //  ExtensionDefinitionTests.swift
 //  ExtensionDefinitionTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,10 +22,10 @@ class ExtensionDefinitionTests: FHIRModelTestCase
 	func testExtensionDefinition1() {
 		let inst = instantiateFrom("extensiondefinition-example-translation.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a ExtensionDefinition instance")
-	
+		
 		XCTAssertEqual(inst!.context![0], "string")
 		XCTAssertEqual(inst!.contextType!, "datatype")
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2014-12-04")!)
+		XCTAssertEqual(inst!.date!.description, "2014-12-04")
 		XCTAssertEqual(inst!.description!, "This is the standard extension for translating content from one language to another within a resource")
 		XCTAssertEqual(inst!.display!, "Alternate language")
 		XCTAssertEqual(inst!.element![0].formal!, "A translation to an alternative language")
@@ -38,7 +38,7 @@ class ExtensionDefinitionTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.element![1].binding!.description!, "xml:lang (BCP-47)")
 		XCTAssertFalse(inst!.element![1].binding!.isExtensible!)
 		XCTAssertEqual(inst!.element![1].binding!.name!, "Language")
-		XCTAssertEqual(inst!.element![1].binding!.referenceUri!, NSURL(string: "http://tools.ietf.org/html/bcp47")!)
+		XCTAssertEqual(inst!.element![1].binding!.referenceUri!.absoluteString!, "http://tools.ietf.org/html/bcp47")
 		XCTAssertEqual(inst!.element![1].formal!, "The language that the translation is for")
 		XCTAssertFalse(inst!.element![1].isModifier!)
 		XCTAssertEqual(inst!.element![1].max!, "1")
@@ -57,16 +57,16 @@ class ExtensionDefinitionTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.status!, "draft")
 		XCTAssertEqual(inst!.telecom![0].system!, "url")
 		XCTAssertEqual(inst!.telecom![0].value!, "http://hl7,org/fhir")
-		XCTAssertEqual(inst!.url!, NSURL(string: "http://hl7.org/fhir/ExtensionDefinition/translation")!)
+		XCTAssertEqual(inst!.url!.absoluteString!, "http://hl7.org/fhir/ExtensionDefinition/translation")
 	}
 	
 	func testExtensionDefinition2() {
 		let inst = instantiateFrom("extensiondefinition-example-translation.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a ExtensionDefinition instance")
-	
+		
 		XCTAssertEqual(inst!.context![0], "string")
 		XCTAssertEqual(inst!.contextType!, "datatype")
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2014-12-04")!)
+		XCTAssertEqual(inst!.date!.description, "2014-12-04")
 		XCTAssertEqual(inst!.description!, "This is the standard extension for translating content from one language to another within a resource")
 		XCTAssertEqual(inst!.display!, "Alternate language")
 		XCTAssertEqual(inst!.element![0].formal!, "A translation to an alternative language")
@@ -79,7 +79,7 @@ class ExtensionDefinitionTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.element![1].binding!.description!, "xml:lang (BCP-47)")
 		XCTAssertFalse(inst!.element![1].binding!.isExtensible!)
 		XCTAssertEqual(inst!.element![1].binding!.name!, "Language")
-		XCTAssertEqual(inst!.element![1].binding!.referenceUri!, NSURL(string: "http://tools.ietf.org/html/bcp47")!)
+		XCTAssertEqual(inst!.element![1].binding!.referenceUri!.absoluteString!, "http://tools.ietf.org/html/bcp47")
 		XCTAssertEqual(inst!.element![1].formal!, "The language that the translation is for")
 		XCTAssertFalse(inst!.element![1].isModifier!)
 		XCTAssertEqual(inst!.element![1].max!, "1")
@@ -98,16 +98,16 @@ class ExtensionDefinitionTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.status!, "draft")
 		XCTAssertEqual(inst!.telecom![0].system!, "url")
 		XCTAssertEqual(inst!.telecom![0].value!, "http://hl7,org/fhir")
-		XCTAssertEqual(inst!.url!, NSURL(string: "http://hl7.org/fhir/ExtensionDefinition/translation")!)
+		XCTAssertEqual(inst!.url!.absoluteString!, "http://hl7.org/fhir/ExtensionDefinition/translation")
 	}
 	
 	func testExtensionDefinition3() {
 		let inst = instantiateFrom("extensiondefinition-example-translation.json")
 		XCTAssertNotNil(inst, "Must have instantiated a ExtensionDefinition instance")
-	
+		
 		XCTAssertEqual(inst!.context![0], "string")
 		XCTAssertEqual(inst!.contextType!, "datatype")
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2014-12-04")!)
+		XCTAssertEqual(inst!.date!.description, "2014-12-04")
 		XCTAssertEqual(inst!.description!, "This is the standard extension for translating content from one language to another within a resource")
 		XCTAssertEqual(inst!.display!, "Alternate language")
 		XCTAssertEqual(inst!.element![0].formal!, "A translation to an alternative language")
@@ -120,7 +120,7 @@ class ExtensionDefinitionTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.element![1].binding!.description!, "xml:lang (BCP-47)")
 		XCTAssertFalse(inst!.element![1].binding!.isExtensible!)
 		XCTAssertEqual(inst!.element![1].binding!.name!, "Language")
-		XCTAssertEqual(inst!.element![1].binding!.referenceUri!, NSURL(string: "http://tools.ietf.org/html/bcp47")!)
+		XCTAssertEqual(inst!.element![1].binding!.referenceUri!.absoluteString!, "http://tools.ietf.org/html/bcp47")
 		XCTAssertEqual(inst!.element![1].formal!, "The language that the translation is for")
 		XCTAssertFalse(inst!.element![1].isModifier!)
 		XCTAssertEqual(inst!.element![1].max!, "1")
@@ -139,16 +139,16 @@ class ExtensionDefinitionTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.status!, "draft")
 		XCTAssertEqual(inst!.telecom![0].system!, "url")
 		XCTAssertEqual(inst!.telecom![0].value!, "http://hl7,org/fhir")
-		XCTAssertEqual(inst!.url!, NSURL(string: "http://hl7.org/fhir/ExtensionDefinition/translation")!)
+		XCTAssertEqual(inst!.url!.absoluteString!, "http://hl7.org/fhir/ExtensionDefinition/translation")
 	}
 	
 	func testExtensionDefinition4() {
 		let inst = instantiateFrom("extensiondefinition-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a ExtensionDefinition instance")
-	
+		
 		XCTAssertEqual(inst!.context![0], "Observation.name")
 		XCTAssertEqual(inst!.contextType!, "resource")
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2012-05-12")!)
+		XCTAssertEqual(inst!.date!.description, "2012-05-12")
 		XCTAssertEqual(inst!.description!, "An example extension definition, for the lipid profile")
 		XCTAssertEqual(inst!.display!, "LDL is Calculated")
 		XCTAssertEqual(inst!.element![0].comments!, "It's definitely better that whether the LDL was calculated or not comes from the LOINC code. But this is defined to exercise the extension machinery in the publication tooling, and to make this comment. Actually, the location is odd too - it would probably be on the root observation, but this is for testing purposes.")
@@ -165,16 +165,16 @@ class ExtensionDefinitionTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.status!, "draft")
 		XCTAssertEqual(inst!.telecom![0].system!, "url")
 		XCTAssertEqual(inst!.telecom![0].value!, "grahame@healthintersections.com.au")
-		XCTAssertEqual(inst!.url!, NSURL(string: "http://hl7.org/fhir/ExtensionDefinition/ldl-calculated")!)
+		XCTAssertEqual(inst!.url!.absoluteString!, "http://hl7.org/fhir/ExtensionDefinition/ldl-calculated")
 	}
 	
 	func testExtensionDefinition5() {
 		let inst = instantiateFrom("extensiondefinition-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a ExtensionDefinition instance")
-	
+		
 		XCTAssertEqual(inst!.context![0], "Observation.name")
 		XCTAssertEqual(inst!.contextType!, "resource")
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2012-05-12")!)
+		XCTAssertEqual(inst!.date!.description, "2012-05-12")
 		XCTAssertEqual(inst!.description!, "An example extension definition, for the lipid profile")
 		XCTAssertEqual(inst!.display!, "LDL is Calculated")
 		XCTAssertEqual(inst!.element![0].comments!, "It's definitely better that whether the LDL was calculated or not comes from the LOINC code. But this is defined to exercise the extension machinery in the publication tooling, and to make this comment. Actually, the location is odd too - it would probably be on the root observation, but this is for testing purposes.")
@@ -191,6 +191,6 @@ class ExtensionDefinitionTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.status!, "draft")
 		XCTAssertEqual(inst!.telecom![0].system!, "url")
 		XCTAssertEqual(inst!.telecom![0].value!, "grahame@healthintersections.com.au")
-		XCTAssertEqual(inst!.url!, NSURL(string: "http://hl7.org/fhir/ExtensionDefinition/ldl-calculated")!)
+		XCTAssertEqual(inst!.url!.absoluteString!, "http://hl7.org/fhir/ExtensionDefinition/ldl-calculated")
 	}
 }

@@ -2,7 +2,7 @@
 //  ProcedureRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (procedurerequest.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (procedurerequest.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -42,7 +42,7 @@ public class ProcedureRequest: FHIRResource
 	public var notes: [String]?
 	
 	/// When Requested
-	public var orderedOn: NSDate?
+	public var orderedOn: DateTime?
 	
 	/// Ordering Party
 	public var orderer: Reference?
@@ -60,7 +60,7 @@ public class ProcedureRequest: FHIRResource
 	public var subject: Reference?
 	
 	/// Timing
-	public var timingDateTime: NSDate?
+	public var timingDateTime: DateTime?
 	
 	/// Timing
 	public var timingPeriod: Period?
@@ -106,7 +106,7 @@ public class ProcedureRequest: FHIRResource
 				self.notes = val
 			}
 			if let val = js["orderedOn"] as? String {
-				self.orderedOn = NSDate(json: val)
+				self.orderedOn = DateTime(string: val)
 			}
 			if let val = js["orderer"] as? JSONDictionary {
 				self.orderer = Reference(json: val, owner: self)
@@ -124,7 +124,7 @@ public class ProcedureRequest: FHIRResource
 				self.subject = Reference(json: val, owner: self)
 			}
 			if let val = js["timingDateTime"] as? String {
-				self.timingDateTime = NSDate(json: val)
+				self.timingDateTime = DateTime(string: val)
 			}
 			if let val = js["timingPeriod"] as? JSONDictionary {
 				self.timingPeriod = Period(json: val, owner: self)

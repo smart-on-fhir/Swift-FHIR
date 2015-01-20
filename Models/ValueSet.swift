@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (valueset.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (valueset.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -27,7 +27,7 @@ public class ValueSet: FHIRResource
 	public var copyright: String?
 	
 	/// Date for given status
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// When value set defines its own codes
 	public var define: ValueSetDefine?
@@ -60,7 +60,7 @@ public class ValueSet: FHIRResource
 	public var purpose: String?
 	
 	/// Fixed date for the version of all referenced code systems and value sets
-	public var stableDate: NSDate?
+	public var stableDate: Date?
 	
 	/// draft | active | retired
 	public var status: String?
@@ -88,7 +88,7 @@ public class ValueSet: FHIRResource
 				self.copyright = val
 			}
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["define"] as? JSONDictionary {
 				self.define = ValueSetDefine(json: val, owner: self)
@@ -106,7 +106,7 @@ public class ValueSet: FHIRResource
 				self.extensible = val
 			}
 			if let val = js["identifier"] as? String {
-				self.identifier = NSURL(json: val)
+				self.identifier = NSURL(string: val)
 			}
 			if let val = js["immutable"] as? Bool {
 				self.immutable = val
@@ -121,7 +121,7 @@ public class ValueSet: FHIRResource
 				self.purpose = val
 			}
 			if let val = js["stableDate"] as? String {
-				self.stableDate = NSDate(json: val)
+				self.stableDate = Date(string: val)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
@@ -204,7 +204,7 @@ public class ValueSetComposeInclude: FHIRElement
 				self.filter = ValueSetComposeIncludeFilter.from(val, owner: self) as? [ValueSetComposeIncludeFilter]
 			}
 			if let val = js["system"] as? String {
-				self.system = NSURL(json: val)
+				self.system = NSURL(string: val)
 			}
 			if let val = js["version"] as? String {
 				self.version = val
@@ -347,7 +347,7 @@ public class ValueSetDefine: FHIRElement
 				self.concept = ValueSetDefineConcept.from(val, owner: self) as? [ValueSetDefineConcept]
 			}
 			if let val = js["system"] as? String {
-				self.system = NSURL(json: val)
+				self.system = NSURL(string: val)
 			}
 			if let val = js["version"] as? String {
 				self.version = val
@@ -475,9 +475,9 @@ public class ValueSetExpansion: FHIRElement
 	public var identifier: Identifier?
 	
 	/// Time valueset expansion happened
-	public var timestamp: NSDate?
+	public var timestamp: DateTime?
 	
-	public convenience init(timestamp: NSDate?) {
+	public convenience init(timestamp: DateTime?) {
 		self.init(json: nil)
 		if nil != timestamp {
 			self.timestamp = timestamp
@@ -494,7 +494,7 @@ public class ValueSetExpansion: FHIRElement
 				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["timestamp"] as? String {
-				self.timestamp = NSDate(json: val)
+				self.timestamp = DateTime(string: val)
 			}
 		}
 	}
@@ -546,7 +546,7 @@ public class ValueSetExpansionContains: FHIRElement
 				self.display = val
 			}
 			if let val = js["system"] as? String {
-				self.system = NSURL(json: val)
+				self.system = NSURL(string: val)
 			}
 			if let val = js["version"] as? String {
 				self.version = val

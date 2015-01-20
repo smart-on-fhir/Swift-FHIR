@@ -2,7 +2,7 @@
 //  SecurityEvent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (securityevent.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (securityevent.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -81,7 +81,7 @@ public class SecurityEventEvent: FHIRElement
 	public var action: String?
 	
 	/// Time when the event occurred on source
-	public var dateTime: NSDate?
+	public var dateTime: Instant?
 	
 	/// Whether the event succeeded or failed
 	public var outcome: String?
@@ -95,7 +95,7 @@ public class SecurityEventEvent: FHIRElement
 	/// Type/identifier of event
 	public var type: CodeableConcept?
 	
-	public convenience init(dateTime: NSDate?, type: CodeableConcept?) {
+	public convenience init(dateTime: Instant?, type: CodeableConcept?) {
 		self.init(json: nil)
 		if nil != dateTime {
 			self.dateTime = dateTime
@@ -112,7 +112,7 @@ public class SecurityEventEvent: FHIRElement
 				self.action = val
 			}
 			if let val = js["dateTime"] as? String {
-				self.dateTime = NSDate(json: val)
+				self.dateTime = Instant(string: val)
 			}
 			if let val = js["outcome"] as? String {
 				self.outcome = val
@@ -189,7 +189,7 @@ public class SecurityEventObject: FHIRElement
 				self.name = val
 			}
 			if let val = js["query"] as? String {
-				self.query = Base64Binary(json: val)
+				self.query = Base64Binary(string: val)
 			}
 			if let val = js["reference"] as? JSONDictionary {
 				self.reference = Reference(json: val, owner: self)
@@ -240,7 +240,7 @@ public class SecurityEventObjectDetail: FHIRElement
 				self.type = val
 			}
 			if let val = js["value"] as? String {
-				self.value = Base64Binary(json: val)
+				self.value = Base64Binary(string: val)
 			}
 		}
 	}

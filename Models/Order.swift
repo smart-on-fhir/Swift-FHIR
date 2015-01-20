@@ -2,7 +2,7 @@
 //  Order.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (order.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (order.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,7 +22,7 @@ public class Order: FHIRResource
 	public var authority: Reference?
 	
 	/// When the order was made
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// What action is being ordered
 	public var detail: [Reference]?
@@ -62,7 +62,7 @@ public class Order: FHIRResource
 				self.authority = Reference(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["detail"] as? [JSONDictionary] {
 				self.detail = Reference.from(val, owner: self) as? [Reference]

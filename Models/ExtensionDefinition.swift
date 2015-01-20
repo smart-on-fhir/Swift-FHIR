@@ -2,7 +2,7 @@
 //  ExtensionDefinition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (extensiondefinition.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (extensiondefinition.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -30,7 +30,7 @@ public class ExtensionDefinition: FHIRResource
 	public var contextType: String?
 	
 	/// Date for this version of the extension
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// Natural language description of the extension
 	public var description: String?
@@ -103,7 +103,7 @@ public class ExtensionDefinition: FHIRResource
 				self.contextType = val
 			}
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
@@ -139,7 +139,7 @@ public class ExtensionDefinition: FHIRResource
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 			if let val = js["url"] as? String {
-				self.url = NSURL(json: val)
+				self.url = NSURL(string: val)
 			}
 		}
 	}
@@ -189,7 +189,7 @@ public class ExtensionDefinitionMapping: FHIRElement
 				self.name = val
 			}
 			if let val = js["uri"] as? String {
-				self.uri = NSURL(json: val)
+				self.uri = NSURL(string: val)
 			}
 		}
 	}

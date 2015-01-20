@@ -2,7 +2,7 @@
 //  AlertTests.swift
 //  AlertTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,12 +22,12 @@ class AlertTests: FHIRModelTestCase
 	func testAlert1() {
 		let inst = instantiateFrom("alert-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Alert instance")
-	
+		
 		XCTAssertEqual(inst!.author!.display!, "Nancy Nurse")
 		XCTAssertEqual(inst!.author!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst!.category!.coding![0].code!, "admin")
 		XCTAssertEqual(inst!.category!.coding![0].display!, "Admin")
-		XCTAssertEqual(inst!.category!.coding![0].system!, NSURL(string: "local")!)
+		XCTAssertEqual(inst!.category!.coding![0].system!.absoluteString!, "local")
 		XCTAssertEqual(inst!.category!.text!, "admin")
 		XCTAssertEqual(inst!.note!, "patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
 		XCTAssertEqual(inst!.status!, "active")
@@ -38,12 +38,12 @@ class AlertTests: FHIRModelTestCase
 	func testAlert2() {
 		let inst = instantiateFrom("alert-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Alert instance")
-	
+		
 		XCTAssertEqual(inst!.author!.display!, "Nancy Nurse")
 		XCTAssertEqual(inst!.author!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst!.category!.coding![0].code!, "admin")
 		XCTAssertEqual(inst!.category!.coding![0].display!, "Admin")
-		XCTAssertEqual(inst!.category!.coding![0].system!, NSURL(string: "local")!)
+		XCTAssertEqual(inst!.category!.coding![0].system!.absoluteString!, "local")
 		XCTAssertEqual(inst!.category!.text!, "admin")
 		XCTAssertEqual(inst!.note!, "patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
 		XCTAssertEqual(inst!.status!, "active")
@@ -54,12 +54,12 @@ class AlertTests: FHIRModelTestCase
 	func testAlert3() {
 		let inst = instantiateFrom("alert-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Alert instance")
-	
+		
 		XCTAssertEqual(inst!.author!.display!, "Nancy Nurse")
 		XCTAssertEqual(inst!.author!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst!.category!.coding![0].code!, "admin")
 		XCTAssertEqual(inst!.category!.coding![0].display!, "Admin")
-		XCTAssertEqual(inst!.category!.coding![0].system!, NSURL(string: "local")!)
+		XCTAssertEqual(inst!.category!.coding![0].system!.absoluteString!, "local")
 		XCTAssertEqual(inst!.category!.text!, "admin")
 		XCTAssertEqual(inst!.note!, "patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
 		XCTAssertEqual(inst!.status!, "active")

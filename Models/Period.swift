@@ -2,7 +2,7 @@
 //  Period.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (Period.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (Period.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -21,19 +21,19 @@ public class Period: FHIRElement
 	}
 	
 	/// End time with inclusive boundary, if not ongoing
-	public var end: NSDate?
+	public var end: DateTime?
 	
 	/// Starting time with inclusive boundary
-	public var start: NSDate?
+	public var start: DateTime?
 	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["end"] as? String {
-				self.end = NSDate(json: val)
+				self.end = DateTime(string: val)
 			}
 			if let val = js["start"] as? String {
-				self.start = NSDate(json: val)
+				self.start = DateTime(string: val)
 			}
 		}
 	}

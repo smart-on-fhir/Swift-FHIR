@@ -2,7 +2,7 @@
 //  StatusRequestTests.swift
 //  StatusRequestTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,9 +22,9 @@ class StatusRequestTests: FHIRModelTestCase
 	func testStatusRequest1() {
 		let inst = instantiateFrom("statusrequest-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a StatusRequest instance")
-	
-		XCTAssertEqual(inst!.created!, NSDate.dateFromISOString("2014-08-16")!)
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://happyvalley.com/statusrequest")!)
+		
+		XCTAssertEqual(inst!.created!.description, "2014-08-16")
+		XCTAssertEqual(inst!.identifier![0].system!.absoluteString!, "http://happyvalley.com/statusrequest")
 		XCTAssertEqual(inst!.identifier![0].value!, "1776543")
 		XCTAssertEqual(inst!.organization!.reference!, "Organization/1")
 		XCTAssertEqual(inst!.request!.reference!, "http://BenefitsInc.com/oralhealthclaim/12345")
@@ -34,9 +34,9 @@ class StatusRequestTests: FHIRModelTestCase
 	func testStatusRequest2() {
 		let inst = instantiateFrom("statusrequest-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a StatusRequest instance")
-	
-		XCTAssertEqual(inst!.created!, NSDate.dateFromISOString("2014-08-16")!)
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://happyvalley.com/statusrequest")!)
+		
+		XCTAssertEqual(inst!.created!.description, "2014-08-16")
+		XCTAssertEqual(inst!.identifier![0].system!.absoluteString!, "http://happyvalley.com/statusrequest")
 		XCTAssertEqual(inst!.identifier![0].value!, "1776543")
 		XCTAssertEqual(inst!.organization!.reference!, "Organization/1")
 		XCTAssertEqual(inst!.request!.reference!, "http://BenefitsInc.com/oralhealthclaim/12345")
@@ -46,9 +46,9 @@ class StatusRequestTests: FHIRModelTestCase
 	func testStatusRequest3() {
 		let inst = instantiateFrom("statusrequest-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a StatusRequest instance")
-	
-		XCTAssertEqual(inst!.created!, NSDate.dateFromISOString("2014-08-16")!)
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://happyvalley.com/statusrequest")!)
+		
+		XCTAssertEqual(inst!.created!.description, "2014-08-16")
+		XCTAssertEqual(inst!.identifier![0].system!.absoluteString!, "http://happyvalley.com/statusrequest")
 		XCTAssertEqual(inst!.identifier![0].value!, "1776543")
 		XCTAssertEqual(inst!.organization!.reference!, "Organization/1")
 		XCTAssertEqual(inst!.request!.reference!, "http://BenefitsInc.com/oralhealthclaim/12345")

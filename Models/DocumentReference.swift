@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (documentreference.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (documentreference.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -31,7 +31,7 @@ public class DocumentReference: FHIRResource
 	public var context: DocumentReferenceContext?
 	
 	/// Document creation time
-	public var created: NSDate?
+	public var created: DateTime?
 	
 	/// Org which maintains the document
 	public var custodian: Reference?
@@ -52,7 +52,7 @@ public class DocumentReference: FHIRResource
 	public var identifier: [Identifier]?
 	
 	/// When this document reference created
-	public var indexed: NSDate?
+	public var indexed: Instant?
 	
 	/// Categorization of Document
 	public var klass: CodeableConcept?
@@ -90,7 +90,7 @@ public class DocumentReference: FHIRResource
 	/// What kind of document this is (LOINC if possible)
 	public var type: CodeableConcept?
 	
-	public convenience init(author: [Reference]?, indexed: NSDate?, masterIdentifier: Identifier?, mimeType: String?, status: String?, subject: Reference?, type: CodeableConcept?) {
+	public convenience init(author: [Reference]?, indexed: Instant?, masterIdentifier: Identifier?, mimeType: String?, status: String?, subject: Reference?, type: CodeableConcept?) {
 		self.init(json: nil)
 		if nil != author {
 			self.author = author
@@ -131,7 +131,7 @@ public class DocumentReference: FHIRResource
 				self.context = DocumentReferenceContext(json: val, owner: self)
 			}
 			if let val = js["created"] as? String {
-				self.created = NSDate(json: val)
+				self.created = DateTime(string: val)
 			}
 			if let val = js["custodian"] as? JSONDictionary {
 				self.custodian = Reference(json: val, owner: self)
@@ -146,19 +146,19 @@ public class DocumentReference: FHIRResource
 				self.format = NSURL.from(val)
 			}
 			if let val = js["hash"] as? String {
-				self.hash = Base64Binary(json: val)
+				self.hash = Base64Binary(string: val)
 			}
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["indexed"] as? String {
-				self.indexed = NSDate(json: val)
+				self.indexed = Instant(string: val)
 			}
 			if let val = js["class"] as? JSONDictionary {
 				self.klass = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["location"] as? String {
-				self.location = NSURL(json: val)
+				self.location = NSURL(string: val)
 			}
 			if let val = js["masterIdentifier"] as? JSONDictionary {
 				self.masterIdentifier = Identifier(json: val, owner: self)
@@ -167,7 +167,7 @@ public class DocumentReference: FHIRResource
 				self.mimeType = val
 			}
 			if let val = js["policyManager"] as? String {
-				self.policyManager = NSURL(json: val)
+				self.policyManager = NSURL(string: val)
 			}
 			if let val = js["primaryLanguage"] as? String {
 				self.primaryLanguage = val

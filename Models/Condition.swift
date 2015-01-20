@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (condition.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (condition.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -29,7 +29,7 @@ public class Condition: FHIRResource
 	public var abatementBoolean: Bool?
 	
 	/// If/when in resolution/remission
-	public var abatementDate: NSDate?
+	public var abatementDate: Date?
 	
 	/// Person who asserts this condition
 	public var asserter: Reference?
@@ -44,7 +44,7 @@ public class Condition: FHIRResource
 	public var code: CodeableConcept?
 	
 	/// When first detected/suspected/entered
-	public var dateAsserted: NSDate?
+	public var dateAsserted: Date?
 	
 	/// Causes for this Condition
 	public var dueTo: [ConditionDueTo]?
@@ -71,7 +71,7 @@ public class Condition: FHIRResource
 	public var onsetAge: Age?
 	
 	/// Estimated or actual date,  date-time, or age
-	public var onsetDateTime: NSDate?
+	public var onsetDateTime: DateTime?
 	
 	/// Subjective severity of condition
 	public var severity: CodeableConcept?
@@ -108,7 +108,7 @@ public class Condition: FHIRResource
 				self.abatementBoolean = val
 			}
 			if let val = js["abatementDate"] as? String {
-				self.abatementDate = NSDate(json: val)
+				self.abatementDate = Date(string: val)
 			}
 			if let val = js["asserter"] as? JSONDictionary {
 				self.asserter = Reference(json: val, owner: self)
@@ -123,7 +123,7 @@ public class Condition: FHIRResource
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["dateAsserted"] as? String {
-				self.dateAsserted = NSDate(json: val)
+				self.dateAsserted = Date(string: val)
 			}
 			if let val = js["dueTo"] as? [JSONDictionary] {
 				self.dueTo = ConditionDueTo.from(val, owner: self) as? [ConditionDueTo]
@@ -150,7 +150,7 @@ public class Condition: FHIRResource
 				self.onsetAge = Age(json: val, owner: self)
 			}
 			if let val = js["onsetDateTime"] as? String {
-				self.onsetDateTime = NSDate(json: val)
+				self.onsetDateTime = DateTime(string: val)
 			}
 			if let val = js["severity"] as? JSONDictionary {
 				self.severity = CodeableConcept(json: val, owner: self)

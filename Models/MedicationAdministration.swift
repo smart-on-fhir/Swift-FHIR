@@ -2,7 +2,7 @@
 //  MedicationAdministration.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (medicationadministration.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (medicationadministration.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -31,7 +31,7 @@ public class MedicationAdministration: FHIRResource
 	public var dosage: [MedicationAdministrationDosage]?
 	
 	/// Start and end time of administration
-	public var effectiveTimeDateTime: NSDate?
+	public var effectiveTimeDateTime: DateTime?
 	
 	/// Start and end time of administration
 	public var effectiveTimePeriod: Period?
@@ -63,7 +63,7 @@ public class MedicationAdministration: FHIRResource
 	/// True if medication not administered
 	public var wasNotGiven: Bool?
 	
-	public convenience init(effectiveTimeDateTime: NSDate?, effectiveTimePeriod: Period?, patient: Reference?, practitioner: Reference?, prescription: Reference?, status: String?) {
+	public convenience init(effectiveTimeDateTime: DateTime?, effectiveTimePeriod: Period?, patient: Reference?, practitioner: Reference?, prescription: Reference?, status: String?) {
 		self.init(json: nil)
 		if nil != effectiveTimeDateTime {
 			self.effectiveTimeDateTime = effectiveTimeDateTime
@@ -95,7 +95,7 @@ public class MedicationAdministration: FHIRResource
 				self.dosage = MedicationAdministrationDosage.from(val, owner: self) as? [MedicationAdministrationDosage]
 			}
 			if let val = js["effectiveTimeDateTime"] as? String {
-				self.effectiveTimeDateTime = NSDate(json: val)
+				self.effectiveTimeDateTime = DateTime(string: val)
 			}
 			if let val = js["effectiveTimePeriod"] as? JSONDictionary {
 				self.effectiveTimePeriod = Period(json: val, owner: self)
@@ -168,7 +168,7 @@ public class MedicationAdministrationDosage: FHIRElement
 	public var site: CodeableConcept?
 	
 	/// When dose(s) were given
-	public var timingDateTime: NSDate?
+	public var timingDateTime: DateTime?
 	
 	/// When dose(s) were given
 	public var timingPeriod: Period?
@@ -201,7 +201,7 @@ public class MedicationAdministrationDosage: FHIRElement
 				self.site = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["timingDateTime"] as? String {
-				self.timingDateTime = NSDate(json: val)
+				self.timingDateTime = DateTime(string: val)
 			}
 			if let val = js["timingPeriod"] as? JSONDictionary {
 				self.timingPeriod = Period(json: val, owner: self)

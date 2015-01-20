@@ -2,7 +2,7 @@
 //  Extension.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (Extension.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (Extension.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -48,10 +48,10 @@ public class Extension: FHIRElement
 	public var valueContactPoint: ContactPoint?
 	
 	/// Value of extension
-	public var valueDate: NSDate?
+	public var valueDate: Date?
 	
 	/// Value of extension
-	public var valueDateTime: NSDate?
+	public var valueDateTime: DateTime?
 	
 	/// Value of extension
 	public var valueDecimal: NSDecimalNumber?
@@ -63,7 +63,7 @@ public class Extension: FHIRElement
 	public var valueIdentifier: Identifier?
 	
 	/// Value of extension
-	public var valueInstant: NSDate?
+	public var valueInstant: Instant?
 	
 	/// Value of extension
 	public var valueInteger: Int?
@@ -87,7 +87,7 @@ public class Extension: FHIRElement
 	public var valueString: String?
 	
 	/// Value of extension
-	public var valueTime: NSDate?
+	public var valueTime: Time?
 	
 	/// Value of extension
 	public var valueTiming: Timing?
@@ -106,7 +106,7 @@ public class Extension: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["url"] as? String {
-				self.url = NSURL(json: val)
+				self.url = NSURL(string: val)
 			}
 			if let val = js["valueAddress"] as? JSONDictionary {
 				self.valueAddress = Address(json: val, owner: self)
@@ -115,7 +115,7 @@ public class Extension: FHIRElement
 				self.valueAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["valueBase64Binary"] as? String {
-				self.valueBase64Binary = Base64Binary(json: val)
+				self.valueBase64Binary = Base64Binary(string: val)
 			}
 			if let val = js["valueBoolean"] as? Bool {
 				self.valueBoolean = val
@@ -133,10 +133,10 @@ public class Extension: FHIRElement
 				self.valueContactPoint = ContactPoint(json: val, owner: self)
 			}
 			if let val = js["valueDate"] as? String {
-				self.valueDate = NSDate(json: val)
+				self.valueDate = Date(string: val)
 			}
 			if let val = js["valueDateTime"] as? String {
-				self.valueDateTime = NSDate(json: val)
+				self.valueDateTime = DateTime(string: val)
 			}
 			if let val = js["valueDecimal"] as? NSNumber {
 				self.valueDecimal = NSDecimalNumber(json: val)
@@ -148,7 +148,7 @@ public class Extension: FHIRElement
 				self.valueIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["valueInstant"] as? String {
-				self.valueInstant = NSDate(json: val)
+				self.valueInstant = Instant(string: val)
 			}
 			if let val = js["valueInteger"] as? Int {
 				self.valueInteger = val
@@ -172,13 +172,13 @@ public class Extension: FHIRElement
 				self.valueString = val
 			}
 			if let val = js["valueTime"] as? String {
-				self.valueTime = NSDate(json: val)
+				self.valueTime = Time(string: val)
 			}
 			if let val = js["valueTiming"] as? JSONDictionary {
 				self.valueTiming = Timing(json: val, owner: self)
 			}
 			if let val = js["valueUri"] as? String {
-				self.valueUri = NSURL(json: val)
+				self.valueUri = NSURL(string: val)
 			}
 		}
 	}

@@ -2,7 +2,7 @@
 //  RiskAssessment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (riskassessment.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (riskassessment.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -27,7 +27,7 @@ public class RiskAssessment: FHIRResource
 	public var condition: Reference?
 	
 	/// When was assessment made?
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// Unique identifier for the assessment
 	public var identifier: Identifier?
@@ -57,7 +57,7 @@ public class RiskAssessment: FHIRResource
 				self.condition = Reference(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)

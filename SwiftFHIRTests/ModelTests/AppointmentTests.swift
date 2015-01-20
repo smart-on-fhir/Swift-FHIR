@@ -2,7 +2,7 @@
 //  AppointmentTests.swift
 //  AppointmentTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,11 +22,11 @@ class AppointmentTests: FHIRModelTestCase
 	func testAppointment1() {
 		let inst = instantiateFrom("appointment-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Appointment instance")
-	
+		
 		XCTAssertEqual(inst!.comment!, "Further expand on the results of the MRI and determine the next actions that may be appropriate.")
 		XCTAssertEqual(inst!.description!, "Discussion on the results of your recent MRI")
-		XCTAssertEqual(inst!.end!, NSDate.dateFromISOString("2013-12-10T11:00:00Z")!)
-		XCTAssertEqual(inst!.lastModified!, NSDate.dateFromISOString("2012-09-17")!)
+		XCTAssertEqual(inst!.end!.description, "2013-12-10T11:00:00Z")
+		XCTAssertEqual(inst!.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst!.lastModifiedBy!.display!, "Dr Adam Careful")
 		XCTAssertEqual(inst!.lastModifiedBy!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst!.location!.reference!, "Location/1")
@@ -40,7 +40,7 @@ class AppointmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.participant![1].status!, "accepted")
 		XCTAssertEqual(inst!.participant![1].type![0].coding![0].code!, "attending")
 		XCTAssertEqual(inst!.priority!, 5)
-		XCTAssertEqual(inst!.start!, NSDate.dateFromISOString("2013-12-10T09:00:00Z")!)
+		XCTAssertEqual(inst!.start!.description, "2013-12-10T09:00:00Z")
 		XCTAssertEqual(inst!.status!, "booked")
 		XCTAssertEqual(inst!.type!.coding![0].code!, "52")
 		XCTAssertEqual(inst!.type!.coding![0].display!, "General Discussion")
@@ -49,11 +49,11 @@ class AppointmentTests: FHIRModelTestCase
 	func testAppointment2() {
 		let inst = instantiateFrom("appointment-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Appointment instance")
-	
+		
 		XCTAssertEqual(inst!.comment!, "Further expand on the results of the MRI and determine the next actions that may be appropriate.")
 		XCTAssertEqual(inst!.description!, "Discussion on the results of your recent MRI")
-		XCTAssertEqual(inst!.end!, NSDate.dateFromISOString("2013-12-10T11:00:00Z")!)
-		XCTAssertEqual(inst!.lastModified!, NSDate.dateFromISOString("2012-09-17")!)
+		XCTAssertEqual(inst!.end!.description, "2013-12-10T11:00:00Z")
+		XCTAssertEqual(inst!.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst!.lastModifiedBy!.display!, "Dr Adam Careful")
 		XCTAssertEqual(inst!.lastModifiedBy!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst!.location!.reference!, "Location/1")
@@ -67,7 +67,7 @@ class AppointmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.participant![1].status!, "accepted")
 		XCTAssertEqual(inst!.participant![1].type![0].coding![0].code!, "attending")
 		XCTAssertEqual(inst!.priority!, 5)
-		XCTAssertEqual(inst!.start!, NSDate.dateFromISOString("2013-12-10T09:00:00Z")!)
+		XCTAssertEqual(inst!.start!.description, "2013-12-10T09:00:00Z")
 		XCTAssertEqual(inst!.status!, "booked")
 		XCTAssertEqual(inst!.type!.coding![0].code!, "52")
 		XCTAssertEqual(inst!.type!.coding![0].display!, "General Discussion")
@@ -76,11 +76,11 @@ class AppointmentTests: FHIRModelTestCase
 	func testAppointment3() {
 		let inst = instantiateFrom("appointment-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Appointment instance")
-	
+		
 		XCTAssertEqual(inst!.comment!, "Further expand on the results of the MRI and determine the next actions that may be appropriate.")
 		XCTAssertEqual(inst!.description!, "Discussion on the results of your recent MRI")
-		XCTAssertEqual(inst!.end!, NSDate.dateFromISOString("2013-12-10T11:00:00Z")!)
-		XCTAssertEqual(inst!.lastModified!, NSDate.dateFromISOString("2012-09-17")!)
+		XCTAssertEqual(inst!.end!.description, "2013-12-10T11:00:00Z")
+		XCTAssertEqual(inst!.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst!.lastModifiedBy!.display!, "Dr Adam Careful")
 		XCTAssertEqual(inst!.lastModifiedBy!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst!.location!.reference!, "Location/1")
@@ -94,7 +94,7 @@ class AppointmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.participant![1].status!, "accepted")
 		XCTAssertEqual(inst!.participant![1].type![0].coding![0].code!, "attending")
 		XCTAssertEqual(inst!.priority!, 5)
-		XCTAssertEqual(inst!.start!, NSDate.dateFromISOString("2013-12-10T09:00:00Z")!)
+		XCTAssertEqual(inst!.start!.description, "2013-12-10T09:00:00Z")
 		XCTAssertEqual(inst!.status!, "booked")
 		XCTAssertEqual(inst!.type!.coding![0].code!, "52")
 		XCTAssertEqual(inst!.type!.coding![0].display!, "General Discussion")

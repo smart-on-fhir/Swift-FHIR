@@ -2,7 +2,7 @@
 //  Appointment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (appointment.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (appointment.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -26,13 +26,13 @@ public class Appointment: FHIRResource
 	public var description: String?
 	
 	/// Date/Time that the appointment is to conclude
-	public var end: NSDate?
+	public var end: Instant?
 	
 	/// External Ids for this item
 	public var identifier: [Identifier]?
 	
 	/// Date when the appointment was recorded
-	public var lastModified: NSDate?
+	public var lastModified: DateTime?
 	
 	/// Who recorded the appointment
 	public var lastModifiedBy: Reference?
@@ -56,7 +56,7 @@ public class Appointment: FHIRResource
 	public var slot: [Reference]?
 	
 	/// Date/Time that the appointment is to take place
-	public var start: NSDate?
+	public var start: Instant?
 	
 	/// pending | booked | arrived | fulfilled | cancelled | noshow
 	public var status: String?
@@ -64,7 +64,7 @@ public class Appointment: FHIRResource
 	/// The type of appointments that is being booked (ideally this would be an identifiable service - which is at a location, rather than the location itself)
 	public var type: CodeableConcept?
 	
-	public convenience init(end: NSDate?, participant: [AppointmentParticipant]?, start: NSDate?, status: String?) {
+	public convenience init(end: Instant?, participant: [AppointmentParticipant]?, start: Instant?, status: String?) {
 		self.init(json: nil)
 		if nil != end {
 			self.end = end
@@ -90,13 +90,13 @@ public class Appointment: FHIRResource
 				self.description = val
 			}
 			if let val = js["end"] as? String {
-				self.end = NSDate(json: val)
+				self.end = Instant(string: val)
 			}
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["lastModified"] as? String {
-				self.lastModified = NSDate(json: val)
+				self.lastModified = DateTime(string: val)
 			}
 			if let val = js["lastModifiedBy"] as? JSONDictionary {
 				self.lastModifiedBy = Reference(json: val, owner: self)
@@ -120,7 +120,7 @@ public class Appointment: FHIRResource
 				self.slot = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["start"] as? String {
-				self.start = NSDate(json: val)
+				self.start = Instant(string: val)
 			}
 			if let val = js["status"] as? String {
 				self.status = val

@@ -2,7 +2,7 @@
 //  Profile.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (profile.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (profile.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -28,7 +28,7 @@ public class Profile: FHIRResource
 	public var code: [Coding]?
 	
 	/// Date for this version of the profile
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// Natural language description of the profile
 	public var description: String?
@@ -92,13 +92,13 @@ public class Profile: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["base"] as? String {
-				self.base = NSURL(json: val)
+				self.base = NSURL(string: val)
 			}
 			if let val = js["code"] as? [JSONDictionary] {
 				self.code = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
@@ -137,7 +137,7 @@ public class Profile: FHIRResource
 				self.type = val
 			}
 			if let val = js["url"] as? String {
-				self.url = NSURL(json: val)
+				self.url = NSURL(string: val)
 			}
 			if let val = js["version"] as? String {
 				self.version = val
@@ -190,7 +190,7 @@ public class ProfileMapping: FHIRElement
 				self.name = val
 			}
 			if let val = js["uri"] as? String {
-				self.uri = NSURL(json: val)
+				self.uri = NSURL(string: val)
 			}
 		}
 	}

@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (operationoutcome.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (operationoutcome.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 

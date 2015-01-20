@@ -2,7 +2,7 @@
 //  QuestionnaireAnswers.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (questionnaireanswers.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (questionnaireanswers.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -25,7 +25,7 @@ public class QuestionnaireAnswers: FHIRResource
 	public var author: Reference?
 	
 	/// Date this version was authored
-	public var authored: NSDate?
+	public var authored: DateTime?
 	
 	/// Primary encounter during which the answers were collected
 	public var encounter: Reference?
@@ -48,7 +48,7 @@ public class QuestionnaireAnswers: FHIRResource
 	/// The subject of the questions
 	public var subject: Reference?
 	
-	public convenience init(authored: NSDate?, status: String?) {
+	public convenience init(authored: DateTime?, status: String?) {
 		self.init(json: nil)
 		if nil != authored {
 			self.authored = authored
@@ -65,7 +65,7 @@ public class QuestionnaireAnswers: FHIRResource
 				self.author = Reference(json: val, owner: self)
 			}
 			if let val = js["authored"] as? String {
-				self.authored = NSDate(json: val)
+				self.authored = DateTime(string: val)
 			}
 			if let val = js["encounter"] as? JSONDictionary {
 				self.encounter = Reference(json: val, owner: self)
@@ -212,16 +212,16 @@ public class QuestionnaireAnswersGroupQuestionAnswer: FHIRElement
 	public var valueCoding: Coding?
 	
 	/// Single-valued answer to the question
-	public var valueDate: NSDate?
+	public var valueDate: Date?
 	
 	/// Single-valued answer to the question
-	public var valueDateTime: NSDate?
+	public var valueDateTime: DateTime?
 	
 	/// Single-valued answer to the question
 	public var valueDecimal: NSDecimalNumber?
 	
 	/// Single-valued answer to the question
-	public var valueInstant: NSDate?
+	public var valueInstant: Instant?
 	
 	/// Single-valued answer to the question
 	public var valueInteger: Int?
@@ -236,7 +236,7 @@ public class QuestionnaireAnswersGroupQuestionAnswer: FHIRElement
 	public var valueString: String?
 	
 	/// Single-valued answer to the question
-	public var valueTime: NSDate?
+	public var valueTime: Time?
 	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
@@ -251,16 +251,16 @@ public class QuestionnaireAnswersGroupQuestionAnswer: FHIRElement
 				self.valueCoding = Coding(json: val, owner: self)
 			}
 			if let val = js["valueDate"] as? String {
-				self.valueDate = NSDate(json: val)
+				self.valueDate = Date(string: val)
 			}
 			if let val = js["valueDateTime"] as? String {
-				self.valueDateTime = NSDate(json: val)
+				self.valueDateTime = DateTime(string: val)
 			}
 			if let val = js["valueDecimal"] as? NSNumber {
 				self.valueDecimal = NSDecimalNumber(json: val)
 			}
 			if let val = js["valueInstant"] as? String {
-				self.valueInstant = NSDate(json: val)
+				self.valueInstant = Instant(string: val)
 			}
 			if let val = js["valueInteger"] as? Int {
 				self.valueInteger = val
@@ -275,7 +275,7 @@ public class QuestionnaireAnswersGroupQuestionAnswer: FHIRElement
 				self.valueString = val
 			}
 			if let val = js["valueTime"] as? String {
-				self.valueTime = NSDate(json: val)
+				self.valueTime = Time(string: val)
 			}
 		}
 	}

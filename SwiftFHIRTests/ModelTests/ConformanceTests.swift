@@ -2,7 +2,7 @@
 //  ConformanceTests.swift
 //  ConformanceTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,9 +22,9 @@ class ConformanceTests: FHIRModelTestCase
 	func testConformance1() {
 		let inst = instantiateFrom("conformance-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Conformance instance")
-	
+		
 		XCTAssertTrue(inst!.acceptUnknown!)
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2012-01-04")!)
+		XCTAssertEqual(inst!.date!.description, "2012-01-04")
 		XCTAssertEqual(inst!.description!, "This is the FHIR conformance statement for the main EHR at ACME for the private interface - it does not describe the public interface")
 		XCTAssertEqual(inst!.document![0].documentation!, "Basic rules for all documents in the EHR system")
 		XCTAssertEqual(inst!.document![0].mode!, "consumer")
@@ -34,7 +34,7 @@ class ConformanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.format![1], "json")
 		XCTAssertEqual(inst!.identifier!, "68D043B5-9ECF-4559-A57A-396E0D452311")
 		XCTAssertEqual(inst!.messaging![0].event![0].code!.code!, "admin-notify")
-		XCTAssertEqual(inst!.messaging![0].event![0].code!.system!, NSURL(string: "http://hl7.org/fhir/message-type")!)
+		XCTAssertEqual(inst!.messaging![0].event![0].code!.system!.absoluteString!, "http://hl7.org/fhir/message-type")
 		XCTAssertEqual(inst!.messaging![0].event![0].focus!, "Patient")
 		XCTAssertEqual(inst!.messaging![0].event![0].mode!, "receiver")
 		XCTAssertEqual(inst!.messaging![0].event![0].request!.reference!, "Profile/101")
@@ -62,9 +62,9 @@ class ConformanceTests: FHIRModelTestCase
 	func testConformance2() {
 		let inst = instantiateFrom("conformance-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Conformance instance")
-	
+		
 		XCTAssertTrue(inst!.acceptUnknown!)
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2012-01-04")!)
+		XCTAssertEqual(inst!.date!.description, "2012-01-04")
 		XCTAssertEqual(inst!.description!, "This is the FHIR conformance statement for the main EHR at ACME for the private interface - it does not describe the public interface")
 		XCTAssertEqual(inst!.document![0].documentation!, "Basic rules for all documents in the EHR system")
 		XCTAssertEqual(inst!.document![0].mode!, "consumer")
@@ -74,7 +74,7 @@ class ConformanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.format![1], "json")
 		XCTAssertEqual(inst!.identifier!, "68D043B5-9ECF-4559-A57A-396E0D452311")
 		XCTAssertEqual(inst!.messaging![0].event![0].code!.code!, "admin-notify")
-		XCTAssertEqual(inst!.messaging![0].event![0].code!.system!, NSURL(string: "http://hl7.org/fhir/message-type")!)
+		XCTAssertEqual(inst!.messaging![0].event![0].code!.system!.absoluteString!, "http://hl7.org/fhir/message-type")
 		XCTAssertEqual(inst!.messaging![0].event![0].focus!, "Patient")
 		XCTAssertEqual(inst!.messaging![0].event![0].mode!, "receiver")
 		XCTAssertEqual(inst!.messaging![0].event![0].request!.reference!, "Profile/101")
@@ -102,9 +102,9 @@ class ConformanceTests: FHIRModelTestCase
 	func testConformance3() {
 		let inst = instantiateFrom("conformance-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Conformance instance")
-	
+		
 		XCTAssertTrue(inst!.acceptUnknown!)
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2012-01-04")!)
+		XCTAssertEqual(inst!.date!.description, "2012-01-04")
 		XCTAssertEqual(inst!.description!, "This is the FHIR conformance statement for the main EHR at ACME for the private interface - it does not describe the public interface")
 		XCTAssertEqual(inst!.document![0].documentation!, "Basic rules for all documents in the EHR system")
 		XCTAssertEqual(inst!.document![0].mode!, "consumer")
@@ -114,7 +114,7 @@ class ConformanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.format![1], "json")
 		XCTAssertEqual(inst!.identifier!, "68D043B5-9ECF-4559-A57A-396E0D452311")
 		XCTAssertEqual(inst!.messaging![0].event![0].code!.code!, "admin-notify")
-		XCTAssertEqual(inst!.messaging![0].event![0].code!.system!, NSURL(string: "http://hl7.org/fhir/message-type")!)
+		XCTAssertEqual(inst!.messaging![0].event![0].code!.system!.absoluteString!, "http://hl7.org/fhir/message-type")
 		XCTAssertEqual(inst!.messaging![0].event![0].focus!, "Patient")
 		XCTAssertEqual(inst!.messaging![0].event![0].mode!, "receiver")
 		XCTAssertEqual(inst!.messaging![0].event![0].request!.reference!, "Profile/101")
@@ -142,9 +142,9 @@ class ConformanceTests: FHIRModelTestCase
 	func testConformance4() {
 		let inst = instantiateFrom("conformance-phr-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Conformance instance")
-	
+		
 		XCTAssertFalse(inst!.acceptUnknown!)
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2013-06-18")!)
+		XCTAssertEqual(inst!.date!.description, "2013-06-18")
 		XCTAssertEqual(inst!.description!, "Prototype Conformance Statement for September 2013 Connectathon")
 		XCTAssertEqual(inst!.fhirVersion!, "0.09")
 		XCTAssertEqual(inst!.format![0], "json")
@@ -187,9 +187,9 @@ class ConformanceTests: FHIRModelTestCase
 	func testConformance5() {
 		let inst = instantiateFrom("conformance-phr-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Conformance instance")
-	
+		
 		XCTAssertFalse(inst!.acceptUnknown!)
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2013-06-18")!)
+		XCTAssertEqual(inst!.date!.description, "2013-06-18")
 		XCTAssertEqual(inst!.description!, "Prototype Conformance Statement for September 2013 Connectathon")
 		XCTAssertEqual(inst!.fhirVersion!, "0.09")
 		XCTAssertEqual(inst!.format![0], "json")

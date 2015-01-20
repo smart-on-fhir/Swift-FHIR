@@ -2,7 +2,7 @@
 //  BinaryTests.swift
 //  BinaryTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,7 +22,7 @@ class BinaryTests: FHIRModelTestCase
 	func testBinary1() {
 		let inst = instantiateFrom("binary-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Binary instance")
-	
+		
 		// Don't know how to create unit test for "content!", which is a Base64Binary
 		XCTAssertEqual(inst!.contentType!, "application/pdf")
 	}
@@ -30,7 +30,7 @@ class BinaryTests: FHIRModelTestCase
 	func testBinary2() {
 		let inst = instantiateFrom("binary-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Binary instance")
-	
+		
 		// Don't know how to create unit test for "content!", which is a Base64Binary
 		XCTAssertEqual(inst!.contentType!, "application/pdf")
 	}
@@ -38,7 +38,7 @@ class BinaryTests: FHIRModelTestCase
 	func testBinary3() {
 		let inst = instantiateFrom("binary-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Binary instance")
-	
+		
 		// Don't know how to create unit test for "content!", which is a Base64Binary
 		XCTAssertEqual(inst!.contentType!, "application/pdf")
 	}

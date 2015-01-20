@@ -2,7 +2,7 @@
 //  ProcedureRequestTests.swift
 //  ProcedureRequestTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,30 +22,30 @@ class ProcedureRequestTests: FHIRModelTestCase
 	func testProcedureRequest1() {
 		let inst = instantiateFrom("procedurerequest-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a ProcedureRequest instance")
-	
+		
 		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
 		XCTAssertEqual(inst!.type!.coding![0].code!, "323418000")
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Fix me up")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+		XCTAssertEqual(inst!.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 	}
 	
 	func testProcedureRequest2() {
 		let inst = instantiateFrom("procedurerequest-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a ProcedureRequest instance")
-	
+		
 		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
 		XCTAssertEqual(inst!.type!.coding![0].code!, "323418000")
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Fix me up")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+		XCTAssertEqual(inst!.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 	}
 	
 	func testProcedureRequest3() {
 		let inst = instantiateFrom("procedurerequest-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a ProcedureRequest instance")
-	
+		
 		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
 		XCTAssertEqual(inst!.type!.coding![0].code!, "323418000")
 		XCTAssertEqual(inst!.type!.coding![0].display!, "Fix me up")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+		XCTAssertEqual(inst!.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 	}
 }

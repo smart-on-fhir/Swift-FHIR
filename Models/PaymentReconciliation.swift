@@ -2,7 +2,7 @@
 //  PaymentReconciliation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (paymentreconciliation.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (paymentreconciliation.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -21,7 +21,7 @@ public class PaymentReconciliation: FHIRResource
 	}
 	
 	/// Creation date
-	public var created: NSDate?
+	public var created: DateTime?
 	
 	/// Details
 	public var detail: [PaymentReconciliationDetail]?
@@ -76,7 +76,7 @@ public class PaymentReconciliation: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["created"] as? String {
-				self.created = NSDate(json: val)
+				self.created = DateTime(string: val)
 			}
 			if let val = js["detail"] as? [JSONDictionary] {
 				self.detail = PaymentReconciliationDetail.from(val, owner: self) as? [PaymentReconciliationDetail]
@@ -140,7 +140,7 @@ public class PaymentReconciliationDetail: FHIRElement
 	public var amount: Money?
 	
 	/// Invoice date
-	public var date: NSDate?
+	public var date: Date?
 	
 	/// Payee
 	public var payee: Reference?
@@ -171,7 +171,7 @@ public class PaymentReconciliationDetail: FHIRElement
 				self.amount = Money(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = Date(string: val)
 			}
 			if let val = js["payee"] as? JSONDictionary {
 				self.payee = Reference(json: val, owner: self)

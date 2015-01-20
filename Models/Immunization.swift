@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (immunization.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (immunization.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -19,13 +19,13 @@ public class Immunization: FHIRResource
 	}
 	
 	/// Vaccination administration date
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// Amount of vaccine administered
 	public var doseQuantity: Quantity?
 	
 	/// Vaccine expiration date
-	public var expirationDate: NSDate?
+	public var expirationDate: Date?
 	
 	/// Administration / refusal reasons
 	public var explanation: ImmunizationExplanation?
@@ -72,7 +72,7 @@ public class Immunization: FHIRResource
 	/// Vaccine product administered
 	public var vaccineType: CodeableConcept?
 	
-	public convenience init(date: NSDate?, refusedIndicator: Bool?, reported: Bool?, subject: Reference?, vaccineType: CodeableConcept?) {
+	public convenience init(date: DateTime?, refusedIndicator: Bool?, reported: Bool?, subject: Reference?, vaccineType: CodeableConcept?) {
 		self.init(json: nil)
 		if nil != date {
 			self.date = date
@@ -95,13 +95,13 @@ public class Immunization: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["doseQuantity"] as? JSONDictionary {
 				self.doseQuantity = Quantity(json: val, owner: self)
 			}
 			if let val = js["expirationDate"] as? String {
-				self.expirationDate = NSDate(json: val)
+				self.expirationDate = Date(string: val)
 			}
 			if let val = js["explanation"] as? JSONDictionary {
 				self.explanation = ImmunizationExplanation(json: val, owner: self)
@@ -196,7 +196,7 @@ public class ImmunizationReaction: FHIRElement
 	}
 	
 	/// When did reaction start?
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// Additional information on reaction
 	public var detail: Reference?
@@ -208,7 +208,7 @@ public class ImmunizationReaction: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["detail"] as? JSONDictionary {
 				self.detail = Reference(json: val, owner: self)

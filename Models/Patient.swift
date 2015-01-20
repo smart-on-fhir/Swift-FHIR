@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (patient.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (patient.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -31,7 +31,7 @@ public class Patient: FHIRResource
 	public var animal: PatientAnimal?
 	
 	/// The date and time of birth for the individual
-	public var birthDate: NSDate?
+	public var birthDate: Date?
 	
 	/// Patient's nominated care provider
 	public var careProvider: [Reference]?
@@ -46,7 +46,7 @@ public class Patient: FHIRResource
 	public var deceasedBoolean: Bool?
 	
 	/// Indicates if the individual is deceased or not
-	public var deceasedDateTime: NSDate?
+	public var deceasedDateTime: DateTime?
 	
 	/// male | female | other | unknown
 	public var gender: String?
@@ -91,7 +91,7 @@ public class Patient: FHIRResource
 				self.animal = PatientAnimal(json: val, owner: self)
 			}
 			if let val = js["birthDate"] as? String {
-				self.birthDate = NSDate(json: val)
+				self.birthDate = Date(string: val)
 			}
 			if let val = js["careProvider"] as? [JSONDictionary] {
 				self.careProvider = Reference.from(val, owner: self) as? [Reference]
@@ -106,7 +106,7 @@ public class Patient: FHIRResource
 				self.deceasedBoolean = val
 			}
 			if let val = js["deceasedDateTime"] as? String {
-				self.deceasedDateTime = NSDate(json: val)
+				self.deceasedDateTime = DateTime(string: val)
 			}
 			if let val = js["gender"] as? String {
 				self.gender = val

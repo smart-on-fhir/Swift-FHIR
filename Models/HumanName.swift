@@ -2,7 +2,7 @@
 //  HumanName.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (HumanName.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (HumanName.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 

@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (substance.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (substance.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -108,7 +108,7 @@ public class SubstanceInstance: FHIRElement
 	}
 	
 	/// When no longer valid to use
-	public var expiry: NSDate?
+	public var expiry: DateTime?
 	
 	/// Identifier of the package/container
 	public var identifier: Identifier?
@@ -120,7 +120,7 @@ public class SubstanceInstance: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["expiry"] as? String {
-				self.expiry = NSDate(json: val)
+				self.expiry = DateTime(string: val)
 			}
 			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)

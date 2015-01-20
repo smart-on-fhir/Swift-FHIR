@@ -2,7 +2,7 @@
 //  Quantity.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (Quantity.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (Quantity.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -46,7 +46,7 @@ public class Quantity: FHIRElement
 				self.comparator = val
 			}
 			if let val = js["system"] as? String {
-				self.system = NSURL(json: val)
+				self.system = NSURL(string: val)
 			}
 			if let val = js["units"] as? String {
 				self.units = val

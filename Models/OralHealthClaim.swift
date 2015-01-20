@@ -2,7 +2,7 @@
 //  OralHealthClaim.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (oralhealthclaim.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (oralhealthclaim.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,7 +22,7 @@ public class OralHealthClaim: FHIRResource
 	}
 	
 	/// Accident Date
-	public var accident: NSDate?
+	public var accident: Date?
 	
 	/// Accident Type
 	public var accidentType: Coding?
@@ -37,7 +37,7 @@ public class OralHealthClaim: FHIRResource
 	public var coverage: [OralHealthClaimCoverage]?
 	
 	/// Creation date
-	public var created: NSDate?
+	public var created: DateTime?
 	
 	/// Diagnosis
 	public var diagnosis: [OralHealthClaimDiagnosis]?
@@ -113,7 +113,7 @@ public class OralHealthClaim: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["accident"] as? String {
-				self.accident = NSDate(json: val)
+				self.accident = Date(string: val)
 			}
 			if let val = js["accidentType"] as? JSONDictionary {
 				self.accidentType = Coding(json: val, owner: self)
@@ -128,7 +128,7 @@ public class OralHealthClaim: FHIRResource
 				self.coverage = OralHealthClaimCoverage.from(val, owner: self) as? [OralHealthClaimCoverage]
 			}
 			if let val = js["created"] as? String {
-				self.created = NSDate(json: val)
+				self.created = DateTime(string: val)
 			}
 			if let val = js["diagnosis"] as? [JSONDictionary] {
 				self.diagnosis = OralHealthClaimDiagnosis.from(val, owner: self) as? [OralHealthClaimDiagnosis]
@@ -370,7 +370,7 @@ public class OralHealthClaimItem: FHIRElement
 	public var service: Coding?
 	
 	/// Date of Service
-	public var serviceDate: NSDate?
+	public var serviceDate: Date?
 	
 	/// Service Sub-location
 	public var subsite: [Coding]?
@@ -437,7 +437,7 @@ public class OralHealthClaimItem: FHIRElement
 				self.service = Coding(json: val, owner: self)
 			}
 			if let val = js["serviceDate"] as? String {
-				self.serviceDate = NSDate(json: val)
+				self.serviceDate = Date(string: val)
 			}
 			if let val = js["subsite"] as? [JSONDictionary] {
 				self.subsite = Coding.from(val, owner: self) as? [Coding]
@@ -649,7 +649,7 @@ public class OralHealthClaimItemProsthesis: FHIRElement
 	public var initial: Bool?
 	
 	/// Initial service Date
-	public var priorDate: NSDate?
+	public var priorDate: Date?
 	
 	/// Prosthetic Material
 	public var priorMaterial: Coding?
@@ -661,7 +661,7 @@ public class OralHealthClaimItemProsthesis: FHIRElement
 				self.initial = val
 			}
 			if let val = js["priorDate"] as? String {
-				self.priorDate = NSDate(json: val)
+				self.priorDate = Date(string: val)
 			}
 			if let val = js["priorMaterial"] as? JSONDictionary {
 				self.priorMaterial = Coding(json: val, owner: self)
@@ -684,7 +684,7 @@ public class OralHealthClaimMissingteeth: FHIRElement
 	}
 	
 	/// Date of Extraction
-	public var extractiondate: NSDate?
+	public var extractiondate: Date?
 	
 	/// Reason for missing
 	public var reason: Coding?
@@ -703,7 +703,7 @@ public class OralHealthClaimMissingteeth: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["extractiondate"] as? String {
-				self.extractiondate = NSDate(json: val)
+				self.extractiondate = Date(string: val)
 			}
 			if let val = js["reason"] as? JSONDictionary {
 				self.reason = Coding(json: val, owner: self)
@@ -746,7 +746,7 @@ public class OralHealthClaimOrthoPlan: FHIRElement
 	public var periodicPayment: Money?
 	
 	/// Start date
-	public var start: NSDate?
+	public var start: Date?
 	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
@@ -770,7 +770,7 @@ public class OralHealthClaimOrthoPlan: FHIRElement
 				self.periodicPayment = Money(json: val, owner: self)
 			}
 			if let val = js["start"] as? String {
-				self.start = NSDate(json: val)
+				self.start = Date(string: val)
 			}
 		}
 	}

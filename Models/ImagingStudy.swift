@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (imagingstudy.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (imagingstudy.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -66,7 +66,7 @@ public class ImagingStudy: FHIRResource
 	public var series: [ImagingStudySeries]?
 	
 	/// When the study was started (0008,0020)+(0008,0030)
-	public var started: NSDate?
+	public var started: DateTime?
 	
 	/// Formal identifier for the study (0020,000D)
 	public var uid: String?
@@ -136,13 +136,13 @@ public class ImagingStudy: FHIRResource
 				self.series = ImagingStudySeries.from(val, owner: self) as? [ImagingStudySeries]
 			}
 			if let val = js["started"] as? String {
-				self.started = NSDate(json: val)
+				self.started = DateTime(string: val)
 			}
 			if let val = js["uid"] as? String {
 				self.uid = val
 			}
 			if let val = js["url"] as? String {
-				self.url = NSURL(json: val)
+				self.url = NSURL(string: val)
 			}
 		}
 	}
@@ -167,7 +167,7 @@ public class ImagingStudySeries: FHIRElement
 	public var bodySite: Coding?
 	
 	/// When the series started
-	public var dateTime: NSDate?
+	public var dateTime: DateTime?
 	
 	/// A description of the series (0008,103E)
 	public var description: String?
@@ -213,7 +213,7 @@ public class ImagingStudySeries: FHIRElement
 				self.bodySite = Coding(json: val, owner: self)
 			}
 			if let val = js["dateTime"] as? String {
-				self.dateTime = NSDate(json: val)
+				self.dateTime = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
@@ -234,7 +234,7 @@ public class ImagingStudySeries: FHIRElement
 				self.uid = val
 			}
 			if let val = js["url"] as? String {
-				self.url = NSURL(json: val)
+				self.url = NSURL(string: val)
 			}
 		}
 	}
@@ -305,7 +305,7 @@ public class ImagingStudySeriesInstance: FHIRElement
 				self.uid = val
 			}
 			if let val = js["url"] as? String {
-				self.url = NSURL(json: val)
+				self.url = NSURL(string: val)
 			}
 		}
 	}

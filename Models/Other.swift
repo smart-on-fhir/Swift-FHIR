@@ -2,7 +2,7 @@
 //  Other.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (other.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (other.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -27,7 +27,7 @@ public class Other: FHIRResource
 	public var code: CodeableConcept?
 	
 	/// When created
-	public var created: NSDate?
+	public var created: Date?
 	
 	/// Business identifier
 	public var identifier: [Identifier]?
@@ -52,7 +52,7 @@ public class Other: FHIRResource
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["created"] as? String {
-				self.created = NSDate(json: val)
+				self.created = Date(string: val)
 			}
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]

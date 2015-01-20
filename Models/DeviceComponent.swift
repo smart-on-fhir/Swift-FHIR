@@ -2,7 +2,7 @@
 //  DeviceComponent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (devicecomponent.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (devicecomponent.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -28,7 +28,7 @@ public class DeviceComponent: FHIRResource
 	public var languageCode: CodeableConcept?
 	
 	/// Recent system change timestamp
-	public var lastSystemChange: NSDate?
+	public var lastSystemChange: Instant?
 	
 	/// other | chemical | electrical | impedance | nuclear | optical | thermal | biological | mechanical | acoustical | manual+
 	public var measurementPrinciple: String?
@@ -51,7 +51,7 @@ public class DeviceComponent: FHIRResource
 	/// What kind of component it is
 	public var type: CodeableConcept?
 	
-	public convenience init(identifier: Identifier?, lastSystemChange: NSDate?, type: CodeableConcept?) {
+	public convenience init(identifier: Identifier?, lastSystemChange: Instant?, type: CodeableConcept?) {
 		self.init(json: nil)
 		if nil != identifier {
 			self.identifier = identifier
@@ -74,7 +74,7 @@ public class DeviceComponent: FHIRResource
 				self.languageCode = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["lastSystemChange"] as? String {
-				self.lastSystemChange = NSDate(json: val)
+				self.lastSystemChange = Instant(string: val)
 			}
 			if let val = js["measurementPrinciple"] as? String {
 				self.measurementPrinciple = val

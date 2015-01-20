@@ -2,7 +2,7 @@
 //  MedicationDispense.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (medicationdispense.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (medicationdispense.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -107,10 +107,10 @@ public class MedicationDispenseDispense: FHIRElement
 	public var type: CodeableConcept?
 	
 	/// Handover time
-	public var whenHandedOver: NSDate?
+	public var whenHandedOver: DateTime?
 	
 	/// Dispense processing time
-	public var whenPrepared: NSDate?
+	public var whenPrepared: DateTime?
 	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
@@ -140,10 +140,10 @@ public class MedicationDispenseDispense: FHIRElement
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["whenHandedOver"] as? String {
-				self.whenHandedOver = NSDate(json: val)
+				self.whenHandedOver = DateTime(string: val)
 			}
 			if let val = js["whenPrepared"] as? String {
-				self.whenPrepared = NSDate(json: val)
+				self.whenPrepared = DateTime(string: val)
 			}
 		}
 	}
@@ -186,7 +186,7 @@ public class MedicationDispenseDispenseDosage: FHIRElement
 	public var route: CodeableConcept?
 	
 	/// When medication should be administered
-	public var scheduleDateTime: NSDate?
+	public var scheduleDateTime: DateTime?
 	
 	/// When medication should be administered
 	public var schedulePeriod: Period?
@@ -225,7 +225,7 @@ public class MedicationDispenseDispenseDosage: FHIRElement
 				self.route = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["scheduleDateTime"] as? String {
-				self.scheduleDateTime = NSDate(json: val)
+				self.scheduleDateTime = DateTime(string: val)
 			}
 			if let val = js["schedulePeriod"] as? JSONDictionary {
 				self.schedulePeriod = Period(json: val, owner: self)

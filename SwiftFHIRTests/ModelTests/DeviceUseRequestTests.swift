@@ -2,7 +2,7 @@
 //  DeviceUseRequestTests.swift
 //  DeviceUseRequestTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,7 +22,7 @@ class DeviceUseRequestTests: FHIRModelTestCase
 	func testDeviceUseRequest1() {
 		let inst = instantiateFrom("deviceuserequest-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a DeviceUseRequest instance")
-	
+		
 		XCTAssertEqual(inst!.device!.reference!, "Device/example")
 		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
 	}
@@ -30,7 +30,7 @@ class DeviceUseRequestTests: FHIRModelTestCase
 	func testDeviceUseRequest2() {
 		let inst = instantiateFrom("deviceuserequest-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a DeviceUseRequest instance")
-	
+		
 		XCTAssertEqual(inst!.device!.reference!, "Device/example")
 		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
 	}
@@ -38,7 +38,7 @@ class DeviceUseRequestTests: FHIRModelTestCase
 	func testDeviceUseRequest3() {
 		let inst = instantiateFrom("deviceuserequest-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a DeviceUseRequest instance")
-	
+		
 		XCTAssertEqual(inst!.device!.reference!, "Device/example")
 		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
 	}

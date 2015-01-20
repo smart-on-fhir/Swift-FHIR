@@ -2,7 +2,7 @@
 //  OperationOutcomeTests.swift
 //  OperationOutcomeTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,33 +22,33 @@ class OperationOutcomeTests: FHIRModelTestCase
 	func testOperationOutcome1() {
 		let inst = instantiateFrom("operationoutcome-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a OperationOutcome instance")
-	
+		
 		XCTAssertEqual(inst!.issue![0].location![0], "/Person[1]/gender[1]")
 		XCTAssertEqual(inst!.issue![0].severity!, "error")
 		XCTAssertEqual(inst!.issue![0].type!.code!, "V15")
 		XCTAssertEqual(inst!.issue![0].type!.display!, "InvalidCode")
-		XCTAssertEqual(inst!.issue![0].type!.system!, NSURL(string: "http://test.org/issueCodeSystem")!)
+		XCTAssertEqual(inst!.issue![0].type!.system!.absoluteString!, "http://test.org/issueCodeSystem")
 	}
 	
 	func testOperationOutcome2() {
 		let inst = instantiateFrom("operationoutcome-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a OperationOutcome instance")
-	
+		
 		XCTAssertEqual(inst!.issue![0].location![0], "/Person[1]/gender[1]")
 		XCTAssertEqual(inst!.issue![0].severity!, "error")
 		XCTAssertEqual(inst!.issue![0].type!.code!, "V15")
 		XCTAssertEqual(inst!.issue![0].type!.display!, "InvalidCode")
-		XCTAssertEqual(inst!.issue![0].type!.system!, NSURL(string: "http://test.org/issueCodeSystem")!)
+		XCTAssertEqual(inst!.issue![0].type!.system!.absoluteString!, "http://test.org/issueCodeSystem")
 	}
 	
 	func testOperationOutcome3() {
 		let inst = instantiateFrom("operationoutcome-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a OperationOutcome instance")
-	
+		
 		XCTAssertEqual(inst!.issue![0].location![0], "/Person[1]/gender[1]")
 		XCTAssertEqual(inst!.issue![0].severity!, "error")
 		XCTAssertEqual(inst!.issue![0].type!.code!, "V15")
 		XCTAssertEqual(inst!.issue![0].type!.display!, "InvalidCode")
-		XCTAssertEqual(inst!.issue![0].type!.system!, NSURL(string: "http://test.org/issueCodeSystem")!)
+		XCTAssertEqual(inst!.issue![0].type!.system!.absoluteString!, "http://test.org/issueCodeSystem")
 	}
 }

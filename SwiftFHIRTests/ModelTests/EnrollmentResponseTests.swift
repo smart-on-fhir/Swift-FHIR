@@ -2,7 +2,7 @@
 //  EnrollmentResponseTests.swift
 //  EnrollmentResponseTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,10 +22,10 @@ class EnrollmentResponseTests: FHIRModelTestCase
 	func testEnrollmentResponse1() {
 		let inst = instantiateFrom("enrollmentresponse-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a EnrollmentResponse instance")
-	
-		XCTAssertEqual(inst!.created!, NSDate.dateFromISOString("2014-08-16")!)
+		
+		XCTAssertEqual(inst!.created!.description, "2014-08-16")
 		XCTAssertEqual(inst!.disposition!, "Dependant added to policy.")
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.BenefitsInc.com/fhir/enrollmentresponse")!)
+		XCTAssertEqual(inst!.identifier![0].system!.absoluteString!, "http://www.BenefitsInc.com/fhir/enrollmentresponse")
 		XCTAssertEqual(inst!.identifier![0].value!, "781234")
 		XCTAssertEqual(inst!.organization!.reference!, "Organization/2")
 		XCTAssertEqual(inst!.outcome!, "complete")
@@ -36,10 +36,10 @@ class EnrollmentResponseTests: FHIRModelTestCase
 	func testEnrollmentResponse2() {
 		let inst = instantiateFrom("enrollmentresponse-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a EnrollmentResponse instance")
-	
-		XCTAssertEqual(inst!.created!, NSDate.dateFromISOString("2014-08-16")!)
+		
+		XCTAssertEqual(inst!.created!.description, "2014-08-16")
 		XCTAssertEqual(inst!.disposition!, "Dependant added to policy.")
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.BenefitsInc.com/fhir/enrollmentresponse")!)
+		XCTAssertEqual(inst!.identifier![0].system!.absoluteString!, "http://www.BenefitsInc.com/fhir/enrollmentresponse")
 		XCTAssertEqual(inst!.identifier![0].value!, "781234")
 		XCTAssertEqual(inst!.organization!.reference!, "Organization/2")
 		XCTAssertEqual(inst!.outcome!, "complete")
@@ -50,10 +50,10 @@ class EnrollmentResponseTests: FHIRModelTestCase
 	func testEnrollmentResponse3() {
 		let inst = instantiateFrom("enrollmentresponse-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a EnrollmentResponse instance")
-	
-		XCTAssertEqual(inst!.created!, NSDate.dateFromISOString("2014-08-16")!)
+		
+		XCTAssertEqual(inst!.created!.description, "2014-08-16")
 		XCTAssertEqual(inst!.disposition!, "Dependant added to policy.")
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.BenefitsInc.com/fhir/enrollmentresponse")!)
+		XCTAssertEqual(inst!.identifier![0].system!.absoluteString!, "http://www.BenefitsInc.com/fhir/enrollmentresponse")
 		XCTAssertEqual(inst!.identifier![0].value!, "781234")
 		XCTAssertEqual(inst!.organization!.reference!, "Organization/2")
 		XCTAssertEqual(inst!.outcome!, "complete")

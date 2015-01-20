@@ -2,7 +2,7 @@
 //  Person.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (person.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (person.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -27,7 +27,7 @@ public class Person: FHIRResource
 	public var address: [Address]?
 	
 	/// The birth date for the person
-	public var birthDate: NSDate?
+	public var birthDate: DateTime?
 	
 	/// male | female | other | unknown
 	public var gender: String?
@@ -60,7 +60,7 @@ public class Person: FHIRResource
 				self.address = Address.from(val, owner: self) as? [Address]
 			}
 			if let val = js["birthDate"] as? String {
-				self.birthDate = NSDate(json: val)
+				self.birthDate = DateTime(string: val)
 			}
 			if let val = js["gender"] as? String {
 				self.gender = val

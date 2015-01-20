@@ -2,7 +2,7 @@
 //  DataElement.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (dataelement.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (dataelement.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -33,7 +33,7 @@ public class DataElement: FHIRResource
 	public var comments: String?
 	
 	/// Date for this version of the data element
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// Definition/description as narrative text
 	public var definition: String?
@@ -63,10 +63,10 @@ public class DataElement: FHIRResource
 	public var exampleContactPoint: ContactPoint?
 	
 	/// Example value: [as defined for type]
-	public var exampleDate: NSDate?
+	public var exampleDate: Date?
 	
 	/// Example value: [as defined for type]
-	public var exampleDateTime: NSDate?
+	public var exampleDateTime: DateTime?
 	
 	/// Example value: [as defined for type]
 	public var exampleDecimal: NSDecimalNumber?
@@ -78,7 +78,7 @@ public class DataElement: FHIRResource
 	public var exampleIdentifier: Identifier?
 	
 	/// Example value: [as defined for type]
-	public var exampleInstant: NSDate?
+	public var exampleInstant: Instant?
 	
 	/// Example value: [as defined for type]
 	public var exampleInteger: Int?
@@ -102,7 +102,7 @@ public class DataElement: FHIRResource
 	public var exampleString: String?
 	
 	/// Example value: [as defined for type]
-	public var exampleTime: NSDate?
+	public var exampleTime: Time?
 	
 	/// Example value: [as defined for type]
 	public var exampleTiming: Timing?
@@ -181,7 +181,7 @@ public class DataElement: FHIRResource
 				self.comments = val
 			}
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["definition"] as? String {
 				self.definition = val
@@ -193,7 +193,7 @@ public class DataElement: FHIRResource
 				self.exampleAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["exampleBase64Binary"] as? String {
-				self.exampleBase64Binary = Base64Binary(json: val)
+				self.exampleBase64Binary = Base64Binary(string: val)
 			}
 			if let val = js["exampleBoolean"] as? Bool {
 				self.exampleBoolean = val
@@ -211,10 +211,10 @@ public class DataElement: FHIRResource
 				self.exampleContactPoint = ContactPoint(json: val, owner: self)
 			}
 			if let val = js["exampleDate"] as? String {
-				self.exampleDate = NSDate(json: val)
+				self.exampleDate = Date(string: val)
 			}
 			if let val = js["exampleDateTime"] as? String {
-				self.exampleDateTime = NSDate(json: val)
+				self.exampleDateTime = DateTime(string: val)
 			}
 			if let val = js["exampleDecimal"] as? NSNumber {
 				self.exampleDecimal = NSDecimalNumber(json: val)
@@ -226,7 +226,7 @@ public class DataElement: FHIRResource
 				self.exampleIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["exampleInstant"] as? String {
-				self.exampleInstant = NSDate(json: val)
+				self.exampleInstant = Instant(string: val)
 			}
 			if let val = js["exampleInteger"] as? Int {
 				self.exampleInteger = val
@@ -250,13 +250,13 @@ public class DataElement: FHIRResource
 				self.exampleString = val
 			}
 			if let val = js["exampleTime"] as? String {
-				self.exampleTime = NSDate(json: val)
+				self.exampleTime = Time(string: val)
 			}
 			if let val = js["exampleTiming"] as? JSONDictionary {
 				self.exampleTiming = Timing(json: val, owner: self)
 			}
 			if let val = js["exampleUri"] as? String {
-				self.exampleUri = NSURL(json: val)
+				self.exampleUri = NSURL(string: val)
 			}
 			if let val = js["granularity"] as? String {
 				self.granularity = val
@@ -410,7 +410,7 @@ public class DataElementMapping: FHIRElement
 				self.name = val
 			}
 			if let val = js["uri"] as? String {
-				self.uri = NSURL(json: val)
+				self.uri = NSURL(string: val)
 			}
 		}
 	}

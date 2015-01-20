@@ -2,7 +2,7 @@
 //  VisionPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (visionprescription.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (visionprescription.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -21,7 +21,7 @@ public class VisionPrescription: FHIRResource
 	}
 	
 	/// When prescription was authorized
-	public var dateWritten: NSDate?
+	public var dateWritten: DateTime?
 	
 	/// Vision supply authorization
 	public var dispense: [VisionPrescriptionDispense]?
@@ -48,7 +48,7 @@ public class VisionPrescription: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["dateWritten"] as? String {
-				self.dateWritten = NSDate(json: val)
+				self.dateWritten = DateTime(string: val)
 			}
 			if let val = js["dispense"] as? [JSONDictionary] {
 				self.dispense = VisionPrescriptionDispense.from(val, owner: self) as? [VisionPrescriptionDispense]

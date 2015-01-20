@@ -2,7 +2,7 @@
 //  SubscriptionTests.swift
 //  SubscriptionTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,11 +22,11 @@ class SubscriptionTests: FHIRModelTestCase
 	func testSubscription1() {
 		let inst = instantiateFrom("subscription-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Subscription instance")
-	
+		
 		XCTAssertEqual(inst!.channel!.header!, "Authorization: Bearer secret-token-abc-123")
 		XCTAssertEqual(inst!.channel!.payload!, "application/json")
 		XCTAssertEqual(inst!.channel!.type!, "rest-hook")
-		XCTAssertEqual(inst!.channel!.url!, NSURL(string: "https://biliwatch.com/customers/mount-auburn-miu/on-result")!)
+		XCTAssertEqual(inst!.channel!.url!.absoluteString!, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
 		XCTAssertEqual(inst!.criteria!, "/Observation?name=http://loinc.org|1975-2")
 		XCTAssertEqual(inst!.reason!, "Monitor new neonatal function")
 		XCTAssertEqual(inst!.status!, "requested")
@@ -35,11 +35,11 @@ class SubscriptionTests: FHIRModelTestCase
 	func testSubscription2() {
 		let inst = instantiateFrom("subscription-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Subscription instance")
-	
+		
 		XCTAssertEqual(inst!.channel!.header!, "Authorization: Bearer secret-token-abc-123")
 		XCTAssertEqual(inst!.channel!.payload!, "application/json")
 		XCTAssertEqual(inst!.channel!.type!, "rest-hook")
-		XCTAssertEqual(inst!.channel!.url!, NSURL(string: "https://biliwatch.com/customers/mount-auburn-miu/on-result")!)
+		XCTAssertEqual(inst!.channel!.url!.absoluteString!, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
 		XCTAssertEqual(inst!.criteria!, "/Observation?name=http://loinc.org|1975-2")
 		XCTAssertEqual(inst!.reason!, "Monitor new neonatal function")
 		XCTAssertEqual(inst!.status!, "requested")
@@ -48,11 +48,11 @@ class SubscriptionTests: FHIRModelTestCase
 	func testSubscription3() {
 		let inst = instantiateFrom("subscription-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Subscription instance")
-	
+		
 		XCTAssertEqual(inst!.channel!.header!, "Authorization: Bearer secret-token-abc-123")
 		XCTAssertEqual(inst!.channel!.payload!, "application/json")
 		XCTAssertEqual(inst!.channel!.type!, "rest-hook")
-		XCTAssertEqual(inst!.channel!.url!, NSURL(string: "https://biliwatch.com/customers/mount-auburn-miu/on-result")!)
+		XCTAssertEqual(inst!.channel!.url!.absoluteString!, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
 		XCTAssertEqual(inst!.criteria!, "/Observation?name=http://loinc.org|1975-2")
 		XCTAssertEqual(inst!.reason!, "Monitor new neonatal function")
 		XCTAssertEqual(inst!.status!, "requested")

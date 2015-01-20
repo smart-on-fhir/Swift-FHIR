@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (bundle.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (bundle.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -49,7 +49,7 @@ public class Bundle: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["base"] as? String {
-				self.base = NSURL(json: val)
+				self.base = NSURL(string: val)
 			}
 			if let val = js["entry"] as? [JSONDictionary] {
 				self.entry = BundleEntry.from(val, owner: self) as? [BundleEntry]
@@ -58,7 +58,7 @@ public class Bundle: FHIRResource
 				self.link = BundleLink.from(val, owner: self) as? [BundleLink]
 			}
 			if let val = js["signature"] as? String {
-				self.signature = Base64Binary(json: val)
+				self.signature = Base64Binary(string: val)
 			}
 			if let val = js["total"] as? Int {
 				self.total = val
@@ -105,7 +105,7 @@ public class BundleEntry: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["base"] as? String {
-				self.base = NSURL(json: val)
+				self.base = NSURL(string: val)
 			}
 			if let val = js["deleted"] as? JSONDictionary {
 				self.deleted = BundleEntryDeleted(json: val, owner: self)
@@ -117,7 +117,7 @@ public class BundleEntry: FHIRElement
 				self.score = NSDecimalNumber(json: val)
 			}
 			if let val = js["search"] as? String {
-				self.search = NSURL(json: val)
+				self.search = NSURL(string: val)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
@@ -140,7 +140,7 @@ public class BundleEntryDeleted: FHIRElement
 	}
 	
 	/// When the resource was deleted
-	public var instant: NSDate?
+	public var instant: Instant?
 	
 	/// Id of resource that was deleted
 	public var resourceId: String?
@@ -151,7 +151,7 @@ public class BundleEntryDeleted: FHIRElement
 	/// Version id for releted resource
 	public var versionId: String?
 	
-	public convenience init(instant: NSDate?, resourceId: String?, type: String?, versionId: String?) {
+	public convenience init(instant: Instant?, resourceId: String?, type: String?, versionId: String?) {
 		self.init(json: nil)
 		if nil != instant {
 			self.instant = instant
@@ -171,7 +171,7 @@ public class BundleEntryDeleted: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["instant"] as? String {
-				self.instant = NSDate(json: val)
+				self.instant = Instant(string: val)
 			}
 			if let val = js["resourceId"] as? String {
 				self.resourceId = val
@@ -221,7 +221,7 @@ public class BundleLink: FHIRElement
 				self.relation = val
 			}
 			if let val = js["url"] as? String {
-				self.url = NSURL(json: val)
+				self.url = NSURL(string: val)
 			}
 		}
 	}

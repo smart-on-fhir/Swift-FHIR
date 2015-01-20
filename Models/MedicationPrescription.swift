@@ -2,7 +2,7 @@
 //  MedicationPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (medicationprescription.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (medicationprescription.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -21,7 +21,7 @@ public class MedicationPrescription: FHIRResource
 	}
 	
 	/// When prescription was authorized
-	public var dateWritten: NSDate?
+	public var dateWritten: DateTime?
 	
 	/// Medication supply authorization
 	public var dispense: MedicationPrescriptionDispense?
@@ -60,7 +60,7 @@ public class MedicationPrescription: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["dateWritten"] as? String {
-				self.dateWritten = NSDate(json: val)
+				self.dateWritten = DateTime(string: val)
 			}
 			if let val = js["dispense"] as? JSONDictionary {
 				self.dispense = MedicationPrescriptionDispense(json: val, owner: self)
@@ -185,7 +185,7 @@ public class MedicationPrescriptionDosageInstruction: FHIRElement
 	public var route: CodeableConcept?
 	
 	/// When medication should be administered
-	public var scheduledDateTime: NSDate?
+	public var scheduledDateTime: DateTime?
 	
 	/// When medication should be administered
 	public var scheduledPeriod: Period?
@@ -227,7 +227,7 @@ public class MedicationPrescriptionDosageInstruction: FHIRElement
 				self.route = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["scheduledDateTime"] as? String {
-				self.scheduledDateTime = NSDate(json: val)
+				self.scheduledDateTime = DateTime(string: val)
 			}
 			if let val = js["scheduledPeriod"] as? JSONDictionary {
 				self.scheduledPeriod = Period(json: val, owner: self)

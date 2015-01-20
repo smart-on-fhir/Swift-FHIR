@@ -24,7 +24,6 @@ Progress
 Here's a rough list of what still needs to be done.
 
 ```
-[ ] More dedicated handling of dates/times/instants
 [X] Reference resolver: resolve contained resources
 [ ] Reference resolver: resolve bundle-relative resources
 [ ] Reference resolver: resolve remote resources
@@ -42,6 +41,7 @@ Working to some extent:
 - Classes generated for FHIR's base resources
     + Try to use Swift native types whenever possible
 - Use a FHIR server protocol for REST interactions
+- Use custom Date/Time/DateTime/Instant structs
 - Deserialize from JSON
 - Resolve contained resources
 - Construct searches with NoSQL-like statements (cf. fhir.js)

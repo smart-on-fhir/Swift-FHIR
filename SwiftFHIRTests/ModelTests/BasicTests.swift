@@ -2,7 +2,7 @@
 //  BasicTests.swift
 //  BasicTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,30 +22,30 @@ class BasicTests: FHIRModelTestCase
 	func testBasic1() {
 		let inst = instantiateFrom("basic-example-narrative.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Basic instance")
-	
+		
 		XCTAssertEqual(inst!.code!.text!, "Example Narrative Tester")
 	}
 	
 	func testBasic2() {
 		let inst = instantiateFrom("basic-example-narrative.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Basic instance")
-	
+		
 		XCTAssertEqual(inst!.code!.text!, "Example Narrative Tester")
 	}
 	
 	func testBasic3() {
 		let inst = instantiateFrom("basic-example-narrative.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Basic instance")
-	
+		
 		XCTAssertEqual(inst!.code!.text!, "Example Narrative Tester")
 	}
 	
 	func testBasic4() {
 		let inst = instantiateFrom("basic-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Basic instance")
-	
+		
 		XCTAssertEqual(inst!.code!.coding![0].code!, "REFERRAL")
-		XCTAssertEqual(inst!.code!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/basic-resource-type")!)
+		XCTAssertEqual(inst!.code!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/basic-resource-type")
 		XCTAssertEqual(inst!.subject!.display!, "Roel")
 		XCTAssertEqual(inst!.subject!.reference!, "Patient/f201")
 	}
@@ -53,9 +53,9 @@ class BasicTests: FHIRModelTestCase
 	func testBasic5() {
 		let inst = instantiateFrom("basic-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Basic instance")
-	
+		
 		XCTAssertEqual(inst!.code!.coding![0].code!, "REFERRAL")
-		XCTAssertEqual(inst!.code!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/basic-resource-type")!)
+		XCTAssertEqual(inst!.code!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/basic-resource-type")
 		XCTAssertEqual(inst!.subject!.display!, "Roel")
 		XCTAssertEqual(inst!.subject!.reference!, "Patient/f201")
 	}
@@ -63,16 +63,16 @@ class BasicTests: FHIRModelTestCase
 	func testBasic6() {
 		let inst = instantiateFrom("basic-example2.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Basic instance")
-	
+		
 		XCTAssertEqual(inst!.code!.coding![0].code!, "UMLCLASSMODEL")
-		XCTAssertEqual(inst!.code!.coding![0].system!, NSURL(string: "http://example.org/do-not-use/fhir-codes#resourceTypes")!)
+		XCTAssertEqual(inst!.code!.coding![0].system!.absoluteString!, "http://example.org/do-not-use/fhir-codes#resourceTypes")
 	}
 	
 	func testBasic7() {
 		let inst = instantiateFrom("basic-example2.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Basic instance")
-	
+		
 		XCTAssertEqual(inst!.code!.coding![0].code!, "UMLCLASSMODEL")
-		XCTAssertEqual(inst!.code!.coding![0].system!, NSURL(string: "http://example.org/do-not-use/fhir-codes#resourceTypes")!)
+		XCTAssertEqual(inst!.code!.coding![0].system!.absoluteString!, "http://example.org/do-not-use/fhir-codes#resourceTypes")
 	}
 }

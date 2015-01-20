@@ -2,7 +2,7 @@
 //  GoalTests.swift
 //  GoalTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,7 +22,7 @@ class GoalTests: FHIRModelTestCase
 	func testGoal1() {
 		let inst = instantiateFrom("goal-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Goal instance")
-	
+		
 		XCTAssertEqual(inst!.concern![0].display!, "obesity")
 		XCTAssertEqual(inst!.concern![0].reference!, "Condition/12345")
 		XCTAssertEqual(inst!.description!, "Target weight is 160 to 180 lbs.")
@@ -34,7 +34,7 @@ class GoalTests: FHIRModelTestCase
 	func testGoal2() {
 		let inst = instantiateFrom("goal-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Goal instance")
-	
+		
 		XCTAssertEqual(inst!.concern![0].display!, "obesity")
 		XCTAssertEqual(inst!.concern![0].reference!, "Condition/12345")
 		XCTAssertEqual(inst!.description!, "Target weight is 160 to 180 lbs.")
@@ -46,7 +46,7 @@ class GoalTests: FHIRModelTestCase
 	func testGoal3() {
 		let inst = instantiateFrom("goal-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Goal instance")
-	
+		
 		XCTAssertEqual(inst!.concern![0].display!, "obesity")
 		XCTAssertEqual(inst!.concern![0].reference!, "Condition/12345")
 		XCTAssertEqual(inst!.description!, "Target weight is 160 to 180 lbs.")

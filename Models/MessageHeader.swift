@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (messageheader.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (messageheader.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -56,9 +56,9 @@ public class MessageHeader: FHIRResource
 	public var source: MessageHeaderSource?
 	
 	/// Time that the message was sent
-	public var timestamp: NSDate?
+	public var timestamp: Instant?
 	
-	public convenience init(event: Coding?, identifier: String?, source: MessageHeaderSource?, timestamp: NSDate?) {
+	public convenience init(event: Coding?, identifier: String?, source: MessageHeaderSource?, timestamp: Instant?) {
 		self.init(json: nil)
 		if nil != event {
 			self.event = event
@@ -111,7 +111,7 @@ public class MessageHeader: FHIRResource
 				self.source = MessageHeaderSource(json: val, owner: self)
 			}
 			if let val = js["timestamp"] as? String {
-				self.timestamp = NSDate(json: val)
+				self.timestamp = Instant(string: val)
 			}
 		}
 	}
@@ -149,7 +149,7 @@ public class MessageHeaderDestination: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["endpoint"] as? String {
-				self.endpoint = NSURL(json: val)
+				self.endpoint = NSURL(string: val)
 			}
 			if let val = js["name"] as? String {
 				self.name = val
@@ -249,7 +249,7 @@ public class MessageHeaderSource: FHIRElement
 				self.contact = ContactPoint(json: val, owner: self)
 			}
 			if let val = js["endpoint"] as? String {
-				self.endpoint = NSURL(json: val)
+				self.endpoint = NSURL(string: val)
 			}
 			if let val = js["name"] as? String {
 				self.name = val

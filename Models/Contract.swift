@@ -2,7 +2,7 @@
 //  Contract.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (contract.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (contract.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -33,7 +33,7 @@ public class Contract: FHIRResource
 	public var binding: Attachment?
 	
 	/// Binding Contract effective time
-	public var bindingDateTime: NSDate?
+	public var bindingDateTime: DateTime?
 	
 	/// Domain
 	public var domain: [Reference]?
@@ -48,7 +48,7 @@ public class Contract: FHIRResource
 	public var friendly: [Attachment]?
 	
 	/// Human readable contract text effective time
-	public var friendlyDateTime: NSDate?
+	public var friendlyDateTime: DateTime?
 	
 	/// Second Party or delegatee
 	public var grantee: [Reference]?
@@ -60,13 +60,13 @@ public class Contract: FHIRResource
 	public var identifier: [Identifier]?
 	
 	/// When this was issued
-	public var issued: NSDate?
+	public var issued: DateTime?
 	
 	/// Legal contract text
 	public var legal: [Attachment]?
 	
 	/// Legal contract text date time
-	public var legalDateTime: NSDate?
+	public var legalDateTime: DateTime?
 	
 	/// Total item cost
 	public var net: Money?
@@ -84,7 +84,7 @@ public class Contract: FHIRResource
 	public var rule: [Attachment]?
 	
 	/// Computable contract text effect time
-	public var ruleDateTime: NSDate?
+	public var ruleDateTime: DateTime?
 	
 	/// Signer
 	public var signer: [ContractSigner]?
@@ -123,7 +123,7 @@ public class Contract: FHIRResource
 				self.binding = Attachment(json: val, owner: self)
 			}
 			if let val = js["bindingDateTime"] as? String {
-				self.bindingDateTime = NSDate(json: val)
+				self.bindingDateTime = DateTime(string: val)
 			}
 			if let val = js["domain"] as? [JSONDictionary] {
 				self.domain = Reference.from(val, owner: self) as? [Reference]
@@ -138,7 +138,7 @@ public class Contract: FHIRResource
 				self.friendly = Attachment.from(val, owner: self) as? [Attachment]
 			}
 			if let val = js["friendlyDateTime"] as? String {
-				self.friendlyDateTime = NSDate(json: val)
+				self.friendlyDateTime = DateTime(string: val)
 			}
 			if let val = js["grantee"] as? [JSONDictionary] {
 				self.grantee = Reference.from(val, owner: self) as? [Reference]
@@ -150,13 +150,13 @@ public class Contract: FHIRResource
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["issued"] as? String {
-				self.issued = NSDate(json: val)
+				self.issued = DateTime(string: val)
 			}
 			if let val = js["legal"] as? [JSONDictionary] {
 				self.legal = Attachment.from(val, owner: self) as? [Attachment]
 			}
 			if let val = js["legalDateTime"] as? String {
-				self.legalDateTime = NSDate(json: val)
+				self.legalDateTime = DateTime(string: val)
 			}
 			if let val = js["net"] as? JSONDictionary {
 				self.net = Money(json: val, owner: self)
@@ -174,7 +174,7 @@ public class Contract: FHIRResource
 				self.rule = Attachment.from(val, owner: self) as? [Attachment]
 			}
 			if let val = js["ruleDateTime"] as? String {
-				self.ruleDateTime = NSDate(json: val)
+				self.ruleDateTime = DateTime(string: val)
 			}
 			if let val = js["signer"] as? [JSONDictionary] {
 				self.signer = ContractSigner.from(val, owner: self) as? [ContractSigner]
@@ -265,7 +265,7 @@ public class ContractTerm: FHIRElement
 	public var identifier: Identifier?
 	
 	/// When issued
-	public var issued: NSDate?
+	public var issued: DateTime?
 	
 	/// Total item cost
 	public var net: Money?
@@ -304,7 +304,7 @@ public class ContractTerm: FHIRElement
 				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["issued"] as? String {
-				self.issued = NSDate(json: val)
+				self.issued = DateTime(string: val)
 			}
 			if let val = js["net"] as? JSONDictionary {
 				self.net = Money(json: val, owner: self)

@@ -2,7 +2,7 @@
 //  OrderResponseTests.swift
 //  OrderResponseTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,9 +22,9 @@ class OrderResponseTests: FHIRModelTestCase
 	func testOrderResponse1() {
 		let inst = instantiateFrom("orderresponse-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a OrderResponse instance")
-	
+		
 		XCTAssertEqual(inst!.code!, "complete")
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2012-12-28T13:10:56+11:00")!)
+		XCTAssertEqual(inst!.date!.description, "2012-12-28T13:10:56+11:00")
 		XCTAssertEqual(inst!.fulfillment![0].reference!, "DiagnosticReport/101")
 		XCTAssertEqual(inst!.request!.reference!, "Order/example")
 		XCTAssertEqual(inst!.who!.reference!, "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f")
@@ -33,9 +33,9 @@ class OrderResponseTests: FHIRModelTestCase
 	func testOrderResponse2() {
 		let inst = instantiateFrom("orderresponse-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a OrderResponse instance")
-	
+		
 		XCTAssertEqual(inst!.code!, "complete")
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2012-12-28T13:10:56+11:00")!)
+		XCTAssertEqual(inst!.date!.description, "2012-12-28T13:10:56+11:00")
 		XCTAssertEqual(inst!.fulfillment![0].reference!, "DiagnosticReport/101")
 		XCTAssertEqual(inst!.request!.reference!, "Order/example")
 		XCTAssertEqual(inst!.who!.reference!, "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f")
@@ -44,9 +44,9 @@ class OrderResponseTests: FHIRModelTestCase
 	func testOrderResponse3() {
 		let inst = instantiateFrom("orderresponse-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a OrderResponse instance")
-	
+		
 		XCTAssertEqual(inst!.code!, "complete")
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2012-12-28T13:10:56+11:00")!)
+		XCTAssertEqual(inst!.date!.description, "2012-12-28T13:10:56+11:00")
 		XCTAssertEqual(inst!.fulfillment![0].reference!, "DiagnosticReport/101")
 		XCTAssertEqual(inst!.request!.reference!, "Order/example")
 		XCTAssertEqual(inst!.who!.reference!, "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f")

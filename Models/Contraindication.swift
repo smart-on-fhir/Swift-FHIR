@@ -2,7 +2,7 @@
 //  Contraindication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (contraindication.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (contraindication.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -28,7 +28,7 @@ public class Contraindication: FHIRResource
 	public var category: CodeableConcept?
 	
 	/// When identified
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// Description and context
 	public var detail: String?
@@ -61,7 +61,7 @@ public class Contraindication: FHIRResource
 				self.category = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["detail"] as? String {
 				self.detail = val
@@ -79,7 +79,7 @@ public class Contraindication: FHIRResource
 				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["reference"] as? String {
-				self.reference = NSURL(json: val)
+				self.reference = NSURL(string: val)
 			}
 			if let val = js["severity"] as? String {
 				self.severity = val
@@ -109,7 +109,7 @@ public class ContraindicationMitigation: FHIRElement
 	public var author: Reference?
 	
 	/// Date committed
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	public convenience init(action: CodeableConcept?) {
 		self.init(json: nil)
@@ -128,7 +128,7 @@ public class ContraindicationMitigation: FHIRElement
 				self.author = Reference(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 		}
 	}

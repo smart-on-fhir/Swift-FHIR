@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (diagnosticreport.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (diagnosticreport.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -31,7 +31,7 @@ public class DiagnosticReport: FHIRResource
 	public var conclusion: String?
 	
 	/// Physiologically Relevant time/time-period for report
-	public var diagnosticDateTime: NSDate?
+	public var diagnosticDateTime: DateTime?
 	
 	/// Physiologically Relevant time/time-period for report
 	public var diagnosticPeriod: Period?
@@ -46,7 +46,7 @@ public class DiagnosticReport: FHIRResource
 	public var imagingStudy: [Reference]?
 	
 	/// Date this version was released
-	public var issued: NSDate?
+	public var issued: DateTime?
 	
 	/// Name/Code for this diagnostic report
 	public var name: CodeableConcept?
@@ -75,7 +75,7 @@ public class DiagnosticReport: FHIRResource
 	/// The subject of the report, usually, but not always, the patient
 	public var subject: Reference?
 	
-	public convenience init(diagnosticDateTime: NSDate?, diagnosticPeriod: Period?, issued: NSDate?, name: CodeableConcept?, performer: Reference?, status: String?, subject: Reference?) {
+	public convenience init(diagnosticDateTime: DateTime?, diagnosticPeriod: Period?, issued: DateTime?, name: CodeableConcept?, performer: Reference?, status: String?, subject: Reference?) {
 		self.init(json: nil)
 		if nil != diagnosticDateTime {
 			self.diagnosticDateTime = diagnosticDateTime
@@ -110,7 +110,7 @@ public class DiagnosticReport: FHIRResource
 				self.conclusion = val
 			}
 			if let val = js["diagnosticDateTime"] as? String {
-				self.diagnosticDateTime = NSDate(json: val)
+				self.diagnosticDateTime = DateTime(string: val)
 			}
 			if let val = js["diagnosticPeriod"] as? JSONDictionary {
 				self.diagnosticPeriod = Period(json: val, owner: self)
@@ -125,7 +125,7 @@ public class DiagnosticReport: FHIRResource
 				self.imagingStudy = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["issued"] as? String {
-				self.issued = NSDate(json: val)
+				self.issued = DateTime(string: val)
 			}
 			if let val = js["name"] as? JSONDictionary {
 				self.name = CodeableConcept(json: val, owner: self)

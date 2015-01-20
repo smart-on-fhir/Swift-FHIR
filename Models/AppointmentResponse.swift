@@ -2,7 +2,7 @@
 //  AppointmentResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (appointmentresponse.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (appointmentresponse.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -25,7 +25,7 @@ public class AppointmentResponse: FHIRResource
 	public var comment: String?
 	
 	/// Date/Time that the appointment is to conclude
-	public var end: NSDate?
+	public var end: Instant?
 	
 	/// External Ids for this item
 	public var identifier: [Identifier]?
@@ -34,7 +34,7 @@ public class AppointmentResponse: FHIRResource
 	public var individual: [Reference]?
 	
 	/// Date when the response was recorded or last updated
-	public var lastModified: NSDate?
+	public var lastModified: DateTime?
 	
 	/// Who recorded the appointment response
 	public var lastModifiedBy: Reference?
@@ -46,7 +46,7 @@ public class AppointmentResponse: FHIRResource
 	public var participantType: [CodeableConcept]?
 	
 	/// Date/Time that the appointment is to take place
-	public var start: NSDate?
+	public var start: Instant?
 	
 	public convenience init(appointment: Reference?, participantStatus: String?) {
 		self.init(json: nil)
@@ -68,7 +68,7 @@ public class AppointmentResponse: FHIRResource
 				self.comment = val
 			}
 			if let val = js["end"] as? String {
-				self.end = NSDate(json: val)
+				self.end = Instant(string: val)
 			}
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
@@ -77,7 +77,7 @@ public class AppointmentResponse: FHIRResource
 				self.individual = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["lastModified"] as? String {
-				self.lastModified = NSDate(json: val)
+				self.lastModified = DateTime(string: val)
 			}
 			if let val = js["lastModifiedBy"] as? JSONDictionary {
 				self.lastModifiedBy = Reference(json: val, owner: self)
@@ -89,7 +89,7 @@ public class AppointmentResponse: FHIRResource
 				self.participantType = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["start"] as? String {
-				self.start = NSDate(json: val)
+				self.start = Instant(string: val)
 			}
 		}
 	}

@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (questionnaire.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (questionnaire.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,7 +22,7 @@ public class Questionnaire: FHIRResource
 	}
 	
 	/// Date this version was authored
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// Grouped questions
 	public var group: QuestionnaireGroup?
@@ -53,7 +53,7 @@ public class Questionnaire: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["group"] as? JSONDictionary {
 				self.group = QuestionnaireGroup(json: val, owner: self)

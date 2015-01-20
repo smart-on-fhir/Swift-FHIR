@@ -2,7 +2,7 @@
 //  PharmacyClaim.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (pharmacyclaim.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (pharmacyclaim.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,7 +22,7 @@ public class PharmacyClaim: FHIRResource
 	}
 	
 	/// Accident Date
-	public var accident: NSDate?
+	public var accident: Date?
 	
 	/// Accident Type
 	public var accidentType: Coding?
@@ -37,7 +37,7 @@ public class PharmacyClaim: FHIRResource
 	public var coverage: [PharmacyClaimCoverage]?
 	
 	/// Creation date
-	public var created: NSDate?
+	public var created: DateTime?
 	
 	/// Diagnosis
 	public var diagnosis: [PharmacyClaimDiagnosis]?
@@ -113,7 +113,7 @@ public class PharmacyClaim: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["accident"] as? String {
-				self.accident = NSDate(json: val)
+				self.accident = Date(string: val)
 			}
 			if let val = js["accidentType"] as? JSONDictionary {
 				self.accidentType = Coding(json: val, owner: self)
@@ -128,7 +128,7 @@ public class PharmacyClaim: FHIRResource
 				self.coverage = PharmacyClaimCoverage.from(val, owner: self) as? [PharmacyClaimCoverage]
 			}
 			if let val = js["created"] as? String {
-				self.created = NSDate(json: val)
+				self.created = DateTime(string: val)
 			}
 			if let val = js["diagnosis"] as? [JSONDictionary] {
 				self.diagnosis = PharmacyClaimDiagnosis.from(val, owner: self) as? [PharmacyClaimDiagnosis]
@@ -367,7 +367,7 @@ public class PharmacyClaimItem: FHIRElement
 	public var service: Coding?
 	
 	/// Date of Service
-	public var serviceDate: NSDate?
+	public var serviceDate: Date?
 	
 	/// Service Sub-location
 	public var subsite: [Coding]?
@@ -431,7 +431,7 @@ public class PharmacyClaimItem: FHIRElement
 				self.service = Coding(json: val, owner: self)
 			}
 			if let val = js["serviceDate"] as? String {
-				self.serviceDate = NSDate(json: val)
+				self.serviceDate = Date(string: val)
 			}
 			if let val = js["subsite"] as? [JSONDictionary] {
 				self.subsite = Coding.from(val, owner: self) as? [Coding]

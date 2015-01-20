@@ -2,7 +2,7 @@
 //  NutritionOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (nutritionorder.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (nutritionorder.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -24,7 +24,7 @@ public class NutritionOrder: FHIRResource
 	public var allergyIntolerance: [Reference]?
 	
 	/// Date and time the nutrition order was requested
-	public var dateTime: NSDate?
+	public var dateTime: DateTime?
 	
 	/// The encounter associated with that this nutrition order
 	public var encounter: Reference?
@@ -50,7 +50,7 @@ public class NutritionOrder: FHIRResource
 	/// The person who requires the diet, formula or nutritional supplement
 	public var subject: Reference?
 	
-	public convenience init(dateTime: NSDate?, subject: Reference?) {
+	public convenience init(dateTime: DateTime?, subject: Reference?) {
 		self.init(json: nil)
 		if nil != dateTime {
 			self.dateTime = dateTime
@@ -67,7 +67,7 @@ public class NutritionOrder: FHIRResource
 				self.allergyIntolerance = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["dateTime"] as? String {
-				self.dateTime = NSDate(json: val)
+				self.dateTime = DateTime(string: val)
 			}
 			if let val = js["encounter"] as? JSONDictionary {
 				self.encounter = Reference(json: val, owner: self)

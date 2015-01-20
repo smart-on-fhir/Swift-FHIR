@@ -2,7 +2,7 @@
 //  ImmunizationTests.swift
 //  ImmunizationTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,11 +22,11 @@ class ImmunizationTests: FHIRModelTestCase
 	func testImmunization1() {
 		let inst = instantiateFrom("immunization-example-refused.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Immunization instance")
-	
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2013-01-10")!)
+		
+		XCTAssertEqual(inst!.date!.description, "2013-01-10")
 		XCTAssertEqual(inst!.explanation!.refusalReason![0].coding![0].code!, "MEDPREC")
 		XCTAssertEqual(inst!.explanation!.refusalReason![0].coding![0].display!, "medical precaution")
-		XCTAssertEqual(inst!.explanation!.refusalReason![0].coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/ActReason")!)
+		XCTAssertEqual(inst!.explanation!.refusalReason![0].coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/ActReason")
 		XCTAssertTrue(inst!.refusedIndicator!)
 		XCTAssertFalse(inst!.reported!)
 		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
@@ -36,11 +36,11 @@ class ImmunizationTests: FHIRModelTestCase
 	func testImmunization2() {
 		let inst = instantiateFrom("immunization-example-refused.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Immunization instance")
-	
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2013-01-10")!)
+		
+		XCTAssertEqual(inst!.date!.description, "2013-01-10")
 		XCTAssertEqual(inst!.explanation!.refusalReason![0].coding![0].code!, "MEDPREC")
 		XCTAssertEqual(inst!.explanation!.refusalReason![0].coding![0].display!, "medical precaution")
-		XCTAssertEqual(inst!.explanation!.refusalReason![0].coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/ActReason")!)
+		XCTAssertEqual(inst!.explanation!.refusalReason![0].coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/ActReason")
 		XCTAssertTrue(inst!.refusedIndicator!)
 		XCTAssertFalse(inst!.reported!)
 		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
@@ -50,11 +50,11 @@ class ImmunizationTests: FHIRModelTestCase
 	func testImmunization3() {
 		let inst = instantiateFrom("immunization-example-refused.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Immunization instance")
-	
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2013-01-10")!)
+		
+		XCTAssertEqual(inst!.date!.description, "2013-01-10")
 		XCTAssertEqual(inst!.explanation!.refusalReason![0].coding![0].code!, "MEDPREC")
 		XCTAssertEqual(inst!.explanation!.refusalReason![0].coding![0].display!, "medical precaution")
-		XCTAssertEqual(inst!.explanation!.refusalReason![0].coding![0].system!, NSURL(string: "http://hl7.org/fhir/v3/ActReason")!)
+		XCTAssertEqual(inst!.explanation!.refusalReason![0].coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/ActReason")
 		XCTAssertTrue(inst!.refusedIndicator!)
 		XCTAssertFalse(inst!.reported!)
 		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
@@ -64,9 +64,9 @@ class ImmunizationTests: FHIRModelTestCase
 	func testImmunization4() {
 		let inst = instantiateFrom("immunization-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Immunization instance")
-	
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2013-01-10")!)
-		XCTAssertEqual(inst!.expirationDate!, NSDate.dateFromISOString("2015-02-15")!)
+		
+		XCTAssertEqual(inst!.date!.description, "2013-01-10")
+		XCTAssertEqual(inst!.expirationDate!.description, "2015-02-15")
 		XCTAssertEqual(inst!.lotNumber!, "AAJN11K")
 		XCTAssertEqual(inst!.performer!.reference!, "Practitioner/example")
 		XCTAssertFalse(inst!.refusedIndicator!)
@@ -78,9 +78,9 @@ class ImmunizationTests: FHIRModelTestCase
 	func testImmunization5() {
 		let inst = instantiateFrom("immunization-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Immunization instance")
-	
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2013-01-10")!)
-		XCTAssertEqual(inst!.expirationDate!, NSDate.dateFromISOString("2015-02-15")!)
+		
+		XCTAssertEqual(inst!.date!.description, "2013-01-10")
+		XCTAssertEqual(inst!.expirationDate!.description, "2015-02-15")
 		XCTAssertEqual(inst!.lotNumber!, "AAJN11K")
 		XCTAssertEqual(inst!.performer!.reference!, "Practitioner/example")
 		XCTAssertFalse(inst!.refusedIndicator!)

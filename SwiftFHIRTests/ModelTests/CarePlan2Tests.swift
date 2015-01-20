@@ -2,7 +2,7 @@
 //  CarePlan2Tests.swift
 //  CarePlan2Tests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,7 +22,7 @@ class CarePlan2Tests: FHIRModelTestCase
 	func testCarePlan21() {
 		let inst = instantiateFrom("careplan2-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a CarePlan2 instance")
-	
+		
 		XCTAssertEqual(inst!.activity![0].reference!, "Procedure/12345")
 		XCTAssertEqual(inst!.concern![0].display!, "obesity")
 		XCTAssertEqual(inst!.concern![0].reference!, "#p1")
@@ -36,14 +36,14 @@ class CarePlan2Tests: FHIRModelTestCase
 		XCTAssertEqual(inst!.participant![1].role!.text!, "adviser")
 		XCTAssertEqual(inst!.patient!.display!, "Peter James Chalmers")
 		XCTAssertEqual(inst!.patient!.reference!, "Patient/example")
-		XCTAssertEqual(inst!.period!.end!, NSDate.dateFromISOString("2013-01-01")!)
+		XCTAssertEqual(inst!.period!.end!.description, "2013-01-01")
 		XCTAssertEqual(inst!.status!, "active")
 	}
 	
 	func testCarePlan22() {
 		let inst = instantiateFrom("careplan2-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a CarePlan2 instance")
-	
+		
 		XCTAssertEqual(inst!.activity![0].reference!, "Procedure/12345")
 		XCTAssertEqual(inst!.concern![0].display!, "obesity")
 		XCTAssertEqual(inst!.concern![0].reference!, "#p1")
@@ -57,14 +57,14 @@ class CarePlan2Tests: FHIRModelTestCase
 		XCTAssertEqual(inst!.participant![1].role!.text!, "adviser")
 		XCTAssertEqual(inst!.patient!.display!, "Peter James Chalmers")
 		XCTAssertEqual(inst!.patient!.reference!, "Patient/example")
-		XCTAssertEqual(inst!.period!.end!, NSDate.dateFromISOString("2013-01-01")!)
+		XCTAssertEqual(inst!.period!.end!.description, "2013-01-01")
 		XCTAssertEqual(inst!.status!, "active")
 	}
 	
 	func testCarePlan23() {
 		let inst = instantiateFrom("careplan2-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a CarePlan2 instance")
-	
+		
 		XCTAssertEqual(inst!.activity![0].reference!, "Procedure/12345")
 		XCTAssertEqual(inst!.concern![0].display!, "obesity")
 		XCTAssertEqual(inst!.concern![0].reference!, "#p1")
@@ -78,7 +78,7 @@ class CarePlan2Tests: FHIRModelTestCase
 		XCTAssertEqual(inst!.participant![1].role!.text!, "adviser")
 		XCTAssertEqual(inst!.patient!.display!, "Peter James Chalmers")
 		XCTAssertEqual(inst!.patient!.reference!, "Patient/example")
-		XCTAssertEqual(inst!.period!.end!, NSDate.dateFromISOString("2013-01-01")!)
+		XCTAssertEqual(inst!.period!.end!.description, "2013-01-01")
 		XCTAssertEqual(inst!.status!, "active")
 	}
 }

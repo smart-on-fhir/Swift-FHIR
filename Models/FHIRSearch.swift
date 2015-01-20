@@ -16,11 +16,11 @@ let FHIRSearchErrorDomain = "FHIRSearchErrorDomain"
 
 	Searches are instantiated from MongoDB-like query constructs, like:
 
-		let srch = Patient.search(["address": "Boston", "gender": "male", "given": ["$exact": "Willis"]])
+	    let srch = Patient.search(["address": "Boston", "gender": "male", "given": ["$exact": "Willis"]])
 
 	Then srch.perform() will run the following URL query against the server:
 
-		"Patient?address=Boston&gender=male&given:exact=Willis"
+	    "Patient?address=Boston&gender=male&given:exact=Willis"
  */
 public class FHIRSearch
 {
@@ -243,13 +243,13 @@ struct FHIRSearchConstruct
 					handler.handle(param, value: val)
 				}
 					
-					// this is a sub-structure, expand
+				// this is a sub-structure, expand
 				else if let dict = val as? [String: AnyObject] {
 					let construct = FHIRSearchConstruct(construct: dict)
 					param.children = construct.prepare(param)
 				}
 					
-					// a string
+				// a string
 				else if let str = val as? String {
 					param.value = str
 				}

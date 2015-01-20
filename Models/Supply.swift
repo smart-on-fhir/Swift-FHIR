@@ -2,7 +2,7 @@
 //  Supply.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (supply.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (supply.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -100,7 +100,7 @@ public class SupplyDispense: FHIRElement
 	public var type: CodeableConcept?
 	
 	/// Handover time
-	public var whenHandedOver: Period?
+	public var whenHandedOver: DateTime?
 	
 	/// Dispensing time
 	public var whenPrepared: Period?
@@ -132,8 +132,8 @@ public class SupplyDispense: FHIRElement
 			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["whenHandedOver"] as? JSONDictionary {
-				self.whenHandedOver = Period(json: val, owner: self)
+			if let val = js["whenHandedOver"] as? String {
+				self.whenHandedOver = DateTime(string: val)
 			}
 			if let val = js["whenPrepared"] as? JSONDictionary {
 				self.whenPrepared = Period(json: val, owner: self)

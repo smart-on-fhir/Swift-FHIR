@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (ElementDefinition.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (ElementDefinition.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -57,10 +57,10 @@ public class ElementDefinition: FHIRElement
 	public var defaultValueContactPoint: ContactPoint?
 	
 	/// Specified value it missing from instance
-	public var defaultValueDate: NSDate?
+	public var defaultValueDate: Date?
 	
 	/// Specified value it missing from instance
-	public var defaultValueDateTime: NSDate?
+	public var defaultValueDateTime: DateTime?
 	
 	/// Specified value it missing from instance
 	public var defaultValueDecimal: NSDecimalNumber?
@@ -72,7 +72,7 @@ public class ElementDefinition: FHIRElement
 	public var defaultValueIdentifier: Identifier?
 	
 	/// Specified value it missing from instance
-	public var defaultValueInstant: NSDate?
+	public var defaultValueInstant: Instant?
 	
 	/// Specified value it missing from instance
 	public var defaultValueInteger: Int?
@@ -96,7 +96,7 @@ public class ElementDefinition: FHIRElement
 	public var defaultValueString: String?
 	
 	/// Specified value it missing from instance
-	public var defaultValueTime: NSDate?
+	public var defaultValueTime: Time?
 	
 	/// Specified value it missing from instance
 	public var defaultValueTiming: Timing?
@@ -129,10 +129,10 @@ public class ElementDefinition: FHIRElement
 	public var exampleContactPoint: ContactPoint?
 	
 	/// Example value: [as defined for type]
-	public var exampleDate: NSDate?
+	public var exampleDate: Date?
 	
 	/// Example value: [as defined for type]
-	public var exampleDateTime: NSDate?
+	public var exampleDateTime: DateTime?
 	
 	/// Example value: [as defined for type]
 	public var exampleDecimal: NSDecimalNumber?
@@ -144,7 +144,7 @@ public class ElementDefinition: FHIRElement
 	public var exampleIdentifier: Identifier?
 	
 	/// Example value: [as defined for type]
-	public var exampleInstant: NSDate?
+	public var exampleInstant: Instant?
 	
 	/// Example value: [as defined for type]
 	public var exampleInteger: Int?
@@ -168,7 +168,7 @@ public class ElementDefinition: FHIRElement
 	public var exampleString: String?
 	
 	/// Example value: [as defined for type]
-	public var exampleTime: NSDate?
+	public var exampleTime: Time?
 	
 	/// Example value: [as defined for type]
 	public var exampleTiming: Timing?
@@ -201,10 +201,10 @@ public class ElementDefinition: FHIRElement
 	public var fixedContactPoint: ContactPoint?
 	
 	/// Value must be exactly this
-	public var fixedDate: NSDate?
+	public var fixedDate: Date?
 	
 	/// Value must be exactly this
-	public var fixedDateTime: NSDate?
+	public var fixedDateTime: DateTime?
 	
 	/// Value must be exactly this
 	public var fixedDecimal: NSDecimalNumber?
@@ -216,7 +216,7 @@ public class ElementDefinition: FHIRElement
 	public var fixedIdentifier: Identifier?
 	
 	/// Value must be exactly this
-	public var fixedInstant: NSDate?
+	public var fixedInstant: Instant?
 	
 	/// Value must be exactly this
 	public var fixedInteger: Int?
@@ -240,7 +240,7 @@ public class ElementDefinition: FHIRElement
 	public var fixedString: String?
 	
 	/// Value must be exactly this
-	public var fixedTime: NSDate?
+	public var fixedTime: Time?
 	
 	/// Value must be exactly this
 	public var fixedTiming: Timing?
@@ -309,10 +309,10 @@ public class ElementDefinition: FHIRElement
 	public var patternContactPoint: ContactPoint?
 	
 	/// Value must have at least these property values
-	public var patternDate: NSDate?
+	public var patternDate: Date?
 	
 	/// Value must have at least these property values
-	public var patternDateTime: NSDate?
+	public var patternDateTime: DateTime?
 	
 	/// Value must have at least these property values
 	public var patternDecimal: NSDecimalNumber?
@@ -324,7 +324,7 @@ public class ElementDefinition: FHIRElement
 	public var patternIdentifier: Identifier?
 	
 	/// Value must have at least these property values
-	public var patternInstant: NSDate?
+	public var patternInstant: Instant?
 	
 	/// Value must have at least these property values
 	public var patternInteger: Int?
@@ -348,7 +348,7 @@ public class ElementDefinition: FHIRElement
 	public var patternString: String?
 	
 	/// Value must have at least these property values
-	public var patternTime: NSDate?
+	public var patternTime: Time?
 	
 	/// Value must have at least these property values
 	public var patternTiming: Timing?
@@ -403,7 +403,7 @@ public class ElementDefinition: FHIRElement
 				self.defaultValueAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["defaultValueBase64Binary"] as? String {
-				self.defaultValueBase64Binary = Base64Binary(json: val)
+				self.defaultValueBase64Binary = Base64Binary(string: val)
 			}
 			if let val = js["defaultValueBoolean"] as? Bool {
 				self.defaultValueBoolean = val
@@ -421,10 +421,10 @@ public class ElementDefinition: FHIRElement
 				self.defaultValueContactPoint = ContactPoint(json: val, owner: self)
 			}
 			if let val = js["defaultValueDate"] as? String {
-				self.defaultValueDate = NSDate(json: val)
+				self.defaultValueDate = Date(string: val)
 			}
 			if let val = js["defaultValueDateTime"] as? String {
-				self.defaultValueDateTime = NSDate(json: val)
+				self.defaultValueDateTime = DateTime(string: val)
 			}
 			if let val = js["defaultValueDecimal"] as? NSNumber {
 				self.defaultValueDecimal = NSDecimalNumber(json: val)
@@ -436,7 +436,7 @@ public class ElementDefinition: FHIRElement
 				self.defaultValueIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["defaultValueInstant"] as? String {
-				self.defaultValueInstant = NSDate(json: val)
+				self.defaultValueInstant = Instant(string: val)
 			}
 			if let val = js["defaultValueInteger"] as? Int {
 				self.defaultValueInteger = val
@@ -460,13 +460,13 @@ public class ElementDefinition: FHIRElement
 				self.defaultValueString = val
 			}
 			if let val = js["defaultValueTime"] as? String {
-				self.defaultValueTime = NSDate(json: val)
+				self.defaultValueTime = Time(string: val)
 			}
 			if let val = js["defaultValueTiming"] as? JSONDictionary {
 				self.defaultValueTiming = Timing(json: val, owner: self)
 			}
 			if let val = js["defaultValueUri"] as? String {
-				self.defaultValueUri = NSURL(json: val)
+				self.defaultValueUri = NSURL(string: val)
 			}
 			if let val = js["exampleAddress"] as? JSONDictionary {
 				self.exampleAddress = Address(json: val, owner: self)
@@ -475,7 +475,7 @@ public class ElementDefinition: FHIRElement
 				self.exampleAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["exampleBase64Binary"] as? String {
-				self.exampleBase64Binary = Base64Binary(json: val)
+				self.exampleBase64Binary = Base64Binary(string: val)
 			}
 			if let val = js["exampleBoolean"] as? Bool {
 				self.exampleBoolean = val
@@ -493,10 +493,10 @@ public class ElementDefinition: FHIRElement
 				self.exampleContactPoint = ContactPoint(json: val, owner: self)
 			}
 			if let val = js["exampleDate"] as? String {
-				self.exampleDate = NSDate(json: val)
+				self.exampleDate = Date(string: val)
 			}
 			if let val = js["exampleDateTime"] as? String {
-				self.exampleDateTime = NSDate(json: val)
+				self.exampleDateTime = DateTime(string: val)
 			}
 			if let val = js["exampleDecimal"] as? NSNumber {
 				self.exampleDecimal = NSDecimalNumber(json: val)
@@ -508,7 +508,7 @@ public class ElementDefinition: FHIRElement
 				self.exampleIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["exampleInstant"] as? String {
-				self.exampleInstant = NSDate(json: val)
+				self.exampleInstant = Instant(string: val)
 			}
 			if let val = js["exampleInteger"] as? Int {
 				self.exampleInteger = val
@@ -532,13 +532,13 @@ public class ElementDefinition: FHIRElement
 				self.exampleString = val
 			}
 			if let val = js["exampleTime"] as? String {
-				self.exampleTime = NSDate(json: val)
+				self.exampleTime = Time(string: val)
 			}
 			if let val = js["exampleTiming"] as? JSONDictionary {
 				self.exampleTiming = Timing(json: val, owner: self)
 			}
 			if let val = js["exampleUri"] as? String {
-				self.exampleUri = NSURL(json: val)
+				self.exampleUri = NSURL(string: val)
 			}
 			if let val = js["fixedAddress"] as? JSONDictionary {
 				self.fixedAddress = Address(json: val, owner: self)
@@ -547,7 +547,7 @@ public class ElementDefinition: FHIRElement
 				self.fixedAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["fixedBase64Binary"] as? String {
-				self.fixedBase64Binary = Base64Binary(json: val)
+				self.fixedBase64Binary = Base64Binary(string: val)
 			}
 			if let val = js["fixedBoolean"] as? Bool {
 				self.fixedBoolean = val
@@ -565,10 +565,10 @@ public class ElementDefinition: FHIRElement
 				self.fixedContactPoint = ContactPoint(json: val, owner: self)
 			}
 			if let val = js["fixedDate"] as? String {
-				self.fixedDate = NSDate(json: val)
+				self.fixedDate = Date(string: val)
 			}
 			if let val = js["fixedDateTime"] as? String {
-				self.fixedDateTime = NSDate(json: val)
+				self.fixedDateTime = DateTime(string: val)
 			}
 			if let val = js["fixedDecimal"] as? NSNumber {
 				self.fixedDecimal = NSDecimalNumber(json: val)
@@ -580,7 +580,7 @@ public class ElementDefinition: FHIRElement
 				self.fixedIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["fixedInstant"] as? String {
-				self.fixedInstant = NSDate(json: val)
+				self.fixedInstant = Instant(string: val)
 			}
 			if let val = js["fixedInteger"] as? Int {
 				self.fixedInteger = val
@@ -604,13 +604,13 @@ public class ElementDefinition: FHIRElement
 				self.fixedString = val
 			}
 			if let val = js["fixedTime"] as? String {
-				self.fixedTime = NSDate(json: val)
+				self.fixedTime = Time(string: val)
 			}
 			if let val = js["fixedTiming"] as? JSONDictionary {
 				self.fixedTiming = Timing(json: val, owner: self)
 			}
 			if let val = js["fixedUri"] as? String {
-				self.fixedUri = NSURL(json: val)
+				self.fixedUri = NSURL(string: val)
 			}
 			if let val = js["formal"] as? String {
 				self.formal = val
@@ -655,7 +655,7 @@ public class ElementDefinition: FHIRElement
 				self.patternAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["patternBase64Binary"] as? String {
-				self.patternBase64Binary = Base64Binary(json: val)
+				self.patternBase64Binary = Base64Binary(string: val)
 			}
 			if let val = js["patternBoolean"] as? Bool {
 				self.patternBoolean = val
@@ -673,10 +673,10 @@ public class ElementDefinition: FHIRElement
 				self.patternContactPoint = ContactPoint(json: val, owner: self)
 			}
 			if let val = js["patternDate"] as? String {
-				self.patternDate = NSDate(json: val)
+				self.patternDate = Date(string: val)
 			}
 			if let val = js["patternDateTime"] as? String {
-				self.patternDateTime = NSDate(json: val)
+				self.patternDateTime = DateTime(string: val)
 			}
 			if let val = js["patternDecimal"] as? NSNumber {
 				self.patternDecimal = NSDecimalNumber(json: val)
@@ -688,7 +688,7 @@ public class ElementDefinition: FHIRElement
 				self.patternIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["patternInstant"] as? String {
-				self.patternInstant = NSDate(json: val)
+				self.patternInstant = Instant(string: val)
 			}
 			if let val = js["patternInteger"] as? Int {
 				self.patternInteger = val
@@ -712,13 +712,13 @@ public class ElementDefinition: FHIRElement
 				self.patternString = val
 			}
 			if let val = js["patternTime"] as? String {
-				self.patternTime = NSDate(json: val)
+				self.patternTime = Time(string: val)
 			}
 			if let val = js["patternTiming"] as? JSONDictionary {
 				self.patternTiming = Timing(json: val, owner: self)
 			}
 			if let val = js["patternUri"] as? String {
-				self.patternUri = NSURL(json: val)
+				self.patternUri = NSURL(string: val)
 			}
 			if let val = js["representation"] as? [String] {
 				self.representation = val
@@ -801,7 +801,7 @@ public class ElementDefinitionBinding: FHIRElement
 				self.referenceReference = Reference(json: val, owner: self)
 			}
 			if let val = js["referenceUri"] as? String {
-				self.referenceUri = NSURL(json: val)
+				self.referenceUri = NSURL(string: val)
 			}
 		}
 	}
@@ -1004,7 +1004,7 @@ public class ElementDefinitionType: FHIRElement
 				self.code = val
 			}
 			if let val = js["profile"] as? String {
-				self.profile = NSURL(json: val)
+				self.profile = NSURL(string: val)
 			}
 		}
 	}

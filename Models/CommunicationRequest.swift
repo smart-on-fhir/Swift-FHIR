@@ -2,7 +2,7 @@
 //  CommunicationRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (communicationrequest.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (communicationrequest.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -34,7 +34,7 @@ public class CommunicationRequest: FHIRResource
 	public var medium: [CodeableConcept]?
 	
 	/// When ordered or proposed
-	public var orderedOn: NSDate?
+	public var orderedOn: DateTime?
 	
 	/// Message payload
 	public var payload: [CommunicationRequestPayload]?
@@ -52,7 +52,7 @@ public class CommunicationRequest: FHIRResource
 	public var requester: Reference?
 	
 	/// When scheduled
-	public var scheduledTime: NSDate?
+	public var scheduledTime: DateTime?
 	
 	/// Message sender
 	public var sender: Reference?
@@ -79,7 +79,7 @@ public class CommunicationRequest: FHIRResource
 				self.medium = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["orderedOn"] as? String {
-				self.orderedOn = NSDate(json: val)
+				self.orderedOn = DateTime(string: val)
 			}
 			if let val = js["payload"] as? [JSONDictionary] {
 				self.payload = CommunicationRequestPayload.from(val, owner: self) as? [CommunicationRequestPayload]
@@ -97,7 +97,7 @@ public class CommunicationRequest: FHIRResource
 				self.requester = Reference(json: val, owner: self)
 			}
 			if let val = js["scheduledTime"] as? String {
-				self.scheduledTime = NSDate(json: val)
+				self.scheduledTime = DateTime(string: val)
 			}
 			if let val = js["sender"] as? JSONDictionary {
 				self.sender = Reference(json: val, owner: self)

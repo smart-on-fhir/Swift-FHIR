@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (conformance.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (conformance.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -25,7 +25,7 @@ public class Conformance: FHIRResource
 	public var acceptUnknown: Bool?
 	
 	/// Publication Date(/time)
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// Human description of the conformance statement
 	public var description: String?
@@ -75,7 +75,7 @@ public class Conformance: FHIRResource
 	/// Logical id for this version of the statement
 	public var version: String?
 	
-	public convenience init(acceptUnknown: Bool?, date: NSDate?, fhirVersion: String?, format: [String]?, publisher: String?) {
+	public convenience init(acceptUnknown: Bool?, date: DateTime?, fhirVersion: String?, format: [String]?, publisher: String?) {
 		self.init(json: nil)
 		if nil != acceptUnknown {
 			self.acceptUnknown = acceptUnknown
@@ -101,7 +101,7 @@ public class Conformance: FHIRResource
 				self.acceptUnknown = val
 			}
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
@@ -235,7 +235,7 @@ public class ConformanceImplementation: FHIRElement
 				self.description = val
 			}
 			if let val = js["url"] as? String {
-				self.url = NSURL(json: val)
+				self.url = NSURL(string: val)
 			}
 		}
 	}
@@ -279,7 +279,7 @@ public class ConformanceMessaging: FHIRElement
 				self.documentation = val
 			}
 			if let val = js["endpoint"] as? String {
-				self.endpoint = NSURL(json: val)
+				self.endpoint = NSURL(string: val)
 			}
 			if let val = js["event"] as? [JSONDictionary] {
 				self.event = ConformanceMessagingEvent.from(val, owner: self) as? [ConformanceMessagingEvent]
@@ -498,7 +498,7 @@ public class ConformanceRestOperation: FHIRElement
 		get { return "ConformanceRestOperation" }
 	}
 	
-	/// The the operation/query is defined
+	/// The defined operation/query
 	public var definition: Reference?
 	
 	/// Name by which the operation/query is invoked
@@ -689,7 +689,7 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 				self.chain = val
 			}
 			if let val = js["definition"] as? String {
-				self.definition = NSURL(json: val)
+				self.definition = NSURL(string: val)
 			}
 			if let val = js["documentation"] as? String {
 				self.documentation = val
@@ -768,7 +768,7 @@ public class ConformanceRestSecurityCertificate: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["blob"] as? String {
-				self.blob = Base64Binary(json: val)
+				self.blob = Base64Binary(string: val)
 			}
 			if let val = js["type"] as? String {
 				self.type = val
@@ -794,7 +794,7 @@ public class ConformanceSoftware: FHIRElement
 	public var name: String?
 	
 	/// Date this version released
-	public var releaseDate: NSDate?
+	public var releaseDate: DateTime?
 	
 	/// Version covered by this statement
 	public var version: String?
@@ -813,7 +813,7 @@ public class ConformanceSoftware: FHIRElement
 				self.name = val
 			}
 			if let val = js["releaseDate"] as? String {
-				self.releaseDate = NSDate(json: val)
+				self.releaseDate = DateTime(string: val)
 			}
 			if let val = js["version"] as? String {
 				self.version = val

@@ -2,7 +2,7 @@
 //  ImagingObjectSelection.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (imagingobjectselection.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (imagingobjectselection.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -25,7 +25,7 @@ public class ImagingObjectSelection: FHIRResource
 	public var author: Reference?
 	
 	/// Authoring time of the selection
-	public var authoringTime: NSDate?
+	public var authoringTime: DateTime?
 	
 	/// Description text
 	public var description: String?
@@ -65,7 +65,7 @@ public class ImagingObjectSelection: FHIRResource
 				self.author = Reference(json: val, owner: self)
 			}
 			if let val = js["authoringTime"] as? String {
-				self.authoringTime = NSDate(json: val)
+				self.authoringTime = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
@@ -127,7 +127,7 @@ public class ImagingObjectSelectionStudy: FHIRElement
 				self.retrieveAETitle = val
 			}
 			if let val = js["retrieveUrl"] as? String {
-				self.retrieveUrl = NSURL(json: val)
+				self.retrieveUrl = NSURL(string: val)
 			}
 			if let val = js["series"] as? [JSONDictionary] {
 				self.series = ImagingObjectSelectionStudySeries.from(val, owner: self) as? [ImagingObjectSelectionStudySeries]
@@ -183,7 +183,7 @@ public class ImagingObjectSelectionStudySeries: FHIRElement
 				self.retrieveAETitle = val
 			}
 			if let val = js["retrieveUrl"] as? String {
-				self.retrieveUrl = NSURL(json: val)
+				self.retrieveUrl = NSURL(string: val)
 			}
 			if let val = js["uid"] as? String {
 				self.uid = val
@@ -233,7 +233,7 @@ public class ImagingObjectSelectionStudySeriesInstance: FHIRElement
 				self.retrieveAETitle = val
 			}
 			if let val = js["retrieveUrl"] as? String {
-				self.retrieveUrl = NSURL(json: val)
+				self.retrieveUrl = NSURL(string: val)
 			}
 			if let val = js["sopClass"] as? String {
 				self.sopClass = val

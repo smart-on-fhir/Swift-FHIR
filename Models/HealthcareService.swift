@@ -2,7 +2,7 @@
 //  HealthcareService.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (healthcareservice.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (healthcareservice.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -143,7 +143,7 @@ public class HealthcareService: FHIRResource
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["imageURI"] as? String {
-				self.imageURI = NSURL(json: val)
+				self.imageURI = NSURL(string: val)
 			}
 			if let val = js["location"] as? JSONDictionary {
 				self.location = Reference(json: val, owner: self)
@@ -196,10 +196,10 @@ public class HealthcareServiceAvailableTime: FHIRElement
 	public var allDay: Bool?
 	
 	/// The closing time of day (the date is not included). Note: If the AllDay flag is set, then this time is ignored
-	public var availableEndTime: NSDate?
+	public var availableEndTime: DateTime?
 	
 	/// The opening time of day (the date is not included). Note: If the AllDay flag is set, then this time is ignored
-	public var availableStartTime: NSDate?
+	public var availableStartTime: DateTime?
 	
 	/// Indicates which Days of the week are available between the Start and End Times
 	public var daysOfWeek: [CodeableConcept]?
@@ -211,10 +211,10 @@ public class HealthcareServiceAvailableTime: FHIRElement
 				self.allDay = val
 			}
 			if let val = js["availableEndTime"] as? String {
-				self.availableEndTime = NSDate(json: val)
+				self.availableEndTime = DateTime(string: val)
 			}
 			if let val = js["availableStartTime"] as? String {
-				self.availableStartTime = NSDate(json: val)
+				self.availableStartTime = DateTime(string: val)
 			}
 			if let val = js["daysOfWeek"] as? [JSONDictionary] {
 				self.daysOfWeek = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
@@ -237,10 +237,10 @@ public class HealthcareServiceNotAvailableTime: FHIRElement
 	public var description: String?
 	
 	/// Service is not available (seasonally or for a public holiday) until this date
-	public var endDate: NSDate?
+	public var endDate: DateTime?
 	
 	/// Service is not available (seasonally or for a public holiday) from this date
-	public var startDate: NSDate?
+	public var startDate: DateTime?
 	
 	public convenience init(description: String?) {
 		self.init(json: nil)
@@ -256,10 +256,10 @@ public class HealthcareServiceNotAvailableTime: FHIRElement
 				self.description = val
 			}
 			if let val = js["endDate"] as? String {
-				self.endDate = NSDate(json: val)
+				self.endDate = DateTime(string: val)
 			}
 			if let val = js["startDate"] as? String {
-				self.startDate = NSDate(json: val)
+				self.startDate = DateTime(string: val)
 			}
 		}
 	}

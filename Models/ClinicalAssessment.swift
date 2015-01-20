@@ -2,7 +2,7 @@
 //  ClinicalAssessment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (clinicalassessment.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (clinicalassessment.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -32,7 +32,7 @@ public class ClinicalAssessment: FHIRResource
 	public var careplan: Reference?
 	
 	/// When the assessment occurred
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// Why/how the assessment was performed
 	public var description: String?
@@ -73,7 +73,7 @@ public class ClinicalAssessment: FHIRResource
 	/// Summary of the assessment
 	public var summary: String?
 	
-	public convenience init(assessor: Reference?, date: NSDate?, patient: Reference?) {
+	public convenience init(assessor: Reference?, date: DateTime?, patient: Reference?) {
 		self.init(json: nil)
 		if nil != assessor {
 			self.assessor = assessor
@@ -99,7 +99,7 @@ public class ClinicalAssessment: FHIRResource
 				self.careplan = Reference(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
@@ -126,7 +126,7 @@ public class ClinicalAssessment: FHIRResource
 				self.prognosis = val
 			}
 			if let val = js["protocol"] as? String {
-				self.protokol = NSURL(json: val)
+				self.protokol = NSURL(string: val)
 			}
 			if let val = js["referral"] as? JSONDictionary {
 				self.referral = Reference(json: val, owner: self)

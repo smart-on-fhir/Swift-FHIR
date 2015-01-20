@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (provenance.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (provenance.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -44,12 +44,12 @@ public class Provenance: FHIRResource
 	public var reason: CodeableConcept?
 	
 	/// When the activity was recorded / updated
-	public var recorded: NSDate?
+	public var recorded: Instant?
 	
 	/// Target Reference(s) (usually version specific)
 	public var target: [Reference]?
 	
-	public convenience init(recorded: NSDate?, target: [Reference]?) {
+	public convenience init(recorded: Instant?, target: [Reference]?) {
 		self.init(json: nil)
 		if nil != recorded {
 			self.recorded = recorded
@@ -84,7 +84,7 @@ public class Provenance: FHIRResource
 				self.reason = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["recorded"] as? String {
-				self.recorded = NSDate(json: val)
+				self.recorded = Instant(string: val)
 			}
 			if let val = js["target"] as? [JSONDictionary] {
 				self.target = Reference.from(val, owner: self) as? [Reference]
@@ -139,7 +139,7 @@ public class ProvenanceAgent: FHIRElement
 				self.display = val
 			}
 			if let val = js["reference"] as? String {
-				self.reference = NSURL(json: val)
+				self.reference = NSURL(string: val)
 			}
 			if let val = js["role"] as? JSONDictionary {
 				self.role = Coding(json: val, owner: self)
@@ -199,7 +199,7 @@ public class ProvenanceEntity: FHIRElement
 				self.display = val
 			}
 			if let val = js["reference"] as? String {
-				self.reference = NSURL(json: val)
+				self.reference = NSURL(string: val)
 			}
 			if let val = js["role"] as? String {
 				self.role = val

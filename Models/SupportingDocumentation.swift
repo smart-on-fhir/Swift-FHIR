@@ -2,7 +2,7 @@
 //  SupportingDocumentation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (supportingdocumentation.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (supportingdocumentation.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -25,7 +25,7 @@ public class SupportingDocumentation: FHIRResource
 	public var author: Reference?
 	
 	/// Creation date
-	public var created: NSDate?
+	public var created: DateTime?
 	
 	/// Supporting Files
 	public var detail: [SupportingDocumentationDetail]?
@@ -71,7 +71,7 @@ public class SupportingDocumentation: FHIRResource
 				self.author = Reference(json: val, owner: self)
 			}
 			if let val = js["created"] as? String {
-				self.created = NSDate(json: val)
+				self.created = DateTime(string: val)
 			}
 			if let val = js["detail"] as? [JSONDictionary] {
 				self.detail = SupportingDocumentationDetail.from(val, owner: self) as? [SupportingDocumentationDetail]
@@ -124,7 +124,7 @@ public class SupportingDocumentationDetail: FHIRElement
 	public var contentReference: Reference?
 	
 	/// Creation date and time
-	public var dateTime: NSDate?
+	public var dateTime: DateTime?
 	
 	/// LinkId
 	public var linkId: Int?
@@ -152,7 +152,7 @@ public class SupportingDocumentationDetail: FHIRElement
 				self.contentReference = Reference(json: val, owner: self)
 			}
 			if let val = js["dateTime"] as? String {
-				self.dateTime = NSDate(json: val)
+				self.dateTime = DateTime(string: val)
 			}
 			if let val = js["linkId"] as? Int {
 				self.linkId = val

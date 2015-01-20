@@ -2,7 +2,7 @@
 //  EligibilityResponseTests.swift
 //  EligibilityResponseTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,10 +22,10 @@ class EligibilityResponseTests: FHIRModelTestCase
 	func testEligibilityResponse1() {
 		let inst = instantiateFrom("eligibilityresponse-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a EligibilityResponse instance")
-	
-		XCTAssertEqual(inst!.created!, NSDate.dateFromISOString("2014-08-16")!)
+		
+		XCTAssertEqual(inst!.created!.description, "2014-08-16")
 		XCTAssertEqual(inst!.disposition!, "Policy is currently in-force.")
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.BenefitsInc.com/fhir/eligibilityresponse")!)
+		XCTAssertEqual(inst!.identifier![0].system!.absoluteString!, "http://www.BenefitsInc.com/fhir/eligibilityresponse")
 		XCTAssertEqual(inst!.identifier![0].value!, "881234")
 		XCTAssertEqual(inst!.organization!.reference!, "Organization/2")
 		XCTAssertEqual(inst!.outcome!, "complete")
@@ -36,10 +36,10 @@ class EligibilityResponseTests: FHIRModelTestCase
 	func testEligibilityResponse2() {
 		let inst = instantiateFrom("eligibilityresponse-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a EligibilityResponse instance")
-	
-		XCTAssertEqual(inst!.created!, NSDate.dateFromISOString("2014-08-16")!)
+		
+		XCTAssertEqual(inst!.created!.description, "2014-08-16")
 		XCTAssertEqual(inst!.disposition!, "Policy is currently in-force.")
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.BenefitsInc.com/fhir/eligibilityresponse")!)
+		XCTAssertEqual(inst!.identifier![0].system!.absoluteString!, "http://www.BenefitsInc.com/fhir/eligibilityresponse")
 		XCTAssertEqual(inst!.identifier![0].value!, "881234")
 		XCTAssertEqual(inst!.organization!.reference!, "Organization/2")
 		XCTAssertEqual(inst!.outcome!, "complete")
@@ -50,10 +50,10 @@ class EligibilityResponseTests: FHIRModelTestCase
 	func testEligibilityResponse3() {
 		let inst = instantiateFrom("eligibilityresponse-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a EligibilityResponse instance")
-	
-		XCTAssertEqual(inst!.created!, NSDate.dateFromISOString("2014-08-16")!)
+		
+		XCTAssertEqual(inst!.created!.description, "2014-08-16")
 		XCTAssertEqual(inst!.disposition!, "Policy is currently in-force.")
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.BenefitsInc.com/fhir/eligibilityresponse")!)
+		XCTAssertEqual(inst!.identifier![0].system!.absoluteString!, "http://www.BenefitsInc.com/fhir/eligibilityresponse")
 		XCTAssertEqual(inst!.identifier![0].value!, "881234")
 		XCTAssertEqual(inst!.organization!.reference!, "Organization/2")
 		XCTAssertEqual(inst!.outcome!, "complete")

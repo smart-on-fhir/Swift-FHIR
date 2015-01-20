@@ -2,7 +2,7 @@
 //  DeviceComponentTests.swift
 //  DeviceComponentTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,15 +22,15 @@ class DeviceComponentTests: FHIRModelTestCase
 	func testDeviceComponent1() {
 		let inst = instantiateFrom("devicecomponent-example-prodspec.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a DeviceComponent instance")
-	
+		
 		XCTAssertEqual(inst!.identifier!.label!, "Handle ID")
 		XCTAssertEqual(inst!.identifier!.value!, "0")
 		XCTAssertEqual(inst!.languageCode!.coding![0].code!, "en-US")
-		XCTAssertEqual(inst!.languageCode!.coding![0].system!, NSURL(string: "http://tools.ietf.org/html/bcp47")!)
-		XCTAssertEqual(inst!.lastSystemChange!, NSDate.dateFromISOString("2014-10-07T14:45:00Z")!)
+		XCTAssertEqual(inst!.languageCode!.coding![0].system!.absoluteString!, "http://tools.ietf.org/html/bcp47")
+		XCTAssertEqual(inst!.lastSystemChange!.description, "2014-10-07T14:45:00Z")
 		XCTAssertEqual(inst!.operationalStatus![0].coding![0].code!, "0")
 		XCTAssertEqual(inst!.operationalStatus![0].coding![0].display!, "disconnected")
-		XCTAssertEqual(inst!.operationalStatus![0].coding![0].system!, NSURL(string: "urn:std:iso:11073:10101")!)
+		XCTAssertEqual(inst!.operationalStatus![0].coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
 		XCTAssertEqual(inst!.productionSpecification![0].productionSpec!, "xa-12324-b")
 		XCTAssertEqual(inst!.productionSpecification![0].specType!.coding![0].code!, "1")
 		XCTAssertEqual(inst!.productionSpecification![0].specType!.coding![0].display!, "Serial number")
@@ -46,21 +46,21 @@ class DeviceComponentTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.source!.reference!, "#d1")
 		XCTAssertEqual(inst!.type!.coding![0].code!, "2000")
 		XCTAssertEqual(inst!.type!.coding![0].display!, "MDC_DEV_ANALY_SAT_O2_MDS")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "urn:std:iso:11073:10101")!)
+		XCTAssertEqual(inst!.type!.coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
 	}
 	
 	func testDeviceComponent2() {
 		let inst = instantiateFrom("devicecomponent-example-prodspec.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a DeviceComponent instance")
-	
+		
 		XCTAssertEqual(inst!.identifier!.label!, "Handle ID")
 		XCTAssertEqual(inst!.identifier!.value!, "0")
 		XCTAssertEqual(inst!.languageCode!.coding![0].code!, "en-US")
-		XCTAssertEqual(inst!.languageCode!.coding![0].system!, NSURL(string: "http://tools.ietf.org/html/bcp47")!)
-		XCTAssertEqual(inst!.lastSystemChange!, NSDate.dateFromISOString("2014-10-07T14:45:00Z")!)
+		XCTAssertEqual(inst!.languageCode!.coding![0].system!.absoluteString!, "http://tools.ietf.org/html/bcp47")
+		XCTAssertEqual(inst!.lastSystemChange!.description, "2014-10-07T14:45:00Z")
 		XCTAssertEqual(inst!.operationalStatus![0].coding![0].code!, "0")
 		XCTAssertEqual(inst!.operationalStatus![0].coding![0].display!, "disconnected")
-		XCTAssertEqual(inst!.operationalStatus![0].coding![0].system!, NSURL(string: "urn:std:iso:11073:10101")!)
+		XCTAssertEqual(inst!.operationalStatus![0].coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
 		XCTAssertEqual(inst!.productionSpecification![0].productionSpec!, "xa-12324-b")
 		XCTAssertEqual(inst!.productionSpecification![0].specType!.coding![0].code!, "1")
 		XCTAssertEqual(inst!.productionSpecification![0].specType!.coding![0].display!, "Serial number")
@@ -76,21 +76,21 @@ class DeviceComponentTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.source!.reference!, "#d1")
 		XCTAssertEqual(inst!.type!.coding![0].code!, "2000")
 		XCTAssertEqual(inst!.type!.coding![0].display!, "MDC_DEV_ANALY_SAT_O2_MDS")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "urn:std:iso:11073:10101")!)
+		XCTAssertEqual(inst!.type!.coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
 	}
 	
 	func testDeviceComponent3() {
 		let inst = instantiateFrom("devicecomponent-example-prodspec.json")
 		XCTAssertNotNil(inst, "Must have instantiated a DeviceComponent instance")
-	
+		
 		XCTAssertEqual(inst!.identifier!.label!, "Handle ID")
 		XCTAssertEqual(inst!.identifier!.value!, "0")
 		XCTAssertEqual(inst!.languageCode!.coding![0].code!, "en-US")
-		XCTAssertEqual(inst!.languageCode!.coding![0].system!, NSURL(string: "http://tools.ietf.org/html/bcp47")!)
-		XCTAssertEqual(inst!.lastSystemChange!, NSDate.dateFromISOString("2014-10-07T14:45:00Z")!)
+		XCTAssertEqual(inst!.languageCode!.coding![0].system!.absoluteString!, "http://tools.ietf.org/html/bcp47")
+		XCTAssertEqual(inst!.lastSystemChange!.description, "2014-10-07T14:45:00Z")
 		XCTAssertEqual(inst!.operationalStatus![0].coding![0].code!, "0")
 		XCTAssertEqual(inst!.operationalStatus![0].coding![0].display!, "disconnected")
-		XCTAssertEqual(inst!.operationalStatus![0].coding![0].system!, NSURL(string: "urn:std:iso:11073:10101")!)
+		XCTAssertEqual(inst!.operationalStatus![0].coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
 		XCTAssertEqual(inst!.productionSpecification![0].productionSpec!, "xa-12324-b")
 		XCTAssertEqual(inst!.productionSpecification![0].specType!.coding![0].code!, "1")
 		XCTAssertEqual(inst!.productionSpecification![0].specType!.coding![0].display!, "Serial number")
@@ -106,42 +106,42 @@ class DeviceComponentTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.source!.reference!, "#d1")
 		XCTAssertEqual(inst!.type!.coding![0].code!, "2000")
 		XCTAssertEqual(inst!.type!.coding![0].display!, "MDC_DEV_ANALY_SAT_O2_MDS")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "urn:std:iso:11073:10101")!)
+		XCTAssertEqual(inst!.type!.coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
 	}
 	
 	func testDeviceComponent4() {
 		let inst = instantiateFrom("devicecomponent-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a DeviceComponent instance")
-	
+		
 		XCTAssertEqual(inst!.identifier!.label!, "Handle ID")
 		XCTAssertEqual(inst!.identifier!.value!, "0")
 		XCTAssertEqual(inst!.languageCode!.coding![0].code!, "en-US")
-		XCTAssertEqual(inst!.languageCode!.coding![0].system!, NSURL(string: "http://tools.ietf.org/html/bcp47")!)
-		XCTAssertEqual(inst!.lastSystemChange!, NSDate.dateFromISOString("2014-10-07T14:45:00Z")!)
+		XCTAssertEqual(inst!.languageCode!.coding![0].system!.absoluteString!, "http://tools.ietf.org/html/bcp47")
+		XCTAssertEqual(inst!.lastSystemChange!.description, "2014-10-07T14:45:00Z")
 		XCTAssertEqual(inst!.operationalStatus![0].coding![0].code!, "0")
 		XCTAssertEqual(inst!.operationalStatus![0].coding![0].display!, "disconnected")
-		XCTAssertEqual(inst!.operationalStatus![0].coding![0].system!, NSURL(string: "urn:std:iso:11073:10101")!)
+		XCTAssertEqual(inst!.operationalStatus![0].coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
 		XCTAssertEqual(inst!.source!.reference!, "#d1")
 		XCTAssertEqual(inst!.type!.coding![0].code!, "2000")
 		XCTAssertEqual(inst!.type!.coding![0].display!, "MDC_DEV_ANALY_SAT_O2_MDS")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "urn:std:iso:11073:10101")!)
+		XCTAssertEqual(inst!.type!.coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
 	}
 	
 	func testDeviceComponent5() {
 		let inst = instantiateFrom("devicecomponent-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a DeviceComponent instance")
-	
+		
 		XCTAssertEqual(inst!.identifier!.label!, "Handle ID")
 		XCTAssertEqual(inst!.identifier!.value!, "0")
 		XCTAssertEqual(inst!.languageCode!.coding![0].code!, "en-US")
-		XCTAssertEqual(inst!.languageCode!.coding![0].system!, NSURL(string: "http://tools.ietf.org/html/bcp47")!)
-		XCTAssertEqual(inst!.lastSystemChange!, NSDate.dateFromISOString("2014-10-07T14:45:00Z")!)
+		XCTAssertEqual(inst!.languageCode!.coding![0].system!.absoluteString!, "http://tools.ietf.org/html/bcp47")
+		XCTAssertEqual(inst!.lastSystemChange!.description, "2014-10-07T14:45:00Z")
 		XCTAssertEqual(inst!.operationalStatus![0].coding![0].code!, "0")
 		XCTAssertEqual(inst!.operationalStatus![0].coding![0].display!, "disconnected")
-		XCTAssertEqual(inst!.operationalStatus![0].coding![0].system!, NSURL(string: "urn:std:iso:11073:10101")!)
+		XCTAssertEqual(inst!.operationalStatus![0].coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
 		XCTAssertEqual(inst!.source!.reference!, "#d1")
 		XCTAssertEqual(inst!.type!.coding![0].code!, "2000")
 		XCTAssertEqual(inst!.type!.coding![0].display!, "MDC_DEV_ANALY_SAT_O2_MDS")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "urn:std:iso:11073:10101")!)
+		XCTAssertEqual(inst!.type!.coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
 	}
 }

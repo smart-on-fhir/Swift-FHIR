@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (conceptmap.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (conceptmap.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -25,7 +25,7 @@ public class ConceptMap: FHIRResource
 	public var copyright: String?
 	
 	/// Date for given status
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// Human language description of the concept map
 	public var description: String?
@@ -92,7 +92,7 @@ public class ConceptMap: FHIRResource
 				self.copyright = val
 			}
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
 				self.description = val
@@ -116,7 +116,7 @@ public class ConceptMap: FHIRResource
 				self.sourceReference = Reference(json: val, owner: self)
 			}
 			if let val = js["sourceUri"] as? String {
-				self.sourceUri = NSURL(json: val)
+				self.sourceUri = NSURL(string: val)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
@@ -125,7 +125,7 @@ public class ConceptMap: FHIRResource
 				self.targetReference = Reference(json: val, owner: self)
 			}
 			if let val = js["targetUri"] as? String {
-				self.targetUri = NSURL(json: val)
+				self.targetUri = NSURL(string: val)
 			}
 			if let val = js["telecom"] as? [JSONDictionary] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
@@ -168,7 +168,7 @@ public class ConceptMapElement: FHIRElement
 				self.code = val
 			}
 			if let val = js["codeSystem"] as? String {
-				self.codeSystem = NSURL(json: val)
+				self.codeSystem = NSURL(string: val)
 			}
 			if let val = js["dependsOn"] as? [JSONDictionary] {
 				self.dependsOn = ConceptMapElementDependsOn.from(val, owner: self) as? [ConceptMapElementDependsOn]
@@ -222,10 +222,10 @@ public class ConceptMapElementDependsOn: FHIRElement
 				self.code = val
 			}
 			if let val = js["codeSystem"] as? String {
-				self.codeSystem = NSURL(json: val)
+				self.codeSystem = NSURL(string: val)
 			}
 			if let val = js["element"] as? String {
-				self.element = NSURL(json: val)
+				self.element = NSURL(string: val)
 			}
 		}
 	}
@@ -272,7 +272,7 @@ public class ConceptMapElementMap: FHIRElement
 				self.code = val
 			}
 			if let val = js["codeSystem"] as? String {
-				self.codeSystem = NSURL(json: val)
+				self.codeSystem = NSURL(string: val)
 			}
 			if let val = js["comments"] as? String {
 				self.comments = val

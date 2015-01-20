@@ -2,7 +2,7 @@
 //  ImagingObjectSelectionTests.swift
 //  ImagingObjectSelectionTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,19 +22,19 @@ class ImagingObjectSelectionTests: FHIRModelTestCase
 	func testImagingObjectSelection1() {
 		let inst = instantiateFrom("imagingobjectselection-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a ImagingObjectSelection instance")
-	
-		XCTAssertEqual(inst!.authoringTime!, NSDate.dateFromISOString("2014-11-20T11:01:20")!)
+		
+		XCTAssertEqual(inst!.authoringTime!.description, "2014-11-20T11:01:20-08:00")
 		XCTAssertEqual(inst!.description!, "1 SC image (screen snapshot) and 2 CT images to share a chest CT exam")
 		XCTAssertEqual(inst!.patient!.reference!, "Patient/dicom")
-		XCTAssertEqual(inst!.study![0].series![0].instance![0].retrieveUrl!, NSURL(string: "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16749.2599092904")!)
+		XCTAssertEqual(inst!.study![0].series![0].instance![0].retrieveUrl!.absoluteString!, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16749.2599092904")
 		XCTAssertEqual(inst!.study![0].series![0].instance![0].sopClass!, "urn:oid:1.2.840.10008.5.1.4.1.1.7")
 		XCTAssertEqual(inst!.study![0].series![0].instance![0].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092902")
 		XCTAssertEqual(inst!.study![0].series![0].retrieveAETitle!, "SCP")
 		XCTAssertEqual(inst!.study![0].series![0].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16750.2599092901")
-		XCTAssertEqual(inst!.study![0].series![1].instance![0].retrieveUrl!, NSURL(string: "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16748.2599092903")!)
+		XCTAssertEqual(inst!.study![0].series![1].instance![0].retrieveUrl!.absoluteString!, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16748.2599092903")
 		XCTAssertEqual(inst!.study![0].series![1].instance![0].sopClass!, "urn:oid:1.2.840.10008.5.1.4.1.1.2")
 		XCTAssertEqual(inst!.study![0].series![1].instance![0].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092903")
-		XCTAssertEqual(inst!.study![0].series![1].instance![1].retrieveUrl!, NSURL(string: "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16750.2599092902")!)
+		XCTAssertEqual(inst!.study![0].series![1].instance![1].retrieveUrl!.absoluteString!, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16750.2599092902")
 		XCTAssertEqual(inst!.study![0].series![1].instance![1].sopClass!, "urn:oid:1.2.840.10008.5.1.4.1.1.2")
 		XCTAssertEqual(inst!.study![0].series![1].instance![1].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092904")
 		XCTAssertEqual(inst!.study![0].series![1].retrieveAETitle!, "SCP")
@@ -42,7 +42,7 @@ class ImagingObjectSelectionTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.study![0].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16749.2599092904")
 		XCTAssertEqual(inst!.title!.coding![0].code!, "113030")
 		XCTAssertEqual(inst!.title!.coding![0].display!, "Manifest")
-		XCTAssertEqual(inst!.title!.coding![0].system!, NSURL(string: "http://nema.org/dicom/dcid")!)
+		XCTAssertEqual(inst!.title!.coding![0].system!.absoluteString!, "http://nema.org/dicom/dcid")
 		XCTAssertEqual(inst!.title!.text!, "A set of objects that have been exported for sharing")
 		XCTAssertEqual(inst!.uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092901")
 	}
@@ -50,19 +50,19 @@ class ImagingObjectSelectionTests: FHIRModelTestCase
 	func testImagingObjectSelection2() {
 		let inst = instantiateFrom("imagingobjectselection-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a ImagingObjectSelection instance")
-	
-		XCTAssertEqual(inst!.authoringTime!, NSDate.dateFromISOString("2014-11-20T11:01:20")!)
+		
+		XCTAssertEqual(inst!.authoringTime!.description, "2014-11-20T11:01:20-08:00")
 		XCTAssertEqual(inst!.description!, "1 SC image (screen snapshot) and 2 CT images to share a chest CT exam")
 		XCTAssertEqual(inst!.patient!.reference!, "Patient/dicom")
-		XCTAssertEqual(inst!.study![0].series![0].instance![0].retrieveUrl!, NSURL(string: "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16749.2599092904")!)
+		XCTAssertEqual(inst!.study![0].series![0].instance![0].retrieveUrl!.absoluteString!, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16749.2599092904")
 		XCTAssertEqual(inst!.study![0].series![0].instance![0].sopClass!, "urn:oid:1.2.840.10008.5.1.4.1.1.7")
 		XCTAssertEqual(inst!.study![0].series![0].instance![0].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092902")
 		XCTAssertEqual(inst!.study![0].series![0].retrieveAETitle!, "SCP")
 		XCTAssertEqual(inst!.study![0].series![0].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16750.2599092901")
-		XCTAssertEqual(inst!.study![0].series![1].instance![0].retrieveUrl!, NSURL(string: "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16748.2599092903")!)
+		XCTAssertEqual(inst!.study![0].series![1].instance![0].retrieveUrl!.absoluteString!, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16748.2599092903")
 		XCTAssertEqual(inst!.study![0].series![1].instance![0].sopClass!, "urn:oid:1.2.840.10008.5.1.4.1.1.2")
 		XCTAssertEqual(inst!.study![0].series![1].instance![0].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092903")
-		XCTAssertEqual(inst!.study![0].series![1].instance![1].retrieveUrl!, NSURL(string: "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16750.2599092902")!)
+		XCTAssertEqual(inst!.study![0].series![1].instance![1].retrieveUrl!.absoluteString!, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16750.2599092902")
 		XCTAssertEqual(inst!.study![0].series![1].instance![1].sopClass!, "urn:oid:1.2.840.10008.5.1.4.1.1.2")
 		XCTAssertEqual(inst!.study![0].series![1].instance![1].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092904")
 		XCTAssertEqual(inst!.study![0].series![1].retrieveAETitle!, "SCP")
@@ -70,7 +70,7 @@ class ImagingObjectSelectionTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.study![0].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16749.2599092904")
 		XCTAssertEqual(inst!.title!.coding![0].code!, "113030")
 		XCTAssertEqual(inst!.title!.coding![0].display!, "Manifest")
-		XCTAssertEqual(inst!.title!.coding![0].system!, NSURL(string: "http://nema.org/dicom/dcid")!)
+		XCTAssertEqual(inst!.title!.coding![0].system!.absoluteString!, "http://nema.org/dicom/dcid")
 		XCTAssertEqual(inst!.title!.text!, "A set of objects that have been exported for sharing")
 		XCTAssertEqual(inst!.uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092901")
 	}
@@ -78,19 +78,19 @@ class ImagingObjectSelectionTests: FHIRModelTestCase
 	func testImagingObjectSelection3() {
 		let inst = instantiateFrom("imagingobjectselection-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a ImagingObjectSelection instance")
-	
-		XCTAssertEqual(inst!.authoringTime!, NSDate.dateFromISOString("2014-11-20T11:01:20")!)
+		
+		XCTAssertEqual(inst!.authoringTime!.description, "2014-11-20T11:01:20-08:00")
 		XCTAssertEqual(inst!.description!, "1 SC image (screen snapshot) and 2 CT images to share a chest CT exam")
 		XCTAssertEqual(inst!.patient!.reference!, "Patient/dicom")
-		XCTAssertEqual(inst!.study![0].series![0].instance![0].retrieveUrl!, NSURL(string: "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16749.2599092904")!)
+		XCTAssertEqual(inst!.study![0].series![0].instance![0].retrieveUrl!.absoluteString!, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16749.2599092904")
 		XCTAssertEqual(inst!.study![0].series![0].instance![0].sopClass!, "urn:oid:1.2.840.10008.5.1.4.1.1.7")
 		XCTAssertEqual(inst!.study![0].series![0].instance![0].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092902")
 		XCTAssertEqual(inst!.study![0].series![0].retrieveAETitle!, "SCP")
 		XCTAssertEqual(inst!.study![0].series![0].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16750.2599092901")
-		XCTAssertEqual(inst!.study![0].series![1].instance![0].retrieveUrl!, NSURL(string: "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16748.2599092903")!)
+		XCTAssertEqual(inst!.study![0].series![1].instance![0].retrieveUrl!.absoluteString!, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16748.2599092903")
 		XCTAssertEqual(inst!.study![0].series![1].instance![0].sopClass!, "urn:oid:1.2.840.10008.5.1.4.1.1.2")
 		XCTAssertEqual(inst!.study![0].series![1].instance![0].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092903")
-		XCTAssertEqual(inst!.study![0].series![1].instance![1].retrieveUrl!, NSURL(string: "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16750.2599092902")!)
+		XCTAssertEqual(inst!.study![0].series![1].instance![1].retrieveUrl!.absoluteString!, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16750.2599092902")
 		XCTAssertEqual(inst!.study![0].series![1].instance![1].sopClass!, "urn:oid:1.2.840.10008.5.1.4.1.1.2")
 		XCTAssertEqual(inst!.study![0].series![1].instance![1].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092904")
 		XCTAssertEqual(inst!.study![0].series![1].retrieveAETitle!, "SCP")
@@ -98,7 +98,7 @@ class ImagingObjectSelectionTests: FHIRModelTestCase
 		XCTAssertEqual(inst!.study![0].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16749.2599092904")
 		XCTAssertEqual(inst!.title!.coding![0].code!, "113030")
 		XCTAssertEqual(inst!.title!.coding![0].display!, "Manifest")
-		XCTAssertEqual(inst!.title!.coding![0].system!, NSURL(string: "http://nema.org/dicom/dcid")!)
+		XCTAssertEqual(inst!.title!.coding![0].system!.absoluteString!, "http://nema.org/dicom/dcid")
 		XCTAssertEqual(inst!.title!.text!, "A set of objects that have been exported for sharing")
 		XCTAssertEqual(inst!.uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092901")
 	}

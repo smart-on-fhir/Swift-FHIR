@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (orderresponse.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (orderresponse.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -28,7 +28,7 @@ public class OrderResponse: FHIRResource
 	public var code: String?
 	
 	/// When the response was made
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// Additional description of the response
 	public var description: String?
@@ -68,7 +68,7 @@ public class OrderResponse: FHIRResource
 				self.code = val
 			}
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
 				self.description = val

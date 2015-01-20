@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (composition.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (composition.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -35,7 +35,7 @@ public class Composition: FHIRResource
 	public var custodian: Reference?
 	
 	/// Composition editing time
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// Context of the conposition
 	public var encounter: Reference?
@@ -64,7 +64,7 @@ public class Composition: FHIRResource
 	/// Kind of composition (LOINC if possible)
 	public var type: CodeableConcept?
 	
-	public convenience init(author: [Reference]?, confidentiality: Coding?, date: NSDate?, status: String?, subject: Reference?, type: CodeableConcept?) {
+	public convenience init(author: [Reference]?, confidentiality: Coding?, date: DateTime?, status: String?, subject: Reference?, type: CodeableConcept?) {
 		self.init(json: nil)
 		if nil != author {
 			self.author = author
@@ -102,7 +102,7 @@ public class Composition: FHIRResource
 				self.custodian = Reference(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["encounter"] as? JSONDictionary {
 				self.encounter = Reference(json: val, owner: self)
@@ -154,7 +154,7 @@ public class CompositionAttester: FHIRElement
 	public var party: Reference?
 	
 	/// When composition attested
-	public var time: NSDate?
+	public var time: DateTime?
 	
 	public convenience init(mode: [String]?) {
 		self.init(json: nil)
@@ -173,7 +173,7 @@ public class CompositionAttester: FHIRElement
 				self.party = Reference(json: val, owner: self)
 			}
 			if let val = js["time"] as? String {
-				self.time = NSDate(json: val)
+				self.time = DateTime(string: val)
 			}
 		}
 	}

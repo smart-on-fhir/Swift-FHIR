@@ -2,7 +2,7 @@
 //  Binary.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (binary.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (binary.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -40,7 +40,7 @@ public class Binary: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["content"] as? String {
-				self.content = Base64Binary(json: val)
+				self.content = Base64Binary(string: val)
 			}
 			if let val = js["contentType"] as? String {
 				self.contentType = val

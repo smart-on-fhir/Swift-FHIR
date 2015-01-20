@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (subscription.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (subscription.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -30,7 +30,7 @@ public class Subscription: FHIRResource
 	public var criteria: String?
 	
 	/// When to automatically delete the subscription
-	public var end: NSDate?
+	public var end: Instant?
 	
 	/// Latest error note
 	public var error: String?
@@ -73,7 +73,7 @@ public class Subscription: FHIRResource
 				self.criteria = val
 			}
 			if let val = js["end"] as? String {
-				self.end = NSDate(json: val)
+				self.end = Instant(string: val)
 			}
 			if let val = js["error"] as? String {
 				self.error = val
@@ -138,7 +138,7 @@ public class SubscriptionChannel: FHIRElement
 				self.type = val
 			}
 			if let val = js["url"] as? String {
-				self.url = NSURL(json: val)
+				self.url = NSURL(string: val)
 			}
 		}
 	}
@@ -182,10 +182,10 @@ public class SubscriptionTag: FHIRElement
 				self.description = val
 			}
 			if let val = js["scheme"] as? String {
-				self.scheme = NSURL(json: val)
+				self.scheme = NSURL(string: val)
 			}
 			if let val = js["term"] as? String {
-				self.term = NSURL(json: val)
+				self.term = NSURL(string: val)
 			}
 		}
 	}

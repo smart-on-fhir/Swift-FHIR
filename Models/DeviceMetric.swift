@@ -2,7 +2,7 @@
 //  DeviceMetric.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (devicemetric.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (devicemetric.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -120,7 +120,7 @@ public class DeviceMetricCalibrationInfo: FHIRElement
 	public var state: String?
 	
 	/// Describes the time last calibration has been performed
-	public var time: NSDate?
+	public var time: Instant?
 	
 	/// unspecified | offset | gain | two-point
 	public var type: String?
@@ -132,7 +132,7 @@ public class DeviceMetricCalibrationInfo: FHIRElement
 				self.state = val
 			}
 			if let val = js["time"] as? String {
-				self.time = NSDate(json: val)
+				self.time = Instant(string: val)
 			}
 			if let val = js["type"] as? String {
 				self.type = val

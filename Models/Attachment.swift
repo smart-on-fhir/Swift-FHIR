@@ -2,7 +2,7 @@
 //  Attachment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (Attachment.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (Attachment.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -45,10 +45,10 @@ public class Attachment: FHIRElement
 				self.contentType = val
 			}
 			if let val = js["data"] as? String {
-				self.data = Base64Binary(json: val)
+				self.data = Base64Binary(string: val)
 			}
 			if let val = js["hash"] as? String {
-				self.hash = Base64Binary(json: val)
+				self.hash = Base64Binary(string: val)
 			}
 			if let val = js["size"] as? Int {
 				self.size = val
@@ -57,7 +57,7 @@ public class Attachment: FHIRElement
 				self.title = val
 			}
 			if let val = js["url"] as? String {
-				self.url = NSURL(json: val)
+				self.url = NSURL(string: val)
 			}
 		}
 	}

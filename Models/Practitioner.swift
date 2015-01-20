@@ -2,7 +2,7 @@
 //  Practitioner.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (practitioner.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (practitioner.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -24,7 +24,7 @@ public class Practitioner: FHIRResource
 	public var address: [Address]?
 	
 	/// The date and time of birth for the practitioner
-	public var birthDate: NSDate?
+	public var birthDate: DateTime?
 	
 	/// A language the practitioner is able to use in patient communication
 	public var communication: [CodeableConcept]?
@@ -69,7 +69,7 @@ public class Practitioner: FHIRResource
 				self.address = Address.from(val, owner: self) as? [Address]
 			}
 			if let val = js["birthDate"] as? String {
-				self.birthDate = NSDate(json: val)
+				self.birthDate = DateTime(string: val)
 			}
 			if let val = js["communication"] as? [JSONDictionary] {
 				self.communication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]

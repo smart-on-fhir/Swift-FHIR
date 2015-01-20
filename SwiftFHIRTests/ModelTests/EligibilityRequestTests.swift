@@ -2,7 +2,7 @@
 //  EligibilityRequestTests.swift
 //  EligibilityRequestTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,9 +22,9 @@ class EligibilityRequestTests: FHIRModelTestCase
 	func testEligibilityRequest1() {
 		let inst = instantiateFrom("eligibilityrequest-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a EligibilityRequest instance")
-	
-		XCTAssertEqual(inst!.created!, NSDate.dateFromISOString("2014-08-16")!)
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://happyvalley.com/elegibilityrequest")!)
+		
+		XCTAssertEqual(inst!.created!.description, "2014-08-16")
+		XCTAssertEqual(inst!.identifier![0].system!.absoluteString!, "http://happyvalley.com/elegibilityrequest")
 		XCTAssertEqual(inst!.identifier![0].value!, "52345")
 		XCTAssertEqual(inst!.organization!.reference!, "Organization/2")
 	}
@@ -32,9 +32,9 @@ class EligibilityRequestTests: FHIRModelTestCase
 	func testEligibilityRequest2() {
 		let inst = instantiateFrom("eligibilityrequest-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a EligibilityRequest instance")
-	
-		XCTAssertEqual(inst!.created!, NSDate.dateFromISOString("2014-08-16")!)
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://happyvalley.com/elegibilityrequest")!)
+		
+		XCTAssertEqual(inst!.created!.description, "2014-08-16")
+		XCTAssertEqual(inst!.identifier![0].system!.absoluteString!, "http://happyvalley.com/elegibilityrequest")
 		XCTAssertEqual(inst!.identifier![0].value!, "52345")
 		XCTAssertEqual(inst!.organization!.reference!, "Organization/2")
 	}
@@ -42,9 +42,9 @@ class EligibilityRequestTests: FHIRModelTestCase
 	func testEligibilityRequest3() {
 		let inst = instantiateFrom("eligibilityrequest-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a EligibilityRequest instance")
-	
-		XCTAssertEqual(inst!.created!, NSDate.dateFromISOString("2014-08-16")!)
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://happyvalley.com/elegibilityrequest")!)
+		
+		XCTAssertEqual(inst!.created!.description, "2014-08-16")
+		XCTAssertEqual(inst!.identifier![0].system!.absoluteString!, "http://happyvalley.com/elegibilityrequest")
 		XCTAssertEqual(inst!.identifier![0].value!, "52345")
 		XCTAssertEqual(inst!.organization!.reference!, "Organization/2")
 	}

@@ -2,7 +2,7 @@
 //  Device.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (device.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (device.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -27,7 +27,7 @@ public class Device: FHIRResource
 	public var contact: [ContactPoint]?
 	
 	/// Date of expiry of this device (if applicable)
-	public var expiry: NSDate?
+	public var expiry: Date?
 	
 	/// Instance id from manufacturer, owner and others
 	public var identifier: [Identifier]?
@@ -76,7 +76,7 @@ public class Device: FHIRResource
 				self.contact = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 			if let val = js["expiry"] as? String {
-				self.expiry = NSDate(json: val)
+				self.expiry = Date(string: val)
 			}
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
@@ -106,7 +106,7 @@ public class Device: FHIRResource
 				self.udi = val
 			}
 			if let val = js["url"] as? String {
-				self.url = NSURL(json: val)
+				self.url = NSURL(string: val)
 			}
 			if let val = js["version"] as? String {
 				self.version = val

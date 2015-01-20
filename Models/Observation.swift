@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (observation.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (observation.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -21,7 +21,7 @@ public class Observation: FHIRResource
 	}
 	
 	/// Physiologically Relevant time/time-period for observation
-	public var appliesDateTime: NSDate?
+	public var appliesDateTime: DateTime?
 	
 	/// Physiologically Relevant time/time-period for observation
 	public var appliesPeriod: Period?
@@ -45,7 +45,7 @@ public class Observation: FHIRResource
 	public var interpretation: CodeableConcept?
 	
 	/// Date/Time this was made available
-	public var issued: NSDate?
+	public var issued: Instant?
 	
 	/// How it was done
 	public var method: CodeableConcept?
@@ -81,7 +81,7 @@ public class Observation: FHIRResource
 	public var valueCodeableConcept: CodeableConcept?
 	
 	/// Actual result
-	public var valueDateTime: NSDate?
+	public var valueDateTime: DateTime?
 	
 	/// Actual result
 	public var valuePeriod: Period?
@@ -99,7 +99,7 @@ public class Observation: FHIRResource
 	public var valueString: String?
 	
 	/// Actual result
-	public var valueTime: NSDate?
+	public var valueTime: Time?
 	
 	public convenience init(name: CodeableConcept?, status: String?) {
 		self.init(json: nil)
@@ -115,7 +115,7 @@ public class Observation: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["appliesDateTime"] as? String {
-				self.appliesDateTime = NSDate(json: val)
+				self.appliesDateTime = DateTime(string: val)
 			}
 			if let val = js["appliesPeriod"] as? JSONDictionary {
 				self.appliesPeriod = Period(json: val, owner: self)
@@ -139,7 +139,7 @@ public class Observation: FHIRResource
 				self.interpretation = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["issued"] as? String {
-				self.issued = NSDate(json: val)
+				self.issued = Instant(string: val)
 			}
 			if let val = js["method"] as? JSONDictionary {
 				self.method = CodeableConcept(json: val, owner: self)
@@ -175,7 +175,7 @@ public class Observation: FHIRResource
 				self.valueCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["valueDateTime"] as? String {
-				self.valueDateTime = NSDate(json: val)
+				self.valueDateTime = DateTime(string: val)
 			}
 			if let val = js["valuePeriod"] as? JSONDictionary {
 				self.valuePeriod = Period(json: val, owner: self)
@@ -193,7 +193,7 @@ public class Observation: FHIRResource
 				self.valueString = val
 			}
 			if let val = js["valueTime"] as? String {
-				self.valueTime = NSDate(json: val)
+				self.valueTime = Time(string: val)
 			}
 		}
 	}

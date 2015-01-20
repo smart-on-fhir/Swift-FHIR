@@ -2,7 +2,7 @@
 //  FamilyHistory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (familyhistory.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (familyhistory.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,7 +22,7 @@ public class FamilyHistory: FHIRResource
 	}
 	
 	/// When history was captured/updated
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// External Id(s) for this record
 	public var identifier: [Identifier]?
@@ -47,7 +47,7 @@ public class FamilyHistory: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
@@ -87,7 +87,7 @@ public class FamilyHistoryRelation: FHIRElement
 	public var ageString: String?
 	
 	/// (approximate) date of birth
-	public var bornDate: NSDate?
+	public var bornDate: Date?
 	
 	/// (approximate) date of birth
 	public var bornPeriod: Period?
@@ -105,7 +105,7 @@ public class FamilyHistoryRelation: FHIRElement
 	public var deceasedBoolean: Bool?
 	
 	/// Dead? How old/when?
-	public var deceasedDate: NSDate?
+	public var deceasedDate: Date?
 	
 	/// Dead? How old/when?
 	public var deceasedRange: Range?
@@ -142,7 +142,7 @@ public class FamilyHistoryRelation: FHIRElement
 				self.ageString = val
 			}
 			if let val = js["bornDate"] as? String {
-				self.bornDate = NSDate(json: val)
+				self.bornDate = Date(string: val)
 			}
 			if let val = js["bornPeriod"] as? JSONDictionary {
 				self.bornPeriod = Period(json: val, owner: self)
@@ -160,7 +160,7 @@ public class FamilyHistoryRelation: FHIRElement
 				self.deceasedBoolean = val
 			}
 			if let val = js["deceasedDate"] as? String {
-				self.deceasedDate = NSDate(json: val)
+				self.deceasedDate = Date(string: val)
 			}
 			if let val = js["deceasedRange"] as? JSONDictionary {
 				self.deceasedRange = Range(json: val, owner: self)

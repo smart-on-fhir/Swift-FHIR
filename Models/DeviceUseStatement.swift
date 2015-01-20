@@ -2,7 +2,7 @@
 //  DeviceUseStatement.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (deviceusestatement.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (deviceusestatement.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -38,13 +38,13 @@ public class DeviceUseStatement: FHIRResource
 	public var notes: [String]?
 	
 	/// The time at which the statement was made/recorded.
-	public var recordedOn: NSDate?
+	public var recordedOn: DateTime?
 	
 	/// The patient who used the device.
 	public var subject: Reference?
 	
 	/// How often the device was used.
-	public var timingDateTime: NSDate?
+	public var timingDateTime: DateTime?
 	
 	/// How often the device was used.
 	public var timingPeriod: Period?
@@ -84,13 +84,13 @@ public class DeviceUseStatement: FHIRResource
 				self.notes = val
 			}
 			if let val = js["recordedOn"] as? String {
-				self.recordedOn = NSDate(json: val)
+				self.recordedOn = DateTime(string: val)
 			}
 			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
 			}
 			if let val = js["timingDateTime"] as? String {
-				self.timingDateTime = NSDate(json: val)
+				self.timingDateTime = DateTime(string: val)
 			}
 			if let val = js["timingPeriod"] as? JSONDictionary {
 				self.timingPeriod = Period(json: val, owner: self)

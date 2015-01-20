@@ -2,7 +2,7 @@
 //  GroupTests.swift
 //  GroupTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,7 +22,7 @@ class GroupTests: FHIRModelTestCase
 	func testGroup1() {
 		let inst = instantiateFrom("group-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Group instance")
-	
+		
 		XCTAssertTrue(inst!.actual!)
 		XCTAssertEqual(inst!.characteristic![0].code!.text!, "gender")
 		XCTAssertFalse(inst!.characteristic![0].exclude!)
@@ -39,7 +39,7 @@ class GroupTests: FHIRModelTestCase
 	func testGroup2() {
 		let inst = instantiateFrom("group-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Group instance")
-	
+		
 		XCTAssertTrue(inst!.actual!)
 		XCTAssertEqual(inst!.characteristic![0].code!.text!, "gender")
 		XCTAssertFalse(inst!.characteristic![0].exclude!)
@@ -56,7 +56,7 @@ class GroupTests: FHIRModelTestCase
 	func testGroup3() {
 		let inst = instantiateFrom("group-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Group instance")
-	
+		
 		XCTAssertTrue(inst!.actual!)
 		XCTAssertEqual(inst!.characteristic![0].code!.text!, "gender")
 		XCTAssertFalse(inst!.characteristic![0].exclude!)

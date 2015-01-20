@@ -2,7 +2,7 @@
 //  StatusRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (statusrequest.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (statusrequest.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,7 +22,7 @@ public class StatusRequest: FHIRResource
 	}
 	
 	/// Creation date
-	public var created: NSDate?
+	public var created: DateTime?
 	
 	/// Business Identifier
 	public var identifier: [Identifier]?
@@ -52,7 +52,7 @@ public class StatusRequest: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["created"] as? String {
-				self.created = NSDate(json: val)
+				self.created = DateTime(string: val)
 			}
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]

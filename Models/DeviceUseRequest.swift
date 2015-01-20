@@ -2,7 +2,7 @@
 //  DeviceUseRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (deviceuserequest.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (deviceuserequest.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -39,7 +39,7 @@ public class DeviceUseRequest: FHIRResource
 	public var notes: [String]?
 	
 	/// When ordered
-	public var orderedOn: NSDate?
+	public var orderedOn: DateTime?
 	
 	/// routine | urgent | stat | asap
 	public var priority: String?
@@ -48,7 +48,7 @@ public class DeviceUseRequest: FHIRResource
 	public var prnReason: [CodeableConcept]?
 	
 	/// When recorded
-	public var recordedOn: NSDate?
+	public var recordedOn: DateTime?
 	
 	/// proposed | planned | requested | received | accepted | in progress | completed | suspended | rejected | aborted
 	public var status: String?
@@ -57,7 +57,7 @@ public class DeviceUseRequest: FHIRResource
 	public var subject: Reference?
 	
 	/// Schedule for use
-	public var timingDateTime: NSDate?
+	public var timingDateTime: DateTime?
 	
 	/// Schedule for use
 	public var timingPeriod: Period?
@@ -97,7 +97,7 @@ public class DeviceUseRequest: FHIRResource
 				self.notes = val
 			}
 			if let val = js["orderedOn"] as? String {
-				self.orderedOn = NSDate(json: val)
+				self.orderedOn = DateTime(string: val)
 			}
 			if let val = js["priority"] as? String {
 				self.priority = val
@@ -106,7 +106,7 @@ public class DeviceUseRequest: FHIRResource
 				self.prnReason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["recordedOn"] as? String {
-				self.recordedOn = NSDate(json: val)
+				self.recordedOn = DateTime(string: val)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
@@ -115,7 +115,7 @@ public class DeviceUseRequest: FHIRResource
 				self.subject = Reference(json: val, owner: self)
 			}
 			if let val = js["timingDateTime"] as? String {
-				self.timingDateTime = NSDate(json: val)
+				self.timingDateTime = DateTime(string: val)
 			}
 			if let val = js["timingPeriod"] as? JSONDictionary {
 				self.timingPeriod = Period(json: val, owner: self)

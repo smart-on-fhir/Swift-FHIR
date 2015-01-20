@@ -2,7 +2,7 @@
 //  Communication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (communication.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (communication.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -40,7 +40,7 @@ public class Communication: FHIRResource
 	public var reason: [CodeableConcept]?
 	
 	/// When received
-	public var received: NSDate?
+	public var received: DateTime?
 	
 	/// Message recipient
 	public var recipient: [Reference]?
@@ -49,7 +49,7 @@ public class Communication: FHIRResource
 	public var sender: Reference?
 	
 	/// When sent
-	public var sent: NSDate?
+	public var sent: DateTime?
 	
 	/// in progress | completed | suspended | rejected | failed
 	public var status: String?
@@ -79,7 +79,7 @@ public class Communication: FHIRResource
 				self.reason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["received"] as? String {
-				self.received = NSDate(json: val)
+				self.received = DateTime(string: val)
 			}
 			if let val = js["recipient"] as? [JSONDictionary] {
 				self.recipient = Reference.from(val, owner: self) as? [Reference]
@@ -88,7 +88,7 @@ public class Communication: FHIRResource
 				self.sender = Reference(json: val, owner: self)
 			}
 			if let val = js["sent"] as? String {
-				self.sent = NSDate(json: val)
+				self.sent = DateTime(string: val)
 			}
 			if let val = js["status"] as? String {
 				self.status = val

@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (immunizationrecommendation.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (immunizationrecommendation.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -66,7 +66,7 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 	}
 	
 	/// Date recommendation created
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// Dates governing proposed immunization
 	public var dateCriterion: [ImmunizationRecommendationRecommendationDateCriterion]?
@@ -89,7 +89,7 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 	/// Vaccine recommendation applies to
 	public var vaccineType: CodeableConcept?
 	
-	public convenience init(date: NSDate?, forecastStatus: CodeableConcept?, vaccineType: CodeableConcept?) {
+	public convenience init(date: DateTime?, forecastStatus: CodeableConcept?, vaccineType: CodeableConcept?) {
 		self.init(json: nil)
 		if nil != date {
 			self.date = date
@@ -106,7 +106,7 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["dateCriterion"] as? [JSONDictionary] {
 				self.dateCriterion = ImmunizationRecommendationRecommendationDateCriterion.from(val, owner: self) as? [ImmunizationRecommendationRecommendationDateCriterion]
@@ -149,9 +149,9 @@ public class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
 	public var code: CodeableConcept?
 	
 	/// Recommended date
-	public var value: NSDate?
+	public var value: DateTime?
 	
-	public convenience init(code: CodeableConcept?, value: NSDate?) {
+	public convenience init(code: CodeableConcept?, value: DateTime?) {
 		self.init(json: nil)
 		if nil != code {
 			self.code = code
@@ -168,7 +168,7 @@ public class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["value"] as? String {
-				self.value = NSDate(json: val)
+				self.value = DateTime(string: val)
 			}
 		}
 	}

@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (specimen.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (specimen.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -31,7 +31,7 @@ public class Specimen: FHIRResource
 	public var identifier: [Identifier]?
 	
 	/// The time when specimen was received for processing
-	public var receivedTime: NSDate?
+	public var receivedTime: DateTime?
 	
 	/// Parent of specimen
 	public var source: [SpecimenSource]?
@@ -68,7 +68,7 @@ public class Specimen: FHIRResource
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["receivedTime"] as? String {
-				self.receivedTime = NSDate(json: val)
+				self.receivedTime = DateTime(string: val)
 			}
 			if let val = js["source"] as? [JSONDictionary] {
 				self.source = SpecimenSource.from(val, owner: self) as? [SpecimenSource]
@@ -99,7 +99,7 @@ public class SpecimenCollection: FHIRElement
 	}
 	
 	/// Collection time
-	public var collectedDateTime: NSDate?
+	public var collectedDateTime: DateTime?
 	
 	/// Collection time
 	public var collectedPeriod: Period?
@@ -123,7 +123,7 @@ public class SpecimenCollection: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["collectedDateTime"] as? String {
-				self.collectedDateTime = NSDate(json: val)
+				self.collectedDateTime = DateTime(string: val)
 			}
 			if let val = js["collectedPeriod"] as? JSONDictionary {
 				self.collectedPeriod = Period(json: val, owner: self)

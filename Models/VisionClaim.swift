@@ -2,7 +2,7 @@
 //  VisionClaim.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (visionclaim.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (visionclaim.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,7 +22,7 @@ public class VisionClaim: FHIRResource
 	}
 	
 	/// Accident Date
-	public var accident: NSDate?
+	public var accident: Date?
 	
 	/// Accident Type
 	public var accidentType: Coding?
@@ -37,7 +37,7 @@ public class VisionClaim: FHIRResource
 	public var coverage: [VisionClaimCoverage]?
 	
 	/// Creation date
-	public var created: NSDate?
+	public var created: DateTime?
 	
 	/// Diagnosis
 	public var diagnosis: [VisionClaimDiagnosis]?
@@ -110,7 +110,7 @@ public class VisionClaim: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["accident"] as? String {
-				self.accident = NSDate(json: val)
+				self.accident = Date(string: val)
 			}
 			if let val = js["accidentType"] as? JSONDictionary {
 				self.accidentType = Coding(json: val, owner: self)
@@ -125,7 +125,7 @@ public class VisionClaim: FHIRResource
 				self.coverage = VisionClaimCoverage.from(val, owner: self) as? [VisionClaimCoverage]
 			}
 			if let val = js["created"] as? String {
-				self.created = NSDate(json: val)
+				self.created = DateTime(string: val)
 			}
 			if let val = js["diagnosis"] as? [JSONDictionary] {
 				self.diagnosis = VisionClaimDiagnosis.from(val, owner: self) as? [VisionClaimDiagnosis]
@@ -361,7 +361,7 @@ public class VisionClaimItem: FHIRElement
 	public var service: Coding?
 	
 	/// Date of Service
-	public var serviceDate: NSDate?
+	public var serviceDate: Date?
 	
 	/// Service Sub-location
 	public var subsite: [Coding]?
@@ -425,7 +425,7 @@ public class VisionClaimItem: FHIRElement
 				self.service = Coding(json: val, owner: self)
 			}
 			if let val = js["serviceDate"] as? String {
-				self.serviceDate = NSDate(json: val)
+				self.serviceDate = Date(string: val)
 			}
 			if let val = js["subsite"] as? [JSONDictionary] {
 				self.subsite = Coding.from(val, owner: self) as? [Coding]

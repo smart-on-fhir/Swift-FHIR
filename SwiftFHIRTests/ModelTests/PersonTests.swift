@@ -2,7 +2,7 @@
 //  PersonTests.swift
 //  PersonTests
 //
-//  Generated from FHIR 0.4.0.3926 on 2015-01-07.
+//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -22,19 +22,19 @@ class PersonTests: FHIRModelTestCase
 	func testPerson1() {
 		let inst = instantiateFrom("person-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Person instance")
-	
+		
 		XCTAssertTrue(inst!.active!)
 		XCTAssertEqual(inst!.address![0].city!, "PleasantVille")
 		XCTAssertEqual(inst!.address![0].line![0], "534 Erewhon St")
 		XCTAssertEqual(inst!.address![0].postalCode!, "3999")
 		XCTAssertEqual(inst!.address![0].state!, "Vic")
 		XCTAssertEqual(inst!.address![0].use!, "home")
-		XCTAssertEqual(inst!.birthDate!, NSDate.dateFromISOString("1974-12-25")!)
+		XCTAssertEqual(inst!.birthDate!.description, "1974-12-25")
 		XCTAssertEqual(inst!.gender!, "male")
 		XCTAssertEqual(inst!.identifier![0].assigner!.display!, "Acme Healthcare")
 		XCTAssertEqual(inst!.identifier![0].label!, "MRN")
-		XCTAssertEqual(inst!.identifier![0].period!.start!, NSDate.dateFromISOString("2001-05-06")!)
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:oid:1.2.36.146.595.217.0.1")!)
+		XCTAssertEqual(inst!.identifier![0].period!.start!.description, "2001-05-06")
+		XCTAssertEqual(inst!.identifier![0].system!.absoluteString!, "urn:oid:1.2.36.146.595.217.0.1")
 		XCTAssertEqual(inst!.identifier![0].use!, "usual")
 		XCTAssertEqual(inst!.identifier![0].value!, "12345")
 		XCTAssertEqual(inst!.name![0].family![0], "Chalmers")
@@ -52,19 +52,19 @@ class PersonTests: FHIRModelTestCase
 	func testPerson2() {
 		let inst = instantiateFrom("person-example.canonical.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Person instance")
-	
+		
 		XCTAssertTrue(inst!.active!)
 		XCTAssertEqual(inst!.address![0].city!, "PleasantVille")
 		XCTAssertEqual(inst!.address![0].line![0], "534 Erewhon St")
 		XCTAssertEqual(inst!.address![0].postalCode!, "3999")
 		XCTAssertEqual(inst!.address![0].state!, "Vic")
 		XCTAssertEqual(inst!.address![0].use!, "home")
-		XCTAssertEqual(inst!.birthDate!, NSDate.dateFromISOString("1974-12-25")!)
+		XCTAssertEqual(inst!.birthDate!.description, "1974-12-25")
 		XCTAssertEqual(inst!.gender!, "male")
 		XCTAssertEqual(inst!.identifier![0].assigner!.display!, "Acme Healthcare")
 		XCTAssertEqual(inst!.identifier![0].label!, "MRN")
-		XCTAssertEqual(inst!.identifier![0].period!.start!, NSDate.dateFromISOString("2001-05-06")!)
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:oid:1.2.36.146.595.217.0.1")!)
+		XCTAssertEqual(inst!.identifier![0].period!.start!.description, "2001-05-06")
+		XCTAssertEqual(inst!.identifier![0].system!.absoluteString!, "urn:oid:1.2.36.146.595.217.0.1")
 		XCTAssertEqual(inst!.identifier![0].use!, "usual")
 		XCTAssertEqual(inst!.identifier![0].value!, "12345")
 		XCTAssertEqual(inst!.name![0].family![0], "Chalmers")
@@ -82,19 +82,19 @@ class PersonTests: FHIRModelTestCase
 	func testPerson3() {
 		let inst = instantiateFrom("person-example.json")
 		XCTAssertNotNil(inst, "Must have instantiated a Person instance")
-	
+		
 		XCTAssertTrue(inst!.active!)
 		XCTAssertEqual(inst!.address![0].city!, "PleasantVille")
 		XCTAssertEqual(inst!.address![0].line![0], "534 Erewhon St")
 		XCTAssertEqual(inst!.address![0].postalCode!, "3999")
 		XCTAssertEqual(inst!.address![0].state!, "Vic")
 		XCTAssertEqual(inst!.address![0].use!, "home")
-		XCTAssertEqual(inst!.birthDate!, NSDate.dateFromISOString("1974-12-25")!)
+		XCTAssertEqual(inst!.birthDate!.description, "1974-12-25")
 		XCTAssertEqual(inst!.gender!, "male")
 		XCTAssertEqual(inst!.identifier![0].assigner!.display!, "Acme Healthcare")
 		XCTAssertEqual(inst!.identifier![0].label!, "MRN")
-		XCTAssertEqual(inst!.identifier![0].period!.start!, NSDate.dateFromISOString("2001-05-06")!)
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:oid:1.2.36.146.595.217.0.1")!)
+		XCTAssertEqual(inst!.identifier![0].period!.start!.description, "2001-05-06")
+		XCTAssertEqual(inst!.identifier![0].system!.absoluteString!, "urn:oid:1.2.36.146.595.217.0.1")
 		XCTAssertEqual(inst!.identifier![0].use!, "usual")
 		XCTAssertEqual(inst!.identifier![0].value!, "12345")
 		XCTAssertEqual(inst!.name![0].family![0], "Chalmers")

@@ -2,7 +2,7 @@
 //  List.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (list.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (list.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -24,7 +24,7 @@ public class List: FHIRResource
 	public var code: CodeableConcept?
 	
 	/// When the list was prepared
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// Why list is empty
 	public var emptyReason: CodeableConcept?
@@ -61,7 +61,7 @@ public class List: FHIRResource
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["emptyReason"] as? JSONDictionary {
 				self.emptyReason = CodeableConcept(json: val, owner: self)
@@ -101,7 +101,7 @@ public class ListEntry: FHIRElement
 	}
 	
 	/// When item added to list
-	public var date: NSDate?
+	public var date: DateTime?
 	
 	/// If this item is actually marked as deleted
 	public var deleted: Bool?
@@ -123,7 +123,7 @@ public class ListEntry: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
-				self.date = NSDate(json: val)
+				self.date = DateTime(string: val)
 			}
 			if let val = js["deleted"] as? Bool {
 				self.deleted = val

@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (careplan.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (careplan.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -34,7 +34,7 @@ public class CarePlan: FHIRResource
 	public var identifier: [Identifier]?
 	
 	/// When last updated
-	public var modified: NSDate?
+	public var modified: DateTime?
 	
 	/// Comments about the plan
 	public var notes: String?
@@ -74,7 +74,7 @@ public class CarePlan: FHIRResource
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["modified"] as? String {
-				self.modified = NSDate(json: val)
+				self.modified = DateTime(string: val)
 			}
 			if let val = js["notes"] as? String {
 				self.notes = val

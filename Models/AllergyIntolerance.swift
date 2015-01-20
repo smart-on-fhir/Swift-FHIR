@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3926 (allergyintolerance.profile.json) on 2015-01-06.
+//  Generated from FHIR 0.4.0.3958 (allergyintolerance.profile.json) on 2015-01-20.
 //  2015, SMART Platforms.
 //
 
@@ -37,10 +37,10 @@ public class AllergyIntolerance: FHIRResource
 	public var identifier: [Identifier]?
 	
 	/// Date(/time) of last known occurence of a reaction
-	public var lastOccurence: NSDate?
+	public var lastOccurence: DateTime?
 	
 	/// When recorded
-	public var recordedDate: NSDate?
+	public var recordedDate: DateTime?
 	
 	/// Who recorded the sensitivity
 	public var recorder: Reference?
@@ -86,10 +86,10 @@ public class AllergyIntolerance: FHIRResource
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["lastOccurence"] as? String {
-				self.lastOccurence = NSDate(json: val)
+				self.lastOccurence = DateTime(string: val)
 			}
 			if let val = js["recordedDate"] as? String {
-				self.recordedDate = NSDate(json: val)
+				self.recordedDate = DateTime(string: val)
 			}
 			if let val = js["recorder"] as? JSONDictionary {
 				self.recorder = Reference(json: val, owner: self)
@@ -141,7 +141,7 @@ public class AllergyIntoleranceEvent: FHIRElement
 	public var manifestation: [CodeableConcept]?
 	
 	/// Date(/time) when manifestations showed
-	public var onset: NSDate?
+	public var onset: DateTime?
 	
 	/// mild | moderate | severe (of event as a whole)
 	public var severity: String?
@@ -178,7 +178,7 @@ public class AllergyIntoleranceEvent: FHIRElement
 				self.manifestation = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["onset"] as? String {
-				self.onset = NSDate(json: val)
+				self.onset = DateTime(string: val)
 			}
 			if let val = js["severity"] as? String {
 				self.severity = val

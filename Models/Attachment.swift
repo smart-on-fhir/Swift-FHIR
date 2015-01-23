@@ -2,7 +2,7 @@
 //  Attachment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (Attachment.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (Attachment.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -60,6 +60,31 @@ public class Attachment: FHIRElement
 				self.url = NSURL(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let contentType = self.contentType {
+			json["contentType"] = contentType.asJSON()
+		}
+		if let data = self.data {
+			json["data"] = data.asJSON()
+		}
+		if let hash = self.hash {
+			json["hash"] = hash.asJSON()
+		}
+		if let size = self.size {
+			json["size"] = size.asJSON()
+		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
+		}
+		if let url = self.url {
+			json["url"] = url.asJSON()
+		}
+		
+		return json
 	}
 }
 

@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (valueset.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (valueset.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -134,6 +134,64 @@ public class ValueSet: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let compose = self.compose {
+			json["compose"] = compose.asJSON()
+		}
+		if let copyright = self.copyright {
+			json["copyright"] = copyright.asJSON()
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let define = self.define {
+			json["define"] = define.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let expansion = self.expansion {
+			json["expansion"] = expansion.asJSON()
+		}
+		if let experimental = self.experimental {
+			json["experimental"] = experimental.asJSON()
+		}
+		if let extensible = self.extensible {
+			json["extensible"] = extensible.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let immutable = self.immutable {
+			json["immutable"] = immutable.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let publisher = self.publisher {
+			json["publisher"] = publisher.asJSON()
+		}
+		if let purpose = self.purpose {
+			json["purpose"] = purpose.asJSON()
+		}
+		if let stableDate = self.stableDate {
+			json["stableDate"] = stableDate.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -162,6 +220,23 @@ public class ValueSetCompose: FHIRElement
 				self.include = ValueSetComposeInclude.from(val, owner: self) as? [ValueSetComposeInclude]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let importFrom = self.importFrom {
+			var arr = [AnyObject]()
+			for val in importFrom {
+				arr.append(val.asJSON())
+			}
+			json["import"] = arr
+		}
+		if let include = self.include {
+			json["include"] = ValueSetComposeInclude.asJSONArray(include)
+		}
+		
+		return json
 	}
 }
 
@@ -211,6 +286,25 @@ public class ValueSetComposeInclude: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let concept = self.concept {
+			json["concept"] = ValueSetComposeIncludeConcept.asJSONArray(concept)
+		}
+		if let filter = self.filter {
+			json["filter"] = ValueSetComposeIncludeFilter.asJSONArray(filter)
+		}
+		if let system = self.system {
+			json["system"] = system.asJSON()
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -254,6 +348,22 @@ public class ValueSetComposeIncludeConcept: FHIRElement
 				self.display = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let designation = self.designation {
+			json["designation"] = ValueSetDefineConceptDesignation.asJSONArray(designation)
+		}
+		if let display = self.display {
+			json["display"] = display.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -306,6 +416,22 @@ public class ValueSetComposeIncludeFilter: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let op = self.op {
+			json["op"] = op.asJSON()
+		}
+		if let property = self.property {
+			json["property"] = property.asJSON()
+		}
+		if let value = self.value {
+			json["value"] = value.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -353,6 +479,25 @@ public class ValueSetDefine: FHIRElement
 				self.version = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let caseSensitive = self.caseSensitive {
+			json["caseSensitive"] = caseSensitive.asJSON()
+		}
+		if let concept = self.concept {
+			json["concept"] = ValueSetDefineConcept.asJSONArray(concept)
+		}
+		if let system = self.system {
+			json["system"] = system.asJSON()
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -414,6 +559,31 @@ public class ValueSetDefineConcept: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let abstract = self.abstract {
+			json["abstract"] = abstract.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let concept = self.concept {
+			json["concept"] = ValueSetDefineConcept.asJSONArray(concept)
+		}
+		if let definition = self.definition {
+			json["definition"] = definition.asJSON()
+		}
+		if let designation = self.designation {
+			json["designation"] = ValueSetDefineConceptDesignation.asJSONArray(designation)
+		}
+		if let display = self.display {
+			json["display"] = display.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -452,6 +622,19 @@ public class ValueSetDefineConceptDesignation: FHIRElement
 				self.value = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let use = self.use {
+			json["use"] = use.asJSON()
+		}
+		if let value = self.value {
+			json["value"] = value.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -497,6 +680,22 @@ public class ValueSetExpansion: FHIRElement
 				self.timestamp = DateTime(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let contains = self.contains {
+			json["contains"] = ValueSetExpansionContains.asJSONArray(contains)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let timestamp = self.timestamp {
+			json["timestamp"] = timestamp.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -552,6 +751,31 @@ public class ValueSetExpansionContains: FHIRElement
 				self.version = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let abstract = self.abstract {
+			json["abstract"] = abstract.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let contains = self.contains {
+			json["contains"] = ValueSetExpansionContains.asJSONArray(contains)
+		}
+		if let display = self.display {
+			json["display"] = display.asJSON()
+		}
+		if let system = self.system {
+			json["system"] = system.asJSON()
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
+		}
+		
+		return json
 	}
 }
 

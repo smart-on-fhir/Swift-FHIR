@@ -2,7 +2,7 @@
 //  Identifier.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (Identifier.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (Identifier.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -60,6 +60,31 @@ public class Identifier: FHIRElement
 				self.value = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let assigner = self.assigner {
+			json["assigner"] = assigner.asJSON()
+		}
+		if let label = self.label {
+			json["label"] = label.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let system = self.system {
+			json["system"] = system.asJSON()
+		}
+		if let use = self.use {
+			json["use"] = use.asJSON()
+		}
+		if let value = self.value {
+			json["value"] = value.asJSON()
+		}
+		
+		return json
 	}
 }
 

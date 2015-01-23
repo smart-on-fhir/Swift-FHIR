@@ -2,7 +2,7 @@
 //  Medication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (medication.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (medication.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -67,6 +67,34 @@ public class Medication: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let isBrand = self.isBrand {
+			json["isBrand"] = isBrand.asJSON()
+		}
+		if let kind = self.kind {
+			json["kind"] = kind.asJSON()
+		}
+		if let manufacturer = self.manufacturer {
+			json["manufacturer"] = manufacturer.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let package = self.package {
+			json["package"] = package.asJSON()
+		}
+		if let product = self.product {
+			json["product"] = product.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -97,6 +125,19 @@ public class MedicationPackage: FHIRElement
 				self.content = MedicationPackageContent.from(val, owner: self) as? [MedicationPackageContent]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let container = self.container {
+			json["container"] = container.asJSON()
+		}
+		if let content = self.content {
+			json["content"] = MedicationPackageContent.asJSONArray(content)
+		}
+		
+		return json
 	}
 }
 
@@ -136,6 +177,19 @@ public class MedicationPackageContent: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let amount = self.amount {
+			json["amount"] = amount.asJSON()
+		}
+		if let item = self.item {
+			json["item"] = item.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -150,6 +204,9 @@ public class MedicationProduct: FHIRElement
 		get { return "MedicationProduct" }
 	}
 	
+	/// Information about a group of medication produced or packaged from one production run.
+	public var batch: [MedicationProductBatch]?
+	
 	/// powder | tablets | carton +
 	public var form: CodeableConcept?
 	
@@ -159,6 +216,9 @@ public class MedicationProduct: FHIRElement
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["batch"] as? [JSONDictionary] {
+				self.batch = MedicationProductBatch.from(val, owner: self) as? [MedicationProductBatch]
+			}
 			if let val = js["form"] as? JSONDictionary {
 				self.form = CodeableConcept(json: val, owner: self)
 			}
@@ -166,6 +226,66 @@ public class MedicationProduct: FHIRElement
 				self.ingredient = MedicationProductIngredient.from(val, owner: self) as? [MedicationProductIngredient]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let batch = self.batch {
+			json["batch"] = MedicationProductBatch.asJSONArray(batch)
+		}
+		if let form = self.form {
+			json["form"] = form.asJSON()
+		}
+		if let ingredient = self.ingredient {
+			json["ingredient"] = MedicationProductIngredient.asJSONArray(ingredient)
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Information about a group of medication produced or packaged from one production run..
+ *
+ *  Information about a group of medication produced or packaged from one production run.
+ */
+public class MedicationProductBatch: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "MedicationProductBatch" }
+	}
+	
+	/// When this specific batch of product will expire.
+	public var expirationDate: DateTime?
+	
+	/// The assigned lot number of a batch of the specified product.
+	public var lotNumber: String?
+	
+	public required init(json: JSONDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["expirationDate"] as? String {
+				self.expirationDate = DateTime(string: val)
+			}
+			if let val = js["lotNumber"] as? String {
+				self.lotNumber = val
+			}
+		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let expirationDate = self.expirationDate {
+			json["expirationDate"] = expirationDate.asJSON()
+		}
+		if let lotNumber = self.lotNumber {
+			json["lotNumber"] = lotNumber.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -204,6 +324,19 @@ public class MedicationProductIngredient: FHIRElement
 				self.item = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let amount = self.amount {
+			json["amount"] = amount.asJSON()
+		}
+		if let item = self.item {
+			json["item"] = item.asJSON()
+		}
+		
+		return json
 	}
 }
 

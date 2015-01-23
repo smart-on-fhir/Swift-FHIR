@@ -2,7 +2,7 @@
 //  Duration.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (Duration.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (Duration.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 

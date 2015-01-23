@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (organization.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (organization.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -81,6 +81,40 @@ public class Organization: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let active = self.active {
+			json["active"] = active.asJSON()
+		}
+		if let address = self.address {
+			json["address"] = Address.asJSONArray(address)
+		}
+		if let contact = self.contact {
+			json["contact"] = OrganizationContact.asJSONArray(contact)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let location = self.location {
+			json["location"] = Reference.asJSONArray(location)
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let partOf = self.partOf {
+			json["partOf"] = partOf.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -127,6 +161,28 @@ public class OrganizationContact: FHIRElement
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let address = self.address {
+			json["address"] = address.asJSON()
+		}
+		if let gender = self.gender {
+			json["gender"] = gender.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let purpose = self.purpose {
+			json["purpose"] = purpose.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		
+		return json
 	}
 }
 

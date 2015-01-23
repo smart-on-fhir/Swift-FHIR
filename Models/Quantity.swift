@@ -2,7 +2,7 @@
 //  Quantity.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (Quantity.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (Quantity.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -55,6 +55,28 @@ public class Quantity: FHIRElement
 				self.value = NSDecimalNumber(json: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let comparator = self.comparator {
+			json["comparator"] = comparator.asJSON()
+		}
+		if let system = self.system {
+			json["system"] = system.asJSON()
+		}
+		if let units = self.units {
+			json["units"] = units.asJSON()
+		}
+		if let value = self.value {
+			json["value"] = value.asJSON()
+		}
+		
+		return json
 	}
 }
 

@@ -2,7 +2,7 @@
 //  Coverage.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (coverage.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (coverage.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -96,6 +96,49 @@ public class Coverage: FHIRResource
 				self.type = Coding(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let contract = self.contract {
+			json["contract"] = Reference.asJSONArray(contract)
+		}
+		if let dependent = self.dependent {
+			json["dependent"] = dependent.asJSON()
+		}
+		if let group = self.group {
+			json["group"] = group.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let issuer = self.issuer {
+			json["issuer"] = issuer.asJSON()
+		}
+		if let network = self.network {
+			json["network"] = network.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let plan = self.plan {
+			json["plan"] = plan.asJSON()
+		}
+		if let sequence = self.sequence {
+			json["sequence"] = sequence.asJSON()
+		}
+		if let subplan = self.subplan {
+			json["subplan"] = subplan.asJSON()
+		}
+		if let subscriber = self.subscriber {
+			json["subscriber"] = subscriber.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (questionnaire.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (questionnaire.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -72,6 +72,31 @@ public class Questionnaire: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let group = self.group {
+			json["group"] = group.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let publisher = self.publisher {
+			json["publisher"] = publisher.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -139,6 +164,37 @@ public class QuestionnaireGroup: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let concept = self.concept {
+			json["concept"] = Coding.asJSONArray(concept)
+		}
+		if let group = self.group {
+			json["group"] = QuestionnaireGroup.asJSONArray(group)
+		}
+		if let linkId = self.linkId {
+			json["linkId"] = linkId.asJSON()
+		}
+		if let question = self.question {
+			json["question"] = QuestionnaireGroupQuestion.asJSONArray(question)
+		}
+		if let repeats = self.repeats {
+			json["repeats"] = repeats.asJSON()
+		}
+		if let required = self.required {
+			json["required"] = required.asJSON()
+		}
+		if let text = self.text {
+			json["text"] = text.asJSON()
+		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -205,6 +261,37 @@ public class QuestionnaireGroupQuestion: FHIRElement
 				self.type = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let concept = self.concept {
+			json["concept"] = Coding.asJSONArray(concept)
+		}
+		if let group = self.group {
+			json["group"] = QuestionnaireGroup.asJSONArray(group)
+		}
+		if let linkId = self.linkId {
+			json["linkId"] = linkId.asJSON()
+		}
+		if let options = self.options {
+			json["options"] = options.asJSON()
+		}
+		if let repeats = self.repeats {
+			json["repeats"] = repeats.asJSON()
+		}
+		if let required = self.required {
+			json["required"] = required.asJSON()
+		}
+		if let text = self.text {
+			json["text"] = text.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

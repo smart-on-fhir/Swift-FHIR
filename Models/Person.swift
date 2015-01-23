@@ -2,7 +2,7 @@
 //  Person.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (person.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (person.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -85,6 +85,43 @@ public class Person: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let active = self.active {
+			json["active"] = active.asJSON()
+		}
+		if let address = self.address {
+			json["address"] = Address.asJSONArray(address)
+		}
+		if let birthDate = self.birthDate {
+			json["birthDate"] = birthDate.asJSON()
+		}
+		if let gender = self.gender {
+			json["gender"] = gender.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let link = self.link {
+			json["link"] = PersonLink.asJSONArray(link)
+		}
+		if let managingOrganization = self.managingOrganization {
+			json["managingOrganization"] = managingOrganization.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = HumanName.asJSONArray(name)
+		}
+		if let photo = self.photo {
+			json["photo"] = photo.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		
+		return json
+	}
 }
 
 
@@ -120,6 +157,19 @@ public class PersonLink: FHIRElement
 				self.other = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let assurance = self.assurance {
+			json["assurance"] = assurance.asJSON()
+		}
+		if let other = self.other {
+			json["other"] = other.asJSON()
+		}
+		
+		return json
 	}
 }
 

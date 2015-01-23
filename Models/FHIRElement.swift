@@ -42,7 +42,7 @@ public class FHIRElement
 			if let arr = js["contained"] as? [JSONDictionary] {
 				var cont = contained ?? [String: FHIRContainedResource]()
 				for dict in arr {
-					let res = FHIRContainedResource(json: dict)
+					let res = FHIRContainedResource(json: dict, owner: self)
 					if nil != res.id {
 						cont[res.id!] = res
 					}
@@ -84,6 +84,40 @@ public class FHIRElement
 				}
 			}
 		}
+	}
+	
+	/**
+		Represent the receiver in a JSONDictionary, ready to be used for JSON serialization.
+	 */
+	public func asJSON() -> JSONDictionary {
+		var json = JSONDictionary()
+		
+		if let contained = self.contained {
+			var dict = JSONDictionary()
+			for (key, val) in contained {
+				dict[key] = val.json			// TODO: check if it has been resolved, if so use `asJSON()`
+			}
+			json["contained"] = dict
+		}
+		if let fhirExtension = self.fhirExtension {
+			json["extension"] = self.dynamicType.asJSONArray(fhirExtension)
+		}
+		if let modifierExtension = self.modifierExtension {
+			json["modifierExtension"] = self.dynamicType.asJSONArray(modifierExtension)
+		}
+		
+		return json
+	}
+	
+	/**
+		Calls `asJSON()` on all elements in the array and returns the resulting array full of JSONDictionaries.
+	 */
+	public class func asJSONArray(array: [FHIRElement]) -> [JSONDictionary] {
+		var arr = [JSONDictionary]()
+		for element in array {
+			arr.append(element.asJSON())
+		}
+		return arr
 	}
 	
 	/**
@@ -165,10 +199,7 @@ public class FHIRElement
 		:param: resolved The element that was resolved
 	 */
 	func didResolveReference(refid: String, resolved: FHIRElement) {
-		if let owner = _owner {
-			owner.didResolveReference(refid, resolved: resolved)
-		}
-		else if nil != _resolved {
+		if nil != _resolved {
 			_resolved![refid] = resolved
 		}
 		else {

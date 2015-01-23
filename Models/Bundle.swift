@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (bundle.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (bundle.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -68,6 +68,31 @@ public class Bundle: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let base = self.base {
+			json["base"] = base.asJSON()
+		}
+		if let entry = self.entry {
+			json["entry"] = BundleEntry.asJSONArray(entry)
+		}
+		if let link = self.link {
+			json["link"] = BundleLink.asJSONArray(link)
+		}
+		if let signature = self.signature {
+			json["signature"] = signature.asJSON()
+		}
+		if let total = self.total {
+			json["total"] = total.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -124,6 +149,31 @@ public class BundleEntry: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let base = self.base {
+			json["base"] = base.asJSON()
+		}
+		if let deleted = self.deleted {
+			json["deleted"] = deleted.asJSON()
+		}
+		if let resource = self.resource {
+			json["resource"] = resource.asJSON()
+		}
+		if let score = self.score {
+			json["score"] = score.asJSON()
+		}
+		if let search = self.search {
+			json["search"] = search.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -148,7 +198,7 @@ public class BundleEntryDeleted: FHIRElement
 	/// Type of resource that was deleted
 	public var type: String?
 	
-	/// Version id for releted resource
+	/// Version id for related resource
 	public var versionId: String?
 	
 	public convenience init(instant: Instant?, resourceId: String?, type: String?, versionId: String?) {
@@ -183,6 +233,25 @@ public class BundleEntryDeleted: FHIRElement
 				self.versionId = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let instant = self.instant {
+			json["instant"] = instant.asJSON()
+		}
+		if let resourceId = self.resourceId {
+			json["resourceId"] = resourceId.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let versionId = self.versionId {
+			json["versionId"] = versionId.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -224,6 +293,19 @@ public class BundleLink: FHIRElement
 				self.url = NSURL(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let relation = self.relation {
+			json["relation"] = relation.asJSON()
+		}
+		if let url = self.url {
+			json["url"] = url.asJSON()
+		}
+		
+		return json
 	}
 }
 

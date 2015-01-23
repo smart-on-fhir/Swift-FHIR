@@ -2,7 +2,7 @@
 //  CommunicationRequestTests.swift
 //  CommunicationRequestTests
 //
-//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -12,31 +12,52 @@ import SwiftFHIR
 
 class CommunicationRequestTests: FHIRModelTestCase
 {
-	func instantiateFrom(filename: String) -> CommunicationRequest? {
-		let json = readJSONFile(filename)
+	func instantiateFrom(# filename: String) -> CommunicationRequest {
+		return instantiateFrom(json: readJSONFile(filename)!)
+	}
+	
+	func instantiateFrom(# json: JSONDictionary) -> CommunicationRequest {
 		let instance = CommunicationRequest(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
 	func testCommunicationRequest1() {
-		let inst = instantiateFrom("communicationrequest-example.canonical.json")
-		XCTAssertNotNil(inst, "Must have instantiated a CommunicationRequest instance")
+		let instance = testCommunicationRequest1_impl()
+		testCommunicationRequest1_impl(json: instance.asJSON())
+	}
+	
+	func testCommunicationRequest1_impl(json: JSONDictionary? = nil) -> CommunicationRequest {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "communicationrequest-example.canonical.json")
 		
-		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		
+		return inst
 	}
 	
 	func testCommunicationRequest2() {
-		let inst = instantiateFrom("communicationrequest-example.canonical.json")
-		XCTAssertNotNil(inst, "Must have instantiated a CommunicationRequest instance")
+		let instance = testCommunicationRequest2_impl()
+		testCommunicationRequest2_impl(json: instance.asJSON())
+	}
+	
+	func testCommunicationRequest2_impl(json: JSONDictionary? = nil) -> CommunicationRequest {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "communicationrequest-example.canonical.json")
 		
-		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		
+		return inst
 	}
 	
 	func testCommunicationRequest3() {
-		let inst = instantiateFrom("communicationrequest-example.json")
-		XCTAssertNotNil(inst, "Must have instantiated a CommunicationRequest instance")
+		let instance = testCommunicationRequest3_impl()
+		testCommunicationRequest3_impl(json: instance.asJSON())
+	}
+	
+	func testCommunicationRequest3_impl(json: JSONDictionary? = nil) -> CommunicationRequest {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "communicationrequest-example.json")
 		
-		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		
+		return inst
 	}
 }

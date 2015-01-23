@@ -2,7 +2,7 @@
 //  Timing.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (Timing.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (Timing.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -37,6 +37,19 @@ public class Timing: FHIRElement
 				self.repeat = TimingRepeat(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let event = self.event {
+			json["event"] = Period.asJSONArray(event)
+		}
+		if let repeat = self.repeat {
+			json["repeat"] = repeat.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -102,6 +115,31 @@ public class TimingRepeat: FHIRElement
 				self.when = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let count = self.count {
+			json["count"] = count.asJSON()
+		}
+		if let duration = self.duration {
+			json["duration"] = duration.asJSON()
+		}
+		if let end = self.end {
+			json["end"] = end.asJSON()
+		}
+		if let frequency = self.frequency {
+			json["frequency"] = frequency.asJSON()
+		}
+		if let units = self.units {
+			json["units"] = units.asJSON()
+		}
+		if let when = self.when {
+			json["when"] = when.asJSON()
+		}
+		
+		return json
 	}
 }
 

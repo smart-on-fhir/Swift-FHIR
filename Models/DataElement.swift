@@ -2,7 +2,7 @@
 //  DataElement.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (dataelement.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (dataelement.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -308,6 +308,155 @@ public class DataElement: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let binding = self.binding {
+			json["binding"] = binding.asJSON()
+		}
+		if let category = self.category {
+			json["category"] = CodeableConcept.asJSONArray(category)
+		}
+		if let code = self.code {
+			json["code"] = Coding.asJSONArray(code)
+		}
+		if let comments = self.comments {
+			json["comments"] = comments.asJSON()
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let definition = self.definition {
+			json["definition"] = definition.asJSON()
+		}
+		if let exampleAddress = self.exampleAddress {
+			json["exampleAddress"] = exampleAddress.asJSON()
+		}
+		if let exampleAttachment = self.exampleAttachment {
+			json["exampleAttachment"] = exampleAttachment.asJSON()
+		}
+		if let exampleBase64Binary = self.exampleBase64Binary {
+			json["exampleBase64Binary"] = exampleBase64Binary.asJSON()
+		}
+		if let exampleBoolean = self.exampleBoolean {
+			json["exampleBoolean"] = exampleBoolean.asJSON()
+		}
+		if let exampleCode = self.exampleCode {
+			json["exampleCode"] = exampleCode.asJSON()
+		}
+		if let exampleCodeableConcept = self.exampleCodeableConcept {
+			json["exampleCodeableConcept"] = exampleCodeableConcept.asJSON()
+		}
+		if let exampleCoding = self.exampleCoding {
+			json["exampleCoding"] = exampleCoding.asJSON()
+		}
+		if let exampleContactPoint = self.exampleContactPoint {
+			json["exampleContactPoint"] = exampleContactPoint.asJSON()
+		}
+		if let exampleDate = self.exampleDate {
+			json["exampleDate"] = exampleDate.asJSON()
+		}
+		if let exampleDateTime = self.exampleDateTime {
+			json["exampleDateTime"] = exampleDateTime.asJSON()
+		}
+		if let exampleDecimal = self.exampleDecimal {
+			json["exampleDecimal"] = exampleDecimal.asJSON()
+		}
+		if let exampleHumanName = self.exampleHumanName {
+			json["exampleHumanName"] = exampleHumanName.asJSON()
+		}
+		if let exampleIdentifier = self.exampleIdentifier {
+			json["exampleIdentifier"] = exampleIdentifier.asJSON()
+		}
+		if let exampleInstant = self.exampleInstant {
+			json["exampleInstant"] = exampleInstant.asJSON()
+		}
+		if let exampleInteger = self.exampleInteger {
+			json["exampleInteger"] = exampleInteger.asJSON()
+		}
+		if let examplePeriod = self.examplePeriod {
+			json["examplePeriod"] = examplePeriod.asJSON()
+		}
+		if let exampleQuantity = self.exampleQuantity {
+			json["exampleQuantity"] = exampleQuantity.asJSON()
+		}
+		if let exampleRange = self.exampleRange {
+			json["exampleRange"] = exampleRange.asJSON()
+		}
+		if let exampleRatio = self.exampleRatio {
+			json["exampleRatio"] = exampleRatio.asJSON()
+		}
+		if let exampleReference = self.exampleReference {
+			json["exampleReference"] = exampleReference.asJSON()
+		}
+		if let exampleString = self.exampleString {
+			json["exampleString"] = exampleString.asJSON()
+		}
+		if let exampleTime = self.exampleTime {
+			json["exampleTime"] = exampleTime.asJSON()
+		}
+		if let exampleTiming = self.exampleTiming {
+			json["exampleTiming"] = exampleTiming.asJSON()
+		}
+		if let exampleUri = self.exampleUri {
+			json["exampleUri"] = exampleUri.asJSON()
+		}
+		if let granularity = self.granularity {
+			json["granularity"] = granularity.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let label = self.label {
+			json["label"] = label.asJSON()
+		}
+		if let mapping = self.mapping {
+			json["mapping"] = DataElementMapping.asJSONArray(mapping)
+		}
+		if let maxLength = self.maxLength {
+			json["maxLength"] = maxLength.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let publisher = self.publisher {
+			json["publisher"] = publisher.asJSON()
+		}
+		if let question = self.question {
+			json["question"] = question.asJSON()
+		}
+		if let requirements = self.requirements {
+			json["requirements"] = requirements.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let synonym = self.synonym {
+			var arr = [AnyObject]()
+			for val in synonym {
+				arr.append(val.asJSON())
+			}
+			json["synonym"] = arr
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let unitsCodeableConcept = self.unitsCodeableConcept {
+			json["unitsCodeableConcept"] = unitsCodeableConcept.asJSON()
+		}
+		if let unitsReference = self.unitsReference {
+			json["unitsReference"] = unitsReference.asJSON()
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -357,6 +506,25 @@ public class DataElementBinding: FHIRElement
 				self.valueSet = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let conformance = self.conformance {
+			json["conformance"] = conformance.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let isExtensible = self.isExtensible {
+			json["isExtensible"] = isExtensible.asJSON()
+		}
+		if let valueSet = self.valueSet {
+			json["valueSet"] = valueSet.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -413,6 +581,28 @@ public class DataElementMapping: FHIRElement
 				self.uri = NSURL(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let comments = self.comments {
+			json["comments"] = comments.asJSON()
+		}
+		if let definitional = self.definitional {
+			json["definitional"] = definitional.asJSON()
+		}
+		if let map = self.map {
+			json["map"] = map.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let uri = self.uri {
+			json["uri"] = uri.asJSON()
+		}
+		
+		return json
 	}
 }
 

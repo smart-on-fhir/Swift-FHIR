@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (schedule.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (schedule.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -65,6 +65,31 @@ public class Schedule: FHIRResource
 				self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let actor = self.actor {
+			json["actor"] = actor.asJSON()
+		}
+		if let comment = self.comment {
+			json["comment"] = comment.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let lastModified = self.lastModified {
+			json["lastModified"] = lastModified.asJSON()
+		}
+		if let planningHorizon = self.planningHorizon {
+			json["planningHorizon"] = planningHorizon.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = CodeableConcept.asJSONArray(type)
+		}
+		
+		return json
 	}
 }
 

@@ -27,8 +27,7 @@ Here's a rough list of what still needs to be done.
 [X] Reference resolver: resolve contained resources
 [ ] Reference resolver: resolve bundle-relative resources
 [ ] Reference resolver: resolve remote resources
-[ ] Write serializer
-[ ] Validate serialized JSON?
+[ ] Serialization validator?
 [ ] Handle operations (especially $everything)
 [ ] Handle resource versions nicely
 [ ] Create a default behavior when a modifierExtension is detected
@@ -36,16 +35,19 @@ Here's a rough list of what still needs to be done.
 [ ] Write a real nice documentation
 ```
 
-Working to some extent:
+Working, at least to some extent:
 
 - Classes generated for FHIR's base resources
     + Try to use Swift native types whenever possible
+    + Use custom Date/Time/DateTime/Instant structs
 - Use a FHIR server protocol for REST interactions
-- Use custom Date/Time/DateTime/Instant structs
 - Deserialize from JSON
+- Serialize to JSON
 - Resolve contained resources
 - Construct searches with NoSQL-like statements (cf. fhir.js)
 - Use example resources for auto-created class unit tests
+    + Tests deserialization from file
+    + Tests serialization from deserialized instances
 
 
 Class Generation

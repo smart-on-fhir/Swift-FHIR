@@ -2,7 +2,7 @@
 //  OperationDefinition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (operationdefinition.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (operationdefinition.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -156,6 +156,71 @@ public class OperationDefinition: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let base = self.base {
+			json["base"] = base.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = Coding.asJSONArray(code)
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let experimental = self.experimental {
+			json["experimental"] = experimental.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let instance = self.instance {
+			json["instance"] = instance.asJSON()
+		}
+		if let kind = self.kind {
+			json["kind"] = kind.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let notes = self.notes {
+			json["notes"] = notes.asJSON()
+		}
+		if let parameter = self.parameter {
+			json["parameter"] = OperationDefinitionParameter.asJSONArray(parameter)
+		}
+		if let publisher = self.publisher {
+			json["publisher"] = publisher.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let system = self.system {
+			json["system"] = system.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
+		}
+		if let type = self.type {
+			var arr = [AnyObject]()
+			for val in type {
+				arr.append(val.asJSON())
+			}
+			json["type"] = arr
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -239,6 +304,37 @@ public class OperationDefinitionParameter: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let documentation = self.documentation {
+			json["documentation"] = documentation.asJSON()
+		}
+		if let max = self.max {
+			json["max"] = max.asJSON()
+		}
+		if let min = self.min {
+			json["min"] = min.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let part = self.part {
+			json["part"] = OperationDefinitionParameterPart.asJSONArray(part)
+		}
+		if let profile = self.profile {
+			json["profile"] = profile.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let use = self.use {
+			json["use"] = use.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -309,6 +405,31 @@ public class OperationDefinitionParameterPart: FHIRElement
 				self.type = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let documentation = self.documentation {
+			json["documentation"] = documentation.asJSON()
+		}
+		if let max = self.max {
+			json["max"] = max.asJSON()
+		}
+		if let min = self.min {
+			json["min"] = min.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let profile = self.profile {
+			json["profile"] = profile.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

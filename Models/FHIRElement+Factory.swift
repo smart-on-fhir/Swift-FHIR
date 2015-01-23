@@ -2,7 +2,7 @@
 //  FHIRElement+Factory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -352,10 +352,8 @@ extension FHIRElement
 				return MedicationAdministrationDosage(json: json, owner: owner)
 			case "MedicationDispense":
 				return MedicationDispense(json: json, owner: owner)
-			case "MedicationDispenseDispense":
-				return MedicationDispenseDispense(json: json, owner: owner)
-			case "MedicationDispenseDispenseDosage":
-				return MedicationDispenseDispenseDosage(json: json, owner: owner)
+			case "MedicationDispenseDosageInstruction":
+				return MedicationDispenseDosageInstruction(json: json, owner: owner)
 			case "MedicationDispenseSubstitution":
 				return MedicationDispenseSubstitution(json: json, owner: owner)
 			case "MedicationPackage":
@@ -372,6 +370,8 @@ extension FHIRElement
 				return MedicationPrescriptionSubstitution(json: json, owner: owner)
 			case "MedicationProduct":
 				return MedicationProduct(json: json, owner: owner)
+			case "MedicationProductBatch":
+				return MedicationProductBatch(json: json, owner: owner)
 			case "MedicationProductIngredient":
 				return MedicationProductIngredient(json: json, owner: owner)
 			case "MedicationStatement":

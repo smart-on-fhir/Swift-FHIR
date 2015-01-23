@@ -2,7 +2,7 @@
 //  Alert.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (alert.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (alert.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -73,6 +73,31 @@ public class Alert: FHIRResource
 				self.subject = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let author = self.author {
+			json["author"] = author.asJSON()
+		}
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let note = self.note {
+			json["note"] = note.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		
+		return json
 	}
 }
 

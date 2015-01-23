@@ -2,7 +2,7 @@
 //  Contract.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (contract.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (contract.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -199,6 +199,100 @@ public class Contract: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let applies = self.applies {
+			json["applies"] = applies.asJSON()
+		}
+		if let author = self.author {
+			json["author"] = Reference.asJSONArray(author)
+		}
+		if let authority = self.authority {
+			json["authority"] = Reference.asJSONArray(authority)
+		}
+		if let binding = self.binding {
+			json["binding"] = binding.asJSON()
+		}
+		if let bindingDateTime = self.bindingDateTime {
+			json["bindingDateTime"] = bindingDateTime.asJSON()
+		}
+		if let domain = self.domain {
+			json["domain"] = Reference.asJSONArray(domain)
+		}
+		if let executor = self.executor {
+			json["executor"] = Reference.asJSONArray(executor)
+		}
+		if let factor = self.factor {
+			json["factor"] = factor.asJSON()
+		}
+		if let friendly = self.friendly {
+			json["friendly"] = Attachment.asJSONArray(friendly)
+		}
+		if let friendlyDateTime = self.friendlyDateTime {
+			json["friendlyDateTime"] = friendlyDateTime.asJSON()
+		}
+		if let grantee = self.grantee {
+			json["grantee"] = Reference.asJSONArray(grantee)
+		}
+		if let grantor = self.grantor {
+			json["grantor"] = Reference.asJSONArray(grantor)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let issued = self.issued {
+			json["issued"] = issued.asJSON()
+		}
+		if let legal = self.legal {
+			json["legal"] = Attachment.asJSONArray(legal)
+		}
+		if let legalDateTime = self.legalDateTime {
+			json["legalDateTime"] = legalDateTime.asJSON()
+		}
+		if let net = self.net {
+			json["net"] = net.asJSON()
+		}
+		if let notary = self.notary {
+			json["notary"] = Reference.asJSONArray(notary)
+		}
+		if let points = self.points {
+			json["points"] = points.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let rule = self.rule {
+			json["rule"] = Attachment.asJSONArray(rule)
+		}
+		if let ruleDateTime = self.ruleDateTime {
+			json["ruleDateTime"] = ruleDateTime.asJSON()
+		}
+		if let signer = self.signer {
+			json["signer"] = ContractSigner.asJSONArray(signer)
+		}
+		if let subject = self.subject {
+			json["subject"] = Reference.asJSONArray(subject)
+		}
+		if let subtype = self.subtype {
+			json["subtype"] = CodeableConcept.asJSONArray(subtype)
+		}
+		if let term = self.term {
+			json["term"] = ContractTerm.asJSONArray(term)
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let unitPrice = self.unitPrice {
+			json["unitPrice"] = unitPrice.asJSON()
+		}
+		if let witness = self.witness {
+			json["witness"] = Reference.asJSONArray(witness)
+		}
+		
+		return json
+	}
 }
 
 
@@ -239,6 +333,19 @@ public class ContractSigner: FHIRElement
 				self.type = Coding.from(val, owner: self) as? [Coding]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let signature = self.signature {
+			json["signature"] = signature.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = Coding.asJSONArray(type)
+		}
+		
+		return json
 	}
 }
 
@@ -331,6 +438,49 @@ public class ContractTerm: FHIRElement
 				self.unitPrice = Money(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let applies = self.applies {
+			json["applies"] = applies.asJSON()
+		}
+		if let factor = self.factor {
+			json["factor"] = factor.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let issued = self.issued {
+			json["issued"] = issued.asJSON()
+		}
+		if let net = self.net {
+			json["net"] = net.asJSON()
+		}
+		if let points = self.points {
+			json["points"] = points.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		if let subtype = self.subtype {
+			json["subtype"] = subtype.asJSON()
+		}
+		if let text = self.text {
+			json["text"] = text.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let unitPrice = self.unitPrice {
+			json["unitPrice"] = unitPrice.asJSON()
+		}
+		
+		return json
 	}
 }
 

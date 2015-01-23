@@ -2,7 +2,7 @@
 //  DeviceComponent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (devicecomponent.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (devicecomponent.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -99,6 +99,43 @@ public class DeviceComponent: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let languageCode = self.languageCode {
+			json["languageCode"] = languageCode.asJSON()
+		}
+		if let lastSystemChange = self.lastSystemChange {
+			json["lastSystemChange"] = lastSystemChange.asJSON()
+		}
+		if let measurementPrinciple = self.measurementPrinciple {
+			json["measurementPrinciple"] = measurementPrinciple.asJSON()
+		}
+		if let operationalStatus = self.operationalStatus {
+			json["operationalStatus"] = CodeableConcept.asJSONArray(operationalStatus)
+		}
+		if let parameterGroup = self.parameterGroup {
+			json["parameterGroup"] = parameterGroup.asJSON()
+		}
+		if let parent = self.parent {
+			json["parent"] = parent.asJSON()
+		}
+		if let productionSpecification = self.productionSpecification {
+			json["productionSpecification"] = DeviceComponentProductionSpecification.asJSONArray(productionSpecification)
+		}
+		if let source = self.source {
+			json["source"] = source.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -135,6 +172,22 @@ public class DeviceComponentProductionSpecification: FHIRElement
 				self.specType = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let componentId = self.componentId {
+			json["componentId"] = componentId.asJSON()
+		}
+		if let productionSpec = self.productionSpec {
+			json["productionSpec"] = productionSpec.asJSON()
+		}
+		if let specType = self.specType {
+			json["specType"] = specType.asJSON()
+		}
+		
+		return json
 	}
 }
 

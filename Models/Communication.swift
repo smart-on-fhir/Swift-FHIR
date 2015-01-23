@@ -2,7 +2,7 @@
 //  Communication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (communication.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (communication.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -98,6 +98,49 @@ public class Communication: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let medium = self.medium {
+			json["medium"] = CodeableConcept.asJSONArray(medium)
+		}
+		if let payload = self.payload {
+			json["payload"] = CommunicationPayload.asJSONArray(payload)
+		}
+		if let reason = self.reason {
+			json["reason"] = CodeableConcept.asJSONArray(reason)
+		}
+		if let received = self.received {
+			json["received"] = received.asJSON()
+		}
+		if let recipient = self.recipient {
+			json["recipient"] = Reference.asJSONArray(recipient)
+		}
+		if let sender = self.sender {
+			json["sender"] = sender.asJSON()
+		}
+		if let sent = self.sent {
+			json["sent"] = sent.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -147,6 +190,22 @@ public class CommunicationPayload: FHIRElement
 				self.contentString = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let contentAttachment = self.contentAttachment {
+			json["contentAttachment"] = contentAttachment.asJSON()
+		}
+		if let contentReference = self.contentReference {
+			json["contentReference"] = contentReference.asJSON()
+		}
+		if let contentString = self.contentString {
+			json["contentString"] = contentString.asJSON()
+		}
+		
+		return json
 	}
 }
 

@@ -2,7 +2,7 @@
 //  SampledData.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (SampledData.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (SampledData.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -83,6 +83,34 @@ public class SampledData: FHIRElement
 				self.upperLimit = NSDecimalNumber(json: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let data = self.data {
+			json["data"] = data.asJSON()
+		}
+		if let dimensions = self.dimensions {
+			json["dimensions"] = dimensions.asJSON()
+		}
+		if let factor = self.factor {
+			json["factor"] = factor.asJSON()
+		}
+		if let lowerLimit = self.lowerLimit {
+			json["lowerLimit"] = lowerLimit.asJSON()
+		}
+		if let origin = self.origin {
+			json["origin"] = origin.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let upperLimit = self.upperLimit {
+			json["upperLimit"] = upperLimit.asJSON()
+		}
+		
+		return json
 	}
 }
 

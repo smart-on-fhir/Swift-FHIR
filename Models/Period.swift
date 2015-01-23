@@ -2,7 +2,7 @@
 //  Period.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (Period.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (Period.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -36,6 +36,19 @@ public class Period: FHIRElement
 				self.start = DateTime(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let end = self.end {
+			json["end"] = end.asJSON()
+		}
+		if let start = self.start {
+			json["start"] = start.asJSON()
+		}
+		
+		return json
 	}
 }
 

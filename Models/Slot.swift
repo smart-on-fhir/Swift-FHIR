@@ -2,7 +2,7 @@
 //  Slot.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (slot.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (slot.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -92,6 +92,40 @@ public class Slot: FHIRResource
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let comment = self.comment {
+			json["comment"] = comment.asJSON()
+		}
+		if let end = self.end {
+			json["end"] = end.asJSON()
+		}
+		if let freeBusyType = self.freeBusyType {
+			json["freeBusyType"] = freeBusyType.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let lastModified = self.lastModified {
+			json["lastModified"] = lastModified.asJSON()
+		}
+		if let overbooked = self.overbooked {
+			json["overbooked"] = overbooked.asJSON()
+		}
+		if let schedule = self.schedule {
+			json["schedule"] = schedule.asJSON()
+		}
+		if let start = self.start {
+			json["start"] = start.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

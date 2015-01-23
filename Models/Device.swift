@@ -2,7 +2,7 @@
 //  Device.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (device.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (device.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -112,6 +112,52 @@ public class Device: FHIRResource
 				self.version = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let contact = self.contact {
+			json["contact"] = ContactPoint.asJSONArray(contact)
+		}
+		if let expiry = self.expiry {
+			json["expiry"] = expiry.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let location = self.location {
+			json["location"] = location.asJSON()
+		}
+		if let lotNumber = self.lotNumber {
+			json["lotNumber"] = lotNumber.asJSON()
+		}
+		if let manufacturer = self.manufacturer {
+			json["manufacturer"] = manufacturer.asJSON()
+		}
+		if let model = self.model {
+			json["model"] = model.asJSON()
+		}
+		if let owner = self.owner {
+			json["owner"] = owner.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let udi = self.udi {
+			json["udi"] = udi.asJSON()
+		}
+		if let url = self.url {
+			json["url"] = url.asJSON()
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
+		}
+		
+		return json
 	}
 }
 

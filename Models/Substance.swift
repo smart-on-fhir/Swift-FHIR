@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (substance.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (substance.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -54,6 +54,25 @@ public class Substance: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let ingredient = self.ingredient {
+			json["ingredient"] = SubstanceIngredient.asJSONArray(ingredient)
+		}
+		if let instance = self.instance {
+			json["instance"] = instance.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -92,6 +111,19 @@ public class SubstanceIngredient: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let substance = self.substance {
+			json["substance"] = substance.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -129,6 +161,22 @@ public class SubstanceInstance: FHIRElement
 				self.quantity = Quantity(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let expiry = self.expiry {
+			json["expiry"] = expiry.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		
+		return json
 	}
 }
 

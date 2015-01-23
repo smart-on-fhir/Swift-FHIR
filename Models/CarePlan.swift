@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (careplan.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (careplan.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -93,6 +93,43 @@ public class CarePlan: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let activity = self.activity {
+			json["activity"] = CarePlanActivity.asJSONArray(activity)
+		}
+		if let concern = self.concern {
+			json["concern"] = Reference.asJSONArray(concern)
+		}
+		if let goal = self.goal {
+			json["goal"] = CarePlanGoal.asJSONArray(goal)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let modified = self.modified {
+			json["modified"] = modified.asJSON()
+		}
+		if let notes = self.notes {
+			json["notes"] = notes.asJSON()
+		}
+		if let participant = self.participant {
+			json["participant"] = CarePlanParticipant.asJSONArray(participant)
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -161,6 +198,38 @@ public class CarePlanActivity: FHIRElement
 				self.status = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let actionResulting = self.actionResulting {
+			json["actionResulting"] = Reference.asJSONArray(actionResulting)
+		}
+		if let detail = self.detail {
+			json["detail"] = detail.asJSON()
+		}
+		if let goal = self.goal {
+			var arr = [AnyObject]()
+			for val in goal {
+				arr.append(val.asJSON())
+			}
+			json["goal"] = arr
+		}
+		if let notes = self.notes {
+			json["notes"] = notes.asJSON()
+		}
+		if let prohibited = self.prohibited {
+			json["prohibited"] = prohibited.asJSON()
+		}
+		if let simple = self.simple {
+			json["simple"] = simple.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -255,6 +324,46 @@ public class CarePlanActivitySimple: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let dailyAmount = self.dailyAmount {
+			json["dailyAmount"] = dailyAmount.asJSON()
+		}
+		if let details = self.details {
+			json["details"] = details.asJSON()
+		}
+		if let location = self.location {
+			json["location"] = location.asJSON()
+		}
+		if let performer = self.performer {
+			json["performer"] = Reference.asJSONArray(performer)
+		}
+		if let product = self.product {
+			json["product"] = product.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let scheduledPeriod = self.scheduledPeriod {
+			json["scheduledPeriod"] = scheduledPeriod.asJSON()
+		}
+		if let scheduledString = self.scheduledString {
+			json["scheduledString"] = scheduledString.asJSON()
+		}
+		if let scheduledTiming = self.scheduledTiming {
+			json["scheduledTiming"] = scheduledTiming.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -305,6 +414,25 @@ public class CarePlanGoal: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let concern = self.concern {
+			json["concern"] = Reference.asJSONArray(concern)
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let notes = self.notes {
+			json["notes"] = notes.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -342,6 +470,19 @@ public class CarePlanParticipant: FHIRElement
 				self.role = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let member = self.member {
+			json["member"] = member.asJSON()
+		}
+		if let role = self.role {
+			json["role"] = role.asJSON()
+		}
+		
+		return json
 	}
 }
 

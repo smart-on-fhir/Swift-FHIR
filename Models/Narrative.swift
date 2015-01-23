@@ -2,7 +2,7 @@
 //  Narrative.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (Narrative.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (Narrative.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -44,6 +44,19 @@ public class Narrative: FHIRElement
 				self.status = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let div = self.div {
+			json["div"] = div.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		
+		return json
 	}
 }
 

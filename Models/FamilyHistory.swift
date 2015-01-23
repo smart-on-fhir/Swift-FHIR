@@ -2,7 +2,7 @@
 //  FamilyHistory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (familyhistory.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (familyhistory.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -62,6 +62,28 @@ public class FamilyHistory: FHIRResource
 				self.relation = FamilyHistoryRelation.from(val, owner: self) as? [FamilyHistoryRelation]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let note = self.note {
+			json["note"] = note.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let relation = self.relation {
+			json["relation"] = FamilyHistoryRelation.asJSONArray(relation)
+		}
+		
+		return json
 	}
 }
 
@@ -179,6 +201,58 @@ public class FamilyHistoryRelation: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let ageAge = self.ageAge {
+			json["ageAge"] = ageAge.asJSON()
+		}
+		if let ageRange = self.ageRange {
+			json["ageRange"] = ageRange.asJSON()
+		}
+		if let ageString = self.ageString {
+			json["ageString"] = ageString.asJSON()
+		}
+		if let bornDate = self.bornDate {
+			json["bornDate"] = bornDate.asJSON()
+		}
+		if let bornPeriod = self.bornPeriod {
+			json["bornPeriod"] = bornPeriod.asJSON()
+		}
+		if let bornString = self.bornString {
+			json["bornString"] = bornString.asJSON()
+		}
+		if let condition = self.condition {
+			json["condition"] = FamilyHistoryRelationCondition.asJSONArray(condition)
+		}
+		if let deceasedAge = self.deceasedAge {
+			json["deceasedAge"] = deceasedAge.asJSON()
+		}
+		if let deceasedBoolean = self.deceasedBoolean {
+			json["deceasedBoolean"] = deceasedBoolean.asJSON()
+		}
+		if let deceasedDate = self.deceasedDate {
+			json["deceasedDate"] = deceasedDate.asJSON()
+		}
+		if let deceasedRange = self.deceasedRange {
+			json["deceasedRange"] = deceasedRange.asJSON()
+		}
+		if let deceasedString = self.deceasedString {
+			json["deceasedString"] = deceasedString.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let note = self.note {
+			json["note"] = note.asJSON()
+		}
+		if let relationship = self.relationship {
+			json["relationship"] = relationship.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -242,6 +316,31 @@ public class FamilyHistoryRelationCondition: FHIRElement
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let note = self.note {
+			json["note"] = note.asJSON()
+		}
+		if let onsetAge = self.onsetAge {
+			json["onsetAge"] = onsetAge.asJSON()
+		}
+		if let onsetRange = self.onsetRange {
+			json["onsetRange"] = onsetRange.asJSON()
+		}
+		if let onsetString = self.onsetString {
+			json["onsetString"] = onsetString.asJSON()
+		}
+		if let outcome = self.outcome {
+			json["outcome"] = outcome.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

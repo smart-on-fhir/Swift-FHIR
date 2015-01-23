@@ -2,7 +2,7 @@
 //  Appointment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (appointment.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (appointment.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -130,6 +130,58 @@ public class Appointment: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let comment = self.comment {
+			json["comment"] = comment.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let end = self.end {
+			json["end"] = end.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let lastModified = self.lastModified {
+			json["lastModified"] = lastModified.asJSON()
+		}
+		if let lastModifiedBy = self.lastModifiedBy {
+			json["lastModifiedBy"] = lastModifiedBy.asJSON()
+		}
+		if let location = self.location {
+			json["location"] = location.asJSON()
+		}
+		if let order = self.order {
+			json["order"] = order.asJSON()
+		}
+		if let participant = self.participant {
+			json["participant"] = AppointmentParticipant.asJSONArray(participant)
+		}
+		if let priority = self.priority {
+			json["priority"] = priority.asJSON()
+		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
+		}
+		if let slot = self.slot {
+			json["slot"] = Reference.asJSONArray(slot)
+		}
+		if let start = self.start {
+			json["start"] = start.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -177,6 +229,25 @@ public class AppointmentParticipant: FHIRElement
 				self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let actor = self.actor {
+			json["actor"] = actor.asJSON()
+		}
+		if let required = self.required {
+			json["required"] = required.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = CodeableConcept.asJSONArray(type)
+		}
+		
+		return json
 	}
 }
 

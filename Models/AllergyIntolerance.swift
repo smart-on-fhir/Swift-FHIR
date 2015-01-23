@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (allergyintolerance.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (allergyintolerance.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -108,6 +108,49 @@ public class AllergyIntolerance: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let comment = self.comment {
+			json["comment"] = comment.asJSON()
+		}
+		if let criticality = self.criticality {
+			json["criticality"] = criticality.asJSON()
+		}
+		if let event = self.event {
+			json["event"] = AllergyIntoleranceEvent.asJSONArray(event)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let lastOccurence = self.lastOccurence {
+			json["lastOccurence"] = lastOccurence.asJSON()
+		}
+		if let recordedDate = self.recordedDate {
+			json["recordedDate"] = recordedDate.asJSON()
+		}
+		if let recorder = self.recorder {
+			json["recorder"] = recorder.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		if let substance = self.substance {
+			json["substance"] = substance.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -187,6 +230,40 @@ public class AllergyIntoleranceEvent: FHIRElement
 				self.substance = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let certainty = self.certainty {
+			json["certainty"] = certainty.asJSON()
+		}
+		if let comment = self.comment {
+			json["comment"] = comment.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let duration = self.duration {
+			json["duration"] = duration.asJSON()
+		}
+		if let exposureRoute = self.exposureRoute {
+			json["exposureRoute"] = exposureRoute.asJSON()
+		}
+		if let manifestation = self.manifestation {
+			json["manifestation"] = CodeableConcept.asJSONArray(manifestation)
+		}
+		if let onset = self.onset {
+			json["onset"] = onset.asJSON()
+		}
+		if let severity = self.severity {
+			json["severity"] = severity.asJSON()
+		}
+		if let substance = self.substance {
+			json["substance"] = substance.asJSON()
+		}
+		
+		return json
 	}
 }
 

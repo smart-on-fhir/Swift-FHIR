@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (observation.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (observation.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -197,6 +197,94 @@ public class Observation: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let appliesDateTime = self.appliesDateTime {
+			json["appliesDateTime"] = appliesDateTime.asJSON()
+		}
+		if let appliesPeriod = self.appliesPeriod {
+			json["appliesPeriod"] = appliesPeriod.asJSON()
+		}
+		if let bodySite = self.bodySite {
+			json["bodySite"] = bodySite.asJSON()
+		}
+		if let comments = self.comments {
+			json["comments"] = comments.asJSON()
+		}
+		if let dataAbsentReason = self.dataAbsentReason {
+			json["dataAbsentReason"] = dataAbsentReason.asJSON()
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let interpretation = self.interpretation {
+			json["interpretation"] = interpretation.asJSON()
+		}
+		if let issued = self.issued {
+			json["issued"] = issued.asJSON()
+		}
+		if let method = self.method {
+			json["method"] = method.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let performer = self.performer {
+			json["performer"] = Reference.asJSONArray(performer)
+		}
+		if let referenceRange = self.referenceRange {
+			json["referenceRange"] = ObservationReferenceRange.asJSONArray(referenceRange)
+		}
+		if let related = self.related {
+			json["related"] = ObservationRelated.asJSONArray(related)
+		}
+		if let reliability = self.reliability {
+			json["reliability"] = reliability.asJSON()
+		}
+		if let specimen = self.specimen {
+			json["specimen"] = specimen.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		if let valueAttachment = self.valueAttachment {
+			json["valueAttachment"] = valueAttachment.asJSON()
+		}
+		if let valueCodeableConcept = self.valueCodeableConcept {
+			json["valueCodeableConcept"] = valueCodeableConcept.asJSON()
+		}
+		if let valueDateTime = self.valueDateTime {
+			json["valueDateTime"] = valueDateTime.asJSON()
+		}
+		if let valuePeriod = self.valuePeriod {
+			json["valuePeriod"] = valuePeriod.asJSON()
+		}
+		if let valueQuantity = self.valueQuantity {
+			json["valueQuantity"] = valueQuantity.asJSON()
+		}
+		if let valueRatio = self.valueRatio {
+			json["valueRatio"] = valueRatio.asJSON()
+		}
+		if let valueSampledData = self.valueSampledData {
+			json["valueSampledData"] = valueSampledData.asJSON()
+		}
+		if let valueString = self.valueString {
+			json["valueString"] = valueString.asJSON()
+		}
+		if let valueTime = self.valueTime {
+			json["valueTime"] = valueTime.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -246,6 +334,28 @@ public class ObservationReferenceRange: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let age = self.age {
+			json["age"] = age.asJSON()
+		}
+		if let high = self.high {
+			json["high"] = high.asJSON()
+		}
+		if let low = self.low {
+			json["low"] = low.asJSON()
+		}
+		if let meaning = self.meaning {
+			json["meaning"] = meaning.asJSON()
+		}
+		if let text = self.text {
+			json["text"] = text.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -283,6 +393,19 @@ public class ObservationRelated: FHIRElement
 				self.type = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let target = self.target {
+			json["target"] = target.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

@@ -2,7 +2,7 @@
 //  SecurityEvent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (securityevent.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (securityevent.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -62,6 +62,25 @@ public class SecurityEvent: FHIRResource
 				self.source = SecurityEventSource(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let event = self.event {
+			json["event"] = event.asJSON()
+		}
+		if let object = self.object {
+			json["object"] = SecurityEventObject.asJSONArray(object)
+		}
+		if let participant = self.participant {
+			json["participant"] = SecurityEventParticipant.asJSONArray(participant)
+		}
+		if let source = self.source {
+			json["source"] = source.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -127,6 +146,31 @@ public class SecurityEventEvent: FHIRElement
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let action = self.action {
+			json["action"] = action.asJSON()
+		}
+		if let dateTime = self.dateTime {
+			json["dateTime"] = dateTime.asJSON()
+		}
+		if let outcome = self.outcome {
+			json["outcome"] = outcome.asJSON()
+		}
+		if let outcomeDesc = self.outcomeDesc {
+			json["outcomeDesc"] = outcomeDesc.asJSON()
+		}
+		if let subtype = self.subtype {
+			json["subtype"] = CodeableConcept.asJSONArray(subtype)
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -205,6 +249,43 @@ public class SecurityEventObject: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let detail = self.detail {
+			json["detail"] = SecurityEventObjectDetail.asJSONArray(detail)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let lifecycle = self.lifecycle {
+			json["lifecycle"] = lifecycle.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let query = self.query {
+			json["query"] = query.asJSON()
+		}
+		if let reference = self.reference {
+			json["reference"] = reference.asJSON()
+		}
+		if let role = self.role {
+			json["role"] = role.asJSON()
+		}
+		if let sensitivity = self.sensitivity {
+			json["sensitivity"] = sensitivity.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -243,6 +324,19 @@ public class SecurityEventObjectDetail: FHIRElement
 				self.value = Base64Binary(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let value = self.value {
+			json["value"] = value.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -316,6 +410,37 @@ public class SecurityEventParticipant: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let altId = self.altId {
+			json["altId"] = altId.asJSON()
+		}
+		if let media = self.media {
+			json["media"] = media.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let network = self.network {
+			json["network"] = network.asJSON()
+		}
+		if let reference = self.reference {
+			json["reference"] = reference.asJSON()
+		}
+		if let requestor = self.requestor {
+			json["requestor"] = requestor.asJSON()
+		}
+		if let role = self.role {
+			json["role"] = CodeableConcept.asJSONArray(role)
+		}
+		if let userId = self.userId {
+			json["userId"] = userId.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -346,6 +471,19 @@ public class SecurityEventParticipantNetwork: FHIRElement
 				self.type = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -388,6 +526,22 @@ public class SecurityEventSource: FHIRElement
 				self.type = Coding.from(val, owner: self) as? [Coding]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let site = self.site {
+			json["site"] = site.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = Coding.asJSONArray(type)
+		}
+		
+		return json
 	}
 }
 

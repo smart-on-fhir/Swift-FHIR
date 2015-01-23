@@ -2,7 +2,7 @@
 //  DiagnosticOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (diagnosticorder.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (diagnosticorder.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -98,6 +98,46 @@ public class DiagnosticOrder: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let clinicalNotes = self.clinicalNotes {
+			json["clinicalNotes"] = clinicalNotes.asJSON()
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let event = self.event {
+			json["event"] = DiagnosticOrderEvent.asJSONArray(event)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let item = self.item {
+			json["item"] = DiagnosticOrderItem.asJSONArray(item)
+		}
+		if let orderer = self.orderer {
+			json["orderer"] = orderer.asJSON()
+		}
+		if let priority = self.priority {
+			json["priority"] = priority.asJSON()
+		}
+		if let specimen = self.specimen {
+			json["specimen"] = Reference.asJSONArray(specimen)
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		if let supportingInformation = self.supportingInformation {
+			json["supportingInformation"] = Reference.asJSONArray(supportingInformation)
+		}
+		
+		return json
+	}
 }
 
 
@@ -151,6 +191,25 @@ public class DiagnosticOrderEvent: FHIRElement
 				self.status = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let actor = self.actor {
+			json["actor"] = actor.asJSON()
+		}
+		if let dateTime = self.dateTime {
+			json["dateTime"] = dateTime.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -208,6 +267,28 @@ public class DiagnosticOrderItem: FHIRElement
 				self.status = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let bodySite = self.bodySite {
+			json["bodySite"] = bodySite.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let event = self.event {
+			json["event"] = DiagnosticOrderEvent.asJSONArray(event)
+		}
+		if let specimen = self.specimen {
+			json["specimen"] = Reference.asJSONArray(specimen)
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		
+		return json
 	}
 }
 

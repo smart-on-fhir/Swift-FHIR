@@ -2,7 +2,7 @@
 //  Contraindication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (contraindication.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (contraindication.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -86,6 +86,43 @@ public class Contraindication: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let author = self.author {
+			json["author"] = author.asJSON()
+		}
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let detail = self.detail {
+			json["detail"] = detail.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let implicated = self.implicated {
+			json["implicated"] = Reference.asJSONArray(implicated)
+		}
+		if let mitigation = self.mitigation {
+			json["mitigation"] = ContraindicationMitigation.asJSONArray(mitigation)
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let reference = self.reference {
+			json["reference"] = reference.asJSON()
+		}
+		if let severity = self.severity {
+			json["severity"] = severity.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -131,6 +168,22 @@ public class ContraindicationMitigation: FHIRElement
 				self.date = DateTime(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let action = self.action {
+			json["action"] = action.asJSON()
+		}
+		if let author = self.author {
+			json["author"] = author.asJSON()
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		
+		return json
 	}
 }
 

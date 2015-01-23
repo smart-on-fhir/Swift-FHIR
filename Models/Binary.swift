@@ -2,7 +2,7 @@
 //  Binary.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (binary.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (binary.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -46,6 +46,19 @@ public class Binary: FHIRResource
 				self.contentType = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let content = self.content {
+			json["content"] = content.asJSON()
+		}
+		if let contentType = self.contentType {
+			json["contentType"] = contentType.asJSON()
+		}
+		
+		return json
 	}
 }
 

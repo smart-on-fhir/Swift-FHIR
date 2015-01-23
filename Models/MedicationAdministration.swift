@@ -2,7 +2,7 @@
 //  MedicationAdministration.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (medicationadministration.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (medicationadministration.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -12,11 +12,9 @@ import Foundation
 /**
  *  Administration of medication to a patient.
  *
- *  Describes the event of a patient being given a dose of a medication.  This may be as simple as swallowing a tablet
- *  or it may be a long running infusion.
- *  
- *  Related resources tie this event to the authorizing prescription, and the specific encounter between patient and
- *  health care practitioner.
+ *  Describes the event of a patient consuming or otherwise being administered a medication.  This may be as simple as
+ *  swallowing a tablet or it may be a long running infusion.Related resources tie this event to the authorizing
+ *  prescription, and the specific encounter between patient and health care practitioner.
  */
 public class MedicationAdministration: FHIRResource
 {
@@ -27,8 +25,8 @@ public class MedicationAdministration: FHIRResource
 	/// Device used to administer
 	public var device: [Reference]?
 	
-	/// Medicine administration instructions to the patient/carer
-	public var dosage: [MedicationAdministrationDosage]?
+	/// Details of how medication was taken
+	public var dosage: MedicationAdministrationDosage?
 	
 	/// Start and end time of administration
 	public var effectiveTimeDateTime: DateTime?
@@ -54,6 +52,9 @@ public class MedicationAdministration: FHIRResource
 	/// Order administration performed against
 	public var prescription: Reference?
 	
+	/// Reason administration performed
+	public var reasonGiven: [CodeableConcept]?
+	
 	/// Reason administration not performed
 	public var reasonNotGiven: [CodeableConcept]?
 	
@@ -63,7 +64,7 @@ public class MedicationAdministration: FHIRResource
 	/// True if medication not administered
 	public var wasNotGiven: Bool?
 	
-	public convenience init(effectiveTimeDateTime: DateTime?, effectiveTimePeriod: Period?, patient: Reference?, practitioner: Reference?, prescription: Reference?, status: String?) {
+	public convenience init(effectiveTimeDateTime: DateTime?, effectiveTimePeriod: Period?, patient: Reference?, status: String?) {
 		self.init(json: nil)
 		if nil != effectiveTimeDateTime {
 			self.effectiveTimeDateTime = effectiveTimeDateTime
@@ -73,12 +74,6 @@ public class MedicationAdministration: FHIRResource
 		}
 		if nil != patient {
 			self.patient = patient
-		}
-		if nil != practitioner {
-			self.practitioner = practitioner
-		}
-		if nil != prescription {
-			self.prescription = prescription
 		}
 		if nil != status {
 			self.status = status
@@ -91,8 +86,8 @@ public class MedicationAdministration: FHIRResource
 			if let val = js["device"] as? [JSONDictionary] {
 				self.device = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["dosage"] as? [JSONDictionary] {
-				self.dosage = MedicationAdministrationDosage.from(val, owner: self) as? [MedicationAdministrationDosage]
+			if let val = js["dosage"] as? JSONDictionary {
+				self.dosage = MedicationAdministrationDosage(json: val, owner: self)
 			}
 			if let val = js["effectiveTimeDateTime"] as? String {
 				self.effectiveTimeDateTime = DateTime(string: val)
@@ -118,6 +113,9 @@ public class MedicationAdministration: FHIRResource
 			if let val = js["prescription"] as? JSONDictionary {
 				self.prescription = Reference(json: val, owner: self)
 			}
+			if let val = js["reasonGiven"] as? [JSONDictionary] {
+				self.reasonGiven = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			}
 			if let val = js["reasonNotGiven"] as? [JSONDictionary] {
 				self.reasonNotGiven = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
@@ -129,28 +127,68 @@ public class MedicationAdministration: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let device = self.device {
+			json["device"] = Reference.asJSONArray(device)
+		}
+		if let dosage = self.dosage {
+			json["dosage"] = dosage.asJSON()
+		}
+		if let effectiveTimeDateTime = self.effectiveTimeDateTime {
+			json["effectiveTimeDateTime"] = effectiveTimeDateTime.asJSON()
+		}
+		if let effectiveTimePeriod = self.effectiveTimePeriod {
+			json["effectiveTimePeriod"] = effectiveTimePeriod.asJSON()
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let medication = self.medication {
+			json["medication"] = medication.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let practitioner = self.practitioner {
+			json["practitioner"] = practitioner.asJSON()
+		}
+		if let prescription = self.prescription {
+			json["prescription"] = prescription.asJSON()
+		}
+		if let reasonGiven = self.reasonGiven {
+			json["reasonGiven"] = CodeableConcept.asJSONArray(reasonGiven)
+		}
+		if let reasonNotGiven = self.reasonNotGiven {
+			json["reasonNotGiven"] = CodeableConcept.asJSONArray(reasonNotGiven)
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let wasNotGiven = self.wasNotGiven {
+			json["wasNotGiven"] = wasNotGiven.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
 /**
- *  Medicine administration instructions to the patient/carer.
+ *  Details of how medication was taken.
  *
- *  Provides details of how much of the medication was administered.
+ *  Indicates how the medication is/was used by the patient.
  */
 public class MedicationAdministrationDosage: FHIRElement
 {
 	override public class var resourceName: String {
 		get { return "MedicationAdministrationDosage" }
 	}
-	
-	/// Take "as needed" f(or x)
-	public var asNeededBoolean: Bool?
-	
-	/// Take "as needed" f(or x)
-	public var asNeededCodeableConcept: CodeableConcept?
-	
-	/// Total dose that was consumed per unit of time
-	public var maxDosePerPeriod: Ratio?
 	
 	/// How drug was administered
 	public var method: CodeableConcept?
@@ -167,24 +205,12 @@ public class MedicationAdministrationDosage: FHIRElement
 	/// Body site administered to
 	public var site: CodeableConcept?
 	
-	/// When dose(s) were given
-	public var timingDateTime: DateTime?
-	
-	/// When dose(s) were given
-	public var timingPeriod: Period?
+	/// Dosage Instructions
+	public var text: String?
 	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["asNeededBoolean"] as? Bool {
-				self.asNeededBoolean = val
-			}
-			if let val = js["asNeededCodeableConcept"] as? JSONDictionary {
-				self.asNeededCodeableConcept = CodeableConcept(json: val, owner: self)
-			}
-			if let val = js["maxDosePerPeriod"] as? JSONDictionary {
-				self.maxDosePerPeriod = Ratio(json: val, owner: self)
-			}
 			if let val = js["method"] as? JSONDictionary {
 				self.method = CodeableConcept(json: val, owner: self)
 			}
@@ -200,13 +226,35 @@ public class MedicationAdministrationDosage: FHIRElement
 			if let val = js["site"] as? JSONDictionary {
 				self.site = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["timingDateTime"] as? String {
-				self.timingDateTime = DateTime(string: val)
-			}
-			if let val = js["timingPeriod"] as? JSONDictionary {
-				self.timingPeriod = Period(json: val, owner: self)
+			if let val = js["text"] as? String {
+				self.text = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let method = self.method {
+			json["method"] = method.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let rate = self.rate {
+			json["rate"] = rate.asJSON()
+		}
+		if let route = self.route {
+			json["route"] = route.asJSON()
+		}
+		if let site = self.site {
+			json["site"] = site.asJSON()
+		}
+		if let text = self.text {
+			json["text"] = text.asJSON()
+		}
+		
+		return json
 	}
 }
 

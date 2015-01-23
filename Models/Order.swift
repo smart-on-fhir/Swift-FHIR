@@ -2,7 +2,7 @@
 //  Order.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (order.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (order.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -90,6 +90,43 @@ public class Order: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let authority = self.authority {
+			json["authority"] = authority.asJSON()
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let detail = self.detail {
+			json["detail"] = Reference.asJSONArray(detail)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let reasonCodeableConcept = self.reasonCodeableConcept {
+			json["reasonCodeableConcept"] = reasonCodeableConcept.asJSON()
+		}
+		if let reasonReference = self.reasonReference {
+			json["reasonReference"] = reasonReference.asJSON()
+		}
+		if let source = self.source {
+			json["source"] = source.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		if let target = self.target {
+			json["target"] = target.asJSON()
+		}
+		if let when = self.when {
+			json["when"] = when.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -118,6 +155,19 @@ public class OrderWhen: FHIRElement
 				self.schedule = Timing(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let schedule = self.schedule {
+			json["schedule"] = schedule.asJSON()
+		}
+		
+		return json
 	}
 }
 

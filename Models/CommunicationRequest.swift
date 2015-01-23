@@ -2,7 +2,7 @@
 //  CommunicationRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (communicationrequest.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (communicationrequest.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -110,6 +110,55 @@ public class CommunicationRequest: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let medium = self.medium {
+			json["medium"] = CodeableConcept.asJSONArray(medium)
+		}
+		if let orderedOn = self.orderedOn {
+			json["orderedOn"] = orderedOn.asJSON()
+		}
+		if let payload = self.payload {
+			json["payload"] = CommunicationRequestPayload.asJSONArray(payload)
+		}
+		if let priority = self.priority {
+			json["priority"] = priority.asJSON()
+		}
+		if let reason = self.reason {
+			json["reason"] = CodeableConcept.asJSONArray(reason)
+		}
+		if let recipient = self.recipient {
+			json["recipient"] = Reference.asJSONArray(recipient)
+		}
+		if let requester = self.requester {
+			json["requester"] = requester.asJSON()
+		}
+		if let scheduledTime = self.scheduledTime {
+			json["scheduledTime"] = scheduledTime.asJSON()
+		}
+		if let sender = self.sender {
+			json["sender"] = sender.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -159,6 +208,22 @@ public class CommunicationRequestPayload: FHIRElement
 				self.contentString = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let contentAttachment = self.contentAttachment {
+			json["contentAttachment"] = contentAttachment.asJSON()
+		}
+		if let contentReference = self.contentReference {
+			json["contentReference"] = contentReference.asJSON()
+		}
+		if let contentString = self.contentString {
+			json["contentString"] = contentString.asJSON()
+		}
+		
+		return json
 	}
 }
 

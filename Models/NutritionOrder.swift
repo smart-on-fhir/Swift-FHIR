@@ -2,7 +2,7 @@
 //  NutritionOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (nutritionorder.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (nutritionorder.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -95,6 +95,43 @@ public class NutritionOrder: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let allergyIntolerance = self.allergyIntolerance {
+			json["allergyIntolerance"] = Reference.asJSONArray(allergyIntolerance)
+		}
+		if let dateTime = self.dateTime {
+			json["dateTime"] = dateTime.asJSON()
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let excludeFoodModifier = self.excludeFoodModifier {
+			json["excludeFoodModifier"] = CodeableConcept.asJSONArray(excludeFoodModifier)
+		}
+		if let foodPreferenceModifier = self.foodPreferenceModifier {
+			json["foodPreferenceModifier"] = CodeableConcept.asJSONArray(foodPreferenceModifier)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let item = self.item {
+			json["item"] = NutritionOrderItem.asJSONArray(item)
+		}
+		if let orderer = self.orderer {
+			json["orderer"] = orderer.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -157,6 +194,31 @@ public class NutritionOrderItem: FHIRElement
 				self.supplement = NutritionOrderItemSupplement(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let enteralFormula = self.enteralFormula {
+			json["enteralFormula"] = enteralFormula.asJSON()
+		}
+		if let isInEffect = self.isInEffect {
+			json["isInEffect"] = isInEffect.asJSON()
+		}
+		if let oralDiet = self.oralDiet {
+			json["oralDiet"] = oralDiet.asJSON()
+		}
+		if let scheduledPeriod = self.scheduledPeriod {
+			json["scheduledPeriod"] = scheduledPeriod.asJSON()
+		}
+		if let scheduledTiming = self.scheduledTiming {
+			json["scheduledTiming"] = scheduledTiming.asJSON()
+		}
+		if let supplement = self.supplement {
+			json["supplement"] = supplement.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -243,6 +305,46 @@ public class NutritionOrderItemEnteralFormula: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let additiveName = self.additiveName {
+			json["additiveName"] = additiveName.asJSON()
+		}
+		if let additiveType = self.additiveType {
+			json["additiveType"] = additiveType.asJSON()
+		}
+		if let administrationInstructions = self.administrationInstructions {
+			json["administrationInstructions"] = administrationInstructions.asJSON()
+		}
+		if let baseFormulaName = self.baseFormulaName {
+			json["baseFormulaName"] = baseFormulaName.asJSON()
+		}
+		if let baseFormulaType = self.baseFormulaType {
+			json["baseFormulaType"] = baseFormulaType.asJSON()
+		}
+		if let caloricDensity = self.caloricDensity {
+			json["caloricDensity"] = caloricDensity.asJSON()
+		}
+		if let maxVolumeToDeliver = self.maxVolumeToDeliver {
+			json["maxVolumeToDeliver"] = maxVolumeToDeliver.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let rate = self.rate {
+			json["rate"] = rate.asJSON()
+		}
+		if let rateAdjustment = self.rateAdjustment {
+			json["rateAdjustment"] = rateAdjustment.asJSON()
+		}
+		if let routeofAdministration = self.routeofAdministration {
+			json["routeofAdministration"] = routeofAdministration.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -292,6 +394,28 @@ public class NutritionOrderItemOralDiet: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let fluidConsistencyType = self.fluidConsistencyType {
+			json["fluidConsistencyType"] = CodeableConcept.asJSONArray(fluidConsistencyType)
+		}
+		if let instruction = self.instruction {
+			json["instruction"] = instruction.asJSON()
+		}
+		if let nutrients = self.nutrients {
+			json["nutrients"] = NutritionOrderItemOralDietNutrients.asJSONArray(nutrients)
+		}
+		if let texture = self.texture {
+			json["texture"] = NutritionOrderItemOralDietTexture.asJSONArray(texture)
+		}
+		if let type = self.type {
+			json["type"] = CodeableConcept.asJSONArray(type)
+		}
+		
+		return json
+	}
 }
 
 
@@ -329,6 +453,22 @@ public class NutritionOrderItemOralDietNutrients: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let amountQuantity = self.amountQuantity {
+			json["amountQuantity"] = amountQuantity.asJSON()
+		}
+		if let amountRange = self.amountRange {
+			json["amountRange"] = amountRange.asJSON()
+		}
+		if let mod = self.mod {
+			json["modifier"] = mod.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -360,6 +500,19 @@ public class NutritionOrderItemOralDietTexture: FHIRElement
 				self.mod = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let foodType = self.foodType {
+			json["foodType"] = foodType.asJSON()
+		}
+		if let mod = self.mod {
+			json["modifier"] = mod.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -397,6 +550,22 @@ public class NutritionOrderItemSupplement: FHIRElement
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

@@ -2,7 +2,7 @@
 //  Group.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (group.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (group.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -85,6 +85,37 @@ public class Group: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let actual = self.actual {
+			json["actual"] = actual.asJSON()
+		}
+		if let characteristic = self.characteristic {
+			json["characteristic"] = GroupCharacteristic.asJSONArray(characteristic)
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let member = self.member {
+			json["member"] = Reference.asJSONArray(member)
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -161,6 +192,31 @@ public class GroupCharacteristic: FHIRElement
 				self.valueRange = Range(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let exclude = self.exclude {
+			json["exclude"] = exclude.asJSON()
+		}
+		if let valueBoolean = self.valueBoolean {
+			json["valueBoolean"] = valueBoolean.asJSON()
+		}
+		if let valueCodeableConcept = self.valueCodeableConcept {
+			json["valueCodeableConcept"] = valueCodeableConcept.asJSON()
+		}
+		if let valueQuantity = self.valueQuantity {
+			json["valueQuantity"] = valueQuantity.asJSON()
+		}
+		if let valueRange = self.valueRange {
+			json["valueRange"] = valueRange.asJSON()
+		}
+		
+		return json
 	}
 }
 

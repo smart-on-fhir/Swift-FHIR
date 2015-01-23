@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (encounter.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (encounter.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -144,6 +144,67 @@ public class Encounter: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let episodeOfCare = self.episodeOfCare {
+			json["episodeOfCare"] = episodeOfCare.asJSON()
+		}
+		if let fulfills = self.fulfills {
+			json["fulfills"] = fulfills.asJSON()
+		}
+		if let hospitalization = self.hospitalization {
+			json["hospitalization"] = hospitalization.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let indication = self.indication {
+			json["indication"] = Reference.asJSONArray(indication)
+		}
+		if let klass = self.klass {
+			json["class"] = klass.asJSON()
+		}
+		if let length = self.length {
+			json["length"] = length.asJSON()
+		}
+		if let location = self.location {
+			json["location"] = EncounterLocation.asJSONArray(location)
+		}
+		if let partOf = self.partOf {
+			json["partOf"] = partOf.asJSON()
+		}
+		if let participant = self.participant {
+			json["participant"] = EncounterParticipant.asJSONArray(participant)
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let priority = self.priority {
+			json["priority"] = priority.asJSON()
+		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
+		}
+		if let serviceProvider = self.serviceProvider {
+			json["serviceProvider"] = serviceProvider.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let statusHistory = self.statusHistory {
+			json["statusHistory"] = EncounterStatusHistory.asJSONArray(statusHistory)
+		}
+		if let type = self.type {
+			json["type"] = CodeableConcept.asJSONArray(type)
+		}
+		
+		return json
+	}
 }
 
 
@@ -221,6 +282,43 @@ public class EncounterHospitalization: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let admitSource = self.admitSource {
+			json["admitSource"] = admitSource.asJSON()
+		}
+		if let destination = self.destination {
+			json["destination"] = destination.asJSON()
+		}
+		if let diet = self.diet {
+			json["diet"] = diet.asJSON()
+		}
+		if let dischargeDiagnosis = self.dischargeDiagnosis {
+			json["dischargeDiagnosis"] = dischargeDiagnosis.asJSON()
+		}
+		if let dischargeDisposition = self.dischargeDisposition {
+			json["dischargeDisposition"] = dischargeDisposition.asJSON()
+		}
+		if let origin = self.origin {
+			json["origin"] = origin.asJSON()
+		}
+		if let preAdmissionIdentifier = self.preAdmissionIdentifier {
+			json["preAdmissionIdentifier"] = preAdmissionIdentifier.asJSON()
+		}
+		if let reAdmission = self.reAdmission {
+			json["reAdmission"] = reAdmission.asJSON()
+		}
+		if let specialArrangement = self.specialArrangement {
+			json["specialArrangement"] = CodeableConcept.asJSONArray(specialArrangement)
+		}
+		if let specialCourtesy = self.specialCourtesy {
+			json["specialCourtesy"] = CodeableConcept.asJSONArray(specialCourtesy)
+		}
+		
+		return json
+	}
 }
 
 
@@ -265,6 +363,22 @@ public class EncounterLocation: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let location = self.location {
+			json["location"] = location.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -301,6 +415,22 @@ public class EncounterParticipant: FHIRElement
 				self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let individual = self.individual {
+			json["individual"] = individual.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = CodeableConcept.asJSONArray(type)
+		}
+		
+		return json
 	}
 }
 
@@ -344,6 +474,19 @@ public class EncounterStatusHistory: FHIRElement
 				self.status = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		
+		return json
 	}
 }
 

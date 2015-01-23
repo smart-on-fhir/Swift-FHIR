@@ -2,7 +2,7 @@
 //  QuestionnaireAnswers.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (questionnaireanswers.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (questionnaireanswers.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -90,6 +90,40 @@ public class QuestionnaireAnswers: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let author = self.author {
+			json["author"] = author.asJSON()
+		}
+		if let authored = self.authored {
+			json["authored"] = authored.asJSON()
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let group = self.group {
+			json["group"] = group.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let questionnaire = self.questionnaire {
+			json["questionnaire"] = questionnaire.asJSON()
+		}
+		if let source = self.source {
+			json["source"] = source.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -145,6 +179,31 @@ public class QuestionnaireAnswersGroup: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let group = self.group {
+			json["group"] = QuestionnaireAnswersGroup.asJSONArray(group)
+		}
+		if let linkId = self.linkId {
+			json["linkId"] = linkId.asJSON()
+		}
+		if let question = self.question {
+			json["question"] = QuestionnaireAnswersGroupQuestion.asJSONArray(question)
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		if let text = self.text {
+			json["text"] = text.asJSON()
+		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -187,6 +246,25 @@ public class QuestionnaireAnswersGroupQuestion: FHIRElement
 				self.text = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let answer = self.answer {
+			json["answer"] = QuestionnaireAnswersGroupQuestionAnswer.asJSONArray(answer)
+		}
+		if let group = self.group {
+			json["group"] = QuestionnaireAnswersGroup.asJSONArray(group)
+		}
+		if let linkId = self.linkId {
+			json["linkId"] = linkId.asJSON()
+		}
+		if let text = self.text {
+			json["text"] = text.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -278,6 +356,49 @@ public class QuestionnaireAnswersGroupQuestionAnswer: FHIRElement
 				self.valueTime = Time(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let valueAttachment = self.valueAttachment {
+			json["valueAttachment"] = valueAttachment.asJSON()
+		}
+		if let valueBoolean = self.valueBoolean {
+			json["valueBoolean"] = valueBoolean.asJSON()
+		}
+		if let valueCoding = self.valueCoding {
+			json["valueCoding"] = valueCoding.asJSON()
+		}
+		if let valueDate = self.valueDate {
+			json["valueDate"] = valueDate.asJSON()
+		}
+		if let valueDateTime = self.valueDateTime {
+			json["valueDateTime"] = valueDateTime.asJSON()
+		}
+		if let valueDecimal = self.valueDecimal {
+			json["valueDecimal"] = valueDecimal.asJSON()
+		}
+		if let valueInstant = self.valueInstant {
+			json["valueInstant"] = valueInstant.asJSON()
+		}
+		if let valueInteger = self.valueInteger {
+			json["valueInteger"] = valueInteger.asJSON()
+		}
+		if let valueQuantity = self.valueQuantity {
+			json["valueQuantity"] = valueQuantity.asJSON()
+		}
+		if let valueReference = self.valueReference {
+			json["valueReference"] = valueReference.asJSON()
+		}
+		if let valueString = self.valueString {
+			json["valueString"] = valueString.asJSON()
+		}
+		if let valueTime = self.valueTime {
+			json["valueTime"] = valueTime.asJSON()
+		}
+		
+		return json
 	}
 }
 

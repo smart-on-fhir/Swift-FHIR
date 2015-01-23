@@ -2,7 +2,7 @@
 //  NamingSystem.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (namingsystem.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (namingsystem.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -108,6 +108,46 @@ public class NamingSystem: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let contact = self.contact {
+			json["contact"] = contact.asJSON()
+		}
+		if let country = self.country {
+			json["country"] = country.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let replacedBy = self.replacedBy {
+			json["replacedBy"] = replacedBy.asJSON()
+		}
+		if let responsible = self.responsible {
+			json["responsible"] = responsible.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let uniqueId = self.uniqueId {
+			json["uniqueId"] = NamingSystemUniqueId.asJSONArray(uniqueId)
+		}
+		if let usage = self.usage {
+			json["usage"] = usage.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -138,6 +178,19 @@ public class NamingSystemContact: FHIRElement
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		
+		return json
 	}
 }
 
@@ -191,6 +244,25 @@ public class NamingSystemUniqueId: FHIRElement
 				self.value = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let preferred = self.preferred {
+			json["preferred"] = preferred.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let value = self.value {
+			json["value"] = value.asJSON()
+		}
+		
+		return json
 	}
 }
 

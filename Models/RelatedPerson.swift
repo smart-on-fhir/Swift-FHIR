@@ -2,7 +2,7 @@
 //  RelatedPerson.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (relatedperson.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (relatedperson.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -86,6 +86,40 @@ public class RelatedPerson: FHIRResource
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let address = self.address {
+			json["address"] = address.asJSON()
+		}
+		if let gender = self.gender {
+			json["gender"] = gender.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let photo = self.photo {
+			json["photo"] = Attachment.asJSONArray(photo)
+		}
+		if let relationship = self.relationship {
+			json["relationship"] = relationship.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		
+		return json
 	}
 }
 

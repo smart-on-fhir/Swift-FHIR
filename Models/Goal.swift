@@ -2,7 +2,7 @@
 //  Goal.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (goal.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (goal.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -67,6 +67,31 @@ public class Goal: FHIRResource
 				self.status = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let concern = self.concern {
+			json["concern"] = Reference.asJSONArray(concern)
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let notes = self.notes {
+			json["notes"] = notes.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		
+		return json
 	}
 }
 

@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (subscription.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (subscription.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -89,6 +89,37 @@ public class Subscription: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let channel = self.channel {
+			json["channel"] = channel.asJSON()
+		}
+		if let contact = self.contact {
+			json["contact"] = ContactPoint.asJSONArray(contact)
+		}
+		if let criteria = self.criteria {
+			json["criteria"] = criteria.asJSON()
+		}
+		if let end = self.end {
+			json["end"] = end.asJSON()
+		}
+		if let error = self.error {
+			json["error"] = error.asJSON()
+		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let tag = self.tag {
+			json["tag"] = SubscriptionTag.asJSONArray(tag)
+		}
+		
+		return json
+	}
 }
 
 
@@ -142,6 +173,25 @@ public class SubscriptionChannel: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let header = self.header {
+			json["header"] = header.asJSON()
+		}
+		if let payload = self.payload {
+			json["payload"] = payload.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let url = self.url {
+			json["url"] = url.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -188,6 +238,22 @@ public class SubscriptionTag: FHIRElement
 				self.term = NSURL(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let scheme = self.scheme {
+			json["scheme"] = scheme.asJSON()
+		}
+		if let term = self.term {
+			json["term"] = term.asJSON()
+		}
+		
+		return json
 	}
 }
 

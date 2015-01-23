@@ -2,7 +2,7 @@
 //  ImagingObjectSelection.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (imagingobjectselection.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (imagingobjectselection.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -84,6 +84,34 @@ public class ImagingObjectSelection: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let author = self.author {
+			json["author"] = author.asJSON()
+		}
+		if let authoringTime = self.authoringTime {
+			json["authoringTime"] = authoringTime.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let study = self.study {
+			json["study"] = ImagingObjectSelectionStudy.asJSONArray(study)
+		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
+		}
+		if let uid = self.uid {
+			json["uid"] = uid.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -136,6 +164,25 @@ public class ImagingObjectSelectionStudy: FHIRElement
 				self.uid = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let retrieveAETitle = self.retrieveAETitle {
+			json["retrieveAETitle"] = retrieveAETitle.asJSON()
+		}
+		if let retrieveUrl = self.retrieveUrl {
+			json["retrieveUrl"] = retrieveUrl.asJSON()
+		}
+		if let series = self.series {
+			json["series"] = ImagingObjectSelectionStudySeries.asJSONArray(series)
+		}
+		if let uid = self.uid {
+			json["uid"] = uid.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -190,6 +237,25 @@ public class ImagingObjectSelectionStudySeries: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let instance = self.instance {
+			json["instance"] = ImagingObjectSelectionStudySeriesInstance.asJSONArray(instance)
+		}
+		if let retrieveAETitle = self.retrieveAETitle {
+			json["retrieveAETitle"] = retrieveAETitle.asJSON()
+		}
+		if let retrieveUrl = self.retrieveUrl {
+			json["retrieveUrl"] = retrieveUrl.asJSON()
+		}
+		if let uid = self.uid {
+			json["uid"] = uid.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -242,6 +308,25 @@ public class ImagingObjectSelectionStudySeriesInstance: FHIRElement
 				self.uid = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let retrieveAETitle = self.retrieveAETitle {
+			json["retrieveAETitle"] = retrieveAETitle.asJSON()
+		}
+		if let retrieveUrl = self.retrieveUrl {
+			json["retrieveUrl"] = retrieveUrl.asJSON()
+		}
+		if let sopClass = self.sopClass {
+			json["sopClass"] = sopClass.asJSON()
+		}
+		if let uid = self.uid {
+			json["uid"] = uid.asJSON()
+		}
+		
+		return json
 	}
 }
 

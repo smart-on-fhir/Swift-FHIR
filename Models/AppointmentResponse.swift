@@ -2,7 +2,7 @@
 //  AppointmentResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (appointmentresponse.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (appointmentresponse.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -92,6 +92,43 @@ public class AppointmentResponse: FHIRResource
 				self.start = Instant(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let appointment = self.appointment {
+			json["appointment"] = appointment.asJSON()
+		}
+		if let comment = self.comment {
+			json["comment"] = comment.asJSON()
+		}
+		if let end = self.end {
+			json["end"] = end.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let individual = self.individual {
+			json["individual"] = Reference.asJSONArray(individual)
+		}
+		if let lastModified = self.lastModified {
+			json["lastModified"] = lastModified.asJSON()
+		}
+		if let lastModifiedBy = self.lastModifiedBy {
+			json["lastModifiedBy"] = lastModifiedBy.asJSON()
+		}
+		if let participantStatus = self.participantStatus {
+			json["participantStatus"] = participantStatus.asJSON()
+		}
+		if let participantType = self.participantType {
+			json["participantType"] = CodeableConcept.asJSONArray(participantType)
+		}
+		if let start = self.start {
+			json["start"] = start.asJSON()
+		}
+		
+		return json
 	}
 }
 

@@ -2,7 +2,7 @@
 //  List.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (list.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (list.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -86,6 +86,40 @@ public class List: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let emptyReason = self.emptyReason {
+			json["emptyReason"] = emptyReason.asJSON()
+		}
+		if let entry = self.entry {
+			json["entry"] = ListEntry.asJSONArray(entry)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let mode = self.mode {
+			json["mode"] = mode.asJSON()
+		}
+		if let ordered = self.ordered {
+			json["ordered"] = ordered.asJSON()
+		}
+		if let source = self.source {
+			json["source"] = source.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -135,6 +169,25 @@ public class ListEntry: FHIRElement
 				self.item = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let deleted = self.deleted {
+			json["deleted"] = deleted.asJSON()
+		}
+		if let flag = self.flag {
+			json["flag"] = CodeableConcept.asJSONArray(flag)
+		}
+		if let item = self.item {
+			json["item"] = item.asJSON()
+		}
+		
+		return json
 	}
 }
 

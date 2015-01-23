@@ -2,7 +2,7 @@
 //  DeviceUseRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (deviceuserequest.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (deviceuserequest.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -124,6 +124,62 @@ public class DeviceUseRequest: FHIRResource
 				self.timingTiming = Timing(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let bodySite = self.bodySite {
+			json["bodySite"] = CodeableConcept.asJSONArray(bodySite)
+		}
+		if let device = self.device {
+			json["device"] = device.asJSON()
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let indication = self.indication {
+			json["indication"] = CodeableConcept.asJSONArray(indication)
+		}
+		if let notes = self.notes {
+			var arr = [AnyObject]()
+			for val in notes {
+				arr.append(val.asJSON())
+			}
+			json["notes"] = arr
+		}
+		if let orderedOn = self.orderedOn {
+			json["orderedOn"] = orderedOn.asJSON()
+		}
+		if let priority = self.priority {
+			json["priority"] = priority.asJSON()
+		}
+		if let prnReason = self.prnReason {
+			json["prnReason"] = CodeableConcept.asJSONArray(prnReason)
+		}
+		if let recordedOn = self.recordedOn {
+			json["recordedOn"] = recordedOn.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		if let timingDateTime = self.timingDateTime {
+			json["timingDateTime"] = timingDateTime.asJSON()
+		}
+		if let timingPeriod = self.timingPeriod {
+			json["timingPeriod"] = timingPeriod.asJSON()
+		}
+		if let timingTiming = self.timingTiming {
+			json["timingTiming"] = timingTiming.asJSON()
+		}
+		
+		return json
 	}
 }
 

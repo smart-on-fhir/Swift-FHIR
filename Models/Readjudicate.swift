@@ -2,7 +2,7 @@
 //  Readjudicate.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (readjudicate.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (readjudicate.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -91,6 +91,46 @@ public class Readjudicate: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let created = self.created {
+			json["created"] = created.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let item = self.item {
+			json["item"] = ReadjudicateItem.asJSONArray(item)
+		}
+		if let organization = self.organization {
+			json["organization"] = organization.asJSON()
+		}
+		if let originalRuleset = self.originalRuleset {
+			json["originalRuleset"] = originalRuleset.asJSON()
+		}
+		if let provider = self.provider {
+			json["provider"] = provider.asJSON()
+		}
+		if let reference = self.reference {
+			json["reference"] = reference.asJSON()
+		}
+		if let request = self.request {
+			json["request"] = request.asJSON()
+		}
+		if let response = self.response {
+			json["response"] = response.asJSON()
+		}
+		if let ruleset = self.ruleset {
+			json["ruleset"] = ruleset.asJSON()
+		}
+		if let target = self.target {
+			json["target"] = target.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -122,6 +162,16 @@ public class ReadjudicateItem: FHIRElement
 				self.sequenceLinkId = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let sequenceLinkId = self.sequenceLinkId {
+			json["sequenceLinkId"] = sequenceLinkId.asJSON()
+		}
+		
+		return json
 	}
 }
 

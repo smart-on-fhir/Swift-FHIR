@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (documentreference.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (documentreference.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -192,6 +192,89 @@ public class DocumentReference: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let authenticator = self.authenticator {
+			json["authenticator"] = authenticator.asJSON()
+		}
+		if let author = self.author {
+			json["author"] = Reference.asJSONArray(author)
+		}
+		if let confidentiality = self.confidentiality {
+			json["confidentiality"] = CodeableConcept.asJSONArray(confidentiality)
+		}
+		if let context = self.context {
+			json["context"] = context.asJSON()
+		}
+		if let created = self.created {
+			json["created"] = created.asJSON()
+		}
+		if let custodian = self.custodian {
+			json["custodian"] = custodian.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let docStatus = self.docStatus {
+			json["docStatus"] = docStatus.asJSON()
+		}
+		if let format = self.format {
+			var arr = [AnyObject]()
+			for val in format {
+				arr.append(val.asJSON())
+			}
+			json["format"] = arr
+		}
+		if let hash = self.hash {
+			json["hash"] = hash.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let indexed = self.indexed {
+			json["indexed"] = indexed.asJSON()
+		}
+		if let klass = self.klass {
+			json["class"] = klass.asJSON()
+		}
+		if let location = self.location {
+			json["location"] = location.asJSON()
+		}
+		if let masterIdentifier = self.masterIdentifier {
+			json["masterIdentifier"] = masterIdentifier.asJSON()
+		}
+		if let mimeType = self.mimeType {
+			json["mimeType"] = mimeType.asJSON()
+		}
+		if let policyManager = self.policyManager {
+			json["policyManager"] = policyManager.asJSON()
+		}
+		if let primaryLanguage = self.primaryLanguage {
+			json["primaryLanguage"] = primaryLanguage.asJSON()
+		}
+		if let relatesTo = self.relatesTo {
+			json["relatesTo"] = DocumentReferenceRelatesTo.asJSONArray(relatesTo)
+		}
+		if let service = self.service {
+			json["service"] = service.asJSON()
+		}
+		if let size = self.size {
+			json["size"] = size.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -228,6 +311,22 @@ public class DocumentReferenceContext: FHIRElement
 				self.period = Period(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let event = self.event {
+			json["event"] = CodeableConcept.asJSONArray(event)
+		}
+		if let facilityType = self.facilityType {
+			json["facilityType"] = facilityType.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -269,6 +368,19 @@ public class DocumentReferenceRelatesTo: FHIRElement
 				self.target = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let target = self.target {
+			json["target"] = target.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -314,6 +426,22 @@ public class DocumentReferenceService: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let address = self.address {
+			json["address"] = address.asJSON()
+		}
+		if let parameter = self.parameter {
+			json["parameter"] = DocumentReferenceServiceParameter.asJSONArray(parameter)
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -351,6 +479,19 @@ public class DocumentReferenceServiceParameter: FHIRElement
 				self.value = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let value = self.value {
+			json["value"] = value.asJSON()
+		}
+		
+		return json
 	}
 }
 

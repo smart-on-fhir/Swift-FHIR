@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (conformance.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (conformance.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -153,6 +153,71 @@ public class Conformance: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let acceptUnknown = self.acceptUnknown {
+			json["acceptUnknown"] = acceptUnknown.asJSON()
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let document = self.document {
+			json["document"] = ConformanceDocument.asJSONArray(document)
+		}
+		if let experimental = self.experimental {
+			json["experimental"] = experimental.asJSON()
+		}
+		if let fhirVersion = self.fhirVersion {
+			json["fhirVersion"] = fhirVersion.asJSON()
+		}
+		if let format = self.format {
+			var arr = [AnyObject]()
+			for val in format {
+				arr.append(val.asJSON())
+			}
+			json["format"] = arr
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let implementation = self.implementation {
+			json["implementation"] = implementation.asJSON()
+		}
+		if let messaging = self.messaging {
+			json["messaging"] = ConformanceMessaging.asJSONArray(messaging)
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let profile = self.profile {
+			json["profile"] = Reference.asJSONArray(profile)
+		}
+		if let publisher = self.publisher {
+			json["publisher"] = publisher.asJSON()
+		}
+		if let rest = self.rest {
+			json["rest"] = ConformanceRest.asJSONArray(rest)
+		}
+		if let software = self.software {
+			json["software"] = software.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -200,6 +265,22 @@ public class ConformanceDocument: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let documentation = self.documentation {
+			json["documentation"] = documentation.asJSON()
+		}
+		if let mode = self.mode {
+			json["mode"] = mode.asJSON()
+		}
+		if let profile = self.profile {
+			json["profile"] = profile.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -238,6 +319,19 @@ public class ConformanceImplementation: FHIRElement
 				self.url = NSURL(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let url = self.url {
+			json["url"] = url.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -288,6 +382,25 @@ public class ConformanceMessaging: FHIRElement
 				self.reliableCache = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let documentation = self.documentation {
+			json["documentation"] = documentation.asJSON()
+		}
+		if let endpoint = self.endpoint {
+			json["endpoint"] = endpoint.asJSON()
+		}
+		if let event = self.event {
+			json["event"] = ConformanceMessagingEvent.asJSONArray(event)
+		}
+		if let reliableCache = self.reliableCache {
+			json["reliableCache"] = reliableCache.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -375,6 +488,37 @@ public class ConformanceMessagingEvent: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let documentation = self.documentation {
+			json["documentation"] = documentation.asJSON()
+		}
+		if let focus = self.focus {
+			json["focus"] = focus.asJSON()
+		}
+		if let mode = self.mode {
+			json["mode"] = mode.asJSON()
+		}
+		if let protokol = self.protokol {
+			json["protocol"] = Coding.asJSONArray(protokol)
+		}
+		if let request = self.request {
+			json["request"] = request.asJSON()
+		}
+		if let response = self.response {
+			json["response"] = response.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -446,6 +590,38 @@ public class ConformanceRest: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let documentMailbox = self.documentMailbox {
+			var arr = [AnyObject]()
+			for val in documentMailbox {
+				arr.append(val.asJSON())
+			}
+			json["documentMailbox"] = arr
+		}
+		if let documentation = self.documentation {
+			json["documentation"] = documentation.asJSON()
+		}
+		if let interaction = self.interaction {
+			json["interaction"] = ConformanceRestInteraction.asJSONArray(interaction)
+		}
+		if let mode = self.mode {
+			json["mode"] = mode.asJSON()
+		}
+		if let operation = self.operation {
+			json["operation"] = ConformanceRestOperation.asJSONArray(operation)
+		}
+		if let resource = self.resource {
+			json["resource"] = ConformanceRestResource.asJSONArray(resource)
+		}
+		if let security = self.security {
+			json["security"] = security.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -483,6 +659,19 @@ public class ConformanceRestInteraction: FHIRElement
 				self.documentation = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let documentation = self.documentation {
+			json["documentation"] = documentation.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -524,6 +713,19 @@ public class ConformanceRestOperation: FHIRElement
 				self.name = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let definition = self.definition {
+			json["definition"] = definition.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -602,6 +804,41 @@ public class ConformanceRestResource: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let interaction = self.interaction {
+			json["interaction"] = ConformanceRestResourceInteraction.asJSONArray(interaction)
+		}
+		if let profile = self.profile {
+			json["profile"] = profile.asJSON()
+		}
+		if let readHistory = self.readHistory {
+			json["readHistory"] = readHistory.asJSON()
+		}
+		if let searchInclude = self.searchInclude {
+			var arr = [AnyObject]()
+			for val in searchInclude {
+				arr.append(val.asJSON())
+			}
+			json["searchInclude"] = arr
+		}
+		if let searchParam = self.searchParam {
+			json["searchParam"] = ConformanceRestResourceSearchParam.asJSONArray(searchParam)
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let updateCreate = self.updateCreate {
+			json["updateCreate"] = updateCreate.asJSON()
+		}
+		if let versioning = self.versioning {
+			json["versioning"] = versioning.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -639,6 +876,19 @@ public class ConformanceRestResourceInteraction: FHIRElement
 				self.documentation = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let documentation = self.documentation {
+			json["documentation"] = documentation.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -705,6 +955,39 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let chain = self.chain {
+			var arr = [AnyObject]()
+			for val in chain {
+				arr.append(val.asJSON())
+			}
+			json["chain"] = arr
+		}
+		if let definition = self.definition {
+			json["definition"] = definition.asJSON()
+		}
+		if let documentation = self.documentation {
+			json["documentation"] = documentation.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let target = self.target {
+			var arr = [AnyObject]()
+			for val in target {
+				arr.append(val.asJSON())
+			}
+			json["target"] = arr
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -746,6 +1029,25 @@ public class ConformanceRestSecurity: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let certificate = self.certificate {
+			json["certificate"] = ConformanceRestSecurityCertificate.asJSONArray(certificate)
+		}
+		if let cors = self.cors {
+			json["cors"] = cors.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let service = self.service {
+			json["service"] = CodeableConcept.asJSONArray(service)
+		}
+		
+		return json
+	}
 }
 
 
@@ -774,6 +1076,19 @@ public class ConformanceRestSecurityCertificate: FHIRElement
 				self.type = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let blob = self.blob {
+			json["blob"] = blob.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -819,6 +1134,22 @@ public class ConformanceSoftware: FHIRElement
 				self.version = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let releaseDate = self.releaseDate {
+			json["releaseDate"] = releaseDate.asJSON()
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
+		}
+		
+		return json
 	}
 }
 

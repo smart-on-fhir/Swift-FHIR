@@ -2,7 +2,7 @@
 //  DeviceMetricTests.swift
 //  DeviceMetricTests
 //
-//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -12,55 +12,76 @@ import SwiftFHIR
 
 class DeviceMetricTests: FHIRModelTestCase
 {
-	func instantiateFrom(filename: String) -> DeviceMetric? {
-		let json = readJSONFile(filename)
+	func instantiateFrom(# filename: String) -> DeviceMetric {
+		return instantiateFrom(json: readJSONFile(filename)!)
+	}
+	
+	func instantiateFrom(# json: JSONDictionary) -> DeviceMetric {
 		let instance = DeviceMetric(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
 	func testDeviceMetric1() {
-		let inst = instantiateFrom("devicemetric-example.canonical.json")
-		XCTAssertNotNil(inst, "Must have instantiated a DeviceMetric instance")
+		let instance = testDeviceMetric1_impl()
+		testDeviceMetric1_impl(json: instance.asJSON())
+	}
+	
+	func testDeviceMetric1_impl(json: JSONDictionary? = nil) -> DeviceMetric {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicemetric-example.canonical.json")
 		
-		XCTAssertEqual(inst!.category!, "measurement")
-		XCTAssertEqual(inst!.identifier!.system!.absoluteString!, "http://goodcare.org/devicemetric/id")
-		XCTAssertEqual(inst!.identifier!.value!, "345675")
-		XCTAssertEqual(inst!.type!.coding![0].code!, "150456")
-		XCTAssertEqual(inst!.type!.coding![0].display!, "MDC_PULS_OXIM_SAT_O2")
-		XCTAssertEqual(inst!.type!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
-		XCTAssertEqual(inst!.unit!.coding![0].code!, "262688")
-		XCTAssertEqual(inst!.unit!.coding![0].display!, "MDC_DIM_PERCENT")
-		XCTAssertEqual(inst!.unit!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
+		XCTAssertEqual(inst.category!, "measurement")
+		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://goodcare.org/devicemetric/id")
+		XCTAssertEqual(inst.identifier!.value!, "345675")
+		XCTAssertEqual(inst.type!.coding![0].code!, "150456")
+		XCTAssertEqual(inst.type!.coding![0].display!, "MDC_PULS_OXIM_SAT_O2")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
+		XCTAssertEqual(inst.unit!.coding![0].code!, "262688")
+		XCTAssertEqual(inst.unit!.coding![0].display!, "MDC_DIM_PERCENT")
+		XCTAssertEqual(inst.unit!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
+		
+		return inst
 	}
 	
 	func testDeviceMetric2() {
-		let inst = instantiateFrom("devicemetric-example.canonical.json")
-		XCTAssertNotNil(inst, "Must have instantiated a DeviceMetric instance")
+		let instance = testDeviceMetric2_impl()
+		testDeviceMetric2_impl(json: instance.asJSON())
+	}
+	
+	func testDeviceMetric2_impl(json: JSONDictionary? = nil) -> DeviceMetric {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicemetric-example.canonical.json")
 		
-		XCTAssertEqual(inst!.category!, "measurement")
-		XCTAssertEqual(inst!.identifier!.system!.absoluteString!, "http://goodcare.org/devicemetric/id")
-		XCTAssertEqual(inst!.identifier!.value!, "345675")
-		XCTAssertEqual(inst!.type!.coding![0].code!, "150456")
-		XCTAssertEqual(inst!.type!.coding![0].display!, "MDC_PULS_OXIM_SAT_O2")
-		XCTAssertEqual(inst!.type!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
-		XCTAssertEqual(inst!.unit!.coding![0].code!, "262688")
-		XCTAssertEqual(inst!.unit!.coding![0].display!, "MDC_DIM_PERCENT")
-		XCTAssertEqual(inst!.unit!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
+		XCTAssertEqual(inst.category!, "measurement")
+		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://goodcare.org/devicemetric/id")
+		XCTAssertEqual(inst.identifier!.value!, "345675")
+		XCTAssertEqual(inst.type!.coding![0].code!, "150456")
+		XCTAssertEqual(inst.type!.coding![0].display!, "MDC_PULS_OXIM_SAT_O2")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
+		XCTAssertEqual(inst.unit!.coding![0].code!, "262688")
+		XCTAssertEqual(inst.unit!.coding![0].display!, "MDC_DIM_PERCENT")
+		XCTAssertEqual(inst.unit!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
+		
+		return inst
 	}
 	
 	func testDeviceMetric3() {
-		let inst = instantiateFrom("devicemetric-example.json")
-		XCTAssertNotNil(inst, "Must have instantiated a DeviceMetric instance")
+		let instance = testDeviceMetric3_impl()
+		testDeviceMetric3_impl(json: instance.asJSON())
+	}
+	
+	func testDeviceMetric3_impl(json: JSONDictionary? = nil) -> DeviceMetric {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicemetric-example.json")
 		
-		XCTAssertEqual(inst!.category!, "measurement")
-		XCTAssertEqual(inst!.identifier!.system!.absoluteString!, "http://goodcare.org/devicemetric/id")
-		XCTAssertEqual(inst!.identifier!.value!, "345675")
-		XCTAssertEqual(inst!.type!.coding![0].code!, "150456")
-		XCTAssertEqual(inst!.type!.coding![0].display!, "MDC_PULS_OXIM_SAT_O2")
-		XCTAssertEqual(inst!.type!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
-		XCTAssertEqual(inst!.unit!.coding![0].code!, "262688")
-		XCTAssertEqual(inst!.unit!.coding![0].display!, "MDC_DIM_PERCENT")
-		XCTAssertEqual(inst!.unit!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
+		XCTAssertEqual(inst.category!, "measurement")
+		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://goodcare.org/devicemetric/id")
+		XCTAssertEqual(inst.identifier!.value!, "345675")
+		XCTAssertEqual(inst.type!.coding![0].code!, "150456")
+		XCTAssertEqual(inst.type!.coding![0].display!, "MDC_PULS_OXIM_SAT_O2")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
+		XCTAssertEqual(inst.unit!.coding![0].code!, "262688")
+		XCTAssertEqual(inst.unit!.coding![0].display!, "MDC_DIM_PERCENT")
+		XCTAssertEqual(inst.unit!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
+		
+		return inst
 	}
 }

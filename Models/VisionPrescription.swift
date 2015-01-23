@@ -2,7 +2,7 @@
 //  VisionPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (visionprescription.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (visionprescription.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -72,6 +72,37 @@ public class VisionPrescription: FHIRResource
 				self.reasonReference = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let dateWritten = self.dateWritten {
+			json["dateWritten"] = dateWritten.asJSON()
+		}
+		if let dispense = self.dispense {
+			json["dispense"] = VisionPrescriptionDispense.asJSONArray(dispense)
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let prescriber = self.prescriber {
+			json["prescriber"] = prescriber.asJSON()
+		}
+		if let reasonCodeableConcept = self.reasonCodeableConcept {
+			json["reasonCodeableConcept"] = reasonCodeableConcept.asJSON()
+		}
+		if let reasonReference = self.reasonReference {
+			json["reasonReference"] = reasonReference.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -188,6 +219,58 @@ public class VisionPrescriptionDispense: FHIRElement
 				self.sphere = NSDecimalNumber(json: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let add = self.add {
+			json["add"] = add.asJSON()
+		}
+		if let axis = self.axis {
+			json["axis"] = axis.asJSON()
+		}
+		if let backCurve = self.backCurve {
+			json["backCurve"] = backCurve.asJSON()
+		}
+		if let base = self.base {
+			json["base"] = base.asJSON()
+		}
+		if let brand = self.brand {
+			json["brand"] = brand.asJSON()
+		}
+		if let color = self.color {
+			json["color"] = color.asJSON()
+		}
+		if let cylinder = self.cylinder {
+			json["cylinder"] = cylinder.asJSON()
+		}
+		if let diameter = self.diameter {
+			json["diameter"] = diameter.asJSON()
+		}
+		if let duration = self.duration {
+			json["duration"] = duration.asJSON()
+		}
+		if let eye = self.eye {
+			json["eye"] = eye.asJSON()
+		}
+		if let notes = self.notes {
+			json["notes"] = notes.asJSON()
+		}
+		if let power = self.power {
+			json["power"] = power.asJSON()
+		}
+		if let prism = self.prism {
+			json["prism"] = prism.asJSON()
+		}
+		if let product = self.product {
+			json["product"] = product.asJSON()
+		}
+		if let sphere = self.sphere {
+			json["sphere"] = sphere.asJSON()
+		}
+		
+		return json
 	}
 }
 

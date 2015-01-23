@@ -2,7 +2,7 @@
 //  HumanName.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (HumanName.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (HumanName.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -66,6 +66,50 @@ public class HumanName: FHIRElement
 				self.use = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let family = self.family {
+			var arr = [AnyObject]()
+			for val in family {
+				arr.append(val.asJSON())
+			}
+			json["family"] = arr
+		}
+		if let given = self.given {
+			var arr = [AnyObject]()
+			for val in given {
+				arr.append(val.asJSON())
+			}
+			json["given"] = arr
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let prefix = self.prefix {
+			var arr = [AnyObject]()
+			for val in prefix {
+				arr.append(val.asJSON())
+			}
+			json["prefix"] = arr
+		}
+		if let suffix = self.suffix {
+			var arr = [AnyObject]()
+			for val in suffix {
+				arr.append(val.asJSON())
+			}
+			json["suffix"] = arr
+		}
+		if let text = self.text {
+			json["text"] = text.asJSON()
+		}
+		if let use = self.use {
+			json["use"] = use.asJSON()
+		}
+		
+		return json
 	}
 }
 

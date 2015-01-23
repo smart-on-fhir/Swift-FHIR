@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (ElementDefinition.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (ElementDefinition.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -740,6 +740,379 @@ public class ElementDefinition: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let binding = self.binding {
+			json["binding"] = binding.asJSON()
+		}
+		if let comments = self.comments {
+			json["comments"] = comments.asJSON()
+		}
+		if let condition = self.condition {
+			var arr = [AnyObject]()
+			for val in condition {
+				arr.append(val.asJSON())
+			}
+			json["condition"] = arr
+		}
+		if let constraint = self.constraint {
+			json["constraint"] = ElementDefinitionConstraint.asJSONArray(constraint)
+		}
+		if let defaultValueAddress = self.defaultValueAddress {
+			json["defaultValueAddress"] = defaultValueAddress.asJSON()
+		}
+		if let defaultValueAttachment = self.defaultValueAttachment {
+			json["defaultValueAttachment"] = defaultValueAttachment.asJSON()
+		}
+		if let defaultValueBase64Binary = self.defaultValueBase64Binary {
+			json["defaultValueBase64Binary"] = defaultValueBase64Binary.asJSON()
+		}
+		if let defaultValueBoolean = self.defaultValueBoolean {
+			json["defaultValueBoolean"] = defaultValueBoolean.asJSON()
+		}
+		if let defaultValueCode = self.defaultValueCode {
+			json["defaultValueCode"] = defaultValueCode.asJSON()
+		}
+		if let defaultValueCodeableConcept = self.defaultValueCodeableConcept {
+			json["defaultValueCodeableConcept"] = defaultValueCodeableConcept.asJSON()
+		}
+		if let defaultValueCoding = self.defaultValueCoding {
+			json["defaultValueCoding"] = defaultValueCoding.asJSON()
+		}
+		if let defaultValueContactPoint = self.defaultValueContactPoint {
+			json["defaultValueContactPoint"] = defaultValueContactPoint.asJSON()
+		}
+		if let defaultValueDate = self.defaultValueDate {
+			json["defaultValueDate"] = defaultValueDate.asJSON()
+		}
+		if let defaultValueDateTime = self.defaultValueDateTime {
+			json["defaultValueDateTime"] = defaultValueDateTime.asJSON()
+		}
+		if let defaultValueDecimal = self.defaultValueDecimal {
+			json["defaultValueDecimal"] = defaultValueDecimal.asJSON()
+		}
+		if let defaultValueHumanName = self.defaultValueHumanName {
+			json["defaultValueHumanName"] = defaultValueHumanName.asJSON()
+		}
+		if let defaultValueIdentifier = self.defaultValueIdentifier {
+			json["defaultValueIdentifier"] = defaultValueIdentifier.asJSON()
+		}
+		if let defaultValueInstant = self.defaultValueInstant {
+			json["defaultValueInstant"] = defaultValueInstant.asJSON()
+		}
+		if let defaultValueInteger = self.defaultValueInteger {
+			json["defaultValueInteger"] = defaultValueInteger.asJSON()
+		}
+		if let defaultValuePeriod = self.defaultValuePeriod {
+			json["defaultValuePeriod"] = defaultValuePeriod.asJSON()
+		}
+		if let defaultValueQuantity = self.defaultValueQuantity {
+			json["defaultValueQuantity"] = defaultValueQuantity.asJSON()
+		}
+		if let defaultValueRange = self.defaultValueRange {
+			json["defaultValueRange"] = defaultValueRange.asJSON()
+		}
+		if let defaultValueRatio = self.defaultValueRatio {
+			json["defaultValueRatio"] = defaultValueRatio.asJSON()
+		}
+		if let defaultValueReference = self.defaultValueReference {
+			json["defaultValueReference"] = defaultValueReference.asJSON()
+		}
+		if let defaultValueString = self.defaultValueString {
+			json["defaultValueString"] = defaultValueString.asJSON()
+		}
+		if let defaultValueTime = self.defaultValueTime {
+			json["defaultValueTime"] = defaultValueTime.asJSON()
+		}
+		if let defaultValueTiming = self.defaultValueTiming {
+			json["defaultValueTiming"] = defaultValueTiming.asJSON()
+		}
+		if let defaultValueUri = self.defaultValueUri {
+			json["defaultValueUri"] = defaultValueUri.asJSON()
+		}
+		if let exampleAddress = self.exampleAddress {
+			json["exampleAddress"] = exampleAddress.asJSON()
+		}
+		if let exampleAttachment = self.exampleAttachment {
+			json["exampleAttachment"] = exampleAttachment.asJSON()
+		}
+		if let exampleBase64Binary = self.exampleBase64Binary {
+			json["exampleBase64Binary"] = exampleBase64Binary.asJSON()
+		}
+		if let exampleBoolean = self.exampleBoolean {
+			json["exampleBoolean"] = exampleBoolean.asJSON()
+		}
+		if let exampleCode = self.exampleCode {
+			json["exampleCode"] = exampleCode.asJSON()
+		}
+		if let exampleCodeableConcept = self.exampleCodeableConcept {
+			json["exampleCodeableConcept"] = exampleCodeableConcept.asJSON()
+		}
+		if let exampleCoding = self.exampleCoding {
+			json["exampleCoding"] = exampleCoding.asJSON()
+		}
+		if let exampleContactPoint = self.exampleContactPoint {
+			json["exampleContactPoint"] = exampleContactPoint.asJSON()
+		}
+		if let exampleDate = self.exampleDate {
+			json["exampleDate"] = exampleDate.asJSON()
+		}
+		if let exampleDateTime = self.exampleDateTime {
+			json["exampleDateTime"] = exampleDateTime.asJSON()
+		}
+		if let exampleDecimal = self.exampleDecimal {
+			json["exampleDecimal"] = exampleDecimal.asJSON()
+		}
+		if let exampleHumanName = self.exampleHumanName {
+			json["exampleHumanName"] = exampleHumanName.asJSON()
+		}
+		if let exampleIdentifier = self.exampleIdentifier {
+			json["exampleIdentifier"] = exampleIdentifier.asJSON()
+		}
+		if let exampleInstant = self.exampleInstant {
+			json["exampleInstant"] = exampleInstant.asJSON()
+		}
+		if let exampleInteger = self.exampleInteger {
+			json["exampleInteger"] = exampleInteger.asJSON()
+		}
+		if let examplePeriod = self.examplePeriod {
+			json["examplePeriod"] = examplePeriod.asJSON()
+		}
+		if let exampleQuantity = self.exampleQuantity {
+			json["exampleQuantity"] = exampleQuantity.asJSON()
+		}
+		if let exampleRange = self.exampleRange {
+			json["exampleRange"] = exampleRange.asJSON()
+		}
+		if let exampleRatio = self.exampleRatio {
+			json["exampleRatio"] = exampleRatio.asJSON()
+		}
+		if let exampleReference = self.exampleReference {
+			json["exampleReference"] = exampleReference.asJSON()
+		}
+		if let exampleString = self.exampleString {
+			json["exampleString"] = exampleString.asJSON()
+		}
+		if let exampleTime = self.exampleTime {
+			json["exampleTime"] = exampleTime.asJSON()
+		}
+		if let exampleTiming = self.exampleTiming {
+			json["exampleTiming"] = exampleTiming.asJSON()
+		}
+		if let exampleUri = self.exampleUri {
+			json["exampleUri"] = exampleUri.asJSON()
+		}
+		if let fixedAddress = self.fixedAddress {
+			json["fixedAddress"] = fixedAddress.asJSON()
+		}
+		if let fixedAttachment = self.fixedAttachment {
+			json["fixedAttachment"] = fixedAttachment.asJSON()
+		}
+		if let fixedBase64Binary = self.fixedBase64Binary {
+			json["fixedBase64Binary"] = fixedBase64Binary.asJSON()
+		}
+		if let fixedBoolean = self.fixedBoolean {
+			json["fixedBoolean"] = fixedBoolean.asJSON()
+		}
+		if let fixedCode = self.fixedCode {
+			json["fixedCode"] = fixedCode.asJSON()
+		}
+		if let fixedCodeableConcept = self.fixedCodeableConcept {
+			json["fixedCodeableConcept"] = fixedCodeableConcept.asJSON()
+		}
+		if let fixedCoding = self.fixedCoding {
+			json["fixedCoding"] = fixedCoding.asJSON()
+		}
+		if let fixedContactPoint = self.fixedContactPoint {
+			json["fixedContactPoint"] = fixedContactPoint.asJSON()
+		}
+		if let fixedDate = self.fixedDate {
+			json["fixedDate"] = fixedDate.asJSON()
+		}
+		if let fixedDateTime = self.fixedDateTime {
+			json["fixedDateTime"] = fixedDateTime.asJSON()
+		}
+		if let fixedDecimal = self.fixedDecimal {
+			json["fixedDecimal"] = fixedDecimal.asJSON()
+		}
+		if let fixedHumanName = self.fixedHumanName {
+			json["fixedHumanName"] = fixedHumanName.asJSON()
+		}
+		if let fixedIdentifier = self.fixedIdentifier {
+			json["fixedIdentifier"] = fixedIdentifier.asJSON()
+		}
+		if let fixedInstant = self.fixedInstant {
+			json["fixedInstant"] = fixedInstant.asJSON()
+		}
+		if let fixedInteger = self.fixedInteger {
+			json["fixedInteger"] = fixedInteger.asJSON()
+		}
+		if let fixedPeriod = self.fixedPeriod {
+			json["fixedPeriod"] = fixedPeriod.asJSON()
+		}
+		if let fixedQuantity = self.fixedQuantity {
+			json["fixedQuantity"] = fixedQuantity.asJSON()
+		}
+		if let fixedRange = self.fixedRange {
+			json["fixedRange"] = fixedRange.asJSON()
+		}
+		if let fixedRatio = self.fixedRatio {
+			json["fixedRatio"] = fixedRatio.asJSON()
+		}
+		if let fixedReference = self.fixedReference {
+			json["fixedReference"] = fixedReference.asJSON()
+		}
+		if let fixedString = self.fixedString {
+			json["fixedString"] = fixedString.asJSON()
+		}
+		if let fixedTime = self.fixedTime {
+			json["fixedTime"] = fixedTime.asJSON()
+		}
+		if let fixedTiming = self.fixedTiming {
+			json["fixedTiming"] = fixedTiming.asJSON()
+		}
+		if let fixedUri = self.fixedUri {
+			json["fixedUri"] = fixedUri.asJSON()
+		}
+		if let formal = self.formal {
+			json["formal"] = formal.asJSON()
+		}
+		if let isModifier = self.isModifier {
+			json["isModifier"] = isModifier.asJSON()
+		}
+		if let isSummary = self.isSummary {
+			json["isSummary"] = isSummary.asJSON()
+		}
+		if let mapping = self.mapping {
+			json["mapping"] = ElementDefinitionMapping.asJSONArray(mapping)
+		}
+		if let max = self.max {
+			json["max"] = max.asJSON()
+		}
+		if let maxLength = self.maxLength {
+			json["maxLength"] = maxLength.asJSON()
+		}
+		if let meaningWhenMissing = self.meaningWhenMissing {
+			json["meaningWhenMissing"] = meaningWhenMissing.asJSON()
+		}
+		if let min = self.min {
+			json["min"] = min.asJSON()
+		}
+		if let mustSupport = self.mustSupport {
+			json["mustSupport"] = mustSupport.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let nameReference = self.nameReference {
+			json["nameReference"] = nameReference.asJSON()
+		}
+		if let path = self.path {
+			json["path"] = path.asJSON()
+		}
+		if let patternAddress = self.patternAddress {
+			json["patternAddress"] = patternAddress.asJSON()
+		}
+		if let patternAttachment = self.patternAttachment {
+			json["patternAttachment"] = patternAttachment.asJSON()
+		}
+		if let patternBase64Binary = self.patternBase64Binary {
+			json["patternBase64Binary"] = patternBase64Binary.asJSON()
+		}
+		if let patternBoolean = self.patternBoolean {
+			json["patternBoolean"] = patternBoolean.asJSON()
+		}
+		if let patternCode = self.patternCode {
+			json["patternCode"] = patternCode.asJSON()
+		}
+		if let patternCodeableConcept = self.patternCodeableConcept {
+			json["patternCodeableConcept"] = patternCodeableConcept.asJSON()
+		}
+		if let patternCoding = self.patternCoding {
+			json["patternCoding"] = patternCoding.asJSON()
+		}
+		if let patternContactPoint = self.patternContactPoint {
+			json["patternContactPoint"] = patternContactPoint.asJSON()
+		}
+		if let patternDate = self.patternDate {
+			json["patternDate"] = patternDate.asJSON()
+		}
+		if let patternDateTime = self.patternDateTime {
+			json["patternDateTime"] = patternDateTime.asJSON()
+		}
+		if let patternDecimal = self.patternDecimal {
+			json["patternDecimal"] = patternDecimal.asJSON()
+		}
+		if let patternHumanName = self.patternHumanName {
+			json["patternHumanName"] = patternHumanName.asJSON()
+		}
+		if let patternIdentifier = self.patternIdentifier {
+			json["patternIdentifier"] = patternIdentifier.asJSON()
+		}
+		if let patternInstant = self.patternInstant {
+			json["patternInstant"] = patternInstant.asJSON()
+		}
+		if let patternInteger = self.patternInteger {
+			json["patternInteger"] = patternInteger.asJSON()
+		}
+		if let patternPeriod = self.patternPeriod {
+			json["patternPeriod"] = patternPeriod.asJSON()
+		}
+		if let patternQuantity = self.patternQuantity {
+			json["patternQuantity"] = patternQuantity.asJSON()
+		}
+		if let patternRange = self.patternRange {
+			json["patternRange"] = patternRange.asJSON()
+		}
+		if let patternRatio = self.patternRatio {
+			json["patternRatio"] = patternRatio.asJSON()
+		}
+		if let patternReference = self.patternReference {
+			json["patternReference"] = patternReference.asJSON()
+		}
+		if let patternString = self.patternString {
+			json["patternString"] = patternString.asJSON()
+		}
+		if let patternTime = self.patternTime {
+			json["patternTime"] = patternTime.asJSON()
+		}
+		if let patternTiming = self.patternTiming {
+			json["patternTiming"] = patternTiming.asJSON()
+		}
+		if let patternUri = self.patternUri {
+			json["patternUri"] = patternUri.asJSON()
+		}
+		if let representation = self.representation {
+			var arr = [AnyObject]()
+			for val in representation {
+				arr.append(val.asJSON())
+			}
+			json["representation"] = arr
+		}
+		if let requirements = self.requirements {
+			json["requirements"] = requirements.asJSON()
+		}
+		if let short = self.short {
+			json["short"] = short.asJSON()
+		}
+		if let slicing = self.slicing {
+			json["slicing"] = slicing.asJSON()
+		}
+		if let synonym = self.synonym {
+			var arr = [AnyObject]()
+			for val in synonym {
+				arr.append(val.asJSON())
+			}
+			json["synonym"] = arr
+		}
+		if let type = self.type {
+			json["type"] = ElementDefinitionType.asJSONArray(type)
+		}
+		
+		return json
+	}
 }
 
 
@@ -804,6 +1177,31 @@ public class ElementDefinitionBinding: FHIRElement
 				self.referenceUri = NSURL(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let conformance = self.conformance {
+			json["conformance"] = conformance.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let isExtensible = self.isExtensible {
+			json["isExtensible"] = isExtensible.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let referenceReference = self.referenceReference {
+			json["referenceReference"] = referenceReference.asJSON()
+		}
+		if let referenceUri = self.referenceUri {
+			json["referenceUri"] = referenceUri.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -871,6 +1269,28 @@ public class ElementDefinitionConstraint: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let human = self.human {
+			json["human"] = human.asJSON()
+		}
+		if let key = self.key {
+			json["key"] = key.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let severity = self.severity {
+			json["severity"] = severity.asJSON()
+		}
+		if let xpath = self.xpath {
+			json["xpath"] = xpath.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -911,6 +1331,19 @@ public class ElementDefinitionMapping: FHIRElement
 				self.map = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let identity = self.identity {
+			json["identity"] = identity.asJSON()
+		}
+		if let map = self.map {
+			json["map"] = map.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -964,6 +1397,29 @@ public class ElementDefinitionSlicing: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let discriminator = self.discriminator {
+			var arr = [AnyObject]()
+			for val in discriminator {
+				arr.append(val.asJSON())
+			}
+			json["discriminator"] = arr
+		}
+		if let ordered = self.ordered {
+			json["ordered"] = ordered.asJSON()
+		}
+		if let rules = self.rules {
+			json["rules"] = rules.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -1007,6 +1463,26 @@ public class ElementDefinitionType: FHIRElement
 				self.profile = NSURL(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let aggregation = self.aggregation {
+			var arr = [AnyObject]()
+			for val in aggregation {
+				arr.append(val.asJSON())
+			}
+			json["aggregation"] = arr
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let profile = self.profile {
+			json["profile"] = profile.asJSON()
+		}
+		
+		return json
 	}
 }
 

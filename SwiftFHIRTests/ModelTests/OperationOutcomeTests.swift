@@ -2,7 +2,7 @@
 //  OperationOutcomeTests.swift
 //  OperationOutcomeTests
 //
-//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -12,43 +12,64 @@ import SwiftFHIR
 
 class OperationOutcomeTests: FHIRModelTestCase
 {
-	func instantiateFrom(filename: String) -> OperationOutcome? {
-		let json = readJSONFile(filename)
+	func instantiateFrom(# filename: String) -> OperationOutcome {
+		return instantiateFrom(json: readJSONFile(filename)!)
+	}
+	
+	func instantiateFrom(# json: JSONDictionary) -> OperationOutcome {
 		let instance = OperationOutcome(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
 	func testOperationOutcome1() {
-		let inst = instantiateFrom("operationoutcome-example.canonical.json")
-		XCTAssertNotNil(inst, "Must have instantiated a OperationOutcome instance")
+		let instance = testOperationOutcome1_impl()
+		testOperationOutcome1_impl(json: instance.asJSON())
+	}
+	
+	func testOperationOutcome1_impl(json: JSONDictionary? = nil) -> OperationOutcome {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "operationoutcome-example.canonical.json")
 		
-		XCTAssertEqual(inst!.issue![0].location![0], "/Person[1]/gender[1]")
-		XCTAssertEqual(inst!.issue![0].severity!, "error")
-		XCTAssertEqual(inst!.issue![0].type!.code!, "V15")
-		XCTAssertEqual(inst!.issue![0].type!.display!, "InvalidCode")
-		XCTAssertEqual(inst!.issue![0].type!.system!.absoluteString!, "http://test.org/issueCodeSystem")
+		XCTAssertEqual(inst.issue![0].location![0], "/Person[1]/gender[1]")
+		XCTAssertEqual(inst.issue![0].severity!, "error")
+		XCTAssertEqual(inst.issue![0].type!.code!, "V15")
+		XCTAssertEqual(inst.issue![0].type!.display!, "InvalidCode")
+		XCTAssertEqual(inst.issue![0].type!.system!.absoluteString!, "http://test.org/issueCodeSystem")
+		
+		return inst
 	}
 	
 	func testOperationOutcome2() {
-		let inst = instantiateFrom("operationoutcome-example.canonical.json")
-		XCTAssertNotNil(inst, "Must have instantiated a OperationOutcome instance")
+		let instance = testOperationOutcome2_impl()
+		testOperationOutcome2_impl(json: instance.asJSON())
+	}
+	
+	func testOperationOutcome2_impl(json: JSONDictionary? = nil) -> OperationOutcome {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "operationoutcome-example.canonical.json")
 		
-		XCTAssertEqual(inst!.issue![0].location![0], "/Person[1]/gender[1]")
-		XCTAssertEqual(inst!.issue![0].severity!, "error")
-		XCTAssertEqual(inst!.issue![0].type!.code!, "V15")
-		XCTAssertEqual(inst!.issue![0].type!.display!, "InvalidCode")
-		XCTAssertEqual(inst!.issue![0].type!.system!.absoluteString!, "http://test.org/issueCodeSystem")
+		XCTAssertEqual(inst.issue![0].location![0], "/Person[1]/gender[1]")
+		XCTAssertEqual(inst.issue![0].severity!, "error")
+		XCTAssertEqual(inst.issue![0].type!.code!, "V15")
+		XCTAssertEqual(inst.issue![0].type!.display!, "InvalidCode")
+		XCTAssertEqual(inst.issue![0].type!.system!.absoluteString!, "http://test.org/issueCodeSystem")
+		
+		return inst
 	}
 	
 	func testOperationOutcome3() {
-		let inst = instantiateFrom("operationoutcome-example.json")
-		XCTAssertNotNil(inst, "Must have instantiated a OperationOutcome instance")
+		let instance = testOperationOutcome3_impl()
+		testOperationOutcome3_impl(json: instance.asJSON())
+	}
+	
+	func testOperationOutcome3_impl(json: JSONDictionary? = nil) -> OperationOutcome {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "operationoutcome-example.json")
 		
-		XCTAssertEqual(inst!.issue![0].location![0], "/Person[1]/gender[1]")
-		XCTAssertEqual(inst!.issue![0].severity!, "error")
-		XCTAssertEqual(inst!.issue![0].type!.code!, "V15")
-		XCTAssertEqual(inst!.issue![0].type!.display!, "InvalidCode")
-		XCTAssertEqual(inst!.issue![0].type!.system!.absoluteString!, "http://test.org/issueCodeSystem")
+		XCTAssertEqual(inst.issue![0].location![0], "/Person[1]/gender[1]")
+		XCTAssertEqual(inst.issue![0].severity!, "error")
+		XCTAssertEqual(inst.issue![0].type!.code!, "V15")
+		XCTAssertEqual(inst.issue![0].type!.display!, "InvalidCode")
+		XCTAssertEqual(inst.issue![0].type!.system!.absoluteString!, "http://test.org/issueCodeSystem")
+		
+		return inst
 	}
 }

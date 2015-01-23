@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (composition.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (composition.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -133,6 +133,55 @@ public class Composition: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let attester = self.attester {
+			json["attester"] = CompositionAttester.asJSONArray(attester)
+		}
+		if let author = self.author {
+			json["author"] = Reference.asJSONArray(author)
+		}
+		if let confidentiality = self.confidentiality {
+			json["confidentiality"] = confidentiality.asJSON()
+		}
+		if let custodian = self.custodian {
+			json["custodian"] = custodian.asJSON()
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let event = self.event {
+			json["event"] = CompositionEvent.asJSONArray(event)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let klass = self.klass {
+			json["class"] = klass.asJSON()
+		}
+		if let section = self.section {
+			json["section"] = CompositionSection.asJSONArray(section)
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -177,6 +226,26 @@ public class CompositionAttester: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let mode = self.mode {
+			var arr = [AnyObject]()
+			for val in mode {
+				arr.append(val.asJSON())
+			}
+			json["mode"] = arr
+		}
+		if let party = self.party {
+			json["party"] = party.asJSON()
+		}
+		if let time = self.time {
+			json["time"] = time.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -213,6 +282,22 @@ public class CompositionEvent: FHIRElement
 				self.period = Period(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = CodeableConcept.asJSONArray(code)
+		}
+		if let detail = self.detail {
+			json["detail"] = Reference.asJSONArray(detail)
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -256,6 +341,25 @@ public class CompositionSection: FHIRElement
 				self.title = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let content = self.content {
+			json["content"] = content.asJSON()
+		}
+		if let section = self.section {
+			json["section"] = CompositionSection.asJSONArray(section)
+		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
+		}
+		
+		return json
 	}
 }
 

@@ -2,7 +2,7 @@
 //  GoalTests.swift
 //  GoalTests
 //
-//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -12,46 +12,67 @@ import SwiftFHIR
 
 class GoalTests: FHIRModelTestCase
 {
-	func instantiateFrom(filename: String) -> Goal? {
-		let json = readJSONFile(filename)
+	func instantiateFrom(# filename: String) -> Goal {
+		return instantiateFrom(json: readJSONFile(filename)!)
+	}
+	
+	func instantiateFrom(# json: JSONDictionary) -> Goal {
 		let instance = Goal(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
 	func testGoal1() {
-		let inst = instantiateFrom("goal-example.canonical.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Goal instance")
+		let instance = testGoal1_impl()
+		testGoal1_impl(json: instance.asJSON())
+	}
+	
+	func testGoal1_impl(json: JSONDictionary? = nil) -> Goal {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "goal-example.canonical.json")
 		
-		XCTAssertEqual(inst!.concern![0].display!, "obesity")
-		XCTAssertEqual(inst!.concern![0].reference!, "Condition/12345")
-		XCTAssertEqual(inst!.description!, "Target weight is 160 to 180 lbs.")
-		XCTAssertEqual(inst!.patient!.display!, "Peter James Chalmers")
-		XCTAssertEqual(inst!.patient!.reference!, "Patient/example")
-		XCTAssertEqual(inst!.status!, "in progress")
+		XCTAssertEqual(inst.concern![0].display!, "obesity")
+		XCTAssertEqual(inst.concern![0].reference!, "Condition/12345")
+		XCTAssertEqual(inst.description!, "Target weight is 160 to 180 lbs.")
+		XCTAssertEqual(inst.patient!.display!, "Peter James Chalmers")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.status!, "in progress")
+		
+		return inst
 	}
 	
 	func testGoal2() {
-		let inst = instantiateFrom("goal-example.canonical.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Goal instance")
+		let instance = testGoal2_impl()
+		testGoal2_impl(json: instance.asJSON())
+	}
+	
+	func testGoal2_impl(json: JSONDictionary? = nil) -> Goal {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "goal-example.canonical.json")
 		
-		XCTAssertEqual(inst!.concern![0].display!, "obesity")
-		XCTAssertEqual(inst!.concern![0].reference!, "Condition/12345")
-		XCTAssertEqual(inst!.description!, "Target weight is 160 to 180 lbs.")
-		XCTAssertEqual(inst!.patient!.display!, "Peter James Chalmers")
-		XCTAssertEqual(inst!.patient!.reference!, "Patient/example")
-		XCTAssertEqual(inst!.status!, "in progress")
+		XCTAssertEqual(inst.concern![0].display!, "obesity")
+		XCTAssertEqual(inst.concern![0].reference!, "Condition/12345")
+		XCTAssertEqual(inst.description!, "Target weight is 160 to 180 lbs.")
+		XCTAssertEqual(inst.patient!.display!, "Peter James Chalmers")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.status!, "in progress")
+		
+		return inst
 	}
 	
 	func testGoal3() {
-		let inst = instantiateFrom("goal-example.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Goal instance")
+		let instance = testGoal3_impl()
+		testGoal3_impl(json: instance.asJSON())
+	}
+	
+	func testGoal3_impl(json: JSONDictionary? = nil) -> Goal {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "goal-example.json")
 		
-		XCTAssertEqual(inst!.concern![0].display!, "obesity")
-		XCTAssertEqual(inst!.concern![0].reference!, "Condition/12345")
-		XCTAssertEqual(inst!.description!, "Target weight is 160 to 180 lbs.")
-		XCTAssertEqual(inst!.patient!.display!, "Peter James Chalmers")
-		XCTAssertEqual(inst!.patient!.reference!, "Patient/example")
-		XCTAssertEqual(inst!.status!, "in progress")
+		XCTAssertEqual(inst.concern![0].display!, "obesity")
+		XCTAssertEqual(inst.concern![0].reference!, "Condition/12345")
+		XCTAssertEqual(inst.description!, "Target weight is 160 to 180 lbs.")
+		XCTAssertEqual(inst.patient!.display!, "Peter James Chalmers")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.status!, "in progress")
+		
+		return inst
 	}
 }

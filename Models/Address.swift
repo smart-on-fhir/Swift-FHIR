@@ -2,7 +2,7 @@
 //  Address.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (Address.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (Address.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -73,6 +73,41 @@ public class Address: FHIRElement
 				self.use = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let city = self.city {
+			json["city"] = city.asJSON()
+		}
+		if let country = self.country {
+			json["country"] = country.asJSON()
+		}
+		if let line = self.line {
+			var arr = [AnyObject]()
+			for val in line {
+				arr.append(val.asJSON())
+			}
+			json["line"] = arr
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let postalCode = self.postalCode {
+			json["postalCode"] = postalCode.asJSON()
+		}
+		if let state = self.state {
+			json["state"] = state.asJSON()
+		}
+		if let text = self.text {
+			json["text"] = text.asJSON()
+		}
+		if let use = self.use {
+			json["use"] = use.asJSON()
+		}
+		
+		return json
 	}
 }
 

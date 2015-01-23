@@ -2,7 +2,7 @@
 //  Location.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (location.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (location.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -98,6 +98,49 @@ public class Location: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let address = self.address {
+			json["address"] = address.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let managingOrganization = self.managingOrganization {
+			json["managingOrganization"] = managingOrganization.asJSON()
+		}
+		if let mode = self.mode {
+			json["mode"] = mode.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let partOf = self.partOf {
+			json["partOf"] = partOf.asJSON()
+		}
+		if let physicalType = self.physicalType {
+			json["physicalType"] = physicalType.asJSON()
+		}
+		if let position = self.position {
+			json["position"] = position.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -144,6 +187,22 @@ public class LocationPosition: FHIRElement
 				self.longitude = NSDecimalNumber(json: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let altitude = self.altitude {
+			json["altitude"] = altitude.asJSON()
+		}
+		if let latitude = self.latitude {
+			json["latitude"] = latitude.asJSON()
+		}
+		if let longitude = self.longitude {
+			json["longitude"] = longitude.asJSON()
+		}
+		
+		return json
 	}
 }
 

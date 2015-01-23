@@ -2,7 +2,7 @@
 //  ReferralRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (referralrequest.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (referralrequest.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -122,6 +122,58 @@ public class ReferralRequest: FHIRResource
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let dateSent = self.dateSent {
+			json["dateSent"] = dateSent.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let fulfillmentTime = self.fulfillmentTime {
+			json["fulfillmentTime"] = fulfillmentTime.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let priority = self.priority {
+			json["priority"] = priority.asJSON()
+		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
+		}
+		if let recipient = self.recipient {
+			json["recipient"] = Reference.asJSONArray(recipient)
+		}
+		if let requester = self.requester {
+			json["requester"] = requester.asJSON()
+		}
+		if let serviceRequested = self.serviceRequested {
+			json["serviceRequested"] = CodeableConcept.asJSONArray(serviceRequested)
+		}
+		if let specialty = self.specialty {
+			json["specialty"] = specialty.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let supportingInformation = self.supportingInformation {
+			json["supportingInformation"] = Reference.asJSONArray(supportingInformation)
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

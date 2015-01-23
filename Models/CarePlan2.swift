@@ -2,7 +2,7 @@
 //  CarePlan2.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (careplan2.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (careplan2.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -93,6 +93,43 @@ public class CarePlan2: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let activity = self.activity {
+			json["activity"] = Reference.asJSONArray(activity)
+		}
+		if let concern = self.concern {
+			json["concern"] = Reference.asJSONArray(concern)
+		}
+		if let goal = self.goal {
+			json["goal"] = Reference.asJSONArray(goal)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let modified = self.modified {
+			json["modified"] = modified.asJSON()
+		}
+		if let notes = self.notes {
+			json["notes"] = notes.asJSON()
+		}
+		if let participant = self.participant {
+			json["participant"] = CarePlan2Participant.asJSONArray(participant)
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -130,6 +167,19 @@ public class CarePlan2Participant: FHIRElement
 				self.role = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let member = self.member {
+			json["member"] = member.asJSON()
+		}
+		if let role = self.role {
+			json["role"] = role.asJSON()
+		}
+		
+		return json
 	}
 }
 

@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (documentmanifest.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (documentmanifest.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -116,6 +116,52 @@ public class DocumentManifest: FHIRResource
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let author = self.author {
+			json["author"] = Reference.asJSONArray(author)
+		}
+		if let confidentiality = self.confidentiality {
+			json["confidentiality"] = confidentiality.asJSON()
+		}
+		if let content = self.content {
+			json["content"] = Reference.asJSONArray(content)
+		}
+		if let created = self.created {
+			json["created"] = created.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let masterIdentifier = self.masterIdentifier {
+			json["masterIdentifier"] = masterIdentifier.asJSON()
+		}
+		if let recipient = self.recipient {
+			json["recipient"] = Reference.asJSONArray(recipient)
+		}
+		if let source = self.source {
+			json["source"] = source.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = Reference.asJSONArray(subject)
+		}
+		if let supercedes = self.supercedes {
+			json["supercedes"] = supercedes.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

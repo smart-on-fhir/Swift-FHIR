@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (immunizationrecommendation.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (immunizationrecommendation.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -52,6 +52,22 @@ public class ImmunizationRecommendation: FHIRResource
 				self.subject = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let recommendation = self.recommendation {
+			json["recommendation"] = ImmunizationRecommendationRecommendation.asJSONArray(recommendation)
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -131,6 +147,37 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let dateCriterion = self.dateCriterion {
+			json["dateCriterion"] = ImmunizationRecommendationRecommendationDateCriterion.asJSONArray(dateCriterion)
+		}
+		if let doseNumber = self.doseNumber {
+			json["doseNumber"] = doseNumber.asJSON()
+		}
+		if let forecastStatus = self.forecastStatus {
+			json["forecastStatus"] = forecastStatus.asJSON()
+		}
+		if let protokol = self.protokol {
+			json["protocol"] = protokol.asJSON()
+		}
+		if let supportingImmunization = self.supportingImmunization {
+			json["supportingImmunization"] = Reference.asJSONArray(supportingImmunization)
+		}
+		if let supportingPatientInformation = self.supportingPatientInformation {
+			json["supportingPatientInformation"] = Reference.asJSONArray(supportingPatientInformation)
+		}
+		if let vaccineType = self.vaccineType {
+			json["vaccineType"] = vaccineType.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -171,6 +218,19 @@ public class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
 				self.value = DateTime(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let value = self.value {
+			json["value"] = value.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -214,6 +274,25 @@ public class ImmunizationRecommendationRecommendationProtocol: FHIRElement
 				self.series = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let authority = self.authority {
+			json["authority"] = authority.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let doseSequence = self.doseSequence {
+			json["doseSequence"] = doseSequence.asJSON()
+		}
+		if let series = self.series {
+			json["series"] = series.asJSON()
+		}
+		
+		return json
 	}
 }
 

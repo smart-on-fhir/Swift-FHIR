@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (orderresponse.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (orderresponse.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -86,6 +86,40 @@ public class OrderResponse: FHIRResource
 				self.who = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let authorityCodeableConcept = self.authorityCodeableConcept {
+			json["authorityCodeableConcept"] = authorityCodeableConcept.asJSON()
+		}
+		if let authorityReference = self.authorityReference {
+			json["authorityReference"] = authorityReference.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let fulfillment = self.fulfillment {
+			json["fulfillment"] = Reference.asJSONArray(fulfillment)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let request = self.request {
+			json["request"] = request.asJSON()
+		}
+		if let who = self.who {
+			json["who"] = who.asJSON()
+		}
+		
+		return json
 	}
 }
 

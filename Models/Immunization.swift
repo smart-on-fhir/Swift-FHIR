@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (immunization.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (immunization.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -150,6 +150,67 @@ public class Immunization: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let doseQuantity = self.doseQuantity {
+			json["doseQuantity"] = doseQuantity.asJSON()
+		}
+		if let expirationDate = self.expirationDate {
+			json["expirationDate"] = expirationDate.asJSON()
+		}
+		if let explanation = self.explanation {
+			json["explanation"] = explanation.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let location = self.location {
+			json["location"] = location.asJSON()
+		}
+		if let lotNumber = self.lotNumber {
+			json["lotNumber"] = lotNumber.asJSON()
+		}
+		if let manufacturer = self.manufacturer {
+			json["manufacturer"] = manufacturer.asJSON()
+		}
+		if let performer = self.performer {
+			json["performer"] = performer.asJSON()
+		}
+		if let reaction = self.reaction {
+			json["reaction"] = ImmunizationReaction.asJSONArray(reaction)
+		}
+		if let refusedIndicator = self.refusedIndicator {
+			json["refusedIndicator"] = refusedIndicator.asJSON()
+		}
+		if let reported = self.reported {
+			json["reported"] = reported.asJSON()
+		}
+		if let requester = self.requester {
+			json["requester"] = requester.asJSON()
+		}
+		if let route = self.route {
+			json["route"] = route.asJSON()
+		}
+		if let site = self.site {
+			json["site"] = site.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		if let vaccinationProtocol = self.vaccinationProtocol {
+			json["vaccinationProtocol"] = ImmunizationVaccinationProtocol.asJSONArray(vaccinationProtocol)
+		}
+		if let vaccineType = self.vaccineType {
+			json["vaccineType"] = vaccineType.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -180,6 +241,19 @@ public class ImmunizationExplanation: FHIRElement
 				self.refusalReason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let reason = self.reason {
+			json["reason"] = CodeableConcept.asJSONArray(reason)
+		}
+		if let refusalReason = self.refusalReason {
+			json["refusalReason"] = CodeableConcept.asJSONArray(refusalReason)
+		}
+		
+		return json
 	}
 }
 
@@ -217,6 +291,22 @@ public class ImmunizationReaction: FHIRElement
 				self.reported = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let detail = self.detail {
+			json["detail"] = detail.asJSON()
+		}
+		if let reported = self.reported {
+			json["reported"] = reported.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -297,6 +387,37 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 				self.seriesDoses = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let authority = self.authority {
+			json["authority"] = authority.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let doseSequence = self.doseSequence {
+			json["doseSequence"] = doseSequence.asJSON()
+		}
+		if let doseStatus = self.doseStatus {
+			json["doseStatus"] = doseStatus.asJSON()
+		}
+		if let doseStatusReason = self.doseStatusReason {
+			json["doseStatusReason"] = doseStatusReason.asJSON()
+		}
+		if let doseTarget = self.doseTarget {
+			json["doseTarget"] = doseTarget.asJSON()
+		}
+		if let series = self.series {
+			json["series"] = series.asJSON()
+		}
+		if let seriesDoses = self.seriesDoses {
+			json["seriesDoses"] = seriesDoses.asJSON()
+		}
+		
+		return json
 	}
 }
 

@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (imagingstudy.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (imagingstudy.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -146,6 +146,68 @@ public class ImagingStudy: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let accession = self.accession {
+			json["accession"] = accession.asJSON()
+		}
+		if let availability = self.availability {
+			json["availability"] = availability.asJSON()
+		}
+		if let clinicalInformation = self.clinicalInformation {
+			json["clinicalInformation"] = clinicalInformation.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let interpreter = self.interpreter {
+			json["interpreter"] = interpreter.asJSON()
+		}
+		if let modalityList = self.modalityList {
+			var arr = [AnyObject]()
+			for val in modalityList {
+				arr.append(val.asJSON())
+			}
+			json["modalityList"] = arr
+		}
+		if let numberOfInstances = self.numberOfInstances {
+			json["numberOfInstances"] = numberOfInstances.asJSON()
+		}
+		if let numberOfSeries = self.numberOfSeries {
+			json["numberOfSeries"] = numberOfSeries.asJSON()
+		}
+		if let order = self.order {
+			json["order"] = Reference.asJSONArray(order)
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let procedure = self.procedure {
+			json["procedure"] = Coding.asJSONArray(procedure)
+		}
+		if let referrer = self.referrer {
+			json["referrer"] = referrer.asJSON()
+		}
+		if let series = self.series {
+			json["series"] = ImagingStudySeries.asJSONArray(series)
+		}
+		if let started = self.started {
+			json["started"] = started.asJSON()
+		}
+		if let uid = self.uid {
+			json["uid"] = uid.asJSON()
+		}
+		if let url = self.url {
+			json["url"] = url.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -238,6 +300,43 @@ public class ImagingStudySeries: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let availability = self.availability {
+			json["availability"] = availability.asJSON()
+		}
+		if let bodySite = self.bodySite {
+			json["bodySite"] = bodySite.asJSON()
+		}
+		if let dateTime = self.dateTime {
+			json["dateTime"] = dateTime.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let instance = self.instance {
+			json["instance"] = ImagingStudySeriesInstance.asJSONArray(instance)
+		}
+		if let modality = self.modality {
+			json["modality"] = modality.asJSON()
+		}
+		if let number = self.number {
+			json["number"] = number.asJSON()
+		}
+		if let numberOfInstances = self.numberOfInstances {
+			json["numberOfInstances"] = numberOfInstances.asJSON()
+		}
+		if let uid = self.uid {
+			json["uid"] = uid.asJSON()
+		}
+		if let url = self.url {
+			json["url"] = url.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -308,6 +407,34 @@ public class ImagingStudySeriesInstance: FHIRElement
 				self.url = NSURL(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let attachment = self.attachment {
+			json["attachment"] = attachment.asJSON()
+		}
+		if let number = self.number {
+			json["number"] = number.asJSON()
+		}
+		if let sopclass = self.sopclass {
+			json["sopclass"] = sopclass.asJSON()
+		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let uid = self.uid {
+			json["uid"] = uid.asJSON()
+		}
+		if let url = self.url {
+			json["url"] = url.asJSON()
+		}
+		
+		return json
 	}
 }
 

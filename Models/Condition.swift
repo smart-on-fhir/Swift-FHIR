@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (condition.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (condition.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -166,6 +166,76 @@ public class Condition: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let abatementAge = self.abatementAge {
+			json["abatementAge"] = abatementAge.asJSON()
+		}
+		if let abatementBoolean = self.abatementBoolean {
+			json["abatementBoolean"] = abatementBoolean.asJSON()
+		}
+		if let abatementDate = self.abatementDate {
+			json["abatementDate"] = abatementDate.asJSON()
+		}
+		if let asserter = self.asserter {
+			json["asserter"] = asserter.asJSON()
+		}
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let certainty = self.certainty {
+			json["certainty"] = certainty.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let dateAsserted = self.dateAsserted {
+			json["dateAsserted"] = dateAsserted.asJSON()
+		}
+		if let dueTo = self.dueTo {
+			json["dueTo"] = ConditionDueTo.asJSONArray(dueTo)
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let evidence = self.evidence {
+			json["evidence"] = ConditionEvidence.asJSONArray(evidence)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let location = self.location {
+			json["location"] = ConditionLocation.asJSONArray(location)
+		}
+		if let notes = self.notes {
+			json["notes"] = notes.asJSON()
+		}
+		if let occurredFollowing = self.occurredFollowing {
+			json["occurredFollowing"] = ConditionOccurredFollowing.asJSONArray(occurredFollowing)
+		}
+		if let onsetAge = self.onsetAge {
+			json["onsetAge"] = onsetAge.asJSON()
+		}
+		if let onsetDateTime = self.onsetDateTime {
+			json["onsetDateTime"] = onsetDateTime.asJSON()
+		}
+		if let severity = self.severity {
+			json["severity"] = severity.asJSON()
+		}
+		if let stage = self.stage {
+			json["stage"] = stage.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -196,6 +266,19 @@ public class ConditionDueTo: FHIRElement
 				self.target = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let codeableConcept = self.codeableConcept {
+			json["codeableConcept"] = codeableConcept.asJSON()
+		}
+		if let target = self.target {
+			json["target"] = target.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -228,6 +311,19 @@ public class ConditionEvidence: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let detail = self.detail {
+			json["detail"] = Reference.asJSONArray(detail)
+		}
+		
+		return json
+	}
 }
 
 
@@ -258,6 +354,19 @@ public class ConditionLocation: FHIRElement
 				self.detail = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let detail = self.detail {
+			json["detail"] = detail.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -290,6 +399,19 @@ public class ConditionOccurredFollowing: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let codeableConcept = self.codeableConcept {
+			json["codeableConcept"] = codeableConcept.asJSON()
+		}
+		if let target = self.target {
+			json["target"] = target.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -320,6 +442,19 @@ public class ConditionStage: FHIRElement
 				self.summary = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let assessment = self.assessment {
+			json["assessment"] = Reference.asJSONArray(assessment)
+		}
+		if let summary = self.summary {
+			json["summary"] = summary.asJSON()
+		}
+		
+		return json
 	}
 }
 

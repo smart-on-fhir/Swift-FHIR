@@ -2,7 +2,7 @@
 //  Practitioner.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (practitioner.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (practitioner.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -109,6 +109,55 @@ public class Practitioner: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let address = self.address {
+			json["address"] = Address.asJSONArray(address)
+		}
+		if let birthDate = self.birthDate {
+			json["birthDate"] = birthDate.asJSON()
+		}
+		if let communication = self.communication {
+			json["communication"] = CodeableConcept.asJSONArray(communication)
+		}
+		if let gender = self.gender {
+			json["gender"] = gender.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let location = self.location {
+			json["location"] = Reference.asJSONArray(location)
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let organization = self.organization {
+			json["organization"] = organization.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let photo = self.photo {
+			json["photo"] = Attachment.asJSONArray(photo)
+		}
+		if let qualification = self.qualification {
+			json["qualification"] = PractitionerQualification.asJSONArray(qualification)
+		}
+		if let role = self.role {
+			json["role"] = CodeableConcept.asJSONArray(role)
+		}
+		if let specialty = self.specialty {
+			json["specialty"] = CodeableConcept.asJSONArray(specialty)
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		
+		return json
+	}
 }
 
 
@@ -156,6 +205,25 @@ public class PractitionerQualification: FHIRElement
 				self.period = Period(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let issuer = self.issuer {
+			json["issuer"] = issuer.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		
+		return json
 	}
 }
 

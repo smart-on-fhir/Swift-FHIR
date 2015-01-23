@@ -2,7 +2,7 @@
 //  PendedRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (pendedrequest.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (pendedrequest.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -90,6 +90,54 @@ public class PendedRequest: FHIRResource
 				self.target = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let created = self.created {
+			json["created"] = created.asJSON()
+		}
+		if let exclude = self.exclude {
+			var arr = [AnyObject]()
+			for val in exclude {
+				arr.append(val.asJSON())
+			}
+			json["exclude"] = arr
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let include = self.include {
+			var arr = [AnyObject]()
+			for val in include {
+				arr.append(val.asJSON())
+			}
+			json["include"] = arr
+		}
+		if let organization = self.organization {
+			json["organization"] = organization.asJSON()
+		}
+		if let originalRuleset = self.originalRuleset {
+			json["originalRuleset"] = originalRuleset.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let provider = self.provider {
+			json["provider"] = provider.asJSON()
+		}
+		if let request = self.request {
+			json["request"] = request.asJSON()
+		}
+		if let ruleset = self.ruleset {
+			json["ruleset"] = ruleset.asJSON()
+		}
+		if let target = self.target {
+			json["target"] = target.asJSON()
+		}
+		
+		return json
 	}
 }
 

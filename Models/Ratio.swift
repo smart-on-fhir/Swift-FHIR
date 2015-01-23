@@ -2,7 +2,7 @@
 //  Ratio.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (Ratio.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (Ratio.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -36,6 +36,19 @@ public class Ratio: FHIRElement
 				self.numerator = Quantity(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let denominator = self.denominator {
+			json["denominator"] = denominator.asJSON()
+		}
+		if let numerator = self.numerator {
+			json["numerator"] = numerator.asJSON()
+		}
+		
+		return json
 	}
 }
 

@@ -2,7 +2,7 @@
 //  Profile.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (profile.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (profile.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -144,6 +144,64 @@ public class Profile: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let base = self.base {
+			json["base"] = base.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = Coding.asJSONArray(code)
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let experimental = self.experimental {
+			json["experimental"] = experimental.asJSON()
+		}
+		if let fhirVersion = self.fhirVersion {
+			json["fhirVersion"] = fhirVersion.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let mapping = self.mapping {
+			json["mapping"] = ProfileMapping.asJSONArray(mapping)
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let publisher = self.publisher {
+			json["publisher"] = publisher.asJSON()
+		}
+		if let requirements = self.requirements {
+			json["requirements"] = requirements.asJSON()
+		}
+		if let snapshot = self.snapshot {
+			json["snapshot"] = snapshot.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let url = self.url {
+			json["url"] = url.asJSON()
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -194,6 +252,25 @@ public class ProfileMapping: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let comments = self.comments {
+			json["comments"] = comments.asJSON()
+		}
+		if let identity = self.identity {
+			json["identity"] = identity.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let uri = self.uri {
+			json["uri"] = uri.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -219,6 +296,16 @@ public class ProfileSnapshot: FHIRElement
 				self.element = ElementDefinition.from(val, owner: self) as? [ElementDefinition]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let element = self.element {
+			json["element"] = ElementDefinition.asJSONArray(element)
+		}
+		
+		return json
 	}
 }
 

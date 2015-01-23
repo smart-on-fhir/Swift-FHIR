@@ -2,7 +2,7 @@
 //  MedicationPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (medicationprescription.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (medicationprescription.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -50,7 +50,7 @@ public class MedicationPrescription: FHIRResource
 	/// Reason or indication for writing the prescription
 	public var reasonReference: Reference?
 	
-	/// active | on hold | completed | entered in error | stopped | superceded
+	/// active | on hold | completed | entered in error | stopped | superceded | draft
 	public var status: String?
 	
 	/// Any restrictions on medication substitution?
@@ -96,6 +96,49 @@ public class MedicationPrescription: FHIRResource
 				self.substitution = MedicationPrescriptionSubstitution(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let dateWritten = self.dateWritten {
+			json["dateWritten"] = dateWritten.asJSON()
+		}
+		if let dispense = self.dispense {
+			json["dispense"] = dispense.asJSON()
+		}
+		if let dosageInstruction = self.dosageInstruction {
+			json["dosageInstruction"] = MedicationPrescriptionDosageInstruction.asJSONArray(dosageInstruction)
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let medication = self.medication {
+			json["medication"] = medication.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let prescriber = self.prescriber {
+			json["prescriber"] = prescriber.asJSON()
+		}
+		if let reasonCodeableConcept = self.reasonCodeableConcept {
+			json["reasonCodeableConcept"] = reasonCodeableConcept.asJSON()
+		}
+		if let reasonReference = self.reasonReference {
+			json["reasonReference"] = reasonReference.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let substitution = self.substitution {
+			json["substitution"] = substitution.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -146,6 +189,28 @@ public class MedicationPrescriptionDispense: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let expectedSupplyDuration = self.expectedSupplyDuration {
+			json["expectedSupplyDuration"] = expectedSupplyDuration.asJSON()
+		}
+		if let medication = self.medication {
+			json["medication"] = medication.asJSON()
+		}
+		if let numberOfRepeatsAllowed = self.numberOfRepeatsAllowed {
+			json["numberOfRepeatsAllowed"] = numberOfRepeatsAllowed.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let validityPeriod = self.validityPeriod {
+			json["validityPeriod"] = validityPeriod.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -171,6 +236,9 @@ public class MedicationPrescriptionDosageInstruction: FHIRElement
 	
 	/// Amount of medication per dose
 	public var doseQuantity: Quantity?
+	
+	/// Amount of medication per dose
+	public var doseRange: Range?
 	
 	/// Upper limit on medication per unit of time
 	public var maxDosePerPeriod: Ratio?
@@ -214,6 +282,9 @@ public class MedicationPrescriptionDosageInstruction: FHIRElement
 			if let val = js["doseQuantity"] as? JSONDictionary {
 				self.doseQuantity = Quantity(json: val, owner: self)
 			}
+			if let val = js["doseRange"] as? JSONDictionary {
+				self.doseRange = Range(json: val, owner: self)
+			}
 			if let val = js["maxDosePerPeriod"] as? JSONDictionary {
 				self.maxDosePerPeriod = Ratio(json: val, owner: self)
 			}
@@ -242,6 +313,55 @@ public class MedicationPrescriptionDosageInstruction: FHIRElement
 				self.text = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let additionalInstructions = self.additionalInstructions {
+			json["additionalInstructions"] = additionalInstructions.asJSON()
+		}
+		if let asNeededBoolean = self.asNeededBoolean {
+			json["asNeededBoolean"] = asNeededBoolean.asJSON()
+		}
+		if let asNeededCodeableConcept = self.asNeededCodeableConcept {
+			json["asNeededCodeableConcept"] = asNeededCodeableConcept.asJSON()
+		}
+		if let doseQuantity = self.doseQuantity {
+			json["doseQuantity"] = doseQuantity.asJSON()
+		}
+		if let doseRange = self.doseRange {
+			json["doseRange"] = doseRange.asJSON()
+		}
+		if let maxDosePerPeriod = self.maxDosePerPeriod {
+			json["maxDosePerPeriod"] = maxDosePerPeriod.asJSON()
+		}
+		if let method = self.method {
+			json["method"] = method.asJSON()
+		}
+		if let rate = self.rate {
+			json["rate"] = rate.asJSON()
+		}
+		if let route = self.route {
+			json["route"] = route.asJSON()
+		}
+		if let scheduledDateTime = self.scheduledDateTime {
+			json["scheduledDateTime"] = scheduledDateTime.asJSON()
+		}
+		if let scheduledPeriod = self.scheduledPeriod {
+			json["scheduledPeriod"] = scheduledPeriod.asJSON()
+		}
+		if let scheduledTiming = self.scheduledTiming {
+			json["scheduledTiming"] = scheduledTiming.asJSON()
+		}
+		if let site = self.site {
+			json["site"] = site.asJSON()
+		}
+		if let text = self.text {
+			json["text"] = text.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -282,6 +402,19 @@ public class MedicationPrescriptionSubstitution: FHIRElement
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

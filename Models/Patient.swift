@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (patient.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (patient.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -140,6 +140,70 @@ public class Patient: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let active = self.active {
+			json["active"] = active.asJSON()
+		}
+		if let address = self.address {
+			json["address"] = Address.asJSONArray(address)
+		}
+		if let animal = self.animal {
+			json["animal"] = animal.asJSON()
+		}
+		if let birthDate = self.birthDate {
+			json["birthDate"] = birthDate.asJSON()
+		}
+		if let careProvider = self.careProvider {
+			json["careProvider"] = Reference.asJSONArray(careProvider)
+		}
+		if let communication = self.communication {
+			json["communication"] = CodeableConcept.asJSONArray(communication)
+		}
+		if let contact = self.contact {
+			json["contact"] = PatientContact.asJSONArray(contact)
+		}
+		if let deceasedBoolean = self.deceasedBoolean {
+			json["deceasedBoolean"] = deceasedBoolean.asJSON()
+		}
+		if let deceasedDateTime = self.deceasedDateTime {
+			json["deceasedDateTime"] = deceasedDateTime.asJSON()
+		}
+		if let gender = self.gender {
+			json["gender"] = gender.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let link = self.link {
+			json["link"] = PatientLink.asJSONArray(link)
+		}
+		if let managingOrganization = self.managingOrganization {
+			json["managingOrganization"] = managingOrganization.asJSON()
+		}
+		if let maritalStatus = self.maritalStatus {
+			json["maritalStatus"] = maritalStatus.asJSON()
+		}
+		if let multipleBirthBoolean = self.multipleBirthBoolean {
+			json["multipleBirthBoolean"] = multipleBirthBoolean.asJSON()
+		}
+		if let multipleBirthInteger = self.multipleBirthInteger {
+			json["multipleBirthInteger"] = multipleBirthInteger.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = HumanName.asJSONArray(name)
+		}
+		if let photo = self.photo {
+			json["photo"] = Attachment.asJSONArray(photo)
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		
+		return json
+	}
 }
 
 
@@ -183,6 +247,22 @@ public class PatientAnimal: FHIRElement
 				self.species = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let breed = self.breed {
+			json["breed"] = breed.asJSON()
+		}
+		if let genderStatus = self.genderStatus {
+			json["genderStatus"] = genderStatus.asJSON()
+		}
+		if let species = self.species {
+			json["species"] = species.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -243,6 +323,34 @@ public class PatientContact: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let address = self.address {
+			json["address"] = address.asJSON()
+		}
+		if let gender = self.gender {
+			json["gender"] = gender.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let organization = self.organization {
+			json["organization"] = organization.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let relationship = self.relationship {
+			json["relationship"] = CodeableConcept.asJSONArray(relationship)
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		
+		return json
+	}
 }
 
 
@@ -281,6 +389,19 @@ public class PatientLink: FHIRElement
 				self.type = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let other = self.other {
+			json["other"] = other.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

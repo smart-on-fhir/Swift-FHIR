@@ -2,7 +2,7 @@
 //  MedicationStatement.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (medicationstatement.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (medicationstatement.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -21,14 +21,20 @@ public class MedicationStatement: FHIRResource
 		get { return "MedicationStatement" }
 	}
 	
-	/// E.g. infusion pump
-	public var device: [Reference]?
-	
 	/// Details of how medication was taken
 	public var dosage: [MedicationStatementDosage]?
 	
+	/// Over what period was medication consumed?
+	public var effectiveDateTime: DateTime?
+	
+	/// Over what period was medication consumed?
+	public var effectivePeriod: Period?
+	
 	/// External Identifier
 	public var identifier: [Identifier]?
+	
+	/// The person who provided the information about the taking of this medication.
+	public var informationSource: Reference?
 	
 	/// What medication was taken?
 	public var medication: Reference?
@@ -36,26 +42,45 @@ public class MedicationStatement: FHIRResource
 	/// Who was/is taking medication
 	public var patient: Reference?
 	
+	/// A reason for why the medication is being/was taken.
+	public var reasonForUseCodeableConcept: CodeableConcept?
+	
+	/// A reason for why the medication is being/was taken.
+	public var reasonForUseReference: Reference?
+	
 	/// True if asserting medication was not given
 	public var reasonNotGiven: [CodeableConcept]?
+	
+	/// in progress | completed | entered in error
+	public var status: String?
 	
 	/// True if medication is/was not being taken
 	public var wasNotGiven: Bool?
 	
-	/// Over what period was medication consumed?
-	public var whenGiven: Period?
+	public convenience init(status: String?) {
+		self.init(json: nil)
+		if nil != status {
+			self.status = status
+		}
+	}
 	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["device"] as? [JSONDictionary] {
-				self.device = Reference.from(val, owner: self) as? [Reference]
-			}
 			if let val = js["dosage"] as? [JSONDictionary] {
 				self.dosage = MedicationStatementDosage.from(val, owner: self) as? [MedicationStatementDosage]
 			}
+			if let val = js["effectiveDateTime"] as? String {
+				self.effectiveDateTime = DateTime(string: val)
+			}
+			if let val = js["effectivePeriod"] as? JSONDictionary {
+				self.effectivePeriod = Period(json: val, owner: self)
+			}
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+			}
+			if let val = js["informationSource"] as? JSONDictionary {
+				self.informationSource = Reference(json: val, owner: self)
 			}
 			if let val = js["medication"] as? JSONDictionary {
 				self.medication = Reference(json: val, owner: self)
@@ -63,16 +88,65 @@ public class MedicationStatement: FHIRResource
 			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
 			}
+			if let val = js["reasonForUseCodeableConcept"] as? JSONDictionary {
+				self.reasonForUseCodeableConcept = CodeableConcept(json: val, owner: self)
+			}
+			if let val = js["reasonForUseReference"] as? JSONDictionary {
+				self.reasonForUseReference = Reference(json: val, owner: self)
+			}
 			if let val = js["reasonNotGiven"] as? [JSONDictionary] {
 				self.reasonNotGiven = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			}
+			if let val = js["status"] as? String {
+				self.status = val
 			}
 			if let val = js["wasNotGiven"] as? Bool {
 				self.wasNotGiven = val
 			}
-			if let val = js["whenGiven"] as? JSONDictionary {
-				self.whenGiven = Period(json: val, owner: self)
-			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let dosage = self.dosage {
+			json["dosage"] = MedicationStatementDosage.asJSONArray(dosage)
+		}
+		if let effectiveDateTime = self.effectiveDateTime {
+			json["effectiveDateTime"] = effectiveDateTime.asJSON()
+		}
+		if let effectivePeriod = self.effectivePeriod {
+			json["effectivePeriod"] = effectivePeriod.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let informationSource = self.informationSource {
+			json["informationSource"] = informationSource.asJSON()
+		}
+		if let medication = self.medication {
+			json["medication"] = medication.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let reasonForUseCodeableConcept = self.reasonForUseCodeableConcept {
+			json["reasonForUseCodeableConcept"] = reasonForUseCodeableConcept.asJSON()
+		}
+		if let reasonForUseReference = self.reasonForUseReference {
+			json["reasonForUseReference"] = reasonForUseReference.asJSON()
+		}
+		if let reasonNotGiven = self.reasonNotGiven {
+			json["reasonNotGiven"] = CodeableConcept.asJSONArray(reasonNotGiven)
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let wasNotGiven = self.wasNotGiven {
+			json["wasNotGiven"] = wasNotGiven.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -115,6 +189,9 @@ public class MedicationStatementDosage: FHIRElement
 	/// Where on body was medication administered?
 	public var site: CodeableConcept?
 	
+	/// Dosage Instructions
+	public var text: String?
+	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -145,7 +222,47 @@ public class MedicationStatementDosage: FHIRElement
 			if let val = js["site"] as? JSONDictionary {
 				self.site = CodeableConcept(json: val, owner: self)
 			}
+			if let val = js["text"] as? String {
+				self.text = val
+			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let asNeededBoolean = self.asNeededBoolean {
+			json["asNeededBoolean"] = asNeededBoolean.asJSON()
+		}
+		if let asNeededCodeableConcept = self.asNeededCodeableConcept {
+			json["asNeededCodeableConcept"] = asNeededCodeableConcept.asJSON()
+		}
+		if let maxDosePerPeriod = self.maxDosePerPeriod {
+			json["maxDosePerPeriod"] = maxDosePerPeriod.asJSON()
+		}
+		if let method = self.method {
+			json["method"] = method.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let rate = self.rate {
+			json["rate"] = rate.asJSON()
+		}
+		if let route = self.route {
+			json["route"] = route.asJSON()
+		}
+		if let schedule = self.schedule {
+			json["schedule"] = schedule.asJSON()
+		}
+		if let site = self.site {
+			json["site"] = site.asJSON()
+		}
+		if let text = self.text {
+			json["text"] = text.asJSON()
+		}
+		
+		return json
 	}
 }
 

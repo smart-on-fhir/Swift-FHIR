@@ -2,7 +2,7 @@
 //  DeviceUseStatementTests.swift
 //  DeviceUseStatementTests
 //
-//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -12,34 +12,55 @@ import SwiftFHIR
 
 class DeviceUseStatementTests: FHIRModelTestCase
 {
-	func instantiateFrom(filename: String) -> DeviceUseStatement? {
-		let json = readJSONFile(filename)
+	func instantiateFrom(# filename: String) -> DeviceUseStatement {
+		return instantiateFrom(json: readJSONFile(filename)!)
+	}
+	
+	func instantiateFrom(# json: JSONDictionary) -> DeviceUseStatement {
 		let instance = DeviceUseStatement(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
 	func testDeviceUseStatement1() {
-		let inst = instantiateFrom("deviceusestatement-example.canonical.json")
-		XCTAssertNotNil(inst, "Must have instantiated a DeviceUseStatement instance")
+		let instance = testDeviceUseStatement1_impl()
+		testDeviceUseStatement1_impl(json: instance.asJSON())
+	}
+	
+	func testDeviceUseStatement1_impl(json: JSONDictionary? = nil) -> DeviceUseStatement {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "deviceusestatement-example.canonical.json")
 		
-		XCTAssertEqual(inst!.device!.reference!, "Device/example")
-		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.device!.reference!, "Device/example")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		
+		return inst
 	}
 	
 	func testDeviceUseStatement2() {
-		let inst = instantiateFrom("deviceusestatement-example.canonical.json")
-		XCTAssertNotNil(inst, "Must have instantiated a DeviceUseStatement instance")
+		let instance = testDeviceUseStatement2_impl()
+		testDeviceUseStatement2_impl(json: instance.asJSON())
+	}
+	
+	func testDeviceUseStatement2_impl(json: JSONDictionary? = nil) -> DeviceUseStatement {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "deviceusestatement-example.canonical.json")
 		
-		XCTAssertEqual(inst!.device!.reference!, "Device/example")
-		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.device!.reference!, "Device/example")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		
+		return inst
 	}
 	
 	func testDeviceUseStatement3() {
-		let inst = instantiateFrom("deviceusestatement-example.json")
-		XCTAssertNotNil(inst, "Must have instantiated a DeviceUseStatement instance")
+		let instance = testDeviceUseStatement3_impl()
+		testDeviceUseStatement3_impl(json: instance.asJSON())
+	}
+	
+	func testDeviceUseStatement3_impl(json: JSONDictionary? = nil) -> DeviceUseStatement {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "deviceusestatement-example.json")
 		
-		XCTAssertEqual(inst!.device!.reference!, "Device/example")
-		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.device!.reference!, "Device/example")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		
+		return inst
 	}
 }

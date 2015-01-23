@@ -2,7 +2,7 @@
 //  HealthcareService.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (healthcareservice.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (healthcareservice.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -180,6 +180,92 @@ public class HealthcareService: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let appointmentRequired = self.appointmentRequired {
+			json["appointmentRequired"] = appointmentRequired.asJSON()
+		}
+		if let availabilityExceptions = self.availabilityExceptions {
+			json["availabilityExceptions"] = availabilityExceptions.asJSON()
+		}
+		if let availableTime = self.availableTime {
+			json["availableTime"] = HealthcareServiceAvailableTime.asJSONArray(availableTime)
+		}
+		if let catchmentArea = self.catchmentArea {
+			json["catchmentArea"] = CodeableConcept.asJSONArray(catchmentArea)
+		}
+		if let characteristic = self.characteristic {
+			json["characteristic"] = CodeableConcept.asJSONArray(characteristic)
+		}
+		if let comment = self.comment {
+			json["comment"] = comment.asJSON()
+		}
+		if let contactPoint = self.contactPoint {
+			json["contactPoint"] = ContactPoint.asJSONArray(contactPoint)
+		}
+		if let coverageArea = self.coverageArea {
+			json["coverageArea"] = CodeableConcept.asJSONArray(coverageArea)
+		}
+		if let eligibility = self.eligibility {
+			json["eligibility"] = eligibility.asJSON()
+		}
+		if let eligibilityNote = self.eligibilityNote {
+			json["eligibilityNote"] = eligibilityNote.asJSON()
+		}
+		if let extraDetails = self.extraDetails {
+			json["extraDetails"] = extraDetails.asJSON()
+		}
+		if let freeProvisionCode = self.freeProvisionCode {
+			json["freeProvisionCode"] = freeProvisionCode.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let imageURI = self.imageURI {
+			json["imageURI"] = imageURI.asJSON()
+		}
+		if let location = self.location {
+			json["location"] = location.asJSON()
+		}
+		if let notAvailableTime = self.notAvailableTime {
+			json["notAvailableTime"] = HealthcareServiceNotAvailableTime.asJSONArray(notAvailableTime)
+		}
+		if let programName = self.programName {
+			var arr = [AnyObject]()
+			for val in programName {
+				arr.append(val.asJSON())
+			}
+			json["programName"] = arr
+		}
+		if let publicKey = self.publicKey {
+			json["publicKey"] = publicKey.asJSON()
+		}
+		if let referralMethod = self.referralMethod {
+			json["referralMethod"] = CodeableConcept.asJSONArray(referralMethod)
+		}
+		if let serviceCategory = self.serviceCategory {
+			json["serviceCategory"] = serviceCategory.asJSON()
+		}
+		if let serviceCode = self.serviceCode {
+			json["serviceCode"] = CodeableConcept.asJSONArray(serviceCode)
+		}
+		if let serviceName = self.serviceName {
+			json["serviceName"] = serviceName.asJSON()
+		}
+		if let serviceType = self.serviceType {
+			json["serviceType"] = HealthcareServiceServiceType.asJSONArray(serviceType)
+		}
+		if let setting = self.setting {
+			json["setting"] = CodeableConcept.asJSONArray(setting)
+		}
+		if let targetGroup = self.targetGroup {
+			json["targetGroup"] = CodeableConcept.asJSONArray(targetGroup)
+		}
+		
+		return json
+	}
 }
 
 
@@ -220,6 +306,25 @@ public class HealthcareServiceAvailableTime: FHIRElement
 				self.daysOfWeek = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let allDay = self.allDay {
+			json["allDay"] = allDay.asJSON()
+		}
+		if let availableEndTime = self.availableEndTime {
+			json["availableEndTime"] = availableEndTime.asJSON()
+		}
+		if let availableStartTime = self.availableStartTime {
+			json["availableStartTime"] = availableStartTime.asJSON()
+		}
+		if let daysOfWeek = self.daysOfWeek {
+			json["daysOfWeek"] = CodeableConcept.asJSONArray(daysOfWeek)
+		}
+		
+		return json
 	}
 }
 
@@ -263,6 +368,22 @@ public class HealthcareServiceNotAvailableTime: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let endDate = self.endDate {
+			json["endDate"] = endDate.asJSON()
+		}
+		if let startDate = self.startDate {
+			json["startDate"] = startDate.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -298,6 +419,19 @@ public class HealthcareServiceServiceType: FHIRElement
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let specialty = self.specialty {
+			json["specialty"] = CodeableConcept.asJSONArray(specialty)
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

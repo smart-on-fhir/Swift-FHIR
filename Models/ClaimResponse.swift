@@ -2,7 +2,7 @@
 //  ClaimResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (claimresponse.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (claimresponse.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -175,6 +175,88 @@ public class ClaimResponse: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let additem = self.additem {
+			json["additem"] = ClaimResponseAdditem.asJSONArray(additem)
+		}
+		if let created = self.created {
+			json["created"] = created.asJSON()
+		}
+		if let disposition = self.disposition {
+			json["disposition"] = disposition.asJSON()
+		}
+		if let error = self.error {
+			json["error"] = ClaimResponseError.asJSONArray(error)
+		}
+		if let form = self.form {
+			json["form"] = form.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let item = self.item {
+			json["item"] = ClaimResponseItem.asJSONArray(item)
+		}
+		if let note = self.note {
+			json["note"] = ClaimResponseNote.asJSONArray(note)
+		}
+		if let organization = self.organization {
+			json["organization"] = organization.asJSON()
+		}
+		if let originalRuleset = self.originalRuleset {
+			json["originalRuleset"] = originalRuleset.asJSON()
+		}
+		if let outcome = self.outcome {
+			json["outcome"] = outcome.asJSON()
+		}
+		if let payeeType = self.payeeType {
+			json["payeeType"] = payeeType.asJSON()
+		}
+		if let paymentAdjustment = self.paymentAdjustment {
+			json["paymentAdjustment"] = paymentAdjustment.asJSON()
+		}
+		if let paymentAdjustmentReason = self.paymentAdjustmentReason {
+			json["paymentAdjustmentReason"] = paymentAdjustmentReason.asJSON()
+		}
+		if let paymentAmount = self.paymentAmount {
+			json["paymentAmount"] = paymentAmount.asJSON()
+		}
+		if let paymentDate = self.paymentDate {
+			json["paymentDate"] = paymentDate.asJSON()
+		}
+		if let paymentRef = self.paymentRef {
+			json["paymentRef"] = paymentRef.asJSON()
+		}
+		if let request = self.request {
+			json["request"] = request.asJSON()
+		}
+		if let requestOrganization = self.requestOrganization {
+			json["requestOrganization"] = requestOrganization.asJSON()
+		}
+		if let requestProvider = self.requestProvider {
+			json["requestProvider"] = requestProvider.asJSON()
+		}
+		if let reserved = self.reserved {
+			json["reserved"] = reserved.asJSON()
+		}
+		if let ruleset = self.ruleset {
+			json["ruleset"] = ruleset.asJSON()
+		}
+		if let totalBenefit = self.totalBenefit {
+			json["totalBenefit"] = totalBenefit.asJSON()
+		}
+		if let totalCost = self.totalCost {
+			json["totalCost"] = totalCost.asJSON()
+		}
+		if let unallocDeductable = self.unallocDeductable {
+			json["unallocDeductable"] = unallocDeductable.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -237,6 +319,39 @@ public class ClaimResponseAdditem: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let adjudication = self.adjudication {
+			json["adjudication"] = ClaimResponseAdditemAdjudication.asJSONArray(adjudication)
+		}
+		if let detail = self.detail {
+			json["detail"] = ClaimResponseAdditemDetail.asJSONArray(detail)
+		}
+		if let fee = self.fee {
+			json["fee"] = fee.asJSON()
+		}
+		if let noteNumberLinkId = self.noteNumberLinkId {
+			var arr = [AnyObject]()
+			for val in noteNumberLinkId {
+				arr.append(val.asJSON())
+			}
+			json["noteNumberLinkId"] = arr
+		}
+		if let sequenceLinkId = self.sequenceLinkId {
+			var arr = [AnyObject]()
+			for val in sequenceLinkId {
+				arr.append(val.asJSON())
+			}
+			json["sequenceLinkId"] = arr
+		}
+		if let service = self.service {
+			json["service"] = service.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -280,6 +395,22 @@ public class ClaimResponseAdditemAdjudication: FHIRElement
 				self.value = NSDecimalNumber(json: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let amount = self.amount {
+			json["amount"] = amount.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let value = self.value {
+			json["value"] = value.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -325,6 +456,22 @@ public class ClaimResponseAdditemDetail: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let adjudication = self.adjudication {
+			json["adjudication"] = ClaimResponseAdditemDetailAdjudication.asJSONArray(adjudication)
+		}
+		if let fee = self.fee {
+			json["fee"] = fee.asJSON()
+		}
+		if let service = self.service {
+			json["service"] = service.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -368,6 +515,22 @@ public class ClaimResponseAdditemDetailAdjudication: FHIRElement
 				self.value = NSDecimalNumber(json: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let amount = self.amount {
+			json["amount"] = amount.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let value = self.value {
+			json["value"] = value.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -419,6 +582,25 @@ public class ClaimResponseError: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let detailSequenceLinkId = self.detailSequenceLinkId {
+			json["detailSequenceLinkId"] = detailSequenceLinkId.asJSON()
+		}
+		if let sequenceLinkId = self.sequenceLinkId {
+			json["sequenceLinkId"] = sequenceLinkId.asJSON()
+		}
+		if let subdetailSequenceLinkId = self.subdetailSequenceLinkId {
+			json["subdetailSequenceLinkId"] = subdetailSequenceLinkId.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -469,6 +651,29 @@ public class ClaimResponseItem: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let adjudication = self.adjudication {
+			json["adjudication"] = ClaimResponseItemAdjudication.asJSONArray(adjudication)
+		}
+		if let detail = self.detail {
+			json["detail"] = ClaimResponseItemDetail.asJSONArray(detail)
+		}
+		if let noteNumber = self.noteNumber {
+			var arr = [AnyObject]()
+			for val in noteNumber {
+				arr.append(val.asJSON())
+			}
+			json["noteNumber"] = arr
+		}
+		if let sequenceLinkId = self.sequenceLinkId {
+			json["sequenceLinkId"] = sequenceLinkId.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -512,6 +717,22 @@ public class ClaimResponseItemAdjudication: FHIRElement
 				self.value = NSDecimalNumber(json: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let amount = self.amount {
+			json["amount"] = amount.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let value = self.value {
+			json["value"] = value.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -557,6 +778,22 @@ public class ClaimResponseItemDetail: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let adjudication = self.adjudication {
+			json["adjudication"] = ClaimResponseItemDetailAdjudication.asJSONArray(adjudication)
+		}
+		if let sequenceLinkId = self.sequenceLinkId {
+			json["sequenceLinkId"] = sequenceLinkId.asJSON()
+		}
+		if let subdetail = self.subdetail {
+			json["subdetail"] = ClaimResponseItemDetailSubdetail.asJSONArray(subdetail)
+		}
+		
+		return json
+	}
 }
 
 
@@ -601,6 +838,22 @@ public class ClaimResponseItemDetailAdjudication: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let amount = self.amount {
+			json["amount"] = amount.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let value = self.value {
+			json["value"] = value.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -638,6 +891,19 @@ public class ClaimResponseItemDetailSubdetail: FHIRElement
 				self.sequenceLinkId = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let adjudication = self.adjudication {
+			json["adjudication"] = ClaimResponseItemDetailSubdetailAdjudication.asJSONArray(adjudication)
+		}
+		if let sequenceLinkId = self.sequenceLinkId {
+			json["sequenceLinkId"] = sequenceLinkId.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -683,6 +949,22 @@ public class ClaimResponseItemDetailSubdetailAdjudication: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let amount = self.amount {
+			json["amount"] = amount.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let value = self.value {
+			json["value"] = value.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -719,6 +1001,22 @@ public class ClaimResponseNote: FHIRElement
 				self.type = Coding(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let number = self.number {
+			json["number"] = number.asJSON()
+		}
+		if let text = self.text {
+			json["text"] = text.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

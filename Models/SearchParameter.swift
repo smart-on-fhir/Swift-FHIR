@@ -2,7 +2,7 @@
 //  SearchParameter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (searchparameter.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (searchparameter.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -103,6 +103,47 @@ public class SearchParameter: FHIRResource
 				self.xpath = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let base = self.base {
+			json["base"] = base.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let publisher = self.publisher {
+			json["publisher"] = publisher.asJSON()
+		}
+		if let requirements = self.requirements {
+			json["requirements"] = requirements.asJSON()
+		}
+		if let target = self.target {
+			var arr = [AnyObject]()
+			for val in target {
+				arr.append(val.asJSON())
+			}
+			json["target"] = arr
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let url = self.url {
+			json["url"] = url.asJSON()
+		}
+		if let xpath = self.xpath {
+			json["xpath"] = xpath.asJSON()
+		}
+		
+		return json
 	}
 }
 

@@ -2,7 +2,7 @@
 //  Media.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (media.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (media.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -111,6 +111,52 @@ public class Media: FHIRResource
 				self.width = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let content = self.content {
+			json["content"] = content.asJSON()
+		}
+		if let created = self.created {
+			json["created"] = created.asJSON()
+		}
+		if let deviceName = self.deviceName {
+			json["deviceName"] = deviceName.asJSON()
+		}
+		if let duration = self.duration {
+			json["duration"] = duration.asJSON()
+		}
+		if let frames = self.frames {
+			json["frames"] = frames.asJSON()
+		}
+		if let height = self.height {
+			json["height"] = height.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let operatr = self.operatr {
+			json["operator"] = operatr.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		if let subtype = self.subtype {
+			json["subtype"] = subtype.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let view = self.view {
+			json["view"] = view.asJSON()
+		}
+		if let width = self.width {
+			json["width"] = width.asJSON()
+		}
+		
+		return json
 	}
 }
 

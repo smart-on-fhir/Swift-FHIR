@@ -2,7 +2,7 @@
 //  ClinicalAssessment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (clinicalassessment.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (clinicalassessment.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -142,6 +142,64 @@ public class ClinicalAssessment: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let action = self.action {
+			json["action"] = Reference.asJSONArray(action)
+		}
+		if let assessor = self.assessor {
+			json["assessor"] = assessor.asJSON()
+		}
+		if let careplan = self.careplan {
+			json["careplan"] = careplan.asJSON()
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let diagnosis = self.diagnosis {
+			json["diagnosis"] = ClinicalAssessmentDiagnosis.asJSONArray(diagnosis)
+		}
+		if let investigations = self.investigations {
+			json["investigations"] = ClinicalAssessmentInvestigations.asJSONArray(investigations)
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let plan = self.plan {
+			json["plan"] = plan.asJSON()
+		}
+		if let previous = self.previous {
+			json["previous"] = previous.asJSON()
+		}
+		if let problem = self.problem {
+			json["problem"] = Reference.asJSONArray(problem)
+		}
+		if let prognosis = self.prognosis {
+			json["prognosis"] = prognosis.asJSON()
+		}
+		if let protokol = self.protokol {
+			json["protocol"] = protokol.asJSON()
+		}
+		if let referral = self.referral {
+			json["referral"] = referral.asJSON()
+		}
+		if let resolved = self.resolved {
+			json["resolved"] = CodeableConcept.asJSONArray(resolved)
+		}
+		if let ruledOut = self.ruledOut {
+			json["ruledOut"] = ClinicalAssessmentRuledOut.asJSONArray(ruledOut)
+		}
+		if let summary = self.summary {
+			json["summary"] = summary.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -179,6 +237,19 @@ public class ClinicalAssessmentDiagnosis: FHIRElement
 				self.item = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let cause = self.cause {
+			json["cause"] = cause.asJSON()
+		}
+		if let item = self.item {
+			json["item"] = item.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -220,6 +291,19 @@ public class ClinicalAssessmentInvestigations: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let item = self.item {
+			json["item"] = Reference.asJSONArray(item)
+		}
+		
+		return json
+	}
 }
 
 
@@ -255,6 +339,19 @@ public class ClinicalAssessmentRuledOut: FHIRElement
 				self.reason = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let item = self.item {
+			json["item"] = item.asJSON()
+		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
+		}
+		
+		return json
 	}
 }
 

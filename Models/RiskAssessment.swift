@@ -2,7 +2,7 @@
 //  RiskAssessment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (riskassessment.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (riskassessment.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -79,6 +79,40 @@ public class RiskAssessment: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let basis = self.basis {
+			json["basis"] = Reference.asJSONArray(basis)
+		}
+		if let condition = self.condition {
+			json["condition"] = condition.asJSON()
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let method = self.method {
+			json["method"] = method.asJSON()
+		}
+		if let mitigation = self.mitigation {
+			json["mitigation"] = mitigation.asJSON()
+		}
+		if let performer = self.performer {
+			json["performer"] = performer.asJSON()
+		}
+		if let prediction = self.prediction {
+			json["prediction"] = RiskAssessmentPrediction.asJSONArray(prediction)
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -152,6 +186,37 @@ public class RiskAssessmentPrediction: FHIRElement
 				self.whenRange = Range(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let outcome = self.outcome {
+			json["outcome"] = outcome.asJSON()
+		}
+		if let probabilityCodeableConcept = self.probabilityCodeableConcept {
+			json["probabilityCodeableConcept"] = probabilityCodeableConcept.asJSON()
+		}
+		if let probabilityDecimal = self.probabilityDecimal {
+			json["probabilityDecimal"] = probabilityDecimal.asJSON()
+		}
+		if let probabilityRange = self.probabilityRange {
+			json["probabilityRange"] = probabilityRange.asJSON()
+		}
+		if let rationale = self.rationale {
+			json["rationale"] = rationale.asJSON()
+		}
+		if let relativeRisk = self.relativeRisk {
+			json["relativeRisk"] = relativeRisk.asJSON()
+		}
+		if let whenPeriod = self.whenPeriod {
+			json["whenPeriod"] = whenPeriod.asJSON()
+		}
+		if let whenRange = self.whenRange {
+			json["whenRange"] = whenRange.asJSON()
+		}
+		
+		return json
 	}
 }
 

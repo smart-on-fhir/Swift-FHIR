@@ -2,7 +2,7 @@
 //  Supply.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (supply.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (supply.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -60,6 +60,31 @@ public class Supply: FHIRResource
 				self.status = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let dispense = self.dispense {
+			json["dispense"] = SupplyDispense.asJSONArray(dispense)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let kind = self.kind {
+			json["kind"] = kind.asJSON()
+		}
+		if let orderedItem = self.orderedItem {
+			json["orderedItem"] = orderedItem.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -139,6 +164,43 @@ public class SupplyDispense: FHIRElement
 				self.whenPrepared = Period(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let destination = self.destination {
+			json["destination"] = destination.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let receiver = self.receiver {
+			json["receiver"] = Reference.asJSONArray(receiver)
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let suppliedItem = self.suppliedItem {
+			json["suppliedItem"] = suppliedItem.asJSON()
+		}
+		if let supplier = self.supplier {
+			json["supplier"] = supplier.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let whenHandedOver = self.whenHandedOver {
+			json["whenHandedOver"] = whenHandedOver.asJSON()
+		}
+		if let whenPrepared = self.whenPrepared {
+			json["whenPrepared"] = whenPrepared.asJSON()
+		}
+		
+		return json
 	}
 }
 

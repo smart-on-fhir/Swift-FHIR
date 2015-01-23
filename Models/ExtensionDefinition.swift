@@ -2,7 +2,7 @@
 //  ExtensionDefinition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (extensiondefinition.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (extensiondefinition.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -143,6 +143,65 @@ public class ExtensionDefinition: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = Coding.asJSONArray(code)
+		}
+		if let context = self.context {
+			var arr = [AnyObject]()
+			for val in context {
+				arr.append(val.asJSON())
+			}
+			json["context"] = arr
+		}
+		if let contextType = self.contextType {
+			json["contextType"] = contextType.asJSON()
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let display = self.display {
+			json["display"] = display.asJSON()
+		}
+		if let element = self.element {
+			json["element"] = ElementDefinition.asJSONArray(element)
+		}
+		if let experimental = self.experimental {
+			json["experimental"] = experimental.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let mapping = self.mapping {
+			json["mapping"] = ExtensionDefinitionMapping.asJSONArray(mapping)
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let publisher = self.publisher {
+			json["publisher"] = publisher.asJSON()
+		}
+		if let requirements = self.requirements {
+			json["requirements"] = requirements.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		if let url = self.url {
+			json["url"] = url.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -192,6 +251,25 @@ public class ExtensionDefinitionMapping: FHIRElement
 				self.uri = NSURL(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let comments = self.comments {
+			json["comments"] = comments.asJSON()
+		}
+		if let identity = self.identity {
+			json["identity"] = identity.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let uri = self.uri {
+			json["uri"] = uri.asJSON()
+		}
+		
+		return json
 	}
 }
 

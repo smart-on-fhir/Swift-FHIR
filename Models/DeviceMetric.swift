@@ -2,7 +2,7 @@
 //  DeviceMetric.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (devicemetric.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (devicemetric.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -104,6 +104,46 @@ public class DeviceMetric: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let calibrationInfo = self.calibrationInfo {
+			json["calibrationInfo"] = DeviceMetricCalibrationInfo.asJSONArray(calibrationInfo)
+		}
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let color = self.color {
+			json["color"] = color.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let measurementMode = self.measurementMode {
+			json["measurementMode"] = measurementMode.asJSON()
+		}
+		if let measurementPeriod = self.measurementPeriod {
+			json["measurementPeriod"] = measurementPeriod.asJSON()
+		}
+		if let operationalState = self.operationalState {
+			json["operationalState"] = operationalState.asJSON()
+		}
+		if let parent = self.parent {
+			json["parent"] = parent.asJSON()
+		}
+		if let source = self.source {
+			json["source"] = source.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let unit = self.unit {
+			json["unit"] = unit.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -138,6 +178,22 @@ public class DeviceMetricCalibrationInfo: FHIRElement
 				self.type = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let state = self.state {
+			json["state"] = state.asJSON()
+		}
+		if let time = self.time {
+			json["time"] = time.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

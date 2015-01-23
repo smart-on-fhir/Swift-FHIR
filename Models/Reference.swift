@@ -2,7 +2,7 @@
 //  Reference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (Reference.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (Reference.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -34,6 +34,19 @@ public class Reference: FHIRElement
 				self.reference = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let display = self.display {
+			json["display"] = display.asJSON()
+		}
+		if let reference = self.reference {
+			json["reference"] = reference.asJSON()
+		}
+		
+		return json
 	}
 }
 

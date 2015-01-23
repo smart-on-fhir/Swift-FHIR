@@ -2,7 +2,7 @@
 //  EpisodeOfCare.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (episodeofcare.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (episodeofcare.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -103,6 +103,46 @@ public class EpisodeOfCare: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let careManager = self.careManager {
+			json["careManager"] = careManager.asJSON()
+		}
+		if let careTeam = self.careTeam {
+			json["careTeam"] = EpisodeOfCareCareTeam.asJSONArray(careTeam)
+		}
+		if let condition = self.condition {
+			json["condition"] = Reference.asJSONArray(condition)
+		}
+		if let currentStatus = self.currentStatus {
+			json["currentStatus"] = currentStatus.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let managingOrganization = self.managingOrganization {
+			json["managingOrganization"] = managingOrganization.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let referralRequest = self.referralRequest {
+			json["referralRequest"] = referralRequest.asJSON()
+		}
+		if let statusHistory = self.statusHistory {
+			json["statusHistory"] = EpisodeOfCareStatusHistory.asJSONArray(statusHistory)
+		}
+		if let type = self.type {
+			json["type"] = CodeableConcept.asJSONArray(type)
+		}
+		
+		return json
+	}
 }
 
 
@@ -137,6 +177,22 @@ public class EpisodeOfCareCareTeam: FHIRElement
 				self.role = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let member = self.member {
+			json["member"] = member.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let role = self.role {
+			json["role"] = CodeableConcept.asJSONArray(role)
+		}
+		
+		return json
 	}
 }
 
@@ -176,6 +232,19 @@ public class EpisodeOfCareStatusHistory: FHIRElement
 				self.status = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		
+		return json
 	}
 }
 

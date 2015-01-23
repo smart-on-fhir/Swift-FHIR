@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (provenance.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (provenance.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -91,6 +91,44 @@ public class Provenance: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let agent = self.agent {
+			json["agent"] = ProvenanceAgent.asJSONArray(agent)
+		}
+		if let entity = self.entity {
+			json["entity"] = ProvenanceEntity.asJSONArray(entity)
+		}
+		if let integritySignature = self.integritySignature {
+			json["integritySignature"] = integritySignature.asJSON()
+		}
+		if let location = self.location {
+			json["location"] = location.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let policy = self.policy {
+			var arr = [AnyObject]()
+			for val in policy {
+				arr.append(val.asJSON())
+			}
+			json["policy"] = arr
+		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
+		}
+		if let recorded = self.recorded {
+			json["recorded"] = recorded.asJSON()
+		}
+		if let target = self.target {
+			json["target"] = Reference.asJSONArray(target)
+		}
+		
+		return json
+	}
 }
 
 
@@ -148,6 +186,25 @@ public class ProvenanceAgent: FHIRElement
 				self.type = Coding(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let display = self.display {
+			json["display"] = display.asJSON()
+		}
+		if let reference = self.reference {
+			json["reference"] = reference.asJSON()
+		}
+		if let role = self.role {
+			json["role"] = role.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -208,6 +265,28 @@ public class ProvenanceEntity: FHIRElement
 				self.type = Coding(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let agent = self.agent {
+			json["agent"] = agent.asJSON()
+		}
+		if let display = self.display {
+			json["display"] = display.asJSON()
+		}
+		if let reference = self.reference {
+			json["reference"] = reference.asJSON()
+		}
+		if let role = self.role {
+			json["role"] = role.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

@@ -2,7 +2,7 @@
 //  SupportingDocumentation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (supportingdocumentation.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (supportingdocumentation.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -105,6 +105,49 @@ public class SupportingDocumentation: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let author = self.author {
+			json["author"] = author.asJSON()
+		}
+		if let created = self.created {
+			json["created"] = created.asJSON()
+		}
+		if let detail = self.detail {
+			json["detail"] = SupportingDocumentationDetail.asJSONArray(detail)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let organization = self.organization {
+			json["organization"] = organization.asJSON()
+		}
+		if let originalRuleset = self.originalRuleset {
+			json["originalRuleset"] = originalRuleset.asJSON()
+		}
+		if let provider = self.provider {
+			json["provider"] = provider.asJSON()
+		}
+		if let request = self.request {
+			json["request"] = request.asJSON()
+		}
+		if let response = self.response {
+			json["response"] = response.asJSON()
+		}
+		if let ruleset = self.ruleset {
+			json["ruleset"] = ruleset.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		if let target = self.target {
+			json["target"] = target.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -158,6 +201,25 @@ public class SupportingDocumentationDetail: FHIRElement
 				self.linkId = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let contentAttachment = self.contentAttachment {
+			json["contentAttachment"] = contentAttachment.asJSON()
+		}
+		if let contentReference = self.contentReference {
+			json["contentReference"] = contentReference.asJSON()
+		}
+		if let dateTime = self.dateTime {
+			json["dateTime"] = dateTime.asJSON()
+		}
+		if let linkId = self.linkId {
+			json["linkId"] = linkId.asJSON()
+		}
+		
+		return json
 	}
 }
 

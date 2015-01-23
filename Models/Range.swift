@@ -2,7 +2,7 @@
 //  Range.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (Range.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (Range.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -36,6 +36,19 @@ public class Range: FHIRElement
 				self.low = Quantity(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let high = self.high {
+			json["high"] = high.asJSON()
+		}
+		if let low = self.low {
+			json["low"] = low.asJSON()
+		}
+		
+		return json
 	}
 }
 

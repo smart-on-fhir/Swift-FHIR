@@ -2,7 +2,7 @@
 //  EnrollmentRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (enrollmentrequest.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (enrollmentrequest.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -97,6 +97,43 @@ public class EnrollmentRequest: FHIRResource
 				self.target = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let coverage = self.coverage {
+			json["coverage"] = coverage.asJSON()
+		}
+		if let created = self.created {
+			json["created"] = created.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let organization = self.organization {
+			json["organization"] = organization.asJSON()
+		}
+		if let originalRuleset = self.originalRuleset {
+			json["originalRuleset"] = originalRuleset.asJSON()
+		}
+		if let provider = self.provider {
+			json["provider"] = provider.asJSON()
+		}
+		if let relationship = self.relationship {
+			json["relationship"] = relationship.asJSON()
+		}
+		if let ruleset = self.ruleset {
+			json["ruleset"] = ruleset.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		if let target = self.target {
+			json["target"] = target.asJSON()
+		}
+		
+		return json
 	}
 }
 

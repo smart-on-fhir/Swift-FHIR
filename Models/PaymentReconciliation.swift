@@ -2,7 +2,7 @@
 //  PaymentReconciliation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (paymentreconciliation.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (paymentreconciliation.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -122,6 +122,58 @@ public class PaymentReconciliation: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let created = self.created {
+			json["created"] = created.asJSON()
+		}
+		if let detail = self.detail {
+			json["detail"] = PaymentReconciliationDetail.asJSONArray(detail)
+		}
+		if let disposition = self.disposition {
+			json["disposition"] = disposition.asJSON()
+		}
+		if let form = self.form {
+			json["form"] = form.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let note = self.note {
+			json["note"] = PaymentReconciliationNote.asJSONArray(note)
+		}
+		if let organization = self.organization {
+			json["organization"] = organization.asJSON()
+		}
+		if let originalRuleset = self.originalRuleset {
+			json["originalRuleset"] = originalRuleset.asJSON()
+		}
+		if let outcome = self.outcome {
+			json["outcome"] = outcome.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let request = self.request {
+			json["request"] = request.asJSON()
+		}
+		if let requestOrganization = self.requestOrganization {
+			json["requestOrganization"] = requestOrganization.asJSON()
+		}
+		if let requestProvider = self.requestProvider {
+			json["requestProvider"] = requestProvider.asJSON()
+		}
+		if let ruleset = self.ruleset {
+			json["ruleset"] = ruleset.asJSON()
+		}
+		if let total = self.total {
+			json["total"] = total.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -190,6 +242,34 @@ public class PaymentReconciliationDetail: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let amount = self.amount {
+			json["amount"] = amount.asJSON()
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let payee = self.payee {
+			json["payee"] = payee.asJSON()
+		}
+		if let request = self.request {
+			json["request"] = request.asJSON()
+		}
+		if let responce = self.responce {
+			json["responce"] = responce.asJSON()
+		}
+		if let submitter = self.submitter {
+			json["submitter"] = submitter.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -220,6 +300,19 @@ public class PaymentReconciliationNote: FHIRElement
 				self.type = Coding(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let text = self.text {
+			json["text"] = text.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

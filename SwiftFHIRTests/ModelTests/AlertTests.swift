@@ -2,7 +2,7 @@
 //  AlertTests.swift
 //  AlertTests
 //
-//  Generated from FHIR 0.4.0.3958 on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -12,58 +12,79 @@ import SwiftFHIR
 
 class AlertTests: FHIRModelTestCase
 {
-	func instantiateFrom(filename: String) -> Alert? {
-		let json = readJSONFile(filename)
+	func instantiateFrom(# filename: String) -> Alert {
+		return instantiateFrom(json: readJSONFile(filename)!)
+	}
+	
+	func instantiateFrom(# json: JSONDictionary) -> Alert {
 		let instance = Alert(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
 	func testAlert1() {
-		let inst = instantiateFrom("alert-example.canonical.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Alert instance")
+		let instance = testAlert1_impl()
+		testAlert1_impl(json: instance.asJSON())
+	}
+	
+	func testAlert1_impl(json: JSONDictionary? = nil) -> Alert {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "alert-example.canonical.json")
 		
-		XCTAssertEqual(inst!.author!.display!, "Nancy Nurse")
-		XCTAssertEqual(inst!.author!.reference!, "Practitioner/example")
-		XCTAssertEqual(inst!.category!.coding![0].code!, "admin")
-		XCTAssertEqual(inst!.category!.coding![0].display!, "Admin")
-		XCTAssertEqual(inst!.category!.coding![0].system!.absoluteString!, "local")
-		XCTAssertEqual(inst!.category!.text!, "admin")
-		XCTAssertEqual(inst!.note!, "patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
-		XCTAssertEqual(inst!.status!, "active")
-		XCTAssertEqual(inst!.subject!.display!, "Peter Patient")
-		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.author!.display!, "Nancy Nurse")
+		XCTAssertEqual(inst.author!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.category!.coding![0].code!, "admin")
+		XCTAssertEqual(inst.category!.coding![0].display!, "Admin")
+		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "local")
+		XCTAssertEqual(inst.category!.text!, "admin")
+		XCTAssertEqual(inst.note!, "patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
+		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		
+		return inst
 	}
 	
 	func testAlert2() {
-		let inst = instantiateFrom("alert-example.canonical.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Alert instance")
+		let instance = testAlert2_impl()
+		testAlert2_impl(json: instance.asJSON())
+	}
+	
+	func testAlert2_impl(json: JSONDictionary? = nil) -> Alert {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "alert-example.canonical.json")
 		
-		XCTAssertEqual(inst!.author!.display!, "Nancy Nurse")
-		XCTAssertEqual(inst!.author!.reference!, "Practitioner/example")
-		XCTAssertEqual(inst!.category!.coding![0].code!, "admin")
-		XCTAssertEqual(inst!.category!.coding![0].display!, "Admin")
-		XCTAssertEqual(inst!.category!.coding![0].system!.absoluteString!, "local")
-		XCTAssertEqual(inst!.category!.text!, "admin")
-		XCTAssertEqual(inst!.note!, "patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
-		XCTAssertEqual(inst!.status!, "active")
-		XCTAssertEqual(inst!.subject!.display!, "Peter Patient")
-		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.author!.display!, "Nancy Nurse")
+		XCTAssertEqual(inst.author!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.category!.coding![0].code!, "admin")
+		XCTAssertEqual(inst.category!.coding![0].display!, "Admin")
+		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "local")
+		XCTAssertEqual(inst.category!.text!, "admin")
+		XCTAssertEqual(inst.note!, "patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
+		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		
+		return inst
 	}
 	
 	func testAlert3() {
-		let inst = instantiateFrom("alert-example.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Alert instance")
+		let instance = testAlert3_impl()
+		testAlert3_impl(json: instance.asJSON())
+	}
+	
+	func testAlert3_impl(json: JSONDictionary? = nil) -> Alert {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "alert-example.json")
 		
-		XCTAssertEqual(inst!.author!.display!, "Nancy Nurse")
-		XCTAssertEqual(inst!.author!.reference!, "Practitioner/example")
-		XCTAssertEqual(inst!.category!.coding![0].code!, "admin")
-		XCTAssertEqual(inst!.category!.coding![0].display!, "Admin")
-		XCTAssertEqual(inst!.category!.coding![0].system!.absoluteString!, "local")
-		XCTAssertEqual(inst!.category!.text!, "admin")
-		XCTAssertEqual(inst!.note!, "patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
-		XCTAssertEqual(inst!.status!, "active")
-		XCTAssertEqual(inst!.subject!.display!, "Peter Patient")
-		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.author!.display!, "Nancy Nurse")
+		XCTAssertEqual(inst.author!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.category!.coding![0].code!, "admin")
+		XCTAssertEqual(inst.category!.coding![0].display!, "Admin")
+		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "local")
+		XCTAssertEqual(inst.category!.text!, "admin")
+		XCTAssertEqual(inst.note!, "patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
+		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		
+		return inst
 	}
 }

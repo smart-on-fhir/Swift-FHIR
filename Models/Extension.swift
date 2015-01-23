@@ -2,7 +2,7 @@
 //  Extension.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (Extension.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (Extension.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -181,6 +181,88 @@ public class Extension: FHIRElement
 				self.valueUri = NSURL(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let url = self.url {
+			json["url"] = url.asJSON()
+		}
+		if let valueAddress = self.valueAddress {
+			json["valueAddress"] = valueAddress.asJSON()
+		}
+		if let valueAttachment = self.valueAttachment {
+			json["valueAttachment"] = valueAttachment.asJSON()
+		}
+		if let valueBase64Binary = self.valueBase64Binary {
+			json["valueBase64Binary"] = valueBase64Binary.asJSON()
+		}
+		if let valueBoolean = self.valueBoolean {
+			json["valueBoolean"] = valueBoolean.asJSON()
+		}
+		if let valueCode = self.valueCode {
+			json["valueCode"] = valueCode.asJSON()
+		}
+		if let valueCodeableConcept = self.valueCodeableConcept {
+			json["valueCodeableConcept"] = valueCodeableConcept.asJSON()
+		}
+		if let valueCoding = self.valueCoding {
+			json["valueCoding"] = valueCoding.asJSON()
+		}
+		if let valueContactPoint = self.valueContactPoint {
+			json["valueContactPoint"] = valueContactPoint.asJSON()
+		}
+		if let valueDate = self.valueDate {
+			json["valueDate"] = valueDate.asJSON()
+		}
+		if let valueDateTime = self.valueDateTime {
+			json["valueDateTime"] = valueDateTime.asJSON()
+		}
+		if let valueDecimal = self.valueDecimal {
+			json["valueDecimal"] = valueDecimal.asJSON()
+		}
+		if let valueHumanName = self.valueHumanName {
+			json["valueHumanName"] = valueHumanName.asJSON()
+		}
+		if let valueIdentifier = self.valueIdentifier {
+			json["valueIdentifier"] = valueIdentifier.asJSON()
+		}
+		if let valueInstant = self.valueInstant {
+			json["valueInstant"] = valueInstant.asJSON()
+		}
+		if let valueInteger = self.valueInteger {
+			json["valueInteger"] = valueInteger.asJSON()
+		}
+		if let valuePeriod = self.valuePeriod {
+			json["valuePeriod"] = valuePeriod.asJSON()
+		}
+		if let valueQuantity = self.valueQuantity {
+			json["valueQuantity"] = valueQuantity.asJSON()
+		}
+		if let valueRange = self.valueRange {
+			json["valueRange"] = valueRange.asJSON()
+		}
+		if let valueRatio = self.valueRatio {
+			json["valueRatio"] = valueRatio.asJSON()
+		}
+		if let valueReference = self.valueReference {
+			json["valueReference"] = valueReference.asJSON()
+		}
+		if let valueString = self.valueString {
+			json["valueString"] = valueString.asJSON()
+		}
+		if let valueTime = self.valueTime {
+			json["valueTime"] = valueTime.asJSON()
+		}
+		if let valueTiming = self.valueTiming {
+			json["valueTiming"] = valueTiming.asJSON()
+		}
+		if let valueUri = self.valueUri {
+			json["valueUri"] = valueUri.asJSON()
+		}
+		
+		return json
 	}
 }
 

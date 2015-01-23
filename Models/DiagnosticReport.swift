@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (diagnosticreport.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (diagnosticreport.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -156,6 +156,64 @@ public class DiagnosticReport: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let codedDiagnosis = self.codedDiagnosis {
+			json["codedDiagnosis"] = CodeableConcept.asJSONArray(codedDiagnosis)
+		}
+		if let conclusion = self.conclusion {
+			json["conclusion"] = conclusion.asJSON()
+		}
+		if let diagnosticDateTime = self.diagnosticDateTime {
+			json["diagnosticDateTime"] = diagnosticDateTime.asJSON()
+		}
+		if let diagnosticPeriod = self.diagnosticPeriod {
+			json["diagnosticPeriod"] = diagnosticPeriod.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let image = self.image {
+			json["image"] = DiagnosticReportImage.asJSONArray(image)
+		}
+		if let imagingStudy = self.imagingStudy {
+			json["imagingStudy"] = Reference.asJSONArray(imagingStudy)
+		}
+		if let issued = self.issued {
+			json["issued"] = issued.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let performer = self.performer {
+			json["performer"] = performer.asJSON()
+		}
+		if let presentedForm = self.presentedForm {
+			json["presentedForm"] = Attachment.asJSONArray(presentedForm)
+		}
+		if let requestDetail = self.requestDetail {
+			json["requestDetail"] = Reference.asJSONArray(requestDetail)
+		}
+		if let result = self.result {
+			json["result"] = Reference.asJSONArray(result)
+		}
+		if let serviceCategory = self.serviceCategory {
+			json["serviceCategory"] = serviceCategory.asJSON()
+		}
+		if let specimen = self.specimen {
+			json["specimen"] = Reference.asJSONArray(specimen)
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -194,6 +252,19 @@ public class DiagnosticReportImage: FHIRElement
 				self.link = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let comment = self.comment {
+			json["comment"] = comment.asJSON()
+		}
+		if let link = self.link {
+			json["link"] = link.asJSON()
+		}
+		
+		return json
 	}
 }
 

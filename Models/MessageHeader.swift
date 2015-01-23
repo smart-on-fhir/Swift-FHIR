@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (messageheader.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (messageheader.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -115,6 +115,49 @@ public class MessageHeader: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let author = self.author {
+			json["author"] = author.asJSON()
+		}
+		if let data = self.data {
+			json["data"] = Reference.asJSONArray(data)
+		}
+		if let destination = self.destination {
+			json["destination"] = MessageHeaderDestination.asJSONArray(destination)
+		}
+		if let enterer = self.enterer {
+			json["enterer"] = enterer.asJSON()
+		}
+		if let event = self.event {
+			json["event"] = event.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
+		}
+		if let receiver = self.receiver {
+			json["receiver"] = receiver.asJSON()
+		}
+		if let response = self.response {
+			json["response"] = response.asJSON()
+		}
+		if let responsible = self.responsible {
+			json["responsible"] = responsible.asJSON()
+		}
+		if let source = self.source {
+			json["source"] = source.asJSON()
+		}
+		if let timestamp = self.timestamp {
+			json["timestamp"] = timestamp.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -158,6 +201,22 @@ public class MessageHeaderDestination: FHIRElement
 				self.target = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let endpoint = self.endpoint {
+			json["endpoint"] = endpoint.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let target = self.target {
+			json["target"] = target.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -205,6 +264,22 @@ public class MessageHeaderResponse: FHIRElement
 				self.identifier = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let details = self.details {
+			json["details"] = details.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -261,6 +336,28 @@ public class MessageHeaderSource: FHIRElement
 				self.version = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let contact = self.contact {
+			json["contact"] = contact.asJSON()
+		}
+		if let endpoint = self.endpoint {
+			json["endpoint"] = endpoint.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let software = self.software {
+			json["software"] = software.asJSON()
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
+		}
+		
+		return json
 	}
 }
 

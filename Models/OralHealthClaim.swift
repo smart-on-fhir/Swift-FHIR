@@ -2,7 +2,7 @@
 //  OralHealthClaim.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (oralhealthclaim.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (oralhealthclaim.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -195,6 +195,94 @@ public class OralHealthClaim: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let accident = self.accident {
+			json["accident"] = accident.asJSON()
+		}
+		if let accidentType = self.accidentType {
+			json["accidentType"] = accidentType.asJSON()
+		}
+		if let additionalMaterials = self.additionalMaterials {
+			json["additionalMaterials"] = Coding.asJSONArray(additionalMaterials)
+		}
+		if let condition = self.condition {
+			json["condition"] = Coding.asJSONArray(condition)
+		}
+		if let coverage = self.coverage {
+			json["coverage"] = OralHealthClaimCoverage.asJSONArray(coverage)
+		}
+		if let created = self.created {
+			json["created"] = created.asJSON()
+		}
+		if let diagnosis = self.diagnosis {
+			json["diagnosis"] = OralHealthClaimDiagnosis.asJSONArray(diagnosis)
+		}
+		if let enterer = self.enterer {
+			json["enterer"] = enterer.asJSON()
+		}
+		if let exception = self.exception {
+			json["exception"] = Coding.asJSONArray(exception)
+		}
+		if let facility = self.facility {
+			json["facility"] = facility.asJSON()
+		}
+		if let fundsReserve = self.fundsReserve {
+			json["fundsReserve"] = fundsReserve.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let interventionException = self.interventionException {
+			json["interventionException"] = Coding.asJSONArray(interventionException)
+		}
+		if let item = self.item {
+			json["item"] = OralHealthClaimItem.asJSONArray(item)
+		}
+		if let missingteeth = self.missingteeth {
+			json["missingteeth"] = OralHealthClaimMissingteeth.asJSONArray(missingteeth)
+		}
+		if let organization = self.organization {
+			json["organization"] = organization.asJSON()
+		}
+		if let originalRuleset = self.originalRuleset {
+			json["originalRuleset"] = originalRuleset.asJSON()
+		}
+		if let orthoPlan = self.orthoPlan {
+			json["orthoPlan"] = orthoPlan.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let payee = self.payee {
+			json["payee"] = payee.asJSON()
+		}
+		if let priority = self.priority {
+			json["priority"] = priority.asJSON()
+		}
+		if let provider = self.provider {
+			json["provider"] = provider.asJSON()
+		}
+		if let referral = self.referral {
+			json["referral"] = referral.asJSON()
+		}
+		if let ruleset = self.ruleset {
+			json["ruleset"] = ruleset.asJSON()
+		}
+		if let school = self.school {
+			json["school"] = school.asJSON()
+		}
+		if let target = self.target {
+			json["target"] = target.asJSON()
+		}
+		if let use = self.use {
+			json["use"] = use.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -278,6 +366,41 @@ public class OralHealthClaimCoverage: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let businessArrangement = self.businessArrangement {
+			json["businessArrangement"] = businessArrangement.asJSON()
+		}
+		if let claimResponse = self.claimResponse {
+			json["claimResponse"] = claimResponse.asJSON()
+		}
+		if let coverage = self.coverage {
+			json["coverage"] = coverage.asJSON()
+		}
+		if let focal = self.focal {
+			json["focal"] = focal.asJSON()
+		}
+		if let originalRuleset = self.originalRuleset {
+			json["originalRuleset"] = originalRuleset.asJSON()
+		}
+		if let preauthref = self.preauthref {
+			var arr = [AnyObject]()
+			for val in preauthref {
+				arr.append(val.asJSON())
+			}
+			json["preauthref"] = arr
+		}
+		if let relationship = self.relationship {
+			json["relationship"] = relationship.asJSON()
+		}
+		if let sequence = self.sequence {
+			json["sequence"] = sequence.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -318,6 +441,19 @@ public class OralHealthClaimDiagnosis: FHIRElement
 				self.sequence = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let diagnosis = self.diagnosis {
+			json["diagnosis"] = diagnosis.asJSON()
+		}
+		if let sequence = self.sequence {
+			json["sequence"] = sequence.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -453,6 +589,68 @@ public class OralHealthClaimItem: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let bodySite = self.bodySite {
+			json["bodySite"] = bodySite.asJSON()
+		}
+		if let detail = self.detail {
+			json["detail"] = OralHealthClaimItemDetail.asJSONArray(detail)
+		}
+		if let diagnosisLinkId = self.diagnosisLinkId {
+			var arr = [AnyObject]()
+			for val in diagnosisLinkId {
+				arr.append(val.asJSON())
+			}
+			json["diagnosisLinkId"] = arr
+		}
+		if let factor = self.factor {
+			json["factor"] = factor.asJSON()
+		}
+		if let mod = self.mod {
+			json["modifier"] = Coding.asJSONArray(mod)
+		}
+		if let net = self.net {
+			json["net"] = net.asJSON()
+		}
+		if let points = self.points {
+			json["points"] = points.asJSON()
+		}
+		if let prosthesis = self.prosthesis {
+			json["prosthesis"] = prosthesis.asJSON()
+		}
+		if let provider = self.provider {
+			json["provider"] = provider.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let sequence = self.sequence {
+			json["sequence"] = sequence.asJSON()
+		}
+		if let service = self.service {
+			json["service"] = service.asJSON()
+		}
+		if let serviceDate = self.serviceDate {
+			json["serviceDate"] = serviceDate.asJSON()
+		}
+		if let subsite = self.subsite {
+			json["subsite"] = Coding.asJSONArray(subsite)
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let udi = self.udi {
+			json["udi"] = udi.asJSON()
+		}
+		if let unitPrice = self.unitPrice {
+			json["unitPrice"] = unitPrice.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -545,6 +743,43 @@ public class OralHealthClaimItemDetail: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let factor = self.factor {
+			json["factor"] = factor.asJSON()
+		}
+		if let net = self.net {
+			json["net"] = net.asJSON()
+		}
+		if let points = self.points {
+			json["points"] = points.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let sequence = self.sequence {
+			json["sequence"] = sequence.asJSON()
+		}
+		if let service = self.service {
+			json["service"] = service.asJSON()
+		}
+		if let subDetail = self.subDetail {
+			json["subDetail"] = OralHealthClaimItemDetailSubDetail.asJSONArray(subDetail)
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let udi = self.udi {
+			json["udi"] = udi.asJSON()
+		}
+		if let unitPrice = self.unitPrice {
+			json["unitPrice"] = unitPrice.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -631,6 +866,40 @@ public class OralHealthClaimItemDetailSubDetail: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let factor = self.factor {
+			json["factor"] = factor.asJSON()
+		}
+		if let net = self.net {
+			json["net"] = net.asJSON()
+		}
+		if let points = self.points {
+			json["points"] = points.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let sequence = self.sequence {
+			json["sequence"] = sequence.asJSON()
+		}
+		if let service = self.service {
+			json["service"] = service.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let udi = self.udi {
+			json["udi"] = udi.asJSON()
+		}
+		if let unitPrice = self.unitPrice {
+			json["unitPrice"] = unitPrice.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -667,6 +936,22 @@ public class OralHealthClaimItemProsthesis: FHIRElement
 				self.priorMaterial = Coding(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let initial = self.initial {
+			json["initial"] = initial.asJSON()
+		}
+		if let priorDate = self.priorDate {
+			json["priorDate"] = priorDate.asJSON()
+		}
+		if let priorMaterial = self.priorMaterial {
+			json["priorMaterial"] = priorMaterial.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -712,6 +997,22 @@ public class OralHealthClaimMissingteeth: FHIRElement
 				self.tooth = Coding(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let extractiondate = self.extractiondate {
+			json["extractiondate"] = extractiondate.asJSON()
+		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
+		}
+		if let tooth = self.tooth {
+			json["tooth"] = tooth.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -774,6 +1075,34 @@ public class OralHealthClaimOrthoPlan: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let diagnosticFee = self.diagnosticFee {
+			json["diagnosticFee"] = diagnosticFee.asJSON()
+		}
+		if let durationMonths = self.durationMonths {
+			json["durationMonths"] = durationMonths.asJSON()
+		}
+		if let examFee = self.examFee {
+			json["examFee"] = examFee.asJSON()
+		}
+		if let initialPayment = self.initialPayment {
+			json["initialPayment"] = initialPayment.asJSON()
+		}
+		if let paymentCount = self.paymentCount {
+			json["paymentCount"] = paymentCount.asJSON()
+		}
+		if let periodicPayment = self.periodicPayment {
+			json["periodicPayment"] = periodicPayment.asJSON()
+		}
+		if let start = self.start {
+			json["start"] = start.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -816,6 +1145,25 @@ public class OralHealthClaimPayee: FHIRElement
 				self.type = Coding(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let organization = self.organization {
+			json["organization"] = organization.asJSON()
+		}
+		if let person = self.person {
+			json["person"] = person.asJSON()
+		}
+		if let provider = self.provider {
+			json["provider"] = provider.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (procedure.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (procedure.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -120,6 +120,55 @@ public class Procedure: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let bodySite = self.bodySite {
+			json["bodySite"] = CodeableConcept.asJSONArray(bodySite)
+		}
+		if let complication = self.complication {
+			json["complication"] = CodeableConcept.asJSONArray(complication)
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let followUp = self.followUp {
+			json["followUp"] = followUp.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let indication = self.indication {
+			json["indication"] = CodeableConcept.asJSONArray(indication)
+		}
+		if let notes = self.notes {
+			json["notes"] = notes.asJSON()
+		}
+		if let outcome = self.outcome {
+			json["outcome"] = outcome.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let performer = self.performer {
+			json["performer"] = ProcedurePerformer.asJSONArray(performer)
+		}
+		if let relatedItem = self.relatedItem {
+			json["relatedItem"] = ProcedureRelatedItem.asJSONArray(relatedItem)
+		}
+		if let report = self.report {
+			json["report"] = Reference.asJSONArray(report)
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -150,6 +199,19 @@ public class ProcedurePerformer: FHIRElement
 				self.role = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let person = self.person {
+			json["person"] = person.asJSON()
+		}
+		if let role = self.role {
+			json["role"] = role.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -182,6 +244,19 @@ public class ProcedureRelatedItem: FHIRElement
 				self.type = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let target = self.target {
+			json["target"] = target.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

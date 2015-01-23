@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (operationoutcome.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (operationoutcome.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -37,6 +37,16 @@ public class OperationOutcome: FHIRResource
 				self.issue = OperationOutcomeIssue.from(val, owner: self) as? [OperationOutcomeIssue]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let issue = self.issue {
+			json["issue"] = OperationOutcomeIssue.asJSONArray(issue)
+		}
+		
+		return json
 	}
 }
 
@@ -87,6 +97,29 @@ public class OperationOutcomeIssue: FHIRElement
 				self.type = Coding(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let details = self.details {
+			json["details"] = details.asJSON()
+		}
+		if let location = self.location {
+			var arr = [AnyObject]()
+			for val in location {
+				arr.append(val.asJSON())
+			}
+			json["location"] = arr
+		}
+		if let severity = self.severity {
+			json["severity"] = severity.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 

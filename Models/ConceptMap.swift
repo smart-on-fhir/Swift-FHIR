@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (conceptmap.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (conceptmap.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -135,6 +135,58 @@ public class ConceptMap: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let copyright = self.copyright {
+			json["copyright"] = copyright.asJSON()
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let element = self.element {
+			json["element"] = ConceptMapElement.asJSONArray(element)
+		}
+		if let experimental = self.experimental {
+			json["experimental"] = experimental.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let publisher = self.publisher {
+			json["publisher"] = publisher.asJSON()
+		}
+		if let sourceReference = self.sourceReference {
+			json["sourceReference"] = sourceReference.asJSON()
+		}
+		if let sourceUri = self.sourceUri {
+			json["sourceUri"] = sourceUri.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let targetReference = self.targetReference {
+			json["targetReference"] = targetReference.asJSON()
+		}
+		if let targetUri = self.targetUri {
+			json["targetUri"] = targetUri.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -177,6 +229,25 @@ public class ConceptMapElement: FHIRElement
 				self.map = ConceptMapElementMap.from(val, owner: self) as? [ConceptMapElementMap]
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let codeSystem = self.codeSystem {
+			json["codeSystem"] = codeSystem.asJSON()
+		}
+		if let dependsOn = self.dependsOn {
+			json["dependsOn"] = ConceptMapElementDependsOn.asJSONArray(dependsOn)
+		}
+		if let map = self.map {
+			json["map"] = ConceptMapElementMap.asJSONArray(map)
+		}
+		
+		return json
 	}
 }
 
@@ -228,6 +299,22 @@ public class ConceptMapElementDependsOn: FHIRElement
 				self.element = NSURL(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let codeSystem = self.codeSystem {
+			json["codeSystem"] = codeSystem.asJSON()
+		}
+		if let element = self.element {
+			json["element"] = element.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -284,6 +371,28 @@ public class ConceptMapElementMap: FHIRElement
 				self.equivalence = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let codeSystem = self.codeSystem {
+			json["codeSystem"] = codeSystem.asJSON()
+		}
+		if let comments = self.comments {
+			json["comments"] = comments.asJSON()
+		}
+		if let dependsOn = self.dependsOn {
+			json["dependsOn"] = ConceptMapElementDependsOn.asJSONArray(dependsOn)
+		}
+		if let equivalence = self.equivalence {
+			json["equivalence"] = equivalence.asJSON()
+		}
+		
+		return json
 	}
 }
 

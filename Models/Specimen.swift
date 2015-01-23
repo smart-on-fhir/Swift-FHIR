@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3958 (specimen.profile.json) on 2015-01-20.
+//  Generated from FHIR 0.4.0.3969 (specimen.profile.json) on 2015-01-23.
 //  2015, SMART Platforms.
 //
 
@@ -84,6 +84,40 @@ public class Specimen: FHIRResource
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let accessionIdentifier = self.accessionIdentifier {
+			json["accessionIdentifier"] = accessionIdentifier.asJSON()
+		}
+		if let collection = self.collection {
+			json["collection"] = collection.asJSON()
+		}
+		if let container = self.container {
+			json["container"] = SpecimenContainer.asJSONArray(container)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let receivedTime = self.receivedTime {
+			json["receivedTime"] = receivedTime.asJSON()
+		}
+		if let source = self.source {
+			json["source"] = SpecimenSource.asJSONArray(source)
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		if let treatment = self.treatment {
+			json["treatment"] = SpecimenTreatment.asJSONArray(treatment)
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -144,6 +178,38 @@ public class SpecimenCollection: FHIRElement
 				self.sourceSite = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let collectedDateTime = self.collectedDateTime {
+			json["collectedDateTime"] = collectedDateTime.asJSON()
+		}
+		if let collectedPeriod = self.collectedPeriod {
+			json["collectedPeriod"] = collectedPeriod.asJSON()
+		}
+		if let collector = self.collector {
+			json["collector"] = collector.asJSON()
+		}
+		if let comment = self.comment {
+			var arr = [AnyObject]()
+			for val in comment {
+				arr.append(val.asJSON())
+			}
+			json["comment"] = arr
+		}
+		if let method = self.method {
+			json["method"] = method.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let sourceSite = self.sourceSite {
+			json["sourceSite"] = sourceSite.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -207,6 +273,34 @@ public class SpecimenContainer: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let additiveCodeableConcept = self.additiveCodeableConcept {
+			json["additiveCodeableConcept"] = additiveCodeableConcept.asJSON()
+		}
+		if let additiveReference = self.additiveReference {
+			json["additiveReference"] = additiveReference.asJSON()
+		}
+		if let capacity = self.capacity {
+			json["capacity"] = capacity.asJSON()
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let specimenQuantity = self.specimenQuantity {
+			json["specimenQuantity"] = specimenQuantity.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
 }
 
 
@@ -245,6 +339,19 @@ public class SpecimenSource: FHIRElement
 			}
 		}
 	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let relationship = self.relationship {
+			json["relationship"] = relationship.asJSON()
+		}
+		if let target = self.target {
+			json["target"] = Reference.asJSONArray(target)
+		}
+		
+		return json
+	}
 }
 
 
@@ -281,6 +388,22 @@ public class SpecimenTreatment: FHIRElement
 				self.procedure = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let additive = self.additive {
+			json["additive"] = Reference.asJSONArray(additive)
+		}
+		if let description = self.description {
+			json["description"] = description.asJSON()
+		}
+		if let procedure = self.procedure {
+			json["procedure"] = procedure.asJSON()
+		}
+		
+		return json
 	}
 }
 

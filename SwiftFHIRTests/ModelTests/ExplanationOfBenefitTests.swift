@@ -2,7 +2,7 @@
 //  ExplanationOfBenefitTests.swift
 //  ExplanationOfBenefitTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -32,6 +32,7 @@ class ExplanationOfBenefitTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.disposition!, "Claim settled as per contract.")
+		XCTAssertEqual(inst.id!, "R3500")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.BenefitsInc.com/fhir/eob")
 		XCTAssertEqual(inst.identifier![0].value!, "987654321")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/2")
@@ -52,6 +53,7 @@ class ExplanationOfBenefitTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.disposition!, "Claim settled as per contract.")
+		XCTAssertEqual(inst.id!, "R3500")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.BenefitsInc.com/fhir/eob")
 		XCTAssertEqual(inst.identifier![0].value!, "987654321")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/2")
@@ -72,6 +74,7 @@ class ExplanationOfBenefitTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.disposition!, "Claim settled as per contract.")
+		XCTAssertEqual(inst.id!, "R3500")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.BenefitsInc.com/fhir/eob")
 		XCTAssertEqual(inst.identifier![0].value!, "987654321")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/2")

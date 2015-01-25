@@ -2,7 +2,7 @@
 //  QuestionnaireTests.swift
 //  QuestionnaireTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -44,6 +44,7 @@ class QuestionnaireTests: FHIRModelTestCase
 		XCTAssertEqual(inst.group!.group![0].group![1].title!, "Neonatal Information")
 		XCTAssertEqual(inst.group!.group![0].title!, "Birth details - To be completed by health professional")
 		XCTAssertEqual(inst.group!.title!, "NSW Government My Personal Health Record")
+		XCTAssertEqual(inst.id!, "bb")
 		XCTAssertEqual(inst.publisher!, "New South Wales Department of Health")
 		XCTAssertEqual(inst.status!, "draft")
 		
@@ -72,6 +73,7 @@ class QuestionnaireTests: FHIRModelTestCase
 		XCTAssertEqual(inst.group!.group![0].group![1].title!, "Neonatal Information")
 		XCTAssertEqual(inst.group!.group![0].title!, "Birth details - To be completed by health professional")
 		XCTAssertEqual(inst.group!.title!, "NSW Government My Personal Health Record")
+		XCTAssertEqual(inst.id!, "bb")
 		XCTAssertEqual(inst.publisher!, "New South Wales Department of Health")
 		XCTAssertEqual(inst.status!, "draft")
 		
@@ -100,6 +102,7 @@ class QuestionnaireTests: FHIRModelTestCase
 		XCTAssertEqual(inst.group!.group![0].group![1].title!, "Neonatal Information")
 		XCTAssertEqual(inst.group!.group![0].title!, "Birth details - To be completed by health professional")
 		XCTAssertEqual(inst.group!.title!, "NSW Government My Personal Health Record")
+		XCTAssertEqual(inst.id!, "bb")
 		XCTAssertEqual(inst.publisher!, "New South Wales Department of Health")
 		XCTAssertEqual(inst.status!, "draft")
 		
@@ -127,6 +130,7 @@ class QuestionnaireTests: FHIRModelTestCase
 		XCTAssertEqual(inst.group!.group![2].question![0].text!, "Do you smoke?")
 		XCTAssertEqual(inst.group!.group![2].question![1].text!, "Do you drink alchohol?")
 		XCTAssertEqual(inst.group!.group![2].title!, "Intoxications")
+		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.identifier![0].label!, "Roel's VL 1-1, 18-65_1.2.2")
 		XCTAssertEqual(inst.identifier![0].use!, "temp")
 		XCTAssertEqual(inst.status!, "published")
@@ -155,6 +159,7 @@ class QuestionnaireTests: FHIRModelTestCase
 		XCTAssertEqual(inst.group!.group![2].question![0].text!, "Do you smoke?")
 		XCTAssertEqual(inst.group!.group![2].question![1].text!, "Do you drink alchohol?")
 		XCTAssertEqual(inst.group!.group![2].title!, "Intoxications")
+		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.identifier![0].label!, "Roel's VL 1-1, 18-65_1.2.2")
 		XCTAssertEqual(inst.identifier![0].use!, "temp")
 		XCTAssertEqual(inst.status!, "published")
@@ -206,6 +211,7 @@ class QuestionnaireTests: FHIRModelTestCase
 		XCTAssertEqual(inst.group!.group![1].group![0].question![0].concept![0].display!, "pT category")
 		XCTAssertEqual(inst.group!.group![1].group![0].question![0].concept![0].system!.absoluteString!, "http://example.org/system/code/questions")
 		XCTAssertEqual(inst.group!.title!, "Cancer Quality Forum Questionnaire 2012")
+		XCTAssertEqual(inst.id!, "3141")
 		XCTAssertEqual(inst.status!, "draft")
 		
 		return inst
@@ -255,6 +261,7 @@ class QuestionnaireTests: FHIRModelTestCase
 		XCTAssertEqual(inst.group!.group![1].group![0].question![0].concept![0].display!, "pT category")
 		XCTAssertEqual(inst.group!.group![1].group![0].question![0].concept![0].system!.absoluteString!, "http://example.org/system/code/questions")
 		XCTAssertEqual(inst.group!.title!, "Cancer Quality Forum Questionnaire 2012")
+		XCTAssertEqual(inst.id!, "3141")
 		XCTAssertEqual(inst.status!, "draft")
 		
 		return inst

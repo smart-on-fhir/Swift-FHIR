@@ -2,7 +2,7 @@
 //  AllergyIntoleranceTests.swift
 //  AllergyIntoleranceTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -33,7 +33,7 @@ class AllergyIntoleranceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!, "food")
 		XCTAssertEqual(inst.criticality!, "high")
 		XCTAssertEqual(inst.event![0].certainty!, "confirmed")
-		XCTAssertEqual(inst.event![0].description!, "Challenge Protocol. Severe Reaction to 1/8 cashew. Epinephrine administered")
+		XCTAssertEqual(inst.event![0].description_fhir!, "Challenge Protocol. Severe Reaction to 1/8 cashew. Epinephrine administered")
 		XCTAssertEqual(inst.event![0].manifestation![0].coding![0].code!, "39579001")
 		XCTAssertEqual(inst.event![0].manifestation![0].coding![0].display!, "Anaphylactic reaction")
 		XCTAssertEqual(inst.event![0].manifestation![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -48,6 +48,7 @@ class AllergyIntoleranceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.event![1].manifestation![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.event![1].onset!.description, "2004")
 		XCTAssertEqual(inst.event![1].severity!, "moderate")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://acme.com/ids/patients/risks")
 		XCTAssertEqual(inst.identifier![0].value!, "49476534")
 		XCTAssertEqual(inst.lastOccurence!.description, "2012-06")
@@ -74,7 +75,7 @@ class AllergyIntoleranceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!, "food")
 		XCTAssertEqual(inst.criticality!, "high")
 		XCTAssertEqual(inst.event![0].certainty!, "confirmed")
-		XCTAssertEqual(inst.event![0].description!, "Challenge Protocol. Severe Reaction to 1/8 cashew. Epinephrine administered")
+		XCTAssertEqual(inst.event![0].description_fhir!, "Challenge Protocol. Severe Reaction to 1/8 cashew. Epinephrine administered")
 		XCTAssertEqual(inst.event![0].manifestation![0].coding![0].code!, "39579001")
 		XCTAssertEqual(inst.event![0].manifestation![0].coding![0].display!, "Anaphylactic reaction")
 		XCTAssertEqual(inst.event![0].manifestation![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -89,6 +90,7 @@ class AllergyIntoleranceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.event![1].manifestation![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.event![1].onset!.description, "2004")
 		XCTAssertEqual(inst.event![1].severity!, "moderate")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://acme.com/ids/patients/risks")
 		XCTAssertEqual(inst.identifier![0].value!, "49476534")
 		XCTAssertEqual(inst.lastOccurence!.description, "2012-06")
@@ -115,7 +117,7 @@ class AllergyIntoleranceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!, "food")
 		XCTAssertEqual(inst.criticality!, "high")
 		XCTAssertEqual(inst.event![0].certainty!, "confirmed")
-		XCTAssertEqual(inst.event![0].description!, "Challenge Protocol. Severe Reaction to 1/8 cashew. Epinephrine administered")
+		XCTAssertEqual(inst.event![0].description_fhir!, "Challenge Protocol. Severe Reaction to 1/8 cashew. Epinephrine administered")
 		XCTAssertEqual(inst.event![0].manifestation![0].coding![0].code!, "39579001")
 		XCTAssertEqual(inst.event![0].manifestation![0].coding![0].display!, "Anaphylactic reaction")
 		XCTAssertEqual(inst.event![0].manifestation![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -130,6 +132,7 @@ class AllergyIntoleranceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.event![1].manifestation![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.event![1].onset!.description, "2004")
 		XCTAssertEqual(inst.event![1].severity!, "moderate")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://acme.com/ids/patients/risks")
 		XCTAssertEqual(inst.identifier![0].value!, "49476534")
 		XCTAssertEqual(inst.lastOccurence!.description, "2012-06")

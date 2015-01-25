@@ -2,7 +2,7 @@
 //  SearchParameter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (searchparameter.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (searchparameter.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -24,7 +24,7 @@ public class SearchParameter: FHIRResource
 	public var base: String?
 	
 	/// Documentation for  search parameter
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Name of search parameter
 	public var name: String?
@@ -50,13 +50,13 @@ public class SearchParameter: FHIRResource
 	/// XPath that extracts the values
 	public var xpath: String?
 	
-	public convenience init(base: String?, description: String?, name: String?, type: String?, url: NSURL?) {
+	public convenience init(base: String?, description_fhir: String?, name: String?, type: String?, url: NSURL?) {
 		self.init(json: nil)
 		if nil != base {
 			self.base = base
 		}
-		if nil != description {
-			self.description = description
+		if nil != description_fhir {
+			self.description_fhir = description_fhir
 		}
 		if nil != name {
 			self.name = name
@@ -76,7 +76,7 @@ public class SearchParameter: FHIRResource
 				self.base = val
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["name"] as? String {
 				self.name = val
@@ -111,8 +111,8 @@ public class SearchParameter: FHIRResource
 		if let base = self.base {
 			json["base"] = base.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()

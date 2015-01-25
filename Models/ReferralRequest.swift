@@ -2,7 +2,7 @@
 //  ReferralRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (referralrequest.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (referralrequest.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -25,7 +25,7 @@ public class ReferralRequest: FHIRResource
 	public var dateSent: DateTime?
 	
 	/// A textual description of the referral
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Encounter
 	public var encounter: Reference?
@@ -80,7 +80,7 @@ public class ReferralRequest: FHIRResource
 				self.dateSent = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["encounter"] as? JSONDictionary {
 				self.encounter = Reference(json: val, owner: self)
@@ -130,8 +130,8 @@ public class ReferralRequest: FHIRResource
 		if let dateSent = self.dateSent {
 			json["dateSent"] = dateSent.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()

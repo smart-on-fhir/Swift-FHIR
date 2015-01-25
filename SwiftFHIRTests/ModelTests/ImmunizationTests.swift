@@ -2,7 +2,7 @@
 //  ImmunizationTests.swift
 //  ImmunizationTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -34,6 +34,7 @@ class ImmunizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.explanation!.refusalReason![0].coding![0].code!, "MEDPREC")
 		XCTAssertEqual(inst.explanation!.refusalReason![0].coding![0].display!, "medical precaution")
 		XCTAssertEqual(inst.explanation!.refusalReason![0].coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/ActReason")
+		XCTAssertEqual(inst.id!, "refused")
 		XCTAssertTrue(inst.refusedIndicator!)
 		XCTAssertFalse(inst.reported!)
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
@@ -54,6 +55,7 @@ class ImmunizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.explanation!.refusalReason![0].coding![0].code!, "MEDPREC")
 		XCTAssertEqual(inst.explanation!.refusalReason![0].coding![0].display!, "medical precaution")
 		XCTAssertEqual(inst.explanation!.refusalReason![0].coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/ActReason")
+		XCTAssertEqual(inst.id!, "refused")
 		XCTAssertTrue(inst.refusedIndicator!)
 		XCTAssertFalse(inst.reported!)
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
@@ -74,6 +76,7 @@ class ImmunizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.explanation!.refusalReason![0].coding![0].code!, "MEDPREC")
 		XCTAssertEqual(inst.explanation!.refusalReason![0].coding![0].display!, "medical precaution")
 		XCTAssertEqual(inst.explanation!.refusalReason![0].coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/ActReason")
+		XCTAssertEqual(inst.id!, "refused")
 		XCTAssertTrue(inst.refusedIndicator!)
 		XCTAssertFalse(inst.reported!)
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
@@ -92,6 +95,7 @@ class ImmunizationTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.date!.description, "2013-01-10")
 		XCTAssertEqual(inst.expirationDate!.description, "2015-02-15")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.lotNumber!, "AAJN11K")
 		XCTAssertEqual(inst.performer!.reference!, "Practitioner/example")
 		XCTAssertFalse(inst.refusedIndicator!)
@@ -112,6 +116,7 @@ class ImmunizationTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.date!.description, "2013-01-10")
 		XCTAssertEqual(inst.expirationDate!.description, "2015-02-15")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.lotNumber!, "AAJN11K")
 		XCTAssertEqual(inst.performer!.reference!, "Practitioner/example")
 		XCTAssertFalse(inst.refusedIndicator!)

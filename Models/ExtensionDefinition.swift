@@ -2,7 +2,7 @@
 //  ExtensionDefinition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (extensiondefinition.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (extensiondefinition.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -33,7 +33,7 @@ public class ExtensionDefinition: FHIRResource
 	public var date: DateTime?
 	
 	/// Natural language description of the extension
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Use this name when displaying the value
 	public var display: String?
@@ -106,7 +106,7 @@ public class ExtensionDefinition: FHIRResource
 				self.date = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["display"] as? String {
 				self.display = val
@@ -163,8 +163,8 @@ public class ExtensionDefinition: FHIRResource
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let display = self.display {
 			json["display"] = display.asJSON()

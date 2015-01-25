@@ -2,7 +2,7 @@
 //  SupportingDocumentationTests.swift
 //  SupportingDocumentationTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -42,6 +42,7 @@ class SupportingDocumentationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.detail![1].contentAttachment!.url!.absoluteString!, "http://happyvalley.com/docs/AB12345")
 		XCTAssertEqual(inst.detail![1].dateTime!.description, "2010-02-01T10:57:34+01:00")
 		XCTAssertEqual(inst.detail![1].linkId!, 2)
+		XCTAssertEqual(inst.id!, "654789")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/elegibility")
 		XCTAssertEqual(inst.identifier![0].value!, "52345")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/1")
@@ -70,6 +71,7 @@ class SupportingDocumentationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.detail![1].contentAttachment!.url!.absoluteString!, "http://happyvalley.com/docs/AB12345")
 		XCTAssertEqual(inst.detail![1].dateTime!.description, "2010-02-01T10:57:34+01:00")
 		XCTAssertEqual(inst.detail![1].linkId!, 2)
+		XCTAssertEqual(inst.id!, "654789")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/elegibility")
 		XCTAssertEqual(inst.identifier![0].value!, "52345")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/1")
@@ -98,6 +100,7 @@ class SupportingDocumentationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.detail![1].contentAttachment!.url!.absoluteString!, "http://happyvalley.com/docs/AB12345")
 		XCTAssertEqual(inst.detail![1].dateTime!.description, "2010-02-01T10:57:34+01:00")
 		XCTAssertEqual(inst.detail![1].linkId!, 2)
+		XCTAssertEqual(inst.id!, "654789")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/elegibility")
 		XCTAssertEqual(inst.identifier![0].value!, "52345")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/1")

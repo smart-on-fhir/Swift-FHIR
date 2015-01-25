@@ -2,7 +2,7 @@
 //  ReadjudicateTests.swift
 //  ReadjudicateTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -31,6 +31,7 @@ class ReadjudicateTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "readjudicate-example.canonical.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "44654")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/reversal")
 		XCTAssertEqual(inst.identifier![0].value!, "44543")
 		XCTAssertEqual(inst.item![0].sequenceLinkId!, 1)
@@ -50,6 +51,7 @@ class ReadjudicateTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "readjudicate-example.canonical.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "44654")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/reversal")
 		XCTAssertEqual(inst.identifier![0].value!, "44543")
 		XCTAssertEqual(inst.item![0].sequenceLinkId!, 1)
@@ -69,6 +71,7 @@ class ReadjudicateTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "readjudicate-example.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "44654")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/reversal")
 		XCTAssertEqual(inst.identifier![0].value!, "44543")
 		XCTAssertEqual(inst.item![0].sequenceLinkId!, 1)

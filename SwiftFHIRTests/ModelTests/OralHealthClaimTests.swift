@@ -2,7 +2,7 @@
 //  OralHealthClaimTests.swift
 //  OralHealthClaimTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -37,6 +37,7 @@ class OralHealthClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "123456")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "100151")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/claims")
 		XCTAssertEqual(inst.identifier![0].value!, "12346")
 		XCTAssertEqual(inst.item![0].net!.code!, "USD")
@@ -126,6 +127,7 @@ class OralHealthClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "123456")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "100151")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/claims")
 		XCTAssertEqual(inst.identifier![0].value!, "12346")
 		XCTAssertEqual(inst.item![0].net!.code!, "USD")
@@ -215,6 +217,7 @@ class OralHealthClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "123456")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "100151")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/claims")
 		XCTAssertEqual(inst.identifier![0].value!, "12346")
 		XCTAssertEqual(inst.item![0].net!.code!, "USD")
@@ -304,6 +307,7 @@ class OralHealthClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "123456")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "100152")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/claims")
 		XCTAssertEqual(inst.identifier![0].value!, "12347")
 		XCTAssertEqual(inst.item![0].net!.code!, "USD")
@@ -342,6 +346,7 @@ class OralHealthClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "123456")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "100152")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/claims")
 		XCTAssertEqual(inst.identifier![0].value!, "12347")
 		XCTAssertEqual(inst.item![0].net!.code!, "USD")
@@ -380,6 +385,7 @@ class OralHealthClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "123456")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "100150")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/claims")
 		XCTAssertEqual(inst.identifier![0].value!, "12345")
 		XCTAssertEqual(inst.item![0].net!.code!, "USD")
@@ -418,6 +424,7 @@ class OralHealthClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "123456")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "100150")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/claims")
 		XCTAssertEqual(inst.identifier![0].value!, "12345")
 		XCTAssertEqual(inst.item![0].net!.code!, "USD")

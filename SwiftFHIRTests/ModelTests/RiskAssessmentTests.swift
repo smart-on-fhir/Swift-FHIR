@@ -2,7 +2,7 @@
 //  RiskAssessmentTests.swift
 //  RiskAssessmentTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -34,6 +34,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.basis![1].reference!, "DiagnosticReport/lipids")
 		XCTAssertEqual(inst.basis![2].reference!, "Observation/blood-pressure")
 		XCTAssertEqual(inst.date!.description, "2014-07-19T16:04:00Z")
+		XCTAssertEqual(inst.id!, "cardiac")
 		XCTAssertEqual(inst.performer!.display!, "http://cvdrisk.nhlbi.nih.gov/#cholesterol")
 		XCTAssertEqual(inst.prediction![0].outcome!.text!, "Heart Attack")
 		XCTAssertEqual(inst.prediction![0].probabilityDecimal!, NSDecimalNumber(string: "0.02"))
@@ -61,6 +62,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.basis![1].reference!, "DiagnosticReport/lipids")
 		XCTAssertEqual(inst.basis![2].reference!, "Observation/blood-pressure")
 		XCTAssertEqual(inst.date!.description, "2014-07-19T16:04:00Z")
+		XCTAssertEqual(inst.id!, "cardiac")
 		XCTAssertEqual(inst.performer!.display!, "http://cvdrisk.nhlbi.nih.gov/#cholesterol")
 		XCTAssertEqual(inst.prediction![0].outcome!.text!, "Heart Attack")
 		XCTAssertEqual(inst.prediction![0].probabilityDecimal!, NSDecimalNumber(string: "0.02"))
@@ -88,6 +90,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.basis![1].reference!, "DiagnosticReport/lipids")
 		XCTAssertEqual(inst.basis![2].reference!, "Observation/blood-pressure")
 		XCTAssertEqual(inst.date!.description, "2014-07-19T16:04:00Z")
+		XCTAssertEqual(inst.id!, "cardiac")
 		XCTAssertEqual(inst.performer!.display!, "http://cvdrisk.nhlbi.nih.gov/#cholesterol")
 		XCTAssertEqual(inst.prediction![0].outcome!.text!, "Heart Attack")
 		XCTAssertEqual(inst.prediction![0].probabilityDecimal!, NSDecimalNumber(string: "0.02"))
@@ -111,6 +114,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 	func testRiskAssessment4_impl(json: JSONDictionary? = nil) -> RiskAssessment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "riskassessment-example-population.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "population")
 		
 		return inst
 	}
@@ -123,6 +127,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 	func testRiskAssessment5_impl(json: JSONDictionary? = nil) -> RiskAssessment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "riskassessment-example-population.json")
 		
+		XCTAssertEqual(inst.id!, "population")
 		
 		return inst
 	}
@@ -138,6 +143,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.condition!.display!, "Ischemic Stroke")
 		XCTAssertEqual(inst.condition!.reference!, "Condition/stroke")
 		XCTAssertEqual(inst.date!.description, "2010-11-22")
+		XCTAssertEqual(inst.id!, "prognosis")
 		XCTAssertEqual(inst.prediction![0].outcome!.coding![0].code!, "249943000:363698007=72098002,260868000=6934004")
 		XCTAssertEqual(inst.prediction![0].outcome!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.prediction![0].outcome!.text!, "permanent weakness of the left arm")
@@ -159,6 +165,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.condition!.display!, "Ischemic Stroke")
 		XCTAssertEqual(inst.condition!.reference!, "Condition/stroke")
 		XCTAssertEqual(inst.date!.description, "2010-11-22")
+		XCTAssertEqual(inst.id!, "prognosis")
 		XCTAssertEqual(inst.prediction![0].outcome!.coding![0].code!, "249943000:363698007=72098002,260868000=6934004")
 		XCTAssertEqual(inst.prediction![0].outcome!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.prediction![0].outcome!.text!, "permanent weakness of the left arm")
@@ -179,6 +186,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.basis![0].reference!, "FamilyHistory/")
 		XCTAssertEqual(inst.date!.description, "2006-01-13T23:01:00Z")
+		XCTAssertEqual(inst.id!, "genetic")
 		XCTAssertEqual(inst.method!.coding![0].code!, "BRCAPRO")
 		XCTAssertEqual(inst.prediction![0].outcome!.text!, "Breast Cancer")
 		XCTAssertEqual(inst.prediction![0].probabilityDecimal!, NSDecimalNumber(string: "0.000168"))
@@ -270,6 +278,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.basis![0].reference!, "FamilyHistory/")
 		XCTAssertEqual(inst.date!.description, "2006-01-13T23:01:00Z")
+		XCTAssertEqual(inst.id!, "genetic")
 		XCTAssertEqual(inst.method!.coding![0].code!, "BRCAPRO")
 		XCTAssertEqual(inst.prediction![0].outcome!.text!, "Breast Cancer")
 		XCTAssertEqual(inst.prediction![0].probabilityDecimal!, NSDecimalNumber(string: "0.000168"))

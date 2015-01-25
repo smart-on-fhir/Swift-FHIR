@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (substance.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (substance.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -19,7 +19,7 @@ public class Substance: FHIRResource
 	}
 	
 	/// Textual description of the substance, comments
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Composition information about the substance
 	public var ingredient: [SubstanceIngredient]?
@@ -41,7 +41,7 @@ public class Substance: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["ingredient"] as? [JSONDictionary] {
 				self.ingredient = SubstanceIngredient.from(val, owner: self) as? [SubstanceIngredient]
@@ -58,8 +58,8 @@ public class Substance: FHIRResource
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let ingredient = self.ingredient {
 			json["ingredient"] = SubstanceIngredient.asJSONArray(ingredient)

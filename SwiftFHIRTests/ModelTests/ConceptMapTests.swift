@@ -2,7 +2,7 @@
 //  ConceptMapTests.swift
 //  ConceptMapTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -85,6 +85,7 @@ class ConceptMapTests: FHIRModelTestCase
 		XCTAssertEqual(inst.element![9].map![0].comments!, "TBD")
 		XCTAssertEqual(inst.element![9].map![0].equivalence!, "unmatched")
 		XCTAssertFalse(inst.experimental!)
+		XCTAssertEqual(inst.id!, "102")
 		XCTAssertEqual(inst.identifier!, "http://hl7.org/fhir/conceptmap-example-specimen-type.html")
 		XCTAssertEqual(inst.name!, "Specimen mapping from v2 table 0487 to SNOMED CT")
 		XCTAssertEqual(inst.publisher!, "FHIR project team (original source: LabMCoP)")
@@ -163,6 +164,7 @@ class ConceptMapTests: FHIRModelTestCase
 		XCTAssertEqual(inst.element![9].map![0].comments!, "TBD")
 		XCTAssertEqual(inst.element![9].map![0].equivalence!, "unmatched")
 		XCTAssertFalse(inst.experimental!)
+		XCTAssertEqual(inst.id!, "102")
 		XCTAssertEqual(inst.identifier!, "http://hl7.org/fhir/conceptmap-example-specimen-type.html")
 		XCTAssertEqual(inst.name!, "Specimen mapping from v2 table 0487 to SNOMED CT")
 		XCTAssertEqual(inst.publisher!, "FHIR project team (original source: LabMCoP)")
@@ -241,6 +243,7 @@ class ConceptMapTests: FHIRModelTestCase
 		XCTAssertEqual(inst.element![9].map![0].comments!, "TBD")
 		XCTAssertEqual(inst.element![9].map![0].equivalence!, "unmatched")
 		XCTAssertFalse(inst.experimental!)
+		XCTAssertEqual(inst.id!, "102")
 		XCTAssertEqual(inst.identifier!, "http://hl7.org/fhir/conceptmap-example-specimen-type.html")
 		XCTAssertEqual(inst.name!, "Specimen mapping from v2 table 0487 to SNOMED CT")
 		XCTAssertEqual(inst.publisher!, "FHIR project team (original source: LabMCoP)")
@@ -265,7 +268,7 @@ class ConceptMapTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conceptmap-example.canonical.json")
 		
 		XCTAssertEqual(inst.date!.description, "2012-06-13")
-		XCTAssertEqual(inst.description!, "A mapping between the FHIR and V3 AddressUse Code systems")
+		XCTAssertEqual(inst.description_fhir!, "A mapping between the FHIR and V3 AddressUse Code systems")
 		XCTAssertEqual(inst.element![0].code!, "home")
 		XCTAssertEqual(inst.element![0].codeSystem!.absoluteString!, "http://hl7.org/fhir/address-use")
 		XCTAssertEqual(inst.element![0].map![0].code!, "H")
@@ -293,6 +296,7 @@ class ConceptMapTests: FHIRModelTestCase
 		XCTAssertEqual(inst.element![4].map![0].comments!, "In the V3 AD, old is handled by the usablePeriod element, but you have to provide a time, there's no simple equivalent of flagging an address as old")
 		XCTAssertEqual(inst.element![4].map![0].equivalence!, "disjoint")
 		XCTAssertTrue(inst.experimental!)
+		XCTAssertEqual(inst.id!, "101")
 		XCTAssertEqual(inst.identifier!, "256a5231-a2bb-49bd-9fea-f349d428b70d")
 		XCTAssertEqual(inst.name!, "FHIR/v3 Address Use Mapping")
 		XCTAssertEqual(inst.publisher!, "FHIR project team (example)")
@@ -315,7 +319,7 @@ class ConceptMapTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conceptmap-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2012-06-13")
-		XCTAssertEqual(inst.description!, "A mapping between the FHIR and V3 AddressUse Code systems")
+		XCTAssertEqual(inst.description_fhir!, "A mapping between the FHIR and V3 AddressUse Code systems")
 		XCTAssertEqual(inst.element![0].code!, "home")
 		XCTAssertEqual(inst.element![0].codeSystem!.absoluteString!, "http://hl7.org/fhir/address-use")
 		XCTAssertEqual(inst.element![0].map![0].code!, "H")
@@ -343,6 +347,7 @@ class ConceptMapTests: FHIRModelTestCase
 		XCTAssertEqual(inst.element![4].map![0].comments!, "In the V3 AD, old is handled by the usablePeriod element, but you have to provide a time, there's no simple equivalent of flagging an address as old")
 		XCTAssertEqual(inst.element![4].map![0].equivalence!, "disjoint")
 		XCTAssertTrue(inst.experimental!)
+		XCTAssertEqual(inst.id!, "101")
 		XCTAssertEqual(inst.identifier!, "256a5231-a2bb-49bd-9fea-f349d428b70d")
 		XCTAssertEqual(inst.name!, "FHIR/v3 Address Use Mapping")
 		XCTAssertEqual(inst.publisher!, "FHIR project team (example)")

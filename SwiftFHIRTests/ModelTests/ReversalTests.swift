@@ -2,7 +2,7 @@
 //  ReversalTests.swift
 //  ReversalTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -35,6 +35,7 @@ class ReversalTests: FHIRModelTestCase
 		XCTAssertEqual(inst.coverage!.relationship!.code!, "self")
 		XCTAssertEqual(inst.coverage!.sequence!, 1)
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "87654")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/reversal")
 		XCTAssertEqual(inst.identifier![0].value!, "76543")
 		XCTAssertFalse(inst.nullify!)
@@ -57,6 +58,7 @@ class ReversalTests: FHIRModelTestCase
 		XCTAssertEqual(inst.coverage!.relationship!.code!, "self")
 		XCTAssertEqual(inst.coverage!.sequence!, 1)
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "87654")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/reversal")
 		XCTAssertEqual(inst.identifier![0].value!, "76543")
 		XCTAssertFalse(inst.nullify!)
@@ -79,6 +81,7 @@ class ReversalTests: FHIRModelTestCase
 		XCTAssertEqual(inst.coverage!.relationship!.code!, "self")
 		XCTAssertEqual(inst.coverage!.sequence!, 1)
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "87654")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/reversal")
 		XCTAssertEqual(inst.identifier![0].value!, "76543")
 		XCTAssertFalse(inst.nullify!)

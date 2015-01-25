@@ -2,7 +2,7 @@
 //  MessageHeaderTests.swift
 //  MessageHeaderTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -37,6 +37,7 @@ class MessageHeaderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.destination![0].target!.reference!, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.event!.code!, "admin-update")
 		XCTAssertEqual(inst.event!.system!.absoluteString!, "http://hl7.org/fhir/message-type")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier!, "1cbdfb97-5859-48a4-8301-d54eab818d68")
 		XCTAssertEqual(inst.response!.code!, "ok")
 		XCTAssertEqual(inst.response!.identifier!, "5015fe84-8e76-4526-89d8-44b322e8d4fb")
@@ -66,6 +67,7 @@ class MessageHeaderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.destination![0].target!.reference!, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.event!.code!, "admin-update")
 		XCTAssertEqual(inst.event!.system!.absoluteString!, "http://hl7.org/fhir/message-type")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier!, "1cbdfb97-5859-48a4-8301-d54eab818d68")
 		XCTAssertEqual(inst.response!.code!, "ok")
 		XCTAssertEqual(inst.response!.identifier!, "5015fe84-8e76-4526-89d8-44b322e8d4fb")
@@ -95,6 +97,7 @@ class MessageHeaderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.destination![0].target!.reference!, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.event!.code!, "admin-update")
 		XCTAssertEqual(inst.event!.system!.absoluteString!, "http://hl7.org/fhir/message-type")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier!, "1cbdfb97-5859-48a4-8301-d54eab818d68")
 		XCTAssertEqual(inst.response!.code!, "ok")
 		XCTAssertEqual(inst.response!.identifier!, "5015fe84-8e76-4526-89d8-44b322e8d4fb")

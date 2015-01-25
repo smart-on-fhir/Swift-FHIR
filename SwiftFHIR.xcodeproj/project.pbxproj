@@ -317,6 +317,10 @@
 		EE8F52091A4464C0004D27C5 /* VisionPrescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E7C1A41D02F00CA0452 /* VisionPrescription.swift */; };
 		EE95DCB91A6D759100D557EC /* DateAndTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95DCB81A6D759100D557EC /* DateAndTimeTests.swift */; };
 		EE95DCBA1A6D759100D557EC /* DateAndTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE95DCB81A6D759100D557EC /* DateAndTimeTests.swift */; };
+		EEA2C9701A7391F8008726B0 /* FHIRServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2C96F1A7391F8008726B0 /* FHIRServer.swift */; };
+		EEA2C9711A7391FE008726B0 /* FHIRServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2C96F1A7391F8008726B0 /* FHIRServer.swift */; };
+		EEA2C9731A754863008726B0 /* Genetics.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2C9721A754863008726B0 /* Genetics.swift */; };
+		EEA2C9741A754863008726B0 /* Genetics.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2C9721A754863008726B0 /* Genetics.swift */; };
 		EEE5DF371A5D862B002AFF53 /* FHIRSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE5DF361A5D862B002AFF53 /* FHIRSearchTests.swift */; };
 		EEE5DF381A5D862B002AFF53 /* FHIRSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE5DF361A5D862B002AFF53 /* FHIRSearchTests.swift */; };
 		EEEB097119AD248700C324FC /* MedicationPrescriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB096F19AD248700C324FC /* MedicationPrescriptionTests.swift */; };
@@ -559,6 +563,8 @@
 		EE8DD2331A6B118000038123 /* DateAndTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateAndTime.swift; sourceTree = "<group>"; };
 		EE8F51751A441B66004D27C5 /* Reference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reference.swift; sourceTree = "<group>"; };
 		EE95DCB81A6D759100D557EC /* DateAndTimeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateAndTimeTests.swift; sourceTree = "<group>"; };
+		EEA2C96F1A7391F8008726B0 /* FHIRServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRServer.swift; sourceTree = "<group>"; };
+		EEA2C9721A754863008726B0 /* Genetics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Genetics.swift; sourceTree = "<group>"; };
 		EEE5DF361A5D862B002AFF53 /* FHIRSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRSearchTests.swift; sourceTree = "<group>"; };
 		EEEB096F19AD248700C324FC /* MedicationPrescriptionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedicationPrescriptionTests.swift; sourceTree = "<group>"; };
 		EEF20E151A5D4FFE009A6EDA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -824,13 +830,14 @@
 			isa = PBXGroup;
 			children = (
 				EEF40E281A41D02F00CA0452 /* FHIRTypes.swift */,
+				EE8DD2331A6B118000038123 /* DateAndTime.swift */,
 				EE684C3919A78AE600B5A2C0 /* FHIRElement.swift */,
 				EE5120551A4B3212002D434A /* FHIRElement+Factory.swift */,
 				EE684C3A19A78AE600B5A2C0 /* FHIRResource.swift */,
 				EE684C3819A78AE600B5A2C0 /* FHIRContainedResource.swift */,
 				EE652AC619FDEBDC006582EC /* FHIRReference.swift */,
+				EEA2C96F1A7391F8008726B0 /* FHIRServer.swift */,
 				EE5120531A4B317F002D434A /* FHIRSearch.swift */,
-				EE8DD2331A6B118000038123 /* DateAndTime.swift */,
 				EE684C3C19A78AE600B5A2C0 /* JSON-extensions.swift */,
 			);
 			name = Classes;
@@ -890,6 +897,7 @@
 				EEF40E251A41D02F00CA0452 /* Extension.swift */,
 				EEF40E261A41D02F00CA0452 /* ExtensionDefinition.swift */,
 				EEF40E271A41D02F00CA0452 /* FamilyHistory.swift */,
+				EEA2C9721A754863008726B0 /* Genetics.swift */,
 				EEF40E2A1A41D02F00CA0452 /* Goal.swift */,
 				EEF40E2B1A41D02F00CA0452 /* Group.swift */,
 				EEF40E2C1A41D02F00CA0452 /* HealthcareService.swift */,
@@ -1276,6 +1284,7 @@
 				EE8F51881A4461F0004D27C5 /* Range.swift in Sources */,
 				EE8F51B71A4464C0004D27C5 /* EligibilityResponse.swift in Sources */,
 				EE8F51DD1A4464C0004D27C5 /* Patient.swift in Sources */,
+				EEA2C9701A7391F8008726B0 /* FHIRServer.swift in Sources */,
 				EE8F519E1A4464AA004D27C5 /* ConceptMap.swift in Sources */,
 				EE8F51EC1A4464C0004D27C5 /* ReferralRequest.swift in Sources */,
 				EE8F51B11A4464C0004D27C5 /* DocumentManifest.swift in Sources */,
@@ -1356,6 +1365,7 @@
 				EE8F51E41A4464C0004D27C5 /* Procedure.swift in Sources */,
 				EE8F518A1A44620A004D27C5 /* Timing.swift in Sources */,
 				EE652AC719FDEBDC006582EC /* FHIRReference.swift in Sources */,
+				EEA2C9731A754863008726B0 /* Genetics.swift in Sources */,
 				EE8F519F1A4464AA004D27C5 /* Condition.swift in Sources */,
 				EE8F51EA1A4464C0004D27C5 /* QuestionnaireAnswers.swift in Sources */,
 				EE8F51B21A4464C0004D27C5 /* Duration.swift in Sources */,
@@ -1522,6 +1532,7 @@
 				EE6DA7F21A5D4B1000E00708 /* Range.swift in Sources */,
 				EE6DA7F31A5D4B1000E00708 /* EligibilityResponse.swift in Sources */,
 				EE6DA7F41A5D4B1000E00708 /* Patient.swift in Sources */,
+				EEA2C9711A7391FE008726B0 /* FHIRServer.swift in Sources */,
 				EE6DA7F51A5D4B1000E00708 /* ConceptMap.swift in Sources */,
 				EE6DA7F61A5D4B1000E00708 /* ReferralRequest.swift in Sources */,
 				EE6DA7F71A5D4B1000E00708 /* DocumentManifest.swift in Sources */,
@@ -1602,6 +1613,7 @@
 				EE6DA8411A5D4B1000E00708 /* Procedure.swift in Sources */,
 				EE6DA8421A5D4B1000E00708 /* Timing.swift in Sources */,
 				EE6DA8431A5D4B1000E00708 /* FHIRReference.swift in Sources */,
+				EEA2C9741A754863008726B0 /* Genetics.swift in Sources */,
 				EE6DA8441A5D4B1000E00708 /* Condition.swift in Sources */,
 				EE6DA8451A5D4B1000E00708 /* QuestionnaireAnswers.swift in Sources */,
 				EE6DA8461A5D4B1000E00708 /* Duration.swift in Sources */,

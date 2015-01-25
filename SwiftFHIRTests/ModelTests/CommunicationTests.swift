@@ -2,7 +2,7 @@
 //  CommunicationTests.swift
 //  CommunicationTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -33,6 +33,7 @@ class CommunicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].code!, "Alert")
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "http://acme.org/messagetypes")
 		XCTAssertEqual(inst.category!.text!, "Alert")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier![0].label!, "Paging System")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:1.3.4.5.6.7")
 		XCTAssertEqual(inst.identifier![0].value!, "2345678901")
@@ -58,6 +59,7 @@ class CommunicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].code!, "Alert")
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "http://acme.org/messagetypes")
 		XCTAssertEqual(inst.category!.text!, "Alert")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier![0].label!, "Paging System")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:1.3.4.5.6.7")
 		XCTAssertEqual(inst.identifier![0].value!, "2345678901")
@@ -83,6 +85,7 @@ class CommunicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].code!, "Alert")
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "http://acme.org/messagetypes")
 		XCTAssertEqual(inst.category!.text!, "Alert")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier![0].label!, "Paging System")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:1.3.4.5.6.7")
 		XCTAssertEqual(inst.identifier![0].value!, "2345678901")

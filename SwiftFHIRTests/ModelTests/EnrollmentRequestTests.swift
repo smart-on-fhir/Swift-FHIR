@@ -2,7 +2,7 @@
 //  EnrollmentRequestTests.swift
 //  EnrollmentRequestTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -32,6 +32,7 @@ class EnrollmentRequestTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.coverage!.reference!, "Coverage/9876B1")
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "22345")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/enrollmentrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "EN22345")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
@@ -51,6 +52,7 @@ class EnrollmentRequestTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.coverage!.reference!, "Coverage/9876B1")
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "22345")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/enrollmentrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "EN22345")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
@@ -70,6 +72,7 @@ class EnrollmentRequestTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.coverage!.reference!, "Coverage/9876B1")
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "22345")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/enrollmentrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "EN22345")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")

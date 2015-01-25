@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (orderresponse.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (orderresponse.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -31,7 +31,7 @@ public class OrderResponse: FHIRResource
 	public var date: DateTime?
 	
 	/// Additional description of the response
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Details of the outcome of performing the order
 	public var fulfillment: [Reference]?
@@ -71,7 +71,7 @@ public class OrderResponse: FHIRResource
 				self.date = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["fulfillment"] as? [JSONDictionary] {
 				self.fulfillment = Reference.from(val, owner: self) as? [Reference]
@@ -103,8 +103,8 @@ public class OrderResponse: FHIRResource
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let fulfillment = self.fulfillment {
 			json["fulfillment"] = Reference.asJSONArray(fulfillment)

@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (immunizationrecommendation.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (immunizationrecommendation.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -94,7 +94,7 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 	public var forecastStatus: CodeableConcept?
 	
 	/// Protocol used by recommendation
-	public var protokol: ImmunizationRecommendationRecommendationProtocol?
+	public var protocol_fhir: ImmunizationRecommendationRecommendationProtocol?
 	
 	/// Past immunizations supporting recommendation
 	public var supportingImmunization: [Reference]?
@@ -134,7 +134,7 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 				self.forecastStatus = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["protocol"] as? JSONDictionary {
-				self.protokol = ImmunizationRecommendationRecommendationProtocol(json: val, owner: self)
+				self.protocol_fhir = ImmunizationRecommendationRecommendationProtocol(json: val, owner: self)
 			}
 			if let val = js["supportingImmunization"] as? [JSONDictionary] {
 				self.supportingImmunization = Reference.from(val, owner: self) as? [Reference]
@@ -163,8 +163,8 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 		if let forecastStatus = self.forecastStatus {
 			json["forecastStatus"] = forecastStatus.asJSON()
 		}
-		if let protokol = self.protokol {
-			json["protocol"] = protokol.asJSON()
+		if let protocol_fhir = self.protocol_fhir {
+			json["protocol"] = protocol_fhir.asJSON()
 		}
 		if let supportingImmunization = self.supportingImmunization {
 			json["supportingImmunization"] = Reference.asJSONArray(supportingImmunization)
@@ -250,7 +250,7 @@ public class ImmunizationRecommendationRecommendationProtocol: FHIRElement
 	public var authority: Reference?
 	
 	/// Protocol details
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Number of dose within sequence
 	public var doseSequence: Int?
@@ -265,7 +265,7 @@ public class ImmunizationRecommendationRecommendationProtocol: FHIRElement
 				self.authority = Reference(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["doseSequence"] as? Int {
 				self.doseSequence = val
@@ -282,8 +282,8 @@ public class ImmunizationRecommendationRecommendationProtocol: FHIRElement
 		if let authority = self.authority {
 			json["authority"] = authority.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let doseSequence = self.doseSequence {
 			json["doseSequence"] = doseSequence.asJSON()

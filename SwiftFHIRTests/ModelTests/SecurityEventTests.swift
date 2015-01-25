@@ -2,7 +2,7 @@
 //  SecurityEventTests.swift
 //  SecurityEventTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -39,6 +39,7 @@ class SecurityEventTests: FHIRModelTestCase
 		XCTAssertEqual(inst.event!.type!.coding![0].code!, "110114")
 		XCTAssertEqual(inst.event!.type!.coding![0].display!, "User Authentication")
 		XCTAssertEqual(inst.event!.type!.coding![0].system!.absoluteString!, "http://nema.org/dicom/dcid")
+		XCTAssertEqual(inst.id!, "example-login")
 		XCTAssertEqual(inst.participant![0].altId!, "601847123")
 		XCTAssertEqual(inst.participant![0].name!, "Grahame Grieve")
 		XCTAssertEqual(inst.participant![0].network!.identifier!, "127.0.0.1")
@@ -71,6 +72,7 @@ class SecurityEventTests: FHIRModelTestCase
 		XCTAssertEqual(inst.event!.type!.coding![0].code!, "110114")
 		XCTAssertEqual(inst.event!.type!.coding![0].display!, "User Authentication")
 		XCTAssertEqual(inst.event!.type!.coding![0].system!.absoluteString!, "http://nema.org/dicom/dcid")
+		XCTAssertEqual(inst.id!, "example-login")
 		XCTAssertEqual(inst.participant![0].altId!, "601847123")
 		XCTAssertEqual(inst.participant![0].name!, "Grahame Grieve")
 		XCTAssertEqual(inst.participant![0].network!.identifier!, "127.0.0.1")
@@ -103,6 +105,7 @@ class SecurityEventTests: FHIRModelTestCase
 		XCTAssertEqual(inst.event!.type!.coding![0].code!, "110114")
 		XCTAssertEqual(inst.event!.type!.coding![0].display!, "User Authentication")
 		XCTAssertEqual(inst.event!.type!.coding![0].system!.absoluteString!, "http://nema.org/dicom/dcid")
+		XCTAssertEqual(inst.id!, "example-login")
 		XCTAssertEqual(inst.participant![0].altId!, "601847123")
 		XCTAssertEqual(inst.participant![0].name!, "Grahame Grieve")
 		XCTAssertEqual(inst.participant![0].network!.identifier!, "127.0.0.1")
@@ -135,6 +138,7 @@ class SecurityEventTests: FHIRModelTestCase
 		XCTAssertEqual(inst.event!.type!.coding![0].code!, "110114")
 		XCTAssertEqual(inst.event!.type!.coding![0].display!, "User Authentication")
 		XCTAssertEqual(inst.event!.type!.coding![0].system!.absoluteString!, "http://nema.org/dicom/dcid")
+		XCTAssertEqual(inst.id!, "example-logout")
 		XCTAssertEqual(inst.participant![0].altId!, "601847123")
 		XCTAssertEqual(inst.participant![0].name!, "Grahame Grieve")
 		XCTAssertEqual(inst.participant![0].network!.identifier!, "127.0.0.1")
@@ -167,6 +171,7 @@ class SecurityEventTests: FHIRModelTestCase
 		XCTAssertEqual(inst.event!.type!.coding![0].code!, "110114")
 		XCTAssertEqual(inst.event!.type!.coding![0].display!, "User Authentication")
 		XCTAssertEqual(inst.event!.type!.coding![0].system!.absoluteString!, "http://nema.org/dicom/dcid")
+		XCTAssertEqual(inst.id!, "example-logout")
 		XCTAssertEqual(inst.participant![0].altId!, "601847123")
 		XCTAssertEqual(inst.participant![0].name!, "Grahame Grieve")
 		XCTAssertEqual(inst.participant![0].network!.identifier!, "127.0.0.1")
@@ -199,6 +204,7 @@ class SecurityEventTests: FHIRModelTestCase
 		XCTAssertEqual(inst.event!.type!.coding![0].code!, "rest")
 		XCTAssertEqual(inst.event!.type!.coding![0].display!, "Restful Operation")
 		XCTAssertEqual(inst.event!.type!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/security-event-type")
+		XCTAssertEqual(inst.id!, "example-rest")
 		XCTAssertEqual(inst.object![0].lifecycle!, "6")
 		XCTAssertEqual(inst.object![0].reference!.reference!, "Patient/example/_history/1")
 		XCTAssertEqual(inst.object![0].type!, "2")
@@ -232,6 +238,7 @@ class SecurityEventTests: FHIRModelTestCase
 		XCTAssertEqual(inst.event!.type!.coding![0].code!, "rest")
 		XCTAssertEqual(inst.event!.type!.coding![0].display!, "Restful Operation")
 		XCTAssertEqual(inst.event!.type!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/security-event-type")
+		XCTAssertEqual(inst.id!, "example-rest")
 		XCTAssertEqual(inst.object![0].lifecycle!, "6")
 		XCTAssertEqual(inst.object![0].reference!.reference!, "Patient/example/_history/1")
 		XCTAssertEqual(inst.object![0].type!, "2")
@@ -265,6 +272,7 @@ class SecurityEventTests: FHIRModelTestCase
 		XCTAssertEqual(inst.event!.type!.coding![0].code!, "110100")
 		XCTAssertEqual(inst.event!.type!.coding![0].display!, "Application Activity")
 		XCTAssertEqual(inst.event!.type!.coding![0].system!.absoluteString!, "http://nema.org/dicom/dcid")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.object![0].identifier!.label!, "Dell Serial Number")
 		XCTAssertEqual(inst.object![0].identifier!.value!, "ABCDEF")
 		XCTAssertEqual(inst.object![0].lifecycle!, "6")
@@ -301,6 +309,7 @@ class SecurityEventTests: FHIRModelTestCase
 		XCTAssertEqual(inst.event!.type!.coding![0].code!, "110100")
 		XCTAssertEqual(inst.event!.type!.coding![0].display!, "Application Activity")
 		XCTAssertEqual(inst.event!.type!.coding![0].system!.absoluteString!, "http://nema.org/dicom/dcid")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.object![0].identifier!.label!, "Dell Serial Number")
 		XCTAssertEqual(inst.object![0].identifier!.value!, "ABCDEF")
 		XCTAssertEqual(inst.object![0].lifecycle!, "6")

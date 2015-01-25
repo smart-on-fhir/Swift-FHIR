@@ -2,7 +2,7 @@
 //  DiagnosticOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (diagnosticorder.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (diagnosticorder.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -160,7 +160,7 @@ public class DiagnosticOrderEvent: FHIRElement
 	public var dateTime: DateTime?
 	
 	/// More information about the event and its context
-	public var description: CodeableConcept?
+	public var description_fhir: CodeableConcept?
 	
 	/// requested | received | accepted | in progress | review | completed | suspended | rejected | failed
 	public var status: String?
@@ -185,7 +185,7 @@ public class DiagnosticOrderEvent: FHIRElement
 				self.dateTime = DateTime(string: val)
 			}
 			if let val = js["description"] as? JSONDictionary {
-				self.description = CodeableConcept(json: val, owner: self)
+				self.description_fhir = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
@@ -202,8 +202,8 @@ public class DiagnosticOrderEvent: FHIRElement
 		if let dateTime = self.dateTime {
 			json["dateTime"] = dateTime.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()

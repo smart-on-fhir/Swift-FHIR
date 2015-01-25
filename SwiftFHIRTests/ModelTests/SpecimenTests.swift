@@ -2,7 +2,7 @@
 //  SpecimenTests.swift
 //  SpecimenTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -41,11 +41,12 @@ class SpecimenTests: FHIRModelTestCase
 		XCTAssertEqual(inst.container![0].additiveReference!.reference!, "#hep")
 		XCTAssertEqual(inst.container![0].capacity!.units!, "mL")
 		XCTAssertEqual(inst.container![0].capacity!.value!, NSDecimalNumber(string: "10"))
-		XCTAssertEqual(inst.container![0].description!, "Green Gel tube")
+		XCTAssertEqual(inst.container![0].description_fhir!, "Green Gel tube")
 		XCTAssertEqual(inst.container![0].identifier![0].value!, "48736-15394-75465")
 		XCTAssertEqual(inst.container![0].specimenQuantity!.units!, "mL")
 		XCTAssertEqual(inst.container![0].specimenQuantity!.value!, NSDecimalNumber(string: "6"))
 		XCTAssertEqual(inst.container![0].type!.text!, "Vacutainer")
+		XCTAssertEqual(inst.id!, "101")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://ehr.acme.org/identifiers/collections")
 		XCTAssertEqual(inst.identifier![0].value!, "23234352356")
 		XCTAssertEqual(inst.receivedTime!.description, "2011-03-04T07:03:00Z")
@@ -77,11 +78,12 @@ class SpecimenTests: FHIRModelTestCase
 		XCTAssertEqual(inst.container![0].additiveReference!.reference!, "#hep")
 		XCTAssertEqual(inst.container![0].capacity!.units!, "mL")
 		XCTAssertEqual(inst.container![0].capacity!.value!, NSDecimalNumber(string: "10"))
-		XCTAssertEqual(inst.container![0].description!, "Green Gel tube")
+		XCTAssertEqual(inst.container![0].description_fhir!, "Green Gel tube")
 		XCTAssertEqual(inst.container![0].identifier![0].value!, "48736-15394-75465")
 		XCTAssertEqual(inst.container![0].specimenQuantity!.units!, "mL")
 		XCTAssertEqual(inst.container![0].specimenQuantity!.value!, NSDecimalNumber(string: "6"))
 		XCTAssertEqual(inst.container![0].type!.text!, "Vacutainer")
+		XCTAssertEqual(inst.id!, "101")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://ehr.acme.org/identifiers/collections")
 		XCTAssertEqual(inst.identifier![0].value!, "23234352356")
 		XCTAssertEqual(inst.receivedTime!.description, "2011-03-04T07:03:00Z")
@@ -113,11 +115,12 @@ class SpecimenTests: FHIRModelTestCase
 		XCTAssertEqual(inst.container![0].additiveReference!.reference!, "#hep")
 		XCTAssertEqual(inst.container![0].capacity!.units!, "mL")
 		XCTAssertEqual(inst.container![0].capacity!.value!, NSDecimalNumber(string: "10"))
-		XCTAssertEqual(inst.container![0].description!, "Green Gel tube")
+		XCTAssertEqual(inst.container![0].description_fhir!, "Green Gel tube")
 		XCTAssertEqual(inst.container![0].identifier![0].value!, "48736-15394-75465")
 		XCTAssertEqual(inst.container![0].specimenQuantity!.units!, "mL")
 		XCTAssertEqual(inst.container![0].specimenQuantity!.value!, NSDecimalNumber(string: "6"))
 		XCTAssertEqual(inst.container![0].type!.text!, "Vacutainer")
+		XCTAssertEqual(inst.id!, "101")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://ehr.acme.org/identifiers/collections")
 		XCTAssertEqual(inst.identifier![0].value!, "23234352356")
 		XCTAssertEqual(inst.receivedTime!.description, "2011-03-04T07:03:00Z")

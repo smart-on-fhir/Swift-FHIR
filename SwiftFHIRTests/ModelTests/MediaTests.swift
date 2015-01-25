@@ -2,7 +2,7 @@
 //  MediaTests.swift
 //  MediaTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -34,6 +34,7 @@ class MediaTests: FHIRModelTestCase
 		XCTAssertEqual(inst.content!.url!.absoluteString!, "http://imaging.acme.com/wado/server?requestType=WADO&contentType=application%2Fdicom&studyUid=1.2.840.113619.2.21.848.34082.0.538976288.3&seriesUid=1.2.840.113619.2.21.3408.700.0.757923840.3.0&objectUid=1.2.840.11361907579238403408700.3.0.14.19970327150033")
 		XCTAssertEqual(inst.deviceName!, "G.E. Medical Systems")
 		XCTAssertEqual(inst.height!, 480)
+		XCTAssertEqual(inst.id!, "1.2.840.11361907579238403408700.3.0.14.19970327150033")
 		XCTAssertEqual(inst.identifier![0].label!, "InstanceUID")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
@@ -68,6 +69,7 @@ class MediaTests: FHIRModelTestCase
 		XCTAssertEqual(inst.content!.url!.absoluteString!, "http://imaging.acme.com/wado/server?requestType=WADO&contentType=application%2Fdicom&studyUid=1.2.840.113619.2.21.848.34082.0.538976288.3&seriesUid=1.2.840.113619.2.21.3408.700.0.757923840.3.0&objectUid=1.2.840.11361907579238403408700.3.0.14.19970327150033")
 		XCTAssertEqual(inst.deviceName!, "G.E. Medical Systems")
 		XCTAssertEqual(inst.height!, 480)
+		XCTAssertEqual(inst.id!, "1.2.840.11361907579238403408700.3.0.14.19970327150033")
 		XCTAssertEqual(inst.identifier![0].label!, "InstanceUID")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
@@ -102,6 +104,7 @@ class MediaTests: FHIRModelTestCase
 		XCTAssertEqual(inst.content!.url!.absoluteString!, "http://imaging.acme.com/wado/server?requestType=WADO&contentType=application%2Fdicom&studyUid=1.2.840.113619.2.21.848.34082.0.538976288.3&seriesUid=1.2.840.113619.2.21.3408.700.0.757923840.3.0&objectUid=1.2.840.11361907579238403408700.3.0.14.19970327150033")
 		XCTAssertEqual(inst.deviceName!, "G.E. Medical Systems")
 		XCTAssertEqual(inst.height!, 480)
+		XCTAssertEqual(inst.id!, "1.2.840.11361907579238403408700.3.0.14.19970327150033")
 		XCTAssertEqual(inst.identifier![0].label!, "InstanceUID")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
@@ -134,9 +137,11 @@ class MediaTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.content!.contentType!, "image/gif")
 		// Don't know how to create unit test for "content!.data!", which is a Base64Binary
+//		XCTAssertEqual(inst.content!.id!, "a1")
 		XCTAssertEqual(inst.created!.description, "2009-09-03")
 		XCTAssertEqual(inst.deviceName!, "Acme Camera")
 		XCTAssertEqual(inst.height!, 145)
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/xcda")
 		XCTAssertEqual(inst.subtype!.coding![0].code!, "diagram")
 		XCTAssertEqual(inst.subtype!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/media-method")
@@ -156,9 +161,11 @@ class MediaTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.content!.contentType!, "image/gif")
 		// Don't know how to create unit test for "content!.data!", which is a Base64Binary
+//		XCTAssertEqual(inst.content!.id!, "a1")
 		XCTAssertEqual(inst.created!.description, "2009-09-03")
 		XCTAssertEqual(inst.deviceName!, "Acme Camera")
 		XCTAssertEqual(inst.height!, 145)
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/xcda")
 		XCTAssertEqual(inst.subtype!.coding![0].code!, "diagram")
 		XCTAssertEqual(inst.subtype!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/media-method")

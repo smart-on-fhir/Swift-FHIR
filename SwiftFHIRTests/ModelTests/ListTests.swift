@@ -2,7 +2,7 @@
 //  ListTests.swift
 //  ListTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -39,6 +39,7 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst.emptyReason!.coding![0].display!, "Nil Known")
 		XCTAssertEqual(inst.emptyReason!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/special-values")
 		XCTAssertEqual(inst.emptyReason!.text!, "The patient is not on any medications")
+		XCTAssertEqual(inst.id!, "example-empty")
 		XCTAssertEqual(inst.mode!, "snapshot")
 		XCTAssertEqual(inst.source!.reference!, "Patient/example")
 		
@@ -62,6 +63,7 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst.emptyReason!.coding![0].display!, "Nil Known")
 		XCTAssertEqual(inst.emptyReason!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/special-values")
 		XCTAssertEqual(inst.emptyReason!.text!, "The patient is not on any medications")
+		XCTAssertEqual(inst.id!, "example-empty")
 		XCTAssertEqual(inst.mode!, "snapshot")
 		XCTAssertEqual(inst.source!.reference!, "Patient/example")
 		
@@ -85,6 +87,7 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst.emptyReason!.coding![0].display!, "Nil Known")
 		XCTAssertEqual(inst.emptyReason!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/special-values")
 		XCTAssertEqual(inst.emptyReason!.text!, "The patient is not on any medications")
+		XCTAssertEqual(inst.id!, "example-empty")
 		XCTAssertEqual(inst.mode!, "snapshot")
 		XCTAssertEqual(inst.source!.reference!, "Patient/example")
 		
@@ -113,6 +116,7 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst.entry![1].flag![0].coding![0].display!, "Cancelled")
 		XCTAssertEqual(inst.entry![1].flag![0].coding![0].system!.absoluteString!, "http://nehta.gov.au/codes/medications/changetype")
 		XCTAssertEqual(inst.entry![1].item!.display!, "Morphine Sulfate")
+		XCTAssertEqual(inst.id!, "med-list")
 		XCTAssertEqual(inst.mode!, "changes")
 		XCTAssertEqual(inst.source!.reference!, "Patient/example")
 		
@@ -141,6 +145,7 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst.entry![1].flag![0].coding![0].display!, "Cancelled")
 		XCTAssertEqual(inst.entry![1].flag![0].coding![0].system!.absoluteString!, "http://nehta.gov.au/codes/medications/changetype")
 		XCTAssertEqual(inst.entry![1].item!.display!, "Morphine Sulfate")
+		XCTAssertEqual(inst.id!, "med-list")
 		XCTAssertEqual(inst.mode!, "changes")
 		XCTAssertEqual(inst.source!.reference!, "Patient/example")
 		
@@ -161,6 +166,7 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst.entry![0].item!.reference!, "Condition/example")
 		XCTAssertEqual(inst.entry![1].flag![0].text!, "Added")
 		XCTAssertEqual(inst.entry![1].item!.reference!, "Condition/example2")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.mode!, "changes")
 		XCTAssertFalse(inst.ordered!)
 		XCTAssertEqual(inst.source!.reference!, "Patient/example")
@@ -182,6 +188,7 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst.entry![0].item!.reference!, "Condition/example")
 		XCTAssertEqual(inst.entry![1].flag![0].text!, "Added")
 		XCTAssertEqual(inst.entry![1].item!.reference!, "Condition/example2")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.mode!, "changes")
 		XCTAssertFalse(inst.ordered!)
 		XCTAssertEqual(inst.source!.reference!, "Patient/example")

@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (composition.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (composition.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -28,6 +28,9 @@ public class Composition: FHIRResource
 	/// Who and/or what authored the composition
 	public var author: [Reference]?
 	
+	/// Categorization of Composition
+	public var class_fhir: CodeableConcept?
+	
 	/// As defined by affinity domain
 	public var confidentiality: Coding?
 	
@@ -45,9 +48,6 @@ public class Composition: FHIRResource
 	
 	/// Logical identifier of composition (version-independent)
 	public var identifier: Identifier?
-	
-	/// Categorization of Composition
-	public var klass: CodeableConcept?
 	
 	/// Composition is broken into sections
 	public var section: [CompositionSection]?
@@ -95,6 +95,9 @@ public class Composition: FHIRResource
 			if let val = js["author"] as? [JSONDictionary] {
 				self.author = Reference.from(val, owner: self) as? [Reference]
 			}
+			if let val = js["class"] as? JSONDictionary {
+				self.class_fhir = CodeableConcept(json: val, owner: self)
+			}
 			if let val = js["confidentiality"] as? JSONDictionary {
 				self.confidentiality = Coding(json: val, owner: self)
 			}
@@ -112,9 +115,6 @@ public class Composition: FHIRResource
 			}
 			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)
-			}
-			if let val = js["class"] as? JSONDictionary {
-				self.klass = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["section"] as? [JSONDictionary] {
 				self.section = CompositionSection.from(val, owner: self) as? [CompositionSection]
@@ -143,6 +143,9 @@ public class Composition: FHIRResource
 		if let author = self.author {
 			json["author"] = Reference.asJSONArray(author)
 		}
+		if let class_fhir = self.class_fhir {
+			json["class"] = class_fhir.asJSON()
+		}
 		if let confidentiality = self.confidentiality {
 			json["confidentiality"] = confidentiality.asJSON()
 		}
@@ -160,9 +163,6 @@ public class Composition: FHIRResource
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
-		}
-		if let klass = self.klass {
-			json["class"] = klass.asJSON()
 		}
 		if let section = self.section {
 			json["section"] = CompositionSection.asJSONArray(section)

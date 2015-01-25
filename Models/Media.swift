@@ -2,7 +2,7 @@
 //  Media.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (media.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (media.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -41,7 +41,7 @@ public class Media: FHIRResource
 	public var identifier: [Identifier]?
 	
 	/// The person who generated the image
-	public var operatr: Reference?
+	public var operator_fhir: Reference?
 	
 	/// Who/What this Media is a record of
 	public var subject: Reference?
@@ -93,7 +93,7 @@ public class Media: FHIRResource
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["operator"] as? JSONDictionary {
-				self.operatr = Reference(json: val, owner: self)
+				self.operator_fhir = Reference(json: val, owner: self)
 			}
 			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
@@ -137,8 +137,8 @@ public class Media: FHIRResource
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
-		if let operatr = self.operatr {
-			json["operator"] = operatr.asJSON()
+		if let operator_fhir = self.operator_fhir {
+			json["operator"] = operator_fhir.asJSON()
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON()

@@ -2,7 +2,7 @@
 //  PractitionerTests.swift
 //  PractitionerTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -37,6 +37,7 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address![0].use!, "work")
 		XCTAssertEqual(inst.birthDate!.description, "1975-12-07")
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1.1007.3.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "938273695")
@@ -85,6 +86,7 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address![0].use!, "work")
 		XCTAssertEqual(inst.birthDate!.description, "1975-12-07")
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1.1007.3.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "938273695")
@@ -133,6 +135,7 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address![0].use!, "work")
 		XCTAssertEqual(inst.birthDate!.description, "1975-12-07")
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1.1007.3.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "938273695")
@@ -181,6 +184,7 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address![0].use!, "work")
 		XCTAssertEqual(inst.birthDate!.description, "1979-04-29")
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1.1007.3.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "730291637")
@@ -229,6 +233,7 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address![0].use!, "work")
 		XCTAssertEqual(inst.birthDate!.description, "1979-04-29")
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1.1007.3.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "730291637")
@@ -280,6 +285,7 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.communication![0].coding![0].display!, "Dutch")
 		XCTAssertEqual(inst.communication![0].coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.6.121")
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1.1007.3.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "846100293")
@@ -331,6 +337,7 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.communication![0].coding![0].display!, "Dutch")
 		XCTAssertEqual(inst.communication![0].coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.6.121")
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1.1007.3.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "846100293")
@@ -383,6 +390,7 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.communication![0].coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.6.121")
 		XCTAssertEqual(inst.communication![0].text!, "Language")
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "f004")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1.1007.3.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "118265112")
@@ -435,6 +443,7 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.communication![0].coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.6.121")
 		XCTAssertEqual(inst.communication![0].text!, "Language")
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "f004")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1.1007.3.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "118265112")
@@ -486,6 +495,7 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.communication![0].coding![0].display!, "France")
 		XCTAssertEqual(inst.communication![0].coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.6.121")
 		XCTAssertEqual(inst.gender!, "female")
+		XCTAssertEqual(inst.id!, "f005")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1.1007.3.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "118265112")

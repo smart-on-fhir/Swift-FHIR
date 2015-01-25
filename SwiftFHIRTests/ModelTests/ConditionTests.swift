@@ -2,7 +2,7 @@
 //  ConditionTests.swift
 //  ConditionTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -43,6 +43,7 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].code!, "426396005")
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].display!, "Cardiac chest pain")
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.location![0].code!.coding![0].code!, "40768004")
 		XCTAssertEqual(inst.location![0].code!.coding![0].display!, "Left thorax")
 		XCTAssertEqual(inst.location![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -79,6 +80,7 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].code!, "426396005")
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].display!, "Cardiac chest pain")
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.location![0].code!.coding![0].code!, "40768004")
 		XCTAssertEqual(inst.location![0].code!.coding![0].display!, "Left thorax")
 		XCTAssertEqual(inst.location![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -115,6 +117,7 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].code!, "426396005")
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].display!, "Cardiac chest pain")
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.location![0].code!.coding![0].code!, "40768004")
 		XCTAssertEqual(inst.location![0].code!.coding![0].display!, "Left thorax")
 		XCTAssertEqual(inst.location![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -151,6 +154,7 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].code!, "169069000")
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].display!, "CT of thorax")
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.location![0].code!.coding![0].code!, "51185008")
 		XCTAssertEqual(inst.location![0].code!.coding![0].display!, "Thorax")
 		XCTAssertEqual(inst.location![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -190,6 +194,7 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].code!, "169069000")
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].display!, "CT of thorax")
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.location![0].code!.coding![0].code!, "51185008")
 		XCTAssertEqual(inst.location![0].code!.coding![0].display!, "Thorax")
 		XCTAssertEqual(inst.location![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -229,6 +234,7 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].code!, "169068008")
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].display!, "CT of neck")
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertEqual(inst.location![0].code!.coding![0].code!, "280193007")
 		XCTAssertEqual(inst.location![0].code!.coding![0].display!, "Entire retropharyngeal area")
 		XCTAssertEqual(inst.location![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -264,6 +270,7 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].code!, "169068008")
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].display!, "CT of neck")
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertEqual(inst.location![0].code!.coding![0].code!, "280193007")
 		XCTAssertEqual(inst.location![0].code!.coding![0].display!, "Entire retropharyngeal area")
 		XCTAssertEqual(inst.location![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -306,6 +313,7 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.evidence![0].detail![0].display!, "Temperature")
 		XCTAssertEqual(inst.evidence![0].detail![0].reference!, "Observation/f202")
+		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.location![0].code!.coding![0].code!, "38266002")
 		XCTAssertEqual(inst.location![0].code!.coding![0].display!, "Entire body as a whole")
 		XCTAssertEqual(inst.location![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -348,6 +356,7 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.evidence![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.evidence![0].detail![0].display!, "Temperature")
 		XCTAssertEqual(inst.evidence![0].detail![0].reference!, "Observation/f202")
+		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.location![0].code!.coding![0].code!, "38266002")
 		XCTAssertEqual(inst.location![0].code!.coding![0].display!, "Entire body as a whole")
 		XCTAssertEqual(inst.location![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -381,6 +390,7 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dateAsserted!.description, "2012-12-01")
 		XCTAssertEqual(inst.evidence![0].detail![0].display!, "Erasmus' diagnostic report of Roel's tumor")
 		XCTAssertEqual(inst.evidence![0].detail![0].reference!, "DiagnosticReport/f201")
+		XCTAssertEqual(inst.id!, "f202")
 		XCTAssertEqual(inst.location![0].code!.coding![0].code!, "361355005")
 		XCTAssertEqual(inst.location![0].code!.coding![0].display!, "Entire head and neck")
 		XCTAssertEqual(inst.location![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")

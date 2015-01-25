@@ -2,7 +2,7 @@
 //  OrganizationTests.swift
 //  OrganizationTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -48,6 +48,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![1].purpose!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/contactentity-type")
 		XCTAssertEqual(inst.contact![1].telecom![0].system!, "phone")
 		XCTAssertEqual(inst.contact![1].telecom![0].value!, "022-655 2335")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "91654")
@@ -94,6 +95,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![1].purpose!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/contactentity-type")
 		XCTAssertEqual(inst.contact![1].telecom![0].system!, "phone")
 		XCTAssertEqual(inst.contact![1].telecom![0].value!, "022-655 2335")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "91654")
@@ -140,6 +142,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![1].purpose!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/contactentity-type")
 		XCTAssertEqual(inst.contact![1].telecom![0].system!, "phone")
 		XCTAssertEqual(inst.contact![1].telecom![0].value!, "022-655 2335")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "91654")
@@ -180,6 +183,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![0].telecom![1].value!, "cardio@burgersumc.nl")
 		XCTAssertEqual(inst.contact![0].telecom![2].system!, "fax")
 		XCTAssertEqual(inst.contact![0].telecom![2].value!, "022-655 2322")
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.name!, "Burgers UMC Cardiology unit")
 		XCTAssertEqual(inst.partOf!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
@@ -211,6 +215,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![0].telecom![1].value!, "cardio@burgersumc.nl")
 		XCTAssertEqual(inst.contact![0].telecom![2].system!, "fax")
 		XCTAssertEqual(inst.contact![0].telecom![2].value!, "022-655 2322")
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.name!, "Burgers UMC Cardiology unit")
 		XCTAssertEqual(inst.partOf!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
@@ -242,6 +247,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![0].telecom![1].value!, "KNO@burgersumc.nl")
 		XCTAssertEqual(inst.contact![0].telecom![2].system!, "fax")
 		XCTAssertEqual(inst.contact![0].telecom![2].value!, "022-655 0998")
+		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertEqual(inst.name!, "Burgers UMC Ear,Nose,Throat unit")
 		XCTAssertEqual(inst.partOf!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
@@ -273,6 +279,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![0].telecom![1].value!, "KNO@burgersumc.nl")
 		XCTAssertEqual(inst.contact![0].telecom![2].system!, "fax")
 		XCTAssertEqual(inst.contact![0].telecom![2].value!, "022-655 0998")
+		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertEqual(inst.name!, "Burgers UMC Ear,Nose,Throat unit")
 		XCTAssertEqual(inst.partOf!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
@@ -311,6 +318,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "phone")
 		XCTAssertEqual(inst.contact![0].telecom![0].use!, "work")
 		XCTAssertEqual(inst.contact![0].telecom![0].value!, "+31715269702")
+		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.identifier![0].label!, "Zorginstelling naam")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.zorgkaartnederland.nl/")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
@@ -359,6 +367,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "phone")
 		XCTAssertEqual(inst.contact![0].telecom![0].use!, "work")
 		XCTAssertEqual(inst.contact![0].telecom![0].value!, "+31715269702")
+		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.identifier![0].label!, "Zorginstelling naam")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.zorgkaartnederland.nl/")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
@@ -394,6 +403,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address![0].line![0], "apenrots 230")
 		XCTAssertEqual(inst.address![0].postalCode!, "3056BE")
 		XCTAssertEqual(inst.address![0].use!, "work")
+		XCTAssertEqual(inst.id!, "f203")
 		XCTAssertEqual(inst.identifier![0].label!, "Zorginstelling naam")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.zorgkaartnederland.nl/")
 		XCTAssertEqual(inst.identifier![0].use!, "official")

@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (documentreference.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (documentreference.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -24,6 +24,9 @@ public class DocumentReference: FHIRResource
 	/// Who and/or what authored the document
 	public var author: [Reference]?
 	
+	/// Categorization of Document
+	public var class_fhir: CodeableConcept?
+	
 	/// Sensitivity of source document
 	public var confidentiality: [CodeableConcept]?
 	
@@ -37,7 +40,7 @@ public class DocumentReference: FHIRResource
 	public var custodian: Reference?
 	
 	/// Human-readable description (title)
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// preliminary | final | appended | amended | entered in error
 	public var docStatus: CodeableConcept?
@@ -53,9 +56,6 @@ public class DocumentReference: FHIRResource
 	
 	/// When this document reference created
 	public var indexed: Instant?
-	
-	/// Categorization of Document
-	public var klass: CodeableConcept?
 	
 	/// Where to access the document
 	public var location: NSURL?
@@ -124,6 +124,9 @@ public class DocumentReference: FHIRResource
 			if let val = js["author"] as? [JSONDictionary] {
 				self.author = Reference.from(val, owner: self) as? [Reference]
 			}
+			if let val = js["class"] as? JSONDictionary {
+				self.class_fhir = CodeableConcept(json: val, owner: self)
+			}
 			if let val = js["confidentiality"] as? [JSONDictionary] {
 				self.confidentiality = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
@@ -137,7 +140,7 @@ public class DocumentReference: FHIRResource
 				self.custodian = Reference(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["docStatus"] as? JSONDictionary {
 				self.docStatus = CodeableConcept(json: val, owner: self)
@@ -153,9 +156,6 @@ public class DocumentReference: FHIRResource
 			}
 			if let val = js["indexed"] as? String {
 				self.indexed = Instant(string: val)
-			}
-			if let val = js["class"] as? JSONDictionary {
-				self.klass = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["location"] as? String {
 				self.location = NSURL(string: val)
@@ -202,6 +202,9 @@ public class DocumentReference: FHIRResource
 		if let author = self.author {
 			json["author"] = Reference.asJSONArray(author)
 		}
+		if let class_fhir = self.class_fhir {
+			json["class"] = class_fhir.asJSON()
+		}
 		if let confidentiality = self.confidentiality {
 			json["confidentiality"] = CodeableConcept.asJSONArray(confidentiality)
 		}
@@ -214,8 +217,8 @@ public class DocumentReference: FHIRResource
 		if let custodian = self.custodian {
 			json["custodian"] = custodian.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let docStatus = self.docStatus {
 			json["docStatus"] = docStatus.asJSON()
@@ -235,9 +238,6 @@ public class DocumentReference: FHIRResource
 		}
 		if let indexed = self.indexed {
 			json["indexed"] = indexed.asJSON()
-		}
-		if let klass = self.klass {
-			json["class"] = klass.asJSON()
 		}
 		if let location = self.location {
 			json["location"] = location.asJSON()

@@ -2,7 +2,7 @@
 //  ClinicalAssessmentTests.swift
 //  ClinicalAssessmentTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -32,9 +32,10 @@ class ClinicalAssessmentTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.assessor!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.date!.description, "2014-12-06T22:33:00+11:00")
-		XCTAssertEqual(inst.description!, "This 26 yo male patient is brought into ER by ambulance after being involved in a motor vehicle accident")
+		XCTAssertEqual(inst.description_fhir!, "This 26 yo male patient is brought into ER by ambulance after being involved in a motor vehicle accident")
 		XCTAssertEqual(inst.diagnosis![0].item!.coding![0].code!, "850.0")
 		XCTAssertEqual(inst.diagnosis![0].item!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/sid/icd-9")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.investigations![0].code!.text!, "Initial Examination")
 		XCTAssertEqual(inst.investigations![0].item![0].display!, "deep laceration of the scalp (left temporo-occipital)")
 		XCTAssertEqual(inst.investigations![0].item![1].display!, "decreased level of consciousness")
@@ -58,9 +59,10 @@ class ClinicalAssessmentTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.assessor!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.date!.description, "2014-12-06T22:33:00+11:00")
-		XCTAssertEqual(inst.description!, "This 26 yo male patient is brought into ER by ambulance after being involved in a motor vehicle accident")
+		XCTAssertEqual(inst.description_fhir!, "This 26 yo male patient is brought into ER by ambulance after being involved in a motor vehicle accident")
 		XCTAssertEqual(inst.diagnosis![0].item!.coding![0].code!, "850.0")
 		XCTAssertEqual(inst.diagnosis![0].item!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/sid/icd-9")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.investigations![0].code!.text!, "Initial Examination")
 		XCTAssertEqual(inst.investigations![0].item![0].display!, "deep laceration of the scalp (left temporo-occipital)")
 		XCTAssertEqual(inst.investigations![0].item![1].display!, "decreased level of consciousness")
@@ -84,9 +86,10 @@ class ClinicalAssessmentTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.assessor!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.date!.description, "2014-12-06T22:33:00+11:00")
-		XCTAssertEqual(inst.description!, "This 26 yo male patient is brought into ER by ambulance after being involved in a motor vehicle accident")
+		XCTAssertEqual(inst.description_fhir!, "This 26 yo male patient is brought into ER by ambulance after being involved in a motor vehicle accident")
 		XCTAssertEqual(inst.diagnosis![0].item!.coding![0].code!, "850.0")
 		XCTAssertEqual(inst.diagnosis![0].item!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/sid/icd-9")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.investigations![0].code!.text!, "Initial Examination")
 		XCTAssertEqual(inst.investigations![0].item![0].display!, "deep laceration of the scalp (left temporo-occipital)")
 		XCTAssertEqual(inst.investigations![0].item![1].display!, "decreased level of consciousness")

@@ -2,7 +2,7 @@
 //  SubstanceTests.swift
 //  SubstanceTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -30,6 +30,7 @@ class SubstanceTests: FHIRModelTestCase
 	func testSubstance1_impl(json: JSONDictionary? = nil) -> Substance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "substance-example-f201-dust.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.type!.coding![0].code!, "406466009")
 		XCTAssertEqual(inst.type!.coding![0].display!, "House dust allergen")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -45,6 +46,7 @@ class SubstanceTests: FHIRModelTestCase
 	func testSubstance2_impl(json: JSONDictionary? = nil) -> Substance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "substance-example-f201-dust.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.type!.coding![0].code!, "406466009")
 		XCTAssertEqual(inst.type!.coding![0].display!, "House dust allergen")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -60,6 +62,7 @@ class SubstanceTests: FHIRModelTestCase
 	func testSubstance3_impl(json: JSONDictionary? = nil) -> Substance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "substance-example-f201-dust.json")
 		
+		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.type!.coding![0].code!, "406466009")
 		XCTAssertEqual(inst.type!.coding![0].display!, "House dust allergen")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -75,6 +78,7 @@ class SubstanceTests: FHIRModelTestCase
 	func testSubstance4_impl(json: JSONDictionary? = nil) -> Substance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "substance-example-f202-staphylococcus.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "f202")
 		XCTAssertEqual(inst.type!.coding![0].code!, "3092008")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Staphylococcus Aureus")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -90,6 +94,7 @@ class SubstanceTests: FHIRModelTestCase
 	func testSubstance5_impl(json: JSONDictionary? = nil) -> Substance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "substance-example-f202-staphylococcus.json")
 		
+		XCTAssertEqual(inst.id!, "f202")
 		XCTAssertEqual(inst.type!.coding![0].code!, "3092008")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Staphylococcus Aureus")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -105,6 +110,7 @@ class SubstanceTests: FHIRModelTestCase
 	func testSubstance6_impl(json: JSONDictionary? = nil) -> Substance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "substance-example-f203-potassium.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "f203")
 		XCTAssertEqual(inst.type!.coding![0].code!, "88480006")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Potassium")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -120,6 +126,7 @@ class SubstanceTests: FHIRModelTestCase
 	func testSubstance7_impl(json: JSONDictionary? = nil) -> Substance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "substance-example-f203-potassium.json")
 		
+		XCTAssertEqual(inst.id!, "f203")
 		XCTAssertEqual(inst.type!.coding![0].code!, "88480006")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Potassium")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -135,6 +142,7 @@ class SubstanceTests: FHIRModelTestCase
 	func testSubstance8_impl(json: JSONDictionary? = nil) -> Substance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "substance-example.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.type!.text!, "apitoxin")
 		
 		return inst
@@ -148,6 +156,7 @@ class SubstanceTests: FHIRModelTestCase
 	func testSubstance9_impl(json: JSONDictionary? = nil) -> Substance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "substance-example.json")
 		
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.type!.text!, "apitoxin")
 		
 		return inst

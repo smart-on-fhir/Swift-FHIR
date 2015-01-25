@@ -2,7 +2,7 @@
 //  ProcedureRequestTests.swift
 //  ProcedureRequestTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -30,6 +30,7 @@ class ProcedureRequestTests: FHIRModelTestCase
 	func testProcedureRequest1_impl(json: JSONDictionary? = nil) -> ProcedureRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedurerequest-example.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		XCTAssertEqual(inst.type!.coding![0].code!, "323418000")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Fix me up")
@@ -46,6 +47,7 @@ class ProcedureRequestTests: FHIRModelTestCase
 	func testProcedureRequest2_impl(json: JSONDictionary? = nil) -> ProcedureRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedurerequest-example.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		XCTAssertEqual(inst.type!.coding![0].code!, "323418000")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Fix me up")
@@ -62,6 +64,7 @@ class ProcedureRequestTests: FHIRModelTestCase
 	func testProcedureRequest3_impl(json: JSONDictionary? = nil) -> ProcedureRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedurerequest-example.json")
 		
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		XCTAssertEqual(inst.type!.coding![0].code!, "323418000")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Fix me up")

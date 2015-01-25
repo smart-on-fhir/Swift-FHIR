@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (valueset.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (valueset.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -33,7 +33,7 @@ public class ValueSet: FHIRResource
 	public var define: ValueSetDefine?
 	
 	/// Human language description of the value set
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Used when the value set is "expanded"
 	public var expansion: ValueSetExpansion?
@@ -94,7 +94,7 @@ public class ValueSet: FHIRResource
 				self.define = ValueSetDefine(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["expansion"] as? JSONDictionary {
 				self.expansion = ValueSetExpansion(json: val, owner: self)
@@ -150,8 +150,8 @@ public class ValueSet: FHIRResource
 		if let define = self.define {
 			json["define"] = define.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let expansion = self.expansion {
 			json["expansion"] = expansion.asJSON()
@@ -205,7 +205,7 @@ public class ValueSetCompose: FHIRElement
 	}
 	
 	/// Import the contents of another value set
-	public var importFrom: [NSURL]?
+	public var import_fhir: [NSURL]?
 	
 	/// Include one or more codes from a code system
 	public var include: [ValueSetComposeInclude]?
@@ -214,7 +214,7 @@ public class ValueSetCompose: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["import"] as? [String] {
-				self.importFrom = NSURL.from(val)
+				self.import_fhir = NSURL.from(val)
 			}
 			if let val = js["include"] as? [JSONDictionary] {
 				self.include = ValueSetComposeInclude.from(val, owner: self) as? [ValueSetComposeInclude]
@@ -225,9 +225,9 @@ public class ValueSetCompose: FHIRElement
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let importFrom = self.importFrom {
+		if let import_fhir = self.import_fhir {
 			var arr = [AnyObject]()
-			for val in importFrom {
+			for val in import_fhir {
 				arr.append(val.asJSON())
 			}
 			json["import"] = arr

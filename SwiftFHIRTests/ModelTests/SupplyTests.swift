@@ -2,7 +2,7 @@
 //  SupplyTests.swift
 //  SupplyTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -55,6 +55,7 @@ class SupplyTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dispense![0].type!.coding![0].valueSet!.display!, "supply-item")
 		XCTAssertEqual(inst.dispense![0].type!.coding![0].valueSet!.reference!, "http://hl7.org/fhir/vs/supply-item")
 		XCTAssertEqual(inst.dispense![0].whenHandedOver!.description, "2014-12-06T15:42:15-08:00")
+		XCTAssertEqual(inst.id!, "102")
 		XCTAssertEqual(inst.identifier!.assigner!.display!, "Good Health Clinic")
 		XCTAssertEqual(inst.identifier!.assigner!.reference!, "Organization/2.16.840.1.113883.19.5")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "OR-Supply-Application")
@@ -105,6 +106,7 @@ class SupplyTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dispense![0].type!.coding![0].valueSet!.display!, "supply-item")
 		XCTAssertEqual(inst.dispense![0].type!.coding![0].valueSet!.reference!, "http://hl7.org/fhir/vs/supply-item")
 		XCTAssertEqual(inst.dispense![0].whenHandedOver!.description, "2014-12-06T15:42:15-08:00")
+		XCTAssertEqual(inst.id!, "102")
 		XCTAssertEqual(inst.identifier!.assigner!.display!, "Good Health Clinic")
 		XCTAssertEqual(inst.identifier!.assigner!.reference!, "Organization/2.16.840.1.113883.19.5")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "OR-Supply-Application")
@@ -155,6 +157,7 @@ class SupplyTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dispense![0].type!.coding![0].valueSet!.display!, "supply-item")
 		XCTAssertEqual(inst.dispense![0].type!.coding![0].valueSet!.reference!, "http://hl7.org/fhir/vs/supply-item")
 		XCTAssertEqual(inst.dispense![0].whenHandedOver!.description, "2014-12-06T15:42:15-08:00")
+		XCTAssertEqual(inst.id!, "102")
 		XCTAssertEqual(inst.identifier!.assigner!.display!, "Good Health Clinic")
 		XCTAssertEqual(inst.identifier!.assigner!.reference!, "Organization/2.16.840.1.113883.19.5")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "OR-Supply-Application")

@@ -2,7 +2,7 @@
 //  VisionClaimTests.swift
 //  VisionClaimTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -37,6 +37,7 @@ class VisionClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "654321")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "660151")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happysight.com/claims")
 		XCTAssertEqual(inst.identifier![0].value!, "6612346")
 		XCTAssertEqual(inst.item![0].detail![0].net!.code!, "USD")
@@ -109,6 +110,7 @@ class VisionClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "654321")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "660151")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happysight.com/claims")
 		XCTAssertEqual(inst.identifier![0].value!, "6612346")
 		XCTAssertEqual(inst.item![0].detail![0].net!.code!, "USD")
@@ -181,6 +183,7 @@ class VisionClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "654321")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "660151")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happysight.com/claims")
 		XCTAssertEqual(inst.identifier![0].value!, "6612346")
 		XCTAssertEqual(inst.item![0].detail![0].net!.code!, "USD")
@@ -253,6 +256,7 @@ class VisionClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "654321")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "660150")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happysight.com/claims")
 		XCTAssertEqual(inst.identifier![0].value!, "6612345")
 		XCTAssertEqual(inst.item![0].net!.code!, "USD")
@@ -292,6 +296,7 @@ class VisionClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "654321")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "660150")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happysight.com/claims")
 		XCTAssertEqual(inst.identifier![0].value!, "6612345")
 		XCTAssertEqual(inst.item![0].net!.code!, "USD")

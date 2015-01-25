@@ -2,7 +2,7 @@
 //  RelatedPersonTests.swift
 //  RelatedPersonTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -31,6 +31,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "relatedperson-example-f001-sarah.canonical.json")
 		
 		XCTAssertEqual(inst.gender!, "female")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier![0].label!, "BSN")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
@@ -59,6 +60,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "relatedperson-example-f001-sarah.canonical.json")
 		
 		XCTAssertEqual(inst.gender!, "female")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier![0].label!, "BSN")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
@@ -87,6 +89,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "relatedperson-example-f001-sarah.json")
 		
 		XCTAssertEqual(inst.gender!, "female")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier![0].label!, "BSN")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
@@ -115,6 +118,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "relatedperson-example-f002-ariadne.canonical.json")
 		
 		XCTAssertEqual(inst.gender!, "female")
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.name!.text!, "Ariadne Bor-Jansma")
 		XCTAssertEqual(inst.name!.use!, "usual")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f201")
@@ -136,6 +140,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "relatedperson-example-f002-ariadne.json")
 		
 		XCTAssertEqual(inst.gender!, "female")
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.name!.text!, "Ariadne Bor-Jansma")
 		XCTAssertEqual(inst.name!.use!, "usual")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f201")
@@ -162,6 +167,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address!.state!, "Vic")
 		XCTAssertEqual(inst.address!.use!, "home")
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "peter")
 		XCTAssertEqual(inst.name!.family![0], "Chalmers")
 		XCTAssertEqual(inst.name!.given![0], "Peter")
 		XCTAssertEqual(inst.name!.given![1], "James")
@@ -193,6 +199,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address!.state!, "Vic")
 		XCTAssertEqual(inst.address!.use!, "home")
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "peter")
 		XCTAssertEqual(inst.name!.family![0], "Chalmers")
 		XCTAssertEqual(inst.name!.given![0], "Peter")
 		XCTAssertEqual(inst.name!.given![1], "James")
@@ -223,6 +230,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address!.line![0], "43, Place du Marché Sainte Catherine")
 		XCTAssertEqual(inst.address!.postalCode!, "75004")
 		XCTAssertEqual(inst.gender!, "female")
+		XCTAssertEqual(inst.id!, "benedicte")
 		XCTAssertEqual(inst.identifier![0].label!, "INSEE")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:1.2.250.1.61")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
@@ -256,6 +264,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address!.line![0], "43, Place du Marché Sainte Catherine")
 		XCTAssertEqual(inst.address!.postalCode!, "75004")
 		XCTAssertEqual(inst.gender!, "female")
+		XCTAssertEqual(inst.id!, "benedicte")
 		XCTAssertEqual(inst.identifier![0].label!, "INSEE")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:1.2.250.1.61")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")

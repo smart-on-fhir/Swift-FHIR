@@ -2,7 +2,7 @@
 //  OrderTests.swift
 //  OrderTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -32,6 +32,7 @@ class OrderTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.date!.description, "2013-03-05T12:00:00+01:00")
 		XCTAssertEqual(inst.detail![0].display!, "Consultation, not yet developed")
+		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.reasonCodeableConcept!.text!, "It concerns a one-off order for consultation in order to evaluate the stairs walking ability of Roel.")
 		XCTAssertEqual(inst.source!.reference!, "Practitioner/f201")
 		XCTAssertEqual(inst.subject!.display!, "Roel")
@@ -55,6 +56,7 @@ class OrderTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.date!.description, "2013-03-05T12:00:00+01:00")
 		XCTAssertEqual(inst.detail![0].display!, "Consultation, not yet developed")
+		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.reasonCodeableConcept!.text!, "It concerns a one-off order for consultation in order to evaluate the stairs walking ability of Roel.")
 		XCTAssertEqual(inst.source!.reference!, "Practitioner/f201")
 		XCTAssertEqual(inst.subject!.display!, "Roel")
@@ -78,6 +80,7 @@ class OrderTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.date!.description, "2013-03-05T12:00:00+01:00")
 		XCTAssertEqual(inst.detail![0].display!, "Consultation, not yet developed")
+		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.reasonCodeableConcept!.text!, "It concerns a one-off order for consultation in order to evaluate the stairs walking ability of Roel.")
 		XCTAssertEqual(inst.source!.reference!, "Practitioner/f201")
 		XCTAssertEqual(inst.subject!.display!, "Roel")
@@ -101,6 +104,7 @@ class OrderTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.date!.description, "2012-12-28T09:03:04+11:00")
 		XCTAssertEqual(inst.detail![0].reference!, "MedicationPrescription/example")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.reasonCodeableConcept!.text!, "Standard admission testing")
 		XCTAssertEqual(inst.source!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/pat2")
@@ -120,6 +124,7 @@ class OrderTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.date!.description, "2012-12-28T09:03:04+11:00")
 		XCTAssertEqual(inst.detail![0].reference!, "MedicationPrescription/example")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.reasonCodeableConcept!.text!, "Standard admission testing")
 		XCTAssertEqual(inst.source!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/pat2")

@@ -2,7 +2,7 @@
 //  ProvenanceTests.swift
 //  ProvenanceTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -42,6 +42,7 @@ class ProvenanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.agent![1].role!.system!.absoluteString!, "http://hl7.org/fhir/provenance-participant-role")
 		XCTAssertEqual(inst.agent![1].type!.code!, "document")
 		XCTAssertEqual(inst.agent![1].type!.system!.absoluteString!, "http://hl7.org/fhir/provenance-participant-type")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.location!.reference!, "Location/2")
 		XCTAssertEqual(inst.period!.start!.description, "2011-06-23")
 		XCTAssertEqual(inst.reason!.text!, "Editing the FHIR Specification")
@@ -71,6 +72,7 @@ class ProvenanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.agent![1].role!.system!.absoluteString!, "http://hl7.org/fhir/provenance-participant-role")
 		XCTAssertEqual(inst.agent![1].type!.code!, "document")
 		XCTAssertEqual(inst.agent![1].type!.system!.absoluteString!, "http://hl7.org/fhir/provenance-participant-type")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.location!.reference!, "Location/2")
 		XCTAssertEqual(inst.period!.start!.description, "2011-06-23")
 		XCTAssertEqual(inst.reason!.text!, "Editing the FHIR Specification")
@@ -100,6 +102,7 @@ class ProvenanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.agent![1].role!.system!.absoluteString!, "http://hl7.org/fhir/provenance-participant-role")
 		XCTAssertEqual(inst.agent![1].type!.code!, "document")
 		XCTAssertEqual(inst.agent![1].type!.system!.absoluteString!, "http://hl7.org/fhir/provenance-participant-type")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.location!.reference!, "Location/2")
 		XCTAssertEqual(inst.period!.start!.description, "2011-06-23")
 		XCTAssertEqual(inst.reason!.text!, "Editing the FHIR Specification")

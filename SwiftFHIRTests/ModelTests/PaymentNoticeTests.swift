@@ -2,7 +2,7 @@
 //  PaymentNoticeTests.swift
 //  PaymentNoticeTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -31,6 +31,7 @@ class PaymentNoticeTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "paymentnotice-example.canonical.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "77654")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://benefitsinc.com/paymentnotice")
 		XCTAssertEqual(inst.identifier![0].value!, "776543")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
@@ -50,6 +51,7 @@ class PaymentNoticeTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "paymentnotice-example.canonical.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "77654")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://benefitsinc.com/paymentnotice")
 		XCTAssertEqual(inst.identifier![0].value!, "776543")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
@@ -69,6 +71,7 @@ class PaymentNoticeTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "paymentnotice-example.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "77654")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://benefitsinc.com/paymentnotice")
 		XCTAssertEqual(inst.identifier![0].value!, "776543")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")

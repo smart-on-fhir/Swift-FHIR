@@ -2,7 +2,7 @@
 //  DataElementTests.swift
 //  DataElementTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -54,6 +54,7 @@ class DataElementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category![0].coding![9].display!, "CIAF")
 		XCTAssertEqual(inst.category![0].coding![9].system!.absoluteString!, "http://unknown/Demonstration%20Applications")
 		XCTAssertEqual(inst.definition!, "The code representing the gender of a person.")
+		XCTAssertEqual(inst.id!, "gender")
 		XCTAssertEqual(inst.identifier!.value!, "2179650")
 		XCTAssertEqual(inst.name!, "Gender Code")
 		XCTAssertEqual(inst.publisher!, "DCP")
@@ -97,6 +98,7 @@ class DataElementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category![0].coding![9].display!, "CIAF")
 		XCTAssertEqual(inst.category![0].coding![9].system!.absoluteString!, "http://unknown/Demonstration%20Applications")
 		XCTAssertEqual(inst.definition!, "The code representing the gender of a person.")
+		XCTAssertEqual(inst.id!, "gender")
 		XCTAssertEqual(inst.identifier!.value!, "2179650")
 		XCTAssertEqual(inst.name!, "Gender Code")
 		XCTAssertEqual(inst.publisher!, "DCP")
@@ -140,6 +142,7 @@ class DataElementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category![0].coding![9].display!, "CIAF")
 		XCTAssertEqual(inst.category![0].coding![9].system!.absoluteString!, "http://unknown/Demonstration%20Applications")
 		XCTAssertEqual(inst.definition!, "The code representing the gender of a person.")
+		XCTAssertEqual(inst.id!, "gender")
 		XCTAssertEqual(inst.identifier!.value!, "2179650")
 		XCTAssertEqual(inst.name!, "Gender Code")
 		XCTAssertEqual(inst.publisher!, "DCP")
@@ -162,6 +165,7 @@ class DataElementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.comments!, "Used to screen the integrity of the extrinsic and common pathways of coagulation and to monitor warfarin anticoagulation. ")
 		XCTAssertEqual(inst.definition!, "The PT test evaluates the extrinsic and common pathways of the coagulation cascade.")
 		XCTAssertEqual(inst.exampleDecimal!, NSDecimalNumber(string: "10.0"))
+		XCTAssertEqual(inst.id!, "prothrombin")
 		XCTAssertEqual(inst.identifier!.assigner!.display!, "Century Hospital Laboratory")
 		XCTAssertEqual(inst.identifier!.label!, "Prothrombin Time, PT")
 		XCTAssertEqual(inst.identifier!.period!.start!.description, "2011-05-19")
@@ -199,6 +203,7 @@ class DataElementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.comments!, "Used to screen the integrity of the extrinsic and common pathways of coagulation and to monitor warfarin anticoagulation. ")
 		XCTAssertEqual(inst.definition!, "The PT test evaluates the extrinsic and common pathways of the coagulation cascade.")
 		XCTAssertEqual(inst.exampleDecimal!, NSDecimalNumber(string: "10.0"))
+		XCTAssertEqual(inst.id!, "prothrombin")
 		XCTAssertEqual(inst.identifier!.assigner!.display!, "Century Hospital Laboratory")
 		XCTAssertEqual(inst.identifier!.label!, "Prothrombin Time, PT")
 		XCTAssertEqual(inst.identifier!.period!.start!.description, "2011-05-19")

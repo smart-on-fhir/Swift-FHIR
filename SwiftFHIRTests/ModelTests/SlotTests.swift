@@ -2,7 +2,7 @@
 //  SlotTests.swift
 //  SlotTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -33,6 +33,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.comment!, "Assessments should be performed before requesting appointments in this slot.")
 		XCTAssertEqual(inst.end!.description, "2013-12-25T09:15:00Z")
 		XCTAssertEqual(inst.freeBusyType!, "BUSY")
+		XCTAssertEqual(inst.id!, "1")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://example.org/identifiers/slots")
 		XCTAssertEqual(inst.identifier![0].value!, "123132")
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
@@ -56,6 +57,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.comment!, "Assessments should be performed before requesting appointments in this slot.")
 		XCTAssertEqual(inst.end!.description, "2013-12-25T09:15:00Z")
 		XCTAssertEqual(inst.freeBusyType!, "BUSY")
+		XCTAssertEqual(inst.id!, "1")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://example.org/identifiers/slots")
 		XCTAssertEqual(inst.identifier![0].value!, "123132")
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
@@ -79,6 +81,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.comment!, "Assessments should be performed before requesting appointments in this slot.")
 		XCTAssertEqual(inst.end!.description, "2013-12-25T09:15:00Z")
 		XCTAssertEqual(inst.freeBusyType!, "BUSY")
+		XCTAssertEqual(inst.id!, "1")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://example.org/identifiers/slots")
 		XCTAssertEqual(inst.identifier![0].value!, "123132")
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
@@ -102,6 +105,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.comment!, "Dr Careful is out of the office")
 		XCTAssertEqual(inst.end!.description, "2013-12-25T10:00:00Z")
 		XCTAssertEqual(inst.freeBusyType!, "BUSY-TENTATIVE")
+		XCTAssertEqual(inst.id!, "2")
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:45:00Z")
@@ -122,6 +126,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.comment!, "Dr Careful is out of the office")
 		XCTAssertEqual(inst.end!.description, "2013-12-25T10:00:00Z")
 		XCTAssertEqual(inst.freeBusyType!, "BUSY-TENTATIVE")
+		XCTAssertEqual(inst.id!, "2")
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:45:00Z")
@@ -142,6 +147,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.comment!, "Dr Careful is out of the office")
 		XCTAssertEqual(inst.end!.description, "2013-12-25T09:45:00Z")
 		XCTAssertEqual(inst.freeBusyType!, "BUSY-UNAVAILABLE")
+		XCTAssertEqual(inst.id!, "3")
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:30:00Z")
@@ -162,6 +168,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.comment!, "Dr Careful is out of the office")
 		XCTAssertEqual(inst.end!.description, "2013-12-25T09:45:00Z")
 		XCTAssertEqual(inst.freeBusyType!, "BUSY-UNAVAILABLE")
+		XCTAssertEqual(inst.id!, "3")
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:30:00Z")
@@ -182,6 +189,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.comment!, "Assessments should be performed before requesting appointments in this slot.")
 		XCTAssertEqual(inst.end!.description, "2013-12-25T09:30:00Z")
 		XCTAssertEqual(inst.freeBusyType!, "FREE")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:15:00Z")
@@ -202,6 +210,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.comment!, "Assessments should be performed before requesting appointments in this slot.")
 		XCTAssertEqual(inst.end!.description, "2013-12-25T09:30:00Z")
 		XCTAssertEqual(inst.freeBusyType!, "FREE")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:15:00Z")

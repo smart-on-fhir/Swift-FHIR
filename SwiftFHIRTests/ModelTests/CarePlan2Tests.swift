@@ -2,7 +2,7 @@
 //  CarePlan2Tests.swift
 //  CarePlan2Tests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -35,6 +35,7 @@ class CarePlan2Tests: FHIRModelTestCase
 		XCTAssertEqual(inst.concern![0].reference!, "#p1")
 		XCTAssertEqual(inst.goal![0].display!, "Target weight is 80 kg.")
 		XCTAssertEqual(inst.goal![0].reference!, "Goal/12345")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.participant![0].member!.display!, "Peter James Chalmers")
 		XCTAssertEqual(inst.participant![0].member!.reference!, "Patient/example")
 		XCTAssertEqual(inst.participant![0].role!.text!, "responsiblePerson")
@@ -62,6 +63,7 @@ class CarePlan2Tests: FHIRModelTestCase
 		XCTAssertEqual(inst.concern![0].reference!, "#p1")
 		XCTAssertEqual(inst.goal![0].display!, "Target weight is 80 kg.")
 		XCTAssertEqual(inst.goal![0].reference!, "Goal/12345")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.participant![0].member!.display!, "Peter James Chalmers")
 		XCTAssertEqual(inst.participant![0].member!.reference!, "Patient/example")
 		XCTAssertEqual(inst.participant![0].role!.text!, "responsiblePerson")
@@ -89,6 +91,7 @@ class CarePlan2Tests: FHIRModelTestCase
 		XCTAssertEqual(inst.concern![0].reference!, "#p1")
 		XCTAssertEqual(inst.goal![0].display!, "Target weight is 80 kg.")
 		XCTAssertEqual(inst.goal![0].reference!, "Goal/12345")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.participant![0].member!.display!, "Peter James Chalmers")
 		XCTAssertEqual(inst.participant![0].member!.reference!, "Patient/example")
 		XCTAssertEqual(inst.participant![0].role!.text!, "responsiblePerson")

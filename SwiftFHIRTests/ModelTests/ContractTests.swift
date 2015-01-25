@@ -2,7 +2,7 @@
 //  ContractTests.swift
 //  ContractTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -30,6 +30,7 @@ class ContractTests: FHIRModelTestCase
 	func testContract1_impl(json: JSONDictionary? = nil) -> Contract {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contract-example.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "C-123")
 		XCTAssertEqual(inst.issued!.description, "2014-08-17")
 		XCTAssertEqual(inst.subject![0].reference!, "http://www.somewhere.org/patient/12345")
 		XCTAssertEqual(inst.subtype![0].coding![0].code!, "disclosure-US")
@@ -48,6 +49,7 @@ class ContractTests: FHIRModelTestCase
 	func testContract2_impl(json: JSONDictionary? = nil) -> Contract {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contract-example.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "C-123")
 		XCTAssertEqual(inst.issued!.description, "2014-08-17")
 		XCTAssertEqual(inst.subject![0].reference!, "http://www.somewhere.org/patient/12345")
 		XCTAssertEqual(inst.subtype![0].coding![0].code!, "disclosure-US")
@@ -66,6 +68,7 @@ class ContractTests: FHIRModelTestCase
 	func testContract3_impl(json: JSONDictionary? = nil) -> Contract {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contract-example.json")
 		
+		XCTAssertEqual(inst.id!, "C-123")
 		XCTAssertEqual(inst.issued!.description, "2014-08-17")
 		XCTAssertEqual(inst.subject![0].reference!, "http://www.somewhere.org/patient/12345")
 		XCTAssertEqual(inst.subtype![0].coding![0].code!, "disclosure-US")

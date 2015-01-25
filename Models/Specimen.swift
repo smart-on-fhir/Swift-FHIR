@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (specimen.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (specimen.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -236,7 +236,7 @@ public class SpecimenContainer: FHIRElement
 	public var capacity: Quantity?
 	
 	/// Textual description of the container
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Id for the container
 	public var identifier: [Identifier]?
@@ -260,7 +260,7 @@ public class SpecimenContainer: FHIRElement
 				self.capacity = Quantity(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
@@ -286,8 +286,8 @@ public class SpecimenContainer: FHIRElement
 		if let capacity = self.capacity {
 			json["capacity"] = capacity.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
@@ -370,7 +370,7 @@ public class SpecimenTreatment: FHIRElement
 	public var additive: [Reference]?
 	
 	/// Textual description of procedure
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Indicates the treatment or processing step  applied to the specimen
 	public var procedure: CodeableConcept?
@@ -382,7 +382,7 @@ public class SpecimenTreatment: FHIRElement
 				self.additive = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["procedure"] as? JSONDictionary {
 				self.procedure = CodeableConcept(json: val, owner: self)
@@ -396,8 +396,8 @@ public class SpecimenTreatment: FHIRElement
 		if let additive = self.additive {
 			json["additive"] = Reference.asJSONArray(additive)
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let procedure = self.procedure {
 			json["procedure"] = procedure.asJSON()

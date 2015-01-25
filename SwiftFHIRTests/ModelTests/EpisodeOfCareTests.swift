@@ -2,7 +2,7 @@
 //  EpisodeOfCareTests.swift
 //  EpisodeOfCareTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -40,6 +40,7 @@ class EpisodeOfCareTests: FHIRModelTestCase
 		XCTAssertEqual(inst.careTeam![0].role![0].coding![0].display!, "Assessment Worker")
 		XCTAssertEqual(inst.careTeam![0].role![0].coding![0].system!.absoluteString!, "http://example.org/EpisodeOfCare/Role")
 		XCTAssertEqual(inst.currentStatus!, "active")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/hl7")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.period!.start!.description, "2014-09-01")
@@ -79,6 +80,7 @@ class EpisodeOfCareTests: FHIRModelTestCase
 		XCTAssertEqual(inst.careTeam![0].role![0].coding![0].display!, "Assessment Worker")
 		XCTAssertEqual(inst.careTeam![0].role![0].coding![0].system!.absoluteString!, "http://example.org/EpisodeOfCare/Role")
 		XCTAssertEqual(inst.currentStatus!, "active")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/hl7")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.period!.start!.description, "2014-09-01")
@@ -118,6 +120,7 @@ class EpisodeOfCareTests: FHIRModelTestCase
 		XCTAssertEqual(inst.careTeam![0].role![0].coding![0].display!, "Assessment Worker")
 		XCTAssertEqual(inst.careTeam![0].role![0].coding![0].system!.absoluteString!, "http://example.org/EpisodeOfCare/Role")
 		XCTAssertEqual(inst.currentStatus!, "active")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/hl7")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.period!.start!.description, "2014-09-01")

@@ -2,7 +2,7 @@
 //  MedicationStatementTests.swift
 //  MedicationStatementTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -39,6 +39,7 @@ class MedicationStatementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosage![0].schedule!.repeat!.frequency!, 1)
 		XCTAssertEqual(inst.dosage![0].schedule!.repeat!.units!, "d")
 		XCTAssertEqual(inst.effectiveDateTime!.description, "2010")
+		XCTAssertEqual(inst.id!, "tylenol")
 		XCTAssertEqual(inst.medication!.reference!, "#2")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.status!, "completed")
@@ -63,6 +64,7 @@ class MedicationStatementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosage![0].schedule!.repeat!.frequency!, 1)
 		XCTAssertEqual(inst.dosage![0].schedule!.repeat!.units!, "d")
 		XCTAssertEqual(inst.effectiveDateTime!.description, "2010")
+		XCTAssertEqual(inst.id!, "tylenol")
 		XCTAssertEqual(inst.medication!.reference!, "#2")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.status!, "completed")
@@ -87,6 +89,7 @@ class MedicationStatementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosage![0].schedule!.repeat!.frequency!, 1)
 		XCTAssertEqual(inst.dosage![0].schedule!.repeat!.units!, "d")
 		XCTAssertEqual(inst.effectiveDateTime!.description, "2010")
+		XCTAssertEqual(inst.id!, "tylenol")
 		XCTAssertEqual(inst.medication!.reference!, "#2")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.status!, "completed")
@@ -110,6 +113,7 @@ class MedicationStatementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosage![0].route!.coding![0].display!, "oral administration of treatment")
 		XCTAssertEqual(inst.dosage![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.effectiveDateTime!.description, "2012-06-01T14:30:00+14:00")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.status!, "completed")
@@ -133,6 +137,7 @@ class MedicationStatementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosage![0].route!.coding![0].display!, "oral administration of treatment")
 		XCTAssertEqual(inst.dosage![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.effectiveDateTime!.description, "2012-06-01T14:30:00+14:00")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.status!, "completed")

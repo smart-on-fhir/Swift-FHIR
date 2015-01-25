@@ -2,7 +2,7 @@
 //  BinaryTests.swift
 //  BinaryTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -32,6 +32,7 @@ class BinaryTests: FHIRModelTestCase
 		
 		// Don't know how to create unit test for "content!", which is a Base64Binary
 		XCTAssertEqual(inst.contentType!, "application/pdf")
+		XCTAssertEqual(inst.id!, "example")
 		
 		return inst
 	}
@@ -46,6 +47,7 @@ class BinaryTests: FHIRModelTestCase
 		
 		// Don't know how to create unit test for "content!", which is a Base64Binary
 		XCTAssertEqual(inst.contentType!, "application/pdf")
+		XCTAssertEqual(inst.id!, "example")
 		
 		return inst
 	}
@@ -60,6 +62,7 @@ class BinaryTests: FHIRModelTestCase
 		
 		// Don't know how to create unit test for "content!", which is a Base64Binary
 		XCTAssertEqual(inst.contentType!, "application/pdf")
+		XCTAssertEqual(inst.id!, "example")
 		
 		return inst
 	}

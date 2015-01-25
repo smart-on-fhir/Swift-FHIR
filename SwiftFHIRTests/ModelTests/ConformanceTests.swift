@@ -2,7 +2,7 @@
 //  ConformanceTests.swift
 //  ConformanceTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -32,13 +32,14 @@ class ConformanceTests: FHIRModelTestCase
 		
 		XCTAssertTrue(inst.acceptUnknown!)
 		XCTAssertEqual(inst.date!.description, "2012-01-04")
-		XCTAssertEqual(inst.description!, "This is the FHIR conformance statement for the main EHR at ACME for the private interface - it does not describe the public interface")
+		XCTAssertEqual(inst.description_fhir!, "This is the FHIR conformance statement for the main EHR at ACME for the private interface - it does not describe the public interface")
 		XCTAssertEqual(inst.document![0].documentation!, "Basic rules for all documents in the EHR system")
 		XCTAssertEqual(inst.document![0].mode!, "consumer")
 		XCTAssertEqual(inst.document![0].profile!.reference!, "http://fhir.hl7.org/base/Profilebc054d23-75e1-4dc6-aca5-838b6b1ac81d/_history/b5fdd9fc-b021-4ea1-911a-721a60663796")
 		XCTAssertEqual(inst.fhirVersion!, "0.07")
 		XCTAssertEqual(inst.format![0], "xml")
 		XCTAssertEqual(inst.format![1], "json")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier!, "68D043B5-9ECF-4559-A57A-396E0D452311")
 		XCTAssertEqual(inst.messaging![0].event![0].code!.code!, "admin-notify")
 		XCTAssertEqual(inst.messaging![0].event![0].code!.system!.absoluteString!, "http://hl7.org/fhir/message-type")
@@ -78,13 +79,14 @@ class ConformanceTests: FHIRModelTestCase
 		
 		XCTAssertTrue(inst.acceptUnknown!)
 		XCTAssertEqual(inst.date!.description, "2012-01-04")
-		XCTAssertEqual(inst.description!, "This is the FHIR conformance statement for the main EHR at ACME for the private interface - it does not describe the public interface")
+		XCTAssertEqual(inst.description_fhir!, "This is the FHIR conformance statement for the main EHR at ACME for the private interface - it does not describe the public interface")
 		XCTAssertEqual(inst.document![0].documentation!, "Basic rules for all documents in the EHR system")
 		XCTAssertEqual(inst.document![0].mode!, "consumer")
 		XCTAssertEqual(inst.document![0].profile!.reference!, "http://fhir.hl7.org/base/Profilebc054d23-75e1-4dc6-aca5-838b6b1ac81d/_history/b5fdd9fc-b021-4ea1-911a-721a60663796")
 		XCTAssertEqual(inst.fhirVersion!, "0.07")
 		XCTAssertEqual(inst.format![0], "xml")
 		XCTAssertEqual(inst.format![1], "json")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier!, "68D043B5-9ECF-4559-A57A-396E0D452311")
 		XCTAssertEqual(inst.messaging![0].event![0].code!.code!, "admin-notify")
 		XCTAssertEqual(inst.messaging![0].event![0].code!.system!.absoluteString!, "http://hl7.org/fhir/message-type")
@@ -124,13 +126,14 @@ class ConformanceTests: FHIRModelTestCase
 		
 		XCTAssertTrue(inst.acceptUnknown!)
 		XCTAssertEqual(inst.date!.description, "2012-01-04")
-		XCTAssertEqual(inst.description!, "This is the FHIR conformance statement for the main EHR at ACME for the private interface - it does not describe the public interface")
+		XCTAssertEqual(inst.description_fhir!, "This is the FHIR conformance statement for the main EHR at ACME for the private interface - it does not describe the public interface")
 		XCTAssertEqual(inst.document![0].documentation!, "Basic rules for all documents in the EHR system")
 		XCTAssertEqual(inst.document![0].mode!, "consumer")
 		XCTAssertEqual(inst.document![0].profile!.reference!, "http://fhir.hl7.org/base/Profilebc054d23-75e1-4dc6-aca5-838b6b1ac81d/_history/b5fdd9fc-b021-4ea1-911a-721a60663796")
 		XCTAssertEqual(inst.fhirVersion!, "0.07")
 		XCTAssertEqual(inst.format![0], "xml")
 		XCTAssertEqual(inst.format![1], "json")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier!, "68D043B5-9ECF-4559-A57A-396E0D452311")
 		XCTAssertEqual(inst.messaging![0].event![0].code!.code!, "admin-notify")
 		XCTAssertEqual(inst.messaging![0].event![0].code!.system!.absoluteString!, "http://hl7.org/fhir/message-type")
@@ -170,10 +173,11 @@ class ConformanceTests: FHIRModelTestCase
 		
 		XCTAssertFalse(inst.acceptUnknown!)
 		XCTAssertEqual(inst.date!.description, "2013-06-18")
-		XCTAssertEqual(inst.description!, "Prototype Conformance Statement for September 2013 Connectathon")
+		XCTAssertEqual(inst.description_fhir!, "Prototype Conformance Statement for September 2013 Connectathon")
 		XCTAssertEqual(inst.fhirVersion!, "0.09")
 		XCTAssertEqual(inst.format![0], "json")
 		XCTAssertEqual(inst.format![1], "xml")
+		XCTAssertEqual(inst.id!, "phr")
 		XCTAssertEqual(inst.name!, "PHR Template")
 		XCTAssertEqual(inst.publisher!, "FHIR Project")
 		XCTAssertEqual(inst.rest![0].documentation!, "Protoype server conformance statement for September 2013 Connectathon")
@@ -203,7 +207,7 @@ class ConformanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.rest![0].resource![3].searchParam![1].name!, "service")
 		XCTAssertEqual(inst.rest![0].resource![3].searchParam![1].type!, "token")
 		XCTAssertEqual(inst.rest![0].resource![3].type!, "DiagnosticReport")
-		XCTAssertEqual(inst.rest![0].security!.description!, "We recommend that PHR servers use standard OAuth using a          standard 3rd party provider. We are not testing the ability to provide an          OAuth authentication/authorization service itself, and nor is providing          any security required for the connectathon at all")
+		XCTAssertEqual(inst.rest![0].security!.description_fhir!, "We recommend that PHR servers use standard OAuth using a          standard 3rd party provider. We are not testing the ability to provide an          OAuth authentication/authorization service itself, and nor is providing          any security required for the connectathon at all")
 		XCTAssertEqual(inst.rest![0].security!.service![0].text!, "OAuth")
 		XCTAssertEqual(inst.telecom![0].system!, "url")
 		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")
@@ -221,10 +225,11 @@ class ConformanceTests: FHIRModelTestCase
 		
 		XCTAssertFalse(inst.acceptUnknown!)
 		XCTAssertEqual(inst.date!.description, "2013-06-18")
-		XCTAssertEqual(inst.description!, "Prototype Conformance Statement for September 2013 Connectathon")
+		XCTAssertEqual(inst.description_fhir!, "Prototype Conformance Statement for September 2013 Connectathon")
 		XCTAssertEqual(inst.fhirVersion!, "0.09")
 		XCTAssertEqual(inst.format![0], "json")
 		XCTAssertEqual(inst.format![1], "xml")
+		XCTAssertEqual(inst.id!, "phr")
 		XCTAssertEqual(inst.name!, "PHR Template")
 		XCTAssertEqual(inst.publisher!, "FHIR Project")
 		XCTAssertEqual(inst.rest![0].documentation!, "Protoype server conformance statement for September 2013 Connectathon")
@@ -254,7 +259,7 @@ class ConformanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.rest![0].resource![3].searchParam![1].name!, "service")
 		XCTAssertEqual(inst.rest![0].resource![3].searchParam![1].type!, "token")
 		XCTAssertEqual(inst.rest![0].resource![3].type!, "DiagnosticReport")
-		XCTAssertEqual(inst.rest![0].security!.description!, "We recommend that PHR servers use standard OAuth using a          standard 3rd party provider. We are not testing the ability to provide an          OAuth authentication/authorization service itself, and nor is providing          any security required for the connectathon at all")
+		XCTAssertEqual(inst.rest![0].security!.description_fhir!, "We recommend that PHR servers use standard OAuth using a          standard 3rd party provider. We are not testing the ability to provide an          OAuth authentication/authorization service itself, and nor is providing          any security required for the connectathon at all")
 		XCTAssertEqual(inst.rest![0].security!.service![0].text!, "OAuth")
 		XCTAssertEqual(inst.telecom![0].system!, "url")
 		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")

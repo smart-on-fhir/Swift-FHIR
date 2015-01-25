@@ -2,7 +2,7 @@
 //  NutritionOrderTests.swift
 //  NutritionOrderTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -43,6 +43,7 @@ class NutritionOrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].system!.absoluteString!, "http://hl7.org/fhir/diet")
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].valueSet!.display!, "PatientDiet")
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].valueSet!.reference!, "http://hl7.org/fhir/vs/encounter-diet")
+		XCTAssertEqual(inst.id!, "enteralbolus")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.acme.org/nutritionorders")
 		XCTAssertEqual(inst.identifier![0].value!, "123")
 		XCTAssertEqual(inst.item![0].enteralFormula!.additiveName!, "Acme Additive")
@@ -112,6 +113,7 @@ class NutritionOrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].system!.absoluteString!, "http://hl7.org/fhir/diet")
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].valueSet!.display!, "PatientDiet")
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].valueSet!.reference!, "http://hl7.org/fhir/vs/encounter-diet")
+		XCTAssertEqual(inst.id!, "enteralbolus")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.acme.org/nutritionorders")
 		XCTAssertEqual(inst.identifier![0].value!, "123")
 		XCTAssertEqual(inst.item![0].enteralFormula!.additiveName!, "Acme Additive")
@@ -181,6 +183,7 @@ class NutritionOrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].system!.absoluteString!, "http://hl7.org/fhir/diet")
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].valueSet!.display!, "PatientDiet")
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].valueSet!.reference!, "http://hl7.org/fhir/vs/encounter-diet")
+		XCTAssertEqual(inst.id!, "enteralbolus")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.acme.org/nutritionorders")
 		XCTAssertEqual(inst.identifier![0].value!, "123")
 		XCTAssertEqual(inst.item![0].enteralFormula!.additiveName!, "Acme Additive")
@@ -250,6 +253,7 @@ class NutritionOrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].system!.absoluteString!, "http://hl7.org/fhir/diet")
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].valueSet!.display!, "PatientDiet")
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].valueSet!.reference!, "http://hl7.org/fhir/vs/encounter-diet")
+		XCTAssertEqual(inst.id!, "enteralcontinuous")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.acme.org/nutritionorders")
 		XCTAssertEqual(inst.identifier![0].value!, "123")
 		XCTAssertEqual(inst.item![0].enteralFormula!.additiveName!, "Acme MCT Oil")
@@ -318,6 +322,7 @@ class NutritionOrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].system!.absoluteString!, "http://hl7.org/fhir/diet")
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].valueSet!.display!, "PatientDiet")
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].valueSet!.reference!, "http://hl7.org/fhir/vs/encounter-diet")
+		XCTAssertEqual(inst.id!, "enteralcontinuous")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.acme.org/nutritionorders")
 		XCTAssertEqual(inst.identifier![0].value!, "123")
 		XCTAssertEqual(inst.item![0].enteralFormula!.additiveName!, "Acme MCT Oil")
@@ -374,6 +379,7 @@ class NutritionOrderTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "nutritionorder-example.canonical.json")
 		
 		XCTAssertEqual(inst.dateTime!.description, "2014-09-17")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertTrue(inst.item![0].isInEffect!)
 		XCTAssertEqual(inst.item![0].oralDiet!.type![0].text!, "Low Calorie Diet")
 		XCTAssertEqual(inst.subject!.display!, "Paula Patient Chalmers")
@@ -390,6 +396,7 @@ class NutritionOrderTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "nutritionorder-example.json")
 		
 		XCTAssertEqual(inst.dateTime!.description, "2014-09-17")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertTrue(inst.item![0].isInEffect!)
 		XCTAssertEqual(inst.item![0].oralDiet!.type![0].text!, "Low Calorie Diet")
 		XCTAssertEqual(inst.subject!.display!, "Paula Patient Chalmers")
@@ -418,6 +425,7 @@ class NutritionOrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].system!.absoluteString!, "http://hl7.org/fhir/diet")
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].valueSet!.display!, "PatientDiet")
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].valueSet!.reference!, "http://hl7.org/fhir/vs/encounter-diet")
+		XCTAssertEqual(inst.id!, "infantenteral")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.acme.org/nutritionorders")
 		XCTAssertEqual(inst.identifier![0].value!, "123")
 		XCTAssertEqual(inst.item![0].enteralFormula!.additiveName!, "Acme High Carbohydrate Additive")
@@ -485,6 +493,7 @@ class NutritionOrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].system!.absoluteString!, "http://hl7.org/fhir/diet")
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].valueSet!.display!, "PatientDiet")
 		XCTAssertEqual(inst.foodPreferenceModifier![0].coding![0].valueSet!.reference!, "http://hl7.org/fhir/vs/encounter-diet")
+		XCTAssertEqual(inst.id!, "infantenteral")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.acme.org/nutritionorders")
 		XCTAssertEqual(inst.identifier![0].value!, "123")
 		XCTAssertEqual(inst.item![0].enteralFormula!.additiveName!, "Acme High Carbohydrate Additive")

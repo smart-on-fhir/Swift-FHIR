@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (ElementDefinition.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (ElementDefinition.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -1131,7 +1131,7 @@ public class ElementDefinitionBinding: FHIRElement
 	public var conformance: String?
 	
 	/// Human explanation of the value set
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Can additional codes be used?
 	public var isExtensible: Bool?
@@ -1162,7 +1162,7 @@ public class ElementDefinitionBinding: FHIRElement
 				self.conformance = val
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["isExtensible"] as? Bool {
 				self.isExtensible = val
@@ -1185,8 +1185,8 @@ public class ElementDefinitionBinding: FHIRElement
 		if let conformance = self.conformance {
 			json["conformance"] = conformance.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let isExtensible = self.isExtensible {
 			json["isExtensible"] = isExtensible.asJSON()
@@ -1362,7 +1362,7 @@ public class ElementDefinitionSlicing: FHIRElement
 	}
 	
 	/// Text description of how slicing works (or not)
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Element values that used to distinguish the slices
 	public var discriminator: [String]?
@@ -1384,7 +1384,7 @@ public class ElementDefinitionSlicing: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["discriminator"] as? [String] {
 				self.discriminator = val
@@ -1401,8 +1401,8 @@ public class ElementDefinitionSlicing: FHIRElement
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let discriminator = self.discriminator {
 			var arr = [AnyObject]()

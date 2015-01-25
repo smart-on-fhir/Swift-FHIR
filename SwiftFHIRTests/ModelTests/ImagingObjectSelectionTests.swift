@@ -2,7 +2,7 @@
 //  ImagingObjectSelectionTests.swift
 //  ImagingObjectSelectionTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -31,7 +31,8 @@ class ImagingObjectSelectionTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "imagingobjectselection-example.canonical.json")
 		
 		XCTAssertEqual(inst.authoringTime!.description, "2014-11-20T11:01:20-08:00")
-		XCTAssertEqual(inst.description!, "1 SC image (screen snapshot) and 2 CT images to share a chest CT exam")
+		XCTAssertEqual(inst.description_fhir!, "1 SC image (screen snapshot) and 2 CT images to share a chest CT exam")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/dicom")
 		XCTAssertEqual(inst.study![0].series![0].instance![0].retrieveUrl!.absoluteString!, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16749.2599092904")
 		XCTAssertEqual(inst.study![0].series![0].instance![0].sopClass!, "urn:oid:1.2.840.10008.5.1.4.1.1.7")
@@ -65,7 +66,8 @@ class ImagingObjectSelectionTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "imagingobjectselection-example.canonical.json")
 		
 		XCTAssertEqual(inst.authoringTime!.description, "2014-11-20T11:01:20-08:00")
-		XCTAssertEqual(inst.description!, "1 SC image (screen snapshot) and 2 CT images to share a chest CT exam")
+		XCTAssertEqual(inst.description_fhir!, "1 SC image (screen snapshot) and 2 CT images to share a chest CT exam")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/dicom")
 		XCTAssertEqual(inst.study![0].series![0].instance![0].retrieveUrl!.absoluteString!, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16749.2599092904")
 		XCTAssertEqual(inst.study![0].series![0].instance![0].sopClass!, "urn:oid:1.2.840.10008.5.1.4.1.1.7")
@@ -99,7 +101,8 @@ class ImagingObjectSelectionTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "imagingobjectselection-example.json")
 		
 		XCTAssertEqual(inst.authoringTime!.description, "2014-11-20T11:01:20-08:00")
-		XCTAssertEqual(inst.description!, "1 SC image (screen snapshot) and 2 CT images to share a chest CT exam")
+		XCTAssertEqual(inst.description_fhir!, "1 SC image (screen snapshot) and 2 CT images to share a chest CT exam")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/dicom")
 		XCTAssertEqual(inst.study![0].series![0].instance![0].retrieveUrl!.absoluteString!, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16749.2599092904")
 		XCTAssertEqual(inst.study![0].series![0].instance![0].sopClass!, "urn:oid:1.2.840.10008.5.1.4.1.1.7")

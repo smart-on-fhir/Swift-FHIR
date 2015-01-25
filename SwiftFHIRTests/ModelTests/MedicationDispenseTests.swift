@@ -2,7 +2,7 @@
 //  MedicationDispenseTests.swift
 //  MedicationDispenseTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -32,6 +32,7 @@ class MedicationDispenseTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.authorizingPrescription![0].reference!, "MedicationPrescription/example")
 		XCTAssertEqual(inst.dispenser!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.quantity!.code!, "ml")
@@ -58,6 +59,7 @@ class MedicationDispenseTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.authorizingPrescription![0].reference!, "MedicationPrescription/example")
 		XCTAssertEqual(inst.dispenser!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.quantity!.code!, "ml")
@@ -84,6 +86,7 @@ class MedicationDispenseTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.authorizingPrescription![0].reference!, "MedicationPrescription/example")
 		XCTAssertEqual(inst.dispenser!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.quantity!.code!, "ml")

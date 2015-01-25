@@ -2,7 +2,7 @@
 //  EncounterTests.swift
 //  EncounterTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -30,6 +30,7 @@ class EncounterTests: FHIRModelTestCase
 	func testEncounter1_impl(json: JSONDictionary? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-example-f001-heart.canonical.json")
 		
+		XCTAssertEqual(inst.class_fhir!, "outpatient")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].code!, "305956004")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].display!, "Referral by physician")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -40,6 +41,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.hospitalization!.preAdmissionIdentifier!.use!, "official")
 		XCTAssertEqual(inst.hospitalization!.preAdmissionIdentifier!.value!, "93042")
 		XCTAssertFalse(inst.hospitalization!.reAdmission!)
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.amc.nl/zorgportal/identifiers/visits")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "v1451")
@@ -75,6 +77,7 @@ class EncounterTests: FHIRModelTestCase
 	func testEncounter2_impl(json: JSONDictionary? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-example-f001-heart.canonical.json")
 		
+		XCTAssertEqual(inst.class_fhir!, "outpatient")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].code!, "305956004")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].display!, "Referral by physician")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -85,6 +88,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.hospitalization!.preAdmissionIdentifier!.use!, "official")
 		XCTAssertEqual(inst.hospitalization!.preAdmissionIdentifier!.value!, "93042")
 		XCTAssertFalse(inst.hospitalization!.reAdmission!)
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.amc.nl/zorgportal/identifiers/visits")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "v1451")
@@ -120,6 +124,7 @@ class EncounterTests: FHIRModelTestCase
 	func testEncounter3_impl(json: JSONDictionary? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-example-f001-heart.json")
 		
+		XCTAssertEqual(inst.class_fhir!, "outpatient")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].code!, "305956004")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].display!, "Referral by physician")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -130,6 +135,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.hospitalization!.preAdmissionIdentifier!.use!, "official")
 		XCTAssertEqual(inst.hospitalization!.preAdmissionIdentifier!.value!, "93042")
 		XCTAssertFalse(inst.hospitalization!.reAdmission!)
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.amc.nl/zorgportal/identifiers/visits")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "v1451")
@@ -165,6 +171,7 @@ class EncounterTests: FHIRModelTestCase
 	func testEncounter4_impl(json: JSONDictionary? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-example-f002-lung.canonical.json")
 		
+		XCTAssertEqual(inst.class_fhir!, "outpatient")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].code!, "305997006")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].display!, "Referral by radiologist")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -175,6 +182,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.hospitalization!.preAdmissionIdentifier!.use!, "official")
 		XCTAssertEqual(inst.hospitalization!.preAdmissionIdentifier!.value!, "98682")
 		XCTAssertFalse(inst.hospitalization!.reAdmission!)
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/encounters")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "v3251")
@@ -210,6 +218,7 @@ class EncounterTests: FHIRModelTestCase
 	func testEncounter5_impl(json: JSONDictionary? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-example-f002-lung.json")
 		
+		XCTAssertEqual(inst.class_fhir!, "outpatient")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].code!, "305997006")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].display!, "Referral by radiologist")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -220,6 +229,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.hospitalization!.preAdmissionIdentifier!.use!, "official")
 		XCTAssertEqual(inst.hospitalization!.preAdmissionIdentifier!.value!, "98682")
 		XCTAssertFalse(inst.hospitalization!.reAdmission!)
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/encounters")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "v3251")
@@ -255,6 +265,7 @@ class EncounterTests: FHIRModelTestCase
 	func testEncounter6_impl(json: JSONDictionary? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-example-f003-abscess.canonical.json")
 		
+		XCTAssertEqual(inst.class_fhir!, "outpatient")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].code!, "305956004")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].display!, "Referral by physician")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -265,6 +276,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.hospitalization!.preAdmissionIdentifier!.use!, "official")
 		XCTAssertEqual(inst.hospitalization!.preAdmissionIdentifier!.value!, "93042")
 		XCTAssertFalse(inst.hospitalization!.reAdmission!)
+		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/encounters")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "v6751")
@@ -299,6 +311,7 @@ class EncounterTests: FHIRModelTestCase
 	func testEncounter7_impl(json: JSONDictionary? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-example-f003-abscess.json")
 		
+		XCTAssertEqual(inst.class_fhir!, "outpatient")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].code!, "305956004")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].display!, "Referral by physician")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -309,6 +322,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.hospitalization!.preAdmissionIdentifier!.use!, "official")
 		XCTAssertEqual(inst.hospitalization!.preAdmissionIdentifier!.value!, "93042")
 		XCTAssertFalse(inst.hospitalization!.reAdmission!)
+		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/encounters")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "v6751")
@@ -343,6 +357,8 @@ class EncounterTests: FHIRModelTestCase
 	func testEncounter8_impl(json: JSONDictionary? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-example-f201-20130404.canonical.json")
 		
+		XCTAssertEqual(inst.class_fhir!, "outpatient")
+		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.identifier![0].label!, "Roel's encounter on April fourth 2013")
 		XCTAssertEqual(inst.identifier![0].use!, "temp")
 		XCTAssertEqual(inst.identifier![0].value!, "Encounter_Roel_20130404")
@@ -370,6 +386,8 @@ class EncounterTests: FHIRModelTestCase
 	func testEncounter9_impl(json: JSONDictionary? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-example-f201-20130404.json")
 		
+		XCTAssertEqual(inst.class_fhir!, "outpatient")
+		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.identifier![0].label!, "Roel's encounter on April fourth 2013")
 		XCTAssertEqual(inst.identifier![0].use!, "temp")
 		XCTAssertEqual(inst.identifier![0].value!, "Encounter_Roel_20130404")
@@ -397,6 +415,8 @@ class EncounterTests: FHIRModelTestCase
 	func testEncounter10_impl(json: JSONDictionary? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-example-f202-20130128.canonical.json")
 		
+		XCTAssertEqual(inst.class_fhir!, "outpatient")
+		XCTAssertEqual(inst.id!, "f202")
 		XCTAssertEqual(inst.identifier![0].label!, "Roel's encounter on January 28th, 2013")
 		XCTAssertEqual(inst.identifier![0].use!, "temp")
 		XCTAssertEqual(inst.identifier![0].value!, "Encounter_Roel_20130128")

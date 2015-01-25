@@ -2,7 +2,7 @@
 //  DiagnosticReportTests.swift
 //  DiagnosticReportTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -34,6 +34,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.codedDiagnosis![0].coding![0].display!, "At risk of osteoporotic fracture")
 		XCTAssertEqual(inst.codedDiagnosis![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2008-06-17")
+		XCTAssertEqual(inst.id!, "102")
 		XCTAssertEqual(inst.issued!.description, "2008-06-18T09:23:00+10:00")
 		XCTAssertEqual(inst.name!.coding![0].code!, "38269-7")
 		XCTAssertEqual(inst.name!.coding![0].system!.absoluteString!, "http://loinc.org")
@@ -59,6 +60,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.codedDiagnosis![0].coding![0].display!, "At risk of osteoporotic fracture")
 		XCTAssertEqual(inst.codedDiagnosis![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2008-06-17")
+		XCTAssertEqual(inst.id!, "102")
 		XCTAssertEqual(inst.issued!.description, "2008-06-18T09:23:00+10:00")
 		XCTAssertEqual(inst.name!.coding![0].code!, "38269-7")
 		XCTAssertEqual(inst.name!.coding![0].system!.absoluteString!, "http://loinc.org")
@@ -84,6 +86,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.codedDiagnosis![0].coding![0].display!, "At risk of osteoporotic fracture")
 		XCTAssertEqual(inst.codedDiagnosis![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2008-06-17")
+		XCTAssertEqual(inst.id!, "102")
 		XCTAssertEqual(inst.issued!.description, "2008-06-18T09:23:00+10:00")
 		XCTAssertEqual(inst.name!.coding![0].code!, "38269-7")
 		XCTAssertEqual(inst.name!.coding![0].system!.absoluteString!, "http://loinc.org")
@@ -107,6 +110,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.conclusion!, "Core lab")
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2013-04-02")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/reports")
 		XCTAssertEqual(inst.identifier!.use!, "official")
 		XCTAssertEqual(inst.identifier!.value!, "nr1239044")
@@ -144,6 +148,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.conclusion!, "Core lab")
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2013-04-02")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/reports")
 		XCTAssertEqual(inst.identifier!.use!, "official")
 		XCTAssertEqual(inst.identifier!.value!, "nr1239044")
@@ -184,6 +189,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.codedDiagnosis![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.conclusion!, "CT brains: large tumor sphenoid/clivus.")
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2012-12-01T12:00:00+01:00")
+		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.issued!.description, "2012-12-01T12:00:00+01:00")
 		XCTAssertEqual(inst.name!.coding![0].code!, "429858000")
 		XCTAssertEqual(inst.name!.coding![0].display!, "Computed tomography (CT) of head and neck")
@@ -216,6 +222,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.codedDiagnosis![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.conclusion!, "CT brains: large tumor sphenoid/clivus.")
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2012-12-01T12:00:00+01:00")
+		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.issued!.description, "2012-12-01T12:00:00+01:00")
 		XCTAssertEqual(inst.name!.coding![0].code!, "429858000")
 		XCTAssertEqual(inst.name!.coding![0].display!, "Computed tomography (CT) of head and neck")
@@ -248,6 +255,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.codedDiagnosis![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.conclusion!, "Blood culture tested positive on staphylococcus aureus")
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2013-03-11T03:45:00+01:00")
+		XCTAssertEqual(inst.id!, "f202")
 		XCTAssertEqual(inst.issued!.description, "2013-03-11T10:28:00+01:00")
 		XCTAssertEqual(inst.name!.coding![0].code!, "104177005")
 		XCTAssertEqual(inst.name!.coding![0].display!, "Blood culture for bacteria, including anaerobic screen")
@@ -282,6 +290,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.codedDiagnosis![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.conclusion!, "Blood culture tested positive on staphylococcus aureus")
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2013-03-11T03:45:00+01:00")
+		XCTAssertEqual(inst.id!, "f202")
 		XCTAssertEqual(inst.issued!.description, "2013-03-11T10:28:00+01:00")
 		XCTAssertEqual(inst.name!.coding![0].code!, "104177005")
 		XCTAssertEqual(inst.name!.coding![0].display!, "Blood culture for bacteria, including anaerobic screen")
@@ -312,6 +321,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "diagnosticreport-example-lipids.canonical.json")
 		
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2011-03-04T08:30:00+11:00")
+		XCTAssertEqual(inst.id!, "lipids")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://acme.com/lab/reports")
 		XCTAssertEqual(inst.identifier!.value!, "5234342")
 		XCTAssertEqual(inst.issued!.description, "2013-01-27T11:45:33+11:00")

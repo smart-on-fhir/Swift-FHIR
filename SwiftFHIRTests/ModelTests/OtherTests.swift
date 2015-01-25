@@ -2,7 +2,7 @@
 //  OtherTests.swift
 //  OtherTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -31,6 +31,7 @@ class OtherTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "other-example-narrative.canonical.json")
 		
 		XCTAssertEqual(inst.code!.text!, "Example Narrative Tester")
+		XCTAssertEqual(inst.id!, "other-example-narrative")
 		
 		return inst
 	}
@@ -44,6 +45,7 @@ class OtherTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "other-example-narrative.canonical.json")
 		
 		XCTAssertEqual(inst.code!.text!, "Example Narrative Tester")
+		XCTAssertEqual(inst.id!, "other-example-narrative")
 		
 		return inst
 	}
@@ -57,6 +59,7 @@ class OtherTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "other-example-narrative.json")
 		
 		XCTAssertEqual(inst.code!.text!, "Example Narrative Tester")
+		XCTAssertEqual(inst.id!, "other-example-narrative")
 		
 		return inst
 	}
@@ -71,6 +74,7 @@ class OtherTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "REFERRAL")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/other-resource-type")
+		XCTAssertEqual(inst.id!, "referral")
 		XCTAssertEqual(inst.subject!.display!, "Roel")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
 		
@@ -87,6 +91,7 @@ class OtherTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "REFERRAL")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/other-resource-type")
+		XCTAssertEqual(inst.id!, "referral")
 		XCTAssertEqual(inst.subject!.display!, "Roel")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
 		
@@ -103,6 +108,7 @@ class OtherTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "UMLCLASSMODEL")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://example.org/do-not-use/fhir-codes#resourceTypes")
+		XCTAssertEqual(inst.id!, "classModel")
 		
 		return inst
 	}
@@ -117,6 +123,7 @@ class OtherTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "UMLCLASSMODEL")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://example.org/do-not-use/fhir-codes#resourceTypes")
+		XCTAssertEqual(inst.id!, "classModel")
 		
 		return inst
 	}

@@ -2,7 +2,7 @@
 //  OrderResponseTests.swift
 //  OrderResponseTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -33,6 +33,7 @@ class OrderResponseTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!, "complete")
 		XCTAssertEqual(inst.date!.description, "2012-12-28T13:10:56+11:00")
 		XCTAssertEqual(inst.fulfillment![0].reference!, "DiagnosticReport/101")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.request!.reference!, "Order/example")
 		XCTAssertEqual(inst.who!.reference!, "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f")
 		
@@ -50,6 +51,7 @@ class OrderResponseTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!, "complete")
 		XCTAssertEqual(inst.date!.description, "2012-12-28T13:10:56+11:00")
 		XCTAssertEqual(inst.fulfillment![0].reference!, "DiagnosticReport/101")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.request!.reference!, "Order/example")
 		XCTAssertEqual(inst.who!.reference!, "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f")
 		
@@ -67,6 +69,7 @@ class OrderResponseTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!, "complete")
 		XCTAssertEqual(inst.date!.description, "2012-12-28T13:10:56+11:00")
 		XCTAssertEqual(inst.fulfillment![0].reference!, "DiagnosticReport/101")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.request!.reference!, "Order/example")
 		XCTAssertEqual(inst.who!.reference!, "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f")
 		

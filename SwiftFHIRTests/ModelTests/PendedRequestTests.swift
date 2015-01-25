@@ -2,7 +2,7 @@
 //  PendedRequestTests.swift
 //  PendedRequestTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -31,6 +31,7 @@ class PendedRequestTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "pendedrequest-example-eob.canonical.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "1115")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.phr.com/patient/12345/eobrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "115")
 		XCTAssertEqual(inst.include![0], "ExplanationOfBenefit")
@@ -47,6 +48,7 @@ class PendedRequestTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "pendedrequest-example-eob.canonical.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "1115")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.phr.com/patient/12345/eobrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "115")
 		XCTAssertEqual(inst.include![0], "ExplanationOfBenefit")
@@ -63,6 +65,7 @@ class PendedRequestTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "pendedrequest-example-eob.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "1115")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.phr.com/patient/12345/eobrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "115")
 		XCTAssertEqual(inst.include![0], "ExplanationOfBenefit")
@@ -81,6 +84,7 @@ class PendedRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.exclude![0], "SupportingDocumentation")
 		XCTAssertEqual(inst.exclude![1], "Reconciliation")
+		XCTAssertEqual(inst.id!, "1113")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/pendedrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "113")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
@@ -99,6 +103,7 @@ class PendedRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.exclude![0], "SupportingDocumentation")
 		XCTAssertEqual(inst.exclude![1], "Reconciliation")
+		XCTAssertEqual(inst.id!, "1113")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/pendedrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "113")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
@@ -115,6 +120,7 @@ class PendedRequestTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "pendedrequest-example-inclusive.canonical.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "1112")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/pendedrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "112")
 		XCTAssertEqual(inst.include![0], "Reconciliation")
@@ -132,6 +138,7 @@ class PendedRequestTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "pendedrequest-example-inclusive.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "1112")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/pendedrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "112")
 		XCTAssertEqual(inst.include![0], "Reconciliation")
@@ -149,6 +156,7 @@ class PendedRequestTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "pendedrequest-example-payrec.canonical.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "1114")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/pendedrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "114")
 		XCTAssertEqual(inst.include![0], "Reconciliation")
@@ -168,6 +176,7 @@ class PendedRequestTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "pendedrequest-example-payrec.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "1114")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/pendedrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "114")
 		XCTAssertEqual(inst.include![0], "Reconciliation")
@@ -187,6 +196,7 @@ class PendedRequestTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "pendedrequest-example-specific.canonical.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.id!, "1111")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/pendedrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "111")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")

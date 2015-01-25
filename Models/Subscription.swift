@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (subscription.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (subscription.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -207,7 +207,7 @@ public class SubscriptionTag: FHIRElement
 	}
 	
 	/// Tag description label
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// The scheme for the tag (kind of tag)
 	public var scheme: NSURL?
@@ -229,7 +229,7 @@ public class SubscriptionTag: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["scheme"] as? String {
 				self.scheme = NSURL(string: val)
@@ -243,8 +243,8 @@ public class SubscriptionTag: FHIRElement
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let scheme = self.scheme {
 			json["scheme"] = scheme.asJSON()

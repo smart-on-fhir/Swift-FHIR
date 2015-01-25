@@ -2,7 +2,7 @@
 //  ContraindicationTests.swift
 //  ContraindicationTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -30,6 +30,7 @@ class ContraindicationTests: FHIRModelTestCase
 	func testContraindication1_impl(json: JSONDictionary? = nil) -> Contraindication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contraindication-example-allergy.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "allergy")
 		
 		return inst
 	}
@@ -42,6 +43,7 @@ class ContraindicationTests: FHIRModelTestCase
 	func testContraindication2_impl(json: JSONDictionary? = nil) -> Contraindication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contraindication-example-allergy.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "allergy")
 		
 		return inst
 	}
@@ -54,6 +56,7 @@ class ContraindicationTests: FHIRModelTestCase
 	func testContraindication3_impl(json: JSONDictionary? = nil) -> Contraindication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contraindication-example-allergy.json")
 		
+		XCTAssertEqual(inst.id!, "allergy")
 		
 		return inst
 	}
@@ -72,6 +75,7 @@ class ContraindicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/ActCode")
 		XCTAssertEqual(inst.date!.description, "2013-05-08")
 		XCTAssertEqual(inst.detail!, "Similar test was performed within the past 14 days")
+		XCTAssertEqual(inst.id!, "duplicate")
 		XCTAssertEqual(inst.implicated![0].display!, "Chest CT - ordered May 8, 2013 by Dr. Adam Careful")
 		XCTAssertEqual(inst.implicated![0].reference!, "DiagnosticOrder/di")
 		XCTAssertEqual(inst.implicated![1].display!, "Image 1 from Series 3: CT Images on Patient MINT (MINT1234) taken at 1-Jan 2011 01:20 AM")
@@ -94,6 +98,7 @@ class ContraindicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/ActCode")
 		XCTAssertEqual(inst.date!.description, "2013-05-08")
 		XCTAssertEqual(inst.detail!, "Similar test was performed within the past 14 days")
+		XCTAssertEqual(inst.id!, "duplicate")
 		XCTAssertEqual(inst.implicated![0].display!, "Chest CT - ordered May 8, 2013 by Dr. Adam Careful")
 		XCTAssertEqual(inst.implicated![0].reference!, "DiagnosticOrder/di")
 		XCTAssertEqual(inst.implicated![1].display!, "Image 1 from Series 3: CT Images on Patient MINT (MINT1234) taken at 1-Jan 2011 01:20 AM")
@@ -110,6 +115,7 @@ class ContraindicationTests: FHIRModelTestCase
 	func testContraindication6_impl(json: JSONDictionary? = nil) -> Contraindication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contraindication-example-lab.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "lab")
 		
 		return inst
 	}
@@ -122,6 +128,7 @@ class ContraindicationTests: FHIRModelTestCase
 	func testContraindication7_impl(json: JSONDictionary? = nil) -> Contraindication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contraindication-example-lab.json")
 		
+		XCTAssertEqual(inst.id!, "lab")
 		
 		return inst
 	}
@@ -140,6 +147,7 @@ class ContraindicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/ActCode")
 		XCTAssertEqual(inst.date!.description, "2014-01-05")
 		XCTAssertEqual(inst.detail!, "Risk of internal bleeding.  Those who take acetaminophen along with the widely used blood-thinning drug warfarin may face the risk of serious internal bleeding. People on warfarin who take acetaminophen for at least seven days in a row should be closely watched for bleeding.")
+		XCTAssertEqual(inst.id!, "ddi")
 		XCTAssertEqual(inst.implicated![0].display!, "500 mg Acetaminophen tablet 1/day, PRN since 2010")
 		XCTAssertEqual(inst.implicated![0].reference!, "MedicationStatement/tylenol")
 		XCTAssertEqual(inst.implicated![1].display!, "Warfarin 1 MG TAB prescribed Jan. 5, 2014")
@@ -170,6 +178,7 @@ class ContraindicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/ActCode")
 		XCTAssertEqual(inst.date!.description, "2014-01-05")
 		XCTAssertEqual(inst.detail!, "Risk of internal bleeding.  Those who take acetaminophen along with the widely used blood-thinning drug warfarin may face the risk of serious internal bleeding. People on warfarin who take acetaminophen for at least seven days in a row should be closely watched for bleeding.")
+		XCTAssertEqual(inst.id!, "ddi")
 		XCTAssertEqual(inst.implicated![0].display!, "500 mg Acetaminophen tablet 1/day, PRN since 2010")
 		XCTAssertEqual(inst.implicated![0].reference!, "MedicationStatement/tylenol")
 		XCTAssertEqual(inst.implicated![1].display!, "Warfarin 1 MG TAB prescribed Jan. 5, 2014")

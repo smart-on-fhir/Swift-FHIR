@@ -2,7 +2,7 @@
 //  MedicationPrescriptionTests.swift
 //  MedicationPrescriptionTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -61,6 +61,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].text!, "3 tot 4 maal daags 1 flacon")
 		XCTAssertEqual(inst.encounter!.display!, "visit who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.bmc/portal/prescriptions")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "order9837293")
@@ -117,6 +118,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].text!, "3 tot 4 maal daags 1 flacon")
 		XCTAssertEqual(inst.encounter!.display!, "visit who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.bmc/portal/prescriptions")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "order9837293")
@@ -173,6 +175,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].text!, "3 tot 4 maal daags 1 flacon")
 		XCTAssertEqual(inst.encounter!.display!, "visit who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.bmc/portal/prescriptions")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "order9837293")
@@ -219,6 +222,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.encounter!.display!, "encounter who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.bmc.nl/portal/prescriptions")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "order9837343")
@@ -265,6 +269,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.encounter!.display!, "encounter who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.bmc.nl/portal/prescriptions")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "order9837343")
@@ -311,6 +316,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.encounter!.display!, "encounter who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f002")
+		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.bmc.nl/portal/prescriptions")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "order9845343")
@@ -357,6 +363,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.encounter!.display!, "encounter who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f002")
+		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.bmc.nl/portal/prescriptions")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "order9845343")
@@ -403,6 +410,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.encounter!.display!, "encounter who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
+		XCTAssertEqual(inst.id!, "f004")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.bmc.nl/portal/prescriptions")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "order9845343")
@@ -449,6 +457,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.encounter!.display!, "encounter who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
+		XCTAssertEqual(inst.id!, "f004")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.bmc.nl/portal/prescriptions")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "order9845343")
@@ -495,6 +504,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.encounter!.display!, "encounter who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
+		XCTAssertEqual(inst.id!, "f005")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.bmc.nl/portal/prescriptions")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "order9823343")

@@ -2,7 +2,7 @@
 //  DeviceMetricTests.swift
 //  DeviceMetricTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -31,6 +31,7 @@ class DeviceMetricTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicemetric-example.canonical.json")
 		
 		XCTAssertEqual(inst.category!, "measurement")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://goodcare.org/devicemetric/id")
 		XCTAssertEqual(inst.identifier!.value!, "345675")
 		XCTAssertEqual(inst.type!.coding![0].code!, "150456")
@@ -52,6 +53,7 @@ class DeviceMetricTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicemetric-example.canonical.json")
 		
 		XCTAssertEqual(inst.category!, "measurement")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://goodcare.org/devicemetric/id")
 		XCTAssertEqual(inst.identifier!.value!, "345675")
 		XCTAssertEqual(inst.type!.coding![0].code!, "150456")
@@ -73,6 +75,7 @@ class DeviceMetricTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicemetric-example.json")
 		
 		XCTAssertEqual(inst.category!, "measurement")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://goodcare.org/devicemetric/id")
 		XCTAssertEqual(inst.identifier!.value!, "345675")
 		XCTAssertEqual(inst.type!.coding![0].code!, "150456")

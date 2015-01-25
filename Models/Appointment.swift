@@ -2,7 +2,7 @@
 //  Appointment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (appointment.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (appointment.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -23,7 +23,7 @@ public class Appointment: FHIRResource
 	public var comment: String?
 	
 	/// The brief description of the appointment as would be shown on a subject line in a meeting request, or appointment list. Detailed or expanded information should be put in the comment field
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Date/Time that the appointment is to conclude
 	public var end: Instant?
@@ -87,7 +87,7 @@ public class Appointment: FHIRResource
 				self.comment = val
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["end"] as? String {
 				self.end = Instant(string: val)
@@ -137,8 +137,8 @@ public class Appointment: FHIRResource
 		if let comment = self.comment {
 			json["comment"] = comment.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let end = self.end {
 			json["end"] = end.asJSON()

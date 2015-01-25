@@ -2,7 +2,7 @@
 //  NutritionOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (nutritionorder.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (nutritionorder.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -437,7 +437,7 @@ public class NutritionOrderItemOralDietNutrients: FHIRElement
 	public var amountRange: Range?
 	
 	/// Type of nutrient that is being modified
-	public var mod: CodeableConcept?
+	public var modifier_fhir: CodeableConcept?
 	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
@@ -449,7 +449,7 @@ public class NutritionOrderItemOralDietNutrients: FHIRElement
 				self.amountRange = Range(json: val, owner: self)
 			}
 			if let val = js["modifier"] as? JSONDictionary {
-				self.mod = CodeableConcept(json: val, owner: self)
+				self.modifier_fhir = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -463,8 +463,8 @@ public class NutritionOrderItemOralDietNutrients: FHIRElement
 		if let amountRange = self.amountRange {
 			json["amountRange"] = amountRange.asJSON()
 		}
-		if let mod = self.mod {
-			json["modifier"] = mod.asJSON()
+		if let modifier_fhir = self.modifier_fhir {
+			json["modifier"] = modifier_fhir.asJSON()
 		}
 		
 		return json
@@ -488,7 +488,7 @@ public class NutritionOrderItemOralDietTexture: FHIRElement
 	public var foodType: CodeableConcept?
 	
 	/// Code to indicate how to alter the texture of the foods, e.g., pureed
-	public var mod: CodeableConcept?
+	public var modifier_fhir: CodeableConcept?
 	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
@@ -497,7 +497,7 @@ public class NutritionOrderItemOralDietTexture: FHIRElement
 				self.foodType = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["modifier"] as? JSONDictionary {
-				self.mod = CodeableConcept(json: val, owner: self)
+				self.modifier_fhir = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
@@ -508,8 +508,8 @@ public class NutritionOrderItemOralDietTexture: FHIRElement
 		if let foodType = self.foodType {
 			json["foodType"] = foodType.asJSON()
 		}
-		if let mod = self.mod {
-			json["modifier"] = mod.asJSON()
+		if let modifier_fhir = self.modifier_fhir {
+			json["modifier"] = modifier_fhir.asJSON()
 		}
 		
 		return json

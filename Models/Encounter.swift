@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (encounter.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (encounter.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -21,6 +21,9 @@ public class Encounter: FHIRResource
 		get { return "Encounter" }
 	}
 	
+	/// inpatient | outpatient | ambulatory | emergency +
+	public var class_fhir: String?
+	
 	/// An episode of care that this encounter should be recorded against
 	public var episodeOfCare: Reference?
 	
@@ -35,9 +38,6 @@ public class Encounter: FHIRResource
 	
 	/// Reason the encounter takes place (resource)
 	public var indication: [Reference]?
-	
-	/// inpatient | outpatient | ambulatory | emergency +
-	public var klass: String?
 	
 	/// Quantity of time the encounter lasted
 	public var length: Duration?
@@ -75,10 +75,10 @@ public class Encounter: FHIRResource
 	/// Specific type of encounter
 	public var type: [CodeableConcept]?
 	
-	public convenience init(klass: String?, status: String?) {
+	public convenience init(class_fhir: String?, status: String?) {
 		self.init(json: nil)
-		if nil != klass {
-			self.klass = klass
+		if nil != class_fhir {
+			self.class_fhir = class_fhir
 		}
 		if nil != status {
 			self.status = status
@@ -88,6 +88,9 @@ public class Encounter: FHIRResource
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["class"] as? String {
+				self.class_fhir = val
+			}
 			if let val = js["episodeOfCare"] as? JSONDictionary {
 				self.episodeOfCare = Reference(json: val, owner: self)
 			}
@@ -102,9 +105,6 @@ public class Encounter: FHIRResource
 			}
 			if let val = js["indication"] as? [JSONDictionary] {
 				self.indication = Reference.from(val, owner: self) as? [Reference]
-			}
-			if let val = js["class"] as? String {
-				self.klass = val
 			}
 			if let val = js["length"] as? JSONDictionary {
 				self.length = Duration(json: val, owner: self)
@@ -148,6 +148,9 @@ public class Encounter: FHIRResource
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
+		if let class_fhir = self.class_fhir {
+			json["class"] = class_fhir.asJSON()
+		}
 		if let episodeOfCare = self.episodeOfCare {
 			json["episodeOfCare"] = episodeOfCare.asJSON()
 		}
@@ -162,9 +165,6 @@ public class Encounter: FHIRResource
 		}
 		if let indication = self.indication {
 			json["indication"] = Reference.asJSONArray(indication)
-		}
-		if let klass = self.klass {
-			json["class"] = klass.asJSON()
 		}
 		if let length = self.length {
 			json["length"] = length.asJSON()

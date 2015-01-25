@@ -2,7 +2,7 @@
 //  MedicationTests.swift
 //  MedicationTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -33,6 +33,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].code!, "320442002")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Salbutamol+ipratropium bromide 100micrograms/20micrograms inhaler")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertTrue(inst.isBrand!)
 		XCTAssertEqual(inst.kind!, "product")
 		XCTAssertEqual(inst.name!, "Combivent")
@@ -61,6 +62,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].code!, "320442002")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Salbutamol+ipratropium bromide 100micrograms/20micrograms inhaler")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertTrue(inst.isBrand!)
 		XCTAssertEqual(inst.kind!, "product")
 		XCTAssertEqual(inst.name!, "Combivent")
@@ -89,6 +91,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].code!, "320442002")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Salbutamol+ipratropium bromide 100micrograms/20micrograms inhaler")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertTrue(inst.isBrand!)
 		XCTAssertEqual(inst.kind!, "product")
 		XCTAssertEqual(inst.name!, "Combivent")
@@ -117,6 +120,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].code!, "408036003")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Rosuvastatin 10mg tablet")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertTrue(inst.isBrand!)
 		XCTAssertEqual(inst.kind!, "product")
 		XCTAssertEqual(inst.name!, "Crestor")
@@ -138,6 +142,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].code!, "408036003")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Rosuvastatin 10mg tablet")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertTrue(inst.isBrand!)
 		XCTAssertEqual(inst.kind!, "product")
 		XCTAssertEqual(inst.name!, "Crestor")
@@ -159,6 +164,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].code!, "325267004")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Tolbutamide 500mg tablet")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertTrue(inst.isBrand!)
 		XCTAssertEqual(inst.kind!, "product")
 		XCTAssertEqual(inst.name!, "Tolbutamide")
@@ -180,6 +186,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].code!, "325267004")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Tolbutamide 500mg tablet")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertTrue(inst.isBrand!)
 		XCTAssertEqual(inst.kind!, "product")
 		XCTAssertEqual(inst.name!, "Tolbutamide")
@@ -201,6 +208,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].code!, "318475005")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Metoprolol tartrate 50mg tablet")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f004")
 		XCTAssertTrue(inst.isBrand!)
 		XCTAssertEqual(inst.kind!, "product")
 		XCTAssertEqual(inst.name!, "Metoprolol")
@@ -222,6 +230,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].code!, "318475005")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Metoprolol tartrate 50mg tablet")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f004")
 		XCTAssertTrue(inst.isBrand!)
 		XCTAssertEqual(inst.kind!, "product")
 		XCTAssertEqual(inst.name!, "Metoprolol")
@@ -243,6 +252,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].code!, "318851002")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Enalapril maleate 5mg tablet")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f005")
 		XCTAssertTrue(inst.isBrand!)
 		XCTAssertEqual(inst.kind!, "product")
 		XCTAssertEqual(inst.name!, "Enalapril")

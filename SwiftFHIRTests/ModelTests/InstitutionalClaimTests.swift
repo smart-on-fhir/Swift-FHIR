@@ -2,7 +2,7 @@
 //  InstitutionalClaimTests.swift
 //  InstitutionalClaimTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -37,6 +37,7 @@ class InstitutionalClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "654456")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "960150")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyhospital.com/claims")
 		XCTAssertEqual(inst.identifier![0].value!, "9612345")
 		XCTAssertEqual(inst.item![0].net!.code!, "USD")
@@ -76,6 +77,7 @@ class InstitutionalClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "654456")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "960150")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyhospital.com/claims")
 		XCTAssertEqual(inst.identifier![0].value!, "9612345")
 		XCTAssertEqual(inst.item![0].net!.code!, "USD")
@@ -115,6 +117,7 @@ class InstitutionalClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "654456")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "960150")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyhospital.com/claims")
 		XCTAssertEqual(inst.identifier![0].value!, "9612345")
 		XCTAssertEqual(inst.item![0].net!.code!, "USD")

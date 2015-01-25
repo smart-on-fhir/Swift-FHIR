@@ -2,7 +2,7 @@
 //  LocationTests.swift
 //  LocationTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -30,7 +30,8 @@ class LocationTests: FHIRModelTestCase
 	func testLocation1_impl(json: JSONDictionary? = nil) -> Location {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "location-example-room.canonical.json")
 		
-		XCTAssertEqual(inst.description!, "Old South Wing, Neuro Radiology Operation Room 1 on second floor")
+		XCTAssertEqual(inst.description_fhir!, "Old South Wing, Neuro Radiology Operation Room 1 on second floor")
+		XCTAssertEqual(inst.id!, "2")
 		XCTAssertEqual(inst.identifier![0].value!, "B1-S.F2.1.00")
 		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.name!, "South Wing Neuro OR 1")
@@ -56,7 +57,8 @@ class LocationTests: FHIRModelTestCase
 	func testLocation2_impl(json: JSONDictionary? = nil) -> Location {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "location-example-room.canonical.json")
 		
-		XCTAssertEqual(inst.description!, "Old South Wing, Neuro Radiology Operation Room 1 on second floor")
+		XCTAssertEqual(inst.description_fhir!, "Old South Wing, Neuro Radiology Operation Room 1 on second floor")
+		XCTAssertEqual(inst.id!, "2")
 		XCTAssertEqual(inst.identifier![0].value!, "B1-S.F2.1.00")
 		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.name!, "South Wing Neuro OR 1")
@@ -82,7 +84,8 @@ class LocationTests: FHIRModelTestCase
 	func testLocation3_impl(json: JSONDictionary? = nil) -> Location {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "location-example-room.json")
 		
-		XCTAssertEqual(inst.description!, "Old South Wing, Neuro Radiology Operation Room 1 on second floor")
+		XCTAssertEqual(inst.description_fhir!, "Old South Wing, Neuro Radiology Operation Room 1 on second floor")
+		XCTAssertEqual(inst.id!, "2")
 		XCTAssertEqual(inst.identifier![0].value!, "B1-S.F2.1.00")
 		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.name!, "South Wing Neuro OR 1")
@@ -113,7 +116,8 @@ class LocationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address!.line![0], "Galapagosweg 91, Building A")
 		XCTAssertEqual(inst.address!.postalCode!, "9105 PZ")
 		XCTAssertEqual(inst.address!.use!, "work")
-		XCTAssertEqual(inst.description!, "Second floor of the Old South Wing, formerly in use by Psychiatry")
+		XCTAssertEqual(inst.description_fhir!, "Second floor of the Old South Wing, formerly in use by Psychiatry")
+		XCTAssertEqual(inst.id!, "1")
 		XCTAssertEqual(inst.identifier![0].value!, "B1-S.F2")
 		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.name!, "South Wing, second floor")
@@ -152,7 +156,8 @@ class LocationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address!.line![0], "Galapagosweg 91, Building A")
 		XCTAssertEqual(inst.address!.postalCode!, "9105 PZ")
 		XCTAssertEqual(inst.address!.use!, "work")
-		XCTAssertEqual(inst.description!, "Second floor of the Old South Wing, formerly in use by Psychiatry")
+		XCTAssertEqual(inst.description_fhir!, "Second floor of the Old South Wing, formerly in use by Psychiatry")
+		XCTAssertEqual(inst.id!, "1")
 		XCTAssertEqual(inst.identifier![0].value!, "B1-S.F2")
 		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.name!, "South Wing, second floor")

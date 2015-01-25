@@ -2,7 +2,7 @@
 //  FamilyHistoryTests.swift
 //  FamilyHistoryTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -30,6 +30,7 @@ class FamilyHistoryTests: FHIRModelTestCase
 	func testFamilyHistory1_impl(json: JSONDictionary? = nil) -> FamilyHistory {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "familyhistory-example-mother.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "mother")
 		XCTAssertEqual(inst.patient!.display!, "Peter Patient")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/100")
 		XCTAssertEqual(inst.relation![0].condition![0].onsetAge!.system!.absoluteString!, "http://unitsofmeasure.org")
@@ -59,6 +60,7 @@ class FamilyHistoryTests: FHIRModelTestCase
 	func testFamilyHistory2_impl(json: JSONDictionary? = nil) -> FamilyHistory {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "familyhistory-example-mother.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "mother")
 		XCTAssertEqual(inst.patient!.display!, "Peter Patient")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/100")
 		XCTAssertEqual(inst.relation![0].condition![0].onsetAge!.system!.absoluteString!, "http://unitsofmeasure.org")
@@ -88,6 +90,7 @@ class FamilyHistoryTests: FHIRModelTestCase
 	func testFamilyHistory3_impl(json: JSONDictionary? = nil) -> FamilyHistory {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "familyhistory-example-mother.json")
 		
+		XCTAssertEqual(inst.id!, "mother")
 		XCTAssertEqual(inst.patient!.display!, "Peter Patient")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/100")
 		XCTAssertEqual(inst.relation![0].condition![0].onsetAge!.system!.absoluteString!, "http://unitsofmeasure.org")
@@ -118,6 +121,7 @@ class FamilyHistoryTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "familyhistory-example.canonical.json")
 		
 		XCTAssertEqual(inst.date!.description, "2011-03-18")
+		XCTAssertEqual(inst.id!, "father")
 		XCTAssertEqual(inst.patient!.display!, "Peter Patient")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.relation![0].condition![0].note!, "Was fishing at the time. At least he went doing someting he loved.")
@@ -143,6 +147,7 @@ class FamilyHistoryTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "familyhistory-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2011-03-18")
+		XCTAssertEqual(inst.id!, "father")
 		XCTAssertEqual(inst.patient!.display!, "Peter Patient")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.relation![0].condition![0].note!, "Was fishing at the time. At least he went doing someting he loved.")

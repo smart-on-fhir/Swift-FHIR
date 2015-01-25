@@ -2,7 +2,7 @@
 //  AppointmentResponseTests.swift
 //  AppointmentResponseTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -32,6 +32,7 @@ class AppointmentResponseTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.appointment!.display!, "Brian MRI results discussion")
 		XCTAssertEqual(inst.appointment!.reference!, "Appointment/example")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.individual![0].display!, "Peter James Chalmers")
 		XCTAssertEqual(inst.individual![0].reference!, "Patient/example")
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
@@ -52,6 +53,7 @@ class AppointmentResponseTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.appointment!.display!, "Brian MRI results discussion")
 		XCTAssertEqual(inst.appointment!.reference!, "Appointment/example")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.individual![0].display!, "Peter James Chalmers")
 		XCTAssertEqual(inst.individual![0].reference!, "Patient/example")
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
@@ -72,6 +74,7 @@ class AppointmentResponseTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.appointment!.display!, "Brian MRI results discussion")
 		XCTAssertEqual(inst.appointment!.reference!, "Appointment/example")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.individual![0].display!, "Peter James Chalmers")
 		XCTAssertEqual(inst.individual![0].reference!, "Patient/example")
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")

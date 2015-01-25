@@ -2,7 +2,7 @@
 //  FHIRElement+Factory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -272,6 +272,8 @@ extension FHIRElement
 				return FamilyHistoryRelation(json: json, owner: owner)
 			case "FamilyHistoryRelationCondition":
 				return FamilyHistoryRelationCondition(json: json, owner: owner)
+			case "Genetics":
+				return Genetics(json: json, owner: owner)
 			case "Goal":
 				return Goal(json: json, owner: owner)
 			case "Group":

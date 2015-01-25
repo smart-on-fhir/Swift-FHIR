@@ -2,7 +2,7 @@
 //  DataElement.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (dataelement.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (dataelement.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -475,7 +475,7 @@ public class DataElementBinding: FHIRElement
 	public var conformance: String?
 	
 	/// Human explanation of the value set
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Can additional codes be used?
 	public var isExtensible: Bool?
@@ -497,7 +497,7 @@ public class DataElementBinding: FHIRElement
 				self.conformance = val
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["isExtensible"] as? Bool {
 				self.isExtensible = val
@@ -514,8 +514,8 @@ public class DataElementBinding: FHIRElement
 		if let conformance = self.conformance {
 			json["conformance"] = conformance.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let isExtensible = self.isExtensible {
 			json["isExtensible"] = isExtensible.asJSON()

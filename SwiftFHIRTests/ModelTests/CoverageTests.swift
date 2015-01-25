@@ -2,7 +2,7 @@
 //  CoverageTests.swift
 //  CoverageTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -31,6 +31,7 @@ class CoverageTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "coverage-example-2.canonical.json")
 		
 		XCTAssertEqual(inst.dependent!, 1)
+		XCTAssertEqual(inst.id!, "7546D")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://xyz.com/codes/identifier")
 		XCTAssertEqual(inst.identifier![0].value!, "AB9876")
 		XCTAssertEqual(inst.issuer!.reference!, "Organization/2")
@@ -55,6 +56,7 @@ class CoverageTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "coverage-example-2.canonical.json")
 		
 		XCTAssertEqual(inst.dependent!, 1)
+		XCTAssertEqual(inst.id!, "7546D")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://xyz.com/codes/identifier")
 		XCTAssertEqual(inst.identifier![0].value!, "AB9876")
 		XCTAssertEqual(inst.issuer!.reference!, "Organization/2")
@@ -79,6 +81,7 @@ class CoverageTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "coverage-example-2.json")
 		
 		XCTAssertEqual(inst.dependent!, 1)
+		XCTAssertEqual(inst.id!, "7546D")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://xyz.com/codes/identifier")
 		XCTAssertEqual(inst.identifier![0].value!, "AB9876")
 		XCTAssertEqual(inst.issuer!.reference!, "Organization/2")
@@ -103,6 +106,7 @@ class CoverageTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "coverage-example.canonical.json")
 		
 		XCTAssertEqual(inst.dependent!, 0)
+		XCTAssertEqual(inst.id!, "9876B1")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://benefitsinc.com/certificate")
 		XCTAssertEqual(inst.identifier![0].value!, "12345")
 		XCTAssertEqual(inst.issuer!.reference!, "Organization/2")
@@ -128,6 +132,7 @@ class CoverageTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "coverage-example.json")
 		
 		XCTAssertEqual(inst.dependent!, 0)
+		XCTAssertEqual(inst.id!, "9876B1")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://benefitsinc.com/certificate")
 		XCTAssertEqual(inst.identifier![0].value!, "12345")
 		XCTAssertEqual(inst.issuer!.reference!, "Organization/2")

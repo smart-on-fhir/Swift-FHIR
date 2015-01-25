@@ -2,7 +2,7 @@
 //  DiagnosticOrderTests.swift
 //  DiagnosticOrderTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -32,6 +32,7 @@ class DiagnosticOrderTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.event![0].dateTime!.description, "2013-05-08T09:33:27+07:00")
 		XCTAssertEqual(inst.event![0].status!, "requested")
+		XCTAssertEqual(inst.id!, "di")
 		XCTAssertEqual(inst.item![0].code!.coding![0].code!, "24627-2")
 		XCTAssertEqual(inst.item![0].code!.coding![0].system!.absoluteString!, "http://loinc.org")
 		XCTAssertEqual(inst.item![0].code!.text!, "Chest CT")
@@ -53,6 +54,7 @@ class DiagnosticOrderTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.event![0].dateTime!.description, "2013-05-08T09:33:27+07:00")
 		XCTAssertEqual(inst.event![0].status!, "requested")
+		XCTAssertEqual(inst.id!, "di")
 		XCTAssertEqual(inst.item![0].code!.coding![0].code!, "24627-2")
 		XCTAssertEqual(inst.item![0].code!.coding![0].system!.absoluteString!, "http://loinc.org")
 		XCTAssertEqual(inst.item![0].code!.text!, "Chest CT")
@@ -74,6 +76,7 @@ class DiagnosticOrderTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.event![0].dateTime!.description, "2013-05-08T09:33:27+07:00")
 		XCTAssertEqual(inst.event![0].status!, "requested")
+		XCTAssertEqual(inst.id!, "di")
 		XCTAssertEqual(inst.item![0].code!.coding![0].code!, "24627-2")
 		XCTAssertEqual(inst.item![0].code!.coding![0].system!.absoluteString!, "http://loinc.org")
 		XCTAssertEqual(inst.item![0].code!.text!, "Chest CT")
@@ -95,6 +98,7 @@ class DiagnosticOrderTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.event![0].dateTime!.description, "2013-05-02T16:16:00-07:00")
 		XCTAssertEqual(inst.event![0].status!, "requested")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier![0].label!, "Placer")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:1.3.4.5.6.7")
 		XCTAssertEqual(inst.identifier![0].value!, "2345234234234")
@@ -118,6 +122,7 @@ class DiagnosticOrderTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.event![0].dateTime!.description, "2013-05-02T16:16:00-07:00")
 		XCTAssertEqual(inst.event![0].status!, "requested")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier![0].label!, "Placer")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:1.3.4.5.6.7")
 		XCTAssertEqual(inst.identifier![0].value!, "2345234234234")

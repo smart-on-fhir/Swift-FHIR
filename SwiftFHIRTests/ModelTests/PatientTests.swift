@@ -2,7 +2,7 @@
 //  PatientTests.swift
 //  PatientTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -36,6 +36,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![0].relationship![0].coding![0].code!, "owner")
 		XCTAssertEqual(inst.contact![0].relationship![0].coding![0].system!.absoluteString!, "http://hl7.org/fhir/patient-contact-relationship")
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "pat1")
 		XCTAssertEqual(inst.identifier![0].label!, "MRN")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:0.1.2.3.4.5.6.7")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
@@ -67,6 +68,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![0].relationship![0].coding![0].code!, "owner")
 		XCTAssertEqual(inst.contact![0].relationship![0].coding![0].system!.absoluteString!, "http://hl7.org/fhir/patient-contact-relationship")
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "pat1")
 		XCTAssertEqual(inst.identifier![0].label!, "MRN")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:0.1.2.3.4.5.6.7")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
@@ -98,6 +100,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![0].relationship![0].coding![0].code!, "owner")
 		XCTAssertEqual(inst.contact![0].relationship![0].coding![0].system!.absoluteString!, "http://hl7.org/fhir/patient-contact-relationship")
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "pat1")
 		XCTAssertEqual(inst.identifier![0].label!, "MRN")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:0.1.2.3.4.5.6.7")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
@@ -145,6 +148,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![0].telecom![0].use!, "work")
 		XCTAssertEqual(inst.contact![0].telecom![0].value!, "(03) 5555 6473")
 		XCTAssertEqual(inst.gender!, "female")
+		XCTAssertEqual(inst.id!, "animal")
 		XCTAssertEqual(inst.identifier![0].assigner!.display!, "Maroondah City Council")
 		XCTAssertEqual(inst.identifier![0].label!, "Dog Tag")
 		XCTAssertEqual(inst.identifier![0].period!.start!.description, "2010-05-31")
@@ -187,6 +191,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![0].telecom![0].use!, "work")
 		XCTAssertEqual(inst.contact![0].telecom![0].value!, "(03) 5555 6473")
 		XCTAssertEqual(inst.gender!, "female")
+		XCTAssertEqual(inst.id!, "animal")
 		XCTAssertEqual(inst.identifier![0].assigner!.display!, "Maroondah City Council")
 		XCTAssertEqual(inst.identifier![0].label!, "Dog Tag")
 		XCTAssertEqual(inst.identifier![0].period!.start!.description, "2010-05-31")
@@ -209,6 +214,7 @@ class PatientTests: FHIRModelTestCase
 		
 		XCTAssertTrue(inst.active!)
 		XCTAssertEqual(inst.gender!, "other")
+		XCTAssertEqual(inst.id!, "pat2")
 		XCTAssertEqual(inst.identifier![0].label!, "MRN")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:0.1.2.3.4.5.6.7")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
@@ -237,6 +243,7 @@ class PatientTests: FHIRModelTestCase
 		
 		XCTAssertTrue(inst.active!)
 		XCTAssertEqual(inst.gender!, "other")
+		XCTAssertEqual(inst.id!, "pat2")
 		XCTAssertEqual(inst.identifier![0].label!, "MRN")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:0.1.2.3.4.5.6.7")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
@@ -265,6 +272,7 @@ class PatientTests: FHIRModelTestCase
 		
 		XCTAssertTrue(inst.active!)
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "dicom")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://nema.org/examples/patients")
 		XCTAssertEqual(inst.identifier![0].value!, "MINT1234")
 		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/1")
@@ -283,6 +291,7 @@ class PatientTests: FHIRModelTestCase
 		
 		XCTAssertTrue(inst.active!)
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "dicom")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://nema.org/examples/patients")
 		XCTAssertEqual(inst.identifier![0].value!, "MINT1234")
 		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/1")
@@ -320,6 +329,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![0].telecom![0].value!, "0690383372")
 		XCTAssertFalse(inst.deceasedBoolean!)
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
 		XCTAssertEqual(inst.identifier![0].value!, "738472983")

@@ -2,7 +2,7 @@
 //  SubscriptionTests.swift
 //  SubscriptionTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -35,6 +35,7 @@ class SubscriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.channel!.type!, "rest-hook")
 		XCTAssertEqual(inst.channel!.url!.absoluteString!, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
 		XCTAssertEqual(inst.criteria!, "/Observation?name=http://loinc.org|1975-2")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.reason!, "Monitor new neonatal function")
 		XCTAssertEqual(inst.status!, "requested")
 		
@@ -54,6 +55,7 @@ class SubscriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.channel!.type!, "rest-hook")
 		XCTAssertEqual(inst.channel!.url!.absoluteString!, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
 		XCTAssertEqual(inst.criteria!, "/Observation?name=http://loinc.org|1975-2")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.reason!, "Monitor new neonatal function")
 		XCTAssertEqual(inst.status!, "requested")
 		
@@ -73,6 +75,7 @@ class SubscriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.channel!.type!, "rest-hook")
 		XCTAssertEqual(inst.channel!.url!.absoluteString!, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
 		XCTAssertEqual(inst.criteria!, "/Observation?name=http://loinc.org|1975-2")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.reason!, "Monitor new neonatal function")
 		XCTAssertEqual(inst.status!, "requested")
 		

@@ -2,7 +2,7 @@
 //  PersonTests.swift
 //  PersonTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -38,6 +38,7 @@ class PersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address![0].use!, "home")
 		XCTAssertEqual(inst.birthDate!.description, "1974-12-25")
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier![0].assigner!.display!, "Acme Healthcare")
 		XCTAssertEqual(inst.identifier![0].label!, "MRN")
 		XCTAssertEqual(inst.identifier![0].period!.start!.description, "2001-05-06")
@@ -74,6 +75,7 @@ class PersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address![0].use!, "home")
 		XCTAssertEqual(inst.birthDate!.description, "1974-12-25")
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier![0].assigner!.display!, "Acme Healthcare")
 		XCTAssertEqual(inst.identifier![0].label!, "MRN")
 		XCTAssertEqual(inst.identifier![0].period!.start!.description, "2001-05-06")
@@ -110,6 +112,7 @@ class PersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address![0].use!, "home")
 		XCTAssertEqual(inst.birthDate!.description, "1974-12-25")
 		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier![0].assigner!.display!, "Acme Healthcare")
 		XCTAssertEqual(inst.identifier![0].label!, "MRN")
 		XCTAssertEqual(inst.identifier![0].period!.start!.description, "2001-05-06")

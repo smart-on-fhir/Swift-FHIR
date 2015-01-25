@@ -2,7 +2,7 @@
 //  DocumentReferenceTests.swift
 //  DocumentReferenceTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -44,8 +44,9 @@ class DocumentReferenceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.context!.period!.end!.description, "2004-12-23T08:01:00+11:00")
 		XCTAssertEqual(inst.context!.period!.start!.description, "2004-12-23T08:00:00+11:00")
 		XCTAssertEqual(inst.created!.description, "2005-12-24T09:35:00+11:00")
-		XCTAssertEqual(inst.description!, "Physical")
+		XCTAssertEqual(inst.description_fhir!, "Physical")
 		// Don't know how to create unit test for "hash!", which is a Base64Binary
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.indexed!.description, "2005-12-24T09:43:41+11:00")
 		XCTAssertEqual(inst.location!.absoluteString!, "http://example.org/xds/mhd/Binary/07a6483f-732b-461e-86b6-edb665c45510")
 		XCTAssertEqual(inst.masterIdentifier!.system!.absoluteString!, "urn:ietf:rfc:3986")
@@ -84,8 +85,9 @@ class DocumentReferenceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.context!.period!.end!.description, "2004-12-23T08:01:00+11:00")
 		XCTAssertEqual(inst.context!.period!.start!.description, "2004-12-23T08:00:00+11:00")
 		XCTAssertEqual(inst.created!.description, "2005-12-24T09:35:00+11:00")
-		XCTAssertEqual(inst.description!, "Physical")
+		XCTAssertEqual(inst.description_fhir!, "Physical")
 		// Don't know how to create unit test for "hash!", which is a Base64Binary
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.indexed!.description, "2005-12-24T09:43:41+11:00")
 		XCTAssertEqual(inst.location!.absoluteString!, "http://example.org/xds/mhd/Binary/07a6483f-732b-461e-86b6-edb665c45510")
 		XCTAssertEqual(inst.masterIdentifier!.system!.absoluteString!, "urn:ietf:rfc:3986")
@@ -124,8 +126,9 @@ class DocumentReferenceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.context!.period!.end!.description, "2004-12-23T08:01:00+11:00")
 		XCTAssertEqual(inst.context!.period!.start!.description, "2004-12-23T08:00:00+11:00")
 		XCTAssertEqual(inst.created!.description, "2005-12-24T09:35:00+11:00")
-		XCTAssertEqual(inst.description!, "Physical")
+		XCTAssertEqual(inst.description_fhir!, "Physical")
 		// Don't know how to create unit test for "hash!", which is a Base64Binary
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.indexed!.description, "2005-12-24T09:43:41+11:00")
 		XCTAssertEqual(inst.location!.absoluteString!, "http://example.org/xds/mhd/Binary/07a6483f-732b-461e-86b6-edb665c45510")
 		XCTAssertEqual(inst.masterIdentifier!.system!.absoluteString!, "urn:ietf:rfc:3986")

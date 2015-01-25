@@ -2,7 +2,7 @@
 //  SecurityEvent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (securityevent.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (securityevent.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -185,7 +185,7 @@ public class SecurityEventObject: FHIRElement
 	}
 	
 	/// Descriptive text
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Additional Information about the Object
 	public var detail: [SecurityEventObjectDetail]?
@@ -218,7 +218,7 @@ public class SecurityEventObject: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["detail"] as? [JSONDictionary] {
 				self.detail = SecurityEventObjectDetail.from(val, owner: self) as? [SecurityEventObjectDetail]
@@ -253,8 +253,8 @@ public class SecurityEventObject: FHIRElement
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let detail = self.detail {
 			json["detail"] = SecurityEventObjectDetail.asJSONArray(detail)

@@ -2,7 +2,7 @@
 //  DeviceTests.swift
 //  DeviceTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -30,6 +30,7 @@ class DeviceTests: FHIRModelTestCase
 	func testDevice1_impl(json: JSONDictionary? = nil) -> Device {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "device-example-f001-feedingtube.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.type!.coding![0].code!, "25062003")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Feeding tube, device")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -45,6 +46,7 @@ class DeviceTests: FHIRModelTestCase
 	func testDevice2_impl(json: JSONDictionary? = nil) -> Device {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "device-example-f001-feedingtube.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.type!.coding![0].code!, "25062003")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Feeding tube, device")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -60,6 +62,7 @@ class DeviceTests: FHIRModelTestCase
 	func testDevice3_impl(json: JSONDictionary? = nil) -> Device {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "device-example-f001-feedingtube.json")
 		
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.type!.coding![0].code!, "25062003")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Feeding tube, device")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -75,6 +78,7 @@ class DeviceTests: FHIRModelTestCase
 	func testDevice4_impl(json: JSONDictionary? = nil) -> Device {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "device-example-ihe-pcd.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "ihe-pcd")
 		XCTAssertEqual(inst.identifier![0].label!, "serialNumber")
 		XCTAssertEqual(inst.identifier![0].value!, "AMID-123-456")
 		XCTAssertEqual(inst.lotNumber!, "12345")
@@ -93,6 +97,7 @@ class DeviceTests: FHIRModelTestCase
 	func testDevice5_impl(json: JSONDictionary? = nil) -> Device {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "device-example-ihe-pcd.json")
 		
+		XCTAssertEqual(inst.id!, "ihe-pcd")
 		XCTAssertEqual(inst.identifier![0].label!, "serialNumber")
 		XCTAssertEqual(inst.identifier![0].value!, "AMID-123-456")
 		XCTAssertEqual(inst.lotNumber!, "12345")
@@ -113,6 +118,7 @@ class DeviceTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.contact![0].system!, "phone")
 		XCTAssertEqual(inst.contact![0].value!, "ext 4352")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://goodcare.org/devices/id")
 		XCTAssertEqual(inst.identifier![0].value!, "345675")
 		XCTAssertEqual(inst.identifier![1].label!, "Serial Number")
@@ -138,6 +144,7 @@ class DeviceTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.contact![0].system!, "phone")
 		XCTAssertEqual(inst.contact![0].value!, "ext 4352")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://goodcare.org/devices/id")
 		XCTAssertEqual(inst.identifier![0].value!, "345675")
 		XCTAssertEqual(inst.identifier![1].label!, "Serial Number")

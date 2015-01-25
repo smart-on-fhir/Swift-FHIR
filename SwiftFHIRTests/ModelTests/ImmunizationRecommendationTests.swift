@@ -2,7 +2,7 @@
 //  ImmunizationRecommendationTests.swift
 //  ImmunizationRecommendationTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -30,6 +30,7 @@ class ImmunizationRecommendationTests: FHIRModelTestCase
 	func testImmunizationRecommendation1_impl(json: JSONDictionary? = nil) -> ImmunizationRecommendation {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "immunizationrecommendation-example.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.recommendation![0].date!.description, "2013-03-01")
 		XCTAssertEqual(inst.recommendation![0].forecastStatus!.coding![0].code!, "DUE")
 		XCTAssertEqual(inst.recommendation![0].forecastStatus!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/immunization-recommendation-status")
@@ -48,6 +49,7 @@ class ImmunizationRecommendationTests: FHIRModelTestCase
 	func testImmunizationRecommendation2_impl(json: JSONDictionary? = nil) -> ImmunizationRecommendation {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "immunizationrecommendation-example.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.recommendation![0].date!.description, "2013-03-01")
 		XCTAssertEqual(inst.recommendation![0].forecastStatus!.coding![0].code!, "DUE")
 		XCTAssertEqual(inst.recommendation![0].forecastStatus!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/immunization-recommendation-status")
@@ -66,6 +68,7 @@ class ImmunizationRecommendationTests: FHIRModelTestCase
 	func testImmunizationRecommendation3_impl(json: JSONDictionary? = nil) -> ImmunizationRecommendation {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "immunizationrecommendation-example.json")
 		
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.recommendation![0].date!.description, "2013-03-01")
 		XCTAssertEqual(inst.recommendation![0].forecastStatus!.coding![0].code!, "DUE")
 		XCTAssertEqual(inst.recommendation![0].forecastStatus!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/immunization-recommendation-status")

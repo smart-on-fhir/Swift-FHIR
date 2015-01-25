@@ -2,7 +2,7 @@
 //  HealthcareService.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (healthcareservice.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (healthcareservice.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -339,7 +339,7 @@ public class HealthcareServiceNotAvailableTime: FHIRElement
 	}
 	
 	/// The reason that can be presented to the user as to why this time is not available
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Service is not available (seasonally or for a public holiday) until this date
 	public var endDate: DateTime?
@@ -347,10 +347,10 @@ public class HealthcareServiceNotAvailableTime: FHIRElement
 	/// Service is not available (seasonally or for a public holiday) from this date
 	public var startDate: DateTime?
 	
-	public convenience init(description: String?) {
+	public convenience init(description_fhir: String?) {
 		self.init(json: nil)
-		if nil != description {
-			self.description = description
+		if nil != description_fhir {
+			self.description_fhir = description_fhir
 		}
 	}
 	
@@ -358,7 +358,7 @@ public class HealthcareServiceNotAvailableTime: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["endDate"] as? String {
 				self.endDate = DateTime(string: val)
@@ -372,8 +372,8 @@ public class HealthcareServiceNotAvailableTime: FHIRElement
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let endDate = self.endDate {
 			json["endDate"] = endDate.asJSON()

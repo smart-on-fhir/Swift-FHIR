@@ -2,7 +2,7 @@
 //  StatusResponseTests.swift
 //  StatusResponseTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -32,6 +32,7 @@ class StatusResponseTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.disposition!, "Specified coverage is currently in-force.")
+		XCTAssertEqual(inst.id!, "SR2500")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.BenefitsInc.com/fhir/statusresponse")
 		XCTAssertEqual(inst.identifier![0].value!, "881234")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/2")
@@ -53,6 +54,7 @@ class StatusResponseTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.disposition!, "Specified coverage is currently in-force.")
+		XCTAssertEqual(inst.id!, "SR2500")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.BenefitsInc.com/fhir/statusresponse")
 		XCTAssertEqual(inst.identifier![0].value!, "881234")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/2")
@@ -74,6 +76,7 @@ class StatusResponseTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.disposition!, "Specified coverage is currently in-force.")
+		XCTAssertEqual(inst.id!, "SR2500")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.BenefitsInc.com/fhir/statusresponse")
 		XCTAssertEqual(inst.identifier![0].value!, "881234")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/2")

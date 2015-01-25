@@ -2,7 +2,7 @@
 //  DeviceComponentTests.swift
 //  DeviceComponentTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -30,6 +30,7 @@ class DeviceComponentTests: FHIRModelTestCase
 	func testDeviceComponent1_impl(json: JSONDictionary? = nil) -> DeviceComponent {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicecomponent-example-prodspec.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "example-prodspec")
 		XCTAssertEqual(inst.identifier!.label!, "Handle ID")
 		XCTAssertEqual(inst.identifier!.value!, "0")
 		XCTAssertEqual(inst.languageCode!.coding![0].code!, "en-US")
@@ -66,6 +67,7 @@ class DeviceComponentTests: FHIRModelTestCase
 	func testDeviceComponent2_impl(json: JSONDictionary? = nil) -> DeviceComponent {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicecomponent-example-prodspec.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "example-prodspec")
 		XCTAssertEqual(inst.identifier!.label!, "Handle ID")
 		XCTAssertEqual(inst.identifier!.value!, "0")
 		XCTAssertEqual(inst.languageCode!.coding![0].code!, "en-US")
@@ -102,6 +104,7 @@ class DeviceComponentTests: FHIRModelTestCase
 	func testDeviceComponent3_impl(json: JSONDictionary? = nil) -> DeviceComponent {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicecomponent-example-prodspec.json")
 		
+		XCTAssertEqual(inst.id!, "example-prodspec")
 		XCTAssertEqual(inst.identifier!.label!, "Handle ID")
 		XCTAssertEqual(inst.identifier!.value!, "0")
 		XCTAssertEqual(inst.languageCode!.coding![0].code!, "en-US")
@@ -138,6 +141,7 @@ class DeviceComponentTests: FHIRModelTestCase
 	func testDeviceComponent4_impl(json: JSONDictionary? = nil) -> DeviceComponent {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicecomponent-example.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier!.label!, "Handle ID")
 		XCTAssertEqual(inst.identifier!.value!, "0")
 		XCTAssertEqual(inst.languageCode!.coding![0].code!, "en-US")
@@ -162,6 +166,7 @@ class DeviceComponentTests: FHIRModelTestCase
 	func testDeviceComponent5_impl(json: JSONDictionary? = nil) -> DeviceComponent {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicecomponent-example.json")
 		
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier!.label!, "Handle ID")
 		XCTAssertEqual(inst.identifier!.value!, "0")
 		XCTAssertEqual(inst.languageCode!.coding![0].code!, "en-US")

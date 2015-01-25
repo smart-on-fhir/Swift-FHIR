@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (immunization.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (immunization.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -326,7 +326,7 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 	public var authority: Reference?
 	
 	/// Details of vaccine protocol
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// What dose number within series?
 	public var doseSequence: Int?
@@ -366,7 +366,7 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 				self.authority = Reference(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["doseSequence"] as? Int {
 				self.doseSequence = val
@@ -395,8 +395,8 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 		if let authority = self.authority {
 			json["authority"] = authority.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let doseSequence = self.doseSequence {
 			json["doseSequence"] = doseSequence.asJSON()

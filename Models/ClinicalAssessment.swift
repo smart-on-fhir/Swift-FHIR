@@ -2,7 +2,7 @@
 //  ClinicalAssessment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (clinicalassessment.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (clinicalassessment.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -35,7 +35,7 @@ public class ClinicalAssessment: FHIRResource
 	public var date: DateTime?
 	
 	/// Why/how the assessment was performed
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Possible or likely diagnosis
 	public var diagnosis: [ClinicalAssessmentDiagnosis]?
@@ -59,7 +59,7 @@ public class ClinicalAssessment: FHIRResource
 	public var prognosis: String?
 	
 	/// Clinical Protocol followed
-	public var protokol: NSURL?
+	public var protocol_fhir: NSURL?
 	
 	/// A specific referral that lead to this assessment
 	public var referral: Reference?
@@ -102,7 +102,7 @@ public class ClinicalAssessment: FHIRResource
 				self.date = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["diagnosis"] as? [JSONDictionary] {
 				self.diagnosis = ClinicalAssessmentDiagnosis.from(val, owner: self) as? [ClinicalAssessmentDiagnosis]
@@ -126,7 +126,7 @@ public class ClinicalAssessment: FHIRResource
 				self.prognosis = val
 			}
 			if let val = js["protocol"] as? String {
-				self.protokol = NSURL(string: val)
+				self.protocol_fhir = NSURL(string: val)
 			}
 			if let val = js["referral"] as? JSONDictionary {
 				self.referral = Reference(json: val, owner: self)
@@ -158,8 +158,8 @@ public class ClinicalAssessment: FHIRResource
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let diagnosis = self.diagnosis {
 			json["diagnosis"] = ClinicalAssessmentDiagnosis.asJSONArray(diagnosis)
@@ -182,8 +182,8 @@ public class ClinicalAssessment: FHIRResource
 		if let prognosis = self.prognosis {
 			json["prognosis"] = prognosis.asJSON()
 		}
-		if let protokol = self.protokol {
-			json["protocol"] = protokol.asJSON()
+		if let protocol_fhir = self.protocol_fhir {
+			json["protocol"] = protocol_fhir.asJSON()
 		}
 		if let referral = self.referral {
 			json["referral"] = referral.asJSON()

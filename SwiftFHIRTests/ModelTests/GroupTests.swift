@@ -2,7 +2,7 @@
 //  GroupTests.swift
 //  GroupTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -38,6 +38,7 @@ class GroupTests: FHIRModelTestCase
 		XCTAssertFalse(inst.characteristic![1].exclude!)
 		XCTAssertEqual(inst.characteristic![1].valueCodeableConcept!.text!, "John Smith")
 		XCTAssertEqual(inst.code!.text!, "Horse")
+		XCTAssertEqual(inst.id!, "101")
 		XCTAssertEqual(inst.name!, "John's herd")
 		XCTAssertEqual(inst.quantity!, 25)
 		XCTAssertEqual(inst.type!, "animal")
@@ -61,6 +62,7 @@ class GroupTests: FHIRModelTestCase
 		XCTAssertFalse(inst.characteristic![1].exclude!)
 		XCTAssertEqual(inst.characteristic![1].valueCodeableConcept!.text!, "John Smith")
 		XCTAssertEqual(inst.code!.text!, "Horse")
+		XCTAssertEqual(inst.id!, "101")
 		XCTAssertEqual(inst.name!, "John's herd")
 		XCTAssertEqual(inst.quantity!, 25)
 		XCTAssertEqual(inst.type!, "animal")
@@ -84,6 +86,7 @@ class GroupTests: FHIRModelTestCase
 		XCTAssertFalse(inst.characteristic![1].exclude!)
 		XCTAssertEqual(inst.characteristic![1].valueCodeableConcept!.text!, "John Smith")
 		XCTAssertEqual(inst.code!.text!, "Horse")
+		XCTAssertEqual(inst.id!, "101")
 		XCTAssertEqual(inst.name!, "John's herd")
 		XCTAssertEqual(inst.quantity!, 25)
 		XCTAssertEqual(inst.type!, "animal")

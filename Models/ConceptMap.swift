@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (conceptmap.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (conceptmap.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -28,7 +28,7 @@ public class ConceptMap: FHIRResource
 	public var date: DateTime?
 	
 	/// Human language description of the concept map
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Mappings for a concept from the source set
 	public var element: [ConceptMapElement]?
@@ -95,7 +95,7 @@ public class ConceptMap: FHIRResource
 				self.date = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["element"] as? [JSONDictionary] {
 				self.element = ConceptMapElement.from(val, owner: self) as? [ConceptMapElement]
@@ -145,8 +145,8 @@ public class ConceptMap: FHIRResource
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let element = self.element {
 			json["element"] = ConceptMapElement.asJSONArray(element)

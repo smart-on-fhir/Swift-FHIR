@@ -2,7 +2,7 @@
 //  PaymentReconciliationTests.swift
 //  PaymentReconciliationTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -52,6 +52,7 @@ class PaymentReconciliationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.detail![2].type!.code!, "advance")
 		XCTAssertEqual(inst.detail![2].type!.system!.absoluteString!, "http://www.hl7.org/fhir/paymenttype")
 		XCTAssertEqual(inst.disposition!, "2014 August mid-month settlement.")
+		XCTAssertEqual(inst.id!, "ER2500")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.BenefitsInc.com/fhir/enrollmentresponse")
 		XCTAssertEqual(inst.identifier![0].value!, "781234")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/2")
@@ -95,6 +96,7 @@ class PaymentReconciliationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.detail![2].type!.code!, "advance")
 		XCTAssertEqual(inst.detail![2].type!.system!.absoluteString!, "http://www.hl7.org/fhir/paymenttype")
 		XCTAssertEqual(inst.disposition!, "2014 August mid-month settlement.")
+		XCTAssertEqual(inst.id!, "ER2500")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.BenefitsInc.com/fhir/enrollmentresponse")
 		XCTAssertEqual(inst.identifier![0].value!, "781234")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/2")
@@ -138,6 +140,7 @@ class PaymentReconciliationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.detail![2].type!.code!, "advance")
 		XCTAssertEqual(inst.detail![2].type!.system!.absoluteString!, "http://www.hl7.org/fhir/paymenttype")
 		XCTAssertEqual(inst.disposition!, "2014 August mid-month settlement.")
+		XCTAssertEqual(inst.id!, "ER2500")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.BenefitsInc.com/fhir/enrollmentresponse")
 		XCTAssertEqual(inst.identifier![0].value!, "781234")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/2")

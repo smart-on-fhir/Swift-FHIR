@@ -2,7 +2,7 @@
 //  AlertTests.swift
 //  AlertTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -36,6 +36,7 @@ class AlertTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].display!, "Admin")
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "local")
 		XCTAssertEqual(inst.category!.text!, "admin")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.note!, "patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
 		XCTAssertEqual(inst.status!, "active")
 		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
@@ -58,6 +59,7 @@ class AlertTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].display!, "Admin")
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "local")
 		XCTAssertEqual(inst.category!.text!, "admin")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.note!, "patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
 		XCTAssertEqual(inst.status!, "active")
 		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
@@ -80,6 +82,7 @@ class AlertTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].display!, "Admin")
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "local")
 		XCTAssertEqual(inst.category!.text!, "admin")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.note!, "patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
 		XCTAssertEqual(inst.status!, "active")
 		XCTAssertEqual(inst.subject!.display!, "Peter Patient")

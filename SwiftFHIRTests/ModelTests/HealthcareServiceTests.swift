@@ -2,7 +2,7 @@
 //  HealthcareServiceTests.swift
 //  HealthcareServiceTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -31,6 +31,7 @@ class HealthcareServiceTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "healthcareservice-example.canonical.json")
 		
 		XCTAssertEqual(inst.comment!, "Assessments should be performed before requesting appointments in this slot.")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.location!.reference!, "Location/1")
 		XCTAssertEqual(inst.serviceName!, "healthcare service")
 		
@@ -46,6 +47,7 @@ class HealthcareServiceTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "healthcareservice-example.canonical.json")
 		
 		XCTAssertEqual(inst.comment!, "Assessments should be performed before requesting appointments in this slot.")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.location!.reference!, "Location/1")
 		XCTAssertEqual(inst.serviceName!, "healthcare service")
 		
@@ -61,6 +63,7 @@ class HealthcareServiceTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "healthcareservice-example.json")
 		
 		XCTAssertEqual(inst.comment!, "Assessments should be performed before requesting appointments in this slot.")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.location!.reference!, "Location/1")
 		XCTAssertEqual(inst.serviceName!, "healthcare service")
 		

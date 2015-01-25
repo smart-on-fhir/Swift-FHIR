@@ -2,7 +2,7 @@
 //  ObservationTests.swift
 //  ObservationTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -35,6 +35,7 @@ class ObservationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.bodySite!.coding![0].code!, "308046002")
 		XCTAssertEqual(inst.bodySite!.coding![0].display!, "Superficial forearm vein")
 		XCTAssertEqual(inst.bodySite!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/observations")
 		XCTAssertEqual(inst.identifier!.use!, "official")
 		XCTAssertEqual(inst.identifier!.value!, "6323")
@@ -83,6 +84,7 @@ class ObservationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.bodySite!.coding![0].code!, "308046002")
 		XCTAssertEqual(inst.bodySite!.coding![0].display!, "Superficial forearm vein")
 		XCTAssertEqual(inst.bodySite!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/observations")
 		XCTAssertEqual(inst.identifier!.use!, "official")
 		XCTAssertEqual(inst.identifier!.value!, "6323")
@@ -131,6 +133,7 @@ class ObservationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.bodySite!.coding![0].code!, "308046002")
 		XCTAssertEqual(inst.bodySite!.coding![0].display!, "Superficial forearm vein")
 		XCTAssertEqual(inst.bodySite!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/observations")
 		XCTAssertEqual(inst.identifier!.use!, "official")
 		XCTAssertEqual(inst.identifier!.value!, "6323")
@@ -179,6 +182,7 @@ class ObservationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.bodySite!.coding![0].code!, "308046002")
 		XCTAssertEqual(inst.bodySite!.coding![0].display!, "Superficial forearm vein")
 		XCTAssertEqual(inst.bodySite!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/observations")
 		XCTAssertEqual(inst.identifier!.use!, "official")
 		XCTAssertEqual(inst.identifier!.value!, "6324")
@@ -227,6 +231,7 @@ class ObservationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.bodySite!.coding![0].code!, "308046002")
 		XCTAssertEqual(inst.bodySite!.coding![0].display!, "Superficial forearm vein")
 		XCTAssertEqual(inst.bodySite!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/observations")
 		XCTAssertEqual(inst.identifier!.use!, "official")
 		XCTAssertEqual(inst.identifier!.value!, "6324")
@@ -275,6 +280,7 @@ class ObservationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.bodySite!.coding![0].code!, "308046002")
 		XCTAssertEqual(inst.bodySite!.coding![0].display!, "Superficial forearm vein")
 		XCTAssertEqual(inst.bodySite!.coding![0].system!.absoluteString!, "http://snomed.info/id")
+		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/observations")
 		XCTAssertEqual(inst.identifier!.use!, "official")
 		XCTAssertEqual(inst.identifier!.value!, "6325")
@@ -323,6 +329,7 @@ class ObservationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.bodySite!.coding![0].code!, "308046002")
 		XCTAssertEqual(inst.bodySite!.coding![0].display!, "Superficial forearm vein")
 		XCTAssertEqual(inst.bodySite!.coding![0].system!.absoluteString!, "http://snomed.info/id")
+		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/observations")
 		XCTAssertEqual(inst.identifier!.use!, "official")
 		XCTAssertEqual(inst.identifier!.value!, "6325")
@@ -371,6 +378,7 @@ class ObservationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.bodySite!.coding![0].code!, "308046002")
 		XCTAssertEqual(inst.bodySite!.coding![0].display!, "Superficial forearm vein")
 		XCTAssertEqual(inst.bodySite!.coding![0].system!.absoluteString!, "http://snomed.info/id")
+		XCTAssertEqual(inst.id!, "f004")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/observations")
 		XCTAssertEqual(inst.identifier!.use!, "official")
 		XCTAssertEqual(inst.identifier!.value!, "6326")
@@ -419,6 +427,7 @@ class ObservationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.bodySite!.coding![0].code!, "308046002")
 		XCTAssertEqual(inst.bodySite!.coding![0].display!, "Superficial forearm vein")
 		XCTAssertEqual(inst.bodySite!.coding![0].system!.absoluteString!, "http://snomed.info/id")
+		XCTAssertEqual(inst.id!, "f004")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/observations")
 		XCTAssertEqual(inst.identifier!.use!, "official")
 		XCTAssertEqual(inst.identifier!.value!, "6326")
@@ -467,6 +476,7 @@ class ObservationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.bodySite!.coding![0].code!, "308046002")
 		XCTAssertEqual(inst.bodySite!.coding![0].display!, "Superficial forearm vein")
 		XCTAssertEqual(inst.bodySite!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f005")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/observations")
 		XCTAssertEqual(inst.identifier!.use!, "official")
 		XCTAssertEqual(inst.identifier!.value!, "6327")

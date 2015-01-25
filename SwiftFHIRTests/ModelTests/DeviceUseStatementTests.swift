@@ -2,7 +2,7 @@
 //  DeviceUseStatementTests.swift
 //  DeviceUseStatementTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -31,6 +31,7 @@ class DeviceUseStatementTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "deviceusestatement-example.canonical.json")
 		
 		XCTAssertEqual(inst.device!.reference!, "Device/example")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		
 		return inst
@@ -45,6 +46,7 @@ class DeviceUseStatementTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "deviceusestatement-example.canonical.json")
 		
 		XCTAssertEqual(inst.device!.reference!, "Device/example")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		
 		return inst
@@ -59,6 +61,7 @@ class DeviceUseStatementTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "deviceusestatement-example.json")
 		
 		XCTAssertEqual(inst.device!.reference!, "Device/example")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		
 		return inst

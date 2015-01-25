@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (imagingstudy.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (imagingstudy.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -33,7 +33,7 @@ public class ImagingStudy: FHIRResource
 	public var clinicalInformation: String?
 	
 	/// Institution-generated description (0008,1030)
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Other identifiers for the study (0020,0010)
 	public var identifier: [Identifier]?
@@ -103,7 +103,7 @@ public class ImagingStudy: FHIRResource
 				self.clinicalInformation = val
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
@@ -159,8 +159,8 @@ public class ImagingStudy: FHIRResource
 		if let clinicalInformation = self.clinicalInformation {
 			json["clinicalInformation"] = clinicalInformation.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
@@ -232,7 +232,7 @@ public class ImagingStudySeries: FHIRElement
 	public var dateTime: DateTime?
 	
 	/// A description of the series (0008,103E)
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// A single instance taken from a patient (image or other)
 	public var instance: [ImagingStudySeriesInstance]?
@@ -278,7 +278,7 @@ public class ImagingStudySeries: FHIRElement
 				self.dateTime = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["instance"] as? [JSONDictionary] {
 				self.instance = ImagingStudySeriesInstance.from(val, owner: self) as? [ImagingStudySeriesInstance]
@@ -313,8 +313,8 @@ public class ImagingStudySeries: FHIRElement
 		if let dateTime = self.dateTime {
 			json["dateTime"] = dateTime.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let instance = self.instance {
 			json["instance"] = ImagingStudySeriesInstance.asJSONArray(instance)

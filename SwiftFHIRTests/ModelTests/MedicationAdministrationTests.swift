@@ -2,7 +2,7 @@
 //  MedicationAdministrationTests.swift
 //  MedicationAdministrationTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -39,6 +39,7 @@ class MedicationAdministrationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosage!.route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.effectiveTimePeriod!.end!.description, "2012-06-01T14:30:00+01:00")
 		XCTAssertEqual(inst.effectiveTimePeriod!.start!.description, "2012-06-01T14:30:00+01:00")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.practitioner!.reference!, "Practitioner/example")
@@ -65,6 +66,7 @@ class MedicationAdministrationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosage!.route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.effectiveTimePeriod!.end!.description, "2012-06-01T14:30:00+01:00")
 		XCTAssertEqual(inst.effectiveTimePeriod!.start!.description, "2012-06-01T14:30:00+01:00")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.practitioner!.reference!, "Practitioner/example")
@@ -91,6 +93,7 @@ class MedicationAdministrationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosage!.route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.effectiveTimePeriod!.end!.description, "2012-06-01T14:30:00+01:00")
 		XCTAssertEqual(inst.effectiveTimePeriod!.start!.description, "2012-06-01T14:30:00+01:00")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.practitioner!.reference!, "Practitioner/example")

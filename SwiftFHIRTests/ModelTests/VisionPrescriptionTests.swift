@@ -2,7 +2,7 @@
 //  VisionPrescriptionTests.swift
 //  VisionPrescriptionTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -61,6 +61,7 @@ class VisionPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dispense![1].power!, NSDecimalNumber(string: "-2.75"))
 		XCTAssertEqual(inst.dispense![1].product!.code!, "contact")
 		XCTAssertEqual(inst.dispense![1].product!.system!.absoluteString!, "http://hl7.org/fhir/ex-visionprescriptionproduct")
+		XCTAssertEqual(inst.id!, "33124")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.happysight.com/prescription")
 		XCTAssertEqual(inst.identifier![0].value!, "15014")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
@@ -108,6 +109,7 @@ class VisionPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dispense![1].power!, NSDecimalNumber(string: "-2.75"))
 		XCTAssertEqual(inst.dispense![1].product!.code!, "contact")
 		XCTAssertEqual(inst.dispense![1].product!.system!.absoluteString!, "http://hl7.org/fhir/ex-visionprescriptionproduct")
+		XCTAssertEqual(inst.id!, "33124")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.happysight.com/prescription")
 		XCTAssertEqual(inst.identifier![0].value!, "15014")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
@@ -155,6 +157,7 @@ class VisionPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dispense![1].power!, NSDecimalNumber(string: "-2.75"))
 		XCTAssertEqual(inst.dispense![1].product!.code!, "contact")
 		XCTAssertEqual(inst.dispense![1].product!.system!.absoluteString!, "http://hl7.org/fhir/ex-visionprescriptionproduct")
+		XCTAssertEqual(inst.id!, "33124")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.happysight.com/prescription")
 		XCTAssertEqual(inst.identifier![0].value!, "15014")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
@@ -188,6 +191,7 @@ class VisionPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dispense![1].product!.code!, "lens")
 		XCTAssertEqual(inst.dispense![1].product!.system!.absoluteString!, "http://hl7.org/fhir/ex-visionprescriptionproduct")
 		XCTAssertEqual(inst.dispense![1].sphere!, NSDecimalNumber(string: "-1.0"))
+		XCTAssertEqual(inst.id!, "33123")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.happysight.com/prescription")
 		XCTAssertEqual(inst.identifier![0].value!, "15013")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
@@ -221,6 +225,7 @@ class VisionPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dispense![1].product!.code!, "lens")
 		XCTAssertEqual(inst.dispense![1].product!.system!.absoluteString!, "http://hl7.org/fhir/ex-visionprescriptionproduct")
 		XCTAssertEqual(inst.dispense![1].sphere!, NSDecimalNumber(string: "-1.0"))
+		XCTAssertEqual(inst.id!, "33123")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.happysight.com/prescription")
 		XCTAssertEqual(inst.identifier![0].value!, "15013")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")

@@ -2,7 +2,7 @@
 //  CommunicationRequestTests.swift
 //  CommunicationRequestTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -30,6 +30,7 @@ class CommunicationRequestTests: FHIRModelTestCase
 	func testCommunicationRequest1_impl(json: JSONDictionary? = nil) -> CommunicationRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "communicationrequest-example.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		
 		return inst
@@ -43,6 +44,7 @@ class CommunicationRequestTests: FHIRModelTestCase
 	func testCommunicationRequest2_impl(json: JSONDictionary? = nil) -> CommunicationRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "communicationrequest-example.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		
 		return inst
@@ -56,6 +58,7 @@ class CommunicationRequestTests: FHIRModelTestCase
 	func testCommunicationRequest3_impl(json: JSONDictionary? = nil) -> CommunicationRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "communicationrequest-example.json")
 		
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		
 		return inst

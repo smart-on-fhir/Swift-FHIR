@@ -2,7 +2,7 @@
 //  ImagingStudyTests.swift
 //  ImagingStudyTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -30,13 +30,14 @@ class ImagingStudyTests: FHIRModelTestCase
 	func testImagingStudy1_impl(json: JSONDictionary? = nil) -> ImagingStudy {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "imagingstudy-example.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.numberOfInstances!, 1)
 		XCTAssertEqual(inst.numberOfSeries!, 1)
 		XCTAssertEqual(inst.patient!.reference!, "Patient/dicom")
 		XCTAssertEqual(inst.series![0].bodySite!.code!, "67734004")
 		XCTAssertEqual(inst.series![0].bodySite!.display!, "Upper Trunk Structure")
 		XCTAssertEqual(inst.series![0].bodySite!.system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.series![0].description!, "CT Surview 180")
+		XCTAssertEqual(inst.series![0].description_fhir!, "CT Surview 180")
 		XCTAssertEqual(inst.series![0].instance![0].number!, 1)
 		XCTAssertEqual(inst.series![0].instance![0].sopclass!, "urn:oid:1.2.840.10008.5.1.4.1.1.2")
 		XCTAssertEqual(inst.series![0].instance![0].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092903")
@@ -59,13 +60,14 @@ class ImagingStudyTests: FHIRModelTestCase
 	func testImagingStudy2_impl(json: JSONDictionary? = nil) -> ImagingStudy {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "imagingstudy-example.canonical.json")
 		
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.numberOfInstances!, 1)
 		XCTAssertEqual(inst.numberOfSeries!, 1)
 		XCTAssertEqual(inst.patient!.reference!, "Patient/dicom")
 		XCTAssertEqual(inst.series![0].bodySite!.code!, "67734004")
 		XCTAssertEqual(inst.series![0].bodySite!.display!, "Upper Trunk Structure")
 		XCTAssertEqual(inst.series![0].bodySite!.system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.series![0].description!, "CT Surview 180")
+		XCTAssertEqual(inst.series![0].description_fhir!, "CT Surview 180")
 		XCTAssertEqual(inst.series![0].instance![0].number!, 1)
 		XCTAssertEqual(inst.series![0].instance![0].sopclass!, "urn:oid:1.2.840.10008.5.1.4.1.1.2")
 		XCTAssertEqual(inst.series![0].instance![0].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092903")
@@ -88,13 +90,14 @@ class ImagingStudyTests: FHIRModelTestCase
 	func testImagingStudy3_impl(json: JSONDictionary? = nil) -> ImagingStudy {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "imagingstudy-example.json")
 		
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.numberOfInstances!, 1)
 		XCTAssertEqual(inst.numberOfSeries!, 1)
 		XCTAssertEqual(inst.patient!.reference!, "Patient/dicom")
 		XCTAssertEqual(inst.series![0].bodySite!.code!, "67734004")
 		XCTAssertEqual(inst.series![0].bodySite!.display!, "Upper Trunk Structure")
 		XCTAssertEqual(inst.series![0].bodySite!.system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.series![0].description!, "CT Surview 180")
+		XCTAssertEqual(inst.series![0].description_fhir!, "CT Surview 180")
 		XCTAssertEqual(inst.series![0].instance![0].number!, 1)
 		XCTAssertEqual(inst.series![0].instance![0].sopclass!, "urn:oid:1.2.840.10008.5.1.4.1.1.2")
 		XCTAssertEqual(inst.series![0].instance![0].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092903")

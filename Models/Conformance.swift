@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (conformance.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (conformance.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -28,7 +28,7 @@ public class Conformance: FHIRResource
 	public var date: DateTime?
 	
 	/// Human description of the conformance statement
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Document definition
 	public var document: [ConformanceDocument]?
@@ -104,7 +104,7 @@ public class Conformance: FHIRResource
 				self.date = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["document"] as? [JSONDictionary] {
 				self.document = ConformanceDocument.from(val, owner: self) as? [ConformanceDocument]
@@ -163,8 +163,8 @@ public class Conformance: FHIRResource
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let document = self.document {
 			json["document"] = ConformanceDocument.asJSONArray(document)
@@ -297,15 +297,15 @@ public class ConformanceImplementation: FHIRElement
 	}
 	
 	/// Describes this specific instance
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Base URL for the installation
 	public var url: NSURL?
 	
-	public convenience init(description: String?) {
+	public convenience init(description_fhir: String?) {
 		self.init(json: nil)
-		if nil != description {
-			self.description = description
+		if nil != description_fhir {
+			self.description_fhir = description_fhir
 		}
 	}
 	
@@ -313,7 +313,7 @@ public class ConformanceImplementation: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["url"] as? String {
 				self.url = NSURL(string: val)
@@ -324,8 +324,8 @@ public class ConformanceImplementation: FHIRElement
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
@@ -432,7 +432,7 @@ public class ConformanceMessagingEvent: FHIRElement
 	public var mode: String?
 	
 	/// http | ftp | mllp +
-	public var protokol: [Coding]?
+	public var protocol_fhir: [Coding]?
 	
 	/// Profile that describes the request
 	public var request: Reference?
@@ -478,7 +478,7 @@ public class ConformanceMessagingEvent: FHIRElement
 				self.mode = val
 			}
 			if let val = js["protocol"] as? [JSONDictionary] {
-				self.protokol = Coding.from(val, owner: self) as? [Coding]
+				self.protocol_fhir = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["request"] as? JSONDictionary {
 				self.request = Reference(json: val, owner: self)
@@ -507,8 +507,8 @@ public class ConformanceMessagingEvent: FHIRElement
 		if let mode = self.mode {
 			json["mode"] = mode.asJSON()
 		}
-		if let protokol = self.protokol {
-			json["protocol"] = Coding.asJSONArray(protokol)
+		if let protocol_fhir = self.protocol_fhir {
+			json["protocol"] = Coding.asJSONArray(protocol_fhir)
 		}
 		if let request = self.request {
 			json["request"] = request.asJSON()
@@ -1007,7 +1007,7 @@ public class ConformanceRestSecurity: FHIRElement
 	public var cors: Bool?
 	
 	/// General description of how security works
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// OAuth | OAuth2 | NTLM | Basic | Kerberos
 	public var service: [CodeableConcept]?
@@ -1022,7 +1022,7 @@ public class ConformanceRestSecurity: FHIRElement
 				self.cors = val
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["service"] as? [JSONDictionary] {
 				self.service = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
@@ -1039,8 +1039,8 @@ public class ConformanceRestSecurity: FHIRElement
 		if let cors = self.cors {
 			json["cors"] = cors.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let service = self.service {
 			json["service"] = CodeableConcept.asJSONArray(service)

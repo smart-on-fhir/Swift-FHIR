@@ -2,7 +2,7 @@
 //  AppointmentTests.swift
 //  AppointmentTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -31,8 +31,9 @@ class AppointmentTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "appointment-example.canonical.json")
 		
 		XCTAssertEqual(inst.comment!, "Further expand on the results of the MRI and determine the next actions that may be appropriate.")
-		XCTAssertEqual(inst.description!, "Discussion on the results of your recent MRI")
+		XCTAssertEqual(inst.description_fhir!, "Discussion on the results of your recent MRI")
 		XCTAssertEqual(inst.end!.description, "2013-12-10T11:00:00Z")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.lastModifiedBy!.display!, "Dr Adam Careful")
 		XCTAssertEqual(inst.lastModifiedBy!.reference!, "Practitioner/example")
@@ -64,8 +65,9 @@ class AppointmentTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "appointment-example.canonical.json")
 		
 		XCTAssertEqual(inst.comment!, "Further expand on the results of the MRI and determine the next actions that may be appropriate.")
-		XCTAssertEqual(inst.description!, "Discussion on the results of your recent MRI")
+		XCTAssertEqual(inst.description_fhir!, "Discussion on the results of your recent MRI")
 		XCTAssertEqual(inst.end!.description, "2013-12-10T11:00:00Z")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.lastModifiedBy!.display!, "Dr Adam Careful")
 		XCTAssertEqual(inst.lastModifiedBy!.reference!, "Practitioner/example")
@@ -97,8 +99,9 @@ class AppointmentTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "appointment-example.json")
 		
 		XCTAssertEqual(inst.comment!, "Further expand on the results of the MRI and determine the next actions that may be appropriate.")
-		XCTAssertEqual(inst.description!, "Discussion on the results of your recent MRI")
+		XCTAssertEqual(inst.description_fhir!, "Discussion on the results of your recent MRI")
 		XCTAssertEqual(inst.end!.description, "2013-12-10T11:00:00Z")
+		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.lastModifiedBy!.display!, "Dr Adam Careful")
 		XCTAssertEqual(inst.lastModifiedBy!.reference!, "Practitioner/example")

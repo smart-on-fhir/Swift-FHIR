@@ -2,7 +2,7 @@
 //  OperationDefinition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (operationdefinition.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (operationdefinition.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -31,7 +31,7 @@ public class OperationDefinition: FHIRResource
 	public var date: DateTime?
 	
 	/// Natural language description of the operation
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// If for testing purposes, not real usage
 	public var experimental: Bool?
@@ -110,7 +110,7 @@ public class OperationDefinition: FHIRResource
 				self.date = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["experimental"] as? Bool {
 				self.experimental = val
@@ -169,8 +169,8 @@ public class OperationDefinition: FHIRResource
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let experimental = self.experimental {
 			json["experimental"] = experimental.asJSON()

@@ -2,7 +2,7 @@
 //  ProfessionalClaim.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (professionalclaim.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (professionalclaim.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -464,7 +464,7 @@ public class ProfessionalClaimItem: FHIRElement
 	public var factor: NSDecimalNumber?
 	
 	/// Service/Product billing modifiers
-	public var mod: [Coding]?
+	public var modifier_fhir: [Coding]?
 	
 	/// Total item cost
 	public var net: Money?
@@ -528,7 +528,7 @@ public class ProfessionalClaimItem: FHIRElement
 				self.factor = NSDecimalNumber(json: val)
 			}
 			if let val = js["modifier"] as? [JSONDictionary] {
-				self.mod = Coding.from(val, owner: self) as? [Coding]
+				self.modifier_fhir = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["net"] as? JSONDictionary {
 				self.net = Money(json: val, owner: self)
@@ -585,8 +585,8 @@ public class ProfessionalClaimItem: FHIRElement
 		if let factor = self.factor {
 			json["factor"] = factor.asJSON()
 		}
-		if let mod = self.mod {
-			json["modifier"] = Coding.asJSONArray(mod)
+		if let modifier_fhir = self.modifier_fhir {
+			json["modifier"] = Coding.asJSONArray(modifier_fhir)
 		}
 		if let net = self.net {
 			json["net"] = net.asJSON()

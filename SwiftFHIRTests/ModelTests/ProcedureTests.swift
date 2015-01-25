@@ -2,7 +2,7 @@
 //  ProcedureTests.swift
 //  ProcedureTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -36,6 +36,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.bodySite![0].text!, "Left forearm")
 		XCTAssertEqual(inst.date!.start!.description, "2014-02-03")
 		XCTAssertEqual(inst.followUp!, "Review in clinic")
+		XCTAssertEqual(inst.id!, "biopsy")
 		XCTAssertEqual(inst.indication![0].text!, "Dark lesion l) forearm. getting darker last 3 months.")
 		XCTAssertEqual(inst.notes!, "Standard Biopsy")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
@@ -63,6 +64,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.bodySite![0].text!, "Left forearm")
 		XCTAssertEqual(inst.date!.start!.description, "2014-02-03")
 		XCTAssertEqual(inst.followUp!, "Review in clinic")
+		XCTAssertEqual(inst.id!, "biopsy")
 		XCTAssertEqual(inst.indication![0].text!, "Dark lesion l) forearm. getting darker last 3 months.")
 		XCTAssertEqual(inst.notes!, "Standard Biopsy")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
@@ -90,6 +92,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.bodySite![0].text!, "Left forearm")
 		XCTAssertEqual(inst.date!.start!.description, "2014-02-03")
 		XCTAssertEqual(inst.followUp!, "Review in clinic")
+		XCTAssertEqual(inst.id!, "biopsy")
 		XCTAssertEqual(inst.indication![0].text!, "Dark lesion l) forearm. getting darker last 3 months.")
 		XCTAssertEqual(inst.notes!, "Standard Biopsy")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
@@ -118,6 +121,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.date!.start!.description, "2011-06-26")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
 		XCTAssertEqual(inst.followUp!, "described in care plan")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.indication![0].text!, "Heart valve disorder")
 		XCTAssertEqual(inst.outcome!, "improved blood circulation")
 		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")
@@ -152,6 +156,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.date!.start!.description, "2011-06-26")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
 		XCTAssertEqual(inst.followUp!, "described in care plan")
+		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.indication![0].text!, "Heart valve disorder")
 		XCTAssertEqual(inst.outcome!, "improved blood circulation")
 		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")
@@ -186,6 +191,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.date!.start!.description, "2013-03-08T09:00:10+01:00")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f002")
 		XCTAssertEqual(inst.followUp!, "described in care plan")
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.indication![0].text!, "Malignant tumor of lung")
 		XCTAssertEqual(inst.outcome!, "improved blood circulation")
 		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")
@@ -220,6 +226,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.date!.start!.description, "2013-03-08T09:00:10+01:00")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f002")
 		XCTAssertEqual(inst.followUp!, "described in care plan")
+		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.indication![0].text!, "Malignant tumor of lung")
 		XCTAssertEqual(inst.outcome!, "improved blood circulation")
 		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")
@@ -254,6 +261,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.date!.start!.description, "2013-03-24T09:30:10+01:00")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f003")
 		XCTAssertEqual(inst.followUp!, "described in care plan")
+		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertEqual(inst.indication![0].text!, "abcess in retropharyngeal area")
 		XCTAssertEqual(inst.outcome!, "removal of the retropharyngeal abscess")
 		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")
@@ -288,6 +296,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.date!.start!.description, "2013-03-24T09:30:10+01:00")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f003")
 		XCTAssertEqual(inst.followUp!, "described in care plan")
+		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertEqual(inst.indication![0].text!, "abcess in retropharyngeal area")
 		XCTAssertEqual(inst.outcome!, "removal of the retropharyngeal abscess")
 		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")
@@ -322,6 +331,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.date!.start!.description, "2013-03-22T09:30:10+01:00")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f003")
 		XCTAssertEqual(inst.followUp!, "described in care plan")
+		XCTAssertEqual(inst.id!, "f004")
 		XCTAssertEqual(inst.indication![0].text!, "ensure breathing during surgery")
 		XCTAssertEqual(inst.outcome!, "removal of the retropharyngeal abscess")
 		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")

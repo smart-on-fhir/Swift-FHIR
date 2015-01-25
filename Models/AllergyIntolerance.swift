@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (allergyintolerance.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (allergyintolerance.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -172,7 +172,7 @@ public class AllergyIntoleranceEvent: FHIRElement
 	public var comment: String?
 	
 	/// Description of the event as a whole
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// How long Manifestations persisted
 	public var duration: Duration?
@@ -209,7 +209,7 @@ public class AllergyIntoleranceEvent: FHIRElement
 				self.comment = val
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["duration"] as? JSONDictionary {
 				self.duration = Duration(json: val, owner: self)
@@ -241,8 +241,8 @@ public class AllergyIntoleranceEvent: FHIRElement
 		if let comment = self.comment {
 			json["comment"] = comment.asJSON()
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let duration = self.duration {
 			json["duration"] = duration.asJSON()

@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (careplan.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.3969 (careplan.profile.json) on 2015-01-25.
 //  2015, SMART Platforms.
 //
 
@@ -382,7 +382,7 @@ public class CarePlanGoal: FHIRElement
 	public var concern: [Reference]?
 	
 	/// What's the desired outcome?
-	public var description: String?
+	public var description_fhir: String?
 	
 	/// Comments about the goal
 	public var notes: String?
@@ -390,10 +390,10 @@ public class CarePlanGoal: FHIRElement
 	/// in progress | achieved | sustaining | cancelled
 	public var status: String?
 	
-	public convenience init(description: String?) {
+	public convenience init(description_fhir: String?) {
 		self.init(json: nil)
-		if nil != description {
-			self.description = description
+		if nil != description_fhir {
+			self.description_fhir = description_fhir
 		}
 	}
 	
@@ -404,7 +404,7 @@ public class CarePlanGoal: FHIRElement
 				self.concern = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["description"] as? String {
-				self.description = val
+				self.description_fhir = val
 			}
 			if let val = js["notes"] as? String {
 				self.notes = val
@@ -421,8 +421,8 @@ public class CarePlanGoal: FHIRElement
 		if let concern = self.concern {
 			json["concern"] = Reference.asJSONArray(concern)
 		}
-		if let description = self.description {
-			json["description"] = description.asJSON()
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let notes = self.notes {
 			json["notes"] = notes.asJSON()

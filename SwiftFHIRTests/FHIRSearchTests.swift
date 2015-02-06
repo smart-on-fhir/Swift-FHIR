@@ -1,5 +1,5 @@
 //
-//  FHIRSearchParamTests.swift
+//  FHIRSearchTests.swift
 //  SMART-on-FHIR
 //
 //  Created by Pascal Pfiffner on 7/11/14.

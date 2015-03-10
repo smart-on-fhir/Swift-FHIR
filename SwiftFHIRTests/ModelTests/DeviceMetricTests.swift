@@ -28,52 +28,6 @@ class DeviceMetricTests: FHIRModelTestCase
 	}
 	
 	func testDeviceMetric1_impl(json: JSONDictionary? = nil) -> DeviceMetric {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicemetric-example.canonical.json")
-		
-		XCTAssertEqual(inst.category!, "measurement")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://goodcare.org/devicemetric/id")
-		XCTAssertEqual(inst.identifier!.value!, "345675")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!.coding![0].code!, "150456")
-		XCTAssertEqual(inst.type!.coding![0].display!, "MDC_PULS_OXIM_SAT_O2")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
-		XCTAssertEqual(inst.unit!.coding![0].code!, "262688")
-		XCTAssertEqual(inst.unit!.coding![0].display!, "MDC_DIM_PERCENT")
-		XCTAssertEqual(inst.unit!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
-		
-		return inst
-	}
-	
-	func testDeviceMetric2() {
-		let instance = testDeviceMetric2_impl()
-		testDeviceMetric2_impl(json: instance.asJSON())
-	}
-	
-	func testDeviceMetric2_impl(json: JSONDictionary? = nil) -> DeviceMetric {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicemetric-example.canonical.json")
-		
-		XCTAssertEqual(inst.category!, "measurement")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://goodcare.org/devicemetric/id")
-		XCTAssertEqual(inst.identifier!.value!, "345675")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!.coding![0].code!, "150456")
-		XCTAssertEqual(inst.type!.coding![0].display!, "MDC_PULS_OXIM_SAT_O2")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
-		XCTAssertEqual(inst.unit!.coding![0].code!, "262688")
-		XCTAssertEqual(inst.unit!.coding![0].display!, "MDC_DIM_PERCENT")
-		XCTAssertEqual(inst.unit!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
-		
-		return inst
-	}
-	
-	func testDeviceMetric3() {
-		let instance = testDeviceMetric3_impl()
-		testDeviceMetric3_impl(json: instance.asJSON())
-	}
-	
-	func testDeviceMetric3_impl(json: JSONDictionary? = nil) -> DeviceMetric {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicemetric-example.json")
 		
 		XCTAssertEqual(inst.category!, "measurement")

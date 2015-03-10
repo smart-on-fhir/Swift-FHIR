@@ -28,7 +28,7 @@ class ReferralRequestTests: FHIRModelTestCase
 	}
 	
 	func testReferralRequest1_impl(json: JSONDictionary? = nil) -> ReferralRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "referralrequest-example.canonical.json")
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "referralrequest-example.json")
 		
 		XCTAssertEqual(inst.dateSent!.description, "2014-02-14")
 		XCTAssertEqual(inst.description_fhir!, "In the past 2 years Beverly has had 6 instances of r) sided Otitis media. She is     falling behind her peers at school, and displaying some learning difficulties.")
@@ -68,126 +68,6 @@ class ReferralRequestTests: FHIRModelTestCase
 	}
 	
 	func testReferralRequest2_impl(json: JSONDictionary? = nil) -> ReferralRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "referralrequest-example.canonical.json")
-		
-		XCTAssertEqual(inst.dateSent!.description, "2014-02-14")
-		XCTAssertEqual(inst.description_fhir!, "In the past 2 years Beverly has had 6 instances of r) sided Otitis media. She is     falling behind her peers at school, and displaying some learning difficulties.")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://orionhealth.com/fhir/apps/referralids")
-		XCTAssertEqual(inst.identifier![0].value!, "ret4421")
-		XCTAssertEqual(inst.patient!.display!, "Beverly Weaver")
-		XCTAssertEqual(inst.patient!.reference!, "https://fhir.orionhealth.com/blaze/fhir/Patient/77662")
-		XCTAssertEqual(inst.priority!.coding![0].code!, "med")
-		XCTAssertEqual(inst.priority!.coding![0].display!, "Medium")
-		XCTAssertEqual(inst.priority!.coding![0].system!.absoluteString!, "http://orionhealth.com/fhir/apps/prioritycodes")
-		XCTAssertEqual(inst.reason!.text!, "For consideration of Grommets")
-		XCTAssertEqual(inst.recipient![0].display!, "Dr Dave")
-		XCTAssertEqual(inst.recipient![0].reference!, "https://fhir.orionhealth.com/blaze/fhir/Practitioner/76597")
-		XCTAssertEqual(inst.requester!.display!, "Serena Shrink")
-		XCTAssertEqual(inst.requester!.reference!, "https://fhir.orionhealth.com/blaze/fhir/Practitioner/77272")
-		XCTAssertEqual(inst.serviceRequested![0].coding![0].code!, "172676009")
-		XCTAssertEqual(inst.serviceRequested![0].coding![0].display!, "Myringotomy and insertion of tympanic ventilation tube")
-		XCTAssertEqual(inst.serviceRequested![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.serviceRequested![0].text!, "Insertion of grommets")
-		XCTAssertEqual(inst.specialty!.coding![0].code!, "ent")
-		XCTAssertEqual(inst.specialty!.coding![0].display!, "ENT")
-		XCTAssertEqual(inst.specialty!.coding![0].system!.absoluteString!, "http://orionhealth.com/fhir/apps/specialties")
-		XCTAssertEqual(inst.status!, "sent")
-		XCTAssertEqual(inst.text!.div!, "<div>Referral to Dr Dave for Beverly weaver to have grommets inserted in her r) ear</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!.coding![0].code!, "rfs")
-		XCTAssertEqual(inst.type!.coding![0].display!, "Referral for service")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://orionhealth.com/fhir/apps/referraltypes")
-		
-		return inst
-	}
-	
-	func testReferralRequest3() {
-		let instance = testReferralRequest3_impl()
-		testReferralRequest3_impl(json: instance.asJSON())
-	}
-	
-	func testReferralRequest3_impl(json: JSONDictionary? = nil) -> ReferralRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "referralrequest-example.json")
-		
-		XCTAssertEqual(inst.dateSent!.description, "2014-02-14")
-		XCTAssertEqual(inst.description_fhir!, "In the past 2 years Beverly has had 6 instances of r) sided Otitis media. She is     falling behind her peers at school, and displaying some learning difficulties.")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://orionhealth.com/fhir/apps/referralids")
-		XCTAssertEqual(inst.identifier![0].value!, "ret4421")
-		XCTAssertEqual(inst.patient!.display!, "Beverly Weaver")
-		XCTAssertEqual(inst.patient!.reference!, "https://fhir.orionhealth.com/blaze/fhir/Patient/77662")
-		XCTAssertEqual(inst.priority!.coding![0].code!, "med")
-		XCTAssertEqual(inst.priority!.coding![0].display!, "Medium")
-		XCTAssertEqual(inst.priority!.coding![0].system!.absoluteString!, "http://orionhealth.com/fhir/apps/prioritycodes")
-		XCTAssertEqual(inst.reason!.text!, "For consideration of Grommets")
-		XCTAssertEqual(inst.recipient![0].display!, "Dr Dave")
-		XCTAssertEqual(inst.recipient![0].reference!, "https://fhir.orionhealth.com/blaze/fhir/Practitioner/76597")
-		XCTAssertEqual(inst.requester!.display!, "Serena Shrink")
-		XCTAssertEqual(inst.requester!.reference!, "https://fhir.orionhealth.com/blaze/fhir/Practitioner/77272")
-		XCTAssertEqual(inst.serviceRequested![0].coding![0].code!, "172676009")
-		XCTAssertEqual(inst.serviceRequested![0].coding![0].display!, "Myringotomy and insertion of tympanic ventilation tube")
-		XCTAssertEqual(inst.serviceRequested![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.serviceRequested![0].text!, "Insertion of grommets")
-		XCTAssertEqual(inst.specialty!.coding![0].code!, "ent")
-		XCTAssertEqual(inst.specialty!.coding![0].display!, "ENT")
-		XCTAssertEqual(inst.specialty!.coding![0].system!.absoluteString!, "http://orionhealth.com/fhir/apps/specialties")
-		XCTAssertEqual(inst.status!, "sent")
-		XCTAssertEqual(inst.text!.div!, "<div>Referral to Dr Dave for Beverly weaver to have grommets inserted in her r) ear</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!.coding![0].code!, "rfs")
-		XCTAssertEqual(inst.type!.coding![0].display!, "Referral for service")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://orionhealth.com/fhir/apps/referraltypes")
-		
-		return inst
-	}
-	
-	func testReferralRequest4() {
-		let instance = testReferralRequest4_impl()
-		testReferralRequest4_impl(json: instance.asJSON())
-	}
-	
-	func testReferralRequest4_impl(json: JSONDictionary? = nil) -> ReferralRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "referralrequest-qicore-example.canonical.json")
-		
-		XCTAssertEqual(inst.dateSent!.description, "2014-02-14")
-		XCTAssertEqual(inst.description_fhir!, "In the past 2 years Beverly has had 6 instances of r) sided Otitis media. She is     falling behind her peers at school, and displaying some learning difficulties.")
-		XCTAssertEqual(inst.id!, "qicore")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://orionhealth.com/fhir/apps/referralids")
-		XCTAssertEqual(inst.identifier![0].value!, "ret4421")
-		XCTAssertEqual(inst.patient!.display!, "Beverly Weaver")
-		XCTAssertEqual(inst.patient!.reference!, "https://fhir.orionhealth.com/blaze/fhir/Patient/77662")
-		XCTAssertEqual(inst.priority!.coding![0].code!, "med")
-		XCTAssertEqual(inst.priority!.coding![0].display!, "Medium")
-		XCTAssertEqual(inst.priority!.coding![0].system!.absoluteString!, "http://orionhealth.com/fhir/apps/prioritycodes")
-		XCTAssertEqual(inst.reason!.text!, "For consideration of Grommets")
-		XCTAssertEqual(inst.recipient![0].display!, "Dr Dave")
-		XCTAssertEqual(inst.recipient![0].reference!, "https://fhir.orionhealth.com/blaze/fhir/Practitioner/76597")
-		XCTAssertEqual(inst.requester!.display!, "Serena Shrink")
-		XCTAssertEqual(inst.requester!.reference!, "https://fhir.orionhealth.com/blaze/fhir/Practitioner/77272")
-		XCTAssertEqual(inst.serviceRequested![0].coding![0].code!, "172676009")
-		XCTAssertEqual(inst.serviceRequested![0].coding![0].display!, "Myringotomy and insertion of tympanic ventilation tube")
-		XCTAssertEqual(inst.serviceRequested![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.serviceRequested![0].text!, "Insertion of grommets")
-		XCTAssertEqual(inst.specialty!.coding![0].code!, "ent")
-		XCTAssertEqual(inst.specialty!.coding![0].display!, "ENT")
-		XCTAssertEqual(inst.specialty!.coding![0].system!.absoluteString!, "http://orionhealth.com/fhir/apps/specialties")
-		XCTAssertEqual(inst.status!, "sent")
-		XCTAssertEqual(inst.text!.div!, "<div>Referral to Dr Dave for Beverly weaver to have grommets inserted in her r) ear</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!.coding![0].code!, "rfs")
-		XCTAssertEqual(inst.type!.coding![0].display!, "Referral for service")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://orionhealth.com/fhir/apps/referraltypes")
-		
-		return inst
-	}
-	
-	func testReferralRequest5() {
-		let instance = testReferralRequest5_impl()
-		testReferralRequest5_impl(json: instance.asJSON())
-	}
-	
-	func testReferralRequest5_impl(json: JSONDictionary? = nil) -> ReferralRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "referralrequest-qicore-example.json")
 		
 		XCTAssertEqual(inst.dateSent!.description, "2014-02-14")

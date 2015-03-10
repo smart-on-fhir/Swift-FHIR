@@ -28,7 +28,7 @@ class LocationTests: FHIRModelTestCase
 	}
 	
 	func testLocation1_impl(json: JSONDictionary? = nil) -> Location {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "location-example-room.canonical.json")
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "location-example-room.json")
 		
 		XCTAssertEqual(inst.description_fhir!, "Old South Wing, Neuro Radiology Operation Room 1 on second floor")
 		XCTAssertEqual(inst.id!, "2")
@@ -57,106 +57,6 @@ class LocationTests: FHIRModelTestCase
 	}
 	
 	func testLocation2_impl(json: JSONDictionary? = nil) -> Location {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "location-example-room.canonical.json")
-		
-		XCTAssertEqual(inst.description_fhir!, "Old South Wing, Neuro Radiology Operation Room 1 on second floor")
-		XCTAssertEqual(inst.id!, "2")
-		XCTAssertEqual(inst.identifier![0].value!, "B1-S.F2.1.00")
-		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/f001")
-		XCTAssertEqual(inst.name!, "South Wing Neuro OR 1")
-		XCTAssertEqual(inst.partOf!.reference!, "Location/1")
-		XCTAssertEqual(inst.physicalType!.coding![0].code!, "ro")
-		XCTAssertEqual(inst.physicalType!.coding![0].display!, "Room")
-		XCTAssertEqual(inst.physicalType!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/location-physical-type")
-		XCTAssertEqual(inst.status!, "suspended")
-		XCTAssertEqual(inst.telecom![0].system!, "phone")
-		XCTAssertEqual(inst.telecom![0].value!, "2329")
-		XCTAssertEqual(inst.text!.div!, "<div>Burgers UMC, South Wing, second floor, Neuro Radiology Operation Room 1</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!.coding![0].code!, "RNEU")
-		XCTAssertEqual(inst.type!.coding![0].display!, "Neuroradiology unit")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/RoleCode")
-		
-		return inst
-	}
-	
-	func testLocation3() {
-		let instance = testLocation3_impl()
-		testLocation3_impl(json: instance.asJSON())
-	}
-	
-	func testLocation3_impl(json: JSONDictionary? = nil) -> Location {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "location-example-room.json")
-		
-		XCTAssertEqual(inst.description_fhir!, "Old South Wing, Neuro Radiology Operation Room 1 on second floor")
-		XCTAssertEqual(inst.id!, "2")
-		XCTAssertEqual(inst.identifier![0].value!, "B1-S.F2.1.00")
-		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/f001")
-		XCTAssertEqual(inst.name!, "South Wing Neuro OR 1")
-		XCTAssertEqual(inst.partOf!.reference!, "Location/1")
-		XCTAssertEqual(inst.physicalType!.coding![0].code!, "ro")
-		XCTAssertEqual(inst.physicalType!.coding![0].display!, "Room")
-		XCTAssertEqual(inst.physicalType!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/location-physical-type")
-		XCTAssertEqual(inst.status!, "suspended")
-		XCTAssertEqual(inst.telecom![0].system!, "phone")
-		XCTAssertEqual(inst.telecom![0].value!, "2329")
-		XCTAssertEqual(inst.text!.div!, "<div>Burgers UMC, South Wing, second floor, Neuro Radiology Operation Room 1</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!.coding![0].code!, "RNEU")
-		XCTAssertEqual(inst.type!.coding![0].display!, "Neuroradiology unit")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/RoleCode")
-		
-		return inst
-	}
-	
-	func testLocation4() {
-		let instance = testLocation4_impl()
-		testLocation4_impl(json: instance.asJSON())
-	}
-	
-	func testLocation4_impl(json: JSONDictionary? = nil) -> Location {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "location-example.canonical.json")
-		
-		XCTAssertEqual(inst.address!.city!, "Den Burg")
-		XCTAssertEqual(inst.address!.country!, "NLD")
-		XCTAssertEqual(inst.address!.line![0], "Galapagosweg 91, Building A")
-		XCTAssertEqual(inst.address!.postalCode!, "9105 PZ")
-		XCTAssertEqual(inst.address!.use!, "work")
-		XCTAssertEqual(inst.description_fhir!, "Second floor of the Old South Wing, formerly in use by Psychiatry")
-		XCTAssertEqual(inst.id!, "1")
-		XCTAssertEqual(inst.identifier![0].value!, "B1-S.F2")
-		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/f001")
-		XCTAssertEqual(inst.name!, "South Wing, second floor")
-		XCTAssertEqual(inst.physicalType!.coding![0].code!, "wi")
-		XCTAssertEqual(inst.physicalType!.coding![0].display!, "Wing")
-		XCTAssertEqual(inst.physicalType!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/location-physical-type")
-		XCTAssertEqual(inst.position!.altitude!, NSDecimalNumber(string: "0"))
-		XCTAssertEqual(inst.position!.latitude!, NSDecimalNumber(string: "52.37799399970903"))
-		XCTAssertEqual(inst.position!.longitude!, NSDecimalNumber(string: "4.844614000123024"))
-		XCTAssertEqual(inst.status!, "active")
-		XCTAssertEqual(inst.telecom![0].system!, "phone")
-		XCTAssertEqual(inst.telecom![0].use!, "work")
-		XCTAssertEqual(inst.telecom![0].value!, "2328")
-		XCTAssertEqual(inst.telecom![1].system!, "fax")
-		XCTAssertEqual(inst.telecom![1].use!, "work")
-		XCTAssertEqual(inst.telecom![1].value!, "2329")
-		XCTAssertEqual(inst.telecom![2].system!, "email")
-		XCTAssertEqual(inst.telecom![2].value!, "second wing admissions")
-		XCTAssertEqual(inst.telecom![3].system!, "url")
-		XCTAssertEqual(inst.telecom![3].use!, "work")
-		XCTAssertEqual(inst.telecom![3].value!, "http://sampleorg.com/southwing")
-		XCTAssertEqual(inst.text!.div!, "<div>Burgers UMC, South Wing, second floor</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testLocation5() {
-		let instance = testLocation5_impl()
-		testLocation5_impl(json: instance.asJSON())
-	}
-	
-	func testLocation5_impl(json: JSONDictionary? = nil) -> Location {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "location-example.json")
 		
 		XCTAssertEqual(inst.address!.city!, "Den Burg")

@@ -28,7 +28,7 @@ class ValueSetTests: FHIRModelTestCase
 	}
 	
 	func testValueSet1_impl(json: JSONDictionary? = nil) -> ValueSet {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "valueset-example.canonical.json")
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "valueset-example.json")
 		
 		XCTAssertEqual(inst.compose!.include![0].concept![0].code!, "14647-2")
 		XCTAssertEqual(inst.compose!.include![0].concept![1].code!, "2093-3")
@@ -59,68 +59,6 @@ class ValueSetTests: FHIRModelTestCase
 	}
 	
 	func testValueSet2_impl(json: JSONDictionary? = nil) -> ValueSet {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "valueset-example.canonical.json")
-		
-		XCTAssertEqual(inst.compose!.include![0].concept![0].code!, "14647-2")
-		XCTAssertEqual(inst.compose!.include![0].concept![1].code!, "2093-3")
-		XCTAssertEqual(inst.compose!.include![0].concept![2].code!, "35200-5")
-		XCTAssertEqual(inst.compose!.include![0].concept![3].code!, "9342-7")
-		XCTAssertEqual(inst.compose!.include![0].system!.absoluteString!, "http://loinc.org")
-		XCTAssertEqual(inst.compose!.include![0].version!, "2.36")
-		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
-		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.copyright!, "This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use")
-		XCTAssertEqual(inst.date!.description, "2012-06-13")
-		XCTAssertEqual(inst.description_fhir!, "This is an example value set that includes        all the LOINC codes for serum cholesterol from v2.36")
-		XCTAssertTrue(inst.experimental!)
-		XCTAssertEqual(inst.id!, "101")
-		XCTAssertEqual(inst.name!, "LOINC Codes for Cholesterol")
-		XCTAssertEqual(inst.publisher!, "FHIR project team (example)")
-		XCTAssertEqual(inst.status!, "draft")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.url!.absoluteString!, "urn:uuid:256a5231-a2bb-49bd-9fea-f349d428b70d")
-		XCTAssertEqual(inst.version!, "20120613")
-		
-		return inst
-	}
-	
-	func testValueSet3() {
-		let instance = testValueSet3_impl()
-		testValueSet3_impl(json: instance.asJSON())
-	}
-	
-	func testValueSet3_impl(json: JSONDictionary? = nil) -> ValueSet {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "valueset-example.json")
-		
-		XCTAssertEqual(inst.compose!.include![0].concept![0].code!, "14647-2")
-		XCTAssertEqual(inst.compose!.include![0].concept![1].code!, "2093-3")
-		XCTAssertEqual(inst.compose!.include![0].concept![2].code!, "35200-5")
-		XCTAssertEqual(inst.compose!.include![0].concept![3].code!, "9342-7")
-		XCTAssertEqual(inst.compose!.include![0].system!.absoluteString!, "http://loinc.org")
-		XCTAssertEqual(inst.compose!.include![0].version!, "2.36")
-		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
-		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.copyright!, "This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use")
-		XCTAssertEqual(inst.date!.description, "2012-06-13")
-		XCTAssertEqual(inst.description_fhir!, "This is an example value set that includes        all the LOINC codes for serum cholesterol from v2.36")
-		XCTAssertTrue(inst.experimental!)
-		XCTAssertEqual(inst.id!, "101")
-		XCTAssertEqual(inst.name!, "LOINC Codes for Cholesterol")
-		XCTAssertEqual(inst.publisher!, "FHIR project team (example)")
-		XCTAssertEqual(inst.status!, "draft")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.url!.absoluteString!, "urn:uuid:256a5231-a2bb-49bd-9fea-f349d428b70d")
-		XCTAssertEqual(inst.version!, "20120613")
-		
-		return inst
-	}
-	
-	func testValueSet4() {
-		let instance = testValueSet4_impl()
-		testValueSet4_impl(json: instance.asJSON())
-	}
-	
-	func testValueSet4_impl(json: JSONDictionary? = nil) -> ValueSet {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "valueset-list-example-codes.json")
 		
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")

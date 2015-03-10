@@ -28,48 +28,6 @@ class StatusRequestTests: FHIRModelTestCase
 	}
 	
 	func testStatusRequest1_impl(json: JSONDictionary? = nil) -> StatusRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "statusrequest-example.canonical.json")
-		
-		XCTAssertEqual(inst.created!.description, "2014-08-16")
-		XCTAssertEqual(inst.id!, "87654")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/statusrequest")
-		XCTAssertEqual(inst.identifier![0].value!, "1776543")
-		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
-		XCTAssertEqual(inst.request!.reference!, "http://BenefitsInc.com/oralhealthclaim/12345")
-		XCTAssertEqual(inst.response!.reference!, "http://BenefitsInc.com/fhir/claimresponse/3500")
-		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the StatusRequest</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testStatusRequest2() {
-		let instance = testStatusRequest2_impl()
-		testStatusRequest2_impl(json: instance.asJSON())
-	}
-	
-	func testStatusRequest2_impl(json: JSONDictionary? = nil) -> StatusRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "statusrequest-example.canonical.json")
-		
-		XCTAssertEqual(inst.created!.description, "2014-08-16")
-		XCTAssertEqual(inst.id!, "87654")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/statusrequest")
-		XCTAssertEqual(inst.identifier![0].value!, "1776543")
-		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
-		XCTAssertEqual(inst.request!.reference!, "http://BenefitsInc.com/oralhealthclaim/12345")
-		XCTAssertEqual(inst.response!.reference!, "http://BenefitsInc.com/fhir/claimresponse/3500")
-		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the StatusRequest</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testStatusRequest3() {
-		let instance = testStatusRequest3_impl()
-		testStatusRequest3_impl(json: instance.asJSON())
-	}
-	
-	func testStatusRequest3_impl(json: JSONDictionary? = nil) -> StatusRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "statusrequest-example.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")

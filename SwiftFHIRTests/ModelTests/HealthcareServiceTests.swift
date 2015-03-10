@@ -28,40 +28,6 @@ class HealthcareServiceTests: FHIRModelTestCase
 	}
 	
 	func testHealthcareService1_impl(json: JSONDictionary? = nil) -> HealthcareService {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "healthcareservice-example.canonical.json")
-		
-		XCTAssertEqual(inst.comment!, "Assessments should be performed before requesting appointments in this slot.")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.location!.reference!, "Location/1")
-		XCTAssertEqual(inst.serviceName!, "healthcare service")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testHealthcareService2() {
-		let instance = testHealthcareService2_impl()
-		testHealthcareService2_impl(json: instance.asJSON())
-	}
-	
-	func testHealthcareService2_impl(json: JSONDictionary? = nil) -> HealthcareService {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "healthcareservice-example.canonical.json")
-		
-		XCTAssertEqual(inst.comment!, "Assessments should be performed before requesting appointments in this slot.")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.location!.reference!, "Location/1")
-		XCTAssertEqual(inst.serviceName!, "healthcare service")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testHealthcareService3() {
-		let instance = testHealthcareService3_impl()
-		testHealthcareService3_impl(json: instance.asJSON())
-	}
-	
-	func testHealthcareService3_impl(json: JSONDictionary? = nil) -> HealthcareService {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "healthcareservice-example.json")
 		
 		XCTAssertEqual(inst.comment!, "Assessments should be performed before requesting appointments in this slot.")

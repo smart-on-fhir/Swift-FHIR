@@ -28,7 +28,7 @@ class CommunicationRequestTests: FHIRModelTestCase
 	}
 	
 	func testCommunicationRequest1_impl(json: JSONDictionary? = nil) -> CommunicationRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "communicationrequest-example.canonical.json")
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "communicationrequest-example.json")
 		
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
@@ -44,54 +44,6 @@ class CommunicationRequestTests: FHIRModelTestCase
 	}
 	
 	func testCommunicationRequest2_impl(json: JSONDictionary? = nil) -> CommunicationRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "communicationrequest-example.canonical.json")
-		
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
-		XCTAssertEqual(inst.text!.div!, "<div>To be filled out at a later time</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testCommunicationRequest3() {
-		let instance = testCommunicationRequest3_impl()
-		testCommunicationRequest3_impl(json: instance.asJSON())
-	}
-	
-	func testCommunicationRequest3_impl(json: JSONDictionary? = nil) -> CommunicationRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "communicationrequest-example.json")
-		
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
-		XCTAssertEqual(inst.text!.div!, "<div>To be filled out at a later time</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testCommunicationRequest4() {
-		let instance = testCommunicationRequest4_impl()
-		testCommunicationRequest4_impl(json: instance.asJSON())
-	}
-	
-	func testCommunicationRequest4_impl(json: JSONDictionary? = nil) -> CommunicationRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "communicationrequest-qicore-example.canonical.json")
-		
-		XCTAssertEqual(inst.id!, "qicore")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
-		XCTAssertEqual(inst.text!.div!, "<div>To be filled out at a later time</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testCommunicationRequest5() {
-		let instance = testCommunicationRequest5_impl()
-		testCommunicationRequest5_impl(json: instance.asJSON())
-	}
-	
-	func testCommunicationRequest5_impl(json: JSONDictionary? = nil) -> CommunicationRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "communicationrequest-qicore-example.json")
 		
 		XCTAssertEqual(inst.id!, "qicore")

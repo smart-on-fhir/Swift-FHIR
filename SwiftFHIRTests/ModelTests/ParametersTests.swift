@@ -28,36 +28,6 @@ class ParametersTests: FHIRModelTestCase
 	}
 	
 	func testParameters1_impl(json: JSONDictionary? = nil) -> Parameters {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "parameters-example.canonical.json")
-		
-		XCTAssertEqual(inst.parameter![0].name!, "start")
-		XCTAssertEqual(inst.parameter![0].valueDate!.description, "2010-01-01")
-		XCTAssertEqual(inst.parameter![1].name!, "end")
-		
-		return inst
-	}
-	
-	func testParameters2() {
-		let instance = testParameters2_impl()
-		testParameters2_impl(json: instance.asJSON())
-	}
-	
-	func testParameters2_impl(json: JSONDictionary? = nil) -> Parameters {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "parameters-example.canonical.json")
-		
-		XCTAssertEqual(inst.parameter![0].name!, "start")
-		XCTAssertEqual(inst.parameter![0].valueDate!.description, "2010-01-01")
-		XCTAssertEqual(inst.parameter![1].name!, "end")
-		
-		return inst
-	}
-	
-	func testParameters3() {
-		let instance = testParameters3_impl()
-		testParameters3_impl(json: instance.asJSON())
-	}
-	
-	func testParameters3_impl(json: JSONDictionary? = nil) -> Parameters {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "parameters-example.json")
 		
 		XCTAssertEqual(inst.parameter![0].name!, "start")

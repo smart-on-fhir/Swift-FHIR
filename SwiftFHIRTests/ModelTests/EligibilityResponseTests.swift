@@ -28,52 +28,6 @@ class EligibilityResponseTests: FHIRModelTestCase
 	}
 	
 	func testEligibilityResponse1_impl(json: JSONDictionary? = nil) -> EligibilityResponse {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "eligibilityresponse-example.canonical.json")
-		
-		XCTAssertEqual(inst.created!.description, "2014-08-16")
-		XCTAssertEqual(inst.disposition!, "Policy is currently in-force.")
-		XCTAssertEqual(inst.id!, "E2500")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.BenefitsInc.com/fhir/eligibilityresponse")
-		XCTAssertEqual(inst.identifier![0].value!, "881234")
-		XCTAssertEqual(inst.organization!.reference!, "Organization/2")
-		XCTAssertEqual(inst.outcome!, "complete")
-		XCTAssertEqual(inst.request!.reference!, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
-		XCTAssertEqual(inst.requestOrganization!.reference!, "Organization/1")
-		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the EligibilityResponse.</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testEligibilityResponse2() {
-		let instance = testEligibilityResponse2_impl()
-		testEligibilityResponse2_impl(json: instance.asJSON())
-	}
-	
-	func testEligibilityResponse2_impl(json: JSONDictionary? = nil) -> EligibilityResponse {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "eligibilityresponse-example.canonical.json")
-		
-		XCTAssertEqual(inst.created!.description, "2014-08-16")
-		XCTAssertEqual(inst.disposition!, "Policy is currently in-force.")
-		XCTAssertEqual(inst.id!, "E2500")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.BenefitsInc.com/fhir/eligibilityresponse")
-		XCTAssertEqual(inst.identifier![0].value!, "881234")
-		XCTAssertEqual(inst.organization!.reference!, "Organization/2")
-		XCTAssertEqual(inst.outcome!, "complete")
-		XCTAssertEqual(inst.request!.reference!, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
-		XCTAssertEqual(inst.requestOrganization!.reference!, "Organization/1")
-		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the EligibilityResponse.</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testEligibilityResponse3() {
-		let instance = testEligibilityResponse3_impl()
-		testEligibilityResponse3_impl(json: instance.asJSON())
-	}
-	
-	func testEligibilityResponse3_impl(json: JSONDictionary? = nil) -> EligibilityResponse {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "eligibilityresponse-example.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")

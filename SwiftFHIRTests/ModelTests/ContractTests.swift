@@ -28,36 +28,6 @@ class ContractTests: FHIRModelTestCase
 	}
 	
 	func testContract1_impl(json: JSONDictionary? = nil) -> Contract {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contract-example.canonical.json")
-		
-		XCTAssertEqual(inst.id!, "C-123")
-		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the contract</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testContract2() {
-		let instance = testContract2_impl()
-		testContract2_impl(json: instance.asJSON())
-	}
-	
-	func testContract2_impl(json: JSONDictionary? = nil) -> Contract {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contract-example.canonical.json")
-		
-		XCTAssertEqual(inst.id!, "C-123")
-		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the contract</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testContract3() {
-		let instance = testContract3_impl()
-		testContract3_impl(json: instance.asJSON())
-	}
-	
-	func testContract3_impl(json: JSONDictionary? = nil) -> Contract {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contract-example.json")
 		
 		XCTAssertEqual(inst.id!, "C-123")

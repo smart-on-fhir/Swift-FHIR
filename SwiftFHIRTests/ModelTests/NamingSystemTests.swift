@@ -28,50 +28,6 @@ class NamingSystemTests: FHIRModelTestCase
 	}
 	
 	func testNamingSystem1_impl(json: JSONDictionary? = nil) -> NamingSystem {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "namingsystem-example.canonical.json")
-		
-		XCTAssertEqual(inst.date!.description, "2014-12-13")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.name!, "SNOMED CT")
-		XCTAssertEqual(inst.status!, "active")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!, "codesystem")
-		XCTAssertEqual(inst.uniqueId![0].type!, "oid")
-		XCTAssertEqual(inst.uniqueId![0].value!, "2.16.840.1.113883.6.96")
-		XCTAssertEqual(inst.uniqueId![1].type!, "uri")
-		XCTAssertEqual(inst.uniqueId![1].value!, "http://snomed.info/sct")
-		
-		return inst
-	}
-	
-	func testNamingSystem2() {
-		let instance = testNamingSystem2_impl()
-		testNamingSystem2_impl(json: instance.asJSON())
-	}
-	
-	func testNamingSystem2_impl(json: JSONDictionary? = nil) -> NamingSystem {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "namingsystem-example.canonical.json")
-		
-		XCTAssertEqual(inst.date!.description, "2014-12-13")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.name!, "SNOMED CT")
-		XCTAssertEqual(inst.status!, "active")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!, "codesystem")
-		XCTAssertEqual(inst.uniqueId![0].type!, "oid")
-		XCTAssertEqual(inst.uniqueId![0].value!, "2.16.840.1.113883.6.96")
-		XCTAssertEqual(inst.uniqueId![1].type!, "uri")
-		XCTAssertEqual(inst.uniqueId![1].value!, "http://snomed.info/sct")
-		
-		return inst
-	}
-	
-	func testNamingSystem3() {
-		let instance = testNamingSystem3_impl()
-		testNamingSystem3_impl(json: instance.asJSON())
-	}
-	
-	func testNamingSystem3_impl(json: JSONDictionary? = nil) -> NamingSystem {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "namingsystem-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2014-12-13")

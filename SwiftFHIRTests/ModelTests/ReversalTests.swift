@@ -28,56 +28,6 @@ class ReversalTests: FHIRModelTestCase
 	}
 	
 	func testReversal1_impl(json: JSONDictionary? = nil) -> Reversal {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "reversal-example.canonical.json")
-		
-		XCTAssertEqual(inst.coverage!.coverage!.reference!, "Coverage/9876B1")
-		XCTAssertTrue(inst.coverage!.focal!)
-		XCTAssertEqual(inst.coverage!.relationship!.code!, "self")
-		XCTAssertEqual(inst.coverage!.sequence!, 1)
-		XCTAssertEqual(inst.created!.description, "2014-08-16")
-		XCTAssertEqual(inst.id!, "87654")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/reversal")
-		XCTAssertEqual(inst.identifier![0].value!, "76543")
-		XCTAssertFalse(inst.nullify!)
-		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
-		XCTAssertEqual(inst.request!.reference!, "http://BenefitsInc.com/fhir/oralhealthclaim/12345")
-		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Reversal</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testReversal2() {
-		let instance = testReversal2_impl()
-		testReversal2_impl(json: instance.asJSON())
-	}
-	
-	func testReversal2_impl(json: JSONDictionary? = nil) -> Reversal {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "reversal-example.canonical.json")
-		
-		XCTAssertEqual(inst.coverage!.coverage!.reference!, "Coverage/9876B1")
-		XCTAssertTrue(inst.coverage!.focal!)
-		XCTAssertEqual(inst.coverage!.relationship!.code!, "self")
-		XCTAssertEqual(inst.coverage!.sequence!, 1)
-		XCTAssertEqual(inst.created!.description, "2014-08-16")
-		XCTAssertEqual(inst.id!, "87654")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/reversal")
-		XCTAssertEqual(inst.identifier![0].value!, "76543")
-		XCTAssertFalse(inst.nullify!)
-		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
-		XCTAssertEqual(inst.request!.reference!, "http://BenefitsInc.com/fhir/oralhealthclaim/12345")
-		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Reversal</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testReversal3() {
-		let instance = testReversal3_impl()
-		testReversal3_impl(json: instance.asJSON())
-	}
-	
-	func testReversal3_impl(json: JSONDictionary? = nil) -> Reversal {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "reversal-example.json")
 		
 		XCTAssertEqual(inst.coverage!.coverage!.reference!, "Coverage/9876B1")

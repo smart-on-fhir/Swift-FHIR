@@ -28,7 +28,7 @@ class ProcedureRequestTests: FHIRModelTestCase
 	}
 	
 	func testProcedureRequest1_impl(json: JSONDictionary? = nil) -> ProcedureRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedurerequest-example.canonical.json")
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedurerequest-example.json")
 		
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
@@ -47,63 +47,6 @@ class ProcedureRequestTests: FHIRModelTestCase
 	}
 	
 	func testProcedureRequest2_impl(json: JSONDictionary? = nil) -> ProcedureRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedurerequest-example.canonical.json")
-		
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
-		XCTAssertEqual(inst.text!.div!, "<div>To be added</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!.coding![0].code!, "323418000")
-		XCTAssertEqual(inst.type!.coding![0].display!, "Fix me up")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		
-		return inst
-	}
-	
-	func testProcedureRequest3() {
-		let instance = testProcedureRequest3_impl()
-		testProcedureRequest3_impl(json: instance.asJSON())
-	}
-	
-	func testProcedureRequest3_impl(json: JSONDictionary? = nil) -> ProcedureRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedurerequest-example.json")
-		
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
-		XCTAssertEqual(inst.text!.div!, "<div>To be added</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!.coding![0].code!, "323418000")
-		XCTAssertEqual(inst.type!.coding![0].display!, "Fix me up")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		
-		return inst
-	}
-	
-	func testProcedureRequest4() {
-		let instance = testProcedureRequest4_impl()
-		testProcedureRequest4_impl(json: instance.asJSON())
-	}
-	
-	func testProcedureRequest4_impl(json: JSONDictionary? = nil) -> ProcedureRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedurerequest-qicore-example.canonical.json")
-		
-		XCTAssertEqual(inst.id!, "qicore")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
-		XCTAssertEqual(inst.text!.div!, "<div>To be added</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!.coding![0].code!, "323418000")
-		XCTAssertEqual(inst.type!.coding![0].display!, "Fix me up")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		
-		return inst
-	}
-	
-	func testProcedureRequest5() {
-		let instance = testProcedureRequest5_impl()
-		testProcedureRequest5_impl(json: instance.asJSON())
-	}
-	
-	func testProcedureRequest5_impl(json: JSONDictionary? = nil) -> ProcedureRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedurerequest-qicore-example.json")
 		
 		XCTAssertEqual(inst.id!, "qicore")

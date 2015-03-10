@@ -28,7 +28,7 @@ class DeviceUseStatementTests: FHIRModelTestCase
 	}
 	
 	func testDeviceUseStatement1_impl(json: JSONDictionary? = nil) -> DeviceUseStatement {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "deviceusestatement-example.canonical.json")
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "deviceusestatement-example.json")
 		
 		XCTAssertEqual(inst.device!.reference!, "Device/example")
 		XCTAssertEqual(inst.id!, "example")
@@ -45,57 +45,6 @@ class DeviceUseStatementTests: FHIRModelTestCase
 	}
 	
 	func testDeviceUseStatement2_impl(json: JSONDictionary? = nil) -> DeviceUseStatement {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "deviceusestatement-example.canonical.json")
-		
-		XCTAssertEqual(inst.device!.reference!, "Device/example")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
-		XCTAssertEqual(inst.text!.div!, "<div>To be filled out at a later time</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testDeviceUseStatement3() {
-		let instance = testDeviceUseStatement3_impl()
-		testDeviceUseStatement3_impl(json: instance.asJSON())
-	}
-	
-	func testDeviceUseStatement3_impl(json: JSONDictionary? = nil) -> DeviceUseStatement {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "deviceusestatement-example.json")
-		
-		XCTAssertEqual(inst.device!.reference!, "Device/example")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
-		XCTAssertEqual(inst.text!.div!, "<div>To be filled out at a later time</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testDeviceUseStatement4() {
-		let instance = testDeviceUseStatement4_impl()
-		testDeviceUseStatement4_impl(json: instance.asJSON())
-	}
-	
-	func testDeviceUseStatement4_impl(json: JSONDictionary? = nil) -> DeviceUseStatement {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "deviceusestatement-qicore-example.canonical.json")
-		
-		XCTAssertEqual(inst.device!.reference!, "Device/example")
-		XCTAssertEqual(inst.id!, "qicore")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
-		XCTAssertEqual(inst.text!.div!, "<div>To be filled out at a later time</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testDeviceUseStatement5() {
-		let instance = testDeviceUseStatement5_impl()
-		testDeviceUseStatement5_impl(json: instance.asJSON())
-	}
-	
-	func testDeviceUseStatement5_impl(json: JSONDictionary? = nil) -> DeviceUseStatement {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "deviceusestatement-qicore-example.json")
 		
 		XCTAssertEqual(inst.device!.reference!, "Device/example")

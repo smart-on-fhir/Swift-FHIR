@@ -28,7 +28,7 @@ class MedicationStatementTests: FHIRModelTestCase
 	}
 	
 	func testMedicationStatement1_impl(json: JSONDictionary? = nil) -> MedicationStatement {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationstatement-example-tylenol.canonical.json")
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationstatement-example-tylenol.json")
 		
 		XCTAssertTrue(inst.dosage![0].asNeededBoolean!)
 		XCTAssertEqual(inst.dosage![0].quantity!.value!, NSDecimalNumber(string: "1"))
@@ -54,83 +54,6 @@ class MedicationStatementTests: FHIRModelTestCase
 	}
 	
 	func testMedicationStatement2_impl(json: JSONDictionary? = nil) -> MedicationStatement {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationstatement-example-tylenol.canonical.json")
-		
-		XCTAssertTrue(inst.dosage![0].asNeededBoolean!)
-		XCTAssertEqual(inst.dosage![0].quantity!.value!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dosage![0].route!.coding![0].code!, "394899003")
-		XCTAssertEqual(inst.dosage![0].route!.coding![0].display!, "oral administration of treatment")
-		XCTAssertEqual(inst.dosage![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.dosage![0].schedule!.repeat!.duration!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dosage![0].schedule!.repeat!.frequency!, 1)
-		XCTAssertEqual(inst.dosage![0].schedule!.repeat!.units!, "d")
-		XCTAssertEqual(inst.effectiveDateTime!.description, "2010")
-		XCTAssertEqual(inst.id!, "tylenol")
-		XCTAssertEqual(inst.medication!.reference!, "#2")
-		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
-		XCTAssertEqual(inst.status!, "completed")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testMedicationStatement3() {
-		let instance = testMedicationStatement3_impl()
-		testMedicationStatement3_impl(json: instance.asJSON())
-	}
-	
-	func testMedicationStatement3_impl(json: JSONDictionary? = nil) -> MedicationStatement {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationstatement-example-tylenol.json")
-		
-		XCTAssertTrue(inst.dosage![0].asNeededBoolean!)
-		XCTAssertEqual(inst.dosage![0].quantity!.value!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dosage![0].route!.coding![0].code!, "394899003")
-		XCTAssertEqual(inst.dosage![0].route!.coding![0].display!, "oral administration of treatment")
-		XCTAssertEqual(inst.dosage![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.dosage![0].schedule!.repeat!.duration!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dosage![0].schedule!.repeat!.frequency!, 1)
-		XCTAssertEqual(inst.dosage![0].schedule!.repeat!.units!, "d")
-		XCTAssertEqual(inst.effectiveDateTime!.description, "2010")
-		XCTAssertEqual(inst.id!, "tylenol")
-		XCTAssertEqual(inst.medication!.reference!, "#2")
-		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
-		XCTAssertEqual(inst.status!, "completed")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testMedicationStatement4() {
-		let instance = testMedicationStatement4_impl()
-		testMedicationStatement4_impl(json: instance.asJSON())
-	}
-	
-	func testMedicationStatement4_impl(json: JSONDictionary? = nil) -> MedicationStatement {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationstatement-example.canonical.json")
-		
-		XCTAssertEqual(inst.dosage![0].quantity!.code!, "ml")
-		XCTAssertEqual(inst.dosage![0].quantity!.system!.absoluteString!, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.dosage![0].quantity!.units!, "ml")
-		XCTAssertEqual(inst.dosage![0].quantity!.value!, NSDecimalNumber(string: "10"))
-		XCTAssertEqual(inst.dosage![0].route!.coding![0].code!, "394899003")
-		XCTAssertEqual(inst.dosage![0].route!.coding![0].display!, "oral administration of treatment")
-		XCTAssertEqual(inst.dosage![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.effectiveDateTime!.description, "2012-06-01T14:30:00+14:00")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
-		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
-		XCTAssertEqual(inst.status!, "completed")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testMedicationStatement5() {
-		let instance = testMedicationStatement5_impl()
-		testMedicationStatement5_impl(json: instance.asJSON())
-	}
-	
-	func testMedicationStatement5_impl(json: JSONDictionary? = nil) -> MedicationStatement {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationstatement-example.json")
 		
 		XCTAssertEqual(inst.dosage![0].quantity!.code!, "ml")
@@ -150,37 +73,12 @@ class MedicationStatementTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testMedicationStatement6() {
-		let instance = testMedicationStatement6_impl()
-		testMedicationStatement6_impl(json: instance.asJSON())
+	func testMedicationStatement3() {
+		let instance = testMedicationStatement3_impl()
+		testMedicationStatement3_impl(json: instance.asJSON())
 	}
 	
-	func testMedicationStatement6_impl(json: JSONDictionary? = nil) -> MedicationStatement {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationstatement-qicore-example.canonical.json")
-		
-		XCTAssertEqual(inst.dosage![0].quantity!.code!, "ml")
-		XCTAssertEqual(inst.dosage![0].quantity!.system!.absoluteString!, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.dosage![0].quantity!.units!, "ml")
-		XCTAssertEqual(inst.dosage![0].quantity!.value!, NSDecimalNumber(string: "10"))
-		XCTAssertEqual(inst.dosage![0].route!.coding![0].code!, "394899003")
-		XCTAssertEqual(inst.dosage![0].route!.coding![0].display!, "oral administration of treatment")
-		XCTAssertEqual(inst.dosage![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.effectiveDateTime!.description, "2012-06-01T14:30:00+14:00")
-		XCTAssertEqual(inst.id!, "qicore")
-		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
-		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
-		XCTAssertEqual(inst.status!, "completed")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testMedicationStatement7() {
-		let instance = testMedicationStatement7_impl()
-		testMedicationStatement7_impl(json: instance.asJSON())
-	}
-	
-	func testMedicationStatement7_impl(json: JSONDictionary? = nil) -> MedicationStatement {
+	func testMedicationStatement3_impl(json: JSONDictionary? = nil) -> MedicationStatement {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationstatement-qicore-example.json")
 		
 		XCTAssertEqual(inst.dosage![0].quantity!.code!, "ml")

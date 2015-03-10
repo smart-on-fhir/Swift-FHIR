@@ -28,50 +28,6 @@ class EnrollmentRequestTests: FHIRModelTestCase
 	}
 	
 	func testEnrollmentRequest1_impl(json: JSONDictionary? = nil) -> EnrollmentRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "enrollmentrequest-example.canonical.json")
-		
-		XCTAssertEqual(inst.coverage!.reference!, "Coverage/9876B1")
-		XCTAssertEqual(inst.created!.description, "2014-08-16")
-		XCTAssertEqual(inst.id!, "22345")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/enrollmentrequest")
-		XCTAssertEqual(inst.identifier![0].value!, "EN22345")
-		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
-		XCTAssertEqual(inst.relationship!.code!, "spouse")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/1")
-		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the EnrollmentRequest.</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testEnrollmentRequest2() {
-		let instance = testEnrollmentRequest2_impl()
-		testEnrollmentRequest2_impl(json: instance.asJSON())
-	}
-	
-	func testEnrollmentRequest2_impl(json: JSONDictionary? = nil) -> EnrollmentRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "enrollmentrequest-example.canonical.json")
-		
-		XCTAssertEqual(inst.coverage!.reference!, "Coverage/9876B1")
-		XCTAssertEqual(inst.created!.description, "2014-08-16")
-		XCTAssertEqual(inst.id!, "22345")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/enrollmentrequest")
-		XCTAssertEqual(inst.identifier![0].value!, "EN22345")
-		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
-		XCTAssertEqual(inst.relationship!.code!, "spouse")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/1")
-		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the EnrollmentRequest.</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testEnrollmentRequest3() {
-		let instance = testEnrollmentRequest3_impl()
-		testEnrollmentRequest3_impl(json: instance.asJSON())
-	}
-	
-	func testEnrollmentRequest3_impl(json: JSONDictionary? = nil) -> EnrollmentRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "enrollmentrequest-example.json")
 		
 		XCTAssertEqual(inst.coverage!.reference!, "Coverage/9876B1")

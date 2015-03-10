@@ -28,50 +28,6 @@ class SubscriptionTests: FHIRModelTestCase
 	}
 	
 	func testSubscription1_impl(json: JSONDictionary? = nil) -> Subscription {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "subscription-example.canonical.json")
-		
-		XCTAssertEqual(inst.channel!.header!, "Authorization: Bearer secret-token-abc-123")
-		XCTAssertEqual(inst.channel!.payload!, "application/json")
-		XCTAssertEqual(inst.channel!.type!, "rest-hook")
-		XCTAssertEqual(inst.channel!.url!.absoluteString!, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
-		XCTAssertEqual(inst.criteria!, "/Observation?name=http://loinc.org|1975-2")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.reason!, "Monitor new neonatal function")
-		XCTAssertEqual(inst.status!, "requested")
-		XCTAssertEqual(inst.text!.div!, "<div>[Put rendering here]</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testSubscription2() {
-		let instance = testSubscription2_impl()
-		testSubscription2_impl(json: instance.asJSON())
-	}
-	
-	func testSubscription2_impl(json: JSONDictionary? = nil) -> Subscription {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "subscription-example.canonical.json")
-		
-		XCTAssertEqual(inst.channel!.header!, "Authorization: Bearer secret-token-abc-123")
-		XCTAssertEqual(inst.channel!.payload!, "application/json")
-		XCTAssertEqual(inst.channel!.type!, "rest-hook")
-		XCTAssertEqual(inst.channel!.url!.absoluteString!, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
-		XCTAssertEqual(inst.criteria!, "/Observation?name=http://loinc.org|1975-2")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.reason!, "Monitor new neonatal function")
-		XCTAssertEqual(inst.status!, "requested")
-		XCTAssertEqual(inst.text!.div!, "<div>[Put rendering here]</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testSubscription3() {
-		let instance = testSubscription3_impl()
-		testSubscription3_impl(json: instance.asJSON())
-	}
-	
-	func testSubscription3_impl(json: JSONDictionary? = nil) -> Subscription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "subscription-example.json")
 		
 		XCTAssertEqual(inst.channel!.header!, "Authorization: Bearer secret-token-abc-123")

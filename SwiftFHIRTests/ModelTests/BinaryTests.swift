@@ -28,34 +28,6 @@ class BinaryTests: FHIRModelTestCase
 	}
 	
 	func testBinary1_impl(json: JSONDictionary? = nil) -> Binary {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "binary-example.canonical.json")
-		
-		XCTAssertEqual(inst.contentType!, "application/pdf")
-		XCTAssertEqual(inst.id!, "example")
-		
-		return inst
-	}
-	
-	func testBinary2() {
-		let instance = testBinary2_impl()
-		testBinary2_impl(json: instance.asJSON())
-	}
-	
-	func testBinary2_impl(json: JSONDictionary? = nil) -> Binary {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "binary-example.canonical.json")
-		
-		XCTAssertEqual(inst.contentType!, "application/pdf")
-		XCTAssertEqual(inst.id!, "example")
-		
-		return inst
-	}
-	
-	func testBinary3() {
-		let instance = testBinary3_impl()
-		testBinary3_impl(json: instance.asJSON())
-	}
-	
-	func testBinary3_impl(json: JSONDictionary? = nil) -> Binary {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "binary-example.json")
 		
 		XCTAssertEqual(inst.contentType!, "application/pdf")

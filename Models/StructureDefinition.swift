@@ -1,8 +1,8 @@
 //
-//  Profile.swift
+//  StructureDefinition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (profile.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -10,16 +10,19 @@ import Foundation
 
 
 /**
- *  Resource Profile.
+ *  Structural Definition.
  *
- *  A Resource Profile - a statement of use of one or more FHIR Resources.  It may include constraints on Resources and
- *  Data Types, Terminology Binding Statements and Extension Definitions.
+ *  A definition of a FHIR structure. This resource is used to describe the underlying resources, data types defined in
+ *  FHIR, and also for describing extensions, and constraints on resources and data types.
  */
-public class Profile: FHIRResource
+public class StructureDefinition: DomainResource
 {
 	override public class var resourceName: String {
-		get { return "Profile" }
+		get { return "StructureDefinition" }
 	}
+	
+	/// Whether the structure is abstract
+	public var abstract: Bool?
 	
 	/// Structure that this set of constraints applies to
 	public var base: NSURL?
@@ -27,53 +30,71 @@ public class Profile: FHIRResource
 	/// Assist with indexing and finding
 	public var code: [Coding]?
 	
-	/// Date for this version of the profile
+	/// Contact details of the publisher
+	public var contact: [StructureDefinitionContact]?
+	
+	/// Where the extension can be used in instances
+	public var context: [String]?
+	
+	/// resource | datatype | mapping | extension
+	public var contextType: String?
+	
+	/// Use and/or Publishing restrictions
+	public var copyright: String?
+	
+	/// Date for this version of the StructureDefinition
 	public var date: DateTime?
 	
-	/// Natural language description of the profile
+	/// Natural language description of the StructureDefinition
 	public var description_fhir: String?
+	
+	/// Differential view of the structure
+	public var differential: StructureDefinitionDifferential?
+	
+	/// Use this name when displaying the value
+	public var display: String?
 	
 	/// If for testing purposes, not real usage
 	public var experimental: Bool?
 	
-	/// FHIR Version this profile targets
+	/// FHIR Version this StructureDefinition targets
 	public var fhirVersion: String?
 	
-	/// Other identifiers for the profile
+	/// Other identifiers for the StructureDefinition
 	public var identifier: [Identifier]?
 	
 	/// External specification that the content is mapped to
-	public var mapping: [ProfileMapping]?
+	public var mapping: [StructureDefinitionMapping]?
 	
-	/// Informal name for this profile
+	/// Informal name for this StructureDefinition
 	public var name: String?
 	
 	/// Name of the publisher (Organization or individual)
 	public var publisher: String?
 	
-	/// Scope and Usage this profile is for
+	/// Scope and Usage this structure definition is for
 	public var requirements: String?
 	
 	/// Snapshot view of the structure
-	public var snapshot: ProfileSnapshot?
+	public var snapshot: StructureDefinitionSnapshot?
 	
 	/// draft | active | retired
 	public var status: String?
 	
-	/// Contact information of the publisher
-	public var telecom: [ContactPoint]?
-	
-	/// The Resource or Data Type being described
+	/// type | resource | constraint | extension
 	public var type: String?
 	
-	/// Literal URL used to reference this profile
+	/// Literal URL used to reference this StructureDefinition
 	public var url: NSURL?
 	
-	/// Logical id for this version of the profile
+	/// Logical id for this version of the StructureDefinition
 	public var version: String?
 	
-	public convenience init(name: String?, status: String?, type: String?, url: NSURL?) {
+	public convenience init(abstract: Bool?, name: String?, status: String?, type: String?, url: NSURL?) {
 		self.init(json: nil)
+		if nil != abstract {
+			self.abstract = abstract
+		}
 		if nil != name {
 			self.name = name
 		}
@@ -91,17 +112,38 @@ public class Profile: FHIRResource
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["abstract"] as? Bool {
+				self.abstract = val
+			}
 			if let val = js["base"] as? String {
 				self.base = NSURL(string: val)
 			}
 			if let val = js["code"] as? [JSONDictionary] {
 				self.code = Coding.from(val, owner: self) as? [Coding]
 			}
+			if let val = js["contact"] as? [JSONDictionary] {
+				self.contact = StructureDefinitionContact.from(val, owner: self) as? [StructureDefinitionContact]
+			}
+			if let val = js["context"] as? [String] {
+				self.context = val
+			}
+			if let val = js["contextType"] as? String {
+				self.contextType = val
+			}
+			if let val = js["copyright"] as? String {
+				self.copyright = val
+			}
 			if let val = js["date"] as? String {
 				self.date = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
 				self.description_fhir = val
+			}
+			if let val = js["differential"] as? JSONDictionary {
+				self.differential = StructureDefinitionDifferential(json: val, owner: self)
+			}
+			if let val = js["display"] as? String {
+				self.display = val
 			}
 			if let val = js["experimental"] as? Bool {
 				self.experimental = val
@@ -113,7 +155,7 @@ public class Profile: FHIRResource
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["mapping"] as? [JSONDictionary] {
-				self.mapping = ProfileMapping.from(val, owner: self) as? [ProfileMapping]
+				self.mapping = StructureDefinitionMapping.from(val, owner: self) as? [StructureDefinitionMapping]
 			}
 			if let val = js["name"] as? String {
 				self.name = val
@@ -125,13 +167,10 @@ public class Profile: FHIRResource
 				self.requirements = val
 			}
 			if let val = js["snapshot"] as? JSONDictionary {
-				self.snapshot = ProfileSnapshot(json: val, owner: self)
+				self.snapshot = StructureDefinitionSnapshot(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
-			}
-			if let val = js["telecom"] as? [JSONDictionary] {
-				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 			if let val = js["type"] as? String {
 				self.type = val
@@ -148,17 +187,42 @@ public class Profile: FHIRResource
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
+		if let abstract = self.abstract {
+			json["abstract"] = abstract.asJSON()
+		}
 		if let base = self.base {
 			json["base"] = base.asJSON()
 		}
 		if let code = self.code {
 			json["code"] = Coding.asJSONArray(code)
 		}
+		if let contact = self.contact {
+			json["contact"] = StructureDefinitionContact.asJSONArray(contact)
+		}
+		if let context = self.context {
+			var arr = [AnyObject]()
+			for val in context {
+				arr.append(val.asJSON())
+			}
+			json["context"] = arr
+		}
+		if let contextType = self.contextType {
+			json["contextType"] = contextType.asJSON()
+		}
+		if let copyright = self.copyright {
+			json["copyright"] = copyright.asJSON()
+		}
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
+		}
+		if let differential = self.differential {
+			json["differential"] = differential.asJSON()
+		}
+		if let display = self.display {
+			json["display"] = display.asJSON()
 		}
 		if let experimental = self.experimental {
 			json["experimental"] = experimental.asJSON()
@@ -170,7 +234,7 @@ public class Profile: FHIRResource
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
 		if let mapping = self.mapping {
-			json["mapping"] = ProfileMapping.asJSONArray(mapping)
+			json["mapping"] = StructureDefinitionMapping.asJSONArray(mapping)
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -186,9 +250,6 @@ public class Profile: FHIRResource
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
-		}
-		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -206,14 +267,101 @@ public class Profile: FHIRResource
 
 
 /**
+ *  Contact details of the publisher.
+ *
+ *  Contacts to assist a user in finding and communicating with the publisher.
+ */
+public class StructureDefinitionContact: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "StructureDefinitionContact" }
+	}
+	
+	/// Name of a individual to contact
+	public var name: String?
+	
+	/// Contact details for individual or publisher
+	public var telecom: [ContactPoint]?
+	
+	public required init(json: JSONDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["name"] as? String {
+				self.name = val
+			}
+			if let val = js["telecom"] as? [JSONDictionary] {
+				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+			}
+		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Differential view of the structure.
+ *
+ *  A differential view is expressed relative to the base StructureDefinition - a statement of differences that it
+ *  applies.
+ */
+public class StructureDefinitionDifferential: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "StructureDefinitionDifferential" }
+	}
+	
+	/// Definition of elements in the resource (if no StructureDefinition)
+	public var element: [ElementDefinition]?
+	
+	public convenience init(element: [ElementDefinition]?) {
+		self.init(json: nil)
+		if nil != element {
+			self.element = element
+		}
+	}
+	
+	public required init(json: JSONDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["element"] as? [JSONDictionary] {
+				self.element = ElementDefinition.from(val, owner: self) as? [ElementDefinition]
+			}
+		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let element = self.element {
+			json["element"] = ElementDefinition.asJSONArray(element)
+		}
+		
+		return json
+	}
+}
+
+
+/**
  *  External specification that the content is mapped to.
  *
  *  An external specification that the content is mapped to.
  */
-public class ProfileMapping: FHIRElement
+public class StructureDefinitionMapping: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "ProfileMapping" }
+		get { return "StructureDefinitionMapping" }
 	}
 	
 	/// Versions, Issues, Scope limitations etc
@@ -278,16 +426,23 @@ public class ProfileMapping: FHIRElement
  *  Snapshot view of the structure.
  *
  *  A snapshot view is expressed in a stand alone form that can be used and interpreted without considering the base
- *  profile.
+ *  StructureDefinition.
  */
-public class ProfileSnapshot: FHIRElement
+public class StructureDefinitionSnapshot: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "ProfileSnapshot" }
+		get { return "StructureDefinitionSnapshot" }
 	}
 	
-	/// Definition of elements in the resource (if no profile)
+	/// Definition of elements in the resource (if no StructureDefinition)
 	public var element: [ElementDefinition]?
+	
+	public convenience init(element: [ElementDefinition]?) {
+		self.init(json: nil)
+		if nil != element {
+			self.element = element
+		}
+	}
 	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)

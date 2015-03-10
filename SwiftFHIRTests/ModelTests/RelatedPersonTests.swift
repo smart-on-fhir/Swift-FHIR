@@ -2,7 +2,7 @@
 //  RelatedPersonTests.swift
 //  RelatedPersonTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -47,6 +47,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.telecom![1].system!, "email")
 		XCTAssertEqual(inst.telecom![1].use!, "home")
 		XCTAssertEqual(inst.telecom![1].value!, "s.abels@kpn.nl")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -76,6 +77,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.telecom![1].system!, "email")
 		XCTAssertEqual(inst.telecom![1].use!, "home")
 		XCTAssertEqual(inst.telecom![1].value!, "s.abels@kpn.nl")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -105,6 +107,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.telecom![1].system!, "email")
 		XCTAssertEqual(inst.telecom![1].use!, "home")
 		XCTAssertEqual(inst.telecom![1].value!, "s.abels@kpn.nl")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -127,6 +130,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "home")
 		XCTAssertEqual(inst.telecom![0].value!, "+31201234567")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -149,6 +153,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "home")
 		XCTAssertEqual(inst.telecom![0].value!, "+31201234567")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -181,6 +186,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "work")
 		XCTAssertEqual(inst.telecom![0].value!, "(03) 5555 6473")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -213,6 +219,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "work")
 		XCTAssertEqual(inst.telecom![0].value!, "(03) 5555 6473")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -247,6 +254,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.relationship!.coding![1].system!.absoluteString!, "http://hl7.org/fhir/v3/RoleCode")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].value!, "+33 (237) 998327")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -281,6 +289,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.relationship!.coding![1].system!.absoluteString!, "http://hl7.org/fhir/v3/RoleCode")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].value!, "+33 (237) 998327")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

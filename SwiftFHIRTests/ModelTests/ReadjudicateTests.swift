@@ -2,7 +2,7 @@
 //  ReadjudicateTests.swift
 //  ReadjudicateTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -38,6 +38,8 @@ class ReadjudicateTests: FHIRModelTestCase
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
 		XCTAssertEqual(inst.reference!, "ABC12345G")
 		XCTAssertEqual(inst.request!.reference!, "http://BenefitsInc.com/fhir/oralhealthclaim/12345")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Readjudicate resource.</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -58,6 +60,8 @@ class ReadjudicateTests: FHIRModelTestCase
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
 		XCTAssertEqual(inst.reference!, "ABC12345G")
 		XCTAssertEqual(inst.request!.reference!, "http://BenefitsInc.com/fhir/oralhealthclaim/12345")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Readjudicate resource.</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -78,6 +82,8 @@ class ReadjudicateTests: FHIRModelTestCase
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
 		XCTAssertEqual(inst.reference!, "ABC12345G")
 		XCTAssertEqual(inst.request!.reference!, "http://BenefitsInc.com/fhir/oralhealthclaim/12345")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Readjudicate resource.</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

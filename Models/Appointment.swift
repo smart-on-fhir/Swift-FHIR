@@ -2,7 +2,7 @@
 //  Appointment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (appointment.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -13,7 +13,7 @@ import Foundation
  *  A scheduled healthcare event for a patient and/or practitioner(s) where a service may take place at a specific
  *  date/time.
  */
-public class Appointment: FHIRResource
+public class Appointment: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Appointment" }

@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (documentmanifest.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -12,7 +12,7 @@ import Foundation
 /**
  *  A manifest that defines a set of documents.
  */
-public class DocumentManifest: FHIRResource
+public class DocumentManifest: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "DocumentManifest" }
@@ -20,9 +20,6 @@ public class DocumentManifest: FHIRResource
 	
 	/// Who and/or what authored the document
 	public var author: [Reference]?
-	
-	/// Sensitivity of set of documents
-	public var confidentiality: CodeableConcept?
 	
 	/// Contents of this set of documents
 	public var content: [Reference]?
@@ -45,31 +42,22 @@ public class DocumentManifest: FHIRResource
 	/// The source system/application/software
 	public var source: NSURL?
 	
-	/// current | superceded | entered in error
+	/// current | superceded | entered-in-error
 	public var status: String?
 	
 	/// The subject of the set of documents
-	public var subject: [Reference]?
-	
-	/// If this document manifest replaces another
-	public var supercedes: Reference?
+	public var subject: Reference?
 	
 	/// What kind of document set this is
 	public var type: CodeableConcept?
 	
-	public convenience init(content: [Reference]?, masterIdentifier: Identifier?, status: String?, subject: [Reference]?) {
+	public convenience init(content: [Reference]?, status: String?) {
 		self.init(json: nil)
 		if nil != content {
 			self.content = content
 		}
-		if nil != masterIdentifier {
-			self.masterIdentifier = masterIdentifier
-		}
 		if nil != status {
 			self.status = status
-		}
-		if nil != subject {
-			self.subject = subject
 		}
 	}
 	
@@ -78,9 +66,6 @@ public class DocumentManifest: FHIRResource
 		if let js = json {
 			if let val = js["author"] as? [JSONDictionary] {
 				self.author = Reference.from(val, owner: self) as? [Reference]
-			}
-			if let val = js["confidentiality"] as? JSONDictionary {
-				self.confidentiality = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["content"] as? [JSONDictionary] {
 				self.content = Reference.from(val, owner: self) as? [Reference]
@@ -106,11 +91,8 @@ public class DocumentManifest: FHIRResource
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? [JSONDictionary] {
-				self.subject = Reference.from(val, owner: self) as? [Reference]
-			}
-			if let val = js["supercedes"] as? JSONDictionary {
-				self.supercedes = Reference(json: val, owner: self)
+			if let val = js["subject"] as? JSONDictionary {
+				self.subject = Reference(json: val, owner: self)
 			}
 			if let val = js["type"] as? JSONDictionary {
 				self.type = CodeableConcept(json: val, owner: self)
@@ -123,9 +105,6 @@ public class DocumentManifest: FHIRResource
 		
 		if let author = self.author {
 			json["author"] = Reference.asJSONArray(author)
-		}
-		if let confidentiality = self.confidentiality {
-			json["confidentiality"] = confidentiality.asJSON()
 		}
 		if let content = self.content {
 			json["content"] = Reference.asJSONArray(content)
@@ -152,10 +131,7 @@ public class DocumentManifest: FHIRResource
 			json["status"] = status.asJSON()
 		}
 		if let subject = self.subject {
-			json["subject"] = Reference.asJSONArray(subject)
-		}
-		if let supercedes = self.supercedes {
-			json["supercedes"] = supercedes.asJSON()
+			json["subject"] = subject.asJSON()
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()

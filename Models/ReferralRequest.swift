@@ -2,7 +2,7 @@
 //  ReferralRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (referralrequest.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  Used to record and send details about a request for referral service or transfer of a patient to the care of another
  *  provider or provider organisation.
  */
-public class ReferralRequest: FHIRResource
+public class ReferralRequest: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "ReferralRequest" }
@@ -57,7 +57,7 @@ public class ReferralRequest: FHIRResource
 	/// The clinical specialty (discipline) that the referral is requested for
 	public var specialty: CodeableConcept?
 	
-	/// draft | sent | active | cancelled | refused | completed
+	/// draft | sent | active | cancelled | rejected | completed
 	public var status: String?
 	
 	/// Additonal information to support referral or transfer of care request

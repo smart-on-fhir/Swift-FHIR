@@ -2,7 +2,7 @@
 //  ConformanceTests.swift
 //  ConformanceTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -31,6 +31,8 @@ class ConformanceTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conformance-example.canonical.json")
 		
 		XCTAssertTrue(inst.acceptUnknown!)
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "email")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "wile@acme.org")
 		XCTAssertEqual(inst.date!.description, "2012-01-04")
 		XCTAssertEqual(inst.description_fhir!, "This is the FHIR conformance statement for the main EHR at ACME for the private interface - it does not describe the public interface")
 		XCTAssertEqual(inst.document![0].documentation!, "Basic rules for all documents in the EHR system")
@@ -40,13 +42,12 @@ class ConformanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.format![0], "xml")
 		XCTAssertEqual(inst.format![1], "json")
 		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.identifier!, "68D043B5-9ECF-4559-A57A-396E0D452311")
 		XCTAssertEqual(inst.messaging![0].event![0].code!.code!, "admin-notify")
 		XCTAssertEqual(inst.messaging![0].event![0].code!.system!.absoluteString!, "http://hl7.org/fhir/message-type")
 		XCTAssertEqual(inst.messaging![0].event![0].focus!, "Patient")
 		XCTAssertEqual(inst.messaging![0].event![0].mode!, "receiver")
-		XCTAssertEqual(inst.messaging![0].event![0].request!.reference!, "Profile/101")
-		XCTAssertEqual(inst.messaging![0].event![0].response!.reference!, "Profile/101")
+		XCTAssertEqual(inst.messaging![0].event![0].request!.reference!, "StructureDefinition/101")
+		XCTAssertEqual(inst.messaging![0].event![0].response!.reference!, "StructureDefinition/101")
 		XCTAssertEqual(inst.name!, "ACME EHR Conformance statement")
 		XCTAssertEqual(inst.publisher!, "ACME Corporation")
 		XCTAssertEqual(inst.rest![0].interaction![0].code!, "transaction")
@@ -62,8 +63,8 @@ class ConformanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.rest![0].resource![0].type!, "Patient")
 		XCTAssertEqual(inst.software!.name!, "EHR")
 		XCTAssertEqual(inst.software!.version!, "0.00.020.2134")
-		XCTAssertEqual(inst.telecom![0].system!, "email")
-		XCTAssertEqual(inst.telecom![0].value!, "wile@acme.org")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.url!.absoluteString!, "68D043B5-9ECF-4559-A57A-396E0D452311")
 		XCTAssertEqual(inst.version!, "20130510")
 		
 		return inst
@@ -78,6 +79,8 @@ class ConformanceTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conformance-example.canonical.json")
 		
 		XCTAssertTrue(inst.acceptUnknown!)
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "email")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "wile@acme.org")
 		XCTAssertEqual(inst.date!.description, "2012-01-04")
 		XCTAssertEqual(inst.description_fhir!, "This is the FHIR conformance statement for the main EHR at ACME for the private interface - it does not describe the public interface")
 		XCTAssertEqual(inst.document![0].documentation!, "Basic rules for all documents in the EHR system")
@@ -87,13 +90,12 @@ class ConformanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.format![0], "xml")
 		XCTAssertEqual(inst.format![1], "json")
 		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.identifier!, "68D043B5-9ECF-4559-A57A-396E0D452311")
 		XCTAssertEqual(inst.messaging![0].event![0].code!.code!, "admin-notify")
 		XCTAssertEqual(inst.messaging![0].event![0].code!.system!.absoluteString!, "http://hl7.org/fhir/message-type")
 		XCTAssertEqual(inst.messaging![0].event![0].focus!, "Patient")
 		XCTAssertEqual(inst.messaging![0].event![0].mode!, "receiver")
-		XCTAssertEqual(inst.messaging![0].event![0].request!.reference!, "Profile/101")
-		XCTAssertEqual(inst.messaging![0].event![0].response!.reference!, "Profile/101")
+		XCTAssertEqual(inst.messaging![0].event![0].request!.reference!, "StructureDefinition/101")
+		XCTAssertEqual(inst.messaging![0].event![0].response!.reference!, "StructureDefinition/101")
 		XCTAssertEqual(inst.name!, "ACME EHR Conformance statement")
 		XCTAssertEqual(inst.publisher!, "ACME Corporation")
 		XCTAssertEqual(inst.rest![0].interaction![0].code!, "transaction")
@@ -109,8 +111,8 @@ class ConformanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.rest![0].resource![0].type!, "Patient")
 		XCTAssertEqual(inst.software!.name!, "EHR")
 		XCTAssertEqual(inst.software!.version!, "0.00.020.2134")
-		XCTAssertEqual(inst.telecom![0].system!, "email")
-		XCTAssertEqual(inst.telecom![0].value!, "wile@acme.org")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.url!.absoluteString!, "68D043B5-9ECF-4559-A57A-396E0D452311")
 		XCTAssertEqual(inst.version!, "20130510")
 		
 		return inst
@@ -125,6 +127,8 @@ class ConformanceTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conformance-example.json")
 		
 		XCTAssertTrue(inst.acceptUnknown!)
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "email")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "wile@acme.org")
 		XCTAssertEqual(inst.date!.description, "2012-01-04")
 		XCTAssertEqual(inst.description_fhir!, "This is the FHIR conformance statement for the main EHR at ACME for the private interface - it does not describe the public interface")
 		XCTAssertEqual(inst.document![0].documentation!, "Basic rules for all documents in the EHR system")
@@ -134,13 +138,12 @@ class ConformanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.format![0], "xml")
 		XCTAssertEqual(inst.format![1], "json")
 		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.identifier!, "68D043B5-9ECF-4559-A57A-396E0D452311")
 		XCTAssertEqual(inst.messaging![0].event![0].code!.code!, "admin-notify")
 		XCTAssertEqual(inst.messaging![0].event![0].code!.system!.absoluteString!, "http://hl7.org/fhir/message-type")
 		XCTAssertEqual(inst.messaging![0].event![0].focus!, "Patient")
 		XCTAssertEqual(inst.messaging![0].event![0].mode!, "receiver")
-		XCTAssertEqual(inst.messaging![0].event![0].request!.reference!, "Profile/101")
-		XCTAssertEqual(inst.messaging![0].event![0].response!.reference!, "Profile/101")
+		XCTAssertEqual(inst.messaging![0].event![0].request!.reference!, "StructureDefinition/101")
+		XCTAssertEqual(inst.messaging![0].event![0].response!.reference!, "StructureDefinition/101")
 		XCTAssertEqual(inst.name!, "ACME EHR Conformance statement")
 		XCTAssertEqual(inst.publisher!, "ACME Corporation")
 		XCTAssertEqual(inst.rest![0].interaction![0].code!, "transaction")
@@ -156,8 +159,8 @@ class ConformanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.rest![0].resource![0].type!, "Patient")
 		XCTAssertEqual(inst.software!.name!, "EHR")
 		XCTAssertEqual(inst.software!.version!, "0.00.020.2134")
-		XCTAssertEqual(inst.telecom![0].system!, "email")
-		XCTAssertEqual(inst.telecom![0].value!, "wile@acme.org")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.url!.absoluteString!, "68D043B5-9ECF-4559-A57A-396E0D452311")
 		XCTAssertEqual(inst.version!, "20130510")
 		
 		return inst
@@ -172,6 +175,8 @@ class ConformanceTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conformance-phr-example.canonical.json")
 		
 		XCTAssertFalse(inst.acceptUnknown!)
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.date!.description, "2013-06-18")
 		XCTAssertEqual(inst.description_fhir!, "Prototype Conformance Statement for September 2013 Connectathon")
 		XCTAssertEqual(inst.fhirVersion!, "0.09")
@@ -207,10 +212,8 @@ class ConformanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.rest![0].resource![3].searchParam![1].name!, "service")
 		XCTAssertEqual(inst.rest![0].resource![3].searchParam![1].type!, "token")
 		XCTAssertEqual(inst.rest![0].resource![3].type!, "DiagnosticReport")
-		XCTAssertEqual(inst.rest![0].security!.description_fhir!, "We recommend that PHR servers use standard OAuth using a          standard 3rd party provider. We are not testing the ability to provide an          OAuth authentication/authorization service itself, and nor is providing          any security required for the connectathon at all")
 		XCTAssertEqual(inst.rest![0].security!.service![0].text!, "OAuth")
-		XCTAssertEqual(inst.telecom![0].system!, "url")
-		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -224,6 +227,8 @@ class ConformanceTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conformance-phr-example.json")
 		
 		XCTAssertFalse(inst.acceptUnknown!)
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.date!.description, "2013-06-18")
 		XCTAssertEqual(inst.description_fhir!, "Prototype Conformance Statement for September 2013 Connectathon")
 		XCTAssertEqual(inst.fhirVersion!, "0.09")
@@ -259,10 +264,8 @@ class ConformanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.rest![0].resource![3].searchParam![1].name!, "service")
 		XCTAssertEqual(inst.rest![0].resource![3].searchParam![1].type!, "token")
 		XCTAssertEqual(inst.rest![0].resource![3].type!, "DiagnosticReport")
-		XCTAssertEqual(inst.rest![0].security!.description_fhir!, "We recommend that PHR servers use standard OAuth using a          standard 3rd party provider. We are not testing the ability to provide an          OAuth authentication/authorization service itself, and nor is providing          any security required for the connectathon at all")
 		XCTAssertEqual(inst.rest![0].security!.service![0].text!, "OAuth")
-		XCTAssertEqual(inst.telecom![0].system!, "url")
-		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

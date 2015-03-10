@@ -2,7 +2,7 @@
 //  AppointmentResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (appointmentresponse.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -12,7 +12,7 @@ import Foundation
 /**
  *  A reply to an appointment request for a patient and/or practitioner(s), such as a confirmation or rejection.
  */
-public class AppointmentResponse: FHIRResource
+public class AppointmentResponse: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "AppointmentResponse" }

@@ -2,7 +2,7 @@
 //  ProcedureRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (procedurerequest.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  A request for a procedure to be performed. May be a proposal or an order.
  */
-public class ProcedureRequest: FHIRResource
+public class ProcedureRequest: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "ProcedureRequest" }
@@ -26,8 +26,11 @@ public class ProcedureRequest: FHIRResource
 	/// PRN
 	public var asNeededCodeableConcept: CodeableConcept?
 	
-	/// Target Body Site
-	public var bodySite: [CodeableConcept]?
+	/// Target body site
+	public var bodySiteCodeableConcept: CodeableConcept?
+	
+	/// Target body site
+	public var bodySiteReference: Reference?
 	
 	/// Encounter
 	public var encounter: Reference?
@@ -53,7 +56,7 @@ public class ProcedureRequest: FHIRResource
 	/// routine | urgent | stat | asap
 	public var priority: String?
 	
-	/// proposed | planned | requested | received | accepted | in progress | completed | suspended | rejected | aborted
+	/// proposed | draft | requested | received | accepted | in-progress | completed | suspended | rejected | aborted
 	public var status: String?
 	
 	/// Subject
@@ -90,8 +93,11 @@ public class ProcedureRequest: FHIRResource
 			if let val = js["asNeededCodeableConcept"] as? JSONDictionary {
 				self.asNeededCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["bodySite"] as? [JSONDictionary] {
-				self.bodySite = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			if let val = js["bodySiteCodeableConcept"] as? JSONDictionary {
+				self.bodySiteCodeableConcept = CodeableConcept(json: val, owner: self)
+			}
+			if let val = js["bodySiteReference"] as? JSONDictionary {
+				self.bodySiteReference = Reference(json: val, owner: self)
 			}
 			if let val = js["encounter"] as? JSONDictionary {
 				self.encounter = Reference(json: val, owner: self)
@@ -147,8 +153,11 @@ public class ProcedureRequest: FHIRResource
 		if let asNeededCodeableConcept = self.asNeededCodeableConcept {
 			json["asNeededCodeableConcept"] = asNeededCodeableConcept.asJSON()
 		}
-		if let bodySite = self.bodySite {
-			json["bodySite"] = CodeableConcept.asJSONArray(bodySite)
+		if let bodySiteCodeableConcept = self.bodySiteCodeableConcept {
+			json["bodySiteCodeableConcept"] = bodySiteCodeableConcept.asJSON()
+		}
+		if let bodySiteReference = self.bodySiteReference {
+			json["bodySiteReference"] = bodySiteReference.asJSON()
 		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()

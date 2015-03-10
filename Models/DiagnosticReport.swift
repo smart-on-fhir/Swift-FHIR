@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (diagnosticreport.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -18,7 +18,7 @@ import Foundation
  *  information, and some mix of atomic results, images, textual and coded interpretation, and formatted representation
  *  of diagnostic reports.
  */
-public class DiagnosticReport: FHIRResource
+public class DiagnosticReport: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "DiagnosticReport" }
@@ -36,8 +36,11 @@ public class DiagnosticReport: FHIRResource
 	/// Physiologically Relevant time/time-period for report
 	public var diagnosticPeriod: Period?
 	
+	/// Health care event when test ordered
+	public var encounter: Reference?
+	
 	/// Id for external references to this report
-	public var identifier: Identifier?
+	public var identifier: [Identifier]?
 	
 	/// Key images associated with this report
 	public var image: [DiagnosticReportImage]?
@@ -115,8 +118,11 @@ public class DiagnosticReport: FHIRResource
 			if let val = js["diagnosticPeriod"] as? JSONDictionary {
 				self.diagnosticPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? JSONDictionary {
-				self.identifier = Identifier(json: val, owner: self)
+			if let val = js["encounter"] as? JSONDictionary {
+				self.encounter = Reference(json: val, owner: self)
+			}
+			if let val = js["identifier"] as? [JSONDictionary] {
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["image"] as? [JSONDictionary] {
 				self.image = DiagnosticReportImage.from(val, owner: self) as? [DiagnosticReportImage]
@@ -172,8 +178,11 @@ public class DiagnosticReport: FHIRResource
 		if let diagnosticPeriod = self.diagnosticPeriod {
 			json["diagnosticPeriod"] = diagnosticPeriod.asJSON()
 		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
 		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
+			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
 		if let image = self.image {
 			json["image"] = DiagnosticReportImage.asJSONArray(image)

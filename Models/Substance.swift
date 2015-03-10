@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (substance.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Substance) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -12,7 +12,7 @@ import Foundation
 /**
  *  A homogeneous material with a definite composition.
  */
-public class Substance: FHIRResource
+public class Substance: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Substance" }

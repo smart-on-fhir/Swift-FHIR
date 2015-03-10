@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (valueset.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  A value set specifies a set of codes drawn from one or more code systems.
  */
-public class ValueSet: FHIRResource
+public class ValueSet: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "ValueSet" }
@@ -23,7 +23,10 @@ public class ValueSet: FHIRResource
 	/// When value set includes codes from elsewhere
 	public var compose: ValueSetCompose?
 	
-	/// Publishing restrictions for the value set
+	/// Contact details of the publisher
+	public var contact: [ValueSetContact]?
+	
+	/// Use and/or Publishing restrictions
 	public var copyright: String?
 	
 	/// Date for given status
@@ -44,8 +47,8 @@ public class ValueSet: FHIRResource
 	/// Whether this is intended to be used with an extensible binding
 	public var extensible: Bool?
 	
-	/// Globally unique logical id for  value set
-	public var identifier: NSURL?
+	/// Additional identifier for the value set (v2 / CDA)
+	public var identifier: Identifier?
 	
 	/// Indicates whether or not any change to the content logical definition may occur
 	public var immutable: Bool?
@@ -56,8 +59,8 @@ public class ValueSet: FHIRResource
 	/// Name of the publisher (Organization or individual)
 	public var publisher: String?
 	
-	/// Textual description of the intended scope and use
-	public var purpose: String?
+	/// Why is this needed?
+	public var requirements: String?
 	
 	/// Fixed date for the version of all referenced code systems and value sets
 	public var stableDate: Date?
@@ -65,8 +68,8 @@ public class ValueSet: FHIRResource
 	/// draft | active | retired
 	public var status: String?
 	
-	/// Contact information of the publisher
-	public var telecom: [ContactPoint]?
+	/// Globally unique logical id for  value set
+	public var url: NSURL?
 	
 	/// Logical id for this version of the value set
 	public var version: String?
@@ -83,6 +86,9 @@ public class ValueSet: FHIRResource
 		if let js = json {
 			if let val = js["compose"] as? JSONDictionary {
 				self.compose = ValueSetCompose(json: val, owner: self)
+			}
+			if let val = js["contact"] as? [JSONDictionary] {
+				self.contact = ValueSetContact.from(val, owner: self) as? [ValueSetContact]
 			}
 			if let val = js["copyright"] as? String {
 				self.copyright = val
@@ -105,8 +111,8 @@ public class ValueSet: FHIRResource
 			if let val = js["extensible"] as? Bool {
 				self.extensible = val
 			}
-			if let val = js["identifier"] as? String {
-				self.identifier = NSURL(string: val)
+			if let val = js["identifier"] as? JSONDictionary {
+				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["immutable"] as? Bool {
 				self.immutable = val
@@ -117,8 +123,8 @@ public class ValueSet: FHIRResource
 			if let val = js["publisher"] as? String {
 				self.publisher = val
 			}
-			if let val = js["purpose"] as? String {
-				self.purpose = val
+			if let val = js["requirements"] as? String {
+				self.requirements = val
 			}
 			if let val = js["stableDate"] as? String {
 				self.stableDate = Date(string: val)
@@ -126,8 +132,8 @@ public class ValueSet: FHIRResource
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["telecom"] as? [JSONDictionary] {
-				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+			if let val = js["url"] as? String {
+				self.url = NSURL(string: val)
 			}
 			if let val = js["version"] as? String {
 				self.version = val
@@ -140,6 +146,9 @@ public class ValueSet: FHIRResource
 		
 		if let compose = self.compose {
 			json["compose"] = compose.asJSON()
+		}
+		if let contact = self.contact {
+			json["contact"] = ValueSetContact.asJSONArray(contact)
 		}
 		if let copyright = self.copyright {
 			json["copyright"] = copyright.asJSON()
@@ -174,8 +183,8 @@ public class ValueSet: FHIRResource
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
 		}
-		if let purpose = self.purpose {
-			json["purpose"] = purpose.asJSON()
+		if let requirements = self.requirements {
+			json["requirements"] = requirements.asJSON()
 		}
 		if let stableDate = self.stableDate {
 			json["stableDate"] = stableDate.asJSON()
@@ -183,8 +192,8 @@ public class ValueSet: FHIRResource
 		if let status = self.status {
 			json["status"] = status.asJSON()
 		}
-		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		if let url = self.url {
+			json["url"] = url.asJSON()
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
@@ -380,7 +389,7 @@ public class ValueSetComposeIncludeFilter: FHIRElement
 		get { return "ValueSetComposeIncludeFilter" }
 	}
 	
-	/// = | is-a | is-not-a | regex | in | not in
+	/// = | is-a | is-not-a | regex | in | not-in
 	public var op: String?
 	
 	/// A property defined by the code system
@@ -428,6 +437,50 @@ public class ValueSetComposeIncludeFilter: FHIRElement
 		}
 		if let value = self.value {
 			json["value"] = value.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Contact details of the publisher.
+ *
+ *  Contacts to assist a user in finding and communicating with the publisher.
+ */
+public class ValueSetContact: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ValueSetContact" }
+	}
+	
+	/// Name of a individual to contact
+	public var name: String?
+	
+	/// Contact details for individual or publisher
+	public var telecom: [ContactPoint]?
+	
+	public required init(json: JSONDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["name"] as? String {
+				self.name = val
+			}
+			if let val = js["telecom"] as? [JSONDictionary] {
+				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+			}
+		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
 		}
 		
 		return json
@@ -599,6 +652,9 @@ public class ValueSetDefineConceptDesignation: FHIRElement
 		get { return "ValueSetDefineConceptDesignation" }
 	}
 	
+	/// Language of the designation
+	public var language: String?
+	
 	/// Details how this designation would be used
 	public var use: Coding?
 	
@@ -615,6 +671,9 @@ public class ValueSetDefineConceptDesignation: FHIRElement
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["language"] as? String {
+				self.language = val
+			}
 			if let val = js["use"] as? JSONDictionary {
 				self.use = Coding(json: val, owner: self)
 			}
@@ -627,6 +686,9 @@ public class ValueSetDefineConceptDesignation: FHIRElement
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
+		if let language = self.language {
+			json["language"] = language.asJSON()
+		}
 		if let use = self.use {
 			json["use"] = use.asJSON()
 		}

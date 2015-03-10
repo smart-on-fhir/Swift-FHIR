@@ -2,7 +2,7 @@
 //  CompositionTests.swift
 //  CompositionTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -49,6 +49,7 @@ class CompositionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.status!, "final")
 		XCTAssertEqual(inst.subject!.display!, "Henry Levin the 7th")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/xcda")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "11488-4")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Consult note")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://loinc.org")
@@ -83,6 +84,7 @@ class CompositionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.status!, "final")
 		XCTAssertEqual(inst.subject!.display!, "Henry Levin the 7th")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/xcda")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "11488-4")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Consult note")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://loinc.org")
@@ -117,6 +119,7 @@ class CompositionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.status!, "final")
 		XCTAssertEqual(inst.subject!.display!, "Henry Levin the 7th")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/xcda")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "11488-4")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Consult note")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://loinc.org")

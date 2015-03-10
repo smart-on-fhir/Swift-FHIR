@@ -2,7 +2,7 @@
 //  StatusRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (statusrequest.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/StatusRequest) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  This resource provides the request and response details for the resource for which the processing status is to be
  *  checked.
  */
-public class StatusRequest: FHIRResource
+public class StatusRequest: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "StatusRequest" }

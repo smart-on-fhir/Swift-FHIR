@@ -2,7 +2,7 @@
 //  RelatedPerson.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (relatedperson.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  Information about a person that is involved in the care for a patient, but who is not the target of healthcare, nor
  *  has a formal responsibility in the care process.
  */
-public class RelatedPerson: FHIRResource
+public class RelatedPerson: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "RelatedPerson" }

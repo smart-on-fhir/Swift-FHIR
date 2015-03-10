@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (encounter.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  An interaction between a patient and healthcare provider(s) for the purpose of providing healthcare service(s) or
  *  assessing the health status of a patient.
  */
-public class Encounter: FHIRResource
+public class Encounter: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Encounter" }
@@ -66,7 +66,7 @@ public class Encounter: FHIRResource
 	/// Department or team providing care
 	public var serviceProvider: Reference?
 	
-	/// planned | arrived | in progress | onleave | finished | cancelled
+	/// planned | arrived | in-progress | onleave | finished | cancelled
 	public var status: String?
 	
 	/// List of Encounter statuses
@@ -451,7 +451,7 @@ public class EncounterStatusHistory: FHIRElement
 	/// The time that the episode was in the specified status
 	public var period: Period?
 	
-	/// planned | arrived | in progress | onleave | finished | cancelled
+	/// planned | arrived | in-progress | onleave | finished | cancelled
 	public var status: String?
 	
 	public convenience init(period: Period?, status: String?) {

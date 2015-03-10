@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (careplan.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  Describes the intention of how one or more practitioners intend to deliver care for a particular patient for a
  *  period of time, possibly limited to care for a specific condition or set of conditions.
  */
-public class CarePlan: FHIRResource
+public class CarePlan: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "CarePlan" }
@@ -163,7 +163,7 @@ public class CarePlanActivity: FHIRElement
 	/// Activity details summarised here
 	public var simple: CarePlanActivitySimple?
 	
-	/// not started | scheduled | in progress | on hold | completed | cancelled
+	/// not-started | scheduled | in-progress | on-hold | completed | cancelled
 	public var status: String?
 	
 	public convenience init(prohibited: Bool?) {
@@ -387,7 +387,7 @@ public class CarePlanGoal: FHIRElement
 	/// Comments about the goal
 	public var notes: String?
 	
-	/// in progress | achieved | sustaining | cancelled
+	/// in-progress | achieved | sustaining | cancelled
 	public var status: String?
 	
 	public convenience init(description_fhir: String?) {

@@ -2,7 +2,7 @@
 //  EligibilityRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (eligibilityrequest.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  This resource provides the insurance eligibility details from the insurer regarding a specified coverage and
  *  optionally some class of service.
  */
-public class EligibilityRequest: FHIRResource
+public class EligibilityRequest: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "EligibilityRequest" }

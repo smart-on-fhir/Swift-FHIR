@@ -2,7 +2,7 @@
 //  ListTests.swift
 //  ListTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -35,13 +35,14 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.code!.text!, "Medication Review")
 		XCTAssertEqual(inst.date!.description, "2012-11-26T07:30:23+11:00")
-		XCTAssertEqual(inst.emptyReason!.coding![0].code!, "nil known")
+		XCTAssertEqual(inst.emptyReason!.coding![0].code!, "nil-known")
 		XCTAssertEqual(inst.emptyReason!.coding![0].display!, "Nil Known")
 		XCTAssertEqual(inst.emptyReason!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/special-values")
 		XCTAssertEqual(inst.emptyReason!.text!, "The patient is not on any medications")
 		XCTAssertEqual(inst.id!, "example-empty")
 		XCTAssertEqual(inst.mode!, "snapshot")
 		XCTAssertEqual(inst.source!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -59,13 +60,14 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.code!.text!, "Medication Review")
 		XCTAssertEqual(inst.date!.description, "2012-11-26T07:30:23+11:00")
-		XCTAssertEqual(inst.emptyReason!.coding![0].code!, "nil known")
+		XCTAssertEqual(inst.emptyReason!.coding![0].code!, "nil-known")
 		XCTAssertEqual(inst.emptyReason!.coding![0].display!, "Nil Known")
 		XCTAssertEqual(inst.emptyReason!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/special-values")
 		XCTAssertEqual(inst.emptyReason!.text!, "The patient is not on any medications")
 		XCTAssertEqual(inst.id!, "example-empty")
 		XCTAssertEqual(inst.mode!, "snapshot")
 		XCTAssertEqual(inst.source!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -83,13 +85,14 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.code!.text!, "Medication Review")
 		XCTAssertEqual(inst.date!.description, "2012-11-26T07:30:23+11:00")
-		XCTAssertEqual(inst.emptyReason!.coding![0].code!, "nil known")
+		XCTAssertEqual(inst.emptyReason!.coding![0].code!, "nil-known")
 		XCTAssertEqual(inst.emptyReason!.coding![0].display!, "Nil Known")
 		XCTAssertEqual(inst.emptyReason!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/special-values")
 		XCTAssertEqual(inst.emptyReason!.text!, "The patient is not on any medications")
 		XCTAssertEqual(inst.id!, "example-empty")
 		XCTAssertEqual(inst.mode!, "snapshot")
 		XCTAssertEqual(inst.source!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -119,6 +122,7 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "med-list")
 		XCTAssertEqual(inst.mode!, "changes")
 		XCTAssertEqual(inst.source!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -148,6 +152,7 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "med-list")
 		XCTAssertEqual(inst.mode!, "changes")
 		XCTAssertEqual(inst.source!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -170,6 +175,7 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst.mode!, "changes")
 		XCTAssertFalse(inst.ordered!)
 		XCTAssertEqual(inst.source!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -192,6 +198,7 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst.mode!, "changes")
 		XCTAssertFalse(inst.ordered!)
 		XCTAssertEqual(inst.source!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

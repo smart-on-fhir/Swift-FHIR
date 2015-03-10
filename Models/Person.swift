@@ -2,7 +2,7 @@
 //  Person.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (person.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Person) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  Demographics and administrative information about a person independent of a specific health-related context.
  */
-public class Person: FHIRResource
+public class Person: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Person" }

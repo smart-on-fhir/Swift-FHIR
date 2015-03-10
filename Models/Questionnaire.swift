@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (questionnaire.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  A structured set of questions intended to guide the collection of answers. The questions are ordered and grouped
  *  into coherent subsets, corresponding to the structure of the grouping of the underlying questions.
  */
-public class Questionnaire: FHIRResource
+public class Questionnaire: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Questionnaire" }
@@ -30,11 +30,14 @@ public class Questionnaire: FHIRResource
 	/// External Ids for this questionnaire
 	public var identifier: [Identifier]?
 	
-	/// Organization who designed the questionnaire
+	/// Organization/individual who designed the questionnaire
 	public var publisher: String?
 	
 	/// draft | published | retired
 	public var status: String?
+	
+	/// Contact information of the publisher
+	public var telecom: [ContactPoint]?
 	
 	/// Logical id for this version of Questionnaire
 	public var version: String?
@@ -67,6 +70,9 @@ public class Questionnaire: FHIRResource
 			if let val = js["status"] as? String {
 				self.status = val
 			}
+			if let val = js["telecom"] as? [JSONDictionary] {
+				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+			}
 			if let val = js["version"] as? String {
 				self.version = val
 			}
@@ -90,6 +96,9 @@ public class Questionnaire: FHIRResource
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
@@ -221,10 +230,10 @@ public class QuestionnaireGroupQuestion: FHIRElement
 	/// Valueset containing the possible options
 	public var options: Reference?
 	
-	/// Whether the group may repeat
+	/// Can question  have multiple answers?
 	public var repeats: Bool?
 	
-	/// Must group be included in data results?
+	/// Must question be answered in data results?
 	public var required: Bool?
 	
 	/// Text of the question as it is shown to the user

@@ -2,7 +2,7 @@
 //  VisionPrescriptionTests.swift
 //  VisionPrescriptionTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -66,6 +66,8 @@ class VisionPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].value!, "15014")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.prescriber!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.text!.div!, "<div>Sample Contract Lens prescription</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -114,6 +116,8 @@ class VisionPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].value!, "15014")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.prescriber!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.text!.div!, "<div>Sample Contract Lens prescription</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -162,6 +166,8 @@ class VisionPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].value!, "15014")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.prescriber!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.text!.div!, "<div>Sample Contract Lens prescription</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -196,6 +202,7 @@ class VisionPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].value!, "15013")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.prescriber!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -230,6 +237,7 @@ class VisionPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].value!, "15013")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.prescriber!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

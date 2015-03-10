@@ -2,7 +2,7 @@
 //  OrderTests.swift
 //  OrderTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -39,6 +39,7 @@ class OrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
 		XCTAssertEqual(inst.target!.display!, "Juri van Gelder")
 		XCTAssertEqual(inst.target!.reference!, "Practitioner/f203")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.when!.code!.coding![0].code!, "394848005")
 		XCTAssertEqual(inst.when!.code!.coding![0].display!, "Normal priority")
 		XCTAssertEqual(inst.when!.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -63,6 +64,7 @@ class OrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
 		XCTAssertEqual(inst.target!.display!, "Juri van Gelder")
 		XCTAssertEqual(inst.target!.reference!, "Practitioner/f203")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.when!.code!.coding![0].code!, "394848005")
 		XCTAssertEqual(inst.when!.code!.coding![0].display!, "Normal priority")
 		XCTAssertEqual(inst.when!.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -87,6 +89,7 @@ class OrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
 		XCTAssertEqual(inst.target!.display!, "Juri van Gelder")
 		XCTAssertEqual(inst.target!.reference!, "Practitioner/f203")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.when!.code!.coding![0].code!, "394848005")
 		XCTAssertEqual(inst.when!.code!.coding![0].display!, "Normal priority")
 		XCTAssertEqual(inst.when!.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -108,6 +111,8 @@ class OrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reasonCodeableConcept!.text!, "Standard admission testing")
 		XCTAssertEqual(inst.source!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/pat2")
+		XCTAssertEqual(inst.text!.div!, "<div>Request for Prescription (on patient Donald DUCK @ Acme Healthcare, Inc. MR = 654321)</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.when!.code!.coding![0].code!, "today")
 		XCTAssertEqual(inst.when!.code!.coding![0].system!.absoluteString!, "http://acme.com/codes/request-priority")
 		
@@ -128,6 +133,8 @@ class OrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reasonCodeableConcept!.text!, "Standard admission testing")
 		XCTAssertEqual(inst.source!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/pat2")
+		XCTAssertEqual(inst.text!.div!, "<div>Request for Prescription (on patient Donald DUCK @ Acme Healthcare, Inc. MR = 654321)</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.when!.code!.coding![0].code!, "today")
 		XCTAssertEqual(inst.when!.code!.coding![0].system!.absoluteString!, "http://acme.com/codes/request-priority")
 		

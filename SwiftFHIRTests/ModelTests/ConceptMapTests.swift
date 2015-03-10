@@ -2,7 +2,7 @@
 //  ConceptMapTests.swift
 //  ConceptMapTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -30,6 +30,10 @@ class ConceptMapTests: FHIRModelTestCase
 	func testConceptMap1_impl(json: JSONDictionary? = nil) -> ConceptMap {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conceptmap-example-specimen-type.canonical.json")
 		
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.contact![1].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![1].telecom![0].value!, "http://www.phconnect.org/group/laboratorymessagingcommunityofpractice/forum/attachment/download?id=3649725%3AUploadedFile%3A145786")
 		XCTAssertEqual(inst.date!.description, "2013-07-25")
 		XCTAssertEqual(inst.element![0].code!, "ACNE")
 		XCTAssertEqual(inst.element![0].codeSystem!.absoluteString!, "http://hl7.org/fhir/v2/0487")
@@ -86,16 +90,13 @@ class ConceptMapTests: FHIRModelTestCase
 		XCTAssertEqual(inst.element![9].map![0].equivalence!, "unmatched")
 		XCTAssertFalse(inst.experimental!)
 		XCTAssertEqual(inst.id!, "102")
-		XCTAssertEqual(inst.identifier!, "http://hl7.org/fhir/conceptmap-example-specimen-type.html")
 		XCTAssertEqual(inst.name!, "Specimen mapping from v2 table 0487 to SNOMED CT")
 		XCTAssertEqual(inst.publisher!, "FHIR project team (original source: LabMCoP)")
 		XCTAssertEqual(inst.sourceReference!.reference!, "http://hl7.org/fhir/v2/vs/0487")
 		XCTAssertEqual(inst.status!, "draft")
 		XCTAssertEqual(inst.targetReference!.reference!, "http://snomed.info/id")
-		XCTAssertEqual(inst.telecom![0].system!, "url")
-		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.telecom![1].system!, "url")
-		XCTAssertEqual(inst.telecom![1].value!, "http://www.phconnect.org/group/laboratorymessagingcommunityofpractice/forum/attachment/download?id=3649725%3AUploadedFile%3A145786")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.url!.absoluteString!, "http://hl7.org/fhir/conceptmap-example-specimen-type.html")
 		XCTAssertEqual(inst.version!, "20130725")
 		
 		return inst
@@ -109,6 +110,10 @@ class ConceptMapTests: FHIRModelTestCase
 	func testConceptMap2_impl(json: JSONDictionary? = nil) -> ConceptMap {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conceptmap-example-specimen-type.canonical.json")
 		
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.contact![1].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![1].telecom![0].value!, "http://www.phconnect.org/group/laboratorymessagingcommunityofpractice/forum/attachment/download?id=3649725%3AUploadedFile%3A145786")
 		XCTAssertEqual(inst.date!.description, "2013-07-25")
 		XCTAssertEqual(inst.element![0].code!, "ACNE")
 		XCTAssertEqual(inst.element![0].codeSystem!.absoluteString!, "http://hl7.org/fhir/v2/0487")
@@ -165,16 +170,13 @@ class ConceptMapTests: FHIRModelTestCase
 		XCTAssertEqual(inst.element![9].map![0].equivalence!, "unmatched")
 		XCTAssertFalse(inst.experimental!)
 		XCTAssertEqual(inst.id!, "102")
-		XCTAssertEqual(inst.identifier!, "http://hl7.org/fhir/conceptmap-example-specimen-type.html")
 		XCTAssertEqual(inst.name!, "Specimen mapping from v2 table 0487 to SNOMED CT")
 		XCTAssertEqual(inst.publisher!, "FHIR project team (original source: LabMCoP)")
 		XCTAssertEqual(inst.sourceReference!.reference!, "http://hl7.org/fhir/v2/vs/0487")
 		XCTAssertEqual(inst.status!, "draft")
 		XCTAssertEqual(inst.targetReference!.reference!, "http://snomed.info/id")
-		XCTAssertEqual(inst.telecom![0].system!, "url")
-		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.telecom![1].system!, "url")
-		XCTAssertEqual(inst.telecom![1].value!, "http://www.phconnect.org/group/laboratorymessagingcommunityofpractice/forum/attachment/download?id=3649725%3AUploadedFile%3A145786")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.url!.absoluteString!, "http://hl7.org/fhir/conceptmap-example-specimen-type.html")
 		XCTAssertEqual(inst.version!, "20130725")
 		
 		return inst
@@ -188,6 +190,10 @@ class ConceptMapTests: FHIRModelTestCase
 	func testConceptMap3_impl(json: JSONDictionary? = nil) -> ConceptMap {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conceptmap-example-specimen-type.json")
 		
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.contact![1].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![1].telecom![0].value!, "http://www.phconnect.org/group/laboratorymessagingcommunityofpractice/forum/attachment/download?id=3649725%3AUploadedFile%3A145786")
 		XCTAssertEqual(inst.date!.description, "2013-07-25")
 		XCTAssertEqual(inst.element![0].code!, "ACNE")
 		XCTAssertEqual(inst.element![0].codeSystem!.absoluteString!, "http://hl7.org/fhir/v2/0487")
@@ -244,16 +250,13 @@ class ConceptMapTests: FHIRModelTestCase
 		XCTAssertEqual(inst.element![9].map![0].equivalence!, "unmatched")
 		XCTAssertFalse(inst.experimental!)
 		XCTAssertEqual(inst.id!, "102")
-		XCTAssertEqual(inst.identifier!, "http://hl7.org/fhir/conceptmap-example-specimen-type.html")
 		XCTAssertEqual(inst.name!, "Specimen mapping from v2 table 0487 to SNOMED CT")
 		XCTAssertEqual(inst.publisher!, "FHIR project team (original source: LabMCoP)")
 		XCTAssertEqual(inst.sourceReference!.reference!, "http://hl7.org/fhir/v2/vs/0487")
 		XCTAssertEqual(inst.status!, "draft")
 		XCTAssertEqual(inst.targetReference!.reference!, "http://snomed.info/id")
-		XCTAssertEqual(inst.telecom![0].system!, "url")
-		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.telecom![1].system!, "url")
-		XCTAssertEqual(inst.telecom![1].value!, "http://www.phconnect.org/group/laboratorymessagingcommunityofpractice/forum/attachment/download?id=3649725%3AUploadedFile%3A145786")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.url!.absoluteString!, "http://hl7.org/fhir/conceptmap-example-specimen-type.html")
 		XCTAssertEqual(inst.version!, "20130725")
 		
 		return inst
@@ -267,6 +270,8 @@ class ConceptMapTests: FHIRModelTestCase
 	func testConceptMap4_impl(json: JSONDictionary? = nil) -> ConceptMap {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conceptmap-example.canonical.json")
 		
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.date!.description, "2012-06-13")
 		XCTAssertEqual(inst.description_fhir!, "A mapping between the FHIR and V3 AddressUse Code systems")
 		XCTAssertEqual(inst.element![0].code!, "home")
@@ -297,14 +302,13 @@ class ConceptMapTests: FHIRModelTestCase
 		XCTAssertEqual(inst.element![4].map![0].equivalence!, "disjoint")
 		XCTAssertTrue(inst.experimental!)
 		XCTAssertEqual(inst.id!, "101")
-		XCTAssertEqual(inst.identifier!, "256a5231-a2bb-49bd-9fea-f349d428b70d")
 		XCTAssertEqual(inst.name!, "FHIR/v3 Address Use Mapping")
 		XCTAssertEqual(inst.publisher!, "FHIR project team (example)")
 		XCTAssertEqual(inst.sourceReference!.reference!, "http://hl7.org/fhir/address-use")
 		XCTAssertEqual(inst.status!, "draft")
 		XCTAssertEqual(inst.targetReference!.reference!, "http://hl7.org/fhir/v3/AddressUse")
-		XCTAssertEqual(inst.telecom![0].system!, "url")
-		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.url!.absoluteString!, "256a5231-a2bb-49bd-9fea-f349d428b70d")
 		XCTAssertEqual(inst.version!, "20120613")
 		
 		return inst
@@ -318,6 +322,8 @@ class ConceptMapTests: FHIRModelTestCase
 	func testConceptMap5_impl(json: JSONDictionary? = nil) -> ConceptMap {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conceptmap-example.json")
 		
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.date!.description, "2012-06-13")
 		XCTAssertEqual(inst.description_fhir!, "A mapping between the FHIR and V3 AddressUse Code systems")
 		XCTAssertEqual(inst.element![0].code!, "home")
@@ -348,14 +354,13 @@ class ConceptMapTests: FHIRModelTestCase
 		XCTAssertEqual(inst.element![4].map![0].equivalence!, "disjoint")
 		XCTAssertTrue(inst.experimental!)
 		XCTAssertEqual(inst.id!, "101")
-		XCTAssertEqual(inst.identifier!, "256a5231-a2bb-49bd-9fea-f349d428b70d")
 		XCTAssertEqual(inst.name!, "FHIR/v3 Address Use Mapping")
 		XCTAssertEqual(inst.publisher!, "FHIR project team (example)")
 		XCTAssertEqual(inst.sourceReference!.reference!, "http://hl7.org/fhir/address-use")
 		XCTAssertEqual(inst.status!, "draft")
 		XCTAssertEqual(inst.targetReference!.reference!, "http://hl7.org/fhir/v3/AddressUse")
-		XCTAssertEqual(inst.telecom![0].system!, "url")
-		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.url!.absoluteString!, "256a5231-a2bb-49bd-9fea-f349d428b70d")
 		XCTAssertEqual(inst.version!, "20120613")
 		
 		return inst

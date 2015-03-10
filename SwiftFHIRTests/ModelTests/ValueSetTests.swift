@@ -2,7 +2,7 @@
 //  ValueSetTests.swift
 //  ValueSetTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -36,17 +36,18 @@ class ValueSetTests: FHIRModelTestCase
 		XCTAssertEqual(inst.compose!.include![0].concept![3].code!, "9342-7")
 		XCTAssertEqual(inst.compose!.include![0].system!.absoluteString!, "http://loinc.org")
 		XCTAssertEqual(inst.compose!.include![0].version!, "2.36")
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.copyright!, "This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use")
 		XCTAssertEqual(inst.date!.description, "2012-06-13")
 		XCTAssertEqual(inst.description_fhir!, "This is an example value set that includes        all the LOINC codes for serum cholesterol from v2.36")
 		XCTAssertTrue(inst.experimental!)
 		XCTAssertEqual(inst.id!, "101")
-		XCTAssertEqual(inst.identifier!.absoluteString!, "urn:uuid:256a5231-a2bb-49bd-9fea-f349d428b70d")
 		XCTAssertEqual(inst.name!, "LOINC Codes for Cholesterol")
 		XCTAssertEqual(inst.publisher!, "FHIR project team (example)")
 		XCTAssertEqual(inst.status!, "draft")
-		XCTAssertEqual(inst.telecom![0].system!, "url")
-		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.url!.absoluteString!, "urn:uuid:256a5231-a2bb-49bd-9fea-f349d428b70d")
 		XCTAssertEqual(inst.version!, "20120613")
 		
 		return inst
@@ -66,17 +67,18 @@ class ValueSetTests: FHIRModelTestCase
 		XCTAssertEqual(inst.compose!.include![0].concept![3].code!, "9342-7")
 		XCTAssertEqual(inst.compose!.include![0].system!.absoluteString!, "http://loinc.org")
 		XCTAssertEqual(inst.compose!.include![0].version!, "2.36")
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.copyright!, "This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use")
 		XCTAssertEqual(inst.date!.description, "2012-06-13")
 		XCTAssertEqual(inst.description_fhir!, "This is an example value set that includes        all the LOINC codes for serum cholesterol from v2.36")
 		XCTAssertTrue(inst.experimental!)
 		XCTAssertEqual(inst.id!, "101")
-		XCTAssertEqual(inst.identifier!.absoluteString!, "urn:uuid:256a5231-a2bb-49bd-9fea-f349d428b70d")
 		XCTAssertEqual(inst.name!, "LOINC Codes for Cholesterol")
 		XCTAssertEqual(inst.publisher!, "FHIR project team (example)")
 		XCTAssertEqual(inst.status!, "draft")
-		XCTAssertEqual(inst.telecom![0].system!, "url")
-		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.url!.absoluteString!, "urn:uuid:256a5231-a2bb-49bd-9fea-f349d428b70d")
 		XCTAssertEqual(inst.version!, "20120613")
 		
 		return inst
@@ -96,17 +98,18 @@ class ValueSetTests: FHIRModelTestCase
 		XCTAssertEqual(inst.compose!.include![0].concept![3].code!, "9342-7")
 		XCTAssertEqual(inst.compose!.include![0].system!.absoluteString!, "http://loinc.org")
 		XCTAssertEqual(inst.compose!.include![0].version!, "2.36")
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.copyright!, "This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use")
 		XCTAssertEqual(inst.date!.description, "2012-06-13")
 		XCTAssertEqual(inst.description_fhir!, "This is an example value set that includes        all the LOINC codes for serum cholesterol from v2.36")
 		XCTAssertTrue(inst.experimental!)
 		XCTAssertEqual(inst.id!, "101")
-		XCTAssertEqual(inst.identifier!.absoluteString!, "urn:uuid:256a5231-a2bb-49bd-9fea-f349d428b70d")
 		XCTAssertEqual(inst.name!, "LOINC Codes for Cholesterol")
 		XCTAssertEqual(inst.publisher!, "FHIR project team (example)")
 		XCTAssertEqual(inst.status!, "draft")
-		XCTAssertEqual(inst.telecom![0].system!, "url")
-		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.url!.absoluteString!, "urn:uuid:256a5231-a2bb-49bd-9fea-f349d428b70d")
 		XCTAssertEqual(inst.version!, "20120613")
 		
 		return inst
@@ -120,6 +123,9 @@ class ValueSetTests: FHIRModelTestCase
 	func testValueSet4_impl(json: JSONDictionary? = nil) -> ValueSet {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "valueset-list-example-codes.json")
 		
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertTrue(inst.define!.caseSensitive!)
 		XCTAssertEqual(inst.define!.concept![0].code!, "alerts")
 		XCTAssertEqual(inst.define!.concept![0].definition!, "A list of alerts for the patient")
 		XCTAssertEqual(inst.define!.concept![0].display!, "Alerts")
@@ -149,13 +155,18 @@ class ValueSetTests: FHIRModelTestCase
 		XCTAssertEqual(inst.define!.concept![8].display!, "Care Plans")
 		XCTAssertEqual(inst.define!.system!.absoluteString!, "http://hl7.org/fhir/list-example-use-codes")
 		XCTAssertEqual(inst.description_fhir!, "Example use codes for the List resource - typical kinds of use. TODO: Does LOINC define useful codes?")
+		XCTAssertTrue(inst.experimental!)
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/valueset-oid")
+		XCTAssertEqual(inst.extension_fhir![0].valueUri!.absoluteString!, "urn:oid:2.16.840.1.113883.4.642.2.320")
 		XCTAssertEqual(inst.id!, "valueset-list-example-codes")
-		XCTAssertEqual(inst.identifier!.absoluteString!, "http://hl7.org/fhir/vs/list-example-codes")
+		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2015-03-10T02:55:33.653+00:00")
+		XCTAssertEqual(inst.meta!.profile![0].absoluteString!, "http://hl7.org/fhir/Profile/valueset-shareable-definition")
 		XCTAssertEqual(inst.name!, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher!, "FHIR Project")
 		XCTAssertEqual(inst.status!, "draft")
-		XCTAssertEqual(inst.telecom![0].system!, "url")
-		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.url!.absoluteString!, "http://hl7.org/fhir/vs/list-example-codes")
+		XCTAssertEqual(inst.version!, "0.4.0")
 		
 		return inst
 	}

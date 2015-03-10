@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (imagingstudy.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -17,7 +17,7 @@ import Foundation
  *  common context.  A Series is of only one modality (e.g., X-ray, CT, MR, ultrasound), but a Study may have multiple
  *  Series of different modalities.
  */
-public class ImagingStudy: FHIRResource
+public class ImagingStudy: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "ImagingStudy" }

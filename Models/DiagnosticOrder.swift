@@ -2,7 +2,7 @@
 //  DiagnosticOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (diagnosticorder.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -12,9 +12,9 @@ import Foundation
 /**
  *  A request for a diagnostic service.
  *
- *  A request for a diagnostic investigation service to be performed.
+ *  A record of a request for a diagnostic investigation service to be performed.
  */
-public class DiagnosticOrder: FHIRResource
+public class DiagnosticOrder: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "DiagnosticOrder" }
@@ -44,13 +44,13 @@ public class DiagnosticOrder: FHIRResource
 	/// If the whole order relates to specific specimens
 	public var specimen: [Reference]?
 	
-	/// requested | received | accepted | in progress | review | completed | suspended | rejected | failed
+	/// proposed | draft | planned | requested | received | accepted | in-progress | review | completed | cancelled | suspended | rejected | failed
 	public var status: String?
 	
 	/// Who and/or what test is about
 	public var subject: Reference?
 	
-	/// Supporting observations or conditions for this request
+	/// Additional clinical information
 	public var supportingInformation: [Reference]?
 	
 	public convenience init(subject: Reference?) {
@@ -162,7 +162,7 @@ public class DiagnosticOrderEvent: FHIRElement
 	/// More information about the event and its context
 	public var description_fhir: CodeableConcept?
 	
-	/// requested | received | accepted | in progress | review | completed | suspended | rejected | failed
+	/// proposed | draft | planned | requested | received | accepted | in-progress | review | completed | cancelled | suspended | rejected | failed
 	public var status: String?
 	
 	public convenience init(dateTime: DateTime?, status: String?) {
@@ -227,7 +227,10 @@ public class DiagnosticOrderItem: FHIRElement
 	}
 	
 	/// Location of requested test (if applicable)
-	public var bodySite: CodeableConcept?
+	public var bodySiteCodeableConcept: CodeableConcept?
+	
+	/// Location of requested test (if applicable)
+	public var bodySiteReference: Reference?
 	
 	/// Code to indicate the item (test or panel) being ordered
 	public var code: CodeableConcept?
@@ -238,7 +241,7 @@ public class DiagnosticOrderItem: FHIRElement
 	/// If this item relates to specific specimens
 	public var specimen: [Reference]?
 	
-	/// requested | received | accepted | in progress | review | completed | suspended | rejected | failed
+	/// proposed | draft | planned | requested | received | accepted | in-progress | review | completed | cancelled | suspended | rejected | failed
 	public var status: String?
 	
 	public convenience init(code: CodeableConcept?) {
@@ -251,8 +254,11 @@ public class DiagnosticOrderItem: FHIRElement
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["bodySite"] as? JSONDictionary {
-				self.bodySite = CodeableConcept(json: val, owner: self)
+			if let val = js["bodySiteCodeableConcept"] as? JSONDictionary {
+				self.bodySiteCodeableConcept = CodeableConcept(json: val, owner: self)
+			}
+			if let val = js["bodySiteReference"] as? JSONDictionary {
+				self.bodySiteReference = Reference(json: val, owner: self)
 			}
 			if let val = js["code"] as? JSONDictionary {
 				self.code = CodeableConcept(json: val, owner: self)
@@ -272,8 +278,11 @@ public class DiagnosticOrderItem: FHIRElement
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let bodySite = self.bodySite {
-			json["bodySite"] = bodySite.asJSON()
+		if let bodySiteCodeableConcept = self.bodySiteCodeableConcept {
+			json["bodySiteCodeableConcept"] = bodySiteCodeableConcept.asJSON()
+		}
+		if let bodySiteReference = self.bodySiteReference {
+			json["bodySiteReference"] = bodySiteReference.asJSON()
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON()

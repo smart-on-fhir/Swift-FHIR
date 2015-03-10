@@ -2,7 +2,7 @@
 //  ContractTests.swift
 //  ContractTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -31,12 +31,8 @@ class ContractTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contract-example.canonical.json")
 		
 		XCTAssertEqual(inst.id!, "C-123")
-		XCTAssertEqual(inst.issued!.description, "2014-08-17")
-		XCTAssertEqual(inst.subject![0].reference!, "http://www.somewhere.org/patient/12345")
-		XCTAssertEqual(inst.subtype![0].coding![0].code!, "disclosure-US")
-		XCTAssertEqual(inst.subtype![0].coding![0].system!.absoluteString!, "http://www.hl7.org/fhir/contractsubtypecodes")
-		XCTAssertEqual(inst.type!.coding![0].code!, "disclosure")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://www.hl7.org/fhir/contracttypecodes")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the contract</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -50,12 +46,8 @@ class ContractTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contract-example.canonical.json")
 		
 		XCTAssertEqual(inst.id!, "C-123")
-		XCTAssertEqual(inst.issued!.description, "2014-08-17")
-		XCTAssertEqual(inst.subject![0].reference!, "http://www.somewhere.org/patient/12345")
-		XCTAssertEqual(inst.subtype![0].coding![0].code!, "disclosure-US")
-		XCTAssertEqual(inst.subtype![0].coding![0].system!.absoluteString!, "http://www.hl7.org/fhir/contractsubtypecodes")
-		XCTAssertEqual(inst.type!.coding![0].code!, "disclosure")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://www.hl7.org/fhir/contracttypecodes")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the contract</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -69,12 +61,8 @@ class ContractTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contract-example.json")
 		
 		XCTAssertEqual(inst.id!, "C-123")
-		XCTAssertEqual(inst.issued!.description, "2014-08-17")
-		XCTAssertEqual(inst.subject![0].reference!, "http://www.somewhere.org/patient/12345")
-		XCTAssertEqual(inst.subtype![0].coding![0].code!, "disclosure-US")
-		XCTAssertEqual(inst.subtype![0].coding![0].system!.absoluteString!, "http://www.hl7.org/fhir/contractsubtypecodes")
-		XCTAssertEqual(inst.type!.coding![0].code!, "disclosure")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://www.hl7.org/fhir/contracttypecodes")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the contract</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

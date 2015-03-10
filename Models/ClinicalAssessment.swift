@@ -2,7 +2,7 @@
 //  ClinicalAssessment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (clinicalassessment.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/ClinicalAssessment) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ import Foundation
  *  the treatments or management strategies that are best to manage a patient's condition. Assessments are often 1:1
  *  with a clinical consultation / encounter,  but this varies greatly depending on the clinical workflow.
  */
-public class ClinicalAssessment: FHIRResource
+public class ClinicalAssessment: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "ClinicalAssessment" }

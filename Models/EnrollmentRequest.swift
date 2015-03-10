@@ -2,7 +2,7 @@
 //  EnrollmentRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (enrollmentrequest.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/EnrollmentRequest) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  This resource provides the insurance Enrollment details to the insurer regarding a specified coverage.
  */
-public class EnrollmentRequest: FHIRResource
+public class EnrollmentRequest: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "EnrollmentRequest" }

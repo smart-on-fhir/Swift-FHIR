@@ -2,7 +2,7 @@
 //  SlotTests.swift
 //  SlotTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -40,6 +40,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertTrue(inst.overbooked!)
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:00:00Z")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "45")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Physiotherapy")
 		
@@ -64,6 +65,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertTrue(inst.overbooked!)
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:00:00Z")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "45")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Physiotherapy")
 		
@@ -88,6 +90,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertTrue(inst.overbooked!)
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:00:00Z")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "45")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Physiotherapy")
 		
@@ -109,6 +112,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:45:00Z")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "45")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Physiotherapy")
 		
@@ -130,6 +134,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:45:00Z")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "45")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Physiotherapy")
 		
@@ -151,6 +156,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:30:00Z")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "45")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Physiotherapy")
 		
@@ -172,6 +178,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:30:00Z")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "45")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Physiotherapy")
 		
@@ -193,6 +200,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:15:00Z")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "45")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Physiotherapy")
 		
@@ -214,6 +222,7 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:15:00Z")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "45")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Physiotherapy")
 		

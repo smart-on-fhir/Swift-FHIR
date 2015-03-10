@@ -2,7 +2,7 @@
 //  DeviceMetric.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (devicemetric.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,32 +14,29 @@ import Foundation
  *
  *  Describes a measurement, calculation or setting capability of a medical device.
  */
-public class DeviceMetric: FHIRResource
+public class DeviceMetric: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "DeviceMetric" }
 	}
 	
 	/// Describes the calibrations that have been performed or that are required to be performed
-	public var calibrationInfo: [DeviceMetricCalibrationInfo]?
+	public var calibration: [DeviceMetricCalibration]?
 	
 	/// measurement | setting | calculation | unspecified
 	public var category: String?
 	
-	/// Describes the typical color of representation
-	public var color: Identifier?
+	/// black | red | green | yellow | blue | magenta | cyan | white
+	public var color: String?
 	
 	/// Unique identifier of this DeviceMetric
 	public var identifier: Identifier?
-	
-	/// Describes the physical principle of the measurement
-	public var measurementMode: Identifier?
 	
 	/// Describes the measurement repetition time
 	public var measurementPeriod: Timing?
 	
 	/// on | off | standby
-	public var operationalState: String?
+	public var operationalStatus: String?
 	
 	/// Describes the link to the parent DeviceComponent
 	public var parent: Reference?
@@ -69,26 +66,23 @@ public class DeviceMetric: FHIRResource
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["calibrationInfo"] as? [JSONDictionary] {
-				self.calibrationInfo = DeviceMetricCalibrationInfo.from(val, owner: self) as? [DeviceMetricCalibrationInfo]
+			if let val = js["calibration"] as? [JSONDictionary] {
+				self.calibration = DeviceMetricCalibration.from(val, owner: self) as? [DeviceMetricCalibration]
 			}
 			if let val = js["category"] as? String {
 				self.category = val
 			}
-			if let val = js["color"] as? JSONDictionary {
-				self.color = Identifier(json: val, owner: self)
+			if let val = js["color"] as? String {
+				self.color = val
 			}
 			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["measurementMode"] as? JSONDictionary {
-				self.measurementMode = Identifier(json: val, owner: self)
-			}
 			if let val = js["measurementPeriod"] as? JSONDictionary {
 				self.measurementPeriod = Timing(json: val, owner: self)
 			}
-			if let val = js["operationalState"] as? String {
-				self.operationalState = val
+			if let val = js["operationalStatus"] as? String {
+				self.operationalStatus = val
 			}
 			if let val = js["parent"] as? JSONDictionary {
 				self.parent = Reference(json: val, owner: self)
@@ -108,8 +102,8 @@ public class DeviceMetric: FHIRResource
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let calibrationInfo = self.calibrationInfo {
-			json["calibrationInfo"] = DeviceMetricCalibrationInfo.asJSONArray(calibrationInfo)
+		if let calibration = self.calibration {
+			json["calibration"] = DeviceMetricCalibration.asJSONArray(calibration)
 		}
 		if let category = self.category {
 			json["category"] = category.asJSON()
@@ -120,14 +114,11 @@ public class DeviceMetric: FHIRResource
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
 		}
-		if let measurementMode = self.measurementMode {
-			json["measurementMode"] = measurementMode.asJSON()
-		}
 		if let measurementPeriod = self.measurementPeriod {
 			json["measurementPeriod"] = measurementPeriod.asJSON()
 		}
-		if let operationalState = self.operationalState {
-			json["operationalState"] = operationalState.asJSON()
+		if let operationalStatus = self.operationalStatus {
+			json["operationalStatus"] = operationalStatus.asJSON()
 		}
 		if let parent = self.parent {
 			json["parent"] = parent.asJSON()
@@ -150,10 +141,10 @@ public class DeviceMetric: FHIRResource
 /**
  *  Describes the calibrations that have been performed or that are required to be performed.
  */
-public class DeviceMetricCalibrationInfo: FHIRElement
+public class DeviceMetricCalibration: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "DeviceMetricCalibrationInfo" }
+		get { return "DeviceMetricCalibration" }
 	}
 	
 	/// not-calibrated | calibration-required | calibrated | unspecified

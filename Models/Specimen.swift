@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (specimen.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -12,7 +12,7 @@ import Foundation
 /**
  *  Sample for analysis.
  */
-public class Specimen: FHIRResource
+public class Specimen: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Specimen" }
@@ -30,11 +30,11 @@ public class Specimen: FHIRResource
 	/// External Identifier
 	public var identifier: [Identifier]?
 	
+	/// Parent specimen
+	public var parent: [Reference]?
+	
 	/// The time when specimen was received for processing
 	public var receivedTime: DateTime?
-	
-	/// Parent of specimen
-	public var source: [SpecimenSource]?
 	
 	/// Where the specimen came from. This may be from the patient(s) or from the environment or a device
 	public var subject: Reference?
@@ -67,11 +67,11 @@ public class Specimen: FHIRResource
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
+			if let val = js["parent"] as? [JSONDictionary] {
+				self.parent = Reference.from(val, owner: self) as? [Reference]
+			}
 			if let val = js["receivedTime"] as? String {
 				self.receivedTime = DateTime(string: val)
-			}
-			if let val = js["source"] as? [JSONDictionary] {
-				self.source = SpecimenSource.from(val, owner: self) as? [SpecimenSource]
 			}
 			if let val = js["subject"] as? JSONDictionary {
 				self.subject = Reference(json: val, owner: self)
@@ -100,11 +100,11 @@ public class Specimen: FHIRResource
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
+		if let parent = self.parent {
+			json["parent"] = Reference.asJSONArray(parent)
+		}
 		if let receivedTime = self.receivedTime {
 			json["receivedTime"] = receivedTime.asJSON()
-		}
-		if let source = self.source {
-			json["source"] = SpecimenSource.asJSONArray(source)
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON()
@@ -132,6 +132,12 @@ public class SpecimenCollection: FHIRElement
 		get { return "SpecimenCollection" }
 	}
 	
+	/// Anatomical collection site
+	public var bodySiteCodeableConcept: CodeableConcept?
+	
+	/// Anatomical collection site
+	public var bodySiteReference: Reference?
+	
 	/// Collection time
 	public var collectedDateTime: DateTime?
 	
@@ -150,12 +156,15 @@ public class SpecimenCollection: FHIRElement
 	/// The quantity of specimen collected
 	public var quantity: Quantity?
 	
-	/// Anatomical collection site
-	public var sourceSite: CodeableConcept?
-	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["bodySiteCodeableConcept"] as? JSONDictionary {
+				self.bodySiteCodeableConcept = CodeableConcept(json: val, owner: self)
+			}
+			if let val = js["bodySiteReference"] as? JSONDictionary {
+				self.bodySiteReference = Reference(json: val, owner: self)
+			}
 			if let val = js["collectedDateTime"] as? String {
 				self.collectedDateTime = DateTime(string: val)
 			}
@@ -174,15 +183,18 @@ public class SpecimenCollection: FHIRElement
 			if let val = js["quantity"] as? JSONDictionary {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["sourceSite"] as? JSONDictionary {
-				self.sourceSite = CodeableConcept(json: val, owner: self)
-			}
 		}
 	}
 	
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
+		if let bodySiteCodeableConcept = self.bodySiteCodeableConcept {
+			json["bodySiteCodeableConcept"] = bodySiteCodeableConcept.asJSON()
+		}
+		if let bodySiteReference = self.bodySiteReference {
+			json["bodySiteReference"] = bodySiteReference.asJSON()
+		}
 		if let collectedDateTime = self.collectedDateTime {
 			json["collectedDateTime"] = collectedDateTime.asJSON()
 		}
@@ -204,9 +216,6 @@ public class SpecimenCollection: FHIRElement
 		}
 		if let quantity = self.quantity {
 			json["quantity"] = quantity.asJSON()
-		}
-		if let sourceSite = self.sourceSite {
-			json["sourceSite"] = sourceSite.asJSON()
 		}
 		
 		return json
@@ -297,57 +306,6 @@ public class SpecimenContainer: FHIRElement
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Parent of specimen.
- *
- *  Parent specimen from which the focal specimen was a component.
- */
-public class SpecimenSource: FHIRElement
-{
-	override public class var resourceName: String {
-		get { return "SpecimenSource" }
-	}
-	
-	/// parent | child
-	public var relationship: String?
-	
-	/// The subject of the relationship
-	public var target: [Reference]?
-	
-	public convenience init(relationship: String?) {
-		self.init(json: nil)
-		if nil != relationship {
-			self.relationship = relationship
-		}
-	}
-	
-	public required init(json: JSONDictionary?) {
-		super.init(json: json)
-		if let js = json {
-			if let val = js["relationship"] as? String {
-				self.relationship = val
-			}
-			if let val = js["target"] as? [JSONDictionary] {
-				self.target = Reference.from(val, owner: self) as? [Reference]
-			}
-		}
-	}
-	
-	override public func asJSON() -> JSONDictionary {
-		var json = super.asJSON()
-		
-		if let relationship = self.relationship {
-			json["relationship"] = relationship.asJSON()
-		}
-		if let target = self.target {
-			json["target"] = Reference.asJSONArray(target)
 		}
 		
 		return json

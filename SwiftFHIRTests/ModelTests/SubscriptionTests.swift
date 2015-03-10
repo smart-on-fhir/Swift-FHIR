@@ -2,7 +2,7 @@
 //  SubscriptionTests.swift
 //  SubscriptionTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -38,6 +38,8 @@ class SubscriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.reason!, "Monitor new neonatal function")
 		XCTAssertEqual(inst.status!, "requested")
+		XCTAssertEqual(inst.text!.div!, "<div>[Put rendering here]</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -58,6 +60,8 @@ class SubscriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.reason!, "Monitor new neonatal function")
 		XCTAssertEqual(inst.status!, "requested")
+		XCTAssertEqual(inst.text!.div!, "<div>[Put rendering here]</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -78,6 +82,8 @@ class SubscriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.reason!, "Monitor new neonatal function")
 		XCTAssertEqual(inst.status!, "requested")
+		XCTAssertEqual(inst.text!.div!, "<div>[Put rendering here]</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

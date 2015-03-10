@@ -2,7 +2,7 @@
 //  EnrollmentRequestTests.swift
 //  EnrollmentRequestTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -38,6 +38,8 @@ class EnrollmentRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
 		XCTAssertEqual(inst.relationship!.code!, "spouse")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/1")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the EnrollmentRequest.</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -58,6 +60,8 @@ class EnrollmentRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
 		XCTAssertEqual(inst.relationship!.code!, "spouse")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/1")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the EnrollmentRequest.</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -78,6 +82,8 @@ class EnrollmentRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
 		XCTAssertEqual(inst.relationship!.code!, "spouse")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/1")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the EnrollmentRequest.</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

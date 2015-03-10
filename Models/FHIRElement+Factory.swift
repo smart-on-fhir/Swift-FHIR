@@ -2,7 +2,7 @@
 //  FHIRElement+Factory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -32,16 +32,40 @@ extension FHIRElement
 				return AppointmentResponse(json: json, owner: owner)
 			case "Attachment":
 				return Attachment(json: json, owner: owner)
+			case "AuditEvent":
+				return AuditEvent(json: json, owner: owner)
+			case "AuditEventEvent":
+				return AuditEventEvent(json: json, owner: owner)
+			case "AuditEventObject":
+				return AuditEventObject(json: json, owner: owner)
+			case "AuditEventObjectDetail":
+				return AuditEventObjectDetail(json: json, owner: owner)
+			case "AuditEventParticipant":
+				return AuditEventParticipant(json: json, owner: owner)
+			case "AuditEventParticipantNetwork":
+				return AuditEventParticipantNetwork(json: json, owner: owner)
+			case "AuditEventSource":
+				return AuditEventSource(json: json, owner: owner)
 			case "Basic":
 				return Basic(json: json, owner: owner)
 			case "Binary":
 				return Binary(json: json, owner: owner)
+			case "BodySite":
+				return BodySite(json: json, owner: owner)
+			case "BodySiteRelativeLocation":
+				return BodySiteRelativeLocation(json: json, owner: owner)
+			case "BodySiteSpecificLocation":
+				return BodySiteSpecificLocation(json: json, owner: owner)
 			case "Bundle":
 				return Bundle(json: json, owner: owner)
 			case "BundleEntry":
 				return BundleEntry(json: json, owner: owner)
-			case "BundleEntryDeleted":
-				return BundleEntryDeleted(json: json, owner: owner)
+			case "BundleEntrySearch":
+				return BundleEntrySearch(json: json, owner: owner)
+			case "BundleEntryTransaction":
+				return BundleEntryTransaction(json: json, owner: owner)
+			case "BundleEntryTransactionResponse":
+				return BundleEntryTransactionResponse(json: json, owner: owner)
 			case "BundleLink":
 				return BundleLink(json: json, owner: owner)
 			case "CarePlan":
@@ -60,14 +84,16 @@ extension FHIRElement
 				return CarePlanParticipant(json: json, owner: owner)
 			case "ClaimResponse":
 				return ClaimResponse(json: json, owner: owner)
-			case "ClaimResponseAdditem":
-				return ClaimResponseAdditem(json: json, owner: owner)
-			case "ClaimResponseAdditemAdjudication":
-				return ClaimResponseAdditemAdjudication(json: json, owner: owner)
-			case "ClaimResponseAdditemDetail":
-				return ClaimResponseAdditemDetail(json: json, owner: owner)
-			case "ClaimResponseAdditemDetailAdjudication":
-				return ClaimResponseAdditemDetailAdjudication(json: json, owner: owner)
+			case "ClaimResponseAddItem":
+				return ClaimResponseAddItem(json: json, owner: owner)
+			case "ClaimResponseAddItemAdjudication":
+				return ClaimResponseAddItemAdjudication(json: json, owner: owner)
+			case "ClaimResponseAddItemDetail":
+				return ClaimResponseAddItemDetail(json: json, owner: owner)
+			case "ClaimResponseAddItemDetailAdjudication":
+				return ClaimResponseAddItemDetailAdjudication(json: json, owner: owner)
+			case "ClaimResponseCoverage":
+				return ClaimResponseCoverage(json: json, owner: owner)
 			case "ClaimResponseError":
 				return ClaimResponseError(json: json, owner: owner)
 			case "ClaimResponseItem":
@@ -78,10 +104,10 @@ extension FHIRElement
 				return ClaimResponseItemDetail(json: json, owner: owner)
 			case "ClaimResponseItemDetailAdjudication":
 				return ClaimResponseItemDetailAdjudication(json: json, owner: owner)
-			case "ClaimResponseItemDetailSubdetail":
-				return ClaimResponseItemDetailSubdetail(json: json, owner: owner)
-			case "ClaimResponseItemDetailSubdetailAdjudication":
-				return ClaimResponseItemDetailSubdetailAdjudication(json: json, owner: owner)
+			case "ClaimResponseItemDetailSubDetail":
+				return ClaimResponseItemDetailSubDetail(json: json, owner: owner)
+			case "ClaimResponseItemDetailSubDetailAdjudication":
+				return ClaimResponseItemDetailSubDetailAdjudication(json: json, owner: owner)
 			case "ClaimResponseNote":
 				return ClaimResponseNote(json: json, owner: owner)
 			case "ClinicalAssessment":
@@ -114,6 +140,8 @@ extension FHIRElement
 				return CompositionSection(json: json, owner: owner)
 			case "ConceptMap":
 				return ConceptMap(json: json, owner: owner)
+			case "ConceptMapContact":
+				return ConceptMapContact(json: json, owner: owner)
 			case "ConceptMapElement":
 				return ConceptMapElement(json: json, owner: owner)
 			case "ConceptMapElementDependsOn":
@@ -134,6 +162,8 @@ extension FHIRElement
 				return ConditionStage(json: json, owner: owner)
 			case "Conformance":
 				return Conformance(json: json, owner: owner)
+			case "ConformanceContact":
+				return ConformanceContact(json: json, owner: owner)
 			case "ConformanceDocument":
 				return ConformanceDocument(json: json, owner: owner)
 			case "ConformanceImplementation":
@@ -164,10 +194,24 @@ extension FHIRElement
 				return ContactPoint(json: json, owner: owner)
 			case "Contract":
 				return Contract(json: json, owner: owner)
+			case "ContractActor":
+				return ContractActor(json: json, owner: owner)
+			case "ContractFriendly":
+				return ContractFriendly(json: json, owner: owner)
+			case "ContractLegal":
+				return ContractLegal(json: json, owner: owner)
+			case "ContractRule":
+				return ContractRule(json: json, owner: owner)
 			case "ContractSigner":
 				return ContractSigner(json: json, owner: owner)
 			case "ContractTerm":
 				return ContractTerm(json: json, owner: owner)
+			case "ContractTermActor":
+				return ContractTermActor(json: json, owner: owner)
+			case "ContractTermValuedItem":
+				return ContractTermValuedItem(json: json, owner: owner)
+			case "ContractValuedItem":
+				return ContractValuedItem(json: json, owner: owner)
 			case "Contraindication":
 				return Contraindication(json: json, owner: owner)
 			case "ContraindicationMitigation":
@@ -178,8 +222,8 @@ extension FHIRElement
 				return Coverage(json: json, owner: owner)
 			case "DataElement":
 				return DataElement(json: json, owner: owner)
-			case "DataElementBinding":
-				return DataElementBinding(json: json, owner: owner)
+			case "DataElementContact":
+				return DataElementContact(json: json, owner: owner)
 			case "DataElementMapping":
 				return DataElementMapping(json: json, owner: owner)
 			case "Device":
@@ -190,8 +234,8 @@ extension FHIRElement
 				return DeviceComponentProductionSpecification(json: json, owner: owner)
 			case "DeviceMetric":
 				return DeviceMetric(json: json, owner: owner)
-			case "DeviceMetricCalibrationInfo":
-				return DeviceMetricCalibrationInfo(json: json, owner: owner)
+			case "DeviceMetricCalibration":
+				return DeviceMetricCalibration(json: json, owner: owner)
 			case "DeviceUseRequest":
 				return DeviceUseRequest(json: json, owner: owner)
 			case "DeviceUseStatement":
@@ -216,10 +260,8 @@ extension FHIRElement
 				return DocumentReferenceContext(json: json, owner: owner)
 			case "DocumentReferenceRelatesTo":
 				return DocumentReferenceRelatesTo(json: json, owner: owner)
-			case "DocumentReferenceService":
-				return DocumentReferenceService(json: json, owner: owner)
-			case "DocumentReferenceServiceParameter":
-				return DocumentReferenceServiceParameter(json: json, owner: owner)
+			case "DomainResource":
+				return DomainResource(json: json, owner: owner)
 			case "Duration":
 				return Duration(json: json, owner: owner)
 			case "ElementDefinition":
@@ -262,18 +304,12 @@ extension FHIRElement
 				return ExplanationOfBenefit(json: json, owner: owner)
 			case "Extension":
 				return Extension(json: json, owner: owner)
-			case "ExtensionDefinition":
-				return ExtensionDefinition(json: json, owner: owner)
-			case "ExtensionDefinitionMapping":
-				return ExtensionDefinitionMapping(json: json, owner: owner)
 			case "FamilyHistory":
 				return FamilyHistory(json: json, owner: owner)
 			case "FamilyHistoryRelation":
 				return FamilyHistoryRelation(json: json, owner: owner)
 			case "FamilyHistoryRelationCondition":
 				return FamilyHistoryRelationCondition(json: json, owner: owner)
-			case "Genetics":
-				return Genetics(json: json, owner: owner)
 			case "Goal":
 				return Goal(json: json, owner: owner)
 			case "Group":
@@ -300,6 +336,8 @@ extension FHIRElement
 				return ImagingObjectSelectionStudySeries(json: json, owner: owner)
 			case "ImagingObjectSelectionStudySeriesInstance":
 				return ImagingObjectSelectionStudySeriesInstance(json: json, owner: owner)
+			case "ImagingObjectSelectionStudySeriesInstanceFrames":
+				return ImagingObjectSelectionStudySeriesInstanceFrames(json: json, owner: owner)
 			case "ImagingStudy":
 				return ImagingStudy(json: json, owner: owner)
 			case "ImagingStudySeries":
@@ -388,6 +426,8 @@ extension FHIRElement
 				return MessageHeaderResponse(json: json, owner: owner)
 			case "MessageHeaderSource":
 				return MessageHeaderSource(json: json, owner: owner)
+			case "Meta":
+				return Meta(json: json, owner: owner)
 			case "Money":
 				return Money(json: json, owner: owner)
 			case "NamingSystem":
@@ -400,18 +440,16 @@ extension FHIRElement
 				return Narrative(json: json, owner: owner)
 			case "NutritionOrder":
 				return NutritionOrder(json: json, owner: owner)
-			case "NutritionOrderItem":
-				return NutritionOrderItem(json: json, owner: owner)
-			case "NutritionOrderItemEnteralFormula":
-				return NutritionOrderItemEnteralFormula(json: json, owner: owner)
-			case "NutritionOrderItemOralDiet":
-				return NutritionOrderItemOralDiet(json: json, owner: owner)
-			case "NutritionOrderItemOralDietNutrients":
-				return NutritionOrderItemOralDietNutrients(json: json, owner: owner)
-			case "NutritionOrderItemOralDietTexture":
-				return NutritionOrderItemOralDietTexture(json: json, owner: owner)
-			case "NutritionOrderItemSupplement":
-				return NutritionOrderItemSupplement(json: json, owner: owner)
+			case "NutritionOrderEnteralFormula":
+				return NutritionOrderEnteralFormula(json: json, owner: owner)
+			case "NutritionOrderOralDiet":
+				return NutritionOrderOralDiet(json: json, owner: owner)
+			case "NutritionOrderOralDietNutrients":
+				return NutritionOrderOralDietNutrients(json: json, owner: owner)
+			case "NutritionOrderOralDietTexture":
+				return NutritionOrderOralDietTexture(json: json, owner: owner)
+			case "NutritionOrderSupplement":
+				return NutritionOrderSupplement(json: json, owner: owner)
 			case "Observation":
 				return Observation(json: json, owner: owner)
 			case "ObservationReferenceRange":
@@ -420,6 +458,8 @@ extension FHIRElement
 				return ObservationRelated(json: json, owner: owner)
 			case "OperationDefinition":
 				return OperationDefinition(json: json, owner: owner)
+			case "OperationDefinitionContact":
+				return OperationDefinitionContact(json: json, owner: owner)
 			case "OperationDefinitionParameter":
 				return OperationDefinitionParameter(json: json, owner: owner)
 			case "OperationDefinitionParameterPart":
@@ -442,10 +482,8 @@ extension FHIRElement
 				return OralHealthClaimItemDetailSubDetail(json: json, owner: owner)
 			case "OralHealthClaimItemProsthesis":
 				return OralHealthClaimItemProsthesis(json: json, owner: owner)
-			case "OralHealthClaimMissingteeth":
-				return OralHealthClaimMissingteeth(json: json, owner: owner)
-			case "OralHealthClaimOrthoPlan":
-				return OralHealthClaimOrthoPlan(json: json, owner: owner)
+			case "OralHealthClaimMissingTeeth":
+				return OralHealthClaimMissingTeeth(json: json, owner: owner)
 			case "OralHealthClaimPayee":
 				return OralHealthClaimPayee(json: json, owner: owner)
 			case "Order":
@@ -460,6 +498,12 @@ extension FHIRElement
 				return OrganizationContact(json: json, owner: owner)
 			case "Other":
 				return Other(json: json, owner: owner)
+			case "Parameters":
+				return Parameters(json: json, owner: owner)
+			case "ParametersParameter":
+				return ParametersParameter(json: json, owner: owner)
+			case "ParametersParameterPart":
+				return ParametersParameterPart(json: json, owner: owner)
 			case "Patient":
 				return Patient(json: json, owner: owner)
 			case "PatientAnimal":
@@ -500,6 +544,8 @@ extension FHIRElement
 				return PharmacyClaimPayee(json: json, owner: owner)
 			case "Practitioner":
 				return Practitioner(json: json, owner: owner)
+			case "PractitionerPractitionerRole":
+				return PractitionerPractitionerRole(json: json, owner: owner)
 			case "PractitionerQualification":
 				return PractitionerQualification(json: json, owner: owner)
 			case "Procedure":
@@ -524,12 +570,6 @@ extension FHIRElement
 				return ProfessionalClaimItemDetailSubDetail(json: json, owner: owner)
 			case "ProfessionalClaimPayee":
 				return ProfessionalClaimPayee(json: json, owner: owner)
-			case "Profile":
-				return Profile(json: json, owner: owner)
-			case "ProfileMapping":
-				return ProfileMapping(json: json, owner: owner)
-			case "ProfileSnapshot":
-				return ProfileSnapshot(json: json, owner: owner)
 			case "Provenance":
 				return Provenance(json: json, owner: owner)
 			case "ProvenanceAgent":
@@ -566,6 +606,8 @@ extension FHIRElement
 				return ReferralRequest(json: json, owner: owner)
 			case "RelatedPerson":
 				return RelatedPerson(json: json, owner: owner)
+			case "Resource":
+				return Resource(json: json, owner: owner)
 			case "Reversal":
 				return Reversal(json: json, owner: owner)
 			case "ReversalCoverage":
@@ -582,20 +624,10 @@ extension FHIRElement
 				return Schedule(json: json, owner: owner)
 			case "SearchParameter":
 				return SearchParameter(json: json, owner: owner)
-			case "SecurityEvent":
-				return SecurityEvent(json: json, owner: owner)
-			case "SecurityEventEvent":
-				return SecurityEventEvent(json: json, owner: owner)
-			case "SecurityEventObject":
-				return SecurityEventObject(json: json, owner: owner)
-			case "SecurityEventObjectDetail":
-				return SecurityEventObjectDetail(json: json, owner: owner)
-			case "SecurityEventParticipant":
-				return SecurityEventParticipant(json: json, owner: owner)
-			case "SecurityEventParticipantNetwork":
-				return SecurityEventParticipantNetwork(json: json, owner: owner)
-			case "SecurityEventSource":
-				return SecurityEventSource(json: json, owner: owner)
+			case "SearchParameterContact":
+				return SearchParameterContact(json: json, owner: owner)
+			case "Signature":
+				return Signature(json: json, owner: owner)
 			case "Slot":
 				return Slot(json: json, owner: owner)
 			case "Specimen":
@@ -604,8 +636,6 @@ extension FHIRElement
 				return SpecimenCollection(json: json, owner: owner)
 			case "SpecimenContainer":
 				return SpecimenContainer(json: json, owner: owner)
-			case "SpecimenSource":
-				return SpecimenSource(json: json, owner: owner)
 			case "SpecimenTreatment":
 				return SpecimenTreatment(json: json, owner: owner)
 			case "StatusRequest":
@@ -614,6 +644,16 @@ extension FHIRElement
 				return StatusResponse(json: json, owner: owner)
 			case "StatusResponseNotes":
 				return StatusResponseNotes(json: json, owner: owner)
+			case "StructureDefinition":
+				return StructureDefinition(json: json, owner: owner)
+			case "StructureDefinitionContact":
+				return StructureDefinitionContact(json: json, owner: owner)
+			case "StructureDefinitionDifferential":
+				return StructureDefinitionDifferential(json: json, owner: owner)
+			case "StructureDefinitionMapping":
+				return StructureDefinitionMapping(json: json, owner: owner)
+			case "StructureDefinitionSnapshot":
+				return StructureDefinitionSnapshot(json: json, owner: owner)
 			case "Subscription":
 				return Subscription(json: json, owner: owner)
 			case "SubscriptionChannel":
@@ -648,6 +688,8 @@ extension FHIRElement
 				return ValueSetComposeIncludeConcept(json: json, owner: owner)
 			case "ValueSetComposeIncludeFilter":
 				return ValueSetComposeIncludeFilter(json: json, owner: owner)
+			case "ValueSetContact":
+				return ValueSetContact(json: json, owner: owner)
 			case "ValueSetDefine":
 				return ValueSetDefine(json: json, owner: owner)
 			case "ValueSetDefineConcept":

@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (observation.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Observation) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  Measurements and simple assertions made about a patient, device or other subject.
  */
-public class Observation: FHIRResource
+public class Observation: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Observation" }
@@ -27,19 +27,28 @@ public class Observation: FHIRResource
 	public var appliesPeriod: Period?
 	
 	/// Observed body part
-	public var bodySite: CodeableConcept?
+	public var bodySiteCodeableConcept: CodeableConcept?
+	
+	/// Observed body part
+	public var bodySiteReference: Reference?
+	
+	/// Type of observation (code / type)
+	public var code: CodeableConcept?
 	
 	/// Comments about result
 	public var comments: String?
 	
-	/// unknown | asked | temp | notasked +
-	public var dataAbsentReason: String?
+	/// Why the result is missing
+	public var dataAbsentReason: CodeableConcept?
 	
-	/// Healthcare event related to the observation
+	/// (Measurement) Device
+	public var device: Reference?
+	
+	/// Healthcare event during which this observation is made
 	public var encounter: Reference?
 	
 	/// Unique Id for this particular observation
-	public var identifier: Identifier?
+	public var identifier: [Identifier]?
 	
 	/// High, low, normal, etc.
 	public var interpretation: CodeableConcept?
@@ -49,9 +58,6 @@ public class Observation: FHIRResource
 	
 	/// How it was done
 	public var method: CodeableConcept?
-	
-	/// Type of observation (code / type)
-	public var name: CodeableConcept?
 	
 	/// Who did the observation
 	public var performer: [Reference]?
@@ -90,6 +96,9 @@ public class Observation: FHIRResource
 	public var valueQuantity: Quantity?
 	
 	/// Actual result
+	public var valueRange: Range?
+	
+	/// Actual result
 	public var valueRatio: Ratio?
 	
 	/// Actual result
@@ -101,10 +110,10 @@ public class Observation: FHIRResource
 	/// Actual result
 	public var valueTime: Time?
 	
-	public convenience init(name: CodeableConcept?, status: String?) {
+	public convenience init(code: CodeableConcept?, status: String?) {
 		self.init(json: nil)
-		if nil != name {
-			self.name = name
+		if nil != code {
+			self.code = code
 		}
 		if nil != status {
 			self.status = status
@@ -120,20 +129,29 @@ public class Observation: FHIRResource
 			if let val = js["appliesPeriod"] as? JSONDictionary {
 				self.appliesPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["bodySite"] as? JSONDictionary {
-				self.bodySite = CodeableConcept(json: val, owner: self)
+			if let val = js["bodySiteCodeableConcept"] as? JSONDictionary {
+				self.bodySiteCodeableConcept = CodeableConcept(json: val, owner: self)
+			}
+			if let val = js["bodySiteReference"] as? JSONDictionary {
+				self.bodySiteReference = Reference(json: val, owner: self)
+			}
+			if let val = js["code"] as? JSONDictionary {
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["comments"] as? String {
 				self.comments = val
 			}
-			if let val = js["dataAbsentReason"] as? String {
-				self.dataAbsentReason = val
+			if let val = js["dataAbsentReason"] as? JSONDictionary {
+				self.dataAbsentReason = CodeableConcept(json: val, owner: self)
+			}
+			if let val = js["device"] as? JSONDictionary {
+				self.device = Reference(json: val, owner: self)
 			}
 			if let val = js["encounter"] as? JSONDictionary {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? JSONDictionary {
-				self.identifier = Identifier(json: val, owner: self)
+			if let val = js["identifier"] as? [JSONDictionary] {
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["interpretation"] as? JSONDictionary {
 				self.interpretation = CodeableConcept(json: val, owner: self)
@@ -143,9 +161,6 @@ public class Observation: FHIRResource
 			}
 			if let val = js["method"] as? JSONDictionary {
 				self.method = CodeableConcept(json: val, owner: self)
-			}
-			if let val = js["name"] as? JSONDictionary {
-				self.name = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["performer"] as? [JSONDictionary] {
 				self.performer = Reference.from(val, owner: self) as? [Reference]
@@ -183,6 +198,9 @@ public class Observation: FHIRResource
 			if let val = js["valueQuantity"] as? JSONDictionary {
 				self.valueQuantity = Quantity(json: val, owner: self)
 			}
+			if let val = js["valueRange"] as? JSONDictionary {
+				self.valueRange = Range(json: val, owner: self)
+			}
 			if let val = js["valueRatio"] as? JSONDictionary {
 				self.valueRatio = Ratio(json: val, owner: self)
 			}
@@ -207,8 +225,14 @@ public class Observation: FHIRResource
 		if let appliesPeriod = self.appliesPeriod {
 			json["appliesPeriod"] = appliesPeriod.asJSON()
 		}
-		if let bodySite = self.bodySite {
-			json["bodySite"] = bodySite.asJSON()
+		if let bodySiteCodeableConcept = self.bodySiteCodeableConcept {
+			json["bodySiteCodeableConcept"] = bodySiteCodeableConcept.asJSON()
+		}
+		if let bodySiteReference = self.bodySiteReference {
+			json["bodySiteReference"] = bodySiteReference.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
 		}
 		if let comments = self.comments {
 			json["comments"] = comments.asJSON()
@@ -216,11 +240,14 @@ public class Observation: FHIRResource
 		if let dataAbsentReason = self.dataAbsentReason {
 			json["dataAbsentReason"] = dataAbsentReason.asJSON()
 		}
+		if let device = self.device {
+			json["device"] = device.asJSON()
+		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
+			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
 		if let interpretation = self.interpretation {
 			json["interpretation"] = interpretation.asJSON()
@@ -230,9 +257,6 @@ public class Observation: FHIRResource
 		}
 		if let method = self.method {
 			json["method"] = method.asJSON()
-		}
-		if let name = self.name {
-			json["name"] = name.asJSON()
 		}
 		if let performer = self.performer {
 			json["performer"] = Reference.asJSONArray(performer)
@@ -269,6 +293,9 @@ public class Observation: FHIRResource
 		}
 		if let valueQuantity = self.valueQuantity {
 			json["valueQuantity"] = valueQuantity.asJSON()
+		}
+		if let valueRange = self.valueRange {
+			json["valueRange"] = valueRange.asJSON()
 		}
 		if let valueRatio = self.valueRatio {
 			json["valueRatio"] = valueRatio.asJSON()

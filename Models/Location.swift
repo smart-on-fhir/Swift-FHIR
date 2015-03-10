@@ -2,7 +2,7 @@
 //  Location.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (location.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Location) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  Details and position information for a physical place where services are provided  and resources and participants
  *  may be stored, found, contained or accommodated.
  */
-public class Location: FHIRResource
+public class Location: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Location" }

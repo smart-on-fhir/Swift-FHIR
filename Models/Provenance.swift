@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (provenance.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ import Foundation
  *  can be used to help determine their reliability or trace where the information in them came from. The focus of the
  *  provenance resource is record keeping, audit and traceability, and not explicit statements of clinical significance.
  */
-public class Provenance: FHIRResource
+public class Provenance: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Provenance" }

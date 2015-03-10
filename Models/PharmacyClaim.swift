@@ -2,7 +2,7 @@
 //  PharmacyClaim.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (pharmacyclaim.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/PharmacyClaim) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  A provider issued list of services and products provided, or to be provided, to a patient which is provided to an
  *  insurer for payment recovery.
  */
-public class PharmacyClaim: FHIRResource
+public class PharmacyClaim: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "PharmacyClaim" }
@@ -313,7 +313,7 @@ public class PharmacyClaimCoverage: FHIRElement
 	public var originalRuleset: Coding?
 	
 	/// Pre-Authorization/Determination Reference
-	public var preauthref: [String]?
+	public var preAuthRef: [String]?
 	
 	/// Patient relationship to subscriber
 	public var relationship: Coding?
@@ -355,8 +355,8 @@ public class PharmacyClaimCoverage: FHIRElement
 			if let val = js["originalRuleset"] as? JSONDictionary {
 				self.originalRuleset = Coding(json: val, owner: self)
 			}
-			if let val = js["preauthref"] as? [String] {
-				self.preauthref = val
+			if let val = js["preAuthRef"] as? [String] {
+				self.preAuthRef = val
 			}
 			if let val = js["relationship"] as? JSONDictionary {
 				self.relationship = Coding(json: val, owner: self)
@@ -385,12 +385,12 @@ public class PharmacyClaimCoverage: FHIRElement
 		if let originalRuleset = self.originalRuleset {
 			json["originalRuleset"] = originalRuleset.asJSON()
 		}
-		if let preauthref = self.preauthref {
+		if let preAuthRef = self.preAuthRef {
 			var arr = [AnyObject]()
-			for val in preauthref {
+			for val in preAuthRef {
 				arr.append(val.asJSON())
 			}
-			json["preauthref"] = arr
+			json["preAuthRef"] = arr
 		}
 		if let relationship = self.relationship {
 			json["relationship"] = relationship.asJSON()
@@ -506,7 +506,7 @@ public class PharmacyClaimItem: FHIRElement
 	public var serviceDate: Date?
 	
 	/// Service Sub-location
-	public var subsite: [Coding]?
+	public var subSite: [Coding]?
 	
 	/// Group or type of product or service
 	public var type: Coding?
@@ -569,8 +569,8 @@ public class PharmacyClaimItem: FHIRElement
 			if let val = js["serviceDate"] as? String {
 				self.serviceDate = Date(string: val)
 			}
-			if let val = js["subsite"] as? [JSONDictionary] {
-				self.subsite = Coding.from(val, owner: self) as? [Coding]
+			if let val = js["subSite"] as? [JSONDictionary] {
+				self.subSite = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["type"] as? JSONDictionary {
 				self.type = Coding(json: val, owner: self)
@@ -627,8 +627,8 @@ public class PharmacyClaimItem: FHIRElement
 		if let serviceDate = self.serviceDate {
 			json["serviceDate"] = serviceDate.asJSON()
 		}
-		if let subsite = self.subsite {
-			json["subsite"] = Coding.asJSONArray(subsite)
+		if let subSite = self.subSite {
+			json["subSite"] = Coding.asJSONArray(subSite)
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()

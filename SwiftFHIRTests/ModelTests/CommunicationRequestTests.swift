@@ -2,7 +2,7 @@
 //  CommunicationRequestTests.swift
 //  CommunicationRequestTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -32,6 +32,8 @@ class CommunicationRequestTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.div!, "<div>To be filled out at a later time</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -46,6 +48,8 @@ class CommunicationRequestTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.div!, "<div>To be filled out at a later time</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -60,6 +64,40 @@ class CommunicationRequestTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.div!, "<div>To be filled out at a later time</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testCommunicationRequest4() {
+		let instance = testCommunicationRequest4_impl()
+		testCommunicationRequest4_impl(json: instance.asJSON())
+	}
+	
+	func testCommunicationRequest4_impl(json: JSONDictionary? = nil) -> CommunicationRequest {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "communicationrequest-qicore-example.canonical.json")
+		
+		XCTAssertEqual(inst.id!, "qicore")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.div!, "<div>To be filled out at a later time</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testCommunicationRequest5() {
+		let instance = testCommunicationRequest5_impl()
+		testCommunicationRequest5_impl(json: instance.asJSON())
+	}
+	
+	func testCommunicationRequest5_impl(json: JSONDictionary? = nil) -> CommunicationRequest {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "communicationrequest-qicore-example.json")
+		
+		XCTAssertEqual(inst.id!, "qicore")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.div!, "<div>To be filled out at a later time</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

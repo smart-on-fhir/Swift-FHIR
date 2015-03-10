@@ -2,7 +2,7 @@
 //  ProvenanceTests.swift
 //  ProvenanceTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -48,6 +48,8 @@ class ProvenanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reason!.text!, "Editing the FHIR Specification")
 		XCTAssertEqual(inst.recorded!.description, "2012-11-08T23:16:03+11:00")
 		XCTAssertEqual(inst.target![0].reference!, "Patient/example/_history/1")
+		XCTAssertEqual(inst.text!.div!, "<div>Authored on 8-Nov 2011 by Grahame Grieve. Content extracted from ISO-21090</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -78,6 +80,8 @@ class ProvenanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reason!.text!, "Editing the FHIR Specification")
 		XCTAssertEqual(inst.recorded!.description, "2012-11-08T23:16:03+11:00")
 		XCTAssertEqual(inst.target![0].reference!, "Patient/example/_history/1")
+		XCTAssertEqual(inst.text!.div!, "<div>Authored on 8-Nov 2011 by Grahame Grieve. Content extracted from ISO-21090</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -108,6 +112,8 @@ class ProvenanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reason!.text!, "Editing the FHIR Specification")
 		XCTAssertEqual(inst.recorded!.description, "2012-11-08T23:16:03+11:00")
 		XCTAssertEqual(inst.target![0].reference!, "Patient/example/_history/1")
+		XCTAssertEqual(inst.text!.div!, "<div>Authored on 8-Nov 2011 by Grahame Grieve. Content extracted from ISO-21090</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

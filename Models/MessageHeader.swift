@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (messageheader.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ import Foundation
  *  the subject of the action as well as other Information related to the action are typically transmitted in a bundle
  *  in which the MessageHeader resource instance is the first resource in the bundle.
  */
-public class MessageHeader: FHIRResource
+public class MessageHeader: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "MessageHeader" }

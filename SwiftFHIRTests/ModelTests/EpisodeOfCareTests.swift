@@ -2,7 +2,7 @@
 //  EpisodeOfCareTests.swift
 //  EpisodeOfCareTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -55,6 +55,7 @@ class EpisodeOfCareTests: FHIRModelTestCase
 		XCTAssertEqual(inst.statusHistory![2].status!, "onhold")
 		XCTAssertEqual(inst.statusHistory![3].period!.start!.description, "2014-09-25")
 		XCTAssertEqual(inst.statusHistory![3].status!, "active")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type![0].coding![0].code!, "HACC")
 		XCTAssertEqual(inst.type![0].coding![0].display!, "Home and Community Care Package")
 		XCTAssertEqual(inst.type![0].coding![0].system!.absoluteString!, "http://example.org/EpisodeOfCare/Type")
@@ -95,6 +96,7 @@ class EpisodeOfCareTests: FHIRModelTestCase
 		XCTAssertEqual(inst.statusHistory![2].status!, "onhold")
 		XCTAssertEqual(inst.statusHistory![3].period!.start!.description, "2014-09-25")
 		XCTAssertEqual(inst.statusHistory![3].status!, "active")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type![0].coding![0].code!, "HACC")
 		XCTAssertEqual(inst.type![0].coding![0].display!, "Home and Community Care Package")
 		XCTAssertEqual(inst.type![0].coding![0].system!.absoluteString!, "http://example.org/EpisodeOfCare/Type")
@@ -135,6 +137,7 @@ class EpisodeOfCareTests: FHIRModelTestCase
 		XCTAssertEqual(inst.statusHistory![2].status!, "onhold")
 		XCTAssertEqual(inst.statusHistory![3].period!.start!.description, "2014-09-25")
 		XCTAssertEqual(inst.statusHistory![3].status!, "active")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type![0].coding![0].code!, "HACC")
 		XCTAssertEqual(inst.type![0].coding![0].display!, "Home and Community Care Package")
 		XCTAssertEqual(inst.type![0].coding![0].system!.absoluteString!, "http://example.org/EpisodeOfCare/Type")

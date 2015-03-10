@@ -2,7 +2,7 @@
 //  DeviceComponentTests.swift
 //  DeviceComponentTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -52,6 +52,7 @@ class DeviceComponentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.productionSpecification![3].specType!.coding![0].code!, "5")
 		XCTAssertEqual(inst.productionSpecification![3].specType!.coding![0].display!, "Firmware version")
 		XCTAssertEqual(inst.source!.reference!, "#d1")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "2000")
 		XCTAssertEqual(inst.type!.coding![0].display!, "MDC_DEV_ANALY_SAT_O2_MDS")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
@@ -89,6 +90,7 @@ class DeviceComponentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.productionSpecification![3].specType!.coding![0].code!, "5")
 		XCTAssertEqual(inst.productionSpecification![3].specType!.coding![0].display!, "Firmware version")
 		XCTAssertEqual(inst.source!.reference!, "#d1")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "2000")
 		XCTAssertEqual(inst.type!.coding![0].display!, "MDC_DEV_ANALY_SAT_O2_MDS")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
@@ -126,6 +128,7 @@ class DeviceComponentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.productionSpecification![3].specType!.coding![0].code!, "5")
 		XCTAssertEqual(inst.productionSpecification![3].specType!.coding![0].display!, "Firmware version")
 		XCTAssertEqual(inst.source!.reference!, "#d1")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "2000")
 		XCTAssertEqual(inst.type!.coding![0].display!, "MDC_DEV_ANALY_SAT_O2_MDS")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
@@ -151,6 +154,7 @@ class DeviceComponentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.operationalStatus![0].coding![0].display!, "disconnected")
 		XCTAssertEqual(inst.operationalStatus![0].coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
 		XCTAssertEqual(inst.source!.reference!, "#d1")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "2000")
 		XCTAssertEqual(inst.type!.coding![0].display!, "MDC_DEV_ANALY_SAT_O2_MDS")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
@@ -176,6 +180,7 @@ class DeviceComponentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.operationalStatus![0].coding![0].display!, "disconnected")
 		XCTAssertEqual(inst.operationalStatus![0].coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
 		XCTAssertEqual(inst.source!.reference!, "#d1")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "2000")
 		XCTAssertEqual(inst.type!.coding![0].display!, "MDC_DEV_ANALY_SAT_O2_MDS")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")

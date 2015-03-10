@@ -2,7 +2,7 @@
 //  AppointmentResponseTests.swift
 //  AppointmentResponseTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -39,6 +39,8 @@ class AppointmentResponseTests: FHIRModelTestCase
 		XCTAssertEqual(inst.lastModifiedBy!.display!, "Dr Adam Careful")
 		XCTAssertEqual(inst.lastModifiedBy!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.participantStatus!, "accepted")
+		XCTAssertEqual(inst.text!.div!, "<div>Accept Brian MRI results discussion</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -60,6 +62,8 @@ class AppointmentResponseTests: FHIRModelTestCase
 		XCTAssertEqual(inst.lastModifiedBy!.display!, "Dr Adam Careful")
 		XCTAssertEqual(inst.lastModifiedBy!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.participantStatus!, "accepted")
+		XCTAssertEqual(inst.text!.div!, "<div>Accept Brian MRI results discussion</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -81,6 +85,8 @@ class AppointmentResponseTests: FHIRModelTestCase
 		XCTAssertEqual(inst.lastModifiedBy!.display!, "Dr Adam Careful")
 		XCTAssertEqual(inst.lastModifiedBy!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.participantStatus!, "accepted")
+		XCTAssertEqual(inst.text!.div!, "<div>Accept Brian MRI results discussion</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

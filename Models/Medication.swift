@@ -2,7 +2,7 @@
 //  Medication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (medication.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Medication) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  Primarily used for identification and definition of Medication, but also covers ingredients and packaging.
  */
-public class Medication: FHIRResource
+public class Medication: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Medication" }

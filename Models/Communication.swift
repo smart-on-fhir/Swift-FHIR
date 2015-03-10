@@ -2,7 +2,7 @@
 //  Communication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (communication.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Communication) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  An occurrence of information being transmitted. E.g., an alert that was sent to a responsible provider, a public
  *  health agency was notified about a reportable condition.
  */
-public class Communication: FHIRResource
+public class Communication: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Communication" }
@@ -51,7 +51,7 @@ public class Communication: FHIRResource
 	/// When sent
 	public var sent: DateTime?
 	
-	/// in progress | completed | suspended | rejected | failed
+	/// in-progress | completed | suspended | rejected | failed
 	public var status: String?
 	
 	/// Focus of message

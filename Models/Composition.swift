@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (composition.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Composition) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ import Foundation
  *  single coherent statement of meaning, establishes its own context and that has clinical attestation with regard to
  *  who is making the statement.
  */
-public class Composition: FHIRResource
+public class Composition: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Composition" }
@@ -52,7 +52,7 @@ public class Composition: FHIRResource
 	/// Composition is broken into sections
 	public var section: [CompositionSection]?
 	
-	/// preliminary | final | appended | amended | entered in error
+	/// preliminary | final | appended | amended | entered-in-error
 	public var status: String?
 	
 	/// Who and/or what the composition is about

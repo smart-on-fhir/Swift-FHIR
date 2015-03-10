@@ -2,7 +2,7 @@
 //  MedicationTests.swift
 //  MedicationTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -47,6 +47,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.value!, NSDecimalNumber(string: "100"))
 		XCTAssertEqual(inst.product!.ingredient![0].item!.display!, "Combivent")
 		XCTAssertEqual(inst.product!.ingredient![0].item!.reference!, "Medication/f001")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -76,6 +77,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.value!, NSDecimalNumber(string: "100"))
 		XCTAssertEqual(inst.product!.ingredient![0].item!.display!, "Combivent")
 		XCTAssertEqual(inst.product!.ingredient![0].item!.reference!, "Medication/f001")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -105,6 +107,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.value!, NSDecimalNumber(string: "100"))
 		XCTAssertEqual(inst.product!.ingredient![0].item!.display!, "Combivent")
 		XCTAssertEqual(inst.product!.ingredient![0].item!.reference!, "Medication/f001")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -127,6 +130,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.package!.container!.coding![0].code!, "398124009")
 		XCTAssertEqual(inst.package!.container!.coding![0].display!, "drug container")
 		XCTAssertEqual(inst.package!.container!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -149,6 +153,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.package!.container!.coding![0].code!, "398124009")
 		XCTAssertEqual(inst.package!.container!.coding![0].display!, "drug container")
 		XCTAssertEqual(inst.package!.container!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -171,6 +176,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.package!.container!.coding![0].code!, "398124009")
 		XCTAssertEqual(inst.package!.container!.coding![0].display!, "drug container")
 		XCTAssertEqual(inst.package!.container!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -193,6 +199,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.package!.container!.coding![0].code!, "398124009")
 		XCTAssertEqual(inst.package!.container!.coding![0].display!, "drug container")
 		XCTAssertEqual(inst.package!.container!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -215,6 +222,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.package!.container!.coding![0].code!, "398124009")
 		XCTAssertEqual(inst.package!.container!.coding![0].display!, "drug container")
 		XCTAssertEqual(inst.package!.container!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -237,6 +245,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.package!.container!.coding![0].code!, "398124009")
 		XCTAssertEqual(inst.package!.container!.coding![0].display!, "drug container")
 		XCTAssertEqual(inst.package!.container!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -259,6 +268,7 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.package!.container!.coding![0].code!, "398124009")
 		XCTAssertEqual(inst.package!.container!.coding![0].display!, "drug container")
 		XCTAssertEqual(inst.package!.container!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

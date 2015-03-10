@@ -2,7 +2,7 @@
 //  RiskAssessmentTests.swift
 //  RiskAssessmentTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -46,6 +46,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.prediction![0].whenRange!.low!.system!.absoluteString!, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.prediction![0].whenRange!.low!.units!, "years")
 		XCTAssertEqual(inst.prediction![0].whenRange!.low!.value!, NSDecimalNumber(string: "39"))
+		XCTAssertEqual(inst.text!.status!, "additional")
 		
 		return inst
 	}
@@ -74,6 +75,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.prediction![0].whenRange!.low!.system!.absoluteString!, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.prediction![0].whenRange!.low!.units!, "years")
 		XCTAssertEqual(inst.prediction![0].whenRange!.low!.value!, NSDecimalNumber(string: "39"))
+		XCTAssertEqual(inst.text!.status!, "additional")
 		
 		return inst
 	}
@@ -102,6 +104,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.prediction![0].whenRange!.low!.system!.absoluteString!, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.prediction![0].whenRange!.low!.units!, "years")
 		XCTAssertEqual(inst.prediction![0].whenRange!.low!.value!, NSDecimalNumber(string: "39"))
+		XCTAssertEqual(inst.text!.status!, "additional")
 		
 		return inst
 	}
@@ -115,6 +118,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "riskassessment-example-population.canonical.json")
 		
 		XCTAssertEqual(inst.id!, "population")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -128,6 +132,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "riskassessment-example-population.json")
 		
 		XCTAssertEqual(inst.id!, "population")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -150,6 +155,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.prediction![0].probabilityCodeableConcept!.coding![0].code!, "moderate")
 		XCTAssertEqual(inst.prediction![0].probabilityCodeableConcept!.coding![0].display!, "moderate likelihood")
 		XCTAssertEqual(inst.prediction![0].probabilityCodeableConcept!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/risk-probability")
+		XCTAssertEqual(inst.text!.status!, "additional")
 		
 		return inst
 	}
@@ -172,6 +178,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.prediction![0].probabilityCodeableConcept!.coding![0].code!, "moderate")
 		XCTAssertEqual(inst.prediction![0].probabilityCodeableConcept!.coding![0].display!, "moderate likelihood")
 		XCTAssertEqual(inst.prediction![0].probabilityCodeableConcept!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/risk-probability")
+		XCTAssertEqual(inst.text!.status!, "additional")
 		
 		return inst
 	}
@@ -264,6 +271,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.prediction![7].whenRange!.low!.system!.absoluteString!, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.prediction![7].whenRange!.low!.units!, "years")
 		XCTAssertEqual(inst.prediction![7].whenRange!.low!.value!, NSDecimalNumber(string: "83"))
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -356,6 +364,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.prediction![7].whenRange!.low!.system!.absoluteString!, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.prediction![7].whenRange!.low!.units!, "years")
 		XCTAssertEqual(inst.prediction![7].whenRange!.low!.value!, NSDecimalNumber(string: "83"))
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (procedure.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  An action that is performed on a patient. This can be a physical 'thing' like an operation, or less invasive like
  *  counseling or hypnotherapy.
  */
-public class Procedure: FHIRResource
+public class Procedure: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Procedure" }

@@ -2,7 +2,7 @@
 //  CommunicationRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (communicationrequest.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/CommunicationRequest) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  A request to convey information. E.g., the CDS system proposes that an alert be sent to a responsible provider, the
  *  CDS system proposes that the public health agency be notified about a reportable condition.
  */
-public class CommunicationRequest: FHIRResource
+public class CommunicationRequest: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "CommunicationRequest" }
@@ -57,7 +57,7 @@ public class CommunicationRequest: FHIRResource
 	/// Message sender
 	public var sender: Reference?
 	
-	/// proposed | planned | requested | received | accepted | in progress | completed | suspended | rejected | failed
+	/// proposed | planned | requested | received | accepted | in-progress | completed | suspended | rejected | failed
 	public var status: String?
 	
 	/// Focus of message

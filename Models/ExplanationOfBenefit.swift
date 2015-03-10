@@ -2,7 +2,7 @@
 //  ExplanationOfBenefit.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (explanationofbenefit.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally
  *  account balance information, for informing the subscriber of the benefits provided.
  */
-public class ExplanationOfBenefit: FHIRResource
+public class ExplanationOfBenefit: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "ExplanationOfBenefit" }

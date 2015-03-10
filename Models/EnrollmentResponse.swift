@@ -2,7 +2,7 @@
 //  EnrollmentResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (enrollmentresponse.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/EnrollmentResponse) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  This resource provides Enrollment and plan details from the processing of an Enrollment resource.
  */
-public class EnrollmentResponse: FHIRResource
+public class EnrollmentResponse: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "EnrollmentResponse" }

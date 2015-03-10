@@ -2,7 +2,7 @@
 //  Attachment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (Attachment.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -29,6 +29,9 @@ public class Attachment: FHIRElement
 	/// Hash of the data (sha-1, base64ed )
 	public var hash: Base64Binary?
 	
+	/// Human language of the content (BCP-47)
+	public var language: String?
+	
 	/// Number of bytes of content (if url provided)
 	public var size: Int?
 	
@@ -49,6 +52,9 @@ public class Attachment: FHIRElement
 			}
 			if let val = js["hash"] as? String {
 				self.hash = Base64Binary(string: val)
+			}
+			if let val = js["language"] as? String {
+				self.language = val
 			}
 			if let val = js["size"] as? Int {
 				self.size = val
@@ -73,6 +79,9 @@ public class Attachment: FHIRElement
 		}
 		if let hash = self.hash {
 			json["hash"] = hash.asJSON()
+		}
+		if let language = self.language {
+			json["language"] = language.asJSON()
 		}
 		if let size = self.size {
 			json["size"] = size.asJSON()

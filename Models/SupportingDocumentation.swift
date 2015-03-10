@@ -2,7 +2,7 @@
 //  SupportingDocumentation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (supportingdocumentation.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/SupportingDocumentation) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  This resource provides the supporting information for a process, for example clinical or financial  information
  *  related to a claim or pre-authorization.
  */
-public class SupportingDocumentation: FHIRResource
+public class SupportingDocumentation: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "SupportingDocumentation" }

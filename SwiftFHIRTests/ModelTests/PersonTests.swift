@@ -2,7 +2,7 @@
 //  PersonTests.swift
 //  PersonTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -55,6 +55,7 @@ class PersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.telecom![1].system!, "phone")
 		XCTAssertEqual(inst.telecom![1].use!, "work")
 		XCTAssertEqual(inst.telecom![1].value!, "(03) 5555 6473")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -92,6 +93,7 @@ class PersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.telecom![1].system!, "phone")
 		XCTAssertEqual(inst.telecom![1].use!, "work")
 		XCTAssertEqual(inst.telecom![1].value!, "(03) 5555 6473")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -129,6 +131,7 @@ class PersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.telecom![1].system!, "phone")
 		XCTAssertEqual(inst.telecom![1].use!, "work")
 		XCTAssertEqual(inst.telecom![1].value!, "(03) 5555 6473")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

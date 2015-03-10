@@ -2,7 +2,7 @@
 //  EligibilityRequestTests.swift
 //  EligibilityRequestTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -35,6 +35,8 @@ class EligibilityRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/elegibilityrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "52345")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the EligibilityRequest</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -52,6 +54,8 @@ class EligibilityRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/elegibilityrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "52345")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the EligibilityRequest</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -69,6 +73,8 @@ class EligibilityRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/elegibilityrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "52345")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the EligibilityRequest</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

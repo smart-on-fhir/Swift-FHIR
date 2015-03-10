@@ -2,7 +2,7 @@
 //  DeviceUseRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (deviceuserequest.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,14 +14,17 @@ import Foundation
  *
  *  Represents a request for the use of a device.
  */
-public class DeviceUseRequest: FHIRResource
+public class DeviceUseRequest: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "DeviceUseRequest" }
 	}
 	
 	/// Target body site
-	public var bodySite: [CodeableConcept]?
+	public var bodySiteCodeableConcept: CodeableConcept?
+	
+	/// Target body site
+	public var bodySiteReference: Reference?
 	
 	/// Device requested
 	public var device: Reference?
@@ -50,7 +53,7 @@ public class DeviceUseRequest: FHIRResource
 	/// When recorded
 	public var recordedOn: DateTime?
 	
-	/// proposed | planned | requested | received | accepted | in progress | completed | suspended | rejected | aborted
+	/// proposed | planned | requested | received | accepted | in-progress | completed | suspended | rejected | aborted
 	public var status: String?
 	
 	/// Focus of request
@@ -78,8 +81,11 @@ public class DeviceUseRequest: FHIRResource
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["bodySite"] as? [JSONDictionary] {
-				self.bodySite = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			if let val = js["bodySiteCodeableConcept"] as? JSONDictionary {
+				self.bodySiteCodeableConcept = CodeableConcept(json: val, owner: self)
+			}
+			if let val = js["bodySiteReference"] as? JSONDictionary {
+				self.bodySiteReference = Reference(json: val, owner: self)
 			}
 			if let val = js["device"] as? JSONDictionary {
 				self.device = Reference(json: val, owner: self)
@@ -129,8 +135,11 @@ public class DeviceUseRequest: FHIRResource
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let bodySite = self.bodySite {
-			json["bodySite"] = CodeableConcept.asJSONArray(bodySite)
+		if let bodySiteCodeableConcept = self.bodySiteCodeableConcept {
+			json["bodySiteCodeableConcept"] = bodySiteCodeableConcept.asJSON()
+		}
+		if let bodySiteReference = self.bodySiteReference {
+			json["bodySiteReference"] = bodySiteReference.asJSON()
 		}
 		if let device = self.device {
 			json["device"] = device.asJSON()

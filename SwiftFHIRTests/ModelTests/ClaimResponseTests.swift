@@ -2,7 +2,7 @@
 //  ClaimResponseTests.swift
 //  ClaimResponseTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -62,6 +62,8 @@ class ClaimResponseTests: FHIRModelTestCase
 		XCTAssertEqual(inst.paymentRef!.value!, "201408-2-1569478")
 		XCTAssertEqual(inst.request!.reference!, "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402")
 		XCTAssertEqual(inst.requestOrganization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the ClaimResponse</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.totalBenefit!.code!, "USD")
 		XCTAssertEqual(inst.totalBenefit!.system!.absoluteString!, "urn:std:iso:4217")
 		XCTAssertEqual(inst.totalBenefit!.value!, NSDecimalNumber(string: "100.47"))
@@ -112,6 +114,8 @@ class ClaimResponseTests: FHIRModelTestCase
 		XCTAssertEqual(inst.paymentRef!.value!, "201408-2-1569478")
 		XCTAssertEqual(inst.request!.reference!, "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402")
 		XCTAssertEqual(inst.requestOrganization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the ClaimResponse</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.totalBenefit!.code!, "USD")
 		XCTAssertEqual(inst.totalBenefit!.system!.absoluteString!, "urn:std:iso:4217")
 		XCTAssertEqual(inst.totalBenefit!.value!, NSDecimalNumber(string: "100.47"))
@@ -162,6 +166,8 @@ class ClaimResponseTests: FHIRModelTestCase
 		XCTAssertEqual(inst.paymentRef!.value!, "201408-2-1569478")
 		XCTAssertEqual(inst.request!.reference!, "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402")
 		XCTAssertEqual(inst.requestOrganization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the ClaimResponse</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.totalBenefit!.code!, "USD")
 		XCTAssertEqual(inst.totalBenefit!.system!.absoluteString!, "urn:std:iso:4217")
 		XCTAssertEqual(inst.totalBenefit!.value!, NSDecimalNumber(string: "100.47"))

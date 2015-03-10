@@ -2,7 +2,7 @@
 //  ClaimResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (claimresponse.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,14 +14,17 @@ import Foundation
  *
  *  This resource provides the adjudication details from the processing of a Claim resource.
  */
-public class ClaimResponse: FHIRResource
+public class ClaimResponse: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "ClaimResponse" }
 	}
 	
 	/// Insurer added line items
-	public var additem: [ClaimResponseAdditem]?
+	public var addItem: [ClaimResponseAddItem]?
+	
+	/// Insurance or medical plan
+	public var coverage: [ClaimResponseCoverage]?
 	
 	/// Creation date
 	public var created: DateTime?
@@ -98,8 +101,11 @@ public class ClaimResponse: FHIRResource
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["additem"] as? [JSONDictionary] {
-				self.additem = ClaimResponseAdditem.from(val, owner: self) as? [ClaimResponseAdditem]
+			if let val = js["addItem"] as? [JSONDictionary] {
+				self.addItem = ClaimResponseAddItem.from(val, owner: self) as? [ClaimResponseAddItem]
+			}
+			if let val = js["coverage"] as? [JSONDictionary] {
+				self.coverage = ClaimResponseCoverage.from(val, owner: self) as? [ClaimResponseCoverage]
 			}
 			if let val = js["created"] as? String {
 				self.created = DateTime(string: val)
@@ -179,8 +185,11 @@ public class ClaimResponse: FHIRResource
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let additem = self.additem {
-			json["additem"] = ClaimResponseAdditem.asJSONArray(additem)
+		if let addItem = self.addItem {
+			json["addItem"] = ClaimResponseAddItem.asJSONArray(addItem)
+		}
+		if let coverage = self.coverage {
+			json["coverage"] = ClaimResponseCoverage.asJSONArray(coverage)
 		}
 		if let created = self.created {
 			json["created"] = created.asJSON()
@@ -265,17 +274,17 @@ public class ClaimResponse: FHIRResource
  *
  *  The first tier service adjudications for payor added services.
  */
-public class ClaimResponseAdditem: FHIRElement
+public class ClaimResponseAddItem: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "ClaimResponseAdditem" }
+		get { return "ClaimResponseAddItem" }
 	}
 	
 	/// Added items adjudication
-	public var adjudication: [ClaimResponseAdditemAdjudication]?
+	public var adjudication: [ClaimResponseAddItemAdjudication]?
 	
 	/// Added items details
-	public var detail: [ClaimResponseAdditemDetail]?
+	public var detail: [ClaimResponseAddItemDetail]?
 	
 	/// Professional fee or Product charge
 	public var fee: Money?
@@ -300,10 +309,10 @@ public class ClaimResponseAdditem: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["adjudication"] as? [JSONDictionary] {
-				self.adjudication = ClaimResponseAdditemAdjudication.from(val, owner: self) as? [ClaimResponseAdditemAdjudication]
+				self.adjudication = ClaimResponseAddItemAdjudication.from(val, owner: self) as? [ClaimResponseAddItemAdjudication]
 			}
 			if let val = js["detail"] as? [JSONDictionary] {
-				self.detail = ClaimResponseAdditemDetail.from(val, owner: self) as? [ClaimResponseAdditemDetail]
+				self.detail = ClaimResponseAddItemDetail.from(val, owner: self) as? [ClaimResponseAddItemDetail]
 			}
 			if let val = js["fee"] as? JSONDictionary {
 				self.fee = Money(json: val, owner: self)
@@ -324,10 +333,10 @@ public class ClaimResponseAdditem: FHIRElement
 		var json = super.asJSON()
 		
 		if let adjudication = self.adjudication {
-			json["adjudication"] = ClaimResponseAdditemAdjudication.asJSONArray(adjudication)
+			json["adjudication"] = ClaimResponseAddItemAdjudication.asJSONArray(adjudication)
 		}
 		if let detail = self.detail {
-			json["detail"] = ClaimResponseAdditemDetail.asJSONArray(detail)
+			json["detail"] = ClaimResponseAddItemDetail.asJSONArray(detail)
 		}
 		if let fee = self.fee {
 			json["fee"] = fee.asJSON()
@@ -360,10 +369,10 @@ public class ClaimResponseAdditem: FHIRElement
  *
  *  The adjudications results.
  */
-public class ClaimResponseAdditemAdjudication: FHIRElement
+public class ClaimResponseAddItemAdjudication: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "ClaimResponseAdditemAdjudication" }
+		get { return "ClaimResponseAddItemAdjudication" }
 	}
 	
 	/// Monitary amount
@@ -420,14 +429,14 @@ public class ClaimResponseAdditemAdjudication: FHIRElement
  *
  *  The second tier service adjudications for payor added services.
  */
-public class ClaimResponseAdditemDetail: FHIRElement
+public class ClaimResponseAddItemDetail: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "ClaimResponseAdditemDetail" }
+		get { return "ClaimResponseAddItemDetail" }
 	}
 	
 	/// Added items detail adjudication
-	public var adjudication: [ClaimResponseAdditemDetailAdjudication]?
+	public var adjudication: [ClaimResponseAddItemDetailAdjudication]?
 	
 	/// Professional fee or Product charge
 	public var fee: Money?
@@ -446,7 +455,7 @@ public class ClaimResponseAdditemDetail: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["adjudication"] as? [JSONDictionary] {
-				self.adjudication = ClaimResponseAdditemDetailAdjudication.from(val, owner: self) as? [ClaimResponseAdditemDetailAdjudication]
+				self.adjudication = ClaimResponseAddItemDetailAdjudication.from(val, owner: self) as? [ClaimResponseAddItemDetailAdjudication]
 			}
 			if let val = js["fee"] as? JSONDictionary {
 				self.fee = Money(json: val, owner: self)
@@ -461,7 +470,7 @@ public class ClaimResponseAdditemDetail: FHIRElement
 		var json = super.asJSON()
 		
 		if let adjudication = self.adjudication {
-			json["adjudication"] = ClaimResponseAdditemDetailAdjudication.asJSONArray(adjudication)
+			json["adjudication"] = ClaimResponseAddItemDetailAdjudication.asJSONArray(adjudication)
 		}
 		if let fee = self.fee {
 			json["fee"] = fee.asJSON()
@@ -480,10 +489,10 @@ public class ClaimResponseAdditemDetail: FHIRElement
  *
  *  The adjudications results.
  */
-public class ClaimResponseAdditemDetailAdjudication: FHIRElement
+public class ClaimResponseAddItemDetailAdjudication: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "ClaimResponseAdditemDetailAdjudication" }
+		get { return "ClaimResponseAddItemDetailAdjudication" }
 	}
 	
 	/// Monitary amount
@@ -528,6 +537,124 @@ public class ClaimResponseAdditemDetailAdjudication: FHIRElement
 		}
 		if let value = self.value {
 			json["value"] = value.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Insurance or medical plan.
+ *
+ *  Financial instrument by which payment information for health care.
+ */
+public class ClaimResponseCoverage: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ClaimResponseCoverage" }
+	}
+	
+	/// Business agreement
+	public var businessArrangement: String?
+	
+	/// Adjudication results
+	public var claimResponse: Reference?
+	
+	/// Insurance information
+	public var coverage: Reference?
+	
+	/// Is the focal Coverage
+	public var focal: Bool?
+	
+	/// Original version
+	public var originalRuleset: Coding?
+	
+	/// Pre-Authorization/Determination Reference
+	public var preAuthRef: [String]?
+	
+	/// Patient relationship to subscriber
+	public var relationship: Coding?
+	
+	/// Service instance identifier
+	public var sequence: Int?
+	
+	public convenience init(coverage: Reference?, focal: Bool?, relationship: Coding?, sequence: Int?) {
+		self.init(json: nil)
+		if nil != coverage {
+			self.coverage = coverage
+		}
+		if nil != focal {
+			self.focal = focal
+		}
+		if nil != relationship {
+			self.relationship = relationship
+		}
+		if nil != sequence {
+			self.sequence = sequence
+		}
+	}
+	
+	public required init(json: JSONDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["businessArrangement"] as? String {
+				self.businessArrangement = val
+			}
+			if let val = js["claimResponse"] as? JSONDictionary {
+				self.claimResponse = Reference(json: val, owner: self)
+			}
+			if let val = js["coverage"] as? JSONDictionary {
+				self.coverage = Reference(json: val, owner: self)
+			}
+			if let val = js["focal"] as? Bool {
+				self.focal = val
+			}
+			if let val = js["originalRuleset"] as? JSONDictionary {
+				self.originalRuleset = Coding(json: val, owner: self)
+			}
+			if let val = js["preAuthRef"] as? [String] {
+				self.preAuthRef = val
+			}
+			if let val = js["relationship"] as? JSONDictionary {
+				self.relationship = Coding(json: val, owner: self)
+			}
+			if let val = js["sequence"] as? Int {
+				self.sequence = val
+			}
+		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let businessArrangement = self.businessArrangement {
+			json["businessArrangement"] = businessArrangement.asJSON()
+		}
+		if let claimResponse = self.claimResponse {
+			json["claimResponse"] = claimResponse.asJSON()
+		}
+		if let coverage = self.coverage {
+			json["coverage"] = coverage.asJSON()
+		}
+		if let focal = self.focal {
+			json["focal"] = focal.asJSON()
+		}
+		if let originalRuleset = self.originalRuleset {
+			json["originalRuleset"] = originalRuleset.asJSON()
+		}
+		if let preAuthRef = self.preAuthRef {
+			var arr = [AnyObject]()
+			for val in preAuthRef {
+				arr.append(val.asJSON())
+			}
+			json["preAuthRef"] = arr
+		}
+		if let relationship = self.relationship {
+			json["relationship"] = relationship.asJSON()
+		}
+		if let sequence = self.sequence {
+			json["sequence"] = sequence.asJSON()
 		}
 		
 		return json
@@ -755,7 +882,7 @@ public class ClaimResponseItemDetail: FHIRElement
 	public var sequenceLinkId: Int?
 	
 	/// Subdetail line items
-	public var subdetail: [ClaimResponseItemDetailSubdetail]?
+	public var subDetail: [ClaimResponseItemDetailSubDetail]?
 	
 	public convenience init(sequenceLinkId: Int?) {
 		self.init(json: nil)
@@ -773,8 +900,8 @@ public class ClaimResponseItemDetail: FHIRElement
 			if let val = js["sequenceLinkId"] as? Int {
 				self.sequenceLinkId = val
 			}
-			if let val = js["subdetail"] as? [JSONDictionary] {
-				self.subdetail = ClaimResponseItemDetailSubdetail.from(val, owner: self) as? [ClaimResponseItemDetailSubdetail]
+			if let val = js["subDetail"] as? [JSONDictionary] {
+				self.subDetail = ClaimResponseItemDetailSubDetail.from(val, owner: self) as? [ClaimResponseItemDetailSubDetail]
 			}
 		}
 	}
@@ -788,8 +915,8 @@ public class ClaimResponseItemDetail: FHIRElement
 		if let sequenceLinkId = self.sequenceLinkId {
 			json["sequenceLinkId"] = sequenceLinkId.asJSON()
 		}
-		if let subdetail = self.subdetail {
-			json["subdetail"] = ClaimResponseItemDetailSubdetail.asJSONArray(subdetail)
+		if let subDetail = self.subDetail {
+			json["subDetail"] = ClaimResponseItemDetailSubDetail.asJSONArray(subDetail)
 		}
 		
 		return json
@@ -862,14 +989,14 @@ public class ClaimResponseItemDetailAdjudication: FHIRElement
  *
  *  The third tier service adjudications for submitted services.
  */
-public class ClaimResponseItemDetailSubdetail: FHIRElement
+public class ClaimResponseItemDetailSubDetail: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "ClaimResponseItemDetailSubdetail" }
+		get { return "ClaimResponseItemDetailSubDetail" }
 	}
 	
 	/// Subdetail adjudication
-	public var adjudication: [ClaimResponseItemDetailSubdetailAdjudication]?
+	public var adjudication: [ClaimResponseItemDetailSubDetailAdjudication]?
 	
 	/// Service instance
 	public var sequenceLinkId: Int?
@@ -885,7 +1012,7 @@ public class ClaimResponseItemDetailSubdetail: FHIRElement
 		super.init(json: json)
 		if let js = json {
 			if let val = js["adjudication"] as? [JSONDictionary] {
-				self.adjudication = ClaimResponseItemDetailSubdetailAdjudication.from(val, owner: self) as? [ClaimResponseItemDetailSubdetailAdjudication]
+				self.adjudication = ClaimResponseItemDetailSubDetailAdjudication.from(val, owner: self) as? [ClaimResponseItemDetailSubDetailAdjudication]
 			}
 			if let val = js["sequenceLinkId"] as? Int {
 				self.sequenceLinkId = val
@@ -897,7 +1024,7 @@ public class ClaimResponseItemDetailSubdetail: FHIRElement
 		var json = super.asJSON()
 		
 		if let adjudication = self.adjudication {
-			json["adjudication"] = ClaimResponseItemDetailSubdetailAdjudication.asJSONArray(adjudication)
+			json["adjudication"] = ClaimResponseItemDetailSubDetailAdjudication.asJSONArray(adjudication)
 		}
 		if let sequenceLinkId = self.sequenceLinkId {
 			json["sequenceLinkId"] = sequenceLinkId.asJSON()
@@ -913,10 +1040,10 @@ public class ClaimResponseItemDetailSubdetail: FHIRElement
  *
  *  The adjudications results.
  */
-public class ClaimResponseItemDetailSubdetailAdjudication: FHIRElement
+public class ClaimResponseItemDetailSubDetailAdjudication: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "ClaimResponseItemDetailSubdetailAdjudication" }
+		get { return "ClaimResponseItemDetailSubDetailAdjudication" }
 	}
 	
 	/// Monitary amount

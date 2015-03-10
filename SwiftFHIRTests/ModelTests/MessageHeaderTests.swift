@@ -2,7 +2,7 @@
 //  MessageHeaderTests.swift
 //  MessageHeaderTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -34,7 +34,7 @@ class MessageHeaderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.data![0].reference!, "Patient/example")
 		XCTAssertEqual(inst.destination![0].endpoint!.absoluteString!, "llp:10.11.12.14:5432")
 		XCTAssertEqual(inst.destination![0].name!, "Acme Message Gateway")
-		XCTAssertEqual(inst.destination![0].target!.reference!, "Practitioner/xcda-author")
+		XCTAssertEqual(inst.destination![0].target!.reference!, "Device/example")
 		XCTAssertEqual(inst.event!.code!, "admin-update")
 		XCTAssertEqual(inst.event!.system!.absoluteString!, "http://hl7.org/fhir/message-type")
 		XCTAssertEqual(inst.id!, "example")
@@ -47,6 +47,7 @@ class MessageHeaderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.source!.name!, "Acme Central Patient Registry")
 		XCTAssertEqual(inst.source!.software!, "FooBar Patient Manager")
 		XCTAssertEqual(inst.source!.version!, "3.1.45.AABB")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.timestamp!.description, "2012-01-04T09:10:14Z")
 		
 		return inst
@@ -64,7 +65,7 @@ class MessageHeaderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.data![0].reference!, "Patient/example")
 		XCTAssertEqual(inst.destination![0].endpoint!.absoluteString!, "llp:10.11.12.14:5432")
 		XCTAssertEqual(inst.destination![0].name!, "Acme Message Gateway")
-		XCTAssertEqual(inst.destination![0].target!.reference!, "Practitioner/xcda-author")
+		XCTAssertEqual(inst.destination![0].target!.reference!, "Device/example")
 		XCTAssertEqual(inst.event!.code!, "admin-update")
 		XCTAssertEqual(inst.event!.system!.absoluteString!, "http://hl7.org/fhir/message-type")
 		XCTAssertEqual(inst.id!, "example")
@@ -77,6 +78,7 @@ class MessageHeaderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.source!.name!, "Acme Central Patient Registry")
 		XCTAssertEqual(inst.source!.software!, "FooBar Patient Manager")
 		XCTAssertEqual(inst.source!.version!, "3.1.45.AABB")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.timestamp!.description, "2012-01-04T09:10:14Z")
 		
 		return inst
@@ -94,7 +96,7 @@ class MessageHeaderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.data![0].reference!, "Patient/example")
 		XCTAssertEqual(inst.destination![0].endpoint!.absoluteString!, "llp:10.11.12.14:5432")
 		XCTAssertEqual(inst.destination![0].name!, "Acme Message Gateway")
-		XCTAssertEqual(inst.destination![0].target!.reference!, "Practitioner/xcda-author")
+		XCTAssertEqual(inst.destination![0].target!.reference!, "Device/example")
 		XCTAssertEqual(inst.event!.code!, "admin-update")
 		XCTAssertEqual(inst.event!.system!.absoluteString!, "http://hl7.org/fhir/message-type")
 		XCTAssertEqual(inst.id!, "example")
@@ -107,6 +109,7 @@ class MessageHeaderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.source!.name!, "Acme Central Patient Registry")
 		XCTAssertEqual(inst.source!.software!, "FooBar Patient Manager")
 		XCTAssertEqual(inst.source!.version!, "3.1.45.AABB")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.timestamp!.description, "2012-01-04T09:10:14Z")
 		
 		return inst

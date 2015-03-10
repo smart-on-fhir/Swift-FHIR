@@ -2,7 +2,7 @@
 //  Supply.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (supply.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Supply) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  A supply - a  request for something, and provision of what is supplied.
  */
-public class Supply: FHIRResource
+public class Supply: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Supply" }
@@ -112,7 +112,7 @@ public class SupplyDispense: FHIRElement
 	/// Who collected the Supply
 	public var receiver: [Reference]?
 	
-	/// in progress | dispensed | abandoned
+	/// in-progress | dispensed | abandoned
 	public var status: String?
 	
 	/// Medication, Substance, or Device supplied

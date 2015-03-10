@@ -2,7 +2,7 @@
 //  PatientTests.swift
 //  PatientTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -49,7 +49,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.name![0].given![0], "Duck")
 		XCTAssertEqual(inst.name![0].use!, "official")
 		XCTAssertEqual(inst.photo![0].contentType!, "image/gif")
-		// Don't know how to create unit test for "photo![0].data!", which is a Base64Binary
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -81,7 +81,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.name![0].given![0], "Duck")
 		XCTAssertEqual(inst.name![0].use!, "official")
 		XCTAssertEqual(inst.photo![0].contentType!, "image/gif")
-		// Don't know how to create unit test for "photo![0].data!", which is a Base64Binary
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -113,7 +113,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.name![0].given![0], "Duck")
 		XCTAssertEqual(inst.name![0].use!, "official")
 		XCTAssertEqual(inst.photo![0].contentType!, "image/gif")
-		// Don't know how to create unit test for "photo![0].data!", which is a Base64Binary
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -157,6 +157,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.managingOrganization!.display!, "Pete's Vetinary Services")
 		XCTAssertEqual(inst.name![0].given![0], "Kenzi")
 		XCTAssertEqual(inst.name![0].use!, "usual")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -200,6 +201,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.managingOrganization!.display!, "Pete's Vetinary Services")
 		XCTAssertEqual(inst.name![0].given![0], "Kenzi")
 		XCTAssertEqual(inst.name![0].use!, "usual")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -228,7 +230,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.name![0].given![1], "D")
 		XCTAssertEqual(inst.name![0].use!, "official")
 		XCTAssertEqual(inst.photo![0].contentType!, "image/gif")
-		// Don't know how to create unit test for "photo![0].data!", which is a Base64Binary
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -257,7 +259,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.name![0].given![1], "D")
 		XCTAssertEqual(inst.name![0].use!, "official")
 		XCTAssertEqual(inst.photo![0].contentType!, "image/gif")
-		// Don't know how to create unit test for "photo![0].data!", which is a Base64Binary
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -271,12 +273,22 @@ class PatientTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "patient-example-dicom.canonical.json")
 		
 		XCTAssertTrue(inst.active!)
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://nema.org/fhir/extensions#0010:1010")
+		XCTAssertEqual(inst.extension_fhir![0].valueQuantity!.units!, "Y")
+		XCTAssertEqual(inst.extension_fhir![0].valueQuantity!.value!, NSDecimalNumber(string: "56"))
+		XCTAssertEqual(inst.extension_fhir![1].url!.absoluteString!, "http://nema.org/fhir/extensions#0010:1020")
+		XCTAssertEqual(inst.extension_fhir![1].valueQuantity!.units!, "m")
+		XCTAssertEqual(inst.extension_fhir![1].valueQuantity!.value!, NSDecimalNumber(string: "1.83"))
+		XCTAssertEqual(inst.extension_fhir![2].url!.absoluteString!, "http://nema.org/fhir/extensions#0010:1030")
+		XCTAssertEqual(inst.extension_fhir![2].valueQuantity!.units!, "kg")
+		XCTAssertEqual(inst.extension_fhir![2].valueQuantity!.value!, NSDecimalNumber(string: "72.58"))
 		XCTAssertEqual(inst.gender!, "male")
 		XCTAssertEqual(inst.id!, "dicom")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://nema.org/examples/patients")
 		XCTAssertEqual(inst.identifier![0].value!, "MINT1234")
 		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/1")
 		XCTAssertEqual(inst.name![0].family![0], "MINT_TEST")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -290,12 +302,22 @@ class PatientTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "patient-example-dicom.json")
 		
 		XCTAssertTrue(inst.active!)
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://nema.org/fhir/extensions#0010:1010")
+		XCTAssertEqual(inst.extension_fhir![0].valueQuantity!.units!, "Y")
+		XCTAssertEqual(inst.extension_fhir![0].valueQuantity!.value!, NSDecimalNumber(string: "56"))
+		XCTAssertEqual(inst.extension_fhir![1].url!.absoluteString!, "http://nema.org/fhir/extensions#0010:1020")
+		XCTAssertEqual(inst.extension_fhir![1].valueQuantity!.units!, "m")
+		XCTAssertEqual(inst.extension_fhir![1].valueQuantity!.value!, NSDecimalNumber(string: "1.83"))
+		XCTAssertEqual(inst.extension_fhir![2].url!.absoluteString!, "http://nema.org/fhir/extensions#0010:1030")
+		XCTAssertEqual(inst.extension_fhir![2].valueQuantity!.units!, "kg")
+		XCTAssertEqual(inst.extension_fhir![2].valueQuantity!.value!, NSDecimalNumber(string: "72.58"))
 		XCTAssertEqual(inst.gender!, "male")
 		XCTAssertEqual(inst.id!, "dicom")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://nema.org/examples/patients")
 		XCTAssertEqual(inst.identifier![0].value!, "MINT1234")
 		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/1")
 		XCTAssertEqual(inst.name![0].family![0], "MINT_TEST")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -352,6 +374,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.telecom![1].system!, "email")
 		XCTAssertEqual(inst.telecom![1].use!, "home")
 		XCTAssertEqual(inst.telecom![1].value!, "p.heuvel@gmail.com")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

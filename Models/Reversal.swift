@@ -2,7 +2,7 @@
 //  Reversal.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (reversal.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Reversal) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  This resource provides the request and response details for the request for which all actions are to be reversed or
  *  terminated.
  */
-public class Reversal: FHIRResource
+public class Reversal: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Reversal" }

@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (operationoutcome.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  A collection of error, warning or information messages that result from a system action.
  */
-public class OperationOutcome: FHIRResource
+public class OperationOutcome: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "OperationOutcome" }

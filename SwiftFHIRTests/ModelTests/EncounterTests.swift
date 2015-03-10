@@ -2,7 +2,7 @@
 //  EncounterTests.swift
 //  EncounterTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -62,6 +62,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.serviceProvider!.display!, "Burgers University Medical Center")
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.status!, "finished")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type![0].coding![0].code!, "270427003")
 		XCTAssertEqual(inst.type![0].coding![0].display!, "Patient-initiated encounter")
 		XCTAssertEqual(inst.type![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -109,6 +110,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.serviceProvider!.display!, "Burgers University Medical Center")
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.status!, "finished")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type![0].coding![0].code!, "270427003")
 		XCTAssertEqual(inst.type![0].coding![0].display!, "Patient-initiated encounter")
 		XCTAssertEqual(inst.type![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -156,6 +158,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.serviceProvider!.display!, "Burgers University Medical Center")
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.status!, "finished")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type![0].coding![0].code!, "270427003")
 		XCTAssertEqual(inst.type![0].coding![0].display!, "Patient-initiated encounter")
 		XCTAssertEqual(inst.type![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -203,6 +206,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.serviceProvider!.display!, "BMC")
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.status!, "finished")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type![0].coding![0].code!, "270427003")
 		XCTAssertEqual(inst.type![0].coding![0].display!, "Patient-initiated encounter")
 		XCTAssertEqual(inst.type![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -250,6 +254,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.serviceProvider!.display!, "BMC")
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.status!, "finished")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type![0].coding![0].code!, "270427003")
 		XCTAssertEqual(inst.type![0].coding![0].display!, "Patient-initiated encounter")
 		XCTAssertEqual(inst.type![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -296,6 +301,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reason!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.status!, "finished")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type![0].coding![0].code!, "270427003")
 		XCTAssertEqual(inst.type![0].coding![0].display!, "Patient-initiated encounter")
 		XCTAssertEqual(inst.type![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -342,6 +348,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reason!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.status!, "finished")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type![0].coding![0].code!, "270427003")
 		XCTAssertEqual(inst.type![0].coding![0].display!, "Patient-initiated encounter")
 		XCTAssertEqual(inst.type![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -371,6 +378,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reason!.text!, "The patient had fever peaks over the last couple of days. He is worried about these peaks.")
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f201")
 		XCTAssertEqual(inst.status!, "finished")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type![0].coding![0].code!, "11429006")
 		XCTAssertEqual(inst.type![0].coding![0].display!, "Consultation")
 		XCTAssertEqual(inst.type![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -400,6 +408,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reason!.text!, "The patient had fever peaks over the last couple of days. He is worried about these peaks.")
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f201")
 		XCTAssertEqual(inst.status!, "finished")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type![0].coding![0].code!, "11429006")
 		XCTAssertEqual(inst.type![0].coding![0].display!, "Consultation")
 		XCTAssertEqual(inst.type![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -435,6 +444,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reason!.text!, "The patient is treated for a tumor.")
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f201")
 		XCTAssertEqual(inst.status!, "finished")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type![0].coding![0].code!, "367336001")
 		XCTAssertEqual(inst.type![0].coding![0].display!, "Chemotherapy")
 		XCTAssertEqual(inst.type![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")

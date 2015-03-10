@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (conceptmap.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,13 +15,16 @@ import Foundation
  *  A statement of relationships from one set of concepts to one or more other concepts - either code systems or data
  *  elements, or classes in class models.
  */
-public class ConceptMap: FHIRResource
+public class ConceptMap: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "ConceptMap" }
 	}
 	
-	/// About the concept map or its content
+	/// Contact details of the publisher
+	public var contact: [ConceptMapContact]?
+	
+	/// Use and/or Publishing restrictions
 	public var copyright: String?
 	
 	/// Date for given status
@@ -36,14 +39,17 @@ public class ConceptMap: FHIRResource
 	/// If for testing purposes, not real usage
 	public var experimental: Bool?
 	
-	/// Logical id to reference this concept map
-	public var identifier: String?
+	/// Additional identifier for the concept map
+	public var identifier: Identifier?
 	
 	/// Informal name for this concept map
 	public var name: String?
 	
 	/// Name of the publisher (Organization or individual)
 	public var publisher: String?
+	
+	/// Why is this needed?
+	public var requirements: String?
 	
 	/// Identifies the source of the concepts which are being mapped
 	public var sourceReference: Reference?
@@ -60,8 +66,8 @@ public class ConceptMap: FHIRResource
 	/// Provides context to the mappings
 	public var targetUri: NSURL?
 	
-	/// Contact information of the publisher
-	public var telecom: [ContactPoint]?
+	/// Globally unique logical id for concept map
+	public var url: NSURL?
 	
 	/// Logical id for this version of the concept map
 	public var version: String?
@@ -88,6 +94,9 @@ public class ConceptMap: FHIRResource
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["contact"] as? [JSONDictionary] {
+				self.contact = ConceptMapContact.from(val, owner: self) as? [ConceptMapContact]
+			}
 			if let val = js["copyright"] as? String {
 				self.copyright = val
 			}
@@ -103,14 +112,17 @@ public class ConceptMap: FHIRResource
 			if let val = js["experimental"] as? Bool {
 				self.experimental = val
 			}
-			if let val = js["identifier"] as? String {
-				self.identifier = val
+			if let val = js["identifier"] as? JSONDictionary {
+				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["name"] as? String {
 				self.name = val
 			}
 			if let val = js["publisher"] as? String {
 				self.publisher = val
+			}
+			if let val = js["requirements"] as? String {
+				self.requirements = val
 			}
 			if let val = js["sourceReference"] as? JSONDictionary {
 				self.sourceReference = Reference(json: val, owner: self)
@@ -127,8 +139,8 @@ public class ConceptMap: FHIRResource
 			if let val = js["targetUri"] as? String {
 				self.targetUri = NSURL(string: val)
 			}
-			if let val = js["telecom"] as? [JSONDictionary] {
-				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+			if let val = js["url"] as? String {
+				self.url = NSURL(string: val)
 			}
 			if let val = js["version"] as? String {
 				self.version = val
@@ -139,6 +151,9 @@ public class ConceptMap: FHIRResource
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
+		if let contact = self.contact {
+			json["contact"] = ConceptMapContact.asJSONArray(contact)
+		}
 		if let copyright = self.copyright {
 			json["copyright"] = copyright.asJSON()
 		}
@@ -163,6 +178,9 @@ public class ConceptMap: FHIRResource
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
 		}
+		if let requirements = self.requirements {
+			json["requirements"] = requirements.asJSON()
+		}
 		if let sourceReference = self.sourceReference {
 			json["sourceReference"] = sourceReference.asJSON()
 		}
@@ -178,11 +196,55 @@ public class ConceptMap: FHIRResource
 		if let targetUri = self.targetUri {
 			json["targetUri"] = targetUri.asJSON()
 		}
-		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		if let url = self.url {
+			json["url"] = url.asJSON()
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Contact details of the publisher.
+ *
+ *  Contacts to assist a user in finding and communicating with the publisher.
+ */
+public class ConceptMapContact: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ConceptMapContact" }
+	}
+	
+	/// Name of a individual to contact
+	public var name: String?
+	
+	/// Contact details for individual or publisher
+	public var telecom: [ContactPoint]?
+	
+	public required init(json: JSONDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["name"] as? String {
+				self.name = val
+			}
+			if let val = js["telecom"] as? [JSONDictionary] {
+				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+			}
+		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
 		}
 		
 		return json

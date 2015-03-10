@@ -2,7 +2,7 @@
 //  FamilyHistoryTests.swift
 //  FamilyHistoryTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -48,6 +48,8 @@ class FamilyHistoryTests: FHIRModelTestCase
 		XCTAssertEqual(inst.relation![1].condition![0].type!.text!, "Diabetes Mellitus")
 		XCTAssertEqual(inst.relation![1].relationship!.coding![0].code!, "brother")
 		XCTAssertEqual(inst.relation![1].relationship!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/familial-relationship")
+		XCTAssertEqual(inst.text!.div!, "<div>Mother died of a stroke aged 56. Brother has diabetes</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -78,6 +80,8 @@ class FamilyHistoryTests: FHIRModelTestCase
 		XCTAssertEqual(inst.relation![1].condition![0].type!.text!, "Diabetes Mellitus")
 		XCTAssertEqual(inst.relation![1].relationship!.coding![0].code!, "brother")
 		XCTAssertEqual(inst.relation![1].relationship!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/familial-relationship")
+		XCTAssertEqual(inst.text!.div!, "<div>Mother died of a stroke aged 56. Brother has diabetes</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -108,6 +112,8 @@ class FamilyHistoryTests: FHIRModelTestCase
 		XCTAssertEqual(inst.relation![1].condition![0].type!.text!, "Diabetes Mellitus")
 		XCTAssertEqual(inst.relation![1].relationship!.coding![0].code!, "brother")
 		XCTAssertEqual(inst.relation![1].relationship!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/familial-relationship")
+		XCTAssertEqual(inst.text!.div!, "<div>Mother died of a stroke aged 56. Brother has diabetes</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -134,6 +140,8 @@ class FamilyHistoryTests: FHIRModelTestCase
 		XCTAssertEqual(inst.relation![0].condition![0].type!.text!, "Heart Attack")
 		XCTAssertEqual(inst.relation![0].relationship!.coding![0].code!, "father")
 		XCTAssertEqual(inst.relation![0].relationship!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/familial-relationship")
+		XCTAssertEqual(inst.text!.div!, "<div>Father died of a heart attack aged 74</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -160,6 +168,64 @@ class FamilyHistoryTests: FHIRModelTestCase
 		XCTAssertEqual(inst.relation![0].condition![0].type!.text!, "Heart Attack")
 		XCTAssertEqual(inst.relation![0].relationship!.coding![0].code!, "father")
 		XCTAssertEqual(inst.relation![0].relationship!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/familial-relationship")
+		XCTAssertEqual(inst.text!.div!, "<div>Father died of a heart attack aged 74</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testFamilyHistory6() {
+		let instance = testFamilyHistory6_impl()
+		testFamilyHistory6_impl(json: instance.asJSON())
+	}
+	
+	func testFamilyHistory6_impl(json: JSONDictionary? = nil) -> FamilyHistory {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "familyhistory-qicore-example.canonical.json")
+		
+		XCTAssertEqual(inst.date!.description, "2011-03-18")
+		XCTAssertEqual(inst.id!, "qicore")
+		XCTAssertEqual(inst.patient!.display!, "Peter Patient")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.relation![0].condition![0].note!, "Was fishing at the time. At least he went doing someting he loved.")
+		XCTAssertEqual(inst.relation![0].condition![0].onsetAge!.system!.absoluteString!, "http://unitsofmeasure.org")
+		XCTAssertEqual(inst.relation![0].condition![0].onsetAge!.units!, "a")
+		XCTAssertEqual(inst.relation![0].condition![0].onsetAge!.value!, NSDecimalNumber(string: "74"))
+		XCTAssertEqual(inst.relation![0].condition![0].type!.coding![0].code!, "315619001")
+		XCTAssertEqual(inst.relation![0].condition![0].type!.coding![0].display!, "Myocardial Infarction")
+		XCTAssertEqual(inst.relation![0].condition![0].type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.relation![0].condition![0].type!.text!, "Heart Attack")
+		XCTAssertEqual(inst.relation![0].relationship!.coding![0].code!, "father")
+		XCTAssertEqual(inst.relation![0].relationship!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/familial-relationship")
+		XCTAssertEqual(inst.text!.div!, "<div>Father died of a heart attack aged 74</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testFamilyHistory7() {
+		let instance = testFamilyHistory7_impl()
+		testFamilyHistory7_impl(json: instance.asJSON())
+	}
+	
+	func testFamilyHistory7_impl(json: JSONDictionary? = nil) -> FamilyHistory {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "familyhistory-qicore-example.json")
+		
+		XCTAssertEqual(inst.date!.description, "2011-03-18")
+		XCTAssertEqual(inst.id!, "qicore")
+		XCTAssertEqual(inst.patient!.display!, "Peter Patient")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.relation![0].condition![0].note!, "Was fishing at the time. At least he went doing someting he loved.")
+		XCTAssertEqual(inst.relation![0].condition![0].onsetAge!.system!.absoluteString!, "http://unitsofmeasure.org")
+		XCTAssertEqual(inst.relation![0].condition![0].onsetAge!.units!, "a")
+		XCTAssertEqual(inst.relation![0].condition![0].onsetAge!.value!, NSDecimalNumber(string: "74"))
+		XCTAssertEqual(inst.relation![0].condition![0].type!.coding![0].code!, "315619001")
+		XCTAssertEqual(inst.relation![0].condition![0].type!.coding![0].display!, "Myocardial Infarction")
+		XCTAssertEqual(inst.relation![0].condition![0].type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.relation![0].condition![0].type!.text!, "Heart Attack")
+		XCTAssertEqual(inst.relation![0].relationship!.coding![0].code!, "father")
+		XCTAssertEqual(inst.relation![0].relationship!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/familial-relationship")
+		XCTAssertEqual(inst.text!.div!, "<div>Father died of a heart attack aged 74</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

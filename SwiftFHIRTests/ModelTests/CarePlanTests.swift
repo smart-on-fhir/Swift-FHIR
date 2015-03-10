@@ -2,7 +2,7 @@
 //  CarePlanTests.swift
 //  CarePlanTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -56,6 +56,7 @@ class CarePlanTests: FHIRModelTestCase
 		XCTAssertEqual(inst.period!.end!.description, "2011-06-27")
 		XCTAssertEqual(inst.period!.start!.description, "2011-06-26")
 		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -94,6 +95,7 @@ class CarePlanTests: FHIRModelTestCase
 		XCTAssertEqual(inst.period!.end!.description, "2011-06-27")
 		XCTAssertEqual(inst.period!.start!.description, "2011-06-26")
 		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -132,6 +134,7 @@ class CarePlanTests: FHIRModelTestCase
 		XCTAssertEqual(inst.period!.end!.description, "2011-06-27")
 		XCTAssertEqual(inst.period!.start!.description, "2011-06-26")
 		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -170,6 +173,7 @@ class CarePlanTests: FHIRModelTestCase
 		XCTAssertEqual(inst.period!.end!.description, "2013-07-07")
 		XCTAssertEqual(inst.period!.start!.description, "2011-07-06")
 		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -208,6 +212,7 @@ class CarePlanTests: FHIRModelTestCase
 		XCTAssertEqual(inst.period!.end!.description, "2013-07-07")
 		XCTAssertEqual(inst.period!.start!.description, "2011-07-06")
 		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -246,6 +251,7 @@ class CarePlanTests: FHIRModelTestCase
 		XCTAssertEqual(inst.period!.end!.description, "2013-03-08T09:30:10+01:00")
 		XCTAssertEqual(inst.period!.start!.description, "2013-03-08T09:00:10+01:00")
 		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -284,6 +290,7 @@ class CarePlanTests: FHIRModelTestCase
 		XCTAssertEqual(inst.period!.end!.description, "2013-03-08T09:30:10+01:00")
 		XCTAssertEqual(inst.period!.start!.description, "2013-03-08T09:00:10+01:00")
 		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -336,6 +343,7 @@ class CarePlanTests: FHIRModelTestCase
 		XCTAssertEqual(inst.period!.end!.description, "2013-03-13")
 		XCTAssertEqual(inst.period!.start!.description, "2013-03-11")
 		XCTAssertEqual(inst.status!, "planned")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -388,6 +396,7 @@ class CarePlanTests: FHIRModelTestCase
 		XCTAssertEqual(inst.period!.end!.description, "2013-03-13")
 		XCTAssertEqual(inst.period!.start!.description, "2013-03-11")
 		XCTAssertEqual(inst.status!, "planned")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -408,11 +417,11 @@ class CarePlanTests: FHIRModelTestCase
 		XCTAssertEqual(inst.activity![0].simple!.code!.coding![0].display!, "Chemotherapy")
 		XCTAssertEqual(inst.activity![0].simple!.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.activity![0].simple!.product!.reference!, "#tpf")
-		XCTAssertEqual(inst.activity![0].status!, "in progress")
+		XCTAssertEqual(inst.activity![0].status!, "in-progress")
 		XCTAssertEqual(inst.concern![0].display!, "Roel's head-neck tumor")
 		XCTAssertEqual(inst.concern![0].reference!, "Condition/f202")
 		XCTAssertEqual(inst.goal![0].description_fhir!, "Elimination of the spenoid bone tumor")
-		XCTAssertEqual(inst.goal![0].status!, "in progress")
+		XCTAssertEqual(inst.goal![0].status!, "in-progress")
 		XCTAssertEqual(inst.id!, "f202")
 		XCTAssertEqual(inst.participant![0].member!.display!, "Dokter Bronsig")
 		XCTAssertEqual(inst.participant![0].member!.reference!, "Practitioner/f201")
@@ -422,6 +431,7 @@ class CarePlanTests: FHIRModelTestCase
 		XCTAssertEqual(inst.patient!.display!, "Roel")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f201")
 		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

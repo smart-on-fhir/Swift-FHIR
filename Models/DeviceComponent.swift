@@ -2,7 +2,7 @@
 //  DeviceComponent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (devicecomponent.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  Describes the characteristics, operational status and capabilities of a medical-related component of a medical
  *  device.
  */
-public class DeviceComponent: FHIRResource
+public class DeviceComponent: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "DeviceComponent" }

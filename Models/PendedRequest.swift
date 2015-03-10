@@ -2,7 +2,7 @@
 //  PendedRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (pendedrequest.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/PendedRequest) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  This resource provides the request and response details for the resource for which the status is to be checked.
  */
-public class PendedRequest: FHIRResource
+public class PendedRequest: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "PendedRequest" }

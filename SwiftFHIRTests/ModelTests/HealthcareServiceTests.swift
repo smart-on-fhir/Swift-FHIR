@@ -2,7 +2,7 @@
 //  HealthcareServiceTests.swift
 //  HealthcareServiceTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -34,6 +34,7 @@ class HealthcareServiceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.location!.reference!, "Location/1")
 		XCTAssertEqual(inst.serviceName!, "healthcare service")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -50,6 +51,7 @@ class HealthcareServiceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.location!.reference!, "Location/1")
 		XCTAssertEqual(inst.serviceName!, "healthcare service")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -66,6 +68,7 @@ class HealthcareServiceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.location!.reference!, "Location/1")
 		XCTAssertEqual(inst.serviceName!, "healthcare service")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

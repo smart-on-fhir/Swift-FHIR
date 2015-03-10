@@ -2,7 +2,7 @@
 //  OralHealthClaim.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (oralhealthclaim.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/OralHealthClaim) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  A provider issued list of services and products provided, or to be provided, to a patient which is provided to an
  *  insurer for payment recovery.
  */
-public class OralHealthClaim: FHIRResource
+public class OralHealthClaim: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "OralHealthClaim" }
@@ -64,16 +64,13 @@ public class OralHealthClaim: FHIRResource
 	public var item: [OralHealthClaimItem]?
 	
 	/// Missing Teeth
-	public var missingteeth: [OralHealthClaimMissingteeth]?
+	public var missingTeeth: [OralHealthClaimMissingTeeth]?
 	
 	/// Responsible organization
 	public var organization: Reference?
 	
 	/// Original specification followed
 	public var originalRuleset: Coding?
-	
-	/// Orthodontic Treatment Plan
-	public var orthoPlan: OralHealthClaimOrthoPlan?
 	
 	/// The subject of the Products and Services
 	public var patient: Reference?
@@ -154,17 +151,14 @@ public class OralHealthClaim: FHIRResource
 			if let val = js["item"] as? [JSONDictionary] {
 				self.item = OralHealthClaimItem.from(val, owner: self) as? [OralHealthClaimItem]
 			}
-			if let val = js["missingteeth"] as? [JSONDictionary] {
-				self.missingteeth = OralHealthClaimMissingteeth.from(val, owner: self) as? [OralHealthClaimMissingteeth]
+			if let val = js["missingTeeth"] as? [JSONDictionary] {
+				self.missingTeeth = OralHealthClaimMissingTeeth.from(val, owner: self) as? [OralHealthClaimMissingTeeth]
 			}
 			if let val = js["organization"] as? JSONDictionary {
 				self.organization = Reference(json: val, owner: self)
 			}
 			if let val = js["originalRuleset"] as? JSONDictionary {
 				self.originalRuleset = Coding(json: val, owner: self)
-			}
-			if let val = js["orthoPlan"] as? JSONDictionary {
-				self.orthoPlan = OralHealthClaimOrthoPlan(json: val, owner: self)
 			}
 			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
@@ -241,17 +235,14 @@ public class OralHealthClaim: FHIRResource
 		if let item = self.item {
 			json["item"] = OralHealthClaimItem.asJSONArray(item)
 		}
-		if let missingteeth = self.missingteeth {
-			json["missingteeth"] = OralHealthClaimMissingteeth.asJSONArray(missingteeth)
+		if let missingTeeth = self.missingTeeth {
+			json["missingTeeth"] = OralHealthClaimMissingTeeth.asJSONArray(missingTeeth)
 		}
 		if let organization = self.organization {
 			json["organization"] = organization.asJSON()
 		}
 		if let originalRuleset = self.originalRuleset {
 			json["originalRuleset"] = originalRuleset.asJSON()
-		}
-		if let orthoPlan = self.orthoPlan {
-			json["orthoPlan"] = orthoPlan.asJSON()
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
@@ -313,7 +304,7 @@ public class OralHealthClaimCoverage: FHIRElement
 	public var originalRuleset: Coding?
 	
 	/// Pre-Authorization/Determination Reference
-	public var preauthref: [String]?
+	public var preAuthRef: [String]?
 	
 	/// Patient relationship to subscriber
 	public var relationship: Coding?
@@ -355,8 +346,8 @@ public class OralHealthClaimCoverage: FHIRElement
 			if let val = js["originalRuleset"] as? JSONDictionary {
 				self.originalRuleset = Coding(json: val, owner: self)
 			}
-			if let val = js["preauthref"] as? [String] {
-				self.preauthref = val
+			if let val = js["preAuthRef"] as? [String] {
+				self.preAuthRef = val
 			}
 			if let val = js["relationship"] as? JSONDictionary {
 				self.relationship = Coding(json: val, owner: self)
@@ -385,12 +376,12 @@ public class OralHealthClaimCoverage: FHIRElement
 		if let originalRuleset = self.originalRuleset {
 			json["originalRuleset"] = originalRuleset.asJSON()
 		}
-		if let preauthref = self.preauthref {
+		if let preAuthRef = self.preAuthRef {
 			var arr = [AnyObject]()
-			for val in preauthref {
+			for val in preAuthRef {
 				arr.append(val.asJSON())
 			}
-			json["preauthref"] = arr
+			json["preAuthRef"] = arr
 		}
 		if let relationship = self.relationship {
 			json["relationship"] = relationship.asJSON()
@@ -509,7 +500,7 @@ public class OralHealthClaimItem: FHIRElement
 	public var serviceDate: Date?
 	
 	/// Service Sub-location
-	public var subsite: [Coding]?
+	public var subSite: [Coding]?
 	
 	/// Group or type of product or service
 	public var type: Coding?
@@ -575,8 +566,8 @@ public class OralHealthClaimItem: FHIRElement
 			if let val = js["serviceDate"] as? String {
 				self.serviceDate = Date(string: val)
 			}
-			if let val = js["subsite"] as? [JSONDictionary] {
-				self.subsite = Coding.from(val, owner: self) as? [Coding]
+			if let val = js["subSite"] as? [JSONDictionary] {
+				self.subSite = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["type"] as? JSONDictionary {
 				self.type = Coding(json: val, owner: self)
@@ -636,8 +627,8 @@ public class OralHealthClaimItem: FHIRElement
 		if let serviceDate = self.serviceDate {
 			json["serviceDate"] = serviceDate.asJSON()
 		}
-		if let subsite = self.subsite {
-			json["subsite"] = Coding.asJSONArray(subsite)
+		if let subSite = self.subSite {
+			json["subSite"] = Coding.asJSONArray(subSite)
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -962,14 +953,14 @@ public class OralHealthClaimItemProsthesis: FHIRElement
  *  A list of teeth which would be expected but are not found due to having been previously  extracted or for other
  *  reasons.
  */
-public class OralHealthClaimMissingteeth: FHIRElement
+public class OralHealthClaimMissingTeeth: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "OralHealthClaimMissingteeth" }
+		get { return "OralHealthClaimMissingTeeth" }
 	}
 	
 	/// Date of Extraction
-	public var extractiondate: Date?
+	public var extractionDate: Date?
 	
 	/// Reason for missing
 	public var reason: Coding?
@@ -987,8 +978,8 @@ public class OralHealthClaimMissingteeth: FHIRElement
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["extractiondate"] as? String {
-				self.extractiondate = Date(string: val)
+			if let val = js["extractionDate"] as? String {
+				self.extractionDate = Date(string: val)
 			}
 			if let val = js["reason"] as? JSONDictionary {
 				self.reason = Coding(json: val, owner: self)
@@ -1002,103 +993,14 @@ public class OralHealthClaimMissingteeth: FHIRElement
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let extractiondate = self.extractiondate {
-			json["extractiondate"] = extractiondate.asJSON()
+		if let extractionDate = self.extractionDate {
+			json["extractionDate"] = extractionDate.asJSON()
 		}
 		if let reason = self.reason {
 			json["reason"] = reason.asJSON()
 		}
 		if let tooth = self.tooth {
 			json["tooth"] = tooth.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Orthodontic Treatment Plan.
- *
- *  The high-level details of an Orthodontic Treatment Plan.
- */
-public class OralHealthClaimOrthoPlan: FHIRElement
-{
-	override public class var resourceName: String {
-		get { return "OralHealthClaimOrthoPlan" }
-	}
-	
-	/// Diagnostic phase fee
-	public var diagnosticFee: Money?
-	
-	/// Duration in months
-	public var durationMonths: Int?
-	
-	/// First exam fee
-	public var examFee: Money?
-	
-	/// Initial payment
-	public var initialPayment: Money?
-	
-	/// Anticipated number of payments
-	public var paymentCount: Int?
-	
-	/// Anticipated payment
-	public var periodicPayment: Money?
-	
-	/// Start date
-	public var start: Date?
-	
-	public required init(json: JSONDictionary?) {
-		super.init(json: json)
-		if let js = json {
-			if let val = js["diagnosticFee"] as? JSONDictionary {
-				self.diagnosticFee = Money(json: val, owner: self)
-			}
-			if let val = js["durationMonths"] as? Int {
-				self.durationMonths = val
-			}
-			if let val = js["examFee"] as? JSONDictionary {
-				self.examFee = Money(json: val, owner: self)
-			}
-			if let val = js["initialPayment"] as? JSONDictionary {
-				self.initialPayment = Money(json: val, owner: self)
-			}
-			if let val = js["paymentCount"] as? Int {
-				self.paymentCount = val
-			}
-			if let val = js["periodicPayment"] as? JSONDictionary {
-				self.periodicPayment = Money(json: val, owner: self)
-			}
-			if let val = js["start"] as? String {
-				self.start = Date(string: val)
-			}
-		}
-	}
-	
-	override public func asJSON() -> JSONDictionary {
-		var json = super.asJSON()
-		
-		if let diagnosticFee = self.diagnosticFee {
-			json["diagnosticFee"] = diagnosticFee.asJSON()
-		}
-		if let durationMonths = self.durationMonths {
-			json["durationMonths"] = durationMonths.asJSON()
-		}
-		if let examFee = self.examFee {
-			json["examFee"] = examFee.asJSON()
-		}
-		if let initialPayment = self.initialPayment {
-			json["initialPayment"] = initialPayment.asJSON()
-		}
-		if let paymentCount = self.paymentCount {
-			json["paymentCount"] = paymentCount.asJSON()
-		}
-		if let periodicPayment = self.periodicPayment {
-			json["periodicPayment"] = periodicPayment.asJSON()
-		}
-		if let start = self.start {
-			json["start"] = start.asJSON()
 		}
 		
 		return json

@@ -2,7 +2,7 @@
 //  AlertTests.swift
 //  AlertTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -37,10 +37,15 @@ class AlertTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "local")
 		XCTAssertEqual(inst.category!.text!, "admin")
 		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.note!, "patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
+		XCTAssertEqual(inst.note!.coding![0].code!, "bigdog")
+		XCTAssertEqual(inst.note!.coding![0].display!, "Big dog")
+		XCTAssertEqual(inst.note!.coding![0].system!.absoluteString!, "local")
+		XCTAssertEqual(inst.note!.text!, "Patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
 		XCTAssertEqual(inst.status!, "active")
 		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.div!, "<div>Large Dog warning for Peter Patient</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -60,10 +65,15 @@ class AlertTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "local")
 		XCTAssertEqual(inst.category!.text!, "admin")
 		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.note!, "patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
+		XCTAssertEqual(inst.note!.coding![0].code!, "bigdog")
+		XCTAssertEqual(inst.note!.coding![0].display!, "Big dog")
+		XCTAssertEqual(inst.note!.coding![0].system!.absoluteString!, "local")
+		XCTAssertEqual(inst.note!.text!, "Patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
 		XCTAssertEqual(inst.status!, "active")
 		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.div!, "<div>Large Dog warning for Peter Patient</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -83,10 +93,71 @@ class AlertTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "local")
 		XCTAssertEqual(inst.category!.text!, "admin")
 		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.note!, "patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
+		XCTAssertEqual(inst.note!.coding![0].code!, "bigdog")
+		XCTAssertEqual(inst.note!.coding![0].display!, "Big dog")
+		XCTAssertEqual(inst.note!.coding![0].system!.absoluteString!, "local")
+		XCTAssertEqual(inst.note!.text!, "Patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
 		XCTAssertEqual(inst.status!, "active")
 		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.div!, "<div>Large Dog warning for Peter Patient</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testAlert4() {
+		let instance = testAlert4_impl()
+		testAlert4_impl(json: instance.asJSON())
+	}
+	
+	func testAlert4_impl(json: JSONDictionary? = nil) -> Alert {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "alert-qicore-example.canonical.json")
+		
+		XCTAssertEqual(inst.author!.display!, "Nancy Nurse")
+		XCTAssertEqual(inst.author!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.category!.coding![0].code!, "admin")
+		XCTAssertEqual(inst.category!.coding![0].display!, "Admin")
+		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "local")
+		XCTAssertEqual(inst.category!.text!, "admin")
+		XCTAssertEqual(inst.id!, "qicore")
+		XCTAssertEqual(inst.note!.coding![0].code!, "bigdog")
+		XCTAssertEqual(inst.note!.coding![0].display!, "Big dog")
+		XCTAssertEqual(inst.note!.coding![0].system!.absoluteString!, "local")
+		XCTAssertEqual(inst.note!.text!, "Patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
+		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.div!, "<div>Large Dog warning for Peter Patient</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testAlert5() {
+		let instance = testAlert5_impl()
+		testAlert5_impl(json: instance.asJSON())
+	}
+	
+	func testAlert5_impl(json: JSONDictionary? = nil) -> Alert {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "alert-qicore-example.json")
+		
+		XCTAssertEqual(inst.author!.display!, "Nancy Nurse")
+		XCTAssertEqual(inst.author!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.category!.coding![0].code!, "admin")
+		XCTAssertEqual(inst.category!.coding![0].display!, "Admin")
+		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "local")
+		XCTAssertEqual(inst.category!.text!, "admin")
+		XCTAssertEqual(inst.id!, "qicore")
+		XCTAssertEqual(inst.note!.coding![0].code!, "bigdog")
+		XCTAssertEqual(inst.note!.coding![0].display!, "Big dog")
+		XCTAssertEqual(inst.note!.coding![0].system!.absoluteString!, "local")
+		XCTAssertEqual(inst.note!.text!, "Patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
+		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.div!, "<div>Large Dog warning for Peter Patient</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

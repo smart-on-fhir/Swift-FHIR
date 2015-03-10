@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (ElementDefinition.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -22,6 +22,9 @@ public class ElementDefinition: FHIRElement
 	
 	/// ValueSet details if this is coded
 	public var binding: ElementDefinitionBinding?
+	
+	/// Defining code
+	public var code: [Coding]?
 	
 	/// Comments about the use of this element
 	public var comments: String?
@@ -103,6 +106,9 @@ public class ElementDefinition: FHIRElement
 	
 	/// Specified value it missing from instance
 	public var defaultValueUri: NSURL?
+	
+	/// Full formal definition as narrative text
+	public var definition: String?
 	
 	/// Example value: [as defined for type]
 	public var exampleAddress: Address?
@@ -248,14 +254,14 @@ public class ElementDefinition: FHIRElement
 	/// Value must be exactly this
 	public var fixedUri: NSURL?
 	
-	/// Full formal definition in human language
-	public var formal: String?
-	
 	/// If this modifies the meaning of other elements
 	public var isModifier: Bool?
 	
 	/// Include when _summary = true?
 	public var isSummary: Bool?
+	
+	/// Name for element to display with or prompt for element
+	public var label: String?
 	
 	/// Map element to another set of definitions
 	public var mapping: [ElementDefinitionMapping]?
@@ -387,6 +393,9 @@ public class ElementDefinition: FHIRElement
 			if let val = js["binding"] as? JSONDictionary {
 				self.binding = ElementDefinitionBinding(json: val, owner: self)
 			}
+			if let val = js["code"] as? [JSONDictionary] {
+				self.code = Coding.from(val, owner: self) as? [Coding]
+			}
 			if let val = js["comments"] as? String {
 				self.comments = val
 			}
@@ -467,6 +476,9 @@ public class ElementDefinition: FHIRElement
 			}
 			if let val = js["defaultValueUri"] as? String {
 				self.defaultValueUri = NSURL(string: val)
+			}
+			if let val = js["definition"] as? String {
+				self.definition = val
 			}
 			if let val = js["exampleAddress"] as? JSONDictionary {
 				self.exampleAddress = Address(json: val, owner: self)
@@ -612,14 +624,14 @@ public class ElementDefinition: FHIRElement
 			if let val = js["fixedUri"] as? String {
 				self.fixedUri = NSURL(string: val)
 			}
-			if let val = js["formal"] as? String {
-				self.formal = val
-			}
 			if let val = js["isModifier"] as? Bool {
 				self.isModifier = val
 			}
 			if let val = js["isSummary"] as? Bool {
 				self.isSummary = val
+			}
+			if let val = js["label"] as? String {
+				self.label = val
 			}
 			if let val = js["mapping"] as? [JSONDictionary] {
 				self.mapping = ElementDefinitionMapping.from(val, owner: self) as? [ElementDefinitionMapping]
@@ -747,6 +759,9 @@ public class ElementDefinition: FHIRElement
 		if let binding = self.binding {
 			json["binding"] = binding.asJSON()
 		}
+		if let code = self.code {
+			json["code"] = Coding.asJSONArray(code)
+		}
 		if let comments = self.comments {
 			json["comments"] = comments.asJSON()
 		}
@@ -831,6 +846,9 @@ public class ElementDefinition: FHIRElement
 		}
 		if let defaultValueUri = self.defaultValueUri {
 			json["defaultValueUri"] = defaultValueUri.asJSON()
+		}
+		if let definition = self.definition {
+			json["definition"] = definition.asJSON()
 		}
 		if let exampleAddress = self.exampleAddress {
 			json["exampleAddress"] = exampleAddress.asJSON()
@@ -976,14 +994,14 @@ public class ElementDefinition: FHIRElement
 		if let fixedUri = self.fixedUri {
 			json["fixedUri"] = fixedUri.asJSON()
 		}
-		if let formal = self.formal {
-			json["formal"] = formal.asJSON()
-		}
 		if let isModifier = self.isModifier {
 			json["isModifier"] = isModifier.asJSON()
 		}
 		if let isSummary = self.isSummary {
 			json["isSummary"] = isSummary.asJSON()
+		}
+		if let label = self.label {
+			json["label"] = label.asJSON()
 		}
 		if let mapping = self.mapping {
 			json["mapping"] = ElementDefinitionMapping.asJSONArray(mapping)
@@ -1127,14 +1145,8 @@ public class ElementDefinitionBinding: FHIRElement
 		get { return "ElementDefinitionBinding" }
 	}
 	
-	/// required | preferred | example
-	public var conformance: String?
-	
 	/// Human explanation of the value set
 	public var description_fhir: String?
-	
-	/// Can additional codes be used?
-	public var isExtensible: Bool?
 	
 	/// Descriptive Name
 	public var name: String?
@@ -1145,27 +1157,24 @@ public class ElementDefinitionBinding: FHIRElement
 	/// Source of value set
 	public var referenceUri: NSURL?
 	
-	public convenience init(isExtensible: Bool?, name: String?) {
+	/// required | extensible | preferred | example
+	public var strength: String?
+	
+	public convenience init(name: String?, strength: String?) {
 		self.init(json: nil)
-		if nil != isExtensible {
-			self.isExtensible = isExtensible
-		}
 		if nil != name {
 			self.name = name
+		}
+		if nil != strength {
+			self.strength = strength
 		}
 	}
 	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["conformance"] as? String {
-				self.conformance = val
-			}
 			if let val = js["description"] as? String {
 				self.description_fhir = val
-			}
-			if let val = js["isExtensible"] as? Bool {
-				self.isExtensible = val
 			}
 			if let val = js["name"] as? String {
 				self.name = val
@@ -1176,20 +1185,17 @@ public class ElementDefinitionBinding: FHIRElement
 			if let val = js["referenceUri"] as? String {
 				self.referenceUri = NSURL(string: val)
 			}
+			if let val = js["strength"] as? String {
+				self.strength = val
+			}
 		}
 	}
 	
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let conformance = self.conformance {
-			json["conformance"] = conformance.asJSON()
-		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
-		}
-		if let isExtensible = self.isExtensible {
-			json["isExtensible"] = isExtensible.asJSON()
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -1199,6 +1205,9 @@ public class ElementDefinitionBinding: FHIRElement
 		}
 		if let referenceUri = self.referenceUri {
 			json["referenceUri"] = referenceUri.asJSON()
+		}
+		if let strength = self.strength {
+			json["strength"] = strength.asJSON()
 		}
 		
 		return json
@@ -1308,6 +1317,9 @@ public class ElementDefinitionMapping: FHIRElement
 	/// Reference to mapping declaration
 	public var identity: String?
 	
+	/// Computable language of mapping
+	public var language: String?
+	
 	/// Details of the mapping
 	public var map: String?
 	
@@ -1327,6 +1339,9 @@ public class ElementDefinitionMapping: FHIRElement
 			if let val = js["identity"] as? String {
 				self.identity = val
 			}
+			if let val = js["language"] as? String {
+				self.language = val
+			}
 			if let val = js["map"] as? String {
 				self.map = val
 			}
@@ -1338,6 +1353,9 @@ public class ElementDefinitionMapping: FHIRElement
 		
 		if let identity = self.identity {
 			json["identity"] = identity.asJSON()
+		}
+		if let language = self.language {
+			json["language"] = language.asJSON()
 		}
 		if let map = self.map {
 			json["map"] = map.asJSON()

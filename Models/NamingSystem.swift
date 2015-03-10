@@ -2,7 +2,7 @@
 //  NamingSystem.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (namingsystem.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  A curated namespace that issues unique symbols within that namespace for the identification of concepts, people,
  *  devices, etc.  Represents a "System" used within the Identifier and Coding data types.
  */
-public class NamingSystem: FHIRResource
+public class NamingSystem: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "NamingSystem" }
@@ -24,11 +24,14 @@ public class NamingSystem: FHIRResource
 	/// driver | provider | patient | bank
 	public var category: CodeableConcept?
 	
-	/// Who should be contacted for questions about namingsystem
-	public var contact: NamingSystemContact?
+	/// Contact details of the publisher
+	public var contact: [NamingSystemContact]?
 	
 	/// ISO 3-char country code
 	public var country: String?
+	
+	/// Publication Date(/time)
+	public var date: DateTime?
 	
 	/// What does namingsystem identify?
 	public var description_fhir: String?
@@ -36,13 +39,16 @@ public class NamingSystem: FHIRResource
 	/// Human-readable label
 	public var name: String?
 	
+	/// Name of the publisher (Organization or individual)
+	public var publisher: String?
+	
 	/// Use this instead
 	public var replacedBy: Reference?
 	
 	/// Who maintains system namespace?
 	public var responsible: String?
 	
-	/// proposed | active | retired
+	/// draft | active | retired
 	public var status: String?
 	
 	/// codesystem | identifier | root
@@ -54,8 +60,11 @@ public class NamingSystem: FHIRResource
 	/// How/where is it used
 	public var usage: String?
 	
-	public convenience init(name: String?, status: String?, type: String?, uniqueId: [NamingSystemUniqueId]?) {
+	public convenience init(date: DateTime?, name: String?, status: String?, type: String?, uniqueId: [NamingSystemUniqueId]?) {
 		self.init(json: nil)
+		if nil != date {
+			self.date = date
+		}
 		if nil != name {
 			self.name = name
 		}
@@ -76,17 +85,23 @@ public class NamingSystem: FHIRResource
 			if let val = js["category"] as? JSONDictionary {
 				self.category = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["contact"] as? JSONDictionary {
-				self.contact = NamingSystemContact(json: val, owner: self)
+			if let val = js["contact"] as? [JSONDictionary] {
+				self.contact = NamingSystemContact.from(val, owner: self) as? [NamingSystemContact]
 			}
 			if let val = js["country"] as? String {
 				self.country = val
+			}
+			if let val = js["date"] as? String {
+				self.date = DateTime(string: val)
 			}
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
 			if let val = js["name"] as? String {
 				self.name = val
+			}
+			if let val = js["publisher"] as? String {
+				self.publisher = val
 			}
 			if let val = js["replacedBy"] as? JSONDictionary {
 				self.replacedBy = Reference(json: val, owner: self)
@@ -116,16 +131,22 @@ public class NamingSystem: FHIRResource
 			json["category"] = category.asJSON()
 		}
 		if let contact = self.contact {
-			json["contact"] = contact.asJSON()
+			json["contact"] = NamingSystemContact.asJSONArray(contact)
 		}
 		if let country = self.country {
 			json["country"] = country.asJSON()
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
+		}
+		if let publisher = self.publisher {
+			json["publisher"] = publisher.asJSON()
 		}
 		if let replacedBy = self.replacedBy {
 			json["replacedBy"] = replacedBy.asJSON()
@@ -152,9 +173,9 @@ public class NamingSystem: FHIRResource
 
 
 /**
- *  Who should be contacted for questions about namingsystem.
+ *  Contact details of the publisher.
  *
- *  The person who can be contacted about this system registration entry.
+ *  Contacts to assist a user in finding and communicating with the publisher.
  */
 public class NamingSystemContact: FHIRElement
 {
@@ -162,17 +183,17 @@ public class NamingSystemContact: FHIRElement
 		get { return "NamingSystemContact" }
 	}
 	
-	/// Name of person
-	public var name: HumanName?
+	/// Name of a individual to contact
+	public var name: String?
 	
-	/// Phone, email, etc.
+	/// Contact details for individual or publisher
 	public var telecom: [ContactPoint]?
 	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["name"] as? JSONDictionary {
-				self.name = HumanName(json: val, owner: self)
+			if let val = js["name"] as? String {
+				self.name = val
 			}
 			if let val = js["telecom"] as? [JSONDictionary] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]

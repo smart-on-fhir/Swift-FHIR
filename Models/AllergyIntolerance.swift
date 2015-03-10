@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (allergyintolerance.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  Risk of harmful or undesirable, physiological response which is unique to an individual and associated with exposure
  *  to a substance.
  */
-public class AllergyIntolerance: FHIRResource
+public class AllergyIntolerance: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "AllergyIntolerance" }

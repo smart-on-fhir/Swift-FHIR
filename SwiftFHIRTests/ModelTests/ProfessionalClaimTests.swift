@@ -2,7 +2,7 @@
 //  ProfessionalClaimTests.swift
 //  ProfessionalClaimTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -57,6 +57,8 @@ class ProfessionalClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.payee!.type!.code!, "provider")
 		XCTAssertEqual(inst.priority!.code!, "normal")
 		XCTAssertEqual(inst.target!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Claim</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.use!, "complete")
 		
 		return inst
@@ -97,6 +99,8 @@ class ProfessionalClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.payee!.type!.code!, "provider")
 		XCTAssertEqual(inst.priority!.code!, "normal")
 		XCTAssertEqual(inst.target!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Claim</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.use!, "complete")
 		
 		return inst
@@ -137,6 +141,8 @@ class ProfessionalClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.payee!.type!.code!, "provider")
 		XCTAssertEqual(inst.priority!.code!, "normal")
 		XCTAssertEqual(inst.target!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Claim</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.use!, "complete")
 		
 		return inst

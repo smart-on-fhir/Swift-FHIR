@@ -2,7 +2,7 @@
 //  RiskAssessment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (riskassessment.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  An assessment of the likely outcome(s) for a patient or other subject as well as the likelihood of each outcome.
  */
-public class RiskAssessment: FHIRResource
+public class RiskAssessment: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "RiskAssessment" }

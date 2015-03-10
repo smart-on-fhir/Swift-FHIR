@@ -2,7 +2,7 @@
 //  PendedRequestTests.swift
 //  PendedRequestTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -35,6 +35,8 @@ class PendedRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.phr.com/patient/12345/eobrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "115")
 		XCTAssertEqual(inst.include![0], "ExplanationOfBenefit")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the PendedRequest</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -52,6 +54,8 @@ class PendedRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.phr.com/patient/12345/eobrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "115")
 		XCTAssertEqual(inst.include![0], "ExplanationOfBenefit")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the PendedRequest</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -69,6 +73,8 @@ class PendedRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.phr.com/patient/12345/eobrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "115")
 		XCTAssertEqual(inst.include![0], "ExplanationOfBenefit")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the PendedRequest</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -88,6 +94,8 @@ class PendedRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/pendedrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "113")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the PendedRequest</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -107,6 +115,8 @@ class PendedRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/pendedrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "113")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the PendedRequest</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -125,6 +135,8 @@ class PendedRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].value!, "112")
 		XCTAssertEqual(inst.include![0], "Reconciliation")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the PendedRequest</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -143,6 +155,8 @@ class PendedRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].value!, "112")
 		XCTAssertEqual(inst.include![0], "Reconciliation")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the PendedRequest</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -163,6 +177,8 @@ class PendedRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
 		XCTAssertEqual(inst.period!.end!.description, "2014-08-20")
 		XCTAssertEqual(inst.period!.start!.description, "2014-08-10")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the PendedRequest</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -183,6 +199,8 @@ class PendedRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
 		XCTAssertEqual(inst.period!.end!.description, "2014-08-20")
 		XCTAssertEqual(inst.period!.start!.description, "2014-08-10")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the PendedRequest</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -201,6 +219,8 @@ class PendedRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].value!, "111")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
 		XCTAssertEqual(inst.request!.reference!, "http://benefitco.com/oralhealthclaim/12345")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the PendedRequest</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

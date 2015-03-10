@@ -2,7 +2,7 @@
 //  MedicationStatementTests.swift
 //  MedicationStatementTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -43,6 +43,7 @@ class MedicationStatementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.medication!.reference!, "#2")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -68,6 +69,7 @@ class MedicationStatementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.medication!.reference!, "#2")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -93,6 +95,7 @@ class MedicationStatementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.medication!.reference!, "#2")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -117,6 +120,7 @@ class MedicationStatementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -141,6 +145,57 @@ class MedicationStatementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testMedicationStatement6() {
+		let instance = testMedicationStatement6_impl()
+		testMedicationStatement6_impl(json: instance.asJSON())
+	}
+	
+	func testMedicationStatement6_impl(json: JSONDictionary? = nil) -> MedicationStatement {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationstatement-qicore-example.canonical.json")
+		
+		XCTAssertEqual(inst.dosage![0].quantity!.code!, "ml")
+		XCTAssertEqual(inst.dosage![0].quantity!.system!.absoluteString!, "http://unitsofmeasure.org")
+		XCTAssertEqual(inst.dosage![0].quantity!.units!, "ml")
+		XCTAssertEqual(inst.dosage![0].quantity!.value!, NSDecimalNumber(string: "10"))
+		XCTAssertEqual(inst.dosage![0].route!.coding![0].code!, "394899003")
+		XCTAssertEqual(inst.dosage![0].route!.coding![0].display!, "oral administration of treatment")
+		XCTAssertEqual(inst.dosage![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.effectiveDateTime!.description, "2012-06-01T14:30:00+14:00")
+		XCTAssertEqual(inst.id!, "qicore")
+		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testMedicationStatement7() {
+		let instance = testMedicationStatement7_impl()
+		testMedicationStatement7_impl(json: instance.asJSON())
+	}
+	
+	func testMedicationStatement7_impl(json: JSONDictionary? = nil) -> MedicationStatement {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationstatement-qicore-example.json")
+		
+		XCTAssertEqual(inst.dosage![0].quantity!.code!, "ml")
+		XCTAssertEqual(inst.dosage![0].quantity!.system!.absoluteString!, "http://unitsofmeasure.org")
+		XCTAssertEqual(inst.dosage![0].quantity!.units!, "ml")
+		XCTAssertEqual(inst.dosage![0].quantity!.value!, NSDecimalNumber(string: "10"))
+		XCTAssertEqual(inst.dosage![0].route!.coding![0].code!, "394899003")
+		XCTAssertEqual(inst.dosage![0].route!.coding![0].display!, "oral administration of treatment")
+		XCTAssertEqual(inst.dosage![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.effectiveDateTime!.description, "2012-06-01T14:30:00+14:00")
+		XCTAssertEqual(inst.id!, "qicore")
+		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

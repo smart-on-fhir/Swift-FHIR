@@ -2,7 +2,7 @@
 //  CarePlan2Tests.swift
 //  CarePlan2Tests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -30,7 +30,7 @@ class CarePlan2Tests: FHIRModelTestCase
 	func testCarePlan21_impl(json: JSONDictionary? = nil) -> CarePlan2 {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "careplan2-example.canonical.json")
 		
-		XCTAssertEqual(inst.activity![0].reference!, "Procedure/12345")
+		XCTAssertEqual(inst.activity![0].reference!, "ProcedureRequest/example")
 		XCTAssertEqual(inst.concern![0].display!, "obesity")
 		XCTAssertEqual(inst.concern![0].reference!, "#p1")
 		XCTAssertEqual(inst.goal![0].display!, "Target weight is 80 kg.")
@@ -46,6 +46,7 @@ class CarePlan2Tests: FHIRModelTestCase
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.period!.end!.description, "2013-01-01")
 		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.text!.status!, "additional")
 		
 		return inst
 	}
@@ -58,7 +59,7 @@ class CarePlan2Tests: FHIRModelTestCase
 	func testCarePlan22_impl(json: JSONDictionary? = nil) -> CarePlan2 {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "careplan2-example.canonical.json")
 		
-		XCTAssertEqual(inst.activity![0].reference!, "Procedure/12345")
+		XCTAssertEqual(inst.activity![0].reference!, "ProcedureRequest/example")
 		XCTAssertEqual(inst.concern![0].display!, "obesity")
 		XCTAssertEqual(inst.concern![0].reference!, "#p1")
 		XCTAssertEqual(inst.goal![0].display!, "Target weight is 80 kg.")
@@ -74,6 +75,7 @@ class CarePlan2Tests: FHIRModelTestCase
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.period!.end!.description, "2013-01-01")
 		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.text!.status!, "additional")
 		
 		return inst
 	}
@@ -86,7 +88,7 @@ class CarePlan2Tests: FHIRModelTestCase
 	func testCarePlan23_impl(json: JSONDictionary? = nil) -> CarePlan2 {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "careplan2-example.json")
 		
-		XCTAssertEqual(inst.activity![0].reference!, "Procedure/12345")
+		XCTAssertEqual(inst.activity![0].reference!, "ProcedureRequest/example")
 		XCTAssertEqual(inst.concern![0].display!, "obesity")
 		XCTAssertEqual(inst.concern![0].reference!, "#p1")
 		XCTAssertEqual(inst.goal![0].display!, "Target weight is 80 kg.")
@@ -102,6 +104,7 @@ class CarePlan2Tests: FHIRModelTestCase
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.period!.end!.description, "2013-01-01")
 		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.text!.status!, "additional")
 		
 		return inst
 	}

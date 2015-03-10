@@ -2,7 +2,7 @@
 //  MedicationAdministration.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (medicationadministration.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ import Foundation
  *  swallowing a tablet or it may be a long running infusion.Related resources tie this event to the authorizing
  *  prescription, and the specific encounter between patient and health care practitioner.
  */
-public class MedicationAdministration: FHIRResource
+public class MedicationAdministration: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "MedicationAdministration" }
@@ -43,6 +43,9 @@ public class MedicationAdministration: FHIRResource
 	/// What was administered?
 	public var medication: Reference?
 	
+	/// Information about the administration
+	public var note: String?
+	
 	/// Who received medication?
 	public var patient: Reference?
 	
@@ -58,7 +61,7 @@ public class MedicationAdministration: FHIRResource
 	/// Reason administration not performed
 	public var reasonNotGiven: [CodeableConcept]?
 	
-	/// in progress | on hold | completed | entered in error | stopped
+	/// in-progress | on-hold | completed | entered-in-error | stopped
 	public var status: String?
 	
 	/// True if medication not administered
@@ -103,6 +106,9 @@ public class MedicationAdministration: FHIRResource
 			}
 			if let val = js["medication"] as? JSONDictionary {
 				self.medication = Reference(json: val, owner: self)
+			}
+			if let val = js["note"] as? String {
+				self.note = val
 			}
 			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
@@ -151,6 +157,9 @@ public class MedicationAdministration: FHIRResource
 		}
 		if let medication = self.medication {
 			json["medication"] = medication.asJSON()
+		}
+		if let note = self.note {
+			json["note"] = note.asJSON()
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()

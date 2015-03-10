@@ -2,7 +2,7 @@
 //  VisionPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (visionprescription.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  An authorization for the supply of glasses and/or contact lenses to a patient.
  */
-public class VisionPrescription: FHIRResource
+public class VisionPrescription: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "VisionPrescription" }

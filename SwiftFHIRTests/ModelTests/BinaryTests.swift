@@ -2,7 +2,7 @@
 //  BinaryTests.swift
 //  BinaryTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -30,7 +30,6 @@ class BinaryTests: FHIRModelTestCase
 	func testBinary1_impl(json: JSONDictionary? = nil) -> Binary {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "binary-example.canonical.json")
 		
-		// Don't know how to create unit test for "content!", which is a Base64Binary
 		XCTAssertEqual(inst.contentType!, "application/pdf")
 		XCTAssertEqual(inst.id!, "example")
 		
@@ -45,7 +44,6 @@ class BinaryTests: FHIRModelTestCase
 	func testBinary2_impl(json: JSONDictionary? = nil) -> Binary {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "binary-example.canonical.json")
 		
-		// Don't know how to create unit test for "content!", which is a Base64Binary
 		XCTAssertEqual(inst.contentType!, "application/pdf")
 		XCTAssertEqual(inst.id!, "example")
 		
@@ -60,7 +58,6 @@ class BinaryTests: FHIRModelTestCase
 	func testBinary3_impl(json: JSONDictionary? = nil) -> Binary {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "binary-example.json")
 		
-		// Don't know how to create unit test for "content!", which is a Base64Binary
 		XCTAssertEqual(inst.contentType!, "application/pdf")
 		XCTAssertEqual(inst.id!, "example")
 		

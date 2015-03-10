@@ -2,7 +2,7 @@
 //  Binary.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (binary.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Binary) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  A binary resource can contain any content, whether text, image, pdf, zip archive, etc.
  */
-public class Binary: FHIRResource
+public class Binary: Resource
 {
 	override public class var resourceName: String {
 		get { return "Binary" }

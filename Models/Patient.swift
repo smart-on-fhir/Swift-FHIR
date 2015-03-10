@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (patient.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Patient) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  Demographics and other administrative information about a person or animal receiving care or other health-related
  *  services.
  */
-public class Patient: FHIRResource
+public class Patient: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Patient" }
@@ -30,8 +30,11 @@ public class Patient: FHIRResource
 	/// If this patient is an animal (non-human)
 	public var animal: PatientAnimal?
 	
-	/// The date and time of birth for the individual
+	/// The date of birth for the individual
 	public var birthDate: Date?
+	
+	/// The time of birth for the individual
+	public var birthTime: Time?
 	
 	/// Patient's nominated care provider
 	public var careProvider: [Reference]?
@@ -92,6 +95,9 @@ public class Patient: FHIRResource
 			}
 			if let val = js["birthDate"] as? String {
 				self.birthDate = Date(string: val)
+			}
+			if let val = js["birthTime"] as? String {
+				self.birthTime = Time(string: val)
 			}
 			if let val = js["careProvider"] as? [JSONDictionary] {
 				self.careProvider = Reference.from(val, owner: self) as? [Reference]
@@ -155,6 +161,9 @@ public class Patient: FHIRResource
 		}
 		if let birthDate = self.birthDate {
 			json["birthDate"] = birthDate.asJSON()
+		}
+		if let birthTime = self.birthTime {
+			json["birthTime"] = birthTime.asJSON()
 		}
 		if let careProvider = self.careProvider {
 			json["careProvider"] = Reference.asJSONArray(careProvider)

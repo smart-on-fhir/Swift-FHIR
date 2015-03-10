@@ -2,7 +2,7 @@
 //  ClinicalAssessmentTests.swift
 //  ClinicalAssessmentTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -45,6 +45,7 @@ class ClinicalAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.plan!.display!, "hospital standard closed head injury management protocol ")
 		XCTAssertEqual(inst.problem![0].display!, "MVA")
 		XCTAssertEqual(inst.summary!, "provisional diagnoses of laceration of head and traumatic brain injury (TBI)")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -72,6 +73,7 @@ class ClinicalAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.plan!.display!, "hospital standard closed head injury management protocol ")
 		XCTAssertEqual(inst.problem![0].display!, "MVA")
 		XCTAssertEqual(inst.summary!, "provisional diagnoses of laceration of head and traumatic brain injury (TBI)")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -99,6 +101,7 @@ class ClinicalAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.plan!.display!, "hospital standard closed head injury management protocol ")
 		XCTAssertEqual(inst.problem![0].display!, "MVA")
 		XCTAssertEqual(inst.summary!, "provisional diagnoses of laceration of head and traumatic brain injury (TBI)")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

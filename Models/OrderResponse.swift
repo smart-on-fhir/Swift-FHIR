@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (orderresponse.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -12,7 +12,7 @@ import Foundation
 /**
  *  A response to an order.
  */
-public class OrderResponse: FHIRResource
+public class OrderResponse: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "OrderResponse" }
@@ -23,9 +23,6 @@ public class OrderResponse: FHIRResource
 	
 	/// If required by policy
 	public var authorityReference: Reference?
-	
-	/// pending | review | rejected | error | accepted | cancelled | replaced | aborted | complete
-	public var code: String?
 	
 	/// When the response was made
 	public var date: DateTime?
@@ -39,16 +36,19 @@ public class OrderResponse: FHIRResource
 	/// Identifiers assigned to this order by the orderer or by the receiver
 	public var identifier: [Identifier]?
 	
+	/// pending | review | rejected | error | accepted | cancelled | replaced | aborted | completed
+	public var orderStatus: String?
+	
 	/// The order that this is a response to
 	public var request: Reference?
 	
 	/// Who made the response
 	public var who: Reference?
 	
-	public convenience init(code: String?, request: Reference?) {
+	public convenience init(orderStatus: String?, request: Reference?) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
+		if nil != orderStatus {
+			self.orderStatus = orderStatus
 		}
 		if nil != request {
 			self.request = request
@@ -64,9 +64,6 @@ public class OrderResponse: FHIRResource
 			if let val = js["authorityReference"] as? JSONDictionary {
 				self.authorityReference = Reference(json: val, owner: self)
 			}
-			if let val = js["code"] as? String {
-				self.code = val
-			}
 			if let val = js["date"] as? String {
 				self.date = DateTime(string: val)
 			}
@@ -78,6 +75,9 @@ public class OrderResponse: FHIRResource
 			}
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+			}
+			if let val = js["orderStatus"] as? String {
+				self.orderStatus = val
 			}
 			if let val = js["request"] as? JSONDictionary {
 				self.request = Reference(json: val, owner: self)
@@ -97,9 +97,6 @@ public class OrderResponse: FHIRResource
 		if let authorityReference = self.authorityReference {
 			json["authorityReference"] = authorityReference.asJSON()
 		}
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}
@@ -111,6 +108,9 @@ public class OrderResponse: FHIRResource
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let orderStatus = self.orderStatus {
+			json["orderStatus"] = orderStatus.asJSON()
 		}
 		if let request = self.request {
 			json["request"] = request.asJSON()

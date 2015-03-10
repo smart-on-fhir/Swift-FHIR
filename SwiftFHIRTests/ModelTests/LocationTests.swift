@@ -2,7 +2,7 @@
 //  LocationTests.swift
 //  LocationTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -42,6 +42,8 @@ class LocationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.status!, "suspended")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].value!, "2329")
+		XCTAssertEqual(inst.text!.div!, "<div>Burgers UMC, South Wing, second floor, Neuro Radiology Operation Room 1</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "RNEU")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Neuroradiology unit")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/RoleCode")
@@ -69,6 +71,8 @@ class LocationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.status!, "suspended")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].value!, "2329")
+		XCTAssertEqual(inst.text!.div!, "<div>Burgers UMC, South Wing, second floor, Neuro Radiology Operation Room 1</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "RNEU")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Neuroradiology unit")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/RoleCode")
@@ -96,6 +100,8 @@ class LocationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.status!, "suspended")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].value!, "2329")
+		XCTAssertEqual(inst.text!.div!, "<div>Burgers UMC, South Wing, second floor, Neuro Radiology Operation Room 1</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "RNEU")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Neuroradiology unit")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/RoleCode")
@@ -139,6 +145,8 @@ class LocationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.telecom![3].system!, "url")
 		XCTAssertEqual(inst.telecom![3].use!, "work")
 		XCTAssertEqual(inst.telecom![3].value!, "http://sampleorg.com/southwing")
+		XCTAssertEqual(inst.text!.div!, "<div>Burgers UMC, South Wing, second floor</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -179,6 +187,8 @@ class LocationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.telecom![3].system!, "url")
 		XCTAssertEqual(inst.telecom![3].use!, "work")
 		XCTAssertEqual(inst.telecom![3].value!, "http://sampleorg.com/southwing")
+		XCTAssertEqual(inst.text!.div!, "<div>Burgers UMC, South Wing, second floor</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

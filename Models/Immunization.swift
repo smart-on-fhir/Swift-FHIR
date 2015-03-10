@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (immunization.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -12,7 +12,7 @@ import Foundation
 /**
  *  Immunization event information.
  */
-public class Immunization: FHIRResource
+public class Immunization: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Immunization" }
@@ -24,10 +24,13 @@ public class Immunization: FHIRResource
 	/// Amount of vaccine administered
 	public var doseQuantity: Quantity?
 	
+	/// Encounter administered as part of
+	public var encounter: Reference?
+	
 	/// Vaccine expiration date
 	public var expirationDate: Date?
 	
-	/// Administration / refusal reasons
+	/// Administration / non-administration reasons
 	public var explanation: ImmunizationExplanation?
 	
 	/// Business identifier
@@ -42,14 +45,14 @@ public class Immunization: FHIRResource
 	/// Vaccine manufacturer
 	public var manufacturer: Reference?
 	
+	/// Who was immunized?
+	public var patient: Reference?
+	
 	/// Who administered vaccine?
 	public var performer: Reference?
 	
 	/// Details of a reaction that follows immunization
 	public var reaction: [ImmunizationReaction]?
-	
-	/// Was immunization refused?
-	public var refusedIndicator: Bool?
 	
 	/// Is this a self-reported record?
 	public var reported: Bool?
@@ -63,31 +66,31 @@ public class Immunization: FHIRResource
 	/// Body site vaccine  was administered
 	public var site: CodeableConcept?
 	
-	/// Who was immunized?
-	public var subject: Reference?
-	
 	/// What protocol was followed
 	public var vaccinationProtocol: [ImmunizationVaccinationProtocol]?
 	
 	/// Vaccine product administered
 	public var vaccineType: CodeableConcept?
 	
-	public convenience init(date: DateTime?, refusedIndicator: Bool?, reported: Bool?, subject: Reference?, vaccineType: CodeableConcept?) {
+	/// Was immunization given?
+	public var wasNotGiven: Bool?
+	
+	public convenience init(date: DateTime?, patient: Reference?, reported: Bool?, vaccineType: CodeableConcept?, wasNotGiven: Bool?) {
 		self.init(json: nil)
 		if nil != date {
 			self.date = date
 		}
-		if nil != refusedIndicator {
-			self.refusedIndicator = refusedIndicator
+		if nil != patient {
+			self.patient = patient
 		}
 		if nil != reported {
 			self.reported = reported
 		}
-		if nil != subject {
-			self.subject = subject
-		}
 		if nil != vaccineType {
 			self.vaccineType = vaccineType
+		}
+		if nil != wasNotGiven {
+			self.wasNotGiven = wasNotGiven
 		}
 	}
 	
@@ -99,6 +102,9 @@ public class Immunization: FHIRResource
 			}
 			if let val = js["doseQuantity"] as? JSONDictionary {
 				self.doseQuantity = Quantity(json: val, owner: self)
+			}
+			if let val = js["encounter"] as? JSONDictionary {
+				self.encounter = Reference(json: val, owner: self)
 			}
 			if let val = js["expirationDate"] as? String {
 				self.expirationDate = Date(string: val)
@@ -118,14 +124,14 @@ public class Immunization: FHIRResource
 			if let val = js["manufacturer"] as? JSONDictionary {
 				self.manufacturer = Reference(json: val, owner: self)
 			}
+			if let val = js["patient"] as? JSONDictionary {
+				self.patient = Reference(json: val, owner: self)
+			}
 			if let val = js["performer"] as? JSONDictionary {
 				self.performer = Reference(json: val, owner: self)
 			}
 			if let val = js["reaction"] as? [JSONDictionary] {
 				self.reaction = ImmunizationReaction.from(val, owner: self) as? [ImmunizationReaction]
-			}
-			if let val = js["refusedIndicator"] as? Bool {
-				self.refusedIndicator = val
 			}
 			if let val = js["reported"] as? Bool {
 				self.reported = val
@@ -139,14 +145,14 @@ public class Immunization: FHIRResource
 			if let val = js["site"] as? JSONDictionary {
 				self.site = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["subject"] as? JSONDictionary {
-				self.subject = Reference(json: val, owner: self)
-			}
 			if let val = js["vaccinationProtocol"] as? [JSONDictionary] {
 				self.vaccinationProtocol = ImmunizationVaccinationProtocol.from(val, owner: self) as? [ImmunizationVaccinationProtocol]
 			}
 			if let val = js["vaccineType"] as? JSONDictionary {
 				self.vaccineType = CodeableConcept(json: val, owner: self)
+			}
+			if let val = js["wasNotGiven"] as? Bool {
+				self.wasNotGiven = val
 			}
 		}
 	}
@@ -159,6 +165,9 @@ public class Immunization: FHIRResource
 		}
 		if let doseQuantity = self.doseQuantity {
 			json["doseQuantity"] = doseQuantity.asJSON()
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
 		}
 		if let expirationDate = self.expirationDate {
 			json["expirationDate"] = expirationDate.asJSON()
@@ -178,14 +187,14 @@ public class Immunization: FHIRResource
 		if let manufacturer = self.manufacturer {
 			json["manufacturer"] = manufacturer.asJSON()
 		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
 		if let performer = self.performer {
 			json["performer"] = performer.asJSON()
 		}
 		if let reaction = self.reaction {
 			json["reaction"] = ImmunizationReaction.asJSONArray(reaction)
-		}
-		if let refusedIndicator = self.refusedIndicator {
-			json["refusedIndicator"] = refusedIndicator.asJSON()
 		}
 		if let reported = self.reported {
 			json["reported"] = reported.asJSON()
@@ -199,14 +208,14 @@ public class Immunization: FHIRResource
 		if let site = self.site {
 			json["site"] = site.asJSON()
 		}
-		if let subject = self.subject {
-			json["subject"] = subject.asJSON()
-		}
 		if let vaccinationProtocol = self.vaccinationProtocol {
 			json["vaccinationProtocol"] = ImmunizationVaccinationProtocol.asJSONArray(vaccinationProtocol)
 		}
 		if let vaccineType = self.vaccineType {
 			json["vaccineType"] = vaccineType.asJSON()
+		}
+		if let wasNotGiven = self.wasNotGiven {
+			json["wasNotGiven"] = wasNotGiven.asJSON()
 		}
 		
 		return json
@@ -215,9 +224,9 @@ public class Immunization: FHIRResource
 
 
 /**
- *  Administration / refusal reasons.
+ *  Administration / non-administration reasons.
  *
- *  Reasons why a vaccine was administered or refused.
+ *  Reasons why a vaccine was or was not administered.
  */
 public class ImmunizationExplanation: FHIRElement
 {
@@ -229,7 +238,7 @@ public class ImmunizationExplanation: FHIRElement
 	public var reason: [CodeableConcept]?
 	
 	/// Why immunization did not occur
-	public var refusalReason: [CodeableConcept]?
+	public var reasonNotGiven: [CodeableConcept]?
 	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
@@ -237,8 +246,8 @@ public class ImmunizationExplanation: FHIRElement
 			if let val = js["reason"] as? [JSONDictionary] {
 				self.reason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["refusalReason"] as? [JSONDictionary] {
-				self.refusalReason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			if let val = js["reasonNotGiven"] as? [JSONDictionary] {
+				self.reasonNotGiven = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
 	}
@@ -249,8 +258,8 @@ public class ImmunizationExplanation: FHIRElement
 		if let reason = self.reason {
 			json["reason"] = CodeableConcept.asJSONArray(reason)
 		}
-		if let refusalReason = self.refusalReason {
-			json["refusalReason"] = CodeableConcept.asJSONArray(refusalReason)
+		if let reasonNotGiven = self.reasonNotGiven {
+			json["reasonNotGiven"] = CodeableConcept.asJSONArray(reasonNotGiven)
 		}
 		
 		return json

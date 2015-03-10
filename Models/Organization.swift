@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (organization.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Organization) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ import Foundation
  *  form of collective action.  Includes companies, institutions, corporations, departments, community groups,
  *  healthcare practice groups, etc.
  */
-public class Organization: FHIRResource
+public class Organization: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Organization" }

@@ -2,7 +2,7 @@
 //  InstitutionalClaim.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (institutionalclaim.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/InstitutionalClaim) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  A provider issued list of services and products provided, or to be provided, to a patient which is provided to an
  *  insurer for payment recovery.
  */
-public class InstitutionalClaim: FHIRResource
+public class InstitutionalClaim: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "InstitutionalClaim" }
@@ -295,7 +295,7 @@ public class InstitutionalClaimCoverage: FHIRElement
 	public var originalRuleset: Coding?
 	
 	/// Pre-Authorization/Determination Reference
-	public var preauthref: [String]?
+	public var preAuthRef: [String]?
 	
 	/// Patient relationship to subscriber
 	public var relationship: Coding?
@@ -337,8 +337,8 @@ public class InstitutionalClaimCoverage: FHIRElement
 			if let val = js["originalRuleset"] as? JSONDictionary {
 				self.originalRuleset = Coding(json: val, owner: self)
 			}
-			if let val = js["preauthref"] as? [String] {
-				self.preauthref = val
+			if let val = js["preAuthRef"] as? [String] {
+				self.preAuthRef = val
 			}
 			if let val = js["relationship"] as? JSONDictionary {
 				self.relationship = Coding(json: val, owner: self)
@@ -367,12 +367,12 @@ public class InstitutionalClaimCoverage: FHIRElement
 		if let originalRuleset = self.originalRuleset {
 			json["originalRuleset"] = originalRuleset.asJSON()
 		}
-		if let preauthref = self.preauthref {
+		if let preAuthRef = self.preAuthRef {
 			var arr = [AnyObject]()
-			for val in preauthref {
+			for val in preAuthRef {
 				arr.append(val.asJSON())
 			}
-			json["preauthref"] = arr
+			json["preAuthRef"] = arr
 		}
 		if let relationship = self.relationship {
 			json["relationship"] = relationship.asJSON()

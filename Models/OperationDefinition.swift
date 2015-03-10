@@ -2,7 +2,7 @@
 //  OperationDefinition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (operationdefinition.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  A formal computable definition of an operation (on the RESTful interface) or a named query (using the search
  *  interaction).
  */
-public class OperationDefinition: FHIRResource
+public class OperationDefinition: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "OperationDefinition" }
@@ -24,8 +24,11 @@ public class OperationDefinition: FHIRResource
 	/// Marks this as a profile of the base
 	public var base: Reference?
 	
-	/// Assist with indexing and finding
-	public var code: [Coding]?
+	/// Name used to invoke the operation
+	public var code: String?
+	
+	/// Contact details of the publisher
+	public var contact: [OperationDefinitionContact]?
 	
 	/// Date for this version of the operation definition
 	public var date: DateTime?
@@ -36,16 +39,13 @@ public class OperationDefinition: FHIRResource
 	/// If for testing purposes, not real usage
 	public var experimental: Bool?
 	
-	/// Logical id to reference this operation definition
-	public var identifier: NSURL?
-	
 	/// Invoke on an instance?
 	public var instance: Bool?
 	
 	/// operation | query
 	public var kind: String?
 	
-	/// Name used to invoke the operation
+	/// Informal name for this profile
 	public var name: String?
 	
 	/// Additional information about use
@@ -57,26 +57,29 @@ public class OperationDefinition: FHIRResource
 	/// Name of the publisher (Organization or individual)
 	public var publisher: String?
 	
+	/// Why is this needed?
+	public var requirements: String?
+	
 	/// draft | active | retired
 	public var status: String?
 	
 	/// Invoke at the system level?
 	public var system: Bool?
 	
-	/// Contact information of the publisher
-	public var telecom: [ContactPoint]?
-	
-	/// Informal name for this profile
-	public var title: String?
-	
 	/// Invoke at resource level for these type
 	public var type: [String]?
+	
+	/// Logical url to reference this operation definition
+	public var url: NSURL?
 	
 	/// Logical id for this version of the operation definition
 	public var version: String?
 	
-	public convenience init(instance: Bool?, kind: String?, name: String?, status: String?, system: Bool?, title: String?) {
+	public convenience init(code: String?, instance: Bool?, kind: String?, name: String?, status: String?, system: Bool?) {
 		self.init(json: nil)
+		if nil != code {
+			self.code = code
+		}
 		if nil != instance {
 			self.instance = instance
 		}
@@ -92,9 +95,6 @@ public class OperationDefinition: FHIRResource
 		if nil != system {
 			self.system = system
 		}
-		if nil != title {
-			self.title = title
-		}
 	}
 	
 	public required init(json: JSONDictionary?) {
@@ -103,8 +103,11 @@ public class OperationDefinition: FHIRResource
 			if let val = js["base"] as? JSONDictionary {
 				self.base = Reference(json: val, owner: self)
 			}
-			if let val = js["code"] as? [JSONDictionary] {
-				self.code = Coding.from(val, owner: self) as? [Coding]
+			if let val = js["code"] as? String {
+				self.code = val
+			}
+			if let val = js["contact"] as? [JSONDictionary] {
+				self.contact = OperationDefinitionContact.from(val, owner: self) as? [OperationDefinitionContact]
 			}
 			if let val = js["date"] as? String {
 				self.date = DateTime(string: val)
@@ -114,9 +117,6 @@ public class OperationDefinition: FHIRResource
 			}
 			if let val = js["experimental"] as? Bool {
 				self.experimental = val
-			}
-			if let val = js["identifier"] as? String {
-				self.identifier = NSURL(string: val)
 			}
 			if let val = js["instance"] as? Bool {
 				self.instance = val
@@ -136,20 +136,20 @@ public class OperationDefinition: FHIRResource
 			if let val = js["publisher"] as? String {
 				self.publisher = val
 			}
+			if let val = js["requirements"] as? String {
+				self.requirements = val
+			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
 			if let val = js["system"] as? Bool {
 				self.system = val
 			}
-			if let val = js["telecom"] as? [JSONDictionary] {
-				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
-			}
-			if let val = js["title"] as? String {
-				self.title = val
-			}
 			if let val = js["type"] as? [String] {
 				self.type = val
+			}
+			if let val = js["url"] as? String {
+				self.url = NSURL(string: val)
 			}
 			if let val = js["version"] as? String {
 				self.version = val
@@ -164,7 +164,10 @@ public class OperationDefinition: FHIRResource
 			json["base"] = base.asJSON()
 		}
 		if let code = self.code {
-			json["code"] = Coding.asJSONArray(code)
+			json["code"] = code.asJSON()
+		}
+		if let contact = self.contact {
+			json["contact"] = OperationDefinitionContact.asJSONArray(contact)
 		}
 		if let date = self.date {
 			json["date"] = date.asJSON()
@@ -174,9 +177,6 @@ public class OperationDefinition: FHIRResource
 		}
 		if let experimental = self.experimental {
 			json["experimental"] = experimental.asJSON()
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
 		}
 		if let instance = self.instance {
 			json["instance"] = instance.asJSON()
@@ -196,17 +196,14 @@ public class OperationDefinition: FHIRResource
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
 		}
+		if let requirements = self.requirements {
+			json["requirements"] = requirements.asJSON()
+		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
 		}
 		if let system = self.system {
 			json["system"] = system.asJSON()
-		}
-		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
-		}
-		if let title = self.title {
-			json["title"] = title.asJSON()
 		}
 		if let type = self.type {
 			var arr = [AnyObject]()
@@ -215,8 +212,55 @@ public class OperationDefinition: FHIRResource
 			}
 			json["type"] = arr
 		}
+		if let url = self.url {
+			json["url"] = url.asJSON()
+		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Contact details of the publisher.
+ *
+ *  Contacts to assist a user in finding and communicating with the publisher.
+ */
+public class OperationDefinitionContact: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "OperationDefinitionContact" }
+	}
+	
+	/// Name of a individual to contact
+	public var name: String?
+	
+	/// Contact details for individual or publisher
+	public var telecom: [ContactPoint]?
+	
+	public required init(json: JSONDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["name"] as? String {
+				self.name = val
+			}
+			if let val = js["telecom"] as? [JSONDictionary] {
+				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+			}
+		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
 		}
 		
 		return json

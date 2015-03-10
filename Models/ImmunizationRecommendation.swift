@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (immunizationrecommendation.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  A patient's point-of-time immunization status and recommendation with optional supporting justification.
  */
-public class ImmunizationRecommendation: FHIRResource
+public class ImmunizationRecommendation: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "ImmunizationRecommendation" }
@@ -23,19 +23,19 @@ public class ImmunizationRecommendation: FHIRResource
 	/// Business identifier
 	public var identifier: [Identifier]?
 	
+	/// Who this profile is for
+	public var patient: Reference?
+	
 	/// Vaccine administration recommendations
 	public var recommendation: [ImmunizationRecommendationRecommendation]?
 	
-	/// Who this profile is for
-	public var subject: Reference?
-	
-	public convenience init(recommendation: [ImmunizationRecommendationRecommendation]?, subject: Reference?) {
+	public convenience init(patient: Reference?, recommendation: [ImmunizationRecommendationRecommendation]?) {
 		self.init(json: nil)
+		if nil != patient {
+			self.patient = patient
+		}
 		if nil != recommendation {
 			self.recommendation = recommendation
-		}
-		if nil != subject {
-			self.subject = subject
 		}
 	}
 	
@@ -45,11 +45,11 @@ public class ImmunizationRecommendation: FHIRResource
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
+			if let val = js["patient"] as? JSONDictionary {
+				self.patient = Reference(json: val, owner: self)
+			}
 			if let val = js["recommendation"] as? [JSONDictionary] {
 				self.recommendation = ImmunizationRecommendationRecommendation.from(val, owner: self) as? [ImmunizationRecommendationRecommendation]
-			}
-			if let val = js["subject"] as? JSONDictionary {
-				self.subject = Reference(json: val, owner: self)
 			}
 		}
 	}
@@ -60,11 +60,11 @@ public class ImmunizationRecommendation: FHIRResource
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
 		if let recommendation = self.recommendation {
 			json["recommendation"] = ImmunizationRecommendationRecommendation.asJSONArray(recommendation)
-		}
-		if let subject = self.subject {
-			json["subject"] = subject.asJSON()
 		}
 		
 		return json

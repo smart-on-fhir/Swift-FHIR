@@ -2,7 +2,7 @@
 //  Narrative.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (Narrative.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Narrative) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -21,7 +21,7 @@ public class Narrative: FHIRElement
 	/// Limited xhtml content
 	public var div: String?
 	
-	/// generated | extensions | additional
+	/// generated | extensions | additional | empty
 	public var status: String?
 	
 	public convenience init(div: String?, status: String?) {

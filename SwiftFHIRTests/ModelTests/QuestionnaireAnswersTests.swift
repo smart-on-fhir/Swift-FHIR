@@ -2,7 +2,7 @@
 //  QuestionnaireAnswersTests.swift
 //  QuestionnaireAnswersTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -30,7 +30,7 @@ class QuestionnaireAnswersTests: FHIRModelTestCase
 	func testQuestionnaireAnswers1_impl(json: JSONDictionary? = nil) -> QuestionnaireAnswers {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "questionnaireanswers-example-bluebook.canonical.json")
 		
-		XCTAssertEqual(inst.author!.reference!, "http://www.hl7.org/fhir/Practitioner/1")
+		XCTAssertEqual(inst.author!.reference!, "http://hl7.org/fhir/Practitioner/1")
 		XCTAssertEqual(inst.authored!.description, "2013-02-19T14:15:00+10:00")
 		XCTAssertEqual(inst.group!.group![0].group![0].question![0].answer![0].valueString!, "Cathy Jones")
 		XCTAssertEqual(inst.group!.group![0].group![0].question![0].text!, "Name of child")
@@ -57,7 +57,8 @@ class QuestionnaireAnswersTests: FHIRModelTestCase
 		XCTAssertEqual(inst.group!.title!, "NSW Government My Personal Health Record, january 2013")
 		XCTAssertEqual(inst.id!, "bb")
 		XCTAssertEqual(inst.status!, "completed")
-		XCTAssertEqual(inst.subject!.reference!, "http://www.hl7.org/fhir/Patient/1")
+		XCTAssertEqual(inst.subject!.reference!, "http://hl7.org/fhir/Patient/1")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -70,7 +71,7 @@ class QuestionnaireAnswersTests: FHIRModelTestCase
 	func testQuestionnaireAnswers2_impl(json: JSONDictionary? = nil) -> QuestionnaireAnswers {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "questionnaireanswers-example-bluebook.canonical.json")
 		
-		XCTAssertEqual(inst.author!.reference!, "http://www.hl7.org/fhir/Practitioner/1")
+		XCTAssertEqual(inst.author!.reference!, "http://hl7.org/fhir/Practitioner/1")
 		XCTAssertEqual(inst.authored!.description, "2013-02-19T14:15:00+10:00")
 		XCTAssertEqual(inst.group!.group![0].group![0].question![0].answer![0].valueString!, "Cathy Jones")
 		XCTAssertEqual(inst.group!.group![0].group![0].question![0].text!, "Name of child")
@@ -97,7 +98,8 @@ class QuestionnaireAnswersTests: FHIRModelTestCase
 		XCTAssertEqual(inst.group!.title!, "NSW Government My Personal Health Record, january 2013")
 		XCTAssertEqual(inst.id!, "bb")
 		XCTAssertEqual(inst.status!, "completed")
-		XCTAssertEqual(inst.subject!.reference!, "http://www.hl7.org/fhir/Patient/1")
+		XCTAssertEqual(inst.subject!.reference!, "http://hl7.org/fhir/Patient/1")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -110,7 +112,7 @@ class QuestionnaireAnswersTests: FHIRModelTestCase
 	func testQuestionnaireAnswers3_impl(json: JSONDictionary? = nil) -> QuestionnaireAnswers {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "questionnaireanswers-example-bluebook.json")
 		
-		XCTAssertEqual(inst.author!.reference!, "http://www.hl7.org/fhir/Practitioner/1")
+		XCTAssertEqual(inst.author!.reference!, "http://hl7.org/fhir/Practitioner/1")
 		XCTAssertEqual(inst.authored!.description, "2013-02-19T14:15:00+10:00")
 		XCTAssertEqual(inst.group!.group![0].group![0].question![0].answer![0].valueString!, "Cathy Jones")
 		XCTAssertEqual(inst.group!.group![0].group![0].question![0].text!, "Name of child")
@@ -137,7 +139,8 @@ class QuestionnaireAnswersTests: FHIRModelTestCase
 		XCTAssertEqual(inst.group!.title!, "NSW Government My Personal Health Record, january 2013")
 		XCTAssertEqual(inst.id!, "bb")
 		XCTAssertEqual(inst.status!, "completed")
-		XCTAssertEqual(inst.subject!.reference!, "http://www.hl7.org/fhir/Patient/1")
+		XCTAssertEqual(inst.subject!.reference!, "http://hl7.org/fhir/Patient/1")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -173,6 +176,7 @@ class QuestionnaireAnswersTests: FHIRModelTestCase
 		XCTAssertEqual(inst.status!, "completed")
 		XCTAssertEqual(inst.subject!.display!, "Roel")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -208,6 +212,7 @@ class QuestionnaireAnswersTests: FHIRModelTestCase
 		XCTAssertEqual(inst.status!, "completed")
 		XCTAssertEqual(inst.subject!.display!, "Roel")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -235,6 +240,7 @@ class QuestionnaireAnswersTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "3141")
 		XCTAssertEqual(inst.status!, "completed")
 		XCTAssertEqual(inst.subject!.reference!, "#patsub")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -262,6 +268,117 @@ class QuestionnaireAnswersTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "3141")
 		XCTAssertEqual(inst.status!, "completed")
 		XCTAssertEqual(inst.subject!.reference!, "#patsub")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testQuestionnaireAnswers8() {
+		let instance = testQuestionnaireAnswers8_impl()
+		testQuestionnaireAnswers8_impl(json: instance.asJSON())
+	}
+	
+	func testQuestionnaireAnswers8_impl(json: JSONDictionary? = nil) -> QuestionnaireAnswers {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "questionnaireanswers-sdc-profile-example.canonical.json")
+		
+		XCTAssertEqual(inst.authored!.description, "2014-01-21")
+		XCTAssertEqual(inst.group!.group![0].linkId!, "3921053v1.0")
+		XCTAssertEqual(inst.group!.group![0].question![0].answer![0].valueDate!.description, "2003-02-18")
+		XCTAssertEqual(inst.group!.group![0].question![0].linkId!, "3921059v1.0")
+		XCTAssertEqual(inst.group!.group![0].question![0].text!, "Date of Current Pathologic Diagnosis")
+		XCTAssertEqual(inst.group!.group![0].question![1].answer![0].valueCoding!.code!, "1")
+		XCTAssertEqual(inst.group!.group![0].question![1].answer![0].valueCoding!.display!, "Primary Diagnosis")
+		XCTAssertEqual(inst.group!.group![0].question![1].answer![0].valueCoding!.system!.absoluteString!, "http://nci.nih.gov/xml/owl/cadsr/data_element_scoped_identifier#3921060v1.0-cs")
+		XCTAssertEqual(inst.group!.group![0].question![1].linkId!, "3921060v1.0")
+		XCTAssertEqual(inst.group!.group![0].question![1].text!, "Diagnosis Type")
+		XCTAssertEqual(inst.group!.group![0].question![2].answer![0].valueString!, "Left Ovary")
+		XCTAssertEqual(inst.group!.group![0].question![2].linkId!, "3921053v1.0")
+		XCTAssertEqual(inst.group!.group![0].question![2].text!, "Primary Site")
+		XCTAssertEqual(inst.group!.group![0].text!, "These items must be included when this data is collected for reporting.")
+		XCTAssertEqual(inst.group!.group![0].title!, "Mandatory Diagnosis Questions")
+		XCTAssertEqual(inst.group!.group![1].linkId!, "3921066v1.0")
+		XCTAssertEqual(inst.group!.group![1].question![0].answer![0].valueCoding!.code!, "3")
+		XCTAssertEqual(inst.group!.group![1].question![0].answer![0].valueCoding!.display!, "Restaging")
+		XCTAssertEqual(inst.group!.group![1].question![0].answer![0].valueCoding!.system!.absoluteString!, "http://nci.nih.gov/xml/owl/cadsr/data_element_scoped_identifier#3921066v1.0-cs")
+		XCTAssertEqual(inst.group!.group![1].question![0].text!, "Diagnosis Time Point")
+		XCTAssertEqual(inst.group!.group![1].text!, "There are business rules to indicate situations under which these elements should be used on a case report form.")
+		XCTAssertEqual(inst.group!.group![1].title!, "Conditional Diagnosis Questions")
+		XCTAssertEqual(inst.group!.group![2].linkId!, "3921077v1.0")
+		XCTAssertEqual(inst.group!.group![2].question![0].answer![0].valueString!, "Harold Ornada")
+		XCTAssertEqual(inst.group!.group![2].question![0].linkId!, "3921079v1.0")
+		XCTAssertEqual(inst.group!.group![2].question![0].text!, "Reviewing Pathologist")
+		XCTAssertEqual(inst.group!.group![2].question![1].linkId!, "3921080v1.0")
+		XCTAssertEqual(inst.group!.group![2].question![1].text!, "MedDRA disease code")
+		XCTAssertEqual(inst.group!.group![2].question![2].answer![0].valueCoding!.code!, "2")
+		XCTAssertEqual(inst.group!.group![2].question![2].answer![0].valueCoding!.display!, "Histological Procedure")
+		XCTAssertEqual(inst.group!.group![2].question![2].answer![0].valueCoding!.system!.absoluteString!, "http://nci.nih.gov/xml/owl/cadsr/data_element_scoped_identifier#3921081v1.0-cs")
+		XCTAssertEqual(inst.group!.group![2].question![2].linkId!, "3921081v1.0")
+		XCTAssertEqual(inst.group!.group![2].question![2].text!, "Assessment Method")
+		XCTAssertEqual(inst.group!.group![2].question![3].answer![0].valueCoding!.code!, "2")
+		XCTAssertEqual(inst.group!.group![2].question![3].answer![0].valueCoding!.display!, "Moderately Differentiated")
+		XCTAssertEqual(inst.group!.group![2].question![3].answer![0].valueCoding!.system!.absoluteString!, "http://nci.nih.gov/xml/owl/cadsr/data_element_scoped_identifier#3921085v1.0-cs")
+		XCTAssertEqual(inst.group!.group![2].question![3].linkId!, "3921085v1.0")
+		XCTAssertEqual(inst.group!.group![2].question![3].text!, "Tumor grade")
+		XCTAssertEqual(inst.group!.group![2].title!, "Optional Diagnosis Questions")
+		XCTAssertEqual(inst.group!.title!, "Diagnosis NCI Standard Template")
+		XCTAssertEqual(inst.id!, "sdc")
+		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testQuestionnaireAnswers9() {
+		let instance = testQuestionnaireAnswers9_impl()
+		testQuestionnaireAnswers9_impl(json: instance.asJSON())
+	}
+	
+	func testQuestionnaireAnswers9_impl(json: JSONDictionary? = nil) -> QuestionnaireAnswers {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "questionnaireanswers-sdc-profile-example.json")
+		
+		XCTAssertEqual(inst.authored!.description, "2014-01-21")
+		XCTAssertEqual(inst.group!.group![0].linkId!, "3921053v1.0")
+		XCTAssertEqual(inst.group!.group![0].question![0].answer![0].valueDate!.description, "2003-02-18")
+		XCTAssertEqual(inst.group!.group![0].question![0].linkId!, "3921059v1.0")
+		XCTAssertEqual(inst.group!.group![0].question![0].text!, "Date of Current Pathologic Diagnosis")
+		XCTAssertEqual(inst.group!.group![0].question![1].answer![0].valueCoding!.code!, "1")
+		XCTAssertEqual(inst.group!.group![0].question![1].answer![0].valueCoding!.display!, "Primary Diagnosis")
+		XCTAssertEqual(inst.group!.group![0].question![1].answer![0].valueCoding!.system!.absoluteString!, "http://nci.nih.gov/xml/owl/cadsr/data_element_scoped_identifier#3921060v1.0-cs")
+		XCTAssertEqual(inst.group!.group![0].question![1].linkId!, "3921060v1.0")
+		XCTAssertEqual(inst.group!.group![0].question![1].text!, "Diagnosis Type")
+		XCTAssertEqual(inst.group!.group![0].question![2].answer![0].valueString!, "Left Ovary")
+		XCTAssertEqual(inst.group!.group![0].question![2].linkId!, "3921053v1.0")
+		XCTAssertEqual(inst.group!.group![0].question![2].text!, "Primary Site")
+		XCTAssertEqual(inst.group!.group![0].text!, "These items must be included when this data is collected for reporting.")
+		XCTAssertEqual(inst.group!.group![0].title!, "Mandatory Diagnosis Questions")
+		XCTAssertEqual(inst.group!.group![1].linkId!, "3921066v1.0")
+		XCTAssertEqual(inst.group!.group![1].question![0].answer![0].valueCoding!.code!, "3")
+		XCTAssertEqual(inst.group!.group![1].question![0].answer![0].valueCoding!.display!, "Restaging")
+		XCTAssertEqual(inst.group!.group![1].question![0].answer![0].valueCoding!.system!.absoluteString!, "http://nci.nih.gov/xml/owl/cadsr/data_element_scoped_identifier#3921066v1.0-cs")
+		XCTAssertEqual(inst.group!.group![1].question![0].text!, "Diagnosis Time Point")
+		XCTAssertEqual(inst.group!.group![1].text!, "There are business rules to indicate situations under which these elements should be used on a case report form.")
+		XCTAssertEqual(inst.group!.group![1].title!, "Conditional Diagnosis Questions")
+		XCTAssertEqual(inst.group!.group![2].linkId!, "3921077v1.0")
+		XCTAssertEqual(inst.group!.group![2].question![0].answer![0].valueString!, "Harold Ornada")
+		XCTAssertEqual(inst.group!.group![2].question![0].linkId!, "3921079v1.0")
+		XCTAssertEqual(inst.group!.group![2].question![0].text!, "Reviewing Pathologist")
+		XCTAssertEqual(inst.group!.group![2].question![1].linkId!, "3921080v1.0")
+		XCTAssertEqual(inst.group!.group![2].question![1].text!, "MedDRA disease code")
+		XCTAssertEqual(inst.group!.group![2].question![2].answer![0].valueCoding!.code!, "2")
+		XCTAssertEqual(inst.group!.group![2].question![2].answer![0].valueCoding!.display!, "Histological Procedure")
+		XCTAssertEqual(inst.group!.group![2].question![2].answer![0].valueCoding!.system!.absoluteString!, "http://nci.nih.gov/xml/owl/cadsr/data_element_scoped_identifier#3921081v1.0-cs")
+		XCTAssertEqual(inst.group!.group![2].question![2].linkId!, "3921081v1.0")
+		XCTAssertEqual(inst.group!.group![2].question![2].text!, "Assessment Method")
+		XCTAssertEqual(inst.group!.group![2].question![3].answer![0].valueCoding!.code!, "2")
+		XCTAssertEqual(inst.group!.group![2].question![3].answer![0].valueCoding!.display!, "Moderately Differentiated")
+		XCTAssertEqual(inst.group!.group![2].question![3].answer![0].valueCoding!.system!.absoluteString!, "http://nci.nih.gov/xml/owl/cadsr/data_element_scoped_identifier#3921085v1.0-cs")
+		XCTAssertEqual(inst.group!.group![2].question![3].linkId!, "3921085v1.0")
+		XCTAssertEqual(inst.group!.group![2].question![3].text!, "Tumor grade")
+		XCTAssertEqual(inst.group!.group![2].title!, "Optional Diagnosis Questions")
+		XCTAssertEqual(inst.group!.title!, "Diagnosis NCI Standard Template")
+		XCTAssertEqual(inst.id!, "sdc")
+		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

@@ -2,7 +2,7 @@
 //  ImagingObjectSelection.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (imagingobjectselection.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  A set of DICOM SOP Instances of a patient, selected for some application purpose, e.g., quality assurance, teaching,
  *  conference, consulting, etc.  Objects selected can be from different studies, but must be of the same patient.
  */
-public class ImagingObjectSelection: FHIRResource
+public class ImagingObjectSelection: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "ImagingObjectSelection" }
@@ -126,17 +126,14 @@ public class ImagingObjectSelectionStudy: FHIRElement
 		get { return "ImagingObjectSelectionStudy" }
 	}
 	
-	/// AE Title where may be retrieved
-	public var retrieveAETitle: String?
-	
-	/// Retrieve URL
-	public var retrieveUrl: NSURL?
-	
 	/// Series identity of the selected instances
 	public var series: [ImagingObjectSelectionStudySeries]?
 	
 	/// Study instance uid
 	public var uid: String?
+	
+	/// Retrieve URL
+	public var url: NSURL?
 	
 	public convenience init(series: [ImagingObjectSelectionStudySeries]?, uid: String?) {
 		self.init(json: nil)
@@ -151,17 +148,14 @@ public class ImagingObjectSelectionStudy: FHIRElement
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["retrieveAETitle"] as? String {
-				self.retrieveAETitle = val
-			}
-			if let val = js["retrieveUrl"] as? String {
-				self.retrieveUrl = NSURL(string: val)
-			}
 			if let val = js["series"] as? [JSONDictionary] {
 				self.series = ImagingObjectSelectionStudySeries.from(val, owner: self) as? [ImagingObjectSelectionStudySeries]
 			}
 			if let val = js["uid"] as? String {
 				self.uid = val
+			}
+			if let val = js["url"] as? String {
+				self.url = NSURL(string: val)
 			}
 		}
 	}
@@ -169,17 +163,14 @@ public class ImagingObjectSelectionStudy: FHIRElement
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let retrieveAETitle = self.retrieveAETitle {
-			json["retrieveAETitle"] = retrieveAETitle.asJSON()
-		}
-		if let retrieveUrl = self.retrieveUrl {
-			json["retrieveUrl"] = retrieveUrl.asJSON()
-		}
 		if let series = self.series {
 			json["series"] = ImagingObjectSelectionStudySeries.asJSONArray(series)
 		}
 		if let uid = self.uid {
 			json["uid"] = uid.asJSON()
+		}
+		if let url = self.url {
+			json["url"] = url.asJSON()
 		}
 		
 		return json
@@ -201,22 +192,16 @@ public class ImagingObjectSelectionStudySeries: FHIRElement
 	/// The selected instance
 	public var instance: [ImagingObjectSelectionStudySeriesInstance]?
 	
-	/// AE Title where may be retrieved
-	public var retrieveAETitle: String?
-	
-	/// Retrieve URL
-	public var retrieveUrl: NSURL?
-	
 	/// Series instance uid
 	public var uid: String?
 	
-	public convenience init(instance: [ImagingObjectSelectionStudySeriesInstance]?, uid: String?) {
+	/// Retrieve URL
+	public var url: NSURL?
+	
+	public convenience init(instance: [ImagingObjectSelectionStudySeriesInstance]?) {
 		self.init(json: nil)
 		if nil != instance {
 			self.instance = instance
-		}
-		if nil != uid {
-			self.uid = uid
 		}
 	}
 	
@@ -226,14 +211,11 @@ public class ImagingObjectSelectionStudySeries: FHIRElement
 			if let val = js["instance"] as? [JSONDictionary] {
 				self.instance = ImagingObjectSelectionStudySeriesInstance.from(val, owner: self) as? [ImagingObjectSelectionStudySeriesInstance]
 			}
-			if let val = js["retrieveAETitle"] as? String {
-				self.retrieveAETitle = val
-			}
-			if let val = js["retrieveUrl"] as? String {
-				self.retrieveUrl = NSURL(string: val)
-			}
 			if let val = js["uid"] as? String {
 				self.uid = val
+			}
+			if let val = js["url"] as? String {
+				self.url = NSURL(string: val)
 			}
 		}
 	}
@@ -244,14 +226,11 @@ public class ImagingObjectSelectionStudySeries: FHIRElement
 		if let instance = self.instance {
 			json["instance"] = ImagingObjectSelectionStudySeriesInstance.asJSONArray(instance)
 		}
-		if let retrieveAETitle = self.retrieveAETitle {
-			json["retrieveAETitle"] = retrieveAETitle.asJSON()
-		}
-		if let retrieveUrl = self.retrieveUrl {
-			json["retrieveUrl"] = retrieveUrl.asJSON()
-		}
 		if let uid = self.uid {
 			json["uid"] = uid.asJSON()
+		}
+		if let url = self.url {
+			json["url"] = url.asJSON()
 		}
 		
 		return json
@@ -270,11 +249,8 @@ public class ImagingObjectSelectionStudySeriesInstance: FHIRElement
 		get { return "ImagingObjectSelectionStudySeriesInstance" }
 	}
 	
-	/// AE Title where may be retrieved
-	public var retrieveAETitle: String?
-	
-	/// Retrieve URL
-	public var retrieveUrl: NSURL?
+	/// The frame set
+	public var frames: [ImagingObjectSelectionStudySeriesInstanceFrames]?
 	
 	/// SOP class uid of instance
 	public var sopClass: String?
@@ -282,7 +258,10 @@ public class ImagingObjectSelectionStudySeriesInstance: FHIRElement
 	/// Uid of the selected instance
 	public var uid: String?
 	
-	public convenience init(sopClass: String?, uid: String?) {
+	/// Retrieve URL
+	public var url: NSURL?
+	
+	public convenience init(sopClass: String?, uid: String?, url: NSURL?) {
 		self.init(json: nil)
 		if nil != sopClass {
 			self.sopClass = sopClass
@@ -290,16 +269,16 @@ public class ImagingObjectSelectionStudySeriesInstance: FHIRElement
 		if nil != uid {
 			self.uid = uid
 		}
+		if nil != url {
+			self.url = url
+		}
 	}
 	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["retrieveAETitle"] as? String {
-				self.retrieveAETitle = val
-			}
-			if let val = js["retrieveUrl"] as? String {
-				self.retrieveUrl = NSURL(string: val)
+			if let val = js["frames"] as? [JSONDictionary] {
+				self.frames = ImagingObjectSelectionStudySeriesInstanceFrames.from(val, owner: self) as? [ImagingObjectSelectionStudySeriesInstanceFrames]
 			}
 			if let val = js["sopClass"] as? String {
 				self.sopClass = val
@@ -307,23 +286,84 @@ public class ImagingObjectSelectionStudySeriesInstance: FHIRElement
 			if let val = js["uid"] as? String {
 				self.uid = val
 			}
+			if let val = js["url"] as? String {
+				self.url = NSURL(string: val)
+			}
 		}
 	}
 	
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let retrieveAETitle = self.retrieveAETitle {
-			json["retrieveAETitle"] = retrieveAETitle.asJSON()
-		}
-		if let retrieveUrl = self.retrieveUrl {
-			json["retrieveUrl"] = retrieveUrl.asJSON()
+		if let frames = self.frames {
+			json["frames"] = ImagingObjectSelectionStudySeriesInstanceFrames.asJSONArray(frames)
 		}
 		if let sopClass = self.sopClass {
 			json["sopClass"] = sopClass.asJSON()
 		}
 		if let uid = self.uid {
 			json["uid"] = uid.asJSON()
+		}
+		if let url = self.url {
+			json["url"] = url.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  The frame set.
+ *
+ *  Identity and location information of the frames in the selected instance.
+ */
+public class ImagingObjectSelectionStudySeriesInstanceFrames: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ImagingObjectSelectionStudySeriesInstanceFrames" }
+	}
+	
+	/// Frame numbers
+	public var frameNumbers: [Int]?
+	
+	/// Retrieve URL
+	public var url: NSURL?
+	
+	public convenience init(frameNumbers: [Int]?, url: NSURL?) {
+		self.init(json: nil)
+		if nil != frameNumbers {
+			self.frameNumbers = frameNumbers
+		}
+		if nil != url {
+			self.url = url
+		}
+	}
+	
+	public required init(json: JSONDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["frameNumbers"] as? [Int] {
+				self.frameNumbers = val
+			}
+			if let val = js["url"] as? String {
+				self.url = NSURL(string: val)
+			}
+		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let frameNumbers = self.frameNumbers {
+			var arr = [AnyObject]()
+			for val in frameNumbers {
+				arr.append(val.asJSON())
+			}
+			json["frameNumbers"] = arr
+		}
+		if let url = self.url {
+			json["url"] = url.asJSON()
 		}
 		
 		return json

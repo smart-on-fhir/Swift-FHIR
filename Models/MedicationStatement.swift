@@ -2,7 +2,7 @@
 //  MedicationStatement.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (medicationstatement.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,11 +15,14 @@ import Foundation
  *  A record of medication being taken by a patient, or that the medication has been given to a patient where the record
  *  is the result of a report from the patient or another clinician.
  */
-public class MedicationStatement: FHIRResource
+public class MedicationStatement: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "MedicationStatement" }
 	}
+	
+	/// When the statement was asserted?
+	public var dateAsserted: DateTime?
 	
 	/// Details of how medication was taken
 	public var dosage: [MedicationStatementDosage]?
@@ -39,6 +42,9 @@ public class MedicationStatement: FHIRResource
 	/// What medication was taken?
 	public var medication: Reference?
 	
+	/// Further information about the statement
+	public var note: String?
+	
 	/// Who was/is taking medication
 	public var patient: Reference?
 	
@@ -51,7 +57,7 @@ public class MedicationStatement: FHIRResource
 	/// True if asserting medication was not given
 	public var reasonNotGiven: [CodeableConcept]?
 	
-	/// in progress | completed | entered in error
+	/// in-progress | completed | entered-in-error
 	public var status: String?
 	
 	/// True if medication is/was not being taken
@@ -67,6 +73,9 @@ public class MedicationStatement: FHIRResource
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["dateAsserted"] as? String {
+				self.dateAsserted = DateTime(string: val)
+			}
 			if let val = js["dosage"] as? [JSONDictionary] {
 				self.dosage = MedicationStatementDosage.from(val, owner: self) as? [MedicationStatementDosage]
 			}
@@ -84,6 +93,9 @@ public class MedicationStatement: FHIRResource
 			}
 			if let val = js["medication"] as? JSONDictionary {
 				self.medication = Reference(json: val, owner: self)
+			}
+			if let val = js["note"] as? String {
+				self.note = val
 			}
 			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
@@ -109,6 +121,9 @@ public class MedicationStatement: FHIRResource
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
+		if let dateAsserted = self.dateAsserted {
+			json["dateAsserted"] = dateAsserted.asJSON()
+		}
 		if let dosage = self.dosage {
 			json["dosage"] = MedicationStatementDosage.asJSONArray(dosage)
 		}
@@ -126,6 +141,9 @@ public class MedicationStatement: FHIRResource
 		}
 		if let medication = self.medication {
 			json["medication"] = medication.asJSON()
+		}
+		if let note = self.note {
+			json["note"] = note.asJSON()
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()

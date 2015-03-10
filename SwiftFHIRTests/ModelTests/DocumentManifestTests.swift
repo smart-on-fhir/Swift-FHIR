@@ -2,7 +2,7 @@
 //  DocumentManifestTests.swift
 //  DocumentManifestTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -39,7 +39,9 @@ class DocumentManifestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.masterIdentifier!.value!, "23425234234-2346")
 		XCTAssertEqual(inst.source!.absoluteString!, "urn:oid:1.3.6.1.4.1.21367.2009.1.2.1")
 		XCTAssertEqual(inst.status!, "current")
-		XCTAssertEqual(inst.subject![0].reference!, "Patient/xcda")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/xcda")
+		XCTAssertEqual(inst.text!.div!, "<div>Text</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.text!, "History and Physical")
 		
 		return inst
@@ -62,7 +64,9 @@ class DocumentManifestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.masterIdentifier!.value!, "23425234234-2346")
 		XCTAssertEqual(inst.source!.absoluteString!, "urn:oid:1.3.6.1.4.1.21367.2009.1.2.1")
 		XCTAssertEqual(inst.status!, "current")
-		XCTAssertEqual(inst.subject![0].reference!, "Patient/xcda")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/xcda")
+		XCTAssertEqual(inst.text!.div!, "<div>Text</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.text!, "History and Physical")
 		
 		return inst
@@ -85,7 +89,9 @@ class DocumentManifestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.masterIdentifier!.value!, "23425234234-2346")
 		XCTAssertEqual(inst.source!.absoluteString!, "urn:oid:1.3.6.1.4.1.21367.2009.1.2.1")
 		XCTAssertEqual(inst.status!, "current")
-		XCTAssertEqual(inst.subject![0].reference!, "Patient/xcda")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/xcda")
+		XCTAssertEqual(inst.text!.div!, "<div>Text</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.text!, "History and Physical")
 		
 		return inst

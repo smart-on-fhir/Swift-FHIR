@@ -2,7 +2,7 @@
 //  VisionClaimTests.swift
 //  VisionClaimTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -90,6 +90,8 @@ class VisionClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.prescription!.reference!, "http://www.optdocs.com/prescription/12345")
 		XCTAssertEqual(inst.priority!.code!, "normal")
 		XCTAssertEqual(inst.target!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Vision Claim for Glasses</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.use!, "complete")
 		
 		return inst
@@ -163,6 +165,8 @@ class VisionClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.prescription!.reference!, "http://www.optdocs.com/prescription/12345")
 		XCTAssertEqual(inst.priority!.code!, "normal")
 		XCTAssertEqual(inst.target!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Vision Claim for Glasses</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.use!, "complete")
 		
 		return inst
@@ -236,6 +240,8 @@ class VisionClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.prescription!.reference!, "http://www.optdocs.com/prescription/12345")
 		XCTAssertEqual(inst.priority!.code!, "normal")
 		XCTAssertEqual(inst.target!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Vision Claim for Glasses</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.use!, "complete")
 		
 		return inst
@@ -276,6 +282,8 @@ class VisionClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.payee!.type!.code!, "provider")
 		XCTAssertEqual(inst.priority!.code!, "normal")
 		XCTAssertEqual(inst.target!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Vision Claim</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.use!, "complete")
 		
 		return inst
@@ -316,6 +324,8 @@ class VisionClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.payee!.type!.code!, "provider")
 		XCTAssertEqual(inst.priority!.code!, "normal")
 		XCTAssertEqual(inst.target!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Vision Claim</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.use!, "complete")
 		
 		return inst

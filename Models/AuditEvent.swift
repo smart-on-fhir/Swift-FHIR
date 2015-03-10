@@ -1,8 +1,8 @@
 //
-//  SecurityEvent.swift
+//  AuditEvent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (securityevent.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,25 +15,25 @@ import Foundation
  *  A record of an event made for purposes of maintaining a security log. Typical uses include detection of intrusion
  *  attempts and monitoring for inappropriate usage.
  */
-public class SecurityEvent: FHIRResource
+public class AuditEvent: DomainResource
 {
 	override public class var resourceName: String {
-		get { return "SecurityEvent" }
+		get { return "AuditEvent" }
 	}
 	
 	/// What was done
-	public var event: SecurityEventEvent?
+	public var event: AuditEventEvent?
 	
 	/// Specific instances of data or objects that have been accessed
-	public var object: [SecurityEventObject]?
+	public var object: [AuditEventObject]?
 	
 	/// A person, a hardware device or software process
-	public var participant: [SecurityEventParticipant]?
+	public var participant: [AuditEventParticipant]?
 	
 	/// Application systems and processes
-	public var source: SecurityEventSource?
+	public var source: AuditEventSource?
 	
-	public convenience init(event: SecurityEventEvent?, participant: [SecurityEventParticipant]?, source: SecurityEventSource?) {
+	public convenience init(event: AuditEventEvent?, participant: [AuditEventParticipant]?, source: AuditEventSource?) {
 		self.init(json: nil)
 		if nil != event {
 			self.event = event
@@ -50,16 +50,16 @@ public class SecurityEvent: FHIRResource
 		super.init(json: json)
 		if let js = json {
 			if let val = js["event"] as? JSONDictionary {
-				self.event = SecurityEventEvent(json: val, owner: self)
+				self.event = AuditEventEvent(json: val, owner: self)
 			}
 			if let val = js["object"] as? [JSONDictionary] {
-				self.object = SecurityEventObject.from(val, owner: self) as? [SecurityEventObject]
+				self.object = AuditEventObject.from(val, owner: self) as? [AuditEventObject]
 			}
 			if let val = js["participant"] as? [JSONDictionary] {
-				self.participant = SecurityEventParticipant.from(val, owner: self) as? [SecurityEventParticipant]
+				self.participant = AuditEventParticipant.from(val, owner: self) as? [AuditEventParticipant]
 			}
 			if let val = js["source"] as? JSONDictionary {
-				self.source = SecurityEventSource(json: val, owner: self)
+				self.source = AuditEventSource(json: val, owner: self)
 			}
 		}
 	}
@@ -71,10 +71,10 @@ public class SecurityEvent: FHIRResource
 			json["event"] = event.asJSON()
 		}
 		if let object = self.object {
-			json["object"] = SecurityEventObject.asJSONArray(object)
+			json["object"] = AuditEventObject.asJSONArray(object)
 		}
 		if let participant = self.participant {
-			json["participant"] = SecurityEventParticipant.asJSONArray(participant)
+			json["participant"] = AuditEventParticipant.asJSONArray(participant)
 		}
 		if let source = self.source {
 			json["source"] = source.asJSON()
@@ -90,10 +90,10 @@ public class SecurityEvent: FHIRResource
  *
  *  Identifies the name, action type, time, and disposition of the audited event.
  */
-public class SecurityEventEvent: FHIRElement
+public class AuditEventEvent: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "SecurityEventEvent" }
+		get { return "AuditEventEvent" }
 	}
 	
 	/// Type of action performed during the event
@@ -178,17 +178,17 @@ public class SecurityEventEvent: FHIRElement
 /**
  *  Specific instances of data or objects that have been accessed.
  */
-public class SecurityEventObject: FHIRElement
+public class AuditEventObject: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "SecurityEventObject" }
+		get { return "AuditEventObject" }
 	}
 	
 	/// Descriptive text
 	public var description_fhir: String?
 	
 	/// Additional Information about the Object
-	public var detail: [SecurityEventObjectDetail]?
+	public var detail: [AuditEventObjectDetail]?
 	
 	/// Specific instance of object (e.g. versioned)
 	public var identifier: Identifier?
@@ -221,7 +221,7 @@ public class SecurityEventObject: FHIRElement
 				self.description_fhir = val
 			}
 			if let val = js["detail"] as? [JSONDictionary] {
-				self.detail = SecurityEventObjectDetail.from(val, owner: self) as? [SecurityEventObjectDetail]
+				self.detail = AuditEventObjectDetail.from(val, owner: self) as? [AuditEventObjectDetail]
 			}
 			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)
@@ -257,7 +257,7 @@ public class SecurityEventObject: FHIRElement
 			json["description"] = description_fhir.asJSON()
 		}
 		if let detail = self.detail {
-			json["detail"] = SecurityEventObjectDetail.asJSONArray(detail)
+			json["detail"] = AuditEventObjectDetail.asJSONArray(detail)
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
@@ -292,10 +292,10 @@ public class SecurityEventObject: FHIRElement
 /**
  *  Additional Information about the Object.
  */
-public class SecurityEventObjectDetail: FHIRElement
+public class AuditEventObjectDetail: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "SecurityEventObjectDetail" }
+		get { return "AuditEventObjectDetail" }
 	}
 	
 	/// Name of the property
@@ -344,10 +344,10 @@ public class SecurityEventObjectDetail: FHIRElement
 /**
  *  A person, a hardware device or software process.
  */
-public class SecurityEventParticipant: FHIRElement
+public class AuditEventParticipant: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "SecurityEventParticipant" }
+		get { return "AuditEventParticipant" }
 	}
 	
 	/// Alternative User id e.g. authentication
@@ -360,7 +360,7 @@ public class SecurityEventParticipant: FHIRElement
 	public var name: String?
 	
 	/// Logical network location for application activity
-	public var network: SecurityEventParticipantNetwork?
+	public var network: AuditEventParticipantNetwork?
 	
 	/// Direct reference to resource
 	public var reference: Reference?
@@ -394,7 +394,7 @@ public class SecurityEventParticipant: FHIRElement
 				self.name = val
 			}
 			if let val = js["network"] as? JSONDictionary {
-				self.network = SecurityEventParticipantNetwork(json: val, owner: self)
+				self.network = AuditEventParticipantNetwork(json: val, owner: self)
 			}
 			if let val = js["reference"] as? JSONDictionary {
 				self.reference = Reference(json: val, owner: self)
@@ -449,10 +449,10 @@ public class SecurityEventParticipant: FHIRElement
  *
  *  Logical network location for application activity, if the activity has a network location.
  */
-public class SecurityEventParticipantNetwork: FHIRElement
+public class AuditEventParticipantNetwork: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "SecurityEventParticipantNetwork" }
+		get { return "AuditEventParticipantNetwork" }
 	}
 	
 	/// Identifier for the network access point of the user device
@@ -491,10 +491,10 @@ public class SecurityEventParticipantNetwork: FHIRElement
 /**
  *  Application systems and processes.
  */
-public class SecurityEventSource: FHIRElement
+public class AuditEventSource: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "SecurityEventSource" }
+		get { return "AuditEventSource" }
 	}
 	
 	/// The id of source where event originated

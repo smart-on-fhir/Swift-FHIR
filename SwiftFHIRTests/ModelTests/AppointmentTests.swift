@@ -2,7 +2,7 @@
 //  AppointmentTests.swift
 //  AppointmentTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -50,6 +50,8 @@ class AppointmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.priority!, 5)
 		XCTAssertEqual(inst.start!.description, "2013-12-10T09:00:00Z")
 		XCTAssertEqual(inst.status!, "booked")
+		XCTAssertEqual(inst.text!.div!, "<div>Brian MRI results discussion</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "52")
 		XCTAssertEqual(inst.type!.coding![0].display!, "General Discussion")
 		
@@ -84,6 +86,8 @@ class AppointmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.priority!, 5)
 		XCTAssertEqual(inst.start!.description, "2013-12-10T09:00:00Z")
 		XCTAssertEqual(inst.status!, "booked")
+		XCTAssertEqual(inst.text!.div!, "<div>Brian MRI results discussion</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "52")
 		XCTAssertEqual(inst.type!.coding![0].display!, "General Discussion")
 		
@@ -118,6 +122,8 @@ class AppointmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.priority!, 5)
 		XCTAssertEqual(inst.start!.description, "2013-12-10T09:00:00Z")
 		XCTAssertEqual(inst.status!, "booked")
+		XCTAssertEqual(inst.text!.div!, "<div>Brian MRI results discussion</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "52")
 		XCTAssertEqual(inst.type!.coding![0].display!, "General Discussion")
 		

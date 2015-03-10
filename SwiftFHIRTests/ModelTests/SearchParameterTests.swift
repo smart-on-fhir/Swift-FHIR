@@ -2,7 +2,7 @@
 //  SearchParameterTests.swift
 //  SearchParameterTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -31,15 +31,16 @@ class SearchParameterTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "searchparameter-example-extension.canonical.json")
 		
 		XCTAssertEqual(inst.base!, "Patient")
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.description_fhir!, "Search by url for a participation agreement")
 		XCTAssertEqual(inst.id!, "example-extension")
 		XCTAssertEqual(inst.name!, "Example Search Parameter on an extension")
 		XCTAssertEqual(inst.publisher!, "HL7 FHIR Project")
-		XCTAssertEqual(inst.telecom![0].system!, "url")
-		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!, "token")
 		XCTAssertEqual(inst.url!.absoluteString!, "http://hl7.org/fhir/SearchParameter/example-extension")
-		XCTAssertEqual(inst.xpath!, "http://example.org/fhir/ExtensionDefinition/participation-agreement")
+		XCTAssertEqual(inst.xpath!, "http://example.org/fhir/StructureDefinition/participation-agreement")
 		
 		return inst
 	}
@@ -53,15 +54,16 @@ class SearchParameterTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "searchparameter-example-extension.canonical.json")
 		
 		XCTAssertEqual(inst.base!, "Patient")
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.description_fhir!, "Search by url for a participation agreement")
 		XCTAssertEqual(inst.id!, "example-extension")
 		XCTAssertEqual(inst.name!, "Example Search Parameter on an extension")
 		XCTAssertEqual(inst.publisher!, "HL7 FHIR Project")
-		XCTAssertEqual(inst.telecom![0].system!, "url")
-		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!, "token")
 		XCTAssertEqual(inst.url!.absoluteString!, "http://hl7.org/fhir/SearchParameter/example-extension")
-		XCTAssertEqual(inst.xpath!, "http://example.org/fhir/ExtensionDefinition/participation-agreement")
+		XCTAssertEqual(inst.xpath!, "http://example.org/fhir/StructureDefinition/participation-agreement")
 		
 		return inst
 	}
@@ -75,15 +77,16 @@ class SearchParameterTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "searchparameter-example-extension.json")
 		
 		XCTAssertEqual(inst.base!, "Patient")
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.description_fhir!, "Search by url for a participation agreement")
 		XCTAssertEqual(inst.id!, "example-extension")
 		XCTAssertEqual(inst.name!, "Example Search Parameter on an extension")
 		XCTAssertEqual(inst.publisher!, "HL7 FHIR Project")
-		XCTAssertEqual(inst.telecom![0].system!, "url")
-		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!, "token")
 		XCTAssertEqual(inst.url!.absoluteString!, "http://hl7.org/fhir/SearchParameter/example-extension")
-		XCTAssertEqual(inst.xpath!, "http://example.org/fhir/ExtensionDefinition/participation-agreement")
+		XCTAssertEqual(inst.xpath!, "http://example.org/fhir/StructureDefinition/participation-agreement")
 		
 		return inst
 	}
@@ -97,12 +100,13 @@ class SearchParameterTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "searchparameter-example.canonical.json")
 		
 		XCTAssertEqual(inst.base!, "Resource")
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.description_fhir!, "Search by resource identifier - e.g. same as the read interaction, but can return included resources")
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.name!, "Example Search Parameter")
 		XCTAssertEqual(inst.publisher!, "HL7 FHIR Project")
-		XCTAssertEqual(inst.telecom![0].system!, "url")
-		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!, "token")
 		XCTAssertEqual(inst.url!.absoluteString!, "http://hl7.org/fhir/SearchParameter/example")
 		XCTAssertEqual(inst.xpath!, "f:id")
@@ -119,12 +123,13 @@ class SearchParameterTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "searchparameter-example.json")
 		
 		XCTAssertEqual(inst.base!, "Resource")
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.description_fhir!, "Search by resource identifier - e.g. same as the read interaction, but can return included resources")
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.name!, "Example Search Parameter")
 		XCTAssertEqual(inst.publisher!, "HL7 FHIR Project")
-		XCTAssertEqual(inst.telecom![0].system!, "url")
-		XCTAssertEqual(inst.telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!, "token")
 		XCTAssertEqual(inst.url!.absoluteString!, "http://hl7.org/fhir/SearchParameter/example")
 		XCTAssertEqual(inst.xpath!, "f:id")

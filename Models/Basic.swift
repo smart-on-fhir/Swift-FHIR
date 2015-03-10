@@ -2,7 +2,7 @@
 //  Basic.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (basic.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Basic) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  Basic is used for handling concepts not yet defined in FHIR, narrative-only resources that don't map to an existing
  *  resource, and custom resources not appropriate for inclusion in the FHIR specification.
  */
-public class Basic: FHIRResource
+public class Basic: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Basic" }

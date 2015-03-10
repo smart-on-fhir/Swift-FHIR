@@ -2,7 +2,7 @@
 //  DeviceTests.swift
 //  DeviceTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -31,6 +31,7 @@ class DeviceTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "device-example-f001-feedingtube.canonical.json")
 		
 		XCTAssertEqual(inst.id!, "f001")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "25062003")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Feeding tube, device")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -47,6 +48,7 @@ class DeviceTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "device-example-f001-feedingtube.canonical.json")
 		
 		XCTAssertEqual(inst.id!, "f001")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "25062003")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Feeding tube, device")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -63,6 +65,7 @@ class DeviceTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "device-example-f001-feedingtube.json")
 		
 		XCTAssertEqual(inst.id!, "f001")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "25062003")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Feeding tube, device")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -84,6 +87,7 @@ class DeviceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.lotNumber!, "12345")
 		XCTAssertEqual(inst.manufacturer!, "Acme Devices, Inc")
 		XCTAssertEqual(inst.model!, "A.1.1")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.text!, "Vital Signs Monitor")
 		
 		return inst
@@ -103,6 +107,7 @@ class DeviceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.lotNumber!, "12345")
 		XCTAssertEqual(inst.manufacturer!, "Acme Devices, Inc")
 		XCTAssertEqual(inst.model!, "A.1.1")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.text!, "Vital Signs Monitor")
 		
 		return inst
@@ -126,6 +131,7 @@ class DeviceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.lotNumber!, "43453424")
 		XCTAssertEqual(inst.manufacturer!, "Acme Devices, Inc")
 		XCTAssertEqual(inst.model!, "AB 45-J")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "86184003")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Electrocardiographic monitor and recorder")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -152,6 +158,7 @@ class DeviceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.lotNumber!, "43453424")
 		XCTAssertEqual(inst.manufacturer!, "Acme Devices, Inc")
 		XCTAssertEqual(inst.model!, "AB 45-J")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "86184003")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Electrocardiographic monitor and recorder")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")

@@ -2,7 +2,7 @@
 //  List.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (list.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/List) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  A set of information summarized from a list of other resources.
  */
-public class List: FHIRResource
+public class List: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "List" }

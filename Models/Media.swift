@@ -2,7 +2,7 @@
 //  Media.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (media.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Media) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -13,7 +13,7 @@ import Foundation
  *  A photo, video, or audio recording acquired or used in healthcare. The actual content may be inline or provided by
  *  direct reference.
  */
-public class Media: FHIRResource
+public class Media: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Media" }

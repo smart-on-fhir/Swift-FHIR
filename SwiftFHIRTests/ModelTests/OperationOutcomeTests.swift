@@ -2,7 +2,7 @@
 //  OperationOutcomeTests.swift
 //  OperationOutcomeTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -36,6 +36,7 @@ class OperationOutcomeTests: FHIRModelTestCase
 		XCTAssertEqual(inst.issue![0].type!.code!, "V15")
 		XCTAssertEqual(inst.issue![0].type!.display!, "InvalidCode")
 		XCTAssertEqual(inst.issue![0].type!.system!.absoluteString!, "http://test.org/issueCodeSystem")
+		XCTAssertEqual(inst.text!.status!, "additional")
 		
 		return inst
 	}
@@ -54,6 +55,7 @@ class OperationOutcomeTests: FHIRModelTestCase
 		XCTAssertEqual(inst.issue![0].type!.code!, "V15")
 		XCTAssertEqual(inst.issue![0].type!.display!, "InvalidCode")
 		XCTAssertEqual(inst.issue![0].type!.system!.absoluteString!, "http://test.org/issueCodeSystem")
+		XCTAssertEqual(inst.text!.status!, "additional")
 		
 		return inst
 	}
@@ -72,6 +74,7 @@ class OperationOutcomeTests: FHIRModelTestCase
 		XCTAssertEqual(inst.issue![0].type!.code!, "V15")
 		XCTAssertEqual(inst.issue![0].type!.display!, "InvalidCode")
 		XCTAssertEqual(inst.issue![0].type!.system!.absoluteString!, "http://test.org/issueCodeSystem")
+		XCTAssertEqual(inst.text!.status!, "additional")
 		
 		return inst
 	}

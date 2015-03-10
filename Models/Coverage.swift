@@ -2,7 +2,7 @@
 //  Coverage.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (coverage.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  Financial instrument which may be used to pay for or reimburse for health care products and services.
  */
-public class Coverage: FHIRResource
+public class Coverage: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Coverage" }
@@ -48,7 +48,10 @@ public class Coverage: FHIRResource
 	public var sequence: Int?
 	
 	/// An identifier for the subsection of the plan
-	public var subplan: String?
+	public var subPlan: String?
+	
+	/// Covered parties
+	public var subject: [Reference]?
 	
 	/// Plan holder information
 	public var subscriber: Reference?
@@ -86,8 +89,11 @@ public class Coverage: FHIRResource
 			if let val = js["sequence"] as? Int {
 				self.sequence = val
 			}
-			if let val = js["subplan"] as? String {
-				self.subplan = val
+			if let val = js["subPlan"] as? String {
+				self.subPlan = val
+			}
+			if let val = js["subject"] as? [JSONDictionary] {
+				self.subject = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["subscriber"] as? JSONDictionary {
 				self.subscriber = Reference(json: val, owner: self)
@@ -128,8 +134,11 @@ public class Coverage: FHIRResource
 		if let sequence = self.sequence {
 			json["sequence"] = sequence.asJSON()
 		}
-		if let subplan = self.subplan {
-			json["subplan"] = subplan.asJSON()
+		if let subPlan = self.subPlan {
+			json["subPlan"] = subPlan.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = Reference.asJSONArray(subject)
 		}
 		if let subscriber = self.subscriber {
 			json["subscriber"] = subscriber.asJSON()

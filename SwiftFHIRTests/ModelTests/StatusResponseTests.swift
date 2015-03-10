@@ -2,7 +2,7 @@
 //  StatusResponseTests.swift
 //  StatusResponseTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -37,9 +37,11 @@ class StatusResponseTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].value!, "881234")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/2")
 		XCTAssertEqual(inst.outcome!.code!, "complete")
-		XCTAssertEqual(inst.outcome!.system!.absoluteString!, "http://www.hl7.org/fhir/processoutcomecodes")
+		XCTAssertEqual(inst.outcome!.system!.absoluteString!, "http://hl7.org/fhir/processoutcomecodes")
 		XCTAssertEqual(inst.request!.reference!, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
 		XCTAssertEqual(inst.requestOrganization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the ExplanationOfBenefit</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -59,9 +61,11 @@ class StatusResponseTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].value!, "881234")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/2")
 		XCTAssertEqual(inst.outcome!.code!, "complete")
-		XCTAssertEqual(inst.outcome!.system!.absoluteString!, "http://www.hl7.org/fhir/processoutcomecodes")
+		XCTAssertEqual(inst.outcome!.system!.absoluteString!, "http://hl7.org/fhir/processoutcomecodes")
 		XCTAssertEqual(inst.request!.reference!, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
 		XCTAssertEqual(inst.requestOrganization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the ExplanationOfBenefit</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -81,9 +85,11 @@ class StatusResponseTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].value!, "881234")
 		XCTAssertEqual(inst.organization!.reference!, "Organization/2")
 		XCTAssertEqual(inst.outcome!.code!, "complete")
-		XCTAssertEqual(inst.outcome!.system!.absoluteString!, "http://www.hl7.org/fhir/processoutcomecodes")
+		XCTAssertEqual(inst.outcome!.system!.absoluteString!, "http://hl7.org/fhir/processoutcomecodes")
 		XCTAssertEqual(inst.request!.reference!, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
 		XCTAssertEqual(inst.requestOrganization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the ExplanationOfBenefit</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

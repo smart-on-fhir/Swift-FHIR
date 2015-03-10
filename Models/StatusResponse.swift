@@ -2,7 +2,7 @@
 //  StatusResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (statusresponse.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/StatusResponse) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  This resource provides processing status, errors and notes from the processing of a resource.
  */
-public class StatusResponse: FHIRResource
+public class StatusResponse: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "StatusResponse" }

@@ -2,7 +2,7 @@
 //  ReversalTests.swift
 //  ReversalTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -41,6 +41,8 @@ class ReversalTests: FHIRModelTestCase
 		XCTAssertFalse(inst.nullify!)
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
 		XCTAssertEqual(inst.request!.reference!, "http://BenefitsInc.com/fhir/oralhealthclaim/12345")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Reversal</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -64,6 +66,8 @@ class ReversalTests: FHIRModelTestCase
 		XCTAssertFalse(inst.nullify!)
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
 		XCTAssertEqual(inst.request!.reference!, "http://BenefitsInc.com/fhir/oralhealthclaim/12345")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Reversal</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -87,6 +91,8 @@ class ReversalTests: FHIRModelTestCase
 		XCTAssertFalse(inst.nullify!)
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
 		XCTAssertEqual(inst.request!.reference!, "http://BenefitsInc.com/fhir/oralhealthclaim/12345")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Reversal</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

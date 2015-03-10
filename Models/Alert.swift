@@ -2,7 +2,7 @@
 //  Alert.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (alert.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Alert) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  Prospective warnings of potential issues when providing care to the patient.
  */
-public class Alert: FHIRResource
+public class Alert: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Alert" }
@@ -29,16 +29,16 @@ public class Alert: FHIRResource
 	/// Business identifier
 	public var identifier: [Identifier]?
 	
-	/// Text of alert
-	public var note: String?
+	/// Partially deaf, Requires easy open caps, No permanent address, etc.
+	public var note: CodeableConcept?
 	
-	/// active | inactive | entered in error
+	/// active | inactive | entered-in-error
 	public var status: String?
 	
 	/// Who is alert about?
 	public var subject: Reference?
 	
-	public convenience init(note: String?, status: String?, subject: Reference?) {
+	public convenience init(note: CodeableConcept?, status: String?, subject: Reference?) {
 		self.init(json: nil)
 		if nil != note {
 			self.note = note
@@ -63,8 +63,8 @@ public class Alert: FHIRResource
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["note"] as? String {
-				self.note = val
+			if let val = js["note"] as? JSONDictionary {
+				self.note = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val

@@ -2,7 +2,7 @@
 //  DeviceMetricTests.swift
 //  DeviceMetricTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -34,6 +34,7 @@ class DeviceMetricTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://goodcare.org/devicemetric/id")
 		XCTAssertEqual(inst.identifier!.value!, "345675")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "150456")
 		XCTAssertEqual(inst.type!.coding![0].display!, "MDC_PULS_OXIM_SAT_O2")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
@@ -56,6 +57,7 @@ class DeviceMetricTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://goodcare.org/devicemetric/id")
 		XCTAssertEqual(inst.identifier!.value!, "345675")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "150456")
 		XCTAssertEqual(inst.type!.coding![0].display!, "MDC_PULS_OXIM_SAT_O2")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")
@@ -78,6 +80,7 @@ class DeviceMetricTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://goodcare.org/devicemetric/id")
 		XCTAssertEqual(inst.identifier!.value!, "345675")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "150456")
 		XCTAssertEqual(inst.type!.coding![0].display!, "MDC_PULS_OXIM_SAT_O2")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "https://rtmms.nist.gov")

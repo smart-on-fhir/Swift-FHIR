@@ -2,7 +2,7 @@
 //  MedicationPrescriptionTests.swift
 //  MedicationPrescriptionTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -75,6 +75,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].display!, "Chronic obstructive pulmonary disease")
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -132,6 +133,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].display!, "Chronic obstructive pulmonary disease")
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -189,6 +191,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].display!, "Chronic obstructive pulmonary disease")
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -236,6 +239,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].display!, "High density lipoprotein cholesterol level")
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -283,6 +287,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].display!, "High density lipoprotein cholesterol level")
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -330,6 +335,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].display!, "High glucose level in blood")
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -377,6 +383,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].display!, "High glucose level in blood")
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -424,6 +431,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].display!, "High blood pressure")
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -471,6 +479,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].display!, "High blood pressure")
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -518,6 +527,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].display!, "High blood pressure")
 		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

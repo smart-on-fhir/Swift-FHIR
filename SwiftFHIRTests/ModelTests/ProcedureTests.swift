@@ -2,7 +2,7 @@
 //  ProcedureTests.swift
 //  ProcedureTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -42,6 +42,8 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.performer![0].person!.display!, "Dr Bert Biopser")
 		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.text!.div!, "<div>Biopsy of suspected melanoma L) arm</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "90105005")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Biopsy of soft tissue of forearm (Procedure)")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -70,6 +72,8 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.performer![0].person!.display!, "Dr Bert Biopser")
 		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.text!.div!, "<div>Biopsy of suspected melanoma L) arm</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "90105005")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Biopsy of soft tissue of forearm (Procedure)")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -98,6 +102,8 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.performer![0].person!.display!, "Dr Bert Biopser")
 		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.text!.div!, "<div>Biopsy of suspected melanoma L) arm</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "90105005")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Biopsy of soft tissue of forearm (Procedure)")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -134,6 +140,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.performer![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.report![0].display!, "Lab results blood test")
 		XCTAssertEqual(inst.report![0].reference!, "DiagnosticReport/f001")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "34068001")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Heart valve replacement")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -169,6 +176,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.performer![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.report![0].display!, "Lab results blood test")
 		XCTAssertEqual(inst.report![0].reference!, "DiagnosticReport/f001")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "34068001")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Heart valve replacement")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -204,6 +212,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.performer![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.report![0].display!, "Lab results blood test")
 		XCTAssertEqual(inst.report![0].reference!, "DiagnosticReport/f001")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "359615001")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Partial lobectomy of lung")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -239,6 +248,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.performer![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.report![0].display!, "Lab results blood test")
 		XCTAssertEqual(inst.report![0].reference!, "DiagnosticReport/f001")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "359615001")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Partial lobectomy of lung")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -274,6 +284,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.performer![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.report![0].display!, "Lab results blood test")
 		XCTAssertEqual(inst.report![0].reference!, "DiagnosticReport/f001")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "172960003")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Incision of retropharyngeal abscess")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -309,6 +320,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.performer![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.report![0].display!, "Lab results blood test")
 		XCTAssertEqual(inst.report![0].reference!, "DiagnosticReport/f001")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "172960003")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Incision of retropharyngeal abscess")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -344,6 +356,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.performer![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.report![0].display!, "???????????")
 		XCTAssertEqual(inst.report![0].reference!, "DiagnosticReport/f001")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "48387007")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Tracheotomy")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")

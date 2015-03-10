@@ -2,7 +2,7 @@
 //  CoverageTests.swift
 //  CoverageTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -38,8 +38,10 @@ class CoverageTests: FHIRModelTestCase
 		XCTAssertEqual(inst.period!.end!.description, "2012-03-17")
 		XCTAssertEqual(inst.period!.start!.description, "2011-03-17")
 		XCTAssertEqual(inst.plan!, "11024")
-		XCTAssertEqual(inst.subplan!, "D15C9")
+		XCTAssertEqual(inst.subPlan!, "D15C9")
 		XCTAssertEqual(inst.subscriber!.reference!, "Patient/5")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the coverage</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.code!, "EHCPOL")
 		XCTAssertEqual(inst.type!.display!, "extended healthcare")
 		XCTAssertEqual(inst.type!.system!.absoluteString!, "http://hl7.org/fhir/v3/ActCode")
@@ -63,8 +65,10 @@ class CoverageTests: FHIRModelTestCase
 		XCTAssertEqual(inst.period!.end!.description, "2012-03-17")
 		XCTAssertEqual(inst.period!.start!.description, "2011-03-17")
 		XCTAssertEqual(inst.plan!, "11024")
-		XCTAssertEqual(inst.subplan!, "D15C9")
+		XCTAssertEqual(inst.subPlan!, "D15C9")
 		XCTAssertEqual(inst.subscriber!.reference!, "Patient/5")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the coverage</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.code!, "EHCPOL")
 		XCTAssertEqual(inst.type!.display!, "extended healthcare")
 		XCTAssertEqual(inst.type!.system!.absoluteString!, "http://hl7.org/fhir/v3/ActCode")
@@ -88,8 +92,10 @@ class CoverageTests: FHIRModelTestCase
 		XCTAssertEqual(inst.period!.end!.description, "2012-03-17")
 		XCTAssertEqual(inst.period!.start!.description, "2011-03-17")
 		XCTAssertEqual(inst.plan!, "11024")
-		XCTAssertEqual(inst.subplan!, "D15C9")
+		XCTAssertEqual(inst.subPlan!, "D15C9")
 		XCTAssertEqual(inst.subscriber!.reference!, "Patient/5")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the coverage</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.code!, "EHCPOL")
 		XCTAssertEqual(inst.type!.display!, "extended healthcare")
 		XCTAssertEqual(inst.type!.system!.absoluteString!, "http://hl7.org/fhir/v3/ActCode")
@@ -114,8 +120,10 @@ class CoverageTests: FHIRModelTestCase
 		XCTAssertEqual(inst.period!.start!.description, "2011-05-23")
 		XCTAssertEqual(inst.plan!, "CBI35")
 		XCTAssertEqual(inst.sequence!, 1)
-		XCTAssertEqual(inst.subplan!, "123")
+		XCTAssertEqual(inst.subPlan!, "123")
 		XCTAssertEqual(inst.subscriber!.reference!, "Patient/4")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the coverage</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.code!, "EHCPOL")
 		XCTAssertEqual(inst.type!.display!, "extended healthcare")
 		XCTAssertEqual(inst.type!.system!.absoluteString!, "http://hl7.org/fhir/v3/ActCode")
@@ -140,8 +148,10 @@ class CoverageTests: FHIRModelTestCase
 		XCTAssertEqual(inst.period!.start!.description, "2011-05-23")
 		XCTAssertEqual(inst.plan!, "CBI35")
 		XCTAssertEqual(inst.sequence!, 1)
-		XCTAssertEqual(inst.subplan!, "123")
+		XCTAssertEqual(inst.subPlan!, "123")
 		XCTAssertEqual(inst.subscriber!.reference!, "Patient/4")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the coverage</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.code!, "EHCPOL")
 		XCTAssertEqual(inst.type!.display!, "extended healthcare")
 		XCTAssertEqual(inst.type!.system!.absoluteString!, "http://hl7.org/fhir/v3/ActCode")

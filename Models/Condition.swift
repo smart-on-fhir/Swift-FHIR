@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (condition.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Condition) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ import Foundation
  *  uses including: recording a Diagnosis during an Encounter; populating a problem List or a Summary Statement, such as
  *  a Discharge Summary.
  */
-public class Condition: FHIRResource
+public class Condition: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Condition" }

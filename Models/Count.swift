@@ -2,7 +2,7 @@
 //  Count.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (Count.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Count) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 

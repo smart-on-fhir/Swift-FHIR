@@ -2,7 +2,7 @@
 //  QuestionnaireAnswers.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (questionnaireanswers.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/QuestionnaireAnswers) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets,
  *  corresponding to the structure of the grouping of the underlying questions.
  */
-public class QuestionnaireAnswers: FHIRResource
+public class QuestionnaireAnswers: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "QuestionnaireAnswers" }
@@ -42,17 +42,14 @@ public class QuestionnaireAnswers: FHIRResource
 	/// The person who answered the questions
 	public var source: Reference?
 	
-	/// in progress | completed | amended
+	/// in-progress | completed | amended
 	public var status: String?
 	
 	/// The subject of the questions
 	public var subject: Reference?
 	
-	public convenience init(authored: DateTime?, status: String?) {
+	public convenience init(status: String?) {
 		self.init(json: nil)
-		if nil != authored {
-			self.authored = authored
-		}
 		if nil != status {
 			self.status = status
 		}
@@ -316,6 +313,9 @@ public class QuestionnaireAnswersGroupQuestionAnswer: FHIRElement
 	/// Single-valued answer to the question
 	public var valueTime: Time?
 	
+	/// Single-valued answer to the question
+	public var valueUri: NSURL?
+	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -354,6 +354,9 @@ public class QuestionnaireAnswersGroupQuestionAnswer: FHIRElement
 			}
 			if let val = js["valueTime"] as? String {
 				self.valueTime = Time(string: val)
+			}
+			if let val = js["valueUri"] as? String {
+				self.valueUri = NSURL(string: val)
 			}
 		}
 	}
@@ -396,6 +399,9 @@ public class QuestionnaireAnswersGroupQuestionAnswer: FHIRElement
 		}
 		if let valueTime = self.valueTime {
 			json["valueTime"] = valueTime.asJSON()
+		}
+		if let valueUri = self.valueUri {
+			json["valueUri"] = valueUri.asJSON()
 		}
 		
 		return json

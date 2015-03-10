@@ -2,7 +2,7 @@
 //  Goal.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (goal.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Goal) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  Describes the intended objective(s) of the care.
  */
-public class Goal: FHIRResource
+public class Goal: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Goal" }
@@ -35,7 +35,7 @@ public class Goal: FHIRResource
 	/// The patient for whom this goal is intended for
 	public var patient: Reference?
 	
-	/// proposed | planned | in progress | achieved | sustaining | cancelled | accepted | rejected
+	/// proposed | planned | in-progress | achieved | sustaining | cancelled | accepted | rejected
 	public var status: String?
 	
 	public convenience init(description_fhir: String?) {

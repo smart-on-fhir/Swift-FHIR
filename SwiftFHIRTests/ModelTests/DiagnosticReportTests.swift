@@ -2,7 +2,7 @@
 //  DiagnosticReportTests.swift
 //  DiagnosticReportTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -44,6 +44,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.result![0].reference!, "#r1")
 		XCTAssertEqual(inst.status!, "final")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/pat2")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -70,6 +71,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.result![0].reference!, "#r1")
 		XCTAssertEqual(inst.status!, "final")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/pat2")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -96,6 +98,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.result![0].reference!, "#r1")
 		XCTAssertEqual(inst.status!, "final")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/pat2")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -111,9 +114,9 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.conclusion!, "Core lab")
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2013-04-02")
 		XCTAssertEqual(inst.id!, "f001")
-		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/reports")
-		XCTAssertEqual(inst.identifier!.use!, "official")
-		XCTAssertEqual(inst.identifier!.value!, "nr1239044")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/reports")
+		XCTAssertEqual(inst.identifier![0].use!, "official")
+		XCTAssertEqual(inst.identifier![0].value!, "nr1239044")
 		XCTAssertEqual(inst.issued!.description, "2013-05-15T19:32:52+01:00")
 		XCTAssertEqual(inst.name!.coding![0].code!, "58410-2")
 		XCTAssertEqual(inst.name!.coding![0].display!, "Complete blood count (hemogram) panel - Blood by Automated count")
@@ -134,6 +137,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.status!, "final")
 		XCTAssertEqual(inst.subject!.display!, "P. van den Heuvel")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/f001")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -149,9 +153,9 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.conclusion!, "Core lab")
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2013-04-02")
 		XCTAssertEqual(inst.id!, "f001")
-		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/reports")
-		XCTAssertEqual(inst.identifier!.use!, "official")
-		XCTAssertEqual(inst.identifier!.value!, "nr1239044")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.bmc.nl/zorgportal/identifiers/reports")
+		XCTAssertEqual(inst.identifier![0].use!, "official")
+		XCTAssertEqual(inst.identifier![0].value!, "nr1239044")
 		XCTAssertEqual(inst.issued!.description, "2013-05-15T19:32:52+01:00")
 		XCTAssertEqual(inst.name!.coding![0].code!, "58410-2")
 		XCTAssertEqual(inst.name!.coding![0].display!, "Complete blood count (hemogram) panel - Blood by Automated count")
@@ -172,6 +176,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.status!, "final")
 		XCTAssertEqual(inst.subject!.display!, "P. van den Heuvel")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/f001")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -205,6 +210,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.status!, "final")
 		XCTAssertEqual(inst.subject!.display!, "Roel")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -238,6 +244,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.status!, "final")
 		XCTAssertEqual(inst.subject!.display!, "Roel")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -273,6 +280,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.status!, "final")
 		XCTAssertEqual(inst.subject!.display!, "Roel")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -308,6 +316,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.status!, "final")
 		XCTAssertEqual(inst.subject!.display!, "Roel")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -322,8 +331,8 @@ class DiagnosticReportTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2011-03-04T08:30:00+11:00")
 		XCTAssertEqual(inst.id!, "lipids")
-		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://acme.com/lab/reports")
-		XCTAssertEqual(inst.identifier!.value!, "5234342")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://acme.com/lab/reports")
+		XCTAssertEqual(inst.identifier![0].value!, "5234342")
 		XCTAssertEqual(inst.issued!.description, "2013-01-27T11:45:33+11:00")
 		XCTAssertEqual(inst.name!.coding![0].code!, "57698-3")
 		XCTAssertEqual(inst.name!.coding![0].display!, "Lipid panel with direct LDL - Serum or Plasma")
@@ -339,6 +348,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.serviceCategory!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v2/0074")
 		XCTAssertEqual(inst.status!, "final")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/pat2")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

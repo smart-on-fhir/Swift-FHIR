@@ -2,7 +2,7 @@
 //  PaymentNoticeTests.swift
 //  PaymentNoticeTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -38,6 +38,8 @@ class PaymentNoticeTests: FHIRModelTestCase
 		XCTAssertEqual(inst.paymentStatus!.code!, "paid")
 		XCTAssertEqual(inst.paymentStatus!.system!.absoluteString!, "http://hl7.org/fhir/paymentstatus")
 		XCTAssertEqual(inst.request!.reference!, "http://benefitsinc.com/fhir/oralhealthclaim/12345")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the PaymentNotice</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -58,6 +60,8 @@ class PaymentNoticeTests: FHIRModelTestCase
 		XCTAssertEqual(inst.paymentStatus!.code!, "paid")
 		XCTAssertEqual(inst.paymentStatus!.system!.absoluteString!, "http://hl7.org/fhir/paymentstatus")
 		XCTAssertEqual(inst.request!.reference!, "http://benefitsinc.com/fhir/oralhealthclaim/12345")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the PaymentNotice</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -78,6 +82,8 @@ class PaymentNoticeTests: FHIRModelTestCase
 		XCTAssertEqual(inst.paymentStatus!.code!, "paid")
 		XCTAssertEqual(inst.paymentStatus!.system!.absoluteString!, "http://hl7.org/fhir/paymentstatus")
 		XCTAssertEqual(inst.request!.reference!, "http://benefitsinc.com/fhir/oralhealthclaim/12345")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the PaymentNotice</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

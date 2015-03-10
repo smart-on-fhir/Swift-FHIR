@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (schedule.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -12,7 +12,7 @@ import Foundation
 /**
  *  A container for slot(s) of time that may be available for booking appointments.
  */
-public class Schedule: FHIRResource
+public class Schedule: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Schedule" }

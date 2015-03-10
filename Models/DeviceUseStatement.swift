@@ -2,7 +2,7 @@
 //  DeviceUseStatement.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (deviceusestatement.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -16,14 +16,17 @@ import Foundation
  *  A record of a device being used by a patient where the record is the result of a report from the patient or another
  *  clinician.
  */
-public class DeviceUseStatement: FHIRResource
+public class DeviceUseStatement: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "DeviceUseStatement" }
 	}
 	
-	/// Body site where the device was used.
-	public var bodySite: [CodeableConcept]?
+	/// Target body site
+	public var bodySiteCodeableConcept: CodeableConcept?
+	
+	/// Target body site
+	public var bodySiteReference: Reference?
 	
 	/// The details of the device used.
 	public var device: Reference?
@@ -68,8 +71,11 @@ public class DeviceUseStatement: FHIRResource
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["bodySite"] as? [JSONDictionary] {
-				self.bodySite = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			if let val = js["bodySiteCodeableConcept"] as? JSONDictionary {
+				self.bodySiteCodeableConcept = CodeableConcept(json: val, owner: self)
+			}
+			if let val = js["bodySiteReference"] as? JSONDictionary {
+				self.bodySiteReference = Reference(json: val, owner: self)
 			}
 			if let val = js["device"] as? JSONDictionary {
 				self.device = Reference(json: val, owner: self)
@@ -107,8 +113,11 @@ public class DeviceUseStatement: FHIRResource
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let bodySite = self.bodySite {
-			json["bodySite"] = CodeableConcept.asJSONArray(bodySite)
+		if let bodySiteCodeableConcept = self.bodySiteCodeableConcept {
+			json["bodySiteCodeableConcept"] = bodySiteCodeableConcept.asJSON()
+		}
+		if let bodySiteReference = self.bodySiteReference {
+			json["bodySiteReference"] = bodySiteReference.asJSON()
 		}
 		if let device = self.device {
 			json["device"] = device.asJSON()

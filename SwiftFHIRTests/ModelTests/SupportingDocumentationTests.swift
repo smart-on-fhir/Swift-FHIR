@@ -2,7 +2,7 @@
 //  SupportingDocumentationTests.swift
 //  SupportingDocumentationTests
 //
-//  Generated from FHIR 0.4.0.3969 on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -47,6 +47,8 @@ class SupportingDocumentationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].value!, "52345")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/1")
 		XCTAssertEqual(inst.target!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Eligibility</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -76,6 +78,8 @@ class SupportingDocumentationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].value!, "52345")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/1")
 		XCTAssertEqual(inst.target!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Eligibility</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -105,6 +109,8 @@ class SupportingDocumentationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].value!, "52345")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/1")
 		XCTAssertEqual(inst.target!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Eligibility</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

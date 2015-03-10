@@ -2,7 +2,7 @@
 //  MedicationPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (medicationprescription.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/MedicationPrescription) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *
  *  An order for both supply of the medication and the instructions for administration of the medicine to a patient.
  */
-public class MedicationPrescription: FHIRResource
+public class MedicationPrescription: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "MedicationPrescription" }
@@ -38,6 +38,9 @@ public class MedicationPrescription: FHIRResource
 	/// Medication to be taken
 	public var medication: Reference?
 	
+	/// Information about the prescription
+	public var note: String?
+	
 	/// Who prescription is for
 	public var patient: Reference?
 	
@@ -50,7 +53,7 @@ public class MedicationPrescription: FHIRResource
 	/// Reason or indication for writing the prescription
 	public var reasonReference: Reference?
 	
-	/// active | on hold | completed | entered in error | stopped | superceded | draft
+	/// active | on-hold | completed | entered-in-error | stopped | superceded | draft
 	public var status: String?
 	
 	/// Any restrictions on medication substitution?
@@ -76,6 +79,9 @@ public class MedicationPrescription: FHIRResource
 			}
 			if let val = js["medication"] as? JSONDictionary {
 				self.medication = Reference(json: val, owner: self)
+			}
+			if let val = js["note"] as? String {
+				self.note = val
 			}
 			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
@@ -118,6 +124,9 @@ public class MedicationPrescription: FHIRResource
 		}
 		if let medication = self.medication {
 			json["medication"] = medication.asJSON()
+		}
+		if let note = self.note {
+			json["note"] = note.asJSON()
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()

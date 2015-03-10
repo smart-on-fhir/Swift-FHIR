@@ -2,7 +2,7 @@
 //  FamilyHistory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (familyhistory.profile.json) on 2015-01-23.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/FamilyHistory) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  Significant health events and conditions for people related to the subject relevant in the context of care for the
  *  subject.
  */
-public class FamilyHistory: FHIRResource
+public class FamilyHistory: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "FamilyHistory" }

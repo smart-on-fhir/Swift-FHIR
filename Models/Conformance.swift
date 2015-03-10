@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.3969 (conformance.profile.json) on 2015-01-25.
+//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2015-03-10.
 //  2015, SMART Platforms.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  A conformance statement is a set of requirements for a desired implementation or a description of how a target
  *  application fulfills those requirements in a particular implementation.
  */
-public class Conformance: FHIRResource
+public class Conformance: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Conformance" }
@@ -23,6 +23,12 @@ public class Conformance: FHIRResource
 	
 	/// True if application accepts unknown elements
 	public var acceptUnknown: Bool?
+	
+	/// Contact details of the publisher
+	public var contact: [ConformanceContact]?
+	
+	/// Use and/or Publishing restrictions
+	public var copyright: String?
 	
 	/// Publication Date(/time)
 	public var date: DateTime?
@@ -42,9 +48,6 @@ public class Conformance: FHIRResource
 	/// formats supported (xml | json | mime type)
 	public var format: [String]?
 	
-	/// Logical id to reference this statement
-	public var identifier: String?
-	
 	/// If this describes a specific instance
 	public var implementation: ConformanceImplementation?
 	
@@ -57,8 +60,11 @@ public class Conformance: FHIRResource
 	/// Profiles supported by the system
 	public var profile: [Reference]?
 	
-	/// Publishing Organization
+	/// Name of the publisher (Organization or individual)
 	public var publisher: String?
+	
+	/// Why is this needed?
+	public var requirements: String?
 	
 	/// If the endpoint is a RESTful one
 	public var rest: [ConformanceRest]?
@@ -69,13 +75,13 @@ public class Conformance: FHIRResource
 	/// draft | active | retired
 	public var status: String?
 	
-	/// Contacts for Organization
-	public var telecom: [ContactPoint]?
+	/// Logical uri to reference this statement
+	public var url: NSURL?
 	
 	/// Logical id for this version of the statement
 	public var version: String?
 	
-	public convenience init(acceptUnknown: Bool?, date: DateTime?, fhirVersion: String?, format: [String]?, publisher: String?) {
+	public convenience init(acceptUnknown: Bool?, date: DateTime?, fhirVersion: String?, format: [String]?) {
 		self.init(json: nil)
 		if nil != acceptUnknown {
 			self.acceptUnknown = acceptUnknown
@@ -89,9 +95,6 @@ public class Conformance: FHIRResource
 		if nil != format {
 			self.format = format
 		}
-		if nil != publisher {
-			self.publisher = publisher
-		}
 	}
 	
 	public required init(json: JSONDictionary?) {
@@ -99,6 +102,12 @@ public class Conformance: FHIRResource
 		if let js = json {
 			if let val = js["acceptUnknown"] as? Bool {
 				self.acceptUnknown = val
+			}
+			if let val = js["contact"] as? [JSONDictionary] {
+				self.contact = ConformanceContact.from(val, owner: self) as? [ConformanceContact]
+			}
+			if let val = js["copyright"] as? String {
+				self.copyright = val
 			}
 			if let val = js["date"] as? String {
 				self.date = DateTime(string: val)
@@ -118,9 +127,6 @@ public class Conformance: FHIRResource
 			if let val = js["format"] as? [String] {
 				self.format = val
 			}
-			if let val = js["identifier"] as? String {
-				self.identifier = val
-			}
 			if let val = js["implementation"] as? JSONDictionary {
 				self.implementation = ConformanceImplementation(json: val, owner: self)
 			}
@@ -136,6 +142,9 @@ public class Conformance: FHIRResource
 			if let val = js["publisher"] as? String {
 				self.publisher = val
 			}
+			if let val = js["requirements"] as? String {
+				self.requirements = val
+			}
 			if let val = js["rest"] as? [JSONDictionary] {
 				self.rest = ConformanceRest.from(val, owner: self) as? [ConformanceRest]
 			}
@@ -145,8 +154,8 @@ public class Conformance: FHIRResource
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["telecom"] as? [JSONDictionary] {
-				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+			if let val = js["url"] as? String {
+				self.url = NSURL(string: val)
 			}
 			if let val = js["version"] as? String {
 				self.version = val
@@ -159,6 +168,12 @@ public class Conformance: FHIRResource
 		
 		if let acceptUnknown = self.acceptUnknown {
 			json["acceptUnknown"] = acceptUnknown.asJSON()
+		}
+		if let contact = self.contact {
+			json["contact"] = ConformanceContact.asJSONArray(contact)
+		}
+		if let copyright = self.copyright {
+			json["copyright"] = copyright.asJSON()
 		}
 		if let date = self.date {
 			json["date"] = date.asJSON()
@@ -182,9 +197,6 @@ public class Conformance: FHIRResource
 			}
 			json["format"] = arr
 		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
-		}
 		if let implementation = self.implementation {
 			json["implementation"] = implementation.asJSON()
 		}
@@ -200,6 +212,9 @@ public class Conformance: FHIRResource
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
 		}
+		if let requirements = self.requirements {
+			json["requirements"] = requirements.asJSON()
+		}
 		if let rest = self.rest {
 			json["rest"] = ConformanceRest.asJSONArray(rest)
 		}
@@ -209,11 +224,55 @@ public class Conformance: FHIRResource
 		if let status = self.status {
 			json["status"] = status.asJSON()
 		}
-		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		if let url = self.url {
+			json["url"] = url.asJSON()
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Contact details of the publisher.
+ *
+ *  Contacts to assist a user in finding and communicating with the publisher.
+ */
+public class ConformanceContact: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ConformanceContact" }
+	}
+	
+	/// Name of a individual to contact
+	public var name: String?
+	
+	/// Contact details for individual or publisher
+	public var telecom: [ContactPoint]?
+	
+	public required init(json: JSONDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["name"] as? String {
+				self.name = val
+			}
+			if let val = js["telecom"] as? [JSONDictionary] {
+				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+			}
+		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
 		}
 		
 		return json
@@ -741,6 +800,15 @@ public class ConformanceRestResource: FHIRElement
 		get { return "ConformanceRestResource" }
 	}
 	
+	/// If allows/uses conditional create
+	public var conditionalCreate: Bool?
+	
+	/// If allows/uses conditional delete
+	public var conditionalDelete: Bool?
+	
+	/// If allows/uses conditional update
+	public var conditionalUpdate: Bool?
+	
 	/// What operations are supported?
 	public var interaction: [ConformanceRestResourceInteraction]?
 	
@@ -753,7 +821,7 @@ public class ConformanceRestResource: FHIRElement
 	/// _include values supported by the server
 	public var searchInclude: [String]?
 	
-	/// Additional search params defined
+	/// Search params supported by implementation
 	public var searchParam: [ConformanceRestResourceSearchParam]?
 	
 	/// A resource type that is supported
@@ -778,6 +846,15 @@ public class ConformanceRestResource: FHIRElement
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["conditionalCreate"] as? Bool {
+				self.conditionalCreate = val
+			}
+			if let val = js["conditionalDelete"] as? Bool {
+				self.conditionalDelete = val
+			}
+			if let val = js["conditionalUpdate"] as? Bool {
+				self.conditionalUpdate = val
+			}
 			if let val = js["interaction"] as? [JSONDictionary] {
 				self.interaction = ConformanceRestResourceInteraction.from(val, owner: self) as? [ConformanceRestResourceInteraction]
 			}
@@ -808,6 +885,15 @@ public class ConformanceRestResource: FHIRElement
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
+		if let conditionalCreate = self.conditionalCreate {
+			json["conditionalCreate"] = conditionalCreate.asJSON()
+		}
+		if let conditionalDelete = self.conditionalDelete {
+			json["conditionalDelete"] = conditionalDelete.asJSON()
+		}
+		if let conditionalUpdate = self.conditionalUpdate {
+			json["conditionalUpdate"] = conditionalUpdate.asJSON()
+		}
 		if let interaction = self.interaction {
 			json["interaction"] = ConformanceRestResourceInteraction.asJSONArray(interaction)
 		}
@@ -894,9 +980,10 @@ public class ConformanceRestResourceInteraction: FHIRElement
 
 
 /**
- *  Additional search params defined.
+ *  Search params supported by implementation.
  *
- *  Additional search parameters for implementations to support and/or make use of.
+ *  Search parameters for implementations to support and/or make use of - either references to ones defined in the
+ *  specification, or additional ones defined for/by the implementation.
  */
 public class ConformanceRestResourceSearchParam: FHIRElement
 {
@@ -1096,8 +1183,8 @@ public class ConformanceRestSecurityCertificate: FHIRElement
 /**
  *  Software that is covered by this conformance statement.
  *
- *  Software that is covered by this conformance statement.  It is used when the profile describes the capabilities of a
- *  particular software version, independent of an installation.
+ *  Software that is covered by this conformance statement.  It is used when the conformance statement describes the
+ *  capabilities of a particular software version, independent of an installation.
  */
 public class ConformanceSoftware: FHIRElement
 {

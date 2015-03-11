@@ -2,7 +2,7 @@
 //  MedicationTests.swift
 //  MedicationTests
 //
-//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -269,6 +269,10 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertFalse(inst.isBrand!)
 		XCTAssertEqual(inst.kind!, "product")
 		XCTAssertEqual(inst.name!, "Salmeterol/fluticason")
+		XCTAssertEqual(inst.product!.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/medication-usualRoute")
+		XCTAssertEqual(inst.product!.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "447694001")
+		XCTAssertEqual(inst.product!.extension_fhir![0].valueCodeableConcept!.coding![0].display!, "Respiratory tract route")
+		XCTAssertEqual(inst.product!.extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.product!.form!.coding![0].code!, "421606006")
 		XCTAssertEqual(inst.product!.form!.coding![0].display!, "Aerosol spray")
 		XCTAssertEqual(inst.product!.form!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -278,6 +282,8 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.code!, "ug")
 		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.system!.absoluteString!, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.value!, NSDecimalNumber(string: "25"))
+		XCTAssertEqual(inst.product!.ingredient![0].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/medication-isActiveIngredient")
+		XCTAssertTrue(inst.product!.ingredient![0].extension_fhir![0].valueBoolean!)
 		XCTAssertEqual(inst.product!.ingredient![0].item!.display!, "flutacisone")
 		XCTAssertEqual(inst.product!.ingredient![1].amount!.denominator!.code!, "PUFF")
 		XCTAssertEqual(inst.product!.ingredient![1].amount!.denominator!.system!.absoluteString!, "http://hl7.org/fhir/v3/orderableDrugForm")
@@ -285,6 +291,8 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.product!.ingredient![1].amount!.numerator!.code!, "ug")
 		XCTAssertEqual(inst.product!.ingredient![1].amount!.numerator!.system!.absoluteString!, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.product!.ingredient![1].amount!.numerator!.value!, NSDecimalNumber(string: "250"))
+		XCTAssertEqual(inst.product!.ingredient![1].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/medication-isActiveIngredient")
+		XCTAssertTrue(inst.product!.ingredient![1].extension_fhir![0].valueBoolean!)
 		XCTAssertEqual(inst.product!.ingredient![1].item!.display!, "salmeterol")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		

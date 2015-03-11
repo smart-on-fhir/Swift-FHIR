@@ -2,7 +2,7 @@
 //  EncounterTests.swift
 //  EncounterTests
 //
-//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -56,9 +56,9 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.priority!.coding![0].code!, "310361003")
 		XCTAssertEqual(inst.priority!.coding![0].display!, "Non-urgent cardiological admission")
 		XCTAssertEqual(inst.priority!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.reason!.coding![0].code!, "34068001")
-		XCTAssertEqual(inst.reason!.coding![0].display!, "Heart valve replacement")
-		XCTAssertEqual(inst.reason!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.reason![0].coding![0].code!, "34068001")
+		XCTAssertEqual(inst.reason![0].coding![0].display!, "Heart valve replacement")
+		XCTAssertEqual(inst.reason![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.serviceProvider!.display!, "Burgers University Medical Center")
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.status!, "finished")
@@ -104,9 +104,9 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.priority!.coding![0].code!, "103391001")
 		XCTAssertEqual(inst.priority!.coding![0].display!, "Urgent")
 		XCTAssertEqual(inst.priority!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.reason!.coding![0].code!, "34068001")
-		XCTAssertEqual(inst.reason!.coding![0].display!, "Partial lobectomy of lung")
-		XCTAssertEqual(inst.reason!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.reason![0].coding![0].code!, "34068001")
+		XCTAssertEqual(inst.reason![0].coding![0].display!, "Partial lobectomy of lung")
+		XCTAssertEqual(inst.reason![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.serviceProvider!.display!, "BMC")
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.status!, "finished")
@@ -152,9 +152,9 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.priority!.coding![0].code!, "103391001")
 		XCTAssertEqual(inst.priority!.coding![0].display!, "Non-urgent ear, nose and throat admission")
 		XCTAssertEqual(inst.priority!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.reason!.coding![0].code!, "18099001")
-		XCTAssertEqual(inst.reason!.coding![0].display!, "Retropharyngeal abscess")
-		XCTAssertEqual(inst.reason!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.reason![0].coding![0].code!, "18099001")
+		XCTAssertEqual(inst.reason![0].coding![0].display!, "Retropharyngeal abscess")
+		XCTAssertEqual(inst.reason![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.status!, "finished")
 		XCTAssertEqual(inst.text!.status!, "generated")
@@ -184,7 +184,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.priority!.coding![0].code!, "17621005")
 		XCTAssertEqual(inst.priority!.coding![0].display!, "Normal")
 		XCTAssertEqual(inst.priority!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.reason!.text!, "The patient had fever peaks over the last couple of days. He is worried about these peaks.")
+		XCTAssertEqual(inst.reason![0].text!, "The patient had fever peaks over the last couple of days. He is worried about these peaks.")
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f201")
 		XCTAssertEqual(inst.status!, "finished")
 		XCTAssertEqual(inst.text!.status!, "generated")
@@ -220,7 +220,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.priority!.coding![0].code!, "103391001")
 		XCTAssertEqual(inst.priority!.coding![0].display!, "Urgent")
 		XCTAssertEqual(inst.priority!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.reason!.text!, "The patient is treated for a tumor.")
+		XCTAssertEqual(inst.reason![0].text!, "The patient is treated for a tumor.")
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f201")
 		XCTAssertEqual(inst.status!, "finished")
 		XCTAssertEqual(inst.text!.status!, "generated")
@@ -259,7 +259,7 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.priority!.coding![0].code!, "394849002")
 		XCTAssertEqual(inst.priority!.coding![0].display!, "High priority")
 		XCTAssertEqual(inst.priority!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.reason!.text!, "The patient seems to suffer from bilateral pneumonia and renal insufficiency, most likely due to chemotherapy.")
+		XCTAssertEqual(inst.reason![0].text!, "The patient seems to suffer from bilateral pneumonia and renal insufficiency, most likely due to chemotherapy.")
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f201")
 		XCTAssertEqual(inst.status!, "finished")
 		XCTAssertEqual(inst.text!.status!, "generated")

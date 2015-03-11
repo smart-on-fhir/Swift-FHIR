@@ -2,7 +2,7 @@
 //  Timing.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Timing) on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Timing) on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -12,8 +12,8 @@ import Foundation
 /**
  *  A timing schedule that specifies an event that may occur multiple times.
  *
- *  Specifies an event that may occur multiple times. Timing schedules are used for to record when things are expected
- *  or requested to occur.
+ *  Specifies an event that may occur multiple times. Timing schedules are used to record when things are expected or
+ *  requested to occur.
  */
 public class Timing: FHIRElement
 {

@@ -2,7 +2,7 @@
 //  Signature.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Signature) on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Signature) on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -23,7 +23,7 @@ public class Signature: FHIRElement
 	/// The actual XML Dig-Sig
 	public var blob: Base64Binary?
 	
-	/// Indication of the reason the entity signed the document
+	/// Indication of the reason the entity signed the object(s)
 	public var type: [Coding]?
 	
 	/// When the signature was created

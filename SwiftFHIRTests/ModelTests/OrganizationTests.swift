@@ -2,7 +2,7 @@
 //  OrganizationTests.swift
 //  OrganizationTests
 //
-//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -32,6 +32,10 @@ class OrganizationTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.address![0].city!, "Harrisburg")
 		XCTAssertEqual(inst.address![0].country!, "USA")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].url!.absoluteString!, "http://example.org/iso21090-SC-coding")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].valueCoding!.code!, "42043")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].valueCoding!.system!.absoluteString!, "https://www.census.gov/geo/reference")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].url!.absoluteString!, "http://example.org/us-core-county")
 		XCTAssertEqual(inst.address![0].line![0], "Firstcare Way")
 		XCTAssertEqual(inst.address![0].line![1], "Building 1")
 		XCTAssertEqual(inst.address![0].postalCode!, "17111")
@@ -99,6 +103,10 @@ class OrganizationTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.address![0].city!, "Harrisburg")
 		XCTAssertEqual(inst.address![0].country!, "USA")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].url!.absoluteString!, "http://example.org/iso21090-SC-coding")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].valueCoding!.code!, "42043")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].valueCoding!.system!.absoluteString!, "https://www.census.gov/geo/reference")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].url!.absoluteString!, "http://example.org/us-core-county")
 		XCTAssertEqual(inst.address![0].line![0], "Firstcare Way")
 		XCTAssertEqual(inst.address![0].line![1], "Building 2")
 		XCTAssertEqual(inst.address![0].postalCode!, "42043")

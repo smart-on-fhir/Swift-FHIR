@@ -2,7 +2,7 @@
 //  PatientTests.swift
 //  PatientTests
 //
-//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -336,6 +336,8 @@ class PatientTests: FHIRModelTestCase
 		
 		XCTAssertTrue(inst.active!)
 		XCTAssertEqual(inst.address![0].city!, "PleasantVille")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/us-core-county")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].valueString!, "Orange County")
 		XCTAssertEqual(inst.address![0].line![0], "534 Erewhon St")
 		XCTAssertEqual(inst.address![0].postalCode!, "3999")
 		XCTAssertEqual(inst.address![0].state!, "Vic")
@@ -354,6 +356,8 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "work")
 		XCTAssertEqual(inst.telecom![0].value!, "(03) 5555 6473")
+		XCTAssertEqual(inst.telecom![1].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/us-core-direct")
+		XCTAssertTrue(inst.telecom![1].extension_fhir![0].valueBoolean!)
 		XCTAssertEqual(inst.telecom![1].system!, "email")
 		XCTAssertEqual(inst.telecom![1].use!, "work")
 		XCTAssertEqual(inst.telecom![1].value!, "person@example.org")

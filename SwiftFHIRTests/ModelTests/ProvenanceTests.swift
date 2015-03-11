@@ -2,7 +2,7 @@
 //  ProvenanceTests.swift
 //  ProvenanceTests
 //
-//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -31,17 +31,11 @@ class ProvenanceTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "provenance-example.json")
 		
 		XCTAssertEqual(inst.agent![0].display!, "Grahame Grieve")
-		XCTAssertEqual(inst.agent![0].reference!.absoluteString!, "mailto:grahame@healthintersections.com.au")
+		XCTAssertEqual(inst.agent![0].referenceUri!.absoluteString!, "mailto:grahame@healthintersections.com.au")
 		XCTAssertEqual(inst.agent![0].role!.code!, "author")
 		XCTAssertEqual(inst.agent![0].role!.system!.absoluteString!, "http://hl7.org/fhir/provenance-participant-role")
 		XCTAssertEqual(inst.agent![0].type!.code!, "person")
 		XCTAssertEqual(inst.agent![0].type!.system!.absoluteString!, "http://hl7.org/fhir/provenance-participant-type")
-		XCTAssertEqual(inst.agent![1].display!, "ISO 21090")
-		XCTAssertEqual(inst.agent![1].reference!.absoluteString!, "urn:iso:std:21090")
-		XCTAssertEqual(inst.agent![1].role!.code!, "source")
-		XCTAssertEqual(inst.agent![1].role!.system!.absoluteString!, "http://hl7.org/fhir/provenance-participant-role")
-		XCTAssertEqual(inst.agent![1].type!.code!, "document")
-		XCTAssertEqual(inst.agent![1].type!.system!.absoluteString!, "http://hl7.org/fhir/provenance-participant-type")
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.location!.reference!, "Location/2")
 		XCTAssertEqual(inst.period!.start!.description, "2011-06-23")

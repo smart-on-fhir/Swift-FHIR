@@ -2,7 +2,7 @@
 //  FHIRElement+Factory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -444,8 +444,8 @@ extension FHIRElement
 				return NutritionOrderEnteralFormula(json: json, owner: owner)
 			case "NutritionOrderOralDiet":
 				return NutritionOrderOralDiet(json: json, owner: owner)
-			case "NutritionOrderOralDietNutrients":
-				return NutritionOrderOralDietNutrients(json: json, owner: owner)
+			case "NutritionOrderOralDietNutrient":
+				return NutritionOrderOralDietNutrient(json: json, owner: owner)
 			case "NutritionOrderOralDietTexture":
 				return NutritionOrderOralDietTexture(json: json, owner: owner)
 			case "NutritionOrderSupplement":
@@ -700,6 +700,8 @@ extension FHIRElement
 				return ValueSetExpansion(json: json, owner: owner)
 			case "ValueSetExpansionContains":
 				return ValueSetExpansionContains(json: json, owner: owner)
+			case "ValueSetExpansionParameter":
+				return ValueSetExpansionParameter(json: json, owner: owner)
 			case "VisionClaim":
 				return VisionClaim(json: json, owner: owner)
 			case "VisionClaimCoverage":

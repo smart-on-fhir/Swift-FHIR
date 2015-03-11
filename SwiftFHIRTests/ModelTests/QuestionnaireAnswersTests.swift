@@ -2,7 +2,7 @@
 //  QuestionnaireAnswersTests.swift
 //  QuestionnaireAnswersTests
 //
-//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -41,6 +41,8 @@ class QuestionnaireAnswersTests: FHIRModelTestCase
 		XCTAssertEqual(inst.group!.group![0].group![1].question![1].answer![0].valueDecimal!, NSDecimalNumber(string: "44.3"))
 		XCTAssertEqual(inst.group!.group![0].group![1].question![1].text!, "Birth length (cm)")
 		XCTAssertEqual(inst.group!.group![0].group![1].question![2].answer![0].valueCoding!.code!, "INJECTION")
+		XCTAssertEqual(inst.group!.group![0].group![1].question![2].group![0].extension_fhir![0].url!.absoluteString!, "http://example.org/Profile/questionnaire#visibilityCondition")
+		XCTAssertEqual(inst.group!.group![0].group![1].question![2].group![0].extension_fhir![0].valueString!, "HAS_VALUE(../choice/code) AND NEQ(../choice/code,'NO')")
 		XCTAssertEqual(inst.group!.group![0].group![1].question![2].group![0].question![0].answer![0].valueDate!.description, "1972-11-30")
 		XCTAssertEqual(inst.group!.group![0].group![1].question![2].group![0].question![0].text!, "1st dose")
 		XCTAssertEqual(inst.group!.group![0].group![1].question![2].group![0].question![1].answer![0].valueDate!.description, "1972-12-11")

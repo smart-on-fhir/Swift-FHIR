@@ -2,7 +2,7 @@
 //  DataElement.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -35,9 +35,6 @@ public class DataElement: DomainResource
 	/// If for testing purposes, not real usage
 	public var experimental: Bool?
 	
-	/// comparable | fully-specified | equivalent | convertable | scaleable | flexible
-	public var granularity: String?
-	
 	/// Logical id to reference this data element
 	public var identifier: Identifier?
 	
@@ -50,13 +47,16 @@ public class DataElement: DomainResource
 	/// Name of the publisher (Organization or individual)
 	public var publisher: String?
 	
+	/// comparable | fully-specified | equivalent | convertable | scaleable | flexible
+	public var specificity: String?
+	
 	/// draft | active | retired
 	public var status: String?
 	
 	/// Globally unique logical id for data element
 	public var url: NSURL?
 	
-	/// Assist with indexing and finding
+	/// Content intends to support these contexts
 	public var useContext: [CodeableConcept]?
 	
 	/// Logical id for this version of the data element
@@ -90,9 +90,6 @@ public class DataElement: DomainResource
 			if let val = js["experimental"] as? Bool {
 				self.experimental = val
 			}
-			if let val = js["granularity"] as? String {
-				self.granularity = val
-			}
 			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)
 			}
@@ -104,6 +101,9 @@ public class DataElement: DomainResource
 			}
 			if let val = js["publisher"] as? String {
 				self.publisher = val
+			}
+			if let val = js["specificity"] as? String {
+				self.specificity = val
 			}
 			if let val = js["status"] as? String {
 				self.status = val
@@ -138,9 +138,6 @@ public class DataElement: DomainResource
 		if let experimental = self.experimental {
 			json["experimental"] = experimental.asJSON()
 		}
-		if let granularity = self.granularity {
-			json["granularity"] = granularity.asJSON()
-		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
 		}
@@ -152,6 +149,9 @@ public class DataElement: DomainResource
 		}
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
+		}
+		if let specificity = self.specificity {
+			json["specificity"] = specificity.asJSON()
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()

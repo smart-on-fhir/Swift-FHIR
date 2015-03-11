@@ -2,7 +2,7 @@
 //  Appointment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -10,8 +10,8 @@ import Foundation
 
 
 /**
- *  A scheduled healthcare event for a patient and/or practitioner(s) where a service may take place at a specific
- *  date/time.
+ *  A booking of a healthcare event among patient(s), practitioner(s), related person(s) and/or device(s) for a specific
+ *  date/time. This may result in one or more Encounter(s).
  */
 public class Appointment: DomainResource
 {
@@ -37,16 +37,13 @@ public class Appointment: DomainResource
 	/// Who recorded the appointment
 	public var lastModifiedBy: Reference?
 	
-	/// The primary location that this appointment is to take place
-	public var location: Reference?
-	
 	/// An Order that lead to the creation of this appointment
 	public var order: Reference?
 	
 	/// List of participants involved in the appointment
 	public var participant: [AppointmentParticipant]?
 	
-	/// The priority of the appointment. Can be used to make informed decisions if needing to re-prioritize appointments. (The iCal Standard specifies 0 as undefined, 1 as highest, 9 as lowest priority) (Need to change back to CodeableConcept)
+	/// The priority of the appointment. Can be used to make informed decisions if needing to re-prioritize appointments. (The iCal Standard specifies 0 as undefined, 1 as highest, 9 as lowest priority)
 	public var priority: Int?
 	
 	/// The reason that this appointment is being scheduled, this is more clinical than administrative
@@ -101,9 +98,6 @@ public class Appointment: DomainResource
 			if let val = js["lastModifiedBy"] as? JSONDictionary {
 				self.lastModifiedBy = Reference(json: val, owner: self)
 			}
-			if let val = js["location"] as? JSONDictionary {
-				self.location = Reference(json: val, owner: self)
-			}
 			if let val = js["order"] as? JSONDictionary {
 				self.order = Reference(json: val, owner: self)
 			}
@@ -152,9 +146,6 @@ public class Appointment: DomainResource
 		if let lastModifiedBy = self.lastModifiedBy {
 			json["lastModifiedBy"] = lastModifiedBy.asJSON()
 		}
-		if let location = self.location {
-			json["location"] = location.asJSON()
-		}
 		if let order = self.order {
 			json["order"] = order.asJSON()
 		}
@@ -194,13 +185,13 @@ public class AppointmentParticipant: FHIRElement
 		get { return "AppointmentParticipant" }
 	}
 	
-	/// A Person of device that is participating in the appointment, usually Practitioner, Patient, RelatedPerson or Device
+	/// A Person, Location/HealthcareService or Device that is participating in the appointment
 	public var actor: Reference?
 	
 	/// required | optional | information-only
 	public var required: String?
 	
-	/// accepted | declined | tentative | in-process | completed | needs-action
+	/// accepted | declined | tentative | needs-action
 	public var status: String?
 	
 	/// Role of participant in the appointment

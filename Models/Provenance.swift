@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -12,9 +12,13 @@ import Foundation
 /**
  *  Who, What, When for a set of resources.
  *
- *  Provenance information that describes the activity that led to the creation of a set of resources. This information
- *  can be used to help determine their reliability or trace where the information in them came from. The focus of the
- *  provenance resource is record keeping, audit and traceability, and not explicit statements of clinical significance.
+ *  Provenance of a resource is a record that describes entities and processes involved in producing and delivering or
+ *  otherwise influencing that resource. Provenance provides a critical foundation for assessing authenticity, enabling
+ *  trust, and allowing reproducibility. Provenance assertions are a form of contextual metadata and can themselves
+ *  become important records with their own provenance. Provenance statement indicates clinical significance in terms of
+ *  confidence in authenticity, reliability, and trustworthiness, integrity, and stage in lifecycle (e.g., Document
+ *  Completion - has the artifact been legally authenticated), all of which may impact Security, Privacy, and Trust
+ *  policies.
  */
 public class Provenance: DomainResource
 {
@@ -27,9 +31,6 @@ public class Provenance: DomainResource
 	
 	/// An entity used in this activity
 	public var entity: [ProvenanceEntity]?
-	
-	/// Base64 signature (DigSig) - integrity check
-	public var integritySignature: String?
 	
 	/// Where the activity occurred, if relevant
 	public var location: Reference?
@@ -45,6 +46,9 @@ public class Provenance: DomainResource
 	
 	/// When the activity was recorded / updated
 	public var recorded: Instant?
+	
+	/// Signature on target
+	public var signature: [Signature]?
 	
 	/// Target Reference(s) (usually version specific)
 	public var target: [Reference]?
@@ -68,9 +72,6 @@ public class Provenance: DomainResource
 			if let val = js["entity"] as? [JSONDictionary] {
 				self.entity = ProvenanceEntity.from(val, owner: self) as? [ProvenanceEntity]
 			}
-			if let val = js["integritySignature"] as? String {
-				self.integritySignature = val
-			}
 			if let val = js["location"] as? JSONDictionary {
 				self.location = Reference(json: val, owner: self)
 			}
@@ -86,6 +87,9 @@ public class Provenance: DomainResource
 			if let val = js["recorded"] as? String {
 				self.recorded = Instant(string: val)
 			}
+			if let val = js["signature"] as? [JSONDictionary] {
+				self.signature = Signature.from(val, owner: self) as? [Signature]
+			}
 			if let val = js["target"] as? [JSONDictionary] {
 				self.target = Reference.from(val, owner: self) as? [Reference]
 			}
@@ -100,9 +104,6 @@ public class Provenance: DomainResource
 		}
 		if let entity = self.entity {
 			json["entity"] = ProvenanceEntity.asJSONArray(entity)
-		}
-		if let integritySignature = self.integritySignature {
-			json["integritySignature"] = integritySignature.asJSON()
 		}
 		if let location = self.location {
 			json["location"] = location.asJSON()
@@ -122,6 +123,9 @@ public class Provenance: DomainResource
 		}
 		if let recorded = self.recorded {
 			json["recorded"] = recorded.asJSON()
+		}
+		if let signature = self.signature {
+			json["signature"] = Signature.asJSONArray(signature)
 		}
 		if let target = self.target {
 			json["target"] = Reference.asJSONArray(target)
@@ -148,8 +152,11 @@ public class ProvenanceAgent: FHIRElement
 	/// Human description of participant
 	public var display: String?
 	
-	/// Identity of agent (urn or url)
-	public var reference: NSURL?
+	/// Identity of agent
+	public var referenceReference: Reference?
+	
+	/// Identity of agent
+	public var referenceUri: NSURL?
 	
 	/// e.g. author | overseer | enterer | attester | source | cc: +
 	public var role: Coding?
@@ -157,11 +164,8 @@ public class ProvenanceAgent: FHIRElement
 	/// e.g. Resource | Person | Application | Record | Document +
 	public var type: Coding?
 	
-	public convenience init(reference: NSURL?, role: Coding?, type: Coding?) {
+	public convenience init(role: Coding?, type: Coding?) {
 		self.init(json: nil)
-		if nil != reference {
-			self.reference = reference
-		}
 		if nil != role {
 			self.role = role
 		}
@@ -176,8 +180,11 @@ public class ProvenanceAgent: FHIRElement
 			if let val = js["display"] as? String {
 				self.display = val
 			}
-			if let val = js["reference"] as? String {
-				self.reference = NSURL(string: val)
+			if let val = js["referenceReference"] as? JSONDictionary {
+				self.referenceReference = Reference(json: val, owner: self)
+			}
+			if let val = js["referenceUri"] as? String {
+				self.referenceUri = NSURL(string: val)
 			}
 			if let val = js["role"] as? JSONDictionary {
 				self.role = Coding(json: val, owner: self)
@@ -194,8 +201,11 @@ public class ProvenanceAgent: FHIRElement
 		if let display = self.display {
 			json["display"] = display.asJSON()
 		}
-		if let reference = self.reference {
-			json["reference"] = reference.asJSON()
+		if let referenceReference = self.referenceReference {
+			json["referenceReference"] = referenceReference.asJSON()
+		}
+		if let referenceUri = self.referenceUri {
+			json["referenceUri"] = referenceUri.asJSON()
 		}
 		if let role = self.role {
 			json["role"] = role.asJSON()

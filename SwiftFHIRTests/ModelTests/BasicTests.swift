@@ -2,7 +2,7 @@
 //  BasicTests.swift
 //  BasicTests
 //
-//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -81,6 +81,22 @@ class BasicTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "UMLCLASSMODEL")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://example.org/do-not-use/fhir-codes#resourceTypes")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![0].url!.absoluteString!, "name")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![0].valueString!, "Class1")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].extension_fhir![0].url!.absoluteString!, "name")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].extension_fhir![0].valueString!, "attribute1")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].extension_fhir![1].url!.absoluteString!, "minOccurs")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].extension_fhir![1].valueInteger!, 1)
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].extension_fhir![2].url!.absoluteString!, "maxOccurs")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].extension_fhir![2].valueCode!, "*")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].url!.absoluteString!, "attribute")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![2].extension_fhir![0].url!.absoluteString!, "name")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![2].extension_fhir![0].valueString!, "attribute2")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![2].extension_fhir![1].url!.absoluteString!, "minOccurs")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![2].extension_fhir![1].valueInteger!, 0)
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![2].extension_fhir![2].url!.absoluteString!, "maxOccurs")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![2].extension_fhir![2].valueInteger!, 1)
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![2].url!.absoluteString!, "attribute")
 		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://example.org/do-not-use/fhir-extensions/UMLclass")
 		XCTAssertEqual(inst.id!, "classModel")
 		XCTAssertEqual(inst.text!.status!, "generated")

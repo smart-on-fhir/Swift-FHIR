@@ -2,7 +2,7 @@
 //  PractitionerTests.swift
 //  PractitionerTests
 //
-//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -57,6 +57,10 @@ class PractitionerTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.address![0].city!, "Boston")
 		XCTAssertEqual(inst.address![0].country!, "USA")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].url!.absoluteString!, "http://example.org//iso21090-SC-coding")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].valueCoding!.code!, "42043")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].valueCoding!.system!.absoluteString!, "https://www.census.gov/geo/reference")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].url!.absoluteString!, "http://example.org/us-core-county")
 		XCTAssertEqual(inst.address![0].line![0], "100 Medical Drive")
 		XCTAssertEqual(inst.address![0].line![1], "Suite 6")
 		XCTAssertEqual(inst.address![0].postalCode!, "01236")

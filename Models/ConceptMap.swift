@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -68,6 +68,9 @@ public class ConceptMap: DomainResource
 	
 	/// Globally unique logical id for concept map
 	public var url: NSURL?
+	
+	/// Content intends to support these contexts
+	public var useContext: [CodeableConcept]?
 	
 	/// Logical id for this version of the concept map
 	public var version: String?
@@ -142,6 +145,9 @@ public class ConceptMap: DomainResource
 			if let val = js["url"] as? String {
 				self.url = NSURL(string: val)
 			}
+			if let val = js["useContext"] as? [JSONDictionary] {
+				self.useContext = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			}
 			if let val = js["version"] as? String {
 				self.version = val
 			}
@@ -198,6 +204,9 @@ public class ConceptMap: DomainResource
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
+		}
+		if let useContext = self.useContext {
+			json["useContext"] = CodeableConcept.asJSONArray(useContext)
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()

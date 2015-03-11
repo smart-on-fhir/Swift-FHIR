@@ -2,7 +2,7 @@
 //  Identifier.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2015-03-11.
 //  2015, SMART Platforms.
 //
 

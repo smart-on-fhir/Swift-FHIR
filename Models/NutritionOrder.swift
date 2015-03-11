@@ -2,7 +2,7 @@
 //  NutritionOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -305,7 +305,7 @@ public class NutritionOrderOralDiet: FHIRElement
 	public var instruction: String?
 	
 	/// Required  nutrient modifications
-	public var nutrients: [NutritionOrderOralDietNutrients]?
+	public var nutrient: [NutritionOrderOralDietNutrient]?
 	
 	/// Scheduled frequency of diet
 	public var scheduled: Timing?
@@ -325,8 +325,8 @@ public class NutritionOrderOralDiet: FHIRElement
 			if let val = js["instruction"] as? String {
 				self.instruction = val
 			}
-			if let val = js["nutrients"] as? [JSONDictionary] {
-				self.nutrients = NutritionOrderOralDietNutrients.from(val, owner: self) as? [NutritionOrderOralDietNutrients]
+			if let val = js["nutrient"] as? [JSONDictionary] {
+				self.nutrient = NutritionOrderOralDietNutrient.from(val, owner: self) as? [NutritionOrderOralDietNutrient]
 			}
 			if let val = js["scheduled"] as? JSONDictionary {
 				self.scheduled = Timing(json: val, owner: self)
@@ -349,8 +349,8 @@ public class NutritionOrderOralDiet: FHIRElement
 		if let instruction = self.instruction {
 			json["instruction"] = instruction.asJSON()
 		}
-		if let nutrients = self.nutrients {
-			json["nutrients"] = NutritionOrderOralDietNutrients.asJSONArray(nutrients)
+		if let nutrient = self.nutrient {
+			json["nutrient"] = NutritionOrderOralDietNutrient.asJSONArray(nutrient)
 		}
 		if let scheduled = self.scheduled {
 			json["scheduled"] = scheduled.asJSON()
@@ -372,10 +372,10 @@ public class NutritionOrderOralDiet: FHIRElement
  *
  *  Class that defines the details of any nutrient modifications required for the oral diet.
  */
-public class NutritionOrderOralDietNutrients: FHIRElement
+public class NutritionOrderOralDietNutrient: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "NutritionOrderOralDietNutrients" }
+		get { return "NutritionOrderOralDietNutrient" }
 	}
 	
 	/// Quantity of the specified nutrient

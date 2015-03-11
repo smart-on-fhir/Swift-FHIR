@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -238,6 +238,9 @@ public class DocumentReferenceContext: FHIRElement
 	/// Time of service that is being documented
 	public var period: Period?
 	
+	/// Source patient info
+	public var sourcePatientInfo: Reference?
+	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
@@ -249,6 +252,9 @@ public class DocumentReferenceContext: FHIRElement
 			}
 			if let val = js["period"] as? JSONDictionary {
 				self.period = Period(json: val, owner: self)
+			}
+			if let val = js["sourcePatientInfo"] as? JSONDictionary {
+				self.sourcePatientInfo = Reference(json: val, owner: self)
 			}
 		}
 	}
@@ -264,6 +270,9 @@ public class DocumentReferenceContext: FHIRElement
 		}
 		if let period = self.period {
 			json["period"] = period.asJSON()
+		}
+		if let sourcePatientInfo = self.sourcePatientInfo {
+			json["sourcePatientInfo"] = sourcePatientInfo.asJSON()
 		}
 		
 		return json

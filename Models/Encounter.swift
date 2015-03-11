@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -36,6 +36,9 @@ public class Encounter: DomainResource
 	/// Identifier(s) by which this encounter is known
 	public var identifier: [Identifier]?
 	
+	/// Incoming Referral Request
+	public var incomingReferralRequest: [Reference]?
+	
 	/// Reason the encounter takes place (resource)
 	public var indication: [Reference]?
 	
@@ -61,9 +64,9 @@ public class Encounter: DomainResource
 	public var priority: CodeableConcept?
 	
 	/// Reason the encounter takes place (code)
-	public var reason: CodeableConcept?
+	public var reason: [CodeableConcept]?
 	
-	/// Department or team providing care
+	/// The custodian organization of this Encounter record
 	public var serviceProvider: Reference?
 	
 	/// planned | arrived | in-progress | onleave | finished | cancelled
@@ -103,6 +106,9 @@ public class Encounter: DomainResource
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
+			if let val = js["incomingReferralRequest"] as? [JSONDictionary] {
+				self.incomingReferralRequest = Reference.from(val, owner: self) as? [Reference]
+			}
 			if let val = js["indication"] as? [JSONDictionary] {
 				self.indication = Reference.from(val, owner: self) as? [Reference]
 			}
@@ -127,8 +133,8 @@ public class Encounter: DomainResource
 			if let val = js["priority"] as? JSONDictionary {
 				self.priority = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["reason"] as? JSONDictionary {
-				self.reason = CodeableConcept(json: val, owner: self)
+			if let val = js["reason"] as? [JSONDictionary] {
+				self.reason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["serviceProvider"] as? JSONDictionary {
 				self.serviceProvider = Reference(json: val, owner: self)
@@ -163,6 +169,9 @@ public class Encounter: DomainResource
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
+		if let incomingReferralRequest = self.incomingReferralRequest {
+			json["incomingReferralRequest"] = Reference.asJSONArray(incomingReferralRequest)
+		}
 		if let indication = self.indication {
 			json["indication"] = Reference.asJSONArray(indication)
 		}
@@ -188,7 +197,7 @@ public class Encounter: DomainResource
 			json["priority"] = priority.asJSON()
 		}
 		if let reason = self.reason {
-			json["reason"] = reason.asJSON()
+			json["reason"] = CodeableConcept.asJSONArray(reason)
 		}
 		if let serviceProvider = self.serviceProvider {
 			json["serviceProvider"] = serviceProvider.asJSON()

@@ -2,7 +2,7 @@
 //  LocationTests.swift
 //  LocationTests
 //
-//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -65,6 +65,10 @@ class LocationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address!.postalCode!, "9105 PZ")
 		XCTAssertEqual(inst.address!.use!, "work")
 		XCTAssertEqual(inst.description_fhir!, "Second floor of the Old South Wing, formerly in use by Psychiatry")
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/location-alias")
+		XCTAssertEqual(inst.extension_fhir![0].valueString!, "Burgers University Medical Center, South Wing, second floor")
+		XCTAssertEqual(inst.extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/location-alias")
+		XCTAssertEqual(inst.extension_fhir![1].valueString!, "BU MC, SW, F2")
 		XCTAssertEqual(inst.id!, "1")
 		XCTAssertEqual(inst.identifier![0].value!, "B1-S.F2")
 		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/f001")
@@ -73,8 +77,8 @@ class LocationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.physicalType!.coding![0].display!, "Wing")
 		XCTAssertEqual(inst.physicalType!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/location-physical-type")
 		XCTAssertEqual(inst.position!.altitude!, NSDecimalNumber(string: "0"))
-		XCTAssertEqual(inst.position!.latitude!, NSDecimalNumber(string: "52.37799399970903"))
-		XCTAssertEqual(inst.position!.longitude!, NSDecimalNumber(string: "4.844614000123024"))
+		XCTAssertEqual(inst.position!.latitude!, NSDecimalNumber(string: "42.25475478"))
+		XCTAssertEqual(inst.position!.longitude!, NSDecimalNumber(string: "-83.6945691"))
 		XCTAssertEqual(inst.status!, "active")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "work")

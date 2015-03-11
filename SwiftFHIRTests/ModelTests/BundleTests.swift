@@ -2,7 +2,7 @@
 //  BundleTests.swift
 //  BundleTests
 //
-//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -300,16 +300,26 @@ class BundleTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "questionnaire-sdc-profile-example.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString!, "http://AHRQ.org/form")
+		XCTAssertEqual(inst.entry![0].resource!.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/questionnaire-category")
+		XCTAssertEqual(inst.entry![0].resource!.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "Acute Care Hospitals")
 		XCTAssertEqual(inst.entry![0].resource!.id!, "F8-1.2")
 		XCTAssertEqual(inst.entry![0].resource!.meta!.lastUpdated!.description, "2014-05-15T17:25:15Z")
 		XCTAssertEqual(inst.entry![1].resource!.id!, "HERF-1.2")
 		XCTAssertEqual(inst.entry![1].resource!.meta!.lastUpdated!.description, "2014-05-15T17:25:15Z")
+		XCTAssertEqual(inst.entry![2].resource!.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/questionnaire-category")
+		XCTAssertEqual(inst.entry![2].resource!.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "CRF")
 		XCTAssertEqual(inst.entry![2].resource!.id!, "3921052v1.0")
 		XCTAssertEqual(inst.entry![2].resource!.language!, "en")
 		XCTAssertEqual(inst.entry![2].resource!.meta!.lastUpdated!.description, "2014-05-15T17:25:15Z")
+		XCTAssertEqual(inst.entry![3].resource!.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/questionnaire-category")
+		XCTAssertEqual(inst.entry![3].resource!.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "CRF")
+		XCTAssertEqual(inst.entry![3].resource!.extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/questionnaire-category")
+		XCTAssertEqual(inst.entry![3].resource!.extension_fhir![1].valueCodeableConcept!.coding![0].code!, "Demographic")
 		XCTAssertEqual(inst.entry![3].resource!.id!, "2674812v4.0")
 		XCTAssertEqual(inst.entry![3].resource!.language!, "en")
 		XCTAssertEqual(inst.entry![3].resource!.meta!.lastUpdated!.description, "2014-05-15T17:25:15Z")
+		XCTAssertEqual(inst.entry![4].resource!.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/questionnaire-category")
+		XCTAssertEqual(inst.entry![4].resource!.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "CRF")
 		XCTAssertEqual(inst.entry![4].resource!.id!, "3265657v2.0")
 		XCTAssertEqual(inst.entry![4].resource!.language!, "en")
 		XCTAssertEqual(inst.entry![4].resource!.meta!.lastUpdated!.description, "2014-05-15T17:25:15Z")
@@ -329,6 +339,10 @@ class BundleTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "xds-example.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString!, "cid:123@healthintersections.com.au")
+		XCTAssertEqual(inst.entry![0].resource!.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/xds-practiceSettingCode")
+		XCTAssertEqual(inst.entry![0].resource!.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "General Medicine")
+		XCTAssertEqual(inst.entry![0].resource!.extension_fhir![0].valueCodeableConcept!.coding![0].display!, "General Medicine")
+		XCTAssertEqual(inst.entry![0].resource!.extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://ihe.net/connectathon/practiceSettingCodes")
 		XCTAssertEqual(inst.entry![0].resource!.id!, "a1")
 		XCTAssertEqual(inst.entry![0].resource!.meta!.lastUpdated!.description, "2013-07-01T13:11:33Z")
 		XCTAssertEqual(inst.entry![0].transaction!.method!, "POST")

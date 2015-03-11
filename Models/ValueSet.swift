@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -71,6 +71,9 @@ public class ValueSet: DomainResource
 	/// Globally unique logical id for  value set
 	public var url: NSURL?
 	
+	/// Content intends to support these contexts
+	public var useContext: [CodeableConcept]?
+	
 	/// Logical id for this version of the value set
 	public var version: String?
 	
@@ -135,6 +138,9 @@ public class ValueSet: DomainResource
 			if let val = js["url"] as? String {
 				self.url = NSURL(string: val)
 			}
+			if let val = js["useContext"] as? [JSONDictionary] {
+				self.useContext = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			}
 			if let val = js["version"] as? String {
 				self.version = val
 			}
@@ -194,6 +200,9 @@ public class ValueSet: DomainResource
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
+		}
+		if let useContext = self.useContext {
+			json["useContext"] = CodeableConcept.asJSONArray(useContext)
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
@@ -719,6 +728,9 @@ public class ValueSetExpansion: FHIRElement
 	/// Uniquely identifies this expansion
 	public var identifier: Identifier?
 	
+	/// Parameter that controlled the expansion process
+	public var parameter: [ValueSetExpansionParameter]?
+	
 	/// Time valueset expansion happened
 	public var timestamp: DateTime?
 	
@@ -738,6 +750,9 @@ public class ValueSetExpansion: FHIRElement
 			if let val = js["identifier"] as? JSONDictionary {
 				self.identifier = Identifier(json: val, owner: self)
 			}
+			if let val = js["parameter"] as? [JSONDictionary] {
+				self.parameter = ValueSetExpansionParameter.from(val, owner: self) as? [ValueSetExpansionParameter]
+			}
 			if let val = js["timestamp"] as? String {
 				self.timestamp = DateTime(string: val)
 			}
@@ -752,6 +767,9 @@ public class ValueSetExpansion: FHIRElement
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
+		}
+		if let parameter = self.parameter {
+			json["parameter"] = ValueSetExpansionParameter.asJSONArray(parameter)
 		}
 		if let timestamp = self.timestamp {
 			json["timestamp"] = timestamp.asJSON()
@@ -835,6 +853,103 @@ public class ValueSetExpansionContains: FHIRElement
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Parameter that controlled the expansion process.
+ *
+ *  A Parameter that controlled the expansion process. These paameters may be used by users of expanded value sets to
+ *  check whether the expansion is suitable for a particular purpose, or to pick the correct expansion.
+ */
+public class ValueSetExpansionParameter: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ValueSetExpansionParameter" }
+	}
+	
+	/// Name as assigned by server
+	public var name: String?
+	
+	/// Value of the parameter
+	public var valueBoolean: Bool?
+	
+	/// Value of the parameter
+	public var valueCode: String?
+	
+	/// Value of the parameter
+	public var valueDecimal: NSDecimalNumber?
+	
+	/// Value of the parameter
+	public var valueInteger: Int?
+	
+	/// Value of the parameter
+	public var valueString: String?
+	
+	/// Value of the parameter
+	public var valueUri: NSURL?
+	
+	public convenience init(name: String?) {
+		self.init(json: nil)
+		if nil != name {
+			self.name = name
+		}
+	}
+	
+	public required init(json: JSONDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["name"] as? String {
+				self.name = val
+			}
+			if let val = js["valueBoolean"] as? Bool {
+				self.valueBoolean = val
+			}
+			if let val = js["valueCode"] as? String {
+				self.valueCode = val
+			}
+			if let val = js["valueDecimal"] as? NSNumber {
+				self.valueDecimal = NSDecimalNumber(json: val)
+			}
+			if let val = js["valueInteger"] as? Int {
+				self.valueInteger = val
+			}
+			if let val = js["valueString"] as? String {
+				self.valueString = val
+			}
+			if let val = js["valueUri"] as? String {
+				self.valueUri = NSURL(string: val)
+			}
+		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let valueBoolean = self.valueBoolean {
+			json["valueBoolean"] = valueBoolean.asJSON()
+		}
+		if let valueCode = self.valueCode {
+			json["valueCode"] = valueCode.asJSON()
+		}
+		if let valueDecimal = self.valueDecimal {
+			json["valueDecimal"] = valueDecimal.asJSON()
+		}
+		if let valueInteger = self.valueInteger {
+			json["valueInteger"] = valueInteger.asJSON()
+		}
+		if let valueString = self.valueString {
+			json["valueString"] = valueString.asJSON()
+		}
+		if let valueUri = self.valueUri {
+			json["valueUri"] = valueUri.asJSON()
 		}
 		
 		return json

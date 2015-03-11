@@ -2,7 +2,7 @@
 //  Location.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4332 (http://hl7.org/fhir/StructureDefinition/Location) on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Location) on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -147,7 +147,8 @@ public class Location: DomainResource
 /**
  *  The absolute geographic location.
  *
- *  The absolute geographic location of the Location, expressed in a KML compatible manner (see notes below for KML).
+ *  The absolute geographic location of the Location, expressed in with the WGS84 datum (This is the same co-ordinate
+ *  system used in KML).
  */
 public class LocationPosition: FHIRElement
 {
@@ -155,13 +156,13 @@ public class LocationPosition: FHIRElement
 		get { return "LocationPosition" }
 	}
 	
-	/// Altitude as expressed in KML
+	/// Altitude with WGS84 datum
 	public var altitude: NSDecimalNumber?
 	
-	/// Latitude as expressed in KML
+	/// Latitude with WGS84 datum
 	public var latitude: NSDecimalNumber?
 	
-	/// Longitude as expressed in KML
+	/// Longitude with WGS84 datum
 	public var longitude: NSDecimalNumber?
 	
 	public convenience init(latitude: NSDecimalNumber?, longitude: NSDecimalNumber?) {

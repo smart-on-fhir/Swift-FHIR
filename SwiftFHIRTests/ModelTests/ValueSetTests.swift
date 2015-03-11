@@ -2,7 +2,7 @@
 //  ValueSetTests.swift
 //  ValueSetTests
 //
-//  Generated from FHIR 0.4.0.4332 on 2015-03-10.
+//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
 //  2015, SMART Platforms.
 //
 
@@ -91,14 +91,16 @@ class ValueSetTests: FHIRModelTestCase
 		XCTAssertEqual(inst.define!.concept![8].code!, "plans")
 		XCTAssertEqual(inst.define!.concept![8].definition!, "A set of care plans that apply in a particular context of care")
 		XCTAssertEqual(inst.define!.concept![8].display!, "Care Plans")
+		XCTAssertEqual(inst.define!.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/valueset-oid")
+		XCTAssertEqual(inst.define!.extension_fhir![0].valueUri!.absoluteString!, "urn:oid:null")
 		XCTAssertEqual(inst.define!.system!.absoluteString!, "http://hl7.org/fhir/list-example-use-codes")
 		XCTAssertEqual(inst.description_fhir!, "Example use codes for the List resource - typical kinds of use. TODO: Does LOINC define useful codes?")
 		XCTAssertTrue(inst.experimental!)
 		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/valueset-oid")
 		XCTAssertEqual(inst.extension_fhir![0].valueUri!.absoluteString!, "urn:oid:2.16.840.1.113883.4.642.2.320")
 		XCTAssertEqual(inst.id!, "valueset-list-example-codes")
-		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2015-03-10T02:55:33.653+00:00")
-		XCTAssertEqual(inst.meta!.profile![0].absoluteString!, "http://hl7.org/fhir/Profile/valueset-shareable-definition")
+		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2015-03-11T09:34:16.742+00:00")
+		XCTAssertEqual(inst.meta!.profile![0].absoluteString!, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
 		XCTAssertEqual(inst.name!, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher!, "FHIR Project")
 		XCTAssertEqual(inst.status!, "draft")

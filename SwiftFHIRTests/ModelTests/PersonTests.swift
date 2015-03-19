@@ -2,7 +2,7 @@
 //  PersonTests.swift
 //  PersonTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -45,6 +45,10 @@ class PersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:1.2.36.146.595.217.0.1")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
 		XCTAssertEqual(inst.identifier![0].value!, "12345")
+		XCTAssertEqual(inst.link![0].target!.display!, "Peter Chalmers")
+		XCTAssertEqual(inst.link![0].target!.reference!, "RelatedPerson/peter")
+		XCTAssertEqual(inst.link![1].target!.display!, "Peter Chalmers")
+		XCTAssertEqual(inst.link![1].target!.reference!, "Patient/example")
 		XCTAssertEqual(inst.name![0].family![0], "Chalmers")
 		XCTAssertEqual(inst.name![0].given![0], "Peter")
 		XCTAssertEqual(inst.name![0].given![1], "James")

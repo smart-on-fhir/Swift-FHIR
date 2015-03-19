@@ -2,7 +2,7 @@
 //  SlotTests.swift
 //  SlotTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -36,7 +36,6 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "1")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://example.org/identifiers/slots")
 		XCTAssertEqual(inst.identifier![0].value!, "123132")
-		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertTrue(inst.overbooked!)
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:00:00Z")
@@ -59,7 +58,6 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.end!.description, "2013-12-25T10:00:00Z")
 		XCTAssertEqual(inst.freeBusyType!, "BUSY-TENTATIVE")
 		XCTAssertEqual(inst.id!, "2")
-		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:45:00Z")
 		XCTAssertEqual(inst.text!.status!, "generated")
@@ -81,7 +79,6 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.end!.description, "2013-12-25T09:45:00Z")
 		XCTAssertEqual(inst.freeBusyType!, "BUSY-UNAVAILABLE")
 		XCTAssertEqual(inst.id!, "3")
-		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:30:00Z")
 		XCTAssertEqual(inst.text!.status!, "generated")
@@ -103,7 +100,6 @@ class SlotTests: FHIRModelTestCase
 		XCTAssertEqual(inst.end!.description, "2013-12-25T09:30:00Z")
 		XCTAssertEqual(inst.freeBusyType!, "FREE")
 		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.schedule!.reference!, "Schedule/example")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T09:15:00Z")
 		XCTAssertEqual(inst.text!.status!, "generated")

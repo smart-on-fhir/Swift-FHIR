@@ -2,7 +2,7 @@
 //  ImagingStudyTests.swift
 //  ImagingStudyTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -38,10 +38,10 @@ class ImagingStudyTests: FHIRModelTestCase
 		XCTAssertEqual(inst.series![0].bodySite!.display!, "Upper Trunk Structure")
 		XCTAssertEqual(inst.series![0].bodySite!.system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.series![0].description_fhir!, "CT Surview 180")
+		XCTAssertEqual(inst.series![0].instance![0].content![0].url!.absoluteString!, "http://localhost/fhir/Binary/1.2.840.11361907579238403408700.3.0.14.19970327150033")
 		XCTAssertEqual(inst.series![0].instance![0].number!, 1)
 		XCTAssertEqual(inst.series![0].instance![0].sopclass!, "urn:oid:1.2.840.10008.5.1.4.1.1.2")
 		XCTAssertEqual(inst.series![0].instance![0].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092903")
-		XCTAssertEqual(inst.series![0].instance![0].url!.absoluteString!, "http://localhost/fhir/Binary/1.2.840.11361907579238403408700.3.0.14.19970327150033")
 		XCTAssertEqual(inst.series![0].modality!, "CT")
 		XCTAssertEqual(inst.series![0].number!, 3)
 		XCTAssertEqual(inst.series![0].numberOfInstances!, 1)
@@ -80,10 +80,10 @@ class ImagingStudyTests: FHIRModelTestCase
 		XCTAssertEqual(inst.series![0].bodySite!.display!, "Upper Trunk Structure")
 		XCTAssertEqual(inst.series![0].bodySite!.system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.series![0].description_fhir!, "CT Surview 180")
+		XCTAssertEqual(inst.series![0].instance![0].content![0].url!.absoluteString!, "http://localhost/fhir/Binary/1.2.840.11361907579238403408700.3.0.14.19970327150033")
 		XCTAssertEqual(inst.series![0].instance![0].number!, 1)
 		XCTAssertEqual(inst.series![0].instance![0].sopclass!, "urn:oid:1.2.840.10008.5.1.4.1.1.2")
 		XCTAssertEqual(inst.series![0].instance![0].uid!, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092903")
-		XCTAssertEqual(inst.series![0].instance![0].url!.absoluteString!, "http://localhost/fhir/Binary/1.2.840.11361907579238403408700.3.0.14.19970327150033")
 		XCTAssertEqual(inst.series![0].modality!, "CT")
 		XCTAssertEqual(inst.series![0].number!, 3)
 		XCTAssertEqual(inst.series![0].numberOfInstances!, 1)

@@ -2,7 +2,7 @@
 //  DataElementTests.swift
 //  DataElementTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -31,12 +31,12 @@ class DataElementTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "dataelement-example.json")
 		
 		XCTAssertEqual(inst.element![0].binding!.name!, "Gender")
-		XCTAssertEqual(inst.element![0].binding!.referenceReference!.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-valueset")
-		XCTAssertEqual(inst.element![0].binding!.referenceReference!.extension_fhir![0].valueReference!.reference!, "#2179414-permitted")
-		XCTAssertEqual(inst.element![0].binding!.referenceReference!.extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap")
-		XCTAssertEqual(inst.element![0].binding!.referenceReference!.extension_fhir![1].valueReference!.reference!, "#2179414-cm")
-		XCTAssertEqual(inst.element![0].binding!.referenceReference!.reference!, "#2179414")
 		XCTAssertEqual(inst.element![0].binding!.strength!, "required")
+		XCTAssertEqual(inst.element![0].binding!.valueSetReference!.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-valueset")
+		XCTAssertEqual(inst.element![0].binding!.valueSetReference!.extension_fhir![0].valueReference!.reference!, "#2179414-permitted")
+		XCTAssertEqual(inst.element![0].binding!.valueSetReference!.extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-conceptmap")
+		XCTAssertEqual(inst.element![0].binding!.valueSetReference!.extension_fhir![1].valueReference!.reference!, "#2179414-cm")
+		XCTAssertEqual(inst.element![0].binding!.valueSetReference!.reference!, "#2179414")
 		XCTAssertEqual(inst.element![0].definition!, "The code representing the gender of a person.")
 		XCTAssertEqual(inst.element![0].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/minLength")
 		XCTAssertEqual(inst.element![0].extension_fhir![0].valueInteger!, 1)
@@ -84,6 +84,7 @@ class DataElementTests: FHIRModelTestCase
 	func testDataElement2_impl(json: JSONDictionary? = nil) -> DataElement {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "dataelement-labtestmaster-example.json")
 		
+		XCTAssertEqual(inst.element![0].alias![0], "Protime, PT")
 		XCTAssertEqual(inst.element![0].comments!, "Used to screen the integrity of the extrinsic and common pathways of coagulation and to monitor warfarin anticoagulation. ")
 		XCTAssertEqual(inst.element![0].definition!, "The PT test evaluates the extrinsic and common pathways of the coagulation cascade.")
 		XCTAssertEqual(inst.element![0].exampleDecimal!, NSDecimalNumber(string: "10.0"))
@@ -92,15 +93,12 @@ class DataElementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.element![0].extension_fhir![0].valueCodeableConcept!.coding![0].display!, "second")
 		XCTAssertTrue(inst.element![0].extension_fhir![0].valueCodeableConcept!.coding![0].primary!)
 		XCTAssertEqual(inst.element![0].extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http:/unitsofmeasure.org")
-		XCTAssertEqual(inst.element![0].extension_fhir![0].valueCodeableConcept!.coding![0].valueSet!.display!, "UCUM")
-		XCTAssertEqual(inst.element![0].extension_fhir![0].valueCodeableConcept!.coding![0].valueSet!.reference!, "http:/unitsofmeasure.org/vs")
 		XCTAssertEqual(inst.element![0].extension_fhir![0].valueCodeableConcept!.coding![0].version!, "1.9")
 		XCTAssertEqual(inst.element![0].extension_fhir![0].valueCodeableConcept!.text!, "second")
 		XCTAssertEqual(inst.element![0].mapping![0].identity!, "loinc")
 		XCTAssertEqual(inst.element![0].mapping![0].map!, "5964-2")
 		XCTAssertEqual(inst.element![0].path!, "prothrombin")
 		XCTAssertEqual(inst.element![0].requirements!, "This test is orderable. A plasma specimen in a 3.2% sodium citrate blue top tube is required.")
-		XCTAssertEqual(inst.element![0].synonym![0], "Protime, PT")
 		XCTAssertEqual(inst.element![0].type![0].code!, "Decimal")
 		XCTAssertEqual(inst.id!, "prothrombin")
 		XCTAssertEqual(inst.identifier!.assigner!.display!, "Century Hospital Laboratory")
@@ -131,8 +129,8 @@ class DataElementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![0].telecom![0].value!, "william.munier@ahrq.hhs.gov")
 		XCTAssertEqual(inst.date!.description, "2012-10-21")
 		XCTAssertEqual(inst.element![0].binding!.name!, "Gender")
-		XCTAssertEqual(inst.element![0].binding!.referenceReference!.reference!, "#de42")
 		XCTAssertEqual(inst.element![0].binding!.strength!, "required")
+		XCTAssertEqual(inst.element![0].binding!.valueSetReference!.reference!, "#de42")
 		XCTAssertEqual(inst.element![0].code![0].code!, "72143-1")
 		XCTAssertTrue(inst.element![0].code![0].primary!)
 		XCTAssertEqual(inst.element![0].code![0].system!.absoluteString!, "http://loinc.org")
@@ -143,7 +141,7 @@ class DataElementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.element![0].mapping![0].extension_fhir![0].valueCoding!.code!, "116154003")
 		XCTAssertEqual(inst.element![0].mapping![0].extension_fhir![0].valueCoding!.display!, "Patient")
 		XCTAssertEqual(inst.element![0].mapping![0].extension_fhir![0].valueCoding!.system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.element![0].mapping![0].extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/11179-property")
+		XCTAssertEqual(inst.element![0].mapping![0].extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/11179-objectClassProperty")
 		XCTAssertEqual(inst.element![0].mapping![0].extension_fhir![1].valueCoding!.code!, "263495000")
 		XCTAssertEqual(inst.element![0].mapping![0].extension_fhir![1].valueCoding!.display!, "Gender")
 		XCTAssertEqual(inst.element![0].mapping![0].extension_fhir![1].valueCoding!.system!.absoluteString!, "http://snomed.info/sct")

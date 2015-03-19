@@ -2,7 +2,7 @@
 //  MediaTests.swift
 //  MediaTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -68,8 +68,8 @@ class MediaTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "media-example.json")
 		
 		XCTAssertEqual(inst.content!.contentType!, "image/gif")
+		XCTAssertEqual(inst.content!.creation!.description, "2009-09-03")
 		XCTAssertEqual(inst.content!.id!, "a1")
-		XCTAssertEqual(inst.created!.description, "2009-09-03")
 		XCTAssertEqual(inst.deviceName!, "Acme Camera")
 		XCTAssertEqual(inst.height!, 145)
 		XCTAssertEqual(inst.id!, "example")

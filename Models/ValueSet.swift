@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -499,6 +499,8 @@ public class ValueSetContact: FHIRElement
 
 /**
  *  When value set defines its own codes.
+ *
+ *  A definition of an code system, inlined into the value set.
  */
 public class ValueSetDefine: FHIRElement
 {
@@ -726,7 +728,7 @@ public class ValueSetExpansion: FHIRElement
 	public var contains: [ValueSetExpansionContains]?
 	
 	/// Uniquely identifies this expansion
-	public var identifier: Identifier?
+	public var identifier: NSURL?
 	
 	/// Parameter that controlled the expansion process
 	public var parameter: [ValueSetExpansionParameter]?
@@ -734,8 +736,11 @@ public class ValueSetExpansion: FHIRElement
 	/// Time valueset expansion happened
 	public var timestamp: DateTime?
 	
-	public convenience init(timestamp: DateTime?) {
+	public convenience init(identifier: NSURL?, timestamp: DateTime?) {
 		self.init(json: nil)
+		if nil != identifier {
+			self.identifier = identifier
+		}
 		if nil != timestamp {
 			self.timestamp = timestamp
 		}
@@ -747,8 +752,8 @@ public class ValueSetExpansion: FHIRElement
 			if let val = js["contains"] as? [JSONDictionary] {
 				self.contains = ValueSetExpansionContains.from(val, owner: self) as? [ValueSetExpansionContains]
 			}
-			if let val = js["identifier"] as? JSONDictionary {
-				self.identifier = Identifier(json: val, owner: self)
+			if let val = js["identifier"] as? String {
+				self.identifier = NSURL(string: val)
 			}
 			if let val = js["parameter"] as? [JSONDictionary] {
 				self.parameter = ValueSetExpansionParameter.from(val, owner: self) as? [ValueSetExpansionParameter]

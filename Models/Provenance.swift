@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -26,7 +26,7 @@ public class Provenance: DomainResource
 		get { return "Provenance" }
 	}
 	
-	/// Person, organization, records, etc. involved in creating resource
+	/// Agents involved in creating resource
 	public var agent: [ProvenanceAgent]?
 	
 	/// An entity used in this activity
@@ -137,11 +137,11 @@ public class Provenance: DomainResource
 
 
 /**
- *  Person, organization, records, etc. involved in creating resource.
+ *  Agents involved in creating resource.
  *
  *  An agent takes a role in an activity such that the agent can be assigned some degree of responsibility for the
- *  activity taking place. An agent can be a person, a piece of software, an inanimate object, an organization, or other
- *  entities that may be ascribed responsibility.
+ *  activity taking place. An agent can be a person, an organization, software, or other entities that may be ascribed
+ *  responsibility.
  */
 public class ProvenanceAgent: FHIRElement
 {
@@ -158,10 +158,10 @@ public class ProvenanceAgent: FHIRElement
 	/// Identity of agent
 	public var referenceUri: NSURL?
 	
-	/// e.g. author | overseer | enterer | attester | source | cc: +
+	/// Agents Role
 	public var role: Coding?
 	
-	/// e.g. Resource | Person | Application | Record | Document +
+	/// Agent Type
 	public var type: Coding?
 	
 	public convenience init(role: Coding?, type: Coding?) {
@@ -228,19 +228,19 @@ public class ProvenanceEntity: FHIRElement
 		get { return "ProvenanceEntity" }
 	}
 	
-	/// Person, organization, records, etc. involved in creating resource
+	/// Agents involved in creating resource
 	public var agent: ProvenanceAgent?
 	
-	/// Human description of participant
+	/// Human description of entity
 	public var display: String?
 	
-	/// Identity of participant (urn or url)
+	/// Identity of entity
 	public var reference: NSURL?
 	
 	/// derivation | revision | quotation | source
 	public var role: String?
 	
-	/// Resource Type, or something else
+	/// Entity Type
 	public var type: Coding?
 	
 	public convenience init(reference: NSURL?, role: String?, type: Coding?) {

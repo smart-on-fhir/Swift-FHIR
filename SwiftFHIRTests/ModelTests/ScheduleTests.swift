@@ -2,7 +2,7 @@
 //  ScheduleTests.swift
 //  ScheduleTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -34,7 +34,6 @@ class ScheduleTests: FHIRModelTestCase
 		XCTAssertEqual(inst.actor!.reference!, "Location/1")
 		XCTAssertEqual(inst.comment!, "Assessments should be performed before requesting appointments in this slot.")
 		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
 		XCTAssertEqual(inst.planningHorizon!.end!.description, "2013-12-25T09:30:00Z")
 		XCTAssertEqual(inst.planningHorizon!.start!.description, "2013-12-25T09:15:00Z")
 		XCTAssertEqual(inst.text!.status!, "generated")

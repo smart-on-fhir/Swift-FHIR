@@ -2,7 +2,7 @@
 //  AuditEvent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -353,6 +353,9 @@ public class AuditEventParticipant: FHIRElement
 	/// Alternative User id e.g. authentication
 	public var altId: String?
 	
+	/// Where
+	public var location: Reference?
+	
 	/// Type of media
 	public var media: Coding?
 	
@@ -361,6 +364,9 @@ public class AuditEventParticipant: FHIRElement
 	
 	/// Logical network location for application activity
 	public var network: AuditEventParticipantNetwork?
+	
+	/// Policy that authorized event
+	public var policy: [NSURL]?
 	
 	/// Direct reference to resource
 	public var reference: Reference?
@@ -387,6 +393,9 @@ public class AuditEventParticipant: FHIRElement
 			if let val = js["altId"] as? String {
 				self.altId = val
 			}
+			if let val = js["location"] as? JSONDictionary {
+				self.location = Reference(json: val, owner: self)
+			}
 			if let val = js["media"] as? JSONDictionary {
 				self.media = Coding(json: val, owner: self)
 			}
@@ -395,6 +404,9 @@ public class AuditEventParticipant: FHIRElement
 			}
 			if let val = js["network"] as? JSONDictionary {
 				self.network = AuditEventParticipantNetwork(json: val, owner: self)
+			}
+			if let val = js["policy"] as? [String] {
+				self.policy = NSURL.from(val)
 			}
 			if let val = js["reference"] as? JSONDictionary {
 				self.reference = Reference(json: val, owner: self)
@@ -417,6 +429,9 @@ public class AuditEventParticipant: FHIRElement
 		if let altId = self.altId {
 			json["altId"] = altId.asJSON()
 		}
+		if let location = self.location {
+			json["location"] = location.asJSON()
+		}
 		if let media = self.media {
 			json["media"] = media.asJSON()
 		}
@@ -425,6 +440,13 @@ public class AuditEventParticipant: FHIRElement
 		}
 		if let network = self.network {
 			json["network"] = network.asJSON()
+		}
+		if let policy = self.policy {
+			var arr = [AnyObject]()
+			for val in policy {
+				arr.append(val.asJSON())
+			}
+			json["policy"] = arr
 		}
 		if let reference = self.reference {
 			json["reference"] = reference.asJSON()

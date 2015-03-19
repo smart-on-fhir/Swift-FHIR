@@ -2,7 +2,7 @@
 //  Person.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Person) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Person) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -138,12 +138,12 @@ public class PersonLink: FHIRElement
 	public var assurance: String?
 	
 	/// The resource to which this actual person is associated
-	public var other: Reference?
+	public var target: Reference?
 	
-	public convenience init(other: Reference?) {
+	public convenience init(target: Reference?) {
 		self.init(json: nil)
-		if nil != other {
-			self.other = other
+		if nil != target {
+			self.target = target
 		}
 	}
 	
@@ -153,8 +153,8 @@ public class PersonLink: FHIRElement
 			if let val = js["assurance"] as? String {
 				self.assurance = val
 			}
-			if let val = js["other"] as? JSONDictionary {
-				self.other = Reference(json: val, owner: self)
+			if let val = js["target"] as? JSONDictionary {
+				self.target = Reference(json: val, owner: self)
 			}
 		}
 	}
@@ -165,8 +165,8 @@ public class PersonLink: FHIRElement
 		if let assurance = self.assurance {
 			json["assurance"] = assurance.asJSON()
 		}
-		if let other = self.other {
-			json["other"] = other.asJSON()
+		if let target = self.target {
+			json["target"] = target.asJSON()
 		}
 		
 		return json

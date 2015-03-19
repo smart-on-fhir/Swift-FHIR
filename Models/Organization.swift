@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Organization) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Organization) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -130,9 +130,6 @@ public class OrganizationContact: FHIRElement
 	/// Visiting or postal addresses for the contact
 	public var address: Address?
 	
-	/// male | female | other | unknown
-	public var gender: String?
-	
 	/// A name associated with the contact
 	public var name: HumanName?
 	
@@ -147,9 +144,6 @@ public class OrganizationContact: FHIRElement
 		if let js = json {
 			if let val = js["address"] as? JSONDictionary {
 				self.address = Address(json: val, owner: self)
-			}
-			if let val = js["gender"] as? String {
-				self.gender = val
 			}
 			if let val = js["name"] as? JSONDictionary {
 				self.name = HumanName(json: val, owner: self)
@@ -168,9 +162,6 @@ public class OrganizationContact: FHIRElement
 		
 		if let address = self.address {
 			json["address"] = address.asJSON()
-		}
-		if let gender = self.gender {
-			json["gender"] = gender.asJSON()
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()

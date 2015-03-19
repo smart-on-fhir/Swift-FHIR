@@ -31,6 +31,7 @@ Here's a rough list of what still needs to be done.
 [ ] Handle operations (especially $everything)
 [ ] Handle resource versions nicely
 [ ] Create a default behavior when a modifierExtension is detected
+[ ] Search: report search parameters that the server ignored
 [ ] Use non-optional properties and implement failable initializers (see @smart-on-fhir/fhir-parser:feature/swift-failable-init)
 [ ] Write a real nice documentation
 ```

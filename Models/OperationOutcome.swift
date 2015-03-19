@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -62,7 +62,10 @@ public class OperationOutcomeIssue: FHIRElement
 		get { return "OperationOutcomeIssue" }
 	}
 	
-	/// Additional description of the issue
+	/// Error or warning code
+	public var code: CodeableConcept?
+	
+	/// Additional diagnostic information about the issue
 	public var details: String?
 	
 	/// XPath of element(s) related to issue
@@ -71,11 +74,11 @@ public class OperationOutcomeIssue: FHIRElement
 	/// fatal | error | warning | information
 	public var severity: String?
 	
-	/// Error or warning code
-	public var type: Coding?
-	
-	public convenience init(severity: String?) {
+	public convenience init(code: CodeableConcept?, severity: String?) {
 		self.init(json: nil)
+		if nil != code {
+			self.code = code
+		}
 		if nil != severity {
 			self.severity = severity
 		}
@@ -84,6 +87,9 @@ public class OperationOutcomeIssue: FHIRElement
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["code"] as? JSONDictionary {
+				self.code = CodeableConcept(json: val, owner: self)
+			}
 			if let val = js["details"] as? String {
 				self.details = val
 			}
@@ -93,15 +99,15 @@ public class OperationOutcomeIssue: FHIRElement
 			if let val = js["severity"] as? String {
 				self.severity = val
 			}
-			if let val = js["type"] as? JSONDictionary {
-				self.type = Coding(json: val, owner: self)
-			}
 		}
 	}
 	
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
 		if let details = self.details {
 			json["details"] = details.asJSON()
 		}
@@ -114,9 +120,6 @@ public class OperationOutcomeIssue: FHIRElement
 		}
 		if let severity = self.severity {
 			json["severity"] = severity.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
 		}
 		
 		return json

@@ -2,7 +2,7 @@
 //  Slot.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Slot) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Slot) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -29,9 +29,6 @@ public class Slot: DomainResource
 	
 	/// External Ids for this item
 	public var identifier: [Identifier]?
-	
-	/// When this slot was created, or last revised
-	public var lastModified: DateTime?
 	
 	/// This slot has already been overbooked, appointments are unlikely to be accepted for this time
 	public var overbooked: Bool?
@@ -76,9 +73,6 @@ public class Slot: DomainResource
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["lastModified"] as? String {
-				self.lastModified = DateTime(string: val)
-			}
 			if let val = js["overbooked"] as? Bool {
 				self.overbooked = val
 			}
@@ -108,9 +102,6 @@ public class Slot: DomainResource
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
-		}
-		if let lastModified = self.lastModified {
-			json["lastModified"] = lastModified.asJSON()
 		}
 		if let overbooked = self.overbooked {
 			json["overbooked"] = overbooked.asJSON()

@@ -2,7 +2,7 @@
 //  BundleTests.swift
 //  BundleTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -132,7 +132,7 @@ class BundleTests: FHIRModelTestCase
 		XCTAssertEqual(inst.entry![0].base!.absoluteString!, "urn:uuid:")
 		XCTAssertEqual(inst.entry![0].resource!.id!, "180f219f-97a8-486d-99d9-ed631fe4fc57")
 		XCTAssertEqual(inst.entry![0].resource!.meta!.lastUpdated!.description, "2013-05-28T22:12:21Z")
-		XCTAssertEqual(inst.entry![1].resource!.id!, "doc-example")
+		XCTAssertEqual(inst.entry![1].resource!.id!, "example")
 		XCTAssertEqual(inst.entry![1].resource!.meta!.lastUpdated!.description, "2013-05-05T16:13:03Z")
 		XCTAssertEqual(inst.entry![2].resource!.id!, "d1")
 		XCTAssertEqual(inst.entry![3].resource!.id!, "doc-example")
@@ -141,17 +141,20 @@ class BundleTests: FHIRModelTestCase
 		XCTAssertEqual(inst.entry![4].resource!.id!, "d0dd51d3-3ab2-4c84-b697-a630c3e40e7a")
 		XCTAssertEqual(inst.entry![4].resource!.meta!.lastUpdated!.description, "2013-05-05T16:13:03Z")
 		XCTAssertEqual(inst.entry![5].base!.absoluteString!, "urn:uuid:")
-		XCTAssertEqual(inst.entry![5].resource!.id!, "673f8db5-0ffd-4395-9657-6da00420bbc1")
+		XCTAssertEqual(inst.entry![5].resource!.id!, "541a72a8-df75-4484-ac89-ac4923f03b81")
 		XCTAssertEqual(inst.entry![5].resource!.meta!.lastUpdated!.description, "2013-05-05T16:13:03Z")
 		XCTAssertEqual(inst.entry![6].base!.absoluteString!, "urn:uuid:")
-		XCTAssertEqual(inst.entry![6].resource!.id!, "124a6916-5d84-4b8c-b250-10cefb8e6e86")
+		XCTAssertEqual(inst.entry![6].resource!.id!, "673f8db5-0ffd-4395-9657-6da00420bbc1")
 		XCTAssertEqual(inst.entry![6].resource!.meta!.lastUpdated!.description, "2013-05-05T16:13:03Z")
 		XCTAssertEqual(inst.entry![7].base!.absoluteString!, "urn:uuid:")
-		XCTAssertEqual(inst.entry![7].resource!.id!, "68f86194-e6e1-4f65-b64a-5314256f8d7b")
+		XCTAssertEqual(inst.entry![7].resource!.id!, "124a6916-5d84-4b8c-b250-10cefb8e6e86")
 		XCTAssertEqual(inst.entry![7].resource!.meta!.lastUpdated!.description, "2013-05-05T16:13:03Z")
 		XCTAssertEqual(inst.entry![8].base!.absoluteString!, "urn:uuid:")
-		XCTAssertEqual(inst.entry![8].resource!.id!, "47600e0f-b6b5-4308-84b5-5dec157f7637")
+		XCTAssertEqual(inst.entry![8].resource!.id!, "68f86194-e6e1-4f65-b64a-5314256f8d7b")
 		XCTAssertEqual(inst.entry![8].resource!.meta!.lastUpdated!.description, "2013-05-05T16:13:03Z")
+		XCTAssertEqual(inst.entry![9].base!.absoluteString!, "urn:uuid:")
+		XCTAssertEqual(inst.entry![9].resource!.id!, "47600e0f-b6b5-4308-84b5-5dec157f7637")
+		XCTAssertEqual(inst.entry![9].resource!.meta!.lastUpdated!.description, "2013-05-05T16:13:03Z")
 		XCTAssertEqual(inst.id!, "father")
 		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2013-05-28T22:12:21Z")
 		XCTAssertEqual(inst.meta!.tag![0].code!, "document")
@@ -339,10 +342,6 @@ class BundleTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "xds-example.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString!, "cid:123@healthintersections.com.au")
-		XCTAssertEqual(inst.entry![0].resource!.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/xds-practiceSettingCode")
-		XCTAssertEqual(inst.entry![0].resource!.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "General Medicine")
-		XCTAssertEqual(inst.entry![0].resource!.extension_fhir![0].valueCodeableConcept!.coding![0].display!, "General Medicine")
-		XCTAssertEqual(inst.entry![0].resource!.extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://ihe.net/connectathon/practiceSettingCodes")
 		XCTAssertEqual(inst.entry![0].resource!.id!, "a1")
 		XCTAssertEqual(inst.entry![0].resource!.meta!.lastUpdated!.description, "2013-07-01T13:11:33Z")
 		XCTAssertEqual(inst.entry![0].transaction!.method!, "POST")

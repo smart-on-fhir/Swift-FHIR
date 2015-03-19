@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -72,7 +72,7 @@ public class DiagnosticReport: DomainResource
 	/// Specimens this report is based on
 	public var specimen: [Reference]?
 	
-	/// registered | partial | final | corrected +
+	/// registered | partial | final | corrected | appended | cancelled | entered-in-error
 	public var status: String?
 	
 	/// The subject of the report, usually, but not always, the patient

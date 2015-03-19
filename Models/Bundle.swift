@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -10,9 +10,9 @@ import Foundation
 
 
 /**
- *  Contains a group of resources.
+ *  Contains a collection of resources.
  *
- *  A container for a group of resources.
+ *  A container for a collection of resources.
  */
 public class Bundle: Resource
 {
@@ -111,6 +111,9 @@ public class BundleEntry: FHIRElement
 	/// Base URL, if different to bundle base
 	public var base: NSURL?
 	
+	/// Links related to this Bundle
+	public var link: [BundleLink]?
+	
 	/// Resources in this bundle
 	public var resource: Resource?
 	
@@ -129,8 +132,11 @@ public class BundleEntry: FHIRElement
 			if let val = js["base"] as? String {
 				self.base = NSURL(string: val)
 			}
+			if let val = js["link"] as? [JSONDictionary] {
+				self.link = BundleLink.from(val, owner: self) as? [BundleLink]
+			}
 			if let val = js["resource"] as? JSONDictionary {
-				self.resource = Resource(json: val, owner: self)
+				self.resource = Resource.instantiateFrom(val, owner: self) as? Resource
 			}
 			if let val = js["search"] as? JSONDictionary {
 				self.search = BundleEntrySearch(json: val, owner: self)
@@ -149,6 +155,9 @@ public class BundleEntry: FHIRElement
 		
 		if let base = self.base {
 			json["base"] = base.asJSON()
+		}
+		if let link = self.link {
+			json["link"] = BundleLink.asJSONArray(link)
 		}
 		if let resource = self.resource {
 			json["resource"] = resource.asJSON()

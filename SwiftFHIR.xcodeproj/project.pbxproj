@@ -48,8 +48,6 @@
 		EE04E7851AAF23FF008FDDBF /* CarePlanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7171AAF23FF008FDDBF /* CarePlanTests.swift */; };
 		EE04E7861AAF23FF008FDDBF /* ClaimResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7181AAF23FF008FDDBF /* ClaimResponseTests.swift */; };
 		EE04E7871AAF23FF008FDDBF /* ClaimResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7181AAF23FF008FDDBF /* ClaimResponseTests.swift */; };
-		EE04E7881AAF23FF008FDDBF /* ClinicalAssessmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7191AAF23FF008FDDBF /* ClinicalAssessmentTests.swift */; };
-		EE04E7891AAF23FF008FDDBF /* ClinicalAssessmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7191AAF23FF008FDDBF /* ClinicalAssessmentTests.swift */; };
 		EE04E78A1AAF23FF008FDDBF /* CommunicationRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E71A1AAF23FF008FDDBF /* CommunicationRequestTests.swift */; };
 		EE04E78B1AAF23FF008FDDBF /* CommunicationRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E71A1AAF23FF008FDDBF /* CommunicationRequestTests.swift */; };
 		EE04E78C1AAF23FF008FDDBF /* CommunicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E71B1AAF23FF008FDDBF /* CommunicationTests.swift */; };
@@ -116,8 +114,6 @@
 		EE04E7CB1AAF23FF008FDDBF /* ImmunizationRecommendationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E73A1AAF23FF008FDDBF /* ImmunizationRecommendationTests.swift */; };
 		EE04E7CC1AAF23FF008FDDBF /* ImmunizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E73B1AAF23FF008FDDBF /* ImmunizationTests.swift */; };
 		EE04E7CD1AAF23FF008FDDBF /* ImmunizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E73B1AAF23FF008FDDBF /* ImmunizationTests.swift */; };
-		EE04E7CE1AAF23FF008FDDBF /* InstitutionalClaimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E73C1AAF23FF008FDDBF /* InstitutionalClaimTests.swift */; };
-		EE04E7CF1AAF23FF008FDDBF /* InstitutionalClaimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E73C1AAF23FF008FDDBF /* InstitutionalClaimTests.swift */; };
 		EE04E7D01AAF23FF008FDDBF /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E73D1AAF23FF008FDDBF /* ListTests.swift */; };
 		EE04E7D11AAF23FF008FDDBF /* ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E73D1AAF23FF008FDDBF /* ListTests.swift */; };
 		EE04E7D21AAF23FF008FDDBF /* LocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E73E1AAF23FF008FDDBF /* LocationTests.swift */; };
@@ -144,8 +140,6 @@
 		EE04E7E71AAF23FF008FDDBF /* ObservationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7481AAF23FF008FDDBF /* ObservationTests.swift */; };
 		EE04E7E81AAF23FF008FDDBF /* OperationOutcomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7491AAF23FF008FDDBF /* OperationOutcomeTests.swift */; };
 		EE04E7E91AAF23FF008FDDBF /* OperationOutcomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7491AAF23FF008FDDBF /* OperationOutcomeTests.swift */; };
-		EE04E7EA1AAF23FF008FDDBF /* OralHealthClaimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E74A1AAF23FF008FDDBF /* OralHealthClaimTests.swift */; };
-		EE04E7EB1AAF23FF008FDDBF /* OralHealthClaimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E74A1AAF23FF008FDDBF /* OralHealthClaimTests.swift */; };
 		EE04E7EC1AAF23FF008FDDBF /* OrderResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E74B1AAF23FF008FDDBF /* OrderResponseTests.swift */; };
 		EE04E7ED1AAF23FF008FDDBF /* OrderResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E74B1AAF23FF008FDDBF /* OrderResponseTests.swift */; };
 		EE04E7EE1AAF23FF008FDDBF /* OrderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E74C1AAF23FF008FDDBF /* OrderTests.swift */; };
@@ -162,34 +156,24 @@
 		EE04E7F91AAF23FF008FDDBF /* PaymentNoticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7511AAF23FF008FDDBF /* PaymentNoticeTests.swift */; };
 		EE04E7FA1AAF23FF008FDDBF /* PaymentReconciliationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7521AAF23FF008FDDBF /* PaymentReconciliationTests.swift */; };
 		EE04E7FB1AAF23FF008FDDBF /* PaymentReconciliationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7521AAF23FF008FDDBF /* PaymentReconciliationTests.swift */; };
-		EE04E7FC1AAF23FF008FDDBF /* PendedRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7531AAF23FF008FDDBF /* PendedRequestTests.swift */; };
-		EE04E7FD1AAF23FF008FDDBF /* PendedRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7531AAF23FF008FDDBF /* PendedRequestTests.swift */; };
 		EE04E7FE1AAF23FF008FDDBF /* PersonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7541AAF23FF008FDDBF /* PersonTests.swift */; };
 		EE04E7FF1AAF23FF008FDDBF /* PersonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7541AAF23FF008FDDBF /* PersonTests.swift */; };
-		EE04E8001AAF23FF008FDDBF /* PharmacyClaimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7551AAF23FF008FDDBF /* PharmacyClaimTests.swift */; };
-		EE04E8011AAF23FF008FDDBF /* PharmacyClaimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7551AAF23FF008FDDBF /* PharmacyClaimTests.swift */; };
 		EE04E8021AAF23FF008FDDBF /* PractitionerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7561AAF23FF008FDDBF /* PractitionerTests.swift */; };
 		EE04E8031AAF23FF008FDDBF /* PractitionerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7561AAF23FF008FDDBF /* PractitionerTests.swift */; };
 		EE04E8041AAF23FF008FDDBF /* ProcedureRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7571AAF23FF008FDDBF /* ProcedureRequestTests.swift */; };
 		EE04E8051AAF23FF008FDDBF /* ProcedureRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7571AAF23FF008FDDBF /* ProcedureRequestTests.swift */; };
 		EE04E8061AAF23FF008FDDBF /* ProcedureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7581AAF23FF008FDDBF /* ProcedureTests.swift */; };
 		EE04E8071AAF23FF008FDDBF /* ProcedureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7581AAF23FF008FDDBF /* ProcedureTests.swift */; };
-		EE04E8081AAF23FF008FDDBF /* ProfessionalClaimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7591AAF23FF008FDDBF /* ProfessionalClaimTests.swift */; };
-		EE04E8091AAF23FF008FDDBF /* ProfessionalClaimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7591AAF23FF008FDDBF /* ProfessionalClaimTests.swift */; };
 		EE04E80A1AAF23FF008FDDBF /* ProvenanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E75A1AAF23FF008FDDBF /* ProvenanceTests.swift */; };
 		EE04E80B1AAF23FF008FDDBF /* ProvenanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E75A1AAF23FF008FDDBF /* ProvenanceTests.swift */; };
 		EE04E80C1AAF23FF008FDDBF /* QuestionnaireAnswersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E75B1AAF23FF008FDDBF /* QuestionnaireAnswersTests.swift */; };
 		EE04E80D1AAF23FF008FDDBF /* QuestionnaireAnswersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E75B1AAF23FF008FDDBF /* QuestionnaireAnswersTests.swift */; };
 		EE04E80E1AAF23FF008FDDBF /* QuestionnaireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E75C1AAF23FF008FDDBF /* QuestionnaireTests.swift */; };
 		EE04E80F1AAF23FF008FDDBF /* QuestionnaireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E75C1AAF23FF008FDDBF /* QuestionnaireTests.swift */; };
-		EE04E8101AAF23FF008FDDBF /* ReadjudicateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E75D1AAF23FF008FDDBF /* ReadjudicateTests.swift */; };
-		EE04E8111AAF23FF008FDDBF /* ReadjudicateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E75D1AAF23FF008FDDBF /* ReadjudicateTests.swift */; };
 		EE04E8121AAF23FF008FDDBF /* ReferralRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E75E1AAF23FF008FDDBF /* ReferralRequestTests.swift */; };
 		EE04E8131AAF23FF008FDDBF /* ReferralRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E75E1AAF23FF008FDDBF /* ReferralRequestTests.swift */; };
 		EE04E8141AAF23FF008FDDBF /* RelatedPersonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E75F1AAF23FF008FDDBF /* RelatedPersonTests.swift */; };
 		EE04E8151AAF23FF008FDDBF /* RelatedPersonTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E75F1AAF23FF008FDDBF /* RelatedPersonTests.swift */; };
-		EE04E8161AAF23FF008FDDBF /* ReversalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7601AAF23FF008FDDBF /* ReversalTests.swift */; };
-		EE04E8171AAF23FF008FDDBF /* ReversalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7601AAF23FF008FDDBF /* ReversalTests.swift */; };
 		EE04E8181AAF23FF008FDDBF /* RiskAssessmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7611AAF23FF008FDDBF /* RiskAssessmentTests.swift */; };
 		EE04E8191AAF23FF008FDDBF /* RiskAssessmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7611AAF23FF008FDDBF /* RiskAssessmentTests.swift */; };
 		EE04E81A1AAF23FF008FDDBF /* ScheduleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7621AAF23FF008FDDBF /* ScheduleTests.swift */; };
@@ -200,10 +184,6 @@
 		EE04E81F1AAF23FF008FDDBF /* SlotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7641AAF23FF008FDDBF /* SlotTests.swift */; };
 		EE04E8201AAF23FF008FDDBF /* SpecimenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7651AAF23FF008FDDBF /* SpecimenTests.swift */; };
 		EE04E8211AAF23FF008FDDBF /* SpecimenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7651AAF23FF008FDDBF /* SpecimenTests.swift */; };
-		EE04E8221AAF23FF008FDDBF /* StatusRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7661AAF23FF008FDDBF /* StatusRequestTests.swift */; };
-		EE04E8231AAF23FF008FDDBF /* StatusRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7661AAF23FF008FDDBF /* StatusRequestTests.swift */; };
-		EE04E8241AAF23FF008FDDBF /* StatusResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7671AAF23FF008FDDBF /* StatusResponseTests.swift */; };
-		EE04E8251AAF23FF008FDDBF /* StatusResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7671AAF23FF008FDDBF /* StatusResponseTests.swift */; };
 		EE04E8261AAF23FF008FDDBF /* StructureDefinitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7681AAF23FF008FDDBF /* StructureDefinitionTests.swift */; };
 		EE04E8271AAF23FF008FDDBF /* StructureDefinitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7681AAF23FF008FDDBF /* StructureDefinitionTests.swift */; };
 		EE04E8281AAF23FF008FDDBF /* SubscriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E7691AAF23FF008FDDBF /* SubscriptionTests.swift */; };
@@ -216,8 +196,6 @@
 		EE04E82F1AAF23FF008FDDBF /* SupportingDocumentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E76C1AAF23FF008FDDBF /* SupportingDocumentationTests.swift */; };
 		EE04E8301AAF23FF008FDDBF /* ValueSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E76D1AAF23FF008FDDBF /* ValueSetTests.swift */; };
 		EE04E8311AAF23FF008FDDBF /* ValueSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E76D1AAF23FF008FDDBF /* ValueSetTests.swift */; };
-		EE04E8321AAF23FF008FDDBF /* VisionClaimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E76E1AAF23FF008FDDBF /* VisionClaimTests.swift */; };
-		EE04E8331AAF23FF008FDDBF /* VisionClaimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E76E1AAF23FF008FDDBF /* VisionClaimTests.swift */; };
 		EE04E8341AAF23FF008FDDBF /* VisionPrescriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E76F1AAF23FF008FDDBF /* VisionPrescriptionTests.swift */; };
 		EE04E8351AAF23FF008FDDBF /* VisionPrescriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E76F1AAF23FF008FDDBF /* VisionPrescriptionTests.swift */; };
 		EE04E8371AAF24BD008FDDBF /* DateAndTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E8361AAF24BD008FDDBF /* DateAndTimeTests.swift */; };
@@ -225,6 +203,22 @@
 		EE5120541A4B317F002D434A /* FHIRSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5120531A4B317F002D434A /* FHIRSearch.swift */; };
 		EE5120561A4B3212002D434A /* FHIRElement+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5120551A4B3212002D434A /* FHIRElement+Factory.swift */; };
 		EE545F3B1A66805600E17B0C /* SwiftFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE684C1E19A789BA00B5A2C0 /* SwiftFHIR.framework */; };
+		EE56A63F1ABB6E2900FA99EB /* ClaimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A63B1ABB6E2900FA99EB /* ClaimTests.swift */; };
+		EE56A6401ABB6E2900FA99EB /* ClaimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A63B1ABB6E2900FA99EB /* ClaimTests.swift */; };
+		EE56A6411ABB6E2900FA99EB /* ClinicalImpressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A63C1ABB6E2900FA99EB /* ClinicalImpressionTests.swift */; };
+		EE56A6421ABB6E2900FA99EB /* ClinicalImpressionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A63C1ABB6E2900FA99EB /* ClinicalImpressionTests.swift */; };
+		EE56A6431ABB6E2900FA99EB /* ProcessRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A63D1ABB6E2900FA99EB /* ProcessRequestTests.swift */; };
+		EE56A6441ABB6E2900FA99EB /* ProcessRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A63D1ABB6E2900FA99EB /* ProcessRequestTests.swift */; };
+		EE56A6451ABB6E2900FA99EB /* ProcessResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A63E1ABB6E2900FA99EB /* ProcessResponseTests.swift */; };
+		EE56A6461ABB6E2900FA99EB /* ProcessResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A63E1ABB6E2900FA99EB /* ProcessResponseTests.swift */; };
+		EE56A64B1ABB6E4500FA99EB /* Claim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A6471ABB6E4500FA99EB /* Claim.swift */; };
+		EE56A64C1ABB6E4500FA99EB /* Claim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A6471ABB6E4500FA99EB /* Claim.swift */; };
+		EE56A64D1ABB6E4500FA99EB /* ClinicalImpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A6481ABB6E4500FA99EB /* ClinicalImpression.swift */; };
+		EE56A64E1ABB6E4500FA99EB /* ClinicalImpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A6481ABB6E4500FA99EB /* ClinicalImpression.swift */; };
+		EE56A64F1ABB6E4500FA99EB /* ProcessRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A6491ABB6E4500FA99EB /* ProcessRequest.swift */; };
+		EE56A6501ABB6E4500FA99EB /* ProcessRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A6491ABB6E4500FA99EB /* ProcessRequest.swift */; };
+		EE56A6511ABB6E4500FA99EB /* ProcessResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A64A1ABB6E4500FA99EB /* ProcessResponse.swift */; };
+		EE56A6521ABB6E4500FA99EB /* ProcessResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56A64A1ABB6E4500FA99EB /* ProcessResponse.swift */; };
 		EE652AC719FDEBDC006582EC /* FHIRReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE652AC619FDEBDC006582EC /* FHIRReference.swift */; };
 		EE684C2419A789BA00B5A2C0 /* SwiftFHIR.h in Headers */ = {isa = PBXBuildFile; fileRef = EE684C2319A789BA00B5A2C0 /* SwiftFHIR.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE684C3D19A78AE600B5A2C0 /* FHIRContainedResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE684C3819A78AE600B5A2C0 /* FHIRContainedResource.swift */; };
@@ -243,7 +237,6 @@
 		EE6DA7D71A5D4B1000E00708 /* Identifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E2E1A41D02F00CA0452 /* Identifier.swift */; };
 		EE6DA7D81A5D4B1000E00708 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E371A41D02F00CA0452 /* Media.swift */; };
 		EE6DA7D91A5D4B1000E00708 /* ElementDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E1D1A41D02F00CA0452 /* ElementDefinition.swift */; };
-		EE6DA7DA1A5D4B1000E00708 /* PendedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E4D1A41D02F00CA0452 /* PendedRequest.swift */; };
 		EE6DA7DB1A5D4B1000E00708 /* SupportingDocumentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E701A41D02F00CA0452 /* SupportingDocumentation.swift */; };
 		EE6DA7DC1A5D4B1000E00708 /* DiagnosticOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E151A41D02F00CA0452 /* DiagnosticOrder.swift */; };
 		EE6DA7DD1A5D4B1000E00708 /* EnrollmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E221A41D02F00CA0452 /* EnrollmentResponse.swift */; };
@@ -254,9 +247,7 @@
 		EE6DA7E21A5D4B1000E00708 /* CarePlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DC41A41D02F00CA0452 /* CarePlan.swift */; };
 		EE6DA7E31A5D4B1000E00708 /* Money.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E3E1A41D02F00CA0452 /* Money.swift */; };
 		EE6DA7E41A5D4B1000E00708 /* ValueSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E7A1A41D02F00CA0452 /* ValueSet.swift */; };
-		EE6DA7E51A5D4B1000E00708 /* Reversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E5F1A41D02F00CA0452 /* Reversal.swift */; };
 		EE6DA7E61A5D4B1000E00708 /* CommunicationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD51A41D02F00CA0452 /* CommunicationRequest.swift */; };
-		EE6DA7E71A5D4B1000E00708 /* ClinicalAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD11A41D02F00CA0452 /* ClinicalAssessment.swift */; };
 		EE6DA7E81A5D4B1000E00708 /* DataElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E0D1A41D02F00CA0452 /* DataElement.swift */; };
 		EE6DA7E91A5D4B1000E00708 /* DiagnosticReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E161A41D02F00CA0452 /* DiagnosticReport.swift */; };
 		EE6DA7EA1A5D4B1000E00708 /* OperationOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E441A41D02F00CA0452 /* OperationOutcome.swift */; };
@@ -274,12 +265,9 @@
 		EE6DA7F61A5D4B1000E00708 /* ReferralRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E5D1A41D02F00CA0452 /* ReferralRequest.swift */; };
 		EE6DA7F71A5D4B1000E00708 /* DocumentManifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E181A41D02F00CA0452 /* DocumentManifest.swift */; };
 		EE6DA7F81A5D4B1000E00708 /* ProcedureRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E531A41D02F00CA0452 /* ProcedureRequest.swift */; };
-		EE6DA7F91A5D4B1000E00708 /* StatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E681A41D02F00CA0452 /* StatusRequest.swift */; };
 		EE6DA7FA1A5D4B1000E00708 /* FamilyHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E271A41D02F00CA0452 /* FamilyHistory.swift */; };
 		EE6DA7FC1A5D4B1000E00708 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E481A41D02F00CA0452 /* Organization.swift */; };
 		EE6DA7FD1A5D4B1000E00708 /* Conformance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD91A41D02F00CA0452 /* Conformance.swift */; };
-		EE6DA7FE1A5D4B1000E00708 /* PharmacyClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E501A41D02F00CA0452 /* PharmacyClaim.swift */; };
-		EE6DA7FF1A5D4B1000E00708 /* OralHealthClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E451A41D02F00CA0452 /* OralHealthClaim.swift */; };
 		EE6DA8001A5D4B1000E00708 /* Substance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E6E1A41D02F00CA0452 /* Substance.swift */; };
 		EE6DA8011A5D4B1000E00708 /* RelatedPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E5E1A41D02F00CA0452 /* RelatedPerson.swift */; };
 		EE6DA8021A5D4B1000E00708 /* FHIRElement+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5120551A4B3212002D434A /* FHIRElement+Factory.swift */; };
@@ -310,7 +298,6 @@
 		EE6DA81C1A5D4B1000E00708 /* ContactPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DDB1A41D02F00CA0452 /* ContactPoint.swift */; };
 		EE6DA81D1A5D4B1000E00708 /* MedicationDispense.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E3A1A41D02F00CA0452 /* MedicationDispense.swift */; };
 		EE6DA81E1A5D4B1000E00708 /* DeviceMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E111A41D02F00CA0452 /* DeviceMetric.swift */; };
-		EE6DA81F1A5D4B1000E00708 /* Readjudicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E5C1A41D02F00CA0452 /* Readjudicate.swift */; };
 		EE6DA8201A5D4B1000E00708 /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E381A41D02F00CA0452 /* Medication.swift */; };
 		EE6DA8211A5D4B1000E00708 /* Quantity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E571A41D02F00CA0452 /* Quantity.swift */; };
 		EE6DA8221A5D4B1000E00708 /* CarePlan2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DC51A41D02F00CA0452 /* CarePlan2.swift */; };
@@ -318,13 +305,10 @@
 		EE6DA8241A5D4B1000E00708 /* Composition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD61A41D02F00CA0452 /* Composition.swift */; };
 		EE6DA8261A5D4B1000E00708 /* AppointmentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DBF1A41D02F00CA0452 /* AppointmentResponse.swift */; };
 		EE6DA8271A5D4B1000E00708 /* DocumentReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E191A41D02F00CA0452 /* DocumentReference.swift */; };
-		EE6DA8281A5D4B1000E00708 /* StatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E691A41D02F00CA0452 /* StatusResponse.swift */; };
 		EE6DA8291A5D4B1000E00708 /* DeviceUseStatement.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E141A41D02F00CA0452 /* DeviceUseStatement.swift */; };
 		EE6DA82A1A5D4B1000E00708 /* ClaimResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD01A41D02F00CA0452 /* ClaimResponse.swift */; };
-		EE6DA82B1A5D4B1000E00708 /* InstitutionalClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E331A41D02F00CA0452 /* InstitutionalClaim.swift */; };
 		EE6DA82C1A5D4B1000E00708 /* MessageHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E3D1A41D02F00CA0452 /* MessageHeader.swift */; };
 		EE6DA82D1A5D4B1000E00708 /* OrderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E471A41D02F00CA0452 /* OrderResponse.swift */; };
-		EE6DA82E1A5D4B1000E00708 /* ProfessionalClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E541A41D02F00CA0452 /* ProfessionalClaim.swift */; };
 		EE6DA82F1A5D4B1000E00708 /* VisionPrescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E7C1A41D02F00CA0452 /* VisionPrescription.swift */; };
 		EE6DA8301A5D4B1000E00708 /* Count.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DDE1A41D02F00CA0452 /* Count.swift */; };
 		EE6DA8311A5D4B1000E00708 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E621A41D02F00CA0452 /* Schedule.swift */; };
@@ -334,7 +318,6 @@
 		EE6DA8351A5D4B1000E00708 /* Contract.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DDC1A41D02F00CA0452 /* Contract.swift */; };
 		EE6DA8361A5D4B1000E00708 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DBE1A41D02F00CA0452 /* Appointment.swift */; };
 		EE6DA8371A5D4B1000E00708 /* Narrative.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E401A41D02F00CA0452 /* Narrative.swift */; };
-		EE6DA8381A5D4B1000E00708 /* VisionClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E7B1A41D02F00CA0452 /* VisionClaim.swift */; };
 		EE6DA8391A5D4B1000E00708 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DBC1A41D02F00CA0452 /* Alert.swift */; };
 		EE6DA83A1A5D4B1000E00708 /* Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DBB1A41D02F00CA0452 /* Age.swift */; };
 		EE6DA83B1A5D4B1000E00708 /* OperationDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E431A41D02F00CA0452 /* OperationDefinition.swift */; };
@@ -391,7 +374,6 @@
 		EE8F51961A44649B004D27C5 /* CarePlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DC41A41D02F00CA0452 /* CarePlan.swift */; };
 		EE8F51971A44649B004D27C5 /* CarePlan2.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DC51A41D02F00CA0452 /* CarePlan2.swift */; };
 		EE8F51991A4464AA004D27C5 /* ClaimResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD01A41D02F00CA0452 /* ClaimResponse.swift */; };
-		EE8F519A1A4464AA004D27C5 /* ClinicalAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD11A41D02F00CA0452 /* ClinicalAssessment.swift */; };
 		EE8F519B1A4464AA004D27C5 /* Communication.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD41A41D02F00CA0452 /* Communication.swift */; };
 		EE8F519C1A4464AA004D27C5 /* CommunicationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD51A41D02F00CA0452 /* CommunicationRequest.swift */; };
 		EE8F519D1A4464AA004D27C5 /* Composition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40DD61A41D02F00CA0452 /* Composition.swift */; };
@@ -429,7 +411,6 @@
 		EE8F51C41A4464C0004D27C5 /* ImagingStudy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E301A41D02F00CA0452 /* ImagingStudy.swift */; };
 		EE8F51C51A4464C0004D27C5 /* Immunization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E311A41D02F00CA0452 /* Immunization.swift */; };
 		EE8F51C61A4464C0004D27C5 /* ImmunizationRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E321A41D02F00CA0452 /* ImmunizationRecommendation.swift */; };
-		EE8F51C71A4464C0004D27C5 /* InstitutionalClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E331A41D02F00CA0452 /* InstitutionalClaim.swift */; };
 		EE8F51C81A4464C0004D27C5 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E341A41D02F00CA0452 /* List.swift */; };
 		EE8F51C91A4464C0004D27C5 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E351A41D02F00CA0452 /* Location.swift */; };
 		EE8F51CB1A4464C0004D27C5 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E371A41D02F00CA0452 /* Media.swift */; };
@@ -445,7 +426,6 @@
 		EE8F51D51A4464C0004D27C5 /* NutritionOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E411A41D02F00CA0452 /* NutritionOrder.swift */; };
 		EE8F51D61A4464C0004D27C5 /* OperationDefinition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E431A41D02F00CA0452 /* OperationDefinition.swift */; };
 		EE8F51D71A4464C0004D27C5 /* OperationOutcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E441A41D02F00CA0452 /* OperationOutcome.swift */; };
-		EE8F51D81A4464C0004D27C5 /* OralHealthClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E451A41D02F00CA0452 /* OralHealthClaim.swift */; };
 		EE8F51D91A4464C0004D27C5 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E461A41D02F00CA0452 /* Order.swift */; };
 		EE8F51DA1A4464C0004D27C5 /* OrderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E471A41D02F00CA0452 /* OrderResponse.swift */; };
 		EE8F51DB1A4464C0004D27C5 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E481A41D02F00CA0452 /* Organization.swift */; };
@@ -453,33 +433,25 @@
 		EE8F51DD1A4464C0004D27C5 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E4A1A41D02F00CA0452 /* Patient.swift */; };
 		EE8F51DE1A4464C0004D27C5 /* PaymentNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E4B1A41D02F00CA0452 /* PaymentNotice.swift */; };
 		EE8F51DF1A4464C0004D27C5 /* PaymentReconciliation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E4C1A41D02F00CA0452 /* PaymentReconciliation.swift */; };
-		EE8F51E01A4464C0004D27C5 /* PendedRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E4D1A41D02F00CA0452 /* PendedRequest.swift */; };
 		EE8F51E11A4464C0004D27C5 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E4F1A41D02F00CA0452 /* Person.swift */; };
-		EE8F51E21A4464C0004D27C5 /* PharmacyClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E501A41D02F00CA0452 /* PharmacyClaim.swift */; };
 		EE8F51E31A4464C0004D27C5 /* Practitioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E511A41D02F00CA0452 /* Practitioner.swift */; };
 		EE8F51E41A4464C0004D27C5 /* Procedure.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E521A41D02F00CA0452 /* Procedure.swift */; };
 		EE8F51E51A4464C0004D27C5 /* ProcedureRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E531A41D02F00CA0452 /* ProcedureRequest.swift */; };
-		EE8F51E61A4464C0004D27C5 /* ProfessionalClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E541A41D02F00CA0452 /* ProfessionalClaim.swift */; };
 		EE8F51E81A4464C0004D27C5 /* Provenance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E561A41D02F00CA0452 /* Provenance.swift */; };
 		EE8F51E91A4464C0004D27C5 /* Questionnaire.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E581A41D02F00CA0452 /* Questionnaire.swift */; };
 		EE8F51EA1A4464C0004D27C5 /* QuestionnaireAnswers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E591A41D02F00CA0452 /* QuestionnaireAnswers.swift */; };
-		EE8F51EB1A4464C0004D27C5 /* Readjudicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E5C1A41D02F00CA0452 /* Readjudicate.swift */; };
 		EE8F51EC1A4464C0004D27C5 /* ReferralRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E5D1A41D02F00CA0452 /* ReferralRequest.swift */; };
 		EE8F51ED1A4464C0004D27C5 /* RelatedPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E5E1A41D02F00CA0452 /* RelatedPerson.swift */; };
-		EE8F51EE1A4464C0004D27C5 /* Reversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E5F1A41D02F00CA0452 /* Reversal.swift */; };
 		EE8F51EF1A4464C0004D27C5 /* RiskAssessment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E601A41D02F00CA0452 /* RiskAssessment.swift */; };
 		EE8F51F01A4464C0004D27C5 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E621A41D02F00CA0452 /* Schedule.swift */; };
 		EE8F51F21A4464C0004D27C5 /* SearchParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E641A41D02F00CA0452 /* SearchParameter.swift */; };
 		EE8F51F41A4464C0004D27C5 /* Slot.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E661A41D02F00CA0452 /* Slot.swift */; };
 		EE8F51F51A4464C0004D27C5 /* Specimen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E671A41D02F00CA0452 /* Specimen.swift */; };
-		EE8F51F61A4464C0004D27C5 /* StatusRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E681A41D02F00CA0452 /* StatusRequest.swift */; };
-		EE8F51F71A4464C0004D27C5 /* StatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E691A41D02F00CA0452 /* StatusResponse.swift */; };
 		EE8F51FB1A4464C0004D27C5 /* Subscription.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E6D1A41D02F00CA0452 /* Subscription.swift */; };
 		EE8F51FC1A4464C0004D27C5 /* Substance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E6E1A41D02F00CA0452 /* Substance.swift */; };
 		EE8F51FD1A4464C0004D27C5 /* Supply.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E6F1A41D02F00CA0452 /* Supply.swift */; };
 		EE8F51FE1A4464C0004D27C5 /* SupportingDocumentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E701A41D02F00CA0452 /* SupportingDocumentation.swift */; };
 		EE8F52071A4464C0004D27C5 /* ValueSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E7A1A41D02F00CA0452 /* ValueSet.swift */; };
-		EE8F52081A4464C0004D27C5 /* VisionClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E7B1A41D02F00CA0452 /* VisionClaim.swift */; };
 		EE8F52091A4464C0004D27C5 /* VisionPrescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF40E7C1A41D02F00CA0452 /* VisionPrescription.swift */; };
 		EEA2C9701A7391F8008726B0 /* FHIRServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2C96F1A7391F8008726B0 /* FHIRServer.swift */; };
 		EEA2C9711A7391FE008726B0 /* FHIRServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2C96F1A7391F8008726B0 /* FHIRServer.swift */; };
@@ -529,7 +501,6 @@
 		EE04E7161AAF23FF008FDDBF /* CarePlan2Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarePlan2Tests.swift; sourceTree = "<group>"; };
 		EE04E7171AAF23FF008FDDBF /* CarePlanTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarePlanTests.swift; sourceTree = "<group>"; };
 		EE04E7181AAF23FF008FDDBF /* ClaimResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimResponseTests.swift; sourceTree = "<group>"; };
-		EE04E7191AAF23FF008FDDBF /* ClinicalAssessmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClinicalAssessmentTests.swift; sourceTree = "<group>"; };
 		EE04E71A1AAF23FF008FDDBF /* CommunicationRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationRequestTests.swift; sourceTree = "<group>"; };
 		EE04E71B1AAF23FF008FDDBF /* CommunicationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunicationTests.swift; sourceTree = "<group>"; };
 		EE04E71C1AAF23FF008FDDBF /* CompositionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompositionTests.swift; sourceTree = "<group>"; };
@@ -563,7 +534,6 @@
 		EE04E7391AAF23FF008FDDBF /* ImagingStudyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagingStudyTests.swift; sourceTree = "<group>"; };
 		EE04E73A1AAF23FF008FDDBF /* ImmunizationRecommendationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImmunizationRecommendationTests.swift; sourceTree = "<group>"; };
 		EE04E73B1AAF23FF008FDDBF /* ImmunizationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImmunizationTests.swift; sourceTree = "<group>"; };
-		EE04E73C1AAF23FF008FDDBF /* InstitutionalClaimTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstitutionalClaimTests.swift; sourceTree = "<group>"; };
 		EE04E73D1AAF23FF008FDDBF /* ListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTests.swift; sourceTree = "<group>"; };
 		EE04E73E1AAF23FF008FDDBF /* LocationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationTests.swift; sourceTree = "<group>"; };
 		EE04E73F1AAF23FF008FDDBF /* MediaTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaTests.swift; sourceTree = "<group>"; };
@@ -577,7 +547,6 @@
 		EE04E7471AAF23FF008FDDBF /* NutritionOrderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NutritionOrderTests.swift; sourceTree = "<group>"; };
 		EE04E7481AAF23FF008FDDBF /* ObservationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservationTests.swift; sourceTree = "<group>"; };
 		EE04E7491AAF23FF008FDDBF /* OperationOutcomeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationOutcomeTests.swift; sourceTree = "<group>"; };
-		EE04E74A1AAF23FF008FDDBF /* OralHealthClaimTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OralHealthClaimTests.swift; sourceTree = "<group>"; };
 		EE04E74B1AAF23FF008FDDBF /* OrderResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderResponseTests.swift; sourceTree = "<group>"; };
 		EE04E74C1AAF23FF008FDDBF /* OrderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTests.swift; sourceTree = "<group>"; };
 		EE04E74D1AAF23FF008FDDBF /* OrganizationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationTests.swift; sourceTree = "<group>"; };
@@ -586,39 +555,39 @@
 		EE04E7501AAF23FF008FDDBF /* PatientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientTests.swift; sourceTree = "<group>"; };
 		EE04E7511AAF23FF008FDDBF /* PaymentNoticeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentNoticeTests.swift; sourceTree = "<group>"; };
 		EE04E7521AAF23FF008FDDBF /* PaymentReconciliationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentReconciliationTests.swift; sourceTree = "<group>"; };
-		EE04E7531AAF23FF008FDDBF /* PendedRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendedRequestTests.swift; sourceTree = "<group>"; };
 		EE04E7541AAF23FF008FDDBF /* PersonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonTests.swift; sourceTree = "<group>"; };
-		EE04E7551AAF23FF008FDDBF /* PharmacyClaimTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PharmacyClaimTests.swift; sourceTree = "<group>"; };
 		EE04E7561AAF23FF008FDDBF /* PractitionerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PractitionerTests.swift; sourceTree = "<group>"; };
 		EE04E7571AAF23FF008FDDBF /* ProcedureRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcedureRequestTests.swift; sourceTree = "<group>"; };
 		EE04E7581AAF23FF008FDDBF /* ProcedureTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcedureTests.swift; sourceTree = "<group>"; };
-		EE04E7591AAF23FF008FDDBF /* ProfessionalClaimTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalClaimTests.swift; sourceTree = "<group>"; };
 		EE04E75A1AAF23FF008FDDBF /* ProvenanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProvenanceTests.swift; sourceTree = "<group>"; };
 		EE04E75B1AAF23FF008FDDBF /* QuestionnaireAnswersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnaireAnswersTests.swift; sourceTree = "<group>"; };
 		EE04E75C1AAF23FF008FDDBF /* QuestionnaireTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnaireTests.swift; sourceTree = "<group>"; };
-		EE04E75D1AAF23FF008FDDBF /* ReadjudicateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadjudicateTests.swift; sourceTree = "<group>"; };
 		EE04E75E1AAF23FF008FDDBF /* ReferralRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralRequestTests.swift; sourceTree = "<group>"; };
 		EE04E75F1AAF23FF008FDDBF /* RelatedPersonTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelatedPersonTests.swift; sourceTree = "<group>"; };
-		EE04E7601AAF23FF008FDDBF /* ReversalTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReversalTests.swift; sourceTree = "<group>"; };
 		EE04E7611AAF23FF008FDDBF /* RiskAssessmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiskAssessmentTests.swift; sourceTree = "<group>"; };
 		EE04E7621AAF23FF008FDDBF /* ScheduleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleTests.swift; sourceTree = "<group>"; };
 		EE04E7631AAF23FF008FDDBF /* SearchParameterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchParameterTests.swift; sourceTree = "<group>"; };
 		EE04E7641AAF23FF008FDDBF /* SlotTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlotTests.swift; sourceTree = "<group>"; };
 		EE04E7651AAF23FF008FDDBF /* SpecimenTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpecimenTests.swift; sourceTree = "<group>"; };
-		EE04E7661AAF23FF008FDDBF /* StatusRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusRequestTests.swift; sourceTree = "<group>"; };
-		EE04E7671AAF23FF008FDDBF /* StatusResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusResponseTests.swift; sourceTree = "<group>"; };
 		EE04E7681AAF23FF008FDDBF /* StructureDefinitionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructureDefinitionTests.swift; sourceTree = "<group>"; };
 		EE04E7691AAF23FF008FDDBF /* SubscriptionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionTests.swift; sourceTree = "<group>"; };
 		EE04E76A1AAF23FF008FDDBF /* SubstanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubstanceTests.swift; sourceTree = "<group>"; };
 		EE04E76B1AAF23FF008FDDBF /* SupplyTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupplyTests.swift; sourceTree = "<group>"; };
 		EE04E76C1AAF23FF008FDDBF /* SupportingDocumentationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportingDocumentationTests.swift; sourceTree = "<group>"; };
 		EE04E76D1AAF23FF008FDDBF /* ValueSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueSetTests.swift; sourceTree = "<group>"; };
-		EE04E76E1AAF23FF008FDDBF /* VisionClaimTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionClaimTests.swift; sourceTree = "<group>"; };
 		EE04E76F1AAF23FF008FDDBF /* VisionPrescriptionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionPrescriptionTests.swift; sourceTree = "<group>"; };
 		EE04E8361AAF24BD008FDDBF /* DateAndTimeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateAndTimeTests.swift; sourceTree = "<group>"; };
 		EE0CF4331A6E454400BA6727 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.10.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		EE5120531A4B317F002D434A /* FHIRSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRSearch.swift; sourceTree = "<group>"; };
 		EE5120551A4B3212002D434A /* FHIRElement+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIRElement+Factory.swift"; sourceTree = "<group>"; };
+		EE56A63B1ABB6E2900FA99EB /* ClaimTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimTests.swift; sourceTree = "<group>"; };
+		EE56A63C1ABB6E2900FA99EB /* ClinicalImpressionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClinicalImpressionTests.swift; sourceTree = "<group>"; };
+		EE56A63D1ABB6E2900FA99EB /* ProcessRequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessRequestTests.swift; sourceTree = "<group>"; };
+		EE56A63E1ABB6E2900FA99EB /* ProcessResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessResponseTests.swift; sourceTree = "<group>"; };
+		EE56A6471ABB6E4500FA99EB /* Claim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Claim.swift; sourceTree = "<group>"; };
+		EE56A6481ABB6E4500FA99EB /* ClinicalImpression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClinicalImpression.swift; sourceTree = "<group>"; };
+		EE56A6491ABB6E4500FA99EB /* ProcessRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessRequest.swift; sourceTree = "<group>"; };
+		EE56A64A1ABB6E4500FA99EB /* ProcessResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcessResponse.swift; sourceTree = "<group>"; };
 		EE652AC619FDEBDC006582EC /* FHIRReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRReference.swift; sourceTree = "<group>"; };
 		EE684C1E19A789BA00B5A2C0 /* SwiftFHIR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftFHIR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE684C2219A789BA00B5A2C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -652,7 +621,6 @@
 		EEF40DC41A41D02F00CA0452 /* CarePlan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarePlan.swift; sourceTree = "<group>"; };
 		EEF40DC51A41D02F00CA0452 /* CarePlan2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarePlan2.swift; sourceTree = "<group>"; };
 		EEF40DD01A41D02F00CA0452 /* ClaimResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClaimResponse.swift; sourceTree = "<group>"; };
-		EEF40DD11A41D02F00CA0452 /* ClinicalAssessment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClinicalAssessment.swift; sourceTree = "<group>"; };
 		EEF40DD21A41D02F00CA0452 /* CodeableConcept.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeableConcept.swift; sourceTree = "<group>"; };
 		EEF40DD31A41D02F00CA0452 /* Coding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coding.swift; sourceTree = "<group>"; };
 		EEF40DD41A41D02F00CA0452 /* Communication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Communication.swift; sourceTree = "<group>"; };
@@ -698,7 +666,6 @@
 		EEF40E301A41D02F00CA0452 /* ImagingStudy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagingStudy.swift; sourceTree = "<group>"; };
 		EEF40E311A41D02F00CA0452 /* Immunization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Immunization.swift; sourceTree = "<group>"; };
 		EEF40E321A41D02F00CA0452 /* ImmunizationRecommendation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImmunizationRecommendation.swift; sourceTree = "<group>"; };
-		EEF40E331A41D02F00CA0452 /* InstitutionalClaim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstitutionalClaim.swift; sourceTree = "<group>"; };
 		EEF40E341A41D02F00CA0452 /* List.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		EEF40E351A41D02F00CA0452 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		EEF40E371A41D02F00CA0452 /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
@@ -715,7 +682,6 @@
 		EEF40E421A41D02F00CA0452 /* Observation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
 		EEF40E431A41D02F00CA0452 /* OperationDefinition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationDefinition.swift; sourceTree = "<group>"; };
 		EEF40E441A41D02F00CA0452 /* OperationOutcome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationOutcome.swift; sourceTree = "<group>"; };
-		EEF40E451A41D02F00CA0452 /* OralHealthClaim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OralHealthClaim.swift; sourceTree = "<group>"; };
 		EEF40E461A41D02F00CA0452 /* Order.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		EEF40E471A41D02F00CA0452 /* OrderResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderResponse.swift; sourceTree = "<group>"; };
 		EEF40E481A41D02F00CA0452 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
@@ -723,39 +689,31 @@
 		EEF40E4A1A41D02F00CA0452 /* Patient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 		EEF40E4B1A41D02F00CA0452 /* PaymentNotice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentNotice.swift; sourceTree = "<group>"; };
 		EEF40E4C1A41D02F00CA0452 /* PaymentReconciliation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentReconciliation.swift; sourceTree = "<group>"; };
-		EEF40E4D1A41D02F00CA0452 /* PendedRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PendedRequest.swift; sourceTree = "<group>"; };
 		EEF40E4E1A41D02F00CA0452 /* Period.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Period.swift; sourceTree = "<group>"; };
 		EEF40E4F1A41D02F00CA0452 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		EEF40E501A41D02F00CA0452 /* PharmacyClaim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PharmacyClaim.swift; sourceTree = "<group>"; };
 		EEF40E511A41D02F00CA0452 /* Practitioner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Practitioner.swift; sourceTree = "<group>"; };
 		EEF40E521A41D02F00CA0452 /* Procedure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Procedure.swift; sourceTree = "<group>"; };
 		EEF40E531A41D02F00CA0452 /* ProcedureRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProcedureRequest.swift; sourceTree = "<group>"; };
-		EEF40E541A41D02F00CA0452 /* ProfessionalClaim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionalClaim.swift; sourceTree = "<group>"; };
 		EEF40E561A41D02F00CA0452 /* Provenance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Provenance.swift; sourceTree = "<group>"; };
 		EEF40E571A41D02F00CA0452 /* Quantity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Quantity.swift; sourceTree = "<group>"; };
 		EEF40E581A41D02F00CA0452 /* Questionnaire.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Questionnaire.swift; sourceTree = "<group>"; };
 		EEF40E591A41D02F00CA0452 /* QuestionnaireAnswers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnaireAnswers.swift; sourceTree = "<group>"; };
 		EEF40E5A1A41D02F00CA0452 /* Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Range.swift; sourceTree = "<group>"; };
 		EEF40E5B1A41D02F00CA0452 /* Ratio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ratio.swift; sourceTree = "<group>"; };
-		EEF40E5C1A41D02F00CA0452 /* Readjudicate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Readjudicate.swift; sourceTree = "<group>"; };
 		EEF40E5D1A41D02F00CA0452 /* ReferralRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferralRequest.swift; sourceTree = "<group>"; };
 		EEF40E5E1A41D02F00CA0452 /* RelatedPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelatedPerson.swift; sourceTree = "<group>"; };
-		EEF40E5F1A41D02F00CA0452 /* Reversal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reversal.swift; sourceTree = "<group>"; };
 		EEF40E601A41D02F00CA0452 /* RiskAssessment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RiskAssessment.swift; sourceTree = "<group>"; };
 		EEF40E611A41D02F00CA0452 /* SampledData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampledData.swift; sourceTree = "<group>"; };
 		EEF40E621A41D02F00CA0452 /* Schedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		EEF40E641A41D02F00CA0452 /* SearchParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchParameter.swift; sourceTree = "<group>"; };
 		EEF40E661A41D02F00CA0452 /* Slot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slot.swift; sourceTree = "<group>"; };
 		EEF40E671A41D02F00CA0452 /* Specimen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Specimen.swift; sourceTree = "<group>"; };
-		EEF40E681A41D02F00CA0452 /* StatusRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusRequest.swift; sourceTree = "<group>"; };
-		EEF40E691A41D02F00CA0452 /* StatusResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusResponse.swift; sourceTree = "<group>"; };
 		EEF40E6D1A41D02F00CA0452 /* Subscription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subscription.swift; sourceTree = "<group>"; };
 		EEF40E6E1A41D02F00CA0452 /* Substance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Substance.swift; sourceTree = "<group>"; };
 		EEF40E6F1A41D02F00CA0452 /* Supply.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Supply.swift; sourceTree = "<group>"; };
 		EEF40E701A41D02F00CA0452 /* SupportingDocumentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportingDocumentation.swift; sourceTree = "<group>"; };
 		EEF40E711A41D02F00CA0452 /* Timing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timing.swift; sourceTree = "<group>"; };
 		EEF40E7A1A41D02F00CA0452 /* ValueSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueSet.swift; sourceTree = "<group>"; };
-		EEF40E7B1A41D02F00CA0452 /* VisionClaim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionClaim.swift; sourceTree = "<group>"; };
 		EEF40E7C1A41D02F00CA0452 /* VisionPrescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionPrescription.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -845,12 +803,12 @@
 			children = (
 				EEF40E281A41D02F00CA0452 /* FHIRTypes.swift */,
 				EE8DD2331A6B118000038123 /* DateAndTime.swift */,
+				EEA2C96F1A7391F8008726B0 /* FHIRServer.swift */,
 				EE684C3919A78AE600B5A2C0 /* FHIRElement.swift */,
 				EE5120551A4B3212002D434A /* FHIRElement+Factory.swift */,
 				EE684C3A19A78AE600B5A2C0 /* FHIRResource.swift */,
-				EE684C3819A78AE600B5A2C0 /* FHIRContainedResource.swift */,
 				EE652AC619FDEBDC006582EC /* FHIRReference.swift */,
-				EEA2C96F1A7391F8008726B0 /* FHIRServer.swift */,
+				EE684C3819A78AE600B5A2C0 /* FHIRContainedResource.swift */,
 				EE5120531A4B317F002D434A /* FHIRSearch.swift */,
 				EE684C3C19A78AE600B5A2C0 /* JSON-extensions.swift */,
 			);
@@ -875,8 +833,9 @@
 				EEF40DC31A41D02F00CA0452 /* Bundle.swift */,
 				EEF40DC41A41D02F00CA0452 /* CarePlan.swift */,
 				EEF40DC51A41D02F00CA0452 /* CarePlan2.swift */,
+				EE56A6471ABB6E4500FA99EB /* Claim.swift */,
 				EEF40DD01A41D02F00CA0452 /* ClaimResponse.swift */,
-				EEF40DD11A41D02F00CA0452 /* ClinicalAssessment.swift */,
+				EE56A6481ABB6E4500FA99EB /* ClinicalImpression.swift */,
 				EEF40DD21A41D02F00CA0452 /* CodeableConcept.swift */,
 				EEF40DD31A41D02F00CA0452 /* Coding.swift */,
 				EEF40DD41A41D02F00CA0452 /* Communication.swift */,
@@ -922,7 +881,6 @@
 				EEF40E301A41D02F00CA0452 /* ImagingStudy.swift */,
 				EEF40E311A41D02F00CA0452 /* Immunization.swift */,
 				EEF40E321A41D02F00CA0452 /* ImmunizationRecommendation.swift */,
-				EEF40E331A41D02F00CA0452 /* InstitutionalClaim.swift */,
 				EEF40E341A41D02F00CA0452 /* List.swift */,
 				EEF40E351A41D02F00CA0452 /* Location.swift */,
 				EEF40E371A41D02F00CA0452 /* Media.swift */,
@@ -940,7 +898,6 @@
 				EEF40E421A41D02F00CA0452 /* Observation.swift */,
 				EEF40E431A41D02F00CA0452 /* OperationDefinition.swift */,
 				EEF40E441A41D02F00CA0452 /* OperationOutcome.swift */,
-				EEF40E451A41D02F00CA0452 /* OralHealthClaim.swift */,
 				EEF40E461A41D02F00CA0452 /* Order.swift */,
 				EEF40E471A41D02F00CA0452 /* OrderResponse.swift */,
 				EEF40E481A41D02F00CA0452 /* Organization.swift */,
@@ -949,26 +906,23 @@
 				EEF40E4A1A41D02F00CA0452 /* Patient.swift */,
 				EEF40E4B1A41D02F00CA0452 /* PaymentNotice.swift */,
 				EEF40E4C1A41D02F00CA0452 /* PaymentReconciliation.swift */,
-				EEF40E4D1A41D02F00CA0452 /* PendedRequest.swift */,
 				EEF40E4E1A41D02F00CA0452 /* Period.swift */,
 				EEF40E4F1A41D02F00CA0452 /* Person.swift */,
-				EEF40E501A41D02F00CA0452 /* PharmacyClaim.swift */,
 				EEF40E511A41D02F00CA0452 /* Practitioner.swift */,
 				EEF40E521A41D02F00CA0452 /* Procedure.swift */,
 				EEF40E531A41D02F00CA0452 /* ProcedureRequest.swift */,
-				EEF40E541A41D02F00CA0452 /* ProfessionalClaim.swift */,
+				EE56A6491ABB6E4500FA99EB /* ProcessRequest.swift */,
+				EE56A64A1ABB6E4500FA99EB /* ProcessResponse.swift */,
 				EEF40E561A41D02F00CA0452 /* Provenance.swift */,
 				EEF40E571A41D02F00CA0452 /* Quantity.swift */,
 				EEF40E581A41D02F00CA0452 /* Questionnaire.swift */,
 				EEF40E591A41D02F00CA0452 /* QuestionnaireAnswers.swift */,
 				EEF40E5A1A41D02F00CA0452 /* Range.swift */,
 				EEF40E5B1A41D02F00CA0452 /* Ratio.swift */,
-				EEF40E5C1A41D02F00CA0452 /* Readjudicate.swift */,
 				EE8F51751A441B66004D27C5 /* Reference.swift */,
 				EEF40E5D1A41D02F00CA0452 /* ReferralRequest.swift */,
 				EEF40E5E1A41D02F00CA0452 /* RelatedPerson.swift */,
 				EE04E6FA1AAF1F46008FDDBF /* Resource.swift */,
-				EEF40E5F1A41D02F00CA0452 /* Reversal.swift */,
 				EEF40E601A41D02F00CA0452 /* RiskAssessment.swift */,
 				EEF40E611A41D02F00CA0452 /* SampledData.swift */,
 				EEF40E621A41D02F00CA0452 /* Schedule.swift */,
@@ -976,8 +930,6 @@
 				EE04E6FB1AAF1F46008FDDBF /* Signature.swift */,
 				EEF40E661A41D02F00CA0452 /* Slot.swift */,
 				EEF40E671A41D02F00CA0452 /* Specimen.swift */,
-				EEF40E681A41D02F00CA0452 /* StatusRequest.swift */,
-				EEF40E691A41D02F00CA0452 /* StatusResponse.swift */,
 				EE04E6FC1AAF1F46008FDDBF /* StructureDefinition.swift */,
 				EEF40E6D1A41D02F00CA0452 /* Subscription.swift */,
 				EEF40E6E1A41D02F00CA0452 /* Substance.swift */,
@@ -985,7 +937,6 @@
 				EEF40E701A41D02F00CA0452 /* SupportingDocumentation.swift */,
 				EEF40E711A41D02F00CA0452 /* Timing.swift */,
 				EEF40E7A1A41D02F00CA0452 /* ValueSet.swift */,
-				EEF40E7B1A41D02F00CA0452 /* VisionClaim.swift */,
 				EEF40E7C1A41D02F00CA0452 /* VisionPrescription.swift */,
 			);
 			path = Models;
@@ -1006,7 +957,8 @@
 				EE04E7161AAF23FF008FDDBF /* CarePlan2Tests.swift */,
 				EE04E7171AAF23FF008FDDBF /* CarePlanTests.swift */,
 				EE04E7181AAF23FF008FDDBF /* ClaimResponseTests.swift */,
-				EE04E7191AAF23FF008FDDBF /* ClinicalAssessmentTests.swift */,
+				EE56A63B1ABB6E2900FA99EB /* ClaimTests.swift */,
+				EE56A63C1ABB6E2900FA99EB /* ClinicalImpressionTests.swift */,
 				EE04E71A1AAF23FF008FDDBF /* CommunicationRequestTests.swift */,
 				EE04E71B1AAF23FF008FDDBF /* CommunicationTests.swift */,
 				EE04E71C1AAF23FF008FDDBF /* CompositionTests.swift */,
@@ -1041,7 +993,6 @@
 				EE04E7391AAF23FF008FDDBF /* ImagingStudyTests.swift */,
 				EE04E73A1AAF23FF008FDDBF /* ImmunizationRecommendationTests.swift */,
 				EE04E73B1AAF23FF008FDDBF /* ImmunizationTests.swift */,
-				EE04E73C1AAF23FF008FDDBF /* InstitutionalClaimTests.swift */,
 				EE04E73D1AAF23FF008FDDBF /* ListTests.swift */,
 				EE04E73E1AAF23FF008FDDBF /* LocationTests.swift */,
 				EE04E73F1AAF23FF008FDDBF /* MediaTests.swift */,
@@ -1055,7 +1006,6 @@
 				EE04E7471AAF23FF008FDDBF /* NutritionOrderTests.swift */,
 				EE04E7481AAF23FF008FDDBF /* ObservationTests.swift */,
 				EE04E7491AAF23FF008FDDBF /* OperationOutcomeTests.swift */,
-				EE04E74A1AAF23FF008FDDBF /* OralHealthClaimTests.swift */,
 				EE04E74B1AAF23FF008FDDBF /* OrderResponseTests.swift */,
 				EE04E74C1AAF23FF008FDDBF /* OrderTests.swift */,
 				EE04E74D1AAF23FF008FDDBF /* OrganizationTests.swift */,
@@ -1064,34 +1014,28 @@
 				EE04E7501AAF23FF008FDDBF /* PatientTests.swift */,
 				EE04E7511AAF23FF008FDDBF /* PaymentNoticeTests.swift */,
 				EE04E7521AAF23FF008FDDBF /* PaymentReconciliationTests.swift */,
-				EE04E7531AAF23FF008FDDBF /* PendedRequestTests.swift */,
 				EE04E7541AAF23FF008FDDBF /* PersonTests.swift */,
-				EE04E7551AAF23FF008FDDBF /* PharmacyClaimTests.swift */,
 				EE04E7561AAF23FF008FDDBF /* PractitionerTests.swift */,
 				EE04E7571AAF23FF008FDDBF /* ProcedureRequestTests.swift */,
 				EE04E7581AAF23FF008FDDBF /* ProcedureTests.swift */,
-				EE04E7591AAF23FF008FDDBF /* ProfessionalClaimTests.swift */,
+				EE56A63D1ABB6E2900FA99EB /* ProcessRequestTests.swift */,
+				EE56A63E1ABB6E2900FA99EB /* ProcessResponseTests.swift */,
 				EE04E75A1AAF23FF008FDDBF /* ProvenanceTests.swift */,
 				EE04E75B1AAF23FF008FDDBF /* QuestionnaireAnswersTests.swift */,
 				EE04E75C1AAF23FF008FDDBF /* QuestionnaireTests.swift */,
-				EE04E75D1AAF23FF008FDDBF /* ReadjudicateTests.swift */,
 				EE04E75E1AAF23FF008FDDBF /* ReferralRequestTests.swift */,
 				EE04E75F1AAF23FF008FDDBF /* RelatedPersonTests.swift */,
-				EE04E7601AAF23FF008FDDBF /* ReversalTests.swift */,
 				EE04E7611AAF23FF008FDDBF /* RiskAssessmentTests.swift */,
 				EE04E7621AAF23FF008FDDBF /* ScheduleTests.swift */,
 				EE04E7631AAF23FF008FDDBF /* SearchParameterTests.swift */,
 				EE04E7641AAF23FF008FDDBF /* SlotTests.swift */,
 				EE04E7651AAF23FF008FDDBF /* SpecimenTests.swift */,
-				EE04E7661AAF23FF008FDDBF /* StatusRequestTests.swift */,
-				EE04E7671AAF23FF008FDDBF /* StatusResponseTests.swift */,
 				EE04E7681AAF23FF008FDDBF /* StructureDefinitionTests.swift */,
 				EE04E7691AAF23FF008FDDBF /* SubscriptionTests.swift */,
 				EE04E76A1AAF23FF008FDDBF /* SubstanceTests.swift */,
 				EE04E76B1AAF23FF008FDDBF /* SupplyTests.swift */,
 				EE04E76C1AAF23FF008FDDBF /* SupportingDocumentationTests.swift */,
 				EE04E76D1AAF23FF008FDDBF /* ValueSetTests.swift */,
-				EE04E76E1AAF23FF008FDDBF /* VisionClaimTests.swift */,
 				EE04E76F1AAF23FF008FDDBF /* VisionPrescriptionTests.swift */,
 			);
 			path = ModelTests;
@@ -1279,7 +1223,6 @@
 				EE8F51CB1A4464C0004D27C5 /* Media.swift in Sources */,
 				EE04E6FF1AAF1F46008FDDBF /* BodySite.swift in Sources */,
 				EE8F51B51A4464C0004D27C5 /* ElementDefinition.swift in Sources */,
-				EE8F51E01A4464C0004D27C5 /* PendedRequest.swift in Sources */,
 				EE8F51FE1A4464C0004D27C5 /* SupportingDocumentation.swift in Sources */,
 				EE8F51AE1A4464C0004D27C5 /* DiagnosticOrder.swift in Sources */,
 				EE8F51BA1A4464C0004D27C5 /* EnrollmentResponse.swift in Sources */,
@@ -1287,16 +1230,16 @@
 				EE8F51A31A4464AA004D27C5 /* Contraindication.swift in Sources */,
 				EE8F51CD1A4464C0004D27C5 /* MedicationAdministration.swift in Sources */,
 				EE8F51FB1A4464C0004D27C5 /* Subscription.swift in Sources */,
+				EE56A64D1ABB6E4500FA99EB /* ClinicalImpression.swift in Sources */,
 				EE8F51961A44649B004D27C5 /* CarePlan.swift in Sources */,
 				EE8F51D21A4464C0004D27C5 /* Money.swift in Sources */,
 				EE8F52071A4464C0004D27C5 /* ValueSet.swift in Sources */,
-				EE8F51EE1A4464C0004D27C5 /* Reversal.swift in Sources */,
 				EE8F519C1A4464AA004D27C5 /* CommunicationRequest.swift in Sources */,
-				EE8F519A1A4464AA004D27C5 /* ClinicalAssessment.swift in Sources */,
 				EE04E7011AAF1F46008FDDBF /* DomainResource.swift in Sources */,
 				EE8F51A61A4464C0004D27C5 /* DataElement.swift in Sources */,
 				EE8F51AF1A4464C0004D27C5 /* DiagnosticReport.swift in Sources */,
 				EE8F51D71A4464C0004D27C5 /* OperationOutcome.swift in Sources */,
+				EE56A64B1ABB6E4500FA99EB /* Claim.swift in Sources */,
 				EEF40EEB1A41D02F00CA0452 /* FHIRTypes.swift in Sources */,
 				EE8F51DF1A4464C0004D27C5 /* PaymentReconciliation.swift in Sources */,
 				EE8F51D01A4464C0004D27C5 /* MedicationStatement.swift in Sources */,
@@ -1313,18 +1256,16 @@
 				EE04E7071AAF1F46008FDDBF /* Resource.swift in Sources */,
 				EE8F51B11A4464C0004D27C5 /* DocumentManifest.swift in Sources */,
 				EE8F51E51A4464C0004D27C5 /* ProcedureRequest.swift in Sources */,
-				EE8F51F61A4464C0004D27C5 /* StatusRequest.swift in Sources */,
 				EE8F51BE1A4464C0004D27C5 /* FamilyHistory.swift in Sources */,
 				EE8F51DB1A4464C0004D27C5 /* Organization.swift in Sources */,
 				EE8F51A01A4464AA004D27C5 /* Conformance.swift in Sources */,
-				EE8F51E21A4464C0004D27C5 /* PharmacyClaim.swift in Sources */,
-				EE8F51D81A4464C0004D27C5 /* OralHealthClaim.swift in Sources */,
 				EE8F51FC1A4464C0004D27C5 /* Substance.swift in Sources */,
 				EE8DD2341A6B118000038123 /* DateAndTime.swift in Sources */,
 				EE8F51ED1A4464C0004D27C5 /* RelatedPerson.swift in Sources */,
 				EE5120561A4B3212002D434A /* FHIRElement+Factory.swift in Sources */,
 				EE8F51FD1A4464C0004D27C5 /* Supply.swift in Sources */,
 				EE8F51EF1A4464C0004D27C5 /* RiskAssessment.swift in Sources */,
+				EE56A64F1ABB6E4500FA99EB /* ProcessRequest.swift in Sources */,
 				EE04E7051AAF1F46008FDDBF /* Parameters.swift in Sources */,
 				EE8F51E11A4464C0004D27C5 /* Person.swift in Sources */,
 				EE8F51811A4461A9004D27C5 /* Coding.swift in Sources */,
@@ -1351,23 +1292,20 @@
 				EE8F51821A4461B0004D27C5 /* ContactPoint.swift in Sources */,
 				EE8F51CE1A4464C0004D27C5 /* MedicationDispense.swift in Sources */,
 				EE8F51AA1A4464C0004D27C5 /* DeviceMetric.swift in Sources */,
-				EE8F51EB1A4464C0004D27C5 /* Readjudicate.swift in Sources */,
 				EE8F51CC1A4464C0004D27C5 /* Medication.swift in Sources */,
 				EE8F51871A4461E6004D27C5 /* Quantity.swift in Sources */,
 				EE8F51971A44649B004D27C5 /* CarePlan2.swift in Sources */,
 				EE8F51D91A4464C0004D27C5 /* Order.swift in Sources */,
+				EE56A6511ABB6E4500FA99EB /* ProcessResponse.swift in Sources */,
 				EE8F519D1A4464AA004D27C5 /* Composition.swift in Sources */,
 				EE8F51921A44649B004D27C5 /* AppointmentResponse.swift in Sources */,
 				EE8F518D1A44647F004D27C5 /* DocumentReference.swift in Sources */,
-				EE8F51F71A4464C0004D27C5 /* StatusResponse.swift in Sources */,
 				EE04E70B1AAF1F46008FDDBF /* StructureDefinition.swift in Sources */,
 				EE8F51AD1A4464C0004D27C5 /* DeviceUseStatement.swift in Sources */,
 				EE04E7031AAF1F46008FDDBF /* Meta.swift in Sources */,
 				EE8F51991A4464AA004D27C5 /* ClaimResponse.swift in Sources */,
-				EE8F51C71A4464C0004D27C5 /* InstitutionalClaim.swift in Sources */,
 				EE8F51D11A4464C0004D27C5 /* MessageHeader.swift in Sources */,
 				EE8F51DA1A4464C0004D27C5 /* OrderResponse.swift in Sources */,
-				EE8F51E61A4464C0004D27C5 /* ProfessionalClaim.swift in Sources */,
 				EE04E6FD1AAF1F46008FDDBF /* AuditEvent.swift in Sources */,
 				EE8F52091A4464C0004D27C5 /* VisionPrescription.swift in Sources */,
 				EE8F51A41A4464AA004D27C5 /* Count.swift in Sources */,
@@ -1378,7 +1316,6 @@
 				EE8F51A21A4464AA004D27C5 /* Contract.swift in Sources */,
 				EE8F51911A446496004D27C5 /* Appointment.swift in Sources */,
 				EE8F51D41A4464C0004D27C5 /* Narrative.swift in Sources */,
-				EE8F52081A4464C0004D27C5 /* VisionClaim.swift in Sources */,
 				EE8F518F1A446490004D27C5 /* Alert.swift in Sources */,
 				EE8F518E1A44648C004D27C5 /* Age.swift in Sources */,
 				EE8F51D61A4464C0004D27C5 /* OperationDefinition.swift in Sources */,
@@ -1430,10 +1367,8 @@
 				EE04E7701AAF23FF008FDDBF /* AlertTests.swift in Sources */,
 				EE04E7C41AAF23FF008FDDBF /* HealthcareServiceTests.swift in Sources */,
 				EE04E8021AAF23FF008FDDBF /* PractitionerTests.swift in Sources */,
-				EE04E8001AAF23FF008FDDBF /* PharmacyClaimTests.swift in Sources */,
 				EE04E7E41AAF23FF008FDDBF /* NutritionOrderTests.swift in Sources */,
 				EE04E7D41AAF23FF008FDDBF /* MediaTests.swift in Sources */,
-				EE04E7EA1AAF23FF008FDDBF /* OralHealthClaimTests.swift in Sources */,
 				EE04E7941AAF23FF008FDDBF /* ConformanceTests.swift in Sources */,
 				EE04E82E1AAF23FF008FDDBF /* SupportingDocumentationTests.swift in Sources */,
 				EE04E7EC1AAF23FF008FDDBF /* OrderResponseTests.swift in Sources */,
@@ -1442,11 +1377,12 @@
 				EE04E7A81AAF23FF008FDDBF /* DeviceUseStatementTests.swift in Sources */,
 				EE04E7D01AAF23FF008FDDBF /* ListTests.swift in Sources */,
 				EE04E8141AAF23FF008FDDBF /* RelatedPersonTests.swift in Sources */,
+				EE56A6431ABB6E2900FA99EB /* ProcessRequestTests.swift in Sources */,
+				EE56A6411ABB6E2900FA99EB /* ClinicalImpressionTests.swift in Sources */,
 				EE04E7CC1AAF23FF008FDDBF /* ImmunizationTests.swift in Sources */,
 				EE04E7801AAF23FF008FDDBF /* BundleTests.swift in Sources */,
 				EE04E7B81AAF23FF008FDDBF /* EnrollmentResponseTests.swift in Sources */,
 				EE04E8341AAF23FF008FDDBF /* VisionPrescriptionTests.swift in Sources */,
-				EE04E8221AAF23FF008FDDBF /* StatusRequestTests.swift in Sources */,
 				EE04E7841AAF23FF008FDDBF /* CarePlanTests.swift in Sources */,
 				EE04E7BC1AAF23FF008FDDBF /* ExplanationOfBenefitTests.swift in Sources */,
 				EE04E7EE1AAF23FF008FDDBF /* OrderTests.swift in Sources */,
@@ -1457,7 +1393,6 @@
 				EE04E7BE1AAF23FF008FDDBF /* FamilyHistoryTests.swift in Sources */,
 				EE04E7AE1AAF23FF008FDDBF /* DocumentManifestTests.swift in Sources */,
 				EE04E7B21AAF23FF008FDDBF /* EligibilityResponseTests.swift in Sources */,
-				EE04E8321AAF23FF008FDDBF /* VisionClaimTests.swift in Sources */,
 				EE04E80C1AAF23FF008FDDBF /* QuestionnaireAnswersTests.swift in Sources */,
 				EE04E7E01AAF23FF008FDDBF /* MessageHeaderTests.swift in Sources */,
 				EE04E79C1AAF23FF008FDDBF /* DataElementTests.swift in Sources */,
@@ -1471,10 +1406,10 @@
 				EEE5DF371A5D862B002AFF53 /* FHIRSearchTests.swift in Sources */,
 				EE04E81E1AAF23FF008FDDBF /* SlotTests.swift in Sources */,
 				EE04E7C21AAF23FF008FDDBF /* GroupTests.swift in Sources */,
+				EE56A63F1ABB6E2900FA99EB /* ClaimTests.swift in Sources */,
 				EE04E7921AAF23FF008FDDBF /* ConditionTests.swift in Sources */,
 				EE04E7901AAF23FF008FDDBF /* ConceptMapTests.swift in Sources */,
 				EE684CCF19A7CEF000B5A2C0 /* ExtensionsTest.swift in Sources */,
-				EE04E7CE1AAF23FF008FDDBF /* InstitutionalClaimTests.swift in Sources */,
 				EE04E8281AAF23FF008FDDBF /* SubscriptionTests.swift in Sources */,
 				EE04E7F41AAF23FF008FDDBF /* ParametersTests.swift in Sources */,
 				EE04E78A1AAF23FF008FDDBF /* CommunicationRequestTests.swift in Sources */,
@@ -1491,26 +1426,21 @@
 				EE04E7C81AAF23FF008FDDBF /* ImagingStudyTests.swift in Sources */,
 				EE04E7CA1AAF23FF008FDDBF /* ImmunizationRecommendationTests.swift in Sources */,
 				EE04E7DA1AAF23FF008FDDBF /* MedicationPrescriptionTests.swift in Sources */,
-				EE04E8081AAF23FF008FDDBF /* ProfessionalClaimTests.swift in Sources */,
-				EE04E8161AAF23FF008FDDBF /* ReversalTests.swift in Sources */,
 				EE04E7B01AAF23FF008FDDBF /* EligibilityRequestTests.swift in Sources */,
 				EE04E7A61AAF23FF008FDDBF /* DeviceUseRequestTests.swift in Sources */,
 				EE04E7D81AAF23FF008FDDBF /* MedicationDispenseTests.swift in Sources */,
-				EE04E8101AAF23FF008FDDBF /* ReadjudicateTests.swift in Sources */,
-				EE04E7881AAF23FF008FDDBF /* ClinicalAssessmentTests.swift in Sources */,
 				EE04E7E21AAF23FF008FDDBF /* NamingSystemTests.swift in Sources */,
 				EE04E8371AAF24BD008FDDBF /* DateAndTimeTests.swift in Sources */,
 				EE04E79A1AAF23FF008FDDBF /* CoverageTests.swift in Sources */,
+				EE56A6451ABB6E2900FA99EB /* ProcessResponseTests.swift in Sources */,
 				EE04E7D21AAF23FF008FDDBF /* LocationTests.swift in Sources */,
 				EE04E80E1AAF23FF008FDDBF /* QuestionnaireTests.swift in Sources */,
 				EE04E78C1AAF23FF008FDDBF /* CommunicationTests.swift in Sources */,
 				EE04E77A1AAF23FF008FDDBF /* BasicTests.swift in Sources */,
-				EE04E8241AAF23FF008FDDBF /* StatusResponseTests.swift in Sources */,
 				EE04E8261AAF23FF008FDDBF /* StructureDefinitionTests.swift in Sources */,
 				EE04E77E1AAF23FF008FDDBF /* BodySiteTests.swift in Sources */,
 				EE04E7DC1AAF23FF008FDDBF /* MedicationStatementTests.swift in Sources */,
 				EE0118981A12AC2B002790C8 /* FHIRModelTestCase.swift in Sources */,
-				EE04E7FC1AAF23FF008FDDBF /* PendedRequestTests.swift in Sources */,
 				EE04E81C1AAF23FF008FDDBF /* SearchParameterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1532,7 +1462,6 @@
 				EE6DA7D81A5D4B1000E00708 /* Media.swift in Sources */,
 				EE04E7001AAF1F46008FDDBF /* BodySite.swift in Sources */,
 				EE6DA7D91A5D4B1000E00708 /* ElementDefinition.swift in Sources */,
-				EE6DA7DA1A5D4B1000E00708 /* PendedRequest.swift in Sources */,
 				EE6DA7DB1A5D4B1000E00708 /* SupportingDocumentation.swift in Sources */,
 				EE6DA7DC1A5D4B1000E00708 /* DiagnosticOrder.swift in Sources */,
 				EE6DA7DD1A5D4B1000E00708 /* EnrollmentResponse.swift in Sources */,
@@ -1540,16 +1469,16 @@
 				EE6DA7DF1A5D4B1000E00708 /* Contraindication.swift in Sources */,
 				EE6DA7E01A5D4B1000E00708 /* MedicationAdministration.swift in Sources */,
 				EE6DA7E11A5D4B1000E00708 /* Subscription.swift in Sources */,
+				EE56A64E1ABB6E4500FA99EB /* ClinicalImpression.swift in Sources */,
 				EE6DA7E21A5D4B1000E00708 /* CarePlan.swift in Sources */,
 				EE6DA7E31A5D4B1000E00708 /* Money.swift in Sources */,
 				EE6DA7E41A5D4B1000E00708 /* ValueSet.swift in Sources */,
-				EE6DA7E51A5D4B1000E00708 /* Reversal.swift in Sources */,
 				EE6DA7E61A5D4B1000E00708 /* CommunicationRequest.swift in Sources */,
-				EE6DA7E71A5D4B1000E00708 /* ClinicalAssessment.swift in Sources */,
 				EE04E7021AAF1F46008FDDBF /* DomainResource.swift in Sources */,
 				EE6DA7E81A5D4B1000E00708 /* DataElement.swift in Sources */,
 				EE6DA7E91A5D4B1000E00708 /* DiagnosticReport.swift in Sources */,
 				EE6DA7EA1A5D4B1000E00708 /* OperationOutcome.swift in Sources */,
+				EE56A64C1ABB6E4500FA99EB /* Claim.swift in Sources */,
 				EE6DA7EB1A5D4B1000E00708 /* FHIRTypes.swift in Sources */,
 				EE6DA7EC1A5D4B1000E00708 /* PaymentReconciliation.swift in Sources */,
 				EE6DA7ED1A5D4B1000E00708 /* MedicationStatement.swift in Sources */,
@@ -1566,18 +1495,16 @@
 				EE04E7081AAF1F46008FDDBF /* Resource.swift in Sources */,
 				EE6DA7F71A5D4B1000E00708 /* DocumentManifest.swift in Sources */,
 				EE6DA7F81A5D4B1000E00708 /* ProcedureRequest.swift in Sources */,
-				EE6DA7F91A5D4B1000E00708 /* StatusRequest.swift in Sources */,
 				EE6DA7FA1A5D4B1000E00708 /* FamilyHistory.swift in Sources */,
 				EE6DA7FC1A5D4B1000E00708 /* Organization.swift in Sources */,
 				EE6DA7FD1A5D4B1000E00708 /* Conformance.swift in Sources */,
-				EE6DA7FE1A5D4B1000E00708 /* PharmacyClaim.swift in Sources */,
-				EE6DA7FF1A5D4B1000E00708 /* OralHealthClaim.swift in Sources */,
 				EE6DA8001A5D4B1000E00708 /* Substance.swift in Sources */,
 				EE8DD2351A6B118000038123 /* DateAndTime.swift in Sources */,
 				EE6DA8011A5D4B1000E00708 /* RelatedPerson.swift in Sources */,
 				EE6DA8021A5D4B1000E00708 /* FHIRElement+Factory.swift in Sources */,
 				EE6DA8031A5D4B1000E00708 /* Supply.swift in Sources */,
 				EE6DA8041A5D4B1000E00708 /* RiskAssessment.swift in Sources */,
+				EE56A6501ABB6E4500FA99EB /* ProcessRequest.swift in Sources */,
 				EE04E7061AAF1F46008FDDBF /* Parameters.swift in Sources */,
 				EE6DA8051A5D4B1000E00708 /* Person.swift in Sources */,
 				EE6DA8061A5D4B1000E00708 /* Coding.swift in Sources */,
@@ -1604,23 +1531,20 @@
 				EE6DA81C1A5D4B1000E00708 /* ContactPoint.swift in Sources */,
 				EE6DA81D1A5D4B1000E00708 /* MedicationDispense.swift in Sources */,
 				EE6DA81E1A5D4B1000E00708 /* DeviceMetric.swift in Sources */,
-				EE6DA81F1A5D4B1000E00708 /* Readjudicate.swift in Sources */,
 				EE6DA8201A5D4B1000E00708 /* Medication.swift in Sources */,
 				EE6DA8211A5D4B1000E00708 /* Quantity.swift in Sources */,
 				EE6DA8221A5D4B1000E00708 /* CarePlan2.swift in Sources */,
 				EE6DA8231A5D4B1000E00708 /* Order.swift in Sources */,
+				EE56A6521ABB6E4500FA99EB /* ProcessResponse.swift in Sources */,
 				EE6DA8241A5D4B1000E00708 /* Composition.swift in Sources */,
 				EE6DA8261A5D4B1000E00708 /* AppointmentResponse.swift in Sources */,
 				EE6DA8271A5D4B1000E00708 /* DocumentReference.swift in Sources */,
-				EE6DA8281A5D4B1000E00708 /* StatusResponse.swift in Sources */,
 				EE04E70C1AAF1F46008FDDBF /* StructureDefinition.swift in Sources */,
 				EE6DA8291A5D4B1000E00708 /* DeviceUseStatement.swift in Sources */,
 				EE04E7041AAF1F46008FDDBF /* Meta.swift in Sources */,
 				EE6DA82A1A5D4B1000E00708 /* ClaimResponse.swift in Sources */,
-				EE6DA82B1A5D4B1000E00708 /* InstitutionalClaim.swift in Sources */,
 				EE6DA82C1A5D4B1000E00708 /* MessageHeader.swift in Sources */,
 				EE6DA82D1A5D4B1000E00708 /* OrderResponse.swift in Sources */,
-				EE6DA82E1A5D4B1000E00708 /* ProfessionalClaim.swift in Sources */,
 				EE04E6FE1AAF1F46008FDDBF /* AuditEvent.swift in Sources */,
 				EE6DA82F1A5D4B1000E00708 /* VisionPrescription.swift in Sources */,
 				EE6DA8301A5D4B1000E00708 /* Count.swift in Sources */,
@@ -1631,7 +1555,6 @@
 				EE6DA8351A5D4B1000E00708 /* Contract.swift in Sources */,
 				EE6DA8361A5D4B1000E00708 /* Appointment.swift in Sources */,
 				EE6DA8371A5D4B1000E00708 /* Narrative.swift in Sources */,
-				EE6DA8381A5D4B1000E00708 /* VisionClaim.swift in Sources */,
 				EE6DA8391A5D4B1000E00708 /* Alert.swift in Sources */,
 				EE6DA83A1A5D4B1000E00708 /* Age.swift in Sources */,
 				EE6DA83B1A5D4B1000E00708 /* OperationDefinition.swift in Sources */,
@@ -1683,10 +1606,8 @@
 				EE04E7711AAF23FF008FDDBF /* AlertTests.swift in Sources */,
 				EE04E7C51AAF23FF008FDDBF /* HealthcareServiceTests.swift in Sources */,
 				EE04E8031AAF23FF008FDDBF /* PractitionerTests.swift in Sources */,
-				EE04E8011AAF23FF008FDDBF /* PharmacyClaimTests.swift in Sources */,
 				EE04E7E51AAF23FF008FDDBF /* NutritionOrderTests.swift in Sources */,
 				EE04E7D51AAF23FF008FDDBF /* MediaTests.swift in Sources */,
-				EE04E7EB1AAF23FF008FDDBF /* OralHealthClaimTests.swift in Sources */,
 				EE04E7951AAF23FF008FDDBF /* ConformanceTests.swift in Sources */,
 				EE04E82F1AAF23FF008FDDBF /* SupportingDocumentationTests.swift in Sources */,
 				EE04E7ED1AAF23FF008FDDBF /* OrderResponseTests.swift in Sources */,
@@ -1695,11 +1616,12 @@
 				EE04E7A91AAF23FF008FDDBF /* DeviceUseStatementTests.swift in Sources */,
 				EE04E7D11AAF23FF008FDDBF /* ListTests.swift in Sources */,
 				EE04E8151AAF23FF008FDDBF /* RelatedPersonTests.swift in Sources */,
+				EE56A6441ABB6E2900FA99EB /* ProcessRequestTests.swift in Sources */,
+				EE56A6421ABB6E2900FA99EB /* ClinicalImpressionTests.swift in Sources */,
 				EE04E7CD1AAF23FF008FDDBF /* ImmunizationTests.swift in Sources */,
 				EE04E7811AAF23FF008FDDBF /* BundleTests.swift in Sources */,
 				EE04E7B91AAF23FF008FDDBF /* EnrollmentResponseTests.swift in Sources */,
 				EE04E8351AAF23FF008FDDBF /* VisionPrescriptionTests.swift in Sources */,
-				EE04E8231AAF23FF008FDDBF /* StatusRequestTests.swift in Sources */,
 				EE04E7851AAF23FF008FDDBF /* CarePlanTests.swift in Sources */,
 				EE04E7BD1AAF23FF008FDDBF /* ExplanationOfBenefitTests.swift in Sources */,
 				EE04E7EF1AAF23FF008FDDBF /* OrderTests.swift in Sources */,
@@ -1710,7 +1632,6 @@
 				EE04E7BF1AAF23FF008FDDBF /* FamilyHistoryTests.swift in Sources */,
 				EE04E7AF1AAF23FF008FDDBF /* DocumentManifestTests.swift in Sources */,
 				EE04E7B31AAF23FF008FDDBF /* EligibilityResponseTests.swift in Sources */,
-				EE04E8331AAF23FF008FDDBF /* VisionClaimTests.swift in Sources */,
 				EE04E80D1AAF23FF008FDDBF /* QuestionnaireAnswersTests.swift in Sources */,
 				EE04E7E11AAF23FF008FDDBF /* MessageHeaderTests.swift in Sources */,
 				EE04E79D1AAF23FF008FDDBF /* DataElementTests.swift in Sources */,
@@ -1724,10 +1645,10 @@
 				EEE5DF381A5D862B002AFF53 /* FHIRSearchTests.swift in Sources */,
 				EE04E81F1AAF23FF008FDDBF /* SlotTests.swift in Sources */,
 				EE04E7C31AAF23FF008FDDBF /* GroupTests.swift in Sources */,
+				EE56A6401ABB6E2900FA99EB /* ClaimTests.swift in Sources */,
 				EE04E7931AAF23FF008FDDBF /* ConditionTests.swift in Sources */,
 				EE04E7911AAF23FF008FDDBF /* ConceptMapTests.swift in Sources */,
 				EE6DA86A1A5D4BD000E00708 /* BaseTests+iOS.swift in Sources */,
-				EE04E7CF1AAF23FF008FDDBF /* InstitutionalClaimTests.swift in Sources */,
 				EE04E8291AAF23FF008FDDBF /* SubscriptionTests.swift in Sources */,
 				EE04E7F51AAF23FF008FDDBF /* ParametersTests.swift in Sources */,
 				EE04E78B1AAF23FF008FDDBF /* CommunicationRequestTests.swift in Sources */,
@@ -1743,27 +1664,22 @@
 				EE04E7C91AAF23FF008FDDBF /* ImagingStudyTests.swift in Sources */,
 				EE04E7CB1AAF23FF008FDDBF /* ImmunizationRecommendationTests.swift in Sources */,
 				EE04E7DB1AAF23FF008FDDBF /* MedicationPrescriptionTests.swift in Sources */,
-				EE04E8091AAF23FF008FDDBF /* ProfessionalClaimTests.swift in Sources */,
-				EE04E8171AAF23FF008FDDBF /* ReversalTests.swift in Sources */,
 				EE04E7B11AAF23FF008FDDBF /* EligibilityRequestTests.swift in Sources */,
 				EE04E7A71AAF23FF008FDDBF /* DeviceUseRequestTests.swift in Sources */,
 				EE04E7D91AAF23FF008FDDBF /* MedicationDispenseTests.swift in Sources */,
 				EEF20DAE1A5D4ECD009A6EDA /* ExtensionsTest.swift in Sources */,
-				EE04E8111AAF23FF008FDDBF /* ReadjudicateTests.swift in Sources */,
-				EE04E7891AAF23FF008FDDBF /* ClinicalAssessmentTests.swift in Sources */,
 				EE04E7E31AAF23FF008FDDBF /* NamingSystemTests.swift in Sources */,
 				EE04E8381AAF24BD008FDDBF /* DateAndTimeTests.swift in Sources */,
 				EE04E79B1AAF23FF008FDDBF /* CoverageTests.swift in Sources */,
+				EE56A6461ABB6E2900FA99EB /* ProcessResponseTests.swift in Sources */,
 				EE04E7D31AAF23FF008FDDBF /* LocationTests.swift in Sources */,
 				EE04E80F1AAF23FF008FDDBF /* QuestionnaireTests.swift in Sources */,
 				EE04E78D1AAF23FF008FDDBF /* CommunicationTests.swift in Sources */,
 				EE04E77B1AAF23FF008FDDBF /* BasicTests.swift in Sources */,
-				EE04E8251AAF23FF008FDDBF /* StatusResponseTests.swift in Sources */,
 				EE04E8271AAF23FF008FDDBF /* StructureDefinitionTests.swift in Sources */,
 				EE04E77F1AAF23FF008FDDBF /* BodySiteTests.swift in Sources */,
 				EE04E7DD1AAF23FF008FDDBF /* MedicationStatementTests.swift in Sources */,
 				EEF20DAF1A5D4ECF009A6EDA /* FHIRModelTestCase.swift in Sources */,
-				EE04E7FD1AAF23FF008FDDBF /* PendedRequestTests.swift in Sources */,
 				EE04E81D1AAF23FF008FDDBF /* SearchParameterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

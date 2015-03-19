@@ -2,7 +2,7 @@
 //  CommunicationRequestTests.swift
 //  CommunicationRequestTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -46,7 +46,14 @@ class CommunicationRequestTests: FHIRModelTestCase
 	func testCommunicationRequest2_impl(json: JSONDictionary? = nil) -> CommunicationRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "communicationrequest-qicore-example.json")
 		
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/communicationrequest-orderedBy")
+		XCTAssertEqual(inst.extension_fhir![0].valueReference!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/communicationrequest-reasonRejected")
+		XCTAssertEqual(inst.extension_fhir![1].valueCodeableConcept!.coding![0].code!, "NON-AVAIL")
+		XCTAssertEqual(inst.extension_fhir![1].valueCodeableConcept!.coding![0].display!, "patient not-available")
+		XCTAssertEqual(inst.extension_fhir![1].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/ActReason")
 		XCTAssertEqual(inst.id!, "qicore")
+		XCTAssertEqual(inst.status!, "rejected")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		XCTAssertEqual(inst.text!.div!, "<div>To be filled out at a later time</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")

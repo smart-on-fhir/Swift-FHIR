@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Condition) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Condition) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -383,7 +383,7 @@ public class ConditionOccurredFollowing: FHIRElement
 	}
 	
 	/// Relationship target by means of a predefined code
-	public var codeableConcept: CodeableConcept?
+	public var code: CodeableConcept?
 	
 	/// Relationship target resource
 	public var target: Reference?
@@ -391,8 +391,8 @@ public class ConditionOccurredFollowing: FHIRElement
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["codeableConcept"] as? JSONDictionary {
-				self.codeableConcept = CodeableConcept(json: val, owner: self)
+			if let val = js["code"] as? JSONDictionary {
+				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["target"] as? JSONDictionary {
 				self.target = Reference(json: val, owner: self)
@@ -403,8 +403,8 @@ public class ConditionOccurredFollowing: FHIRElement
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let codeableConcept = self.codeableConcept {
-			json["codeableConcept"] = codeableConcept.asJSON()
+		if let code = self.code {
+			json["code"] = code.asJSON()
 		}
 		if let target = self.target {
 			json["target"] = target.asJSON()

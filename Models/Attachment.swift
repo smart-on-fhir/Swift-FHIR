@@ -2,7 +2,7 @@
 //  Attachment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -22,6 +22,9 @@ public class Attachment: FHIRElement
 	
 	/// Mime type of the content, with charset etc.
 	public var contentType: String?
+	
+	/// Date attachment was first created
+	public var creation: DateTime?
 	
 	/// Data inline, base64ed
 	public var data: Base64Binary?
@@ -46,6 +49,9 @@ public class Attachment: FHIRElement
 		if let js = json {
 			if let val = js["contentType"] as? String {
 				self.contentType = val
+			}
+			if let val = js["creation"] as? String {
+				self.creation = DateTime(string: val)
 			}
 			if let val = js["data"] as? String {
 				self.data = Base64Binary(string: val)
@@ -73,6 +79,9 @@ public class Attachment: FHIRElement
 		
 		if let contentType = self.contentType {
 			json["contentType"] = contentType.asJSON()
+		}
+		if let creation = self.creation {
+			json["creation"] = creation.asJSON()
 		}
 		if let data = self.data {
 			json["data"] = data.asJSON()

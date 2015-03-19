@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Composition) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Composition) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -32,7 +32,7 @@ public class Composition: DomainResource
 	public var class_fhir: CodeableConcept?
 	
 	/// As defined by affinity domain
-	public var confidentiality: Coding?
+	public var confidentiality: String?
 	
 	/// Org which maintains the composition
 	public var custodian: Reference?
@@ -64,13 +64,10 @@ public class Composition: DomainResource
 	/// Kind of composition (LOINC if possible)
 	public var type: CodeableConcept?
 	
-	public convenience init(author: [Reference]?, confidentiality: Coding?, date: DateTime?, status: String?, subject: Reference?, type: CodeableConcept?) {
+	public convenience init(author: [Reference]?, date: DateTime?, status: String?, subject: Reference?, type: CodeableConcept?) {
 		self.init(json: nil)
 		if nil != author {
 			self.author = author
-		}
-		if nil != confidentiality {
-			self.confidentiality = confidentiality
 		}
 		if nil != date {
 			self.date = date
@@ -98,8 +95,8 @@ public class Composition: DomainResource
 			if let val = js["class"] as? JSONDictionary {
 				self.class_fhir = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["confidentiality"] as? JSONDictionary {
-				self.confidentiality = Coding(json: val, owner: self)
+			if let val = js["confidentiality"] as? String {
+				self.confidentiality = val
 			}
 			if let val = js["custodian"] as? JSONDictionary {
 				self.custodian = Reference(json: val, owner: self)
@@ -316,7 +313,7 @@ public class CompositionSection: FHIRElement
 	/// Classification of section (recommended)
 	public var code: CodeableConcept?
 	
-	/// The Content of the section
+	/// The Content of the section (narrative + data entries)
 	public var content: Reference?
 	
 	/// Composition is broken into sections

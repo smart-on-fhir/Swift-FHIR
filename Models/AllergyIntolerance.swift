@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -39,6 +39,9 @@ public class AllergyIntolerance: DomainResource
 	/// Date(/time) of last known occurence of a reaction
 	public var lastOccurence: DateTime?
 	
+	/// Who the sensitivity is for
+	public var patient: Reference?
+	
 	/// When recorded
 	public var recordedDate: DateTime?
 	
@@ -48,19 +51,16 @@ public class AllergyIntolerance: DomainResource
 	/// unconfirmed | confirmed | resolved | refuted
 	public var status: String?
 	
-	/// Who the sensitivity is for
-	public var subject: Reference?
-	
 	/// Substance, (or class) considered to be responsible for risk
 	public var substance: CodeableConcept?
 	
 	/// immune | non-immune - Underlying mechanism (if known)
 	public var type: String?
 	
-	public convenience init(subject: Reference?, substance: CodeableConcept?) {
+	public convenience init(patient: Reference?, substance: CodeableConcept?) {
 		self.init(json: nil)
-		if nil != subject {
-			self.subject = subject
+		if nil != patient {
+			self.patient = patient
 		}
 		if nil != substance {
 			self.substance = substance
@@ -88,6 +88,9 @@ public class AllergyIntolerance: DomainResource
 			if let val = js["lastOccurence"] as? String {
 				self.lastOccurence = DateTime(string: val)
 			}
+			if let val = js["patient"] as? JSONDictionary {
+				self.patient = Reference(json: val, owner: self)
+			}
 			if let val = js["recordedDate"] as? String {
 				self.recordedDate = DateTime(string: val)
 			}
@@ -96,9 +99,6 @@ public class AllergyIntolerance: DomainResource
 			}
 			if let val = js["status"] as? String {
 				self.status = val
-			}
-			if let val = js["subject"] as? JSONDictionary {
-				self.subject = Reference(json: val, owner: self)
 			}
 			if let val = js["substance"] as? JSONDictionary {
 				self.substance = CodeableConcept(json: val, owner: self)
@@ -130,6 +130,9 @@ public class AllergyIntolerance: DomainResource
 		if let lastOccurence = self.lastOccurence {
 			json["lastOccurence"] = lastOccurence.asJSON()
 		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
 		if let recordedDate = self.recordedDate {
 			json["recordedDate"] = recordedDate.asJSON()
 		}
@@ -138,9 +141,6 @@ public class AllergyIntolerance: DomainResource
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
-		}
-		if let subject = self.subject {
-			json["subject"] = subject.asJSON()
 		}
 		if let substance = self.substance {
 			json["substance"] = substance.asJSON()

@@ -2,7 +2,7 @@
 //  ImmunizationTests.swift
 //  ImmunizationTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -39,7 +39,9 @@ class ImmunizationTests: FHIRModelTestCase
 		XCTAssertFalse(inst.reported!)
 		XCTAssertEqual(inst.text!.div!, "<div>Refused Immunization Example</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.vaccineType!.coding![0].code!, "396427003")
+		XCTAssertEqual(inst.vaccineType!.coding![0].code!, "01")
+		XCTAssertEqual(inst.vaccineType!.coding![0].display!, "DTP")
+		XCTAssertEqual(inst.vaccineType!.coding![0].system!.absoluteString!, "http://www2a.cdc.gov/vaccines/iis/iisstandards/vaccines.asp?rpt=cvx")
 		XCTAssertTrue(inst.wasNotGiven!)
 		
 		return inst
@@ -62,30 +64,9 @@ class ImmunizationTests: FHIRModelTestCase
 		XCTAssertFalse(inst.reported!)
 		XCTAssertEqual(inst.text!.div!, "<div>Authored by Joginder Madra</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.vaccineType!.coding![0].code!, "396427003")
-		XCTAssertFalse(inst.wasNotGiven!)
-		
-		return inst
-	}
-	
-	func testImmunization3() {
-		let instance = testImmunization3_impl()
-		testImmunization3_impl(json: instance.asJSON())
-	}
-	
-	func testImmunization3_impl(json: JSONDictionary? = nil) -> Immunization {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "immunization-qicore-example.json")
-		
-		XCTAssertEqual(inst.date!.description, "2013-01-10")
-		XCTAssertEqual(inst.expirationDate!.description, "2015-02-15")
-		XCTAssertEqual(inst.id!, "qicore")
-		XCTAssertEqual(inst.lotNumber!, "AAJN11K")
-		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
-		XCTAssertEqual(inst.performer!.reference!, "Practitioner/example")
-		XCTAssertFalse(inst.reported!)
-		XCTAssertEqual(inst.text!.div!, "<div>Authored by Joginder Madra</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.vaccineType!.coding![0].code!, "396427003")
+		XCTAssertEqual(inst.vaccineType!.coding![0].code!, "Fluvax")
+		XCTAssertEqual(inst.vaccineType!.coding![0].system!.absoluteString!, "urn:oid:1.2.36.1.2001.1005.17")
+		XCTAssertEqual(inst.vaccineType!.text!, "Fluvax (Influenza)")
 		XCTAssertFalse(inst.wasNotGiven!)
 		
 		return inst

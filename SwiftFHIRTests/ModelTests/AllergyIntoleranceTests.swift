@@ -2,7 +2,7 @@
 //  AllergyIntoleranceTests.swift
 //  AllergyIntoleranceTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -52,10 +52,10 @@ class AllergyIntoleranceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://acme.com/ids/patients/risks")
 		XCTAssertEqual(inst.identifier![0].value!, "49476534")
 		XCTAssertEqual(inst.lastOccurence!.description, "2012-06")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.recordedDate!.description, "2014-10-09T14:58:00+11:00")
 		XCTAssertEqual(inst.recorder!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.status!, "confirmed")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		XCTAssertEqual(inst.substance!.coding![0].code!, "227493005")
 		XCTAssertEqual(inst.substance!.coding![0].display!, "Cashew nuts")
 		XCTAssertEqual(inst.substance!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -91,14 +91,18 @@ class AllergyIntoleranceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.event![1].manifestation![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.event![1].onset!.description, "2004")
 		XCTAssertEqual(inst.event![1].severity!, "moderate")
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/allergyintolerance-reasonRefuted")
+		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "MED")
+		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].display!, "Medical Status Altered")
+		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/ActReason")
 		XCTAssertEqual(inst.id!, "qicore")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://acme.com/ids/patients/risks")
 		XCTAssertEqual(inst.identifier![0].value!, "49476534")
 		XCTAssertEqual(inst.lastOccurence!.description, "2012-06")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.recordedDate!.description, "2014-10-09T14:58:00+11:00")
 		XCTAssertEqual(inst.recorder!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.status!, "confirmed")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		XCTAssertEqual(inst.substance!.coding![0].code!, "227493005")
 		XCTAssertEqual(inst.substance!.coding![0].display!, "Cashew nuts")
 		XCTAssertEqual(inst.substance!.coding![0].system!.absoluteString!, "http://snomed.info/sct")

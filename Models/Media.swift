@@ -2,7 +2,7 @@
 //  Media.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Media) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Media) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -21,9 +21,6 @@ public class Media: DomainResource
 	
 	/// Actual Media - reference or data
 	public var content: Attachment?
-	
-	/// When the media was taken/recorded (start)
-	public var created: DateTime?
 	
 	/// Name of the device/manufacturer
 	public var deviceName: String?
@@ -74,9 +71,6 @@ public class Media: DomainResource
 			if let val = js["content"] as? JSONDictionary {
 				self.content = Attachment(json: val, owner: self)
 			}
-			if let val = js["created"] as? String {
-				self.created = DateTime(string: val)
-			}
 			if let val = js["deviceName"] as? String {
 				self.deviceName = val
 			}
@@ -118,9 +112,6 @@ public class Media: DomainResource
 		
 		if let content = self.content {
 			json["content"] = content.asJSON()
-		}
-		if let created = self.created {
-			json["created"] = created.asJSON()
 		}
 		if let deviceName = self.deviceName {
 			json["deviceName"] = deviceName.asJSON()

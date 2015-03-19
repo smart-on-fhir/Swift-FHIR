@@ -2,7 +2,7 @@
 //  Parameters.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -154,7 +154,7 @@ public class ParametersParameter: FHIRElement
 				self.part = ParametersParameterPart.from(val, owner: self) as? [ParametersParameterPart]
 			}
 			if let val = js["resource"] as? JSONDictionary {
-				self.resource = Resource(json: val, owner: self)
+				self.resource = Resource.instantiateFrom(val, owner: self) as? Resource
 			}
 			if let val = js["valueAddress"] as? JSONDictionary {
 				self.valueAddress = Address(json: val, owner: self)
@@ -335,6 +335,9 @@ public class ParametersParameterPart: FHIRElement
 	/// Name from the definition
 	public var name: String?
 	
+	/// If part is a whole resource
+	public var resource: Resource?
+	
 	/// Value of the part
 	public var valueAddress: Address?
 	
@@ -407,82 +410,10 @@ public class ParametersParameterPart: FHIRElement
 	/// Value of the part
 	public var valueUri: NSURL?
 	
-	public convenience init(name: String?, valueAddress: Address?, valueAttachment: Attachment?, valueBase64Binary: Base64Binary?, valueBoolean: Bool?, valueCode: String?, valueCodeableConcept: CodeableConcept?, valueCoding: Coding?, valueContactPoint: ContactPoint?, valueDate: Date?, valueDateTime: DateTime?, valueDecimal: NSDecimalNumber?, valueHumanName: HumanName?, valueIdentifier: Identifier?, valueInstant: Instant?, valueInteger: Int?, valuePeriod: Period?, valueQuantity: Quantity?, valueRange: Range?, valueRatio: Ratio?, valueReference: Reference?, valueString: String?, valueTime: Time?, valueTiming: Timing?, valueUri: NSURL?) {
+	public convenience init(name: String?) {
 		self.init(json: nil)
 		if nil != name {
 			self.name = name
-		}
-		if nil != valueAddress {
-			self.valueAddress = valueAddress
-		}
-		if nil != valueAttachment {
-			self.valueAttachment = valueAttachment
-		}
-		if nil != valueBase64Binary {
-			self.valueBase64Binary = valueBase64Binary
-		}
-		if nil != valueBoolean {
-			self.valueBoolean = valueBoolean
-		}
-		if nil != valueCode {
-			self.valueCode = valueCode
-		}
-		if nil != valueCodeableConcept {
-			self.valueCodeableConcept = valueCodeableConcept
-		}
-		if nil != valueCoding {
-			self.valueCoding = valueCoding
-		}
-		if nil != valueContactPoint {
-			self.valueContactPoint = valueContactPoint
-		}
-		if nil != valueDate {
-			self.valueDate = valueDate
-		}
-		if nil != valueDateTime {
-			self.valueDateTime = valueDateTime
-		}
-		if nil != valueDecimal {
-			self.valueDecimal = valueDecimal
-		}
-		if nil != valueHumanName {
-			self.valueHumanName = valueHumanName
-		}
-		if nil != valueIdentifier {
-			self.valueIdentifier = valueIdentifier
-		}
-		if nil != valueInstant {
-			self.valueInstant = valueInstant
-		}
-		if nil != valueInteger {
-			self.valueInteger = valueInteger
-		}
-		if nil != valuePeriod {
-			self.valuePeriod = valuePeriod
-		}
-		if nil != valueQuantity {
-			self.valueQuantity = valueQuantity
-		}
-		if nil != valueRange {
-			self.valueRange = valueRange
-		}
-		if nil != valueRatio {
-			self.valueRatio = valueRatio
-		}
-		if nil != valueReference {
-			self.valueReference = valueReference
-		}
-		if nil != valueString {
-			self.valueString = valueString
-		}
-		if nil != valueTime {
-			self.valueTime = valueTime
-		}
-		if nil != valueTiming {
-			self.valueTiming = valueTiming
-		}
-		if nil != valueUri {
-			self.valueUri = valueUri
 		}
 	}
 	
@@ -491,6 +422,9 @@ public class ParametersParameterPart: FHIRElement
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
+			}
+			if let val = js["resource"] as? JSONDictionary {
+				self.resource = Resource.instantiateFrom(val, owner: self) as? Resource
 			}
 			if let val = js["valueAddress"] as? JSONDictionary {
 				self.valueAddress = Address(json: val, owner: self)
@@ -572,6 +506,9 @@ public class ParametersParameterPart: FHIRElement
 		
 		if let name = self.name {
 			json["name"] = name.asJSON()
+		}
+		if let resource = self.resource {
+			json["resource"] = resource.asJSON()
 		}
 		if let valueAddress = self.valueAddress {
 			json["valueAddress"] = valueAddress.asJSON()

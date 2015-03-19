@@ -2,7 +2,7 @@
 //  PatientTests.swift
 //  PatientTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -171,10 +171,11 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address![0].postalCode!, "1024 RJ")
 		XCTAssertEqual(inst.address![0].use!, "home")
 		XCTAssertEqual(inst.birthDate!.description, "1944-11-17")
-		XCTAssertEqual(inst.communication![0].coding![0].code!, "nl")
-		XCTAssertEqual(inst.communication![0].coding![0].display!, "Dutch")
-		XCTAssertEqual(inst.communication![0].coding![0].system!.absoluteString!, "urn:ietf:bcp:47")
-		XCTAssertEqual(inst.communication![0].text!, "Nederlands")
+		XCTAssertEqual(inst.communication![0].language!.coding![0].code!, "nl")
+		XCTAssertEqual(inst.communication![0].language!.coding![0].display!, "Dutch")
+		XCTAssertEqual(inst.communication![0].language!.coding![0].system!.absoluteString!, "urn:ietf:bcp:47")
+		XCTAssertEqual(inst.communication![0].language!.text!, "Nederlands")
+		XCTAssertTrue(inst.communication![0].preferred!)
 		XCTAssertEqual(inst.contact![0].name!.family![0], "Abels")
 		XCTAssertEqual(inst.contact![0].name!.given![0], "Sarah")
 		XCTAssertEqual(inst.contact![0].name!.use!, "usual")
@@ -228,9 +229,10 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address![0].postalCode!, "1055RW")
 		XCTAssertEqual(inst.address![0].use!, "home")
 		XCTAssertEqual(inst.birthDate!.description, "1960-03-13")
-		XCTAssertEqual(inst.communication![0].coding![0].code!, "nl-NL")
-		XCTAssertEqual(inst.communication![0].coding![0].display!, "Dutch")
-		XCTAssertEqual(inst.communication![0].coding![0].system!.absoluteString!, "urn:std:iso:639-1")
+		XCTAssertEqual(inst.communication![0].language!.coding![0].code!, "nl-NL")
+		XCTAssertEqual(inst.communication![0].language!.coding![0].display!, "Dutch")
+		XCTAssertEqual(inst.communication![0].language!.coding![0].system!.absoluteString!, "urn:std:iso:639-1")
+		XCTAssertTrue(inst.communication![0].preferred!)
 		XCTAssertEqual(inst.contact![0].name!.text!, "Ariadne Bor-Jansma")
 		XCTAssertEqual(inst.contact![0].name!.use!, "usual")
 		XCTAssertEqual(inst.contact![0].relationship![0].coding![0].code!, "127850001")

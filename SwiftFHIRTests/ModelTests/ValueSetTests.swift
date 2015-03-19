@@ -2,7 +2,7 @@
 //  ValueSetTests.swift
 //  ValueSetTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -99,7 +99,7 @@ class ValueSetTests: FHIRModelTestCase
 		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/valueset-oid")
 		XCTAssertEqual(inst.extension_fhir![0].valueUri!.absoluteString!, "urn:oid:2.16.840.1.113883.4.642.2.320")
 		XCTAssertEqual(inst.id!, "valueset-list-example-codes")
-		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2015-03-11T09:34:16.742+00:00")
+		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2015-03-19T19:10:29.251+00:00")
 		XCTAssertEqual(inst.meta!.profile![0].absoluteString!, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
 		XCTAssertEqual(inst.name!, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher!, "FHIR Project")

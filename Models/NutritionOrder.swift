@@ -2,7 +2,7 @@
 //  NutritionOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -156,7 +156,8 @@ public class NutritionOrder: DomainResource
 /**
  *  Enteral formula components.
  *
- *  Class that defines the components of an enteral formula order for the patient.
+ *  Feeding provided through the gastrointestinal tract via a tube, catheter, or stoma that delivers nutrition distal to
+ *  the oral cavity.
  */
 public class NutritionOrderEnteralFormula: FHIRElement
 {
@@ -290,7 +291,7 @@ public class NutritionOrderEnteralFormula: FHIRElement
 /**
  *  Oral diet components.
  *
- *  Class that defines the components of an oral diet order for the patient.
+ *  Diet given orally in contrast to enteral (tube) feeding.
  */
 public class NutritionOrderOralDiet: FHIRElement
 {
@@ -370,7 +371,7 @@ public class NutritionOrderOralDiet: FHIRElement
 /**
  *  Required  nutrient modifications.
  *
- *  Class that defines the details of any nutrient modifications required for the oral diet.
+ *  Class that defines the quantity and type of nutrient modifications required for the oral diet.
  */
 public class NutritionOrderOralDietNutrient: FHIRElement
 {
@@ -459,7 +460,7 @@ public class NutritionOrderOralDietTexture: FHIRElement
 /**
  *  Supplement components.
  *
- *  Class that defines the components of a supplement order for the patient.
+ *  Oral nutritional products given in order to add further nutritional value to the patient's diet.
  */
 public class NutritionOrderSupplement: FHIRElement
 {

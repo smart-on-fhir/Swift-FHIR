@@ -2,7 +2,7 @@
 //  NamingSystem.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -21,7 +21,7 @@ public class NamingSystem: DomainResource
 		get { return "NamingSystem" }
 	}
 	
-	/// driver | provider | patient | bank
+	/// e.g. driver,  provider,  patient, bank etc
 	public var category: CodeableConcept?
 	
 	/// Contact details of the publisher

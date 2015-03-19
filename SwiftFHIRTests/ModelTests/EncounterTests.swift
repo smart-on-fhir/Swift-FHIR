@@ -2,7 +2,7 @@
 //  EncounterTests.swift
 //  EncounterTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -297,10 +297,27 @@ class EncounterTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-qicore-example.json")
 		
 		XCTAssertEqual(inst.class_fhir!, "inpatient")
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/encounter-primaryCondition")
+		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "39065001")
+		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].display!, "Burn of ear")
+		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/encounter-condition")
+		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![0].valueCodeableConcept!.coding![0].code!, "110182002")
+		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![0].valueCodeableConcept!.coding![0].display!, "burn of forehead")
+		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/encounter-conditionRole")
+		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![1].valueCodeableConcept!.coding![0].code!, "398192003")
+		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![1].valueCodeableConcept!.coding![0].display!, "Co-morbid conditions (finding)")
+		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![1].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/encounter-relatedCondition")
+		XCTAssertEqual(inst.hospitalization!.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/encounter-admission")
+		XCTAssertEqual(inst.hospitalization!.extension_fhir![0].valueDateTime!.description, "2015-02-09T00:00:00Z")
+		XCTAssertEqual(inst.hospitalization!.extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/encounter-discharge")
+		XCTAssertEqual(inst.hospitalization!.extension_fhir![1].valueDateTime!.description, "2015-02-20T00:00:00Z")
 		XCTAssertEqual(inst.id!, "qicore")
-		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
-		XCTAssertEqual(inst.status!, "in-progress")
-		XCTAssertEqual(inst.text!.div!, "<div>Encounter with patient @example</div>")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/qicore")
+		XCTAssertEqual(inst.status!, "finished")
+		XCTAssertEqual(inst.text!.div!, "<div>Encounter with patient @qicore</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst

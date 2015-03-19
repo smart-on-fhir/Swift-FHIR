@@ -2,7 +2,7 @@
 //  AppointmentTests.swift
 //  AppointmentTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -34,9 +34,6 @@ class AppointmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.description_fhir!, "Discussion on the results of your recent MRI")
 		XCTAssertEqual(inst.end!.description, "2013-12-10T11:00:00Z")
 		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
-		XCTAssertEqual(inst.lastModifiedBy!.display!, "Dr Adam Careful")
-		XCTAssertEqual(inst.lastModifiedBy!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.participant![0].actor!.display!, "Peter James Chalmers")
 		XCTAssertEqual(inst.participant![0].actor!.reference!, "Patient/example")
 		XCTAssertEqual(inst.participant![0].required!, "required")
@@ -73,9 +70,6 @@ class AppointmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.description_fhir!, "Discussion about Peter Chalmers MRI results")
 		XCTAssertEqual(inst.end!.description, "2013-12-09T11:00:00Z")
 		XCTAssertEqual(inst.id!, "2docs")
-		XCTAssertEqual(inst.lastModified!.description, "2012-09-17")
-		XCTAssertEqual(inst.lastModifiedBy!.display!, "Dr Adam Careful")
-		XCTAssertEqual(inst.lastModifiedBy!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.participant![0].actor!.display!, "Peter James Chalmers")
 		XCTAssertEqual(inst.participant![0].actor!.reference!, "Patient/example")
 		XCTAssertEqual(inst.participant![0].required!, "information-only")

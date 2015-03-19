@@ -1,8 +1,8 @@
 //
-//  PharmacyClaim.swift
+//  Claim.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/PharmacyClaim) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Claim) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -15,10 +15,10 @@ import Foundation
  *  A provider issued list of services and products provided, or to be provided, to a patient which is provided to an
  *  insurer for payment recovery.
  */
-public class PharmacyClaim: DomainResource
+public class Claim: DomainResource
 {
 	override public class var resourceName: String {
-		get { return "PharmacyClaim" }
+		get { return "Claim" }
 	}
 	
 	/// Accident Date
@@ -34,13 +34,13 @@ public class PharmacyClaim: DomainResource
 	public var condition: [Coding]?
 	
 	/// Insurance or medical plan
-	public var coverage: [PharmacyClaimCoverage]?
+	public var coverage: [ClaimCoverage]?
 	
 	/// Creation date
 	public var created: DateTime?
 	
 	/// Diagnosis
-	public var diagnosis: [PharmacyClaimDiagnosis]?
+	public var diagnosis: [ClaimDiagnosis]?
 	
 	/// Author
 	public var enterer: Reference?
@@ -61,7 +61,10 @@ public class PharmacyClaim: DomainResource
 	public var interventionException: [Coding]?
 	
 	/// Goods and Services
-	public var item: [PharmacyClaimItem]?
+	public var item: [ClaimItem]?
+	
+	/// Only if type = oral
+	public var missingTeeth: [ClaimMissingTeeth]?
 	
 	/// Responsible organization
 	public var organization: Reference?
@@ -76,9 +79,9 @@ public class PharmacyClaim: DomainResource
 	public var patient: Reference?
 	
 	/// Payee
-	public var payee: PharmacyClaimPayee?
+	public var payee: ClaimPayee?
 	
-	/// Current Prescription
+	/// Prescription
 	public var prescription: Reference?
 	
 	/// Desired processing priority
@@ -99,13 +102,19 @@ public class PharmacyClaim: DomainResource
 	/// Insurer
 	public var target: Reference?
 	
+	/// institutional | oral | pharmacy | professional | vision
+	public var type: String?
+	
 	/// complete | proposed | exploratory | other
 	public var use: String?
 	
-	public convenience init(patient: Reference?) {
+	public convenience init(patient: Reference?, type: String?) {
 		self.init(json: nil)
 		if nil != patient {
 			self.patient = patient
+		}
+		if nil != type {
+			self.type = type
 		}
 	}
 	
@@ -125,13 +134,13 @@ public class PharmacyClaim: DomainResource
 				self.condition = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["coverage"] as? [JSONDictionary] {
-				self.coverage = PharmacyClaimCoverage.from(val, owner: self) as? [PharmacyClaimCoverage]
+				self.coverage = ClaimCoverage.from(val, owner: self) as? [ClaimCoverage]
 			}
 			if let val = js["created"] as? String {
 				self.created = DateTime(string: val)
 			}
 			if let val = js["diagnosis"] as? [JSONDictionary] {
-				self.diagnosis = PharmacyClaimDiagnosis.from(val, owner: self) as? [PharmacyClaimDiagnosis]
+				self.diagnosis = ClaimDiagnosis.from(val, owner: self) as? [ClaimDiagnosis]
 			}
 			if let val = js["enterer"] as? JSONDictionary {
 				self.enterer = Reference(json: val, owner: self)
@@ -152,7 +161,10 @@ public class PharmacyClaim: DomainResource
 				self.interventionException = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["item"] as? [JSONDictionary] {
-				self.item = PharmacyClaimItem.from(val, owner: self) as? [PharmacyClaimItem]
+				self.item = ClaimItem.from(val, owner: self) as? [ClaimItem]
+			}
+			if let val = js["missingTeeth"] as? [JSONDictionary] {
+				self.missingTeeth = ClaimMissingTeeth.from(val, owner: self) as? [ClaimMissingTeeth]
 			}
 			if let val = js["organization"] as? JSONDictionary {
 				self.organization = Reference(json: val, owner: self)
@@ -167,7 +179,7 @@ public class PharmacyClaim: DomainResource
 				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["payee"] as? JSONDictionary {
-				self.payee = PharmacyClaimPayee(json: val, owner: self)
+				self.payee = ClaimPayee(json: val, owner: self)
 			}
 			if let val = js["prescription"] as? JSONDictionary {
 				self.prescription = Reference(json: val, owner: self)
@@ -189,6 +201,9 @@ public class PharmacyClaim: DomainResource
 			}
 			if let val = js["target"] as? JSONDictionary {
 				self.target = Reference(json: val, owner: self)
+			}
+			if let val = js["type"] as? String {
+				self.type = val
 			}
 			if let val = js["use"] as? String {
 				self.use = val
@@ -212,13 +227,13 @@ public class PharmacyClaim: DomainResource
 			json["condition"] = Coding.asJSONArray(condition)
 		}
 		if let coverage = self.coverage {
-			json["coverage"] = PharmacyClaimCoverage.asJSONArray(coverage)
+			json["coverage"] = ClaimCoverage.asJSONArray(coverage)
 		}
 		if let created = self.created {
 			json["created"] = created.asJSON()
 		}
 		if let diagnosis = self.diagnosis {
-			json["diagnosis"] = PharmacyClaimDiagnosis.asJSONArray(diagnosis)
+			json["diagnosis"] = ClaimDiagnosis.asJSONArray(diagnosis)
 		}
 		if let enterer = self.enterer {
 			json["enterer"] = enterer.asJSON()
@@ -239,7 +254,10 @@ public class PharmacyClaim: DomainResource
 			json["interventionException"] = Coding.asJSONArray(interventionException)
 		}
 		if let item = self.item {
-			json["item"] = PharmacyClaimItem.asJSONArray(item)
+			json["item"] = ClaimItem.asJSONArray(item)
+		}
+		if let missingTeeth = self.missingTeeth {
+			json["missingTeeth"] = ClaimMissingTeeth.asJSONArray(missingTeeth)
 		}
 		if let organization = self.organization {
 			json["organization"] = organization.asJSON()
@@ -277,6 +295,9 @@ public class PharmacyClaim: DomainResource
 		if let target = self.target {
 			json["target"] = target.asJSON()
 		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
 		if let use = self.use {
 			json["use"] = use.asJSON()
 		}
@@ -291,10 +312,10 @@ public class PharmacyClaim: DomainResource
  *
  *  Financial instrument by which payment information for health care.
  */
-public class PharmacyClaimCoverage: FHIRElement
+public class ClaimCoverage: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "PharmacyClaimCoverage" }
+		get { return "ClaimCoverage" }
 	}
 	
 	/// Business agreement
@@ -409,10 +430,10 @@ public class PharmacyClaimCoverage: FHIRElement
  *
  *  Ordered list of patient diagnosis for which care is sought.
  */
-public class PharmacyClaimDiagnosis: FHIRElement
+public class ClaimDiagnosis: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "PharmacyClaimDiagnosis" }
+		get { return "ClaimDiagnosis" }
 	}
 	
 	/// Patient's list of diagnosis
@@ -463,17 +484,17 @@ public class PharmacyClaimDiagnosis: FHIRElement
  *
  *  First tier of goods and services.
  */
-public class PharmacyClaimItem: FHIRElement
+public class ClaimItem: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "PharmacyClaimItem" }
+		get { return "ClaimItem" }
 	}
 	
 	/// Service Location
 	public var bodySite: Coding?
 	
 	/// Additional items
-	public var detail: [PharmacyClaimItemDetail]?
+	public var detail: [ClaimItemDetail]?
 	
 	/// Diagnosis Link
 	public var diagnosisLinkId: [Int]?
@@ -489,6 +510,9 @@ public class PharmacyClaimItem: FHIRElement
 	
 	/// Difficulty scaling factor
 	public var points: NSDecimalNumber?
+	
+	/// Prosthetic details
+	public var prosthesis: ClaimItemProsthesis?
 	
 	/// Responsible practitioner
 	public var provider: Reference?
@@ -537,7 +561,7 @@ public class PharmacyClaimItem: FHIRElement
 				self.bodySite = Coding(json: val, owner: self)
 			}
 			if let val = js["detail"] as? [JSONDictionary] {
-				self.detail = PharmacyClaimItemDetail.from(val, owner: self) as? [PharmacyClaimItemDetail]
+				self.detail = ClaimItemDetail.from(val, owner: self) as? [ClaimItemDetail]
 			}
 			if let val = js["diagnosisLinkId"] as? [Int] {
 				self.diagnosisLinkId = val
@@ -553,6 +577,9 @@ public class PharmacyClaimItem: FHIRElement
 			}
 			if let val = js["points"] as? NSNumber {
 				self.points = NSDecimalNumber(json: val)
+			}
+			if let val = js["prosthesis"] as? JSONDictionary {
+				self.prosthesis = ClaimItemProsthesis(json: val, owner: self)
 			}
 			if let val = js["provider"] as? JSONDictionary {
 				self.provider = Reference(json: val, owner: self)
@@ -591,7 +618,7 @@ public class PharmacyClaimItem: FHIRElement
 			json["bodySite"] = bodySite.asJSON()
 		}
 		if let detail = self.detail {
-			json["detail"] = PharmacyClaimItemDetail.asJSONArray(detail)
+			json["detail"] = ClaimItemDetail.asJSONArray(detail)
 		}
 		if let diagnosisLinkId = self.diagnosisLinkId {
 			var arr = [AnyObject]()
@@ -611,6 +638,9 @@ public class PharmacyClaimItem: FHIRElement
 		}
 		if let points = self.points {
 			json["points"] = points.asJSON()
+		}
+		if let prosthesis = self.prosthesis {
+			json["prosthesis"] = prosthesis.asJSON()
 		}
 		if let provider = self.provider {
 			json["provider"] = provider.asJSON()
@@ -650,10 +680,10 @@ public class PharmacyClaimItem: FHIRElement
  *
  *  Second tier of goods and services.
  */
-public class PharmacyClaimItemDetail: FHIRElement
+public class ClaimItemDetail: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "PharmacyClaimItemDetail" }
+		get { return "ClaimItemDetail" }
 	}
 	
 	/// Price scaling factor
@@ -675,7 +705,7 @@ public class PharmacyClaimItemDetail: FHIRElement
 	public var service: Coding?
 	
 	/// Additional items
-	public var subDetail: [PharmacyClaimItemDetailSubDetail]?
+	public var subDetail: [ClaimItemDetailSubDetail]?
 	
 	/// Group or type of product or service
 	public var type: Coding?
@@ -721,7 +751,7 @@ public class PharmacyClaimItemDetail: FHIRElement
 				self.service = Coding(json: val, owner: self)
 			}
 			if let val = js["subDetail"] as? [JSONDictionary] {
-				self.subDetail = PharmacyClaimItemDetailSubDetail.from(val, owner: self) as? [PharmacyClaimItemDetailSubDetail]
+				self.subDetail = ClaimItemDetailSubDetail.from(val, owner: self) as? [ClaimItemDetailSubDetail]
 			}
 			if let val = js["type"] as? JSONDictionary {
 				self.type = Coding(json: val, owner: self)
@@ -757,7 +787,7 @@ public class PharmacyClaimItemDetail: FHIRElement
 			json["service"] = service.asJSON()
 		}
 		if let subDetail = self.subDetail {
-			json["subDetail"] = PharmacyClaimItemDetailSubDetail.asJSONArray(subDetail)
+			json["subDetail"] = ClaimItemDetailSubDetail.asJSONArray(subDetail)
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -779,10 +809,10 @@ public class PharmacyClaimItemDetail: FHIRElement
  *
  *  Third tier of goods and services.
  */
-public class PharmacyClaimItemDetailSubDetail: FHIRElement
+public class ClaimItemDetailSubDetail: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "PharmacyClaimItemDetailSubDetail" }
+		get { return "ClaimItemDetailSubDetail" }
 	}
 	
 	/// Price scaling factor
@@ -895,14 +925,128 @@ public class PharmacyClaimItemDetailSubDetail: FHIRElement
 
 
 /**
+ *  Prosthetic details.
+ *
+ *  The materials and placement date of prior fixed prosthesis.
+ */
+public class ClaimItemProsthesis: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ClaimItemProsthesis" }
+	}
+	
+	/// Is this the initial service
+	public var initial: Bool?
+	
+	/// Initial service Date
+	public var priorDate: Date?
+	
+	/// Prosthetic Material
+	public var priorMaterial: Coding?
+	
+	public required init(json: JSONDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["initial"] as? Bool {
+				self.initial = val
+			}
+			if let val = js["priorDate"] as? String {
+				self.priorDate = Date(string: val)
+			}
+			if let val = js["priorMaterial"] as? JSONDictionary {
+				self.priorMaterial = Coding(json: val, owner: self)
+			}
+		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let initial = self.initial {
+			json["initial"] = initial.asJSON()
+		}
+		if let priorDate = self.priorDate {
+			json["priorDate"] = priorDate.asJSON()
+		}
+		if let priorMaterial = self.priorMaterial {
+			json["priorMaterial"] = priorMaterial.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Only if type = oral.
+ *
+ *  A list of teeth which would be expected but are not found due to having been previously  extracted or for other
+ *  reasons.
+ */
+public class ClaimMissingTeeth: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ClaimMissingTeeth" }
+	}
+	
+	/// Date of Extraction
+	public var extractionDate: Date?
+	
+	/// Reason for missing
+	public var reason: Coding?
+	
+	/// Tooth Code
+	public var tooth: Coding?
+	
+	public convenience init(tooth: Coding?) {
+		self.init(json: nil)
+		if nil != tooth {
+			self.tooth = tooth
+		}
+	}
+	
+	public required init(json: JSONDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["extractionDate"] as? String {
+				self.extractionDate = Date(string: val)
+			}
+			if let val = js["reason"] as? JSONDictionary {
+				self.reason = Coding(json: val, owner: self)
+			}
+			if let val = js["tooth"] as? JSONDictionary {
+				self.tooth = Coding(json: val, owner: self)
+			}
+		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let extractionDate = self.extractionDate {
+			json["extractionDate"] = extractionDate.asJSON()
+		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
+		}
+		if let tooth = self.tooth {
+			json["tooth"] = tooth.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
  *  Payee.
  *
  *  The party to be reimbursed for the services.
  */
-public class PharmacyClaimPayee: FHIRElement
+public class ClaimPayee: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "PharmacyClaimPayee" }
+		get { return "ClaimPayee" }
 	}
 	
 	/// Organization who is the payee

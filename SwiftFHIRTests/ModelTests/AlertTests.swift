@@ -2,7 +2,7 @@
 //  AlertTests.swift
 //  AlertTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -64,12 +64,15 @@ class AlertTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].display!, "Admin")
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "local")
 		XCTAssertEqual(inst.category!.text!, "admin")
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/alert-period")
+		XCTAssertEqual(inst.extension_fhir![0].valuePeriod!.end!.description, "2015-02-28")
+		XCTAssertEqual(inst.extension_fhir![0].valuePeriod!.start!.description, "2015-01-09")
 		XCTAssertEqual(inst.id!, "qicore")
 		XCTAssertEqual(inst.note!.coding![0].code!, "bigdog")
 		XCTAssertEqual(inst.note!.coding![0].display!, "Big dog")
 		XCTAssertEqual(inst.note!.coding![0].system!.absoluteString!, "local")
 		XCTAssertEqual(inst.note!.text!, "Patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
-		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.status!, "inactive")
 		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		XCTAssertEqual(inst.text!.div!, "<div>Large Dog warning for Peter Patient</div>")

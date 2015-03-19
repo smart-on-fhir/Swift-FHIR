@@ -2,7 +2,7 @@
 //  FHIRElement+Factory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -82,6 +82,24 @@ extension FHIRElement
 				return CarePlanGoal(json: json, owner: owner)
 			case "CarePlanParticipant":
 				return CarePlanParticipant(json: json, owner: owner)
+			case "Claim":
+				return Claim(json: json, owner: owner)
+			case "ClaimCoverage":
+				return ClaimCoverage(json: json, owner: owner)
+			case "ClaimDiagnosis":
+				return ClaimDiagnosis(json: json, owner: owner)
+			case "ClaimItem":
+				return ClaimItem(json: json, owner: owner)
+			case "ClaimItemDetail":
+				return ClaimItemDetail(json: json, owner: owner)
+			case "ClaimItemDetailSubDetail":
+				return ClaimItemDetailSubDetail(json: json, owner: owner)
+			case "ClaimItemProsthesis":
+				return ClaimItemProsthesis(json: json, owner: owner)
+			case "ClaimMissingTeeth":
+				return ClaimMissingTeeth(json: json, owner: owner)
+			case "ClaimPayee":
+				return ClaimPayee(json: json, owner: owner)
 			case "ClaimResponse":
 				return ClaimResponse(json: json, owner: owner)
 			case "ClaimResponseAddItem":
@@ -110,14 +128,14 @@ extension FHIRElement
 				return ClaimResponseItemDetailSubDetailAdjudication(json: json, owner: owner)
 			case "ClaimResponseNote":
 				return ClaimResponseNote(json: json, owner: owner)
-			case "ClinicalAssessment":
-				return ClinicalAssessment(json: json, owner: owner)
-			case "ClinicalAssessmentDiagnosis":
-				return ClinicalAssessmentDiagnosis(json: json, owner: owner)
-			case "ClinicalAssessmentInvestigations":
-				return ClinicalAssessmentInvestigations(json: json, owner: owner)
-			case "ClinicalAssessmentRuledOut":
-				return ClinicalAssessmentRuledOut(json: json, owner: owner)
+			case "ClinicalImpression":
+				return ClinicalImpression(json: json, owner: owner)
+			case "ClinicalImpressionDiagnosis":
+				return ClinicalImpressionDiagnosis(json: json, owner: owner)
+			case "ClinicalImpressionInvestigations":
+				return ClinicalImpressionInvestigations(json: json, owner: owner)
+			case "ClinicalImpressionRuledOut":
+				return ClinicalImpressionRuledOut(json: json, owner: owner)
 			case "CodeableConcept":
 				return CodeableConcept(json: json, owner: owner)
 			case "Coding":
@@ -254,10 +272,14 @@ extension FHIRElement
 				return Distance(json: json, owner: owner)
 			case "DocumentManifest":
 				return DocumentManifest(json: json, owner: owner)
+			case "DocumentManifestRelated":
+				return DocumentManifestRelated(json: json, owner: owner)
 			case "DocumentReference":
 				return DocumentReference(json: json, owner: owner)
 			case "DocumentReferenceContext":
 				return DocumentReferenceContext(json: json, owner: owner)
+			case "DocumentReferenceContextRelated":
+				return DocumentReferenceContextRelated(json: json, owner: owner)
 			case "DocumentReferenceRelatesTo":
 				return DocumentReferenceRelatesTo(json: json, owner: owner)
 			case "DomainResource":
@@ -360,20 +382,6 @@ extension FHIRElement
 				return ImmunizationRecommendationRecommendationProtocol(json: json, owner: owner)
 			case "ImmunizationVaccinationProtocol":
 				return ImmunizationVaccinationProtocol(json: json, owner: owner)
-			case "InstitutionalClaim":
-				return InstitutionalClaim(json: json, owner: owner)
-			case "InstitutionalClaimCoverage":
-				return InstitutionalClaimCoverage(json: json, owner: owner)
-			case "InstitutionalClaimDiagnosis":
-				return InstitutionalClaimDiagnosis(json: json, owner: owner)
-			case "InstitutionalClaimItem":
-				return InstitutionalClaimItem(json: json, owner: owner)
-			case "InstitutionalClaimItemDetail":
-				return InstitutionalClaimItemDetail(json: json, owner: owner)
-			case "InstitutionalClaimItemDetailSubDetail":
-				return InstitutionalClaimItemDetailSubDetail(json: json, owner: owner)
-			case "InstitutionalClaimPayee":
-				return InstitutionalClaimPayee(json: json, owner: owner)
 			case "List":
 				return List(json: json, owner: owner)
 			case "ListEntry":
@@ -468,24 +476,6 @@ extension FHIRElement
 				return OperationOutcome(json: json, owner: owner)
 			case "OperationOutcomeIssue":
 				return OperationOutcomeIssue(json: json, owner: owner)
-			case "OralHealthClaim":
-				return OralHealthClaim(json: json, owner: owner)
-			case "OralHealthClaimCoverage":
-				return OralHealthClaimCoverage(json: json, owner: owner)
-			case "OralHealthClaimDiagnosis":
-				return OralHealthClaimDiagnosis(json: json, owner: owner)
-			case "OralHealthClaimItem":
-				return OralHealthClaimItem(json: json, owner: owner)
-			case "OralHealthClaimItemDetail":
-				return OralHealthClaimItemDetail(json: json, owner: owner)
-			case "OralHealthClaimItemDetailSubDetail":
-				return OralHealthClaimItemDetailSubDetail(json: json, owner: owner)
-			case "OralHealthClaimItemProsthesis":
-				return OralHealthClaimItemProsthesis(json: json, owner: owner)
-			case "OralHealthClaimMissingTeeth":
-				return OralHealthClaimMissingTeeth(json: json, owner: owner)
-			case "OralHealthClaimPayee":
-				return OralHealthClaimPayee(json: json, owner: owner)
 			case "Order":
 				return Order(json: json, owner: owner)
 			case "OrderResponse":
@@ -508,6 +498,8 @@ extension FHIRElement
 				return Patient(json: json, owner: owner)
 			case "PatientAnimal":
 				return PatientAnimal(json: json, owner: owner)
+			case "PatientCommunication":
+				return PatientCommunication(json: json, owner: owner)
 			case "PatientContact":
 				return PatientContact(json: json, owner: owner)
 			case "PatientLink":
@@ -520,28 +512,12 @@ extension FHIRElement
 				return PaymentReconciliationDetail(json: json, owner: owner)
 			case "PaymentReconciliationNote":
 				return PaymentReconciliationNote(json: json, owner: owner)
-			case "PendedRequest":
-				return PendedRequest(json: json, owner: owner)
 			case "Period":
 				return Period(json: json, owner: owner)
 			case "Person":
 				return Person(json: json, owner: owner)
 			case "PersonLink":
 				return PersonLink(json: json, owner: owner)
-			case "PharmacyClaim":
-				return PharmacyClaim(json: json, owner: owner)
-			case "PharmacyClaimCoverage":
-				return PharmacyClaimCoverage(json: json, owner: owner)
-			case "PharmacyClaimDiagnosis":
-				return PharmacyClaimDiagnosis(json: json, owner: owner)
-			case "PharmacyClaimItem":
-				return PharmacyClaimItem(json: json, owner: owner)
-			case "PharmacyClaimItemDetail":
-				return PharmacyClaimItemDetail(json: json, owner: owner)
-			case "PharmacyClaimItemDetailSubDetail":
-				return PharmacyClaimItemDetailSubDetail(json: json, owner: owner)
-			case "PharmacyClaimPayee":
-				return PharmacyClaimPayee(json: json, owner: owner)
 			case "Practitioner":
 				return Practitioner(json: json, owner: owner)
 			case "PractitionerPractitionerRole":
@@ -556,20 +532,14 @@ extension FHIRElement
 				return ProcedureRelatedItem(json: json, owner: owner)
 			case "ProcedureRequest":
 				return ProcedureRequest(json: json, owner: owner)
-			case "ProfessionalClaim":
-				return ProfessionalClaim(json: json, owner: owner)
-			case "ProfessionalClaimCoverage":
-				return ProfessionalClaimCoverage(json: json, owner: owner)
-			case "ProfessionalClaimDiagnosis":
-				return ProfessionalClaimDiagnosis(json: json, owner: owner)
-			case "ProfessionalClaimItem":
-				return ProfessionalClaimItem(json: json, owner: owner)
-			case "ProfessionalClaimItemDetail":
-				return ProfessionalClaimItemDetail(json: json, owner: owner)
-			case "ProfessionalClaimItemDetailSubDetail":
-				return ProfessionalClaimItemDetailSubDetail(json: json, owner: owner)
-			case "ProfessionalClaimPayee":
-				return ProfessionalClaimPayee(json: json, owner: owner)
+			case "ProcessRequest":
+				return ProcessRequest(json: json, owner: owner)
+			case "ProcessRequestItem":
+				return ProcessRequestItem(json: json, owner: owner)
+			case "ProcessResponse":
+				return ProcessResponse(json: json, owner: owner)
+			case "ProcessResponseNotes":
+				return ProcessResponseNotes(json: json, owner: owner)
 			case "Provenance":
 				return Provenance(json: json, owner: owner)
 			case "ProvenanceAgent":
@@ -596,10 +566,6 @@ extension FHIRElement
 				return Range(json: json, owner: owner)
 			case "Ratio":
 				return Ratio(json: json, owner: owner)
-			case "Readjudicate":
-				return Readjudicate(json: json, owner: owner)
-			case "ReadjudicateItem":
-				return ReadjudicateItem(json: json, owner: owner)
 			case "Reference":
 				return Reference(json: json, owner: owner)
 			case "ReferralRequest":
@@ -608,12 +574,6 @@ extension FHIRElement
 				return RelatedPerson(json: json, owner: owner)
 			case "Resource":
 				return Resource(json: json, owner: owner)
-			case "Reversal":
-				return Reversal(json: json, owner: owner)
-			case "ReversalCoverage":
-				return ReversalCoverage(json: json, owner: owner)
-			case "ReversalPayee":
-				return ReversalPayee(json: json, owner: owner)
 			case "RiskAssessment":
 				return RiskAssessment(json: json, owner: owner)
 			case "RiskAssessmentPrediction":
@@ -638,12 +598,6 @@ extension FHIRElement
 				return SpecimenContainer(json: json, owner: owner)
 			case "SpecimenTreatment":
 				return SpecimenTreatment(json: json, owner: owner)
-			case "StatusRequest":
-				return StatusRequest(json: json, owner: owner)
-			case "StatusResponse":
-				return StatusResponse(json: json, owner: owner)
-			case "StatusResponseNotes":
-				return StatusResponseNotes(json: json, owner: owner)
 			case "StructureDefinition":
 				return StructureDefinition(json: json, owner: owner)
 			case "StructureDefinitionContact":
@@ -658,8 +612,6 @@ extension FHIRElement
 				return Subscription(json: json, owner: owner)
 			case "SubscriptionChannel":
 				return SubscriptionChannel(json: json, owner: owner)
-			case "SubscriptionTag":
-				return SubscriptionTag(json: json, owner: owner)
 			case "Substance":
 				return Substance(json: json, owner: owner)
 			case "SubstanceIngredient":
@@ -702,20 +654,6 @@ extension FHIRElement
 				return ValueSetExpansionContains(json: json, owner: owner)
 			case "ValueSetExpansionParameter":
 				return ValueSetExpansionParameter(json: json, owner: owner)
-			case "VisionClaim":
-				return VisionClaim(json: json, owner: owner)
-			case "VisionClaimCoverage":
-				return VisionClaimCoverage(json: json, owner: owner)
-			case "VisionClaimDiagnosis":
-				return VisionClaimDiagnosis(json: json, owner: owner)
-			case "VisionClaimItem":
-				return VisionClaimItem(json: json, owner: owner)
-			case "VisionClaimItemDetail":
-				return VisionClaimItemDetail(json: json, owner: owner)
-			case "VisionClaimItemDetailSubDetail":
-				return VisionClaimItemDetailSubDetail(json: json, owner: owner)
-			case "VisionClaimPayee":
-				return VisionClaimPayee(json: json, owner: owner)
 			case "VisionPrescription":
 				return VisionPrescription(json: json, owner: owner)
 			case "VisionPrescriptionDispense":

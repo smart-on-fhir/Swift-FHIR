@@ -2,7 +2,7 @@
 //  HealthcareService.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 

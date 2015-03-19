@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -237,6 +237,9 @@ public class ImagingStudySeries: FHIRElement
 	/// A single instance taken from a patient (image or other)
 	public var instance: [ImagingStudySeriesInstance]?
 	
+	/// Body part laterality
+	public var laterality: Coding?
+	
 	/// The modality of the instances in the series (0008,0060)
 	public var modality: String?
 	
@@ -283,6 +286,9 @@ public class ImagingStudySeries: FHIRElement
 			if let val = js["instance"] as? [JSONDictionary] {
 				self.instance = ImagingStudySeriesInstance.from(val, owner: self) as? [ImagingStudySeriesInstance]
 			}
+			if let val = js["laterality"] as? JSONDictionary {
+				self.laterality = Coding(json: val, owner: self)
+			}
 			if let val = js["modality"] as? String {
 				self.modality = val
 			}
@@ -319,6 +325,9 @@ public class ImagingStudySeries: FHIRElement
 		if let instance = self.instance {
 			json["instance"] = ImagingStudySeriesInstance.asJSONArray(instance)
 		}
+		if let laterality = self.laterality {
+			json["laterality"] = laterality.asJSON()
+		}
 		if let modality = self.modality {
 			json["modality"] = modality.asJSON()
 		}
@@ -343,7 +352,7 @@ public class ImagingStudySeries: FHIRElement
 /**
  *  A single instance taken from a patient (image or other).
  *
- *  A single image taken from a patient.
+ *  A single SOP Instance within the series, e.g., an image, or presentation state.
  */
 public class ImagingStudySeriesInstance: FHIRElement
 {
@@ -351,8 +360,8 @@ public class ImagingStudySeriesInstance: FHIRElement
 		get { return "ImagingStudySeriesInstance" }
 	}
 	
-	/// Content for this instance
-	public var attachment: Reference?
+	/// Content of the instance
+	public var content: [Attachment]?
 	
 	/// The number of this instance in the series (0020,0013)
 	public var number: Int?
@@ -369,9 +378,6 @@ public class ImagingStudySeriesInstance: FHIRElement
 	/// Formal identifier for this instance (0008,0018)
 	public var uid: String?
 	
-	/// WADO-RS service where instance is available  (0008,1199 > 0008,1190)
-	public var url: NSURL?
-	
 	public convenience init(sopclass: String?, uid: String?) {
 		self.init(json: nil)
 		if nil != sopclass {
@@ -385,8 +391,8 @@ public class ImagingStudySeriesInstance: FHIRElement
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["attachment"] as? JSONDictionary {
-				self.attachment = Reference(json: val, owner: self)
+			if let val = js["content"] as? [JSONDictionary] {
+				self.content = Attachment.from(val, owner: self) as? [Attachment]
 			}
 			if let val = js["number"] as? Int {
 				self.number = val
@@ -403,17 +409,14 @@ public class ImagingStudySeriesInstance: FHIRElement
 			if let val = js["uid"] as? String {
 				self.uid = val
 			}
-			if let val = js["url"] as? String {
-				self.url = NSURL(string: val)
-			}
 		}
 	}
 	
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let attachment = self.attachment {
-			json["attachment"] = attachment.asJSON()
+		if let content = self.content {
+			json["content"] = Attachment.asJSONArray(content)
 		}
 		if let number = self.number {
 			json["number"] = number.asJSON()
@@ -429,9 +432,6 @@ public class ImagingStudySeriesInstance: FHIRElement
 		}
 		if let uid = self.uid {
 			json["uid"] = uid.asJSON()
-		}
-		if let url = self.url {
-			json["url"] = url.asJSON()
 		}
 		
 		return json

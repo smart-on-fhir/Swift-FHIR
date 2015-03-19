@@ -2,7 +2,7 @@
 //  BodySite.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -99,7 +99,7 @@ public class BodySiteRelativeLocation: FHIRElement
 	/// Distance from Landmark
 	public var distance: Quantity?
 	
-	/// Identified landmark Identified landmark Identified landmark
+	/// Identified landmark
 	public var landmark: CodeableConcept?
 	
 	public required init(json: JSONDictionary?) {

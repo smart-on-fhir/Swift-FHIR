@@ -2,7 +2,7 @@
 //  OtherTests.swift
 //  OtherTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -30,10 +30,27 @@ class OtherTests: FHIRModelTestCase
 	func testOther1_impl(json: JSONDictionary? = nil) -> Other {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "adverseevent-qicore-example.json")
 		
-		XCTAssertEqual(inst.code!.coding![0].code!, "ADVEVT")
+		XCTAssertEqual(inst.code!.coding![0].code!, "ADVEVENT")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/other-resource-type")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/adverseevent-qicore-cause-item")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![0].valueReference!.reference!, "Medication/example")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/adverseevent-qicore-cause-certainty")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].valueCodeableConcept!.coding![0].code!, "415684004")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].valueCodeableConcept!.coding![0].display!, "Suspected (qualifier)")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/adverseevent-qicore-cause")
+		XCTAssertEqual(inst.extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/adverseevent-qicore-code")
+		XCTAssertEqual(inst.extension_fhir![1].valueCodeableConcept!.coding![0].code!, "28926001")
+		XCTAssertEqual(inst.extension_fhir![1].valueCodeableConcept!.coding![0].display!, "Eruption due to drug (disorder)")
+		XCTAssertEqual(inst.extension_fhir![1].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.extension_fhir![2].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/adverseevent-qicore-period")
+		XCTAssertEqual(inst.extension_fhir![2].valuePeriod!.end!.description, "2014-01-15")
+		XCTAssertEqual(inst.extension_fhir![2].valuePeriod!.start!.description, "2014-01-14")
 		XCTAssertEqual(inst.id!, "qicore")
-		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.modifierExtension![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/adverseevent-qicore-didNotOccur")
+		XCTAssertFalse(inst.modifierExtension![0].valueBoolean!)
+		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		
 		return inst
 	}

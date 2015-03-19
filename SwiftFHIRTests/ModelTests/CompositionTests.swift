@@ -2,7 +2,7 @@
 //  CompositionTests.swift
 //  CompositionTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -35,16 +35,14 @@ class CompositionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.attester![0].party!.reference!, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.author![0].display!, "Robert Dolin MD")
 		XCTAssertEqual(inst.author![0].reference!, "Practitioner/xcda-author")
-		XCTAssertEqual(inst.confidentiality!.code!, "1.3.6.1.4.1.21367.2006.7.101")
-		XCTAssertEqual(inst.confidentiality!.display!, "Clinical-Staff")
-		XCTAssertEqual(inst.confidentiality!.system!.absoluteString!, "http://ihe.net/xds/connectathon/confidentialityCodes")
+		XCTAssertEqual(inst.confidentiality!, "N")
 		XCTAssertEqual(inst.custodian!.display!, "Good Health Clinic")
 		XCTAssertEqual(inst.custodian!.reference!, "Organization/2.16.840.1.113883.19.5")
 		XCTAssertEqual(inst.date!.description, "2012-01-04T09:10:14Z")
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://healthintersections.com.au/test")
 		XCTAssertEqual(inst.identifier!.value!, "1")
-		XCTAssertEqual(inst.section![0].content!.reference!, "MedicationAdministration/example")
+		XCTAssertEqual(inst.section![0].content!.reference!, "List/example")
 		XCTAssertEqual(inst.section![0].title!, "History of present illness")
 		XCTAssertEqual(inst.status!, "final")
 		XCTAssertEqual(inst.subject!.display!, "Henry Levin the 7th")

@@ -1,8 +1,8 @@
 //
-//  PendedRequest.swift
+//  ProcessRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/PendedRequest) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -10,15 +10,19 @@ import Foundation
 
 
 /**
- *  PendedRequest request.
+ *  Process request.
  *
- *  This resource provides the request and response details for the resource for which the status is to be checked.
+ *  This resource provides the target, request and response, and action details for an action to be performed by the
+ *  target on or about existing resources.
  */
-public class PendedRequest: DomainResource
+public class ProcessRequest: DomainResource
 {
 	override public class var resourceName: String {
-		get { return "PendedRequest" }
+		get { return "ProcessRequest" }
 	}
+	
+	/// poll | reprocess | reverse | status
+	public var action: String?
 	
 	/// Creation date
 	public var created: DateTime?
@@ -32,6 +36,12 @@ public class PendedRequest: DomainResource
 	/// Resource type(s) to include
 	public var include: [String]?
 	
+	/// Items to re-adjudicate
+	public var item: [ProcessRequestItem]?
+	
+	/// Nullify
+	public var nullify: Bool?
+	
 	/// Responsible organization
 	public var organization: Reference?
 	
@@ -44,18 +54,34 @@ public class PendedRequest: DomainResource
 	/// Responsible practitioner
 	public var provider: Reference?
 	
+	/// Reference number/string
+	public var reference: String?
+	
 	/// Request reference
 	public var request: Reference?
+	
+	/// Response reference
+	public var response: Reference?
 	
 	/// Resource version
 	public var ruleset: Coding?
 	
-	/// Insurer
+	/// Target of the request
 	public var target: Reference?
+	
+	public convenience init(action: String?) {
+		self.init(json: nil)
+		if nil != action {
+			self.action = action
+		}
+	}
 	
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["action"] as? String {
+				self.action = val
+			}
 			if let val = js["created"] as? String {
 				self.created = DateTime(string: val)
 			}
@@ -67,6 +93,12 @@ public class PendedRequest: DomainResource
 			}
 			if let val = js["include"] as? [String] {
 				self.include = val
+			}
+			if let val = js["item"] as? [JSONDictionary] {
+				self.item = ProcessRequestItem.from(val, owner: self) as? [ProcessRequestItem]
+			}
+			if let val = js["nullify"] as? Bool {
+				self.nullify = val
 			}
 			if let val = js["organization"] as? JSONDictionary {
 				self.organization = Reference(json: val, owner: self)
@@ -80,8 +112,14 @@ public class PendedRequest: DomainResource
 			if let val = js["provider"] as? JSONDictionary {
 				self.provider = Reference(json: val, owner: self)
 			}
+			if let val = js["reference"] as? String {
+				self.reference = val
+			}
 			if let val = js["request"] as? JSONDictionary {
 				self.request = Reference(json: val, owner: self)
+			}
+			if let val = js["response"] as? JSONDictionary {
+				self.response = Reference(json: val, owner: self)
 			}
 			if let val = js["ruleset"] as? JSONDictionary {
 				self.ruleset = Coding(json: val, owner: self)
@@ -95,6 +133,9 @@ public class PendedRequest: DomainResource
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
+		if let action = self.action {
+			json["action"] = action.asJSON()
+		}
 		if let created = self.created {
 			json["created"] = created.asJSON()
 		}
@@ -115,6 +156,12 @@ public class PendedRequest: DomainResource
 			}
 			json["include"] = arr
 		}
+		if let item = self.item {
+			json["item"] = ProcessRequestItem.asJSONArray(item)
+		}
+		if let nullify = self.nullify {
+			json["nullify"] = nullify.asJSON()
+		}
 		if let organization = self.organization {
 			json["organization"] = organization.asJSON()
 		}
@@ -127,14 +174,62 @@ public class PendedRequest: DomainResource
 		if let provider = self.provider {
 			json["provider"] = provider.asJSON()
 		}
+		if let reference = self.reference {
+			json["reference"] = reference.asJSON()
+		}
 		if let request = self.request {
 			json["request"] = request.asJSON()
+		}
+		if let response = self.response {
+			json["response"] = response.asJSON()
 		}
 		if let ruleset = self.ruleset {
 			json["ruleset"] = ruleset.asJSON()
 		}
 		if let target = self.target {
 			json["target"] = target.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Items to re-adjudicate.
+ *
+ *  List of top level items to be re-adjudicated, if none specified then the entire submission is re-adjudicated.
+ */
+public class ProcessRequestItem: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ProcessRequestItem" }
+	}
+	
+	/// Service instance
+	public var sequenceLinkId: Int?
+	
+	public convenience init(sequenceLinkId: Int?) {
+		self.init(json: nil)
+		if nil != sequenceLinkId {
+			self.sequenceLinkId = sequenceLinkId
+		}
+	}
+	
+	public required init(json: JSONDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["sequenceLinkId"] as? Int {
+				self.sequenceLinkId = val
+			}
+		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let sequenceLinkId = self.sequenceLinkId {
+			json["sequenceLinkId"] = sequenceLinkId.asJSON()
 		}
 		
 		return json

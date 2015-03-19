@@ -2,7 +2,7 @@
 //  Meta.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Meta) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Meta) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -20,9 +20,6 @@ public class Meta: FHIRElement
 	override public class var resourceName: String {
 		get { return "Meta" }
 	}
-	
-	/// True if the resource is deleted
-	public var deleted: Bool?
 	
 	/// When the resource version last changed
 	public var lastUpdated: Instant?
@@ -42,9 +39,6 @@ public class Meta: FHIRElement
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["deleted"] as? Bool {
-				self.deleted = val
-			}
 			if let val = js["lastUpdated"] as? String {
 				self.lastUpdated = Instant(string: val)
 			}
@@ -66,9 +60,6 @@ public class Meta: FHIRElement
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
-		if let deleted = self.deleted {
-			json["deleted"] = deleted.asJSON()
-		}
 		if let lastUpdated = self.lastUpdated {
 			json["lastUpdated"] = lastUpdated.asJSON()
 		}

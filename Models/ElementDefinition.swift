@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -19,6 +19,9 @@ public class ElementDefinition: FHIRElement
 	override public class var resourceName: String {
 		get { return "ElementDefinition" }
 	}
+	
+	/// Other names
+	public var alias: [String]?
 	
 	/// ValueSet details if this is coded
 	public var binding: ElementDefinitionBinding?
@@ -374,9 +377,6 @@ public class ElementDefinition: FHIRElement
 	/// This element is sliced - slices follow
 	public var slicing: ElementDefinitionSlicing?
 	
-	/// Other names
-	public var synonym: [String]?
-	
 	/// Data type and Profile for this element
 	public var type: [ElementDefinitionType]?
 	
@@ -390,6 +390,9 @@ public class ElementDefinition: FHIRElement
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["alias"] as? [String] {
+				self.alias = val
+			}
 			if let val = js["binding"] as? JSONDictionary {
 				self.binding = ElementDefinitionBinding(json: val, owner: self)
 			}
@@ -744,9 +747,6 @@ public class ElementDefinition: FHIRElement
 			if let val = js["slicing"] as? JSONDictionary {
 				self.slicing = ElementDefinitionSlicing(json: val, owner: self)
 			}
-			if let val = js["synonym"] as? [String] {
-				self.synonym = val
-			}
 			if let val = js["type"] as? [JSONDictionary] {
 				self.type = ElementDefinitionType.from(val, owner: self) as? [ElementDefinitionType]
 			}
@@ -756,6 +756,13 @@ public class ElementDefinition: FHIRElement
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
+		if let alias = self.alias {
+			var arr = [AnyObject]()
+			for val in alias {
+				arr.append(val.asJSON())
+			}
+			json["alias"] = arr
+		}
 		if let binding = self.binding {
 			json["binding"] = binding.asJSON()
 		}
@@ -1118,13 +1125,6 @@ public class ElementDefinition: FHIRElement
 		if let slicing = self.slicing {
 			json["slicing"] = slicing.asJSON()
 		}
-		if let synonym = self.synonym {
-			var arr = [AnyObject]()
-			for val in synonym {
-				arr.append(val.asJSON())
-			}
-			json["synonym"] = arr
-		}
 		if let type = self.type {
 			json["type"] = ElementDefinitionType.asJSONArray(type)
 		}
@@ -1151,14 +1151,14 @@ public class ElementDefinitionBinding: FHIRElement
 	/// Descriptive Name
 	public var name: String?
 	
-	/// Source of value set
-	public var referenceReference: Reference?
-	
-	/// Source of value set
-	public var referenceUri: NSURL?
-	
 	/// required | extensible | preferred | example
 	public var strength: String?
+	
+	/// Source of value set
+	public var valueSetReference: Reference?
+	
+	/// Source of value set
+	public var valueSetUri: NSURL?
 	
 	public convenience init(name: String?, strength: String?) {
 		self.init(json: nil)
@@ -1179,14 +1179,14 @@ public class ElementDefinitionBinding: FHIRElement
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["referenceReference"] as? JSONDictionary {
-				self.referenceReference = Reference(json: val, owner: self)
-			}
-			if let val = js["referenceUri"] as? String {
-				self.referenceUri = NSURL(string: val)
-			}
 			if let val = js["strength"] as? String {
 				self.strength = val
+			}
+			if let val = js["valueSetReference"] as? JSONDictionary {
+				self.valueSetReference = Reference(json: val, owner: self)
+			}
+			if let val = js["valueSetUri"] as? String {
+				self.valueSetUri = NSURL(string: val)
 			}
 		}
 	}
@@ -1200,14 +1200,14 @@ public class ElementDefinitionBinding: FHIRElement
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
-		if let referenceReference = self.referenceReference {
-			json["referenceReference"] = referenceReference.asJSON()
-		}
-		if let referenceUri = self.referenceUri {
-			json["referenceUri"] = referenceUri.asJSON()
-		}
 		if let strength = self.strength {
 			json["strength"] = strength.asJSON()
+		}
+		if let valueSetReference = self.valueSetReference {
+			json["valueSetReference"] = valueSetReference.asJSON()
+		}
+		if let valueSetUri = self.valueSetUri {
+			json["valueSetUri"] = valueSetUri.asJSON()
 		}
 		
 		return json

@@ -2,7 +2,7 @@
 //  SubscriptionTests.swift
 //  SubscriptionTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -30,10 +30,10 @@ class SubscriptionTests: FHIRModelTestCase
 	func testSubscription1_impl(json: JSONDictionary? = nil) -> Subscription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "subscription-example.json")
 		
+		XCTAssertEqual(inst.channel!.endpoint!.absoluteString!, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
 		XCTAssertEqual(inst.channel!.header!, "Authorization: Bearer secret-token-abc-123")
 		XCTAssertEqual(inst.channel!.payload!, "application/json")
 		XCTAssertEqual(inst.channel!.type!, "rest-hook")
-		XCTAssertEqual(inst.channel!.url!.absoluteString!, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
 		XCTAssertEqual(inst.criteria!, "/Observation?name=http://loinc.org|1975-2")
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.reason!, "Monitor new neonatal function")

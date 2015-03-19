@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -38,6 +38,9 @@ public class DocumentManifest: DomainResource
 	
 	/// Intended to get notified about this set of documents
 	public var recipient: [Reference]?
+	
+	/// Related things
+	public var related: [DocumentManifestRelated]?
 	
 	/// The source system/application/software
 	public var source: NSURL?
@@ -85,6 +88,9 @@ public class DocumentManifest: DomainResource
 			if let val = js["recipient"] as? [JSONDictionary] {
 				self.recipient = Reference.from(val, owner: self) as? [Reference]
 			}
+			if let val = js["related"] as? [JSONDictionary] {
+				self.related = DocumentManifestRelated.from(val, owner: self) as? [DocumentManifestRelated]
+			}
 			if let val = js["source"] as? String {
 				self.source = NSURL(string: val)
 			}
@@ -124,6 +130,9 @@ public class DocumentManifest: DomainResource
 		if let recipient = self.recipient {
 			json["recipient"] = Reference.asJSONArray(recipient)
 		}
+		if let related = self.related {
+			json["related"] = DocumentManifestRelated.asJSONArray(related)
+		}
 		if let source = self.source {
 			json["source"] = source.asJSON()
 		}
@@ -135,6 +144,50 @@ public class DocumentManifest: DomainResource
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Related things.
+ *
+ *  Related identifiers or resources associated with the DocumentManifest.
+ */
+public class DocumentManifestRelated: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "DocumentManifestRelated" }
+	}
+	
+	/// Related Identifier
+	public var ids: Identifier?
+	
+	/// Related Resource
+	public var refs: Reference?
+	
+	public required init(json: JSONDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["ids"] as? JSONDictionary {
+				self.ids = Identifier(json: val, owner: self)
+			}
+			if let val = js["refs"] as? JSONDictionary {
+				self.refs = Reference(json: val, owner: self)
+			}
+		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let ids = self.ids {
+			json["ids"] = ids.asJSON()
+		}
+		if let refs = self.refs {
+			json["refs"] = refs.asJSON()
 		}
 		
 		return json

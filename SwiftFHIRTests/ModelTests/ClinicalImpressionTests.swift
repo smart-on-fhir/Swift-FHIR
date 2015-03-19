@@ -1,8 +1,8 @@
 //
-//  ClinicalAssessmentTests.swift
-//  ClinicalAssessmentTests
+//  ClinicalImpressionTests.swift
+//  ClinicalImpressionTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -10,25 +10,25 @@ import XCTest
 import SwiftFHIR
 
 
-class ClinicalAssessmentTests: FHIRModelTestCase
+class ClinicalImpressionTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> ClinicalAssessment {
+	func instantiateFrom(# filename: String) -> ClinicalImpression {
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> ClinicalAssessment {
-		let instance = ClinicalAssessment(json: json)
+	func instantiateFrom(# json: JSONDictionary) -> ClinicalImpression {
+		let instance = ClinicalImpression(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testClinicalAssessment1() {
-		let instance = testClinicalAssessment1_impl()
-		testClinicalAssessment1_impl(json: instance.asJSON())
+	func testClinicalImpression1() {
+		let instance = testClinicalImpression1_impl()
+		testClinicalImpression1_impl(json: instance.asJSON())
 	}
 	
-	func testClinicalAssessment1_impl(json: JSONDictionary? = nil) -> ClinicalAssessment {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "clinicalassessment-example.json")
+	func testClinicalImpression1_impl(json: JSONDictionary? = nil) -> ClinicalImpression {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "clinicalimpression-example.json")
 		
 		XCTAssertEqual(inst.assessor!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.date!.description, "2014-12-06T22:33:00+11:00")
@@ -45,7 +45,6 @@ class ClinicalAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.plan!.display!, "hospital standard closed head injury management protocol ")
 		XCTAssertEqual(inst.problem![0].display!, "MVA")
 		XCTAssertEqual(inst.summary!, "provisional diagnoses of laceration of head and traumatic brain injury (TBI)")
-		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

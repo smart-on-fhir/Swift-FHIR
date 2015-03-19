@@ -2,7 +2,7 @@
 //  Appointment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -31,12 +31,6 @@ public class Appointment: DomainResource
 	/// External Ids for this item
 	public var identifier: [Identifier]?
 	
-	/// Date when the appointment was recorded
-	public var lastModified: DateTime?
-	
-	/// Who recorded the appointment
-	public var lastModifiedBy: Reference?
-	
 	/// An Order that lead to the creation of this appointment
 	public var order: Reference?
 	
@@ -58,7 +52,7 @@ public class Appointment: DomainResource
 	/// pending | booked | arrived | fulfilled | cancelled | noshow
 	public var status: String?
 	
-	/// The type of appointments that is being booked (ideally this would be an identifiable service - which is at a location, rather than the location itself)
+	/// The type of appointment that is being booked
 	public var type: CodeableConcept?
 	
 	public convenience init(end: Instant?, participant: [AppointmentParticipant]?, start: Instant?, status: String?) {
@@ -91,12 +85,6 @@ public class Appointment: DomainResource
 			}
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
-			}
-			if let val = js["lastModified"] as? String {
-				self.lastModified = DateTime(string: val)
-			}
-			if let val = js["lastModifiedBy"] as? JSONDictionary {
-				self.lastModifiedBy = Reference(json: val, owner: self)
 			}
 			if let val = js["order"] as? JSONDictionary {
 				self.order = Reference(json: val, owner: self)
@@ -139,12 +127,6 @@ public class Appointment: DomainResource
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
-		}
-		if let lastModified = self.lastModified {
-			json["lastModified"] = lastModified.asJSON()
-		}
-		if let lastModifiedBy = self.lastModifiedBy {
-			json["lastModifiedBy"] = lastModifiedBy.asJSON()
 		}
 		if let order = self.order {
 			json["order"] = order.asJSON()

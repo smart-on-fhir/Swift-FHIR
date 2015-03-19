@@ -2,7 +2,7 @@
 //  SupplyTests.swift
 //  SupplyTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -52,8 +52,6 @@ class SupplyTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dispense![0].type!.coding![0].display!, "Device")
 		XCTAssertTrue(inst.dispense![0].type!.coding![0].primary!)
 		XCTAssertEqual(inst.dispense![0].type!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/supply-item-type")
-		XCTAssertEqual(inst.dispense![0].type!.coding![0].valueSet!.display!, "supply-item")
-		XCTAssertEqual(inst.dispense![0].type!.coding![0].valueSet!.reference!, "http://hl7.org/fhir/vs/supply-item")
 		XCTAssertEqual(inst.dispense![0].whenHandedOver!.description, "2014-12-06T15:42:15-08:00")
 		XCTAssertEqual(inst.id!, "102")
 		XCTAssertEqual(inst.identifier!.assigner!.display!, "Good Health Clinic")
@@ -64,8 +62,6 @@ class SupplyTests: FHIRModelTestCase
 		XCTAssertEqual(inst.kind!.coding![0].display!, "Central Supply")
 		XCTAssertTrue(inst.kind!.coding![0].primary!)
 		XCTAssertEqual(inst.kind!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/supply-type")
-		XCTAssertEqual(inst.kind!.coding![0].valueSet!.display!, "supply-type")
-		XCTAssertEqual(inst.kind!.coding![0].valueSet!.reference!, "http://hl7.org/fhir/vs/supply-type")
 		XCTAssertEqual(inst.orderedItem!.display!, "Feeding tube")
 		XCTAssertEqual(inst.orderedItem!.reference!, "Device/f001")
 		XCTAssertEqual(inst.status!, "received")

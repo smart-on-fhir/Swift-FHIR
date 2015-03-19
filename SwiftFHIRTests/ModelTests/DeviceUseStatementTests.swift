@@ -2,7 +2,7 @@
 //  DeviceUseStatementTests.swift
 //  DeviceUseStatementTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -32,23 +32,6 @@ class DeviceUseStatementTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.device!.reference!, "Device/example")
 		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
-		XCTAssertEqual(inst.text!.div!, "<div>To be filled out at a later time</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testDeviceUseStatement2() {
-		let instance = testDeviceUseStatement2_impl()
-		testDeviceUseStatement2_impl(json: instance.asJSON())
-	}
-	
-	func testDeviceUseStatement2_impl(json: JSONDictionary? = nil) -> DeviceUseStatement {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "deviceusestatement-qicore-example.json")
-		
-		XCTAssertEqual(inst.device!.reference!, "Device/example")
-		XCTAssertEqual(inst.id!, "qicore")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		XCTAssertEqual(inst.text!.div!, "<div>To be filled out at a later time</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")

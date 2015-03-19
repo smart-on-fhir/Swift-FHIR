@@ -2,7 +2,7 @@
 //  StructureDefinitionTests.swift
 //  StructureDefinitionTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -55,30 +55,30 @@ class StructureDefinitionTests: FHIRModelTestCase
 		XCTAssertFalse(inst.snapshot!.element![1].slicing!.ordered!)
 		XCTAssertEqual(inst.snapshot!.element![1].slicing!.rules!, "open")
 		XCTAssertEqual(inst.snapshot!.element![1].type![0].code!, "Extension")
+		XCTAssertEqual(inst.snapshot!.element![2].alias![0], "narrative")
+		XCTAssertEqual(inst.snapshot!.element![2].alias![1], "html")
+		XCTAssertEqual(inst.snapshot!.element![2].alias![2], "xhtml")
+		XCTAssertEqual(inst.snapshot!.element![2].alias![3], "display")
 		XCTAssertEqual(inst.snapshot!.element![2].comments!, "Contained resources do not have narrative. Resources that are not contained SHOULD have a narrative.")
 		XCTAssertFalse(inst.snapshot!.element![2].isModifier!)
 		XCTAssertEqual(inst.snapshot!.element![2].max!, "1")
 		XCTAssertEqual(inst.snapshot!.element![2].min!, 0)
 		XCTAssertEqual(inst.snapshot!.element![2].path!, "DiagnosticReport.text")
 		XCTAssertEqual(inst.snapshot!.element![2].short!, "Text summary of the resource, for human interpretation")
-		XCTAssertEqual(inst.snapshot!.element![2].synonym![0], "narrative")
-		XCTAssertEqual(inst.snapshot!.element![2].synonym![1], "html")
-		XCTAssertEqual(inst.snapshot!.element![2].synonym![2], "xhtml")
-		XCTAssertEqual(inst.snapshot!.element![2].synonym![3], "display")
 		XCTAssertEqual(inst.snapshot!.element![2].type![0].code!, "Narrative")
+		XCTAssertEqual(inst.snapshot!.element![3].alias![0], "inline resources")
+		XCTAssertEqual(inst.snapshot!.element![3].alias![1], "anonymous resources")
+		XCTAssertEqual(inst.snapshot!.element![3].alias![2], "contained resources")
 		XCTAssertEqual(inst.snapshot!.element![3].comments!, "This should never be done when the content can be identified properly, as once identification is lost, it is extremely difficult (and context dependent) to restore it again.")
 		XCTAssertFalse(inst.snapshot!.element![3].isModifier!)
 		XCTAssertEqual(inst.snapshot!.element![3].max!, "*")
 		XCTAssertEqual(inst.snapshot!.element![3].min!, 0)
 		XCTAssertEqual(inst.snapshot!.element![3].path!, "DiagnosticReport.contained")
 		XCTAssertEqual(inst.snapshot!.element![3].short!, "Contained, inline Resources")
-		XCTAssertEqual(inst.snapshot!.element![3].synonym![0], "inline resources")
-		XCTAssertEqual(inst.snapshot!.element![3].synonym![1], "anonymous resources")
-		XCTAssertEqual(inst.snapshot!.element![3].synonym![2], "contained resources")
 		XCTAssertEqual(inst.snapshot!.element![3].type![0].code!, "Resource")
 		XCTAssertEqual(inst.snapshot!.element![4].binding!.name!, "ObservationStatus")
-		XCTAssertEqual(inst.snapshot!.element![4].binding!.referenceReference!.reference!, "http://hl7.org/fhir/vs/observation-status")
 		XCTAssertEqual(inst.snapshot!.element![4].binding!.strength!, "required")
+		XCTAssertEqual(inst.snapshot!.element![4].binding!.valueSetReference!.reference!, "http://hl7.org/fhir/vs/observation-status")
 		XCTAssertEqual(inst.snapshot!.element![4].comments!, "This is labeled as \"Is Modifier\" because applications need to take appropriate action if a report is withdrawn.")
 		XCTAssertEqual(inst.snapshot!.element![4].definition!, "The status of the diagnostic report as a whole.")
 		XCTAssertFalse(inst.snapshot!.element![4].isModifier!)

@@ -2,7 +2,7 @@
 //  MedicationDispenseTests.swift
 //  MedicationDispenseTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -65,7 +65,9 @@ class MedicationDispenseTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].doseQuantity!.units!, "ml")
 		XCTAssertEqual(inst.dosageInstruction![0].doseQuantity!.value!, NSDecimalNumber(string: "5"))
 		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/pharmacy-core-doseType")
-		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![0].valueCode!, "initial")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![0].valueCodeableConcept!.coding![0].code!, "440231000124106")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![0].valueCodeableConcept!.coding![0].display!, "Maintenance dose")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].code!, "394899003")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].display!, "oral administration of treatment")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")

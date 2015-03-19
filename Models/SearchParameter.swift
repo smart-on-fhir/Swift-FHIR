@@ -2,7 +2,7 @@
 //  SearchParameter.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -50,7 +50,7 @@ public class SearchParameter: DomainResource
 	/// Types of resource (if a resource reference)
 	public var target: [String]?
 	
-	/// number | date | string | token | reference | composite | quantity
+	/// number | date | string | token | reference | composite | quantity | uri
 	public var type: String?
 	
 	/// Literal URL used to reference this search parameter

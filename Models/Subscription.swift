@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -12,7 +12,10 @@ import Foundation
 /**
  *  A server push subscription criteria.
  *
- *  Todo.
+ *  The subscription resource is used to define a push based subscription from a server to another system. Once a
+ *  subscription is registered with the server, the server checks every resource that is created or updated, and if the
+ *  resource matches the given criteria, it sends a message on the defined "channel" so that another system is able to
+ *  take an appropriate action.
  */
 public class Subscription: DomainResource
 {
@@ -42,7 +45,7 @@ public class Subscription: DomainResource
 	public var status: String?
 	
 	/// A tag to add to matching resources
-	public var tag: [SubscriptionTag]?
+	public var tag: [Coding]?
 	
 	public convenience init(channel: SubscriptionChannel?, criteria: String?, reason: String?, status: String?) {
 		self.init(json: nil)
@@ -85,7 +88,7 @@ public class Subscription: DomainResource
 				self.status = val
 			}
 			if let val = js["tag"] as? [JSONDictionary] {
-				self.tag = SubscriptionTag.from(val, owner: self) as? [SubscriptionTag]
+				self.tag = Coding.from(val, owner: self) as? [Coding]
 			}
 		}
 	}
@@ -115,7 +118,7 @@ public class Subscription: DomainResource
 			json["status"] = status.asJSON()
 		}
 		if let tag = self.tag {
-			json["tag"] = SubscriptionTag.asJSONArray(tag)
+			json["tag"] = Coding.asJSONArray(tag)
 		}
 		
 		return json
@@ -126,13 +129,16 @@ public class Subscription: DomainResource
 /**
  *  The channel on which to report matches to the criteria.
  *
- *  Todo.
+ *  Details where to send notifications when resources are received that meet the criteria.
  */
 public class SubscriptionChannel: FHIRElement
 {
 	override public class var resourceName: String {
 		get { return "SubscriptionChannel" }
 	}
+	
+	/// Where the channel points to
+	public var endpoint: NSURL?
 	
 	/// Usage depends on the channel type
 	public var header: String?
@@ -142,9 +148,6 @@ public class SubscriptionChannel: FHIRElement
 	
 	/// rest-hook | websocket | email | sms | message
 	public var type: String?
-	
-	/// Where the channel points to
-	public var url: NSURL?
 	
 	public convenience init(payload: String?, type: String?) {
 		self.init(json: nil)
@@ -159,6 +162,9 @@ public class SubscriptionChannel: FHIRElement
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["endpoint"] as? String {
+				self.endpoint = NSURL(string: val)
+			}
 			if let val = js["header"] as? String {
 				self.header = val
 			}
@@ -168,15 +174,15 @@ public class SubscriptionChannel: FHIRElement
 			if let val = js["type"] as? String {
 				self.type = val
 			}
-			if let val = js["url"] as? String {
-				self.url = NSURL(string: val)
-			}
 		}
 	}
 	
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
+		if let endpoint = self.endpoint {
+			json["endpoint"] = endpoint.asJSON()
+		}
 		if let header = self.header {
 			json["header"] = header.asJSON()
 		}
@@ -185,72 +191,6 @@ public class SubscriptionChannel: FHIRElement
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
-		}
-		if let url = self.url {
-			json["url"] = url.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  A tag to add to matching resources.
- *
- *  Todo.
- */
-public class SubscriptionTag: FHIRElement
-{
-	override public class var resourceName: String {
-		get { return "SubscriptionTag" }
-	}
-	
-	/// Tag description label
-	public var description_fhir: String?
-	
-	/// The scheme for the tag (kind of tag)
-	public var scheme: NSURL?
-	
-	/// The term that identifies the tag
-	public var term: NSURL?
-	
-	public convenience init(scheme: NSURL?, term: NSURL?) {
-		self.init(json: nil)
-		if nil != scheme {
-			self.scheme = scheme
-		}
-		if nil != term {
-			self.term = term
-		}
-	}
-	
-	public required init(json: JSONDictionary?) {
-		super.init(json: json)
-		if let js = json {
-			if let val = js["description"] as? String {
-				self.description_fhir = val
-			}
-			if let val = js["scheme"] as? String {
-				self.scheme = NSURL(string: val)
-			}
-			if let val = js["term"] as? String {
-				self.term = NSURL(string: val)
-			}
-		}
-	}
-	
-	override public func asJSON() -> JSONDictionary {
-		var json = super.asJSON()
-		
-		if let description_fhir = self.description_fhir {
-			json["description"] = description_fhir.asJSON()
-		}
-		if let scheme = self.scheme {
-			json["scheme"] = scheme.asJSON()
-		}
-		if let term = self.term {
-			json["term"] = term.asJSON()
 		}
 		
 		return json

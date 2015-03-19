@@ -1,8 +1,8 @@
 //
-//  OralHealthClaimTests.swift
-//  OralHealthClaimTests
+//  ClaimTests.swift
+//  ClaimTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -10,25 +10,68 @@ import XCTest
 import SwiftFHIR
 
 
-class OralHealthClaimTests: FHIRModelTestCase
+class ClaimTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> OralHealthClaim {
+	func instantiateFrom(# filename: String) -> Claim {
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> OralHealthClaim {
-		let instance = OralHealthClaim(json: json)
+	func instantiateFrom(# json: JSONDictionary) -> Claim {
+		let instance = Claim(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testOralHealthClaim1() {
-		let instance = testOralHealthClaim1_impl()
-		testOralHealthClaim1_impl(json: instance.asJSON())
+	func testClaim1() {
+		let instance = testClaim1_impl()
+		testClaim1_impl(json: instance.asJSON())
 	}
 	
-	func testOralHealthClaim1_impl(json: JSONDictionary? = nil) -> OralHealthClaim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "oralhealthclaim-example-average.json")
+	func testClaim1_impl(json: JSONDictionary? = nil) -> Claim {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example-institutional.json")
+		
+		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "Coverage/9876B1")
+		XCTAssertTrue(inst.coverage![0].focal!)
+		XCTAssertEqual(inst.coverage![0].relationship!.code!, "self")
+		XCTAssertEqual(inst.coverage![0].sequence!, 1)
+		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "654456")
+		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "960150")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyhospital.com/claim")
+		XCTAssertEqual(inst.identifier![0].value!, "9612345")
+		XCTAssertEqual(inst.item![0].net!.code!, "USD")
+		XCTAssertEqual(inst.item![0].net!.system!.absoluteString!, "urn:std:iso:4217")
+		XCTAssertEqual(inst.item![0].net!.value!, NSDecimalNumber(string: "125.0"))
+		XCTAssertEqual(inst.item![0].provider!.reference!, "Practitioner/1")
+		XCTAssertEqual(inst.item![0].sequence!, 1)
+		XCTAssertEqual(inst.item![0].service!.code!, "exam")
+		XCTAssertEqual(inst.item![0].service!.system!.absoluteString!, "http://hl7.org/fhir/ex-serviceproduct")
+		XCTAssertEqual(inst.item![0].serviceDate!.description, "2014-08-16")
+		XCTAssertEqual(inst.item![0].type!.code!, "service")
+		XCTAssertEqual(inst.item![0].unitPrice!.code!, "USD")
+		XCTAssertEqual(inst.item![0].unitPrice!.system!.absoluteString!, "urn:std:iso:4217")
+		XCTAssertEqual(inst.item![0].unitPrice!.value!, NSDecimalNumber(string: "125.0"))
+		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/1")
+		XCTAssertEqual(inst.payee!.type!.code!, "provider")
+		XCTAssertEqual(inst.priority!.code!, "normal")
+		XCTAssertEqual(inst.target!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Claim</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!, "institutional")
+		XCTAssertEqual(inst.use!, "complete")
+		
+		return inst
+	}
+	
+	func testClaim2() {
+		let instance = testClaim2_impl()
+		testClaim2_impl(json: instance.asJSON())
+	}
+	
+	func testClaim2_impl(json: JSONDictionary? = nil) -> Claim {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example-oral-average.json")
 		
 		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage![0].focal!)
@@ -38,7 +81,7 @@ class OralHealthClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "123456")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
 		XCTAssertEqual(inst.id!, "100151")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/claims")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/claim")
 		XCTAssertEqual(inst.identifier![0].value!, "12346")
 		XCTAssertEqual(inst.item![0].net!.code!, "USD")
 		XCTAssertEqual(inst.item![0].net!.system!.absoluteString!, "urn:std:iso:4217")
@@ -109,18 +152,19 @@ class OralHealthClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.target!.reference!, "Organization/2")
 		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Oral Health Claim</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!, "oral")
 		XCTAssertEqual(inst.use!, "complete")
 		
 		return inst
 	}
 	
-	func testOralHealthClaim2() {
-		let instance = testOralHealthClaim2_impl()
-		testOralHealthClaim2_impl(json: instance.asJSON())
+	func testClaim3() {
+		let instance = testClaim3_impl()
+		testClaim3_impl(json: instance.asJSON())
 	}
 	
-	func testOralHealthClaim2_impl(json: JSONDictionary? = nil) -> OralHealthClaim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "oralhealthclaim-example-contained.json")
+	func testClaim3_impl(json: JSONDictionary? = nil) -> Claim {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example-oral-contained.json")
 		
 		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "#coverage-1")
 		XCTAssertTrue(inst.coverage![0].focal!)
@@ -130,7 +174,7 @@ class OralHealthClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "123456")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
 		XCTAssertEqual(inst.id!, "100152")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/claims")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/claim")
 		XCTAssertEqual(inst.identifier![0].value!, "12347")
 		XCTAssertEqual(inst.item![0].net!.code!, "USD")
 		XCTAssertEqual(inst.item![0].net!.system!.absoluteString!, "urn:std:iso:4217")
@@ -150,18 +194,19 @@ class OralHealthClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.target!.reference!, "#organization-2")
 		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Oral Health Claim</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!, "oral")
 		XCTAssertEqual(inst.use!, "complete")
 		
 		return inst
 	}
 	
-	func testOralHealthClaim3() {
-		let instance = testOralHealthClaim3_impl()
-		testOralHealthClaim3_impl(json: instance.asJSON())
+	func testClaim4() {
+		let instance = testClaim4_impl()
+		testClaim4_impl(json: instance.asJSON())
 	}
 	
-	func testOralHealthClaim3_impl(json: JSONDictionary? = nil) -> OralHealthClaim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "oralhealthclaim-example-orthoplan.json")
+	func testClaim4_impl(json: JSONDictionary? = nil) -> Claim {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example-oral-orthoplan.json")
 		
 		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage![0].focal!)
@@ -172,7 +217,7 @@ class OralHealthClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.system!.absoluteString!, "http://hl7.org/fhir/icd-10")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
 		XCTAssertEqual(inst.id!, "100153")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/claims")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/claim")
 		XCTAssertEqual(inst.identifier![0].value!, "12355")
 		XCTAssertEqual(inst.item![0].detail![0].net!.code!, "USD")
 		XCTAssertEqual(inst.item![0].detail![0].net!.system!.absoluteString!, "urn:std:iso:4217")
@@ -296,18 +341,224 @@ class OralHealthClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.target!.reference!, "Organization/2")
 		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Oral Health Claim</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!, "oral")
 		XCTAssertEqual(inst.use!, "proposed")
 		
 		return inst
 	}
 	
-	func testOralHealthClaim4() {
-		let instance = testOralHealthClaim4_impl()
-		testOralHealthClaim4_impl(json: instance.asJSON())
+	func testClaim5() {
+		let instance = testClaim5_impl()
+		testClaim5_impl(json: instance.asJSON())
 	}
 	
-	func testOralHealthClaim4_impl(json: JSONDictionary? = nil) -> OralHealthClaim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "oralhealthclaim-example.json")
+	func testClaim5_impl(json: JSONDictionary? = nil) -> Claim {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example-pharmacy.json")
+		
+		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "Coverage/9876B1")
+		XCTAssertTrue(inst.coverage![0].focal!)
+		XCTAssertEqual(inst.coverage![0].relationship!.code!, "self")
+		XCTAssertEqual(inst.coverage![0].sequence!, 1)
+		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "654456")
+		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "760150")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happypharma.com/claim")
+		XCTAssertEqual(inst.identifier![0].value!, "7612345")
+		XCTAssertEqual(inst.item![0].net!.code!, "USD")
+		XCTAssertEqual(inst.item![0].net!.system!.absoluteString!, "urn:std:iso:4217")
+		XCTAssertEqual(inst.item![0].net!.value!, NSDecimalNumber(string: "60.0"))
+		XCTAssertEqual(inst.item![0].provider!.reference!, "Practitioner/1")
+		XCTAssertEqual(inst.item![0].sequence!, 1)
+		XCTAssertEqual(inst.item![0].service!.code!, "smokecess")
+		XCTAssertEqual(inst.item![0].service!.system!.absoluteString!, "http://hl7.org/fhir/ex-pharmaservice")
+		XCTAssertEqual(inst.item![0].serviceDate!.description, "2014-08-16")
+		XCTAssertEqual(inst.item![0].type!.code!, "service")
+		XCTAssertEqual(inst.item![0].unitPrice!.code!, "USD")
+		XCTAssertEqual(inst.item![0].unitPrice!.system!.absoluteString!, "urn:std:iso:4217")
+		XCTAssertEqual(inst.item![0].unitPrice!.value!, NSDecimalNumber(string: "60.0"))
+		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/1")
+		XCTAssertEqual(inst.payee!.type!.code!, "provider")
+		XCTAssertEqual(inst.priority!.code!, "stat")
+		XCTAssertEqual(inst.target!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Pharmacy Claim</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!, "pharmacy")
+		XCTAssertEqual(inst.use!, "complete")
+		
+		return inst
+	}
+	
+	func testClaim6() {
+		let instance = testClaim6_impl()
+		testClaim6_impl(json: instance.asJSON())
+	}
+	
+	func testClaim6_impl(json: JSONDictionary? = nil) -> Claim {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example-professional.json")
+		
+		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "Coverage/9876B1")
+		XCTAssertTrue(inst.coverage![0].focal!)
+		XCTAssertEqual(inst.coverage![0].relationship!.code!, "self")
+		XCTAssertEqual(inst.coverage![0].sequence!, 1)
+		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "654456")
+		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "860150")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happypdocs.com/claim")
+		XCTAssertEqual(inst.identifier![0].value!, "8612345")
+		XCTAssertEqual(inst.item![0].net!.code!, "USD")
+		XCTAssertEqual(inst.item![0].net!.system!.absoluteString!, "urn:std:iso:4217")
+		XCTAssertEqual(inst.item![0].net!.value!, NSDecimalNumber(string: "75.0"))
+		XCTAssertEqual(inst.item![0].provider!.reference!, "Practitioner/1")
+		XCTAssertEqual(inst.item![0].sequence!, 1)
+		XCTAssertEqual(inst.item![0].service!.code!, "exam")
+		XCTAssertEqual(inst.item![0].service!.system!.absoluteString!, "http://hl7.org/fhir/ex-serviceproduct")
+		XCTAssertEqual(inst.item![0].serviceDate!.description, "2014-08-16")
+		XCTAssertEqual(inst.item![0].type!.code!, "service")
+		XCTAssertEqual(inst.item![0].unitPrice!.code!, "USD")
+		XCTAssertEqual(inst.item![0].unitPrice!.system!.absoluteString!, "urn:std:iso:4217")
+		XCTAssertEqual(inst.item![0].unitPrice!.value!, NSDecimalNumber(string: "75.0"))
+		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/1")
+		XCTAssertEqual(inst.payee!.type!.code!, "provider")
+		XCTAssertEqual(inst.priority!.code!, "normal")
+		XCTAssertEqual(inst.target!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Claim</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!, "professional")
+		XCTAssertEqual(inst.use!, "complete")
+		
+		return inst
+	}
+	
+	func testClaim7() {
+		let instance = testClaim7_impl()
+		testClaim7_impl(json: instance.asJSON())
+	}
+	
+	func testClaim7_impl(json: JSONDictionary? = nil) -> Claim {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example-vision-glasses.json")
+		
+		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "Coverage/9876B1")
+		XCTAssertTrue(inst.coverage![0].focal!)
+		XCTAssertEqual(inst.coverage![0].relationship!.code!, "self")
+		XCTAssertEqual(inst.coverage![0].sequence!, 1)
+		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "654321")
+		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "660151")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happysight.com/claim")
+		XCTAssertEqual(inst.identifier![0].value!, "6612346")
+		XCTAssertEqual(inst.item![0].detail![0].net!.code!, "USD")
+		XCTAssertEqual(inst.item![0].detail![0].net!.system!.absoluteString!, "urn:std:iso:4217")
+		XCTAssertEqual(inst.item![0].detail![0].net!.value!, NSDecimalNumber(string: "100.0"))
+		XCTAssertEqual(inst.item![0].detail![0].sequence!, 1)
+		XCTAssertEqual(inst.item![0].detail![0].service!.code!, "frame")
+		XCTAssertEqual(inst.item![0].detail![0].service!.system!.absoluteString!, "http://hl7.org/fhir/ex-visionservice")
+		XCTAssertEqual(inst.item![0].detail![0].type!.code!, "product")
+		XCTAssertEqual(inst.item![0].detail![0].unitPrice!.code!, "USD")
+		XCTAssertEqual(inst.item![0].detail![0].unitPrice!.system!.absoluteString!, "urn:std:iso:4217")
+		XCTAssertEqual(inst.item![0].detail![0].unitPrice!.value!, NSDecimalNumber(string: "100.0"))
+		XCTAssertEqual(inst.item![0].detail![1].net!.code!, "USD")
+		XCTAssertEqual(inst.item![0].detail![1].net!.system!.absoluteString!, "urn:std:iso:4217")
+		XCTAssertEqual(inst.item![0].detail![1].net!.value!, NSDecimalNumber(string: "100.0"))
+		XCTAssertEqual(inst.item![0].detail![1].quantity!.value!, NSDecimalNumber(string: "2"))
+		XCTAssertEqual(inst.item![0].detail![1].sequence!, 2)
+		XCTAssertEqual(inst.item![0].detail![1].service!.code!, "lens")
+		XCTAssertEqual(inst.item![0].detail![1].service!.system!.absoluteString!, "http://hl7.org/fhir/ex-visionservice")
+		XCTAssertEqual(inst.item![0].detail![1].type!.code!, "product")
+		XCTAssertEqual(inst.item![0].detail![1].unitPrice!.code!, "USD")
+		XCTAssertEqual(inst.item![0].detail![1].unitPrice!.system!.absoluteString!, "urn:std:iso:4217")
+		XCTAssertEqual(inst.item![0].detail![1].unitPrice!.value!, NSDecimalNumber(string: "50.0"))
+		XCTAssertEqual(inst.item![0].detail![2].factor!, NSDecimalNumber(string: "0.07"))
+		XCTAssertEqual(inst.item![0].detail![2].net!.code!, "USD")
+		XCTAssertEqual(inst.item![0].detail![2].net!.system!.absoluteString!, "urn:std:iso:4217")
+		XCTAssertEqual(inst.item![0].detail![2].net!.value!, NSDecimalNumber(string: "14.0"))
+		XCTAssertEqual(inst.item![0].detail![2].sequence!, 3)
+		XCTAssertEqual(inst.item![0].detail![2].service!.code!, "fst")
+		XCTAssertEqual(inst.item![0].detail![2].service!.system!.absoluteString!, "http://hl7.org/fhir/ex-visionservice")
+		XCTAssertEqual(inst.item![0].detail![2].type!.code!, "tax")
+		XCTAssertEqual(inst.item![0].detail![2].unitPrice!.code!, "USD")
+		XCTAssertEqual(inst.item![0].detail![2].unitPrice!.system!.absoluteString!, "urn:std:iso:4217")
+		XCTAssertEqual(inst.item![0].detail![2].unitPrice!.value!, NSDecimalNumber(string: "200.0"))
+		XCTAssertEqual(inst.item![0].net!.code!, "USD")
+		XCTAssertEqual(inst.item![0].net!.system!.absoluteString!, "urn:std:iso:4217")
+		XCTAssertEqual(inst.item![0].net!.value!, NSDecimalNumber(string: "214.0"))
+		XCTAssertEqual(inst.item![0].provider!.reference!, "Practitioner/1")
+		XCTAssertEqual(inst.item![0].sequence!, 1)
+		XCTAssertEqual(inst.item![0].service!.code!, "glasses")
+		XCTAssertEqual(inst.item![0].service!.system!.absoluteString!, "http://hl7.org/fhir/ex-visionservice")
+		XCTAssertEqual(inst.item![0].serviceDate!.description, "2014-08-16")
+		XCTAssertEqual(inst.item![0].type!.code!, "group")
+		XCTAssertEqual(inst.item![0].unitPrice!.code!, "USD")
+		XCTAssertEqual(inst.item![0].unitPrice!.system!.absoluteString!, "urn:std:iso:4217")
+		XCTAssertEqual(inst.item![0].unitPrice!.value!, NSDecimalNumber(string: "214.0"))
+		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/1")
+		XCTAssertEqual(inst.payee!.type!.code!, "provider")
+		XCTAssertEqual(inst.prescription!.reference!, "http://www.optdocs.com/prescription/12345")
+		XCTAssertEqual(inst.priority!.code!, "normal")
+		XCTAssertEqual(inst.target!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Vision Claim for Glasses</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!, "vision")
+		XCTAssertEqual(inst.use!, "complete")
+		
+		return inst
+	}
+	
+	func testClaim8() {
+		let instance = testClaim8_impl()
+		testClaim8_impl(json: instance.asJSON())
+	}
+	
+	func testClaim8_impl(json: JSONDictionary? = nil) -> Claim {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example-vision.json")
+		
+		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "Coverage/9876B1")
+		XCTAssertTrue(inst.coverage![0].focal!)
+		XCTAssertEqual(inst.coverage![0].relationship!.code!, "self")
+		XCTAssertEqual(inst.coverage![0].sequence!, 1)
+		XCTAssertEqual(inst.created!.description, "2014-08-16")
+		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "654321")
+		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
+		XCTAssertEqual(inst.id!, "660150")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happysight.com/claim")
+		XCTAssertEqual(inst.identifier![0].value!, "6612345")
+		XCTAssertEqual(inst.item![0].net!.code!, "USD")
+		XCTAssertEqual(inst.item![0].net!.system!.absoluteString!, "urn:std:iso:4217")
+		XCTAssertEqual(inst.item![0].net!.value!, NSDecimalNumber(string: "80.0"))
+		XCTAssertEqual(inst.item![0].provider!.reference!, "Practitioner/1")
+		XCTAssertEqual(inst.item![0].sequence!, 1)
+		XCTAssertEqual(inst.item![0].service!.code!, "exam")
+		XCTAssertEqual(inst.item![0].service!.system!.absoluteString!, "http://hl7.org/fhir/ex-visionservice")
+		XCTAssertEqual(inst.item![0].serviceDate!.description, "2014-08-16")
+		XCTAssertEqual(inst.item![0].type!.code!, "service")
+		XCTAssertEqual(inst.item![0].unitPrice!.code!, "USD")
+		XCTAssertEqual(inst.item![0].unitPrice!.system!.absoluteString!, "urn:std:iso:4217")
+		XCTAssertEqual(inst.item![0].unitPrice!.value!, NSDecimalNumber(string: "80.0"))
+		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/1")
+		XCTAssertEqual(inst.payee!.type!.code!, "provider")
+		XCTAssertEqual(inst.priority!.code!, "normal")
+		XCTAssertEqual(inst.target!.reference!, "Organization/2")
+		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Vision Claim</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!, "vision")
+		XCTAssertEqual(inst.use!, "complete")
+		
+		return inst
+	}
+	
+	func testClaim9() {
+		let instance = testClaim9_impl()
+		testClaim9_impl(json: instance.asJSON())
+	}
+	
+	func testClaim9_impl(json: JSONDictionary? = nil) -> Claim {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example.json")
 		
 		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage![0].focal!)
@@ -317,7 +568,7 @@ class OralHealthClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.diagnosis![0].diagnosis!.code!, "123456")
 		XCTAssertEqual(inst.diagnosis![0].sequence!, 1)
 		XCTAssertEqual(inst.id!, "100150")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/claims")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/claim")
 		XCTAssertEqual(inst.identifier![0].value!, "12345")
 		XCTAssertEqual(inst.item![0].net!.code!, "USD")
 		XCTAssertEqual(inst.item![0].net!.system!.absoluteString!, "urn:std:iso:4217")
@@ -337,6 +588,7 @@ class OralHealthClaimTests: FHIRModelTestCase
 		XCTAssertEqual(inst.target!.reference!, "Organization/2")
 		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Oral Health Claim</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!, "oral")
 		XCTAssertEqual(inst.use!, "complete")
 		
 		return inst

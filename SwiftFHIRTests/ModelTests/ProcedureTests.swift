@@ -2,7 +2,7 @@
 //  ProcedureTests.swift
 //  ProcedureTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -263,11 +263,22 @@ class ProcedureTests: FHIRModelTestCase
 	func testProcedure8_impl(json: JSONDictionary? = nil) -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-qicore-example.json")
 		
-		XCTAssertEqual(inst.date!.start!.description, "2013-04-05")
-		XCTAssertEqual(inst.followUp!, "ROS 5 days  - 2013-04-10")
+		XCTAssertEqual(inst.bodySite![0].coding![0].code!, "66754008")
+		XCTAssertEqual(inst.bodySite![0].coding![0].display!, "Appendix structure")
+		XCTAssertEqual(inst.bodySite![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.date!.end!.description, "2013-04-05T10:30:00-04:00")
+		XCTAssertEqual(inst.date!.start!.description, "2013-04-05T09:20:00-04:00")
+		XCTAssertEqual(inst.encounter!.reference!, "Encounter/example")
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/procedure-approachBodySite")
+		XCTAssertEqual(inst.extension_fhir![0].valueReference!.reference!, "BodySite/example")
+		XCTAssertEqual(inst.extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/procedure-incisionDateTime")
+		XCTAssertEqual(inst.extension_fhir![1].valueDateTime!.description, "2013-04-05T09:30:00-04:00")
 		XCTAssertEqual(inst.id!, "qicore")
-		XCTAssertEqual(inst.indication![0].text!, "Generalized abdominal pain 24 hours. Localized in RIF with rebound and guarding")
-		XCTAssertEqual(inst.notes!, "Routine Appendectomy. Appendix was inflamed and in retro-caecal position")
+		XCTAssertEqual(inst.indication![0].coding![0].code!, "163220003")
+		XCTAssertEqual(inst.indication![0].coding![0].display!, "On examination - abdominal pain - right iliac")
+		XCTAssertEqual(inst.indication![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.modifierExtension![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/procedure-status")
+		XCTAssertEqual(inst.modifierExtension![0].valueCode!, "completed")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.performer![0].person!.display!, "Dr Cecil Surgeon")
 		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/example")

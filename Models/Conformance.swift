@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -592,6 +592,9 @@ public class ConformanceRest: FHIRElement
 		get { return "ConformanceRest" }
 	}
 	
+	/// Compartments served/used by system
+	public var compartment: [NSURL]?
+	
 	/// How documents are accepted in /Mailbox
 	public var documentMailbox: [NSURL]?
 	
@@ -626,6 +629,9 @@ public class ConformanceRest: FHIRElement
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["compartment"] as? [String] {
+				self.compartment = NSURL.from(val)
+			}
 			if let val = js["documentMailbox"] as? [String] {
 				self.documentMailbox = NSURL.from(val)
 			}
@@ -653,6 +659,13 @@ public class ConformanceRest: FHIRElement
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
+		if let compartment = self.compartment {
+			var arr = [AnyObject]()
+			for val in compartment {
+				arr.append(val.asJSON())
+			}
+			json["compartment"] = arr
+		}
 		if let documentMailbox = self.documentMailbox {
 			var arr = [AnyObject]()
 			for val in documentMailbox {
@@ -827,7 +840,7 @@ public class ConformanceRestResource: FHIRElement
 	/// A resource type that is supported
 	public var type: String?
 	
-	/// If allows/uses update to a new location
+	/// If update can commit to a new identity
 	public var updateCreate: Bool?
 	
 	/// no-version | versioned | versioned-update
@@ -1006,7 +1019,7 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 	/// Types of resource (if a resource reference)
 	public var target: [String]?
 	
-	/// number | date | string | token | reference | composite | quantity
+	/// number | date | string | token | reference | composite | quantity | uri
 	public var type: String?
 	
 	public convenience init(name: String?, type: String?) {

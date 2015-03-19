@@ -1,8 +1,8 @@
 //
-//  StatusResponse.swift
+//  ProcessResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/StatusResponse) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -10,14 +10,14 @@ import Foundation
 
 
 /**
- *  StatusResponse resource.
+ *  ProcessResponse resource.
  *
  *  This resource provides processing status, errors and notes from the processing of a resource.
  */
-public class StatusResponse: DomainResource
+public class ProcessResponse: DomainResource
 {
 	override public class var resourceName: String {
-		get { return "StatusResponse" }
+		get { return "ProcessResponse" }
 	}
 	
 	/// Creation date
@@ -36,9 +36,9 @@ public class StatusResponse: DomainResource
 	public var identifier: [Identifier]?
 	
 	/// Notes
-	public var notes: [StatusResponseNotes]?
+	public var notes: [ProcessResponseNotes]?
 	
-	/// Insurer
+	/// Authoring Organization
 	public var organization: Reference?
 	
 	/// Original version
@@ -53,7 +53,7 @@ public class StatusResponse: DomainResource
 	/// Responsible organization
 	public var requestOrganization: Reference?
 	
-	/// Responsible practitioner
+	/// Responsible Practitioner
 	public var requestProvider: Reference?
 	
 	/// Resource version
@@ -78,7 +78,7 @@ public class StatusResponse: DomainResource
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["notes"] as? [JSONDictionary] {
-				self.notes = StatusResponseNotes.from(val, owner: self) as? [StatusResponseNotes]
+				self.notes = ProcessResponseNotes.from(val, owner: self) as? [ProcessResponseNotes]
 			}
 			if let val = js["organization"] as? JSONDictionary {
 				self.organization = Reference(json: val, owner: self)
@@ -123,7 +123,7 @@ public class StatusResponse: DomainResource
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
 		if let notes = self.notes {
-			json["notes"] = StatusResponseNotes.asJSONArray(notes)
+			json["notes"] = ProcessResponseNotes.asJSONArray(notes)
 		}
 		if let organization = self.organization {
 			json["organization"] = organization.asJSON()
@@ -157,10 +157,10 @@ public class StatusResponse: DomainResource
  *
  *  Suite of processing note or additional requirements is the processing has been held.
  */
-public class StatusResponseNotes: FHIRElement
+public class ProcessResponseNotes: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "StatusResponseNotes" }
+		get { return "ProcessResponseNotes" }
 	}
 	
 	/// Notes text

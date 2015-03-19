@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -26,9 +26,6 @@ public class Schedule: DomainResource
 	
 	/// External Ids for this item
 	public var identifier: [Identifier]?
-	
-	/// When this Schedule was created, or last revised
-	public var lastModified: DateTime?
 	
 	/// The period of time that the slots that are attached to this Schedule resource cover (even if none exist). These  cover the amount of time that an organization's planning horizon; the interval for which they are currently accepting appointments. This does not define a "template" for planning outside these dates
 	public var planningHorizon: Period?
@@ -55,9 +52,6 @@ public class Schedule: DomainResource
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["lastModified"] as? String {
-				self.lastModified = DateTime(string: val)
-			}
 			if let val = js["planningHorizon"] as? JSONDictionary {
 				self.planningHorizon = Period(json: val, owner: self)
 			}
@@ -78,9 +72,6 @@ public class Schedule: DomainResource
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
-		}
-		if let lastModified = self.lastModified {
-			json["lastModified"] = lastModified.asJSON()
 		}
 		if let planningHorizon = self.planningHorizon {
 			json["planningHorizon"] = planningHorizon.asJSON()

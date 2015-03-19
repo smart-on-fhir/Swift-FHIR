@@ -2,7 +2,7 @@
 //  DiagnosticOrderTests.swift
 //  DiagnosticOrderTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -80,6 +80,16 @@ class DiagnosticOrderTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.event![0].dateTime!.description, "2013-05-02T16:16:00-07:00")
 		XCTAssertEqual(inst.event![0].status!, "requested")
+		XCTAssertEqual(inst.event![1].dateTime!.description, "2013-05-06T11:20:00-07:00")
+		XCTAssertEqual(inst.event![1].status!, "rejected")
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/diagnosticorder-reason")
+		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "PHY")
+		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].display!, "Physician request")
+		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/ActReason")
+		XCTAssertEqual(inst.extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/diagnosticorder-reasonRejected")
+		XCTAssertEqual(inst.extension_fhir![1].valueCodeableConcept!.coding![0].code!, "NON-AVAIL")
+		XCTAssertEqual(inst.extension_fhir![1].valueCodeableConcept!.coding![0].display!, "patient not-available")
+		XCTAssertEqual(inst.extension_fhir![1].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/ActReason")
 		XCTAssertEqual(inst.id!, "qicore")
 		XCTAssertEqual(inst.identifier![0].label!, "Placer")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:1.3.4.5.6.7")
@@ -87,9 +97,13 @@ class DiagnosticOrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.item![0].code!.coding![0].code!, "LIPID")
 		XCTAssertEqual(inst.item![0].code!.coding![0].system!.absoluteString!, "http://acme.org/tests")
 		XCTAssertEqual(inst.item![0].code!.text!, "Lipid Panel")
+		XCTAssertEqual(inst.item![0].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/diagnosticorder-precondition")
+		XCTAssertEqual(inst.item![0].extension_fhir![0].valueCodeableConcept!.coding![0].code!, "422504002")
+		XCTAssertEqual(inst.item![0].extension_fhir![0].valueCodeableConcept!.coding![0].display!, "Ischemic stroke (disorder)")
+		XCTAssertEqual(inst.item![0].extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.orderer!.reference!, "Practitioner/example")
-		XCTAssertEqual(inst.status!, "received")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/1")
+		XCTAssertEqual(inst.status!, "rejected")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst

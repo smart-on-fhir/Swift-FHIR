@@ -2,7 +2,7 @@
 //  ProcedureRequestTests.swift
 //  ProcedureRequestTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -49,13 +49,27 @@ class ProcedureRequestTests: FHIRModelTestCase
 	func testProcedureRequest2_impl(json: JSONDictionary? = nil) -> ProcedureRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedurerequest-qicore-example.json")
 		
+		XCTAssertEqual(inst.bodySiteCodeableConcept!.coding![0].code!, "66754008")
+		XCTAssertEqual(inst.bodySiteCodeableConcept!.coding![0].display!, "Appendix structure")
+		XCTAssertEqual(inst.bodySiteCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.encounter!.reference!, "Encounter/example")
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/procedure-request-authorizedBy")
+		XCTAssertEqual(inst.extension_fhir![0].valueReference!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.id!, "qicore")
+		XCTAssertEqual(inst.indication![0].coding![0].code!, "163220003")
+		XCTAssertEqual(inst.indication![0].coding![0].display!, "On examination - abdominal pain - right iliac")
+		XCTAssertEqual(inst.indication![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.orderedOn!.description, "2013-04-04")
+		XCTAssertEqual(inst.priority!, "urgent")
+		XCTAssertEqual(inst.status!, "completed")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
-		XCTAssertEqual(inst.text!.div!, "<div>To be added</div>")
+		XCTAssertEqual(inst.text!.div!, "<div>Request for Routine Appendectomy</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!.coding![0].code!, "323418000")
-		XCTAssertEqual(inst.type!.coding![0].display!, "Fix me up")
+		XCTAssertEqual(inst.timingDateTime!.description, "2013-04-05")
+		XCTAssertEqual(inst.type!.coding![0].code!, "80146002")
+		XCTAssertEqual(inst.type!.coding![0].display!, "Appendectomy (Procedure)")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.type!.text!, "Appendectomy")
 		
 		return inst
 	}

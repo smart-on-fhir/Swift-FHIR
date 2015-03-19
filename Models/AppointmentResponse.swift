@@ -2,7 +2,7 @@
 //  AppointmentResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -18,26 +18,20 @@ public class AppointmentResponse: DomainResource
 		get { return "AppointmentResponse" }
 	}
 	
+	/// A Person, Location/HealthcareService or Device that is participating in the appointment
+	public var actor: Reference?
+	
 	/// Parent appointment that this response is replying to
 	public var appointment: Reference?
 	
 	/// Additional comments about the appointment
 	public var comment: String?
 	
-	/// Date/Time that the appointment is to conclude
+	/// Date/Time that the appointment is to conclude, or requested new end time
 	public var end: Instant?
 	
 	/// External Ids for this item
 	public var identifier: [Identifier]?
-	
-	/// A Person of device that is participating in the appointment, usually Practitioner, Patient, RelatedPerson or Device
-	public var individual: [Reference]?
-	
-	/// Date when the response was recorded or last updated
-	public var lastModified: DateTime?
-	
-	/// Who recorded the appointment response
-	public var lastModifiedBy: Reference?
 	
 	/// accepted | declined | tentative | in-process | completed | needs-action
 	public var participantStatus: String?
@@ -45,7 +39,7 @@ public class AppointmentResponse: DomainResource
 	/// Role of participant in the appointment
 	public var participantType: [CodeableConcept]?
 	
-	/// Date/Time that the appointment is to take place
+	/// Date/Time that the appointment is to take place, or requested new start time
 	public var start: Instant?
 	
 	public convenience init(appointment: Reference?, participantStatus: String?) {
@@ -61,6 +55,9 @@ public class AppointmentResponse: DomainResource
 	public required init(json: JSONDictionary?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["actor"] as? JSONDictionary {
+				self.actor = Reference(json: val, owner: self)
+			}
 			if let val = js["appointment"] as? JSONDictionary {
 				self.appointment = Reference(json: val, owner: self)
 			}
@@ -72,15 +69,6 @@ public class AppointmentResponse: DomainResource
 			}
 			if let val = js["identifier"] as? [JSONDictionary] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
-			}
-			if let val = js["individual"] as? [JSONDictionary] {
-				self.individual = Reference.from(val, owner: self) as? [Reference]
-			}
-			if let val = js["lastModified"] as? String {
-				self.lastModified = DateTime(string: val)
-			}
-			if let val = js["lastModifiedBy"] as? JSONDictionary {
-				self.lastModifiedBy = Reference(json: val, owner: self)
 			}
 			if let val = js["participantStatus"] as? String {
 				self.participantStatus = val
@@ -97,6 +85,9 @@ public class AppointmentResponse: DomainResource
 	override public func asJSON() -> JSONDictionary {
 		var json = super.asJSON()
 		
+		if let actor = self.actor {
+			json["actor"] = actor.asJSON()
+		}
 		if let appointment = self.appointment {
 			json["appointment"] = appointment.asJSON()
 		}
@@ -108,15 +99,6 @@ public class AppointmentResponse: DomainResource
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
-		}
-		if let individual = self.individual {
-			json["individual"] = Reference.asJSONArray(individual)
-		}
-		if let lastModified = self.lastModified {
-			json["lastModified"] = lastModified.asJSON()
-		}
-		if let lastModifiedBy = self.lastModifiedBy {
-			json["lastModifiedBy"] = lastModifiedBy.asJSON()
 		}
 		if let participantStatus = self.participantStatus {
 			json["participantStatus"] = participantStatus.asJSON()

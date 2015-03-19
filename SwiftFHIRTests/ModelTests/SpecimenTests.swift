@@ -2,7 +2,7 @@
 //  SpecimenTests.swift
 //  SpecimenTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -87,6 +87,40 @@ class SpecimenTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "101")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://ehr.acme.org/identifiers/collections")
 		XCTAssertEqual(inst.identifier![0].value!, "23234352356")
+		XCTAssertEqual(inst.receivedTime!.description, "2011-03-04T07:03:00Z")
+		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "122555007")
+		XCTAssertEqual(inst.type!.coding![0].display!, "Venous blood specimen")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		
+		return inst
+	}
+	
+	func testSpecimen3() {
+		let instance = testSpecimen3_impl()
+		testSpecimen3_impl(json: instance.asJSON())
+	}
+	
+	func testSpecimen3_impl(json: JSONDictionary? = nil) -> Specimen {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "specimen-qicore-example.json")
+		
+		XCTAssertEqual(inst.collection!.collectedDateTime!.description, "2011-03-06T06:15:00Z")
+		XCTAssertEqual(inst.collection!.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/specimen-collectionPriority")
+		XCTAssertEqual(inst.collection!.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "5")
+		XCTAssertEqual(inst.collection!.extension_fhir![0].valueCodeableConcept!.coding![0].display!, "ROUTINE")
+		XCTAssertEqual(inst.collection!.extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/vs/specimen-collection-priority")
+		XCTAssertEqual(inst.collection!.quantity!.units!, "mL")
+		XCTAssertEqual(inst.collection!.quantity!.value!, NSDecimalNumber(string: "6"))
+		XCTAssertEqual(inst.container![0].capacity!.units!, "mL")
+		XCTAssertEqual(inst.container![0].capacity!.value!, NSDecimalNumber(string: "10"))
+		XCTAssertEqual(inst.container![0].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/specimen-sequenceNumber")
+		XCTAssertEqual(inst.container![0].extension_fhir![0].valueInteger!, 1)
+		XCTAssertEqual(inst.container![0].type!.coding![0].code!, "434746001")
+		XCTAssertEqual(inst.container![0].type!.coding![0].display!, "Specimen vial")
+		XCTAssertEqual(inst.container![0].type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "qicore")
 		XCTAssertEqual(inst.receivedTime!.description, "2011-03-04T07:03:00Z")
 		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")

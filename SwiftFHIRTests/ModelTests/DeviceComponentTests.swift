@@ -2,7 +2,7 @@
 //  DeviceComponentTests.swift
 //  DeviceComponentTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 

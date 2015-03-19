@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/Patient) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Patient) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Information about a person or animal receiving health care services.
+ *  Information about an individual or animal receiving health care services.
  *
- *  Demographics and other administrative information about a person or animal receiving care or other health-related
- *  services.
+ *  Demographics and other administrative information about an individual or animal receiving care or other health-
+ *  related services.
  */
 public class Patient: DomainResource
 {
@@ -33,14 +33,11 @@ public class Patient: DomainResource
 	/// The date of birth for the individual
 	public var birthDate: Date?
 	
-	/// The time of birth for the individual
-	public var birthTime: Time?
-	
 	/// Patient's nominated care provider
 	public var careProvider: [Reference]?
 	
-	/// Languages which may be used to communicate with the patient about his or her health
-	public var communication: [CodeableConcept]?
+	/// A list of Languages which may be used to communicate with the patient about his or her health
+	public var communication: [PatientCommunication]?
 	
 	/// A contact party (e.g. guardian, partner, friend) for the patient
 	public var contact: [PatientContact]?
@@ -54,7 +51,7 @@ public class Patient: DomainResource
 	/// male | female | other | unknown
 	public var gender: String?
 	
-	/// An identifier for the person as this patient
+	/// An identifier for this patient
 	public var identifier: [Identifier]?
 	
 	/// Link to another patient resource that concerns the same actual person
@@ -63,7 +60,7 @@ public class Patient: DomainResource
 	/// Organization that is the custodian of the patient record
 	public var managingOrganization: Reference?
 	
-	/// Marital (civil) status of a person
+	/// Marital (civil) status of a patient
 	public var maritalStatus: CodeableConcept?
 	
 	/// Whether patient is part of a multiple birth
@@ -75,7 +72,7 @@ public class Patient: DomainResource
 	/// A name associated with the patient
 	public var name: [HumanName]?
 	
-	/// Image of the person
+	/// Image of the patient
 	public var photo: [Attachment]?
 	
 	/// A contact detail for the individual
@@ -96,14 +93,11 @@ public class Patient: DomainResource
 			if let val = js["birthDate"] as? String {
 				self.birthDate = Date(string: val)
 			}
-			if let val = js["birthTime"] as? String {
-				self.birthTime = Time(string: val)
-			}
 			if let val = js["careProvider"] as? [JSONDictionary] {
 				self.careProvider = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["communication"] as? [JSONDictionary] {
-				self.communication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+				self.communication = PatientCommunication.from(val, owner: self) as? [PatientCommunication]
 			}
 			if let val = js["contact"] as? [JSONDictionary] {
 				self.contact = PatientContact.from(val, owner: self) as? [PatientContact]
@@ -162,14 +156,11 @@ public class Patient: DomainResource
 		if let birthDate = self.birthDate {
 			json["birthDate"] = birthDate.asJSON()
 		}
-		if let birthTime = self.birthTime {
-			json["birthTime"] = birthTime.asJSON()
-		}
 		if let careProvider = self.careProvider {
 			json["careProvider"] = Reference.asJSONArray(careProvider)
 		}
 		if let communication = self.communication {
-			json["communication"] = CodeableConcept.asJSONArray(communication)
+			json["communication"] = PatientCommunication.asJSONArray(communication)
 		}
 		if let contact = self.contact {
 			json["contact"] = PatientContact.asJSONArray(contact)
@@ -277,6 +268,57 @@ public class PatientAnimal: FHIRElement
 
 
 /**
+ *  A list of Languages which may be used to communicate with the patient about his or her health.
+ *
+ *  Languages which may be used to communicate with the patient about his or her health.
+ */
+public class PatientCommunication: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "PatientCommunication" }
+	}
+	
+	/// The language which can be used to communicate with the patient about his or her health
+	public var language: CodeableConcept?
+	
+	/// Language preference indicator
+	public var preferred: Bool?
+	
+	public convenience init(language: CodeableConcept?) {
+		self.init(json: nil)
+		if nil != language {
+			self.language = language
+		}
+	}
+	
+	public required init(json: JSONDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["language"] as? JSONDictionary {
+				self.language = CodeableConcept(json: val, owner: self)
+			}
+			if let val = js["preferred"] as? Bool {
+				self.preferred = val
+			}
+		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let language = self.language {
+			json["language"] = language.asJSON()
+		}
+		if let preferred = self.preferred {
+			json["preferred"] = preferred.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
  *  A contact party (e.g. guardian, partner, friend) for the patient.
  */
 public class PatientContact: FHIRElement
@@ -291,13 +333,13 @@ public class PatientContact: FHIRElement
 	/// male | female | other | unknown
 	public var gender: String?
 	
-	/// A name associated with the person
+	/// A name associated with the contact person
 	public var name: HumanName?
 	
 	/// Organization that is associated with the contact
 	public var organization: Reference?
 	
-	/// The period during which this person or organization is valid to be contacted relating to this patient
+	/// The period during which this contact person or organization is valid to be contacted relating to this patient
 	public var period: Period?
 	
 	/// The kind of relationship
@@ -365,6 +407,8 @@ public class PatientContact: FHIRElement
 
 /**
  *  Link to another patient resource that concerns the same actual person.
+ *
+ *  Link to another patient resource that concerns the same actual patient.
  */
 public class PatientLink: FHIRElement
 {

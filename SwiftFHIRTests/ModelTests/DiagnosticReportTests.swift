@@ -2,7 +2,7 @@
 //  DiagnosticReportTests.swift
 //  DiagnosticReportTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -242,6 +242,8 @@ class DiagnosticReportTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "diagnosticreport-qicore-example.json")
 		
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2011-03-04T08:30:00+11:00")
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/diagnosticReport-locationPerformed")
+		XCTAssertEqual(inst.extension_fhir![0].valueReference!.reference!, "Location/example")
 		XCTAssertEqual(inst.id!, "qicore")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://acme.com/lab/reports")
 		XCTAssertEqual(inst.identifier![0].value!, "5234342")

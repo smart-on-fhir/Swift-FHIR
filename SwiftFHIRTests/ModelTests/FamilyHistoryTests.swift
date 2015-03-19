@@ -2,7 +2,7 @@
 //  FamilyHistoryTests.swift
 //  FamilyHistoryTests
 //
-//  Generated from FHIR 0.4.0.4394 on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -94,6 +94,10 @@ class FamilyHistoryTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "qicore")
 		XCTAssertEqual(inst.patient!.display!, "Peter Patient")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.relation![0].condition![0].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/familyhistory-severity")
+		XCTAssertEqual(inst.relation![0].condition![0].extension_fhir![0].valueCodeableConcept!.coding![0].code!, "399166001")
+		XCTAssertEqual(inst.relation![0].condition![0].extension_fhir![0].valueCodeableConcept!.coding![0].display!, "Fatal")
+		XCTAssertEqual(inst.relation![0].condition![0].extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/vs/condition-severity")
 		XCTAssertEqual(inst.relation![0].condition![0].note!, "Was fishing at the time. At least he went doing someting he loved.")
 		XCTAssertEqual(inst.relation![0].condition![0].onsetAge!.system!.absoluteString!, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.relation![0].condition![0].onsetAge!.units!, "a")
@@ -102,8 +106,18 @@ class FamilyHistoryTests: FHIRModelTestCase
 		XCTAssertEqual(inst.relation![0].condition![0].type!.coding![0].display!, "Myocardial Infarction")
 		XCTAssertEqual(inst.relation![0].condition![0].type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.relation![0].condition![0].type!.text!, "Heart Attack")
-		XCTAssertEqual(inst.relation![0].relationship!.coding![0].code!, "father")
-		XCTAssertEqual(inst.relation![0].relationship!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/familial-relationship")
+		XCTAssertEqual(inst.relation![0].relationship!.coding![0].code!, "FTH")
+		XCTAssertEqual(inst.relation![0].relationship!.coding![0].display!, "FATHER")
+		XCTAssertEqual(inst.relation![0].relationship!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/vs/FamilyMember")
+		XCTAssertEqual(inst.relation![1].condition![0].modifierExtension![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/familyhistory-didNotHave")
+		XCTAssertTrue(inst.relation![1].condition![0].modifierExtension![0].valueBoolean!)
+		XCTAssertEqual(inst.relation![1].condition![0].type!.coding![0].code!, "315619001")
+		XCTAssertEqual(inst.relation![1].condition![0].type!.coding![0].display!, "Myocardial Infarction")
+		XCTAssertEqual(inst.relation![1].condition![0].type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.relation![1].condition![0].type!.text!, "Heart Attack")
+		XCTAssertEqual(inst.relation![1].relationship!.coding![0].code!, "MTH")
+		XCTAssertEqual(inst.relation![1].relationship!.coding![0].display!, "Mother")
+		XCTAssertEqual(inst.relation![1].relationship!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/vs/FamilyMember")
 		XCTAssertEqual(inst.text!.div!, "<div>Father died of a heart attack aged 74</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		

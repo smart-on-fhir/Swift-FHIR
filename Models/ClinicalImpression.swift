@@ -1,8 +1,8 @@
 //
-//  ClinicalAssessment.swift
+//  ClinicalImpression.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/ClinicalAssessment) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -16,16 +16,16 @@ import Foundation
  *  the treatments or management strategies that are best to manage a patient's condition. Assessments are often 1:1
  *  with a clinical consultation / encounter,  but this varies greatly depending on the clinical workflow.
  */
-public class ClinicalAssessment: DomainResource
+public class ClinicalImpression: DomainResource
 {
 	override public class var resourceName: String {
-		get { return "ClinicalAssessment" }
+		get { return "ClinicalImpression" }
 	}
 	
 	/// Actions taken during assessment
 	public var action: [Reference]?
 	
-	/// The clinicial performing the assessment
+	/// The clinician performing the assessment
 	public var assessor: Reference?
 	
 	/// A specific careplan that prompted this assessment
@@ -38,10 +38,10 @@ public class ClinicalAssessment: DomainResource
 	public var description_fhir: String?
 	
 	/// Possible or likely diagnosis
-	public var diagnosis: [ClinicalAssessmentDiagnosis]?
+	public var diagnosis: [ClinicalImpressionDiagnosis]?
 	
 	/// One or more sets of investigations (signs, symptions, etc)
-	public var investigations: [ClinicalAssessmentInvestigations]?
+	public var investigations: [ClinicalImpressionInvestigations]?
 	
 	/// The patient being asssesed
 	public var patient: Reference?
@@ -68,7 +68,7 @@ public class ClinicalAssessment: DomainResource
 	public var resolved: [CodeableConcept]?
 	
 	/// Diagnosis considered not possible
-	public var ruledOut: [ClinicalAssessmentRuledOut]?
+	public var ruledOut: [ClinicalImpressionRuledOut]?
 	
 	/// Summary of the assessment
 	public var summary: String?
@@ -105,10 +105,10 @@ public class ClinicalAssessment: DomainResource
 				self.description_fhir = val
 			}
 			if let val = js["diagnosis"] as? [JSONDictionary] {
-				self.diagnosis = ClinicalAssessmentDiagnosis.from(val, owner: self) as? [ClinicalAssessmentDiagnosis]
+				self.diagnosis = ClinicalImpressionDiagnosis.from(val, owner: self) as? [ClinicalImpressionDiagnosis]
 			}
 			if let val = js["investigations"] as? [JSONDictionary] {
-				self.investigations = ClinicalAssessmentInvestigations.from(val, owner: self) as? [ClinicalAssessmentInvestigations]
+				self.investigations = ClinicalImpressionInvestigations.from(val, owner: self) as? [ClinicalImpressionInvestigations]
 			}
 			if let val = js["patient"] as? JSONDictionary {
 				self.patient = Reference(json: val, owner: self)
@@ -135,7 +135,7 @@ public class ClinicalAssessment: DomainResource
 				self.resolved = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["ruledOut"] as? [JSONDictionary] {
-				self.ruledOut = ClinicalAssessmentRuledOut.from(val, owner: self) as? [ClinicalAssessmentRuledOut]
+				self.ruledOut = ClinicalImpressionRuledOut.from(val, owner: self) as? [ClinicalImpressionRuledOut]
 			}
 			if let val = js["summary"] as? String {
 				self.summary = val
@@ -162,10 +162,10 @@ public class ClinicalAssessment: DomainResource
 			json["description"] = description_fhir.asJSON()
 		}
 		if let diagnosis = self.diagnosis {
-			json["diagnosis"] = ClinicalAssessmentDiagnosis.asJSONArray(diagnosis)
+			json["diagnosis"] = ClinicalImpressionDiagnosis.asJSONArray(diagnosis)
 		}
 		if let investigations = self.investigations {
-			json["investigations"] = ClinicalAssessmentInvestigations.asJSONArray(investigations)
+			json["investigations"] = ClinicalImpressionInvestigations.asJSONArray(investigations)
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
@@ -192,7 +192,7 @@ public class ClinicalAssessment: DomainResource
 			json["resolved"] = CodeableConcept.asJSONArray(resolved)
 		}
 		if let ruledOut = self.ruledOut {
-			json["ruledOut"] = ClinicalAssessmentRuledOut.asJSONArray(ruledOut)
+			json["ruledOut"] = ClinicalImpressionRuledOut.asJSONArray(ruledOut)
 		}
 		if let summary = self.summary {
 			json["summary"] = summary.asJSON()
@@ -208,10 +208,10 @@ public class ClinicalAssessment: DomainResource
  *
  *  An specific diagnosis that was considered likely or relevant to ongoing treatment.
  */
-public class ClinicalAssessmentDiagnosis: FHIRElement
+public class ClinicalImpressionDiagnosis: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "ClinicalAssessmentDiagnosis" }
+		get { return "ClinicalImpressionDiagnosis" }
 	}
 	
 	/// Which investigations support diagnosis
@@ -261,10 +261,10 @@ public class ClinicalAssessmentDiagnosis: FHIRElement
  *  depending on the type and context of the assessment. These investigations may include data generated during the
  *  assessment process, or data previously generated and recorded that is pertinent to the outcomes.
  */
-public class ClinicalAssessmentInvestigations: FHIRElement
+public class ClinicalImpressionInvestigations: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "ClinicalAssessmentInvestigations" }
+		get { return "ClinicalImpressionInvestigations" }
 	}
 	
 	/// A name/code for the set
@@ -310,10 +310,10 @@ public class ClinicalAssessmentInvestigations: FHIRElement
 /**
  *  Diagnosis considered not possible.
  */
-public class ClinicalAssessmentRuledOut: FHIRElement
+public class ClinicalImpressionRuledOut: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "ClinicalAssessmentRuledOut" }
+		get { return "ClinicalImpressionRuledOut" }
 	}
 	
 	/// Specific text of code for diagnosis

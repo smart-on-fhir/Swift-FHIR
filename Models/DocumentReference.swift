@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4394 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2015-03-11.
+//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2015-03-19.
 //  2015, SMART Platforms.
 //
 
@@ -27,7 +27,7 @@ public class DocumentReference: DomainResource
 	/// High-level classification of document
 	public var class_fhir: CodeableConcept?
 	
-	/// Sensitivity of source document
+	/// Document security-tags
 	public var confidentiality: [CodeableConcept]?
 	
 	/// Where to access the document
@@ -238,6 +238,12 @@ public class DocumentReferenceContext: FHIRElement
 	/// Time of service that is being documented
 	public var period: Period?
 	
+	/// Additional details about where the content was created (e.g. clinical specialty)
+	public var practiceSetting: CodeableConcept?
+	
+	/// Related things
+	public var related: [DocumentReferenceContextRelated]?
+	
 	/// Source patient info
 	public var sourcePatientInfo: Reference?
 	
@@ -252,6 +258,12 @@ public class DocumentReferenceContext: FHIRElement
 			}
 			if let val = js["period"] as? JSONDictionary {
 				self.period = Period(json: val, owner: self)
+			}
+			if let val = js["practiceSetting"] as? JSONDictionary {
+				self.practiceSetting = CodeableConcept(json: val, owner: self)
+			}
+			if let val = js["related"] as? [JSONDictionary] {
+				self.related = DocumentReferenceContextRelated.from(val, owner: self) as? [DocumentReferenceContextRelated]
 			}
 			if let val = js["sourcePatientInfo"] as? JSONDictionary {
 				self.sourcePatientInfo = Reference(json: val, owner: self)
@@ -271,8 +283,58 @@ public class DocumentReferenceContext: FHIRElement
 		if let period = self.period {
 			json["period"] = period.asJSON()
 		}
+		if let practiceSetting = self.practiceSetting {
+			json["practiceSetting"] = practiceSetting.asJSON()
+		}
+		if let related = self.related {
+			json["related"] = DocumentReferenceContextRelated.asJSONArray(related)
+		}
 		if let sourcePatientInfo = self.sourcePatientInfo {
 			json["sourcePatientInfo"] = sourcePatientInfo.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Related things.
+ *
+ *  Related identifiers or resources associated with the DocumentReference.
+ */
+public class DocumentReferenceContextRelated: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "DocumentReferenceContextRelated" }
+	}
+	
+	/// Related Identifier
+	public var ids: Identifier?
+	
+	/// Related Resource
+	public var refs: Reference?
+	
+	public required init(json: JSONDictionary?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["ids"] as? JSONDictionary {
+				self.ids = Identifier(json: val, owner: self)
+			}
+			if let val = js["refs"] as? JSONDictionary {
+				self.refs = Reference(json: val, owner: self)
+			}
+		}
+	}
+	
+	override public func asJSON() -> JSONDictionary {
+		var json = super.asJSON()
+		
+		if let ids = self.ids {
+			json["ids"] = ids.asJSON()
+		}
+		if let refs = self.refs {
+			json["refs"] = refs.asJSON()
 		}
 		
 		return json

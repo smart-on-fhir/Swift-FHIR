@@ -7,13 +7,14 @@ Building Swift frameworks requires Xcode 6 or later, using frameworks on iOS req
 The `master` branch is currently on _DSTU 1_.  
 The `develop` branch is currently on _DSTU 2_ and WiP.
 
+Generated technical documentation is available at [docs.smarthealthit.org/Swift-FHIR/](http://docs.smarthealthit.org/Swift-FHIR/).
 This work is [Apache licensed](LICENSE.txt).
 
 
 SMART on FHIR
 -------------
 
-The [SMART on FHIR](https://github.com/p2/SMART-on-FHIR-Cocoa) Cocoa client library utilizes these classes.
+The [SMART on FHIR](https://github.com/smart-on-fhir/SMART-on-FHIR-Cocoa) Cocoa client library utilizes these classes.
 It also adds an implementation of this repo's _FHIRServer_ protocol to make the classes fully usable.
 
 

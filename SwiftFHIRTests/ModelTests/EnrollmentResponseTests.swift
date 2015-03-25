@@ -2,7 +2,7 @@
 //  EnrollmentResponseTests.swift
 //  EnrollmentResponseTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class EnrollmentResponseTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> EnrollmentResponse {
+	func instantiateFrom(# json: FHIRJSON) -> EnrollmentResponse {
 		let instance = EnrollmentResponse(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class EnrollmentResponseTests: FHIRModelTestCase
 		testEnrollmentResponse1_impl(json: instance.asJSON())
 	}
 	
-	func testEnrollmentResponse1_impl(json: JSONDictionary? = nil) -> EnrollmentResponse {
+	func testEnrollmentResponse1_impl(json: FHIRJSON? = nil) -> EnrollmentResponse {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "enrollmentresponse-example.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")

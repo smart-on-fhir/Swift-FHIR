@@ -2,7 +2,7 @@
 //  Age.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Age) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Age) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 

@@ -2,7 +2,7 @@
 //  SpecimenTests.swift
 //  SpecimenTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class SpecimenTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Specimen {
+	func instantiateFrom(# json: FHIRJSON) -> Specimen {
 		let instance = Specimen(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class SpecimenTests: FHIRModelTestCase
 		testSpecimen1_impl(json: instance.asJSON())
 	}
 	
-	func testSpecimen1_impl(json: JSONDictionary? = nil) -> Specimen {
+	func testSpecimen1_impl(json: FHIRJSON? = nil) -> Specimen {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "spec-uslab-example1.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier!.system!.absoluteString!, "http://lis.acmelabs.org/identifiers/accession")
@@ -65,7 +65,38 @@ class SpecimenTests: FHIRModelTestCase
 		testSpecimen2_impl(json: instance.asJSON())
 	}
 	
-	func testSpecimen2_impl(json: JSONDictionary? = nil) -> Specimen {
+	func testSpecimen2_impl(json: FHIRJSON? = nil) -> Specimen {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "spec-uslab-example2.json")
+		
+		XCTAssertEqual(inst.accessionIdentifier!.system!.absoluteString!, "http://lis.acmelabs.org/identifiers/accession")
+		XCTAssertEqual(inst.accessionIdentifier!.use!, "official")
+		XCTAssertEqual(inst.accessionIdentifier!.value!, "21041205000001")
+		XCTAssertEqual(inst.collection!.collectedDateTime!.description, "2014-12-05")
+		XCTAssertEqual(inst.id!, "uslab-example2")
+		XCTAssertEqual(inst.identifier![0].label!, "Placer Specimen ID")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://ehr.goodhealthclinic.org/identifiers/specimen")
+		XCTAssertEqual(inst.identifier![0].use!, "official")
+		XCTAssertEqual(inst.identifier![0].value!, "SID456")
+		XCTAssertEqual(inst.subject!.display!, "Todd Lerr")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/uslab-example1")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "698276005")
+		XCTAssertEqual(inst.type!.coding![0].display!, "First stream urine sample")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.type!.coding![1].code!, "UFV")
+		XCTAssertEqual(inst.type!.coding![1].display!, "Urine, First Void")
+		XCTAssertEqual(inst.type!.coding![1].system!.absoluteString!, "http://ehr.goodhealthclinic.org")
+		XCTAssertEqual(inst.type!.text!, "Urine, First Void")
+		
+		return inst
+	}
+	
+	func testSpecimen3() {
+		let instance = testSpecimen3_impl()
+		testSpecimen3_impl(json: instance.asJSON())
+	}
+	
+	func testSpecimen3_impl(json: FHIRJSON? = nil) -> Specimen {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "specimen-example.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier!.system!.absoluteString!, "http://lab.acme.org/specimens/2011")
@@ -98,12 +129,12 @@ class SpecimenTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testSpecimen3() {
-		let instance = testSpecimen3_impl()
-		testSpecimen3_impl(json: instance.asJSON())
+	func testSpecimen4() {
+		let instance = testSpecimen4_impl()
+		testSpecimen4_impl(json: instance.asJSON())
 	}
 	
-	func testSpecimen3_impl(json: JSONDictionary? = nil) -> Specimen {
+	func testSpecimen4_impl(json: FHIRJSON? = nil) -> Specimen {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "specimen-qicore-example.json")
 		
 		XCTAssertEqual(inst.collection!.collectedDateTime!.description, "2011-03-06T06:15:00Z")

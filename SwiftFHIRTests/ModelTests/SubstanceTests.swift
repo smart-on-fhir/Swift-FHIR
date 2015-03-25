@@ -2,7 +2,7 @@
 //  SubstanceTests.swift
 //  SubstanceTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class SubstanceTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Substance {
+	func instantiateFrom(# json: FHIRJSON) -> Substance {
 		let instance = Substance(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class SubstanceTests: FHIRModelTestCase
 		testSubstance1_impl(json: instance.asJSON())
 	}
 	
-	func testSubstance1_impl(json: JSONDictionary? = nil) -> Substance {
+	func testSubstance1_impl(json: FHIRJSON? = nil) -> Substance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "substance-example-f201-dust.json")
 		
 		XCTAssertEqual(inst.id!, "f201")
@@ -44,7 +44,7 @@ class SubstanceTests: FHIRModelTestCase
 		testSubstance2_impl(json: instance.asJSON())
 	}
 	
-	func testSubstance2_impl(json: JSONDictionary? = nil) -> Substance {
+	func testSubstance2_impl(json: FHIRJSON? = nil) -> Substance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "substance-example-f202-staphylococcus.json")
 		
 		XCTAssertEqual(inst.id!, "f202")
@@ -61,7 +61,7 @@ class SubstanceTests: FHIRModelTestCase
 		testSubstance3_impl(json: instance.asJSON())
 	}
 	
-	func testSubstance3_impl(json: JSONDictionary? = nil) -> Substance {
+	func testSubstance3_impl(json: FHIRJSON? = nil) -> Substance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "substance-example-f203-potassium.json")
 		
 		XCTAssertEqual(inst.id!, "f203")
@@ -78,7 +78,7 @@ class SubstanceTests: FHIRModelTestCase
 		testSubstance4_impl(json: instance.asJSON())
 	}
 	
-	func testSubstance4_impl(json: JSONDictionary? = nil) -> Substance {
+	func testSubstance4_impl(json: FHIRJSON? = nil) -> Substance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "substance-example.json")
 		
 		XCTAssertEqual(inst.id!, "example")

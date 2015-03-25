@@ -2,7 +2,7 @@
 //  Medication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Medication) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Medication) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -41,10 +41,10 @@ public class Medication: DomainResource
 	/// Administrable medication details
 	public var product: MedicationProduct?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? JSONDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["isBrand"] as? Bool {
@@ -53,22 +53,22 @@ public class Medication: DomainResource
 			if let val = js["kind"] as? String {
 				self.kind = val
 			}
-			if let val = js["manufacturer"] as? JSONDictionary {
+			if let val = js["manufacturer"] as? FHIRJSON {
 				self.manufacturer = Reference(json: val, owner: self)
 			}
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["package"] as? JSONDictionary {
+			if let val = js["package"] as? FHIRJSON {
 				self.package = MedicationPackage(json: val, owner: self)
 			}
-			if let val = js["product"] as? JSONDictionary {
+			if let val = js["product"] as? FHIRJSON {
 				self.product = MedicationProduct(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {
@@ -115,19 +115,19 @@ public class MedicationPackage: FHIRElement
 	/// What is  in the package?
 	public var content: [MedicationPackageContent]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["container"] as? JSONDictionary {
+			if let val = js["container"] as? FHIRJSON {
 				self.container = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["content"] as? [JSONDictionary] {
+			if let val = js["content"] as? [FHIRJSON] {
 				self.content = MedicationPackageContent.from(val, owner: self) as? [MedicationPackageContent]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let container = self.container {
@@ -166,19 +166,19 @@ public class MedicationPackageContent: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["amount"] as? JSONDictionary {
+			if let val = js["amount"] as? FHIRJSON {
 				self.amount = Quantity(json: val, owner: self)
 			}
-			if let val = js["item"] as? JSONDictionary {
+			if let val = js["item"] as? FHIRJSON {
 				self.item = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let amount = self.amount {
@@ -213,22 +213,22 @@ public class MedicationProduct: FHIRElement
 	/// Active or inactive ingredient
 	public var ingredient: [MedicationProductIngredient]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["batch"] as? [JSONDictionary] {
+			if let val = js["batch"] as? [FHIRJSON] {
 				self.batch = MedicationProductBatch.from(val, owner: self) as? [MedicationProductBatch]
 			}
-			if let val = js["form"] as? JSONDictionary {
+			if let val = js["form"] as? FHIRJSON {
 				self.form = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["ingredient"] as? [JSONDictionary] {
+			if let val = js["ingredient"] as? [FHIRJSON] {
 				self.ingredient = MedicationProductIngredient.from(val, owner: self) as? [MedicationProductIngredient]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let batch = self.batch {
@@ -263,7 +263,7 @@ public class MedicationProductBatch: FHIRElement
 	/// The assigned lot number of a batch of the specified product.
 	public var lotNumber: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["expirationDate"] as? String {
@@ -275,7 +275,7 @@ public class MedicationProductBatch: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let expirationDate = self.expirationDate {
@@ -314,19 +314,19 @@ public class MedicationProductIngredient: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["amount"] as? JSONDictionary {
+			if let val = js["amount"] as? FHIRJSON {
 				self.amount = Ratio(json: val, owner: self)
 			}
-			if let val = js["item"] as? JSONDictionary {
+			if let val = js["item"] as? FHIRJSON {
 				self.item = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let amount = self.amount {

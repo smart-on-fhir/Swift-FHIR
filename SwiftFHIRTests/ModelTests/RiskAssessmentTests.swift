@@ -2,7 +2,7 @@
 //  RiskAssessmentTests.swift
 //  RiskAssessmentTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> RiskAssessment {
+	func instantiateFrom(# json: FHIRJSON) -> RiskAssessment {
 		let instance = RiskAssessment(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		testRiskAssessment1_impl(json: instance.asJSON())
 	}
 	
-	func testRiskAssessment1_impl(json: JSONDictionary? = nil) -> RiskAssessment {
+	func testRiskAssessment1_impl(json: FHIRJSON? = nil) -> RiskAssessment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "riskassessment-example-cardiac.json")
 		
 		XCTAssertEqual(inst.basis![0].reference!, "Patient/example")
@@ -56,7 +56,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		testRiskAssessment2_impl(json: instance.asJSON())
 	}
 	
-	func testRiskAssessment2_impl(json: JSONDictionary? = nil) -> RiskAssessment {
+	func testRiskAssessment2_impl(json: FHIRJSON? = nil) -> RiskAssessment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "riskassessment-example-population.json")
 		
 		XCTAssertEqual(inst.id!, "population")
@@ -70,7 +70,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		testRiskAssessment3_impl(json: instance.asJSON())
 	}
 	
-	func testRiskAssessment3_impl(json: JSONDictionary? = nil) -> RiskAssessment {
+	func testRiskAssessment3_impl(json: FHIRJSON? = nil) -> RiskAssessment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "riskassessment-example-prognosis.json")
 		
 		XCTAssertEqual(inst.condition!.display!, "Ischemic Stroke")
@@ -93,7 +93,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 		testRiskAssessment4_impl(json: instance.asJSON())
 	}
 	
-	func testRiskAssessment4_impl(json: JSONDictionary? = nil) -> RiskAssessment {
+	func testRiskAssessment4_impl(json: FHIRJSON? = nil) -> RiskAssessment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "riskassessment-example.json")
 		
 		XCTAssertEqual(inst.basis![0].reference!, "FamilyHistory/")

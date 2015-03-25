@@ -2,7 +2,7 @@
 //  ConceptMapTests.swift
 //  ConceptMapTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ConceptMapTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> ConceptMap {
+	func instantiateFrom(# json: FHIRJSON) -> ConceptMap {
 		let instance = ConceptMap(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ConceptMapTests: FHIRModelTestCase
 		testConceptMap1_impl(json: instance.asJSON())
 	}
 	
-	func testConceptMap1_impl(json: JSONDictionary? = nil) -> ConceptMap {
+	func testConceptMap1_impl(json: FHIRJSON? = nil) -> ConceptMap {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conceptmap-example-specimen-type.json")
 		
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
@@ -107,7 +107,7 @@ class ConceptMapTests: FHIRModelTestCase
 		testConceptMap2_impl(json: instance.asJSON())
 	}
 	
-	func testConceptMap2_impl(json: JSONDictionary? = nil) -> ConceptMap {
+	func testConceptMap2_impl(json: FHIRJSON? = nil) -> ConceptMap {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conceptmap-example.json")
 		
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")

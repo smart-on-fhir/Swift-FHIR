@@ -2,7 +2,7 @@
 //  Basic.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Basic) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Basic) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -43,28 +43,28 @@ public class Basic: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["author"] as? JSONDictionary {
+			if let val = js["author"] as? FHIRJSON {
 				self.author = Reference(json: val, owner: self)
 			}
-			if let val = js["code"] as? JSONDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["created"] as? String {
 				self.created = Date(string: val)
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["subject"] as? JSONDictionary {
+			if let val = js["subject"] as? FHIRJSON {
 				self.subject = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let author = self.author {

@@ -2,7 +2,7 @@
 //  SubscriptionTests.swift
 //  SubscriptionTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class SubscriptionTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Subscription {
+	func instantiateFrom(# json: FHIRJSON) -> Subscription {
 		let instance = Subscription(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class SubscriptionTests: FHIRModelTestCase
 		testSubscription1_impl(json: instance.asJSON())
 	}
 	
-	func testSubscription1_impl(json: JSONDictionary? = nil) -> Subscription {
+	func testSubscription1_impl(json: FHIRJSON? = nil) -> Subscription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "subscription-example.json")
 		
 		XCTAssertEqual(inst.channel!.endpoint!.absoluteString!, "https://biliwatch.com/customers/mount-auburn-miu/on-result")

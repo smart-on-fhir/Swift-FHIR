@@ -2,7 +2,7 @@
 //  CommunicationRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/CommunicationRequest) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/CommunicationRequest) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- *  Communication Request.
+ *  A request for information to be sent to a receiver.
  *
  *  A request to convey information. E.g., the CDS system proposes that an alert be sent to a responsible provider, the
  *  CDS system proposes that the public health agency be notified about a reportable condition.
@@ -63,55 +63,55 @@ public class CommunicationRequest: DomainResource
 	/// Focus of message
 	public var subject: Reference?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["category"] as? JSONDictionary {
+			if let val = js["category"] as? FHIRJSON {
 				self.category = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["encounter"] as? JSONDictionary {
+			if let val = js["encounter"] as? FHIRJSON {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["medium"] as? [JSONDictionary] {
+			if let val = js["medium"] as? [FHIRJSON] {
 				self.medium = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["orderedOn"] as? String {
 				self.orderedOn = DateTime(string: val)
 			}
-			if let val = js["payload"] as? [JSONDictionary] {
+			if let val = js["payload"] as? [FHIRJSON] {
 				self.payload = CommunicationRequestPayload.from(val, owner: self) as? [CommunicationRequestPayload]
 			}
-			if let val = js["priority"] as? JSONDictionary {
+			if let val = js["priority"] as? FHIRJSON {
 				self.priority = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["reason"] as? [JSONDictionary] {
+			if let val = js["reason"] as? [FHIRJSON] {
 				self.reason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["recipient"] as? [JSONDictionary] {
+			if let val = js["recipient"] as? [FHIRJSON] {
 				self.recipient = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["requester"] as? JSONDictionary {
+			if let val = js["requester"] as? FHIRJSON {
 				self.requester = Reference(json: val, owner: self)
 			}
 			if let val = js["scheduledTime"] as? String {
 				self.scheduledTime = DateTime(string: val)
 			}
-			if let val = js["sender"] as? JSONDictionary {
+			if let val = js["sender"] as? FHIRJSON {
 				self.sender = Reference(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? JSONDictionary {
+			if let val = js["subject"] as? FHIRJSON {
 				self.subject = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let category = self.category {
@@ -195,13 +195,13 @@ public class CommunicationRequestPayload: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["contentAttachment"] as? JSONDictionary {
+			if let val = js["contentAttachment"] as? FHIRJSON {
 				self.contentAttachment = Attachment(json: val, owner: self)
 			}
-			if let val = js["contentReference"] as? JSONDictionary {
+			if let val = js["contentReference"] as? FHIRJSON {
 				self.contentReference = Reference(json: val, owner: self)
 			}
 			if let val = js["contentString"] as? String {
@@ -210,7 +210,7 @@ public class CommunicationRequestPayload: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let contentAttachment = self.contentAttachment {

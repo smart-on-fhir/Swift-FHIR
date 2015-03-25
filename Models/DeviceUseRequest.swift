@@ -2,7 +2,7 @@
 //  DeviceUseRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -10,9 +10,10 @@ import Foundation
 
 
 /**
- *  Request for device use.
+ *  A request for a patient to use or be given a medical device.
  *
- *  Represents a request for the use of a device.
+ *  Represents a request for a patient to employ a medical device. The device may be an implantable device, or an
+ *  external assistive device, such as a walker.
  */
 public class DeviceUseRequest: DomainResource
 {
@@ -78,25 +79,25 @@ public class DeviceUseRequest: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["bodySiteCodeableConcept"] as? JSONDictionary {
+			if let val = js["bodySiteCodeableConcept"] as? FHIRJSON {
 				self.bodySiteCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["bodySiteReference"] as? JSONDictionary {
+			if let val = js["bodySiteReference"] as? FHIRJSON {
 				self.bodySiteReference = Reference(json: val, owner: self)
 			}
-			if let val = js["device"] as? JSONDictionary {
+			if let val = js["device"] as? FHIRJSON {
 				self.device = Reference(json: val, owner: self)
 			}
-			if let val = js["encounter"] as? JSONDictionary {
+			if let val = js["encounter"] as? FHIRJSON {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["indication"] as? [JSONDictionary] {
+			if let val = js["indication"] as? [FHIRJSON] {
 				self.indication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["notes"] as? [String] {
@@ -108,7 +109,7 @@ public class DeviceUseRequest: DomainResource
 			if let val = js["priority"] as? String {
 				self.priority = val
 			}
-			if let val = js["prnReason"] as? [JSONDictionary] {
+			if let val = js["prnReason"] as? [FHIRJSON] {
 				self.prnReason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["recordedOn"] as? String {
@@ -117,22 +118,22 @@ public class DeviceUseRequest: DomainResource
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? JSONDictionary {
+			if let val = js["subject"] as? FHIRJSON {
 				self.subject = Reference(json: val, owner: self)
 			}
 			if let val = js["timingDateTime"] as? String {
 				self.timingDateTime = DateTime(string: val)
 			}
-			if let val = js["timingPeriod"] as? JSONDictionary {
+			if let val = js["timingPeriod"] as? FHIRJSON {
 				self.timingPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["timingTiming"] as? JSONDictionary {
+			if let val = js["timingTiming"] as? FHIRJSON {
 				self.timingTiming = Timing(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let bodySiteCodeableConcept = self.bodySiteCodeableConcept {

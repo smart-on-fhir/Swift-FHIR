@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -97,13 +97,13 @@ public class Conformance: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["acceptUnknown"] as? Bool {
 				self.acceptUnknown = val
 			}
-			if let val = js["contact"] as? [JSONDictionary] {
+			if let val = js["contact"] as? [FHIRJSON] {
 				self.contact = ConformanceContact.from(val, owner: self) as? [ConformanceContact]
 			}
 			if let val = js["copyright"] as? String {
@@ -115,7 +115,7 @@ public class Conformance: DomainResource
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["document"] as? [JSONDictionary] {
+			if let val = js["document"] as? [FHIRJSON] {
 				self.document = ConformanceDocument.from(val, owner: self) as? [ConformanceDocument]
 			}
 			if let val = js["experimental"] as? Bool {
@@ -127,16 +127,16 @@ public class Conformance: DomainResource
 			if let val = js["format"] as? [String] {
 				self.format = val
 			}
-			if let val = js["implementation"] as? JSONDictionary {
+			if let val = js["implementation"] as? FHIRJSON {
 				self.implementation = ConformanceImplementation(json: val, owner: self)
 			}
-			if let val = js["messaging"] as? [JSONDictionary] {
+			if let val = js["messaging"] as? [FHIRJSON] {
 				self.messaging = ConformanceMessaging.from(val, owner: self) as? [ConformanceMessaging]
 			}
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["profile"] as? [JSONDictionary] {
+			if let val = js["profile"] as? [FHIRJSON] {
 				self.profile = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["publisher"] as? String {
@@ -145,10 +145,10 @@ public class Conformance: DomainResource
 			if let val = js["requirements"] as? String {
 				self.requirements = val
 			}
-			if let val = js["rest"] as? [JSONDictionary] {
+			if let val = js["rest"] as? [FHIRJSON] {
 				self.rest = ConformanceRest.from(val, owner: self) as? [ConformanceRest]
 			}
-			if let val = js["software"] as? JSONDictionary {
+			if let val = js["software"] as? FHIRJSON {
 				self.software = ConformanceSoftware(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
@@ -163,7 +163,7 @@ public class Conformance: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let acceptUnknown = self.acceptUnknown {
@@ -253,19 +253,19 @@ public class ConformanceContact: FHIRElement
 	/// Contact details for individual or publisher
 	public var telecom: [ContactPoint]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["telecom"] as? [JSONDictionary] {
+			if let val = js["telecom"] as? [FHIRJSON] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let name = self.name {
@@ -310,7 +310,7 @@ public class ConformanceDocument: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["documentation"] as? String {
@@ -319,13 +319,13 @@ public class ConformanceDocument: FHIRElement
 			if let val = js["mode"] as? String {
 				self.mode = val
 			}
-			if let val = js["profile"] as? JSONDictionary {
+			if let val = js["profile"] as? FHIRJSON {
 				self.profile = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let documentation = self.documentation {
@@ -368,7 +368,7 @@ public class ConformanceImplementation: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
@@ -380,7 +380,7 @@ public class ConformanceImplementation: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let description_fhir = self.description_fhir {
@@ -425,7 +425,7 @@ public class ConformanceMessaging: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["documentation"] as? String {
@@ -434,7 +434,7 @@ public class ConformanceMessaging: FHIRElement
 			if let val = js["endpoint"] as? String {
 				self.endpoint = NSURL(string: val)
 			}
-			if let val = js["event"] as? [JSONDictionary] {
+			if let val = js["event"] as? [FHIRJSON] {
 				self.event = ConformanceMessagingEvent.from(val, owner: self) as? [ConformanceMessagingEvent]
 			}
 			if let val = js["reliableCache"] as? Int {
@@ -443,7 +443,7 @@ public class ConformanceMessaging: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let documentation = self.documentation {
@@ -518,13 +518,13 @@ public class ConformanceMessagingEvent: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["category"] as? String {
 				self.category = val
 			}
-			if let val = js["code"] as? JSONDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = Coding(json: val, owner: self)
 			}
 			if let val = js["documentation"] as? String {
@@ -536,19 +536,19 @@ public class ConformanceMessagingEvent: FHIRElement
 			if let val = js["mode"] as? String {
 				self.mode = val
 			}
-			if let val = js["protocol"] as? [JSONDictionary] {
+			if let val = js["protocol"] as? [FHIRJSON] {
 				self.protocol_fhir = Coding.from(val, owner: self) as? [Coding]
 			}
-			if let val = js["request"] as? JSONDictionary {
+			if let val = js["request"] as? FHIRJSON {
 				self.request = Reference(json: val, owner: self)
 			}
-			if let val = js["response"] as? JSONDictionary {
+			if let val = js["response"] as? FHIRJSON {
 				self.response = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let category = self.category {
@@ -626,7 +626,7 @@ public class ConformanceRest: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["compartment"] as? [String] {
@@ -638,25 +638,25 @@ public class ConformanceRest: FHIRElement
 			if let val = js["documentation"] as? String {
 				self.documentation = val
 			}
-			if let val = js["interaction"] as? [JSONDictionary] {
+			if let val = js["interaction"] as? [FHIRJSON] {
 				self.interaction = ConformanceRestInteraction.from(val, owner: self) as? [ConformanceRestInteraction]
 			}
 			if let val = js["mode"] as? String {
 				self.mode = val
 			}
-			if let val = js["operation"] as? [JSONDictionary] {
+			if let val = js["operation"] as? [FHIRJSON] {
 				self.operation = ConformanceRestOperation.from(val, owner: self) as? [ConformanceRestOperation]
 			}
-			if let val = js["resource"] as? [JSONDictionary] {
+			if let val = js["resource"] as? [FHIRJSON] {
 				self.resource = ConformanceRestResource.from(val, owner: self) as? [ConformanceRestResource]
 			}
-			if let val = js["security"] as? JSONDictionary {
+			if let val = js["security"] as? FHIRJSON {
 				self.security = ConformanceRestSecurity(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let compartment = self.compartment {
@@ -721,7 +721,7 @@ public class ConformanceRestInteraction: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -733,7 +733,7 @@ public class ConformanceRestInteraction: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {
@@ -775,10 +775,10 @@ public class ConformanceRestOperation: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["definition"] as? JSONDictionary {
+			if let val = js["definition"] as? FHIRJSON {
 				self.definition = Reference(json: val, owner: self)
 			}
 			if let val = js["name"] as? String {
@@ -787,7 +787,7 @@ public class ConformanceRestOperation: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let definition = self.definition {
@@ -856,7 +856,7 @@ public class ConformanceRestResource: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["conditionalCreate"] as? Bool {
@@ -868,10 +868,10 @@ public class ConformanceRestResource: FHIRElement
 			if let val = js["conditionalUpdate"] as? Bool {
 				self.conditionalUpdate = val
 			}
-			if let val = js["interaction"] as? [JSONDictionary] {
+			if let val = js["interaction"] as? [FHIRJSON] {
 				self.interaction = ConformanceRestResourceInteraction.from(val, owner: self) as? [ConformanceRestResourceInteraction]
 			}
-			if let val = js["profile"] as? JSONDictionary {
+			if let val = js["profile"] as? FHIRJSON {
 				self.profile = Reference(json: val, owner: self)
 			}
 			if let val = js["readHistory"] as? Bool {
@@ -880,7 +880,7 @@ public class ConformanceRestResource: FHIRElement
 			if let val = js["searchInclude"] as? [String] {
 				self.searchInclude = val
 			}
-			if let val = js["searchParam"] as? [JSONDictionary] {
+			if let val = js["searchParam"] as? [FHIRJSON] {
 				self.searchParam = ConformanceRestResourceSearchParam.from(val, owner: self) as? [ConformanceRestResourceSearchParam]
 			}
 			if let val = js["type"] as? String {
@@ -895,7 +895,7 @@ public class ConformanceRestResource: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let conditionalCreate = self.conditionalCreate {
@@ -965,7 +965,7 @@ public class ConformanceRestResourceInteraction: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -977,7 +977,7 @@ public class ConformanceRestResourceInteraction: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {
@@ -1032,7 +1032,7 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["chain"] as? [String] {
@@ -1056,7 +1056,7 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let chain = self.chain {
@@ -1093,6 +1093,8 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 
 /**
  *  Information about security of implementation.
+ *
+ *  Information about security implementation from an interface perspective - what a client needs to know.
  */
 public class ConformanceRestSecurity: FHIRElement
 {
@@ -1112,10 +1114,10 @@ public class ConformanceRestSecurity: FHIRElement
 	/// OAuth | OAuth2 | NTLM | Basic | Kerberos
 	public var service: [CodeableConcept]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["certificate"] as? [JSONDictionary] {
+			if let val = js["certificate"] as? [FHIRJSON] {
 				self.certificate = ConformanceRestSecurityCertificate.from(val, owner: self) as? [ConformanceRestSecurityCertificate]
 			}
 			if let val = js["cors"] as? Bool {
@@ -1124,13 +1126,13 @@ public class ConformanceRestSecurity: FHIRElement
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["service"] as? [JSONDictionary] {
+			if let val = js["service"] as? [FHIRJSON] {
 				self.service = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let certificate = self.certificate {
@@ -1166,7 +1168,7 @@ public class ConformanceRestSecurityCertificate: FHIRElement
 	/// Mime type for certificate
 	public var type: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["blob"] as? String {
@@ -1178,7 +1180,7 @@ public class ConformanceRestSecurityCertificate: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let blob = self.blob {
@@ -1221,7 +1223,7 @@ public class ConformanceSoftware: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
@@ -1236,7 +1238,7 @@ public class ConformanceSoftware: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let name = self.name {

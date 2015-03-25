@@ -2,7 +2,7 @@
 //  ProcedureRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- *  Procedure Request.
+ *  A request for a procedure to be performed.
  *
  *  A request for a procedure to be performed. May be a proposal or an order.
  */
@@ -26,11 +26,8 @@ public class ProcedureRequest: DomainResource
 	/// PRN
 	public var asNeededCodeableConcept: CodeableConcept?
 	
-	/// Target body site
-	public var bodySiteCodeableConcept: CodeableConcept?
-	
-	/// Target body site
-	public var bodySiteReference: Reference?
+	/// Target body sites
+	public var bodySite: [ProcedureRequestBodySite]?
 	
 	/// Encounter
 	public var encounter: Reference?
@@ -62,13 +59,13 @@ public class ProcedureRequest: DomainResource
 	/// Subject
 	public var subject: Reference?
 	
-	/// Timing
+	/// Procedure timing schedule
 	public var timingDateTime: DateTime?
 	
-	/// Timing
+	/// Procedure timing schedule
 	public var timingPeriod: Period?
 	
-	/// Timing
+	/// Procedure timing schedule
 	public var timingTiming: Timing?
 	
 	/// Procedure Type
@@ -84,28 +81,25 @@ public class ProcedureRequest: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["asNeededBoolean"] as? Bool {
 				self.asNeededBoolean = val
 			}
-			if let val = js["asNeededCodeableConcept"] as? JSONDictionary {
+			if let val = js["asNeededCodeableConcept"] as? FHIRJSON {
 				self.asNeededCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["bodySiteCodeableConcept"] as? JSONDictionary {
-				self.bodySiteCodeableConcept = CodeableConcept(json: val, owner: self)
+			if let val = js["bodySite"] as? [FHIRJSON] {
+				self.bodySite = ProcedureRequestBodySite.from(val, owner: self) as? [ProcedureRequestBodySite]
 			}
-			if let val = js["bodySiteReference"] as? JSONDictionary {
-				self.bodySiteReference = Reference(json: val, owner: self)
-			}
-			if let val = js["encounter"] as? JSONDictionary {
+			if let val = js["encounter"] as? FHIRJSON {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["indication"] as? [JSONDictionary] {
+			if let val = js["indication"] as? [FHIRJSON] {
 				self.indication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["notes"] as? [String] {
@@ -114,10 +108,10 @@ public class ProcedureRequest: DomainResource
 			if let val = js["orderedOn"] as? String {
 				self.orderedOn = DateTime(string: val)
 			}
-			if let val = js["orderer"] as? JSONDictionary {
+			if let val = js["orderer"] as? FHIRJSON {
 				self.orderer = Reference(json: val, owner: self)
 			}
-			if let val = js["performer"] as? JSONDictionary {
+			if let val = js["performer"] as? FHIRJSON {
 				self.performer = Reference(json: val, owner: self)
 			}
 			if let val = js["priority"] as? String {
@@ -126,25 +120,25 @@ public class ProcedureRequest: DomainResource
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? JSONDictionary {
+			if let val = js["subject"] as? FHIRJSON {
 				self.subject = Reference(json: val, owner: self)
 			}
 			if let val = js["timingDateTime"] as? String {
 				self.timingDateTime = DateTime(string: val)
 			}
-			if let val = js["timingPeriod"] as? JSONDictionary {
+			if let val = js["timingPeriod"] as? FHIRJSON {
 				self.timingPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["timingTiming"] as? JSONDictionary {
+			if let val = js["timingTiming"] as? FHIRJSON {
 				self.timingTiming = Timing(json: val, owner: self)
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let asNeededBoolean = self.asNeededBoolean {
@@ -153,11 +147,8 @@ public class ProcedureRequest: DomainResource
 		if let asNeededCodeableConcept = self.asNeededCodeableConcept {
 			json["asNeededCodeableConcept"] = asNeededCodeableConcept.asJSON()
 		}
-		if let bodySiteCodeableConcept = self.bodySiteCodeableConcept {
-			json["bodySiteCodeableConcept"] = bodySiteCodeableConcept.asJSON()
-		}
-		if let bodySiteReference = self.bodySiteReference {
-			json["bodySiteReference"] = bodySiteReference.asJSON()
+		if let bodySite = self.bodySite {
+			json["bodySite"] = ProcedureRequestBodySite.asJSONArray(bodySite)
 		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()
@@ -204,6 +195,60 @@ public class ProcedureRequest: DomainResource
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Target body sites.
+ *
+ *  Indicates the sites on the subject's body where the procedure should be performed ( i.e. the target sites).
+ */
+public class ProcedureRequestBodySite: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ProcedureRequestBodySite" }
+	}
+	
+	/// Target body site
+	public var siteCodeableConcept: CodeableConcept?
+	
+	/// Target body site
+	public var siteReference: Reference?
+	
+	public convenience init(siteCodeableConcept: CodeableConcept?, siteReference: Reference?) {
+		self.init(json: nil)
+		if nil != siteCodeableConcept {
+			self.siteCodeableConcept = siteCodeableConcept
+		}
+		if nil != siteReference {
+			self.siteReference = siteReference
+		}
+	}
+	
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["siteCodeableConcept"] as? FHIRJSON {
+				self.siteCodeableConcept = CodeableConcept(json: val, owner: self)
+			}
+			if let val = js["siteReference"] as? FHIRJSON {
+				self.siteReference = Reference(json: val, owner: self)
+			}
+		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let siteCodeableConcept = self.siteCodeableConcept {
+			json["siteCodeableConcept"] = siteCodeableConcept.asJSON()
+		}
+		if let siteReference = self.siteReference {
+			json["siteReference"] = siteReference.asJSON()
 		}
 		
 		return json

@@ -2,7 +2,7 @@
 //  MedicationPrescriptionTests.swift
 //  MedicationPrescriptionTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> MedicationPrescription {
+	func instantiateFrom(# json: FHIRJSON) -> MedicationPrescription {
 		let instance = MedicationPrescription(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		testMedicationPrescription1_impl(json: instance.asJSON())
 	}
 	
-	func testMedicationPrescription1_impl(json: JSONDictionary? = nil) -> MedicationPrescription {
+	func testMedicationPrescription1_impl(json: FHIRJSON? = nil) -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationprescription-example-f001-combivent.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2013-05-25T19:32:52+01:00")
@@ -50,11 +50,11 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].code!, "394899003")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].display!, "oral administration of treatment")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.event![0].end!.description, "2013-11-05")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.event![0].start!.description, "2013-08-04")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.duration!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.bounds!.end!.description, "2013-11-05")
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.bounds!.start!.description, "2013-08-04")
 		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.frequency!, 3)
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.units!, "d")
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.period!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.periodUnits!, "d")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].code!, "181220002")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].display!, "Entire oral cavity")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -85,7 +85,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		testMedicationPrescription2_impl(json: instance.asJSON())
 	}
 	
-	func testMedicationPrescription2_impl(json: JSONDictionary? = nil) -> MedicationPrescription {
+	func testMedicationPrescription2_impl(json: FHIRJSON? = nil) -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationprescription-example-f002-crestor.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2013-04-08")
@@ -100,10 +100,10 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].code!, "386359008")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].display!, "Administration of drug or medicament via oral route")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.event![0].start!.description, "2013-08-04")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.duration!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.bounds!.start!.description, "2013-08-04")
 		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.frequency!, 1)
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.units!, "d")
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.period!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.periodUnits!, "d")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].code!, "181220002")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].display!, "Entire oral cavity")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -133,7 +133,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		testMedicationPrescription3_impl(json: instance.asJSON())
 	}
 	
-	func testMedicationPrescription3_impl(json: JSONDictionary? = nil) -> MedicationPrescription {
+	func testMedicationPrescription3_impl(json: FHIRJSON? = nil) -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationprescription-example-f003-tolbutamide.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2011-05-01")
@@ -148,10 +148,10 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].code!, "386359008")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].display!, "Administration of drug or medicament via oral route")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.event![0].start!.description, "2011-05-01")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.duration!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.bounds!.start!.description, "2011-05-01")
 		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.frequency!, 3)
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.units!, "d")
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.period!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.periodUnits!, "d")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].code!, "181220002")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].display!, "Entire oral cavity")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -181,7 +181,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		testMedicationPrescription4_impl(json: instance.asJSON())
 	}
 	
-	func testMedicationPrescription4_impl(json: JSONDictionary? = nil) -> MedicationPrescription {
+	func testMedicationPrescription4_impl(json: FHIRJSON? = nil) -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationprescription-example-f004-metoprolol.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2011-05-01")
@@ -196,10 +196,10 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].code!, "386359008")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].display!, "Administration of drug or medicament via oral route")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.event![0].start!.description, "2011-05-01")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.duration!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.bounds!.start!.description, "2011-05-01")
 		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.frequency!, 1)
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.units!, "d")
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.period!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.periodUnits!, "d")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].code!, "181220002")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].display!, "Entire oral cavity")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -229,7 +229,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		testMedicationPrescription5_impl(json: instance.asJSON())
 	}
 	
-	func testMedicationPrescription5_impl(json: JSONDictionary? = nil) -> MedicationPrescription {
+	func testMedicationPrescription5_impl(json: FHIRJSON? = nil) -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationprescription-example-f005-enalapril.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2011-05-01")
@@ -244,10 +244,10 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].code!, "386359008")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].display!, "Administration of drug or medicament via oral route")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.event![0].start!.description, "2011-05-01")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.duration!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.bounds!.start!.description, "2011-05-01")
 		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.frequency!, 1)
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.units!, "d")
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.period!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.periodUnits!, "d")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].code!, "181220002")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].display!, "Entire oral cavity")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -277,7 +277,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		testMedicationPrescription6_impl(json: instance.asJSON())
 	}
 	
-	func testMedicationPrescription6_impl(json: JSONDictionary? = nil) -> MedicationPrescription {
+	func testMedicationPrescription6_impl(json: FHIRJSON? = nil) -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationprescription-example-f201-salmeterol.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2013-03-11")
@@ -298,11 +298,11 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].code!, "321667001")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].display!, "Respiratory tract")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.event![0].end!.description, "2013-05-11")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.event![0].start!.description, "2013-03-11")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.duration!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.bounds!.end!.description, "2013-05-11")
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.bounds!.start!.description, "2013-03-11")
 		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.frequency!, 2)
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.units!, "d")
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.period!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.periodUnits!, "d")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].code!, "74262004")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].display!, "Oral cavity")
 		XCTAssertEqual(inst.dosageInstruction![0].site!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -327,7 +327,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		testMedicationPrescription7_impl(json: instance.asJSON())
 	}
 	
-	func testMedicationPrescription7_impl(json: JSONDictionary? = nil) -> MedicationPrescription {
+	func testMedicationPrescription7_impl(json: FHIRJSON? = nil) -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationprescription-example-f202-flucloxacilline.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2013-03-11")
@@ -345,8 +345,8 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].code!, "47625008")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].display!, "Intravenous route")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.event![0].end!.description, "2013-03-21")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.event![0].start!.description, "2013-03-11")
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledPeriod!.end!.description, "2013-03-21")
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledPeriod!.start!.description, "2013-03-11")
 		XCTAssertEqual(inst.dosageInstruction![0].text!, "Flucloxacilline 12g/24h")
 		XCTAssertEqual(inst.encounter!.display!, "Roel's encounter on March eleventh 2013")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f203")
@@ -369,7 +369,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		testMedicationPrescription8_impl(json: instance.asJSON())
 	}
 	
-	func testMedicationPrescription8_impl(json: JSONDictionary? = nil) -> MedicationPrescription {
+	func testMedicationPrescription8_impl(json: FHIRJSON? = nil) -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationprescription-example-f203-paracetamol.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2013-04-04")
@@ -406,7 +406,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		testMedicationPrescription9_impl(json: instance.asJSON())
 	}
 	
-	func testMedicationPrescription9_impl(json: JSONDictionary? = nil) -> MedicationPrescription {
+	func testMedicationPrescription9_impl(json: FHIRJSON? = nil) -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationprescription-example-warfarin.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2014-01-05")
@@ -441,7 +441,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		testMedicationPrescription10_impl(json: instance.asJSON())
 	}
 	
-	func testMedicationPrescription10_impl(json: JSONDictionary? = nil) -> MedicationPrescription {
+	func testMedicationPrescription10_impl(json: FHIRJSON? = nil) -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationprescription-example.json")
 		
 		XCTAssertEqual(inst.dispense!.quantity!.code!, "ml")
@@ -455,9 +455,9 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].code!, "394899003")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].display!, "oral administration of treatment")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.duration!, NSDecimalNumber(string: "1"))
 		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.frequency!, 3)
-		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.units!, "d")
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.period!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.periodUnits!, "d")
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")

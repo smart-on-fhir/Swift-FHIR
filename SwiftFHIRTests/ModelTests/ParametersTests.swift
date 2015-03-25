@@ -2,7 +2,7 @@
 //  ParametersTests.swift
 //  ParametersTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ParametersTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Parameters {
+	func instantiateFrom(# json: FHIRJSON) -> Parameters {
 		let instance = Parameters(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ParametersTests: FHIRModelTestCase
 		testParameters1_impl(json: instance.asJSON())
 	}
 	
-	func testParameters1_impl(json: JSONDictionary? = nil) -> Parameters {
+	func testParameters1_impl(json: FHIRJSON? = nil) -> Parameters {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "parameters-example.json")
 		
 		XCTAssertEqual(inst.parameter![0].name!, "start")

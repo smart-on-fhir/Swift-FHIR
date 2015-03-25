@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -53,6 +53,9 @@ public class ValueSet: DomainResource
 	/// Indicates whether or not any change to the content logical definition may occur
 	public var immutable: Bool?
 	
+	/// Fixed date for all referenced code systems and value sets
+	public var lockedDate: Date?
+	
 	/// Informal name for this value set
 	public var name: String?
 	
@@ -61,9 +64,6 @@ public class ValueSet: DomainResource
 	
 	/// Why is this needed?
 	public var requirements: String?
-	
-	/// Fixed date for the version of all referenced code systems and value sets
-	public var stableDate: Date?
 	
 	/// draft | active | retired
 	public var status: String?
@@ -84,13 +84,13 @@ public class ValueSet: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["compose"] as? JSONDictionary {
+			if let val = js["compose"] as? FHIRJSON {
 				self.compose = ValueSetCompose(json: val, owner: self)
 			}
-			if let val = js["contact"] as? [JSONDictionary] {
+			if let val = js["contact"] as? [FHIRJSON] {
 				self.contact = ValueSetContact.from(val, owner: self) as? [ValueSetContact]
 			}
 			if let val = js["copyright"] as? String {
@@ -99,13 +99,13 @@ public class ValueSet: DomainResource
 			if let val = js["date"] as? String {
 				self.date = DateTime(string: val)
 			}
-			if let val = js["define"] as? JSONDictionary {
+			if let val = js["define"] as? FHIRJSON {
 				self.define = ValueSetDefine(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["expansion"] as? JSONDictionary {
+			if let val = js["expansion"] as? FHIRJSON {
 				self.expansion = ValueSetExpansion(json: val, owner: self)
 			}
 			if let val = js["experimental"] as? Bool {
@@ -114,11 +114,14 @@ public class ValueSet: DomainResource
 			if let val = js["extensible"] as? Bool {
 				self.extensible = val
 			}
-			if let val = js["identifier"] as? JSONDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["immutable"] as? Bool {
 				self.immutable = val
+			}
+			if let val = js["lockedDate"] as? String {
+				self.lockedDate = Date(string: val)
 			}
 			if let val = js["name"] as? String {
 				self.name = val
@@ -129,16 +132,13 @@ public class ValueSet: DomainResource
 			if let val = js["requirements"] as? String {
 				self.requirements = val
 			}
-			if let val = js["stableDate"] as? String {
-				self.stableDate = Date(string: val)
-			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
 			if let val = js["url"] as? String {
 				self.url = NSURL(string: val)
 			}
-			if let val = js["useContext"] as? [JSONDictionary] {
+			if let val = js["useContext"] as? [FHIRJSON] {
 				self.useContext = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["version"] as? String {
@@ -147,7 +147,7 @@ public class ValueSet: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let compose = self.compose {
@@ -183,6 +183,9 @@ public class ValueSet: DomainResource
 		if let immutable = self.immutable {
 			json["immutable"] = immutable.asJSON()
 		}
+		if let lockedDate = self.lockedDate {
+			json["lockedDate"] = lockedDate.asJSON()
+		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
@@ -191,9 +194,6 @@ public class ValueSet: DomainResource
 		}
 		if let requirements = self.requirements {
 			json["requirements"] = requirements.asJSON()
-		}
-		if let stableDate = self.stableDate {
-			json["stableDate"] = stableDate.asJSON()
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
@@ -228,19 +228,19 @@ public class ValueSetCompose: FHIRElement
 	/// Include one or more codes from a code system
 	public var include: [ValueSetComposeInclude]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["import"] as? [String] {
 				self.import_fhir = NSURL.from(val)
 			}
-			if let val = js["include"] as? [JSONDictionary] {
+			if let val = js["include"] as? [FHIRJSON] {
 				self.include = ValueSetComposeInclude.from(val, owner: self) as? [ValueSetComposeInclude]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let import_fhir = self.import_fhir {
@@ -287,13 +287,13 @@ public class ValueSetComposeInclude: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["concept"] as? [JSONDictionary] {
+			if let val = js["concept"] as? [FHIRJSON] {
 				self.concept = ValueSetComposeIncludeConcept.from(val, owner: self) as? [ValueSetComposeIncludeConcept]
 			}
-			if let val = js["filter"] as? [JSONDictionary] {
+			if let val = js["filter"] as? [FHIRJSON] {
 				self.filter = ValueSetComposeIncludeFilter.from(val, owner: self) as? [ValueSetComposeIncludeFilter]
 			}
 			if let val = js["system"] as? String {
@@ -305,7 +305,7 @@ public class ValueSetComposeInclude: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let concept = self.concept {
@@ -353,13 +353,13 @@ public class ValueSetComposeIncludeConcept: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
 				self.code = val
 			}
-			if let val = js["designation"] as? [JSONDictionary] {
+			if let val = js["designation"] as? [FHIRJSON] {
 				self.designation = ValueSetDefineConceptDesignation.from(val, owner: self) as? [ValueSetDefineConceptDesignation]
 			}
 			if let val = js["display"] as? String {
@@ -368,7 +368,7 @@ public class ValueSetComposeIncludeConcept: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {
@@ -420,7 +420,7 @@ public class ValueSetComposeIncludeFilter: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["op"] as? String {
@@ -435,7 +435,7 @@ public class ValueSetComposeIncludeFilter: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let op = self.op {
@@ -470,19 +470,19 @@ public class ValueSetContact: FHIRElement
 	/// Contact details for individual or publisher
 	public var telecom: [ContactPoint]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["telecom"] as? [JSONDictionary] {
+			if let val = js["telecom"] as? [FHIRJSON] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let name = self.name {
@@ -527,13 +527,13 @@ public class ValueSetDefine: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["caseSensitive"] as? Bool {
 				self.caseSensitive = val
 			}
-			if let val = js["concept"] as? [JSONDictionary] {
+			if let val = js["concept"] as? [FHIRJSON] {
 				self.concept = ValueSetDefineConcept.from(val, owner: self) as? [ValueSetDefineConcept]
 			}
 			if let val = js["system"] as? String {
@@ -545,7 +545,7 @@ public class ValueSetDefine: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let caseSensitive = self.caseSensitive {
@@ -600,7 +600,7 @@ public class ValueSetDefineConcept: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["abstract"] as? Bool {
@@ -609,13 +609,13 @@ public class ValueSetDefineConcept: FHIRElement
 			if let val = js["code"] as? String {
 				self.code = val
 			}
-			if let val = js["concept"] as? [JSONDictionary] {
+			if let val = js["concept"] as? [FHIRJSON] {
 				self.concept = ValueSetDefineConcept.from(val, owner: self) as? [ValueSetDefineConcept]
 			}
 			if let val = js["definition"] as? String {
 				self.definition = val
 			}
-			if let val = js["designation"] as? [JSONDictionary] {
+			if let val = js["designation"] as? [FHIRJSON] {
 				self.designation = ValueSetDefineConceptDesignation.from(val, owner: self) as? [ValueSetDefineConceptDesignation]
 			}
 			if let val = js["display"] as? String {
@@ -624,7 +624,7 @@ public class ValueSetDefineConcept: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let abstract = self.abstract {
@@ -679,13 +679,13 @@ public class ValueSetDefineConceptDesignation: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["language"] as? String {
 				self.language = val
 			}
-			if let val = js["use"] as? JSONDictionary {
+			if let val = js["use"] as? FHIRJSON {
 				self.use = Coding(json: val, owner: self)
 			}
 			if let val = js["value"] as? String {
@@ -694,7 +694,7 @@ public class ValueSetDefineConceptDesignation: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let language = self.language {
@@ -746,16 +746,16 @@ public class ValueSetExpansion: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["contains"] as? [JSONDictionary] {
+			if let val = js["contains"] as? [FHIRJSON] {
 				self.contains = ValueSetExpansionContains.from(val, owner: self) as? [ValueSetExpansionContains]
 			}
 			if let val = js["identifier"] as? String {
 				self.identifier = NSURL(string: val)
 			}
-			if let val = js["parameter"] as? [JSONDictionary] {
+			if let val = js["parameter"] as? [FHIRJSON] {
 				self.parameter = ValueSetExpansionParameter.from(val, owner: self) as? [ValueSetExpansionParameter]
 			}
 			if let val = js["timestamp"] as? String {
@@ -764,7 +764,7 @@ public class ValueSetExpansion: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let contains = self.contains {
@@ -814,7 +814,7 @@ public class ValueSetExpansionContains: FHIRElement
 	/// Version in which this code / display is defined
 	public var version: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["abstract"] as? Bool {
@@ -823,7 +823,7 @@ public class ValueSetExpansionContains: FHIRElement
 			if let val = js["code"] as? String {
 				self.code = val
 			}
-			if let val = js["contains"] as? [JSONDictionary] {
+			if let val = js["contains"] as? [FHIRJSON] {
 				self.contains = ValueSetExpansionContains.from(val, owner: self) as? [ValueSetExpansionContains]
 			}
 			if let val = js["display"] as? String {
@@ -838,7 +838,7 @@ public class ValueSetExpansionContains: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let abstract = self.abstract {
@@ -905,7 +905,7 @@ public class ValueSetExpansionParameter: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
@@ -932,7 +932,7 @@ public class ValueSetExpansionParameter: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let name = self.name {

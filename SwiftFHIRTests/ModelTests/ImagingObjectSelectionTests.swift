@@ -2,7 +2,7 @@
 //  ImagingObjectSelectionTests.swift
 //  ImagingObjectSelectionTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ImagingObjectSelectionTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> ImagingObjectSelection {
+	func instantiateFrom(# json: FHIRJSON) -> ImagingObjectSelection {
 		let instance = ImagingObjectSelection(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ImagingObjectSelectionTests: FHIRModelTestCase
 		testImagingObjectSelection1_impl(json: instance.asJSON())
 	}
 	
-	func testImagingObjectSelection1_impl(json: JSONDictionary? = nil) -> ImagingObjectSelection {
+	func testImagingObjectSelection1_impl(json: FHIRJSON? = nil) -> ImagingObjectSelection {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "imagingobjectselection-example.json")
 		
 		XCTAssertEqual(inst.authoringTime!.description, "2014-11-20T11:01:20-08:00")

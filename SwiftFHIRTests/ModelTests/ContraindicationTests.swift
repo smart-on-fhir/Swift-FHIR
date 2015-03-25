@@ -2,7 +2,7 @@
 //  ContraindicationTests.swift
 //  ContraindicationTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ContraindicationTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Contraindication {
+	func instantiateFrom(# json: FHIRJSON) -> Contraindication {
 		let instance = Contraindication(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ContraindicationTests: FHIRModelTestCase
 		testContraindication1_impl(json: instance.asJSON())
 	}
 	
-	func testContraindication1_impl(json: JSONDictionary? = nil) -> Contraindication {
+	func testContraindication1_impl(json: FHIRJSON? = nil) -> Contraindication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contraindication-example-allergy.json")
 		
 		XCTAssertEqual(inst.id!, "allergy")
@@ -42,7 +42,7 @@ class ContraindicationTests: FHIRModelTestCase
 		testContraindication2_impl(json: instance.asJSON())
 	}
 	
-	func testContraindication2_impl(json: JSONDictionary? = nil) -> Contraindication {
+	func testContraindication2_impl(json: FHIRJSON? = nil) -> Contraindication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contraindication-example-dup.json")
 		
 		XCTAssertEqual(inst.author!.reference!, "Device/dsp")
@@ -66,7 +66,7 @@ class ContraindicationTests: FHIRModelTestCase
 		testContraindication3_impl(json: instance.asJSON())
 	}
 	
-	func testContraindication3_impl(json: JSONDictionary? = nil) -> Contraindication {
+	func testContraindication3_impl(json: FHIRJSON? = nil) -> Contraindication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contraindication-example-lab.json")
 		
 		XCTAssertEqual(inst.id!, "lab")
@@ -81,7 +81,7 @@ class ContraindicationTests: FHIRModelTestCase
 		testContraindication4_impl(json: instance.asJSON())
 	}
 	
-	func testContraindication4_impl(json: JSONDictionary? = nil) -> Contraindication {
+	func testContraindication4_impl(json: FHIRJSON? = nil) -> Contraindication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contraindication-example.json")
 		
 		XCTAssertEqual(inst.author!.reference!, "Device/dsp")

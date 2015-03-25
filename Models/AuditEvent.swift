@@ -2,7 +2,7 @@
 //  AuditEvent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -46,25 +46,25 @@ public class AuditEvent: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["event"] as? JSONDictionary {
+			if let val = js["event"] as? FHIRJSON {
 				self.event = AuditEventEvent(json: val, owner: self)
 			}
-			if let val = js["object"] as? [JSONDictionary] {
+			if let val = js["object"] as? [FHIRJSON] {
 				self.object = AuditEventObject.from(val, owner: self) as? [AuditEventObject]
 			}
-			if let val = js["participant"] as? [JSONDictionary] {
+			if let val = js["participant"] as? [FHIRJSON] {
 				self.participant = AuditEventParticipant.from(val, owner: self) as? [AuditEventParticipant]
 			}
-			if let val = js["source"] as? JSONDictionary {
+			if let val = js["source"] as? FHIRJSON {
 				self.source = AuditEventSource(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let event = self.event {
@@ -124,7 +124,7 @@ public class AuditEventEvent: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["action"] as? String {
@@ -139,16 +139,16 @@ public class AuditEventEvent: FHIRElement
 			if let val = js["outcomeDesc"] as? String {
 				self.outcomeDesc = val
 			}
-			if let val = js["subtype"] as? [JSONDictionary] {
+			if let val = js["subtype"] as? [FHIRJSON] {
 				self.subtype = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let action = self.action {
@@ -214,16 +214,16 @@ public class AuditEventObject: FHIRElement
 	/// Object type being audited
 	public var type: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["detail"] as? [JSONDictionary] {
+			if let val = js["detail"] as? [FHIRJSON] {
 				self.detail = AuditEventObjectDetail.from(val, owner: self) as? [AuditEventObjectDetail]
 			}
-			if let val = js["identifier"] as? JSONDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["lifecycle"] as? String {
@@ -235,13 +235,13 @@ public class AuditEventObject: FHIRElement
 			if let val = js["query"] as? String {
 				self.query = Base64Binary(string: val)
 			}
-			if let val = js["reference"] as? JSONDictionary {
+			if let val = js["reference"] as? FHIRJSON {
 				self.reference = Reference(json: val, owner: self)
 			}
 			if let val = js["role"] as? String {
 				self.role = val
 			}
-			if let val = js["sensitivity"] as? JSONDictionary {
+			if let val = js["sensitivity"] as? FHIRJSON {
 				self.sensitivity = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["type"] as? String {
@@ -250,7 +250,7 @@ public class AuditEventObject: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let description_fhir = self.description_fhir {
@@ -314,7 +314,7 @@ public class AuditEventObjectDetail: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["type"] as? String {
@@ -326,7 +326,7 @@ public class AuditEventObjectDetail: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let type = self.type {
@@ -387,34 +387,34 @@ public class AuditEventParticipant: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["altId"] as? String {
 				self.altId = val
 			}
-			if let val = js["location"] as? JSONDictionary {
+			if let val = js["location"] as? FHIRJSON {
 				self.location = Reference(json: val, owner: self)
 			}
-			if let val = js["media"] as? JSONDictionary {
+			if let val = js["media"] as? FHIRJSON {
 				self.media = Coding(json: val, owner: self)
 			}
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["network"] as? JSONDictionary {
+			if let val = js["network"] as? FHIRJSON {
 				self.network = AuditEventParticipantNetwork(json: val, owner: self)
 			}
 			if let val = js["policy"] as? [String] {
 				self.policy = NSURL.from(val)
 			}
-			if let val = js["reference"] as? JSONDictionary {
+			if let val = js["reference"] as? FHIRJSON {
 				self.reference = Reference(json: val, owner: self)
 			}
 			if let val = js["requestor"] as? Bool {
 				self.requestor = val
 			}
-			if let val = js["role"] as? [JSONDictionary] {
+			if let val = js["role"] as? [FHIRJSON] {
 				self.role = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["userId"] as? String {
@@ -423,7 +423,7 @@ public class AuditEventParticipant: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let altId = self.altId {
@@ -483,7 +483,7 @@ public class AuditEventParticipantNetwork: FHIRElement
 	/// The type of network access point
 	public var type: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? String {
@@ -495,7 +495,7 @@ public class AuditEventParticipantNetwork: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let identifier = self.identifier {
@@ -535,7 +535,7 @@ public class AuditEventSource: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identifier"] as? String {
@@ -544,13 +544,13 @@ public class AuditEventSource: FHIRElement
 			if let val = js["site"] as? String {
 				self.site = val
 			}
-			if let val = js["type"] as? [JSONDictionary] {
+			if let val = js["type"] as? [FHIRJSON] {
 				self.type = Coding.from(val, owner: self) as? [Coding]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let identifier = self.identifier {

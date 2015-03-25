@@ -2,7 +2,7 @@
 //  MedicationDispenseTests.swift
 //  MedicationDispenseTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class MedicationDispenseTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> MedicationDispense {
+	func instantiateFrom(# json: FHIRJSON) -> MedicationDispense {
 		let instance = MedicationDispense(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class MedicationDispenseTests: FHIRModelTestCase
 		testMedicationDispense1_impl(json: instance.asJSON())
 	}
 	
-	func testMedicationDispense1_impl(json: JSONDictionary? = nil) -> MedicationDispense {
+	func testMedicationDispense1_impl(json: FHIRJSON? = nil) -> MedicationDispense {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationdispense-example.json")
 		
 		XCTAssertEqual(inst.authorizingPrescription![0].reference!, "MedicationPrescription/example")
@@ -42,7 +42,7 @@ class MedicationDispenseTests: FHIRModelTestCase
 		XCTAssertEqual(inst.status!, "completed")
 		XCTAssertEqual(inst.substitution!.type!.coding![0].code!, "NoSub")
 		XCTAssertEqual(inst.substitution!.type!.coding![0].display!, "No substitution made or expected")
-		XCTAssertEqual(inst.substitution!.type!.coding![0].system!.absoluteString!, "./MedDispSubType")
+		XCTAssertEqual(inst.substitution!.type!.coding![0].system!.absoluteString!, "http://example.org/MedDispSubType")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.whenHandedOver!.description, "2012-05-31T10:20:00+00:00")
 		XCTAssertEqual(inst.whenPrepared!.description, "2012-05-30T16:20:00+00:00")
@@ -55,7 +55,7 @@ class MedicationDispenseTests: FHIRModelTestCase
 		testMedicationDispense2_impl(json: instance.asJSON())
 	}
 	
-	func testMedicationDispense2_impl(json: JSONDictionary? = nil) -> MedicationDispense {
+	func testMedicationDispense2_impl(json: FHIRJSON? = nil) -> MedicationDispense {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationdispense-qicore-example.json")
 		
 		XCTAssertEqual(inst.authorizingPrescription![0].reference!, "MedicationPrescription/example")
@@ -71,9 +71,9 @@ class MedicationDispenseTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].code!, "394899003")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].display!, "oral administration of treatment")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.dosageInstruction![0].scheduleTiming!.repeat!.duration!, NSDecimalNumber(string: "1"))
 		XCTAssertEqual(inst.dosageInstruction![0].scheduleTiming!.repeat!.frequency!, 3)
-		XCTAssertEqual(inst.dosageInstruction![0].scheduleTiming!.repeat!.units!, "d")
+		XCTAssertEqual(inst.dosageInstruction![0].scheduleTiming!.repeat!.period!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosageInstruction![0].scheduleTiming!.repeat!.periodUnits!, "d")
 		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/pharmacy-core-refillsRemaining")
 		XCTAssertEqual(inst.extension_fhir![0].valueInteger!, 0)
 		XCTAssertEqual(inst.extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/medicationdispense-validityPeriod")
@@ -89,7 +89,7 @@ class MedicationDispenseTests: FHIRModelTestCase
 		XCTAssertEqual(inst.status!, "completed")
 		XCTAssertEqual(inst.substitution!.type!.coding![0].code!, "NoSub")
 		XCTAssertEqual(inst.substitution!.type!.coding![0].display!, "No substitution made or expected")
-		XCTAssertEqual(inst.substitution!.type!.coding![0].system!.absoluteString!, "./MedDispSubType")
+		XCTAssertEqual(inst.substitution!.type!.coding![0].system!.absoluteString!, "http://example.org/MedDispSubType")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.whenHandedOver!.description, "2012-05-31T10:20:00+00:00")
 		XCTAssertEqual(inst.whenPrepared!.description, "2012-05-30T16:20:00+00:00")

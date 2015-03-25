@@ -2,7 +2,7 @@
 //  AuditEventTests.swift
 //  AuditEventTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class AuditEventTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> AuditEvent {
+	func instantiateFrom(# json: FHIRJSON) -> AuditEvent {
 		let instance = AuditEvent(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class AuditEventTests: FHIRModelTestCase
 		testAuditEvent1_impl(json: instance.asJSON())
 	}
 	
-	func testAuditEvent1_impl(json: JSONDictionary? = nil) -> AuditEvent {
+	func testAuditEvent1_impl(json: FHIRJSON? = nil) -> AuditEvent {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "audit-event-example-login.json")
 		
 		XCTAssertEqual(inst.event!.action!, "E")
@@ -61,7 +61,7 @@ class AuditEventTests: FHIRModelTestCase
 		testAuditEvent2_impl(json: instance.asJSON())
 	}
 	
-	func testAuditEvent2_impl(json: JSONDictionary? = nil) -> AuditEvent {
+	func testAuditEvent2_impl(json: FHIRJSON? = nil) -> AuditEvent {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "audit-event-example-logout.json")
 		
 		XCTAssertEqual(inst.event!.action!, "E")
@@ -95,7 +95,7 @@ class AuditEventTests: FHIRModelTestCase
 		testAuditEvent3_impl(json: instance.asJSON())
 	}
 	
-	func testAuditEvent3_impl(json: JSONDictionary? = nil) -> AuditEvent {
+	func testAuditEvent3_impl(json: FHIRJSON? = nil) -> AuditEvent {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "audit-event-example-vread.json")
 		
 		XCTAssertEqual(inst.event!.action!, "R")
@@ -130,7 +130,7 @@ class AuditEventTests: FHIRModelTestCase
 		testAuditEvent4_impl(json: instance.asJSON())
 	}
 	
-	func testAuditEvent4_impl(json: JSONDictionary? = nil) -> AuditEvent {
+	func testAuditEvent4_impl(json: FHIRJSON? = nil) -> AuditEvent {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "auditevent-example.json")
 		
 		XCTAssertEqual(inst.event!.action!, "E")

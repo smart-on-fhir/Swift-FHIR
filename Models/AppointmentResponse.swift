@@ -2,7 +2,7 @@
 //  AppointmentResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -52,13 +52,13 @@ public class AppointmentResponse: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["actor"] as? JSONDictionary {
+			if let val = js["actor"] as? FHIRJSON {
 				self.actor = Reference(json: val, owner: self)
 			}
-			if let val = js["appointment"] as? JSONDictionary {
+			if let val = js["appointment"] as? FHIRJSON {
 				self.appointment = Reference(json: val, owner: self)
 			}
 			if let val = js["comment"] as? String {
@@ -67,13 +67,13 @@ public class AppointmentResponse: DomainResource
 			if let val = js["end"] as? String {
 				self.end = Instant(string: val)
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["participantStatus"] as? String {
 				self.participantStatus = val
 			}
-			if let val = js["participantType"] as? [JSONDictionary] {
+			if let val = js["participantType"] as? [FHIRJSON] {
 				self.participantType = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["start"] as? String {
@@ -82,7 +82,7 @@ public class AppointmentResponse: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let actor = self.actor {

@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -103,10 +103,10 @@ public class DiagnosticReport: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["codedDiagnosis"] as? [JSONDictionary] {
+			if let val = js["codedDiagnosis"] as? [FHIRJSON] {
 				self.codedDiagnosis = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["conclusion"] as? String {
@@ -115,55 +115,55 @@ public class DiagnosticReport: DomainResource
 			if let val = js["diagnosticDateTime"] as? String {
 				self.diagnosticDateTime = DateTime(string: val)
 			}
-			if let val = js["diagnosticPeriod"] as? JSONDictionary {
+			if let val = js["diagnosticPeriod"] as? FHIRJSON {
 				self.diagnosticPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["encounter"] as? JSONDictionary {
+			if let val = js["encounter"] as? FHIRJSON {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["image"] as? [JSONDictionary] {
+			if let val = js["image"] as? [FHIRJSON] {
 				self.image = DiagnosticReportImage.from(val, owner: self) as? [DiagnosticReportImage]
 			}
-			if let val = js["imagingStudy"] as? [JSONDictionary] {
+			if let val = js["imagingStudy"] as? [FHIRJSON] {
 				self.imagingStudy = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["issued"] as? String {
 				self.issued = DateTime(string: val)
 			}
-			if let val = js["name"] as? JSONDictionary {
+			if let val = js["name"] as? FHIRJSON {
 				self.name = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["performer"] as? JSONDictionary {
+			if let val = js["performer"] as? FHIRJSON {
 				self.performer = Reference(json: val, owner: self)
 			}
-			if let val = js["presentedForm"] as? [JSONDictionary] {
+			if let val = js["presentedForm"] as? [FHIRJSON] {
 				self.presentedForm = Attachment.from(val, owner: self) as? [Attachment]
 			}
-			if let val = js["requestDetail"] as? [JSONDictionary] {
+			if let val = js["requestDetail"] as? [FHIRJSON] {
 				self.requestDetail = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["result"] as? [JSONDictionary] {
+			if let val = js["result"] as? [FHIRJSON] {
 				self.result = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["serviceCategory"] as? JSONDictionary {
+			if let val = js["serviceCategory"] as? FHIRJSON {
 				self.serviceCategory = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["specimen"] as? [JSONDictionary] {
+			if let val = js["specimen"] as? [FHIRJSON] {
 				self.specimen = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? JSONDictionary {
+			if let val = js["subject"] as? FHIRJSON {
 				self.subject = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let codedDiagnosis = self.codedDiagnosis {
@@ -251,19 +251,19 @@ public class DiagnosticReportImage: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["comment"] as? String {
 				self.comment = val
 			}
-			if let val = js["link"] as? JSONDictionary {
+			if let val = js["link"] as? FHIRJSON {
 				self.link = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let comment = self.comment {

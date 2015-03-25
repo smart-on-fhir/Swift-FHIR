@@ -2,7 +2,7 @@
 //  NamingSystemTests.swift
 //  NamingSystemTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class NamingSystemTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> NamingSystem {
+	func instantiateFrom(# json: FHIRJSON) -> NamingSystem {
 		let instance = NamingSystem(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class NamingSystemTests: FHIRModelTestCase
 		testNamingSystem1_impl(json: instance.asJSON())
 	}
 	
-	func testNamingSystem1_impl(json: JSONDictionary? = nil) -> NamingSystem {
+	func testNamingSystem1_impl(json: FHIRJSON? = nil) -> NamingSystem {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "namingsystem-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2014-12-13")

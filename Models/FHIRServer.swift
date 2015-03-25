@@ -12,11 +12,15 @@ import Foundation
 /// The FHIR server error domain.
 public let FHIRServerErrorDomain = "FHIRServerError"
 
-/// Describing HTTP request types.
+
+/**
+	Struct to describe REST request types, with a convenience method to make a request FHIR compliant.
+ */
 public enum FHIRRequestType
 {
 	case GET, PUT, POST
 	
+	/** Prepare a given mutable URL request with appropriate headers, methods and body values. */
 	func prepareRequest(req: NSMutableURLRequest, body: NSData? = nil) {
 		switch self {
 		case .GET:
@@ -40,7 +44,7 @@ public enum FHIRRequestType
 
 /**
 	Protocol for server objects to be used by `FHIRResource` and subclasses.
-*/
+ */
 public protocol FHIRServer
 {
 	/** A server object must always have a base URL. */
@@ -60,12 +64,12 @@ public protocol FHIRServer
 		returns a JSON response object in the callback.
 		
 		:param: path The REST path to request, relative to the server's base URL
-		:param: body The request body data as JSONDictionary
+		:param: body The request body data as FHIRJSON
 		:param: callback The callback to call when the request ends (success or failure)
 	*/
-	func putJSON(path: String, body: JSONDictionary, callback: ((response: FHIRServerJSONResponse) -> Void))
+	func putJSON(path: String, body: FHIRJSON, callback: ((response: FHIRServerJSONResponse) -> Void))
 	
-	func postJSON(path: String, body: JSONDictionary, callback: ((response: FHIRServerJSONResponse) -> Void))
+	func postJSON(path: String, body: FHIRJSON, callback: ((response: FHIRServerJSONResponse) -> Void))
 }
 
 
@@ -108,6 +112,9 @@ public class FHIRServerRequestHandler
 	}
 }
 
+/**
+	Prepare and handle a request for data.
+ */
 public class FHIRServerDataRequestHandler: FHIRServerRequestHandler
 {
 	public typealias ResponseType = FHIRServerDataResponse
@@ -136,13 +143,16 @@ public class FHIRServerDataRequestHandler: FHIRServerRequestHandler
 	}
 }
 
+/**
+	Prepare and handle a request returning JSON data.
+ */
 public class FHIRServerJSONRequestHandler: FHIRServerDataRequestHandler
 {
 	public typealias ResponseType = FHIRServerJSONResponse
 	
-	public var json: JSONDictionary?
+	public var json: FHIRJSON?
 	
-	public init(_ type: FHIRRequestType, json: JSONDictionary? = nil) {
+	public init(_ type: FHIRRequestType, json: FHIRJSON? = nil) {
 		super.init(type)
 		self.json = json
 	}
@@ -262,8 +272,8 @@ public class FHIRServerDataResponse: FHIRServerResponse
  */
 public class FHIRServerJSONResponse: FHIRServerDataResponse
 {
-	/// The response body, decoded into a JSONDictionary
-	public var json: JSONDictionary?
+	/// The response body, decoded into a FHIRJSON
+	public var json: FHIRJSON?
 	
 	public required init(status: Int, headers: [String: String]) {
 		super.init(status: status, headers: headers)
@@ -278,7 +288,7 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse
 		
 		if let data = inData {
 			var error: NSError? = nil
-			if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? JSONDictionary {
+			if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? FHIRJSON {
 				self.json = json
 				
 				// check for OperationOutcome if there was an error

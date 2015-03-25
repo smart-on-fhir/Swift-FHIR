@@ -2,7 +2,7 @@
 //  DeviceTests.swift
 //  DeviceTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class DeviceTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Device {
+	func instantiateFrom(# json: FHIRJSON) -> Device {
 		let instance = Device(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,11 +27,11 @@ class DeviceTests: FHIRModelTestCase
 		testDevice1_impl(json: instance.asJSON())
 	}
 	
-	func testDevice1_impl(json: JSONDictionary? = nil) -> Device {
+	func testDevice1_impl(json: FHIRJSON? = nil) -> Device {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "device-example-f001-feedingtube.json")
 		
 		XCTAssertEqual(inst.id!, "f001")
-		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.status!, "available")
 		XCTAssertEqual(inst.type!.coding![0].code!, "25062003")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Feeding tube, device")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -44,7 +44,7 @@ class DeviceTests: FHIRModelTestCase
 		testDevice2_impl(json: instance.asJSON())
 	}
 	
-	func testDevice2_impl(json: JSONDictionary? = nil) -> Device {
+	func testDevice2_impl(json: FHIRJSON? = nil) -> Device {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "device-example-ihe-pcd.json")
 		
 		XCTAssertEqual(inst.id!, "ihe-pcd")
@@ -64,7 +64,31 @@ class DeviceTests: FHIRModelTestCase
 		testDevice3_impl(json: instance.asJSON())
 	}
 	
-	func testDevice3_impl(json: JSONDictionary? = nil) -> Device {
+	func testDevice3_impl(json: FHIRJSON? = nil) -> Device {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "device-example-pacemaker.json")
+		
+		XCTAssertEqual(inst.contact![0].system!, "phone")
+		XCTAssertEqual(inst.contact![0].value!, "ext 4352")
+		XCTAssertEqual(inst.id!, "example-pacemaker")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://acme.com/devices/pacemakers/octane/serial")
+		XCTAssertEqual(inst.identifier![0].value!, "1234-5678-90AB-CDEF")
+		XCTAssertEqual(inst.lotNumber!, "1234-5678")
+		XCTAssertEqual(inst.manufacturer!, "Acme Devices, Inc")
+		XCTAssertEqual(inst.model!, "PM/Octane 2014")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "octane2014")
+		XCTAssertEqual(inst.type!.coding![0].display!, "Performance pace maker for high octane patients")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://acme.com/devices")
+		
+		return inst
+	}
+	
+	func testDevice4() {
+		let instance = testDevice4_impl()
+		testDevice4_impl(json: instance.asJSON())
+	}
+	
+	func testDevice4_impl(json: FHIRJSON? = nil) -> Device {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "device-example.json")
 		
 		XCTAssertEqual(inst.contact![0].system!, "phone")
@@ -77,7 +101,7 @@ class DeviceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.lotNumber!, "43453424")
 		XCTAssertEqual(inst.manufacturer!, "Acme Devices, Inc")
 		XCTAssertEqual(inst.model!, "AB 45-J")
-		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.status!, "available")
 		XCTAssertEqual(inst.type!.coding![0].code!, "86184003")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Electrocardiographic monitor and recorder")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")

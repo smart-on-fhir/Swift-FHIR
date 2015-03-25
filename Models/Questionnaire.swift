@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -52,16 +52,16 @@ public class Questionnaire: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
 				self.date = DateTime(string: val)
 			}
-			if let val = js["group"] as? JSONDictionary {
+			if let val = js["group"] as? FHIRJSON {
 				self.group = QuestionnaireGroup(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["publisher"] as? String {
@@ -70,7 +70,7 @@ public class Questionnaire: DomainResource
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["telecom"] as? [JSONDictionary] {
+			if let val = js["telecom"] as? [FHIRJSON] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 			if let val = js["version"] as? String {
@@ -79,7 +79,7 @@ public class Questionnaire: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let date = self.date {
@@ -144,19 +144,19 @@ public class QuestionnaireGroup: FHIRElement
 	/// Name to be displayed for group
 	public var title: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["concept"] as? [JSONDictionary] {
+			if let val = js["concept"] as? [FHIRJSON] {
 				self.concept = Coding.from(val, owner: self) as? [Coding]
 			}
-			if let val = js["group"] as? [JSONDictionary] {
+			if let val = js["group"] as? [FHIRJSON] {
 				self.group = QuestionnaireGroup.from(val, owner: self) as? [QuestionnaireGroup]
 			}
 			if let val = js["linkId"] as? String {
 				self.linkId = val
 			}
-			if let val = js["question"] as? [JSONDictionary] {
+			if let val = js["question"] as? [FHIRJSON] {
 				self.question = QuestionnaireGroupQuestion.from(val, owner: self) as? [QuestionnaireGroupQuestion]
 			}
 			if let val = js["repeats"] as? Bool {
@@ -174,7 +174,7 @@ public class QuestionnaireGroup: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let concept = self.concept {
@@ -242,19 +242,19 @@ public class QuestionnaireGroupQuestion: FHIRElement
 	/// boolean | decimal | integer | date | dateTime +
 	public var type: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["concept"] as? [JSONDictionary] {
+			if let val = js["concept"] as? [FHIRJSON] {
 				self.concept = Coding.from(val, owner: self) as? [Coding]
 			}
-			if let val = js["group"] as? [JSONDictionary] {
+			if let val = js["group"] as? [FHIRJSON] {
 				self.group = QuestionnaireGroup.from(val, owner: self) as? [QuestionnaireGroup]
 			}
 			if let val = js["linkId"] as? String {
 				self.linkId = val
 			}
-			if let val = js["options"] as? JSONDictionary {
+			if let val = js["options"] as? FHIRJSON {
 				self.options = Reference(json: val, owner: self)
 			}
 			if let val = js["repeats"] as? Bool {
@@ -272,7 +272,7 @@ public class QuestionnaireGroupQuestion: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let concept = self.concept {

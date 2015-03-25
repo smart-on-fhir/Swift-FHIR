@@ -2,7 +2,7 @@
 //  ListTests.swift
 //  ListTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ListTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> List {
+	func instantiateFrom(# json: FHIRJSON) -> List {
 		let instance = List(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ListTests: FHIRModelTestCase
 		testList1_impl(json: instance.asJSON())
 	}
 	
-	func testList1_impl(json: JSONDictionary? = nil) -> List {
+	func testList1_impl(json: FHIRJSON? = nil) -> List {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "list-example-empty.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "182836005")
@@ -52,7 +52,7 @@ class ListTests: FHIRModelTestCase
 		testList2_impl(json: instance.asJSON())
 	}
 	
-	func testList2_impl(json: JSONDictionary? = nil) -> List {
+	func testList2_impl(json: FHIRJSON? = nil) -> List {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "list-example-medlist.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "182836005")
@@ -82,7 +82,7 @@ class ListTests: FHIRModelTestCase
 		testList3_impl(json: instance.asJSON())
 	}
 	
-	func testList3_impl(json: JSONDictionary? = nil) -> List {
+	func testList3_impl(json: FHIRJSON? = nil) -> List {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "list-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2012-11-25T22:17:00+11:00")
@@ -93,7 +93,6 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst.entry![1].item!.reference!, "Condition/example2")
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.mode!, "changes")
-		XCTAssertFalse(inst.ordered!)
 		XCTAssertEqual(inst.source!.reference!, "Patient/example")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		

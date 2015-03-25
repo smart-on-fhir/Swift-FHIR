@@ -2,7 +2,7 @@
 //  CarePlanTests.swift
 //  CarePlanTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class CarePlanTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> CarePlan {
+	func instantiateFrom(# json: FHIRJSON) -> CarePlan {
 		let instance = CarePlan(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class CarePlanTests: FHIRModelTestCase
 		testCarePlan1_impl(json: instance.asJSON())
 	}
 	
-	func testCarePlan1_impl(json: JSONDictionary? = nil) -> CarePlan {
+	func testCarePlan1_impl(json: FHIRJSON? = nil) -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "careplan-example-f001-heart.json")
 		
 		XCTAssertTrue(inst.activity![0].prohibited!)
@@ -66,7 +66,7 @@ class CarePlanTests: FHIRModelTestCase
 		testCarePlan2_impl(json: instance.asJSON())
 	}
 	
-	func testCarePlan2_impl(json: JSONDictionary? = nil) -> CarePlan {
+	func testCarePlan2_impl(json: FHIRJSON? = nil) -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "careplan-example-f002-lung.json")
 		
 		XCTAssertTrue(inst.activity![0].prohibited!)
@@ -105,7 +105,7 @@ class CarePlanTests: FHIRModelTestCase
 		testCarePlan3_impl(json: instance.asJSON())
 	}
 	
-	func testCarePlan3_impl(json: JSONDictionary? = nil) -> CarePlan {
+	func testCarePlan3_impl(json: FHIRJSON? = nil) -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "careplan-example-f003-pharynx.json")
 		
 		XCTAssertTrue(inst.activity![0].prohibited!)
@@ -144,7 +144,7 @@ class CarePlanTests: FHIRModelTestCase
 		testCarePlan4_impl(json: instance.asJSON())
 	}
 	
-	func testCarePlan4_impl(json: JSONDictionary? = nil) -> CarePlan {
+	func testCarePlan4_impl(json: FHIRJSON? = nil) -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "careplan-example-f201-renal.json")
 		
 		XCTAssertFalse(inst.activity![0].prohibited!)
@@ -197,7 +197,7 @@ class CarePlanTests: FHIRModelTestCase
 		testCarePlan5_impl(json: instance.asJSON())
 	}
 	
-	func testCarePlan5_impl(json: JSONDictionary? = nil) -> CarePlan {
+	func testCarePlan5_impl(json: FHIRJSON? = nil) -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "careplan-example-f202-malignancy.json")
 		
 		XCTAssertEqual(inst.activity![0].actionResulting![0].display!, "Roel's Chemotherapy")
@@ -232,7 +232,7 @@ class CarePlanTests: FHIRModelTestCase
 		testCarePlan6_impl(json: instance.asJSON())
 	}
 	
-	func testCarePlan6_impl(json: JSONDictionary? = nil) -> CarePlan {
+	func testCarePlan6_impl(json: FHIRJSON? = nil) -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "careplan-example-f203-sepsis.json")
 		
 		XCTAssertFalse(inst.activity![0].prohibited!)
@@ -272,14 +272,14 @@ class CarePlanTests: FHIRModelTestCase
 		testCarePlan7_impl(json: instance.asJSON())
 	}
 	
-	func testCarePlan7_impl(json: JSONDictionary? = nil) -> CarePlan {
+	func testCarePlan7_impl(json: FHIRJSON? = nil) -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "careplan-example-GPVisit.json")
 		
 		XCTAssertEqual(inst.activity![0].actionResulting![0].reference!, "Encounter/example")
 		XCTAssertFalse(inst.activity![0].prohibited!)
 		XCTAssertEqual(inst.activity![0].simple!.category!, "encounter")
 		XCTAssertEqual(inst.activity![0].simple!.code!.coding![0].code!, "nursecon")
-		XCTAssertEqual(inst.activity![0].simple!.code!.coding![0].system!.absoluteString!, "local")
+		XCTAssertEqual(inst.activity![0].simple!.code!.coding![0].system!.absoluteString!, "http://example.org/local")
 		XCTAssertEqual(inst.activity![0].simple!.code!.text!, "Nurse Consultation")
 		XCTAssertEqual(inst.activity![0].simple!.performer![0].display!, "Nurse Nancy")
 		XCTAssertEqual(inst.activity![0].simple!.performer![0].reference!, "Practitioner/13")
@@ -289,7 +289,7 @@ class CarePlanTests: FHIRModelTestCase
 		XCTAssertFalse(inst.activity![1].prohibited!)
 		XCTAssertEqual(inst.activity![1].simple!.category!, "encounter")
 		XCTAssertEqual(inst.activity![1].simple!.code!.coding![0].code!, "doccon")
-		XCTAssertEqual(inst.activity![1].simple!.code!.coding![0].system!.absoluteString!, "local")
+		XCTAssertEqual(inst.activity![1].simple!.code!.coding![0].system!.absoluteString!, "http://example.org/local")
 		XCTAssertEqual(inst.activity![1].simple!.code!.text!, "Doctor Consultation")
 		XCTAssertEqual(inst.activity![1].simple!.performer![0].display!, "Doctor Dave")
 		XCTAssertEqual(inst.activity![1].simple!.performer![0].reference!, "Practitioner/14")
@@ -302,13 +302,13 @@ class CarePlanTests: FHIRModelTestCase
 		XCTAssertEqual(inst.participant![0].member!.display!, "Nurse Nancy")
 		XCTAssertEqual(inst.participant![0].member!.reference!, "Practitioner/13")
 		XCTAssertEqual(inst.participant![0].role!.coding![0].code!, "nur")
-		XCTAssertEqual(inst.participant![0].role!.coding![0].system!.absoluteString!, "local")
+		XCTAssertEqual(inst.participant![0].role!.coding![0].system!.absoluteString!, "http://example.org/local")
 		XCTAssertEqual(inst.participant![0].role!.text!, "nurse")
 		XCTAssertEqual(inst.participant![1].id!, "part2")
 		XCTAssertEqual(inst.participant![1].member!.display!, "Doctor Dave")
 		XCTAssertEqual(inst.participant![1].member!.reference!, "Practitioner/14")
 		XCTAssertEqual(inst.participant![1].role!.coding![0].code!, "doc")
-		XCTAssertEqual(inst.participant![1].role!.coding![0].system!.absoluteString!, "local")
+		XCTAssertEqual(inst.participant![1].role!.coding![0].system!.absoluteString!, "http://example.org/local")
 		XCTAssertEqual(inst.participant![1].role!.text!, "doctor")
 		XCTAssertEqual(inst.patient!.display!, "Peter James Chalmers")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/100")
@@ -324,7 +324,7 @@ class CarePlanTests: FHIRModelTestCase
 		testCarePlan8_impl(json: instance.asJSON())
 	}
 	
-	func testCarePlan8_impl(json: JSONDictionary? = nil) -> CarePlan {
+	func testCarePlan8_impl(json: FHIRJSON? = nil) -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "careplan-example-integrated.json")
 		
 		XCTAssertEqual(inst.activity![0].notes!, "9/10/12 Eve eats one meal a day with her parents")
@@ -460,7 +460,7 @@ class CarePlanTests: FHIRModelTestCase
 		testCarePlan9_impl(json: instance.asJSON())
 	}
 	
-	func testCarePlan9_impl(json: JSONDictionary? = nil) -> CarePlan {
+	func testCarePlan9_impl(json: FHIRJSON? = nil) -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "careplan-example-pregnancy.json")
 		
 		XCTAssertEqual(inst.activity![0].extension_fhir![0].url!.absoluteString!, "http://example.org/DoNotUse/careplan#andetails")
@@ -468,35 +468,35 @@ class CarePlanTests: FHIRModelTestCase
 		XCTAssertFalse(inst.activity![0].prohibited!)
 		XCTAssertEqual(inst.activity![0].simple!.category!, "encounter")
 		XCTAssertEqual(inst.activity![0].simple!.code!.coding![0].code!, "1an")
-		XCTAssertEqual(inst.activity![0].simple!.code!.coding![0].system!.absoluteString!, "mySystem")
+		XCTAssertEqual(inst.activity![0].simple!.code!.coding![0].system!.absoluteString!, "http://example.org/mySystem")
 		XCTAssertEqual(inst.activity![0].simple!.code!.text!, "First Antenatal encounter")
 		XCTAssertEqual(inst.activity![0].simple!.details!, "The first antenatal encounter. This is where a detailed physical examination is performed.             and the pregnanacy discussed with the mother-to-be.")
 		XCTAssertEqual(inst.activity![0].simple!.performer![0].display!, "Mavis Midwife")
 		XCTAssertEqual(inst.activity![0].simple!.performer![0].reference!, "#pr1")
-		XCTAssertEqual(inst.activity![0].simple!.scheduledTiming!.event![0].end!.description, "2013-02-28")
-		XCTAssertEqual(inst.activity![0].simple!.scheduledTiming!.event![0].start!.description, "2013-02-14")
+		XCTAssertEqual(inst.activity![0].simple!.scheduledTiming!.repeat!.bounds!.end!.description, "2013-02-28")
+		XCTAssertEqual(inst.activity![0].simple!.scheduledTiming!.repeat!.bounds!.start!.description, "2013-02-14")
 		XCTAssertEqual(inst.activity![0].status!, "scheduled")
 		XCTAssertFalse(inst.activity![1].prohibited!)
 		XCTAssertEqual(inst.activity![1].simple!.category!, "encounter")
 		XCTAssertEqual(inst.activity![1].simple!.code!.coding![0].code!, "an")
-		XCTAssertEqual(inst.activity![1].simple!.code!.coding![0].system!.absoluteString!, "mySystem")
+		XCTAssertEqual(inst.activity![1].simple!.code!.coding![0].system!.absoluteString!, "http://example.org/mySystem")
 		XCTAssertEqual(inst.activity![1].simple!.code!.text!, "Follow-up Antenatal encounter")
 		XCTAssertEqual(inst.activity![1].simple!.details!, "The second antenatal encounter. Discuss any issues that arose from the first antenatal encounter")
 		XCTAssertEqual(inst.activity![1].simple!.performer![0].display!, "Mavis Midwife")
 		XCTAssertEqual(inst.activity![1].simple!.performer![0].reference!, "#pr1")
-		XCTAssertEqual(inst.activity![1].simple!.scheduledTiming!.event![0].end!.description, "2013-03-14")
-		XCTAssertEqual(inst.activity![1].simple!.scheduledTiming!.event![0].start!.description, "2013-03-01")
+		XCTAssertEqual(inst.activity![1].simple!.scheduledTiming!.repeat!.bounds!.end!.description, "2013-03-14")
+		XCTAssertEqual(inst.activity![1].simple!.scheduledTiming!.repeat!.bounds!.start!.description, "2013-03-01")
 		XCTAssertEqual(inst.activity![1].status!, "not-started")
 		XCTAssertFalse(inst.activity![2].prohibited!)
 		XCTAssertEqual(inst.activity![2].simple!.category!, "encounter")
 		XCTAssertEqual(inst.activity![2].simple!.code!.coding![0].code!, "del")
-		XCTAssertEqual(inst.activity![2].simple!.code!.coding![0].system!.absoluteString!, "mySystem")
+		XCTAssertEqual(inst.activity![2].simple!.code!.coding![0].system!.absoluteString!, "http://example.org/mySystem")
 		XCTAssertEqual(inst.activity![2].simple!.code!.text!, "Delivery")
 		XCTAssertEqual(inst.activity![2].simple!.details!, "The delivery.")
 		XCTAssertEqual(inst.activity![2].simple!.performer![0].display!, "Mavis Midwife")
 		XCTAssertEqual(inst.activity![2].simple!.performer![0].reference!, "#pr1")
-		XCTAssertEqual(inst.activity![2].simple!.scheduledTiming!.event![0].end!.description, "2013-09-14")
-		XCTAssertEqual(inst.activity![2].simple!.scheduledTiming!.event![0].start!.description, "2013-09-01")
+		XCTAssertEqual(inst.activity![2].simple!.scheduledTiming!.repeat!.bounds!.end!.description, "2013-09-14")
+		XCTAssertEqual(inst.activity![2].simple!.scheduledTiming!.repeat!.bounds!.start!.description, "2013-09-01")
 		XCTAssertEqual(inst.activity![2].status!, "not-started")
 		XCTAssertEqual(inst.concern![0].display!, "pregnancy")
 		XCTAssertEqual(inst.concern![0].reference!, "#p1")
@@ -507,12 +507,12 @@ class CarePlanTests: FHIRModelTestCase
 		XCTAssertEqual(inst.participant![0].member!.display!, "Mavis Midwife")
 		XCTAssertEqual(inst.participant![0].member!.reference!, "#pr1")
 		XCTAssertEqual(inst.participant![0].role!.coding![0].code!, "lmc")
-		XCTAssertEqual(inst.participant![0].role!.coding![0].system!.absoluteString!, "mySys")
+		XCTAssertEqual(inst.participant![0].role!.coding![0].system!.absoluteString!, "http://example.org/mysys")
 		XCTAssertEqual(inst.participant![0].role!.text!, "Midwife")
 		XCTAssertEqual(inst.participant![1].member!.display!, "Oscar Obstetrician")
 		XCTAssertEqual(inst.participant![1].member!.reference!, "#pr2")
 		XCTAssertEqual(inst.participant![1].role!.coding![0].code!, "obs")
-		XCTAssertEqual(inst.participant![1].role!.coding![0].system!.absoluteString!, "mySys")
+		XCTAssertEqual(inst.participant![1].role!.coding![0].system!.absoluteString!, "http://example.org/mysys")
 		XCTAssertEqual(inst.participant![1].role!.text!, "Obstretitian")
 		XCTAssertEqual(inst.patient!.display!, "Eve Everywoman")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/1")
@@ -529,7 +529,7 @@ class CarePlanTests: FHIRModelTestCase
 		testCarePlan10_impl(json: instance.asJSON())
 	}
 	
-	func testCarePlan10_impl(json: JSONDictionary? = nil) -> CarePlan {
+	func testCarePlan10_impl(json: FHIRJSON? = nil) -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "careplan-example.json")
 		
 		XCTAssertFalse(inst.activity![0].prohibited!)
@@ -537,9 +537,9 @@ class CarePlanTests: FHIRModelTestCase
 		XCTAssertEqual(inst.activity![0].simple!.code!.text!, "a code for weight measurement")
 		XCTAssertEqual(inst.activity![0].simple!.performer![0].display!, "Peter James Chalmers")
 		XCTAssertEqual(inst.activity![0].simple!.performer![0].reference!, "Patient/example")
-		XCTAssertEqual(inst.activity![0].simple!.scheduledTiming!.repeat!.duration!, NSDecimalNumber(string: "1"))
 		XCTAssertEqual(inst.activity![0].simple!.scheduledTiming!.repeat!.frequency!, 1)
-		XCTAssertEqual(inst.activity![0].simple!.scheduledTiming!.repeat!.units!, "d")
+		XCTAssertEqual(inst.activity![0].simple!.scheduledTiming!.repeat!.period!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.activity![0].simple!.scheduledTiming!.repeat!.periodUnits!, "d")
 		XCTAssertEqual(inst.concern![0].display!, "obesity")
 		XCTAssertEqual(inst.concern![0].reference!, "#p1")
 		XCTAssertEqual(inst.goal![0].description_fhir!, "Target weight is 80 kg. Note: be nice if this could be coded")

@@ -2,7 +2,7 @@
 //  ValueSetTests.swift
 //  ValueSetTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ValueSetTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> ValueSet {
+	func instantiateFrom(# json: FHIRJSON) -> ValueSet {
 		let instance = ValueSet(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ValueSetTests: FHIRModelTestCase
 		testValueSet1_impl(json: instance.asJSON())
 	}
 	
-	func testValueSet1_impl(json: JSONDictionary? = nil) -> ValueSet {
+	func testValueSet1_impl(json: FHIRJSON? = nil) -> ValueSet {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "valueset-example.json")
 		
 		XCTAssertEqual(inst.compose!.include![0].concept![0].code!, "14647-2")
@@ -58,7 +58,7 @@ class ValueSetTests: FHIRModelTestCase
 		testValueSet2_impl(json: instance.asJSON())
 	}
 	
-	func testValueSet2_impl(json: JSONDictionary? = nil) -> ValueSet {
+	func testValueSet2_impl(json: FHIRJSON? = nil) -> ValueSet {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "valueset-list-example-codes.json")
 		
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
@@ -99,7 +99,7 @@ class ValueSetTests: FHIRModelTestCase
 		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/valueset-oid")
 		XCTAssertEqual(inst.extension_fhir![0].valueUri!.absoluteString!, "urn:oid:2.16.840.1.113883.4.642.2.320")
 		XCTAssertEqual(inst.id!, "valueset-list-example-codes")
-		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2015-03-19T19:10:29.251+00:00")
+		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2015-03-25T16:15:11.944+00:00")
 		XCTAssertEqual(inst.meta!.profile![0].absoluteString!, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
 		XCTAssertEqual(inst.name!, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher!, "FHIR Project")

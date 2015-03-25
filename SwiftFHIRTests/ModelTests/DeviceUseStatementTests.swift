@@ -2,7 +2,7 @@
 //  DeviceUseStatementTests.swift
 //  DeviceUseStatementTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class DeviceUseStatementTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> DeviceUseStatement {
+	func instantiateFrom(# json: FHIRJSON) -> DeviceUseStatement {
 		let instance = DeviceUseStatement(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class DeviceUseStatementTests: FHIRModelTestCase
 		testDeviceUseStatement1_impl(json: instance.asJSON())
 	}
 	
-	func testDeviceUseStatement1_impl(json: JSONDictionary? = nil) -> DeviceUseStatement {
+	func testDeviceUseStatement1_impl(json: FHIRJSON? = nil) -> DeviceUseStatement {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "deviceusestatement-example.json")
 		
 		XCTAssertEqual(inst.device!.reference!, "Device/example")

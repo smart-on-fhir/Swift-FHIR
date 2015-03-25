@@ -2,7 +2,7 @@
 //  ProcedureTests.swift
 //  ProcedureTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ProcedureTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Procedure {
+	func instantiateFrom(# json: FHIRJSON) -> Procedure {
 		let instance = Procedure(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,21 +27,22 @@ class ProcedureTests: FHIRModelTestCase
 		testProcedure1_impl(json: instance.asJSON())
 	}
 	
-	func testProcedure1_impl(json: JSONDictionary? = nil) -> Procedure {
+	func testProcedure1_impl(json: FHIRJSON? = nil) -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-example-biopsy.json")
 		
-		XCTAssertEqual(inst.bodySite![0].coding![0].code!, "368225008")
-		XCTAssertEqual(inst.bodySite![0].coding![0].display!, "Entire Left Forearm")
-		XCTAssertEqual(inst.bodySite![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.bodySite![0].text!, "Left forearm")
-		XCTAssertEqual(inst.date!.start!.description, "2014-02-03")
-		XCTAssertEqual(inst.followUp!, "Review in clinic")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "368225008")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].display!, "Entire Left Forearm")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.text!, "Left forearm")
+		XCTAssertEqual(inst.followUp![0].text!, "Review in clinic")
 		XCTAssertEqual(inst.id!, "biopsy")
 		XCTAssertEqual(inst.indication![0].text!, "Dark lesion l) forearm. getting darker last 3 months.")
 		XCTAssertEqual(inst.notes!, "Standard Biopsy")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.performedDateTime!.description, "2014-02-03")
 		XCTAssertEqual(inst.performer![0].person!.display!, "Dr Bert Biopser")
 		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.status!, "completed")
 		XCTAssertEqual(inst.text!.div!, "<div>Biopsy of suspected melanoma L) arm</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "90105005")
@@ -57,21 +58,21 @@ class ProcedureTests: FHIRModelTestCase
 		testProcedure2_impl(json: instance.asJSON())
 	}
 	
-	func testProcedure2_impl(json: JSONDictionary? = nil) -> Procedure {
+	func testProcedure2_impl(json: FHIRJSON? = nil) -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-example-f001-heart.json")
 		
-		XCTAssertEqual(inst.bodySite![0].coding![0].code!, "17401000")
-		XCTAssertEqual(inst.bodySite![0].coding![0].display!, "Heart valve structure")
-		XCTAssertEqual(inst.bodySite![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.date!.end!.description, "2011-06-27")
-		XCTAssertEqual(inst.date!.start!.description, "2011-06-26")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "17401000")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].display!, "Heart valve structure")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
-		XCTAssertEqual(inst.followUp!, "described in care plan")
+		XCTAssertEqual(inst.followUp![0].text!, "described in care plan")
 		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertEqual(inst.indication![0].text!, "Heart valve disorder")
-		XCTAssertEqual(inst.outcome!, "improved blood circulation")
+		XCTAssertEqual(inst.outcome!.text!, "improved blood circulation")
 		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f001")
+		XCTAssertEqual(inst.performedPeriod!.end!.description, "2011-06-27")
+		XCTAssertEqual(inst.performedPeriod!.start!.description, "2011-06-26")
 		XCTAssertEqual(inst.performer![0].person!.display!, "P. Voigt")
 		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/f002")
 		XCTAssertEqual(inst.performer![0].role!.coding![0].code!, "01.000")
@@ -80,6 +81,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.performer![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.report![0].display!, "Lab results blood test")
 		XCTAssertEqual(inst.report![0].reference!, "DiagnosticReport/f001")
+		XCTAssertEqual(inst.status!, "completed")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "34068001")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Heart valve replacement")
@@ -93,21 +95,21 @@ class ProcedureTests: FHIRModelTestCase
 		testProcedure3_impl(json: instance.asJSON())
 	}
 	
-	func testProcedure3_impl(json: JSONDictionary? = nil) -> Procedure {
+	func testProcedure3_impl(json: FHIRJSON? = nil) -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-example-f002-lung.json")
 		
-		XCTAssertEqual(inst.bodySite![0].coding![0].code!, "39607008")
-		XCTAssertEqual(inst.bodySite![0].coding![0].display!, "Lung structure")
-		XCTAssertEqual(inst.bodySite![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.date!.end!.description, "2013-03-08T09:30:10+01:00")
-		XCTAssertEqual(inst.date!.start!.description, "2013-03-08T09:00:10+01:00")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "39607008")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].display!, "Lung structure")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f002")
-		XCTAssertEqual(inst.followUp!, "described in care plan")
+		XCTAssertEqual(inst.followUp![0].text!, "described in care plan")
 		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.indication![0].text!, "Malignant tumor of lung")
-		XCTAssertEqual(inst.outcome!, "improved blood circulation")
+		XCTAssertEqual(inst.outcome!.text!, "improved blood circulation")
 		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f001")
+		XCTAssertEqual(inst.performedPeriod!.end!.description, "2013-03-08T09:30:10+01:00")
+		XCTAssertEqual(inst.performedPeriod!.start!.description, "2013-03-08T09:00:10+01:00")
 		XCTAssertEqual(inst.performer![0].person!.display!, "M.I.M. Versteegh")
 		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/f003")
 		XCTAssertEqual(inst.performer![0].role!.coding![0].code!, "01.000")
@@ -116,6 +118,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.performer![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.report![0].display!, "Lab results blood test")
 		XCTAssertEqual(inst.report![0].reference!, "DiagnosticReport/f001")
+		XCTAssertEqual(inst.status!, "completed")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "359615001")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Partial lobectomy of lung")
@@ -129,21 +132,21 @@ class ProcedureTests: FHIRModelTestCase
 		testProcedure4_impl(json: instance.asJSON())
 	}
 	
-	func testProcedure4_impl(json: JSONDictionary? = nil) -> Procedure {
+	func testProcedure4_impl(json: FHIRJSON? = nil) -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-example-f003-abscess.json")
 		
-		XCTAssertEqual(inst.bodySite![0].coding![0].code!, "83030008")
-		XCTAssertEqual(inst.bodySite![0].coding![0].display!, "Retropharyngeal area")
-		XCTAssertEqual(inst.bodySite![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.date!.end!.description, "2013-03-24T10:30:10+01:00")
-		XCTAssertEqual(inst.date!.start!.description, "2013-03-24T09:30:10+01:00")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "83030008")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].display!, "Retropharyngeal area")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f003")
-		XCTAssertEqual(inst.followUp!, "described in care plan")
+		XCTAssertEqual(inst.followUp![0].text!, "described in care plan")
 		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertEqual(inst.indication![0].text!, "abcess in retropharyngeal area")
-		XCTAssertEqual(inst.outcome!, "removal of the retropharyngeal abscess")
+		XCTAssertEqual(inst.outcome!.text!, "removal of the retropharyngeal abscess")
 		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f001")
+		XCTAssertEqual(inst.performedPeriod!.end!.description, "2013-03-24T10:30:10+01:00")
+		XCTAssertEqual(inst.performedPeriod!.start!.description, "2013-03-24T09:30:10+01:00")
 		XCTAssertEqual(inst.performer![0].person!.display!, "E.M.J.M. van den broek")
 		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/f001")
 		XCTAssertEqual(inst.performer![0].role!.coding![0].code!, "01.000")
@@ -152,6 +155,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.performer![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.report![0].display!, "Lab results blood test")
 		XCTAssertEqual(inst.report![0].reference!, "DiagnosticReport/f001")
+		XCTAssertEqual(inst.status!, "completed")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "172960003")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Incision of retropharyngeal abscess")
@@ -165,21 +169,21 @@ class ProcedureTests: FHIRModelTestCase
 		testProcedure5_impl(json: instance.asJSON())
 	}
 	
-	func testProcedure5_impl(json: JSONDictionary? = nil) -> Procedure {
+	func testProcedure5_impl(json: FHIRJSON? = nil) -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-example-f004-tracheotomy.json")
 		
-		XCTAssertEqual(inst.bodySite![0].coding![0].code!, "83030008")
-		XCTAssertEqual(inst.bodySite![0].coding![0].display!, "Retropharyngeal area")
-		XCTAssertEqual(inst.bodySite![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.date!.end!.description, "2013-03-22T10:30:10+01:00")
-		XCTAssertEqual(inst.date!.start!.description, "2013-03-22T09:30:10+01:00")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "83030008")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].display!, "Retropharyngeal area")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f003")
-		XCTAssertEqual(inst.followUp!, "described in care plan")
+		XCTAssertEqual(inst.followUp![0].text!, "described in care plan")
 		XCTAssertEqual(inst.id!, "f004")
 		XCTAssertEqual(inst.indication![0].text!, "ensure breathing during surgery")
-		XCTAssertEqual(inst.outcome!, "removal of the retropharyngeal abscess")
+		XCTAssertEqual(inst.outcome!.text!, "removal of the retropharyngeal abscess")
 		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f001")
+		XCTAssertEqual(inst.performedPeriod!.end!.description, "2013-03-22T10:30:10+01:00")
+		XCTAssertEqual(inst.performedPeriod!.start!.description, "2013-03-22T09:30:10+01:00")
 		XCTAssertEqual(inst.performer![0].person!.display!, "A. Langeveld")
 		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/f005")
 		XCTAssertEqual(inst.performer![0].role!.coding![0].code!, "01.000")
@@ -188,6 +192,7 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.performer![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.report![0].display!, "???????????")
 		XCTAssertEqual(inst.report![0].reference!, "DiagnosticReport/f001")
+		XCTAssertEqual(inst.status!, "completed")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "48387007")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Tracheotomy")
@@ -201,14 +206,12 @@ class ProcedureTests: FHIRModelTestCase
 		testProcedure6_impl(json: instance.asJSON())
 	}
 	
-	func testProcedure6_impl(json: JSONDictionary? = nil) -> Procedure {
+	func testProcedure6_impl(json: FHIRJSON? = nil) -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-example-f201-tpf.json")
 		
-		XCTAssertEqual(inst.bodySite![0].coding![0].code!, "272676008")
-		XCTAssertEqual(inst.bodySite![0].coding![0].display!, "Sphenoid bone")
-		XCTAssertEqual(inst.bodySite![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.date!.end!.description, "2013-01-28T14:27:00+01:00")
-		XCTAssertEqual(inst.date!.start!.description, "2013-01-28T13:31:00+01:00")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "272676008")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].display!, "Sphenoid bone")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.encounter!.display!, "Roel's encounter on January 28th, 2013")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f202")
 		XCTAssertEqual(inst.id!, "f201")
@@ -216,11 +219,14 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.notes!, "Eerste neo-adjuvante TPF-kuur bij groot proces in sphenoid met intracraniale uitbreiding.")
 		XCTAssertEqual(inst.patient!.display!, "Roel")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f201")
+		XCTAssertEqual(inst.performedPeriod!.end!.description, "2013-01-28T14:27:00+01:00")
+		XCTAssertEqual(inst.performedPeriod!.start!.description, "2013-01-28T13:31:00+01:00")
 		XCTAssertEqual(inst.performer![0].person!.display!, "Dokter Bronsig")
 		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/f201")
 		XCTAssertEqual(inst.performer![0].role!.coding![0].code!, "310512001")
 		XCTAssertEqual(inst.performer![0].role!.coding![0].display!, "Medical oncologist")
 		XCTAssertEqual(inst.performer![0].role!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.status!, "completed")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "367336001")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Chemotherapy")
@@ -234,17 +240,47 @@ class ProcedureTests: FHIRModelTestCase
 		testProcedure7_impl(json: instance.asJSON())
 	}
 	
-	func testProcedure7_impl(json: JSONDictionary? = nil) -> Procedure {
+	func testProcedure7_impl(json: FHIRJSON? = nil) -> Procedure {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-example-implant.json")
+		
+		XCTAssertEqual(inst.device![0].action!.coding![0].code!, "implanted")
+		XCTAssertEqual(inst.device![0].action!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/device-action")
+		XCTAssertEqual(inst.device![0].manipulated!.reference!, "Device/example-pacemaker")
+		XCTAssertEqual(inst.followUp![0].text!, "ROS 5 days  - 2013-04-10")
+		XCTAssertEqual(inst.id!, "example-implant")
+		XCTAssertEqual(inst.indication![0].text!, "Bradycardia")
+		XCTAssertEqual(inst.notes!, "Routine Appendectomy. Appendix was inflamed and in retro-caecal position")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.performedDateTime!.description, "2015-04-05")
+		XCTAssertEqual(inst.performer![0].person!.display!, "Dr Cecil Surgeon")
+		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "25267002")
+		XCTAssertEqual(inst.type!.coding![0].display!, "Insertion of intracardiac pacemaker (procedure)")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.type!.text!, "Implant Pacemaker")
+		
+		return inst
+	}
+	
+	func testProcedure8() {
+		let instance = testProcedure8_impl()
+		testProcedure8_impl(json: instance.asJSON())
+	}
+	
+	func testProcedure8_impl(json: FHIRJSON? = nil) -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-example.json")
 		
-		XCTAssertEqual(inst.date!.start!.description, "2013-04-05")
-		XCTAssertEqual(inst.followUp!, "ROS 5 days  - 2013-04-10")
+		XCTAssertEqual(inst.followUp![0].text!, "ROS 5 days  - 2013-04-10")
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.indication![0].text!, "Generalized abdominal pain 24 hours. Localized in RIF with rebound and guarding")
 		XCTAssertEqual(inst.notes!, "Routine Appendectomy. Appendix was inflamed and in retro-caecal position")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.performedDateTime!.description, "2013-04-05")
 		XCTAssertEqual(inst.performer![0].person!.display!, "Dr Cecil Surgeon")
 		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.status!, "completed")
 		XCTAssertEqual(inst.text!.div!, "<div>Routine Appendectomy</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "80146002")
@@ -255,19 +291,17 @@ class ProcedureTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testProcedure8() {
-		let instance = testProcedure8_impl()
-		testProcedure8_impl(json: instance.asJSON())
+	func testProcedure9() {
+		let instance = testProcedure9_impl()
+		testProcedure9_impl(json: instance.asJSON())
 	}
 	
-	func testProcedure8_impl(json: JSONDictionary? = nil) -> Procedure {
+	func testProcedure9_impl(json: FHIRJSON? = nil) -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-qicore-example.json")
 		
-		XCTAssertEqual(inst.bodySite![0].coding![0].code!, "66754008")
-		XCTAssertEqual(inst.bodySite![0].coding![0].display!, "Appendix structure")
-		XCTAssertEqual(inst.bodySite![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.date!.end!.description, "2013-04-05T10:30:00-04:00")
-		XCTAssertEqual(inst.date!.start!.description, "2013-04-05T09:20:00-04:00")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "66754008")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].display!, "Appendix structure")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/example")
 		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/procedure-approachBodySite")
 		XCTAssertEqual(inst.extension_fhir![0].valueReference!.reference!, "BodySite/example")
@@ -277,11 +311,12 @@ class ProcedureTests: FHIRModelTestCase
 		XCTAssertEqual(inst.indication![0].coding![0].code!, "163220003")
 		XCTAssertEqual(inst.indication![0].coding![0].display!, "On examination - abdominal pain - right iliac")
 		XCTAssertEqual(inst.indication![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.modifierExtension![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/procedure-status")
-		XCTAssertEqual(inst.modifierExtension![0].valueCode!, "completed")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.performedPeriod!.end!.description, "2013-04-05T10:30:00-04:00")
+		XCTAssertEqual(inst.performedPeriod!.start!.description, "2013-04-05T09:20:00-04:00")
 		XCTAssertEqual(inst.performer![0].person!.display!, "Dr Cecil Surgeon")
 		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.status!, "completed")
 		XCTAssertEqual(inst.text!.div!, "<div>Routine Appendectomy</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "80146002")

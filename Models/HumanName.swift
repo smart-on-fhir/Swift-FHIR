@@ -2,7 +2,7 @@
 //  HumanName.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -41,7 +41,7 @@ public class HumanName: FHIRElement
 	/// usual | official | temp | nickname | anonymous | old | maiden
 	public var use: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["family"] as? [String] {
@@ -50,7 +50,7 @@ public class HumanName: FHIRElement
 			if let val = js["given"] as? [String] {
 				self.given = val
 			}
-			if let val = js["period"] as? JSONDictionary {
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["prefix"] as? [String] {
@@ -68,7 +68,7 @@ public class HumanName: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let family = self.family {

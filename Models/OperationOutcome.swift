@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -30,16 +30,16 @@ public class OperationOutcome: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["issue"] as? [JSONDictionary] {
+			if let val = js["issue"] as? [FHIRJSON] {
 				self.issue = OperationOutcomeIssue.from(val, owner: self) as? [OperationOutcomeIssue]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let issue = self.issue {
@@ -84,10 +84,10 @@ public class OperationOutcomeIssue: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? JSONDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["details"] as? String {
@@ -102,7 +102,7 @@ public class OperationOutcomeIssue: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {

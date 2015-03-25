@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -91,67 +91,67 @@ public class DocumentReference: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["authenticator"] as? JSONDictionary {
+			if let val = js["authenticator"] as? FHIRJSON {
 				self.authenticator = Reference(json: val, owner: self)
 			}
-			if let val = js["author"] as? [JSONDictionary] {
+			if let val = js["author"] as? [FHIRJSON] {
 				self.author = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["class"] as? JSONDictionary {
+			if let val = js["class"] as? FHIRJSON {
 				self.class_fhir = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["confidentiality"] as? [JSONDictionary] {
+			if let val = js["confidentiality"] as? [FHIRJSON] {
 				self.confidentiality = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["content"] as? [JSONDictionary] {
+			if let val = js["content"] as? [FHIRJSON] {
 				self.content = Attachment.from(val, owner: self) as? [Attachment]
 			}
-			if let val = js["context"] as? JSONDictionary {
+			if let val = js["context"] as? FHIRJSON {
 				self.context = DocumentReferenceContext(json: val, owner: self)
 			}
 			if let val = js["created"] as? String {
 				self.created = DateTime(string: val)
 			}
-			if let val = js["custodian"] as? JSONDictionary {
+			if let val = js["custodian"] as? FHIRJSON {
 				self.custodian = Reference(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["docStatus"] as? JSONDictionary {
+			if let val = js["docStatus"] as? FHIRJSON {
 				self.docStatus = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["format"] as? [String] {
 				self.format = NSURL.from(val)
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["indexed"] as? String {
 				self.indexed = Instant(string: val)
 			}
-			if let val = js["masterIdentifier"] as? JSONDictionary {
+			if let val = js["masterIdentifier"] as? FHIRJSON {
 				self.masterIdentifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["relatesTo"] as? [JSONDictionary] {
+			if let val = js["relatesTo"] as? [FHIRJSON] {
 				self.relatesTo = DocumentReferenceRelatesTo.from(val, owner: self) as? [DocumentReferenceRelatesTo]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? JSONDictionary {
+			if let val = js["subject"] as? FHIRJSON {
 				self.subject = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let authenticator = self.authenticator {
@@ -247,31 +247,31 @@ public class DocumentReferenceContext: FHIRElement
 	/// Source patient info
 	public var sourcePatientInfo: Reference?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["event"] as? [JSONDictionary] {
+			if let val = js["event"] as? [FHIRJSON] {
 				self.event = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["facilityType"] as? JSONDictionary {
+			if let val = js["facilityType"] as? FHIRJSON {
 				self.facilityType = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["period"] as? JSONDictionary {
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
-			if let val = js["practiceSetting"] as? JSONDictionary {
+			if let val = js["practiceSetting"] as? FHIRJSON {
 				self.practiceSetting = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["related"] as? [JSONDictionary] {
+			if let val = js["related"] as? [FHIRJSON] {
 				self.related = DocumentReferenceContextRelated.from(val, owner: self) as? [DocumentReferenceContextRelated]
 			}
-			if let val = js["sourcePatientInfo"] as? JSONDictionary {
+			if let val = js["sourcePatientInfo"] as? FHIRJSON {
 				self.sourcePatientInfo = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let event = self.event {
@@ -310,31 +310,31 @@ public class DocumentReferenceContextRelated: FHIRElement
 	}
 	
 	/// Related Identifier
-	public var ids: Identifier?
+	public var identifier: Identifier?
 	
 	/// Related Resource
-	public var refs: Reference?
+	public var ref: Reference?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["ids"] as? JSONDictionary {
-				self.ids = Identifier(json: val, owner: self)
+			if let val = js["identifier"] as? FHIRJSON {
+				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["refs"] as? JSONDictionary {
-				self.refs = Reference(json: val, owner: self)
+			if let val = js["ref"] as? FHIRJSON {
+				self.ref = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let ids = self.ids {
-			json["ids"] = ids.asJSON()
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
 		}
-		if let refs = self.refs {
-			json["refs"] = refs.asJSON()
+		if let ref = self.ref {
+			json["ref"] = ref.asJSON()
 		}
 		
 		return json
@@ -369,19 +369,19 @@ public class DocumentReferenceRelatesTo: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
 				self.code = val
 			}
-			if let val = js["target"] as? JSONDictionary {
+			if let val = js["target"] as? FHIRJSON {
 				self.target = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {

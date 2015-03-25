@@ -2,7 +2,7 @@
 //  OrderResponseTests.swift
 //  OrderResponseTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class OrderResponseTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> OrderResponse {
+	func instantiateFrom(# json: FHIRJSON) -> OrderResponse {
 		let instance = OrderResponse(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class OrderResponseTests: FHIRModelTestCase
 		testOrderResponse1_impl(json: instance.asJSON())
 	}
 	
-	func testOrderResponse1_impl(json: JSONDictionary? = nil) -> OrderResponse {
+	func testOrderResponse1_impl(json: FHIRJSON? = nil) -> OrderResponse {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "orderresponse-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2012-12-28T13:10:56+11:00")

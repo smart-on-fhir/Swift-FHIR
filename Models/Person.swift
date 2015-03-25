@@ -2,7 +2,7 @@
 //  Person.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Person) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Person) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -35,7 +35,7 @@ public class Person: DomainResource
 	/// A Human identifier for this person
 	public var identifier: [Identifier]?
 	
-	/// Link to a resource that converns the same actual person
+	/// Link to a resource that concerns the same actual person
 	public var link: [PersonLink]?
 	
 	/// The Organization that is the custodian of the person record
@@ -50,13 +50,13 @@ public class Person: DomainResource
 	/// A contact detail for the person
 	public var telecom: [ContactPoint]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["active"] as? Bool {
 				self.active = val
 			}
-			if let val = js["address"] as? [JSONDictionary] {
+			if let val = js["address"] as? [FHIRJSON] {
 				self.address = Address.from(val, owner: self) as? [Address]
 			}
 			if let val = js["birthDate"] as? String {
@@ -65,28 +65,28 @@ public class Person: DomainResource
 			if let val = js["gender"] as? String {
 				self.gender = val
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["link"] as? [JSONDictionary] {
+			if let val = js["link"] as? [FHIRJSON] {
 				self.link = PersonLink.from(val, owner: self) as? [PersonLink]
 			}
-			if let val = js["managingOrganization"] as? JSONDictionary {
+			if let val = js["managingOrganization"] as? FHIRJSON {
 				self.managingOrganization = Reference(json: val, owner: self)
 			}
-			if let val = js["name"] as? [JSONDictionary] {
+			if let val = js["name"] as? [FHIRJSON] {
 				self.name = HumanName.from(val, owner: self) as? [HumanName]
 			}
-			if let val = js["photo"] as? JSONDictionary {
+			if let val = js["photo"] as? FHIRJSON {
 				self.photo = Attachment(json: val, owner: self)
 			}
-			if let val = js["telecom"] as? [JSONDictionary] {
+			if let val = js["telecom"] as? [FHIRJSON] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let active = self.active {
@@ -126,7 +126,7 @@ public class Person: DomainResource
 
 
 /**
- *  Link to a resource that converns the same actual person.
+ *  Link to a resource that concerns the same actual person.
  */
 public class PersonLink: FHIRElement
 {
@@ -147,19 +147,19 @@ public class PersonLink: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["assurance"] as? String {
 				self.assurance = val
 			}
-			if let val = js["target"] as? JSONDictionary {
+			if let val = js["target"] as? FHIRJSON {
 				self.target = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let assurance = self.assurance {

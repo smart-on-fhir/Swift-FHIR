@@ -2,7 +2,7 @@
 //  Supply.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Supply) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Supply) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -38,22 +38,22 @@ public class Supply: DomainResource
 	/// requested | dispensed | received | failed | cancelled
 	public var status: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["dispense"] as? [JSONDictionary] {
+			if let val = js["dispense"] as? [FHIRJSON] {
 				self.dispense = SupplyDispense.from(val, owner: self) as? [SupplyDispense]
 			}
-			if let val = js["identifier"] as? JSONDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["kind"] as? JSONDictionary {
+			if let val = js["kind"] as? FHIRJSON {
 				self.kind = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["orderedItem"] as? JSONDictionary {
+			if let val = js["orderedItem"] as? FHIRJSON {
 				self.orderedItem = Reference(json: val, owner: self)
 			}
-			if let val = js["patient"] as? JSONDictionary {
+			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
@@ -62,7 +62,7 @@ public class Supply: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let dispense = self.dispense {
@@ -130,43 +130,43 @@ public class SupplyDispense: FHIRElement
 	/// Dispensing time
 	public var whenPrepared: Period?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["destination"] as? JSONDictionary {
+			if let val = js["destination"] as? FHIRJSON {
 				self.destination = Reference(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? JSONDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["quantity"] as? JSONDictionary {
+			if let val = js["quantity"] as? FHIRJSON {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["receiver"] as? [JSONDictionary] {
+			if let val = js["receiver"] as? [FHIRJSON] {
 				self.receiver = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["suppliedItem"] as? JSONDictionary {
+			if let val = js["suppliedItem"] as? FHIRJSON {
 				self.suppliedItem = Reference(json: val, owner: self)
 			}
-			if let val = js["supplier"] as? JSONDictionary {
+			if let val = js["supplier"] as? FHIRJSON {
 				self.supplier = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["whenHandedOver"] as? String {
 				self.whenHandedOver = DateTime(string: val)
 			}
-			if let val = js["whenPrepared"] as? JSONDictionary {
+			if let val = js["whenPrepared"] as? FHIRJSON {
 				self.whenPrepared = Period(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let destination = self.destination {

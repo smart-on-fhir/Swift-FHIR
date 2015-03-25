@@ -2,7 +2,7 @@
 //  OtherTests.swift
 //  OtherTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class OtherTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Other {
+	func instantiateFrom(# json: FHIRJSON) -> Other {
 		let instance = Other(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class OtherTests: FHIRModelTestCase
 		testOther1_impl(json: instance.asJSON())
 	}
 	
-	func testOther1_impl(json: JSONDictionary? = nil) -> Other {
+	func testOther1_impl(json: FHIRJSON? = nil) -> Other {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "adverseevent-qicore-example.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "ADVEVENT")
@@ -51,6 +51,7 @@ class OtherTests: FHIRModelTestCase
 		XCTAssertFalse(inst.modifierExtension![0].valueBoolean!)
 		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
@@ -60,7 +61,7 @@ class OtherTests: FHIRModelTestCase
 		testOther2_impl(json: instance.asJSON())
 	}
 	
-	func testOther2_impl(json: JSONDictionary? = nil) -> Other {
+	func testOther2_impl(json: FHIRJSON? = nil) -> Other {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "other-example-narrative.json")
 		
 		XCTAssertEqual(inst.code!.text!, "Example Narrative Tester")
@@ -75,7 +76,7 @@ class OtherTests: FHIRModelTestCase
 		testOther3_impl(json: instance.asJSON())
 	}
 	
-	func testOther3_impl(json: JSONDictionary? = nil) -> Other {
+	func testOther3_impl(json: FHIRJSON? = nil) -> Other {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "other-example.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "REFERRAL")
@@ -109,7 +110,7 @@ class OtherTests: FHIRModelTestCase
 		testOther4_impl(json: instance.asJSON())
 	}
 	
-	func testOther4_impl(json: JSONDictionary? = nil) -> Other {
+	func testOther4_impl(json: FHIRJSON? = nil) -> Other {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "other-example2.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "UMLCLASSMODEL")

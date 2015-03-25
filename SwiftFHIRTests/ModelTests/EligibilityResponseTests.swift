@@ -2,7 +2,7 @@
 //  EligibilityResponseTests.swift
 //  EligibilityResponseTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class EligibilityResponseTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> EligibilityResponse {
+	func instantiateFrom(# json: FHIRJSON) -> EligibilityResponse {
 		let instance = EligibilityResponse(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class EligibilityResponseTests: FHIRModelTestCase
 		testEligibilityResponse1_impl(json: instance.asJSON())
 	}
 	
-	func testEligibilityResponse1_impl(json: JSONDictionary? = nil) -> EligibilityResponse {
+	func testEligibilityResponse1_impl(json: FHIRJSON? = nil) -> EligibilityResponse {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "eligibilityresponse-example.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")

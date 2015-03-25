@@ -2,7 +2,7 @@
 //  DocumentManifestTests.swift
 //  DocumentManifestTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class DocumentManifestTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> DocumentManifest {
+	func instantiateFrom(# json: FHIRJSON) -> DocumentManifest {
 		let instance = DocumentManifest(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class DocumentManifestTests: FHIRModelTestCase
 		testDocumentManifest1_impl(json: instance.asJSON())
 	}
 	
-	func testDocumentManifest1_impl(json: JSONDictionary? = nil) -> DocumentManifest {
+	func testDocumentManifest1_impl(json: FHIRJSON? = nil) -> DocumentManifest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "documentmanifest-example.json")
 		
 		XCTAssertEqual(inst.author![0].reference!, "#a1")

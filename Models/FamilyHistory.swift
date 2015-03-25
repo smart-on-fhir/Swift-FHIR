@@ -2,7 +2,7 @@
 //  FamilyHistory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/FamilyHistory) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/FamilyHistory) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -43,28 +43,28 @@ public class FamilyHistory: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
 				self.date = DateTime(string: val)
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["note"] as? String {
 				self.note = val
 			}
-			if let val = js["patient"] as? JSONDictionary {
+			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["relation"] as? [JSONDictionary] {
+			if let val = js["relation"] as? [FHIRJSON] {
 				self.relation = FamilyHistoryRelation.from(val, owner: self) as? [FamilyHistoryRelation]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let date = self.date {
@@ -151,13 +151,13 @@ public class FamilyHistoryRelation: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["ageAge"] as? JSONDictionary {
+			if let val = js["ageAge"] as? FHIRJSON {
 				self.ageAge = Age(json: val, owner: self)
 			}
-			if let val = js["ageRange"] as? JSONDictionary {
+			if let val = js["ageRange"] as? FHIRJSON {
 				self.ageRange = Range(json: val, owner: self)
 			}
 			if let val = js["ageString"] as? String {
@@ -166,16 +166,16 @@ public class FamilyHistoryRelation: FHIRElement
 			if let val = js["bornDate"] as? String {
 				self.bornDate = Date(string: val)
 			}
-			if let val = js["bornPeriod"] as? JSONDictionary {
+			if let val = js["bornPeriod"] as? FHIRJSON {
 				self.bornPeriod = Period(json: val, owner: self)
 			}
 			if let val = js["bornString"] as? String {
 				self.bornString = val
 			}
-			if let val = js["condition"] as? [JSONDictionary] {
+			if let val = js["condition"] as? [FHIRJSON] {
 				self.condition = FamilyHistoryRelationCondition.from(val, owner: self) as? [FamilyHistoryRelationCondition]
 			}
-			if let val = js["deceasedAge"] as? JSONDictionary {
+			if let val = js["deceasedAge"] as? FHIRJSON {
 				self.deceasedAge = Age(json: val, owner: self)
 			}
 			if let val = js["deceasedBoolean"] as? Bool {
@@ -184,7 +184,7 @@ public class FamilyHistoryRelation: FHIRElement
 			if let val = js["deceasedDate"] as? String {
 				self.deceasedDate = Date(string: val)
 			}
-			if let val = js["deceasedRange"] as? JSONDictionary {
+			if let val = js["deceasedRange"] as? FHIRJSON {
 				self.deceasedRange = Range(json: val, owner: self)
 			}
 			if let val = js["deceasedString"] as? String {
@@ -196,13 +196,13 @@ public class FamilyHistoryRelation: FHIRElement
 			if let val = js["note"] as? String {
 				self.note = val
 			}
-			if let val = js["relationship"] as? JSONDictionary {
+			if let val = js["relationship"] as? FHIRJSON {
 				self.relationship = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let ageAge = self.ageAge {
@@ -294,31 +294,31 @@ public class FamilyHistoryRelationCondition: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["note"] as? String {
 				self.note = val
 			}
-			if let val = js["onsetAge"] as? JSONDictionary {
+			if let val = js["onsetAge"] as? FHIRJSON {
 				self.onsetAge = Age(json: val, owner: self)
 			}
-			if let val = js["onsetRange"] as? JSONDictionary {
+			if let val = js["onsetRange"] as? FHIRJSON {
 				self.onsetRange = Range(json: val, owner: self)
 			}
 			if let val = js["onsetString"] as? String {
 				self.onsetString = val
 			}
-			if let val = js["outcome"] as? JSONDictionary {
+			if let val = js["outcome"] as? FHIRJSON {
 				self.outcome = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let note = self.note {

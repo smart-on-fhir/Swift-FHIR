@@ -2,7 +2,7 @@
 //  ReferralRequestTests.swift
 //  ReferralRequestTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ReferralRequestTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> ReferralRequest {
+	func instantiateFrom(# json: FHIRJSON) -> ReferralRequest {
 		let instance = ReferralRequest(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ReferralRequestTests: FHIRModelTestCase
 		testReferralRequest1_impl(json: instance.asJSON())
 	}
 	
-	func testReferralRequest1_impl(json: JSONDictionary? = nil) -> ReferralRequest {
+	func testReferralRequest1_impl(json: FHIRJSON? = nil) -> ReferralRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "referralrequest-example.json")
 		
 		XCTAssertEqual(inst.dateSent!.description, "2014-02-14")
@@ -67,7 +67,7 @@ class ReferralRequestTests: FHIRModelTestCase
 		testReferralRequest2_impl(json: instance.asJSON())
 	}
 	
-	func testReferralRequest2_impl(json: JSONDictionary? = nil) -> ReferralRequest {
+	func testReferralRequest2_impl(json: FHIRJSON? = nil) -> ReferralRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "referralrequest-qicore-example.json")
 		
 		XCTAssertEqual(inst.dateSent!.description, "2014-02-14")

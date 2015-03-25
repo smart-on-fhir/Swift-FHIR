@@ -2,7 +2,7 @@
 //  CarePlan2.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/CarePlan2) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/CarePlan2) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -58,19 +58,19 @@ public class CarePlan2: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["activity"] as? [JSONDictionary] {
+			if let val = js["activity"] as? [FHIRJSON] {
 				self.activity = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["concern"] as? [JSONDictionary] {
+			if let val = js["concern"] as? [FHIRJSON] {
 				self.concern = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["goal"] as? [JSONDictionary] {
+			if let val = js["goal"] as? [FHIRJSON] {
 				self.goal = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["modified"] as? String {
@@ -79,13 +79,13 @@ public class CarePlan2: DomainResource
 			if let val = js["notes"] as? String {
 				self.notes = val
 			}
-			if let val = js["participant"] as? [JSONDictionary] {
+			if let val = js["participant"] as? [FHIRJSON] {
 				self.participant = CarePlan2Participant.from(val, owner: self) as? [CarePlan2Participant]
 			}
-			if let val = js["patient"] as? JSONDictionary {
+			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["period"] as? JSONDictionary {
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
@@ -94,7 +94,7 @@ public class CarePlan2: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let activity = self.activity {
@@ -157,19 +157,19 @@ public class CarePlan2Participant: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["member"] as? JSONDictionary {
+			if let val = js["member"] as? FHIRJSON {
 				self.member = Reference(json: val, owner: self)
 			}
-			if let val = js["role"] as? JSONDictionary {
+			if let val = js["role"] as? FHIRJSON {
 				self.role = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let member = self.member {

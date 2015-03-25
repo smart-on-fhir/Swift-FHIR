@@ -2,7 +2,7 @@
 //  ProcessRequestTests.swift
 //  ProcessRequestTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ProcessRequestTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> ProcessRequest {
+	func instantiateFrom(# json: FHIRJSON) -> ProcessRequest {
 		let instance = ProcessRequest(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ProcessRequestTests: FHIRModelTestCase
 		testProcessRequest1_impl(json: instance.asJSON())
 	}
 	
-	func testProcessRequest1_impl(json: JSONDictionary? = nil) -> ProcessRequest {
+	func testProcessRequest1_impl(json: FHIRJSON? = nil) -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "processrequest-example-poll-eob.json")
 		
 		XCTAssertEqual(inst.action!, "poll")
@@ -47,7 +47,7 @@ class ProcessRequestTests: FHIRModelTestCase
 		testProcessRequest2_impl(json: instance.asJSON())
 	}
 	
-	func testProcessRequest2_impl(json: JSONDictionary? = nil) -> ProcessRequest {
+	func testProcessRequest2_impl(json: FHIRJSON? = nil) -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "processrequest-example-poll-exclusive.json")
 		
 		XCTAssertEqual(inst.action!, "poll")
@@ -69,7 +69,7 @@ class ProcessRequestTests: FHIRModelTestCase
 		testProcessRequest3_impl(json: instance.asJSON())
 	}
 	
-	func testProcessRequest3_impl(json: JSONDictionary? = nil) -> ProcessRequest {
+	func testProcessRequest3_impl(json: FHIRJSON? = nil) -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "processrequest-example-poll-inclusive.json")
 		
 		XCTAssertEqual(inst.action!, "poll")
@@ -90,7 +90,7 @@ class ProcessRequestTests: FHIRModelTestCase
 		testProcessRequest4_impl(json: instance.asJSON())
 	}
 	
-	func testProcessRequest4_impl(json: JSONDictionary? = nil) -> ProcessRequest {
+	func testProcessRequest4_impl(json: FHIRJSON? = nil) -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "processrequest-example-poll-payrec.json")
 		
 		XCTAssertEqual(inst.action!, "poll")
@@ -113,7 +113,7 @@ class ProcessRequestTests: FHIRModelTestCase
 		testProcessRequest5_impl(json: instance.asJSON())
 	}
 	
-	func testProcessRequest5_impl(json: JSONDictionary? = nil) -> ProcessRequest {
+	func testProcessRequest5_impl(json: FHIRJSON? = nil) -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "processrequest-example-poll-specific.json")
 		
 		XCTAssertEqual(inst.action!, "poll")
@@ -134,7 +134,7 @@ class ProcessRequestTests: FHIRModelTestCase
 		testProcessRequest6_impl(json: instance.asJSON())
 	}
 	
-	func testProcessRequest6_impl(json: JSONDictionary? = nil) -> ProcessRequest {
+	func testProcessRequest6_impl(json: FHIRJSON? = nil) -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "processrequest-example-reprocess.json")
 		
 		XCTAssertEqual(inst.action!, "reprocess")
@@ -157,13 +157,13 @@ class ProcessRequestTests: FHIRModelTestCase
 		testProcessRequest7_impl(json: instance.asJSON())
 	}
 	
-	func testProcessRequest7_impl(json: JSONDictionary? = nil) -> ProcessRequest {
+	func testProcessRequest7_impl(json: FHIRJSON? = nil) -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "processrequest-example-reverse.json")
 		
-		XCTAssertEqual(inst.action!, "reverse")
+		XCTAssertEqual(inst.action!, "cancel")
 		XCTAssertEqual(inst.created!.description, "2014-08-16")
 		XCTAssertEqual(inst.id!, "87654")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/reproccess")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "76543")
 		XCTAssertFalse(inst.nullify!)
 		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
@@ -179,7 +179,7 @@ class ProcessRequestTests: FHIRModelTestCase
 		testProcessRequest8_impl(json: instance.asJSON())
 	}
 	
-	func testProcessRequest8_impl(json: JSONDictionary? = nil) -> ProcessRequest {
+	func testProcessRequest8_impl(json: FHIRJSON? = nil) -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "processrequest-example-status.json")
 		
 		XCTAssertEqual(inst.action!, "status")
@@ -201,7 +201,7 @@ class ProcessRequestTests: FHIRModelTestCase
 		testProcessRequest9_impl(json: instance.asJSON())
 	}
 	
-	func testProcessRequest9_impl(json: JSONDictionary? = nil) -> ProcessRequest {
+	func testProcessRequest9_impl(json: FHIRJSON? = nil) -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "processrequest-example.json")
 		
 		XCTAssertEqual(inst.action!, "poll")

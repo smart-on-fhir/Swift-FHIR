@@ -2,7 +2,7 @@
 //  CarePlan2Tests.swift
 //  CarePlan2Tests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class CarePlan2Tests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> CarePlan2 {
+	func instantiateFrom(# json: FHIRJSON) -> CarePlan2 {
 		let instance = CarePlan2(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class CarePlan2Tests: FHIRModelTestCase
 		testCarePlan21_impl(json: instance.asJSON())
 	}
 	
-	func testCarePlan21_impl(json: JSONDictionary? = nil) -> CarePlan2 {
+	func testCarePlan21_impl(json: FHIRJSON? = nil) -> CarePlan2 {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "careplan2-example.json")
 		
 		XCTAssertEqual(inst.activity![0].reference!, "ProcedureRequest/example")

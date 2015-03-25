@@ -2,7 +2,7 @@
 //  DiagnosticOrderTests.swift
 //  DiagnosticOrderTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class DiagnosticOrderTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> DiagnosticOrder {
+	func instantiateFrom(# json: FHIRJSON) -> DiagnosticOrder {
 		let instance = DiagnosticOrder(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class DiagnosticOrderTests: FHIRModelTestCase
 		testDiagnosticOrder1_impl(json: instance.asJSON())
 	}
 	
-	func testDiagnosticOrder1_impl(json: JSONDictionary? = nil) -> DiagnosticOrder {
+	func testDiagnosticOrder1_impl(json: FHIRJSON? = nil) -> DiagnosticOrder {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "diagnosticorder-example-di.json")
 		
 		XCTAssertEqual(inst.event![0].dateTime!.description, "2013-05-08T09:33:27+07:00")
@@ -50,7 +50,7 @@ class DiagnosticOrderTests: FHIRModelTestCase
 		testDiagnosticOrder2_impl(json: instance.asJSON())
 	}
 	
-	func testDiagnosticOrder2_impl(json: JSONDictionary? = nil) -> DiagnosticOrder {
+	func testDiagnosticOrder2_impl(json: FHIRJSON? = nil) -> DiagnosticOrder {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "diagnosticorder-example.json")
 		
 		XCTAssertEqual(inst.event![0].dateTime!.description, "2013-05-02T16:16:00-07:00")
@@ -75,7 +75,7 @@ class DiagnosticOrderTests: FHIRModelTestCase
 		testDiagnosticOrder3_impl(json: instance.asJSON())
 	}
 	
-	func testDiagnosticOrder3_impl(json: JSONDictionary? = nil) -> DiagnosticOrder {
+	func testDiagnosticOrder3_impl(json: FHIRJSON? = nil) -> DiagnosticOrder {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "diagnosticorder-qicore-example.json")
 		
 		XCTAssertEqual(inst.event![0].dateTime!.description, "2013-05-02T16:16:00-07:00")
@@ -97,10 +97,6 @@ class DiagnosticOrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.item![0].code!.coding![0].code!, "LIPID")
 		XCTAssertEqual(inst.item![0].code!.coding![0].system!.absoluteString!, "http://acme.org/tests")
 		XCTAssertEqual(inst.item![0].code!.text!, "Lipid Panel")
-		XCTAssertEqual(inst.item![0].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/diagnosticorder-precondition")
-		XCTAssertEqual(inst.item![0].extension_fhir![0].valueCodeableConcept!.coding![0].code!, "422504002")
-		XCTAssertEqual(inst.item![0].extension_fhir![0].valueCodeableConcept!.coding![0].display!, "Ischemic stroke (disorder)")
-		XCTAssertEqual(inst.item![0].extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.orderer!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.status!, "rejected")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
@@ -114,7 +110,7 @@ class DiagnosticOrderTests: FHIRModelTestCase
 		testDiagnosticOrder4_impl(json: instance.asJSON())
 	}
 	
-	func testDiagnosticOrder4_impl(json: JSONDictionary? = nil) -> DiagnosticOrder {
+	func testDiagnosticOrder4_impl(json: FHIRJSON? = nil) -> DiagnosticOrder {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "do-uslab-example1.json")
 		
 		XCTAssertEqual(inst.clinicalNotes!, "Screening for blood lead")

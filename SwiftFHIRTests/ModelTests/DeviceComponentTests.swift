@@ -2,7 +2,7 @@
 //  DeviceComponentTests.swift
 //  DeviceComponentTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class DeviceComponentTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> DeviceComponent {
+	func instantiateFrom(# json: FHIRJSON) -> DeviceComponent {
 		let instance = DeviceComponent(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class DeviceComponentTests: FHIRModelTestCase
 		testDeviceComponent1_impl(json: instance.asJSON())
 	}
 	
-	func testDeviceComponent1_impl(json: JSONDictionary? = nil) -> DeviceComponent {
+	func testDeviceComponent1_impl(json: FHIRJSON? = nil) -> DeviceComponent {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicecomponent-example-prodspec.json")
 		
 		XCTAssertEqual(inst.id!, "example-prodspec")
@@ -65,7 +65,7 @@ class DeviceComponentTests: FHIRModelTestCase
 		testDeviceComponent2_impl(json: instance.asJSON())
 	}
 	
-	func testDeviceComponent2_impl(json: JSONDictionary? = nil) -> DeviceComponent {
+	func testDeviceComponent2_impl(json: FHIRJSON? = nil) -> DeviceComponent {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicecomponent-example.json")
 		
 		XCTAssertEqual(inst.id!, "example")

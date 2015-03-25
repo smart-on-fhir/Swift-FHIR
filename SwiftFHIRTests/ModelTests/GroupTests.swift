@@ -2,7 +2,7 @@
 //  GroupTests.swift
 //  GroupTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class GroupTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Group {
+	func instantiateFrom(# json: FHIRJSON) -> Group {
 		let instance = Group(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class GroupTests: FHIRModelTestCase
 		testGroup1_impl(json: instance.asJSON())
 	}
 	
-	func testGroup1_impl(json: JSONDictionary? = nil) -> Group {
+	func testGroup1_impl(json: FHIRJSON? = nil) -> Group {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "group-example.json")
 		
 		XCTAssertTrue(inst.actual!)

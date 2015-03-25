@@ -2,7 +2,7 @@
 //  PaymentNoticeTests.swift
 //  PaymentNoticeTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class PaymentNoticeTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> PaymentNotice {
+	func instantiateFrom(# json: FHIRJSON) -> PaymentNotice {
 		let instance = PaymentNotice(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class PaymentNoticeTests: FHIRModelTestCase
 		testPaymentNotice1_impl(json: instance.asJSON())
 	}
 	
-	func testPaymentNotice1_impl(json: JSONDictionary? = nil) -> PaymentNotice {
+	func testPaymentNotice1_impl(json: FHIRJSON? = nil) -> PaymentNotice {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "paymentnotice-example.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")

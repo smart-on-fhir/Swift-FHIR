@@ -2,7 +2,7 @@
 //  Goal.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Goal) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Goal) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -10,9 +10,10 @@ import Foundation
 
 
 /**
- *  Patient Health Goal.
+ *  Describes the intended objective(s) of patient care.
  *
- *  Describes the intended objective(s) of the care.
+ *  Describes the intended objective(s) of patient care, for example, weight loss, restoring an activity of daily
+ *  living, etc.
  */
 public class Goal: DomainResource
 {
@@ -45,22 +46,22 @@ public class Goal: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["concern"] as? [JSONDictionary] {
+			if let val = js["concern"] as? [FHIRJSON] {
 				self.concern = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["notes"] as? String {
 				self.notes = val
 			}
-			if let val = js["patient"] as? JSONDictionary {
+			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
@@ -69,7 +70,7 @@ public class Goal: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let concern = self.concern {

@@ -2,7 +2,7 @@
 //  Appointment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -71,7 +71,7 @@ public class Appointment: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["comment"] as? String {
@@ -83,22 +83,22 @@ public class Appointment: DomainResource
 			if let val = js["end"] as? String {
 				self.end = Instant(string: val)
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["order"] as? JSONDictionary {
+			if let val = js["order"] as? FHIRJSON {
 				self.order = Reference(json: val, owner: self)
 			}
-			if let val = js["participant"] as? [JSONDictionary] {
+			if let val = js["participant"] as? [FHIRJSON] {
 				self.participant = AppointmentParticipant.from(val, owner: self) as? [AppointmentParticipant]
 			}
 			if let val = js["priority"] as? Int {
 				self.priority = val
 			}
-			if let val = js["reason"] as? JSONDictionary {
+			if let val = js["reason"] as? FHIRJSON {
 				self.reason = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["slot"] as? [JSONDictionary] {
+			if let val = js["slot"] as? [FHIRJSON] {
 				self.slot = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["start"] as? String {
@@ -107,13 +107,13 @@ public class Appointment: DomainResource
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let comment = self.comment {
@@ -186,10 +186,10 @@ public class AppointmentParticipant: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["actor"] as? JSONDictionary {
+			if let val = js["actor"] as? FHIRJSON {
 				self.actor = Reference(json: val, owner: self)
 			}
 			if let val = js["required"] as? String {
@@ -198,13 +198,13 @@ public class AppointmentParticipant: FHIRElement
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["type"] as? [JSONDictionary] {
+			if let val = js["type"] as? [FHIRJSON] {
 				self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let actor = self.actor {

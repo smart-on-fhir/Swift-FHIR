@@ -2,7 +2,7 @@
 //  ContactPoint.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -33,10 +33,10 @@ public class ContactPoint: FHIRElement
 	/// The actual contact point details
 	public var value: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["period"] as? JSONDictionary {
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["system"] as? String {
@@ -51,7 +51,7 @@ public class ContactPoint: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let period = self.period {

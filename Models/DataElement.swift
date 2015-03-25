@@ -2,7 +2,7 @@
 //  DataElement.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -72,10 +72,10 @@ public class DataElement: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["contact"] as? [JSONDictionary] {
+			if let val = js["contact"] as? [FHIRJSON] {
 				self.contact = DataElementContact.from(val, owner: self) as? [DataElementContact]
 			}
 			if let val = js["copyright"] as? String {
@@ -84,16 +84,16 @@ public class DataElement: DomainResource
 			if let val = js["date"] as? String {
 				self.date = DateTime(string: val)
 			}
-			if let val = js["element"] as? [JSONDictionary] {
+			if let val = js["element"] as? [FHIRJSON] {
 				self.element = ElementDefinition.from(val, owner: self) as? [ElementDefinition]
 			}
 			if let val = js["experimental"] as? Bool {
 				self.experimental = val
 			}
-			if let val = js["identifier"] as? JSONDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["mapping"] as? [JSONDictionary] {
+			if let val = js["mapping"] as? [FHIRJSON] {
 				self.mapping = DataElementMapping.from(val, owner: self) as? [DataElementMapping]
 			}
 			if let val = js["name"] as? String {
@@ -111,7 +111,7 @@ public class DataElement: DomainResource
 			if let val = js["url"] as? String {
 				self.url = NSURL(string: val)
 			}
-			if let val = js["useContext"] as? [JSONDictionary] {
+			if let val = js["useContext"] as? [FHIRJSON] {
 				self.useContext = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["version"] as? String {
@@ -120,7 +120,7 @@ public class DataElement: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let contact = self.contact {
@@ -188,19 +188,19 @@ public class DataElementContact: FHIRElement
 	/// Contact details for individual or publisher
 	public var telecom: [ContactPoint]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["telecom"] as? [JSONDictionary] {
+			if let val = js["telecom"] as? [FHIRJSON] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let name = self.name {
@@ -246,7 +246,7 @@ public class DataElementMapping: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["comments"] as? String {
@@ -264,7 +264,7 @@ public class DataElementMapping: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let comments = self.comments {

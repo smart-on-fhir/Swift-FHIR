@@ -2,7 +2,7 @@
 //  ImmunizationRecommendationTests.swift
 //  ImmunizationRecommendationTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ImmunizationRecommendationTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> ImmunizationRecommendation {
+	func instantiateFrom(# json: FHIRJSON) -> ImmunizationRecommendation {
 		let instance = ImmunizationRecommendation(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ImmunizationRecommendationTests: FHIRModelTestCase
 		testImmunizationRecommendation1_impl(json: instance.asJSON())
 	}
 	
-	func testImmunizationRecommendation1_impl(json: JSONDictionary? = nil) -> ImmunizationRecommendation {
+	func testImmunizationRecommendation1_impl(json: FHIRJSON? = nil) -> ImmunizationRecommendation {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "immunizationrecommendation-example.json")
 		
 		XCTAssertEqual(inst.id!, "example")

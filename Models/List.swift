@@ -2,7 +2,7 @@
 //  List.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/List) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/List) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -38,8 +38,8 @@ public class List: DomainResource
 	/// working | snapshot | changes
 	public var mode: String?
 	
-	/// Whether items in the list have a meaningful order
-	public var ordered: Bool?
+	/// What order the list has
+	public var orderedBy: CodeableConcept?
 	
 	/// Who and/or what defined the list contents
 	public var source: Reference?
@@ -54,40 +54,40 @@ public class List: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? JSONDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
 				self.date = DateTime(string: val)
 			}
-			if let val = js["emptyReason"] as? JSONDictionary {
+			if let val = js["emptyReason"] as? FHIRJSON {
 				self.emptyReason = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["entry"] as? [JSONDictionary] {
+			if let val = js["entry"] as? [FHIRJSON] {
 				self.entry = ListEntry.from(val, owner: self) as? [ListEntry]
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["mode"] as? String {
 				self.mode = val
 			}
-			if let val = js["ordered"] as? Bool {
-				self.ordered = val
+			if let val = js["orderedBy"] as? FHIRJSON {
+				self.orderedBy = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["source"] as? JSONDictionary {
+			if let val = js["source"] as? FHIRJSON {
 				self.source = Reference(json: val, owner: self)
 			}
-			if let val = js["subject"] as? JSONDictionary {
+			if let val = js["subject"] as? FHIRJSON {
 				self.subject = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {
@@ -108,8 +108,8 @@ public class List: DomainResource
 		if let mode = self.mode {
 			json["mode"] = mode.asJSON()
 		}
-		if let ordered = self.ordered {
-			json["ordered"] = ordered.asJSON()
+		if let orderedBy = self.orderedBy {
+			json["orderedBy"] = orderedBy.asJSON()
 		}
 		if let source = self.source {
 			json["source"] = source.asJSON()
@@ -153,7 +153,7 @@ public class ListEntry: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
@@ -162,16 +162,16 @@ public class ListEntry: FHIRElement
 			if let val = js["deleted"] as? Bool {
 				self.deleted = val
 			}
-			if let val = js["flag"] as? [JSONDictionary] {
+			if let val = js["flag"] as? [FHIRJSON] {
 				self.flag = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["item"] as? JSONDictionary {
+			if let val = js["item"] as? FHIRJSON {
 				self.item = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let date = self.date {

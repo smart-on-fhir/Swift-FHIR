@@ -2,7 +2,7 @@
 //  DeviceMetric.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -63,10 +63,10 @@ public class DeviceMetric: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["calibration"] as? [JSONDictionary] {
+			if let val = js["calibration"] as? [FHIRJSON] {
 				self.calibration = DeviceMetricCalibration.from(val, owner: self) as? [DeviceMetricCalibration]
 			}
 			if let val = js["category"] as? String {
@@ -75,31 +75,31 @@ public class DeviceMetric: DomainResource
 			if let val = js["color"] as? String {
 				self.color = val
 			}
-			if let val = js["identifier"] as? JSONDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["measurementPeriod"] as? JSONDictionary {
+			if let val = js["measurementPeriod"] as? FHIRJSON {
 				self.measurementPeriod = Timing(json: val, owner: self)
 			}
 			if let val = js["operationalStatus"] as? String {
 				self.operationalStatus = val
 			}
-			if let val = js["parent"] as? JSONDictionary {
+			if let val = js["parent"] as? FHIRJSON {
 				self.parent = Reference(json: val, owner: self)
 			}
-			if let val = js["source"] as? JSONDictionary {
+			if let val = js["source"] as? FHIRJSON {
 				self.source = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["unit"] as? JSONDictionary {
+			if let val = js["unit"] as? FHIRJSON {
 				self.unit = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let calibration = self.calibration {
@@ -156,7 +156,7 @@ public class DeviceMetricCalibration: FHIRElement
 	/// unspecified | offset | gain | two-point
 	public var type: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["state"] as? String {
@@ -171,7 +171,7 @@ public class DeviceMetricCalibration: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let state = self.state {

@@ -2,7 +2,7 @@
 //  EnrollmentRequestTests.swift
 //  EnrollmentRequestTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class EnrollmentRequestTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> EnrollmentRequest {
+	func instantiateFrom(# json: FHIRJSON) -> EnrollmentRequest {
 		let instance = EnrollmentRequest(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class EnrollmentRequestTests: FHIRModelTestCase
 		testEnrollmentRequest1_impl(json: instance.asJSON())
 	}
 	
-	func testEnrollmentRequest1_impl(json: JSONDictionary? = nil) -> EnrollmentRequest {
+	func testEnrollmentRequest1_impl(json: FHIRJSON? = nil) -> EnrollmentRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "enrollmentrequest-example.json")
 		
 		XCTAssertEqual(inst.coverage!.reference!, "Coverage/9876B1")

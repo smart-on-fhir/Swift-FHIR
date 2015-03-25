@@ -2,7 +2,7 @@
 //  NutritionOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -66,49 +66,49 @@ public class NutritionOrder: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["allergyIntolerance"] as? [JSONDictionary] {
+			if let val = js["allergyIntolerance"] as? [FHIRJSON] {
 				self.allergyIntolerance = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["dateTime"] as? String {
 				self.dateTime = DateTime(string: val)
 			}
-			if let val = js["encounter"] as? JSONDictionary {
+			if let val = js["encounter"] as? FHIRJSON {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["enteralFormula"] as? JSONDictionary {
+			if let val = js["enteralFormula"] as? FHIRJSON {
 				self.enteralFormula = NutritionOrderEnteralFormula(json: val, owner: self)
 			}
-			if let val = js["excludeFoodModifier"] as? [JSONDictionary] {
+			if let val = js["excludeFoodModifier"] as? [FHIRJSON] {
 				self.excludeFoodModifier = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["foodPreferenceModifier"] as? [JSONDictionary] {
+			if let val = js["foodPreferenceModifier"] as? [FHIRJSON] {
 				self.foodPreferenceModifier = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["oralDiet"] as? JSONDictionary {
+			if let val = js["oralDiet"] as? FHIRJSON {
 				self.oralDiet = NutritionOrderOralDiet(json: val, owner: self)
 			}
-			if let val = js["orderer"] as? JSONDictionary {
+			if let val = js["orderer"] as? FHIRJSON {
 				self.orderer = Reference(json: val, owner: self)
 			}
-			if let val = js["patient"] as? JSONDictionary {
+			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["supplement"] as? [JSONDictionary] {
+			if let val = js["supplement"] as? [FHIRJSON] {
 				self.supplement = NutritionOrderSupplement.from(val, owner: self) as? [NutritionOrderSupplement]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let allergyIntolerance = self.allergyIntolerance {
@@ -201,13 +201,13 @@ public class NutritionOrderEnteralFormula: FHIRElement
 	/// Scheduled frequency of enteral feeding
 	public var scheduled: Timing?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["additiveProductName"] as? String {
 				self.additiveProductName = val
 			}
-			if let val = js["additiveType"] as? JSONDictionary {
+			if let val = js["additiveType"] as? FHIRJSON {
 				self.additiveType = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["administrationInstructions"] as? String {
@@ -216,34 +216,34 @@ public class NutritionOrderEnteralFormula: FHIRElement
 			if let val = js["baseFormulaProductName"] as? String {
 				self.baseFormulaProductName = val
 			}
-			if let val = js["baseFormulaType"] as? JSONDictionary {
+			if let val = js["baseFormulaType"] as? FHIRJSON {
 				self.baseFormulaType = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["caloricDensity"] as? JSONDictionary {
+			if let val = js["caloricDensity"] as? FHIRJSON {
 				self.caloricDensity = Quantity(json: val, owner: self)
 			}
-			if let val = js["maxVolumeToDeliver"] as? JSONDictionary {
+			if let val = js["maxVolumeToDeliver"] as? FHIRJSON {
 				self.maxVolumeToDeliver = Quantity(json: val, owner: self)
 			}
-			if let val = js["quantity"] as? JSONDictionary {
+			if let val = js["quantity"] as? FHIRJSON {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["rate"] as? JSONDictionary {
+			if let val = js["rate"] as? FHIRJSON {
 				self.rate = Ratio(json: val, owner: self)
 			}
-			if let val = js["rateAdjustment"] as? JSONDictionary {
+			if let val = js["rateAdjustment"] as? FHIRJSON {
 				self.rateAdjustment = Quantity(json: val, owner: self)
 			}
-			if let val = js["routeofAdministration"] as? JSONDictionary {
+			if let val = js["routeofAdministration"] as? FHIRJSON {
 				self.routeofAdministration = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["scheduled"] as? JSONDictionary {
+			if let val = js["scheduled"] as? FHIRJSON {
 				self.scheduled = Timing(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let additiveProductName = self.additiveProductName {
@@ -317,31 +317,31 @@ public class NutritionOrderOralDiet: FHIRElement
 	/// Type of oral diet or diet restrictions that describe what can be consumed orally
 	public var type: [CodeableConcept]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["fluidConsistencyType"] as? [JSONDictionary] {
+			if let val = js["fluidConsistencyType"] as? [FHIRJSON] {
 				self.fluidConsistencyType = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["instruction"] as? String {
 				self.instruction = val
 			}
-			if let val = js["nutrient"] as? [JSONDictionary] {
+			if let val = js["nutrient"] as? [FHIRJSON] {
 				self.nutrient = NutritionOrderOralDietNutrient.from(val, owner: self) as? [NutritionOrderOralDietNutrient]
 			}
-			if let val = js["scheduled"] as? JSONDictionary {
+			if let val = js["scheduled"] as? FHIRJSON {
 				self.scheduled = Timing(json: val, owner: self)
 			}
-			if let val = js["texture"] as? [JSONDictionary] {
+			if let val = js["texture"] as? [FHIRJSON] {
 				self.texture = NutritionOrderOralDietTexture.from(val, owner: self) as? [NutritionOrderOralDietTexture]
 			}
-			if let val = js["type"] as? [JSONDictionary] {
+			if let val = js["type"] as? [FHIRJSON] {
 				self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let fluidConsistencyType = self.fluidConsistencyType {
@@ -385,19 +385,19 @@ public class NutritionOrderOralDietNutrient: FHIRElement
 	/// Type of nutrient that is being modified
 	public var modifier_fhir: CodeableConcept?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["amount"] as? JSONDictionary {
+			if let val = js["amount"] as? FHIRJSON {
 				self.amount = Quantity(json: val, owner: self)
 			}
-			if let val = js["modifier"] as? JSONDictionary {
+			if let val = js["modifier"] as? FHIRJSON {
 				self.modifier_fhir = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let amount = self.amount {
@@ -430,19 +430,19 @@ public class NutritionOrderOralDietTexture: FHIRElement
 	/// Code to indicate how to alter the texture of the foods, e.g., pureed
 	public var modifier_fhir: CodeableConcept?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["foodType"] as? JSONDictionary {
+			if let val = js["foodType"] as? FHIRJSON {
 				self.foodType = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["modifier"] as? JSONDictionary {
+			if let val = js["modifier"] as? FHIRJSON {
 				self.modifier_fhir = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let foodType = self.foodType {
@@ -483,7 +483,7 @@ public class NutritionOrderSupplement: FHIRElement
 	/// Type of supplement product requested
 	public var type: CodeableConcept?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["instruction"] as? String {
@@ -492,19 +492,19 @@ public class NutritionOrderSupplement: FHIRElement
 			if let val = js["productName"] as? String {
 				self.productName = val
 			}
-			if let val = js["quantity"] as? JSONDictionary {
+			if let val = js["quantity"] as? FHIRJSON {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["scheduled"] as? JSONDictionary {
+			if let val = js["scheduled"] as? FHIRJSON {
 				self.scheduled = Timing(json: val, owner: self)
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let instruction = self.instruction {

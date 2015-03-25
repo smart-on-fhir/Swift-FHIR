@@ -2,7 +2,7 @@
 //  MedicationPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/MedicationPrescription) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/MedicationPrescription) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -59,52 +59,52 @@ public class MedicationPrescription: DomainResource
 	/// Any restrictions on medication substitution?
 	public var substitution: MedicationPrescriptionSubstitution?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["dateWritten"] as? String {
 				self.dateWritten = DateTime(string: val)
 			}
-			if let val = js["dispense"] as? JSONDictionary {
+			if let val = js["dispense"] as? FHIRJSON {
 				self.dispense = MedicationPrescriptionDispense(json: val, owner: self)
 			}
-			if let val = js["dosageInstruction"] as? [JSONDictionary] {
+			if let val = js["dosageInstruction"] as? [FHIRJSON] {
 				self.dosageInstruction = MedicationPrescriptionDosageInstruction.from(val, owner: self) as? [MedicationPrescriptionDosageInstruction]
 			}
-			if let val = js["encounter"] as? JSONDictionary {
+			if let val = js["encounter"] as? FHIRJSON {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["medication"] as? JSONDictionary {
+			if let val = js["medication"] as? FHIRJSON {
 				self.medication = Reference(json: val, owner: self)
 			}
 			if let val = js["note"] as? String {
 				self.note = val
 			}
-			if let val = js["patient"] as? JSONDictionary {
+			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["prescriber"] as? JSONDictionary {
+			if let val = js["prescriber"] as? FHIRJSON {
 				self.prescriber = Reference(json: val, owner: self)
 			}
-			if let val = js["reasonCodeableConcept"] as? JSONDictionary {
+			if let val = js["reasonCodeableConcept"] as? FHIRJSON {
 				self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["reasonReference"] as? JSONDictionary {
+			if let val = js["reasonReference"] as? FHIRJSON {
 				self.reasonReference = Reference(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["substitution"] as? JSONDictionary {
+			if let val = js["substitution"] as? FHIRJSON {
 				self.substitution = MedicationPrescriptionSubstitution(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let dateWritten = self.dateWritten {
@@ -178,28 +178,28 @@ public class MedicationPrescriptionDispense: FHIRElement
 	/// Time period supply is authorized for
 	public var validityPeriod: Period?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["expectedSupplyDuration"] as? JSONDictionary {
+			if let val = js["expectedSupplyDuration"] as? FHIRJSON {
 				self.expectedSupplyDuration = Duration(json: val, owner: self)
 			}
-			if let val = js["medication"] as? JSONDictionary {
+			if let val = js["medication"] as? FHIRJSON {
 				self.medication = Reference(json: val, owner: self)
 			}
 			if let val = js["numberOfRepeatsAllowed"] as? Int {
 				self.numberOfRepeatsAllowed = val
 			}
-			if let val = js["quantity"] as? JSONDictionary {
+			if let val = js["quantity"] as? FHIRJSON {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["validityPeriod"] as? JSONDictionary {
+			if let val = js["validityPeriod"] as? FHIRJSON {
 				self.validityPeriod = Period(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let expectedSupplyDuration = self.expectedSupplyDuration {
@@ -276,46 +276,46 @@ public class MedicationPrescriptionDosageInstruction: FHIRElement
 	/// Dosage instructions expressed as text
 	public var text: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["additionalInstructions"] as? JSONDictionary {
+			if let val = js["additionalInstructions"] as? FHIRJSON {
 				self.additionalInstructions = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["asNeededBoolean"] as? Bool {
 				self.asNeededBoolean = val
 			}
-			if let val = js["asNeededCodeableConcept"] as? JSONDictionary {
+			if let val = js["asNeededCodeableConcept"] as? FHIRJSON {
 				self.asNeededCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["doseQuantity"] as? JSONDictionary {
+			if let val = js["doseQuantity"] as? FHIRJSON {
 				self.doseQuantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["doseRange"] as? JSONDictionary {
+			if let val = js["doseRange"] as? FHIRJSON {
 				self.doseRange = Range(json: val, owner: self)
 			}
-			if let val = js["maxDosePerPeriod"] as? JSONDictionary {
+			if let val = js["maxDosePerPeriod"] as? FHIRJSON {
 				self.maxDosePerPeriod = Ratio(json: val, owner: self)
 			}
-			if let val = js["method"] as? JSONDictionary {
+			if let val = js["method"] as? FHIRJSON {
 				self.method = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["rate"] as? JSONDictionary {
+			if let val = js["rate"] as? FHIRJSON {
 				self.rate = Ratio(json: val, owner: self)
 			}
-			if let val = js["route"] as? JSONDictionary {
+			if let val = js["route"] as? FHIRJSON {
 				self.route = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["scheduledDateTime"] as? String {
 				self.scheduledDateTime = DateTime(string: val)
 			}
-			if let val = js["scheduledPeriod"] as? JSONDictionary {
+			if let val = js["scheduledPeriod"] as? FHIRJSON {
 				self.scheduledPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["scheduledTiming"] as? JSONDictionary {
+			if let val = js["scheduledTiming"] as? FHIRJSON {
 				self.scheduledTiming = Timing(json: val, owner: self)
 			}
-			if let val = js["site"] as? JSONDictionary {
+			if let val = js["site"] as? FHIRJSON {
 				self.site = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["text"] as? String {
@@ -324,7 +324,7 @@ public class MedicationPrescriptionDosageInstruction: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let additionalInstructions = self.additionalInstructions {
@@ -401,19 +401,19 @@ public class MedicationPrescriptionSubstitution: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["reason"] as? JSONDictionary {
+			if let val = js["reason"] as? FHIRJSON {
 				self.reason = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let reason = self.reason {

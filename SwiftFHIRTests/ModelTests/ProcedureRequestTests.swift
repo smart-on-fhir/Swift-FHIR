@@ -2,7 +2,7 @@
 //  ProcedureRequestTests.swift
 //  ProcedureRequestTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ProcedureRequestTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> ProcedureRequest {
+	func instantiateFrom(# json: FHIRJSON) -> ProcedureRequest {
 		let instance = ProcedureRequest(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ProcedureRequestTests: FHIRModelTestCase
 		testProcedureRequest1_impl(json: instance.asJSON())
 	}
 	
-	func testProcedureRequest1_impl(json: JSONDictionary? = nil) -> ProcedureRequest {
+	func testProcedureRequest1_impl(json: FHIRJSON? = nil) -> ProcedureRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedurerequest-example.json")
 		
 		XCTAssertEqual(inst.id!, "example")
@@ -46,14 +46,14 @@ class ProcedureRequestTests: FHIRModelTestCase
 		testProcedureRequest2_impl(json: instance.asJSON())
 	}
 	
-	func testProcedureRequest2_impl(json: JSONDictionary? = nil) -> ProcedureRequest {
+	func testProcedureRequest2_impl(json: FHIRJSON? = nil) -> ProcedureRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedurerequest-qicore-example.json")
 		
-		XCTAssertEqual(inst.bodySiteCodeableConcept!.coding![0].code!, "66754008")
-		XCTAssertEqual(inst.bodySiteCodeableConcept!.coding![0].display!, "Appendix structure")
-		XCTAssertEqual(inst.bodySiteCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "66754008")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].display!, "Appendix structure")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/example")
-		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/procedure-request-authorizedBy")
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/procedurerequest-authorizedBy")
 		XCTAssertEqual(inst.extension_fhir![0].valueReference!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.id!, "qicore")
 		XCTAssertEqual(inst.indication![0].coding![0].code!, "163220003")

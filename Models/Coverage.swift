@@ -2,7 +2,7 @@
 //  Coverage.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -19,6 +19,9 @@ public class Coverage: DomainResource
 	override public class var resourceName: String {
 		get { return "Coverage" }
 	}
+	
+	/// BIN Number
+	public var bin: Identifier?
 	
 	/// Contract details
 	public var contract: [Reference]?
@@ -50,19 +53,22 @@ public class Coverage: DomainResource
 	/// An identifier for the subsection of the plan
 	public var subPlan: String?
 	
-	/// Covered parties
-	public var subject: [Reference]?
-	
 	/// Plan holder information
 	public var subscriber: Reference?
+	
+	/// Subscriber ID
+	public var subscriberId: Identifier?
 	
 	/// Type of coverage
 	public var type: Coding?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["contract"] as? [JSONDictionary] {
+			if let val = js["bin"] as? FHIRJSON {
+				self.bin = Identifier(json: val, owner: self)
+			}
+			if let val = js["contract"] as? [FHIRJSON] {
 				self.contract = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["dependent"] as? Int {
@@ -71,16 +77,16 @@ public class Coverage: DomainResource
 			if let val = js["group"] as? String {
 				self.group = val
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["issuer"] as? JSONDictionary {
+			if let val = js["issuer"] as? FHIRJSON {
 				self.issuer = Reference(json: val, owner: self)
 			}
-			if let val = js["network"] as? JSONDictionary {
+			if let val = js["network"] as? FHIRJSON {
 				self.network = Identifier(json: val, owner: self)
 			}
-			if let val = js["period"] as? JSONDictionary {
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["plan"] as? String {
@@ -92,21 +98,24 @@ public class Coverage: DomainResource
 			if let val = js["subPlan"] as? String {
 				self.subPlan = val
 			}
-			if let val = js["subject"] as? [JSONDictionary] {
-				self.subject = Reference.from(val, owner: self) as? [Reference]
-			}
-			if let val = js["subscriber"] as? JSONDictionary {
+			if let val = js["subscriber"] as? FHIRJSON {
 				self.subscriber = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["subscriberId"] as? FHIRJSON {
+				self.subscriberId = Identifier(json: val, owner: self)
+			}
+			if let val = js["type"] as? FHIRJSON {
 				self.type = Coding(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let bin = self.bin {
+			json["bin"] = bin.asJSON()
+		}
 		if let contract = self.contract {
 			json["contract"] = Reference.asJSONArray(contract)
 		}
@@ -137,11 +146,11 @@ public class Coverage: DomainResource
 		if let subPlan = self.subPlan {
 			json["subPlan"] = subPlan.asJSON()
 		}
-		if let subject = self.subject {
-			json["subject"] = Reference.asJSONArray(subject)
-		}
 		if let subscriber = self.subscriber {
 			json["subscriber"] = subscriber.asJSON()
+		}
+		if let subscriberId = self.subscriberId {
+			json["subscriberId"] = subscriberId.asJSON()
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()

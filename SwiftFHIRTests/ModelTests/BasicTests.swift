@@ -2,7 +2,7 @@
 //  BasicTests.swift
 //  BasicTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class BasicTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Basic {
+	func instantiateFrom(# json: FHIRJSON) -> Basic {
 		let instance = Basic(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class BasicTests: FHIRModelTestCase
 		testBasic1_impl(json: instance.asJSON())
 	}
 	
-	func testBasic1_impl(json: JSONDictionary? = nil) -> Basic {
+	func testBasic1_impl(json: FHIRJSON? = nil) -> Basic {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "basic-example-narrative.json")
 		
 		XCTAssertEqual(inst.code!.text!, "Example Narrative Tester")
@@ -42,7 +42,7 @@ class BasicTests: FHIRModelTestCase
 		testBasic2_impl(json: instance.asJSON())
 	}
 	
-	func testBasic2_impl(json: JSONDictionary? = nil) -> Basic {
+	func testBasic2_impl(json: FHIRJSON? = nil) -> Basic {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "basic-example.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "REFERRAL")
@@ -76,7 +76,7 @@ class BasicTests: FHIRModelTestCase
 		testBasic3_impl(json: instance.asJSON())
 	}
 	
-	func testBasic3_impl(json: JSONDictionary? = nil) -> Basic {
+	func testBasic3_impl(json: FHIRJSON? = nil) -> Basic {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "basic-example2.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "UMLCLASSMODEL")

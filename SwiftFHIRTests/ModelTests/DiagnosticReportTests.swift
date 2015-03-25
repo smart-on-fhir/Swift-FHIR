@@ -2,7 +2,7 @@
 //  DiagnosticReportTests.swift
 //  DiagnosticReportTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> DiagnosticReport {
+	func instantiateFrom(# json: FHIRJSON) -> DiagnosticReport {
 		let instance = DiagnosticReport(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		testDiagnosticReport1_impl(json: instance.asJSON())
 	}
 	
-	func testDiagnosticReport1_impl(json: JSONDictionary? = nil) -> DiagnosticReport {
+	func testDiagnosticReport1_impl(json: FHIRJSON? = nil) -> DiagnosticReport {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "diagnosticreport-example-dxa.json")
 		
 		XCTAssertEqual(inst.codedDiagnosis![0].coding![0].code!, "391040000")
@@ -54,7 +54,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		testDiagnosticReport2_impl(json: instance.asJSON())
 	}
 	
-	func testDiagnosticReport2_impl(json: JSONDictionary? = nil) -> DiagnosticReport {
+	func testDiagnosticReport2_impl(json: FHIRJSON? = nil) -> DiagnosticReport {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "diagnosticreport-example-f001-bloodexam.json")
 		
 		XCTAssertEqual(inst.conclusion!, "Core lab")
@@ -93,7 +93,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		testDiagnosticReport3_impl(json: instance.asJSON())
 	}
 	
-	func testDiagnosticReport3_impl(json: JSONDictionary? = nil) -> DiagnosticReport {
+	func testDiagnosticReport3_impl(json: FHIRJSON? = nil) -> DiagnosticReport {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "diagnosticreport-example-f201-brainct.json")
 		
 		XCTAssertEqual(inst.codedDiagnosis![0].coding![0].code!, "188340000")
@@ -127,7 +127,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		testDiagnosticReport4_impl(json: instance.asJSON())
 	}
 	
-	func testDiagnosticReport4_impl(json: JSONDictionary? = nil) -> DiagnosticReport {
+	func testDiagnosticReport4_impl(json: FHIRJSON? = nil) -> DiagnosticReport {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "diagnosticreport-example-f202-bloodculture.json")
 		
 		XCTAssertEqual(inst.codedDiagnosis![0].coding![0].code!, "428763004")
@@ -163,7 +163,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		testDiagnosticReport5_impl(json: instance.asJSON())
 	}
 	
-	func testDiagnosticReport5_impl(json: JSONDictionary? = nil) -> DiagnosticReport {
+	func testDiagnosticReport5_impl(json: FHIRJSON? = nil) -> DiagnosticReport {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "diagnosticreport-example-lipids.json")
 		
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2011-03-04T08:30:00+11:00")
@@ -195,7 +195,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		testDiagnosticReport6_impl(json: instance.asJSON())
 	}
 	
-	func testDiagnosticReport6_impl(json: JSONDictionary? = nil) -> DiagnosticReport {
+	func testDiagnosticReport6_impl(json: FHIRJSON? = nil) -> DiagnosticReport {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "diagnosticreport-example.json")
 		
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2011-03-04T08:30:00+11:00")
@@ -238,7 +238,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		testDiagnosticReport7_impl(json: instance.asJSON())
 	}
 	
-	func testDiagnosticReport7_impl(json: JSONDictionary? = nil) -> DiagnosticReport {
+	func testDiagnosticReport7_impl(json: FHIRJSON? = nil) -> DiagnosticReport {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "diagnosticreport-qicore-example.json")
 		
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2011-03-04T08:30:00+11:00")
@@ -283,7 +283,7 @@ class DiagnosticReportTests: FHIRModelTestCase
 		testDiagnosticReport8_impl(json: instance.asJSON())
 	}
 	
-	func testDiagnosticReport8_impl(json: JSONDictionary? = nil) -> DiagnosticReport {
+	func testDiagnosticReport8_impl(json: FHIRJSON? = nil) -> DiagnosticReport {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "dr-uslab-example1.json")
 		
 		XCTAssertEqual(inst.codedDiagnosis![0].coding![0].code!, "407152001")

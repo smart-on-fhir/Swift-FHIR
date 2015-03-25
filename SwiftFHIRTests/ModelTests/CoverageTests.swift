@@ -2,7 +2,7 @@
 //  CoverageTests.swift
 //  CoverageTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class CoverageTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Coverage {
+	func instantiateFrom(# json: FHIRJSON) -> Coverage {
 		let instance = Coverage(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class CoverageTests: FHIRModelTestCase
 		testCoverage1_impl(json: instance.asJSON())
 	}
 	
-	func testCoverage1_impl(json: JSONDictionary? = nil) -> Coverage {
+	func testCoverage1_impl(json: FHIRJSON? = nil) -> Coverage {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "coverage-example-2.json")
 		
 		XCTAssertEqual(inst.dependent!, 1)
@@ -54,7 +54,7 @@ class CoverageTests: FHIRModelTestCase
 		testCoverage2_impl(json: instance.asJSON())
 	}
 	
-	func testCoverage2_impl(json: JSONDictionary? = nil) -> Coverage {
+	func testCoverage2_impl(json: FHIRJSON? = nil) -> Coverage {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "coverage-example.json")
 		
 		XCTAssertEqual(inst.dependent!, 0)

@@ -2,7 +2,7 @@
 //  Group.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Group) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Group) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -56,22 +56,22 @@ public class Group: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["actual"] as? Bool {
 				self.actual = val
 			}
-			if let val = js["characteristic"] as? [JSONDictionary] {
+			if let val = js["characteristic"] as? [FHIRJSON] {
 				self.characteristic = GroupCharacteristic.from(val, owner: self) as? [GroupCharacteristic]
 			}
-			if let val = js["code"] as? JSONDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? JSONDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["member"] as? [JSONDictionary] {
+			if let val = js["member"] as? [FHIRJSON] {
 				self.member = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["name"] as? String {
@@ -86,7 +86,7 @@ public class Group: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let actual = self.actual {
@@ -170,10 +170,10 @@ public class GroupCharacteristic: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? JSONDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["exclude"] as? Bool {
@@ -182,19 +182,19 @@ public class GroupCharacteristic: FHIRElement
 			if let val = js["valueBoolean"] as? Bool {
 				self.valueBoolean = val
 			}
-			if let val = js["valueCodeableConcept"] as? JSONDictionary {
+			if let val = js["valueCodeableConcept"] as? FHIRJSON {
 				self.valueCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["valueQuantity"] as? JSONDictionary {
+			if let val = js["valueQuantity"] as? FHIRJSON {
 				self.valueQuantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["valueRange"] as? JSONDictionary {
+			if let val = js["valueRange"] as? FHIRJSON {
 				self.valueRange = Range(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {

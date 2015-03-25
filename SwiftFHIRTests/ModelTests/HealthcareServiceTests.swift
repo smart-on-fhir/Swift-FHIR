@@ -2,7 +2,7 @@
 //  HealthcareServiceTests.swift
 //  HealthcareServiceTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class HealthcareServiceTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> HealthcareService {
+	func instantiateFrom(# json: FHIRJSON) -> HealthcareService {
 		let instance = HealthcareService(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class HealthcareServiceTests: FHIRModelTestCase
 		testHealthcareService1_impl(json: instance.asJSON())
 	}
 	
-	func testHealthcareService1_impl(json: JSONDictionary? = nil) -> HealthcareService {
+	func testHealthcareService1_impl(json: FHIRJSON? = nil) -> HealthcareService {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "healthcareservice-example.json")
 		
 		XCTAssertEqual(inst.comment!, "Assessments should be performed before requesting appointments in this slot.")

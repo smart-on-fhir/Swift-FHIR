@@ -2,7 +2,7 @@
 //  GoalTests.swift
 //  GoalTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class GoalTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Goal {
+	func instantiateFrom(# json: FHIRJSON) -> Goal {
 		let instance = Goal(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class GoalTests: FHIRModelTestCase
 		testGoal1_impl(json: instance.asJSON())
 	}
 	
-	func testGoal1_impl(json: JSONDictionary? = nil) -> Goal {
+	func testGoal1_impl(json: FHIRJSON? = nil) -> Goal {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "goal-example.json")
 		
 		XCTAssertEqual(inst.concern![0].display!, "obesity")
@@ -61,7 +61,7 @@ class GoalTests: FHIRModelTestCase
 		testGoal2_impl(json: instance.asJSON())
 	}
 	
-	func testGoal2_impl(json: JSONDictionary? = nil) -> Goal {
+	func testGoal2_impl(json: FHIRJSON? = nil) -> Goal {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "goal-qicore-example.json")
 		
 		XCTAssertEqual(inst.concern![0].display!, "obesity")

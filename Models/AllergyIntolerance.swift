@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -48,7 +48,10 @@ public class AllergyIntolerance: DomainResource
 	/// Who recorded the sensitivity
 	public var recorder: Reference?
 	
-	/// unconfirmed | confirmed | resolved | refuted
+	/// Source of the information about the allergy
+	public var reporter: Reference?
+	
+	/// unconfirmed | confirmed | resolved | refuted | entered-in-error
 	public var status: String?
 	
 	/// Substance, (or class) considered to be responsible for risk
@@ -67,7 +70,7 @@ public class AllergyIntolerance: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["category"] as? String {
@@ -79,28 +82,31 @@ public class AllergyIntolerance: DomainResource
 			if let val = js["criticality"] as? String {
 				self.criticality = val
 			}
-			if let val = js["event"] as? [JSONDictionary] {
+			if let val = js["event"] as? [FHIRJSON] {
 				self.event = AllergyIntoleranceEvent.from(val, owner: self) as? [AllergyIntoleranceEvent]
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["lastOccurence"] as? String {
 				self.lastOccurence = DateTime(string: val)
 			}
-			if let val = js["patient"] as? JSONDictionary {
+			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["recordedDate"] as? String {
 				self.recordedDate = DateTime(string: val)
 			}
-			if let val = js["recorder"] as? JSONDictionary {
+			if let val = js["recorder"] as? FHIRJSON {
 				self.recorder = Reference(json: val, owner: self)
+			}
+			if let val = js["reporter"] as? FHIRJSON {
+				self.reporter = Reference(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["substance"] as? JSONDictionary {
+			if let val = js["substance"] as? FHIRJSON {
 				self.substance = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["type"] as? String {
@@ -109,7 +115,7 @@ public class AllergyIntolerance: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let category = self.category {
@@ -138,6 +144,9 @@ public class AllergyIntolerance: DomainResource
 		}
 		if let recorder = self.recorder {
 			json["recorder"] = recorder.asJSON()
+		}
+		if let reporter = self.reporter {
+			json["reporter"] = reporter.asJSON()
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
@@ -199,7 +208,7 @@ public class AllergyIntoleranceEvent: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["certainty"] as? String {
@@ -211,13 +220,13 @@ public class AllergyIntoleranceEvent: FHIRElement
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["duration"] as? JSONDictionary {
+			if let val = js["duration"] as? FHIRJSON {
 				self.duration = Duration(json: val, owner: self)
 			}
-			if let val = js["exposureRoute"] as? JSONDictionary {
+			if let val = js["exposureRoute"] as? FHIRJSON {
 				self.exposureRoute = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["manifestation"] as? [JSONDictionary] {
+			if let val = js["manifestation"] as? [FHIRJSON] {
 				self.manifestation = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["onset"] as? String {
@@ -226,13 +235,13 @@ public class AllergyIntoleranceEvent: FHIRElement
 			if let val = js["severity"] as? String {
 				self.severity = val
 			}
-			if let val = js["substance"] as? JSONDictionary {
+			if let val = js["substance"] as? FHIRJSON {
 				self.substance = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let certainty = self.certainty {

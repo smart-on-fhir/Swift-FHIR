@@ -2,7 +2,7 @@
 //  MedicationAdministrationTests.swift
 //  MedicationAdministrationTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class MedicationAdministrationTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> MedicationAdministration {
+	func instantiateFrom(# json: FHIRJSON) -> MedicationAdministration {
 		let instance = MedicationAdministration(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class MedicationAdministrationTests: FHIRModelTestCase
 		testMedicationAdministration1_impl(json: instance.asJSON())
 	}
 	
-	func testMedicationAdministration1_impl(json: JSONDictionary? = nil) -> MedicationAdministration {
+	func testMedicationAdministration1_impl(json: FHIRJSON? = nil) -> MedicationAdministration {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationadministration-example.json")
 		
 		XCTAssertEqual(inst.dosage!.quantity!.code!, "ml")
@@ -55,7 +55,7 @@ class MedicationAdministrationTests: FHIRModelTestCase
 		testMedicationAdministration2_impl(json: instance.asJSON())
 	}
 	
-	func testMedicationAdministration2_impl(json: JSONDictionary? = nil) -> MedicationAdministration {
+	func testMedicationAdministration2_impl(json: FHIRJSON? = nil) -> MedicationAdministration {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationadministration-qicore-example.json")
 		
 		XCTAssertEqual(inst.dosage!.quantity!.code!, "ml")

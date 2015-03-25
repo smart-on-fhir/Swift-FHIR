@@ -2,7 +2,7 @@
 //  DiagnosticOrder.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -60,46 +60,46 @@ public class DiagnosticOrder: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["clinicalNotes"] as? String {
 				self.clinicalNotes = val
 			}
-			if let val = js["encounter"] as? JSONDictionary {
+			if let val = js["encounter"] as? FHIRJSON {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["event"] as? [JSONDictionary] {
+			if let val = js["event"] as? [FHIRJSON] {
 				self.event = DiagnosticOrderEvent.from(val, owner: self) as? [DiagnosticOrderEvent]
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["item"] as? [JSONDictionary] {
+			if let val = js["item"] as? [FHIRJSON] {
 				self.item = DiagnosticOrderItem.from(val, owner: self) as? [DiagnosticOrderItem]
 			}
-			if let val = js["orderer"] as? JSONDictionary {
+			if let val = js["orderer"] as? FHIRJSON {
 				self.orderer = Reference(json: val, owner: self)
 			}
 			if let val = js["priority"] as? String {
 				self.priority = val
 			}
-			if let val = js["specimen"] as? [JSONDictionary] {
+			if let val = js["specimen"] as? [FHIRJSON] {
 				self.specimen = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? JSONDictionary {
+			if let val = js["subject"] as? FHIRJSON {
 				self.subject = Reference(json: val, owner: self)
 			}
-			if let val = js["supportingInformation"] as? [JSONDictionary] {
+			if let val = js["supportingInformation"] as? [FHIRJSON] {
 				self.supportingInformation = Reference.from(val, owner: self) as? [Reference]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let clinicalNotes = self.clinicalNotes {
@@ -175,16 +175,16 @@ public class DiagnosticOrderEvent: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["actor"] as? JSONDictionary {
+			if let val = js["actor"] as? FHIRJSON {
 				self.actor = Reference(json: val, owner: self)
 			}
 			if let val = js["dateTime"] as? String {
 				self.dateTime = DateTime(string: val)
 			}
-			if let val = js["description"] as? JSONDictionary {
+			if let val = js["description"] as? FHIRJSON {
 				self.description_fhir = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
@@ -193,7 +193,7 @@ public class DiagnosticOrderEvent: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let actor = self.actor {
@@ -251,22 +251,22 @@ public class DiagnosticOrderItem: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["bodySiteCodeableConcept"] as? JSONDictionary {
+			if let val = js["bodySiteCodeableConcept"] as? FHIRJSON {
 				self.bodySiteCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["bodySiteReference"] as? JSONDictionary {
+			if let val = js["bodySiteReference"] as? FHIRJSON {
 				self.bodySiteReference = Reference(json: val, owner: self)
 			}
-			if let val = js["code"] as? JSONDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["event"] as? [JSONDictionary] {
+			if let val = js["event"] as? [FHIRJSON] {
 				self.event = DiagnosticOrderEvent.from(val, owner: self) as? [DiagnosticOrderEvent]
 			}
-			if let val = js["specimen"] as? [JSONDictionary] {
+			if let val = js["specimen"] as? [FHIRJSON] {
 				self.specimen = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["status"] as? String {
@@ -275,7 +275,7 @@ public class DiagnosticOrderItem: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let bodySiteCodeableConcept = self.bodySiteCodeableConcept {

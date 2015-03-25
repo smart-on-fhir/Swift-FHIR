@@ -2,7 +2,7 @@
 //  Contraindication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Contraindication) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Contraindication) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -51,13 +51,13 @@ public class Contraindication: DomainResource
 	/// high | medium | low
 	public var severity: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["author"] as? JSONDictionary {
+			if let val = js["author"] as? FHIRJSON {
 				self.author = Reference(json: val, owner: self)
 			}
-			if let val = js["category"] as? JSONDictionary {
+			if let val = js["category"] as? FHIRJSON {
 				self.category = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
@@ -66,16 +66,16 @@ public class Contraindication: DomainResource
 			if let val = js["detail"] as? String {
 				self.detail = val
 			}
-			if let val = js["identifier"] as? JSONDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["implicated"] as? [JSONDictionary] {
+			if let val = js["implicated"] as? [FHIRJSON] {
 				self.implicated = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["mitigation"] as? [JSONDictionary] {
+			if let val = js["mitigation"] as? [FHIRJSON] {
 				self.mitigation = ContraindicationMitigation.from(val, owner: self) as? [ContraindicationMitigation]
 			}
-			if let val = js["patient"] as? JSONDictionary {
+			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["reference"] as? String {
@@ -87,7 +87,7 @@ public class Contraindication: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let author = self.author {
@@ -155,13 +155,13 @@ public class ContraindicationMitigation: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["action"] as? JSONDictionary {
+			if let val = js["action"] as? FHIRJSON {
 				self.action = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["author"] as? JSONDictionary {
+			if let val = js["author"] as? FHIRJSON {
 				self.author = Reference(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
@@ -170,7 +170,7 @@ public class ContraindicationMitigation: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let action = self.action {

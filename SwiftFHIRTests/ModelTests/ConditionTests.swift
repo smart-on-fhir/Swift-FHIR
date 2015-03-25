@@ -2,7 +2,7 @@
 //  ConditionTests.swift
 //  ConditionTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ConditionTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Condition {
+	func instantiateFrom(# json: FHIRJSON) -> Condition {
 		let instance = Condition(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,20 +27,20 @@ class ConditionTests: FHIRModelTestCase
 		testCondition1_impl(json: instance.asJSON())
 	}
 	
-	func testCondition1_impl(json: JSONDictionary? = nil) -> Condition {
+	func testCondition1_impl(json: FHIRJSON? = nil) -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "cond-uslab-example1.json")
 		
 		XCTAssertEqual(inst.category!.coding![0].code!, "diagnosis")
 		XCTAssertEqual(inst.category!.coding![0].display!, "Diagnosis")
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/condition-category")
+		XCTAssertEqual(inst.clinicalStatus!, "provisional")
 		XCTAssertEqual(inst.code!.coding![0].code!, "39065001")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Increased lead level")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.code!.text!, "Increased lead level")
 		XCTAssertEqual(inst.id!, "uslab-example1")
 		XCTAssertEqual(inst.notes!, "Elevated lead levels on screening")
-		XCTAssertEqual(inst.status!, "provisional")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/uslab-example1")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/uslab-example1")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
@@ -51,18 +51,18 @@ class ConditionTests: FHIRModelTestCase
 		testCondition2_impl(json: instance.asJSON())
 	}
 	
-	func testCondition2_impl(json: JSONDictionary? = nil) -> Condition {
+	func testCondition2_impl(json: FHIRJSON? = nil) -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "cond-uslab-example2.json")
 		
 		XCTAssertEqual(inst.category!.coding![0].code!, "diagnosis")
 		XCTAssertEqual(inst.category!.coding![0].display!, "Diagnosis")
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/condition-category")
+		XCTAssertEqual(inst.clinicalStatus!, "provisional")
 		XCTAssertEqual(inst.code!.coding![0].code!, "R78.71")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Abnormal lead level in blood")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://www.cms.gov/Medicare/Coding/ICD10/index.html")
 		XCTAssertEqual(inst.id!, "uslab-example2")
-		XCTAssertEqual(inst.status!, "provisional")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/uslab-example1")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/uslab-example1")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
@@ -73,7 +73,7 @@ class ConditionTests: FHIRModelTestCase
 		testCondition3_impl(json: instance.asJSON())
 	}
 	
-	func testCondition3_impl(json: JSONDictionary? = nil) -> Condition {
+	func testCondition3_impl(json: FHIRJSON? = nil) -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "condition-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.asserter!.display!, "P. van de Heuvel")
@@ -81,6 +81,7 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].code!, "439401001")
 		XCTAssertEqual(inst.category!.coding![0].display!, "diagnosis")
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.clinicalStatus!, "confirmed")
 		XCTAssertEqual(inst.code!.coding![0].code!, "368009")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Heart valve disorder")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -95,12 +96,11 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.location![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.location![0].detail!, "heart structure")
 		XCTAssertEqual(inst.onsetDateTime!.description, "2011-08-05")
+		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/f001")
 		XCTAssertEqual(inst.severity!.coding![0].code!, "6736007")
 		XCTAssertEqual(inst.severity!.coding![0].display!, "Moderate")
 		XCTAssertEqual(inst.severity!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.status!, "confirmed")
-		XCTAssertEqual(inst.subject!.display!, "P. van de Heuvel")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/f001")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
@@ -111,7 +111,7 @@ class ConditionTests: FHIRModelTestCase
 		testCondition4_impl(json: instance.asJSON())
 	}
 	
-	func testCondition4_impl(json: JSONDictionary? = nil) -> Condition {
+	func testCondition4_impl(json: FHIRJSON? = nil) -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "condition-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.asserter!.display!, "P. van de Heuvel")
@@ -119,6 +119,7 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].code!, "439401001")
 		XCTAssertEqual(inst.category!.coding![0].display!, "diagnosis")
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.clinicalStatus!, "confirmed")
 		XCTAssertEqual(inst.code!.coding![0].code!, "254637007")
 		XCTAssertEqual(inst.code!.coding![0].display!, "NSCLC - Non-small cell lung cancer")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -133,15 +134,14 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.location![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.location![0].detail!, "lung")
 		XCTAssertEqual(inst.onsetDateTime!.description, "2011-05-05")
+		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/f001")
 		XCTAssertEqual(inst.severity!.coding![0].code!, "24484000")
 		XCTAssertEqual(inst.severity!.coding![0].display!, "Severe")
 		XCTAssertEqual(inst.severity!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.stage!.summary!.coding![0].code!, "258219007")
 		XCTAssertEqual(inst.stage!.summary!.coding![0].display!, "stage II")
 		XCTAssertEqual(inst.stage!.summary!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.status!, "confirmed")
-		XCTAssertEqual(inst.subject!.display!, "P. van de Heuvel")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/f001")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
@@ -152,7 +152,7 @@ class ConditionTests: FHIRModelTestCase
 		testCondition5_impl(json: instance.asJSON())
 	}
 	
-	func testCondition5_impl(json: JSONDictionary? = nil) -> Condition {
+	func testCondition5_impl(json: FHIRJSON? = nil) -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "condition-example-f003-abscess.json")
 		
 		XCTAssertEqual(inst.asserter!.display!, "P. van de Heuvel")
@@ -160,6 +160,7 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].code!, "439401001")
 		XCTAssertEqual(inst.category!.coding![0].display!, "diagnosis")
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.clinicalStatus!, "confirmed")
 		XCTAssertEqual(inst.code!.coding![0].code!, "18099001")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Retropharyngeal abscess")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -173,12 +174,11 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.location![0].code!.coding![0].display!, "Entire retropharyngeal area")
 		XCTAssertEqual(inst.location![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.onsetDateTime!.description, "2012-02-27")
+		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/f001")
 		XCTAssertEqual(inst.severity!.coding![0].code!, "371923003")
 		XCTAssertEqual(inst.severity!.coding![0].display!, "Mild to moderate")
 		XCTAssertEqual(inst.severity!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.status!, "confirmed")
-		XCTAssertEqual(inst.subject!.display!, "P. van de Heuvel")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/f001")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
@@ -189,7 +189,7 @@ class ConditionTests: FHIRModelTestCase
 		testCondition6_impl(json: instance.asJSON())
 	}
 	
-	func testCondition6_impl(json: JSONDictionary? = nil) -> Condition {
+	func testCondition6_impl(json: FHIRJSON? = nil) -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "condition-example-f201-fever.json")
 		
 		XCTAssertEqual(inst.asserter!.reference!, "Practitioner/f201")
@@ -198,6 +198,7 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.category!.coding![1].code!, "condition")
 		XCTAssertEqual(inst.category!.coding![1].system!.absoluteString!, "http://hl7.org/fhir/condition-category")
+		XCTAssertEqual(inst.clinicalStatus!, "confirmed")
 		XCTAssertEqual(inst.code!.coding![0].code!, "386661006")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Fever")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -217,12 +218,11 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.location![0].code!.coding![0].display!, "Entire body as a whole")
 		XCTAssertEqual(inst.location![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.onsetDateTime!.description, "2013-04-02")
+		XCTAssertEqual(inst.patient!.display!, "Roel")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/f201")
 		XCTAssertEqual(inst.severity!.coding![0].code!, "255604002")
 		XCTAssertEqual(inst.severity!.coding![0].display!, "Mild")
 		XCTAssertEqual(inst.severity!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.status!, "confirmed")
-		XCTAssertEqual(inst.subject!.display!, "Roel")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
@@ -233,14 +233,12 @@ class ConditionTests: FHIRModelTestCase
 		testCondition7_impl(json: instance.asJSON())
 	}
 	
-	func testCondition7_impl(json: JSONDictionary? = nil) -> Condition {
+	func testCondition7_impl(json: FHIRJSON? = nil) -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "condition-example-f202-malignancy.json")
 		
 		XCTAssertEqual(inst.category!.coding![0].code!, "diagnose")
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/condition-category")
-		XCTAssertEqual(inst.certainty!.coding![0].code!, "17162000")
-		XCTAssertEqual(inst.certainty!.coding![0].display!, "Certain")
-		XCTAssertEqual(inst.certainty!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.clinicalStatus!, "confirmed")
 		XCTAssertEqual(inst.code!.coding![0].code!, "363346000")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Malignant neoplastic disease")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -255,12 +253,11 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.onsetAge!.system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.onsetAge!.units!, "years")
 		XCTAssertEqual(inst.onsetAge!.value!, NSDecimalNumber(string: "52"))
+		XCTAssertEqual(inst.patient!.display!, "Roel")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/f201")
 		XCTAssertEqual(inst.severity!.coding![0].code!, "24484000")
 		XCTAssertEqual(inst.severity!.coding![0].display!, "Severe")
 		XCTAssertEqual(inst.severity!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.status!, "confirmed")
-		XCTAssertEqual(inst.subject!.display!, "Roel")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
@@ -271,7 +268,7 @@ class ConditionTests: FHIRModelTestCase
 		testCondition8_impl(json: instance.asJSON())
 	}
 	
-	func testCondition8_impl(json: JSONDictionary? = nil) -> Condition {
+	func testCondition8_impl(json: FHIRJSON? = nil) -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "condition-example-f203-sepsis.json")
 		
 		XCTAssertEqual(inst.asserter!.reference!, "Practitioner/f201")
@@ -280,9 +277,7 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.category!.coding![1].code!, "finding")
 		XCTAssertEqual(inst.category!.coding![1].system!.absoluteString!, "http://hl7.org/fhir/condition-category")
-		XCTAssertEqual(inst.certainty!.coding![0].code!, "17162000")
-		XCTAssertEqual(inst.certainty!.coding![0].display!, "Certain")
-		XCTAssertEqual(inst.certainty!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.clinicalStatus!, "confirmed")
 		XCTAssertEqual(inst.code!.coding![0].code!, "10001005")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Bacterial sepsis")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -296,12 +291,11 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.location![0].code!.coding![0].display!, "Pulmonary vascular structure")
 		XCTAssertEqual(inst.location![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.onsetDateTime!.description, "2013-03-08")
+		XCTAssertEqual(inst.patient!.display!, "Roel")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/f201")
 		XCTAssertEqual(inst.severity!.coding![0].code!, "371924009")
 		XCTAssertEqual(inst.severity!.coding![0].display!, "Moderate to severe")
 		XCTAssertEqual(inst.severity!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.status!, "confirmed")
-		XCTAssertEqual(inst.subject!.display!, "Roel")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
@@ -312,7 +306,7 @@ class ConditionTests: FHIRModelTestCase
 		testCondition9_impl(json: instance.asJSON())
 	}
 	
-	func testCondition9_impl(json: JSONDictionary? = nil) -> Condition {
+	func testCondition9_impl(json: FHIRJSON? = nil) -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "condition-example-f204-renal.json")
 		
 		XCTAssertEqual(inst.abatementDate!.description, "2013-03-20")
@@ -322,6 +316,7 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.category!.coding![1].code!, "condition")
 		XCTAssertEqual(inst.category!.coding![1].system!.absoluteString!, "http://hl7.org/fhir/condition-category")
+		XCTAssertEqual(inst.clinicalStatus!, "working")
 		XCTAssertEqual(inst.code!.coding![0].code!, "36225005")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Acute renal insufficiency specified as due to procedure")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
@@ -335,15 +330,14 @@ class ConditionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.location![0].code!.coding![0].display!, "Kidney")
 		XCTAssertEqual(inst.location![0].code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.onsetDateTime!.description, "2013-03-11")
+		XCTAssertEqual(inst.patient!.display!, "Roel")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/f201")
 		XCTAssertEqual(inst.severity!.coding![0].code!, "24484000")
 		XCTAssertEqual(inst.severity!.coding![0].display!, "Severe")
 		XCTAssertEqual(inst.severity!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.stage!.summary!.coding![0].code!, "14803004")
 		XCTAssertEqual(inst.stage!.summary!.coding![0].display!, "Temporary")
 		XCTAssertEqual(inst.stage!.summary!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.status!, "working")
-		XCTAssertEqual(inst.subject!.display!, "Roel")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
@@ -354,18 +348,18 @@ class ConditionTests: FHIRModelTestCase
 		testCondition10_impl(json: instance.asJSON())
 	}
 	
-	func testCondition10_impl(json: JSONDictionary? = nil) -> Condition {
+	func testCondition10_impl(json: FHIRJSON? = nil) -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "condition-example-f205-infection.json")
 		
 		XCTAssertEqual(inst.asserter!.reference!, "Practitioner/f201")
+		XCTAssertEqual(inst.clinicalStatus!, "working")
 		XCTAssertEqual(inst.code!.coding![0].code!, "87628006")
 		XCTAssertEqual(inst.code!.coding![0].display!, "Bacterial infectious disease")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.dateAsserted!.description, "2013-04-04")
 		XCTAssertEqual(inst.id!, "f205")
-		XCTAssertEqual(inst.status!, "working")
-		XCTAssertEqual(inst.subject!.display!, "Roel")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
+		XCTAssertEqual(inst.patient!.display!, "Roel")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/f201")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst

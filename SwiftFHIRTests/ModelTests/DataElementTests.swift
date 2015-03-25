@@ -2,7 +2,7 @@
 //  DataElementTests.swift
 //  DataElementTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class DataElementTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> DataElement {
+	func instantiateFrom(# json: FHIRJSON) -> DataElement {
 		let instance = DataElement(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class DataElementTests: FHIRModelTestCase
 		testDataElement1_impl(json: instance.asJSON())
 	}
 	
-	func testDataElement1_impl(json: JSONDictionary? = nil) -> DataElement {
+	func testDataElement1_impl(json: FHIRJSON? = nil) -> DataElement {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "dataelement-example.json")
 		
 		XCTAssertEqual(inst.element![0].binding!.name!, "Gender")
@@ -81,7 +81,7 @@ class DataElementTests: FHIRModelTestCase
 		testDataElement2_impl(json: instance.asJSON())
 	}
 	
-	func testDataElement2_impl(json: JSONDictionary? = nil) -> DataElement {
+	func testDataElement2_impl(json: FHIRJSON? = nil) -> DataElement {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "dataelement-labtestmaster-example.json")
 		
 		XCTAssertEqual(inst.element![0].alias![0], "Protime, PT")
@@ -92,7 +92,7 @@ class DataElementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.element![0].extension_fhir![0].valueCodeableConcept!.coding![0].code!, "s")
 		XCTAssertEqual(inst.element![0].extension_fhir![0].valueCodeableConcept!.coding![0].display!, "second")
 		XCTAssertTrue(inst.element![0].extension_fhir![0].valueCodeableConcept!.coding![0].primary!)
-		XCTAssertEqual(inst.element![0].extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http:/unitsofmeasure.org")
+		XCTAssertEqual(inst.element![0].extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.element![0].extension_fhir![0].valueCodeableConcept!.coding![0].version!, "1.9")
 		XCTAssertEqual(inst.element![0].extension_fhir![0].valueCodeableConcept!.text!, "second")
 		XCTAssertEqual(inst.element![0].mapping![0].identity!, "loinc")
@@ -104,7 +104,7 @@ class DataElementTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier!.assigner!.display!, "Century Hospital Laboratory")
 		XCTAssertEqual(inst.identifier!.label!, "Prothrombin Time, PT")
 		XCTAssertEqual(inst.identifier!.period!.start!.description, "2011-05-19")
-		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "htpp://www.CenturyHospital/Laboratory/DirectoryofServices")
+		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://www.CenturyHospital/Laboratory/DirectoryofServices")
 		XCTAssertEqual(inst.identifier!.value!, "11")
 		XCTAssertEqual(inst.mapping![0].comments!, "Version 2.48 or later")
 		XCTAssertEqual(inst.mapping![0].identity!, "loinc")
@@ -122,7 +122,7 @@ class DataElementTests: FHIRModelTestCase
 		testDataElement3_impl(json: instance.asJSON())
 	}
 	
-	func testDataElement3_impl(json: JSONDictionary? = nil) -> DataElement {
+	func testDataElement3_impl(json: FHIRJSON? = nil) -> DataElement {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "dataelement-sdc-profile-example.json")
 		
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "email")

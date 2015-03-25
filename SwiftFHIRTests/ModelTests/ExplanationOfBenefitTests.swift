@@ -2,7 +2,7 @@
 //  ExplanationOfBenefitTests.swift
 //  ExplanationOfBenefitTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ExplanationOfBenefitTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> ExplanationOfBenefit {
+	func instantiateFrom(# json: FHIRJSON) -> ExplanationOfBenefit {
 		let instance = ExplanationOfBenefit(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ExplanationOfBenefitTests: FHIRModelTestCase
 		testExplanationOfBenefit1_impl(json: instance.asJSON())
 	}
 	
-	func testExplanationOfBenefit1_impl(json: JSONDictionary? = nil) -> ExplanationOfBenefit {
+	func testExplanationOfBenefit1_impl(json: FHIRJSON? = nil) -> ExplanationOfBenefit {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "explanationofbenefit-example.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")

@@ -2,7 +2,7 @@
 //  BundleTests.swift
 //  BundleTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class BundleTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Bundle {
+	func instantiateFrom(# json: FHIRJSON) -> Bundle {
 		let instance = Bundle(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class BundleTests: FHIRModelTestCase
 		testBundle1_impl(json: instance.asJSON())
 	}
 	
-	func testBundle1_impl(json: JSONDictionary? = nil) -> Bundle {
+	func testBundle1_impl(json: FHIRJSON? = nil) -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "bundle-example.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString!, "http://example.com/base")
@@ -53,7 +53,7 @@ class BundleTests: FHIRModelTestCase
 		testBundle2_impl(json: instance.asJSON())
 	}
 	
-	func testBundle2_impl(json: JSONDictionary? = nil) -> Bundle {
+	func testBundle2_impl(json: FHIRJSON? = nil) -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "diagnosticreport-examples-lab-text.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString!, "http://hl7.org/fhir")
@@ -89,7 +89,7 @@ class BundleTests: FHIRModelTestCase
 		testBundle3_impl(json: instance.asJSON())
 	}
 	
-	func testBundle3_impl(json: JSONDictionary? = nil) -> Bundle {
+	func testBundle3_impl(json: FHIRJSON? = nil) -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "diagnosticreport-examples.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString!, "http://hl7.org/fhir")
@@ -125,7 +125,7 @@ class BundleTests: FHIRModelTestCase
 		testBundle4_impl(json: instance.asJSON())
 	}
 	
-	func testBundle4_impl(json: JSONDictionary? = nil) -> Bundle {
+	func testBundle4_impl(json: FHIRJSON? = nil) -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "document-example-dischargesummary.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString!, "http://fhir.healthintersections.com.au/open")
@@ -169,7 +169,7 @@ class BundleTests: FHIRModelTestCase
 		testBundle5_impl(json: instance.asJSON())
 	}
 	
-	func testBundle5_impl(json: JSONDictionary? = nil) -> Bundle {
+	func testBundle5_impl(json: FHIRJSON? = nil) -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "observation-example-bloodpressure.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString!, "http://hl7.org/fhir")
@@ -191,7 +191,7 @@ class BundleTests: FHIRModelTestCase
 		testBundle6_impl(json: instance.asJSON())
 	}
 	
-	func testBundle6_impl(json: JSONDictionary? = nil) -> Bundle {
+	func testBundle6_impl(json: FHIRJSON? = nil) -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "patient-examples-cypress-template.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString!, "http://hl7.org/fhir")
@@ -227,7 +227,7 @@ class BundleTests: FHIRModelTestCase
 		testBundle7_impl(json: instance.asJSON())
 	}
 	
-	func testBundle7_impl(json: JSONDictionary? = nil) -> Bundle {
+	func testBundle7_impl(json: FHIRJSON? = nil) -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "patient-examples.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString!, "http://hl7.org/fhir")
@@ -263,7 +263,7 @@ class BundleTests: FHIRModelTestCase
 		testBundle8_impl(json: instance.asJSON())
 	}
 	
-	func testBundle8_impl(json: JSONDictionary? = nil) -> Bundle {
+	func testBundle8_impl(json: FHIRJSON? = nil) -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "practitioner-examples.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString!, "http://hl7.org/fhir")
@@ -299,7 +299,7 @@ class BundleTests: FHIRModelTestCase
 		testBundle9_impl(json: instance.asJSON())
 	}
 	
-	func testBundle9_impl(json: JSONDictionary? = nil) -> Bundle {
+	func testBundle9_impl(json: FHIRJSON? = nil) -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "questionnaire-sdc-profile-example.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString!, "http://AHRQ.org/form")
@@ -338,7 +338,7 @@ class BundleTests: FHIRModelTestCase
 		testBundle10_impl(json: instance.asJSON())
 	}
 	
-	func testBundle10_impl(json: JSONDictionary? = nil) -> Bundle {
+	func testBundle10_impl(json: FHIRJSON? = nil) -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "xds-example.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString!, "cid:123@healthintersections.com.au")

@@ -2,7 +2,7 @@
 //  ClaimTests.swift
 //  ClaimTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ClaimTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Claim {
+	func instantiateFrom(# json: FHIRJSON) -> Claim {
 		let instance = Claim(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ClaimTests: FHIRModelTestCase
 		testClaim1_impl(json: instance.asJSON())
 	}
 	
-	func testClaim1_impl(json: JSONDictionary? = nil) -> Claim {
+	func testClaim1_impl(json: FHIRJSON? = nil) -> Claim {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example-institutional.json")
 		
 		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "Coverage/9876B1")
@@ -70,7 +70,7 @@ class ClaimTests: FHIRModelTestCase
 		testClaim2_impl(json: instance.asJSON())
 	}
 	
-	func testClaim2_impl(json: JSONDictionary? = nil) -> Claim {
+	func testClaim2_impl(json: FHIRJSON? = nil) -> Claim {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example-oral-average.json")
 		
 		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "Coverage/9876B1")
@@ -163,7 +163,7 @@ class ClaimTests: FHIRModelTestCase
 		testClaim3_impl(json: instance.asJSON())
 	}
 	
-	func testClaim3_impl(json: JSONDictionary? = nil) -> Claim {
+	func testClaim3_impl(json: FHIRJSON? = nil) -> Claim {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example-oral-contained.json")
 		
 		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "#coverage-1")
@@ -205,7 +205,7 @@ class ClaimTests: FHIRModelTestCase
 		testClaim4_impl(json: instance.asJSON())
 	}
 	
-	func testClaim4_impl(json: JSONDictionary? = nil) -> Claim {
+	func testClaim4_impl(json: FHIRJSON? = nil) -> Claim {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example-oral-orthoplan.json")
 		
 		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "Coverage/9876B1")
@@ -352,7 +352,7 @@ class ClaimTests: FHIRModelTestCase
 		testClaim5_impl(json: instance.asJSON())
 	}
 	
-	func testClaim5_impl(json: JSONDictionary? = nil) -> Claim {
+	func testClaim5_impl(json: FHIRJSON? = nil) -> Claim {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example-pharmacy.json")
 		
 		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "Coverage/9876B1")
@@ -395,7 +395,7 @@ class ClaimTests: FHIRModelTestCase
 		testClaim6_impl(json: instance.asJSON())
 	}
 	
-	func testClaim6_impl(json: JSONDictionary? = nil) -> Claim {
+	func testClaim6_impl(json: FHIRJSON? = nil) -> Claim {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example-professional.json")
 		
 		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "Coverage/9876B1")
@@ -438,7 +438,7 @@ class ClaimTests: FHIRModelTestCase
 		testClaim7_impl(json: instance.asJSON())
 	}
 	
-	func testClaim7_impl(json: JSONDictionary? = nil) -> Claim {
+	func testClaim7_impl(json: FHIRJSON? = nil) -> Claim {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example-vision-glasses.json")
 		
 		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "Coverage/9876B1")
@@ -514,7 +514,7 @@ class ClaimTests: FHIRModelTestCase
 		testClaim8_impl(json: instance.asJSON())
 	}
 	
-	func testClaim8_impl(json: JSONDictionary? = nil) -> Claim {
+	func testClaim8_impl(json: FHIRJSON? = nil) -> Claim {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example-vision.json")
 		
 		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "Coverage/9876B1")
@@ -557,7 +557,7 @@ class ClaimTests: FHIRModelTestCase
 		testClaim9_impl(json: instance.asJSON())
 	}
 	
-	func testClaim9_impl(json: JSONDictionary? = nil) -> Claim {
+	func testClaim9_impl(json: FHIRJSON? = nil) -> Claim {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "claim-example.json")
 		
 		XCTAssertEqual(inst.coverage![0].coverage!.reference!, "Coverage/9876B1")

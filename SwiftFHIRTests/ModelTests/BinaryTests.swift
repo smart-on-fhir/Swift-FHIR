@@ -2,7 +2,7 @@
 //  BinaryTests.swift
 //  BinaryTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class BinaryTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Binary {
+	func instantiateFrom(# json: FHIRJSON) -> Binary {
 		let instance = Binary(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class BinaryTests: FHIRModelTestCase
 		testBinary1_impl(json: instance.asJSON())
 	}
 	
-	func testBinary1_impl(json: JSONDictionary? = nil) -> Binary {
+	func testBinary1_impl(json: FHIRJSON? = nil) -> Binary {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "binary-example.json")
 		
 		XCTAssertEqual(inst.contentType!, "application/pdf")

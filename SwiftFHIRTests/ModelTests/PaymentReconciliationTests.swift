@@ -2,7 +2,7 @@
 //  PaymentReconciliationTests.swift
 //  PaymentReconciliationTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class PaymentReconciliationTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> PaymentReconciliation {
+	func instantiateFrom(# json: FHIRJSON) -> PaymentReconciliation {
 		let instance = PaymentReconciliation(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class PaymentReconciliationTests: FHIRModelTestCase
 		testPaymentReconciliation1_impl(json: instance.asJSON())
 	}
 	
-	func testPaymentReconciliation1_impl(json: JSONDictionary? = nil) -> PaymentReconciliation {
+	func testPaymentReconciliation1_impl(json: FHIRJSON? = nil) -> PaymentReconciliation {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "paymentreconciliation-example.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")

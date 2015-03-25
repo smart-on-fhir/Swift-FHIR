@@ -2,7 +2,7 @@
 //  ProvenanceTests.swift
 //  ProvenanceTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ProvenanceTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Provenance {
+	func instantiateFrom(# json: FHIRJSON) -> Provenance {
 		let instance = Provenance(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ProvenanceTests: FHIRModelTestCase
 		testProvenance1_impl(json: instance.asJSON())
 	}
 	
-	func testProvenance1_impl(json: JSONDictionary? = nil) -> Provenance {
+	func testProvenance1_impl(json: FHIRJSON? = nil) -> Provenance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "provenance-example.json")
 		
 		XCTAssertEqual(inst.agent![0].display!, "Grahame Grieve")

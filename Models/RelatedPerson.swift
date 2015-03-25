@@ -2,7 +2,7 @@
 //  RelatedPerson.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -55,40 +55,40 @@ public class RelatedPerson: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["address"] as? JSONDictionary {
+			if let val = js["address"] as? FHIRJSON {
 				self.address = Address(json: val, owner: self)
 			}
 			if let val = js["gender"] as? String {
 				self.gender = val
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["name"] as? JSONDictionary {
+			if let val = js["name"] as? FHIRJSON {
 				self.name = HumanName(json: val, owner: self)
 			}
-			if let val = js["patient"] as? JSONDictionary {
+			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["period"] as? JSONDictionary {
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
-			if let val = js["photo"] as? [JSONDictionary] {
+			if let val = js["photo"] as? [FHIRJSON] {
 				self.photo = Attachment.from(val, owner: self) as? [Attachment]
 			}
-			if let val = js["relationship"] as? JSONDictionary {
+			if let val = js["relationship"] as? FHIRJSON {
 				self.relationship = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["telecom"] as? [JSONDictionary] {
+			if let val = js["telecom"] as? [FHIRJSON] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let address = self.address {

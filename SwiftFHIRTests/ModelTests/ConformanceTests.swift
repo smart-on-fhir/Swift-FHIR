@@ -2,7 +2,7 @@
 //  ConformanceTests.swift
 //  ConformanceTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ConformanceTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Conformance {
+	func instantiateFrom(# json: FHIRJSON) -> Conformance {
 		let instance = Conformance(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ConformanceTests: FHIRModelTestCase
 		testConformance1_impl(json: instance.asJSON())
 	}
 	
-	func testConformance1_impl(json: JSONDictionary? = nil) -> Conformance {
+	func testConformance1_impl(json: FHIRJSON? = nil) -> Conformance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conformance-example.json")
 		
 		XCTAssertTrue(inst.acceptUnknown!)
@@ -75,7 +75,7 @@ class ConformanceTests: FHIRModelTestCase
 		testConformance2_impl(json: instance.asJSON())
 	}
 	
-	func testConformance2_impl(json: JSONDictionary? = nil) -> Conformance {
+	func testConformance2_impl(json: FHIRJSON? = nil) -> Conformance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conformance-phr-example.json")
 		
 		XCTAssertFalse(inst.acceptUnknown!)

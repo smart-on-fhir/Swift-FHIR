@@ -2,7 +2,7 @@
 //  ClinicalImpression.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -14,7 +14,9 @@ import Foundation
  *
  *  A record of a clinical assessment performed to determine what problem(s) may affect the patient and before planning
  *  the treatments or management strategies that are best to manage a patient's condition. Assessments are often 1:1
- *  with a clinical consultation / encounter,  but this varies greatly depending on the clinical workflow.
+ *  with a clinical consultation / encounter,  but this varies greatly depending on the clinical workflow. This resource
+ *  is called "ClinicalImpression" rather than "ClinicalAssessment" to avoid confusion with the recording of assessment
+ *  tools such as Apgar score.
  */
 public class ClinicalImpression: DomainResource
 {
@@ -28,17 +30,14 @@ public class ClinicalImpression: DomainResource
 	/// The clinician performing the assessment
 	public var assessor: Reference?
 	
-	/// A specific careplan that prompted this assessment
-	public var careplan: Reference?
-	
 	/// When the assessment occurred
 	public var date: DateTime?
 	
 	/// Why/how the assessment was performed
 	public var description_fhir: String?
 	
-	/// Possible or likely diagnosis
-	public var diagnosis: [ClinicalImpressionDiagnosis]?
+	/// Possible or likely findings and diagnoses
+	public var finding: [ClinicalImpressionFinding]?
 	
 	/// One or more sets of investigations (signs, symptions, etc)
 	public var investigations: [ClinicalImpressionInvestigations]?
@@ -61,9 +60,6 @@ public class ClinicalImpression: DomainResource
 	/// Clinical Protocol followed
 	public var protocol_fhir: NSURL?
 	
-	/// A specific referral that lead to this assessment
-	public var referral: Reference?
-	
 	/// Diagnosies/conditions resolved since previous assessment
 	public var resolved: [CodeableConcept]?
 	
@@ -72,6 +68,12 @@ public class ClinicalImpression: DomainResource
 	
 	/// Summary of the assessment
 	public var summary: String?
+	
+	/// Request or event that necessitated this assessment
+	public var triggerCodeableConcept: CodeableConcept?
+	
+	/// Request or event that necessitated this assessment
+	public var triggerReference: Reference?
 	
 	public convenience init(assessor: Reference?, date: DateTime?, patient: Reference?) {
 		self.init(json: nil)
@@ -86,17 +88,14 @@ public class ClinicalImpression: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["action"] as? [JSONDictionary] {
+			if let val = js["action"] as? [FHIRJSON] {
 				self.action = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["assessor"] as? JSONDictionary {
+			if let val = js["assessor"] as? FHIRJSON {
 				self.assessor = Reference(json: val, owner: self)
-			}
-			if let val = js["careplan"] as? JSONDictionary {
-				self.careplan = Reference(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
 				self.date = DateTime(string: val)
@@ -104,22 +103,22 @@ public class ClinicalImpression: DomainResource
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["diagnosis"] as? [JSONDictionary] {
-				self.diagnosis = ClinicalImpressionDiagnosis.from(val, owner: self) as? [ClinicalImpressionDiagnosis]
+			if let val = js["finding"] as? [FHIRJSON] {
+				self.finding = ClinicalImpressionFinding.from(val, owner: self) as? [ClinicalImpressionFinding]
 			}
-			if let val = js["investigations"] as? [JSONDictionary] {
+			if let val = js["investigations"] as? [FHIRJSON] {
 				self.investigations = ClinicalImpressionInvestigations.from(val, owner: self) as? [ClinicalImpressionInvestigations]
 			}
-			if let val = js["patient"] as? JSONDictionary {
+			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["plan"] as? JSONDictionary {
+			if let val = js["plan"] as? FHIRJSON {
 				self.plan = Reference(json: val, owner: self)
 			}
-			if let val = js["previous"] as? JSONDictionary {
+			if let val = js["previous"] as? FHIRJSON {
 				self.previous = Reference(json: val, owner: self)
 			}
-			if let val = js["problem"] as? [JSONDictionary] {
+			if let val = js["problem"] as? [FHIRJSON] {
 				self.problem = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["prognosis"] as? String {
@@ -128,22 +127,25 @@ public class ClinicalImpression: DomainResource
 			if let val = js["protocol"] as? String {
 				self.protocol_fhir = NSURL(string: val)
 			}
-			if let val = js["referral"] as? JSONDictionary {
-				self.referral = Reference(json: val, owner: self)
-			}
-			if let val = js["resolved"] as? [JSONDictionary] {
+			if let val = js["resolved"] as? [FHIRJSON] {
 				self.resolved = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["ruledOut"] as? [JSONDictionary] {
+			if let val = js["ruledOut"] as? [FHIRJSON] {
 				self.ruledOut = ClinicalImpressionRuledOut.from(val, owner: self) as? [ClinicalImpressionRuledOut]
 			}
 			if let val = js["summary"] as? String {
 				self.summary = val
 			}
+			if let val = js["triggerCodeableConcept"] as? FHIRJSON {
+				self.triggerCodeableConcept = CodeableConcept(json: val, owner: self)
+			}
+			if let val = js["triggerReference"] as? FHIRJSON {
+				self.triggerReference = Reference(json: val, owner: self)
+			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let action = self.action {
@@ -152,17 +154,14 @@ public class ClinicalImpression: DomainResource
 		if let assessor = self.assessor {
 			json["assessor"] = assessor.asJSON()
 		}
-		if let careplan = self.careplan {
-			json["careplan"] = careplan.asJSON()
-		}
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
-		if let diagnosis = self.diagnosis {
-			json["diagnosis"] = ClinicalImpressionDiagnosis.asJSONArray(diagnosis)
+		if let finding = self.finding {
+			json["finding"] = ClinicalImpressionFinding.asJSONArray(finding)
 		}
 		if let investigations = self.investigations {
 			json["investigations"] = ClinicalImpressionInvestigations.asJSONArray(investigations)
@@ -185,9 +184,6 @@ public class ClinicalImpression: DomainResource
 		if let protocol_fhir = self.protocol_fhir {
 			json["protocol"] = protocol_fhir.asJSON()
 		}
-		if let referral = self.referral {
-			json["referral"] = referral.asJSON()
-		}
 		if let resolved = self.resolved {
 			json["resolved"] = CodeableConcept.asJSONArray(resolved)
 		}
@@ -197,6 +193,12 @@ public class ClinicalImpression: DomainResource
 		if let summary = self.summary {
 			json["summary"] = summary.asJSON()
 		}
+		if let triggerCodeableConcept = self.triggerCodeableConcept {
+			json["triggerCodeableConcept"] = triggerCodeableConcept.asJSON()
+		}
+		if let triggerReference = self.triggerReference {
+			json["triggerReference"] = triggerReference.asJSON()
+		}
 		
 		return json
 	}
@@ -204,20 +206,20 @@ public class ClinicalImpression: DomainResource
 
 
 /**
- *  Possible or likely diagnosis.
+ *  Possible or likely findings and diagnoses.
  *
- *  An specific diagnosis that was considered likely or relevant to ongoing treatment.
+ *  Specific findings or diagnoses that was considered likely or relevant to ongoing treatment.
  */
-public class ClinicalImpressionDiagnosis: FHIRElement
+public class ClinicalImpressionFinding: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "ClinicalImpressionDiagnosis" }
+		get { return "ClinicalImpressionFinding" }
 	}
 	
-	/// Which investigations support diagnosis
+	/// Which investigations support finding
 	public var cause: String?
 	
-	/// Specific text or code for diagnosis
+	/// Specific text or code for finding
 	public var item: CodeableConcept?
 	
 	public convenience init(item: CodeableConcept?) {
@@ -227,19 +229,19 @@ public class ClinicalImpressionDiagnosis: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["cause"] as? String {
 				self.cause = val
 			}
-			if let val = js["item"] as? JSONDictionary {
+			if let val = js["item"] as? FHIRJSON {
 				self.item = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let cause = self.cause {
@@ -280,19 +282,19 @@ public class ClinicalImpressionInvestigations: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? JSONDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["item"] as? [JSONDictionary] {
+			if let val = js["item"] as? [FHIRJSON] {
 				self.item = Reference.from(val, owner: self) as? [Reference]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {
@@ -329,10 +331,10 @@ public class ClinicalImpressionRuledOut: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["item"] as? JSONDictionary {
+			if let val = js["item"] as? FHIRJSON {
 				self.item = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["reason"] as? String {
@@ -341,7 +343,7 @@ public class ClinicalImpressionRuledOut: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let item = self.item {

@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -45,16 +45,16 @@ public class Bundle: Resource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["base"] as? String {
 				self.base = NSURL(string: val)
 			}
-			if let val = js["entry"] as? [JSONDictionary] {
+			if let val = js["entry"] as? [FHIRJSON] {
 				self.entry = BundleEntry.from(val, owner: self) as? [BundleEntry]
 			}
-			if let val = js["link"] as? [JSONDictionary] {
+			if let val = js["link"] as? [FHIRJSON] {
 				self.link = BundleLink.from(val, owner: self) as? [BundleLink]
 			}
 			if let val = js["signature"] as? String {
@@ -69,7 +69,7 @@ public class Bundle: Resource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let base = self.base {
@@ -126,31 +126,31 @@ public class BundleEntry: FHIRElement
 	/// Transaction Related Information
 	public var transactionResponse: BundleEntryTransactionResponse?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["base"] as? String {
 				self.base = NSURL(string: val)
 			}
-			if let val = js["link"] as? [JSONDictionary] {
+			if let val = js["link"] as? [FHIRJSON] {
 				self.link = BundleLink.from(val, owner: self) as? [BundleLink]
 			}
-			if let val = js["resource"] as? JSONDictionary {
+			if let val = js["resource"] as? FHIRJSON {
 				self.resource = Resource.instantiateFrom(val, owner: self) as? Resource
 			}
-			if let val = js["search"] as? JSONDictionary {
+			if let val = js["search"] as? FHIRJSON {
 				self.search = BundleEntrySearch(json: val, owner: self)
 			}
-			if let val = js["transaction"] as? JSONDictionary {
+			if let val = js["transaction"] as? FHIRJSON {
 				self.transaction = BundleEntryTransaction(json: val, owner: self)
 			}
-			if let val = js["transactionResponse"] as? JSONDictionary {
+			if let val = js["transactionResponse"] as? FHIRJSON {
 				self.transactionResponse = BundleEntryTransactionResponse(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let base = self.base {
@@ -194,7 +194,7 @@ public class BundleEntrySearch: FHIRElement
 	/// Search ranking (between 0 and 1)
 	public var score: NSDecimalNumber?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["mode"] as? String {
@@ -206,7 +206,7 @@ public class BundleEntrySearch: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let mode = self.mode {
@@ -260,7 +260,7 @@ public class BundleEntryTransaction: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["ifMatch"] as? String {
@@ -284,7 +284,7 @@ public class BundleEntryTransaction: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let ifMatch = self.ifMatch {
@@ -341,7 +341,7 @@ public class BundleEntryTransactionResponse: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["etag"] as? String {
@@ -359,7 +359,7 @@ public class BundleEntryTransactionResponse: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let etag = self.etag {
@@ -407,7 +407,7 @@ public class BundleLink: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["relation"] as? String {
@@ -419,7 +419,7 @@ public class BundleLink: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let relation = self.relation {

@@ -2,7 +2,7 @@
 //  MessageHeaderTests.swift
 //  MessageHeaderTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class MessageHeaderTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> MessageHeader {
+	func instantiateFrom(# json: FHIRJSON) -> MessageHeader {
 		let instance = MessageHeader(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class MessageHeaderTests: FHIRModelTestCase
 		testMessageHeader1_impl(json: instance.asJSON())
 	}
 	
-	func testMessageHeader1_impl(json: JSONDictionary? = nil) -> MessageHeader {
+	func testMessageHeader1_impl(json: FHIRJSON? = nil) -> MessageHeader {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "messageheader-example.json")
 		
 		XCTAssertEqual(inst.author!.reference!, "Practitioner/example")

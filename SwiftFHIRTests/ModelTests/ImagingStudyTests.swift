@@ -2,7 +2,7 @@
 //  ImagingStudyTests.swift
 //  ImagingStudyTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ImagingStudyTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> ImagingStudy {
+	func instantiateFrom(# json: FHIRJSON) -> ImagingStudy {
 		let instance = ImagingStudy(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ImagingStudyTests: FHIRModelTestCase
 		testImagingStudy1_impl(json: instance.asJSON())
 	}
 	
-	func testImagingStudy1_impl(json: JSONDictionary? = nil) -> ImagingStudy {
+	func testImagingStudy1_impl(json: FHIRJSON? = nil) -> ImagingStudy {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "imagingstudy-example.json")
 		
 		XCTAssertEqual(inst.id!, "example")
@@ -59,7 +59,7 @@ class ImagingStudyTests: FHIRModelTestCase
 		testImagingStudy2_impl(json: instance.asJSON())
 	}
 	
-	func testImagingStudy2_impl(json: JSONDictionary? = nil) -> ImagingStudy {
+	func testImagingStudy2_impl(json: FHIRJSON? = nil) -> ImagingStudy {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "imagingstudy-qicore-example.json")
 		
 		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/imagingstudy-radiationDose")

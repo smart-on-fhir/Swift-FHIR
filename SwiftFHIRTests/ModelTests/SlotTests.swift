@@ -2,7 +2,7 @@
 //  SlotTests.swift
 //  SlotTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class SlotTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Slot {
+	func instantiateFrom(# json: FHIRJSON) -> Slot {
 		let instance = Slot(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class SlotTests: FHIRModelTestCase
 		testSlot1_impl(json: instance.asJSON())
 	}
 	
-	func testSlot1_impl(json: JSONDictionary? = nil) -> Slot {
+	func testSlot1_impl(json: FHIRJSON? = nil) -> Slot {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "slot-example-busy.json")
 		
 		XCTAssertEqual(inst.comment!, "Assessments should be performed before requesting appointments in this slot.")
@@ -51,7 +51,7 @@ class SlotTests: FHIRModelTestCase
 		testSlot2_impl(json: instance.asJSON())
 	}
 	
-	func testSlot2_impl(json: JSONDictionary? = nil) -> Slot {
+	func testSlot2_impl(json: FHIRJSON? = nil) -> Slot {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "slot-example-tentative.json")
 		
 		XCTAssertEqual(inst.comment!, "Dr Careful is out of the office")
@@ -72,7 +72,7 @@ class SlotTests: FHIRModelTestCase
 		testSlot3_impl(json: instance.asJSON())
 	}
 	
-	func testSlot3_impl(json: JSONDictionary? = nil) -> Slot {
+	func testSlot3_impl(json: FHIRJSON? = nil) -> Slot {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "slot-example-unavailable.json")
 		
 		XCTAssertEqual(inst.comment!, "Dr Careful is out of the office")
@@ -93,7 +93,7 @@ class SlotTests: FHIRModelTestCase
 		testSlot4_impl(json: instance.asJSON())
 	}
 	
-	func testSlot4_impl(json: JSONDictionary? = nil) -> Slot {
+	func testSlot4_impl(json: FHIRJSON? = nil) -> Slot {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "slot-example.json")
 		
 		XCTAssertEqual(inst.comment!, "Assessments should be performed before requesting appointments in this slot.")

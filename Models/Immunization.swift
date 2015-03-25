@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -94,61 +94,61 @@ public class Immunization: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
 				self.date = DateTime(string: val)
 			}
-			if let val = js["doseQuantity"] as? JSONDictionary {
+			if let val = js["doseQuantity"] as? FHIRJSON {
 				self.doseQuantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["encounter"] as? JSONDictionary {
+			if let val = js["encounter"] as? FHIRJSON {
 				self.encounter = Reference(json: val, owner: self)
 			}
 			if let val = js["expirationDate"] as? String {
 				self.expirationDate = Date(string: val)
 			}
-			if let val = js["explanation"] as? JSONDictionary {
+			if let val = js["explanation"] as? FHIRJSON {
 				self.explanation = ImmunizationExplanation(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["location"] as? JSONDictionary {
+			if let val = js["location"] as? FHIRJSON {
 				self.location = Reference(json: val, owner: self)
 			}
 			if let val = js["lotNumber"] as? String {
 				self.lotNumber = val
 			}
-			if let val = js["manufacturer"] as? JSONDictionary {
+			if let val = js["manufacturer"] as? FHIRJSON {
 				self.manufacturer = Reference(json: val, owner: self)
 			}
-			if let val = js["patient"] as? JSONDictionary {
+			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["performer"] as? JSONDictionary {
+			if let val = js["performer"] as? FHIRJSON {
 				self.performer = Reference(json: val, owner: self)
 			}
-			if let val = js["reaction"] as? [JSONDictionary] {
+			if let val = js["reaction"] as? [FHIRJSON] {
 				self.reaction = ImmunizationReaction.from(val, owner: self) as? [ImmunizationReaction]
 			}
 			if let val = js["reported"] as? Bool {
 				self.reported = val
 			}
-			if let val = js["requester"] as? JSONDictionary {
+			if let val = js["requester"] as? FHIRJSON {
 				self.requester = Reference(json: val, owner: self)
 			}
-			if let val = js["route"] as? JSONDictionary {
+			if let val = js["route"] as? FHIRJSON {
 				self.route = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["site"] as? JSONDictionary {
+			if let val = js["site"] as? FHIRJSON {
 				self.site = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["vaccinationProtocol"] as? [JSONDictionary] {
+			if let val = js["vaccinationProtocol"] as? [FHIRJSON] {
 				self.vaccinationProtocol = ImmunizationVaccinationProtocol.from(val, owner: self) as? [ImmunizationVaccinationProtocol]
 			}
-			if let val = js["vaccineType"] as? JSONDictionary {
+			if let val = js["vaccineType"] as? FHIRJSON {
 				self.vaccineType = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["wasNotGiven"] as? Bool {
@@ -157,7 +157,7 @@ public class Immunization: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let date = self.date {
@@ -240,19 +240,19 @@ public class ImmunizationExplanation: FHIRElement
 	/// Why immunization did not occur
 	public var reasonNotGiven: [CodeableConcept]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["reason"] as? [JSONDictionary] {
+			if let val = js["reason"] as? [FHIRJSON] {
 				self.reason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["reasonNotGiven"] as? [JSONDictionary] {
+			if let val = js["reasonNotGiven"] as? [FHIRJSON] {
 				self.reasonNotGiven = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let reason = self.reason {
@@ -287,13 +287,13 @@ public class ImmunizationReaction: FHIRElement
 	/// Was reaction self-reported?
 	public var reported: Bool?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
 				self.date = DateTime(string: val)
 			}
-			if let val = js["detail"] as? JSONDictionary {
+			if let val = js["detail"] as? FHIRJSON {
 				self.detail = Reference(json: val, owner: self)
 			}
 			if let val = js["reported"] as? Bool {
@@ -302,7 +302,7 @@ public class ImmunizationReaction: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let date = self.date {
@@ -368,10 +368,10 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["authority"] as? JSONDictionary {
+			if let val = js["authority"] as? FHIRJSON {
 				self.authority = Reference(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
@@ -380,13 +380,13 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 			if let val = js["doseSequence"] as? Int {
 				self.doseSequence = val
 			}
-			if let val = js["doseStatus"] as? JSONDictionary {
+			if let val = js["doseStatus"] as? FHIRJSON {
 				self.doseStatus = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["doseStatusReason"] as? JSONDictionary {
+			if let val = js["doseStatusReason"] as? FHIRJSON {
 				self.doseStatusReason = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["doseTarget"] as? JSONDictionary {
+			if let val = js["doseTarget"] as? FHIRJSON {
 				self.doseTarget = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["series"] as? String {
@@ -398,7 +398,7 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let authority = self.authority {

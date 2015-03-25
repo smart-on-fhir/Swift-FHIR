@@ -2,7 +2,7 @@
 //  RelatedPersonTests.swift
 //  RelatedPersonTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> RelatedPerson {
+	func instantiateFrom(# json: FHIRJSON) -> RelatedPerson {
 		let instance = RelatedPerson(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		testRelatedPerson1_impl(json: instance.asJSON())
 	}
 	
-	func testRelatedPerson1_impl(json: JSONDictionary? = nil) -> RelatedPerson {
+	func testRelatedPerson1_impl(json: FHIRJSON? = nil) -> RelatedPerson {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "relatedperson-example-f001-sarah.json")
 		
 		XCTAssertEqual(inst.gender!, "female")
@@ -57,7 +57,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		testRelatedPerson2_impl(json: instance.asJSON())
 	}
 	
-	func testRelatedPerson2_impl(json: JSONDictionary? = nil) -> RelatedPerson {
+	func testRelatedPerson2_impl(json: FHIRJSON? = nil) -> RelatedPerson {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "relatedperson-example-f002-ariadne.json")
 		
 		XCTAssertEqual(inst.gender!, "female")
@@ -80,7 +80,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		testRelatedPerson3_impl(json: instance.asJSON())
 	}
 	
-	func testRelatedPerson3_impl(json: JSONDictionary? = nil) -> RelatedPerson {
+	func testRelatedPerson3_impl(json: FHIRJSON? = nil) -> RelatedPerson {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "relatedperson-example-peter.json")
 		
 		XCTAssertEqual(inst.address!.city!, "PleasantVille")
@@ -113,7 +113,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		testRelatedPerson4_impl(json: instance.asJSON())
 	}
 	
-	func testRelatedPerson4_impl(json: JSONDictionary? = nil) -> RelatedPerson {
+	func testRelatedPerson4_impl(json: FHIRJSON? = nil) -> RelatedPerson {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "relatedperson-example.json")
 		
 		XCTAssertEqual(inst.address!.city!, "Paris")

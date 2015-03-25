@@ -2,7 +2,7 @@
 //  CompositionTests.swift
 //  CompositionTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class CompositionTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Composition {
+	func instantiateFrom(# json: FHIRJSON) -> Composition {
 		let instance = Composition(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class CompositionTests: FHIRModelTestCase
 		testComposition1_impl(json: instance.asJSON())
 	}
 	
-	func testComposition1_impl(json: JSONDictionary? = nil) -> Composition {
+	func testComposition1_impl(json: FHIRJSON? = nil) -> Composition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "composition-example.json")
 		
 		XCTAssertEqual(inst.attester![0].mode![0], "legal")

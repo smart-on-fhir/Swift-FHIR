@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -63,40 +63,40 @@ public class Provenance: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["agent"] as? [JSONDictionary] {
+			if let val = js["agent"] as? [FHIRJSON] {
 				self.agent = ProvenanceAgent.from(val, owner: self) as? [ProvenanceAgent]
 			}
-			if let val = js["entity"] as? [JSONDictionary] {
+			if let val = js["entity"] as? [FHIRJSON] {
 				self.entity = ProvenanceEntity.from(val, owner: self) as? [ProvenanceEntity]
 			}
-			if let val = js["location"] as? JSONDictionary {
+			if let val = js["location"] as? FHIRJSON {
 				self.location = Reference(json: val, owner: self)
 			}
-			if let val = js["period"] as? JSONDictionary {
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["policy"] as? [String] {
 				self.policy = NSURL.from(val)
 			}
-			if let val = js["reason"] as? JSONDictionary {
+			if let val = js["reason"] as? FHIRJSON {
 				self.reason = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["recorded"] as? String {
 				self.recorded = Instant(string: val)
 			}
-			if let val = js["signature"] as? [JSONDictionary] {
+			if let val = js["signature"] as? [FHIRJSON] {
 				self.signature = Signature.from(val, owner: self) as? [Signature]
 			}
-			if let val = js["target"] as? [JSONDictionary] {
+			if let val = js["target"] as? [FHIRJSON] {
 				self.target = Reference.from(val, owner: self) as? [Reference]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let agent = self.agent {
@@ -174,28 +174,28 @@ public class ProvenanceAgent: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["display"] as? String {
 				self.display = val
 			}
-			if let val = js["referenceReference"] as? JSONDictionary {
+			if let val = js["referenceReference"] as? FHIRJSON {
 				self.referenceReference = Reference(json: val, owner: self)
 			}
 			if let val = js["referenceUri"] as? String {
 				self.referenceUri = NSURL(string: val)
 			}
-			if let val = js["role"] as? JSONDictionary {
+			if let val = js["role"] as? FHIRJSON {
 				self.role = Coding(json: val, owner: self)
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = Coding(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let display = self.display {
@@ -256,10 +256,10 @@ public class ProvenanceEntity: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["agent"] as? JSONDictionary {
+			if let val = js["agent"] as? FHIRJSON {
 				self.agent = ProvenanceAgent(json: val, owner: self)
 			}
 			if let val = js["display"] as? String {
@@ -271,13 +271,13 @@ public class ProvenanceEntity: FHIRElement
 			if let val = js["role"] as? String {
 				self.role = val
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = Coding(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let agent = self.agent {

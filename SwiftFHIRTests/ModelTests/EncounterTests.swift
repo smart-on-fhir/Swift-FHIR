@@ -2,7 +2,7 @@
 //  EncounterTests.swift
 //  EncounterTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class EncounterTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Encounter {
+	func instantiateFrom(# json: FHIRJSON) -> Encounter {
 		let instance = Encounter(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class EncounterTests: FHIRModelTestCase
 		testEncounter1_impl(json: instance.asJSON())
 	}
 	
-	func testEncounter1_impl(json: JSONDictionary? = nil) -> Encounter {
+	func testEncounter1_impl(json: FHIRJSON? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.class_fhir!, "outpatient")
@@ -75,7 +75,7 @@ class EncounterTests: FHIRModelTestCase
 		testEncounter2_impl(json: instance.asJSON())
 	}
 	
-	func testEncounter2_impl(json: JSONDictionary? = nil) -> Encounter {
+	func testEncounter2_impl(json: FHIRJSON? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.class_fhir!, "outpatient")
@@ -123,7 +123,7 @@ class EncounterTests: FHIRModelTestCase
 		testEncounter3_impl(json: instance.asJSON())
 	}
 	
-	func testEncounter3_impl(json: JSONDictionary? = nil) -> Encounter {
+	func testEncounter3_impl(json: FHIRJSON? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-example-f003-abscess.json")
 		
 		XCTAssertEqual(inst.class_fhir!, "outpatient")
@@ -170,7 +170,7 @@ class EncounterTests: FHIRModelTestCase
 		testEncounter4_impl(json: instance.asJSON())
 	}
 	
-	func testEncounter4_impl(json: JSONDictionary? = nil) -> Encounter {
+	func testEncounter4_impl(json: FHIRJSON? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-example-f201-20130404.json")
 		
 		XCTAssertEqual(inst.class_fhir!, "outpatient")
@@ -200,7 +200,7 @@ class EncounterTests: FHIRModelTestCase
 		testEncounter5_impl(json: instance.asJSON())
 	}
 	
-	func testEncounter5_impl(json: JSONDictionary? = nil) -> Encounter {
+	func testEncounter5_impl(json: FHIRJSON? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-example-f202-20130128.json")
 		
 		XCTAssertEqual(inst.class_fhir!, "outpatient")
@@ -236,7 +236,7 @@ class EncounterTests: FHIRModelTestCase
 		testEncounter6_impl(json: instance.asJSON())
 	}
 	
-	func testEncounter6_impl(json: JSONDictionary? = nil) -> Encounter {
+	func testEncounter6_impl(json: FHIRJSON? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-example-f203-20130311.json")
 		
 		XCTAssertEqual(inst.class_fhir!, "inpatient")
@@ -275,7 +275,7 @@ class EncounterTests: FHIRModelTestCase
 		testEncounter7_impl(json: instance.asJSON())
 	}
 	
-	func testEncounter7_impl(json: JSONDictionary? = nil) -> Encounter {
+	func testEncounter7_impl(json: FHIRJSON? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-example.json")
 		
 		XCTAssertEqual(inst.class_fhir!, "inpatient")
@@ -293,7 +293,7 @@ class EncounterTests: FHIRModelTestCase
 		testEncounter8_impl(json: instance.asJSON())
 	}
 	
-	func testEncounter8_impl(json: JSONDictionary? = nil) -> Encounter {
+	func testEncounter8_impl(json: FHIRJSON? = nil) -> Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-qicore-example.json")
 		
 		XCTAssertEqual(inst.class_fhir!, "inpatient")

@@ -2,7 +2,7 @@
 //  Communication.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Communication) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Communication) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- *  Communication.
+ *  A record of information transmitted from a sender to a receiver.
  *
  *  An occurrence of information being transmitted. E.g., an alert that was sent to a responsible provider, a public
  *  health agency was notified about a reportable condition.
@@ -57,34 +57,34 @@ public class Communication: DomainResource
 	/// Focus of message
 	public var subject: Reference?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["category"] as? JSONDictionary {
+			if let val = js["category"] as? FHIRJSON {
 				self.category = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["encounter"] as? JSONDictionary {
+			if let val = js["encounter"] as? FHIRJSON {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["medium"] as? [JSONDictionary] {
+			if let val = js["medium"] as? [FHIRJSON] {
 				self.medium = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["payload"] as? [JSONDictionary] {
+			if let val = js["payload"] as? [FHIRJSON] {
 				self.payload = CommunicationPayload.from(val, owner: self) as? [CommunicationPayload]
 			}
-			if let val = js["reason"] as? [JSONDictionary] {
+			if let val = js["reason"] as? [FHIRJSON] {
 				self.reason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["received"] as? String {
 				self.received = DateTime(string: val)
 			}
-			if let val = js["recipient"] as? [JSONDictionary] {
+			if let val = js["recipient"] as? [FHIRJSON] {
 				self.recipient = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["sender"] as? JSONDictionary {
+			if let val = js["sender"] as? FHIRJSON {
 				self.sender = Reference(json: val, owner: self)
 			}
 			if let val = js["sent"] as? String {
@@ -93,13 +93,13 @@ public class Communication: DomainResource
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? JSONDictionary {
+			if let val = js["subject"] as? FHIRJSON {
 				self.subject = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let category = self.category {
@@ -177,13 +177,13 @@ public class CommunicationPayload: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["contentAttachment"] as? JSONDictionary {
+			if let val = js["contentAttachment"] as? FHIRJSON {
 				self.contentAttachment = Attachment(json: val, owner: self)
 			}
-			if let val = js["contentReference"] as? JSONDictionary {
+			if let val = js["contentReference"] as? FHIRJSON {
 				self.contentReference = Reference(json: val, owner: self)
 			}
 			if let val = js["contentString"] as? String {
@@ -192,7 +192,7 @@ public class CommunicationPayload: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let contentAttachment = self.contentAttachment {

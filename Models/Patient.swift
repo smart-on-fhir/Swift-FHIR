@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Patient) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Patient) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -78,28 +78,28 @@ public class Patient: DomainResource
 	/// A contact detail for the individual
 	public var telecom: [ContactPoint]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["active"] as? Bool {
 				self.active = val
 			}
-			if let val = js["address"] as? [JSONDictionary] {
+			if let val = js["address"] as? [FHIRJSON] {
 				self.address = Address.from(val, owner: self) as? [Address]
 			}
-			if let val = js["animal"] as? JSONDictionary {
+			if let val = js["animal"] as? FHIRJSON {
 				self.animal = PatientAnimal(json: val, owner: self)
 			}
 			if let val = js["birthDate"] as? String {
 				self.birthDate = Date(string: val)
 			}
-			if let val = js["careProvider"] as? [JSONDictionary] {
+			if let val = js["careProvider"] as? [FHIRJSON] {
 				self.careProvider = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["communication"] as? [JSONDictionary] {
+			if let val = js["communication"] as? [FHIRJSON] {
 				self.communication = PatientCommunication.from(val, owner: self) as? [PatientCommunication]
 			}
-			if let val = js["contact"] as? [JSONDictionary] {
+			if let val = js["contact"] as? [FHIRJSON] {
 				self.contact = PatientContact.from(val, owner: self) as? [PatientContact]
 			}
 			if let val = js["deceasedBoolean"] as? Bool {
@@ -111,16 +111,16 @@ public class Patient: DomainResource
 			if let val = js["gender"] as? String {
 				self.gender = val
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["link"] as? [JSONDictionary] {
+			if let val = js["link"] as? [FHIRJSON] {
 				self.link = PatientLink.from(val, owner: self) as? [PatientLink]
 			}
-			if let val = js["managingOrganization"] as? JSONDictionary {
+			if let val = js["managingOrganization"] as? FHIRJSON {
 				self.managingOrganization = Reference(json: val, owner: self)
 			}
-			if let val = js["maritalStatus"] as? JSONDictionary {
+			if let val = js["maritalStatus"] as? FHIRJSON {
 				self.maritalStatus = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["multipleBirthBoolean"] as? Bool {
@@ -129,19 +129,19 @@ public class Patient: DomainResource
 			if let val = js["multipleBirthInteger"] as? Int {
 				self.multipleBirthInteger = val
 			}
-			if let val = js["name"] as? [JSONDictionary] {
+			if let val = js["name"] as? [FHIRJSON] {
 				self.name = HumanName.from(val, owner: self) as? [HumanName]
 			}
-			if let val = js["photo"] as? [JSONDictionary] {
+			if let val = js["photo"] as? [FHIRJSON] {
 				self.photo = Attachment.from(val, owner: self) as? [Attachment]
 			}
-			if let val = js["telecom"] as? [JSONDictionary] {
+			if let val = js["telecom"] as? [FHIRJSON] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let active = self.active {
@@ -234,22 +234,22 @@ public class PatientAnimal: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["breed"] as? JSONDictionary {
+			if let val = js["breed"] as? FHIRJSON {
 				self.breed = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["genderStatus"] as? JSONDictionary {
+			if let val = js["genderStatus"] as? FHIRJSON {
 				self.genderStatus = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["species"] as? JSONDictionary {
+			if let val = js["species"] as? FHIRJSON {
 				self.species = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let breed = self.breed {
@@ -291,10 +291,10 @@ public class PatientCommunication: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["language"] as? JSONDictionary {
+			if let val = js["language"] as? FHIRJSON {
 				self.language = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["preferred"] as? Bool {
@@ -303,7 +303,7 @@ public class PatientCommunication: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let language = self.language {
@@ -348,34 +348,34 @@ public class PatientContact: FHIRElement
 	/// A contact detail for the person
 	public var telecom: [ContactPoint]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["address"] as? JSONDictionary {
+			if let val = js["address"] as? FHIRJSON {
 				self.address = Address(json: val, owner: self)
 			}
 			if let val = js["gender"] as? String {
 				self.gender = val
 			}
-			if let val = js["name"] as? JSONDictionary {
+			if let val = js["name"] as? FHIRJSON {
 				self.name = HumanName(json: val, owner: self)
 			}
-			if let val = js["organization"] as? JSONDictionary {
+			if let val = js["organization"] as? FHIRJSON {
 				self.organization = Reference(json: val, owner: self)
 			}
-			if let val = js["period"] as? JSONDictionary {
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
-			if let val = js["relationship"] as? [JSONDictionary] {
+			if let val = js["relationship"] as? [FHIRJSON] {
 				self.relationship = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["telecom"] as? [JSONDictionary] {
+			if let val = js["telecom"] as? [FHIRJSON] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let address = self.address {
@@ -432,10 +432,10 @@ public class PatientLink: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["other"] as? JSONDictionary {
+			if let val = js["other"] as? FHIRJSON {
 				self.other = Reference(json: val, owner: self)
 			}
 			if let val = js["type"] as? String {
@@ -444,7 +444,7 @@ public class PatientLink: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let other = self.other {

@@ -2,7 +2,7 @@
 //  NamingSystem.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -79,13 +79,13 @@ public class NamingSystem: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["category"] as? JSONDictionary {
+			if let val = js["category"] as? FHIRJSON {
 				self.category = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["contact"] as? [JSONDictionary] {
+			if let val = js["contact"] as? [FHIRJSON] {
 				self.contact = NamingSystemContact.from(val, owner: self) as? [NamingSystemContact]
 			}
 			if let val = js["country"] as? String {
@@ -103,7 +103,7 @@ public class NamingSystem: DomainResource
 			if let val = js["publisher"] as? String {
 				self.publisher = val
 			}
-			if let val = js["replacedBy"] as? JSONDictionary {
+			if let val = js["replacedBy"] as? FHIRJSON {
 				self.replacedBy = Reference(json: val, owner: self)
 			}
 			if let val = js["responsible"] as? String {
@@ -115,7 +115,7 @@ public class NamingSystem: DomainResource
 			if let val = js["type"] as? String {
 				self.type = val
 			}
-			if let val = js["uniqueId"] as? [JSONDictionary] {
+			if let val = js["uniqueId"] as? [FHIRJSON] {
 				self.uniqueId = NamingSystemUniqueId.from(val, owner: self) as? [NamingSystemUniqueId]
 			}
 			if let val = js["usage"] as? String {
@@ -124,7 +124,7 @@ public class NamingSystem: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let category = self.category {
@@ -189,19 +189,19 @@ public class NamingSystemContact: FHIRElement
 	/// Contact details for individual or publisher
 	public var telecom: [ContactPoint]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["telecom"] as? [JSONDictionary] {
+			if let val = js["telecom"] as? [FHIRJSON] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let name = self.name {
@@ -249,10 +249,10 @@ public class NamingSystemUniqueId: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["period"] as? JSONDictionary {
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["preferred"] as? Bool {
@@ -267,7 +267,7 @@ public class NamingSystemUniqueId: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let period = self.period {

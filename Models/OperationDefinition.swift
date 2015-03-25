@@ -2,7 +2,7 @@
 //  OperationDefinition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -97,16 +97,16 @@ public class OperationDefinition: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["base"] as? JSONDictionary {
+			if let val = js["base"] as? FHIRJSON {
 				self.base = Reference(json: val, owner: self)
 			}
 			if let val = js["code"] as? String {
 				self.code = val
 			}
-			if let val = js["contact"] as? [JSONDictionary] {
+			if let val = js["contact"] as? [FHIRJSON] {
 				self.contact = OperationDefinitionContact.from(val, owner: self) as? [OperationDefinitionContact]
 			}
 			if let val = js["date"] as? String {
@@ -130,7 +130,7 @@ public class OperationDefinition: DomainResource
 			if let val = js["notes"] as? String {
 				self.notes = val
 			}
-			if let val = js["parameter"] as? [JSONDictionary] {
+			if let val = js["parameter"] as? [FHIRJSON] {
 				self.parameter = OperationDefinitionParameter.from(val, owner: self) as? [OperationDefinitionParameter]
 			}
 			if let val = js["publisher"] as? String {
@@ -157,7 +157,7 @@ public class OperationDefinition: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let base = self.base {
@@ -241,19 +241,19 @@ public class OperationDefinitionContact: FHIRElement
 	/// Contact details for individual or publisher
 	public var telecom: [ContactPoint]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["telecom"] as? [JSONDictionary] {
+			if let val = js["telecom"] as? [FHIRJSON] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let name = self.name {
@@ -319,7 +319,7 @@ public class OperationDefinitionParameter: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["documentation"] as? String {
@@ -334,10 +334,10 @@ public class OperationDefinitionParameter: FHIRElement
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["part"] as? [JSONDictionary] {
+			if let val = js["part"] as? [FHIRJSON] {
 				self.part = OperationDefinitionParameterPart.from(val, owner: self) as? [OperationDefinitionParameterPart]
 			}
-			if let val = js["profile"] as? JSONDictionary {
+			if let val = js["profile"] as? FHIRJSON {
 				self.profile = Reference(json: val, owner: self)
 			}
 			if let val = js["type"] as? String {
@@ -349,7 +349,7 @@ public class OperationDefinitionParameter: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let documentation = self.documentation {
@@ -427,7 +427,7 @@ public class OperationDefinitionParameterPart: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["documentation"] as? String {
@@ -442,7 +442,7 @@ public class OperationDefinitionParameterPart: FHIRElement
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["profile"] as? JSONDictionary {
+			if let val = js["profile"] as? FHIRJSON {
 				self.profile = Reference(json: val, owner: self)
 			}
 			if let val = js["type"] as? String {
@@ -451,7 +451,7 @@ public class OperationDefinitionParameterPart: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let documentation = self.documentation {

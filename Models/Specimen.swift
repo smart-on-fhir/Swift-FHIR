@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -30,7 +30,7 @@ public class Specimen: DomainResource
 	/// External Identifier
 	public var identifier: [Identifier]?
 	
-	/// Parent specimen
+	/// Specimen from which this specimen originated
 	public var parent: [Reference]?
 	
 	/// The time when specimen was received for processing
@@ -52,40 +52,40 @@ public class Specimen: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["accessionIdentifier"] as? JSONDictionary {
+			if let val = js["accessionIdentifier"] as? FHIRJSON {
 				self.accessionIdentifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["collection"] as? JSONDictionary {
+			if let val = js["collection"] as? FHIRJSON {
 				self.collection = SpecimenCollection(json: val, owner: self)
 			}
-			if let val = js["container"] as? [JSONDictionary] {
+			if let val = js["container"] as? [FHIRJSON] {
 				self.container = SpecimenContainer.from(val, owner: self) as? [SpecimenContainer]
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["parent"] as? [JSONDictionary] {
+			if let val = js["parent"] as? [FHIRJSON] {
 				self.parent = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["receivedTime"] as? String {
 				self.receivedTime = DateTime(string: val)
 			}
-			if let val = js["subject"] as? JSONDictionary {
+			if let val = js["subject"] as? FHIRJSON {
 				self.subject = Reference(json: val, owner: self)
 			}
-			if let val = js["treatment"] as? [JSONDictionary] {
+			if let val = js["treatment"] as? [FHIRJSON] {
 				self.treatment = SpecimenTreatment.from(val, owner: self) as? [SpecimenTreatment]
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let accessionIdentifier = self.accessionIdentifier {
@@ -156,37 +156,37 @@ public class SpecimenCollection: FHIRElement
 	/// The quantity of specimen collected
 	public var quantity: Quantity?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["bodySiteCodeableConcept"] as? JSONDictionary {
+			if let val = js["bodySiteCodeableConcept"] as? FHIRJSON {
 				self.bodySiteCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["bodySiteReference"] as? JSONDictionary {
+			if let val = js["bodySiteReference"] as? FHIRJSON {
 				self.bodySiteReference = Reference(json: val, owner: self)
 			}
 			if let val = js["collectedDateTime"] as? String {
 				self.collectedDateTime = DateTime(string: val)
 			}
-			if let val = js["collectedPeriod"] as? JSONDictionary {
+			if let val = js["collectedPeriod"] as? FHIRJSON {
 				self.collectedPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["collector"] as? JSONDictionary {
+			if let val = js["collector"] as? FHIRJSON {
 				self.collector = Reference(json: val, owner: self)
 			}
 			if let val = js["comment"] as? [String] {
 				self.comment = val
 			}
-			if let val = js["method"] as? JSONDictionary {
+			if let val = js["method"] as? FHIRJSON {
 				self.method = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["quantity"] as? JSONDictionary {
+			if let val = js["quantity"] as? FHIRJSON {
 				self.quantity = Quantity(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let bodySiteCodeableConcept = self.bodySiteCodeableConcept {
@@ -256,34 +256,34 @@ public class SpecimenContainer: FHIRElement
 	/// Kind of container directly associated with specimen
 	public var type: CodeableConcept?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["additiveCodeableConcept"] as? JSONDictionary {
+			if let val = js["additiveCodeableConcept"] as? FHIRJSON {
 				self.additiveCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["additiveReference"] as? JSONDictionary {
+			if let val = js["additiveReference"] as? FHIRJSON {
 				self.additiveReference = Reference(json: val, owner: self)
 			}
-			if let val = js["capacity"] as? JSONDictionary {
+			if let val = js["capacity"] as? FHIRJSON {
 				self.capacity = Quantity(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["specimenQuantity"] as? JSONDictionary {
+			if let val = js["specimenQuantity"] as? FHIRJSON {
 				self.specimenQuantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let additiveCodeableConcept = self.additiveCodeableConcept {
@@ -333,22 +333,22 @@ public class SpecimenTreatment: FHIRElement
 	/// Indicates the treatment or processing step  applied to the specimen
 	public var procedure: CodeableConcept?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["additive"] as? [JSONDictionary] {
+			if let val = js["additive"] as? [FHIRJSON] {
 				self.additive = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["procedure"] as? JSONDictionary {
+			if let val = js["procedure"] as? FHIRJSON {
 				self.procedure = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let additive = self.additive {

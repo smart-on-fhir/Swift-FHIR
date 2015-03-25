@@ -2,7 +2,7 @@
 //  OrderTests.swift
 //  OrderTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class OrderTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Order {
+	func instantiateFrom(# json: FHIRJSON) -> Order {
 		let instance = Order(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class OrderTests: FHIRModelTestCase
 		testOrder1_impl(json: instance.asJSON())
 	}
 	
-	func testOrder1_impl(json: JSONDictionary? = nil) -> Order {
+	func testOrder1_impl(json: FHIRJSON? = nil) -> Order {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "order-example-f201-physiotherapy.json")
 		
 		XCTAssertEqual(inst.date!.description, "2013-03-05T12:00:00+01:00")
@@ -52,7 +52,7 @@ class OrderTests: FHIRModelTestCase
 		testOrder2_impl(json: instance.asJSON())
 	}
 	
-	func testOrder2_impl(json: JSONDictionary? = nil) -> Order {
+	func testOrder2_impl(json: FHIRJSON? = nil) -> Order {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "order-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2012-12-28T09:03:04+11:00")

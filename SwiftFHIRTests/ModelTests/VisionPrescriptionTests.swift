@@ -2,7 +2,7 @@
 //  VisionPrescriptionTests.swift
 //  VisionPrescriptionTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class VisionPrescriptionTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> VisionPrescription {
+	func instantiateFrom(# json: FHIRJSON) -> VisionPrescription {
 		let instance = VisionPrescription(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class VisionPrescriptionTests: FHIRModelTestCase
 		testVisionPrescription1_impl(json: instance.asJSON())
 	}
 	
-	func testVisionPrescription1_impl(json: JSONDictionary? = nil) -> VisionPrescription {
+	func testVisionPrescription1_impl(json: FHIRJSON? = nil) -> VisionPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "visionprescription-example-1.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2014-06-15")
@@ -77,7 +77,7 @@ class VisionPrescriptionTests: FHIRModelTestCase
 		testVisionPrescription2_impl(json: instance.asJSON())
 	}
 	
-	func testVisionPrescription2_impl(json: JSONDictionary? = nil) -> VisionPrescription {
+	func testVisionPrescription2_impl(json: FHIRJSON? = nil) -> VisionPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "visionprescription-example.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2014-06-15")

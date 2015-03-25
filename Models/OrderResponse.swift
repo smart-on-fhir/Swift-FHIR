@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -55,13 +55,13 @@ public class OrderResponse: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["authorityCodeableConcept"] as? JSONDictionary {
+			if let val = js["authorityCodeableConcept"] as? FHIRJSON {
 				self.authorityCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["authorityReference"] as? JSONDictionary {
+			if let val = js["authorityReference"] as? FHIRJSON {
 				self.authorityReference = Reference(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
@@ -70,25 +70,25 @@ public class OrderResponse: DomainResource
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["fulfillment"] as? [JSONDictionary] {
+			if let val = js["fulfillment"] as? [FHIRJSON] {
 				self.fulfillment = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["orderStatus"] as? String {
 				self.orderStatus = val
 			}
-			if let val = js["request"] as? JSONDictionary {
+			if let val = js["request"] as? FHIRJSON {
 				self.request = Reference(json: val, owner: self)
 			}
-			if let val = js["who"] as? JSONDictionary {
+			if let val = js["who"] as? FHIRJSON {
 				self.who = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let authorityCodeableConcept = self.authorityCodeableConcept {

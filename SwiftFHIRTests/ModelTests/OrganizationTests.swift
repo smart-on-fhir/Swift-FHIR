@@ -2,7 +2,7 @@
 //  OrganizationTests.swift
 //  OrganizationTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class OrganizationTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Organization {
+	func instantiateFrom(# json: FHIRJSON) -> Organization {
 		let instance = Organization(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class OrganizationTests: FHIRModelTestCase
 		testOrganization1_impl(json: instance.asJSON())
 	}
 	
-	func testOrganization1_impl(json: JSONDictionary? = nil) -> Organization {
+	func testOrganization1_impl(json: FHIRJSON? = nil) -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "org-uslab-example1.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Harrisburg")
@@ -62,7 +62,7 @@ class OrganizationTests: FHIRModelTestCase
 		testOrganization2_impl(json: instance.asJSON())
 	}
 	
-	func testOrganization2_impl(json: JSONDictionary? = nil) -> Organization {
+	func testOrganization2_impl(json: FHIRJSON? = nil) -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "org-uslab-example2.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Boston")
@@ -98,7 +98,7 @@ class OrganizationTests: FHIRModelTestCase
 		testOrganization3_impl(json: instance.asJSON())
 	}
 	
-	func testOrganization3_impl(json: JSONDictionary? = nil) -> Organization {
+	func testOrganization3_impl(json: FHIRJSON? = nil) -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "org-uslab-example3.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Harrisburg")
@@ -134,7 +134,7 @@ class OrganizationTests: FHIRModelTestCase
 		testOrganization4_impl(json: instance.asJSON())
 	}
 	
-	func testOrganization4_impl(json: JSONDictionary? = nil) -> Organization {
+	func testOrganization4_impl(json: FHIRJSON? = nil) -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "organization-example-f001-burgers.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Den Burg")
@@ -182,7 +182,7 @@ class OrganizationTests: FHIRModelTestCase
 		testOrganization5_impl(json: instance.asJSON())
 	}
 	
-	func testOrganization5_impl(json: JSONDictionary? = nil) -> Organization {
+	func testOrganization5_impl(json: FHIRJSON? = nil) -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "organization-example-f002-burgers-card.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -215,7 +215,7 @@ class OrganizationTests: FHIRModelTestCase
 		testOrganization6_impl(json: instance.asJSON())
 	}
 	
-	func testOrganization6_impl(json: JSONDictionary? = nil) -> Organization {
+	func testOrganization6_impl(json: FHIRJSON? = nil) -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "organization-example-f003-burgers-ENT.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -248,7 +248,7 @@ class OrganizationTests: FHIRModelTestCase
 		testOrganization7_impl(json: instance.asJSON())
 	}
 	
-	func testOrganization7_impl(json: JSONDictionary? = nil) -> Organization {
+	func testOrganization7_impl(json: FHIRJSON? = nil) -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "organization-example-f201-aumc.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -298,7 +298,7 @@ class OrganizationTests: FHIRModelTestCase
 		testOrganization8_impl(json: instance.asJSON())
 	}
 	
-	func testOrganization8_impl(json: JSONDictionary? = nil) -> Organization {
+	func testOrganization8_impl(json: FHIRJSON? = nil) -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "organization-example-f203-bumc.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -331,7 +331,7 @@ class OrganizationTests: FHIRModelTestCase
 		testOrganization9_impl(json: instance.asJSON())
 	}
 	
-	func testOrganization9_impl(json: JSONDictionary? = nil) -> Organization {
+	func testOrganization9_impl(json: FHIRJSON? = nil) -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "organization-example-gastro.json")
 		
 		XCTAssertEqual(inst.id!, "1")
@@ -356,7 +356,7 @@ class OrganizationTests: FHIRModelTestCase
 		testOrganization10_impl(json: instance.asJSON())
 	}
 	
-	func testOrganization10_impl(json: JSONDictionary? = nil) -> Organization {
+	func testOrganization10_impl(json: FHIRJSON? = nil) -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "organization-example-good-health-care.json")
 		
 		XCTAssertEqual(inst.id!, "2.16.840.1.113883.19.5")

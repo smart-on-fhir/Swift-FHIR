@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -64,13 +64,13 @@ public class DocumentManifest: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["author"] as? [JSONDictionary] {
+			if let val = js["author"] as? [FHIRJSON] {
 				self.author = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["content"] as? [JSONDictionary] {
+			if let val = js["content"] as? [FHIRJSON] {
 				self.content = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["created"] as? String {
@@ -79,16 +79,16 @@ public class DocumentManifest: DomainResource
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["masterIdentifier"] as? JSONDictionary {
+			if let val = js["masterIdentifier"] as? FHIRJSON {
 				self.masterIdentifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["recipient"] as? [JSONDictionary] {
+			if let val = js["recipient"] as? [FHIRJSON] {
 				self.recipient = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["related"] as? [JSONDictionary] {
+			if let val = js["related"] as? [FHIRJSON] {
 				self.related = DocumentManifestRelated.from(val, owner: self) as? [DocumentManifestRelated]
 			}
 			if let val = js["source"] as? String {
@@ -97,16 +97,16 @@ public class DocumentManifest: DomainResource
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? JSONDictionary {
+			if let val = js["subject"] as? FHIRJSON {
 				self.subject = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let author = self.author {
@@ -163,31 +163,31 @@ public class DocumentManifestRelated: FHIRElement
 	}
 	
 	/// Related Identifier
-	public var ids: Identifier?
+	public var identifier: Identifier?
 	
 	/// Related Resource
-	public var refs: Reference?
+	public var ref: Reference?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["ids"] as? JSONDictionary {
-				self.ids = Identifier(json: val, owner: self)
+			if let val = js["identifier"] as? FHIRJSON {
+				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["refs"] as? JSONDictionary {
-				self.refs = Reference(json: val, owner: self)
+			if let val = js["ref"] as? FHIRJSON {
+				self.ref = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let ids = self.ids {
-			json["ids"] = ids.asJSON()
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
 		}
-		if let refs = self.refs {
-			json["refs"] = refs.asJSON()
+		if let ref = self.ref {
+			json["ref"] = ref.asJSON()
 		}
 		
 		return json

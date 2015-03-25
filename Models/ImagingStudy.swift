@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -90,10 +90,10 @@ public class ImagingStudy: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["accession"] as? JSONDictionary {
+			if let val = js["accession"] as? FHIRJSON {
 				self.accession = Identifier(json: val, owner: self)
 			}
 			if let val = js["availability"] as? String {
@@ -105,10 +105,10 @@ public class ImagingStudy: DomainResource
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["interpreter"] as? JSONDictionary {
+			if let val = js["interpreter"] as? FHIRJSON {
 				self.interpreter = Reference(json: val, owner: self)
 			}
 			if let val = js["modalityList"] as? [String] {
@@ -120,19 +120,19 @@ public class ImagingStudy: DomainResource
 			if let val = js["numberOfSeries"] as? Int {
 				self.numberOfSeries = val
 			}
-			if let val = js["order"] as? [JSONDictionary] {
+			if let val = js["order"] as? [FHIRJSON] {
 				self.order = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["patient"] as? JSONDictionary {
+			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["procedure"] as? [JSONDictionary] {
+			if let val = js["procedure"] as? [FHIRJSON] {
 				self.procedure = Coding.from(val, owner: self) as? [Coding]
 			}
-			if let val = js["referrer"] as? JSONDictionary {
+			if let val = js["referrer"] as? FHIRJSON {
 				self.referrer = Reference(json: val, owner: self)
 			}
-			if let val = js["series"] as? [JSONDictionary] {
+			if let val = js["series"] as? [FHIRJSON] {
 				self.series = ImagingStudySeries.from(val, owner: self) as? [ImagingStudySeries]
 			}
 			if let val = js["started"] as? String {
@@ -147,7 +147,7 @@ public class ImagingStudy: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let accession = self.accession {
@@ -268,13 +268,13 @@ public class ImagingStudySeries: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["availability"] as? String {
 				self.availability = val
 			}
-			if let val = js["bodySite"] as? JSONDictionary {
+			if let val = js["bodySite"] as? FHIRJSON {
 				self.bodySite = Coding(json: val, owner: self)
 			}
 			if let val = js["dateTime"] as? String {
@@ -283,10 +283,10 @@ public class ImagingStudySeries: FHIRElement
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["instance"] as? [JSONDictionary] {
+			if let val = js["instance"] as? [FHIRJSON] {
 				self.instance = ImagingStudySeriesInstance.from(val, owner: self) as? [ImagingStudySeriesInstance]
 			}
-			if let val = js["laterality"] as? JSONDictionary {
+			if let val = js["laterality"] as? FHIRJSON {
 				self.laterality = Coding(json: val, owner: self)
 			}
 			if let val = js["modality"] as? String {
@@ -307,7 +307,7 @@ public class ImagingStudySeries: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let availability = self.availability {
@@ -388,10 +388,10 @@ public class ImagingStudySeriesInstance: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["content"] as? [JSONDictionary] {
+			if let val = js["content"] as? [FHIRJSON] {
 				self.content = Attachment.from(val, owner: self) as? [Attachment]
 			}
 			if let val = js["number"] as? Int {
@@ -412,7 +412,7 @@ public class ImagingStudySeriesInstance: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let content = self.content {

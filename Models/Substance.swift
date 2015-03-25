@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Substance) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Substance) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -37,25 +37,25 @@ public class Substance: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["ingredient"] as? [JSONDictionary] {
+			if let val = js["ingredient"] as? [FHIRJSON] {
 				self.ingredient = SubstanceIngredient.from(val, owner: self) as? [SubstanceIngredient]
 			}
-			if let val = js["instance"] as? JSONDictionary {
+			if let val = js["instance"] as? FHIRJSON {
 				self.instance = SubstanceInstance(json: val, owner: self)
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let description_fhir = self.description_fhir {
@@ -100,19 +100,19 @@ public class SubstanceIngredient: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["quantity"] as? JSONDictionary {
+			if let val = js["quantity"] as? FHIRJSON {
 				self.quantity = Ratio(json: val, owner: self)
 			}
-			if let val = js["substance"] as? JSONDictionary {
+			if let val = js["substance"] as? FHIRJSON {
 				self.substance = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let quantity = self.quantity {
@@ -148,22 +148,22 @@ public class SubstanceInstance: FHIRElement
 	/// Amount of substance in the package
 	public var quantity: Quantity?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["expiry"] as? String {
 				self.expiry = DateTime(string: val)
 			}
-			if let val = js["identifier"] as? JSONDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["quantity"] as? JSONDictionary {
+			if let val = js["quantity"] as? FHIRJSON {
 				self.quantity = Quantity(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let expiry = self.expiry {

@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Composition) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Composition) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -83,55 +83,55 @@ public class Composition: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["attester"] as? [JSONDictionary] {
+			if let val = js["attester"] as? [FHIRJSON] {
 				self.attester = CompositionAttester.from(val, owner: self) as? [CompositionAttester]
 			}
-			if let val = js["author"] as? [JSONDictionary] {
+			if let val = js["author"] as? [FHIRJSON] {
 				self.author = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["class"] as? JSONDictionary {
+			if let val = js["class"] as? FHIRJSON {
 				self.class_fhir = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["confidentiality"] as? String {
 				self.confidentiality = val
 			}
-			if let val = js["custodian"] as? JSONDictionary {
+			if let val = js["custodian"] as? FHIRJSON {
 				self.custodian = Reference(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
 				self.date = DateTime(string: val)
 			}
-			if let val = js["encounter"] as? JSONDictionary {
+			if let val = js["encounter"] as? FHIRJSON {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["event"] as? [JSONDictionary] {
+			if let val = js["event"] as? [FHIRJSON] {
 				self.event = CompositionEvent.from(val, owner: self) as? [CompositionEvent]
 			}
-			if let val = js["identifier"] as? JSONDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["section"] as? [JSONDictionary] {
+			if let val = js["section"] as? [FHIRJSON] {
 				self.section = CompositionSection.from(val, owner: self) as? [CompositionSection]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? JSONDictionary {
+			if let val = js["subject"] as? FHIRJSON {
 				self.subject = Reference(json: val, owner: self)
 			}
 			if let val = js["title"] as? String {
 				self.title = val
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let attester = self.attester {
@@ -209,13 +209,13 @@ public class CompositionAttester: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["mode"] as? [String] {
 				self.mode = val
 			}
-			if let val = js["party"] as? JSONDictionary {
+			if let val = js["party"] as? FHIRJSON {
 				self.party = Reference(json: val, owner: self)
 			}
 			if let val = js["time"] as? String {
@@ -224,7 +224,7 @@ public class CompositionAttester: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let mode = self.mode {
@@ -266,22 +266,22 @@ public class CompositionEvent: FHIRElement
 	/// The period covered by the documentation
 	public var period: Period?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? [JSONDictionary] {
+			if let val = js["code"] as? [FHIRJSON] {
 				self.code = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["detail"] as? [JSONDictionary] {
+			if let val = js["detail"] as? [FHIRJSON] {
 				self.detail = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["period"] as? JSONDictionary {
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {
@@ -322,16 +322,16 @@ public class CompositionSection: FHIRElement
 	/// Label for section (e.g. for ToC)
 	public var title: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? JSONDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["content"] as? JSONDictionary {
+			if let val = js["content"] as? FHIRJSON {
 				self.content = Reference(json: val, owner: self)
 			}
-			if let val = js["section"] as? [JSONDictionary] {
+			if let val = js["section"] as? [FHIRJSON] {
 				self.section = CompositionSection.from(val, owner: self) as? [CompositionSection]
 			}
 			if let val = js["title"] as? String {
@@ -340,7 +340,7 @@ public class CompositionSection: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {

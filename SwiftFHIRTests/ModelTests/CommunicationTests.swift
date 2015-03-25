@@ -2,7 +2,7 @@
 //  CommunicationTests.swift
 //  CommunicationTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class CommunicationTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Communication {
+	func instantiateFrom(# json: FHIRJSON) -> Communication {
 		let instance = Communication(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class CommunicationTests: FHIRModelTestCase
 		testCommunication1_impl(json: instance.asJSON())
 	}
 	
-	func testCommunication1_impl(json: JSONDictionary? = nil) -> Communication {
+	func testCommunication1_impl(json: FHIRJSON? = nil) -> Communication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "communication-example.json")
 		
 		XCTAssertEqual(inst.category!.coding![0].code!, "Alert")
@@ -55,7 +55,7 @@ class CommunicationTests: FHIRModelTestCase
 		testCommunication2_impl(json: instance.asJSON())
 	}
 	
-	func testCommunication2_impl(json: JSONDictionary? = nil) -> Communication {
+	func testCommunication2_impl(json: FHIRJSON? = nil) -> Communication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "communication-qicore-example.json")
 		
 		XCTAssertEqual(inst.category!.coding![0].code!, "Alert")

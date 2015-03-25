@@ -2,7 +2,7 @@
 //  PaymentReconciliation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -72,58 +72,58 @@ public class PaymentReconciliation: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["created"] as? String {
 				self.created = DateTime(string: val)
 			}
-			if let val = js["detail"] as? [JSONDictionary] {
+			if let val = js["detail"] as? [FHIRJSON] {
 				self.detail = PaymentReconciliationDetail.from(val, owner: self) as? [PaymentReconciliationDetail]
 			}
 			if let val = js["disposition"] as? String {
 				self.disposition = val
 			}
-			if let val = js["form"] as? JSONDictionary {
+			if let val = js["form"] as? FHIRJSON {
 				self.form = Coding(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["note"] as? [JSONDictionary] {
+			if let val = js["note"] as? [FHIRJSON] {
 				self.note = PaymentReconciliationNote.from(val, owner: self) as? [PaymentReconciliationNote]
 			}
-			if let val = js["organization"] as? JSONDictionary {
+			if let val = js["organization"] as? FHIRJSON {
 				self.organization = Reference(json: val, owner: self)
 			}
-			if let val = js["originalRuleset"] as? JSONDictionary {
+			if let val = js["originalRuleset"] as? FHIRJSON {
 				self.originalRuleset = Coding(json: val, owner: self)
 			}
 			if let val = js["outcome"] as? String {
 				self.outcome = val
 			}
-			if let val = js["period"] as? JSONDictionary {
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
-			if let val = js["request"] as? JSONDictionary {
+			if let val = js["request"] as? FHIRJSON {
 				self.request = Reference(json: val, owner: self)
 			}
-			if let val = js["requestOrganization"] as? JSONDictionary {
+			if let val = js["requestOrganization"] as? FHIRJSON {
 				self.requestOrganization = Reference(json: val, owner: self)
 			}
-			if let val = js["requestProvider"] as? JSONDictionary {
+			if let val = js["requestProvider"] as? FHIRJSON {
 				self.requestProvider = Reference(json: val, owner: self)
 			}
-			if let val = js["ruleset"] as? JSONDictionary {
+			if let val = js["ruleset"] as? FHIRJSON {
 				self.ruleset = Coding(json: val, owner: self)
 			}
-			if let val = js["total"] as? JSONDictionary {
+			if let val = js["total"] as? FHIRJSON {
 				self.total = Money(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let created = self.created {
@@ -216,34 +216,34 @@ public class PaymentReconciliationDetail: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["amount"] as? JSONDictionary {
+			if let val = js["amount"] as? FHIRJSON {
 				self.amount = Money(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
 				self.date = Date(string: val)
 			}
-			if let val = js["payee"] as? JSONDictionary {
+			if let val = js["payee"] as? FHIRJSON {
 				self.payee = Reference(json: val, owner: self)
 			}
-			if let val = js["request"] as? JSONDictionary {
+			if let val = js["request"] as? FHIRJSON {
 				self.request = Reference(json: val, owner: self)
 			}
-			if let val = js["responce"] as? JSONDictionary {
+			if let val = js["responce"] as? FHIRJSON {
 				self.responce = Reference(json: val, owner: self)
 			}
-			if let val = js["submitter"] as? JSONDictionary {
+			if let val = js["submitter"] as? FHIRJSON {
 				self.submitter = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = Coding(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let amount = self.amount {
@@ -290,19 +290,19 @@ public class PaymentReconciliationNote: FHIRElement
 	/// display | print | printoper
 	public var type: Coding?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["text"] as? String {
 				self.text = val
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = Coding(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let text = self.text {

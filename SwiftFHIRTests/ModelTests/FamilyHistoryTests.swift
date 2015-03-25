@@ -2,7 +2,7 @@
 //  FamilyHistoryTests.swift
 //  FamilyHistoryTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class FamilyHistoryTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> FamilyHistory {
+	func instantiateFrom(# json: FHIRJSON) -> FamilyHistory {
 		let instance = FamilyHistory(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class FamilyHistoryTests: FHIRModelTestCase
 		testFamilyHistory1_impl(json: instance.asJSON())
 	}
 	
-	func testFamilyHistory1_impl(json: JSONDictionary? = nil) -> FamilyHistory {
+	func testFamilyHistory1_impl(json: FHIRJSON? = nil) -> FamilyHistory {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "familyhistory-example-mother.json")
 		
 		XCTAssertEqual(inst.id!, "mother")
@@ -59,7 +59,7 @@ class FamilyHistoryTests: FHIRModelTestCase
 		testFamilyHistory2_impl(json: instance.asJSON())
 	}
 	
-	func testFamilyHistory2_impl(json: JSONDictionary? = nil) -> FamilyHistory {
+	func testFamilyHistory2_impl(json: FHIRJSON? = nil) -> FamilyHistory {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "familyhistory-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2011-03-18")
@@ -87,7 +87,7 @@ class FamilyHistoryTests: FHIRModelTestCase
 		testFamilyHistory3_impl(json: instance.asJSON())
 	}
 	
-	func testFamilyHistory3_impl(json: JSONDictionary? = nil) -> FamilyHistory {
+	func testFamilyHistory3_impl(json: FHIRJSON? = nil) -> FamilyHistory {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "familyhistory-qicore-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2011-03-18")

@@ -2,7 +2,7 @@
 //  PractitionerTests.swift
 //  PractitionerTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class PractitionerTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Practitioner {
+	func instantiateFrom(# json: FHIRJSON) -> Practitioner {
 		let instance = Practitioner(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class PractitionerTests: FHIRModelTestCase
 		testPractitioner1_impl(json: instance.asJSON())
 	}
 	
-	func testPractitioner1_impl(json: JSONDictionary? = nil) -> Practitioner {
+	func testPractitioner1_impl(json: FHIRJSON? = nil) -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "pract-uslab-example1.json")
 		
 		XCTAssertEqual(inst.id!, "uslab-example1")
@@ -52,7 +52,7 @@ class PractitionerTests: FHIRModelTestCase
 		testPractitioner2_impl(json: instance.asJSON())
 	}
 	
-	func testPractitioner2_impl(json: JSONDictionary? = nil) -> Practitioner {
+	func testPractitioner2_impl(json: FHIRJSON? = nil) -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "pract-uslab-example2.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Boston")
@@ -92,7 +92,7 @@ class PractitionerTests: FHIRModelTestCase
 		testPractitioner3_impl(json: instance.asJSON())
 	}
 	
-	func testPractitioner3_impl(json: JSONDictionary? = nil) -> Practitioner {
+	func testPractitioner3_impl(json: FHIRJSON? = nil) -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "pract-uslab-example3.json")
 		
 		XCTAssertEqual(inst.id!, "uslab-example3")
@@ -117,7 +117,7 @@ class PractitionerTests: FHIRModelTestCase
 		testPractitioner4_impl(json: instance.asJSON())
 	}
 	
-	func testPractitioner4_impl(json: JSONDictionary? = nil) -> Practitioner {
+	func testPractitioner4_impl(json: FHIRJSON? = nil) -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "practitioner-example-f001-evdb.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Den Burg")
@@ -167,7 +167,7 @@ class PractitionerTests: FHIRModelTestCase
 		testPractitioner5_impl(json: instance.asJSON())
 	}
 	
-	func testPractitioner5_impl(json: JSONDictionary? = nil) -> Practitioner {
+	func testPractitioner5_impl(json: FHIRJSON? = nil) -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "practitioner-example-f002-pv.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Den Burg")
@@ -217,7 +217,7 @@ class PractitionerTests: FHIRModelTestCase
 		testPractitioner6_impl(json: instance.asJSON())
 	}
 	
-	func testPractitioner6_impl(json: JSONDictionary? = nil) -> Practitioner {
+	func testPractitioner6_impl(json: FHIRJSON? = nil) -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "practitioner-example-f003-mv.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Amsterdam")
@@ -270,7 +270,7 @@ class PractitionerTests: FHIRModelTestCase
 		testPractitioner7_impl(json: instance.asJSON())
 	}
 	
-	func testPractitioner7_impl(json: JSONDictionary? = nil) -> Practitioner {
+	func testPractitioner7_impl(json: FHIRJSON? = nil) -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "practitioner-example-f004-rb.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Amsterdam")
@@ -324,7 +324,7 @@ class PractitionerTests: FHIRModelTestCase
 		testPractitioner8_impl(json: instance.asJSON())
 	}
 	
-	func testPractitioner8_impl(json: JSONDictionary? = nil) -> Practitioner {
+	func testPractitioner8_impl(json: FHIRJSON? = nil) -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "practitioner-example-f005-al.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Amsterdam")
@@ -377,7 +377,7 @@ class PractitionerTests: FHIRModelTestCase
 		testPractitioner9_impl(json: instance.asJSON())
 	}
 	
-	func testPractitioner9_impl(json: JSONDictionary? = nil) -> Practitioner {
+	func testPractitioner9_impl(json: FHIRJSON? = nil) -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "practitioner-example-f006-rvdb.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Den Burg")
@@ -427,7 +427,7 @@ class PractitionerTests: FHIRModelTestCase
 		testPractitioner10_impl(json: instance.asJSON())
 	}
 	
-	func testPractitioner10_impl(json: JSONDictionary? = nil) -> Practitioner {
+	func testPractitioner10_impl(json: FHIRJSON? = nil) -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "practitioner-example-f007-sh.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Den Burg")

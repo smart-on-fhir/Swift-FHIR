@@ -2,7 +2,7 @@
 //  ScheduleTests.swift
 //  ScheduleTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ScheduleTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Schedule {
+	func instantiateFrom(# json: FHIRJSON) -> Schedule {
 		let instance = Schedule(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ScheduleTests: FHIRModelTestCase
 		testSchedule1_impl(json: instance.asJSON())
 	}
 	
-	func testSchedule1_impl(json: JSONDictionary? = nil) -> Schedule {
+	func testSchedule1_impl(json: FHIRJSON? = nil) -> Schedule {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "schedule-example.json")
 		
 		XCTAssertEqual(inst.actor!.display!, "Burgers UMC, South Wing, second floor")

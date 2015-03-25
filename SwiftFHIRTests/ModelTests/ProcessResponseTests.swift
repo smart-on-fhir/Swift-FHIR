@@ -2,7 +2,7 @@
 //  ProcessResponseTests.swift
 //  ProcessResponseTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ProcessResponseTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> ProcessResponse {
+	func instantiateFrom(# json: FHIRJSON) -> ProcessResponse {
 		let instance = ProcessResponse(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ProcessResponseTests: FHIRModelTestCase
 		testProcessResponse1_impl(json: instance.asJSON())
 	}
 	
-	func testProcessResponse1_impl(json: JSONDictionary? = nil) -> ProcessResponse {
+	func testProcessResponse1_impl(json: FHIRJSON? = nil) -> ProcessResponse {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "processresponse-example.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")

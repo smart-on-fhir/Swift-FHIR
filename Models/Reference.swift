@@ -2,7 +2,7 @@
 //  Reference.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Reference) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Reference) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -24,7 +24,7 @@ public class Reference: FHIRElement
 	/// Relative, internal or absolute URL reference
 	public var reference: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["display"] as? String {
@@ -36,7 +36,7 @@ public class Reference: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let display = self.display {

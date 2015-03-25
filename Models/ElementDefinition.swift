@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -387,16 +387,16 @@ public class ElementDefinition: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["alias"] as? [String] {
 				self.alias = val
 			}
-			if let val = js["binding"] as? JSONDictionary {
+			if let val = js["binding"] as? FHIRJSON {
 				self.binding = ElementDefinitionBinding(json: val, owner: self)
 			}
-			if let val = js["code"] as? [JSONDictionary] {
+			if let val = js["code"] as? [FHIRJSON] {
 				self.code = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["comments"] as? String {
@@ -405,13 +405,13 @@ public class ElementDefinition: FHIRElement
 			if let val = js["condition"] as? [String] {
 				self.condition = val
 			}
-			if let val = js["constraint"] as? [JSONDictionary] {
+			if let val = js["constraint"] as? [FHIRJSON] {
 				self.constraint = ElementDefinitionConstraint.from(val, owner: self) as? [ElementDefinitionConstraint]
 			}
-			if let val = js["defaultValueAddress"] as? JSONDictionary {
+			if let val = js["defaultValueAddress"] as? FHIRJSON {
 				self.defaultValueAddress = Address(json: val, owner: self)
 			}
-			if let val = js["defaultValueAttachment"] as? JSONDictionary {
+			if let val = js["defaultValueAttachment"] as? FHIRJSON {
 				self.defaultValueAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["defaultValueBase64Binary"] as? String {
@@ -423,13 +423,13 @@ public class ElementDefinition: FHIRElement
 			if let val = js["defaultValueCode"] as? String {
 				self.defaultValueCode = val
 			}
-			if let val = js["defaultValueCodeableConcept"] as? JSONDictionary {
+			if let val = js["defaultValueCodeableConcept"] as? FHIRJSON {
 				self.defaultValueCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["defaultValueCoding"] as? JSONDictionary {
+			if let val = js["defaultValueCoding"] as? FHIRJSON {
 				self.defaultValueCoding = Coding(json: val, owner: self)
 			}
-			if let val = js["defaultValueContactPoint"] as? JSONDictionary {
+			if let val = js["defaultValueContactPoint"] as? FHIRJSON {
 				self.defaultValueContactPoint = ContactPoint(json: val, owner: self)
 			}
 			if let val = js["defaultValueDate"] as? String {
@@ -441,10 +441,10 @@ public class ElementDefinition: FHIRElement
 			if let val = js["defaultValueDecimal"] as? NSNumber {
 				self.defaultValueDecimal = NSDecimalNumber(json: val)
 			}
-			if let val = js["defaultValueHumanName"] as? JSONDictionary {
+			if let val = js["defaultValueHumanName"] as? FHIRJSON {
 				self.defaultValueHumanName = HumanName(json: val, owner: self)
 			}
-			if let val = js["defaultValueIdentifier"] as? JSONDictionary {
+			if let val = js["defaultValueIdentifier"] as? FHIRJSON {
 				self.defaultValueIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["defaultValueInstant"] as? String {
@@ -453,19 +453,19 @@ public class ElementDefinition: FHIRElement
 			if let val = js["defaultValueInteger"] as? Int {
 				self.defaultValueInteger = val
 			}
-			if let val = js["defaultValuePeriod"] as? JSONDictionary {
+			if let val = js["defaultValuePeriod"] as? FHIRJSON {
 				self.defaultValuePeriod = Period(json: val, owner: self)
 			}
-			if let val = js["defaultValueQuantity"] as? JSONDictionary {
+			if let val = js["defaultValueQuantity"] as? FHIRJSON {
 				self.defaultValueQuantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["defaultValueRange"] as? JSONDictionary {
+			if let val = js["defaultValueRange"] as? FHIRJSON {
 				self.defaultValueRange = Range(json: val, owner: self)
 			}
-			if let val = js["defaultValueRatio"] as? JSONDictionary {
+			if let val = js["defaultValueRatio"] as? FHIRJSON {
 				self.defaultValueRatio = Ratio(json: val, owner: self)
 			}
-			if let val = js["defaultValueReference"] as? JSONDictionary {
+			if let val = js["defaultValueReference"] as? FHIRJSON {
 				self.defaultValueReference = Reference(json: val, owner: self)
 			}
 			if let val = js["defaultValueString"] as? String {
@@ -474,7 +474,7 @@ public class ElementDefinition: FHIRElement
 			if let val = js["defaultValueTime"] as? String {
 				self.defaultValueTime = Time(string: val)
 			}
-			if let val = js["defaultValueTiming"] as? JSONDictionary {
+			if let val = js["defaultValueTiming"] as? FHIRJSON {
 				self.defaultValueTiming = Timing(json: val, owner: self)
 			}
 			if let val = js["defaultValueUri"] as? String {
@@ -483,10 +483,10 @@ public class ElementDefinition: FHIRElement
 			if let val = js["definition"] as? String {
 				self.definition = val
 			}
-			if let val = js["exampleAddress"] as? JSONDictionary {
+			if let val = js["exampleAddress"] as? FHIRJSON {
 				self.exampleAddress = Address(json: val, owner: self)
 			}
-			if let val = js["exampleAttachment"] as? JSONDictionary {
+			if let val = js["exampleAttachment"] as? FHIRJSON {
 				self.exampleAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["exampleBase64Binary"] as? String {
@@ -498,13 +498,13 @@ public class ElementDefinition: FHIRElement
 			if let val = js["exampleCode"] as? String {
 				self.exampleCode = val
 			}
-			if let val = js["exampleCodeableConcept"] as? JSONDictionary {
+			if let val = js["exampleCodeableConcept"] as? FHIRJSON {
 				self.exampleCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["exampleCoding"] as? JSONDictionary {
+			if let val = js["exampleCoding"] as? FHIRJSON {
 				self.exampleCoding = Coding(json: val, owner: self)
 			}
-			if let val = js["exampleContactPoint"] as? JSONDictionary {
+			if let val = js["exampleContactPoint"] as? FHIRJSON {
 				self.exampleContactPoint = ContactPoint(json: val, owner: self)
 			}
 			if let val = js["exampleDate"] as? String {
@@ -516,10 +516,10 @@ public class ElementDefinition: FHIRElement
 			if let val = js["exampleDecimal"] as? NSNumber {
 				self.exampleDecimal = NSDecimalNumber(json: val)
 			}
-			if let val = js["exampleHumanName"] as? JSONDictionary {
+			if let val = js["exampleHumanName"] as? FHIRJSON {
 				self.exampleHumanName = HumanName(json: val, owner: self)
 			}
-			if let val = js["exampleIdentifier"] as? JSONDictionary {
+			if let val = js["exampleIdentifier"] as? FHIRJSON {
 				self.exampleIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["exampleInstant"] as? String {
@@ -528,19 +528,19 @@ public class ElementDefinition: FHIRElement
 			if let val = js["exampleInteger"] as? Int {
 				self.exampleInteger = val
 			}
-			if let val = js["examplePeriod"] as? JSONDictionary {
+			if let val = js["examplePeriod"] as? FHIRJSON {
 				self.examplePeriod = Period(json: val, owner: self)
 			}
-			if let val = js["exampleQuantity"] as? JSONDictionary {
+			if let val = js["exampleQuantity"] as? FHIRJSON {
 				self.exampleQuantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["exampleRange"] as? JSONDictionary {
+			if let val = js["exampleRange"] as? FHIRJSON {
 				self.exampleRange = Range(json: val, owner: self)
 			}
-			if let val = js["exampleRatio"] as? JSONDictionary {
+			if let val = js["exampleRatio"] as? FHIRJSON {
 				self.exampleRatio = Ratio(json: val, owner: self)
 			}
-			if let val = js["exampleReference"] as? JSONDictionary {
+			if let val = js["exampleReference"] as? FHIRJSON {
 				self.exampleReference = Reference(json: val, owner: self)
 			}
 			if let val = js["exampleString"] as? String {
@@ -549,16 +549,16 @@ public class ElementDefinition: FHIRElement
 			if let val = js["exampleTime"] as? String {
 				self.exampleTime = Time(string: val)
 			}
-			if let val = js["exampleTiming"] as? JSONDictionary {
+			if let val = js["exampleTiming"] as? FHIRJSON {
 				self.exampleTiming = Timing(json: val, owner: self)
 			}
 			if let val = js["exampleUri"] as? String {
 				self.exampleUri = NSURL(string: val)
 			}
-			if let val = js["fixedAddress"] as? JSONDictionary {
+			if let val = js["fixedAddress"] as? FHIRJSON {
 				self.fixedAddress = Address(json: val, owner: self)
 			}
-			if let val = js["fixedAttachment"] as? JSONDictionary {
+			if let val = js["fixedAttachment"] as? FHIRJSON {
 				self.fixedAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["fixedBase64Binary"] as? String {
@@ -570,13 +570,13 @@ public class ElementDefinition: FHIRElement
 			if let val = js["fixedCode"] as? String {
 				self.fixedCode = val
 			}
-			if let val = js["fixedCodeableConcept"] as? JSONDictionary {
+			if let val = js["fixedCodeableConcept"] as? FHIRJSON {
 				self.fixedCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["fixedCoding"] as? JSONDictionary {
+			if let val = js["fixedCoding"] as? FHIRJSON {
 				self.fixedCoding = Coding(json: val, owner: self)
 			}
-			if let val = js["fixedContactPoint"] as? JSONDictionary {
+			if let val = js["fixedContactPoint"] as? FHIRJSON {
 				self.fixedContactPoint = ContactPoint(json: val, owner: self)
 			}
 			if let val = js["fixedDate"] as? String {
@@ -588,10 +588,10 @@ public class ElementDefinition: FHIRElement
 			if let val = js["fixedDecimal"] as? NSNumber {
 				self.fixedDecimal = NSDecimalNumber(json: val)
 			}
-			if let val = js["fixedHumanName"] as? JSONDictionary {
+			if let val = js["fixedHumanName"] as? FHIRJSON {
 				self.fixedHumanName = HumanName(json: val, owner: self)
 			}
-			if let val = js["fixedIdentifier"] as? JSONDictionary {
+			if let val = js["fixedIdentifier"] as? FHIRJSON {
 				self.fixedIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["fixedInstant"] as? String {
@@ -600,19 +600,19 @@ public class ElementDefinition: FHIRElement
 			if let val = js["fixedInteger"] as? Int {
 				self.fixedInteger = val
 			}
-			if let val = js["fixedPeriod"] as? JSONDictionary {
+			if let val = js["fixedPeriod"] as? FHIRJSON {
 				self.fixedPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["fixedQuantity"] as? JSONDictionary {
+			if let val = js["fixedQuantity"] as? FHIRJSON {
 				self.fixedQuantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["fixedRange"] as? JSONDictionary {
+			if let val = js["fixedRange"] as? FHIRJSON {
 				self.fixedRange = Range(json: val, owner: self)
 			}
-			if let val = js["fixedRatio"] as? JSONDictionary {
+			if let val = js["fixedRatio"] as? FHIRJSON {
 				self.fixedRatio = Ratio(json: val, owner: self)
 			}
-			if let val = js["fixedReference"] as? JSONDictionary {
+			if let val = js["fixedReference"] as? FHIRJSON {
 				self.fixedReference = Reference(json: val, owner: self)
 			}
 			if let val = js["fixedString"] as? String {
@@ -621,7 +621,7 @@ public class ElementDefinition: FHIRElement
 			if let val = js["fixedTime"] as? String {
 				self.fixedTime = Time(string: val)
 			}
-			if let val = js["fixedTiming"] as? JSONDictionary {
+			if let val = js["fixedTiming"] as? FHIRJSON {
 				self.fixedTiming = Timing(json: val, owner: self)
 			}
 			if let val = js["fixedUri"] as? String {
@@ -636,7 +636,7 @@ public class ElementDefinition: FHIRElement
 			if let val = js["label"] as? String {
 				self.label = val
 			}
-			if let val = js["mapping"] as? [JSONDictionary] {
+			if let val = js["mapping"] as? [FHIRJSON] {
 				self.mapping = ElementDefinitionMapping.from(val, owner: self) as? [ElementDefinitionMapping]
 			}
 			if let val = js["max"] as? String {
@@ -663,10 +663,10 @@ public class ElementDefinition: FHIRElement
 			if let val = js["path"] as? String {
 				self.path = val
 			}
-			if let val = js["patternAddress"] as? JSONDictionary {
+			if let val = js["patternAddress"] as? FHIRJSON {
 				self.patternAddress = Address(json: val, owner: self)
 			}
-			if let val = js["patternAttachment"] as? JSONDictionary {
+			if let val = js["patternAttachment"] as? FHIRJSON {
 				self.patternAttachment = Attachment(json: val, owner: self)
 			}
 			if let val = js["patternBase64Binary"] as? String {
@@ -678,13 +678,13 @@ public class ElementDefinition: FHIRElement
 			if let val = js["patternCode"] as? String {
 				self.patternCode = val
 			}
-			if let val = js["patternCodeableConcept"] as? JSONDictionary {
+			if let val = js["patternCodeableConcept"] as? FHIRJSON {
 				self.patternCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["patternCoding"] as? JSONDictionary {
+			if let val = js["patternCoding"] as? FHIRJSON {
 				self.patternCoding = Coding(json: val, owner: self)
 			}
-			if let val = js["patternContactPoint"] as? JSONDictionary {
+			if let val = js["patternContactPoint"] as? FHIRJSON {
 				self.patternContactPoint = ContactPoint(json: val, owner: self)
 			}
 			if let val = js["patternDate"] as? String {
@@ -696,10 +696,10 @@ public class ElementDefinition: FHIRElement
 			if let val = js["patternDecimal"] as? NSNumber {
 				self.patternDecimal = NSDecimalNumber(json: val)
 			}
-			if let val = js["patternHumanName"] as? JSONDictionary {
+			if let val = js["patternHumanName"] as? FHIRJSON {
 				self.patternHumanName = HumanName(json: val, owner: self)
 			}
-			if let val = js["patternIdentifier"] as? JSONDictionary {
+			if let val = js["patternIdentifier"] as? FHIRJSON {
 				self.patternIdentifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["patternInstant"] as? String {
@@ -708,19 +708,19 @@ public class ElementDefinition: FHIRElement
 			if let val = js["patternInteger"] as? Int {
 				self.patternInteger = val
 			}
-			if let val = js["patternPeriod"] as? JSONDictionary {
+			if let val = js["patternPeriod"] as? FHIRJSON {
 				self.patternPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["patternQuantity"] as? JSONDictionary {
+			if let val = js["patternQuantity"] as? FHIRJSON {
 				self.patternQuantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["patternRange"] as? JSONDictionary {
+			if let val = js["patternRange"] as? FHIRJSON {
 				self.patternRange = Range(json: val, owner: self)
 			}
-			if let val = js["patternRatio"] as? JSONDictionary {
+			if let val = js["patternRatio"] as? FHIRJSON {
 				self.patternRatio = Ratio(json: val, owner: self)
 			}
-			if let val = js["patternReference"] as? JSONDictionary {
+			if let val = js["patternReference"] as? FHIRJSON {
 				self.patternReference = Reference(json: val, owner: self)
 			}
 			if let val = js["patternString"] as? String {
@@ -729,7 +729,7 @@ public class ElementDefinition: FHIRElement
 			if let val = js["patternTime"] as? String {
 				self.patternTime = Time(string: val)
 			}
-			if let val = js["patternTiming"] as? JSONDictionary {
+			if let val = js["patternTiming"] as? FHIRJSON {
 				self.patternTiming = Timing(json: val, owner: self)
 			}
 			if let val = js["patternUri"] as? String {
@@ -744,16 +744,16 @@ public class ElementDefinition: FHIRElement
 			if let val = js["short"] as? String {
 				self.short = val
 			}
-			if let val = js["slicing"] as? JSONDictionary {
+			if let val = js["slicing"] as? FHIRJSON {
 				self.slicing = ElementDefinitionSlicing(json: val, owner: self)
 			}
-			if let val = js["type"] as? [JSONDictionary] {
+			if let val = js["type"] as? [FHIRJSON] {
 				self.type = ElementDefinitionType.from(val, owner: self) as? [ElementDefinitionType]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let alias = self.alias {
@@ -1170,7 +1170,7 @@ public class ElementDefinitionBinding: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
@@ -1182,7 +1182,7 @@ public class ElementDefinitionBinding: FHIRElement
 			if let val = js["strength"] as? String {
 				self.strength = val
 			}
-			if let val = js["valueSetReference"] as? JSONDictionary {
+			if let val = js["valueSetReference"] as? FHIRJSON {
 				self.valueSetReference = Reference(json: val, owner: self)
 			}
 			if let val = js["valueSetUri"] as? String {
@@ -1191,7 +1191,7 @@ public class ElementDefinitionBinding: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let description_fhir = self.description_fhir {
@@ -1258,7 +1258,7 @@ public class ElementDefinitionConstraint: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["human"] as? String {
@@ -1279,7 +1279,7 @@ public class ElementDefinitionConstraint: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let human = self.human {
@@ -1333,7 +1333,7 @@ public class ElementDefinitionMapping: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["identity"] as? String {
@@ -1348,7 +1348,7 @@ public class ElementDefinitionMapping: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let identity = self.identity {
@@ -1398,7 +1398,7 @@ public class ElementDefinitionSlicing: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["description"] as? String {
@@ -1416,7 +1416,7 @@ public class ElementDefinitionSlicing: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let description_fhir = self.description_fhir {
@@ -1468,7 +1468,7 @@ public class ElementDefinitionType: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["aggregation"] as? [String] {
@@ -1483,7 +1483,7 @@ public class ElementDefinitionType: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let aggregation = self.aggregation {

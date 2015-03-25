@@ -2,7 +2,7 @@
 //  SupplyTests.swift
 //  SupplyTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class SupplyTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Supply {
+	func instantiateFrom(# json: FHIRJSON) -> Supply {
 		let instance = Supply(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,18 +27,18 @@ class SupplyTests: FHIRModelTestCase
 		testSupply1_impl(json: instance.asJSON())
 	}
 	
-	func testSupply1_impl(json: JSONDictionary? = nil) -> Supply {
+	func testSupply1_impl(json: FHIRJSON? = nil) -> Supply {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "supply-example1.json")
 		
 		XCTAssertEqual(inst.dispense![0].destination!.display!, "Neuro Radiology Operation Room ")
 		XCTAssertEqual(inst.dispense![0].destination!.reference!, "Location/2")
 		XCTAssertEqual(inst.dispense![0].identifier!.assigner!.display!, "Good Health Clinic")
 		XCTAssertEqual(inst.dispense![0].identifier!.assigner!.reference!, "Organization/2.16.840.1.113883.19.5")
-		XCTAssertEqual(inst.dispense![0].identifier!.system!.absoluteString!, "MM-Supply-Application")
+		XCTAssertEqual(inst.dispense![0].identifier!.system!.absoluteString!, "http://example.org/MM-Supply-Application")
 		XCTAssertEqual(inst.dispense![0].identifier!.use!, "usual")
 		XCTAssertEqual(inst.dispense![0].identifier!.value!, "12345")
 		XCTAssertEqual(inst.dispense![0].quantity!.code!, "{each}")
-		XCTAssertEqual(inst.dispense![0].quantity!.system!.absoluteString!, "http://unitsofmeasure.org/trac/")
+		XCTAssertEqual(inst.dispense![0].quantity!.system!.absoluteString!, "http://unitsofmeasure.org/")
 		XCTAssertEqual(inst.dispense![0].quantity!.units!, "EA")
 		XCTAssertEqual(inst.dispense![0].quantity!.value!, NSDecimalNumber(string: "1"))
 		XCTAssertEqual(inst.dispense![0].receiver![0].display!, "Carla Espinosa")
@@ -56,7 +56,7 @@ class SupplyTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "102")
 		XCTAssertEqual(inst.identifier!.assigner!.display!, "Good Health Clinic")
 		XCTAssertEqual(inst.identifier!.assigner!.reference!, "Organization/2.16.840.1.113883.19.5")
-		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "OR-Supply-Application")
+		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://example.org/OR-Supply-Application")
 		XCTAssertEqual(inst.identifier!.value!, "23455")
 		XCTAssertEqual(inst.kind!.coding![0].code!, "central")
 		XCTAssertEqual(inst.kind!.coding![0].display!, "Central Supply")

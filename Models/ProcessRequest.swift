@@ -2,7 +2,7 @@
 //  ProcessRequest.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -21,7 +21,7 @@ public class ProcessRequest: DomainResource
 		get { return "ProcessRequest" }
 	}
 	
-	/// poll | reprocess | reverse | status
+	/// cancel | poll | reprocess | status
 	public var action: String?
 	
 	/// Creation date
@@ -76,7 +76,7 @@ public class ProcessRequest: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["action"] as? String {
@@ -88,49 +88,49 @@ public class ProcessRequest: DomainResource
 			if let val = js["exclude"] as? [String] {
 				self.exclude = val
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["include"] as? [String] {
 				self.include = val
 			}
-			if let val = js["item"] as? [JSONDictionary] {
+			if let val = js["item"] as? [FHIRJSON] {
 				self.item = ProcessRequestItem.from(val, owner: self) as? [ProcessRequestItem]
 			}
 			if let val = js["nullify"] as? Bool {
 				self.nullify = val
 			}
-			if let val = js["organization"] as? JSONDictionary {
+			if let val = js["organization"] as? FHIRJSON {
 				self.organization = Reference(json: val, owner: self)
 			}
-			if let val = js["originalRuleset"] as? JSONDictionary {
+			if let val = js["originalRuleset"] as? FHIRJSON {
 				self.originalRuleset = Coding(json: val, owner: self)
 			}
-			if let val = js["period"] as? JSONDictionary {
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
-			if let val = js["provider"] as? JSONDictionary {
+			if let val = js["provider"] as? FHIRJSON {
 				self.provider = Reference(json: val, owner: self)
 			}
 			if let val = js["reference"] as? String {
 				self.reference = val
 			}
-			if let val = js["request"] as? JSONDictionary {
+			if let val = js["request"] as? FHIRJSON {
 				self.request = Reference(json: val, owner: self)
 			}
-			if let val = js["response"] as? JSONDictionary {
+			if let val = js["response"] as? FHIRJSON {
 				self.response = Reference(json: val, owner: self)
 			}
-			if let val = js["ruleset"] as? JSONDictionary {
+			if let val = js["ruleset"] as? FHIRJSON {
 				self.ruleset = Coding(json: val, owner: self)
 			}
-			if let val = js["target"] as? JSONDictionary {
+			if let val = js["target"] as? FHIRJSON {
 				self.target = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let action = self.action {
@@ -216,7 +216,7 @@ public class ProcessRequestItem: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["sequenceLinkId"] as? Int {
@@ -225,7 +225,7 @@ public class ProcessRequestItem: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let sequenceLinkId = self.sequenceLinkId {

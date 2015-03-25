@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -63,13 +63,13 @@ public class Subscription: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["channel"] as? JSONDictionary {
+			if let val = js["channel"] as? FHIRJSON {
 				self.channel = SubscriptionChannel(json: val, owner: self)
 			}
-			if let val = js["contact"] as? [JSONDictionary] {
+			if let val = js["contact"] as? [FHIRJSON] {
 				self.contact = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 			if let val = js["criteria"] as? String {
@@ -87,13 +87,13 @@ public class Subscription: DomainResource
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["tag"] as? [JSONDictionary] {
+			if let val = js["tag"] as? [FHIRJSON] {
 				self.tag = Coding.from(val, owner: self) as? [Coding]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let channel = self.channel {
@@ -159,7 +159,7 @@ public class SubscriptionChannel: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["endpoint"] as? String {
@@ -177,7 +177,7 @@ public class SubscriptionChannel: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let endpoint = self.endpoint {

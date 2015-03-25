@@ -2,7 +2,7 @@
 //  Signature.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Signature) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Signature) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -54,19 +54,19 @@ public class Signature: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["blob"] as? String {
 				self.blob = Base64Binary(string: val)
 			}
-			if let val = js["type"] as? [JSONDictionary] {
+			if let val = js["type"] as? [FHIRJSON] {
 				self.type = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["when"] as? String {
 				self.when = Instant(string: val)
 			}
-			if let val = js["whoReference"] as? JSONDictionary {
+			if let val = js["whoReference"] as? FHIRJSON {
 				self.whoReference = Reference(json: val, owner: self)
 			}
 			if let val = js["whoUri"] as? String {
@@ -75,7 +75,7 @@ public class Signature: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let blob = self.blob {

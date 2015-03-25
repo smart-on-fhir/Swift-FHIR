@@ -2,7 +2,7 @@
 //  ImagingObjectSelection.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -58,10 +58,10 @@ public class ImagingObjectSelection: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["author"] as? JSONDictionary {
+			if let val = js["author"] as? FHIRJSON {
 				self.author = Reference(json: val, owner: self)
 			}
 			if let val = js["authoringTime"] as? String {
@@ -70,13 +70,13 @@ public class ImagingObjectSelection: DomainResource
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["patient"] as? JSONDictionary {
+			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["study"] as? [JSONDictionary] {
+			if let val = js["study"] as? [FHIRJSON] {
 				self.study = ImagingObjectSelectionStudy.from(val, owner: self) as? [ImagingObjectSelectionStudy]
 			}
-			if let val = js["title"] as? JSONDictionary {
+			if let val = js["title"] as? FHIRJSON {
 				self.title = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["uid"] as? String {
@@ -85,7 +85,7 @@ public class ImagingObjectSelection: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let author = self.author {
@@ -145,10 +145,10 @@ public class ImagingObjectSelectionStudy: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["series"] as? [JSONDictionary] {
+			if let val = js["series"] as? [FHIRJSON] {
 				self.series = ImagingObjectSelectionStudySeries.from(val, owner: self) as? [ImagingObjectSelectionStudySeries]
 			}
 			if let val = js["uid"] as? String {
@@ -160,7 +160,7 @@ public class ImagingObjectSelectionStudy: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let series = self.series {
@@ -205,10 +205,10 @@ public class ImagingObjectSelectionStudySeries: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["instance"] as? [JSONDictionary] {
+			if let val = js["instance"] as? [FHIRJSON] {
 				self.instance = ImagingObjectSelectionStudySeriesInstance.from(val, owner: self) as? [ImagingObjectSelectionStudySeriesInstance]
 			}
 			if let val = js["uid"] as? String {
@@ -220,7 +220,7 @@ public class ImagingObjectSelectionStudySeries: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let instance = self.instance {
@@ -274,10 +274,10 @@ public class ImagingObjectSelectionStudySeriesInstance: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["frames"] as? [JSONDictionary] {
+			if let val = js["frames"] as? [FHIRJSON] {
 				self.frames = ImagingObjectSelectionStudySeriesInstanceFrames.from(val, owner: self) as? [ImagingObjectSelectionStudySeriesInstanceFrames]
 			}
 			if let val = js["sopClass"] as? String {
@@ -292,7 +292,7 @@ public class ImagingObjectSelectionStudySeriesInstance: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let frames = self.frames {
@@ -340,7 +340,7 @@ public class ImagingObjectSelectionStudySeriesInstanceFrames: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["frameNumbers"] as? [Int] {
@@ -352,7 +352,7 @@ public class ImagingObjectSelectionStudySeriesInstanceFrames: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let frameNumbers = self.frameNumbers {

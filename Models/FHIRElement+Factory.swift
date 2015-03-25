@@ -2,7 +2,7 @@
 //  FHIRElement+Factory.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -12,7 +12,7 @@
  */
 extension FHIRElement
 {
-	public class func factory(className: String, json: JSONDictionary, owner: FHIRElement?) -> FHIRElement {
+	public class func factory(className: String, json: FHIRJSON, owner: FHIRElement?) -> FHIRElement {
 		switch className {
 			case "Address":
 				return Address(json: json, owner: owner)
@@ -52,10 +52,6 @@ extension FHIRElement
 				return Binary(json: json, owner: owner)
 			case "BodySite":
 				return BodySite(json: json, owner: owner)
-			case "BodySiteRelativeLocation":
-				return BodySiteRelativeLocation(json: json, owner: owner)
-			case "BodySiteSpecificLocation":
-				return BodySiteSpecificLocation(json: json, owner: owner)
 			case "Bundle":
 				return Bundle(json: json, owner: owner)
 			case "BundleEntry":
@@ -130,8 +126,8 @@ extension FHIRElement
 				return ClaimResponseNote(json: json, owner: owner)
 			case "ClinicalImpression":
 				return ClinicalImpression(json: json, owner: owner)
-			case "ClinicalImpressionDiagnosis":
-				return ClinicalImpressionDiagnosis(json: json, owner: owner)
+			case "ClinicalImpressionFinding":
+				return ClinicalImpressionFinding(json: json, owner: owner)
 			case "ClinicalImpressionInvestigations":
 				return ClinicalImpressionInvestigations(json: json, owner: owner)
 			case "ClinicalImpressionRuledOut":
@@ -526,12 +522,18 @@ extension FHIRElement
 				return PractitionerQualification(json: json, owner: owner)
 			case "Procedure":
 				return Procedure(json: json, owner: owner)
+			case "ProcedureBodySite":
+				return ProcedureBodySite(json: json, owner: owner)
+			case "ProcedureDevice":
+				return ProcedureDevice(json: json, owner: owner)
 			case "ProcedurePerformer":
 				return ProcedurePerformer(json: json, owner: owner)
 			case "ProcedureRelatedItem":
 				return ProcedureRelatedItem(json: json, owner: owner)
 			case "ProcedureRequest":
 				return ProcedureRequest(json: json, owner: owner)
+			case "ProcedureRequestBodySite":
+				return ProcedureRequestBodySite(json: json, owner: owner)
 			case "ProcessRequest":
 				return ProcessRequest(json: json, owner: owner)
 			case "ProcessRequestItem":

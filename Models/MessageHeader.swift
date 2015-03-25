@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -74,40 +74,40 @@ public class MessageHeader: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["author"] as? JSONDictionary {
+			if let val = js["author"] as? FHIRJSON {
 				self.author = Reference(json: val, owner: self)
 			}
-			if let val = js["data"] as? [JSONDictionary] {
+			if let val = js["data"] as? [FHIRJSON] {
 				self.data = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["destination"] as? [JSONDictionary] {
+			if let val = js["destination"] as? [FHIRJSON] {
 				self.destination = MessageHeaderDestination.from(val, owner: self) as? [MessageHeaderDestination]
 			}
-			if let val = js["enterer"] as? JSONDictionary {
+			if let val = js["enterer"] as? FHIRJSON {
 				self.enterer = Reference(json: val, owner: self)
 			}
-			if let val = js["event"] as? JSONDictionary {
+			if let val = js["event"] as? FHIRJSON {
 				self.event = Coding(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? String {
 				self.identifier = val
 			}
-			if let val = js["reason"] as? JSONDictionary {
+			if let val = js["reason"] as? FHIRJSON {
 				self.reason = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["receiver"] as? JSONDictionary {
+			if let val = js["receiver"] as? FHIRJSON {
 				self.receiver = Reference(json: val, owner: self)
 			}
-			if let val = js["response"] as? JSONDictionary {
+			if let val = js["response"] as? FHIRJSON {
 				self.response = MessageHeaderResponse(json: val, owner: self)
 			}
-			if let val = js["responsible"] as? JSONDictionary {
+			if let val = js["responsible"] as? FHIRJSON {
 				self.responsible = Reference(json: val, owner: self)
 			}
-			if let val = js["source"] as? JSONDictionary {
+			if let val = js["source"] as? FHIRJSON {
 				self.source = MessageHeaderSource(json: val, owner: self)
 			}
 			if let val = js["timestamp"] as? String {
@@ -116,7 +116,7 @@ public class MessageHeader: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let author = self.author {
@@ -188,7 +188,7 @@ public class MessageHeaderDestination: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["endpoint"] as? String {
@@ -197,13 +197,13 @@ public class MessageHeaderDestination: FHIRElement
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["target"] as? JSONDictionary {
+			if let val = js["target"] as? FHIRJSON {
 				self.target = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let endpoint = self.endpoint {
@@ -251,13 +251,13 @@ public class MessageHeaderResponse: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
 				self.code = val
 			}
-			if let val = js["details"] as? JSONDictionary {
+			if let val = js["details"] as? FHIRJSON {
 				self.details = Reference(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? String {
@@ -266,7 +266,7 @@ public class MessageHeaderResponse: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {
@@ -317,10 +317,10 @@ public class MessageHeaderSource: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["contact"] as? JSONDictionary {
+			if let val = js["contact"] as? FHIRJSON {
 				self.contact = ContactPoint(json: val, owner: self)
 			}
 			if let val = js["endpoint"] as? String {
@@ -338,7 +338,7 @@ public class MessageHeaderSource: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let contact = self.contact {

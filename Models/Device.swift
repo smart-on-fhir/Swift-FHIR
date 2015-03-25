@@ -2,7 +2,7 @@
 //  Device.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Device) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Device) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -29,7 +29,7 @@ public class Device: DomainResource
 	/// Date and time of expiry of this device (if applicable)
 	public var expiry: DateTime?
 	
-	/// Instance id from manufacturer, owner, regulatory agencies and others
+	/// Instance id from manufacturer, owner, and others
 	public var identifier: [Identifier]?
 	
 	/// Where the resource is found
@@ -53,8 +53,14 @@ public class Device: DomainResource
 	/// If the resource is affixed to a person
 	public var patient: Reference?
 	
+	/// available | not-available | entered-in-error
+	public var status: String?
+	
 	/// What kind of device this is
 	public var type: CodeableConcept?
+	
+	/// FDA Mandated Unique Device Identifier
+	public var udi: String?
 	
 	/// Network address to contact device
 	public var url: NSURL?
@@ -69,19 +75,19 @@ public class Device: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["contact"] as? [JSONDictionary] {
+			if let val = js["contact"] as? [FHIRJSON] {
 				self.contact = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 			if let val = js["expiry"] as? String {
 				self.expiry = DateTime(string: val)
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["location"] as? JSONDictionary {
+			if let val = js["location"] as? FHIRJSON {
 				self.location = Reference(json: val, owner: self)
 			}
 			if let val = js["lotNumber"] as? String {
@@ -96,14 +102,20 @@ public class Device: DomainResource
 			if let val = js["model"] as? String {
 				self.model = val
 			}
-			if let val = js["owner"] as? JSONDictionary {
+			if let val = js["owner"] as? FHIRJSON {
 				self.owner = Reference(json: val, owner: self)
 			}
-			if let val = js["patient"] as? JSONDictionary {
+			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["status"] as? String {
+				self.status = val
+			}
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
+			}
+			if let val = js["udi"] as? String {
+				self.udi = val
 			}
 			if let val = js["url"] as? String {
 				self.url = NSURL(string: val)
@@ -114,7 +126,7 @@ public class Device: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let contact = self.contact {
@@ -147,8 +159,14 @@ public class Device: DomainResource
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
 		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
+		}
+		if let udi = self.udi {
+			json["udi"] = udi.asJSON()
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()

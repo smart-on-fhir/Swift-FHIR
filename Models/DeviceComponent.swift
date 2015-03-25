@@ -2,7 +2,7 @@
 //  DeviceComponent.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -64,13 +64,13 @@ public class DeviceComponent: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["identifier"] as? JSONDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["languageCode"] as? JSONDictionary {
+			if let val = js["languageCode"] as? FHIRJSON {
 				self.languageCode = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["lastSystemChange"] as? String {
@@ -79,28 +79,28 @@ public class DeviceComponent: DomainResource
 			if let val = js["measurementPrinciple"] as? String {
 				self.measurementPrinciple = val
 			}
-			if let val = js["operationalStatus"] as? [JSONDictionary] {
+			if let val = js["operationalStatus"] as? [FHIRJSON] {
 				self.operationalStatus = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["parameterGroup"] as? JSONDictionary {
+			if let val = js["parameterGroup"] as? FHIRJSON {
 				self.parameterGroup = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["parent"] as? JSONDictionary {
+			if let val = js["parent"] as? FHIRJSON {
 				self.parent = Reference(json: val, owner: self)
 			}
-			if let val = js["productionSpecification"] as? [JSONDictionary] {
+			if let val = js["productionSpecification"] as? [FHIRJSON] {
 				self.productionSpecification = DeviceComponentProductionSpecification.from(val, owner: self) as? [DeviceComponentProductionSpecification]
 			}
-			if let val = js["source"] as? JSONDictionary {
+			if let val = js["source"] as? FHIRJSON {
 				self.source = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let identifier = self.identifier {
@@ -159,22 +159,22 @@ public class DeviceComponentProductionSpecification: FHIRElement
 	/// Specification type
 	public var specType: CodeableConcept?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["componentId"] as? JSONDictionary {
+			if let val = js["componentId"] as? FHIRJSON {
 				self.componentId = Identifier(json: val, owner: self)
 			}
 			if let val = js["productionSpec"] as? String {
 				self.productionSpec = val
 			}
-			if let val = js["specType"] as? JSONDictionary {
+			if let val = js["specType"] as? FHIRJSON {
 				self.specType = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let componentId = self.componentId {

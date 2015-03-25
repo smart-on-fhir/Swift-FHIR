@@ -24,7 +24,7 @@ let FHIRSearchErrorDomain = "FHIRSearchErrorDomain"
  */
 public class FHIRSearch
 {
-	/// The first search parameter must define a profile type to which the search is applied.
+	/// Search must define a profile type to which the search is applied.
 	public var profileType: FHIRResource.Type?
 	
 	/// The query construct used to describe the search

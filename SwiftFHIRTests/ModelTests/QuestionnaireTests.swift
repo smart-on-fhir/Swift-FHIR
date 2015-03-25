@@ -2,7 +2,7 @@
 //  QuestionnaireTests.swift
 //  QuestionnaireTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class QuestionnaireTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Questionnaire {
+	func instantiateFrom(# json: FHIRJSON) -> Questionnaire {
 		let instance = Questionnaire(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class QuestionnaireTests: FHIRModelTestCase
 		testQuestionnaire1_impl(json: instance.asJSON())
 	}
 	
-	func testQuestionnaire1_impl(json: JSONDictionary? = nil) -> Questionnaire {
+	func testQuestionnaire1_impl(json: FHIRJSON? = nil) -> Questionnaire {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "questionnaire-example-bluebook.json")
 		
 		XCTAssertEqual(inst.date!.description, "2013-02-19")
@@ -59,7 +59,7 @@ class QuestionnaireTests: FHIRModelTestCase
 		testQuestionnaire2_impl(json: instance.asJSON())
 	}
 	
-	func testQuestionnaire2_impl(json: JSONDictionary? = nil) -> Questionnaire {
+	func testQuestionnaire2_impl(json: FHIRJSON? = nil) -> Questionnaire {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "questionnaire-example-f201-lifelines.json")
 		
 		XCTAssertEqual(inst.date!.description, "2010")
@@ -89,7 +89,7 @@ class QuestionnaireTests: FHIRModelTestCase
 		testQuestionnaire3_impl(json: instance.asJSON())
 	}
 	
-	func testQuestionnaire3_impl(json: JSONDictionary? = nil) -> Questionnaire {
+	func testQuestionnaire3_impl(json: FHIRJSON? = nil) -> Questionnaire {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "questionnaire-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2012-01")
@@ -140,7 +140,7 @@ class QuestionnaireTests: FHIRModelTestCase
 		testQuestionnaire4_impl(json: instance.asJSON())
 	}
 	
-	func testQuestionnaire4_impl(json: JSONDictionary? = nil) -> Questionnaire {
+	func testQuestionnaire4_impl(json: FHIRJSON? = nil) -> Questionnaire {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "questionnaire-sdc-profile-example-LOINC.json")
 		
 		XCTAssertEqual(inst.date!.description, "2012-04-01")

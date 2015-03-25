@@ -2,7 +2,7 @@
 //  SearchParameterTests.swift
 //  SearchParameterTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class SearchParameterTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> SearchParameter {
+	func instantiateFrom(# json: FHIRJSON) -> SearchParameter {
 		let instance = SearchParameter(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class SearchParameterTests: FHIRModelTestCase
 		testSearchParameter1_impl(json: instance.asJSON())
 	}
 	
-	func testSearchParameter1_impl(json: JSONDictionary? = nil) -> SearchParameter {
+	func testSearchParameter1_impl(json: FHIRJSON? = nil) -> SearchParameter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "searchparameter-example-extension.json")
 		
 		XCTAssertEqual(inst.base!, "Patient")
@@ -50,7 +50,7 @@ class SearchParameterTests: FHIRModelTestCase
 		testSearchParameter2_impl(json: instance.asJSON())
 	}
 	
-	func testSearchParameter2_impl(json: JSONDictionary? = nil) -> SearchParameter {
+	func testSearchParameter2_impl(json: FHIRJSON? = nil) -> SearchParameter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "searchparameter-example.json")
 		
 		XCTAssertEqual(inst.base!, "Resource")

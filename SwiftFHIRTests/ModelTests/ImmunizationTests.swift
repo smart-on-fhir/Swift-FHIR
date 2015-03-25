@@ -2,7 +2,7 @@
 //  ImmunizationTests.swift
 //  ImmunizationTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ImmunizationTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Immunization {
+	func instantiateFrom(# json: FHIRJSON) -> Immunization {
 		let instance = Immunization(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ImmunizationTests: FHIRModelTestCase
 		testImmunization1_impl(json: instance.asJSON())
 	}
 	
-	func testImmunization1_impl(json: JSONDictionary? = nil) -> Immunization {
+	func testImmunization1_impl(json: FHIRJSON? = nil) -> Immunization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "immunization-example-refused.json")
 		
 		XCTAssertEqual(inst.date!.description, "2013-01-10")
@@ -52,7 +52,7 @@ class ImmunizationTests: FHIRModelTestCase
 		testImmunization2_impl(json: instance.asJSON())
 	}
 	
-	func testImmunization2_impl(json: JSONDictionary? = nil) -> Immunization {
+	func testImmunization2_impl(json: FHIRJSON? = nil) -> Immunization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "immunization-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2013-01-10")

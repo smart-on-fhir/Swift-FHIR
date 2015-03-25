@@ -2,7 +2,7 @@
 //  Contract.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Contract) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Contract) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -77,70 +77,70 @@ public class Contract: DomainResource
 	/// Contract Valued Item
 	public var valuedItem: [ContractValuedItem]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["action"] as? [JSONDictionary] {
+			if let val = js["action"] as? [FHIRJSON] {
 				self.action = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["actionReason"] as? [JSONDictionary] {
+			if let val = js["actionReason"] as? [FHIRJSON] {
 				self.actionReason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["actor"] as? [JSONDictionary] {
+			if let val = js["actor"] as? [FHIRJSON] {
 				self.actor = ContractActor.from(val, owner: self) as? [ContractActor]
 			}
-			if let val = js["applies"] as? JSONDictionary {
+			if let val = js["applies"] as? FHIRJSON {
 				self.applies = Period(json: val, owner: self)
 			}
-			if let val = js["authority"] as? [JSONDictionary] {
+			if let val = js["authority"] as? [FHIRJSON] {
 				self.authority = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["bindingAttachment"] as? JSONDictionary {
+			if let val = js["bindingAttachment"] as? FHIRJSON {
 				self.bindingAttachment = Attachment(json: val, owner: self)
 			}
-			if let val = js["bindingReference"] as? JSONDictionary {
+			if let val = js["bindingReference"] as? FHIRJSON {
 				self.bindingReference = Reference(json: val, owner: self)
 			}
-			if let val = js["domain"] as? [JSONDictionary] {
+			if let val = js["domain"] as? [FHIRJSON] {
 				self.domain = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["friendly"] as? [JSONDictionary] {
+			if let val = js["friendly"] as? [FHIRJSON] {
 				self.friendly = ContractFriendly.from(val, owner: self) as? [ContractFriendly]
 			}
-			if let val = js["identifier"] as? JSONDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["issued"] as? String {
 				self.issued = DateTime(string: val)
 			}
-			if let val = js["legal"] as? [JSONDictionary] {
+			if let val = js["legal"] as? [FHIRJSON] {
 				self.legal = ContractLegal.from(val, owner: self) as? [ContractLegal]
 			}
-			if let val = js["rule"] as? [JSONDictionary] {
+			if let val = js["rule"] as? [FHIRJSON] {
 				self.rule = ContractRule.from(val, owner: self) as? [ContractRule]
 			}
-			if let val = js["signer"] as? [JSONDictionary] {
+			if let val = js["signer"] as? [FHIRJSON] {
 				self.signer = ContractSigner.from(val, owner: self) as? [ContractSigner]
 			}
-			if let val = js["subType"] as? [JSONDictionary] {
+			if let val = js["subType"] as? [FHIRJSON] {
 				self.subType = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["subject"] as? [JSONDictionary] {
+			if let val = js["subject"] as? [FHIRJSON] {
 				self.subject = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["term"] as? [JSONDictionary] {
+			if let val = js["term"] as? [FHIRJSON] {
 				self.term = ContractTerm.from(val, owner: self) as? [ContractTerm]
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["valuedItem"] as? [JSONDictionary] {
+			if let val = js["valuedItem"] as? [FHIRJSON] {
 				self.valuedItem = ContractValuedItem.from(val, owner: self) as? [ContractValuedItem]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let action = self.action {
@@ -230,19 +230,19 @@ public class ContractActor: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["entity"] as? JSONDictionary {
+			if let val = js["entity"] as? FHIRJSON {
 				self.entity = Reference(json: val, owner: self)
 			}
-			if let val = js["role"] as? [JSONDictionary] {
+			if let val = js["role"] as? [FHIRJSON] {
 				self.role = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let entity = self.entity {
@@ -287,19 +287,19 @@ public class ContractFriendly: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["contentAttachment"] as? JSONDictionary {
+			if let val = js["contentAttachment"] as? FHIRJSON {
 				self.contentAttachment = Attachment(json: val, owner: self)
 			}
-			if let val = js["contentReference"] as? JSONDictionary {
+			if let val = js["contentReference"] as? FHIRJSON {
 				self.contentReference = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let contentAttachment = self.contentAttachment {
@@ -341,19 +341,19 @@ public class ContractLegal: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["contentAttachment"] as? JSONDictionary {
+			if let val = js["contentAttachment"] as? FHIRJSON {
 				self.contentAttachment = Attachment(json: val, owner: self)
 			}
-			if let val = js["contentReference"] as? JSONDictionary {
+			if let val = js["contentReference"] as? FHIRJSON {
 				self.contentReference = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let contentAttachment = self.contentAttachment {
@@ -395,19 +395,19 @@ public class ContractRule: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["contentAttachment"] as? JSONDictionary {
+			if let val = js["contentAttachment"] as? FHIRJSON {
 				self.contentAttachment = Attachment(json: val, owner: self)
 			}
-			if let val = js["contentReference"] as? JSONDictionary {
+			if let val = js["contentReference"] as? FHIRJSON {
 				self.contentReference = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let contentAttachment = self.contentAttachment {
@@ -455,22 +455,22 @@ public class ContractSigner: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["party"] as? JSONDictionary {
+			if let val = js["party"] as? FHIRJSON {
 				self.party = Reference(json: val, owner: self)
 			}
 			if let val = js["signature"] as? String {
 				self.signature = val
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = Coding(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let party = self.party {
@@ -535,49 +535,49 @@ public class ContractTerm: FHIRElement
 	/// Contract Term Valued Item
 	public var valuedItem: [ContractTermValuedItem]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["action"] as? [JSONDictionary] {
+			if let val = js["action"] as? [FHIRJSON] {
 				self.action = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["actionReason"] as? [JSONDictionary] {
+			if let val = js["actionReason"] as? [FHIRJSON] {
 				self.actionReason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["actor"] as? [JSONDictionary] {
+			if let val = js["actor"] as? [FHIRJSON] {
 				self.actor = ContractTermActor.from(val, owner: self) as? [ContractTermActor]
 			}
-			if let val = js["applies"] as? JSONDictionary {
+			if let val = js["applies"] as? FHIRJSON {
 				self.applies = Period(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? JSONDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
 			if let val = js["issued"] as? String {
 				self.issued = DateTime(string: val)
 			}
-			if let val = js["subType"] as? JSONDictionary {
+			if let val = js["subType"] as? FHIRJSON {
 				self.subType = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["subject"] as? JSONDictionary {
+			if let val = js["subject"] as? FHIRJSON {
 				self.subject = Reference(json: val, owner: self)
 			}
-			if let val = js["term"] as? [JSONDictionary] {
+			if let val = js["term"] as? [FHIRJSON] {
 				self.term = ContractTerm.from(val, owner: self) as? [ContractTerm]
 			}
 			if let val = js["text"] as? String {
 				self.text = val
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["valuedItem"] as? [JSONDictionary] {
+			if let val = js["valuedItem"] as? [FHIRJSON] {
 				self.valuedItem = ContractTermValuedItem.from(val, owner: self) as? [ContractTermValuedItem]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let action = self.action {
@@ -646,19 +646,19 @@ public class ContractTermActor: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["entity"] as? JSONDictionary {
+			if let val = js["entity"] as? FHIRJSON {
 				self.entity = Reference(json: val, owner: self)
 			}
-			if let val = js["role"] as? [JSONDictionary] {
+			if let val = js["role"] as? [FHIRJSON] {
 				self.role = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let entity = self.entity {
@@ -711,40 +711,40 @@ public class ContractTermValuedItem: FHIRElement
 	/// Contract Term Valued Item fee, charge, or cost
 	public var unitPrice: Money?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["effectiveTime"] as? String {
 				self.effectiveTime = DateTime(string: val)
 			}
-			if let val = js["entityCodeableConcept"] as? JSONDictionary {
+			if let val = js["entityCodeableConcept"] as? FHIRJSON {
 				self.entityCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["entityReference"] as? JSONDictionary {
+			if let val = js["entityReference"] as? FHIRJSON {
 				self.entityReference = Reference(json: val, owner: self)
 			}
 			if let val = js["factor"] as? NSNumber {
 				self.factor = NSDecimalNumber(json: val)
 			}
-			if let val = js["identifier"] as? JSONDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["net"] as? JSONDictionary {
+			if let val = js["net"] as? FHIRJSON {
 				self.net = Money(json: val, owner: self)
 			}
 			if let val = js["points"] as? NSNumber {
 				self.points = NSDecimalNumber(json: val)
 			}
-			if let val = js["quantity"] as? JSONDictionary {
+			if let val = js["quantity"] as? FHIRJSON {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["unitPrice"] as? JSONDictionary {
+			if let val = js["unitPrice"] as? FHIRJSON {
 				self.unitPrice = Money(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let effectiveTime = self.effectiveTime {
@@ -818,40 +818,40 @@ public class ContractValuedItem: FHIRElement
 	/// Contract Valued Item fee, charge, or cost
 	public var unitPrice: Money?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["effectiveTime"] as? String {
 				self.effectiveTime = DateTime(string: val)
 			}
-			if let val = js["entityCodeableConcept"] as? JSONDictionary {
+			if let val = js["entityCodeableConcept"] as? FHIRJSON {
 				self.entityCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["entityReference"] as? JSONDictionary {
+			if let val = js["entityReference"] as? FHIRJSON {
 				self.entityReference = Reference(json: val, owner: self)
 			}
 			if let val = js["factor"] as? NSNumber {
 				self.factor = NSDecimalNumber(json: val)
 			}
-			if let val = js["identifier"] as? JSONDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["net"] as? JSONDictionary {
+			if let val = js["net"] as? FHIRJSON {
 				self.net = Money(json: val, owner: self)
 			}
 			if let val = js["points"] as? NSNumber {
 				self.points = NSDecimalNumber(json: val)
 			}
-			if let val = js["quantity"] as? JSONDictionary {
+			if let val = js["quantity"] as? FHIRJSON {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["unitPrice"] as? JSONDictionary {
+			if let val = js["unitPrice"] as? FHIRJSON {
 				self.unitPrice = Money(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let effectiveTime = self.effectiveTime {

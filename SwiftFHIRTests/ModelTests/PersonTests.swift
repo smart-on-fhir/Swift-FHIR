@@ -2,7 +2,7 @@
 //  PersonTests.swift
 //  PersonTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class PersonTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Person {
+	func instantiateFrom(# json: FHIRJSON) -> Person {
 		let instance = Person(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class PersonTests: FHIRModelTestCase
 		testPerson1_impl(json: instance.asJSON())
 	}
 	
-	func testPerson1_impl(json: JSONDictionary? = nil) -> Person {
+	func testPerson1_impl(json: FHIRJSON? = nil) -> Person {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "person-example.json")
 		
 		XCTAssertTrue(inst.active!)

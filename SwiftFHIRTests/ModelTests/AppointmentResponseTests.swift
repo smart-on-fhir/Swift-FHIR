@@ -2,7 +2,7 @@
 //  AppointmentResponseTests.swift
 //  AppointmentResponseTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class AppointmentResponseTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> AppointmentResponse {
+	func instantiateFrom(# json: FHIRJSON) -> AppointmentResponse {
 		let instance = AppointmentResponse(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class AppointmentResponseTests: FHIRModelTestCase
 		testAppointmentResponse1_impl(json: instance.asJSON())
 	}
 	
-	func testAppointmentResponse1_impl(json: JSONDictionary? = nil) -> AppointmentResponse {
+	func testAppointmentResponse1_impl(json: FHIRJSON? = nil) -> AppointmentResponse {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "appointmentresponse-example.json")
 		
 		XCTAssertEqual(inst.actor!.display!, "Peter James Chalmers")

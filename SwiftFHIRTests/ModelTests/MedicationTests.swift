@@ -2,7 +2,7 @@
 //  MedicationTests.swift
 //  MedicationTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class MedicationTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Medication {
+	func instantiateFrom(# json: FHIRJSON) -> Medication {
 		let instance = Medication(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class MedicationTests: FHIRModelTestCase
 		testMedication1_impl(json: instance.asJSON())
 	}
 	
-	func testMedication1_impl(json: JSONDictionary? = nil) -> Medication {
+	func testMedication1_impl(json: FHIRJSON? = nil) -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example-f001-combivent.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "320442002")
@@ -57,7 +57,7 @@ class MedicationTests: FHIRModelTestCase
 		testMedication2_impl(json: instance.asJSON())
 	}
 	
-	func testMedication2_impl(json: JSONDictionary? = nil) -> Medication {
+	func testMedication2_impl(json: FHIRJSON? = nil) -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example-f002-crestor.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "408036003")
@@ -80,7 +80,7 @@ class MedicationTests: FHIRModelTestCase
 		testMedication3_impl(json: instance.asJSON())
 	}
 	
-	func testMedication3_impl(json: JSONDictionary? = nil) -> Medication {
+	func testMedication3_impl(json: FHIRJSON? = nil) -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example-f003-tolbutamide.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "325267004")
@@ -103,7 +103,7 @@ class MedicationTests: FHIRModelTestCase
 		testMedication4_impl(json: instance.asJSON())
 	}
 	
-	func testMedication4_impl(json: JSONDictionary? = nil) -> Medication {
+	func testMedication4_impl(json: FHIRJSON? = nil) -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example-f004-metoprolol.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "318475005")
@@ -126,7 +126,7 @@ class MedicationTests: FHIRModelTestCase
 		testMedication5_impl(json: instance.asJSON())
 	}
 	
-	func testMedication5_impl(json: JSONDictionary? = nil) -> Medication {
+	func testMedication5_impl(json: FHIRJSON? = nil) -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example-f005-enalapril.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "318851002")
@@ -149,7 +149,7 @@ class MedicationTests: FHIRModelTestCase
 		testMedication6_impl(json: instance.asJSON())
 	}
 	
-	func testMedication6_impl(json: JSONDictionary? = nil) -> Medication {
+	func testMedication6_impl(json: FHIRJSON? = nil) -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example-f201-salmeterol.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "411106009")
@@ -186,7 +186,7 @@ class MedicationTests: FHIRModelTestCase
 		testMedication7_impl(json: instance.asJSON())
 	}
 	
-	func testMedication7_impl(json: JSONDictionary? = nil) -> Medication {
+	func testMedication7_impl(json: FHIRJSON? = nil) -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example-f202-flucloxacilline.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "387544009")
@@ -209,7 +209,7 @@ class MedicationTests: FHIRModelTestCase
 		testMedication8_impl(json: instance.asJSON())
 	}
 	
-	func testMedication8_impl(json: JSONDictionary? = nil) -> Medication {
+	func testMedication8_impl(json: FHIRJSON? = nil) -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example-f203-paracetamol.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "387517004")
@@ -232,7 +232,7 @@ class MedicationTests: FHIRModelTestCase
 		testMedication9_impl(json: instance.asJSON())
 	}
 	
-	func testMedication9_impl(json: JSONDictionary? = nil) -> Medication {
+	func testMedication9_impl(json: FHIRJSON? = nil) -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "323418000")
@@ -259,7 +259,7 @@ class MedicationTests: FHIRModelTestCase
 		testMedication10_impl(json: instance.asJSON())
 	}
 	
-	func testMedication10_impl(json: JSONDictionary? = nil) -> Medication {
+	func testMedication10_impl(json: FHIRJSON? = nil) -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-qicore-example.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "411106009")

@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Organization) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Organization) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -34,9 +34,6 @@ public class Organization: DomainResource
 	/// Identifies this organization  across multiple systems
 	public var identifier: [Identifier]?
 	
-	/// Location(s) the organization uses to provide services
-	public var location: [Reference]?
-	
 	/// Name used for the organization
 	public var name: String?
 	
@@ -49,40 +46,37 @@ public class Organization: DomainResource
 	/// Kind of organization
 	public var type: CodeableConcept?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["active"] as? Bool {
 				self.active = val
 			}
-			if let val = js["address"] as? [JSONDictionary] {
+			if let val = js["address"] as? [FHIRJSON] {
 				self.address = Address.from(val, owner: self) as? [Address]
 			}
-			if let val = js["contact"] as? [JSONDictionary] {
+			if let val = js["contact"] as? [FHIRJSON] {
 				self.contact = OrganizationContact.from(val, owner: self) as? [OrganizationContact]
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
-			}
-			if let val = js["location"] as? [JSONDictionary] {
-				self.location = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["partOf"] as? JSONDictionary {
+			if let val = js["partOf"] as? FHIRJSON {
 				self.partOf = Reference(json: val, owner: self)
 			}
-			if let val = js["telecom"] as? [JSONDictionary] {
+			if let val = js["telecom"] as? [FHIRJSON] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let active = self.active {
@@ -96,9 +90,6 @@ public class Organization: DomainResource
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
-		}
-		if let location = self.location {
-			json["location"] = Reference.asJSONArray(location)
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -139,25 +130,25 @@ public class OrganizationContact: FHIRElement
 	/// Contact details (telephone, email, etc)  for a contact
 	public var telecom: [ContactPoint]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["address"] as? JSONDictionary {
+			if let val = js["address"] as? FHIRJSON {
 				self.address = Address(json: val, owner: self)
 			}
-			if let val = js["name"] as? JSONDictionary {
+			if let val = js["name"] as? FHIRJSON {
 				self.name = HumanName(json: val, owner: self)
 			}
-			if let val = js["purpose"] as? JSONDictionary {
+			if let val = js["purpose"] as? FHIRJSON {
 				self.purpose = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["telecom"] as? [JSONDictionary] {
+			if let val = js["telecom"] as? [FHIRJSON] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let address = self.address {

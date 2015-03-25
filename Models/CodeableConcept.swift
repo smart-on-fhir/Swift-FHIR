@@ -2,7 +2,7 @@
 //  CodeableConcept.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/CodeableConcept) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/CodeableConcept) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -26,10 +26,10 @@ public class CodeableConcept: FHIRElement
 	/// Plain text representation of the concept
 	public var text: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["coding"] as? [JSONDictionary] {
+			if let val = js["coding"] as? [FHIRJSON] {
 				self.coding = Coding.from(val, owner: self) as? [Coding]
 			}
 			if let val = js["text"] as? String {
@@ -38,7 +38,7 @@ public class CodeableConcept: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let coding = self.coding {

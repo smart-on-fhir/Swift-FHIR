@@ -2,7 +2,7 @@
 //  RiskAssessment.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -47,40 +47,40 @@ public class RiskAssessment: DomainResource
 	/// Who/what does assessment apply to?
 	public var subject: Reference?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["basis"] as? [JSONDictionary] {
+			if let val = js["basis"] as? [FHIRJSON] {
 				self.basis = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["condition"] as? JSONDictionary {
+			if let val = js["condition"] as? FHIRJSON {
 				self.condition = Reference(json: val, owner: self)
 			}
 			if let val = js["date"] as? String {
 				self.date = DateTime(string: val)
 			}
-			if let val = js["identifier"] as? JSONDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["method"] as? JSONDictionary {
+			if let val = js["method"] as? FHIRJSON {
 				self.method = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["mitigation"] as? String {
 				self.mitigation = val
 			}
-			if let val = js["performer"] as? JSONDictionary {
+			if let val = js["performer"] as? FHIRJSON {
 				self.performer = Reference(json: val, owner: self)
 			}
-			if let val = js["prediction"] as? [JSONDictionary] {
+			if let val = js["prediction"] as? [FHIRJSON] {
 				self.prediction = RiskAssessmentPrediction.from(val, owner: self) as? [RiskAssessmentPrediction]
 			}
-			if let val = js["subject"] as? JSONDictionary {
+			if let val = js["subject"] as? FHIRJSON {
 				self.subject = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let basis = self.basis {
@@ -158,19 +158,19 @@ public class RiskAssessmentPrediction: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["outcome"] as? JSONDictionary {
+			if let val = js["outcome"] as? FHIRJSON {
 				self.outcome = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["probabilityCodeableConcept"] as? JSONDictionary {
+			if let val = js["probabilityCodeableConcept"] as? FHIRJSON {
 				self.probabilityCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["probabilityDecimal"] as? NSNumber {
 				self.probabilityDecimal = NSDecimalNumber(json: val)
 			}
-			if let val = js["probabilityRange"] as? JSONDictionary {
+			if let val = js["probabilityRange"] as? FHIRJSON {
 				self.probabilityRange = Range(json: val, owner: self)
 			}
 			if let val = js["rationale"] as? String {
@@ -179,16 +179,16 @@ public class RiskAssessmentPrediction: FHIRElement
 			if let val = js["relativeRisk"] as? NSNumber {
 				self.relativeRisk = NSDecimalNumber(json: val)
 			}
-			if let val = js["whenPeriod"] as? JSONDictionary {
+			if let val = js["whenPeriod"] as? FHIRJSON {
 				self.whenPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["whenRange"] as? JSONDictionary {
+			if let val = js["whenRange"] as? FHIRJSON {
 				self.whenRange = Range(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let outcome = self.outcome {

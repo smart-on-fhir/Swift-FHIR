@@ -2,7 +2,7 @@
 //  VisionPrescription.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -44,37 +44,37 @@ public class VisionPrescription: DomainResource
 	/// Reason or indication for writing the prescription
 	public var reasonReference: Reference?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["dateWritten"] as? String {
 				self.dateWritten = DateTime(string: val)
 			}
-			if let val = js["dispense"] as? [JSONDictionary] {
+			if let val = js["dispense"] as? [FHIRJSON] {
 				self.dispense = VisionPrescriptionDispense.from(val, owner: self) as? [VisionPrescriptionDispense]
 			}
-			if let val = js["encounter"] as? JSONDictionary {
+			if let val = js["encounter"] as? FHIRJSON {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["patient"] as? JSONDictionary {
+			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["prescriber"] as? JSONDictionary {
+			if let val = js["prescriber"] as? FHIRJSON {
 				self.prescriber = Reference(json: val, owner: self)
 			}
-			if let val = js["reasonCodeableConcept"] as? JSONDictionary {
+			if let val = js["reasonCodeableConcept"] as? FHIRJSON {
 				self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["reasonReference"] as? JSONDictionary {
+			if let val = js["reasonReference"] as? FHIRJSON {
 				self.reasonReference = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let dateWritten = self.dateWritten {
@@ -170,7 +170,7 @@ public class VisionPrescriptionDispense: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["add"] as? NSNumber {
@@ -197,7 +197,7 @@ public class VisionPrescriptionDispense: FHIRElement
 			if let val = js["diameter"] as? NSNumber {
 				self.diameter = NSDecimalNumber(json: val)
 			}
-			if let val = js["duration"] as? JSONDictionary {
+			if let val = js["duration"] as? FHIRJSON {
 				self.duration = Quantity(json: val, owner: self)
 			}
 			if let val = js["eye"] as? String {
@@ -212,7 +212,7 @@ public class VisionPrescriptionDispense: FHIRElement
 			if let val = js["prism"] as? NSNumber {
 				self.prism = NSDecimalNumber(json: val)
 			}
-			if let val = js["product"] as? JSONDictionary {
+			if let val = js["product"] as? FHIRJSON {
 				self.product = Coding(json: val, owner: self)
 			}
 			if let val = js["sphere"] as? NSNumber {
@@ -221,7 +221,7 @@ public class VisionPrescriptionDispense: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let add = self.add {

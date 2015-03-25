@@ -2,7 +2,7 @@
 //  OperationOutcomeTests.swift
 //  OperationOutcomeTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class OperationOutcomeTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> OperationOutcome {
+	func instantiateFrom(# json: FHIRJSON) -> OperationOutcome {
 		let instance = OperationOutcome(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class OperationOutcomeTests: FHIRModelTestCase
 		testOperationOutcome1_impl(json: instance.asJSON())
 	}
 	
-	func testOperationOutcome1_impl(json: JSONDictionary? = nil) -> OperationOutcome {
+	func testOperationOutcome1_impl(json: FHIRJSON? = nil) -> OperationOutcome {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "operationoutcome-example.json")
 		
 		XCTAssertEqual(inst.id!, "101")

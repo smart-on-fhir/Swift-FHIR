@@ -2,7 +2,7 @@
 //  StructureDefinition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -112,7 +112,7 @@ public class StructureDefinition: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["abstract"] as? Bool {
@@ -121,10 +121,10 @@ public class StructureDefinition: DomainResource
 			if let val = js["base"] as? String {
 				self.base = NSURL(string: val)
 			}
-			if let val = js["code"] as? [JSONDictionary] {
+			if let val = js["code"] as? [FHIRJSON] {
 				self.code = Coding.from(val, owner: self) as? [Coding]
 			}
-			if let val = js["contact"] as? [JSONDictionary] {
+			if let val = js["contact"] as? [FHIRJSON] {
 				self.contact = StructureDefinitionContact.from(val, owner: self) as? [StructureDefinitionContact]
 			}
 			if let val = js["context"] as? [String] {
@@ -142,7 +142,7 @@ public class StructureDefinition: DomainResource
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["differential"] as? JSONDictionary {
+			if let val = js["differential"] as? FHIRJSON {
 				self.differential = StructureDefinitionDifferential(json: val, owner: self)
 			}
 			if let val = js["display"] as? String {
@@ -154,10 +154,10 @@ public class StructureDefinition: DomainResource
 			if let val = js["fhirVersion"] as? String {
 				self.fhirVersion = val
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["mapping"] as? [JSONDictionary] {
+			if let val = js["mapping"] as? [FHIRJSON] {
 				self.mapping = StructureDefinitionMapping.from(val, owner: self) as? [StructureDefinitionMapping]
 			}
 			if let val = js["name"] as? String {
@@ -169,7 +169,7 @@ public class StructureDefinition: DomainResource
 			if let val = js["requirements"] as? String {
 				self.requirements = val
 			}
-			if let val = js["snapshot"] as? JSONDictionary {
+			if let val = js["snapshot"] as? FHIRJSON {
 				self.snapshot = StructureDefinitionSnapshot(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
@@ -181,7 +181,7 @@ public class StructureDefinition: DomainResource
 			if let val = js["url"] as? String {
 				self.url = NSURL(string: val)
 			}
-			if let val = js["useContext"] as? [JSONDictionary] {
+			if let val = js["useContext"] as? [FHIRJSON] {
 				self.useContext = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["version"] as? String {
@@ -190,7 +190,7 @@ public class StructureDefinition: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let abstract = self.abstract {
@@ -292,19 +292,19 @@ public class StructureDefinitionContact: FHIRElement
 	/// Contact details for individual or publisher
 	public var telecom: [ContactPoint]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["telecom"] as? [JSONDictionary] {
+			if let val = js["telecom"] as? [FHIRJSON] {
 				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let name = self.name {
@@ -341,16 +341,16 @@ public class StructureDefinitionDifferential: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["element"] as? [JSONDictionary] {
+			if let val = js["element"] as? [FHIRJSON] {
 				self.element = ElementDefinition.from(val, owner: self) as? [ElementDefinition]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let element = self.element {
@@ -392,7 +392,7 @@ public class StructureDefinitionMapping: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["comments"] as? String {
@@ -410,7 +410,7 @@ public class StructureDefinitionMapping: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let comments = self.comments {
@@ -453,16 +453,16 @@ public class StructureDefinitionSnapshot: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["element"] as? [JSONDictionary] {
+			if let val = js["element"] as? [FHIRJSON] {
 				self.element = ElementDefinition.from(val, owner: self) as? [ElementDefinition]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let element = self.element {

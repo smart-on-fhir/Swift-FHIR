@@ -2,7 +2,7 @@
 //  AllergyIntoleranceTests.swift
 //  AllergyIntoleranceTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class AllergyIntoleranceTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> AllergyIntolerance {
+	func instantiateFrom(# json: FHIRJSON) -> AllergyIntolerance {
 		let instance = AllergyIntolerance(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,12 +27,11 @@ class AllergyIntoleranceTests: FHIRModelTestCase
 		testAllergyIntolerance1_impl(json: instance.asJSON())
 	}
 	
-	func testAllergyIntolerance1_impl(json: JSONDictionary? = nil) -> AllergyIntolerance {
+	func testAllergyIntolerance1_impl(json: FHIRJSON? = nil) -> AllergyIntolerance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "allergyintolerance-example.json")
 		
 		XCTAssertEqual(inst.category!, "food")
 		XCTAssertEqual(inst.criticality!, "high")
-		XCTAssertEqual(inst.event![0].certainty!, "confirmed")
 		XCTAssertEqual(inst.event![0].description_fhir!, "Challenge Protocol. Severe Reaction to 1/8 cashew. Epinephrine administered")
 		XCTAssertEqual(inst.event![0].manifestation![0].coding![0].code!, "39579001")
 		XCTAssertEqual(inst.event![0].manifestation![0].coding![0].display!, "Anaphylactic reaction")
@@ -70,7 +69,7 @@ class AllergyIntoleranceTests: FHIRModelTestCase
 		testAllergyIntolerance2_impl(json: instance.asJSON())
 	}
 	
-	func testAllergyIntolerance2_impl(json: JSONDictionary? = nil) -> AllergyIntolerance {
+	func testAllergyIntolerance2_impl(json: FHIRJSON? = nil) -> AllergyIntolerance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "allergyintolerance-qicore-example.json")
 		
 		XCTAssertEqual(inst.category!, "food")

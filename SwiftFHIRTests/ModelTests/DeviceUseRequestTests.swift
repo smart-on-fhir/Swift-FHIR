@@ -2,7 +2,7 @@
 //  DeviceUseRequestTests.swift
 //  DeviceUseRequestTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class DeviceUseRequestTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> DeviceUseRequest {
+	func instantiateFrom(# json: FHIRJSON) -> DeviceUseRequest {
 		let instance = DeviceUseRequest(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class DeviceUseRequestTests: FHIRModelTestCase
 		testDeviceUseRequest1_impl(json: instance.asJSON())
 	}
 	
-	func testDeviceUseRequest1_impl(json: JSONDictionary? = nil) -> DeviceUseRequest {
+	func testDeviceUseRequest1_impl(json: FHIRJSON? = nil) -> DeviceUseRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "deviceuserequest-example.json")
 		
 		XCTAssertEqual(inst.device!.reference!, "Device/example")
@@ -44,7 +44,7 @@ class DeviceUseRequestTests: FHIRModelTestCase
 		testDeviceUseRequest2_impl(json: instance.asJSON())
 	}
 	
-	func testDeviceUseRequest2_impl(json: JSONDictionary? = nil) -> DeviceUseRequest {
+	func testDeviceUseRequest2_impl(json: FHIRJSON? = nil) -> DeviceUseRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "deviceuserequest-qicore-example.json")
 		
 		XCTAssertEqual(inst.device!.reference!, "Device/example")

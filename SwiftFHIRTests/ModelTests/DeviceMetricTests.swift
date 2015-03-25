@@ -2,7 +2,7 @@
 //  DeviceMetricTests.swift
 //  DeviceMetricTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class DeviceMetricTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> DeviceMetric {
+	func instantiateFrom(# json: FHIRJSON) -> DeviceMetric {
 		let instance = DeviceMetric(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class DeviceMetricTests: FHIRModelTestCase
 		testDeviceMetric1_impl(json: instance.asJSON())
 	}
 	
-	func testDeviceMetric1_impl(json: JSONDictionary? = nil) -> DeviceMetric {
+	func testDeviceMetric1_impl(json: FHIRJSON? = nil) -> DeviceMetric {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicemetric-example.json")
 		
 		XCTAssertEqual(inst.category!, "measurement")

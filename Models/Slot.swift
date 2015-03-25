@@ -2,7 +2,7 @@
 //  Slot.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Slot) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Slot) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -58,7 +58,7 @@ public class Slot: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["comment"] as? String {
@@ -70,25 +70,25 @@ public class Slot: DomainResource
 			if let val = js["freeBusyType"] as? String {
 				self.freeBusyType = val
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["overbooked"] as? Bool {
 				self.overbooked = val
 			}
-			if let val = js["schedule"] as? JSONDictionary {
+			if let val = js["schedule"] as? FHIRJSON {
 				self.schedule = Reference(json: val, owner: self)
 			}
 			if let val = js["start"] as? String {
 				self.start = Instant(string: val)
 			}
-			if let val = js["type"] as? JSONDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let comment = self.comment {

@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- *  Immunization profile.
+ *  Guidance or advice relating to an immunization.
  *
  *  A patient's point-of-time immunization status and recommendation with optional supporting justification.
  */
@@ -39,22 +39,22 @@ public class ImmunizationRecommendation: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["patient"] as? JSONDictionary {
+			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["recommendation"] as? [JSONDictionary] {
+			if let val = js["recommendation"] as? [FHIRJSON] {
 				self.recommendation = ImmunizationRecommendationRecommendation.from(val, owner: self) as? [ImmunizationRecommendationRecommendation]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let identifier = self.identifier {
@@ -118,37 +118,37 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["date"] as? String {
 				self.date = DateTime(string: val)
 			}
-			if let val = js["dateCriterion"] as? [JSONDictionary] {
+			if let val = js["dateCriterion"] as? [FHIRJSON] {
 				self.dateCriterion = ImmunizationRecommendationRecommendationDateCriterion.from(val, owner: self) as? [ImmunizationRecommendationRecommendationDateCriterion]
 			}
 			if let val = js["doseNumber"] as? Int {
 				self.doseNumber = val
 			}
-			if let val = js["forecastStatus"] as? JSONDictionary {
+			if let val = js["forecastStatus"] as? FHIRJSON {
 				self.forecastStatus = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["protocol"] as? JSONDictionary {
+			if let val = js["protocol"] as? FHIRJSON {
 				self.protocol_fhir = ImmunizationRecommendationRecommendationProtocol(json: val, owner: self)
 			}
-			if let val = js["supportingImmunization"] as? [JSONDictionary] {
+			if let val = js["supportingImmunization"] as? [FHIRJSON] {
 				self.supportingImmunization = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["supportingPatientInformation"] as? [JSONDictionary] {
+			if let val = js["supportingPatientInformation"] as? [FHIRJSON] {
 				self.supportingPatientInformation = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["vaccineType"] as? JSONDictionary {
+			if let val = js["vaccineType"] as? FHIRJSON {
 				self.vaccineType = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let date = self.date {
@@ -208,10 +208,10 @@ public class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? JSONDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["value"] as? String {
@@ -220,7 +220,7 @@ public class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {
@@ -258,10 +258,10 @@ public class ImmunizationRecommendationRecommendationProtocol: FHIRElement
 	/// Name of vaccination series
 	public var series: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["authority"] as? JSONDictionary {
+			if let val = js["authority"] as? FHIRJSON {
 				self.authority = Reference(json: val, owner: self)
 			}
 			if let val = js["description"] as? String {
@@ -276,7 +276,7 @@ public class ImmunizationRecommendationRecommendationProtocol: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let authority = self.authority {

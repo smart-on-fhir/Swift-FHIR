@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Condition) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Condition) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -31,14 +31,23 @@ public class Condition: DomainResource
 	/// If/when in resolution/remission
 	public var abatementDate: Date?
 	
+	/// If/when in resolution/remission
+	public var abatementPeriod: Period?
+	
+	/// If/when in resolution/remission
+	public var abatementRange: Range?
+	
+	/// If/when in resolution/remission
+	public var abatementString: String?
+	
 	/// Person who asserts this condition
 	public var asserter: Reference?
 	
 	/// E.g. complaint | symptom | finding | diagnosis
 	public var category: CodeableConcept?
 	
-	/// Degree of confidence
-	public var certainty: CodeableConcept?
+	/// provisional | working | confirmed | refuted | entered-in-error | unknown
+	public var clinicalStatus: String?
 	
 	/// Identification of the condition, problem or diagnosis
 	public var code: CodeableConcept?
@@ -73,35 +82,41 @@ public class Condition: DomainResource
 	/// Estimated or actual date,  date-time, or age
 	public var onsetDateTime: DateTime?
 	
+	/// Estimated or actual date,  date-time, or age
+	public var onsetPeriod: Period?
+	
+	/// Estimated or actual date,  date-time, or age
+	public var onsetRange: Range?
+	
+	/// Estimated or actual date,  date-time, or age
+	public var onsetString: String?
+	
+	/// Who has the condition?
+	public var patient: Reference?
+	
 	/// Subjective severity of condition
 	public var severity: CodeableConcept?
 	
 	/// Stage/grade, usually assessed formally
 	public var stage: ConditionStage?
 	
-	/// provisional | working | confirmed | refuted
-	public var status: String?
-	
-	/// Who has the condition?
-	public var subject: Reference?
-	
-	public convenience init(code: CodeableConcept?, status: String?, subject: Reference?) {
+	public convenience init(clinicalStatus: String?, code: CodeableConcept?, patient: Reference?) {
 		self.init(json: nil)
+		if nil != clinicalStatus {
+			self.clinicalStatus = clinicalStatus
+		}
 		if nil != code {
 			self.code = code
 		}
-		if nil != status {
-			self.status = status
-		}
-		if nil != subject {
-			self.subject = subject
+		if nil != patient {
+			self.patient = patient
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["abatementAge"] as? JSONDictionary {
+			if let val = js["abatementAge"] as? FHIRJSON {
 				self.abatementAge = Age(json: val, owner: self)
 			}
 			if let val = js["abatementBoolean"] as? Bool {
@@ -110,64 +125,79 @@ public class Condition: DomainResource
 			if let val = js["abatementDate"] as? String {
 				self.abatementDate = Date(string: val)
 			}
-			if let val = js["asserter"] as? JSONDictionary {
+			if let val = js["abatementPeriod"] as? FHIRJSON {
+				self.abatementPeriod = Period(json: val, owner: self)
+			}
+			if let val = js["abatementRange"] as? FHIRJSON {
+				self.abatementRange = Range(json: val, owner: self)
+			}
+			if let val = js["abatementString"] as? String {
+				self.abatementString = val
+			}
+			if let val = js["asserter"] as? FHIRJSON {
 				self.asserter = Reference(json: val, owner: self)
 			}
-			if let val = js["category"] as? JSONDictionary {
+			if let val = js["category"] as? FHIRJSON {
 				self.category = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["certainty"] as? JSONDictionary {
-				self.certainty = CodeableConcept(json: val, owner: self)
+			if let val = js["clinicalStatus"] as? String {
+				self.clinicalStatus = val
 			}
-			if let val = js["code"] as? JSONDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["dateAsserted"] as? String {
 				self.dateAsserted = Date(string: val)
 			}
-			if let val = js["dueTo"] as? [JSONDictionary] {
+			if let val = js["dueTo"] as? [FHIRJSON] {
 				self.dueTo = ConditionDueTo.from(val, owner: self) as? [ConditionDueTo]
 			}
-			if let val = js["encounter"] as? JSONDictionary {
+			if let val = js["encounter"] as? FHIRJSON {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["evidence"] as? [JSONDictionary] {
+			if let val = js["evidence"] as? [FHIRJSON] {
 				self.evidence = ConditionEvidence.from(val, owner: self) as? [ConditionEvidence]
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["location"] as? [JSONDictionary] {
+			if let val = js["location"] as? [FHIRJSON] {
 				self.location = ConditionLocation.from(val, owner: self) as? [ConditionLocation]
 			}
 			if let val = js["notes"] as? String {
 				self.notes = val
 			}
-			if let val = js["occurredFollowing"] as? [JSONDictionary] {
+			if let val = js["occurredFollowing"] as? [FHIRJSON] {
 				self.occurredFollowing = ConditionOccurredFollowing.from(val, owner: self) as? [ConditionOccurredFollowing]
 			}
-			if let val = js["onsetAge"] as? JSONDictionary {
+			if let val = js["onsetAge"] as? FHIRJSON {
 				self.onsetAge = Age(json: val, owner: self)
 			}
 			if let val = js["onsetDateTime"] as? String {
 				self.onsetDateTime = DateTime(string: val)
 			}
-			if let val = js["severity"] as? JSONDictionary {
+			if let val = js["onsetPeriod"] as? FHIRJSON {
+				self.onsetPeriod = Period(json: val, owner: self)
+			}
+			if let val = js["onsetRange"] as? FHIRJSON {
+				self.onsetRange = Range(json: val, owner: self)
+			}
+			if let val = js["onsetString"] as? String {
+				self.onsetString = val
+			}
+			if let val = js["patient"] as? FHIRJSON {
+				self.patient = Reference(json: val, owner: self)
+			}
+			if let val = js["severity"] as? FHIRJSON {
 				self.severity = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["stage"] as? JSONDictionary {
+			if let val = js["stage"] as? FHIRJSON {
 				self.stage = ConditionStage(json: val, owner: self)
-			}
-			if let val = js["status"] as? String {
-				self.status = val
-			}
-			if let val = js["subject"] as? JSONDictionary {
-				self.subject = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let abatementAge = self.abatementAge {
@@ -179,14 +209,23 @@ public class Condition: DomainResource
 		if let abatementDate = self.abatementDate {
 			json["abatementDate"] = abatementDate.asJSON()
 		}
+		if let abatementPeriod = self.abatementPeriod {
+			json["abatementPeriod"] = abatementPeriod.asJSON()
+		}
+		if let abatementRange = self.abatementRange {
+			json["abatementRange"] = abatementRange.asJSON()
+		}
+		if let abatementString = self.abatementString {
+			json["abatementString"] = abatementString.asJSON()
+		}
 		if let asserter = self.asserter {
 			json["asserter"] = asserter.asJSON()
 		}
 		if let category = self.category {
 			json["category"] = category.asJSON()
 		}
-		if let certainty = self.certainty {
-			json["certainty"] = certainty.asJSON()
+		if let clinicalStatus = self.clinicalStatus {
+			json["clinicalStatus"] = clinicalStatus.asJSON()
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON()
@@ -221,17 +260,23 @@ public class Condition: DomainResource
 		if let onsetDateTime = self.onsetDateTime {
 			json["onsetDateTime"] = onsetDateTime.asJSON()
 		}
+		if let onsetPeriod = self.onsetPeriod {
+			json["onsetPeriod"] = onsetPeriod.asJSON()
+		}
+		if let onsetRange = self.onsetRange {
+			json["onsetRange"] = onsetRange.asJSON()
+		}
+		if let onsetString = self.onsetString {
+			json["onsetString"] = onsetString.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
 		if let severity = self.severity {
 			json["severity"] = severity.asJSON()
 		}
 		if let stage = self.stage {
 			json["stage"] = stage.asJSON()
-		}
-		if let status = self.status {
-			json["status"] = status.asJSON()
-		}
-		if let subject = self.subject {
-			json["subject"] = subject.asJSON()
 		}
 		
 		return json
@@ -251,28 +296,28 @@ public class ConditionDueTo: FHIRElement
 	}
 	
 	/// Relationship target by means of a predefined code
-	public var codeableConcept: CodeableConcept?
+	public var code: CodeableConcept?
 	
 	/// Relationship target resource
 	public var target: Reference?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["codeableConcept"] as? JSONDictionary {
-				self.codeableConcept = CodeableConcept(json: val, owner: self)
+			if let val = js["code"] as? FHIRJSON {
+				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["target"] as? JSONDictionary {
+			if let val = js["target"] as? FHIRJSON {
 				self.target = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let codeableConcept = self.codeableConcept {
-			json["codeableConcept"] = codeableConcept.asJSON()
+		if let code = self.code {
+			json["code"] = code.asJSON()
 		}
 		if let target = self.target {
 			json["target"] = target.asJSON()
@@ -300,19 +345,19 @@ public class ConditionEvidence: FHIRElement
 	/// Supporting information found elsewhere
 	public var detail: [Reference]?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? JSONDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["detail"] as? [JSONDictionary] {
+			if let val = js["detail"] as? [FHIRJSON] {
 				self.detail = Reference.from(val, owner: self) as? [Reference]
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {
@@ -344,10 +389,10 @@ public class ConditionLocation: FHIRElement
 	/// Precise location details
 	public var detail: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? JSONDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["detail"] as? String {
@@ -356,7 +401,7 @@ public class ConditionLocation: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {
@@ -388,19 +433,19 @@ public class ConditionOccurredFollowing: FHIRElement
 	/// Relationship target resource
 	public var target: Reference?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? JSONDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["target"] as? JSONDictionary {
+			if let val = js["target"] as? FHIRJSON {
 				self.target = Reference(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {
@@ -432,19 +477,19 @@ public class ConditionStage: FHIRElement
 	/// Simple summary (disease specific)
 	public var summary: CodeableConcept?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["assessment"] as? [JSONDictionary] {
+			if let val = js["assessment"] as? [FHIRJSON] {
 				self.assessment = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["summary"] as? JSONDictionary {
+			if let val = js["summary"] as? FHIRJSON {
 				self.summary = CodeableConcept(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let assessment = self.assessment {

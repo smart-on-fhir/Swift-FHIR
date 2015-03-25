@@ -2,7 +2,7 @@
 //  Resource.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Resource) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Resource) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -29,7 +29,7 @@ public class Resource: FHIRResource
 	/// Metadata about the resource
 	public var meta: Meta?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["implicitRules"] as? String {
@@ -38,13 +38,13 @@ public class Resource: FHIRResource
 			if let val = js["language"] as? String {
 				self.language = val
 			}
-			if let val = js["meta"] as? JSONDictionary {
+			if let val = js["meta"] as? FHIRJSON {
 				self.meta = Meta(json: val, owner: self)
 			}
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let implicitRules = self.implicitRules {

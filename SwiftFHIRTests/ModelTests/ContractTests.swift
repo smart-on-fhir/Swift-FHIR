@@ -2,7 +2,7 @@
 //  ContractTests.swift
 //  ContractTests
 //
-//  Generated from FHIR 0.4.0.4746 on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -16,7 +16,7 @@ class ContractTests: FHIRModelTestCase
 		return instantiateFrom(json: readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: JSONDictionary) -> Contract {
+	func instantiateFrom(# json: FHIRJSON) -> Contract {
 		let instance = Contract(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -27,7 +27,7 @@ class ContractTests: FHIRModelTestCase
 		testContract1_impl(json: instance.asJSON())
 	}
 	
-	func testContract1_impl(json: JSONDictionary? = nil) -> Contract {
+	func testContract1_impl(json: FHIRJSON? = nil) -> Contract {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "contract-example.json")
 		
 		XCTAssertEqual(inst.id!, "C-123")

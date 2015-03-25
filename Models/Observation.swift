@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SMART-on-FHIR
 //
-//  Generated from FHIR 0.4.0.4746 (http://hl7.org/fhir/StructureDefinition/Observation) on 2015-03-19.
+//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Observation) on 2015-03-25.
 //  2015, SMART Platforms.
 //
 
@@ -120,91 +120,91 @@ public class Observation: DomainResource
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["appliesDateTime"] as? String {
 				self.appliesDateTime = DateTime(string: val)
 			}
-			if let val = js["appliesPeriod"] as? JSONDictionary {
+			if let val = js["appliesPeriod"] as? FHIRJSON {
 				self.appliesPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["bodySiteCodeableConcept"] as? JSONDictionary {
+			if let val = js["bodySiteCodeableConcept"] as? FHIRJSON {
 				self.bodySiteCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["bodySiteReference"] as? JSONDictionary {
+			if let val = js["bodySiteReference"] as? FHIRJSON {
 				self.bodySiteReference = Reference(json: val, owner: self)
 			}
-			if let val = js["code"] as? JSONDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["comments"] as? String {
 				self.comments = val
 			}
-			if let val = js["dataAbsentReason"] as? JSONDictionary {
+			if let val = js["dataAbsentReason"] as? FHIRJSON {
 				self.dataAbsentReason = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["device"] as? JSONDictionary {
+			if let val = js["device"] as? FHIRJSON {
 				self.device = Reference(json: val, owner: self)
 			}
-			if let val = js["encounter"] as? JSONDictionary {
+			if let val = js["encounter"] as? FHIRJSON {
 				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? [JSONDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["interpretation"] as? JSONDictionary {
+			if let val = js["interpretation"] as? FHIRJSON {
 				self.interpretation = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["issued"] as? String {
 				self.issued = Instant(string: val)
 			}
-			if let val = js["method"] as? JSONDictionary {
+			if let val = js["method"] as? FHIRJSON {
 				self.method = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["performer"] as? [JSONDictionary] {
+			if let val = js["performer"] as? [FHIRJSON] {
 				self.performer = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["referenceRange"] as? [JSONDictionary] {
+			if let val = js["referenceRange"] as? [FHIRJSON] {
 				self.referenceRange = ObservationReferenceRange.from(val, owner: self) as? [ObservationReferenceRange]
 			}
-			if let val = js["related"] as? [JSONDictionary] {
+			if let val = js["related"] as? [FHIRJSON] {
 				self.related = ObservationRelated.from(val, owner: self) as? [ObservationRelated]
 			}
 			if let val = js["reliability"] as? String {
 				self.reliability = val
 			}
-			if let val = js["specimen"] as? JSONDictionary {
+			if let val = js["specimen"] as? FHIRJSON {
 				self.specimen = Reference(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? JSONDictionary {
+			if let val = js["subject"] as? FHIRJSON {
 				self.subject = Reference(json: val, owner: self)
 			}
-			if let val = js["valueAttachment"] as? JSONDictionary {
+			if let val = js["valueAttachment"] as? FHIRJSON {
 				self.valueAttachment = Attachment(json: val, owner: self)
 			}
-			if let val = js["valueCodeableConcept"] as? JSONDictionary {
+			if let val = js["valueCodeableConcept"] as? FHIRJSON {
 				self.valueCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["valueDateTime"] as? String {
 				self.valueDateTime = DateTime(string: val)
 			}
-			if let val = js["valuePeriod"] as? JSONDictionary {
+			if let val = js["valuePeriod"] as? FHIRJSON {
 				self.valuePeriod = Period(json: val, owner: self)
 			}
-			if let val = js["valueQuantity"] as? JSONDictionary {
+			if let val = js["valueQuantity"] as? FHIRJSON {
 				self.valueQuantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["valueRange"] as? JSONDictionary {
+			if let val = js["valueRange"] as? FHIRJSON {
 				self.valueRange = Range(json: val, owner: self)
 			}
-			if let val = js["valueRatio"] as? JSONDictionary {
+			if let val = js["valueRatio"] as? FHIRJSON {
 				self.valueRatio = Ratio(json: val, owner: self)
 			}
-			if let val = js["valueSampledData"] as? JSONDictionary {
+			if let val = js["valueSampledData"] as? FHIRJSON {
 				self.valueSampledData = SampledData(json: val, owner: self)
 			}
 			if let val = js["valueString"] as? String {
@@ -216,7 +216,7 @@ public class Observation: DomainResource
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let appliesDateTime = self.appliesDateTime {
@@ -341,19 +341,19 @@ public class ObservationReferenceRange: FHIRElement
 	/// Text based reference range in an observation
 	public var text: String?
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["age"] as? JSONDictionary {
+			if let val = js["age"] as? FHIRJSON {
 				self.age = Range(json: val, owner: self)
 			}
-			if let val = js["high"] as? JSONDictionary {
+			if let val = js["high"] as? FHIRJSON {
 				self.high = Quantity(json: val, owner: self)
 			}
-			if let val = js["low"] as? JSONDictionary {
+			if let val = js["low"] as? FHIRJSON {
 				self.low = Quantity(json: val, owner: self)
 			}
-			if let val = js["meaning"] as? JSONDictionary {
+			if let val = js["meaning"] as? FHIRJSON {
 				self.meaning = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["text"] as? String {
@@ -362,7 +362,7 @@ public class ObservationReferenceRange: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let age = self.age {
@@ -410,10 +410,10 @@ public class ObservationRelated: FHIRElement
 		}
 	}
 	
-	public required init(json: JSONDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["target"] as? JSONDictionary {
+			if let val = js["target"] as? FHIRJSON {
 				self.target = Reference(json: val, owner: self)
 			}
 			if let val = js["type"] as? String {
@@ -422,7 +422,7 @@ public class ObservationRelated: FHIRElement
 		}
 	}
 	
-	override public func asJSON() -> JSONDictionary {
+	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let target = self.target {

@@ -14,8 +14,8 @@ This work is [Apache licensed](LICENSE.txt).
 SMART on FHIR
 -------------
 
-The [SMART on FHIR](https://github.com/smart-on-fhir/SMART-on-FHIR-Cocoa) Cocoa client library utilizes these classes.
-It also adds an implementation of this repo's _FHIRServer_ protocol to make the classes fully usable.
+The [Swift-SMART](https://github.com/smart-on-fhir/Swift-SMART) framework utilizes these classes.
+It also adds an implementation of this repo's _FHIRServer_ protocol to make for a complete FHIR client framework.
 
 
 Progress

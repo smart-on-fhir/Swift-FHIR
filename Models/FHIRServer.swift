@@ -16,25 +16,25 @@ public let FHIRServerErrorDomain = "FHIRServerError"
 /**
 	Struct to describe REST request types, with a convenience method to make a request FHIR compliant.
  */
-public enum FHIRRequestType
+public enum FHIRRequestType: String
 {
-	case GET, PUT, POST
+	case GET = "GET"
+	case PUT = "PUT"
+	case POST = "POST"
 	
 	/** Prepare a given mutable URL request with appropriate headers, methods and body values. */
 	func prepareRequest(req: NSMutableURLRequest, body: NSData? = nil) {
+		req.HTTPMethod = rawValue
 		switch self {
 		case .GET:
-			req.HTTPMethod = "GET"
 			req.setValue("application/json+fhir", forHTTPHeaderField: "Accept")
 			req.setValue("UTF-8", forHTTPHeaderField: "Accept-Charset")
 		case .PUT:
-			req.HTTPMethod = "PUT"
 			req.setValue("application/json+fhir; charset=utf-8", forHTTPHeaderField: "Content-Type")
 			req.setValue("application/json+fhir", forHTTPHeaderField: "Accept")
 			req.setValue("UTF-8", forHTTPHeaderField: "Accept-Charset")
 			req.HTTPBody = body
 		case .POST:
-			req.HTTPMethod = "POST"
 			// TODO: set headers
 			req.HTTPBody = body
 		}
@@ -56,7 +56,7 @@ public protocol FHIRServer
 		
 		:param: path The REST path to request, relative to the server's base URL
 		:param: callback The callback to call when the request ends (success or failure)
-	*/
+	 */
 	func getJSON(path: String, callback: ((response: FHIRServerJSONResponse) -> Void))
 	
 	/**
@@ -66,7 +66,7 @@ public protocol FHIRServer
 		:param: path The REST path to request, relative to the server's base URL
 		:param: body The request body data as FHIRJSON
 		:param: callback The callback to call when the request ends (success or failure)
-	*/
+	 */
 	func putJSON(path: String, body: FHIRJSON, callback: ((response: FHIRServerJSONResponse) -> Void))
 	
 	func postJSON(path: String, body: FHIRJSON, callback: ((response: FHIRServerJSONResponse) -> Void))
@@ -312,8 +312,10 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse
 		super.init(notSentBecause: error)
 	}
 	
-	/** Uses FHIRElement's factory method to instantiate a resource from the response JSON, if any, and returns that
-		resource. */
+	/**
+		Uses FHIRElement's factory method to instantiate a resource from the response JSON, if any, and returns that
+		resource if it indeed is of the expected type.
+	 */
 	public func resource<T: FHIRElement>(expectType: T.Type) -> T? {
 		if let json = self.json {
 			let resource = FHIRElement.instantiateFrom(json, owner: nil)

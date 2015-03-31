@@ -1,6 +1,6 @@
 //
 //  FHIRSearch.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
 //  Created by Pascal Pfiffner on 7/10/14.
 //  2014, SMART Platforms.

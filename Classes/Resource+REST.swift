@@ -13,7 +13,7 @@ import Foundation
 public typealias FHIRErrorCallback = ((error: NSError?) -> Void)
 
 /// The block signature for most server interaction callbacks that return a resource and an error.
-public typealias FHIRResourceErrorCallback = ((resource: FHIRResource?, error: NSError?) -> Void)
+public typealias FHIRResourceErrorCallback = ((resource: Resource?, error: NSError?) -> Void)
 
 /// The FHIR resource error domain
 public let FHIRResourceErrorDomain = "FHIRResourceError"

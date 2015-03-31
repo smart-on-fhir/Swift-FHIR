@@ -25,10 +25,10 @@ Here's a rough list of what still needs to be done.
 
 ```
 [X] Reference resolver: resolve contained resources
-[ ] Reference resolver: resolve bundle-relative resources
-[ ] Reference resolver: resolve remote resources
+[X] Reference resolver: resolve relative resources
+[ ] Reference resolver: resolve absolute resources
 [?] Serialization validator
-[ ] Handle operations (especially $everything)
+[ ] Handle operations
 [ ] Handle resource versions nicely
 [ ] Create a default behavior when a modifierExtension is detected
 [ ] Search: report search parameters that the server ignored

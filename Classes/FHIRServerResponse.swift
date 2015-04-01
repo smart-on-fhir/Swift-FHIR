@@ -25,13 +25,20 @@ public class FHIRServerResponse
 	public var error: NSError? {
 		get {
 			if nil == _error && status >= 400 {
-				let errstr = (status >= 600) ? (status >= 700 ? "No request sent" : "No response received") : NSHTTPURLResponse.localizedStringForStatusCode(status)
+				let errstr = (status >= 600) ? (status >= 700 ? "No request sent".localized : "No response received".localized) : NSHTTPURLResponse.localizedStringForStatusCode(status)
 				_error = genServerError(errstr, code: status)
 			}
 			return _error
 		}
 		set {
-			_error = newValue
+			if nil != newValue && NSURLErrorDomain == newValue!.domain {
+				var usr = newValue?.userInfo ?? [String: AnyObject]()
+				usr[NSLocalizedDescriptionKey] = NSURLErrorHumanize(newValue!)
+				_error = NSError(domain: NSURLErrorDomain, code: newValue!.code, userInfo: usr)
+			}
+			else {
+				_error = newValue
+			}
 		}
 	}
 	private var _error: NSError?
@@ -139,7 +146,7 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse
 			}
 				
 			// Cocoa error 3840 is JSON parsing error; some error responses may not return JSON, don't report an error on those
-			else if 3840 != error?.code || status < 400 {
+			else if 3840 != error?.code || NSCocoaErrorDomain != (error?.domain ?? "") || status < 400 {
 				let errstr = "Failed to deserialize JSON into a dictionary: \(error?.localizedDescription)\n"
 				"\(NSString(data: data, encoding: NSUTF8StringEncoding))"
 				self.error = genServerError(errstr, code: status)
@@ -161,6 +168,26 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse
 			return resource as? T
 		}
 		return nil
+	}
+}
+
+
+
+/**
+	Return a human-readable, localized string for error codes of the NSURLErrorDomain.
+ */
+func NSURLErrorHumanize(error: NSError) -> String {
+	assert(NSURLErrorDomain == error.domain, "Can only use this function with errors in the NSURLErrorDomain")
+	switch error.code {
+		case NSURLErrorBadURL:                return "The URL was malformed".localized
+		case NSURLErrorTimedOut:              return "The connection timed out".localized
+		case NSURLErrorUnsupportedURL:        return "The URL scheme is not supported".localized
+		case NSURLErrorCannotFindHost:        return "The host could not be found".localized
+		case NSURLErrorCannotConnectToHost:   return "A connection to the host cannot be established".localized
+		case NSURLErrorNetworkConnectionLost: return "The network connection was lost".localized
+		case NSURLErrorDNSLookupFailed:       return "The connection failed because the DNS lookup failed".localized
+		case NSURLErrorHTTPTooManyRedirects:  return "The HTTP connection failed due to too many redirects".localized
+		default:                              return error.localizedDescription
 	}
 }
 

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EE0118981A12AC2B002790C8 /* FHIRModelTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0118971A12AC2B002790C8 /* FHIRModelTestCase.swift */; };
+		EE02CB651ACC89BD006ED5D9 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02CB641ACC89BD006ED5D9 /* String+Localization.swift */; };
+		EE02CB661ACC89BD006ED5D9 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02CB641ACC89BD006ED5D9 /* String+Localization.swift */; };
 		EE04E6FD1AAF1F46008FDDBF /* AuditEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E6F51AAF1F46008FDDBF /* AuditEvent.swift */; };
 		EE04E6FE1AAF1F46008FDDBF /* AuditEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E6F51AAF1F46008FDDBF /* AuditEvent.swift */; };
 		EE04E6FF1AAF1F46008FDDBF /* BodySite.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE04E6F61AAF1F46008FDDBF /* BodySite.swift */; };
@@ -487,6 +489,7 @@
 
 /* Begin PBXFileReference section */
 		EE0118971A12AC2B002790C8 /* FHIRModelTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FHIRModelTestCase.swift; path = ModelTests/FHIRModelTestCase.swift; sourceTree = "<group>"; };
+		EE02CB641ACC89BD006ED5D9 /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		EE04E6F51AAF1F46008FDDBF /* AuditEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuditEvent.swift; sourceTree = "<group>"; };
 		EE04E6F61AAF1F46008FDDBF /* BodySite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BodySite.swift; sourceTree = "<group>"; };
 		EE04E6F71AAF1F46008FDDBF /* DomainResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DomainResource.swift; sourceTree = "<group>"; };
@@ -956,6 +959,7 @@
 				EEA2C96F1A7391F8008726B0 /* FHIRServer.swift */,
 				EE9B320C1ACAE79500980AA9 /* FHIRServerRequestHandler.swift */,
 				EE9B320D1ACAE79500980AA9 /* FHIRServerResponse.swift */,
+				EE02CB641ACC89BD006ED5D9 /* String+Localization.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1159,7 +1163,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0600;
-				ORGANIZATIONNAME = "SMART Platforms";
+				ORGANIZATIONNAME = "SMART Health IT";
 				TargetAttributes = {
 					EE684C1D19A789BA00B5A2C0 = {
 						CreatedOnToolsVersion = 6.0;
@@ -1233,6 +1237,7 @@
 				EE8F51951A44649B004D27C5 /* Bundle.swift in Sources */,
 				EE04E7091AAF1F46008FDDBF /* Signature.swift in Sources */,
 				EE8F51E81A4464C0004D27C5 /* Provenance.swift in Sources */,
+				EE02CB651ACC89BD006ED5D9 /* String+Localization.swift in Sources */,
 				EE8F51E91A4464C0004D27C5 /* Questionnaire.swift in Sources */,
 				EE8F51A81A4464C0004D27C5 /* Device.swift in Sources */,
 				EE5120541A4B317F002D434A /* FHIRSearch.swift in Sources */,
@@ -1475,6 +1480,7 @@
 				EE6DA7D11A5D4B1000E00708 /* Bundle.swift in Sources */,
 				EE04E70A1AAF1F46008FDDBF /* Signature.swift in Sources */,
 				EE6DA7D21A5D4B1000E00708 /* Provenance.swift in Sources */,
+				EE02CB661ACC89BD006ED5D9 /* String+Localization.swift in Sources */,
 				EE6DA7D31A5D4B1000E00708 /* Questionnaire.swift in Sources */,
 				EE6DA7D41A5D4B1000E00708 /* Device.swift in Sources */,
 				EE6DA7D51A5D4B1000E00708 /* FHIRSearch.swift in Sources */,

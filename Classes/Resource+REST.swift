@@ -28,10 +28,20 @@ public extension Resource
 	// MARK: - Retrieving Resources
 	
 	/**
+		The relative URL path of the resource; the instance needs to have an id.
+	 */
+	public func relativeURL() -> String? {
+		if let myID = id {
+			return "\(self.dynamicType.resourceName)/\(myID)"
+		}
+		return nil
+	}
+	
+	/**
 		The absolute URI of the resource; needs the instance's `server` property to be set and have an id.
 	 */
 	public func absoluteURI() -> NSURL? {
-		if let myID = self.id {
+		if let myID = id {
 			return _server?.baseURL.URLByAppendingPathComponent(self.dynamicType.resourceName).URLByAppendingPathComponent(myID)
 		}
 		return nil
@@ -78,8 +88,8 @@ public extension Resource
 	 */
 	public func update(callback: FHIRErrorCallback) {
 		if let server = _server {
-			if let id = self.id {
-				server.putJSON("\(self.dynamicType.resourceName)/\(id)", body: asJSON()) { response in
+			if let path = relativeURL() {
+				server.putJSON(path, body: asJSON()) { response in
 					// should we do some header inspection (response.headers)?
 					callback(error: response.error)
 				}
@@ -102,9 +112,9 @@ public extension Resource
 		UNFINISHED.
 	 */
 	public func search(query: AnyObject) -> FHIRSearch {
-		if let myId = self.id {
+		if let myID = self.id {
 			NSLog("UNFINISHED, must add '_id' reference to search expression")
-			//return FHIRSearch(subject: "_id", reference: myId, type: self.dynamicType)
+			//return FHIRSearch(subject: "_id", reference: myID, type: self.dynamicType)
 		}
 		return FHIRSearch(type: self.dynamicType, query: query)
 	}
@@ -114,6 +124,43 @@ public extension Resource
 	 */
 	public class func search(query: AnyObject) -> FHIRSearch {
 		return FHIRSearch(type: self, query: query)
+	}
+	
+	
+	// MARK: - Operations
+	
+	/**
+		Perform a given operation on the receiver.
+	 */
+	public func perform(operation: FHIROperation, callback: FHIRResourceErrorCallback) {
+		if let server = _server as? Server {
+			operation.instance = self
+			self.dynamicType._perform(operation, server: server, callback)
+		}
+		else {
+			callback(resource: nil, error: genServerError("The resource \(self) is not assigned to a server, cannot execute operation"))
+		}
+	}
+	
+	/**
+		Perform a given operation on the receiving type.
+	 */
+	public class func perform(operation: FHIROperation, server: Server, callback: FHIRResourceErrorCallback) {
+		operation.type = self
+		_perform(operation, server: server, callback)
+	}
+	
+	class func _perform(operation: FHIROperation, server: Server, callback: FHIRResourceErrorCallback) {
+		server.perform(operation) { response in
+			if let error = response.error {
+				callback(resource: nil, error: error)
+			}
+			else {
+				let resource = FHIRElement.instantiateFrom(response.json, owner: nil) as? Resource
+				resource?._server = server
+				callback(resource: resource, error: nil)
+			}
+		}
 	}
 }
 

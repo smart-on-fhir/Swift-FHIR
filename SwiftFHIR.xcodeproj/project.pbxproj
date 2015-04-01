@@ -461,6 +461,8 @@
 		EE9B320F1ACAE79500980AA9 /* FHIRServerRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B320C1ACAE79500980AA9 /* FHIRServerRequestHandler.swift */; };
 		EE9B32101ACAE79500980AA9 /* FHIRServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B320D1ACAE79500980AA9 /* FHIRServerResponse.swift */; };
 		EE9B32111ACAE79500980AA9 /* FHIRServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B320D1ACAE79500980AA9 /* FHIRServerResponse.swift */; };
+		EE9EE2611ACB43D1004DBCBB /* FHIROperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9EE2601ACB43D1004DBCBB /* FHIROperation.swift */; };
+		EE9EE2621ACB43D1004DBCBB /* FHIROperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9EE2601ACB43D1004DBCBB /* FHIROperation.swift */; };
 		EEA2C9701A7391F8008726B0 /* FHIRServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2C96F1A7391F8008726B0 /* FHIRServer.swift */; };
 		EEA2C9711A7391FE008726B0 /* FHIRServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA2C96F1A7391F8008726B0 /* FHIRServer.swift */; };
 		EEE5DF371A5D862B002AFF53 /* FHIRSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE5DF361A5D862B002AFF53 /* FHIRSearchTests.swift */; };
@@ -616,6 +618,7 @@
 		EE9B31FF1ACADE8000980AA9 /* Reference+Resolving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reference+Resolving.swift"; sourceTree = "<group>"; };
 		EE9B320C1ACAE79500980AA9 /* FHIRServerRequestHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRServerRequestHandler.swift; sourceTree = "<group>"; };
 		EE9B320D1ACAE79500980AA9 /* FHIRServerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRServerResponse.swift; sourceTree = "<group>"; };
+		EE9EE2601ACB43D1004DBCBB /* FHIROperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIROperation.swift; sourceTree = "<group>"; };
 		EEA2C96F1A7391F8008726B0 /* FHIRServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRServer.swift; sourceTree = "<group>"; };
 		EEE5DF361A5D862B002AFF53 /* FHIRSearchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRSearchTests.swift; sourceTree = "<group>"; };
 		EEF20E151A5D4FFE009A6EDA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -959,6 +962,7 @@
 				EEA2C96F1A7391F8008726B0 /* FHIRServer.swift */,
 				EE9B320C1ACAE79500980AA9 /* FHIRServerRequestHandler.swift */,
 				EE9B320D1ACAE79500980AA9 /* FHIRServerResponse.swift */,
+				EE9EE2601ACB43D1004DBCBB /* FHIROperation.swift */,
 				EE02CB641ACC89BD006ED5D9 /* String+Localization.swift */,
 			);
 			path = Classes;
@@ -1295,6 +1299,7 @@
 				EE8F51811A4461A9004D27C5 /* Coding.swift in Sources */,
 				EE8F51931A44649B004D27C5 /* Basic.swift in Sources */,
 				EE8F51C51A4464C0004D27C5 /* Immunization.swift in Sources */,
+				EE9EE2611ACB43D1004DBCBB /* FHIROperation.swift in Sources */,
 				EE8F51C91A4464C0004D27C5 /* Location.swift in Sources */,
 				EE684C3D19A78AE600B5A2C0 /* FHIRContainedResource.swift in Sources */,
 				EE8F518B1A446291004D27C5 /* Observation.swift in Sources */,
@@ -1538,6 +1543,7 @@
 				EE6DA8061A5D4B1000E00708 /* Coding.swift in Sources */,
 				EE6DA8071A5D4B1000E00708 /* Basic.swift in Sources */,
 				EE6DA8081A5D4B1000E00708 /* Immunization.swift in Sources */,
+				EE9EE2621ACB43D1004DBCBB /* FHIROperation.swift in Sources */,
 				EE6DA8091A5D4B1000E00708 /* Location.swift in Sources */,
 				EE6DA80A1A5D4B1000E00708 /* FHIRContainedResource.swift in Sources */,
 				EE6DA80B1A5D4B1000E00708 /* Observation.swift in Sources */,

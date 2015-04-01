@@ -28,7 +28,7 @@ Here's a rough list of what still needs to be done.
 [X] Reference resolver: resolve relative resources
 [ ] Reference resolver: resolve absolute resources
 [?] Serialization validator
-[ ] Handle operations
+[X] Handle operations
 [ ] Handle resource versions nicely
 [ ] Create a default behavior when a modifierExtension is detected
 [ ] Search: report search parameters that the server ignored

@@ -1,13 +1,12 @@
 FHIR Swift Classes
 ==================
 
-These are [Swift](https://developer.apple.com/swift/) classes representing data models of [FHIR](http://hl7-fhir.github.io) resource profiles, compatible with **iOS 7** and **OS X 10.9** and later.
+These are [Swift](https://developer.apple.com/swift/) classes representing data models of [🔥 FHIR](http://www.hl7.org/fhir) resource profiles, compatible with **iOS 7** and **OS X 10.9** and later.
 Building Swift frameworks requires Xcode 6 or later, using frameworks on iOS requires **iOS 8**.
 
 The `master` branch is currently on _DSTU 1_.  
 The `develop` branch is currently on _DSTU 2_ and WiP.
 
-Generated technical documentation is available at [docs.smarthealthit.org/Swift-FHIR/](http://docs.smarthealthit.org/Swift-FHIR/).
 This work is [Apache licensed](LICENSE.txt).
 
 
@@ -15,7 +14,11 @@ SMART on FHIR
 -------------
 
 The [Swift-SMART](https://github.com/smart-on-fhir/Swift-SMART) framework utilizes these classes.
-It also adds an implementation of this repo's _FHIRServer_ protocol to make for a complete FHIR client framework.
+It also adds an implementation of the _FHIRServer_ protocol to make for a complete FHIR client framework.
+
+- [Programming Guide](https://github.com/smart-on-fhir/Swift-SMART/wiki) with code examples
+- [Technical Documentation](http://docs.smarthealthit.org/Swift-SMART/) of classes, properties and methods
+- [Medication List](https://github.com/smart-on-fhir/SoF-MedList) sample app
 
 
 Progress
@@ -28,13 +31,11 @@ Here's a rough list of what still needs to be done.
 [X] Reference resolver: resolve relative resources
 [ ] Reference resolver: resolve absolute resources
 [?] Serialization validator
-[X] Handle operations
 [ ] Handle resource versions nicely
 [ ] Create a default behavior when a modifierExtension is detected
 [ ] Search: report search parameters that the server ignored
 [?] Use non-optional properties and implement failable initializers (see
     @smart-on-fhir/fhir-parser:feature/swift-failable-init)
-[ ] Write a real nice documentation
 ```
 
 Working, at least to some extent:
@@ -47,6 +48,7 @@ Working, at least to some extent:
 - Serialize to JSON
 - Resolve contained resources
 - Construct searches with NoSQL-like statements (cf. [fhir.js](https://github.com/FHIR/fhir.js))
+- Perform operations
 - Use example resources for auto-created class unit tests
     + Tests deserialization from file
     + Tests serialization from deserialized instances
@@ -83,28 +85,13 @@ FHIR makes use of [contained resources](http://hl7.org/implement/standards/fhir/
 An extension on the `Reference` class is included that adds method to handle reference resolving.
 To resolve resource references, call `resolved(ModelClass)` on a reference property, which will return an instance of the referenced type if resolved successfully.
 
+### Search
 
-Search
-------
-
-There was **preliminary** support for creating search query URLs in an object-oriented way in DSTU 1.
-This has since been removed in favor of the NoSQL-like approach proposed and used by [fhir.js](https://github.com/FHIR/fhir.js#search).
-Some examples can be found in `FHIRSearchTests.swift`, a basic example:
-
-    let search = Patient.search([
-        "address": "Boston",
-        "gender": "male",
-        "given": ["$exact": "Willis"]
-    ])
-
-Then `search.perform()` will run the following URL query against the server:
-
-    "Patient?address=Boston&gender=male&given:exact=Willis"
-
+The client supports the NoSQL-like approach proposed and used by [fhir.js](https://github.com/FHIR/fhir.js#search).
 
 #### Compartments
 
-Search can be restricted to [compartments](http://hl7.org/implement/standards/fhir/extras.html#compartment), these however are not yet supported in the SMART server nor in these classes.
+Search can be restricted to [compartments](http://hl7.org/fhir/extras.html#compartment), these however are not yet supported in the SMART server nor in these classes.
 
 ```
 [ ] Patient/23/procedure?date=>2010-01-01&date=<2011-12-31

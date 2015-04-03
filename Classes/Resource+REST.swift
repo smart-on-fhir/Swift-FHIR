@@ -133,7 +133,7 @@ public extension Resource
 		Perform a given operation on the receiver.
 	 */
 	public func perform(operation: FHIROperation, callback: FHIRResourceErrorCallback) {
-		if let server = _server as? Server {
+		if let server = _server {
 			operation.instance = self
 			self.dynamicType._perform(operation, server: server, callback)
 		}
@@ -145,12 +145,12 @@ public extension Resource
 	/**
 		Perform a given operation on the receiving type.
 	 */
-	public class func perform(operation: FHIROperation, server: Server, callback: FHIRResourceErrorCallback) {
+	public class func perform(operation: FHIROperation, server: FHIRServer, callback: FHIRResourceErrorCallback) {
 		operation.type = self
 		_perform(operation, server: server, callback)
 	}
 	
-	class func _perform(operation: FHIROperation, server: Server, callback: FHIRResourceErrorCallback) {
+	class func _perform(operation: FHIROperation, server: FHIRServer, callback: FHIRResourceErrorCallback) {
 		server.perform(operation) { response in
 			if let error = response.error {
 				callback(resource: nil, error: error)

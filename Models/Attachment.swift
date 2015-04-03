@@ -1,9 +1,9 @@
 //
 //  Attachment.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -36,7 +36,7 @@ public class Attachment: FHIRElement
 	public var language: String?
 	
 	/// Number of bytes of content (if url provided)
-	public var size: Int?
+	public var size: UInt?
 	
 	/// Label to display in place of the data
 	public var title: String?
@@ -62,7 +62,7 @@ public class Attachment: FHIRElement
 			if let val = js["language"] as? String {
 				self.language = val
 			}
-			if let val = js["size"] as? Int {
+			if let val = js["size"] as? UInt {
 				self.size = val
 			}
 			if let val = js["title"] as? String {

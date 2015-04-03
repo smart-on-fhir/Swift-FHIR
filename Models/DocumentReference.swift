@@ -1,9 +1,9 @@
 //
 //  DocumentReference.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -24,7 +24,7 @@ public class DocumentReference: DomainResource
 	/// Who and/or what authored the document
 	public var author: [Reference]?
 	
-	/// High-level classification of document
+	/// Categorization of document
 	public var class_fhir: CodeableConcept?
 	
 	/// Document security-tags
@@ -69,7 +69,7 @@ public class DocumentReference: DomainResource
 	/// Who|what is the subject of the document
 	public var subject: Reference?
 	
-	/// Precise type of document
+	/// Kind of document
 	public var type: CodeableConcept?
 	
 	public convenience init(author: [Reference]?, content: [Attachment]?, indexed: Instant?, status: String?, type: CodeableConcept?) {

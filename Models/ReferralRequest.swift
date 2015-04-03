@@ -1,9 +1,9 @@
 //
 //  ReferralRequest.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -57,7 +57,7 @@ public class ReferralRequest: DomainResource
 	/// The clinical specialty (discipline) that the referral is requested for
 	public var specialty: CodeableConcept?
 	
-	/// draft | sent | active | cancelled | rejected | completed
+	/// draft | requested | active | cancelled | accepted | rejected | completed
 	public var status: String?
 	
 	/// Additonal information to support referral or transfer of care request

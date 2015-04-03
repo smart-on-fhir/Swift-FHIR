@@ -1,9 +1,9 @@
 //
 //  ImmunizationRecommendation.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -88,7 +88,7 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 	public var dateCriterion: [ImmunizationRecommendationRecommendationDateCriterion]?
 	
 	/// Recommended dose number
-	public var doseNumber: Int?
+	public var doseNumber: UInt?
 	
 	/// Vaccine administration status
 	public var forecastStatus: CodeableConcept?
@@ -127,7 +127,7 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 			if let val = js["dateCriterion"] as? [FHIRJSON] {
 				self.dateCriterion = ImmunizationRecommendationRecommendationDateCriterion.from(val, owner: self) as? [ImmunizationRecommendationRecommendationDateCriterion]
 			}
-			if let val = js["doseNumber"] as? Int {
+			if let val = js["doseNumber"] as? UInt {
 				self.doseNumber = val
 			}
 			if let val = js["forecastStatus"] as? FHIRJSON {

@@ -1,9 +1,9 @@
 //
 //  HealthcareService.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -18,8 +18,8 @@ public class HealthcareService: DomainResource
 		get { return "HealthcareService" }
 	}
 	
-	/// Indicates whether or not a prospective consumer will require an appointment for a particular service at a Site to be provided by the Organization. Indicates if an appointment is required for access to this service. If this flag is 'NotDefined', then this flag is overridden by the Site's availability flag. (ConditionalIndicator Enum)
-	public var appointmentRequired: CodeableConcept?
+	/// Indicates if an appointment is required for access to this service
+	public var appointmentRequired: Bool?
 	
 	/// A description of Site availability exceptions, e.g., public holiday availability. Succinctly describing all possible exceptions to normal Site availability as details in the Available Times and Not Available Times
 	public var availabilityExceptions: String?
@@ -27,20 +27,14 @@ public class HealthcareService: DomainResource
 	/// A Collection of times that the Service Site is available
 	public var availableTime: [HealthcareServiceAvailableTime]?
 	
-	/// Need better description
-	public var catchmentArea: [CodeableConcept]?
-	
 	/// Collection of Characteristics (attributes)
 	public var characteristic: [CodeableConcept]?
 	
-	/// Additional description of the  or any specific issues not covered by the other attributes, which can be displayed as further detail under the serviceName
+	/// Any additional description of the service and/or any specific issues not covered by the other attributes, which can be displayed as further detail under the serviceName
 	public var comment: String?
 	
-	/// List of contacts related to this specific healthcare service. If this is empty, then refer to the location's contacts
-	public var contactPoint: [ContactPoint]?
-	
-	/// Need better description
-	public var coverageArea: [CodeableConcept]?
+	/// The location(s) that this service is available to (not where the service is provided)
+	public var coverageArea: [Reference]?
 	
 	/// Does this service have specific eligibility requirements that need to be met in order to use the service
 	public var eligibility: CodeableConcept?
@@ -51,23 +45,23 @@ public class HealthcareService: DomainResource
 	/// Extra details about the service that can't be placed in the other fields
 	public var extraDetails: String?
 	
-	/// The free provision code provides a link to the Free Provision reference entity to enable the selection of one free provision type
-	public var freeProvisionCode: CodeableConcept?
-	
-	/// External Ids for this item
+	/// External Identifiers for this item
 	public var identifier: [Identifier]?
-	
-	/// If there is an image associated with this Service Site, its URI can be included here
-	public var imageURI: NSURL?
 	
 	/// The location where this healthcare service may be provided
 	public var location: Reference?
 	
-	/// Not avail times - need better description
-	public var notAvailableTime: [HealthcareServiceNotAvailableTime]?
+	/// The HealthcareService is not available during this period of time due to the provided reason
+	public var notAvailable: [HealthcareServiceNotAvailable]?
+	
+	/// If there is a photo/symbol associated with this HealthcareService, it may be included here to facilitate quick identification of the service in a list
+	public var photo: Attachment?
 	
 	/// Program Names that can be used to categorize the service
 	public var programName: [String]?
+	
+	/// The organization that provides this Healthcare Service
+	public var providedBy: Reference?
 	
 	/// The public part of the 'keys' allocated to an Organization by an accredited body to support secure exchange of data over the internet. To be provided by the Organization, where available
 	public var publicKey: String?
@@ -78,20 +72,17 @@ public class HealthcareService: DomainResource
 	/// Identifies the broad category of service being performed or delivered. Selecting a Service Category then determines the list of relevant service types that can be selected in the Primary Service Type
 	public var serviceCategory: CodeableConcept?
 	
-	/// List of the specific
-	public var serviceCode: [CodeableConcept]?
-	
 	/// Further description of the service as it would be presented to a consumer while searching
 	public var serviceName: String?
+	
+	/// The code(s) that detail the conditions under which the healthcare service is available/offered
+	public var serviceProvisionCode: [CodeableConcept]?
 	
 	/// A specific type of service that may be delivered or performed
 	public var serviceType: [HealthcareServiceServiceType]?
 	
-	/// The setting where this service can be provided, such is in home, or at location in organisation
-	public var setting: [CodeableConcept]?
-	
-	/// Collection of Target Groups for the Service Site (The target audience that this service is for)
-	public var targetGroup: [CodeableConcept]?
+	/// List of contacts related to this specific healthcare service. If this is empty, then refer to the location's contacts
+	public var telecom: [ContactPoint]?
 	
 	public convenience init(location: Reference?) {
 		self.init(json: nil)
@@ -103,8 +94,8 @@ public class HealthcareService: DomainResource
 	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["appointmentRequired"] as? FHIRJSON {
-				self.appointmentRequired = CodeableConcept(json: val, owner: self)
+			if let val = js["appointmentRequired"] as? Bool {
+				self.appointmentRequired = val
 			}
 			if let val = js["availabilityExceptions"] as? String {
 				self.availabilityExceptions = val
@@ -112,20 +103,14 @@ public class HealthcareService: DomainResource
 			if let val = js["availableTime"] as? [FHIRJSON] {
 				self.availableTime = HealthcareServiceAvailableTime.from(val, owner: self) as? [HealthcareServiceAvailableTime]
 			}
-			if let val = js["catchmentArea"] as? [FHIRJSON] {
-				self.catchmentArea = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
-			}
 			if let val = js["characteristic"] as? [FHIRJSON] {
 				self.characteristic = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["comment"] as? String {
 				self.comment = val
 			}
-			if let val = js["contactPoint"] as? [FHIRJSON] {
-				self.contactPoint = ContactPoint.from(val, owner: self) as? [ContactPoint]
-			}
 			if let val = js["coverageArea"] as? [FHIRJSON] {
-				self.coverageArea = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+				self.coverageArea = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["eligibility"] as? FHIRJSON {
 				self.eligibility = CodeableConcept(json: val, owner: self)
@@ -136,23 +121,23 @@ public class HealthcareService: DomainResource
 			if let val = js["extraDetails"] as? String {
 				self.extraDetails = val
 			}
-			if let val = js["freeProvisionCode"] as? FHIRJSON {
-				self.freeProvisionCode = CodeableConcept(json: val, owner: self)
-			}
 			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
-			}
-			if let val = js["imageURI"] as? String {
-				self.imageURI = NSURL(string: val)
 			}
 			if let val = js["location"] as? FHIRJSON {
 				self.location = Reference(json: val, owner: self)
 			}
-			if let val = js["notAvailableTime"] as? [FHIRJSON] {
-				self.notAvailableTime = HealthcareServiceNotAvailableTime.from(val, owner: self) as? [HealthcareServiceNotAvailableTime]
+			if let val = js["notAvailable"] as? [FHIRJSON] {
+				self.notAvailable = HealthcareServiceNotAvailable.from(val, owner: self) as? [HealthcareServiceNotAvailable]
+			}
+			if let val = js["photo"] as? FHIRJSON {
+				self.photo = Attachment(json: val, owner: self)
 			}
 			if let val = js["programName"] as? [String] {
 				self.programName = val
+			}
+			if let val = js["providedBy"] as? FHIRJSON {
+				self.providedBy = Reference(json: val, owner: self)
 			}
 			if let val = js["publicKey"] as? String {
 				self.publicKey = val
@@ -163,20 +148,17 @@ public class HealthcareService: DomainResource
 			if let val = js["serviceCategory"] as? FHIRJSON {
 				self.serviceCategory = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["serviceCode"] as? [FHIRJSON] {
-				self.serviceCode = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
-			}
 			if let val = js["serviceName"] as? String {
 				self.serviceName = val
+			}
+			if let val = js["serviceProvisionCode"] as? [FHIRJSON] {
+				self.serviceProvisionCode = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["serviceType"] as? [FHIRJSON] {
 				self.serviceType = HealthcareServiceServiceType.from(val, owner: self) as? [HealthcareServiceServiceType]
 			}
-			if let val = js["setting"] as? [FHIRJSON] {
-				self.setting = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
-			}
-			if let val = js["targetGroup"] as? [FHIRJSON] {
-				self.targetGroup = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			if let val = js["telecom"] as? [FHIRJSON] {
+				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
 	}
@@ -193,20 +175,14 @@ public class HealthcareService: DomainResource
 		if let availableTime = self.availableTime {
 			json["availableTime"] = HealthcareServiceAvailableTime.asJSONArray(availableTime)
 		}
-		if let catchmentArea = self.catchmentArea {
-			json["catchmentArea"] = CodeableConcept.asJSONArray(catchmentArea)
-		}
 		if let characteristic = self.characteristic {
 			json["characteristic"] = CodeableConcept.asJSONArray(characteristic)
 		}
 		if let comment = self.comment {
 			json["comment"] = comment.asJSON()
 		}
-		if let contactPoint = self.contactPoint {
-			json["contactPoint"] = ContactPoint.asJSONArray(contactPoint)
-		}
 		if let coverageArea = self.coverageArea {
-			json["coverageArea"] = CodeableConcept.asJSONArray(coverageArea)
+			json["coverageArea"] = Reference.asJSONArray(coverageArea)
 		}
 		if let eligibility = self.eligibility {
 			json["eligibility"] = eligibility.asJSON()
@@ -217,20 +193,17 @@ public class HealthcareService: DomainResource
 		if let extraDetails = self.extraDetails {
 			json["extraDetails"] = extraDetails.asJSON()
 		}
-		if let freeProvisionCode = self.freeProvisionCode {
-			json["freeProvisionCode"] = freeProvisionCode.asJSON()
-		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
-		}
-		if let imageURI = self.imageURI {
-			json["imageURI"] = imageURI.asJSON()
 		}
 		if let location = self.location {
 			json["location"] = location.asJSON()
 		}
-		if let notAvailableTime = self.notAvailableTime {
-			json["notAvailableTime"] = HealthcareServiceNotAvailableTime.asJSONArray(notAvailableTime)
+		if let notAvailable = self.notAvailable {
+			json["notAvailable"] = HealthcareServiceNotAvailable.asJSONArray(notAvailable)
+		}
+		if let photo = self.photo {
+			json["photo"] = photo.asJSON()
 		}
 		if let programName = self.programName {
 			var arr = [AnyObject]()
@@ -238,6 +211,9 @@ public class HealthcareService: DomainResource
 				arr.append(val.asJSON())
 			}
 			json["programName"] = arr
+		}
+		if let providedBy = self.providedBy {
+			json["providedBy"] = providedBy.asJSON()
 		}
 		if let publicKey = self.publicKey {
 			json["publicKey"] = publicKey.asJSON()
@@ -248,20 +224,17 @@ public class HealthcareService: DomainResource
 		if let serviceCategory = self.serviceCategory {
 			json["serviceCategory"] = serviceCategory.asJSON()
 		}
-		if let serviceCode = self.serviceCode {
-			json["serviceCode"] = CodeableConcept.asJSONArray(serviceCode)
-		}
 		if let serviceName = self.serviceName {
 			json["serviceName"] = serviceName.asJSON()
+		}
+		if let serviceProvisionCode = self.serviceProvisionCode {
+			json["serviceProvisionCode"] = CodeableConcept.asJSONArray(serviceProvisionCode)
 		}
 		if let serviceType = self.serviceType {
 			json["serviceType"] = HealthcareServiceServiceType.asJSONArray(serviceType)
 		}
-		if let setting = self.setting {
-			json["setting"] = CodeableConcept.asJSONArray(setting)
-		}
-		if let targetGroup = self.targetGroup {
-			json["targetGroup"] = CodeableConcept.asJSONArray(targetGroup)
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
 		}
 		
 		return json
@@ -281,14 +254,14 @@ public class HealthcareServiceAvailableTime: FHIRElement
 	/// Is this always available? (hence times are irrelevant) e.g. 24 hour service
 	public var allDay: Bool?
 	
-	/// The closing time of day (the date is not included). Note: If the AllDay flag is set, then this time is ignored
-	public var availableEndTime: DateTime?
+	/// The closing time of day. Note: If the AllDay flag is set, then this time is ignored
+	public var availableEndTime: Time?
 	
-	/// The opening time of day (the date is not included). Note: If the AllDay flag is set, then this time is ignored
-	public var availableStartTime: DateTime?
+	/// The opening time of day. Note: If the AllDay flag is set, then this time is ignored
+	public var availableStartTime: Time?
 	
-	/// Indicates which Days of the week are available between the Start and End Times
-	public var daysOfWeek: [CodeableConcept]?
+	/// mon | tue | wed | thu | fri | sat | sun
+	public var daysOfWeek: [String]?
 	
 	public required init(json: FHIRJSON?) {
 		super.init(json: json)
@@ -297,13 +270,13 @@ public class HealthcareServiceAvailableTime: FHIRElement
 				self.allDay = val
 			}
 			if let val = js["availableEndTime"] as? String {
-				self.availableEndTime = DateTime(string: val)
+				self.availableEndTime = Time(string: val)
 			}
 			if let val = js["availableStartTime"] as? String {
-				self.availableStartTime = DateTime(string: val)
+				self.availableStartTime = Time(string: val)
 			}
-			if let val = js["daysOfWeek"] as? [FHIRJSON] {
-				self.daysOfWeek = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			if let val = js["daysOfWeek"] as? [String] {
+				self.daysOfWeek = val
 			}
 		}
 	}
@@ -321,7 +294,11 @@ public class HealthcareServiceAvailableTime: FHIRElement
 			json["availableStartTime"] = availableStartTime.asJSON()
 		}
 		if let daysOfWeek = self.daysOfWeek {
-			json["daysOfWeek"] = CodeableConcept.asJSONArray(daysOfWeek)
+			var arr = [AnyObject]()
+			for val in daysOfWeek {
+				arr.append(val.asJSON())
+			}
+			json["daysOfWeek"] = arr
 		}
 		
 		return json
@@ -330,22 +307,19 @@ public class HealthcareServiceAvailableTime: FHIRElement
 
 
 /**
- *  Not avail times - need better description.
+ *  The HealthcareService is not available during this period of time due to the provided reason.
  */
-public class HealthcareServiceNotAvailableTime: FHIRElement
+public class HealthcareServiceNotAvailable: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "HealthcareServiceNotAvailableTime" }
+		get { return "HealthcareServiceNotAvailable" }
 	}
 	
 	/// The reason that can be presented to the user as to why this time is not available
 	public var description_fhir: String?
 	
-	/// Service is not available (seasonally or for a public holiday) until this date
-	public var endDate: DateTime?
-	
 	/// Service is not available (seasonally or for a public holiday) from this date
-	public var startDate: DateTime?
+	public var during: Period?
 	
 	public convenience init(description_fhir: String?) {
 		self.init(json: nil)
@@ -360,11 +334,8 @@ public class HealthcareServiceNotAvailableTime: FHIRElement
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["endDate"] as? String {
-				self.endDate = DateTime(string: val)
-			}
-			if let val = js["startDate"] as? String {
-				self.startDate = DateTime(string: val)
+			if let val = js["during"] as? FHIRJSON {
+				self.during = Period(json: val, owner: self)
 			}
 		}
 	}
@@ -375,11 +346,8 @@ public class HealthcareServiceNotAvailableTime: FHIRElement
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
-		if let endDate = self.endDate {
-			json["endDate"] = endDate.asJSON()
-		}
-		if let startDate = self.startDate {
-			json["startDate"] = startDate.asJSON()
+		if let during = self.during {
+			json["during"] = during.asJSON()
 		}
 		
 		return json

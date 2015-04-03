@@ -1,9 +1,9 @@
 //
 //  RelatedPersonTests.swift
-//  RelatedPersonTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -32,8 +32,8 @@ class RelatedPersonTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.gender!, "female")
 		XCTAssertEqual(inst.id!, "f001")
-		XCTAssertEqual(inst.identifier![0].label!, "BSN")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.6.3")
+		XCTAssertEqual(inst.identifier![0].type!.text!, "BSN")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.name!.family![0], "Abels")
 		XCTAssertEqual(inst.name!.given![0], "Sarah")
@@ -122,8 +122,8 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address!.postalCode!, "75004")
 		XCTAssertEqual(inst.gender!, "female")
 		XCTAssertEqual(inst.id!, "benedicte")
-		XCTAssertEqual(inst.identifier![0].label!, "INSEE")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:1.2.250.1.61")
+		XCTAssertEqual(inst.identifier![0].type!.text!, "INSEE")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
 		XCTAssertEqual(inst.identifier![0].value!, "272117510400399")
 		XCTAssertEqual(inst.name!.family![0], "du")

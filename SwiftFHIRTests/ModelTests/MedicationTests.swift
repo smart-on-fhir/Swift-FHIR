@@ -1,9 +1,9 @@
 //
 //  MedicationTests.swift
-//  MedicationTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -222,78 +222,6 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.product!.form!.coding![0].code!, "385055001")
 		XCTAssertEqual(inst.product!.form!.coding![0].display!, "Tablet")
 		XCTAssertEqual(inst.product!.form!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testMedication9() {
-		let instance = testMedication9_impl()
-		testMedication9_impl(json: instance.asJSON())
-	}
-	
-	func testMedication9_impl(json: FHIRJSON? = nil) -> Medication {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example.json")
-		
-		XCTAssertEqual(inst.code!.coding![0].code!, "323418000")
-		XCTAssertEqual(inst.code!.coding![0].display!, "Phenoxymethylpenicillin 125mg/5mL oral solution (product)")
-		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.code!.coding![1].code!, "22571011000036102")
-		XCTAssertEqual(inst.code!.coding![1].display!, "phenoxymethylpenicillin 125 mg / 5 mL oral liquid, 5 mL measure")
-		XCTAssertEqual(inst.code!.coding![1].system!.absoluteString!, "http://nehta.gov.au/amt/v2")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertFalse(inst.isBrand!)
-		XCTAssertEqual(inst.kind!, "product")
-		XCTAssertEqual(inst.name!, "Penicillin VK oral suspension 125mg/5ml")
-		XCTAssertEqual(inst.product!.form!.coding![0].code!, "37595005")
-		XCTAssertEqual(inst.product!.form!.coding![0].display!, "Suspension")
-		XCTAssertEqual(inst.product!.form!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.text!.div!, "<div>123456789: Penicillin VK oral suspension 125mg/5ml</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testMedication10() {
-		let instance = testMedication10_impl()
-		testMedication10_impl(json: instance.asJSON())
-	}
-	
-	func testMedication10_impl(json: FHIRJSON? = nil) -> Medication {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-qicore-example.json")
-		
-		XCTAssertEqual(inst.code!.coding![0].code!, "411106009")
-		XCTAssertEqual(inst.code!.coding![0].display!, "25ug Flutacisone + 250ug Salmeterol")
-		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.id!, "qicore")
-		XCTAssertFalse(inst.isBrand!)
-		XCTAssertEqual(inst.kind!, "product")
-		XCTAssertEqual(inst.name!, "Salmeterol/fluticason")
-		XCTAssertEqual(inst.product!.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/medication-usualRoute")
-		XCTAssertEqual(inst.product!.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "447694001")
-		XCTAssertEqual(inst.product!.extension_fhir![0].valueCodeableConcept!.coding![0].display!, "Respiratory tract route")
-		XCTAssertEqual(inst.product!.extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.product!.form!.coding![0].code!, "421606006")
-		XCTAssertEqual(inst.product!.form!.coding![0].display!, "Aerosol spray")
-		XCTAssertEqual(inst.product!.form!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.product!.ingredient![0].amount!.denominator!.code!, "PUFF")
-		XCTAssertEqual(inst.product!.ingredient![0].amount!.denominator!.system!.absoluteString!, "http://hl7.org/fhir/v3/orderableDrugForm")
-		XCTAssertEqual(inst.product!.ingredient![0].amount!.denominator!.value!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.code!, "ug")
-		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.system!.absoluteString!, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.value!, NSDecimalNumber(string: "25"))
-		XCTAssertEqual(inst.product!.ingredient![0].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/medication-isActiveIngredient")
-		XCTAssertTrue(inst.product!.ingredient![0].extension_fhir![0].valueBoolean!)
-		XCTAssertEqual(inst.product!.ingredient![0].item!.display!, "flutacisone")
-		XCTAssertEqual(inst.product!.ingredient![1].amount!.denominator!.code!, "PUFF")
-		XCTAssertEqual(inst.product!.ingredient![1].amount!.denominator!.system!.absoluteString!, "http://hl7.org/fhir/v3/orderableDrugForm")
-		XCTAssertEqual(inst.product!.ingredient![1].amount!.denominator!.value!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.product!.ingredient![1].amount!.numerator!.code!, "ug")
-		XCTAssertEqual(inst.product!.ingredient![1].amount!.numerator!.system!.absoluteString!, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.product!.ingredient![1].amount!.numerator!.value!, NSDecimalNumber(string: "250"))
-		XCTAssertEqual(inst.product!.ingredient![1].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/medication-isActiveIngredient")
-		XCTAssertTrue(inst.product!.ingredient![1].extension_fhir![0].valueBoolean!)
-		XCTAssertEqual(inst.product!.ingredient![1].item!.display!, "salmeterol")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst

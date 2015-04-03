@@ -1,9 +1,9 @@
 //
 //  BodySiteTests.swift
-//  BodySiteTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -54,6 +54,7 @@ class BodySiteTests: FHIRModelTestCase
 		XCTAssertEqual(inst.modifier_fhir![2].coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.modifier_fhir![2].text!, "Anterior")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}

@@ -1,9 +1,9 @@
 //
 //  CoverageTests.swift
-//  CoverageTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -30,7 +30,7 @@ class CoverageTests: FHIRModelTestCase
 	func testCoverage1_impl(json: FHIRJSON? = nil) -> Coverage {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "coverage-example-2.json")
 		
-		XCTAssertEqual(inst.dependent!, 1)
+		XCTAssertEqual(inst.dependent!, UInt(1))
 		XCTAssertEqual(inst.id!, "7546D")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://xyz.com/codes/identifier")
 		XCTAssertEqual(inst.identifier![0].value!, "AB9876")
@@ -57,7 +57,7 @@ class CoverageTests: FHIRModelTestCase
 	func testCoverage2_impl(json: FHIRJSON? = nil) -> Coverage {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "coverage-example.json")
 		
-		XCTAssertEqual(inst.dependent!, 0)
+		XCTAssertEqual(inst.dependent!, UInt(1))
 		XCTAssertEqual(inst.id!, "9876B1")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://benefitsinc.com/certificate")
 		XCTAssertEqual(inst.identifier![0].value!, "12345")
@@ -65,7 +65,7 @@ class CoverageTests: FHIRModelTestCase
 		XCTAssertEqual(inst.period!.end!.description, "2012-05-23")
 		XCTAssertEqual(inst.period!.start!.description, "2011-05-23")
 		XCTAssertEqual(inst.plan!, "CBI35")
-		XCTAssertEqual(inst.sequence!, 1)
+		XCTAssertEqual(inst.sequence!, UInt(1))
 		XCTAssertEqual(inst.subPlan!, "123")
 		XCTAssertEqual(inst.subscriber!.reference!, "Patient/4")
 		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the coverage</div>")

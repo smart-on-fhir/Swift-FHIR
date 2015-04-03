@@ -1,9 +1,9 @@
 //
 //  CompositionTests.swift
-//  CompositionTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest

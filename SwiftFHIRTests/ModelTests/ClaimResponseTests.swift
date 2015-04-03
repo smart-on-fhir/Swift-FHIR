@@ -1,9 +1,9 @@
 //
 //  ClaimResponseTests.swift
-//  ClaimResponseTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -49,7 +49,7 @@ class ClaimResponseTests: FHIRModelTestCase
 		XCTAssertEqual(inst.item![0].adjudication![3].amount!.system!.absoluteString!, "urn:std:iso:4217")
 		XCTAssertEqual(inst.item![0].adjudication![3].amount!.value!, NSDecimalNumber(string: "100.47"))
 		XCTAssertEqual(inst.item![0].adjudication![3].code!.code!, "benefit")
-		XCTAssertEqual(inst.item![0].sequenceLinkId!, 1)
+		XCTAssertEqual(inst.item![0].sequenceLinkId!, UInt(1))
 		XCTAssertEqual(inst.organization!.reference!, "Organization/2")
 		XCTAssertEqual(inst.outcome!, "complete")
 		XCTAssertEqual(inst.payeeType!.code!, "provider")

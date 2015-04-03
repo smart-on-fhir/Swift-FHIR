@@ -1,9 +1,9 @@
 //
 //  SampledData.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -25,7 +25,7 @@ public class SampledData: FHIRElement
 	public var data: String?
 	
 	/// Number of sample points at each time point
-	public var dimensions: Int?
+	public var dimensions: UInt?
 	
 	/// Multiply data by this before adding to origin
 	public var factor: NSDecimalNumber?
@@ -42,7 +42,7 @@ public class SampledData: FHIRElement
 	/// Upper limit of detection
 	public var upperLimit: NSDecimalNumber?
 	
-	public convenience init(data: String?, dimensions: Int?, origin: Quantity?, period: NSDecimalNumber?) {
+	public convenience init(data: String?, dimensions: UInt?, origin: Quantity?, period: NSDecimalNumber?) {
 		self.init(json: nil)
 		if nil != data {
 			self.data = data
@@ -64,7 +64,7 @@ public class SampledData: FHIRElement
 			if let val = js["data"] as? String {
 				self.data = val
 			}
-			if let val = js["dimensions"] as? Int {
+			if let val = js["dimensions"] as? UInt {
 				self.dimensions = val
 			}
 			if let val = js["factor"] as? NSNumber {

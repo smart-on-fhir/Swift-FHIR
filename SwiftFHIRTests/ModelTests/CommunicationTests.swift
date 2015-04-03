@@ -1,9 +1,9 @@
 //
 //  CommunicationTests.swift
-//  CommunicationTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -34,8 +34,8 @@ class CommunicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString!, "http://acme.org/messagetypes")
 		XCTAssertEqual(inst.category!.text!, "Alert")
 		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.identifier![0].label!, "Paging System")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:1.3.4.5.6.7")
+		XCTAssertEqual(inst.identifier![0].type!.text!, "Paging System")
 		XCTAssertEqual(inst.identifier![0].value!, "2345678901")
 		XCTAssertEqual(inst.payload![0].contentString!, "Patient 1 has a very high serum potassium value (7.2 mmol/L on 2014-Dec-12 at 5:55 pm)")
 		XCTAssertEqual(inst.payload![1].contentReference!.reference!, "Observation/643666aa12f")
@@ -66,8 +66,8 @@ class CommunicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].display!, "entered in error")
 		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/ActReason")
 		XCTAssertEqual(inst.id!, "qicore")
-		XCTAssertEqual(inst.identifier![0].label!, "Paging System")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:1.3.4.5.6.7")
+		XCTAssertEqual(inst.identifier![0].type!.text!, "Paging System")
 		XCTAssertEqual(inst.identifier![0].value!, "2345678901")
 		XCTAssertEqual(inst.payload![0].contentString!, "Patient 1 has a very high serum potassium value (7.2 mmol/L on 2014-Dec-12 at 5:55 pm)")
 		XCTAssertEqual(inst.payload![1].contentReference!.reference!, "Observation/643666aa12f")

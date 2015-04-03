@@ -1,9 +1,9 @@
 //
 //  ValueSetTests.swift
-//  ValueSetTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -99,14 +99,14 @@ class ValueSetTests: FHIRModelTestCase
 		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/valueset-oid")
 		XCTAssertEqual(inst.extension_fhir![0].valueUri!.absoluteString!, "urn:oid:2.16.840.1.113883.4.642.2.320")
 		XCTAssertEqual(inst.id!, "valueset-list-example-codes")
-		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2015-03-25T16:15:11.944+00:00")
+		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2015-04-03T03:26:54.815+00:00")
 		XCTAssertEqual(inst.meta!.profile![0].absoluteString!, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
 		XCTAssertEqual(inst.name!, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher!, "FHIR Project")
 		XCTAssertEqual(inst.status!, "draft")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.url!.absoluteString!, "http://hl7.org/fhir/vs/list-example-codes")
-		XCTAssertEqual(inst.version!, "0.4.0")
+		XCTAssertEqual(inst.version!, "0.5.0")
 		
 		return inst
 	}

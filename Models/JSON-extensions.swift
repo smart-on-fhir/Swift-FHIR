@@ -3,7 +3,7 @@
 //  SwiftFHIR
 //
 //  Created by Pascal Pfiffner on 7/4/14.
-//  2014, SMART Platforms.
+//  2014, SMART Health IT.
 //
 
 import Foundation
@@ -26,6 +26,13 @@ extension Bool
 extension Int
 {
 	public func asJSON() -> Int {
+		return self
+	}
+}
+
+extension UInt
+{
+	public func asJSON() -> UInt {
 		return self
 	}
 }

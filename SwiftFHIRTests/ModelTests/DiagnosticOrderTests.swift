@@ -1,9 +1,9 @@
 //
 //  DiagnosticOrderTests.swift
-//  DiagnosticOrderTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -56,8 +56,8 @@ class DiagnosticOrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.event![0].dateTime!.description, "2013-05-02T16:16:00-07:00")
 		XCTAssertEqual(inst.event![0].status!, "requested")
 		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.identifier![0].label!, "Placer")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:1.3.4.5.6.7")
+		XCTAssertEqual(inst.identifier![0].type!.text!, "Placer")
 		XCTAssertEqual(inst.identifier![0].value!, "2345234234234")
 		XCTAssertEqual(inst.item![0].code!.coding![0].code!, "LIPID")
 		XCTAssertEqual(inst.item![0].code!.coding![0].system!.absoluteString!, "http://acme.org/tests")
@@ -91,12 +91,12 @@ class DiagnosticOrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.extension_fhir![1].valueCodeableConcept!.coding![0].display!, "patient not-available")
 		XCTAssertEqual(inst.extension_fhir![1].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/ActReason")
 		XCTAssertEqual(inst.id!, "qicore")
-		XCTAssertEqual(inst.identifier![0].label!, "Placer")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:1.3.4.5.6.7")
+		XCTAssertEqual(inst.identifier![0].type!.text!, "Placer")
 		XCTAssertEqual(inst.identifier![0].value!, "2345234234234")
-		XCTAssertEqual(inst.item![0].code!.coding![0].code!, "LIPID")
-		XCTAssertEqual(inst.item![0].code!.coding![0].system!.absoluteString!, "http://acme.org/tests")
-		XCTAssertEqual(inst.item![0].code!.text!, "Lipid Panel")
+		XCTAssertEqual(inst.item![0].code!.coding![0].code!, "57698-3")
+		XCTAssertEqual(inst.item![0].code!.coding![0].system!.absoluteString!, "http://loinc.org")
+		XCTAssertEqual(inst.item![0].code!.text!, "Lipid panel with direct LDL - Serum or Plasma")
 		XCTAssertEqual(inst.orderer!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.status!, "rejected")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
@@ -118,7 +118,6 @@ class DiagnosticOrderTests: FHIRModelTestCase
 		XCTAssertEqual(inst.event![0].description_fhir!.coding![0].code!, "new-request")
 		XCTAssertEqual(inst.event![0].status!, "requested")
 		XCTAssertEqual(inst.id!, "uslab-example1")
-		XCTAssertEqual(inst.identifier![0].label!, "Placer Order Number")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.3.72.5.24")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "ORD000123A")

@@ -1,9 +1,9 @@
 //
 //  DocumentManifest.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -21,8 +21,8 @@ public class DocumentManifest: DomainResource
 	/// Who and/or what authored the document
 	public var author: [Reference]?
 	
-	/// Contents of this set of documents
-	public var content: [Reference]?
+	/// Contents of the manifest
+	public var content: [DocumentManifestContent]?
 	
 	/// When this document manifest created
 	public var created: DateTime?
@@ -54,7 +54,7 @@ public class DocumentManifest: DomainResource
 	/// What kind of document set this is
 	public var type: CodeableConcept?
 	
-	public convenience init(content: [Reference]?, status: String?) {
+	public convenience init(content: [DocumentManifestContent]?, status: String?) {
 		self.init(json: nil)
 		if nil != content {
 			self.content = content
@@ -71,7 +71,7 @@ public class DocumentManifest: DomainResource
 				self.author = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["content"] as? [FHIRJSON] {
-				self.content = Reference.from(val, owner: self) as? [Reference]
+				self.content = DocumentManifestContent.from(val, owner: self) as? [DocumentManifestContent]
 			}
 			if let val = js["created"] as? String {
 				self.created = DateTime(string: val)
@@ -113,7 +113,7 @@ public class DocumentManifest: DomainResource
 			json["author"] = Reference.asJSONArray(author)
 		}
 		if let content = self.content {
-			json["content"] = Reference.asJSONArray(content)
+			json["content"] = DocumentManifestContent.asJSONArray(content)
 		}
 		if let created = self.created {
 			json["created"] = created.asJSON()
@@ -144,6 +144,60 @@ public class DocumentManifest: DomainResource
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Contents of the manifest.
+ *
+ *  The manifest list.
+ */
+public class DocumentManifestContent: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "DocumentManifestContent" }
+	}
+	
+	/// Contents of this set of documents
+	public var pAttachment: Attachment?
+	
+	/// Contents of this set of documents
+	public var pReference: Reference?
+	
+	public convenience init(pAttachment: Attachment?, pReference: Reference?) {
+		self.init(json: nil)
+		if nil != pAttachment {
+			self.pAttachment = pAttachment
+		}
+		if nil != pReference {
+			self.pReference = pReference
+		}
+	}
+	
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["pAttachment"] as? FHIRJSON {
+				self.pAttachment = Attachment(json: val, owner: self)
+			}
+			if let val = js["pReference"] as? FHIRJSON {
+				self.pReference = Reference(json: val, owner: self)
+			}
+		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let pAttachment = self.pAttachment {
+			json["pAttachment"] = pAttachment.asJSON()
+		}
+		if let pReference = self.pReference {
+			json["pReference"] = pReference.asJSON()
 		}
 		
 		return json

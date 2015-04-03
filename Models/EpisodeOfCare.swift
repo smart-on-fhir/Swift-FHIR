@@ -1,9 +1,9 @@
 //
 //  EpisodeOfCare.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -37,7 +37,7 @@ public class EpisodeOfCare: DomainResource
 	/// The organization that has assumed the specific responsibilities for the specified duration
 	public var managingOrganization: Reference?
 	
-	/// The patient that this episodeofcare applies to
+	/// The patient that this EpisodeOfCare applies to
 	public var patient: Reference?
 	
 	/// The interval during which the managing organization assumes the defined responsibility
@@ -46,13 +46,13 @@ public class EpisodeOfCare: DomainResource
 	/// Referral Request(s) that this EpisodeOfCare manages activities within
 	public var referralRequest: [Reference]?
 	
-	/// planned | active | onhold | finished | withdrawn | other
+	/// planned | waitlist | active | onhold | finished | cancelled
 	public var status: String?
 	
 	/// The status history for the EpisodeOfCare
 	public var statusHistory: [EpisodeOfCareStatusHistory]?
 	
-	/// Specific type of EpisodeOfcare
+	/// Specific type of EpisodeOfCare
 	public var type: [CodeableConcept]?
 	
 	public convenience init(patient: Reference?, status: String?) {
@@ -155,7 +155,7 @@ public class EpisodeOfCareCareTeam: FHIRElement
 		get { return "EpisodeOfCareCareTeam" }
 	}
 	
-	/// The practitioner within the team
+	/// The practitioner (or Organization) within the team
 	public var member: Reference?
 	
 	/// The period of time that this practitioner is performing some role within the episode of care
@@ -206,10 +206,10 @@ public class EpisodeOfCareStatusHistory: FHIRElement
 		get { return "EpisodeOfCareStatusHistory" }
 	}
 	
-	/// The period during this episodeofcare that the specific status applied
+	/// The period during this EpisodeOfCare that the specific status applied
 	public var period: Period?
 	
-	/// planned | active | onhold | finished | withdrawn | other
+	/// planned | waitlist | active | onhold | finished | cancelled
 	public var status: String?
 	
 	public convenience init(period: Period?, status: String?) {

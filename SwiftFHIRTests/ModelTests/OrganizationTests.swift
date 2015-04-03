@@ -1,9 +1,9 @@
 //
 //  OrganizationTests.swift
-//  OrganizationTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -32,19 +32,15 @@ class OrganizationTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.address![0].city!, "Harrisburg")
 		XCTAssertEqual(inst.address![0].country!, "USA")
-		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].url!.absoluteString!, "http://example.org/iso21090-SC-coding")
-		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].valueCoding!.code!, "42043")
-		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].valueCoding!.system!.absoluteString!, "https://www.census.gov/geo/reference")
-		XCTAssertEqual(inst.address![0].extension_fhir![0].url!.absoluteString!, "http://example.org/us-core-county")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/us-core-county")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].valueString!, "42043")
 		XCTAssertEqual(inst.address![0].line![0], "Firstcare Way")
 		XCTAssertEqual(inst.address![0].line![1], "Building 1")
 		XCTAssertEqual(inst.address![0].postalCode!, "17111")
 		XCTAssertEqual(inst.address![0].state!, "PA")
 		XCTAssertEqual(inst.address![0].use!, "work")
 		XCTAssertEqual(inst.id!, "uslab-example1")
-		XCTAssertEqual(inst.identifier![0].assigner!.display!, "The Centers for Medicare and Medicaid Services (CMS) National Plan and Provider Enumeration System (NPPES)")
-		XCTAssertEqual(inst.identifier![0].assigner!.reference!, "https://nppes.cms.hhs.gov/NPPES/")
-		XCTAssertEqual(inst.identifier![0].label!, "NPI")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "https://nppes.cms.hhs.gov/NPPES/")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "1235349085")
 		XCTAssertEqual(inst.name!, "University Hospital")
@@ -78,9 +74,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![0].name!.prefix![0], "Dr")
 		XCTAssertEqual(inst.contact![0].name!.suffix![0], "Jr")
 		XCTAssertEqual(inst.id!, "uslab-example2")
-		XCTAssertEqual(inst.identifier![0].assigner!.display!, "The Centers for Medicare and Medicaid Services (CMS) National Plan and Provider Enumeration System (NPPES)")
-		XCTAssertEqual(inst.identifier![0].assigner!.reference!, "https://nppes.cms.hhs.gov/NPPES/")
-		XCTAssertEqual(inst.identifier![0].label!, "NPI")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "https://nppes.cms.hhs.gov/NPPES/")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "8235849085")
 		XCTAssertEqual(inst.name!, "Children's Hospital")
@@ -103,10 +97,8 @@ class OrganizationTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.address![0].city!, "Harrisburg")
 		XCTAssertEqual(inst.address![0].country!, "USA")
-		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].url!.absoluteString!, "http://example.org/iso21090-SC-coding")
-		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].valueCoding!.code!, "42043")
-		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].valueCoding!.system!.absoluteString!, "https://www.census.gov/geo/reference")
-		XCTAssertEqual(inst.address![0].extension_fhir![0].url!.absoluteString!, "http://example.org/us-core-county")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/us-core-county")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].valueString!, "42043")
 		XCTAssertEqual(inst.address![0].line![0], "Firstcare Way")
 		XCTAssertEqual(inst.address![0].line![1], "Building 2")
 		XCTAssertEqual(inst.address![0].postalCode!, "42043")
@@ -118,9 +110,7 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![0].name!.prefix![0], "Dr")
 		XCTAssertEqual(inst.contact![0].name!.suffix![0], "PhD")
 		XCTAssertEqual(inst.id!, "uslab-example3")
-		XCTAssertEqual(inst.identifier![0].assigner!.display!, "The Centers for Medicare and Medicaid Services (CMS)  Clinical Laboratory Improvement Amendments (CLIA)")
-		XCTAssertEqual(inst.identifier![0].assigner!.reference!, "http://www.cms.gov/Regulations-and-Guidance/Legislation/CLIA/index.html")
-		XCTAssertEqual(inst.identifier![0].label!, "CLIA")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.cms.gov/Regulations-and-Guidance/Legislation/CLIA/index.html")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "01D1111111")
 		XCTAssertEqual(inst.name!, "Acme Labs")
@@ -271,7 +261,6 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![0].telecom![0].use!, "work")
 		XCTAssertEqual(inst.contact![0].telecom![0].value!, "+31715269702")
 		XCTAssertEqual(inst.id!, "f201")
-		XCTAssertEqual(inst.identifier![0].label!, "Zorginstelling naam")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.zorgkaartnederland.nl/")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "Artis University Medical Center")
@@ -308,8 +297,8 @@ class OrganizationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address![0].postalCode!, "3056BE")
 		XCTAssertEqual(inst.address![0].use!, "work")
 		XCTAssertEqual(inst.id!, "f203")
-		XCTAssertEqual(inst.identifier![0].label!, "Zorginstelling naam")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.zorgkaartnederland.nl/")
+		XCTAssertEqual(inst.identifier![0].type!.text!, "Zorginstelling naam")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "Blijdorp MC")
 		XCTAssertEqual(inst.name!, "Blijdorp Medisch Centrum (BUMC)")

@@ -1,9 +1,9 @@
 //
 //  PatientTests.swift
-//  PatientTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -37,8 +37,9 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.contact![0].relationship![0].coding![0].system!.absoluteString!, "http://hl7.org/fhir/patient-contact-relationship")
 		XCTAssertEqual(inst.gender!, "male")
 		XCTAssertEqual(inst.id!, "pat1")
-		XCTAssertEqual(inst.identifier![0].label!, "MRN")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:0.1.2.3.4.5.6.7")
+		XCTAssertEqual(inst.identifier![0].type!.coding![0].code!, "MRN")
+		XCTAssertEqual(inst.identifier![0].type!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v2/0203")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
 		XCTAssertEqual(inst.identifier![0].value!, "654321")
 		XCTAssertEqual(inst.link![0].other!.reference!, "Patient/pat2")
@@ -86,9 +87,9 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.gender!, "female")
 		XCTAssertEqual(inst.id!, "animal")
 		XCTAssertEqual(inst.identifier![0].assigner!.display!, "Maroondah City Council")
-		XCTAssertEqual(inst.identifier![0].label!, "Dog Tag")
 		XCTAssertEqual(inst.identifier![0].period!.start!.description, "2010-05-31")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.maroondah.vic.gov.au/AnimalRegFees.aspx")
+		XCTAssertEqual(inst.identifier![0].type!.text!, "Dog Tag")
 		XCTAssertEqual(inst.identifier![0].value!, "1234123")
 		XCTAssertEqual(inst.managingOrganization!.display!, "Pete's Vetinary Services")
 		XCTAssertEqual(inst.name![0].given![0], "Kenzi")
@@ -109,8 +110,9 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertTrue(inst.active!)
 		XCTAssertEqual(inst.gender!, "other")
 		XCTAssertEqual(inst.id!, "pat2")
-		XCTAssertEqual(inst.identifier![0].label!, "MRN")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:0.1.2.3.4.5.6.7")
+		XCTAssertEqual(inst.identifier![0].type!.coding![0].code!, "MRN")
+		XCTAssertEqual(inst.identifier![0].type!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v2/0203")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
 		XCTAssertEqual(inst.identifier![0].value!, "123456")
 		XCTAssertEqual(inst.link![0].other!.reference!, "Patient/pat1")
@@ -246,12 +248,12 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertFalse(inst.deceasedBoolean!)
 		XCTAssertEqual(inst.gender!, "male")
 		XCTAssertEqual(inst.id!, "f201")
-		XCTAssertEqual(inst.identifier![0].label!, "BSN")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.6.3")
+		XCTAssertEqual(inst.identifier![0].type!.text!, "BSN")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "123456789")
-		XCTAssertEqual(inst.identifier![1].label!, "BSN")
 		XCTAssertEqual(inst.identifier![1].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.6.3")
+		XCTAssertEqual(inst.identifier![1].type!.text!, "BSN")
 		XCTAssertEqual(inst.identifier![1].use!, "official")
 		XCTAssertEqual(inst.identifier![1].value!, "123456789")
 		XCTAssertEqual(inst.managingOrganization!.display!, "AUMC")
@@ -291,7 +293,7 @@ class PatientTests: FHIRModelTestCase
 		
 		XCTAssertTrue(inst.active!)
 		XCTAssertEqual(inst.id!, "ihe-pcd")
-		XCTAssertEqual(inst.identifier![0].label!, "Internal Identifier")
+		XCTAssertEqual(inst.identifier![0].type!.text!, "Internal Identifier")
 		XCTAssertEqual(inst.identifier![0].value!, "AB60001")
 		XCTAssertEqual(inst.name![0].family![0], "BROOKS")
 		XCTAssertEqual(inst.name![0].given![0], "ALBERT")
@@ -319,8 +321,8 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.gender!, "female")
 		XCTAssertEqual(inst.id!, "proband")
 		XCTAssertEqual(inst.identifier![0].assigner!.display!, "Boston Massachesetts General Hospital")
-		XCTAssertEqual(inst.identifier![0].label!, "Computer-Stored Abulatory Records (COSTAR)")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.6.117")
+		XCTAssertEqual(inst.identifier![0].type!.text!, "Computer-Stored Abulatory Records (COSTAR)")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
 		XCTAssertEqual(inst.identifier![0].value!, "999999999")
 		XCTAssertEqual(inst.text!.status!, "generated")
@@ -380,8 +382,9 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.birthDate!.description, "1932-09-24")
 		XCTAssertEqual(inst.gender!, "male")
 		XCTAssertEqual(inst.id!, "xcda")
-		XCTAssertEqual(inst.identifier![0].label!, "MRN")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.19.5")
+		XCTAssertEqual(inst.identifier![0].type!.coding![0].code!, "MRN")
+		XCTAssertEqual(inst.identifier![0].type!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v2/0203")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
 		XCTAssertEqual(inst.identifier![0].value!, "12345")
 		XCTAssertEqual(inst.managingOrganization!.display!, "Good Health Clinic")

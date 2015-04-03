@@ -1,9 +1,9 @@
 //
-//  FamilyHistory.swift
-//  SMART-on-FHIR
+//  FamilyMemberHistory.swift
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/FamilyHistory) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -12,91 +12,13 @@ import Foundation
 /**
  *  Information about patient's relatives, relevant for patient.
  *
- *  Significant health events and conditions for people related to the subject relevant in the context of care for the
- *  subject.
+ *  Significant health events and conditions for a person related to the patient relevant in the context of care for the
+ *  patient.
  */
-public class FamilyHistory: DomainResource
+public class FamilyMemberHistory: DomainResource
 {
 	override public class var resourceName: String {
-		get { return "FamilyHistory" }
-	}
-	
-	/// When history was captured/updated
-	public var date: DateTime?
-	
-	/// External Id(s) for this record
-	public var identifier: [Identifier]?
-	
-	/// Additional details not covered elsewhere
-	public var note: String?
-	
-	/// Patient history is about
-	public var patient: Reference?
-	
-	/// Relative described by history
-	public var relation: [FamilyHistoryRelation]?
-	
-	public convenience init(patient: Reference?) {
-		self.init(json: nil)
-		if nil != patient {
-			self.patient = patient
-		}
-	}
-	
-	public required init(json: FHIRJSON?) {
-		super.init(json: json)
-		if let js = json {
-			if let val = js["date"] as? String {
-				self.date = DateTime(string: val)
-			}
-			if let val = js["identifier"] as? [FHIRJSON] {
-				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
-			}
-			if let val = js["note"] as? String {
-				self.note = val
-			}
-			if let val = js["patient"] as? FHIRJSON {
-				self.patient = Reference(json: val, owner: self)
-			}
-			if let val = js["relation"] as? [FHIRJSON] {
-				self.relation = FamilyHistoryRelation.from(val, owner: self) as? [FamilyHistoryRelation]
-			}
-		}
-	}
-	
-	override public func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let date = self.date {
-			json["date"] = date.asJSON()
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
-		}
-		if let note = self.note {
-			json["note"] = note.asJSON()
-		}
-		if let patient = self.patient {
-			json["patient"] = patient.asJSON()
-		}
-		if let relation = self.relation {
-			json["relation"] = FamilyHistoryRelation.asJSONArray(relation)
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Relative described by history.
- *
- *  The related person. Each FamilyHistory resource contains the entire family history for a single person.
- */
-public class FamilyHistoryRelation: FHIRElement
-{
-	override public class var resourceName: String {
-		get { return "FamilyHistoryRelation" }
+		get { return "FamilyMemberHistory" }
 	}
 	
 	/// (approximate) age
@@ -118,7 +40,10 @@ public class FamilyHistoryRelation: FHIRElement
 	public var bornString: String?
 	
 	/// Condition that the related person had
-	public var condition: [FamilyHistoryRelationCondition]?
+	public var condition: [FamilyMemberHistoryCondition]?
+	
+	/// When history was captured/updated
+	public var date: DateTime?
 	
 	/// Dead? How old/when?
 	public var deceasedAge: Age?
@@ -135,17 +60,29 @@ public class FamilyHistoryRelation: FHIRElement
 	/// Dead? How old/when?
 	public var deceasedString: String?
 	
+	/// male | female | other | unknown
+	public var gender: String?
+	
+	/// External Id(s) for this record
+	public var identifier: [Identifier]?
+	
 	/// The family member described
 	public var name: String?
 	
 	/// General note about related person
 	public var note: String?
 	
+	/// Patient history is about
+	public var patient: Reference?
+	
 	/// Relationship to the subject
 	public var relationship: CodeableConcept?
 	
-	public convenience init(relationship: CodeableConcept?) {
+	public convenience init(patient: Reference?, relationship: CodeableConcept?) {
 		self.init(json: nil)
+		if nil != patient {
+			self.patient = patient
+		}
 		if nil != relationship {
 			self.relationship = relationship
 		}
@@ -173,7 +110,10 @@ public class FamilyHistoryRelation: FHIRElement
 				self.bornString = val
 			}
 			if let val = js["condition"] as? [FHIRJSON] {
-				self.condition = FamilyHistoryRelationCondition.from(val, owner: self) as? [FamilyHistoryRelationCondition]
+				self.condition = FamilyMemberHistoryCondition.from(val, owner: self) as? [FamilyMemberHistoryCondition]
+			}
+			if let val = js["date"] as? String {
+				self.date = DateTime(string: val)
 			}
 			if let val = js["deceasedAge"] as? FHIRJSON {
 				self.deceasedAge = Age(json: val, owner: self)
@@ -190,11 +130,20 @@ public class FamilyHistoryRelation: FHIRElement
 			if let val = js["deceasedString"] as? String {
 				self.deceasedString = val
 			}
+			if let val = js["gender"] as? String {
+				self.gender = val
+			}
+			if let val = js["identifier"] as? [FHIRJSON] {
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+			}
 			if let val = js["name"] as? String {
 				self.name = val
 			}
 			if let val = js["note"] as? String {
 				self.note = val
+			}
+			if let val = js["patient"] as? FHIRJSON {
+				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["relationship"] as? FHIRJSON {
 				self.relationship = CodeableConcept(json: val, owner: self)
@@ -224,7 +173,10 @@ public class FamilyHistoryRelation: FHIRElement
 			json["bornString"] = bornString.asJSON()
 		}
 		if let condition = self.condition {
-			json["condition"] = FamilyHistoryRelationCondition.asJSONArray(condition)
+			json["condition"] = FamilyMemberHistoryCondition.asJSONArray(condition)
+		}
+		if let date = self.date {
+			json["date"] = date.asJSON()
 		}
 		if let deceasedAge = self.deceasedAge {
 			json["deceasedAge"] = deceasedAge.asJSON()
@@ -241,11 +193,20 @@ public class FamilyHistoryRelation: FHIRElement
 		if let deceasedString = self.deceasedString {
 			json["deceasedString"] = deceasedString.asJSON()
 		}
+		if let gender = self.gender {
+			json["gender"] = gender.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
 		if let note = self.note {
 			json["note"] = note.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
 		}
 		if let relationship = self.relationship {
 			json["relationship"] = relationship.asJSON()
@@ -263,10 +224,10 @@ public class FamilyHistoryRelation: FHIRElement
  *  to represent more than one condition per resource, though there is nothing stopping multiple resources - one per
  *  condition.
  */
-public class FamilyHistoryRelationCondition: FHIRElement
+public class FamilyMemberHistoryCondition: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "FamilyHistoryRelationCondition" }
+		get { return "FamilyMemberHistoryCondition" }
 	}
 	
 	/// Extra information about condition

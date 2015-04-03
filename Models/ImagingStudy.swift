@@ -1,9 +1,9 @@
 //
 //  ImagingStudy.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -45,10 +45,10 @@ public class ImagingStudy: DomainResource
 	public var modalityList: [String]?
 	
 	/// Number of Study Related Instances (0020,1208)
-	public var numberOfInstances: Int?
+	public var numberOfInstances: UInt?
 	
 	/// Number of Study Related Series (0020,1206)
-	public var numberOfSeries: Int?
+	public var numberOfSeries: UInt?
 	
 	/// Order(s) that caused this study to be performed
 	public var order: [Reference]?
@@ -74,7 +74,7 @@ public class ImagingStudy: DomainResource
 	/// Retrieve URI (0008,1190)
 	public var url: NSURL?
 	
-	public convenience init(numberOfInstances: Int?, numberOfSeries: Int?, patient: Reference?, uid: String?) {
+	public convenience init(numberOfInstances: UInt?, numberOfSeries: UInt?, patient: Reference?, uid: String?) {
 		self.init(json: nil)
 		if nil != numberOfInstances {
 			self.numberOfInstances = numberOfInstances
@@ -114,10 +114,10 @@ public class ImagingStudy: DomainResource
 			if let val = js["modalityList"] as? [String] {
 				self.modalityList = val
 			}
-			if let val = js["numberOfInstances"] as? Int {
+			if let val = js["numberOfInstances"] as? UInt {
 				self.numberOfInstances = val
 			}
-			if let val = js["numberOfSeries"] as? Int {
+			if let val = js["numberOfSeries"] as? UInt {
 				self.numberOfSeries = val
 			}
 			if let val = js["order"] as? [FHIRJSON] {
@@ -244,10 +244,10 @@ public class ImagingStudySeries: FHIRElement
 	public var modality: String?
 	
 	/// Numeric identifier of this series (0020,0011)
-	public var number: Int?
+	public var number: UInt?
 	
 	/// Number of Series Related Instances (0020,1209)
-	public var numberOfInstances: Int?
+	public var numberOfInstances: UInt?
 	
 	/// Formal identifier for this series (0020,000E)
 	public var uid: String?
@@ -255,7 +255,7 @@ public class ImagingStudySeries: FHIRElement
 	/// Retrieve URI (0008,1115 > 0008,1190)
 	public var url: NSURL?
 	
-	public convenience init(modality: String?, numberOfInstances: Int?, uid: String?) {
+	public convenience init(modality: String?, numberOfInstances: UInt?, uid: String?) {
 		self.init(json: nil)
 		if nil != modality {
 			self.modality = modality
@@ -292,10 +292,10 @@ public class ImagingStudySeries: FHIRElement
 			if let val = js["modality"] as? String {
 				self.modality = val
 			}
-			if let val = js["number"] as? Int {
+			if let val = js["number"] as? UInt {
 				self.number = val
 			}
-			if let val = js["numberOfInstances"] as? Int {
+			if let val = js["numberOfInstances"] as? UInt {
 				self.numberOfInstances = val
 			}
 			if let val = js["uid"] as? String {
@@ -364,7 +364,7 @@ public class ImagingStudySeriesInstance: FHIRElement
 	public var content: [Attachment]?
 	
 	/// The number of this instance in the series (0020,0013)
-	public var number: Int?
+	public var number: UInt?
 	
 	/// DICOM class type (0008,0016)
 	public var sopclass: String?
@@ -394,7 +394,7 @@ public class ImagingStudySeriesInstance: FHIRElement
 			if let val = js["content"] as? [FHIRJSON] {
 				self.content = Attachment.from(val, owner: self) as? [Attachment]
 			}
-			if let val = js["number"] as? Int {
+			if let val = js["number"] as? UInt {
 				self.number = val
 			}
 			if let val = js["sopclass"] as? String {

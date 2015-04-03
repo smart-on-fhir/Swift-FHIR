@@ -1,9 +1,9 @@
 //
 //  MedicationPrescription.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/MedicationPrescription) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/MedicationPrescription) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -170,7 +170,7 @@ public class MedicationPrescriptionDispense: FHIRElement
 	public var medication: Reference?
 	
 	/// # of refills authorized
-	public var numberOfRepeatsAllowed: Int?
+	public var numberOfRepeatsAllowed: UInt?
 	
 	/// Amount of medication to supply per dispense
 	public var quantity: Quantity?
@@ -187,7 +187,7 @@ public class MedicationPrescriptionDispense: FHIRElement
 			if let val = js["medication"] as? FHIRJSON {
 				self.medication = Reference(json: val, owner: self)
 			}
-			if let val = js["numberOfRepeatsAllowed"] as? Int {
+			if let val = js["numberOfRepeatsAllowed"] as? UInt {
 				self.numberOfRepeatsAllowed = val
 			}
 			if let val = js["quantity"] as? FHIRJSON {

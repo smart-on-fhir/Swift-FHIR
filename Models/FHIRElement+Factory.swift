@@ -1,9 +1,9 @@
 //
 //  FHIRElement+Factory.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 
@@ -18,8 +18,6 @@ extension FHIRElement
 				return Address(json: json, owner: owner)
 			case "Age":
 				return Age(json: json, owner: owner)
-			case "Alert":
-				return Alert(json: json, owner: owner)
 			case "AllergyIntolerance":
 				return AllergyIntolerance(json: json, owner: owner)
 			case "AllergyIntoleranceEvent":
@@ -66,16 +64,10 @@ extension FHIRElement
 				return BundleLink(json: json, owner: owner)
 			case "CarePlan":
 				return CarePlan(json: json, owner: owner)
-			case "CarePlan2":
-				return CarePlan2(json: json, owner: owner)
-			case "CarePlan2Participant":
-				return CarePlan2Participant(json: json, owner: owner)
 			case "CarePlanActivity":
 				return CarePlanActivity(json: json, owner: owner)
-			case "CarePlanActivitySimple":
-				return CarePlanActivitySimple(json: json, owner: owner)
-			case "CarePlanGoal":
-				return CarePlanGoal(json: json, owner: owner)
+			case "CarePlanActivityDetail":
+				return CarePlanActivityDetail(json: json, owner: owner)
 			case "CarePlanParticipant":
 				return CarePlanParticipant(json: json, owner: owner)
 			case "Claim":
@@ -268,6 +260,8 @@ extension FHIRElement
 				return Distance(json: json, owner: owner)
 			case "DocumentManifest":
 				return DocumentManifest(json: json, owner: owner)
+			case "DocumentManifestContent":
+				return DocumentManifestContent(json: json, owner: owner)
 			case "DocumentManifestRelated":
 				return DocumentManifestRelated(json: json, owner: owner)
 			case "DocumentReference":
@@ -322,14 +316,16 @@ extension FHIRElement
 				return ExplanationOfBenefit(json: json, owner: owner)
 			case "Extension":
 				return Extension(json: json, owner: owner)
-			case "FamilyHistory":
-				return FamilyHistory(json: json, owner: owner)
-			case "FamilyHistoryRelation":
-				return FamilyHistoryRelation(json: json, owner: owner)
-			case "FamilyHistoryRelationCondition":
-				return FamilyHistoryRelationCondition(json: json, owner: owner)
+			case "FamilyMemberHistory":
+				return FamilyMemberHistory(json: json, owner: owner)
+			case "FamilyMemberHistoryCondition":
+				return FamilyMemberHistoryCondition(json: json, owner: owner)
+			case "Flag":
+				return Flag(json: json, owner: owner)
 			case "Goal":
 				return Goal(json: json, owner: owner)
+			case "GoalOutcome":
+				return GoalOutcome(json: json, owner: owner)
 			case "Group":
 				return Group(json: json, owner: owner)
 			case "GroupCharacteristic":
@@ -338,8 +334,8 @@ extension FHIRElement
 				return HealthcareService(json: json, owner: owner)
 			case "HealthcareServiceAvailableTime":
 				return HealthcareServiceAvailableTime(json: json, owner: owner)
-			case "HealthcareServiceNotAvailableTime":
-				return HealthcareServiceNotAvailableTime(json: json, owner: owner)
+			case "HealthcareServiceNotAvailable":
+				return HealthcareServiceNotAvailable(json: json, owner: owner)
 			case "HealthcareServiceServiceType":
 				return HealthcareServiceServiceType(json: json, owner: owner)
 			case "HumanName":
@@ -482,8 +478,6 @@ extension FHIRElement
 				return Organization(json: json, owner: owner)
 			case "OrganizationContact":
 				return OrganizationContact(json: json, owner: owner)
-			case "Other":
-				return Other(json: json, owner: owner)
 			case "Parameters":
 				return Parameters(json: json, owner: owner)
 			case "ParametersParameter":
@@ -624,10 +618,6 @@ extension FHIRElement
 				return Supply(json: json, owner: owner)
 			case "SupplyDispense":
 				return SupplyDispense(json: json, owner: owner)
-			case "SupportingDocumentation":
-				return SupportingDocumentation(json: json, owner: owner)
-			case "SupportingDocumentationDetail":
-				return SupportingDocumentationDetail(json: json, owner: owner)
 			case "Timing":
 				return Timing(json: json, owner: owner)
 			case "TimingRepeat":

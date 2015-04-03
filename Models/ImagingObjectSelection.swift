@@ -1,9 +1,9 @@
 //
 //  ImagingObjectSelection.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -325,12 +325,12 @@ public class ImagingObjectSelectionStudySeriesInstanceFrames: FHIRElement
 	}
 	
 	/// Frame numbers
-	public var frameNumbers: [Int]?
+	public var frameNumbers: [UInt]?
 	
 	/// Retrieve URL
 	public var url: NSURL?
 	
-	public convenience init(frameNumbers: [Int]?, url: NSURL?) {
+	public convenience init(frameNumbers: [UInt]?, url: NSURL?) {
 		self.init(json: nil)
 		if nil != frameNumbers {
 			self.frameNumbers = frameNumbers
@@ -343,7 +343,7 @@ public class ImagingObjectSelectionStudySeriesInstanceFrames: FHIRElement
 	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["frameNumbers"] as? [Int] {
+			if let val = js["frameNumbers"] as? [UInt] {
 				self.frameNumbers = val
 			}
 			if let val = js["url"] as? String {

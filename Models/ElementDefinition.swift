@@ -1,9 +1,9 @@
 //
 //  ElementDefinition.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -99,6 +99,9 @@ public class ElementDefinition: FHIRElement
 	public var defaultValueReference: Reference?
 	
 	/// Specified value it missing from instance
+	public var defaultValueSignature: Signature?
+	
+	/// Specified value it missing from instance
 	public var defaultValueString: String?
 	
 	/// Specified value it missing from instance
@@ -174,6 +177,9 @@ public class ElementDefinition: FHIRElement
 	public var exampleReference: Reference?
 	
 	/// Example value: [as defined for type]
+	public var exampleSignature: Signature?
+	
+	/// Example value: [as defined for type]
 	public var exampleString: String?
 	
 	/// Example value: [as defined for type]
@@ -244,6 +250,9 @@ public class ElementDefinition: FHIRElement
 	
 	/// Value must be exactly this
 	public var fixedReference: Reference?
+	
+	/// Value must be exactly this
+	public var fixedSignature: Signature?
 	
 	/// Value must be exactly this
 	public var fixedString: String?
@@ -352,6 +361,9 @@ public class ElementDefinition: FHIRElement
 	
 	/// Value must have at least these property values
 	public var patternReference: Reference?
+	
+	/// Value must have at least these property values
+	public var patternSignature: Signature?
 	
 	/// Value must have at least these property values
 	public var patternString: String?
@@ -468,6 +480,9 @@ public class ElementDefinition: FHIRElement
 			if let val = js["defaultValueReference"] as? FHIRJSON {
 				self.defaultValueReference = Reference(json: val, owner: self)
 			}
+			if let val = js["defaultValueSignature"] as? FHIRJSON {
+				self.defaultValueSignature = Signature(json: val, owner: self)
+			}
 			if let val = js["defaultValueString"] as? String {
 				self.defaultValueString = val
 			}
@@ -543,6 +558,9 @@ public class ElementDefinition: FHIRElement
 			if let val = js["exampleReference"] as? FHIRJSON {
 				self.exampleReference = Reference(json: val, owner: self)
 			}
+			if let val = js["exampleSignature"] as? FHIRJSON {
+				self.exampleSignature = Signature(json: val, owner: self)
+			}
 			if let val = js["exampleString"] as? String {
 				self.exampleString = val
 			}
@@ -614,6 +632,9 @@ public class ElementDefinition: FHIRElement
 			}
 			if let val = js["fixedReference"] as? FHIRJSON {
 				self.fixedReference = Reference(json: val, owner: self)
+			}
+			if let val = js["fixedSignature"] as? FHIRJSON {
+				self.fixedSignature = Signature(json: val, owner: self)
 			}
 			if let val = js["fixedString"] as? String {
 				self.fixedString = val
@@ -722,6 +743,9 @@ public class ElementDefinition: FHIRElement
 			}
 			if let val = js["patternReference"] as? FHIRJSON {
 				self.patternReference = Reference(json: val, owner: self)
+			}
+			if let val = js["patternSignature"] as? FHIRJSON {
+				self.patternSignature = Signature(json: val, owner: self)
 			}
 			if let val = js["patternString"] as? String {
 				self.patternString = val
@@ -842,6 +866,9 @@ public class ElementDefinition: FHIRElement
 		if let defaultValueReference = self.defaultValueReference {
 			json["defaultValueReference"] = defaultValueReference.asJSON()
 		}
+		if let defaultValueSignature = self.defaultValueSignature {
+			json["defaultValueSignature"] = defaultValueSignature.asJSON()
+		}
 		if let defaultValueString = self.defaultValueString {
 			json["defaultValueString"] = defaultValueString.asJSON()
 		}
@@ -917,6 +944,9 @@ public class ElementDefinition: FHIRElement
 		if let exampleReference = self.exampleReference {
 			json["exampleReference"] = exampleReference.asJSON()
 		}
+		if let exampleSignature = self.exampleSignature {
+			json["exampleSignature"] = exampleSignature.asJSON()
+		}
 		if let exampleString = self.exampleString {
 			json["exampleString"] = exampleString.asJSON()
 		}
@@ -988,6 +1018,9 @@ public class ElementDefinition: FHIRElement
 		}
 		if let fixedReference = self.fixedReference {
 			json["fixedReference"] = fixedReference.asJSON()
+		}
+		if let fixedSignature = self.fixedSignature {
+			json["fixedSignature"] = fixedSignature.asJSON()
 		}
 		if let fixedString = self.fixedString {
 			json["fixedString"] = fixedString.asJSON()
@@ -1096,6 +1129,9 @@ public class ElementDefinition: FHIRElement
 		}
 		if let patternReference = self.patternReference {
 			json["patternReference"] = patternReference.asJSON()
+		}
+		if let patternSignature = self.patternSignature {
+			json["patternSignature"] = patternSignature.asJSON()
 		}
 		if let patternString = self.patternString {
 			json["patternString"] = patternString.asJSON()

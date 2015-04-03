@@ -1,9 +1,9 @@
 //
-//  Alert.swift
-//  SMART-on-FHIR
+//  Flag.swift
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Alert) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Flag) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -14,34 +14,37 @@ import Foundation
  *
  *  Prospective warnings of potential issues when providing care to the patient.
  */
-public class Alert: DomainResource
+public class Flag: DomainResource
 {
 	override public class var resourceName: String {
-		get { return "Alert" }
+		get { return "Flag" }
 	}
 	
-	/// Alert creator
+	/// Flag creator
 	public var author: Reference?
 	
 	/// Clinical, administrative, etc.
 	public var category: CodeableConcept?
 	
+	/// Partially deaf, Requires easy open caps, No permanent address, etc.
+	public var code: CodeableConcept?
+	
 	/// Business identifier
 	public var identifier: [Identifier]?
 	
-	/// Partially deaf, Requires easy open caps, No permanent address, etc.
-	public var note: CodeableConcept?
-	
-	/// Who is alert about?
+	/// Who is flag about?
 	public var patient: Reference?
+	
+	/// Time period when flag is active
+	public var period: Period?
 	
 	/// active | inactive | entered-in-error
 	public var status: String?
 	
-	public convenience init(note: CodeableConcept?, patient: Reference?, status: String?) {
+	public convenience init(code: CodeableConcept?, patient: Reference?, status: String?) {
 		self.init(json: nil)
-		if nil != note {
-			self.note = note
+		if nil != code {
+			self.code = code
 		}
 		if nil != patient {
 			self.patient = patient
@@ -60,14 +63,17 @@ public class Alert: DomainResource
 			if let val = js["category"] as? FHIRJSON {
 				self.category = CodeableConcept(json: val, owner: self)
 			}
+			if let val = js["code"] as? FHIRJSON {
+				self.code = CodeableConcept(json: val, owner: self)
+			}
 			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["note"] as? FHIRJSON {
-				self.note = CodeableConcept(json: val, owner: self)
-			}
 			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
+			}
+			if let val = js["period"] as? FHIRJSON {
+				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
@@ -84,14 +90,17 @@ public class Alert: DomainResource
 		if let category = self.category {
 			json["category"] = category.asJSON()
 		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
-		if let note = self.note {
-			json["note"] = note.asJSON()
-		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()

@@ -1,9 +1,9 @@
 //
 //  RiskAssessmentTests.swift
-//  RiskAssessmentTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -96,7 +96,7 @@ class RiskAssessmentTests: FHIRModelTestCase
 	func testRiskAssessment4_impl(json: FHIRJSON? = nil) -> RiskAssessment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "riskassessment-example.json")
 		
-		XCTAssertEqual(inst.basis![0].reference!, "FamilyHistory/")
+		XCTAssertEqual(inst.basis![0].reference!, "List/prognosis")
 		XCTAssertEqual(inst.date!.description, "2006-01-13T23:01:00Z")
 		XCTAssertEqual(inst.id!, "genetic")
 		XCTAssertEqual(inst.method!.coding![0].code!, "BRCAPRO")

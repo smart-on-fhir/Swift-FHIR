@@ -1,9 +1,9 @@
 //
 //  Conformance.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -416,7 +416,7 @@ public class ConformanceMessaging: FHIRElement
 	public var event: [ConformanceMessagingEvent]?
 	
 	/// Reliable Message Cache Length (min)
-	public var reliableCache: Int?
+	public var reliableCache: UInt?
 	
 	public convenience init(event: [ConformanceMessagingEvent]?) {
 		self.init(json: nil)
@@ -437,7 +437,7 @@ public class ConformanceMessaging: FHIRElement
 			if let val = js["event"] as? [FHIRJSON] {
 				self.event = ConformanceMessagingEvent.from(val, owner: self) as? [ConformanceMessagingEvent]
 			}
-			if let val = js["reliableCache"] as? Int {
+			if let val = js["reliableCache"] as? UInt {
 				self.reliableCache = val
 			}
 		}

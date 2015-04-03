@@ -1,9 +1,9 @@
 //
 //  AppointmentTests.swift
-//  AppointmentTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -47,7 +47,7 @@ class AppointmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.participant![2].actor!.reference!, "Location/1")
 		XCTAssertEqual(inst.participant![2].required!, "required")
 		XCTAssertEqual(inst.participant![2].status!, "accepted")
-		XCTAssertEqual(inst.priority!, 5)
+		XCTAssertEqual(inst.priority!, UInt(5))
 		XCTAssertEqual(inst.start!.description, "2013-12-10T09:00:00Z")
 		XCTAssertEqual(inst.status!, "booked")
 		XCTAssertEqual(inst.text!.div!, "<div>Brian MRI results discussion</div>")
@@ -85,7 +85,7 @@ class AppointmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.participant![3].actor!.display!, "Phone Call")
 		XCTAssertEqual(inst.participant![3].required!, "information-only")
 		XCTAssertEqual(inst.participant![3].status!, "accepted")
-		XCTAssertEqual(inst.priority!, 5)
+		XCTAssertEqual(inst.priority!, UInt(5))
 		XCTAssertEqual(inst.start!.description, "2013-12-09T09:00:00Z")
 		XCTAssertEqual(inst.status!, "booked")
 		XCTAssertEqual(inst.text!.div!, "<div>Brian MRI results discussion</div>")

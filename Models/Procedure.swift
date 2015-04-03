@@ -1,19 +1,19 @@
 //
 //  Procedure.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
 
 
 /**
- *  An action that is performed on a patient.
+ *  An action that was or is currently being performed on a patient.
  *
- *  An action that is performed on a patient. This can be a physical 'thing' like an operation, or less invasive like
- *  counseling or hypnotherapy.
+ *  An action that is or was performed on a patient. This can be a physical 'thing' like an operation, or less invasive
+ *  like counseling or hypnotherapy.
  */
 public class Procedure: DomainResource
 {
@@ -77,6 +77,9 @@ public class Procedure: DomainResource
 	
 	/// Identification of the procedure
 	public var type: CodeableConcept?
+	
+	/// Items used during procedure
+	public var used: [Reference]?
 	
 	public convenience init(patient: Reference?, status: String?, type: CodeableConcept?) {
 		self.init(json: nil)
@@ -151,6 +154,9 @@ public class Procedure: DomainResource
 			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
+			if let val = js["used"] as? [FHIRJSON] {
+				self.used = Reference.from(val, owner: self) as? [Reference]
+			}
 		}
 	}
 	
@@ -213,6 +219,9 @@ public class Procedure: DomainResource
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
+		}
+		if let used = self.used {
+			json["used"] = Reference.asJSONArray(used)
 		}
 		
 		return json

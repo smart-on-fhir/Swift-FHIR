@@ -1,9 +1,9 @@
 //
 //  GroupTests.swift
-//  GroupTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -40,7 +40,7 @@ class GroupTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.text!, "Horse")
 		XCTAssertEqual(inst.id!, "101")
 		XCTAssertEqual(inst.name!, "John's herd")
-		XCTAssertEqual(inst.quantity!, 25)
+		XCTAssertEqual(inst.quantity!, UInt(25))
 		XCTAssertEqual(inst.text!.status!, "additional")
 		XCTAssertEqual(inst.type!, "animal")
 		

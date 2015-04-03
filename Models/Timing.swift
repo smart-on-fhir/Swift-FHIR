@@ -1,9 +1,9 @@
 //
 //  Timing.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Timing) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Timing) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -22,6 +22,9 @@ public class Timing: FHIRElement
 		get { return "Timing" }
 	}
 	
+	/// BID | TID | QID | AM | PM +
+	public var code: CodeableConcept?
+	
 	/// When the event occurs
 	public var event: [DateTime]?
 	
@@ -31,6 +34,9 @@ public class Timing: FHIRElement
 	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["code"] as? FHIRJSON {
+				self.code = CodeableConcept(json: val, owner: self)
+			}
 			if let val = js["event"] as? [String] {
 				self.event = DateTime.from(val)
 			}
@@ -43,6 +49,9 @@ public class Timing: FHIRElement
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
 		if let event = self.event {
 			var arr = [AnyObject]()
 			for val in event {

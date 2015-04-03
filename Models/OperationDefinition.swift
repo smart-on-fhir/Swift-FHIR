@@ -1,9 +1,9 @@
 //
 //  OperationDefinition.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -38,6 +38,9 @@ public class OperationDefinition: DomainResource
 	
 	/// If for testing purposes, not real usage
 	public var experimental: Bool?
+	
+	/// Whether operation causes changes to content
+	public var idempotent: Bool?
 	
 	/// Invoke on an instance?
 	public var instance: Bool?
@@ -118,6 +121,9 @@ public class OperationDefinition: DomainResource
 			if let val = js["experimental"] as? Bool {
 				self.experimental = val
 			}
+			if let val = js["idempotent"] as? Bool {
+				self.idempotent = val
+			}
 			if let val = js["instance"] as? Bool {
 				self.instance = val
 			}
@@ -177,6 +183,9 @@ public class OperationDefinition: DomainResource
 		}
 		if let experimental = self.experimental {
 			json["experimental"] = experimental.asJSON()
+		}
+		if let idempotent = self.idempotent {
+			json["idempotent"] = idempotent.asJSON()
 		}
 		if let instance = self.instance {
 			json["instance"] = instance.asJSON()
@@ -400,7 +409,7 @@ public class OperationDefinitionParameterPart: FHIRElement
 	public var max: String?
 	
 	/// Minimum Cardinality
-	public var min: Int?
+	public var min: UInt?
 	
 	/// Name of the parameter
 	public var name: String?
@@ -411,7 +420,7 @@ public class OperationDefinitionParameterPart: FHIRElement
 	/// What type this parameter hs
 	public var type: String?
 	
-	public convenience init(max: String?, min: Int?, name: String?, type: String?) {
+	public convenience init(max: String?, min: UInt?, name: String?, type: String?) {
 		self.init(json: nil)
 		if nil != max {
 			self.max = max
@@ -436,7 +445,7 @@ public class OperationDefinitionParameterPart: FHIRElement
 			if let val = js["max"] as? String {
 				self.max = val
 			}
-			if let val = js["min"] as? Int {
+			if let val = js["min"] as? UInt {
 				self.min = val
 			}
 			if let val = js["name"] as? String {

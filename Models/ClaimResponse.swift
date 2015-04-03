@@ -1,9 +1,9 @@
 //
 //  ClaimResponse.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -290,10 +290,10 @@ public class ClaimResponseAddItem: FHIRElement
 	public var fee: Money?
 	
 	/// List of note numbers which apply
-	public var noteNumberLinkId: [Int]?
+	public var noteNumberLinkId: [UInt]?
 	
 	/// Service instances
-	public var sequenceLinkId: [Int]?
+	public var sequenceLinkId: [UInt]?
 	
 	/// Group, Service or Product
 	public var service: Coding?
@@ -317,10 +317,10 @@ public class ClaimResponseAddItem: FHIRElement
 			if let val = js["fee"] as? FHIRJSON {
 				self.fee = Money(json: val, owner: self)
 			}
-			if let val = js["noteNumberLinkId"] as? [Int] {
+			if let val = js["noteNumberLinkId"] as? [UInt] {
 				self.noteNumberLinkId = val
 			}
-			if let val = js["sequenceLinkId"] as? [Int] {
+			if let val = js["sequenceLinkId"] as? [UInt] {
 				self.sequenceLinkId = val
 			}
 			if let val = js["service"] as? FHIRJSON {
@@ -577,9 +577,9 @@ public class ClaimResponseCoverage: FHIRElement
 	public var relationship: Coding?
 	
 	/// Service instance identifier
-	public var sequence: Int?
+	public var sequence: UInt?
 	
-	public convenience init(coverage: Reference?, focal: Bool?, relationship: Coding?, sequence: Int?) {
+	public convenience init(coverage: Reference?, focal: Bool?, relationship: Coding?, sequence: UInt?) {
 		self.init(json: nil)
 		if nil != coverage {
 			self.coverage = coverage
@@ -619,7 +619,7 @@ public class ClaimResponseCoverage: FHIRElement
 			if let val = js["relationship"] as? FHIRJSON {
 				self.relationship = Coding(json: val, owner: self)
 			}
-			if let val = js["sequence"] as? Int {
+			if let val = js["sequence"] as? UInt {
 				self.sequence = val
 			}
 		}
@@ -677,13 +677,13 @@ public class ClaimResponseError: FHIRElement
 	public var code: Coding?
 	
 	/// Detail sequence number
-	public var detailSequenceLinkId: Int?
+	public var detailSequenceLinkId: UInt?
 	
 	/// Item sequence number
-	public var sequenceLinkId: Int?
+	public var sequenceLinkId: UInt?
 	
 	/// Subdetail sequence number
-	public var subdetailSequenceLinkId: Int?
+	public var subdetailSequenceLinkId: UInt?
 	
 	public convenience init(code: Coding?) {
 		self.init(json: nil)
@@ -698,13 +698,13 @@ public class ClaimResponseError: FHIRElement
 			if let val = js["code"] as? FHIRJSON {
 				self.code = Coding(json: val, owner: self)
 			}
-			if let val = js["detailSequenceLinkId"] as? Int {
+			if let val = js["detailSequenceLinkId"] as? UInt {
 				self.detailSequenceLinkId = val
 			}
-			if let val = js["sequenceLinkId"] as? Int {
+			if let val = js["sequenceLinkId"] as? UInt {
 				self.sequenceLinkId = val
 			}
-			if let val = js["subdetailSequenceLinkId"] as? Int {
+			if let val = js["subdetailSequenceLinkId"] as? UInt {
 				self.subdetailSequenceLinkId = val
 			}
 		}
@@ -749,12 +749,12 @@ public class ClaimResponseItem: FHIRElement
 	public var detail: [ClaimResponseItemDetail]?
 	
 	/// List of note numbers which apply
-	public var noteNumber: [Int]?
+	public var noteNumber: [UInt]?
 	
 	/// Service instance
-	public var sequenceLinkId: Int?
+	public var sequenceLinkId: UInt?
 	
-	public convenience init(sequenceLinkId: Int?) {
+	public convenience init(sequenceLinkId: UInt?) {
 		self.init(json: nil)
 		if nil != sequenceLinkId {
 			self.sequenceLinkId = sequenceLinkId
@@ -770,10 +770,10 @@ public class ClaimResponseItem: FHIRElement
 			if let val = js["detail"] as? [FHIRJSON] {
 				self.detail = ClaimResponseItemDetail.from(val, owner: self) as? [ClaimResponseItemDetail]
 			}
-			if let val = js["noteNumber"] as? [Int] {
+			if let val = js["noteNumber"] as? [UInt] {
 				self.noteNumber = val
 			}
-			if let val = js["sequenceLinkId"] as? Int {
+			if let val = js["sequenceLinkId"] as? UInt {
 				self.sequenceLinkId = val
 			}
 		}
@@ -879,12 +879,12 @@ public class ClaimResponseItemDetail: FHIRElement
 	public var adjudication: [ClaimResponseItemDetailAdjudication]?
 	
 	/// Service instance
-	public var sequenceLinkId: Int?
+	public var sequenceLinkId: UInt?
 	
 	/// Subdetail line items
 	public var subDetail: [ClaimResponseItemDetailSubDetail]?
 	
-	public convenience init(sequenceLinkId: Int?) {
+	public convenience init(sequenceLinkId: UInt?) {
 		self.init(json: nil)
 		if nil != sequenceLinkId {
 			self.sequenceLinkId = sequenceLinkId
@@ -897,7 +897,7 @@ public class ClaimResponseItemDetail: FHIRElement
 			if let val = js["adjudication"] as? [FHIRJSON] {
 				self.adjudication = ClaimResponseItemDetailAdjudication.from(val, owner: self) as? [ClaimResponseItemDetailAdjudication]
 			}
-			if let val = js["sequenceLinkId"] as? Int {
+			if let val = js["sequenceLinkId"] as? UInt {
 				self.sequenceLinkId = val
 			}
 			if let val = js["subDetail"] as? [FHIRJSON] {
@@ -999,9 +999,9 @@ public class ClaimResponseItemDetailSubDetail: FHIRElement
 	public var adjudication: [ClaimResponseItemDetailSubDetailAdjudication]?
 	
 	/// Service instance
-	public var sequenceLinkId: Int?
+	public var sequenceLinkId: UInt?
 	
-	public convenience init(sequenceLinkId: Int?) {
+	public convenience init(sequenceLinkId: UInt?) {
 		self.init(json: nil)
 		if nil != sequenceLinkId {
 			self.sequenceLinkId = sequenceLinkId
@@ -1014,7 +1014,7 @@ public class ClaimResponseItemDetailSubDetail: FHIRElement
 			if let val = js["adjudication"] as? [FHIRJSON] {
 				self.adjudication = ClaimResponseItemDetailSubDetailAdjudication.from(val, owner: self) as? [ClaimResponseItemDetailSubDetailAdjudication]
 			}
-			if let val = js["sequenceLinkId"] as? Int {
+			if let val = js["sequenceLinkId"] as? UInt {
 				self.sequenceLinkId = val
 			}
 		}
@@ -1107,7 +1107,7 @@ public class ClaimResponseNote: FHIRElement
 	}
 	
 	/// Note Number for this note
-	public var number: Int?
+	public var number: UInt?
 	
 	/// Note explanitory text
 	public var text: String?
@@ -1118,7 +1118,7 @@ public class ClaimResponseNote: FHIRElement
 	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["number"] as? Int {
+			if let val = js["number"] as? UInt {
 				self.number = val
 			}
 			if let val = js["text"] as? String {

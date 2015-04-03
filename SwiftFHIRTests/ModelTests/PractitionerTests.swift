@@ -1,9 +1,9 @@
 //
 //  PractitionerTests.swift
-//  PractitionerTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -31,9 +31,7 @@ class PractitionerTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "pract-uslab-example1.json")
 		
 		XCTAssertEqual(inst.id!, "uslab-example1")
-		XCTAssertEqual(inst.identifier![0].assigner!.display!, "The Centers for Medicare and Medicaid Services (CMS) National Plan and Provider Enumeration System (NPPES)")
-		XCTAssertEqual(inst.identifier![0].assigner!.reference!, "https://nppes.cms.hhs.gov/NPPES/")
-		XCTAssertEqual(inst.identifier![0].label!, "NPI")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "https://nppes.cms.hhs.gov/NPPES/")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "4444444445")
 		XCTAssertEqual(inst.name!.family![0], "Bloodraw")
@@ -67,9 +65,7 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address![0].state!, "MA")
 		XCTAssertEqual(inst.address![0].use!, "work")
 		XCTAssertEqual(inst.id!, "uslab-example2")
-		XCTAssertEqual(inst.identifier![0].assigner!.display!, "The Centers for Medicare and Medicaid Services (CMS) National Plan and Provider Enumeration System (NPPES)")
-		XCTAssertEqual(inst.identifier![0].assigner!.reference!, "https://nppes.cms.hhs.gov/NPPES/")
-		XCTAssertEqual(inst.identifier![0].label!, "NPI")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "https://nppes.cms.hhs.gov/NPPES/")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "121121121")
 		XCTAssertEqual(inst.name!.family![0], "Lookafter")
@@ -96,9 +92,7 @@ class PractitionerTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "pract-uslab-example3.json")
 		
 		XCTAssertEqual(inst.id!, "uslab-example3")
-		XCTAssertEqual(inst.identifier![0].assigner!.display!, "The Centers for Medicare and Medicaid Services (CMS) National Plan and Provider Enumeration System (NPPES)")
-		XCTAssertEqual(inst.identifier![0].assigner!.reference!, "https://nppes.cms.hhs.gov/NPPES/")
-		XCTAssertEqual(inst.identifier![0].label!, "NPI")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "https://nppes.cms.hhs.gov/NPPES/")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "1234567893")
 		XCTAssertEqual(inst.name!.family![0], "House")

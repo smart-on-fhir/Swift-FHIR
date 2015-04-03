@@ -1,9 +1,9 @@
 //
 //  AuditEvent.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -108,6 +108,9 @@ public class AuditEventEvent: FHIRElement
 	/// Description of the event outcome
 	public var outcomeDesc: String?
 	
+	/// The purposeOfUse of the event
+	public var purposeOfEvent: [Coding]?
+	
 	/// More specific type/id for the event
 	public var subtype: [CodeableConcept]?
 	
@@ -139,6 +142,9 @@ public class AuditEventEvent: FHIRElement
 			if let val = js["outcomeDesc"] as? String {
 				self.outcomeDesc = val
 			}
+			if let val = js["purposeOfEvent"] as? [FHIRJSON] {
+				self.purposeOfEvent = Coding.from(val, owner: self) as? [Coding]
+			}
 			if let val = js["subtype"] as? [FHIRJSON] {
 				self.subtype = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
@@ -162,6 +168,9 @@ public class AuditEventEvent: FHIRElement
 		}
 		if let outcomeDesc = self.outcomeDesc {
 			json["outcomeDesc"] = outcomeDesc.asJSON()
+		}
+		if let purposeOfEvent = self.purposeOfEvent {
+			json["purposeOfEvent"] = Coding.asJSONArray(purposeOfEvent)
 		}
 		if let subtype = self.subtype {
 			json["subtype"] = CodeableConcept.asJSONArray(subtype)
@@ -205,13 +214,13 @@ public class AuditEventObject: FHIRElement
 	/// Specific instance of resource (e.g. versioned)
 	public var reference: Reference?
 	
-	/// Functional application role of Object
+	/// What role the Object played
 	public var role: String?
 	
 	/// Policy-defined sensitivity for the object
 	public var sensitivity: CodeableConcept?
 	
-	/// Object type being audited
+	/// Type of object involved
 	public var type: String?
 	
 	public required init(json: FHIRJSON?) {
@@ -368,6 +377,9 @@ public class AuditEventParticipant: FHIRElement
 	/// Policy that authorized event
 	public var policy: [NSURL]?
 	
+	/// Participant purposeOfUse
+	public var purposeOfUse: [Coding]?
+	
 	/// Direct reference to resource
 	public var reference: Reference?
 	
@@ -408,6 +420,9 @@ public class AuditEventParticipant: FHIRElement
 			if let val = js["policy"] as? [String] {
 				self.policy = NSURL.from(val)
 			}
+			if let val = js["purposeOfUse"] as? [FHIRJSON] {
+				self.purposeOfUse = Coding.from(val, owner: self) as? [Coding]
+			}
 			if let val = js["reference"] as? FHIRJSON {
 				self.reference = Reference(json: val, owner: self)
 			}
@@ -447,6 +462,9 @@ public class AuditEventParticipant: FHIRElement
 				arr.append(val.asJSON())
 			}
 			json["policy"] = arr
+		}
+		if let purposeOfUse = self.purposeOfUse {
+			json["purposeOfUse"] = Coding.asJSONArray(purposeOfUse)
 		}
 		if let reference = self.reference {
 			json["reference"] = reference.asJSON()

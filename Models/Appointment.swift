@@ -1,9 +1,9 @@
 //
 //  Appointment.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -38,7 +38,7 @@ public class Appointment: DomainResource
 	public var participant: [AppointmentParticipant]?
 	
 	/// The priority of the appointment. Can be used to make informed decisions if needing to re-prioritize appointments. (The iCal Standard specifies 0 as undefined, 1 as highest, 9 as lowest priority)
-	public var priority: Int?
+	public var priority: UInt?
 	
 	/// The reason that this appointment is being scheduled, this is more clinical than administrative
 	public var reason: CodeableConcept?
@@ -92,7 +92,7 @@ public class Appointment: DomainResource
 			if let val = js["participant"] as? [FHIRJSON] {
 				self.participant = AppointmentParticipant.from(val, owner: self) as? [AppointmentParticipant]
 			}
-			if let val = js["priority"] as? Int {
+			if let val = js["priority"] as? UInt {
 				self.priority = val
 			}
 			if let val = js["reason"] as? FHIRJSON {

@@ -1,9 +1,9 @@
 //
 //  ReferralRequestTests.swift
-//  ReferralRequestTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -52,7 +52,7 @@ class ReferralRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.specialty!.coding![0].code!, "ent")
 		XCTAssertEqual(inst.specialty!.coding![0].display!, "ENT")
 		XCTAssertEqual(inst.specialty!.coding![0].system!.absoluteString!, "http://orionhealth.com/fhir/apps/specialties")
-		XCTAssertEqual(inst.status!, "sent")
+		XCTAssertEqual(inst.status!, "requested")
 		XCTAssertEqual(inst.text!.div!, "<div>Referral to Dr Dave for Beverly weaver to have grommets inserted in her r) ear</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "rfs")

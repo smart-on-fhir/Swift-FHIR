@@ -1,9 +1,9 @@
 //
 //  MedicationPrescriptionTests.swift
-//  MedicationPrescriptionTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -35,7 +35,7 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dispense!.expectedSupplyDuration!.system!.absoluteString!, "urn:oid:2.16.840.1.113883.6.8")
 		XCTAssertEqual(inst.dispense!.expectedSupplyDuration!.units!, "days")
 		XCTAssertEqual(inst.dispense!.expectedSupplyDuration!.value!, NSDecimalNumber(string: "40"))
-		XCTAssertEqual(inst.dispense!.numberOfRepeatsAllowed!, 20)
+		XCTAssertEqual(inst.dispense!.numberOfRepeatsAllowed!, UInt(20))
 		XCTAssertEqual(inst.dispense!.quantity!.code!, "ug")
 		XCTAssertEqual(inst.dispense!.quantity!.system!.absoluteString!, "urn:oid:2.16.840.1.113883.6.8")
 		XCTAssertEqual(inst.dispense!.quantity!.units!, "mcg")
@@ -407,43 +407,9 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 	}
 	
 	func testMedicationPrescription9_impl(json: FHIRJSON? = nil) -> MedicationPrescription {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationprescription-example-warfarin.json")
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationprescription-qicore-example.json")
 		
-		XCTAssertEqual(inst.dateWritten!.description, "2014-01-05")
-		XCTAssertEqual(inst.dispense!.expectedSupplyDuration!.code!, "d")
-		XCTAssertEqual(inst.dispense!.expectedSupplyDuration!.system!.absoluteString!, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.dispense!.expectedSupplyDuration!.units!, "days")
-		XCTAssertEqual(inst.dispense!.expectedSupplyDuration!.value!, NSDecimalNumber(string: "60"))
-		XCTAssertEqual(inst.dispense!.numberOfRepeatsAllowed!, 2)
-		XCTAssertEqual(inst.dispense!.quantity!.code!, "TAB")
-		XCTAssertEqual(inst.dispense!.quantity!.system!.absoluteString!, "http://hl7.org/fhir/v3/orderableDrugForm")
-		XCTAssertEqual(inst.dispense!.quantity!.units!, "tablets")
-		XCTAssertEqual(inst.dispense!.quantity!.value!, NSDecimalNumber(string: "100"))
-		XCTAssertEqual(inst.dosageInstruction![0].additionalInstructions!.text!, "Take as directed")
-		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].code!, "394899003")
-		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].display!, "oral administration of treatment")
-		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.id!, "warfarin")
-		XCTAssertEqual(inst.medication!.reference!, "#1")
-		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
-		XCTAssertEqual(inst.prescriber!.display!, "Dr. Adam Careful")
-		XCTAssertEqual(inst.prescriber!.reference!, "Practitioner/example")
-		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].code!, "49436004")
-		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.status!, "active")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testMedicationPrescription10() {
-		let instance = testMedicationPrescription10_impl()
-		testMedicationPrescription10_impl(json: instance.asJSON())
-	}
-	
-	func testMedicationPrescription10_impl(json: FHIRJSON? = nil) -> MedicationPrescription {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationprescription-example.json")
-		
+		XCTAssertEqual(inst.dateWritten!.description, "2015-03-25T19:32:52-05:00")
 		XCTAssertEqual(inst.dispense!.quantity!.code!, "ml")
 		XCTAssertEqual(inst.dispense!.quantity!.system!.absoluteString!, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.dispense!.quantity!.units!, "ml")
@@ -452,13 +418,36 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].doseQuantity!.system!.absoluteString!, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.dosageInstruction![0].doseQuantity!.units!, "ml")
 		XCTAssertEqual(inst.dosageInstruction![0].doseQuantity!.value!, NSDecimalNumber(string: "5"))
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/pharmacy-core-doseType")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![0].valueCodeableConcept!.coding![0].code!, "440231000124106")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![0].valueCodeableConcept!.coding![0].display!, "Maintenance dose")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/pharmacy-core-infuseOver")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![1].valueQuantity!.code!, "m")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![1].valueQuantity!.system!.absoluteString!, "http://unitsofmeasure.org")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![1].valueQuantity!.units!, "min")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![1].valueQuantity!.value!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![2].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/pharmacy-core-minDosePerPeriod")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![2].valueRatio!.denominator!.code!, "day")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![2].valueRatio!.denominator!.system!.absoluteString!, "http://unitsofmeasure.org")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![2].valueRatio!.denominator!.units!, "day")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![2].valueRatio!.denominator!.value!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![2].valueRatio!.numerator!.code!, "ml")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![2].valueRatio!.numerator!.system!.absoluteString!, "http://unitsofmeasure.org")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![2].valueRatio!.numerator!.units!, "ml")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![2].valueRatio!.numerator!.value!, NSDecimalNumber(string: "15"))
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![3].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/pharmacy-core-maxDeliveryVolume")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![3].valueQuantity!.code!, "ml")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![3].valueQuantity!.system!.absoluteString!, "http://unitsofmeasure.org")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![3].valueQuantity!.units!, "ml")
+		XCTAssertEqual(inst.dosageInstruction![0].extension_fhir![3].valueQuantity!.value!, NSDecimalNumber(string: "15"))
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].code!, "394899003")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].display!, "oral administration of treatment")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.frequency!, 3)
 		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.period!, NSDecimalNumber(string: "1"))
 		XCTAssertEqual(inst.dosageInstruction![0].scheduledTiming!.repeat!.periodUnits!, "d")
-		XCTAssertEqual(inst.id!, "example")
+		XCTAssertEqual(inst.id!, "qicore")
 		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.prescriber!.reference!, "Practitioner/example")

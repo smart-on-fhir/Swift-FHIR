@@ -1,9 +1,9 @@
 //
 //  List.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/List) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/List) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -38,19 +38,31 @@ public class List: DomainResource
 	/// working | snapshot | changes
 	public var mode: String?
 	
+	/// Comments about the note
+	public var note: String?
+	
 	/// What order the list has
 	public var orderedBy: CodeableConcept?
 	
 	/// Who and/or what defined the list contents
 	public var source: Reference?
 	
+	/// current | retired | entered-in-error
+	public var status: String?
+	
 	/// If all resources have the same subject
 	public var subject: Reference?
 	
-	public convenience init(mode: String?) {
+	/// Descriptive name for the list
+	public var title: String?
+	
+	public convenience init(mode: String?, status: String?) {
 		self.init(json: nil)
 		if nil != mode {
 			self.mode = mode
+		}
+		if nil != status {
+			self.status = status
 		}
 	}
 	
@@ -75,14 +87,23 @@ public class List: DomainResource
 			if let val = js["mode"] as? String {
 				self.mode = val
 			}
+			if let val = js["note"] as? String {
+				self.note = val
+			}
 			if let val = js["orderedBy"] as? FHIRJSON {
 				self.orderedBy = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["source"] as? FHIRJSON {
 				self.source = Reference(json: val, owner: self)
 			}
+			if let val = js["status"] as? String {
+				self.status = val
+			}
 			if let val = js["subject"] as? FHIRJSON {
 				self.subject = Reference(json: val, owner: self)
+			}
+			if let val = js["title"] as? String {
+				self.title = val
 			}
 		}
 	}
@@ -108,14 +129,23 @@ public class List: DomainResource
 		if let mode = self.mode {
 			json["mode"] = mode.asJSON()
 		}
+		if let note = self.note {
+			json["note"] = note.asJSON()
+		}
 		if let orderedBy = self.orderedBy {
 			json["orderedBy"] = orderedBy.asJSON()
 		}
 		if let source = self.source {
 			json["source"] = source.asJSON()
 		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON()
+		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
 		}
 		
 		return json

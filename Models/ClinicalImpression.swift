@@ -1,9 +1,9 @@
 //
 //  ClinicalImpression.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -46,7 +46,7 @@ public class ClinicalImpression: DomainResource
 	public var patient: Reference?
 	
 	/// Plan of action after assessment
-	public var plan: Reference?
+	public var plan: [Reference]?
 	
 	/// Reference to last assessment
 	public var previous: Reference?
@@ -66,6 +66,9 @@ public class ClinicalImpression: DomainResource
 	/// Diagnosis considered not possible
 	public var ruledOut: [ClinicalImpressionRuledOut]?
 	
+	/// in-progress | completed | entered-in-error
+	public var status: String?
+	
 	/// Summary of the assessment
 	public var summary: String?
 	
@@ -75,16 +78,13 @@ public class ClinicalImpression: DomainResource
 	/// Request or event that necessitated this assessment
 	public var triggerReference: Reference?
 	
-	public convenience init(assessor: Reference?, date: DateTime?, patient: Reference?) {
+	public convenience init(patient: Reference?, status: String?) {
 		self.init(json: nil)
-		if nil != assessor {
-			self.assessor = assessor
-		}
-		if nil != date {
-			self.date = date
-		}
 		if nil != patient {
 			self.patient = patient
+		}
+		if nil != status {
+			self.status = status
 		}
 	}
 	
@@ -112,8 +112,8 @@ public class ClinicalImpression: DomainResource
 			if let val = js["patient"] as? FHIRJSON {
 				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["plan"] as? FHIRJSON {
-				self.plan = Reference(json: val, owner: self)
+			if let val = js["plan"] as? [FHIRJSON] {
+				self.plan = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["previous"] as? FHIRJSON {
 				self.previous = Reference(json: val, owner: self)
@@ -132,6 +132,9 @@ public class ClinicalImpression: DomainResource
 			}
 			if let val = js["ruledOut"] as? [FHIRJSON] {
 				self.ruledOut = ClinicalImpressionRuledOut.from(val, owner: self) as? [ClinicalImpressionRuledOut]
+			}
+			if let val = js["status"] as? String {
+				self.status = val
 			}
 			if let val = js["summary"] as? String {
 				self.summary = val
@@ -170,7 +173,7 @@ public class ClinicalImpression: DomainResource
 			json["patient"] = patient.asJSON()
 		}
 		if let plan = self.plan {
-			json["plan"] = plan.asJSON()
+			json["plan"] = Reference.asJSONArray(plan)
 		}
 		if let previous = self.previous {
 			json["previous"] = previous.asJSON()
@@ -189,6 +192,9 @@ public class ClinicalImpression: DomainResource
 		}
 		if let ruledOut = self.ruledOut {
 			json["ruledOut"] = ClinicalImpressionRuledOut.asJSONArray(ruledOut)
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
 		}
 		if let summary = self.summary {
 			json["summary"] = summary.asJSON()

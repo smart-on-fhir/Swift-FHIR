@@ -1,9 +1,9 @@
 //
 //  MediaTests.swift
-//  MediaTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -34,27 +34,27 @@ class MediaTests: FHIRModelTestCase
 		XCTAssertEqual(inst.deviceName!, "G.E. Medical Systems")
 		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://nema.org/fhir/extensions#0002-0010")
 		XCTAssertEqual(inst.extension_fhir![0].valueUri!.absoluteString!, "urn:oid:1.2.840.10008.1.2.1")
-		XCTAssertEqual(inst.height!, 480)
+		XCTAssertEqual(inst.height!, UInt(480))
 		XCTAssertEqual(inst.id!, "1.2.840.11361907579238403408700.3.0.14.19970327150033")
-		XCTAssertEqual(inst.identifier![0].label!, "InstanceUID")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:ietf:rfc:3986")
+		XCTAssertEqual(inst.identifier![0].type!.text!, "InstanceUID")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "urn:oid:1.2.840.11361907579238403408700.3.0.14.19970327150033")
-		XCTAssertEqual(inst.identifier![1].label!, "accessionNo")
 		XCTAssertEqual(inst.identifier![1].system!.absoluteString!, "http://acme-imaging.com/accession/2012")
+		XCTAssertEqual(inst.identifier![1].type!.text!, "accessionNo")
 		XCTAssertEqual(inst.identifier![1].value!, "1234567")
-		XCTAssertEqual(inst.identifier![2].label!, "studyId")
 		XCTAssertEqual(inst.identifier![2].system!.absoluteString!, "urn:ietf:rfc:3986")
+		XCTAssertEqual(inst.identifier![2].type!.text!, "studyId")
 		XCTAssertEqual(inst.identifier![2].value!, "urn:oid:1.2.840.113619.2.21.848.34082.0.538976288.3")
-		XCTAssertEqual(inst.identifier![3].label!, "seriesId")
 		XCTAssertEqual(inst.identifier![3].system!.absoluteString!, "urn:ietf:rfc:3986")
+		XCTAssertEqual(inst.identifier![3].type!.text!, "seriesId")
 		XCTAssertEqual(inst.identifier![3].value!, "urn:oid:1.2.840.113619.2.21.3408.700.0.757923840.3.0")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		XCTAssertEqual(inst.subtype!.coding![0].code!, "US")
 		XCTAssertEqual(inst.subtype!.coding![0].system!.absoluteString!, "http://nema.org/dicom/dicm")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!, "photo")
-		XCTAssertEqual(inst.width!, 640)
+		XCTAssertEqual(inst.width!, UInt(640))
 		
 		return inst
 	}
@@ -71,14 +71,14 @@ class MediaTests: FHIRModelTestCase
 		XCTAssertEqual(inst.content!.creation!.description, "2009-09-03")
 		XCTAssertEqual(inst.content!.id!, "a1")
 		XCTAssertEqual(inst.deviceName!, "Acme Camera")
-		XCTAssertEqual(inst.height!, 145)
+		XCTAssertEqual(inst.height!, UInt(145))
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/xcda")
 		XCTAssertEqual(inst.subtype!.coding![0].code!, "diagram")
 		XCTAssertEqual(inst.subtype!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/media-method")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!, "photo")
-		XCTAssertEqual(inst.width!, 126)
+		XCTAssertEqual(inst.width!, UInt(126))
 		
 		return inst
 	}

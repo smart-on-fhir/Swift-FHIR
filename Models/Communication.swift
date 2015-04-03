@@ -1,9 +1,9 @@
 //
 //  Communication.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Communication) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Communication) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -147,7 +147,7 @@ public class Communication: DomainResource
 /**
  *  Message payload.
  *
- *  Text, attachment(s), or resource(s) to be communicated to the recipient.
+ *  Text, attachment(s), or resource(s) that was communicated to the recipient.
  */
 public class CommunicationPayload: FHIRElement
 {

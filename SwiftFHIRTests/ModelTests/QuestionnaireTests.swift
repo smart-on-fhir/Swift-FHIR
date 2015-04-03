@@ -1,9 +1,9 @@
 //
 //  QuestionnaireTests.swift
-//  QuestionnaireTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -76,8 +76,6 @@ class QuestionnaireTests: FHIRModelTestCase
 		XCTAssertEqual(inst.group!.group![2].question![1].text!, "Do you drink alchohol?")
 		XCTAssertEqual(inst.group!.group![2].title!, "Intoxications")
 		XCTAssertEqual(inst.id!, "f201")
-		XCTAssertEqual(inst.identifier![0].label!, "Roel's VL 1-1, 18-65_1.2.2")
-		XCTAssertEqual(inst.identifier![0].use!, "temp")
 		XCTAssertEqual(inst.status!, "published")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		

@@ -1,9 +1,9 @@
 //
 //  Parameters.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -126,6 +126,9 @@ public class ParametersParameter: FHIRElement
 	public var valueReference: Reference?
 	
 	/// If parameter is a data type
+	public var valueSignature: Signature?
+	
+	/// If parameter is a data type
 	public var valueString: String?
 	
 	/// If parameter is a data type
@@ -216,6 +219,9 @@ public class ParametersParameter: FHIRElement
 			if let val = js["valueReference"] as? FHIRJSON {
 				self.valueReference = Reference(json: val, owner: self)
 			}
+			if let val = js["valueSignature"] as? FHIRJSON {
+				self.valueSignature = Signature(json: val, owner: self)
+			}
 			if let val = js["valueString"] as? String {
 				self.valueString = val
 			}
@@ -302,6 +308,9 @@ public class ParametersParameter: FHIRElement
 		}
 		if let valueReference = self.valueReference {
 			json["valueReference"] = valueReference.asJSON()
+		}
+		if let valueSignature = self.valueSignature {
+			json["valueSignature"] = valueSignature.asJSON()
 		}
 		if let valueString = self.valueString {
 			json["valueString"] = valueString.asJSON()
@@ -399,6 +408,9 @@ public class ParametersParameterPart: FHIRElement
 	public var valueReference: Reference?
 	
 	/// Value of the part
+	public var valueSignature: Signature?
+	
+	/// Value of the part
 	public var valueString: String?
 	
 	/// Value of the part
@@ -486,6 +498,9 @@ public class ParametersParameterPart: FHIRElement
 			if let val = js["valueReference"] as? FHIRJSON {
 				self.valueReference = Reference(json: val, owner: self)
 			}
+			if let val = js["valueSignature"] as? FHIRJSON {
+				self.valueSignature = Signature(json: val, owner: self)
+			}
 			if let val = js["valueString"] as? String {
 				self.valueString = val
 			}
@@ -569,6 +584,9 @@ public class ParametersParameterPart: FHIRElement
 		}
 		if let valueReference = self.valueReference {
 			json["valueReference"] = valueReference.asJSON()
+		}
+		if let valueSignature = self.valueSignature {
+			json["valueSignature"] = valueSignature.asJSON()
 		}
 		if let valueString = self.valueString {
 			json["valueString"] = valueString.asJSON()

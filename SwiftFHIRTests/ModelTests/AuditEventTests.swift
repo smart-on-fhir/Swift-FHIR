@@ -1,9 +1,9 @@
 //
 //  AuditEventTests.swift
-//  AuditEventTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -143,7 +143,9 @@ class AuditEventTests: FHIRModelTestCase
 		XCTAssertEqual(inst.event!.type!.coding![0].display!, "Application Activity")
 		XCTAssertEqual(inst.event!.type!.coding![0].system!.absoluteString!, "http://nema.org/dicom/dicm")
 		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.object![0].identifier!.label!, "Dell Serial Number")
+		XCTAssertEqual(inst.object![0].identifier!.type!.coding![0].code!, "SNO")
+		XCTAssertEqual(inst.object![0].identifier!.type!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v2/0203")
+		XCTAssertEqual(inst.object![0].identifier!.type!.text!, "Dell Serial Number")
 		XCTAssertEqual(inst.object![0].identifier!.value!, "ABCDEF")
 		XCTAssertEqual(inst.object![0].lifecycle!, "6")
 		XCTAssertEqual(inst.object![0].name!, "Grahame's Laptop")

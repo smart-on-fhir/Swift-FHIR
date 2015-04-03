@@ -1,9 +1,9 @@
 //
 //  Identifier.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -23,14 +23,14 @@ public class Identifier: FHIRElement
 	/// Organization that issued id (may be just text)
 	public var assigner: Reference?
 	
-	/// Description of identifier
-	public var label: String?
-	
 	/// Time period when id is/was valid for use
 	public var period: Period?
 	
 	/// The namespace for the identifier
 	public var system: NSURL?
+	
+	/// Description of identifier
+	public var type: CodeableConcept?
 	
 	/// usual | official | temp | secondary (If known)
 	public var use: String?
@@ -44,14 +44,14 @@ public class Identifier: FHIRElement
 			if let val = js["assigner"] as? FHIRJSON {
 				self.assigner = Reference(json: val, owner: self)
 			}
-			if let val = js["label"] as? String {
-				self.label = val
-			}
 			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["system"] as? String {
 				self.system = NSURL(string: val)
+			}
+			if let val = js["type"] as? FHIRJSON {
+				self.type = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["use"] as? String {
 				self.use = val
@@ -68,14 +68,14 @@ public class Identifier: FHIRElement
 		if let assigner = self.assigner {
 			json["assigner"] = assigner.asJSON()
 		}
-		if let label = self.label {
-			json["label"] = label.asJSON()
-		}
 		if let period = self.period {
 			json["period"] = period.asJSON()
 		}
 		if let system = self.system {
 			json["system"] = system.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
 		}
 		if let use = self.use {
 			json["use"] = use.asJSON()

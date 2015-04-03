@@ -1,9 +1,9 @@
 //
 //  Extension.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Extension) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Extension) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -82,6 +82,9 @@ public class Extension: FHIRElement
 	
 	/// Value of extension
 	public var valueReference: Reference?
+	
+	/// Value of extension
+	public var valueSignature: Signature?
 	
 	/// Value of extension
 	public var valueString: String?
@@ -168,6 +171,9 @@ public class Extension: FHIRElement
 			if let val = js["valueReference"] as? FHIRJSON {
 				self.valueReference = Reference(json: val, owner: self)
 			}
+			if let val = js["valueSignature"] as? FHIRJSON {
+				self.valueSignature = Signature(json: val, owner: self)
+			}
 			if let val = js["valueString"] as? String {
 				self.valueString = val
 			}
@@ -248,6 +254,9 @@ public class Extension: FHIRElement
 		}
 		if let valueReference = self.valueReference {
 			json["valueReference"] = valueReference.asJSON()
+		}
+		if let valueSignature = self.valueSignature {
+			json["valueSignature"] = valueSignature.asJSON()
 		}
 		if let valueString = self.valueString {
 			json["valueString"] = valueString.asJSON()

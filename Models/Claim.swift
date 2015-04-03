@@ -1,9 +1,9 @@
 //
 //  Claim.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Claim) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Claim) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -340,9 +340,9 @@ public class ClaimCoverage: FHIRElement
 	public var relationship: Coding?
 	
 	/// Service instance identifier
-	public var sequence: Int?
+	public var sequence: UInt?
 	
-	public convenience init(coverage: Reference?, focal: Bool?, relationship: Coding?, sequence: Int?) {
+	public convenience init(coverage: Reference?, focal: Bool?, relationship: Coding?, sequence: UInt?) {
 		self.init(json: nil)
 		if nil != coverage {
 			self.coverage = coverage
@@ -382,7 +382,7 @@ public class ClaimCoverage: FHIRElement
 			if let val = js["relationship"] as? FHIRJSON {
 				self.relationship = Coding(json: val, owner: self)
 			}
-			if let val = js["sequence"] as? Int {
+			if let val = js["sequence"] as? UInt {
 				self.sequence = val
 			}
 		}
@@ -440,9 +440,9 @@ public class ClaimDiagnosis: FHIRElement
 	public var diagnosis: Coding?
 	
 	/// Sequence of diagnosis
-	public var sequence: Int?
+	public var sequence: UInt?
 	
-	public convenience init(diagnosis: Coding?, sequence: Int?) {
+	public convenience init(diagnosis: Coding?, sequence: UInt?) {
 		self.init(json: nil)
 		if nil != diagnosis {
 			self.diagnosis = diagnosis
@@ -458,7 +458,7 @@ public class ClaimDiagnosis: FHIRElement
 			if let val = js["diagnosis"] as? FHIRJSON {
 				self.diagnosis = Coding(json: val, owner: self)
 			}
-			if let val = js["sequence"] as? Int {
+			if let val = js["sequence"] as? UInt {
 				self.sequence = val
 			}
 		}
@@ -497,7 +497,7 @@ public class ClaimItem: FHIRElement
 	public var detail: [ClaimItemDetail]?
 	
 	/// Diagnosis Link
-	public var diagnosisLinkId: [Int]?
+	public var diagnosisLinkId: [UInt]?
 	
 	/// Price scaling factor
 	public var factor: NSDecimalNumber?
@@ -521,7 +521,7 @@ public class ClaimItem: FHIRElement
 	public var quantity: Quantity?
 	
 	/// Service instance
-	public var sequence: Int?
+	public var sequence: UInt?
 	
 	/// Item Code
 	public var service: Coding?
@@ -541,7 +541,7 @@ public class ClaimItem: FHIRElement
 	/// Fee, charge or cost per point
 	public var unitPrice: Money?
 	
-	public convenience init(sequence: Int?, service: Coding?, type: Coding?) {
+	public convenience init(sequence: UInt?, service: Coding?, type: Coding?) {
 		self.init(json: nil)
 		if nil != sequence {
 			self.sequence = sequence
@@ -563,7 +563,7 @@ public class ClaimItem: FHIRElement
 			if let val = js["detail"] as? [FHIRJSON] {
 				self.detail = ClaimItemDetail.from(val, owner: self) as? [ClaimItemDetail]
 			}
-			if let val = js["diagnosisLinkId"] as? [Int] {
+			if let val = js["diagnosisLinkId"] as? [UInt] {
 				self.diagnosisLinkId = val
 			}
 			if let val = js["factor"] as? NSNumber {
@@ -587,7 +587,7 @@ public class ClaimItem: FHIRElement
 			if let val = js["quantity"] as? FHIRJSON {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["sequence"] as? Int {
+			if let val = js["sequence"] as? UInt {
 				self.sequence = val
 			}
 			if let val = js["service"] as? FHIRJSON {
@@ -699,7 +699,7 @@ public class ClaimItemDetail: FHIRElement
 	public var quantity: Quantity?
 	
 	/// Service instance
-	public var sequence: Int?
+	public var sequence: UInt?
 	
 	/// Additional item codes
 	public var service: Coding?
@@ -716,7 +716,7 @@ public class ClaimItemDetail: FHIRElement
 	/// Fee, charge or cost per point
 	public var unitPrice: Money?
 	
-	public convenience init(sequence: Int?, service: Coding?, type: Coding?) {
+	public convenience init(sequence: UInt?, service: Coding?, type: Coding?) {
 		self.init(json: nil)
 		if nil != sequence {
 			self.sequence = sequence
@@ -744,7 +744,7 @@ public class ClaimItemDetail: FHIRElement
 			if let val = js["quantity"] as? FHIRJSON {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["sequence"] as? Int {
+			if let val = js["sequence"] as? UInt {
 				self.sequence = val
 			}
 			if let val = js["service"] as? FHIRJSON {
@@ -828,7 +828,7 @@ public class ClaimItemDetailSubDetail: FHIRElement
 	public var quantity: Quantity?
 	
 	/// Service instance
-	public var sequence: Int?
+	public var sequence: UInt?
 	
 	/// Additional item codes
 	public var service: Coding?
@@ -842,7 +842,7 @@ public class ClaimItemDetailSubDetail: FHIRElement
 	/// Fee, charge or cost per point
 	public var unitPrice: Money?
 	
-	public convenience init(sequence: Int?, service: Coding?, type: Coding?) {
+	public convenience init(sequence: UInt?, service: Coding?, type: Coding?) {
 		self.init(json: nil)
 		if nil != sequence {
 			self.sequence = sequence
@@ -870,7 +870,7 @@ public class ClaimItemDetailSubDetail: FHIRElement
 			if let val = js["quantity"] as? FHIRJSON {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["sequence"] as? Int {
+			if let val = js["sequence"] as? UInt {
 				self.sequence = val
 			}
 			if let val = js["service"] as? FHIRJSON {

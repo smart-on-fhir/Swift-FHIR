@@ -1,9 +1,9 @@
 //
 //  MedicationStatementTests.swift
-//  MedicationStatementTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -54,31 +54,6 @@ class MedicationStatementTests: FHIRModelTestCase
 	}
 	
 	func testMedicationStatement2_impl(json: FHIRJSON? = nil) -> MedicationStatement {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationstatement-example.json")
-		
-		XCTAssertEqual(inst.dosage![0].quantity!.code!, "ml")
-		XCTAssertEqual(inst.dosage![0].quantity!.system!.absoluteString!, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.dosage![0].quantity!.units!, "ml")
-		XCTAssertEqual(inst.dosage![0].quantity!.value!, NSDecimalNumber(string: "10"))
-		XCTAssertEqual(inst.dosage![0].route!.coding![0].code!, "394899003")
-		XCTAssertEqual(inst.dosage![0].route!.coding![0].display!, "oral administration of treatment")
-		XCTAssertEqual(inst.dosage![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.effectiveDateTime!.description, "2012-06-01T14:30:00+14:00")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
-		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
-		XCTAssertEqual(inst.status!, "completed")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testMedicationStatement3() {
-		let instance = testMedicationStatement3_impl()
-		testMedicationStatement3_impl(json: instance.asJSON())
-	}
-	
-	func testMedicationStatement3_impl(json: FHIRJSON? = nil) -> MedicationStatement {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationstatement-qicore-example.json")
 		
 		XCTAssertEqual(inst.dosage![0].quantity!.code!, "ml")

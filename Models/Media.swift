@@ -1,9 +1,9 @@
 //
 //  Media.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Media) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Media) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -26,13 +26,13 @@ public class Media: DomainResource
 	public var deviceName: String?
 	
 	/// Length in seconds (audio / video)
-	public var duration: Int?
+	public var duration: UInt?
 	
 	/// Number of frames if > 1 (photo)
-	public var frames: Int?
+	public var frames: UInt?
 	
 	/// Height of the image in pixels(photo/video)
-	public var height: Int?
+	public var height: UInt?
 	
 	/// Identifier(s) for the image
 	public var identifier: [Identifier]?
@@ -53,7 +53,7 @@ public class Media: DomainResource
 	public var view: CodeableConcept?
 	
 	/// Width of the image in pixels (photo/video)
-	public var width: Int?
+	public var width: UInt?
 	
 	public convenience init(content: Attachment?, type: String?) {
 		self.init(json: nil)
@@ -74,13 +74,13 @@ public class Media: DomainResource
 			if let val = js["deviceName"] as? String {
 				self.deviceName = val
 			}
-			if let val = js["duration"] as? Int {
+			if let val = js["duration"] as? UInt {
 				self.duration = val
 			}
-			if let val = js["frames"] as? Int {
+			if let val = js["frames"] as? UInt {
 				self.frames = val
 			}
-			if let val = js["height"] as? Int {
+			if let val = js["height"] as? UInt {
 				self.height = val
 			}
 			if let val = js["identifier"] as? [FHIRJSON] {
@@ -101,7 +101,7 @@ public class Media: DomainResource
 			if let val = js["view"] as? FHIRJSON {
 				self.view = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["width"] as? Int {
+			if let val = js["width"] as? UInt {
 				self.width = val
 			}
 		}

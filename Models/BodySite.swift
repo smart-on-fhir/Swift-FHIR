@@ -1,9 +1,9 @@
 //
 //  BodySite.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -12,8 +12,8 @@ import Foundation
 /**
  *  Specific and identified anatomical location.
  *
- *  Record details about the anatomical location of a specimen or body part, including precise localisation information.
- *  This resource may be used when a coded concept does not provide the necessary detail needed for the use case.
+ *  Record details about the anatomical location of a specimen or body part.  This resource may be used when a coded
+ *  concept does not provide the necessary detail needed for the use case.
  */
 public class BodySite: DomainResource
 {

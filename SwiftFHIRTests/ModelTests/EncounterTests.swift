@@ -1,9 +1,9 @@
 //
 //  EncounterTests.swift
-//  EncounterTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -175,7 +175,6 @@ class EncounterTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.class_fhir!, "outpatient")
 		XCTAssertEqual(inst.id!, "f201")
-		XCTAssertEqual(inst.identifier![0].label!, "Roel's encounter on April fourth 2013")
 		XCTAssertEqual(inst.identifier![0].use!, "temp")
 		XCTAssertEqual(inst.identifier![0].value!, "Encounter_Roel_20130404")
 		XCTAssertEqual(inst.participant![0].individual!.reference!, "Practitioner/f201")
@@ -205,7 +204,6 @@ class EncounterTests: FHIRModelTestCase
 		
 		XCTAssertEqual(inst.class_fhir!, "outpatient")
 		XCTAssertEqual(inst.id!, "f202")
-		XCTAssertEqual(inst.identifier![0].label!, "Roel's encounter on January 28th, 2013")
 		XCTAssertEqual(inst.identifier![0].use!, "temp")
 		XCTAssertEqual(inst.identifier![0].value!, "Encounter_Roel_20130128")
 		XCTAssertEqual(inst.indication![0].display!, "Roel's TPF chemotherapy on January 28th, 2013")
@@ -243,12 +241,11 @@ class EncounterTests: FHIRModelTestCase
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].code!, "309902002")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].display!, "Clinical Oncology Department")
 		XCTAssertEqual(inst.hospitalization!.admitSource!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.hospitalization!.diet!.coding![0].code!, "276026009")
-		XCTAssertEqual(inst.hospitalization!.diet!.coding![0].display!, "Fluid balance regulation")
-		XCTAssertEqual(inst.hospitalization!.diet!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.hospitalization!.dietPreference!.coding![0].code!, "276026009")
+		XCTAssertEqual(inst.hospitalization!.dietPreference!.coding![0].display!, "Fluid balance regulation")
+		XCTAssertEqual(inst.hospitalization!.dietPreference!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
 		XCTAssertFalse(inst.hospitalization!.reAdmission!)
 		XCTAssertEqual(inst.id!, "f203")
-		XCTAssertEqual(inst.identifier![0].label!, "Roel's encounter on March eleventh 2013")
 		XCTAssertEqual(inst.identifier![0].use!, "temp")
 		XCTAssertEqual(inst.identifier![0].value!, "Encounter_Roel_20130311")
 		XCTAssertEqual(inst.participant![0].individual!.reference!, "Practitioner/f201")
@@ -297,25 +294,20 @@ class EncounterTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "encounter-qicore-example.json")
 		
 		XCTAssertEqual(inst.class_fhir!, "inpatient")
-		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/encounter-primaryCondition")
-		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "39065001")
-		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].display!, "Burn of ear")
-		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/encounter-condition")
-		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![0].valueCodeableConcept!.coding![0].code!, "110182002")
-		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![0].valueCodeableConcept!.coding![0].display!, "burn of forehead")
-		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/encounter-conditionRole")
-		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![1].valueCodeableConcept!.coding![0].code!, "398192003")
-		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![1].valueCodeableConcept!.coding![0].display!, "Co-morbid conditions (finding)")
-		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![1].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
-		XCTAssertEqual(inst.extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/encounter-relatedCondition")
-		XCTAssertEqual(inst.hospitalization!.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/encounter-admission")
-		XCTAssertEqual(inst.hospitalization!.extension_fhir![0].valueDateTime!.description, "2015-02-09T00:00:00Z")
-		XCTAssertEqual(inst.hospitalization!.extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/encounter-discharge")
-		XCTAssertEqual(inst.hospitalization!.extension_fhir![1].valueDateTime!.description, "2015-02-20T00:00:00Z")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/encounter-condition")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![0].valueReference!.reference!, "Condition/qicore")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/encounter-conditionRole")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].valueCodeableConcept!.coding![0].code!, "8319008")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].valueCodeableConcept!.coding![0].display!, "Principal diagnosis")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/encounter-relatedCondition")
+		XCTAssertEqual(inst.hospitalization!.dischargeDisposition!.coding![0].code!, "home")
+		XCTAssertEqual(inst.hospitalization!.dischargeDisposition!.coding![0].display!, "Home")
+		XCTAssertEqual(inst.hospitalization!.dischargeDisposition!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/discharge-disposition")
 		XCTAssertEqual(inst.id!, "qicore")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/qicore")
+		XCTAssertEqual(inst.period!.end!.description, "2015-02-20T00:00:00Z")
+		XCTAssertEqual(inst.period!.start!.description, "2015-02-09T00:00:00Z")
 		XCTAssertEqual(inst.status!, "finished")
 		XCTAssertEqual(inst.text!.div!, "<div>Encounter with patient @qicore</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")

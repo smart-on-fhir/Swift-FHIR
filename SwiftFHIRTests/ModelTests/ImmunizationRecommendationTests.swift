@@ -1,9 +1,9 @@
 //
 //  ImmunizationRecommendationTests.swift
-//  ImmunizationRecommendationTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -45,7 +45,7 @@ class ImmunizationRecommendationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.recommendation![0].dateCriterion![2].code!.coding![0].display!, "Past Due Date")
 		XCTAssertEqual(inst.recommendation![0].dateCriterion![2].code!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/immunization-recommendation-date-criterion")
 		XCTAssertEqual(inst.recommendation![0].dateCriterion![2].value!.description, "2016-12-28T00:00:00-05:00")
-		XCTAssertEqual(inst.recommendation![0].doseNumber!, 1)
+		XCTAssertEqual(inst.recommendation![0].doseNumber!, UInt(1))
 		XCTAssertEqual(inst.recommendation![0].forecastStatus!.coding![0].code!, "Not Complete")
 		XCTAssertEqual(inst.recommendation![0].forecastStatus!.coding![0].display!, "Not Complete")
 		XCTAssertEqual(inst.recommendation![0].forecastStatus!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/vs/immunization-recommendation-status")

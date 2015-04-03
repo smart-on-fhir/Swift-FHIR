@@ -1,9 +1,9 @@
 //
 //  Encounter.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -229,8 +229,8 @@ public class EncounterHospitalization: FHIRElement
 	/// Location to which the patient is discharged
 	public var destination: Reference?
 	
-	/// Dietary restrictions for the patient
-	public var diet: CodeableConcept?
+	/// Diet preferences reported by the patient
+	public var dietPreference: CodeableConcept?
 	
 	/// The final diagnosis given a patient before release from the hospital after all testing, surgery, and workup are complete
 	public var dischargeDiagnosis: Reference?
@@ -262,8 +262,8 @@ public class EncounterHospitalization: FHIRElement
 			if let val = js["destination"] as? FHIRJSON {
 				self.destination = Reference(json: val, owner: self)
 			}
-			if let val = js["diet"] as? FHIRJSON {
-				self.diet = CodeableConcept(json: val, owner: self)
+			if let val = js["dietPreference"] as? FHIRJSON {
+				self.dietPreference = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["dischargeDiagnosis"] as? FHIRJSON {
 				self.dischargeDiagnosis = Reference(json: val, owner: self)
@@ -298,8 +298,8 @@ public class EncounterHospitalization: FHIRElement
 		if let destination = self.destination {
 			json["destination"] = destination.asJSON()
 		}
-		if let diet = self.diet {
-			json["diet"] = diet.asJSON()
+		if let dietPreference = self.dietPreference {
+			json["dietPreference"] = dietPreference.asJSON()
 		}
 		if let dischargeDiagnosis = self.dischargeDiagnosis {
 			json["dischargeDiagnosis"] = dischargeDiagnosis.asJSON()

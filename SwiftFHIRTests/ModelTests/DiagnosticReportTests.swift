@@ -1,9 +1,9 @@
 //
 //  DiagnosticReportTests.swift
-//  DiagnosticReportTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -292,7 +292,6 @@ class DiagnosticReportTests: FHIRModelTestCase
 		XCTAssertEqual(inst.conclusion!, "Elevated Blood Lead levels")
 		XCTAssertEqual(inst.diagnosticDateTime!.description, "2014-12-05")
 		XCTAssertEqual(inst.id!, "uslab-example1")
-		XCTAssertEqual(inst.identifier![0].label!, "Laboratory Report ID")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://lis.acmelabs.org/identifiers/report")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "5234342")

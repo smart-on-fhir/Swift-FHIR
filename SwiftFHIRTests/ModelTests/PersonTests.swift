@@ -1,9 +1,9 @@
 //
 //  PersonTests.swift
-//  PersonTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -40,9 +40,10 @@ class PersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.gender!, "male")
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier![0].assigner!.display!, "Acme Healthcare")
-		XCTAssertEqual(inst.identifier![0].label!, "MRN")
 		XCTAssertEqual(inst.identifier![0].period!.start!.description, "2001-05-06")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:1.2.36.146.595.217.0.1")
+		XCTAssertEqual(inst.identifier![0].type!.coding![0].code!, "MRN")
+		XCTAssertEqual(inst.identifier![0].type!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v2/0203")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
 		XCTAssertEqual(inst.identifier![0].value!, "12345")
 		XCTAssertEqual(inst.link![0].target!.display!, "Peter Chalmers")

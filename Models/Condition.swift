@@ -1,9 +1,9 @@
 //
 //  Condition.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Condition) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Condition) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -384,19 +384,19 @@ public class ConditionLocation: FHIRElement
 	}
 	
 	/// Location - may include laterality
-	public var code: CodeableConcept?
+	public var siteCodeableConcept: CodeableConcept?
 	
-	/// Precise location details
-	public var detail: String?
+	/// Location - may include laterality
+	public var siteReference: Reference?
 	
 	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? FHIRJSON {
-				self.code = CodeableConcept(json: val, owner: self)
+			if let val = js["siteCodeableConcept"] as? FHIRJSON {
+				self.siteCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["detail"] as? String {
-				self.detail = val
+			if let val = js["siteReference"] as? FHIRJSON {
+				self.siteReference = Reference(json: val, owner: self)
 			}
 		}
 	}
@@ -404,11 +404,11 @@ public class ConditionLocation: FHIRElement
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let code = self.code {
-			json["code"] = code.asJSON()
+		if let siteCodeableConcept = self.siteCodeableConcept {
+			json["siteCodeableConcept"] = siteCodeableConcept.asJSON()
 		}
-		if let detail = self.detail {
-			json["detail"] = detail.asJSON()
+		if let siteReference = self.siteReference {
+			json["siteReference"] = siteReference.asJSON()
 		}
 		
 		return json

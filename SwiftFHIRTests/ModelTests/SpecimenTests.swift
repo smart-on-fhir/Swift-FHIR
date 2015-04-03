@@ -1,9 +1,9 @@
 //
 //  SpecimenTests.swift
-//  SpecimenTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -42,7 +42,6 @@ class SpecimenTests: FHIRModelTestCase
 		XCTAssertEqual(inst.collection!.bodySiteCodeableConcept!.text!, "Drawn from Arm")
 		XCTAssertEqual(inst.collection!.collectedDateTime!.description, "2014-12-05")
 		XCTAssertEqual(inst.id!, "uslab-example1")
-		XCTAssertEqual(inst.identifier![0].label!, "Placer Specimen ID")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://ehr.goodhealthclinic.org/identifiers/specimen")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "SID123")
@@ -73,7 +72,6 @@ class SpecimenTests: FHIRModelTestCase
 		XCTAssertEqual(inst.accessionIdentifier!.value!, "21041205000001")
 		XCTAssertEqual(inst.collection!.collectedDateTime!.description, "2014-12-05")
 		XCTAssertEqual(inst.id!, "uslab-example2")
-		XCTAssertEqual(inst.identifier![0].label!, "Placer Specimen ID")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://ehr.goodhealthclinic.org/identifiers/specimen")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "SID456")
@@ -142,6 +140,12 @@ class SpecimenTests: FHIRModelTestCase
 		XCTAssertEqual(inst.collection!.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "5")
 		XCTAssertEqual(inst.collection!.extension_fhir![0].valueCodeableConcept!.coding![0].display!, "ROUTINE")
 		XCTAssertEqual(inst.collection!.extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/vs/specimen-collection-priority")
+		XCTAssertEqual(inst.collection!.extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/specimen-specialHandling")
+		XCTAssertEqual(inst.collection!.extension_fhir![1].valueCodeableConcept!.coding![0].code!, "NOPERSISTP")
+		XCTAssertEqual(inst.collection!.extension_fhir![1].valueCodeableConcept!.coding![0].display!, "no collection beyond purpose of use")
+		XCTAssertEqual(inst.collection!.extension_fhir![1].valueCodeableConcept!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/ActCode")
+		XCTAssertEqual(inst.collection!.quantity!.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/specimen-isDryWeight")
+		XCTAssertFalse(inst.collection!.quantity!.extension_fhir![0].valueBoolean!)
 		XCTAssertEqual(inst.collection!.quantity!.units!, "mL")
 		XCTAssertEqual(inst.collection!.quantity!.value!, NSDecimalNumber(string: "6"))
 		XCTAssertEqual(inst.container![0].capacity!.units!, "mL")
@@ -156,6 +160,11 @@ class SpecimenTests: FHIRModelTestCase
 		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.treatment![0].additive![0].reference!, "Substance/example")
+		XCTAssertEqual(inst.treatment![0].description_fhir!, "Treated with anticoagulants.")
+		XCTAssertEqual(inst.treatment![0].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/specimen-treatmentTime")
+		XCTAssertEqual(inst.treatment![0].extension_fhir![0].valuePeriod!.end!.description, "2011-03-04T07:03:00Z")
+		XCTAssertEqual(inst.treatment![0].extension_fhir![0].valuePeriod!.start!.description, "2011-03-04T07:03:00Z")
 		XCTAssertEqual(inst.type!.coding![0].code!, "122555007")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Venous blood specimen")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")

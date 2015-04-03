@@ -1,9 +1,9 @@
 //
 //  Immunization.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -338,7 +338,7 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 	public var description_fhir: String?
 	
 	/// What dose number within series?
-	public var doseSequence: Int?
+	public var doseSequence: UInt?
 	
 	/// Does dose count towards immunity?
 	public var doseStatus: CodeableConcept?
@@ -353,9 +353,9 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 	public var series: String?
 	
 	/// Recommended number of doses for immunity
-	public var seriesDoses: Int?
+	public var seriesDoses: UInt?
 	
-	public convenience init(doseSequence: Int?, doseStatus: CodeableConcept?, doseTarget: CodeableConcept?) {
+	public convenience init(doseSequence: UInt?, doseStatus: CodeableConcept?, doseTarget: CodeableConcept?) {
 		self.init(json: nil)
 		if nil != doseSequence {
 			self.doseSequence = doseSequence
@@ -377,7 +377,7 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 			if let val = js["description"] as? String {
 				self.description_fhir = val
 			}
-			if let val = js["doseSequence"] as? Int {
+			if let val = js["doseSequence"] as? UInt {
 				self.doseSequence = val
 			}
 			if let val = js["doseStatus"] as? FHIRJSON {
@@ -392,7 +392,7 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 			if let val = js["series"] as? String {
 				self.series = val
 			}
-			if let val = js["seriesDoses"] as? Int {
+			if let val = js["seriesDoses"] as? UInt {
 				self.seriesDoses = val
 			}
 		}

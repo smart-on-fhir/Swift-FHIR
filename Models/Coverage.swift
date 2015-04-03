@@ -1,9 +1,9 @@
 //
 //  Coverage.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -27,7 +27,7 @@ public class Coverage: DomainResource
 	public var contract: [Reference]?
 	
 	/// The dependent number
-	public var dependent: Int?
+	public var dependent: UInt?
 	
 	/// An identifier for the group
 	public var group: String?
@@ -48,7 +48,7 @@ public class Coverage: DomainResource
 	public var plan: String?
 	
 	/// The plan instance or sequence counter
-	public var sequence: Int?
+	public var sequence: UInt?
 	
 	/// An identifier for the subsection of the plan
 	public var subPlan: String?
@@ -71,7 +71,7 @@ public class Coverage: DomainResource
 			if let val = js["contract"] as? [FHIRJSON] {
 				self.contract = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["dependent"] as? Int {
+			if let val = js["dependent"] as? UInt {
 				self.dependent = val
 			}
 			if let val = js["group"] as? String {
@@ -92,7 +92,7 @@ public class Coverage: DomainResource
 			if let val = js["plan"] as? String {
 				self.plan = val
 			}
-			if let val = js["sequence"] as? Int {
+			if let val = js["sequence"] as? UInt {
 				self.sequence = val
 			}
 			if let val = js["subPlan"] as? String {

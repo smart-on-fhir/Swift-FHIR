@@ -1,9 +1,9 @@
 //
 //  DeviceComponentTests.swift
-//  DeviceComponentTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import XCTest
@@ -31,7 +31,7 @@ class DeviceComponentTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicecomponent-example-prodspec.json")
 		
 		XCTAssertEqual(inst.id!, "example-prodspec")
-		XCTAssertEqual(inst.identifier!.label!, "Handle ID")
+		XCTAssertEqual(inst.identifier!.type!.text!, "Handle ID")
 		XCTAssertEqual(inst.identifier!.value!, "0")
 		XCTAssertEqual(inst.languageCode!.coding![0].code!, "en-US")
 		XCTAssertEqual(inst.languageCode!.coding![0].system!.absoluteString!, "http://tools.ietf.org/html/bcp47")
@@ -69,7 +69,7 @@ class DeviceComponentTests: FHIRModelTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicecomponent-example.json")
 		
 		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.identifier!.label!, "Handle ID")
+		XCTAssertEqual(inst.identifier!.type!.text!, "Handle ID")
 		XCTAssertEqual(inst.identifier!.value!, "0")
 		XCTAssertEqual(inst.languageCode!.coding![0].code!, "en-US")
 		XCTAssertEqual(inst.languageCode!.coding![0].system!.absoluteString!, "http://tools.ietf.org/html/bcp47")

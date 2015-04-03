@@ -1,9 +1,9 @@
 //
 //  Bundle.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.4.0.4879 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2015-03-25.
-//  2015, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -33,7 +33,7 @@ public class Bundle: Resource
 	public var signature: Base64Binary?
 	
 	/// If search, the total number of matches
-	public var total: Int?
+	public var total: UInt?
 	
 	/// document | message | transaction | transaction-response | history | searchset | collection
 	public var type: String?
@@ -60,7 +60,7 @@ public class Bundle: Resource
 			if let val = js["signature"] as? String {
 				self.signature = Base64Binary(string: val)
 			}
-			if let val = js["total"] as? Int {
+			if let val = js["total"] as? UInt {
 				self.total = val
 			}
 			if let val = js["type"] as? String {

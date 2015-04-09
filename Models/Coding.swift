@@ -1,9 +1,9 @@
 //
 //  Coding.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Coding.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Coding) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -30,14 +30,10 @@ public class Coding: FHIRElement
 	/// Identity of the terminology system
 	public var system: NSURL?
 	
-	/// Set this coding was chosen from
-	public var valueSet: FHIRReference<ValueSet>?
-	
 	/// Version of the system - if relevant
 	public var version: String?
 	
-
-	public required init(json: NSDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
@@ -50,15 +46,34 @@ public class Coding: FHIRElement
 				self.primary = val
 			}
 			if let val = js["system"] as? String {
-				self.system = NSURL(json: val)
-			}
-			if let val = js["valueSet"] as? NSDictionary {
-				self.valueSet = FHIRReference(json: val, owner: self)
+				self.system = NSURL(string: val)
 			}
 			if let val = js["version"] as? String {
 				self.version = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let display = self.display {
+			json["display"] = display.asJSON()
+		}
+		if let primary = self.primary {
+			json["primary"] = primary.asJSON()
+		}
+		if let system = self.system {
+			json["system"] = system.asJSON()
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
+		}
+		
+		return json
 	}
 }
 

@@ -1,9 +1,9 @@
 //
 //  MessageHeader.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (messageheader.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -12,31 +12,27 @@ import Foundation
 /**
  *  A resource that describes a message that is exchanged between systems.
  *
- *  Scope and Usage The MessageHeader resource is defined in order to support Messaging using FHIR resources. The
- *  principle usage of the MessageHeader resource is when messages are exchanged. However, as a resource that can be
- *  used with the RESTful framework, the MessageHeader resource has the normal resource end-point ([base-url]/Message),
- *  which is used to manage a set of static messages resources. This could be used to make an archive of past messages
- *  available. Creating or updating Message resources in this fashion does not represent the actual occurrence of any
- *  event, nor can it trigger any logic associated with the actual event. It is just for managing a set of message
- *  resources.
+ *  The header for a message exchange that is either requesting or responding to an action.  The Reference(s) that are
+ *  the subject of the action as well as other Information related to the action are typically transmitted in a bundle
+ *  in which the MessageHeader resource instance is the first resource in the bundle.
  */
-public class MessageHeader: FHIRResource
+public class MessageHeader: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "MessageHeader" }
 	}
 	
 	/// The source of the decision
-	public var author: FHIRReference<Practitioner>?
+	public var author: Reference?
 	
 	/// The actual content of the message
-	public var data: [FHIRReference<FHIRResource>]?
+	public var data: [Reference]?
 	
 	/// Message Destination Application(s)
 	public var destination: [MessageHeaderDestination]?
 	
 	/// The source of the data entry
-	public var enterer: FHIRReference<Practitioner>?
+	public var enterer: Reference?
 	
 	/// Code for the event this message represents
 	public var event: Coding?
@@ -48,24 +44,21 @@ public class MessageHeader: FHIRResource
 	public var reason: CodeableConcept?
 	
 	/// Intended "real-world" recipient for the data
-	public var receiver: FHIRReference<Practitioner>?
+	public var receiver: Reference?
 	
 	/// If this is a reply to prior message
 	public var response: MessageHeaderResponse?
 	
 	/// Final responsibility for event
-	public var responsible: FHIRReference<Practitioner>?
+	public var responsible: Reference?
 	
 	/// Message Source Application
 	public var source: MessageHeaderSource?
 	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
-	
 	/// Time that the message was sent
-	public var timestamp: NSDate?
+	public var timestamp: Instant?
 	
-	public convenience init(event: Coding?, identifier: String?, source: MessageHeaderSource?, timestamp: NSDate?) {
+	public convenience init(event: Coding?, identifier: String?, source: MessageHeaderSource?, timestamp: Instant?) {
 		self.init(json: nil)
 		if nil != event {
 			self.event = event
@@ -79,51 +72,151 @@ public class MessageHeader: FHIRResource
 		if nil != timestamp {
 			self.timestamp = timestamp
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["author"] as? NSDictionary {
-				self.author = FHIRReference(json: val, owner: self)
+			if let val = js["author"] as? FHIRJSON {
+				self.author = Reference(json: val, owner: self)
 			}
-			if let val = js["data"] as? [NSDictionary] {
-				self.data = FHIRReference.from(val, owner: self)
+			if let val = js["data"] as? [FHIRJSON] {
+				self.data = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["destination"] as? [NSDictionary] {
+			if let val = js["destination"] as? [FHIRJSON] {
 				self.destination = MessageHeaderDestination.from(val, owner: self) as? [MessageHeaderDestination]
 			}
-			if let val = js["enterer"] as? NSDictionary {
-				self.enterer = FHIRReference(json: val, owner: self)
+			if let val = js["enterer"] as? FHIRJSON {
+				self.enterer = Reference(json: val, owner: self)
 			}
-			if let val = js["event"] as? NSDictionary {
+			if let val = js["event"] as? FHIRJSON {
 				self.event = Coding(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? String {
 				self.identifier = val
 			}
-			if let val = js["reason"] as? NSDictionary {
+			if let val = js["reason"] as? FHIRJSON {
 				self.reason = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["receiver"] as? NSDictionary {
-				self.receiver = FHIRReference(json: val, owner: self)
+			if let val = js["receiver"] as? FHIRJSON {
+				self.receiver = Reference(json: val, owner: self)
 			}
-			if let val = js["response"] as? NSDictionary {
+			if let val = js["response"] as? FHIRJSON {
 				self.response = MessageHeaderResponse(json: val, owner: self)
 			}
-			if let val = js["responsible"] as? NSDictionary {
-				self.responsible = FHIRReference(json: val, owner: self)
+			if let val = js["responsible"] as? FHIRJSON {
+				self.responsible = Reference(json: val, owner: self)
 			}
-			if let val = js["source"] as? NSDictionary {
+			if let val = js["source"] as? FHIRJSON {
 				self.source = MessageHeaderSource(json: val, owner: self)
 			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
-			}
 			if let val = js["timestamp"] as? String {
-				self.timestamp = NSDate(json: val)
+				self.timestamp = Instant(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let author = self.author {
+			json["author"] = author.asJSON()
+		}
+		if let data = self.data {
+			json["data"] = Reference.asJSONArray(data)
+		}
+		if let destination = self.destination {
+			json["destination"] = MessageHeaderDestination.asJSONArray(destination)
+		}
+		if let enterer = self.enterer {
+			json["enterer"] = enterer.asJSON()
+		}
+		if let event = self.event {
+			json["event"] = event.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
+		}
+		if let receiver = self.receiver {
+			json["receiver"] = receiver.asJSON()
+		}
+		if let response = self.response {
+			json["response"] = response.asJSON()
+		}
+		if let responsible = self.responsible {
+			json["responsible"] = responsible.asJSON()
+		}
+		if let source = self.source {
+			json["source"] = source.asJSON()
+		}
+		if let timestamp = self.timestamp {
+			json["timestamp"] = timestamp.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Message Destination Application(s).
+ *
+ *  The destination application which the message is intended for.
+ */
+public class MessageHeaderDestination: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "MessageHeaderDestination" }
+	}
+	
+	/// Actual destination address or id
+	public var endpoint: NSURL?
+	
+	/// Name of system
+	public var name: String?
+	
+	/// Particular delivery destination within the destination
+	public var target: Reference?
+	
+	public convenience init(endpoint: NSURL?) {
+		self.init(json: nil)
+		if nil != endpoint {
+			self.endpoint = endpoint
+		}
+	}
+	
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["endpoint"] as? String {
+				self.endpoint = NSURL(string: val)
+			}
+			if let val = js["name"] as? String {
+				self.name = val
+			}
+			if let val = js["target"] as? FHIRJSON {
+				self.target = Reference(json: val, owner: self)
+			}
+		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let endpoint = self.endpoint {
+			json["endpoint"] = endpoint.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let target = self.target {
+			json["target"] = target.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -134,12 +227,16 @@ public class MessageHeader: FHIRResource
  *  Information about the message that this message is a response to.  Only present if this message is a response.
  */
 public class MessageHeaderResponse: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "MessageHeaderResponse" }
+	}
+	
 	/// ok | transient-error | fatal-error
 	public var code: String?
 	
 	/// Specific list of hints/warnings/errors
-	public var details: FHIRReference<OperationOutcome>?
+	public var details: Reference?
 	
 	/// Id of original message
 	public var identifier: String?
@@ -152,21 +249,37 @@ public class MessageHeaderResponse: FHIRElement
 		if nil != identifier {
 			self.identifier = identifier
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["code"] as? String {
 				self.code = val
 			}
-			if let val = js["details"] as? NSDictionary {
-				self.details = FHIRReference(json: val, owner: self)
+			if let val = js["details"] as? FHIRJSON {
+				self.details = Reference(json: val, owner: self)
 			}
 			if let val = js["identifier"] as? String {
 				self.identifier = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let details = self.details {
+			json["details"] = details.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -177,9 +290,13 @@ public class MessageHeaderResponse: FHIRElement
  *  The source application from which this message originated.
  */
 public class MessageHeaderSource: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "MessageHeaderSource" }
+	}
+	
 	/// Human contact for problems
-	public var contact: Contact?
+	public var contact: ContactPoint?
 	
 	/// Actual message source address or id
 	public var endpoint: NSURL?
@@ -193,24 +310,21 @@ public class MessageHeaderSource: FHIRElement
 	/// Version of software running
 	public var version: String?
 	
-	public convenience init(endpoint: NSURL?, software: String?) {
+	public convenience init(endpoint: NSURL?) {
 		self.init(json: nil)
 		if nil != endpoint {
 			self.endpoint = endpoint
 		}
-		if nil != software {
-			self.software = software
-		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["contact"] as? NSDictionary {
-				self.contact = Contact(json: val, owner: self)
+			if let val = js["contact"] as? FHIRJSON {
+				self.contact = ContactPoint(json: val, owner: self)
 			}
 			if let val = js["endpoint"] as? String {
-				self.endpoint = NSURL(json: val)
+				self.endpoint = NSURL(string: val)
 			}
 			if let val = js["name"] as? String {
 				self.name = val
@@ -223,45 +337,27 @@ public class MessageHeaderSource: FHIRElement
 			}
 		}
 	}
-}
-
-
-/**
- *  Message Destination Application(s).
- *
- *  The destination application which the message is intended for.
- */
-public class MessageHeaderDestination: FHIRElement
-{	
-	/// Actual destination address or id
-	public var endpoint: NSURL?
 	
-	/// Name of system
-	public var name: String?
-	
-	/// Particular delivery destination within the destination
-	public var target: FHIRReference<Device>?
-	
-	public convenience init(endpoint: NSURL?) {
-		self.init(json: nil)
-		if nil != endpoint {
-			self.endpoint = endpoint
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let contact = self.contact {
+			json["contact"] = contact.asJSON()
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-			if let val = js["endpoint"] as? String {
-				self.endpoint = NSURL(json: val)
-			}
-			if let val = js["name"] as? String {
-				self.name = val
-			}
-			if let val = js["target"] as? NSDictionary {
-				self.target = FHIRReference(json: val, owner: self)
-			}
+		if let endpoint = self.endpoint {
+			json["endpoint"] = endpoint.asJSON()
 		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let software = self.software {
+			json["software"] = software.asJSON()
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
+		}
+		
+		return json
 	}
 }
 

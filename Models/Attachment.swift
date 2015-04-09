@@ -1,9 +1,9 @@
 //
 //  Attachment.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Attachment.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -11,6 +11,8 @@ import Foundation
 
 /**
  *  Content in a format defined elsewhere.
+ *
+ *  For referring to data content defined in other formats.
  */
 public class Attachment: FHIRElement
 {
@@ -21,14 +23,20 @@ public class Attachment: FHIRElement
 	/// Mime type of the content, with charset etc.
 	public var contentType: String?
 	
+	/// Date attachment was first created
+	public var creation: DateTime?
+	
 	/// Data inline, base64ed
-	public var data: String?
+	public var data: Base64Binary?
 	
 	/// Hash of the data (sha-1, base64ed )
-	public var hash: String?
+	public var hash: Base64Binary?
+	
+	/// Human language of the content (BCP-47)
+	public var language: String?
 	
 	/// Number of bytes of content (if url provided)
-	public var size: Int?
+	public var size: UInt?
 	
 	/// Label to display in place of the data
 	public var title: String?
@@ -36,35 +44,65 @@ public class Attachment: FHIRElement
 	/// Uri where the data can be found
 	public var url: NSURL?
 	
-	public convenience init(contentType: String?) {
-		self.init(json: nil)
-		if nil != contentType {
-			self.contentType = contentType
-		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["contentType"] as? String {
 				self.contentType = val
 			}
+			if let val = js["creation"] as? String {
+				self.creation = DateTime(string: val)
+			}
 			if let val = js["data"] as? String {
-				self.data = val
+				self.data = Base64Binary(string: val)
 			}
 			if let val = js["hash"] as? String {
-				self.hash = val
+				self.hash = Base64Binary(string: val)
 			}
-			if let val = js["size"] as? Int {
+			if let val = js["language"] as? String {
+				self.language = val
+			}
+			if let val = js["size"] as? UInt {
 				self.size = val
 			}
 			if let val = js["title"] as? String {
 				self.title = val
 			}
 			if let val = js["url"] as? String {
-				self.url = NSURL(json: val)
+				self.url = NSURL(string: val)
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let contentType = self.contentType {
+			json["contentType"] = contentType.asJSON()
+		}
+		if let creation = self.creation {
+			json["creation"] = creation.asJSON()
+		}
+		if let data = self.data {
+			json["data"] = data.asJSON()
+		}
+		if let hash = self.hash {
+			json["hash"] = hash.asJSON()
+		}
+		if let language = self.language {
+			json["language"] = language.asJSON()
+		}
+		if let size = self.size {
+			json["size"] = size.asJSON()
+		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
+		}
+		if let url = self.url {
+			json["url"] = url.asJSON()
+		}
+		
+		return json
 	}
 }
 

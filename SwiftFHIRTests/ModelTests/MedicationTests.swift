@@ -1,199 +1,229 @@
 //
 //  MedicationTests.swift
-//  MedicationTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
-import Cocoa
 import XCTest
 import SwiftFHIR
 
 
 class MedicationTests: FHIRModelTestCase
 {
-	func instantiateFrom(filename: String) -> Medication? {
-		let json = readJSONFile(filename)
+	func instantiateFrom(# filename: String) -> Medication {
+		return instantiateFrom(json: readJSONFile(filename)!)
+	}
+	
+	func instantiateFrom(# json: FHIRJSON) -> Medication {
 		let instance = Medication(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
 	func testMedication1() {
-		let inst = instantiateFrom("medication-example-f001-combivent.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Medication instance")
+		let instance = testMedication1_impl()
+		testMedication1_impl(json: instance.asJSON())
+	}
+	
+	func testMedication1_impl(json: FHIRJSON? = nil) -> Medication {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example-f001-combivent.json")
 		
-		XCTAssertEqual(inst!.code!.coding![0].code!, "320442002")	
-		XCTAssertEqual(inst!.code!.coding![0].display!, "Salbutamol+ipratropium bromide 100micrograms/20micrograms inhaler")
-		XCTAssertEqual(inst!.code!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
-		XCTAssertTrue(inst!.isBrand!)	
-		XCTAssertEqual(inst!.kind!, "product")	
-		XCTAssertEqual(inst!.name!, "Combivent")	
-		XCTAssertEqual(inst!.product!.form!.coding![0].code!, "420317006")	
-		XCTAssertEqual(inst!.product!.form!.coding![0].display!, "Inhaler (qualifier value)")
-		XCTAssertEqual(inst!.product!.form!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
-		XCTAssertEqual(inst!.product!.ingredient![0].amount!.denominator!.value!, 1)	
-		XCTAssertEqual(inst!.product!.ingredient![0].amount!.numerator!.code!, "ml")
-		XCTAssertEqual(inst!.product!.ingredient![0].amount!.numerator!.system!, NSURL(string: "http://unitsofmeasure.org")!)	
-		XCTAssertEqual(inst!.product!.ingredient![0].amount!.numerator!.units!, "ml")
-		XCTAssertEqual(inst!.product!.ingredient![0].amount!.numerator!.value!, 100)	
-		XCTAssertEqual(inst!.product!.ingredient![0].item!.display!, "Combivent")	
-		XCTAssertEqual(inst!.product!.ingredient![0].item!.reference!, "Medication/f001")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>name</b>: Combivent\n      </p>\n      <p>\n        <b>code</b>: \n        <span title=\"Codes: {http://snomed.info/sct 320442002}\">Salbutamol+ipratropium bromide 100micrograms/20micrograms inhaler</span>\n      </p>\n      <p>\n        <b>isBrand</b>: true\n      </p>\n      <p>\n        <b>kind</b>: product\n      </p>\n      <blockquote>\n        <p>\n          <b>product</b>\n        </p>\n        <p>\n          <b>form</b>: \n          <span title=\"Codes: {http://snomed.info/sct 420317006}\">Inhaler (qualifier value)</span>\n        </p>\n        <h3>Ingredients</h3>\n        <table class=\"grid\">\n          <tr>\n            <td>\n              <b>Item</b>\n            </td>\n            <td>\n              <b>Amount</b>\n            </td>\n          </tr>\n          <tr>\n            <td>Combivent</td>\n            <td>100 ml/1 null</td>\n          </tr>\n        </table>\n      </blockquote>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")
+		XCTAssertEqual(inst.code!.coding![0].code!, "320442002")
+		XCTAssertEqual(inst.code!.coding![0].display!, "Salbutamol+ipratropium bromide 100micrograms/20micrograms inhaler")
+		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f001")
+		XCTAssertTrue(inst.isBrand!)
+		XCTAssertEqual(inst.kind!, "product")
+		XCTAssertEqual(inst.name!, "Combivent")
+		XCTAssertEqual(inst.product!.form!.coding![0].code!, "420317006")
+		XCTAssertEqual(inst.product!.form!.coding![0].display!, "Inhaler (qualifier value)")
+		XCTAssertEqual(inst.product!.form!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.product!.ingredient![0].amount!.denominator!.value!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.code!, "ml")
+		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.system!.absoluteString!, "http://unitsofmeasure.org")
+		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.units!, "ml")
+		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.value!, NSDecimalNumber(string: "100"))
+		XCTAssertEqual(inst.product!.ingredient![0].item!.display!, "Combivent")
+		XCTAssertEqual(inst.product!.ingredient![0].item!.reference!, "Medication/f001")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
 	}
 	
 	func testMedication2() {
-		let inst = instantiateFrom("medication-example-f002-crestor.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Medication instance")
+		let instance = testMedication2_impl()
+		testMedication2_impl(json: instance.asJSON())
+	}
+	
+	func testMedication2_impl(json: FHIRJSON? = nil) -> Medication {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example-f002-crestor.json")
 		
-		XCTAssertEqual(inst!.code!.coding![0].code!, "408036003")	
-		XCTAssertEqual(inst!.code!.coding![0].display!, "Rosuvastatin 10mg tablet")
-		XCTAssertEqual(inst!.code!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
-		XCTAssertTrue(inst!.isBrand!)	
-		XCTAssertEqual(inst!.kind!, "product")	
-		XCTAssertEqual(inst!.name!, "Crestor")	
-		XCTAssertEqual(inst!.package!.container!.coding![0].code!, "398124009")	
-		XCTAssertEqual(inst!.package!.container!.coding![0].display!, "drug container")
-		XCTAssertEqual(inst!.package!.container!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>name</b>: Crestor\n      </p>\n      <p>\n        <b>code</b>: \n        <span title=\"Codes: {http://snomed.info/sct 408036003}\">Rosuvastatin 10mg tablet</span>\n      </p>\n      <p>\n        <b>isBrand</b>: true\n      </p>\n      <p>\n        <b>kind</b>: product\n      </p>\n      <blockquote>\n        <p>\n          <b>package</b>\n        </p>\n        <p>\n          <b>container</b>: \n          <span title=\"Codes: {http://snomed.info/sct 398124009}\">drug container</span>\n        </p>\n      </blockquote>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")
+		XCTAssertEqual(inst.code!.coding![0].code!, "408036003")
+		XCTAssertEqual(inst.code!.coding![0].display!, "Rosuvastatin 10mg tablet")
+		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f002")
+		XCTAssertTrue(inst.isBrand!)
+		XCTAssertEqual(inst.kind!, "product")
+		XCTAssertEqual(inst.name!, "Crestor")
+		XCTAssertEqual(inst.package!.container!.coding![0].code!, "398124009")
+		XCTAssertEqual(inst.package!.container!.coding![0].display!, "drug container")
+		XCTAssertEqual(inst.package!.container!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
 	}
 	
 	func testMedication3() {
-		let inst = instantiateFrom("medication-example-f003-tolbutamide.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Medication instance")
+		let instance = testMedication3_impl()
+		testMedication3_impl(json: instance.asJSON())
+	}
+	
+	func testMedication3_impl(json: FHIRJSON? = nil) -> Medication {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example-f003-tolbutamide.json")
 		
-		XCTAssertEqual(inst!.code!.coding![0].code!, "325267004")	
-		XCTAssertEqual(inst!.code!.coding![0].display!, "Tolbutamide 500mg tablet")
-		XCTAssertEqual(inst!.code!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
-		XCTAssertTrue(inst!.isBrand!)	
-		XCTAssertEqual(inst!.kind!, "product")	
-		XCTAssertEqual(inst!.name!, "Tolbutamide")	
-		XCTAssertEqual(inst!.package!.container!.coding![0].code!, "398124009")	
-		XCTAssertEqual(inst!.package!.container!.coding![0].display!, "drug container")
-		XCTAssertEqual(inst!.package!.container!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>name</b>: Tolbutamide\n      </p>\n      <p>\n        <b>code</b>: \n        <span title=\"Codes: {http://snomed.info/sct 325267004}\">Tolbutamide 500mg tablet</span>\n      </p>\n      <p>\n        <b>isBrand</b>: true\n      </p>\n      <p>\n        <b>kind</b>: product\n      </p>\n      <blockquote>\n        <p>\n          <b>package</b>\n        </p>\n        <p>\n          <b>container</b>: \n          <span title=\"Codes: {http://snomed.info/sct 398124009}\">drug container</span>\n        </p>\n      </blockquote>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")
+		XCTAssertEqual(inst.code!.coding![0].code!, "325267004")
+		XCTAssertEqual(inst.code!.coding![0].display!, "Tolbutamide 500mg tablet")
+		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f003")
+		XCTAssertTrue(inst.isBrand!)
+		XCTAssertEqual(inst.kind!, "product")
+		XCTAssertEqual(inst.name!, "Tolbutamide")
+		XCTAssertEqual(inst.package!.container!.coding![0].code!, "398124009")
+		XCTAssertEqual(inst.package!.container!.coding![0].display!, "drug container")
+		XCTAssertEqual(inst.package!.container!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
 	}
 	
 	func testMedication4() {
-		let inst = instantiateFrom("medication-example-f004-metoprolol.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Medication instance")
+		let instance = testMedication4_impl()
+		testMedication4_impl(json: instance.asJSON())
+	}
+	
+	func testMedication4_impl(json: FHIRJSON? = nil) -> Medication {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example-f004-metoprolol.json")
 		
-		XCTAssertEqual(inst!.code!.coding![0].code!, "318475005")	
-		XCTAssertEqual(inst!.code!.coding![0].display!, "Metoprolol tartrate 50mg tablet")
-		XCTAssertEqual(inst!.code!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
-		XCTAssertTrue(inst!.isBrand!)	
-		XCTAssertEqual(inst!.kind!, "product")	
-		XCTAssertEqual(inst!.name!, "Metoprolol")	
-		XCTAssertEqual(inst!.package!.container!.coding![0].code!, "398124009")	
-		XCTAssertEqual(inst!.package!.container!.coding![0].display!, "drug container")
-		XCTAssertEqual(inst!.package!.container!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>name</b>: Metoprolol\n      </p>\n      <p>\n        <b>code</b>: \n        <span title=\"Codes: {http://snomed.info/sct 318475005}\">Metoprolol tartrate 50mg tablet</span>\n      </p>\n      <p>\n        <b>isBrand</b>: true\n      </p>\n      <p>\n        <b>kind</b>: product\n      </p>\n      <blockquote>\n        <p>\n          <b>package</b>\n        </p>\n        <p>\n          <b>container</b>: \n          <span title=\"Codes: {http://snomed.info/sct 398124009}\">drug container</span>\n        </p>\n      </blockquote>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")
+		XCTAssertEqual(inst.code!.coding![0].code!, "318475005")
+		XCTAssertEqual(inst.code!.coding![0].display!, "Metoprolol tartrate 50mg tablet")
+		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f004")
+		XCTAssertTrue(inst.isBrand!)
+		XCTAssertEqual(inst.kind!, "product")
+		XCTAssertEqual(inst.name!, "Metoprolol")
+		XCTAssertEqual(inst.package!.container!.coding![0].code!, "398124009")
+		XCTAssertEqual(inst.package!.container!.coding![0].display!, "drug container")
+		XCTAssertEqual(inst.package!.container!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
 	}
 	
 	func testMedication5() {
-		let inst = instantiateFrom("medication-example-f005-enalapril.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Medication instance")
+		let instance = testMedication5_impl()
+		testMedication5_impl(json: instance.asJSON())
+	}
+	
+	func testMedication5_impl(json: FHIRJSON? = nil) -> Medication {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example-f005-enalapril.json")
 		
-		XCTAssertEqual(inst!.code!.coding![0].code!, "318851002")	
-		XCTAssertEqual(inst!.code!.coding![0].display!, "Enalapril maleate 5mg tablet")
-		XCTAssertEqual(inst!.code!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
-		XCTAssertTrue(inst!.isBrand!)	
-		XCTAssertEqual(inst!.kind!, "product")	
-		XCTAssertEqual(inst!.name!, "Enalapril")	
-		XCTAssertEqual(inst!.package!.container!.coding![0].code!, "398124009")	
-		XCTAssertEqual(inst!.package!.container!.coding![0].display!, "drug container")
-		XCTAssertEqual(inst!.package!.container!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>name</b>: Enalapril\n      </p>\n      <p>\n        <b>code</b>: \n        <span title=\"Codes: {http://snomed.info/sct 318851002}\">Enalapril maleate 5mg tablet</span>\n      </p>\n      <p>\n        <b>isBrand</b>: true\n      </p>\n      <p>\n        <b>kind</b>: product\n      </p>\n      <blockquote>\n        <p>\n          <b>package</b>\n        </p>\n        <p>\n          <b>container</b>: \n          <span title=\"Codes: {http://snomed.info/sct 398124009}\">drug container</span>\n        </p>\n      </blockquote>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")
+		XCTAssertEqual(inst.code!.coding![0].code!, "318851002")
+		XCTAssertEqual(inst.code!.coding![0].display!, "Enalapril maleate 5mg tablet")
+		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f005")
+		XCTAssertTrue(inst.isBrand!)
+		XCTAssertEqual(inst.kind!, "product")
+		XCTAssertEqual(inst.name!, "Enalapril")
+		XCTAssertEqual(inst.package!.container!.coding![0].code!, "398124009")
+		XCTAssertEqual(inst.package!.container!.coding![0].display!, "drug container")
+		XCTAssertEqual(inst.package!.container!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
 	}
 	
 	func testMedication6() {
-		let inst = instantiateFrom("medication-example-f201-salmeterol.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Medication instance")
+		let instance = testMedication6_impl()
+		testMedication6_impl(json: instance.asJSON())
+	}
+	
+	func testMedication6_impl(json: FHIRJSON? = nil) -> Medication {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example-f201-salmeterol.json")
 		
-		XCTAssertEqual(inst!.code!.coding![0].code!, "411106009")	
-		XCTAssertEqual(inst!.code!.coding![0].display!, "25ug Flutacisone + 250ug Salmeterol")
-		XCTAssertEqual(inst!.code!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
-		XCTAssertFalse(inst!.isBrand!)	
-		XCTAssertEqual(inst!.kind!, "product")	
-		XCTAssertEqual(inst!.name!, "Salmeterol/fluticason")	
-		XCTAssertEqual(inst!.product!.form!.coding![0].code!, "421606006")	
-		XCTAssertEqual(inst!.product!.form!.coding![0].display!, "Aerosol spray")
-		XCTAssertEqual(inst!.product!.form!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
-		XCTAssertEqual(inst!.product!.ingredient![0].amount!.denominator!.code!, "PUFF")
-		XCTAssertEqual(inst!.product!.ingredient![0].amount!.denominator!.system!, NSURL(string: "http://hl7.org/fhir/v3/orderableDrugForm")!)
-		XCTAssertEqual(inst!.product!.ingredient![0].amount!.denominator!.value!, 1)	
-		XCTAssertEqual(inst!.product!.ingredient![0].amount!.numerator!.code!, "ug")
-		XCTAssertEqual(inst!.product!.ingredient![0].amount!.numerator!.system!, NSURL(string: "http://unitsofmeasure.org")!)
-		XCTAssertEqual(inst!.product!.ingredient![0].amount!.numerator!.value!, 25)	
-		XCTAssertEqual(inst!.product!.ingredient![0].item!.display!, "flutacisone")	
-		XCTAssertEqual(inst!.product!.ingredient![1].amount!.denominator!.code!, "PUFF")
-		XCTAssertEqual(inst!.product!.ingredient![1].amount!.denominator!.system!, NSURL(string: "http://hl7.org/fhir/v3/orderableDrugForm")!)
-		XCTAssertEqual(inst!.product!.ingredient![1].amount!.denominator!.value!, 1)	
-		XCTAssertEqual(inst!.product!.ingredient![1].amount!.numerator!.code!, "ug")
-		XCTAssertEqual(inst!.product!.ingredient![1].amount!.numerator!.system!, NSURL(string: "http://unitsofmeasure.org")!)
-		XCTAssertEqual(inst!.product!.ingredient![1].amount!.numerator!.value!, 250)	
-		XCTAssertEqual(inst!.product!.ingredient![1].item!.display!, "salmeterol")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>name</b>: Salmeterol/fluticason\n      </p>\n      <p>\n        <b>code</b>: \n        <span title=\"Codes: {http://snomed.info/sct 411106009}\">25ug Flutacisone + 250ug Salmeterol</span>\n      </p>\n      <p>\n        <b>isBrand</b>: false\n      </p>\n      <p>\n        <b>kind</b>: product\n      </p>\n      <blockquote>\n        <p>\n          <b>product</b>\n        </p>\n        <p>\n          <b>form</b>: \n          <span title=\"Codes: {http://snomed.info/sct 421606006}\">Aerosol spray</span>\n        </p>\n        <h3>Ingredients</h3>\n        <table class=\"grid\">\n          <tr>\n            <td>\n              <b>Item</b>\n            </td>\n            <td>\n              <b>Amount</b>\n            </td>\n          </tr>\n          <tr>\n            <td>flutacisone</td>\n            <td>25 ug/1 PUFF</td>\n          </tr>\n          <tr>\n            <td>salmeterol</td>\n            <td>250 ug/1 PUFF</td>\n          </tr>\n        </table>\n      </blockquote>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")
+		XCTAssertEqual(inst.code!.coding![0].code!, "411106009")
+		XCTAssertEqual(inst.code!.coding![0].display!, "25ug Flutacisone + 250ug Salmeterol")
+		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f201")
+		XCTAssertFalse(inst.isBrand!)
+		XCTAssertEqual(inst.kind!, "product")
+		XCTAssertEqual(inst.name!, "Salmeterol/fluticason")
+		XCTAssertEqual(inst.product!.form!.coding![0].code!, "421606006")
+		XCTAssertEqual(inst.product!.form!.coding![0].display!, "Aerosol spray")
+		XCTAssertEqual(inst.product!.form!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.product!.ingredient![0].amount!.denominator!.code!, "PUFF")
+		XCTAssertEqual(inst.product!.ingredient![0].amount!.denominator!.system!.absoluteString!, "http://hl7.org/fhir/v3/orderableDrugForm")
+		XCTAssertEqual(inst.product!.ingredient![0].amount!.denominator!.value!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.code!, "ug")
+		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.system!.absoluteString!, "http://unitsofmeasure.org")
+		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.value!, NSDecimalNumber(string: "25"))
+		XCTAssertEqual(inst.product!.ingredient![0].item!.display!, "flutacisone")
+		XCTAssertEqual(inst.product!.ingredient![1].amount!.denominator!.code!, "PUFF")
+		XCTAssertEqual(inst.product!.ingredient![1].amount!.denominator!.system!.absoluteString!, "http://hl7.org/fhir/v3/orderableDrugForm")
+		XCTAssertEqual(inst.product!.ingredient![1].amount!.denominator!.value!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.product!.ingredient![1].amount!.numerator!.code!, "ug")
+		XCTAssertEqual(inst.product!.ingredient![1].amount!.numerator!.system!.absoluteString!, "http://unitsofmeasure.org")
+		XCTAssertEqual(inst.product!.ingredient![1].amount!.numerator!.value!, NSDecimalNumber(string: "250"))
+		XCTAssertEqual(inst.product!.ingredient![1].item!.display!, "salmeterol")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
 	}
 	
 	func testMedication7() {
-		let inst = instantiateFrom("medication-example-f202-flucloxacilline.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Medication instance")
+		let instance = testMedication7_impl()
+		testMedication7_impl(json: instance.asJSON())
+	}
+	
+	func testMedication7_impl(json: FHIRJSON? = nil) -> Medication {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example-f202-flucloxacilline.json")
 		
-		XCTAssertEqual(inst!.code!.coding![0].code!, "387544009")	
-		XCTAssertEqual(inst!.code!.coding![0].display!, "Flucloxacillin")
-		XCTAssertEqual(inst!.code!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
-		XCTAssertFalse(inst!.isBrand!)	
-		XCTAssertEqual(inst!.kind!, "product")	
-		XCTAssertEqual(inst!.name!, "Flucloxacillin")	
-		XCTAssertEqual(inst!.product!.form!.coding![0].code!, "385218009")	
-		XCTAssertEqual(inst!.product!.form!.coding![0].display!, "Injection")
-		XCTAssertEqual(inst!.product!.form!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>name</b>: Flucloxacillin\n      </p>\n      <p>\n        <b>code</b>: \n        <span title=\"Codes: {http://snomed.info/sct 387544009}\">Flucloxacillin</span>\n      </p>\n      <p>\n        <b>isBrand</b>: false\n      </p>\n      <p>\n        <b>kind</b>: product\n      </p>\n      <blockquote>\n        <p>\n          <b>product</b>\n        </p>\n        <p>\n          <b>form</b>: \n          <span title=\"Codes: {http://snomed.info/sct 385218009}\">Injection</span>\n        </p>\n      </blockquote>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")
+		XCTAssertEqual(inst.code!.coding![0].code!, "387544009")
+		XCTAssertEqual(inst.code!.coding![0].display!, "Flucloxacillin")
+		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f202")
+		XCTAssertFalse(inst.isBrand!)
+		XCTAssertEqual(inst.kind!, "product")
+		XCTAssertEqual(inst.name!, "Flucloxacillin")
+		XCTAssertEqual(inst.product!.form!.coding![0].code!, "385218009")
+		XCTAssertEqual(inst.product!.form!.coding![0].display!, "Injection")
+		XCTAssertEqual(inst.product!.form!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
 	}
 	
 	func testMedication8() {
-		let inst = instantiateFrom("medication-example-f203-paracetamol.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Medication instance")
-		
-		XCTAssertEqual(inst!.code!.coding![0].code!, "387517004")	
-		XCTAssertEqual(inst!.code!.coding![0].display!, "Paracetamol")
-		XCTAssertEqual(inst!.code!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
-		XCTAssertFalse(inst!.isBrand!)	
-		XCTAssertEqual(inst!.kind!, "product")	
-		XCTAssertEqual(inst!.name!, "Paracetamol")	
-		XCTAssertEqual(inst!.product!.form!.coding![0].code!, "385055001")	
-		XCTAssertEqual(inst!.product!.form!.coding![0].display!, "Tablet")
-		XCTAssertEqual(inst!.product!.form!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>name</b>: Paracetamol\n      </p>\n      <p>\n        <b>code</b>: \n        <span title=\"Codes: {http://snomed.info/sct 387517004}\">Paracetamol</span>\n      </p>\n      <p>\n        <b>isBrand</b>: false\n      </p>\n      <p>\n        <b>kind</b>: product\n      </p>\n      <blockquote>\n        <p>\n          <b>product</b>\n        </p>\n        <p>\n          <b>form</b>: \n          <span title=\"Codes: {http://snomed.info/sct 385055001}\">Tablet</span>\n        </p>\n      </blockquote>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")
+		let instance = testMedication8_impl()
+		testMedication8_impl(json: instance.asJSON())
 	}
 	
-	func testMedication9() {
-		let inst = instantiateFrom("medication-example.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Medication instance")
+	func testMedication8_impl(json: FHIRJSON? = nil) -> Medication {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medication-example-f203-paracetamol.json")
 		
-		XCTAssertEqual(inst!.code!.coding![0].code!, "323418000")	
-		XCTAssertEqual(inst!.code!.coding![0].display!, "Phenoxymethylpenicillin 125mg/5mL oral solution (product)")
-		XCTAssertEqual(inst!.code!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
-		XCTAssertEqual(inst!.code!.coding![1].code!, "22571011000036102")	
-		XCTAssertEqual(inst!.code!.coding![1].display!, "phenoxymethylpenicillin 125 mg / 5 mL oral liquid, 5 mL measure")
-		XCTAssertEqual(inst!.code!.coding![1].system!, NSURL(string: "http://nehta.gov.au/amt/v2")!)
-		XCTAssertFalse(inst!.isBrand!)	
-		XCTAssertEqual(inst!.kind!, "product")	
-		XCTAssertEqual(inst!.name!, "Penicillin VK oral suspension 125mg/5ml")	
-		XCTAssertEqual(inst!.product!.form!.coding![0].code!, "37595005")	
-		XCTAssertEqual(inst!.product!.form!.coding![0].display!, "Suspension")
-		XCTAssertEqual(inst!.product!.form!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
-		XCTAssertEqual(inst!.text!.div!, "<div>123456789: Penicillin VK oral suspension 125mg/5ml</div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")
+		XCTAssertEqual(inst.code!.coding![0].code!, "387517004")
+		XCTAssertEqual(inst.code!.coding![0].display!, "Paracetamol")
+		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id!, "f203")
+		XCTAssertFalse(inst.isBrand!)
+		XCTAssertEqual(inst.kind!, "product")
+		XCTAssertEqual(inst.name!, "Paracetamol")
+		XCTAssertEqual(inst.product!.form!.coding![0].code!, "385055001")
+		XCTAssertEqual(inst.product!.form!.coding![0].display!, "Tablet")
+		XCTAssertEqual(inst.product!.form!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
 	}
 }

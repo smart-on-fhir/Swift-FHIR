@@ -1,89 +1,113 @@
 //
 //  ValueSetTests.swift
-//  ValueSetTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
-import Cocoa
 import XCTest
 import SwiftFHIR
 
 
 class ValueSetTests: FHIRModelTestCase
 {
-	func instantiateFrom(filename: String) -> ValueSet? {
-		let json = readJSONFile(filename)
+	func instantiateFrom(# filename: String) -> ValueSet {
+		return instantiateFrom(json: readJSONFile(filename)!)
+	}
+	
+	func instantiateFrom(# json: FHIRJSON) -> ValueSet {
 		let instance = ValueSet(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
 	func testValueSet1() {
-		let inst = instantiateFrom("valueset-example.json")
-		XCTAssertNotNil(inst, "Must have instantiated a ValueSet instance")
+		let instance = testValueSet1_impl()
+		testValueSet1_impl(json: instance.asJSON())
+	}
+	
+	func testValueSet1_impl(json: FHIRJSON? = nil) -> ValueSet {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "valueset-example.json")
 		
-		XCTAssertEqual(inst!.compose!.include![0].code![0], "14647-2")	
-		XCTAssertEqual(inst!.compose!.include![0].code![1], "2093-3")	
-		XCTAssertEqual(inst!.compose!.include![0].code![2], "35200-5")	
-		XCTAssertEqual(inst!.compose!.include![0].code![3], "9342-7")
-		XCTAssertEqual(inst!.compose!.include![0].system!, NSURL(string: "http://loinc.org")!)	
-		XCTAssertEqual(inst!.compose!.include![0].version!, "2.36")
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2012-06-13")!)	
-		XCTAssertEqual(inst!.description!, "This is an example value set that includes        all the LOINC codes for serum cholesterol from v2.36")
-		XCTAssertTrue(inst!.experimental!)	
-		XCTAssertEqual(inst!.identifier!, "256a5231-a2bb-49bd-9fea-f349d428b70d")	
-		XCTAssertEqual(inst!.name!, "LOINC Codes for Cholesterol")	
-		XCTAssertEqual(inst!.publisher!, "FHIR project team (example)")	
-		XCTAssertEqual(inst!.status!, "draft")	
-		XCTAssertEqual(inst!.telecom![0].system!, "url")	
-		XCTAssertEqual(inst!.telecom![0].value!, "http://hl7.org/fhir")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>Value set &quot;LOINC Codes for Cholesterol&quot;: This is an example value set that includes \n        all the LOINC codes for serum cholesterol from v2.36. \n        Developed by: FHIR project team (example)</p>\n      <p>Published for testing on 13-June 2012</p>\n      <p>This is a restriction on\n<a href=\"http://hl7.org/svc/fhir/ValueSet/03acace4-5206-4c8f-a8b4-df27a4c18b09?format=text/html\">\n        the value set &quot;all serum test codes&quot;</a>, and contains the following LOINC codes:</p>\n      <ul>\n        <li>14647-2</li>\n        <li>2093-3</li>\n        <li>35200-5</li>\n        <li>9342-7</li>\n      </ul>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")	
-		XCTAssertEqual(inst!.version!, "20120613")
+		XCTAssertEqual(inst.compose!.include![0].concept![0].code!, "14647-2")
+		XCTAssertEqual(inst.compose!.include![0].concept![1].code!, "2093-3")
+		XCTAssertEqual(inst.compose!.include![0].concept![2].code!, "35200-5")
+		XCTAssertEqual(inst.compose!.include![0].concept![3].code!, "9342-7")
+		XCTAssertEqual(inst.compose!.include![0].system!.absoluteString!, "http://loinc.org")
+		XCTAssertEqual(inst.compose!.include![0].version!, "2.36")
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.copyright!, "This content from LOINC® is copyright © 1995 Regenstrief Institute, Inc. and the LOINC Committee, and available at no cost under the license at http://loinc.org/terms-of-use")
+		XCTAssertEqual(inst.date!.description, "2012-06-13")
+		XCTAssertEqual(inst.description_fhir!, "This is an example value set that includes        all the LOINC codes for serum cholesterol from v2.36")
+		XCTAssertTrue(inst.experimental!)
+		XCTAssertEqual(inst.id!, "101")
+		XCTAssertEqual(inst.name!, "LOINC Codes for Cholesterol")
+		XCTAssertEqual(inst.publisher!, "FHIR project team (example)")
+		XCTAssertEqual(inst.status!, "draft")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.url!.absoluteString!, "urn:uuid:256a5231-a2bb-49bd-9fea-f349d428b70d")
+		XCTAssertEqual(inst.version!, "20120613")
+		
+		return inst
 	}
 	
 	func testValueSet2() {
-		let inst = instantiateFrom("valueset-list-example-codes.json")
-		XCTAssertNotNil(inst, "Must have instantiated a ValueSet instance")
+		let instance = testValueSet2_impl()
+		testValueSet2_impl(json: instance.asJSON())
+	}
+	
+	func testValueSet2_impl(json: FHIRJSON? = nil) -> ValueSet {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "valueset-list-example-codes.json")
 		
-		XCTAssertEqual(inst!.define!.concept![0].code!, "alerts")	
-		XCTAssertEqual(inst!.define!.concept![0].definition!, "A list of alerts for the patient")	
-		XCTAssertEqual(inst!.define!.concept![0].display!, "Alerts")	
-		XCTAssertEqual(inst!.define!.concept![1].code!, "adverserxns")	
-		XCTAssertEqual(inst!.define!.concept![1].definition!, "A list of part adverse reactions")	
-		XCTAssertEqual(inst!.define!.concept![1].display!, "Adverse Reactions")	
-		XCTAssertEqual(inst!.define!.concept![2].code!, "allergies")	
-		XCTAssertEqual(inst!.define!.concept![2].definition!, "A list of Allergies for the patient")	
-		XCTAssertEqual(inst!.define!.concept![2].display!, "Allergies")	
-		XCTAssertEqual(inst!.define!.concept![3].code!, "medications")	
-		XCTAssertEqual(inst!.define!.concept![3].definition!, "A list of medication statements for the patient")	
-		XCTAssertEqual(inst!.define!.concept![3].display!, "Medication List")	
-		XCTAssertEqual(inst!.define!.concept![4].code!, "problems")	
-		XCTAssertEqual(inst!.define!.concept![4].definition!, "A list of problems that the patient is known of have (or have had in the past)")	
-		XCTAssertEqual(inst!.define!.concept![4].display!, "Problem List")	
-		XCTAssertEqual(inst!.define!.concept![5].code!, "worklist")	
-		XCTAssertEqual(inst!.define!.concept![5].definition!, "A list of items that constitute a set of work to be performed (typically this code would be specialised for more specific uses, such as a ward round list)")	
-		XCTAssertEqual(inst!.define!.concept![5].display!, "Worklist")	
-		XCTAssertEqual(inst!.define!.concept![6].code!, "waiting")	
-		XCTAssertEqual(inst!.define!.concept![6].definition!, "A list of items waiting for an event (perhaps a surgical patient waiting list)")	
-		XCTAssertEqual(inst!.define!.concept![6].display!, "Waiting List")	
-		XCTAssertEqual(inst!.define!.concept![7].code!, "protocols")	
-		XCTAssertEqual(inst!.define!.concept![7].definition!, "A set of protocols to be followed")	
-		XCTAssertEqual(inst!.define!.concept![7].display!, "Protocols")	
-		XCTAssertEqual(inst!.define!.concept![8].code!, "plans")	
-		XCTAssertEqual(inst!.define!.concept![8].definition!, "A set of care plans that apply in a particular context of care")	
-		XCTAssertEqual(inst!.define!.concept![8].display!, "Care Plans")
-		XCTAssertEqual(inst!.define!.system!, NSURL(string: "http://hl7.org/fhir/list-example-use-codes")!)	
-		XCTAssertEqual(inst!.description!, "Example use codes for the List resource - typical kinds of use. TODO: Does LOINC define useful codes?")	
-		XCTAssertEqual(inst!.identifier!, "http://hl7.org/fhir/vs/list-example-codes")	
-		XCTAssertEqual(inst!.name!, "Example Use Codes for List")	
-		XCTAssertEqual(inst!.publisher!, "FHIR Project")	
-		XCTAssertEqual(inst!.status!, "draft")	
-		XCTAssertEqual(inst!.telecom![0].system!, "url")	
-		XCTAssertEqual(inst!.telecom![0].value!, "http://hl7.org/fhir")	
-		XCTAssertEqual(inst!.text!.div!, "<div><h2>Example Use Codes for List</h2><p>Example use codes for the List resource - typical kinds of use. TODO: Does LOINC define useful codes?</p><p>This value set defines its own terms in the system http://hl7.org/fhir/list-example-use-codes</p><table><tr><td><b>Code</b></td><td><b>Display</b></td><td><b>Definition</b></td></tr><tr><td>alerts<a name=\"alerts\"> </a></td><td>Alerts</td><td>A list of alerts for the patient</td></tr><tr><td>adverserxns<a name=\"adverserxns\"> </a></td><td>Adverse Reactions</td><td>A list of part adverse reactions</td></tr><tr><td>allergies<a name=\"allergies\"> </a></td><td>Allergies</td><td>A list of Allergies for the patient</td></tr><tr><td>medications<a name=\"medications\"> </a></td><td>Medication List</td><td>A list of medication statements for the patient</td></tr><tr><td>problems<a name=\"problems\"> </a></td><td>Problem List</td><td>A list of problems that the patient is known of have (or have had in the past)</td></tr><tr><td>worklist<a name=\"worklist\"> </a></td><td>Worklist</td><td>A list of items that constitute a set of work to be performed (typically this code would be specialised for more specific uses, such as a ward round list)</td></tr><tr><td>waiting<a name=\"waiting\"> </a></td><td>Waiting List</td><td>A list of items waiting for an event (perhaps a surgical patient waiting list)</td></tr><tr><td>protocols<a name=\"protocols\"> </a></td><td>Protocols</td><td>A set of protocols to be followed</td></tr><tr><td>plans<a name=\"plans\"> </a></td><td>Care Plans</td><td>A set of care plans that apply in a particular context of care</td></tr></table></div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertTrue(inst.define!.caseSensitive!)
+		XCTAssertEqual(inst.define!.concept![0].code!, "alerts")
+		XCTAssertEqual(inst.define!.concept![0].definition!, "A list of alerts for the patient")
+		XCTAssertEqual(inst.define!.concept![0].display!, "Alerts")
+		XCTAssertEqual(inst.define!.concept![1].code!, "adverserxns")
+		XCTAssertEqual(inst.define!.concept![1].definition!, "A list of part adverse reactions")
+		XCTAssertEqual(inst.define!.concept![1].display!, "Adverse Reactions")
+		XCTAssertEqual(inst.define!.concept![2].code!, "allergies")
+		XCTAssertEqual(inst.define!.concept![2].definition!, "A list of Allergies for the patient")
+		XCTAssertEqual(inst.define!.concept![2].display!, "Allergies")
+		XCTAssertEqual(inst.define!.concept![3].code!, "medications")
+		XCTAssertEqual(inst.define!.concept![3].definition!, "A list of medication statements for the patient")
+		XCTAssertEqual(inst.define!.concept![3].display!, "Medication List")
+		XCTAssertEqual(inst.define!.concept![4].code!, "problems")
+		XCTAssertEqual(inst.define!.concept![4].definition!, "A list of problems that the patient is known of have (or have had in the past)")
+		XCTAssertEqual(inst.define!.concept![4].display!, "Problem List")
+		XCTAssertEqual(inst.define!.concept![5].code!, "worklist")
+		XCTAssertEqual(inst.define!.concept![5].definition!, "A list of items that constitute a set of work to be performed (typically this code would be specialised for more specific uses, such as a ward round list)")
+		XCTAssertEqual(inst.define!.concept![5].display!, "Worklist")
+		XCTAssertEqual(inst.define!.concept![6].code!, "waiting")
+		XCTAssertEqual(inst.define!.concept![6].definition!, "A list of items waiting for an event (perhaps a surgical patient waiting list)")
+		XCTAssertEqual(inst.define!.concept![6].display!, "Waiting List")
+		XCTAssertEqual(inst.define!.concept![7].code!, "protocols")
+		XCTAssertEqual(inst.define!.concept![7].definition!, "A set of protocols to be followed")
+		XCTAssertEqual(inst.define!.concept![7].display!, "Protocols")
+		XCTAssertEqual(inst.define!.concept![8].code!, "plans")
+		XCTAssertEqual(inst.define!.concept![8].definition!, "A set of care plans that apply in a particular context of care")
+		XCTAssertEqual(inst.define!.concept![8].display!, "Care Plans")
+		XCTAssertEqual(inst.define!.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/valueset-oid")
+		XCTAssertEqual(inst.define!.extension_fhir![0].valueUri!.absoluteString!, "urn:oid:null")
+		XCTAssertEqual(inst.define!.system!.absoluteString!, "http://hl7.org/fhir/list-example-use-codes")
+		XCTAssertEqual(inst.description_fhir!, "Example use codes for the List resource - typical kinds of use. TODO: Does LOINC define useful codes?")
+		XCTAssertTrue(inst.experimental!)
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/valueset-oid")
+		XCTAssertEqual(inst.extension_fhir![0].valueUri!.absoluteString!, "urn:oid:2.16.840.1.113883.4.642.2.320")
+		XCTAssertEqual(inst.id!, "valueset-list-example-codes")
+		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2015-04-03T03:26:54.815+00:00")
+		XCTAssertEqual(inst.meta!.profile![0].absoluteString!, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
+		XCTAssertEqual(inst.name!, "Example Use Codes for List")
+		XCTAssertEqual(inst.publisher!, "FHIR Project")
+		XCTAssertEqual(inst.status!, "draft")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.url!.absoluteString!, "http://hl7.org/fhir/vs/list-example-codes")
+		XCTAssertEqual(inst.version!, "0.5.0")
+		
+		return inst
 	}
 }

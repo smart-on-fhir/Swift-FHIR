@@ -1,9 +1,9 @@
 //
 //  Organization.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (organization.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Organization) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -12,12 +12,11 @@ import Foundation
 /**
  *  A grouping of people or organizations with a common purpose.
  *
- *  Scope and Usage This resource may be used in a shared registry of contact and other information for various
- *  organizations or it can be used merely as a support for other resources that need to reference organizations,
- *  perhaps as a document, message or as a contained resource. If using a registry approach, it's entirely possible for
- *  multiple registries to exist, each dealing with different types or levels of organization.
+ *  A formally or informally recognized grouping of people or organizations formed for the purpose of achieving some
+ *  form of collective action.  Includes companies, institutions, corporations, departments, community groups,
+ *  healthcare practice groups, etc.
  */
-public class Organization: FHIRResource
+public class Organization: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Organization" }
@@ -35,59 +34,77 @@ public class Organization: FHIRResource
 	/// Identifies this organization  across multiple systems
 	public var identifier: [Identifier]?
 	
-	/// Location(s) the organization uses to provide services
-	public var location: [FHIRReference<Location>]?
-	
 	/// Name used for the organization
 	public var name: String?
 	
 	/// The organization of which this organization forms a part
-	public var partOf: FHIRReference<Organization>?
+	public var partOf: Reference?
 	
 	/// A contact detail for the organization
-	public var telecom: [Contact]?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
+	public var telecom: [ContactPoint]?
 	
 	/// Kind of organization
 	public var type: CodeableConcept?
 	
-
-	public required init(json: NSDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["active"] as? Bool {
 				self.active = val
 			}
-			if let val = js["address"] as? [NSDictionary] {
+			if let val = js["address"] as? [FHIRJSON] {
 				self.address = Address.from(val, owner: self) as? [Address]
 			}
-			if let val = js["contact"] as? [NSDictionary] {
+			if let val = js["contact"] as? [FHIRJSON] {
 				self.contact = OrganizationContact.from(val, owner: self) as? [OrganizationContact]
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
-			}
-			if let val = js["location"] as? [NSDictionary] {
-				self.location = FHIRReference.from(val, owner: self)
 			}
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["partOf"] as? NSDictionary {
-				self.partOf = FHIRReference(json: val, owner: self)
+			if let val = js["partOf"] as? FHIRJSON {
+				self.partOf = Reference(json: val, owner: self)
 			}
-			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val, owner: self) as? [Contact]
+			if let val = js["telecom"] as? [FHIRJSON] {
+				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
-			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let active = self.active {
+			json["active"] = active.asJSON()
+		}
+		if let address = self.address {
+			json["address"] = Address.asJSONArray(address)
+		}
+		if let contact = self.contact {
+			json["contact"] = OrganizationContact.asJSONArray(contact)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let partOf = self.partOf {
+			json["partOf"] = partOf.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -96,12 +113,13 @@ public class Organization: FHIRResource
  *  Contact for the organization for a certain purpose.
  */
 public class OrganizationContact: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "OrganizationContact" }
+	}
+	
 	/// Visiting or postal addresses for the contact
 	public var address: Address?
-	
-	/// Gender for administrative purposes
-	public var gender: CodeableConcept?
 	
 	/// A name associated with the contact
 	public var name: HumanName?
@@ -110,28 +128,43 @@ public class OrganizationContact: FHIRElement
 	public var purpose: CodeableConcept?
 	
 	/// Contact details (telephone, email, etc)  for a contact
-	public var telecom: [Contact]?
+	public var telecom: [ContactPoint]?
 	
-
-	public required init(json: NSDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["address"] as? NSDictionary {
+			if let val = js["address"] as? FHIRJSON {
 				self.address = Address(json: val, owner: self)
 			}
-			if let val = js["gender"] as? NSDictionary {
-				self.gender = CodeableConcept(json: val, owner: self)
-			}
-			if let val = js["name"] as? NSDictionary {
+			if let val = js["name"] as? FHIRJSON {
 				self.name = HumanName(json: val, owner: self)
 			}
-			if let val = js["purpose"] as? NSDictionary {
+			if let val = js["purpose"] as? FHIRJSON {
 				self.purpose = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val, owner: self) as? [Contact]
+			if let val = js["telecom"] as? [FHIRJSON] {
+				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let address = self.address {
+			json["address"] = address.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let purpose = self.purpose {
+			json["purpose"] = purpose.asJSON()
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		
+		return json
 	}
 }
 

@@ -1,21 +1,25 @@
 //
 //  Count.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Count.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Count) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
 
 
 /**
- *  Profile for Count on Quantity.
+ *  A count of a discrete element (no unit).
  *
- *  Basic Profile for Count on Quantity for validation support
+ *  There SHALL be a code with a value of "1" if there is a value and it SHALL be an expression of length.  If system is
+ *  present, it SHALL be UCUM.  If present, the value SHALL a whole number.
  */
 public class Count: Quantity
-{	
+{
+	override public class var resourceName: String {
+		get { return "Count" }
+	}
 
 }
 

@@ -1,132 +1,278 @@
 //
 //  AllergyIntolerance.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (allergyintolerance.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
 
 
 /**
- *  Drug, food, environmental and others.
+ *  Allergy or Intolerance (generally: Risk Of Adverse reaction to a substance).
  *
- *  Scope and Usage Allergy/Intolerance resources are used to provide information about adverse sensitivities to
- *  substances that lead to physiologic changes that are clinically observable. An adverse sensitivity is defined as:
- *  
- *  A condition expected to result in undesirable physiologic reaction to an amount of a substance that would not
- *  produce a reaction in most individuals. The substance is the trigger of an immunologic response that produces the
- *  observed physiologic changes, or in some instances nonimmunologic mechanisms that produce clinically identical
- *  physiologic changes. The immunologic response might be considered the actual cause of the reaction, but it is
- *  exposure to the trigger substance that is clinically observable.
- *  
- *  This definition excludes clinically identical episodes that may be caused by physical agents, such as heat, cold,
- *  sunlight, or vibration, by exercise activity, or by infectious agents. Those conditions caused by physical agents or
- *  infectious would be captured on the problem list (List/Condition Resources). The allergy/intolerance list is a list
- *  of conditions that represent a propensity unique to this individual for a reaction upon future exposure to a
- *  specified substance.
- *  
- *  Note that this specification draws a distinction between the patients condition/problem list and an
- *  allergy/intolerance list, even though allergies and intolerances are also conditions. This is because the
- *  distinction is a long established clinical workflow, even to patients. Asking an individual "if they have any
- *  problems" is not going to invoke an account of their past reactions to medications or foods. Instead, they are asked
- *  if they "have any allergies". An allergy/intolerance is also different in that a potential harm from exposure to an
- *  external substance that may be ordered by a provider in the course of their care but is not inherent to exposure to
- *  that substance for the general population.
+ *  Risk of harmful or undesirable, physiological response which is unique to an individual and associated with exposure
+ *  to a substance.
  */
-public class AllergyIntolerance: FHIRResource
+public class AllergyIntolerance: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "AllergyIntolerance" }
 	}
 	
-	/// fatal | high | medium | low
+	/// food | medication | environment - Category of Substance
+	public var category: String?
+	
+	/// Additional text not captured in other fields
+	public var comment: String?
+	
+	/// low | high | unassessible - Estimated potential clinical harm
 	public var criticality: String?
+	
+	/// Adverse Reaction Events linked to exposure to substance
+	public var event: [AllergyIntoleranceEvent]?
 	
 	/// External Ids for this item
 	public var identifier: [Identifier]?
 	
-	/// Reactions associated with the sensitivity
-	public var reaction: [FHIRReference<AdverseReaction>]?
-	
-	/// When recorded
-	public var recordedDate: NSDate?
-	
-	/// Who recorded the sensitivity
-	public var recorder: FHIRReference<Practitioner>?
-	
-	/// Observations that confirm or refute
-	public var sensitivityTest: [FHIRReference<Observation>]?
-	
-	/// allergy | intolerance | unknown
-	public var sensitivityType: String?
-	
-	/// suspected | confirmed | refuted | resolved
-	public var status: String?
+	/// Date(/time) of last known occurence of a reaction
+	public var lastOccurence: DateTime?
 	
 	/// Who the sensitivity is for
-	public var subject: FHIRReference<Patient>?
+	public var patient: Reference?
 	
-	/// The substance that causes the sensitivity
-	public var substance: FHIRReference<Substance>?
+	/// When recorded
+	public var recordedDate: DateTime?
 	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
+	/// Who recorded the sensitivity
+	public var recorder: Reference?
 	
-	public convenience init(sensitivityType: String?, status: String?, subject: FHIRReference<Patient>?, substance: FHIRReference<Substance>?) {
+	/// Source of the information about the allergy
+	public var reporter: Reference?
+	
+	/// unconfirmed | confirmed | resolved | refuted | entered-in-error
+	public var status: String?
+	
+	/// Substance, (or class) considered to be responsible for risk
+	public var substance: CodeableConcept?
+	
+	/// immune | non-immune - Underlying mechanism (if known)
+	public var type: String?
+	
+	public convenience init(patient: Reference?, substance: CodeableConcept?) {
 		self.init(json: nil)
-		if nil != sensitivityType {
-			self.sensitivityType = sensitivityType
-		}
-		if nil != status {
-			self.status = status
-		}
-		if nil != subject {
-			self.subject = subject
+		if nil != patient {
+			self.patient = patient
 		}
 		if nil != substance {
 			self.substance = substance
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["category"] as? String {
+				self.category = val
+			}
+			if let val = js["comment"] as? String {
+				self.comment = val
+			}
 			if let val = js["criticality"] as? String {
 				self.criticality = val
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["event"] as? [FHIRJSON] {
+				self.event = AllergyIntoleranceEvent.from(val, owner: self) as? [AllergyIntoleranceEvent]
+			}
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["reaction"] as? [NSDictionary] {
-				self.reaction = FHIRReference.from(val, owner: self)
+			if let val = js["lastOccurence"] as? String {
+				self.lastOccurence = DateTime(string: val)
+			}
+			if let val = js["patient"] as? FHIRJSON {
+				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["recordedDate"] as? String {
-				self.recordedDate = NSDate(json: val)
+				self.recordedDate = DateTime(string: val)
 			}
-			if let val = js["recorder"] as? NSDictionary {
-				self.recorder = FHIRReference(json: val, owner: self)
+			if let val = js["recorder"] as? FHIRJSON {
+				self.recorder = Reference(json: val, owner: self)
 			}
-			if let val = js["sensitivityTest"] as? [NSDictionary] {
-				self.sensitivityTest = FHIRReference.from(val, owner: self)
-			}
-			if let val = js["sensitivityType"] as? String {
-				self.sensitivityType = val
+			if let val = js["reporter"] as? FHIRJSON {
+				self.reporter = Reference(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? NSDictionary {
-				self.subject = FHIRReference(json: val, owner: self)
+			if let val = js["substance"] as? FHIRJSON {
+				self.substance = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["substance"] as? NSDictionary {
-				self.substance = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+			if let val = js["type"] as? String {
+				self.type = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let comment = self.comment {
+			json["comment"] = comment.asJSON()
+		}
+		if let criticality = self.criticality {
+			json["criticality"] = criticality.asJSON()
+		}
+		if let event = self.event {
+			json["event"] = AllergyIntoleranceEvent.asJSONArray(event)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let lastOccurence = self.lastOccurence {
+			json["lastOccurence"] = lastOccurence.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let recordedDate = self.recordedDate {
+			json["recordedDate"] = recordedDate.asJSON()
+		}
+		if let recorder = self.recorder {
+			json["recorder"] = recorder.asJSON()
+		}
+		if let reporter = self.reporter {
+			json["reporter"] = reporter.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let substance = self.substance {
+			json["substance"] = substance.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Adverse Reaction Events linked to exposure to substance.
+ *
+ *  Details about each Adverse Reaction Event linked to exposure to the identified Substance.
+ */
+public class AllergyIntoleranceEvent: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "AllergyIntoleranceEvent" }
+	}
+	
+	/// unlikely | likely | confirmed - clinical certainty about the specific substance
+	public var certainty: String?
+	
+	/// Text about event not captured in other fields
+	public var comment: String?
+	
+	/// Description of the event as a whole
+	public var description_fhir: String?
+	
+	/// How long Manifestations persisted
+	public var duration: Duration?
+	
+	/// How the subject was exposed to the substance
+	public var exposureRoute: CodeableConcept?
+	
+	/// Clinical symptoms/signs associated with the Event
+	public var manifestation: [CodeableConcept]?
+	
+	/// Date(/time) when manifestations showed
+	public var onset: DateTime?
+	
+	/// mild | moderate | severe (of event as a whole)
+	public var severity: String?
+	
+	/// Specific substance considered to be responsible for event
+	public var substance: CodeableConcept?
+	
+	public convenience init(manifestation: [CodeableConcept]?) {
+		self.init(json: nil)
+		if nil != manifestation {
+			self.manifestation = manifestation
+		}
+	}
+	
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["certainty"] as? String {
+				self.certainty = val
+			}
+			if let val = js["comment"] as? String {
+				self.comment = val
+			}
+			if let val = js["description"] as? String {
+				self.description_fhir = val
+			}
+			if let val = js["duration"] as? FHIRJSON {
+				self.duration = Duration(json: val, owner: self)
+			}
+			if let val = js["exposureRoute"] as? FHIRJSON {
+				self.exposureRoute = CodeableConcept(json: val, owner: self)
+			}
+			if let val = js["manifestation"] as? [FHIRJSON] {
+				self.manifestation = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			}
+			if let val = js["onset"] as? String {
+				self.onset = DateTime(string: val)
+			}
+			if let val = js["severity"] as? String {
+				self.severity = val
+			}
+			if let val = js["substance"] as? FHIRJSON {
+				self.substance = CodeableConcept(json: val, owner: self)
+			}
+		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let certainty = self.certainty {
+			json["certainty"] = certainty.asJSON()
+		}
+		if let comment = self.comment {
+			json["comment"] = comment.asJSON()
+		}
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
+		}
+		if let duration = self.duration {
+			json["duration"] = duration.asJSON()
+		}
+		if let exposureRoute = self.exposureRoute {
+			json["exposureRoute"] = exposureRoute.asJSON()
+		}
+		if let manifestation = self.manifestation {
+			json["manifestation"] = CodeableConcept.asJSONArray(manifestation)
+		}
+		if let onset = self.onset {
+			json["onset"] = onset.asJSON()
+		}
+		if let severity = self.severity {
+			json["severity"] = severity.asJSON()
+		}
+		if let substance = self.substance {
+			json["substance"] = substance.asJSON()
+		}
+		
+		return json
 	}
 }
 

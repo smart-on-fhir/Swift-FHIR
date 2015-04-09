@@ -1,266 +1,359 @@
 //
 //  OrganizationTests.swift
-//  OrganizationTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
-import Cocoa
 import XCTest
 import SwiftFHIR
 
 
 class OrganizationTests: FHIRModelTestCase
 {
-	func instantiateFrom(filename: String) -> Organization? {
-		let json = readJSONFile(filename)
+	func instantiateFrom(# filename: String) -> Organization {
+		return instantiateFrom(json: readJSONFile(filename)!)
+	}
+	
+	func instantiateFrom(# json: FHIRJSON) -> Organization {
 		let instance = Organization(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
 	func testOrganization1() {
-		let inst = instantiateFrom("organization-example-f001-burgers.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Organization instance")
+		let instance = testOrganization1_impl()
+		testOrganization1_impl(json: instance.asJSON())
+	}
+	
+	func testOrganization1_impl(json: FHIRJSON? = nil) -> Organization {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "org-uslab-example1.json")
 		
-		XCTAssertEqual(inst!.address![0].city!, "Den Burg")	
-		XCTAssertEqual(inst!.address![0].country!, "NLD")	
-		XCTAssertEqual(inst!.address![0].line![0], "Galapagosweg 91")	
-		XCTAssertEqual(inst!.address![0].use!, "work")	
-		XCTAssertEqual(inst!.address![0].zip!, "9105 PZ")	
-		XCTAssertEqual(inst!.address![1].city!, "Den Burg")	
-		XCTAssertEqual(inst!.address![1].country!, "NLD")	
-		XCTAssertEqual(inst!.address![1].line![0], "PO Box 2311")	
-		XCTAssertEqual(inst!.address![1].use!, "work")	
-		XCTAssertEqual(inst!.address![1].zip!, "9100 AA")	
-		XCTAssertEqual(inst!.contact![0].purpose!.coding![0].code!, "PRESS")
-		XCTAssertEqual(inst!.contact![0].purpose!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/contactentity-type")!)	
-		XCTAssertEqual(inst!.contact![0].telecom![0].system!, "phone")	
-		XCTAssertEqual(inst!.contact![0].telecom![0].value!, "022-655 2334")	
-		XCTAssertEqual(inst!.contact![1].purpose!.coding![0].code!, "PATINF")
-		XCTAssertEqual(inst!.contact![1].purpose!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/contactentity-type")!)	
-		XCTAssertEqual(inst!.contact![1].telecom![0].system!, "phone")	
-		XCTAssertEqual(inst!.contact![1].telecom![0].value!, "022-655 2335")
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:oid:2.16.528.1")!)	
-		XCTAssertEqual(inst!.identifier![0].use!, "official")	
-		XCTAssertEqual(inst!.identifier![0].value!, "91654")
-		XCTAssertEqual(inst!.identifier![1].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.6.1")!)	
-		XCTAssertEqual(inst!.identifier![1].use!, "usual")	
-		XCTAssertEqual(inst!.identifier![1].value!, "17-0112278")	
-		XCTAssertEqual(inst!.name!, "Burgers University Medical Center")	
-		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
-		XCTAssertEqual(inst!.telecom![0].use!, "work")	
-		XCTAssertEqual(inst!.telecom![0].value!, "022-655 2300")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>identifier</b>: 91654 (official), 17-0112278 (usual)\n      </p>\n      <p>\n        <b>name</b>: Burgers University Medical Center\n      </p>\n      <p>\n        <b>type</b>: \n        <span title=\"Codes: {urn:oid:2.16.840.1.113883.2.4.15.1060 V6}, {http://hl7.org/fhir/organization-type prov}\">University Medical Hospital</span>\n      </p>\n      <p>\n        <b>telecom</b>: ph: 022-655 2300(work)\n      </p>\n      <p>\n        <b>address</b>: \n      </p>\n      <ul>\n        <li>Galapagosweg 91 Den Burg 9105 PZ NLD (work)</li>\n        <li>PO Box 2311 Den Burg 9100 AA NLD (work)</li>\n      </ul>\n      <h3>Contacts</h3>\n      <table class=\"grid\">\n        <tr>\n          <td>\n            <b>Purpose</b>\n          </td>\n          <td>\n            <b>Name</b>\n          </td>\n          <td>\n            <b>Telecom</b>\n          </td>\n          <td>\n            <b>Address</b>\n          </td>\n          <td>\n            <b>Gender</b>\n          </td>\n        </tr>\n        <tr>\n          <td>\n            <span title=\"Codes: {http://hl7.org/fhir/contactentity-type PRESS}\">Press</span>\n          </td>\n          <td> </td>\n          <td>ph: 022-655 2334</td>\n          <td> </td>\n          <td> </td>\n        </tr>\n        <tr>\n          <td>\n            <span title=\"Codes: {http://hl7.org/fhir/contactentity-type PATINF}\">Patient</span>\n          </td>\n          <td> </td>\n          <td>ph: 022-655 2335</td>\n          <td> </td>\n          <td> </td>\n        </tr>\n      </table>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")	
-		XCTAssertEqual(inst!.type!.coding![0].code!, "V6")	
-		XCTAssertEqual(inst!.type!.coding![0].display!, "University Medical Hospital")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.15.1060")!)	
-		XCTAssertEqual(inst!.type!.coding![1].code!, "prov")	
-		XCTAssertEqual(inst!.type!.coding![1].display!, "Healthcare Provider")
-		XCTAssertEqual(inst!.type!.coding![1].system!, NSURL(string: "http://hl7.org/fhir/organization-type")!)
+		XCTAssertEqual(inst.address![0].city!, "Harrisburg")
+		XCTAssertEqual(inst.address![0].country!, "USA")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/us-core-county")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].valueString!, "42043")
+		XCTAssertEqual(inst.address![0].line![0], "Firstcare Way")
+		XCTAssertEqual(inst.address![0].line![1], "Building 1")
+		XCTAssertEqual(inst.address![0].postalCode!, "17111")
+		XCTAssertEqual(inst.address![0].state!, "PA")
+		XCTAssertEqual(inst.address![0].use!, "work")
+		XCTAssertEqual(inst.id!, "uslab-example1")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "https://nppes.cms.hhs.gov/NPPES/")
+		XCTAssertEqual(inst.identifier![0].use!, "official")
+		XCTAssertEqual(inst.identifier![0].value!, "1235349085")
+		XCTAssertEqual(inst.name!, "University Hospital")
+		XCTAssertEqual(inst.telecom![0].system!, "phone")
+		XCTAssertEqual(inst.telecom![0].value!, "(+1) 555-227-1234")
+		XCTAssertEqual(inst.telecom![1].system!, "fax")
+		XCTAssertEqual(inst.telecom![1].value!, "(+1) 555-227-6622")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
 	}
 	
 	func testOrganization2() {
-		let inst = instantiateFrom("organization-example-f002-burgers-card.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Organization instance")
+		let instance = testOrganization2_impl()
+		testOrganization2_impl(json: instance.asJSON())
+	}
 	
-		XCTAssertFalse(inst!.active!)	
-		XCTAssertEqual(inst!.address![0].line![0], "South Wing, floor 2")	
-		XCTAssertEqual(inst!.contact![0].address!.line![0], "South Wing, floor 2")	
-		XCTAssertEqual(inst!.contact![0].name!.text!, "mevr. D. de Haan")	
-		XCTAssertEqual(inst!.contact![0].purpose!.coding![0].code!, "ADMIN")
-		XCTAssertEqual(inst!.contact![0].purpose!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/contactentity-type")!)	
-		XCTAssertEqual(inst!.contact![0].telecom![0].system!, "phone")	
-		XCTAssertEqual(inst!.contact![0].telecom![0].value!, "022-655 2321")	
-		XCTAssertEqual(inst!.contact![0].telecom![1].system!, "email")	
-		XCTAssertEqual(inst!.contact![0].telecom![1].value!, "cardio@burgersumc.nl")	
-		XCTAssertEqual(inst!.contact![0].telecom![2].system!, "fax")	
-		XCTAssertEqual(inst!.contact![0].telecom![2].value!, "022-655 2322")	
-		XCTAssertEqual(inst!.name!, "Burgers UMC Cardiology unit")	
-		XCTAssertEqual(inst!.partOf!.reference!, "Organization/f001")	
-		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
-		XCTAssertEqual(inst!.telecom![0].value!, "022-655 2320")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>name</b>: Burgers UMC Cardiology unit\n      </p>\n      <p>\n        <b>type</b>: \n        <span title=\"Codes: {http://hl7.org/fhir/organization-type dept}\">Hospital Department</span>\n      </p>\n      <p>\n        <b>telecom</b>: ph: 022-655 2320\n      </p>\n      <p>\n        <b>address</b>: South Wing, floor 2 \n      </p>\n      <p>\n        <b>partOf</b>: \n        <a href=\"organization-example-f001-burgers.html\">91654 (official), 17-0112278 (usual); name: Burgers University Medical Center; University Medical Hospital</a>\n      </p>\n      <h3>Contacts</h3>\n      <table class=\"grid\">\n        <tr>\n          <td>\n            <b>Purpose</b>\n          </td>\n          <td>\n            <b>Name</b>\n          </td>\n          <td>\n            <b>Telecom</b>\n          </td>\n          <td>\n            <b>Address</b>\n          </td>\n          <td>\n            <b>Gender</b>\n          </td>\n        </tr>\n        <tr>\n          <td>\n            <span title=\"Codes: {http://hl7.org/fhir/contactentity-type ADMIN}\">Administrative</span>\n          </td>\n          <td>mevr. D. de Haan</td>\n          <td>ph: 022-655 2321</td>\n          <td>South Wing, floor 2 </td>\n          <td> </td>\n        </tr>\n      </table>\n      <p>\n        <b>active</b>: false\n      </p>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")	
-		XCTAssertEqual(inst!.type!.coding![0].code!, "dept")	
-		XCTAssertEqual(inst!.type!.coding![0].display!, "Hospital Department")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/organization-type")!)
+	func testOrganization2_impl(json: FHIRJSON? = nil) -> Organization {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "org-uslab-example2.json")
+		
+		XCTAssertEqual(inst.address![0].city!, "Boston")
+		XCTAssertEqual(inst.address![0].country!, "USA")
+		XCTAssertEqual(inst.address![0].line![0], "Massachusetts Avenue")
+		XCTAssertEqual(inst.address![0].line![1], "Building 1")
+		XCTAssertEqual(inst.address![0].postalCode!, "25025")
+		XCTAssertEqual(inst.address![0].state!, "MA")
+		XCTAssertEqual(inst.address![0].use!, "work")
+		XCTAssertEqual(inst.contact![0].name!.family![0], "Fran")
+		XCTAssertEqual(inst.contact![0].name!.given![0], "Desk")
+		XCTAssertEqual(inst.contact![0].name!.given![1], "T")
+		XCTAssertEqual(inst.contact![0].name!.prefix![0], "Dr")
+		XCTAssertEqual(inst.contact![0].name!.suffix![0], "Jr")
+		XCTAssertEqual(inst.id!, "uslab-example2")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "https://nppes.cms.hhs.gov/NPPES/")
+		XCTAssertEqual(inst.identifier![0].use!, "official")
+		XCTAssertEqual(inst.identifier![0].value!, "8235849085")
+		XCTAssertEqual(inst.name!, "Children's Hospital")
+		XCTAssertEqual(inst.telecom![0].system!, "phone")
+		XCTAssertEqual(inst.telecom![0].value!, "+1 617 555 1234")
+		XCTAssertEqual(inst.telecom![1].system!, "fax")
+		XCTAssertEqual(inst.telecom![1].value!, "+1 555 227 6622")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
 	}
 	
 	func testOrganization3() {
-		let inst = instantiateFrom("organization-example-f003-burgers-ENT.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Organization instance")
+		let instance = testOrganization3_impl()
+		testOrganization3_impl(json: instance.asJSON())
+	}
 	
-		XCTAssertFalse(inst!.active!)	
-		XCTAssertEqual(inst!.address![0].line![0], "West Wing, floor 5")	
-		XCTAssertEqual(inst!.contact![0].address!.line![0], "West Wing, floor 5")	
-		XCTAssertEqual(inst!.contact![0].name!.text!, "mr. F. de Hond")	
-		XCTAssertEqual(inst!.contact![0].purpose!.coding![0].code!, "ADMIN")
-		XCTAssertEqual(inst!.contact![0].purpose!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/contactentity-type")!)	
-		XCTAssertEqual(inst!.contact![0].telecom![0].system!, "phone")	
-		XCTAssertEqual(inst!.contact![0].telecom![0].value!, "022-655 7654")	
-		XCTAssertEqual(inst!.contact![0].telecom![1].system!, "email")	
-		XCTAssertEqual(inst!.contact![0].telecom![1].value!, "KNO@burgersumc.nl")	
-		XCTAssertEqual(inst!.contact![0].telecom![2].system!, "fax")	
-		XCTAssertEqual(inst!.contact![0].telecom![2].value!, "022-655 0998")	
-		XCTAssertEqual(inst!.name!, "Burgers UMC Ear,Nose,Throat unit")	
-		XCTAssertEqual(inst!.partOf!.reference!, "Organization/f001")	
-		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
-		XCTAssertEqual(inst!.telecom![0].value!, "022-655 6780")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>name</b>: Burgers UMC Ear,Nose,Throat unit\n      </p>\n      <p>\n        <b>type</b>: \n        <span title=\"Codes: {http://hl7.org/fhir/organization-type dept}\">Hospital Department</span>\n      </p>\n      <p>\n        <b>telecom</b>: ph: 022-655 6780\n      </p>\n      <p>\n        <b>address</b>: West Wing, floor 5 \n      </p>\n      <p>\n        <b>partOf</b>: \n        <a href=\"organization-example-f001-burgers.html\">91654 (official), 17-0112278 (usual); name: Burgers University Medical Center; University Medical Hospital</a>\n      </p>\n      <h3>Contacts</h3>\n      <table class=\"grid\">\n        <tr>\n          <td>\n            <b>Purpose</b>\n          </td>\n          <td>\n            <b>Name</b>\n          </td>\n          <td>\n            <b>Telecom</b>\n          </td>\n          <td>\n            <b>Address</b>\n          </td>\n          <td>\n            <b>Gender</b>\n          </td>\n        </tr>\n        <tr>\n          <td>\n            <span title=\"Codes: {http://hl7.org/fhir/contactentity-type ADMIN}\">Administrative</span>\n          </td>\n          <td>mr. F. de Hond</td>\n          <td>ph: 022-655 7654</td>\n          <td>West Wing, floor 5 </td>\n          <td> </td>\n        </tr>\n      </table>\n      <p>\n        <b>active</b>: false\n      </p>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")	
-		XCTAssertEqual(inst!.type!.coding![0].code!, "dept")	
-		XCTAssertEqual(inst!.type!.coding![0].display!, "Hospital Department")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://hl7.org/fhir/organization-type")!)
+	func testOrganization3_impl(json: FHIRJSON? = nil) -> Organization {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "org-uslab-example3.json")
+		
+		XCTAssertEqual(inst.address![0].city!, "Harrisburg")
+		XCTAssertEqual(inst.address![0].country!, "USA")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/us-core-county")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].valueString!, "42043")
+		XCTAssertEqual(inst.address![0].line![0], "Firstcare Way")
+		XCTAssertEqual(inst.address![0].line![1], "Building 2")
+		XCTAssertEqual(inst.address![0].postalCode!, "42043")
+		XCTAssertEqual(inst.address![0].state!, "PA")
+		XCTAssertEqual(inst.address![0].use!, "work")
+		XCTAssertEqual(inst.contact![0].name!.family![0], "House")
+		XCTAssertEqual(inst.contact![0].name!.given![0], "Gregory")
+		XCTAssertEqual(inst.contact![0].name!.given![1], "F")
+		XCTAssertEqual(inst.contact![0].name!.prefix![0], "Dr")
+		XCTAssertEqual(inst.contact![0].name!.suffix![0], "PhD")
+		XCTAssertEqual(inst.id!, "uslab-example3")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.cms.gov/Regulations-and-Guidance/Legislation/CLIA/index.html")
+		XCTAssertEqual(inst.identifier![0].use!, "official")
+		XCTAssertEqual(inst.identifier![0].value!, "01D1111111")
+		XCTAssertEqual(inst.name!, "Acme Labs")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
 	}
 	
 	func testOrganization4() {
-		let inst = instantiateFrom("organization-example-f201-aumc.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Organization instance")
+		let instance = testOrganization4_impl()
+		testOrganization4_impl(json: instance.asJSON())
+	}
 	
-		XCTAssertTrue(inst!.active!)	
-		XCTAssertEqual(inst!.address![0].city!, "Den Helder")	
-		XCTAssertEqual(inst!.address![0].country!, "NLD")	
-		XCTAssertEqual(inst!.address![0].line![0], "Walvisbaai 3")	
-		XCTAssertEqual(inst!.address![0].use!, "work")	
-		XCTAssertEqual(inst!.address![0].zip!, "2333ZA")	
-		XCTAssertEqual(inst!.contact![0].address!.city!, "Den helder")	
-		XCTAssertEqual(inst!.contact![0].address!.country!, "NLD")	
-		XCTAssertEqual(inst!.contact![0].address!.line![0], "Walvisbaai 3")	
-		XCTAssertEqual(inst!.contact![0].address!.line![1], "Gebouw 2")	
-		XCTAssertEqual(inst!.contact![0].address!.zip!, "2333ZA")	
-		XCTAssertEqual(inst!.contact![0].name!.family![0], "Brand")	
-		XCTAssertEqual(inst!.contact![0].name!.given![0], "Ronald")	
-		XCTAssertEqual(inst!.contact![0].name!.prefix![0], "Prof.Dr.")	
-		XCTAssertEqual(inst!.contact![0].name!.text!, "Professor Brand")	
-		XCTAssertEqual(inst!.contact![0].name!.use!, "official")	
-		XCTAssertEqual(inst!.contact![0].telecom![0].system!, "phone")	
-		XCTAssertEqual(inst!.contact![0].telecom![0].use!, "work")	
-		XCTAssertEqual(inst!.contact![0].telecom![0].value!, "+31715269702")	
-		XCTAssertEqual(inst!.identifier![0].label!, "Zorginstelling naam")
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.zorgkaartnederland.nl/")!)	
-		XCTAssertEqual(inst!.identifier![0].use!, "official")	
-		XCTAssertEqual(inst!.identifier![0].value!, "Artis University Medical Center")	
-		XCTAssertEqual(inst!.name!, "Artis University Medical Center (AUMC)")	
-		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
-		XCTAssertEqual(inst!.telecom![0].use!, "work")	
-		XCTAssertEqual(inst!.telecom![0].value!, "+31715269111")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>identifier</b>: Zorginstelling naam = Artis University Medical Center (official)\n      </p>\n      <p>\n        <b>name</b>: Artis University Medical Center (AUMC)\n      </p>\n      <p>\n        <b>type</b>: \n        <span title=\"Codes: {http://snomed.info/sct 405608006}, {urn:oid:2.16.840.1.113883.2.4.15.1060 V6}, {http://hl7.org/fhir/organization-type prov}\">Academic Medical Center</span>\n      </p>\n      <p>\n        <b>telecom</b>: ph: +31715269111(work)\n      </p>\n      <p>\n        <b>address</b>: Walvisbaai 3 Den Helder 2333ZA NLD (work)\n      </p>\n      <h3>Contacts</h3>\n      <table class=\"grid\">\n        <tr>\n          <td>\n            <b>Purpose</b>\n          </td>\n          <td>\n            <b>Name</b>\n          </td>\n          <td>\n            <b>Telecom</b>\n          </td>\n          <td>\n            <b>Address</b>\n          </td>\n          <td>\n            <b>Gender</b>\n          </td>\n        </tr>\n        <tr>\n          <td> </td>\n          <td>Professor Brand(official)</td>\n          <td>ph: +31715269702(work)</td>\n          <td>Walvisbaai 3 Gebouw 2 Den helder 2333ZA NLD </td>\n          <td> </td>\n        </tr>\n      </table>\n      <p>\n        <b>active</b>: true\n      </p>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")	
-		XCTAssertEqual(inst!.type!.coding![0].code!, "405608006")	
-		XCTAssertEqual(inst!.type!.coding![0].display!, "Academic Medical Center")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
-		XCTAssertEqual(inst!.type!.coding![1].code!, "V6")	
-		XCTAssertEqual(inst!.type!.coding![1].display!, "University Medical Hospital")
-		XCTAssertEqual(inst!.type!.coding![1].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.15.1060")!)	
-		XCTAssertEqual(inst!.type!.coding![2].code!, "prov")	
-		XCTAssertEqual(inst!.type!.coding![2].display!, "Healthcare Provider")
-		XCTAssertEqual(inst!.type!.coding![2].system!, NSURL(string: "http://hl7.org/fhir/organization-type")!)
+	func testOrganization4_impl(json: FHIRJSON? = nil) -> Organization {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "organization-example-f001-burgers.json")
+		
+		XCTAssertEqual(inst.address![0].city!, "Den Burg")
+		XCTAssertEqual(inst.address![0].country!, "NLD")
+		XCTAssertEqual(inst.address![0].line![0], "Galapagosweg 91")
+		XCTAssertEqual(inst.address![0].postalCode!, "9105 PZ")
+		XCTAssertEqual(inst.address![0].use!, "work")
+		XCTAssertEqual(inst.address![1].city!, "Den Burg")
+		XCTAssertEqual(inst.address![1].country!, "NLD")
+		XCTAssertEqual(inst.address![1].line![0], "PO Box 2311")
+		XCTAssertEqual(inst.address![1].postalCode!, "9100 AA")
+		XCTAssertEqual(inst.address![1].use!, "work")
+		XCTAssertEqual(inst.contact![0].purpose!.coding![0].code!, "PRESS")
+		XCTAssertEqual(inst.contact![0].purpose!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/contactentity-type")
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "phone")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "022-655 2334")
+		XCTAssertEqual(inst.contact![1].purpose!.coding![0].code!, "PATINF")
+		XCTAssertEqual(inst.contact![1].purpose!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/contactentity-type")
+		XCTAssertEqual(inst.contact![1].telecom![0].system!, "phone")
+		XCTAssertEqual(inst.contact![1].telecom![0].value!, "022-655 2335")
+		XCTAssertEqual(inst.id!, "f001")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1")
+		XCTAssertEqual(inst.identifier![0].use!, "official")
+		XCTAssertEqual(inst.identifier![0].value!, "91654")
+		XCTAssertEqual(inst.identifier![1].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.6.1")
+		XCTAssertEqual(inst.identifier![1].use!, "usual")
+		XCTAssertEqual(inst.identifier![1].value!, "17-0112278")
+		XCTAssertEqual(inst.name!, "Burgers University Medical Center")
+		XCTAssertEqual(inst.telecom![0].system!, "phone")
+		XCTAssertEqual(inst.telecom![0].use!, "work")
+		XCTAssertEqual(inst.telecom![0].value!, "022-655 2300")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "V6")
+		XCTAssertEqual(inst.type!.coding![0].display!, "University Medical Hospital")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.1060")
+		XCTAssertEqual(inst.type!.coding![1].code!, "prov")
+		XCTAssertEqual(inst.type!.coding![1].display!, "Healthcare Provider")
+		XCTAssertEqual(inst.type!.coding![1].system!.absoluteString!, "http://hl7.org/fhir/organization-type")
+		
+		return inst
 	}
 	
 	func testOrganization5() {
-		let inst = instantiateFrom("organization-example-f203-bumc.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Organization instance")
+		let instance = testOrganization5_impl()
+		testOrganization5_impl(json: instance.asJSON())
+	}
 	
-		XCTAssertTrue(inst!.active!)	
-		XCTAssertEqual(inst!.address![0].city!, "Blijdorp")	
-		XCTAssertEqual(inst!.address![0].country!, "NLD")	
-		XCTAssertEqual(inst!.address![0].line![0], "apenrots 230")	
-		XCTAssertEqual(inst!.address![0].use!, "work")	
-		XCTAssertEqual(inst!.address![0].zip!, "3056BE")	
-		XCTAssertEqual(inst!.identifier![0].label!, "Zorginstelling naam")
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.zorgkaartnederland.nl/")!)	
-		XCTAssertEqual(inst!.identifier![0].use!, "official")	
-		XCTAssertEqual(inst!.identifier![0].value!, "Blijdorp MC")	
-		XCTAssertEqual(inst!.name!, "Blijdorp Medisch Centrum (BUMC)")	
-		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
-		XCTAssertEqual(inst!.telecom![0].use!, "work")	
-		XCTAssertEqual(inst!.telecom![0].value!, "+31107040704")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>identifier</b>: Zorginstelling naam = Blijdorp MC (official)\n      </p>\n      <p>\n        <b>name</b>: Blijdorp Medisch Centrum (BUMC)\n      </p>\n      <p>\n        <b>type</b>: \n        <span title=\"Codes: {http://snomed.info/sct 405608006}, {http://hl7.org/fhir/organization-type prov}\">Academic Medical Center</span>\n      </p>\n      <p>\n        <b>telecom</b>: ph: +31107040704(work)\n      </p>\n      <p>\n        <b>address</b>: apenrots 230 Blijdorp 3056BE NLD (work)\n      </p>\n      <p>\n        <b>active</b>: true\n      </p>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")	
-		XCTAssertEqual(inst!.type!.coding![0].code!, "405608006")	
-		XCTAssertEqual(inst!.type!.coding![0].display!, "Academic Medical Center")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
-		XCTAssertEqual(inst!.type!.coding![1].code!, "prov")
-		XCTAssertEqual(inst!.type!.coding![1].system!, NSURL(string: "http://hl7.org/fhir/organization-type")!)
+	func testOrganization5_impl(json: FHIRJSON? = nil) -> Organization {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "organization-example-f002-burgers-card.json")
+		
+		XCTAssertTrue(inst.active!)
+		XCTAssertEqual(inst.address![0].line![0], "South Wing, floor 2")
+		XCTAssertEqual(inst.contact![0].address!.line![0], "South Wing, floor 2")
+		XCTAssertEqual(inst.contact![0].name!.text!, "mevr. D. de Haan")
+		XCTAssertEqual(inst.contact![0].purpose!.coding![0].code!, "ADMIN")
+		XCTAssertEqual(inst.contact![0].purpose!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/contactentity-type")
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "phone")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "022-655 2321")
+		XCTAssertEqual(inst.contact![0].telecom![1].system!, "email")
+		XCTAssertEqual(inst.contact![0].telecom![1].value!, "cardio@burgersumc.nl")
+		XCTAssertEqual(inst.contact![0].telecom![2].system!, "fax")
+		XCTAssertEqual(inst.contact![0].telecom![2].value!, "022-655 2322")
+		XCTAssertEqual(inst.id!, "f002")
+		XCTAssertEqual(inst.name!, "Burgers UMC Cardiology unit")
+		XCTAssertEqual(inst.partOf!.reference!, "Organization/f001")
+		XCTAssertEqual(inst.telecom![0].system!, "phone")
+		XCTAssertEqual(inst.telecom![0].value!, "022-655 2320")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "dept")
+		XCTAssertEqual(inst.type!.coding![0].display!, "Hospital Department")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/organization-type")
+		
+		return inst
 	}
 	
 	func testOrganization6() {
-		let inst = instantiateFrom("organization-example-gastro.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Organization instance")
+		let instance = testOrganization6_impl()
+		testOrganization6_impl(json: instance.asJSON())
+	}
 	
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.acme.org.au/units")!)	
-		XCTAssertEqual(inst!.identifier![0].value!, "Gastro")	
-		XCTAssertEqual(inst!.name!, "Gastroenterology")	
-		XCTAssertEqual(inst!.partOf!.display!, "ACME Healthcare, Inc")	
-		XCTAssertEqual(inst!.partOf!.reference!, "Organization/1")	
-		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
-		XCTAssertEqual(inst!.telecom![0].use!, "mobile")	
-		XCTAssertEqual(inst!.telecom![0].value!, "+1 555 234 3523")	
-		XCTAssertEqual(inst!.telecom![1].system!, "email")	
-		XCTAssertEqual(inst!.telecom![1].use!, "work")	
-		XCTAssertEqual(inst!.telecom![1].value!, "gastro@acme.org")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>Gastroenterology @ Acme Hospital. ph: +1 555 234 3523, email: <a href=\"mailto:gastro@acme.org\">gastro@acme.org</a></p>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")
+	func testOrganization6_impl(json: FHIRJSON? = nil) -> Organization {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "organization-example-f003-burgers-ENT.json")
+		
+		XCTAssertTrue(inst.active!)
+		XCTAssertEqual(inst.address![0].line![0], "West Wing, floor 5")
+		XCTAssertEqual(inst.contact![0].address!.line![0], "West Wing, floor 5")
+		XCTAssertEqual(inst.contact![0].name!.text!, "mr. F. de Hond")
+		XCTAssertEqual(inst.contact![0].purpose!.coding![0].code!, "ADMIN")
+		XCTAssertEqual(inst.contact![0].purpose!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/contactentity-type")
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "phone")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "022-655 7654")
+		XCTAssertEqual(inst.contact![0].telecom![1].system!, "email")
+		XCTAssertEqual(inst.contact![0].telecom![1].value!, "KNO@burgersumc.nl")
+		XCTAssertEqual(inst.contact![0].telecom![2].system!, "fax")
+		XCTAssertEqual(inst.contact![0].telecom![2].value!, "022-655 0998")
+		XCTAssertEqual(inst.id!, "f003")
+		XCTAssertEqual(inst.name!, "Burgers UMC Ear,Nose,Throat unit")
+		XCTAssertEqual(inst.partOf!.reference!, "Organization/f001")
+		XCTAssertEqual(inst.telecom![0].system!, "phone")
+		XCTAssertEqual(inst.telecom![0].value!, "022-655 6780")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "dept")
+		XCTAssertEqual(inst.type!.coding![0].display!, "Hospital Department")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/organization-type")
+		
+		return inst
 	}
 	
 	func testOrganization7() {
-		let inst = instantiateFrom("organization-example-good-health-care.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Organization instance")
+		let instance = testOrganization7_impl()
+		testOrganization7_impl(json: instance.asJSON())
+	}
 	
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:ietf:rfc:3986")!)	
-		XCTAssertEqual(inst!.identifier![0].value!, "2.16.840.1.113883.19.5")	
-		XCTAssertEqual(inst!.name!, "Good Health Clinic")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>Good Health Clinic</p>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")
+	func testOrganization7_impl(json: FHIRJSON? = nil) -> Organization {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "organization-example-f201-aumc.json")
+		
+		XCTAssertTrue(inst.active!)
+		XCTAssertEqual(inst.address![0].city!, "Den Helder")
+		XCTAssertEqual(inst.address![0].country!, "NLD")
+		XCTAssertEqual(inst.address![0].line![0], "Walvisbaai 3")
+		XCTAssertEqual(inst.address![0].postalCode!, "2333ZA")
+		XCTAssertEqual(inst.address![0].use!, "work")
+		XCTAssertEqual(inst.contact![0].address!.city!, "Den helder")
+		XCTAssertEqual(inst.contact![0].address!.country!, "NLD")
+		XCTAssertEqual(inst.contact![0].address!.line![0], "Walvisbaai 3")
+		XCTAssertEqual(inst.contact![0].address!.line![1], "Gebouw 2")
+		XCTAssertEqual(inst.contact![0].address!.postalCode!, "2333ZA")
+		XCTAssertEqual(inst.contact![0].name!.family![0], "Brand")
+		XCTAssertEqual(inst.contact![0].name!.given![0], "Ronald")
+		XCTAssertEqual(inst.contact![0].name!.prefix![0], "Prof.Dr.")
+		XCTAssertEqual(inst.contact![0].name!.text!, "Professor Brand")
+		XCTAssertEqual(inst.contact![0].name!.use!, "official")
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "phone")
+		XCTAssertEqual(inst.contact![0].telecom![0].use!, "work")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "+31715269702")
+		XCTAssertEqual(inst.id!, "f201")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.zorgkaartnederland.nl/")
+		XCTAssertEqual(inst.identifier![0].use!, "official")
+		XCTAssertEqual(inst.identifier![0].value!, "Artis University Medical Center")
+		XCTAssertEqual(inst.name!, "Artis University Medical Center (AUMC)")
+		XCTAssertEqual(inst.telecom![0].system!, "phone")
+		XCTAssertEqual(inst.telecom![0].use!, "work")
+		XCTAssertEqual(inst.telecom![0].value!, "+31715269111")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "405608006")
+		XCTAssertEqual(inst.type!.coding![0].display!, "Academic Medical Center")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.type!.coding![1].code!, "V6")
+		XCTAssertEqual(inst.type!.coding![1].display!, "University Medical Hospital")
+		XCTAssertEqual(inst.type!.coding![1].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.1060")
+		XCTAssertEqual(inst.type!.coding![2].code!, "prov")
+		XCTAssertEqual(inst.type!.coding![2].display!, "Healthcare Provider")
+		XCTAssertEqual(inst.type!.coding![2].system!.absoluteString!, "http://hl7.org/fhir/organization-type")
+		
+		return inst
 	}
 	
 	func testOrganization8() {
-		let inst = instantiateFrom("organization-example-insurer.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Organization instance")
+		let instance = testOrganization8_impl()
+		testOrganization8_impl(json: instance.asJSON())
+	}
 	
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.3.19.2.3")!)	
-		XCTAssertEqual(inst!.identifier![0].value!, "666666")	
-		XCTAssertEqual(inst!.name!, "XYZ Insurance")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>XYZ Insurance</p>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")
+	func testOrganization8_impl(json: FHIRJSON? = nil) -> Organization {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "organization-example-f203-bumc.json")
+		
+		XCTAssertTrue(inst.active!)
+		XCTAssertEqual(inst.address![0].city!, "Blijdorp")
+		XCTAssertEqual(inst.address![0].country!, "NLD")
+		XCTAssertEqual(inst.address![0].line![0], "apenrots 230")
+		XCTAssertEqual(inst.address![0].postalCode!, "3056BE")
+		XCTAssertEqual(inst.address![0].use!, "work")
+		XCTAssertEqual(inst.id!, "f203")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.zorgkaartnederland.nl/")
+		XCTAssertEqual(inst.identifier![0].type!.text!, "Zorginstelling naam")
+		XCTAssertEqual(inst.identifier![0].use!, "official")
+		XCTAssertEqual(inst.identifier![0].value!, "Blijdorp MC")
+		XCTAssertEqual(inst.name!, "Blijdorp Medisch Centrum (BUMC)")
+		XCTAssertEqual(inst.telecom![0].system!, "phone")
+		XCTAssertEqual(inst.telecom![0].use!, "work")
+		XCTAssertEqual(inst.telecom![0].value!, "+31107040704")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "405608006")
+		XCTAssertEqual(inst.type!.coding![0].display!, "Academic Medical Center")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.type!.coding![1].code!, "prov")
+		XCTAssertEqual(inst.type!.coding![1].system!.absoluteString!, "http://hl7.org/fhir/organization-type")
+		
+		return inst
 	}
 	
 	func testOrganization9() {
-		let inst = instantiateFrom("organization-example-lab.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Organization instance")
+		let instance = testOrganization9_impl()
+		testOrganization9_impl(json: instance.asJSON())
+	}
 	
-		XCTAssertEqual(inst!.identifier![0].system!, NSURL(string: "http://www.acme.org.au/units")!)	
-		XCTAssertEqual(inst!.identifier![0].value!, "ClinLab")	
-		XCTAssertEqual(inst!.name!, "Clinical Lab")	
-		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
-		XCTAssertEqual(inst!.telecom![0].use!, "work")	
-		XCTAssertEqual(inst!.telecom![0].value!, "+1 555 234 1234")	
-		XCTAssertEqual(inst!.telecom![1].system!, "email")	
-		XCTAssertEqual(inst!.telecom![1].use!, "work")	
-		XCTAssertEqual(inst!.telecom![1].value!, "contact@labs.acme.org")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>Clinical Laboratory @ Acme Hospital. ph: +1 555 234 1234, email: <a href=\"mailto:contact@labs.acme.org\">contact@labs.acme.org</a></p>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")
+	func testOrganization9_impl(json: FHIRJSON? = nil) -> Organization {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "organization-example-gastro.json")
+		
+		XCTAssertEqual(inst.id!, "1")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "http://www.acme.org.au/units")
+		XCTAssertEqual(inst.identifier![0].value!, "Gastro")
+		XCTAssertEqual(inst.name!, "Gastroenterology")
+		XCTAssertEqual(inst.partOf!.display!, "ACME Healthcare, Inc")
+		XCTAssertEqual(inst.partOf!.reference!, "Organization/1")
+		XCTAssertEqual(inst.telecom![0].system!, "phone")
+		XCTAssertEqual(inst.telecom![0].use!, "mobile")
+		XCTAssertEqual(inst.telecom![0].value!, "+1 555 234 3523")
+		XCTAssertEqual(inst.telecom![1].system!, "email")
+		XCTAssertEqual(inst.telecom![1].use!, "work")
+		XCTAssertEqual(inst.telecom![1].value!, "gastro@acme.org")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
 	}
 	
 	func testOrganization10() {
-		let inst = instantiateFrom("organization-example.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Organization instance")
+		let instance = testOrganization10_impl()
+		testOrganization10_impl(json: instance.asJSON())
+	}
+	
+	func testOrganization10_impl(json: FHIRJSON? = nil) -> Organization {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "organization-example-good-health-care.json")
 		
-		XCTAssertEqual(inst!.address![0].city!, "Ann Arbor")	
-		XCTAssertEqual(inst!.address![0].country!, "USA")	
-		XCTAssertEqual(inst!.address![0].line![0], "3300 Washtenaw Avenue, Suite 227")	
-		XCTAssertEqual(inst!.address![0].state!, "MI")	
-		XCTAssertEqual(inst!.address![0].zip!, "48104")	
-		XCTAssertEqual(inst!.name!, "Health Level Seven International")	
-		XCTAssertEqual(inst!.telecom![0].system!, "phone")	
-		XCTAssertEqual(inst!.telecom![0].value!, "(+1) 734-677-7777")	
-		XCTAssertEqual(inst!.telecom![1].system!, "fax")	
-		XCTAssertEqual(inst!.telecom![1].value!, "(+1) 734-677-6622")	
-		XCTAssertEqual(inst!.telecom![2].system!, "email")	
-		XCTAssertEqual(inst!.telecom![2].value!, "hq@HL7.org")	
-		XCTAssertEqual(inst!.text!.status!, "generated")
+		XCTAssertEqual(inst.id!, "2.16.840.1.113883.19.5")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:ietf:rfc:3986")
+		XCTAssertEqual(inst.identifier![0].value!, "2.16.840.1.113883.19.5")
+		XCTAssertEqual(inst.name!, "Good Health Clinic")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
 	}
 }

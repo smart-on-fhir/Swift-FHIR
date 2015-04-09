@@ -1,9 +1,9 @@
 //
 //  Supply.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (supply.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Supply) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -12,12 +12,9 @@ import Foundation
 /**
  *  A supply -  request and provision.
  *
- *  Scope and Usage The scope of the supply resource is for supplies used in the healthcare process. This includes
- *  supplies specifically used in the treatment of patients as well as supply movement within an institution (transport
- *  a set of supplies from materials management to a service unit (nurse station). This resource does not include the
- *  provisioning of transportation services.
+ *  A supply - a  request for something, and provision of what is supplied.
  */
-public class Supply: FHIRResource
+public class Supply: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Supply" }
@@ -33,43 +30,61 @@ public class Supply: FHIRResource
 	public var kind: CodeableConcept?
 	
 	/// Medication, Substance, or Device requested to be supplied
-	public var orderedItem: FHIRReference<Medication>?
+	public var orderedItem: Reference?
 	
 	/// Patient for whom the item is supplied
-	public var patient: FHIRReference<Patient>?
+	public var patient: Reference?
 	
 	/// requested | dispensed | received | failed | cancelled
 	public var status: String?
 	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
-	
-
-	public required init(json: NSDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["dispense"] as? [NSDictionary] {
+			if let val = js["dispense"] as? [FHIRJSON] {
 				self.dispense = SupplyDispense.from(val, owner: self) as? [SupplyDispense]
 			}
-			if let val = js["identifier"] as? NSDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["kind"] as? NSDictionary {
+			if let val = js["kind"] as? FHIRJSON {
 				self.kind = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["orderedItem"] as? NSDictionary {
-				self.orderedItem = FHIRReference(json: val, owner: self)
+			if let val = js["orderedItem"] as? FHIRJSON {
+				self.orderedItem = Reference(json: val, owner: self)
 			}
-			if let val = js["patient"] as? NSDictionary {
-				self.patient = FHIRReference(json: val, owner: self)
+			if let val = js["patient"] as? FHIRJSON {
+				self.patient = Reference(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
-			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let dispense = self.dispense {
+			json["dispense"] = SupplyDispense.asJSONArray(dispense)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let kind = self.kind {
+			json["kind"] = kind.asJSON()
+		}
+		if let orderedItem = self.orderedItem {
+			json["orderedItem"] = orderedItem.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -80,9 +95,13 @@ public class Supply: FHIRResource
  *  Indicates the details of the dispense event such as the days supply and quantity of a supply dispensed.
  */
 public class SupplyDispense: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "SupplyDispense" }
+	}
+	
 	/// Where the Supply was sent
-	public var destination: FHIRReference<Location>?
+	public var destination: Reference?
 	
 	/// External identifier
 	public var identifier: Identifier?
@@ -91,61 +110,97 @@ public class SupplyDispense: FHIRElement
 	public var quantity: Quantity?
 	
 	/// Who collected the Supply
-	public var receiver: [FHIRReference<Practitioner>]?
+	public var receiver: [Reference]?
 	
-	/// in progress | dispensed | abandoned
+	/// in-progress | dispensed | abandoned
 	public var status: String?
 	
 	/// Medication, Substance, or Device supplied
-	public var suppliedItem: FHIRReference<Medication>?
+	public var suppliedItem: Reference?
 	
 	/// Dispenser
-	public var supplier: FHIRReference<Practitioner>?
+	public var supplier: Reference?
 	
 	/// Category of dispense event
 	public var type: CodeableConcept?
 	
 	/// Handover time
-	public var whenHandedOver: Period?
+	public var whenHandedOver: DateTime?
 	
 	/// Dispensing time
 	public var whenPrepared: Period?
 	
-
-	public required init(json: NSDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["destination"] as? NSDictionary {
-				self.destination = FHIRReference(json: val, owner: self)
+			if let val = js["destination"] as? FHIRJSON {
+				self.destination = Reference(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? NSDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["quantity"] as? NSDictionary {
+			if let val = js["quantity"] as? FHIRJSON {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["receiver"] as? [NSDictionary] {
-				self.receiver = FHIRReference.from(val, owner: self)
+			if let val = js["receiver"] as? [FHIRJSON] {
+				self.receiver = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["suppliedItem"] as? NSDictionary {
-				self.suppliedItem = FHIRReference(json: val, owner: self)
+			if let val = js["suppliedItem"] as? FHIRJSON {
+				self.suppliedItem = Reference(json: val, owner: self)
 			}
-			if let val = js["supplier"] as? NSDictionary {
-				self.supplier = FHIRReference(json: val, owner: self)
+			if let val = js["supplier"] as? FHIRJSON {
+				self.supplier = Reference(json: val, owner: self)
 			}
-			if let val = js["type"] as? NSDictionary {
+			if let val = js["type"] as? FHIRJSON {
 				self.type = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["whenHandedOver"] as? NSDictionary {
-				self.whenHandedOver = Period(json: val, owner: self)
+			if let val = js["whenHandedOver"] as? String {
+				self.whenHandedOver = DateTime(string: val)
 			}
-			if let val = js["whenPrepared"] as? NSDictionary {
+			if let val = js["whenPrepared"] as? FHIRJSON {
 				self.whenPrepared = Period(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let destination = self.destination {
+			json["destination"] = destination.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let receiver = self.receiver {
+			json["receiver"] = Reference.asJSONArray(receiver)
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let suppliedItem = self.suppliedItem {
+			json["suppliedItem"] = suppliedItem.asJSON()
+		}
+		if let supplier = self.supplier {
+			json["supplier"] = supplier.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let whenHandedOver = self.whenHandedOver {
+			json["whenHandedOver"] = whenHandedOver.asJSON()
+		}
+		if let whenPrepared = self.whenPrepared {
+			json["whenPrepared"] = whenPrepared.asJSON()
+		}
+		
+		return json
 	}
 }
 

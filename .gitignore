@@ -12,4 +12,6 @@ generate/downloads/site
 **.mode?v?
 **.perspectivev?
 xcuserdata
+build
+docs
 

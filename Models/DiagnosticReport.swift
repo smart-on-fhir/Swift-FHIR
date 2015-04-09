@@ -1,9 +1,9 @@
 //
 //  DiagnosticReport.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (diagnosticreport.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -13,22 +13,12 @@ import Foundation
  *  A Diagnostic report - a combination of request information, atomic results, images, interpretation, as well as
  *  formatted reports.
  *
- *  Scope and Usage A diagnostic report is the set of information that is typically provided by a diagnostic service
- *  when investigations are complete. The information includes a mix of atomic results, text reports, images, and codes.
- *  The mix varies depending on the nature of the diagnostic procedure, and sometimes on the nature of the outcomes for
- *  a particular investigation.
- *  
- *  The Diagnostic Report Resource is suitable for the following kinds of Diagnostic Reports:
- *  
- *  * Laboratory (Clinical Chemistry, Hematology, Microbiology, etc.)
- *  * Pathology / Histopathology / related disciplines
- *  * Imaging Investigations (x-ray, CT, MRI etc.)
- *  * Other diagnostics - Cardiology, Gastroenterology etc.
- *  The Diagnostic Report resource is not intended to support cumulative result presentation (tabular presentation of
- *  past and present results in the resource). The Diagnostic Report resource does not yet provide full support for
- *  detailed structured reports of sequencing; this is planned for a future release.
+ *  The findings and interpretation of diagnostic  tests performed on patients, groups of patients, devices, and
+ *  locations, and/or specimens derived from these. The report includes clinical context such as requesting and provider
+ *  information, and some mix of atomic results, images, textual and coded interpretation, and formatted representation
+ *  of diagnostic reports.
  */
-public class DiagnosticReport: FHIRResource
+public class DiagnosticReport: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "DiagnosticReport" }
@@ -41,54 +31,54 @@ public class DiagnosticReport: FHIRResource
 	public var conclusion: String?
 	
 	/// Physiologically Relevant time/time-period for report
-	public var diagnosticDateTime: NSDate?
+	public var diagnosticDateTime: DateTime?
 	
 	/// Physiologically Relevant time/time-period for report
 	public var diagnosticPeriod: Period?
 	
+	/// Health care event when test ordered
+	public var encounter: Reference?
+	
 	/// Id for external references to this report
-	public var identifier: Identifier?
+	public var identifier: [Identifier]?
 	
 	/// Key images associated with this report
 	public var image: [DiagnosticReportImage]?
 	
 	/// Reference to full details of imaging associated with the diagnostic report
-	public var imagingStudy: [FHIRReference<ImagingStudy>]?
+	public var imagingStudy: [Reference]?
 	
 	/// Date this version was released
-	public var issued: NSDate?
+	public var issued: DateTime?
 	
 	/// Name/Code for this diagnostic report
 	public var name: CodeableConcept?
 	
 	/// Responsible Diagnostic Service
-	public var performer: FHIRReference<Practitioner>?
+	public var performer: Reference?
 	
 	/// Entire Report as issued
 	public var presentedForm: [Attachment]?
 	
 	/// What was requested
-	public var requestDetail: [FHIRReference<DiagnosticOrder>]?
+	public var requestDetail: [Reference]?
 	
 	/// Observations - simple, or complex nested groups
-	public var result: [FHIRReference<Observation>]?
+	public var result: [Reference]?
 	
 	/// Biochemistry, Hematology etc.
 	public var serviceCategory: CodeableConcept?
 	
 	/// Specimens this report is based on
-	public var specimen: [FHIRReference<Specimen>]?
+	public var specimen: [Reference]?
 	
-	/// registered | partial | final | corrected +
+	/// registered | partial | final | corrected | appended | cancelled | entered-in-error
 	public var status: String?
 	
 	/// The subject of the report, usually, but not always, the patient
-	public var subject: FHIRReference<Patient>?
+	public var subject: Reference?
 	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
-	
-	public convenience init(diagnosticDateTime: NSDate?, diagnosticPeriod: Period?, issued: NSDate?, name: CodeableConcept?, performer: FHIRReference<Practitioner>?, status: String?, subject: FHIRReference<Patient>?) {
+	public convenience init(diagnosticDateTime: DateTime?, diagnosticPeriod: Period?, issued: DateTime?, name: CodeableConcept?, performer: Reference?, status: String?, subject: Reference?) {
 		self.init(json: nil)
 		if nil != diagnosticDateTime {
 			self.diagnosticDateTime = diagnosticDateTime
@@ -111,66 +101,127 @@ public class DiagnosticReport: FHIRResource
 		if nil != subject {
 			self.subject = subject
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["codedDiagnosis"] as? [NSDictionary] {
+			if let val = js["codedDiagnosis"] as? [FHIRJSON] {
 				self.codedDiagnosis = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["conclusion"] as? String {
 				self.conclusion = val
 			}
 			if let val = js["diagnosticDateTime"] as? String {
-				self.diagnosticDateTime = NSDate(json: val)
+				self.diagnosticDateTime = DateTime(string: val)
 			}
-			if let val = js["diagnosticPeriod"] as? NSDictionary {
+			if let val = js["diagnosticPeriod"] as? FHIRJSON {
 				self.diagnosticPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? NSDictionary {
-				self.identifier = Identifier(json: val, owner: self)
+			if let val = js["encounter"] as? FHIRJSON {
+				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["image"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+			}
+			if let val = js["image"] as? [FHIRJSON] {
 				self.image = DiagnosticReportImage.from(val, owner: self) as? [DiagnosticReportImage]
 			}
-			if let val = js["imagingStudy"] as? [NSDictionary] {
-				self.imagingStudy = FHIRReference.from(val, owner: self)
+			if let val = js["imagingStudy"] as? [FHIRJSON] {
+				self.imagingStudy = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["issued"] as? String {
-				self.issued = NSDate(json: val)
+				self.issued = DateTime(string: val)
 			}
-			if let val = js["name"] as? NSDictionary {
+			if let val = js["name"] as? FHIRJSON {
 				self.name = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["performer"] as? NSDictionary {
-				self.performer = FHIRReference(json: val, owner: self)
+			if let val = js["performer"] as? FHIRJSON {
+				self.performer = Reference(json: val, owner: self)
 			}
-			if let val = js["presentedForm"] as? [NSDictionary] {
+			if let val = js["presentedForm"] as? [FHIRJSON] {
 				self.presentedForm = Attachment.from(val, owner: self) as? [Attachment]
 			}
-			if let val = js["requestDetail"] as? [NSDictionary] {
-				self.requestDetail = FHIRReference.from(val, owner: self)
+			if let val = js["requestDetail"] as? [FHIRJSON] {
+				self.requestDetail = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["result"] as? [NSDictionary] {
-				self.result = FHIRReference.from(val, owner: self)
+			if let val = js["result"] as? [FHIRJSON] {
+				self.result = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["serviceCategory"] as? NSDictionary {
+			if let val = js["serviceCategory"] as? FHIRJSON {
 				self.serviceCategory = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["specimen"] as? [NSDictionary] {
-				self.specimen = FHIRReference.from(val, owner: self)
+			if let val = js["specimen"] as? [FHIRJSON] {
+				self.specimen = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? NSDictionary {
-				self.subject = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+			if let val = js["subject"] as? FHIRJSON {
+				self.subject = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let codedDiagnosis = self.codedDiagnosis {
+			json["codedDiagnosis"] = CodeableConcept.asJSONArray(codedDiagnosis)
+		}
+		if let conclusion = self.conclusion {
+			json["conclusion"] = conclusion.asJSON()
+		}
+		if let diagnosticDateTime = self.diagnosticDateTime {
+			json["diagnosticDateTime"] = diagnosticDateTime.asJSON()
+		}
+		if let diagnosticPeriod = self.diagnosticPeriod {
+			json["diagnosticPeriod"] = diagnosticPeriod.asJSON()
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let image = self.image {
+			json["image"] = DiagnosticReportImage.asJSONArray(image)
+		}
+		if let imagingStudy = self.imagingStudy {
+			json["imagingStudy"] = Reference.asJSONArray(imagingStudy)
+		}
+		if let issued = self.issued {
+			json["issued"] = issued.asJSON()
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let performer = self.performer {
+			json["performer"] = performer.asJSON()
+		}
+		if let presentedForm = self.presentedForm {
+			json["presentedForm"] = Attachment.asJSONArray(presentedForm)
+		}
+		if let requestDetail = self.requestDetail {
+			json["requestDetail"] = Reference.asJSONArray(requestDetail)
+		}
+		if let result = self.result {
+			json["result"] = Reference.asJSONArray(result)
+		}
+		if let serviceCategory = self.serviceCategory {
+			json["serviceCategory"] = serviceCategory.asJSON()
+		}
+		if let specimen = self.specimen {
+			json["specimen"] = Reference.asJSONArray(specimen)
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -182,30 +233,47 @@ public class DiagnosticReport: FHIRResource
  *  and may be directly of the patient, or of treated specimens (i.e. slides of interest).
  */
 public class DiagnosticReportImage: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "DiagnosticReportImage" }
+	}
+	
 	/// Comment about the image (e.g. explanation)
 	public var comment: String?
 	
 	/// Reference to the image source
-	public var link: FHIRReference<Media>?
+	public var link: Reference?
 	
-	public convenience init(link: FHIRReference<Media>?) {
+	public convenience init(link: Reference?) {
 		self.init(json: nil)
 		if nil != link {
 			self.link = link
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["comment"] as? String {
 				self.comment = val
 			}
-			if let val = js["link"] as? NSDictionary {
-				self.link = FHIRReference(json: val, owner: self)
+			if let val = js["link"] as? FHIRJSON {
+				self.link = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let comment = self.comment {
+			json["comment"] = comment.asJSON()
+		}
+		if let link = self.link {
+			json["link"] = link.asJSON()
+		}
+		
+		return json
 	}
 }
 

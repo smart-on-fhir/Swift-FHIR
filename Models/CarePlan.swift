@@ -1,9 +1,9 @@
 //
 //  CarePlan.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (careplan.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -12,19 +12,10 @@ import Foundation
 /**
  *  Healthcare plan for patient.
  *
- *  Scope and Usage Care Plans are used in many of areas of healthcare with a variety of scopes. They can be as simple
- *  as a general practitioner keeping track of when their patient is next due for a tetanus immunization through to a
- *  detailed plan for an oncology patient covering diet, chemotherapy, radiation, lab work and counseling with detailed
- *  timing relationships, pre-conditions and goals.
- *  
- *  This resource takes an intermediate approach. It captures basic details about who is involved and what actions are
- *  intended without dealing in discrete data about dependencies and timing relationships. These can be supported where
- *  necessary using the extension mechanisms.
- *  
- *  Comments are welcome about the appropriateness of the proposed level of granularity, whether it's too much detail
- *  for what most systems need, or not sufficient for common essential use cases.
+ *  Describes the intention of how one or more practitioners intend to deliver care for a particular patient for a
+ *  period of time, possibly limited to care for a specific condition or set of conditions.
  */
-public class CarePlan: FHIRResource
+public class CarePlan: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "CarePlan" }
@@ -33,17 +24,23 @@ public class CarePlan: FHIRResource
 	/// Action to occur as part of plan
 	public var activity: [CarePlanActivity]?
 	
+	/// Who is responsible for plan
+	public var author: [Reference]?
+	
+	/// Type of plan
+	public var category: [CodeableConcept]?
+	
 	/// Health issues this plan addresses
-	public var concern: [FHIRReference<Condition>]?
+	public var concern: [Reference]?
 	
 	/// Desired outcome of plan
-	public var goal: [CarePlanGoal]?
+	public var goal: [Reference]?
 	
 	/// External Ids for this plan
 	public var identifier: [Identifier]?
 	
 	/// When last updated
-	public var modified: NSDate?
+	public var modified: DateTime?
 	
 	/// Comments about the plan
 	public var notes: String?
@@ -52,7 +49,7 @@ public class CarePlan: FHIRResource
 	public var participant: [CarePlanParticipant]?
 	
 	/// Who care plan is for
-	public var patient: FHIRReference<Patient>?
+	public var patient: Reference?
 	
 	/// Time period plan covers
 	public var period: Period?
@@ -60,133 +57,105 @@ public class CarePlan: FHIRResource
 	/// planned | active | completed
 	public var status: String?
 	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
+	/// Information considered as part of plan
+	public var support: [Reference]?
 	
 	public convenience init(status: String?) {
 		self.init(json: nil)
 		if nil != status {
 			self.status = status
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["activity"] as? [NSDictionary] {
+			if let val = js["activity"] as? [FHIRJSON] {
 				self.activity = CarePlanActivity.from(val, owner: self) as? [CarePlanActivity]
 			}
-			if let val = js["concern"] as? [NSDictionary] {
-				self.concern = FHIRReference.from(val, owner: self)
+			if let val = js["author"] as? [FHIRJSON] {
+				self.author = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["goal"] as? [NSDictionary] {
-				self.goal = CarePlanGoal.from(val, owner: self) as? [CarePlanGoal]
+			if let val = js["category"] as? [FHIRJSON] {
+				self.category = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["concern"] as? [FHIRJSON] {
+				self.concern = Reference.from(val, owner: self) as? [Reference]
+			}
+			if let val = js["goal"] as? [FHIRJSON] {
+				self.goal = Reference.from(val, owner: self) as? [Reference]
+			}
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
 			if let val = js["modified"] as? String {
-				self.modified = NSDate(json: val)
+				self.modified = DateTime(string: val)
 			}
 			if let val = js["notes"] as? String {
 				self.notes = val
 			}
-			if let val = js["participant"] as? [NSDictionary] {
+			if let val = js["participant"] as? [FHIRJSON] {
 				self.participant = CarePlanParticipant.from(val, owner: self) as? [CarePlanParticipant]
 			}
-			if let val = js["patient"] as? NSDictionary {
-				self.patient = FHIRReference(json: val, owner: self)
+			if let val = js["patient"] as? FHIRJSON {
+				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["period"] as? NSDictionary {
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+			if let val = js["support"] as? [FHIRJSON] {
+				self.support = Reference.from(val, owner: self) as? [Reference]
 			}
 		}
 	}
-}
-
-
-/**
- *  Who's involved in plan?.
- *
- *  Identifies all people and organizations who are expected to be involved in the care envisioned by this plan.
- */
-public class CarePlanParticipant: FHIRElement
-{	
-	/// Who is involved
-	public var member: FHIRReference<Practitioner>?
 	
-	/// Type of involvement
-	public var role: CodeableConcept?
-	
-	public convenience init(member: FHIRReference<Practitioner>?) {
-		self.init(json: nil)
-		if nil != member {
-			self.member = member
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let activity = self.activity {
+			json["activity"] = CarePlanActivity.asJSONArray(activity)
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-			if let val = js["member"] as? NSDictionary {
-				self.member = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["role"] as? NSDictionary {
-				self.role = CodeableConcept(json: val, owner: self)
-			}
+		if let author = self.author {
+			json["author"] = Reference.asJSONArray(author)
 		}
-	}
-}
-
-
-/**
- *  Desired outcome of plan.
- *
- *  Describes the intended objective(s) of carrying out the Care Plan.
- */
-public class CarePlanGoal: FHIRElement
-{	
-	/// Health issues this goal addresses
-	public var concern: [FHIRReference<Condition>]?
-	
-	/// What's the desired outcome?
-	public var description: String?
-	
-	/// Comments about the goal
-	public var notes: String?
-	
-	/// in progress | achieved | sustaining | cancelled
-	public var status: String?
-	
-	public convenience init(description: String?) {
-		self.init(json: nil)
-		if nil != description {
-			self.description = description
+		if let category = self.category {
+			json["category"] = CodeableConcept.asJSONArray(category)
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
-		super.init(json: json)
-		if let js = json {
-			if let val = js["concern"] as? [NSDictionary] {
-				self.concern = FHIRReference.from(val, owner: self)
-			}
-			if let val = js["description"] as? String {
-				self.description = val
-			}
-			if let val = js["notes"] as? String {
-				self.notes = val
-			}
-			if let val = js["status"] as? String {
-				self.status = val
-			}
+		if let concern = self.concern {
+			json["concern"] = Reference.asJSONArray(concern)
 		}
+		if let goal = self.goal {
+			json["goal"] = Reference.asJSONArray(goal)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let modified = self.modified {
+			json["modified"] = modified.asJSON()
+		}
+		if let notes = self.notes {
+			json["notes"] = notes.asJSON()
+		}
+		if let participant = self.participant {
+			json["participant"] = CarePlanParticipant.asJSONArray(participant)
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let support = self.support {
+			json["support"] = Reference.asJSONArray(support)
+		}
+		
+		return json
 	}
 }
 
@@ -198,149 +167,299 @@ public class CarePlanGoal: FHIRElement
  *  perform, self-monitoring, education, etc.
  */
 public class CarePlanActivity: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "CarePlanActivity" }
+	}
+	
 	/// Appointments, orders, etc.
-	public var actionResulting: [FHIRReference<FHIRResource>]?
+	public var actionResulting: [Reference]?
 	
-	/// Activity details defined in specific resource
-	public var detail: FHIRReference<Procedure>?
-	
-	/// Goals this activity relates to
-	public var goal: [String]?
+	/// In-line definition of activity
+	public var detail: CarePlanActivityDetail?
 	
 	/// Comments about the activity
 	public var notes: String?
 	
-	/// Do NOT do
-	public var prohibited: Bool?
+	/// Activity details defined in specific resource
+	public var reference: Reference?
 	
-	/// Activity details summarised here
-	public var simple: CarePlanActivitySimple?
-	
-	/// not started | scheduled | in progress | on hold | completed | cancelled
-	public var status: String?
-	
-	public convenience init(prohibited: Bool?) {
-		self.init(json: nil)
-		if nil != prohibited {
-			self.prohibited = prohibited
-		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["actionResulting"] as? [NSDictionary] {
-				self.actionResulting = FHIRReference.from(val, owner: self)
+			if let val = js["actionResulting"] as? [FHIRJSON] {
+				self.actionResulting = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["detail"] as? NSDictionary {
-				self.detail = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["goal"] as? [String] {
-				self.goal = val
+			if let val = js["detail"] as? FHIRJSON {
+				self.detail = CarePlanActivityDetail(json: val, owner: self)
 			}
 			if let val = js["notes"] as? String {
 				self.notes = val
 			}
-			if let val = js["prohibited"] as? Bool {
-				self.prohibited = val
-			}
-			if let val = js["simple"] as? NSDictionary {
-				self.simple = CarePlanActivitySimple(json: val, owner: self)
-			}
-			if let val = js["status"] as? String {
-				self.status = val
+			if let val = js["reference"] as? FHIRJSON {
+				self.reference = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let actionResulting = self.actionResulting {
+			json["actionResulting"] = Reference.asJSONArray(actionResulting)
+		}
+		if let detail = self.detail {
+			json["detail"] = detail.asJSON()
+		}
+		if let notes = self.notes {
+			json["notes"] = notes.asJSON()
+		}
+		if let reference = self.reference {
+			json["reference"] = reference.asJSON()
+		}
+		
+		return json
 	}
 }
 
 
 /**
- *  Activity details summarised here.
+ *  In-line definition of activity.
  *
- *  A simple summary of details suitable for a general care plan system (e.g. form driven) that doesn't know about
- *  specific resources such as procedure etc.
+ *  A simple summary of a planned activity suitable for a general care plan system (e.g. form driven) that doesn't know
+ *  about specific resources such as procedure etc.
  */
-public class CarePlanActivitySimple: FHIRElement
-{	
+public class CarePlanActivityDetail: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "CarePlanActivityDetail" }
+	}
+	
 	/// diet | drug | encounter | observation | procedure | supply | other
 	public var category: String?
 	
 	/// Detail type of activity
 	public var code: CodeableConcept?
 	
-	/// How much consumed/day?
+	/// How to consume/day?
 	public var dailyAmount: Quantity?
 	
-	/// Extra info on activity occurrence
-	public var details: String?
+	/// Goals this activity relates to
+	public var goal: [Reference]?
 	
 	/// Where it should happen
-	public var location: FHIRReference<Location>?
+	public var location: Reference?
 	
-	/// Who's responsible?
-	public var performer: [FHIRReference<Practitioner>]?
+	/// Extra info on activity occurrence
+	public var note: String?
 	
-	/// What's administered/supplied
-	public var product: FHIRReference<Medication>?
+	/// Who will be responsible?
+	public var performer: [Reference]?
 	
-	/// How much is administered/supplied/consumed
+	/// What is to be administered/supplied
+	public var product: Reference?
+	
+	/// Do NOT do
+	public var prohibited: Bool?
+	
+	/// How much to administer/supply/consume
 	public var quantity: Quantity?
 	
-	/// When activity is to occur
-	public var timingPeriod: Period?
+	/// Why activity should be done
+	public var reasonCodeableConcept: CodeableConcept?
+	
+	/// Why activity should be done
+	public var reasonReference: Reference?
 	
 	/// When activity is to occur
-	public var timingSchedule: Schedule?
+	public var scheduledPeriod: Period?
 	
 	/// When activity is to occur
-	public var timingString: String?
+	public var scheduledString: String?
 	
-	public convenience init(category: String?) {
+	/// When activity is to occur
+	public var scheduledTiming: Timing?
+	
+	/// not-started | scheduled | in-progress | on-hold | completed | cancelled
+	public var status: String?
+	
+	/// Reason for current status
+	public var statusReason: CodeableConcept?
+	
+	public convenience init(category: String?, prohibited: Bool?) {
 		self.init(json: nil)
 		if nil != category {
 			self.category = category
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
+		if nil != prohibited {
+			self.prohibited = prohibited
+		}
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["category"] as? String {
 				self.category = val
 			}
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["dailyAmount"] as? NSDictionary {
+			if let val = js["dailyAmount"] as? FHIRJSON {
 				self.dailyAmount = Quantity(json: val, owner: self)
 			}
-			if let val = js["details"] as? String {
-				self.details = val
+			if let val = js["goal"] as? [FHIRJSON] {
+				self.goal = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["location"] as? NSDictionary {
-				self.location = FHIRReference(json: val, owner: self)
+			if let val = js["location"] as? FHIRJSON {
+				self.location = Reference(json: val, owner: self)
 			}
-			if let val = js["performer"] as? [NSDictionary] {
-				self.performer = FHIRReference.from(val, owner: self)
+			if let val = js["note"] as? String {
+				self.note = val
 			}
-			if let val = js["product"] as? NSDictionary {
-				self.product = FHIRReference(json: val, owner: self)
+			if let val = js["performer"] as? [FHIRJSON] {
+				self.performer = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["quantity"] as? NSDictionary {
+			if let val = js["product"] as? FHIRJSON {
+				self.product = Reference(json: val, owner: self)
+			}
+			if let val = js["prohibited"] as? Bool {
+				self.prohibited = val
+			}
+			if let val = js["quantity"] as? FHIRJSON {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["timingPeriod"] as? NSDictionary {
-				self.timingPeriod = Period(json: val, owner: self)
+			if let val = js["reasonCodeableConcept"] as? FHIRJSON {
+				self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["timingSchedule"] as? NSDictionary {
-				self.timingSchedule = Schedule(json: val, owner: self)
+			if let val = js["reasonReference"] as? FHIRJSON {
+				self.reasonReference = Reference(json: val, owner: self)
 			}
-			if let val = js["timingString"] as? String {
-				self.timingString = val
+			if let val = js["scheduledPeriod"] as? FHIRJSON {
+				self.scheduledPeriod = Period(json: val, owner: self)
+			}
+			if let val = js["scheduledString"] as? String {
+				self.scheduledString = val
+			}
+			if let val = js["scheduledTiming"] as? FHIRJSON {
+				self.scheduledTiming = Timing(json: val, owner: self)
+			}
+			if let val = js["status"] as? String {
+				self.status = val
+			}
+			if let val = js["statusReason"] as? FHIRJSON {
+				self.statusReason = CodeableConcept(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let dailyAmount = self.dailyAmount {
+			json["dailyAmount"] = dailyAmount.asJSON()
+		}
+		if let goal = self.goal {
+			json["goal"] = Reference.asJSONArray(goal)
+		}
+		if let location = self.location {
+			json["location"] = location.asJSON()
+		}
+		if let note = self.note {
+			json["note"] = note.asJSON()
+		}
+		if let performer = self.performer {
+			json["performer"] = Reference.asJSONArray(performer)
+		}
+		if let product = self.product {
+			json["product"] = product.asJSON()
+		}
+		if let prohibited = self.prohibited {
+			json["prohibited"] = prohibited.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let reasonCodeableConcept = self.reasonCodeableConcept {
+			json["reasonCodeableConcept"] = reasonCodeableConcept.asJSON()
+		}
+		if let reasonReference = self.reasonReference {
+			json["reasonReference"] = reasonReference.asJSON()
+		}
+		if let scheduledPeriod = self.scheduledPeriod {
+			json["scheduledPeriod"] = scheduledPeriod.asJSON()
+		}
+		if let scheduledString = self.scheduledString {
+			json["scheduledString"] = scheduledString.asJSON()
+		}
+		if let scheduledTiming = self.scheduledTiming {
+			json["scheduledTiming"] = scheduledTiming.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let statusReason = self.statusReason {
+			json["statusReason"] = statusReason.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Who's involved in plan?.
+ *
+ *  Identifies all people and organizations who are expected to be involved in the care envisioned by this plan.
+ */
+public class CarePlanParticipant: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "CarePlanParticipant" }
+	}
+	
+	/// Who is involved
+	public var member: Reference?
+	
+	/// Type of involvement
+	public var role: CodeableConcept?
+	
+	public convenience init(member: Reference?) {
+		self.init(json: nil)
+		if nil != member {
+			self.member = member
+		}
+	}
+	
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["member"] as? FHIRJSON {
+				self.member = Reference(json: val, owner: self)
+			}
+			if let val = js["role"] as? FHIRJSON {
+				self.role = CodeableConcept(json: val, owner: self)
+			}
+		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let member = self.member {
+			json["member"] = member.asJSON()
+		}
+		if let role = self.role {
+			json["role"] = role.asJSON()
+		}
+		
+		return json
 	}
 }
 

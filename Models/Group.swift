@@ -1,9 +1,9 @@
 //
 //  Group.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (group.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Group) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -12,18 +12,11 @@ import Foundation
 /**
  *  Group of multiple entities.
  *
- *  Scope and Usage Use Cases The group resource is used in one of two ways:
- *  
- *  * To define a group of specific people, animals, devices, etc. that is being tracked, examined or otherwise
- *  referenced as part of healthcare-related activities
- *  * To define a set of *possible* people, animals, devices, etc. that are of interest for some intended future
- *  healthcare-related activities
- *  Examples of the former could include group therapy or treatment sessions, exposed entities tracked as part of public
- *  health, etc. The latter might be used to define expected subjects for a clinical study.
- *  
- *  Both use cases are handled by a single resource because the data elements captured tend to be similar.
+ *  Represents a defined collection of entities that may be discussed or acted upon collectively but which are not
+ *  expected to act collectively and are not formally or legally recognized.  I.e. A collection of entities that isn't
+ *  an Organization.
  */
-public class Group: FHIRResource
+public class Group: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Group" }
@@ -41,17 +34,14 @@ public class Group: FHIRResource
 	/// Unique id
 	public var identifier: Identifier?
 	
-	/// Who is in group
-	public var member: [FHIRReference<Patient>]?
+	/// Who or what is in group
+	public var member: [Reference]?
 	
 	/// Label for Group
 	public var name: String?
 	
 	/// Number of members
-	public var quantity: Int?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
+	public var quantity: UInt?
 	
 	/// person | animal | practitioner | device | medication | substance
 	public var type: String?
@@ -64,39 +54,67 @@ public class Group: FHIRResource
 		if nil != type {
 			self.type = type
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["actual"] as? Bool {
 				self.actual = val
 			}
-			if let val = js["characteristic"] as? [NSDictionary] {
+			if let val = js["characteristic"] as? [FHIRJSON] {
 				self.characteristic = GroupCharacteristic.from(val, owner: self) as? [GroupCharacteristic]
 			}
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["identifier"] as? NSDictionary {
+			if let val = js["identifier"] as? FHIRJSON {
 				self.identifier = Identifier(json: val, owner: self)
 			}
-			if let val = js["member"] as? [NSDictionary] {
-				self.member = FHIRReference.from(val, owner: self)
+			if let val = js["member"] as? [FHIRJSON] {
+				self.member = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["name"] as? String {
 				self.name = val
 			}
-			if let val = js["quantity"] as? Int {
+			if let val = js["quantity"] as? UInt {
 				self.quantity = val
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
 			}
 			if let val = js["type"] as? String {
 				self.type = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let actual = self.actual {
+			json["actual"] = actual.asJSON()
+		}
+		if let characteristic = self.characteristic {
+			json["characteristic"] = GroupCharacteristic.asJSONArray(characteristic)
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
+		if let member = self.member {
+			json["member"] = Reference.asJSONArray(member)
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -107,7 +125,11 @@ public class Group: FHIRResource
  *  Identifies the traits shared by members of the group.
  */
 public class GroupCharacteristic: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "GroupCharacteristic" }
+	}
+	
 	/// Kind of characteristic
 	public var code: CodeableConcept?
 	
@@ -146,12 +168,12 @@ public class GroupCharacteristic: FHIRElement
 		if nil != valueRange {
 			self.valueRange = valueRange
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["exclude"] as? Bool {
@@ -160,16 +182,41 @@ public class GroupCharacteristic: FHIRElement
 			if let val = js["valueBoolean"] as? Bool {
 				self.valueBoolean = val
 			}
-			if let val = js["valueCodeableConcept"] as? NSDictionary {
+			if let val = js["valueCodeableConcept"] as? FHIRJSON {
 				self.valueCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["valueQuantity"] as? NSDictionary {
+			if let val = js["valueQuantity"] as? FHIRJSON {
 				self.valueQuantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["valueRange"] as? NSDictionary {
+			if let val = js["valueRange"] as? FHIRJSON {
 				self.valueRange = Range(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let exclude = self.exclude {
+			json["exclude"] = exclude.asJSON()
+		}
+		if let valueBoolean = self.valueBoolean {
+			json["valueBoolean"] = valueBoolean.asJSON()
+		}
+		if let valueCodeableConcept = self.valueCodeableConcept {
+			json["valueCodeableConcept"] = valueCodeableConcept.asJSON()
+		}
+		if let valueQuantity = self.valueQuantity {
+			json["valueQuantity"] = valueQuantity.asJSON()
+		}
+		if let valueRange = self.valueRange {
+			json["valueRange"] = valueRange.asJSON()
+		}
+		
+		return json
 	}
 }
 

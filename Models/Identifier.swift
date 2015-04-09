@@ -1,9 +1,9 @@
 //
 //  Identifier.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Identifier.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -11,6 +11,8 @@ import Foundation
 
 /**
  *  An identifier intended for computation.
+ *
+ *  A technical identifier - identifies some entity uniquely and unambiguously.
  */
 public class Identifier: FHIRElement
 {
@@ -19,10 +21,7 @@ public class Identifier: FHIRElement
 	}
 	
 	/// Organization that issued id (may be just text)
-	public var assigner: FHIRReference<Organization>?
-	
-	/// Description of identifier
-	public var label: String?
+	public var assigner: Reference?
 	
 	/// Time period when id is/was valid for use
 	public var period: Period?
@@ -30,27 +29,29 @@ public class Identifier: FHIRElement
 	/// The namespace for the identifier
 	public var system: NSURL?
 	
+	/// Description of identifier
+	public var type: CodeableConcept?
+	
 	/// usual | official | temp | secondary (If known)
 	public var use: String?
 	
 	/// The value that is unique
 	public var value: String?
 	
-
-	public required init(json: NSDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["assigner"] as? NSDictionary {
-				self.assigner = FHIRReference(json: val, owner: self)
+			if let val = js["assigner"] as? FHIRJSON {
+				self.assigner = Reference(json: val, owner: self)
 			}
-			if let val = js["label"] as? String {
-				self.label = val
-			}
-			if let val = js["period"] as? NSDictionary {
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["system"] as? String {
-				self.system = NSURL(json: val)
+				self.system = NSURL(string: val)
+			}
+			if let val = js["type"] as? FHIRJSON {
+				self.type = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["use"] as? String {
 				self.use = val
@@ -59,6 +60,31 @@ public class Identifier: FHIRElement
 				self.value = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let assigner = self.assigner {
+			json["assigner"] = assigner.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let system = self.system {
+			json["system"] = system.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
+		if let use = self.use {
+			json["use"] = use.asJSON()
+		}
+		if let value = self.value {
+			json["value"] = value.asJSON()
+		}
+		
+		return json
 	}
 }
 

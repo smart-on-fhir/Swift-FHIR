@@ -1,9 +1,9 @@
 //
 //  Condition.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (condition.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Condition) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -12,25 +12,11 @@ import Foundation
 /**
  *  Detailed information about conditions, problems or diagnoses.
  *
- *  Scope and Usage This resource is used to record detailed information about a specific aspect of or issue with the
- *  health state of a patient. It is intended for use for issues that have been identified as relevant for tracking and
- *  reporting purposes or where there's a need to capture a concrete diagnosis or the gathering of data such as signs
- *  and symptoms. There are situations where the same information might appear as both an observation as well as a
- *  condition. For example, the appearance of a rash or an instance of a fever are signs and symptoms that would
- *  typically be captured using the Observation resource. However, a pattern of ongoing fevers or a persistent or severe
- *  rash requiring treatment might be captured as a condition. The Condition resource specifically excludes
- *  AdverseReactions and AllergyIntolerances as those are handled with their own resources.
- *  
- *  The Condition resource may be used to record positive aspects of the health state of a patient (e.g. pregnancy) as
- *  well as the major use, which is for problems/concerns (e.g. hypertension).
- *  
- *  Conditions are frequently referenced by other resources as "reasons" for an action (Prescription, Procedure,
- *  DiagnosticOrder, etc.)
- *  
- *  The conditions represented in this resources are sometimes described as "Problems", and kept as part of a problem
- *  list.
+ *  Use to record detailed information about conditions, problems or diagnoses recognized by a clinician. There are many
+ *  uses including: recording a Diagnosis during an Encounter; populating a problem List or a Summary Statement, such as
+ *  a Discharge Summary.
  */
-public class Condition: FHIRResource
+public class Condition: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Condition" }
@@ -43,25 +29,37 @@ public class Condition: FHIRResource
 	public var abatementBoolean: Bool?
 	
 	/// If/when in resolution/remission
-	public var abatementDate: NSDate?
+	public var abatementDate: Date?
+	
+	/// If/when in resolution/remission
+	public var abatementPeriod: Period?
+	
+	/// If/when in resolution/remission
+	public var abatementRange: Range?
+	
+	/// If/when in resolution/remission
+	public var abatementString: String?
 	
 	/// Person who asserts this condition
-	public var asserter: FHIRReference<Practitioner>?
+	public var asserter: Reference?
 	
 	/// E.g. complaint | symptom | finding | diagnosis
 	public var category: CodeableConcept?
 	
-	/// Degree of confidence
-	public var certainty: CodeableConcept?
+	/// provisional | working | confirmed | refuted | entered-in-error | unknown
+	public var clinicalStatus: String?
 	
 	/// Identification of the condition, problem or diagnosis
 	public var code: CodeableConcept?
 	
 	/// When first detected/suspected/entered
-	public var dateAsserted: NSDate?
+	public var dateAsserted: Date?
+	
+	/// Causes for this Condition
+	public var dueTo: [ConditionDueTo]?
 	
 	/// Encounter when condition first asserted
-	public var encounter: FHIRReference<Encounter>?
+	public var encounter: Reference?
 	
 	/// Supporting evidence
 	public var evidence: [ConditionEvidence]?
@@ -75,14 +73,26 @@ public class Condition: FHIRResource
 	/// Additional information about the Condition
 	public var notes: String?
 	
-	/// Estimated or actual date, or age
+	/// Precedent for this Condition
+	public var occurredFollowing: [ConditionOccurredFollowing]?
+	
+	/// Estimated or actual date,  date-time, or age
 	public var onsetAge: Age?
 	
-	/// Estimated or actual date, or age
-	public var onsetDate: NSDate?
+	/// Estimated or actual date,  date-time, or age
+	public var onsetDateTime: DateTime?
 	
-	/// Causes or precedents for this Condition
-	public var relatedItem: [ConditionRelatedItem]?
+	/// Estimated or actual date,  date-time, or age
+	public var onsetPeriod: Period?
+	
+	/// Estimated or actual date,  date-time, or age
+	public var onsetRange: Range?
+	
+	/// Estimated or actual date,  date-time, or age
+	public var onsetString: String?
+	
+	/// Who has the condition?
+	public var patient: Reference?
 	
 	/// Subjective severity of condition
 	public var severity: CodeableConcept?
@@ -90,123 +100,230 @@ public class Condition: FHIRResource
 	/// Stage/grade, usually assessed formally
 	public var stage: ConditionStage?
 	
-	/// provisional | working | confirmed | refuted
-	public var status: String?
-	
-	/// Who has the condition?
-	public var subject: FHIRReference<Patient>?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
-	
-	public convenience init(code: CodeableConcept?, status: String?, subject: FHIRReference<Patient>?) {
+	public convenience init(clinicalStatus: String?, code: CodeableConcept?, patient: Reference?) {
 		self.init(json: nil)
+		if nil != clinicalStatus {
+			self.clinicalStatus = clinicalStatus
+		}
 		if nil != code {
 			self.code = code
 		}
-		if nil != status {
-			self.status = status
+		if nil != patient {
+			self.patient = patient
 		}
-		if nil != subject {
-			self.subject = subject
-		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["abatementAge"] as? NSDictionary {
+			if let val = js["abatementAge"] as? FHIRJSON {
 				self.abatementAge = Age(json: val, owner: self)
 			}
 			if let val = js["abatementBoolean"] as? Bool {
 				self.abatementBoolean = val
 			}
 			if let val = js["abatementDate"] as? String {
-				self.abatementDate = NSDate(json: val)
+				self.abatementDate = Date(string: val)
 			}
-			if let val = js["asserter"] as? NSDictionary {
-				self.asserter = FHIRReference(json: val, owner: self)
+			if let val = js["abatementPeriod"] as? FHIRJSON {
+				self.abatementPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["category"] as? NSDictionary {
+			if let val = js["abatementRange"] as? FHIRJSON {
+				self.abatementRange = Range(json: val, owner: self)
+			}
+			if let val = js["abatementString"] as? String {
+				self.abatementString = val
+			}
+			if let val = js["asserter"] as? FHIRJSON {
+				self.asserter = Reference(json: val, owner: self)
+			}
+			if let val = js["category"] as? FHIRJSON {
 				self.category = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["certainty"] as? NSDictionary {
-				self.certainty = CodeableConcept(json: val, owner: self)
+			if let val = js["clinicalStatus"] as? String {
+				self.clinicalStatus = val
 			}
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["dateAsserted"] as? String {
-				self.dateAsserted = NSDate(json: val)
+				self.dateAsserted = Date(string: val)
 			}
-			if let val = js["encounter"] as? NSDictionary {
-				self.encounter = FHIRReference(json: val, owner: self)
+			if let val = js["dueTo"] as? [FHIRJSON] {
+				self.dueTo = ConditionDueTo.from(val, owner: self) as? [ConditionDueTo]
 			}
-			if let val = js["evidence"] as? [NSDictionary] {
+			if let val = js["encounter"] as? FHIRJSON {
+				self.encounter = Reference(json: val, owner: self)
+			}
+			if let val = js["evidence"] as? [FHIRJSON] {
 				self.evidence = ConditionEvidence.from(val, owner: self) as? [ConditionEvidence]
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["location"] as? [NSDictionary] {
+			if let val = js["location"] as? [FHIRJSON] {
 				self.location = ConditionLocation.from(val, owner: self) as? [ConditionLocation]
 			}
 			if let val = js["notes"] as? String {
 				self.notes = val
 			}
-			if let val = js["onsetAge"] as? NSDictionary {
+			if let val = js["occurredFollowing"] as? [FHIRJSON] {
+				self.occurredFollowing = ConditionOccurredFollowing.from(val, owner: self) as? [ConditionOccurredFollowing]
+			}
+			if let val = js["onsetAge"] as? FHIRJSON {
 				self.onsetAge = Age(json: val, owner: self)
 			}
-			if let val = js["onsetDate"] as? String {
-				self.onsetDate = NSDate(json: val)
+			if let val = js["onsetDateTime"] as? String {
+				self.onsetDateTime = DateTime(string: val)
 			}
-			if let val = js["relatedItem"] as? [NSDictionary] {
-				self.relatedItem = ConditionRelatedItem.from(val, owner: self) as? [ConditionRelatedItem]
+			if let val = js["onsetPeriod"] as? FHIRJSON {
+				self.onsetPeriod = Period(json: val, owner: self)
 			}
-			if let val = js["severity"] as? NSDictionary {
+			if let val = js["onsetRange"] as? FHIRJSON {
+				self.onsetRange = Range(json: val, owner: self)
+			}
+			if let val = js["onsetString"] as? String {
+				self.onsetString = val
+			}
+			if let val = js["patient"] as? FHIRJSON {
+				self.patient = Reference(json: val, owner: self)
+			}
+			if let val = js["severity"] as? FHIRJSON {
 				self.severity = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["stage"] as? NSDictionary {
+			if let val = js["stage"] as? FHIRJSON {
 				self.stage = ConditionStage(json: val, owner: self)
 			}
-			if let val = js["status"] as? String {
-				self.status = val
-			}
-			if let val = js["subject"] as? NSDictionary {
-				self.subject = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
-			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let abatementAge = self.abatementAge {
+			json["abatementAge"] = abatementAge.asJSON()
+		}
+		if let abatementBoolean = self.abatementBoolean {
+			json["abatementBoolean"] = abatementBoolean.asJSON()
+		}
+		if let abatementDate = self.abatementDate {
+			json["abatementDate"] = abatementDate.asJSON()
+		}
+		if let abatementPeriod = self.abatementPeriod {
+			json["abatementPeriod"] = abatementPeriod.asJSON()
+		}
+		if let abatementRange = self.abatementRange {
+			json["abatementRange"] = abatementRange.asJSON()
+		}
+		if let abatementString = self.abatementString {
+			json["abatementString"] = abatementString.asJSON()
+		}
+		if let asserter = self.asserter {
+			json["asserter"] = asserter.asJSON()
+		}
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let clinicalStatus = self.clinicalStatus {
+			json["clinicalStatus"] = clinicalStatus.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let dateAsserted = self.dateAsserted {
+			json["dateAsserted"] = dateAsserted.asJSON()
+		}
+		if let dueTo = self.dueTo {
+			json["dueTo"] = ConditionDueTo.asJSONArray(dueTo)
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let evidence = self.evidence {
+			json["evidence"] = ConditionEvidence.asJSONArray(evidence)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let location = self.location {
+			json["location"] = ConditionLocation.asJSONArray(location)
+		}
+		if let notes = self.notes {
+			json["notes"] = notes.asJSON()
+		}
+		if let occurredFollowing = self.occurredFollowing {
+			json["occurredFollowing"] = ConditionOccurredFollowing.asJSONArray(occurredFollowing)
+		}
+		if let onsetAge = self.onsetAge {
+			json["onsetAge"] = onsetAge.asJSON()
+		}
+		if let onsetDateTime = self.onsetDateTime {
+			json["onsetDateTime"] = onsetDateTime.asJSON()
+		}
+		if let onsetPeriod = self.onsetPeriod {
+			json["onsetPeriod"] = onsetPeriod.asJSON()
+		}
+		if let onsetRange = self.onsetRange {
+			json["onsetRange"] = onsetRange.asJSON()
+		}
+		if let onsetString = self.onsetString {
+			json["onsetString"] = onsetString.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let severity = self.severity {
+			json["severity"] = severity.asJSON()
+		}
+		if let stage = self.stage {
+			json["stage"] = stage.asJSON()
+		}
+		
+		return json
 	}
 }
 
 
 /**
- *  Stage/grade, usually assessed formally.
+ *  Causes for this Condition.
  *
- *  Clinical stage or grade of a condition. May include formal severity assessments.
+ *  Further conditions, problems, diagnoses, procedures or events or the substance that caused/triggered this Condition.
  */
-public class ConditionStage: FHIRElement
-{	
-	/// Formal record of assessment
-	public var assessment: [FHIRReference<FHIRResource>]?
+public class ConditionDueTo: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ConditionDueTo" }
+	}
 	
-	/// Simple summary (disease specific)
-	public var summary: CodeableConcept?
+	/// Relationship target by means of a predefined code
+	public var code: CodeableConcept?
 	
-
-	public required init(json: NSDictionary?) {
+	/// Relationship target resource
+	public var target: Reference?
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["assessment"] as? [NSDictionary] {
-				self.assessment = FHIRReference.from(val, owner: self)
+			if let val = js["code"] as? FHIRJSON {
+				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["summary"] as? NSDictionary {
-				self.summary = CodeableConcept(json: val, owner: self)
+			if let val = js["target"] as? FHIRJSON {
+				self.target = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let target = self.target {
+			json["target"] = target.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -217,24 +334,40 @@ public class ConditionStage: FHIRElement
  *  Supporting Evidence / manifestations that are the basis on which this condition is suspected or confirmed.
  */
 public class ConditionEvidence: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ConditionEvidence" }
+	}
+	
 	/// Manifestation/symptom
 	public var code: CodeableConcept?
 	
 	/// Supporting information found elsewhere
-	public var detail: [FHIRReference<FHIRResource>]?
+	public var detail: [Reference]?
 	
-
-	public required init(json: NSDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["detail"] as? [NSDictionary] {
-				self.detail = FHIRReference.from(val, owner: self)
+			if let val = js["detail"] as? [FHIRJSON] {
+				self.detail = Reference.from(val, owner: self) as? [Reference]
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let detail = self.detail {
+			json["detail"] = Reference.asJSONArray(detail)
+		}
+		
+		return json
 	}
 }
 
@@ -245,65 +378,128 @@ public class ConditionEvidence: FHIRElement
  *  The anatomical location where this condition manifests itself.
  */
 public class ConditionLocation: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "ConditionLocation" }
+	}
+	
 	/// Location - may include laterality
-	public var code: CodeableConcept?
+	public var siteCodeableConcept: CodeableConcept?
 	
-	/// Precise location details
-	public var detail: String?
+	/// Location - may include laterality
+	public var siteReference: Reference?
 	
-
-	public required init(json: NSDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? NSDictionary {
-				self.code = CodeableConcept(json: val, owner: self)
+			if let val = js["siteCodeableConcept"] as? FHIRJSON {
+				self.siteCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["detail"] as? String {
-				self.detail = val
+			if let val = js["siteReference"] as? FHIRJSON {
+				self.siteReference = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let siteCodeableConcept = self.siteCodeableConcept {
+			json["siteCodeableConcept"] = siteCodeableConcept.asJSON()
+		}
+		if let siteReference = self.siteReference {
+			json["siteReference"] = siteReference.asJSON()
+		}
+		
+		return json
 	}
 }
 
 
 /**
- *  Causes or precedents for this Condition.
+ *  Precedent for this Condition.
  *
- *  Further conditions, problems, diagnoses, procedures or events that are related in some way to this condition, or the
- *  substance that caused/triggered this Condition.
+ *  Further conditions, problems, diagnoses, procedures or events or the substance that preceded this Condition.
  */
-public class ConditionRelatedItem: FHIRElement
-{	
+public class ConditionOccurredFollowing: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ConditionOccurredFollowing" }
+	}
+	
 	/// Relationship target by means of a predefined code
 	public var code: CodeableConcept?
 	
 	/// Relationship target resource
-	public var target: FHIRReference<Condition>?
+	public var target: Reference?
 	
-	/// due-to | following
-	public var type: String?
-	
-	public convenience init(type: String?) {
-		self.init(json: nil)
-		if nil != type {
-			self.type = type
-		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["target"] as? NSDictionary {
-				self.target = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["type"] as? String {
-				self.type = val
+			if let val = js["target"] as? FHIRJSON {
+				self.target = Reference(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let target = self.target {
+			json["target"] = target.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Stage/grade, usually assessed formally.
+ *
+ *  Clinical stage or grade of a condition. May include formal severity assessments.
+ */
+public class ConditionStage: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ConditionStage" }
+	}
+	
+	/// Formal record of assessment
+	public var assessment: [Reference]?
+	
+	/// Simple summary (disease specific)
+	public var summary: CodeableConcept?
+	
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["assessment"] as? [FHIRJSON] {
+				self.assessment = Reference.from(val, owner: self) as? [Reference]
+			}
+			if let val = js["summary"] as? FHIRJSON {
+				self.summary = CodeableConcept(json: val, owner: self)
+			}
+		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let assessment = self.assessment {
+			json["assessment"] = Reference.asJSONArray(assessment)
+		}
+		if let summary = self.summary {
+			json["summary"] = summary.asJSON()
+		}
+		
+		return json
 	}
 }
 

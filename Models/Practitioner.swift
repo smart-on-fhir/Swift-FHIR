@@ -1,9 +1,9 @@
 //
 //  Practitioner.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (practitioner.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -12,119 +12,193 @@ import Foundation
 /**
  *  A person with a  formal responsibility in the provisioning of healthcare or related services.
  *
- *  Scope and Usage Practitioner covers all individuals who are engaged in the healthcare process and healthcare-related
- *  services as part of their formal responsibilities and this Resource is used for attribution of activities and
- *  responsibilities to these individuals. Practitioners include (but are not limited to):
- *  
- *  * physicians, dentists, pharmacists
- *  * physician assistants, nurses, scribes
- *  * midwives, dietitians, therapists, optometrists, paramedics
- *  * medical technicians, laboratory scientists, prosthetic technicians, radiographers
- *  * social workers, professional home carers, official volunteers
- *  * receptionists handling patient registration
- *  * IT personnel merging or unmerging patient records
+ *  A person who is directly or indirectly involved in the provisioning of healthcare.
  */
-public class Practitioner: FHIRResource
+public class Practitioner: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "Practitioner" }
 	}
 	
 	/// Where practitioner can be found/visited
-	public var address: Address?
+	public var address: [Address]?
 	
-	/// The date and time of birth for the practitioner
-	public var birthDate: NSDate?
+	/// The date  of birth for the practitioner
+	public var birthDate: Date?
 	
 	/// A language the practitioner is able to use in patient communication
 	public var communication: [CodeableConcept]?
 	
-	/// Gender for administrative purposes
-	public var gender: CodeableConcept?
+	/// male | female | other | unknown
+	public var gender: String?
 	
 	/// A identifier for the person as this agent
 	public var identifier: [Identifier]?
 	
-	/// The location(s) at which this practitioner provides care
-	public var location: [FHIRReference<Location>]?
-	
 	/// A name associated with the person
 	public var name: HumanName?
-	
-	/// The represented organization
-	public var organization: FHIRReference<Organization>?
-	
-	/// The period during which the practitioner is authorized to perform in these role(s)
-	public var period: Period?
 	
 	/// Image of the person
 	public var photo: [Attachment]?
 	
+	/// The list of Roles/Organizations that the Practitioner is associated with
+	public var practitionerRole: [PractitionerPractitionerRole]?
+	
 	/// Qualifications obtained by training and certification
 	public var qualification: [PractitionerQualification]?
 	
+	/// A contact detail for the practitioner
+	public var telecom: [ContactPoint]?
+	
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+		if let js = json {
+			if let val = js["address"] as? [FHIRJSON] {
+				self.address = Address.from(val, owner: self) as? [Address]
+			}
+			if let val = js["birthDate"] as? String {
+				self.birthDate = Date(string: val)
+			}
+			if let val = js["communication"] as? [FHIRJSON] {
+				self.communication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			}
+			if let val = js["gender"] as? String {
+				self.gender = val
+			}
+			if let val = js["identifier"] as? [FHIRJSON] {
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+			}
+			if let val = js["name"] as? FHIRJSON {
+				self.name = HumanName(json: val, owner: self)
+			}
+			if let val = js["photo"] as? [FHIRJSON] {
+				self.photo = Attachment.from(val, owner: self) as? [Attachment]
+			}
+			if let val = js["practitionerRole"] as? [FHIRJSON] {
+				self.practitionerRole = PractitionerPractitionerRole.from(val, owner: self) as? [PractitionerPractitionerRole]
+			}
+			if let val = js["qualification"] as? [FHIRJSON] {
+				self.qualification = PractitionerQualification.from(val, owner: self) as? [PractitionerQualification]
+			}
+			if let val = js["telecom"] as? [FHIRJSON] {
+				self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+			}
+		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let address = self.address {
+			json["address"] = Address.asJSONArray(address)
+		}
+		if let birthDate = self.birthDate {
+			json["birthDate"] = birthDate.asJSON()
+		}
+		if let communication = self.communication {
+			json["communication"] = CodeableConcept.asJSONArray(communication)
+		}
+		if let gender = self.gender {
+			json["gender"] = gender.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let name = self.name {
+			json["name"] = name.asJSON()
+		}
+		if let photo = self.photo {
+			json["photo"] = Attachment.asJSONArray(photo)
+		}
+		if let practitionerRole = self.practitionerRole {
+			json["practitionerRole"] = PractitionerPractitionerRole.asJSONArray(practitionerRole)
+		}
+		if let qualification = self.qualification {
+			json["qualification"] = PractitionerQualification.asJSONArray(qualification)
+		}
+		if let telecom = self.telecom {
+			json["telecom"] = ContactPoint.asJSONArray(telecom)
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  The list of Roles/Organizations that the Practitioner is associated with.
+ */
+public class PractitionerPractitionerRole: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "PractitionerPractitionerRole" }
+	}
+	
+	/// The list of healthcare services that this worker provides for this role's Organization/Location(s)
+	public var healthcareService: [Reference]?
+	
+	/// The location(s) at which this practitioner provides care
+	public var location: [Reference]?
+	
+	/// The Organization where the Practitioner performs the roles associated
+	public var managingOrganization: Reference?
+	
+	/// The period during which the practitioner is authorized to perform in these role(s)
+	public var period: Period?
+	
 	/// Roles which this practitioner may perform
-	public var role: [CodeableConcept]?
+	public var role: CodeableConcept?
 	
 	/// Specific specialty of the practitioner
 	public var specialty: [CodeableConcept]?
 	
-	/// A contact detail for the practitioner
-	public var telecom: [Contact]?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
-	
-
-	public required init(json: NSDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["address"] as? NSDictionary {
-				self.address = Address(json: val, owner: self)
+			if let val = js["healthcareService"] as? [FHIRJSON] {
+				self.healthcareService = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["birthDate"] as? String {
-				self.birthDate = NSDate(json: val)
+			if let val = js["location"] as? [FHIRJSON] {
+				self.location = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["communication"] as? [NSDictionary] {
-				self.communication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			if let val = js["managingOrganization"] as? FHIRJSON {
+				self.managingOrganization = Reference(json: val, owner: self)
 			}
-			if let val = js["gender"] as? NSDictionary {
-				self.gender = CodeableConcept(json: val, owner: self)
-			}
-			if let val = js["identifier"] as? [NSDictionary] {
-				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
-			}
-			if let val = js["location"] as? [NSDictionary] {
-				self.location = FHIRReference.from(val, owner: self)
-			}
-			if let val = js["name"] as? NSDictionary {
-				self.name = HumanName(json: val, owner: self)
-			}
-			if let val = js["organization"] as? NSDictionary {
-				self.organization = FHIRReference(json: val, owner: self)
-			}
-			if let val = js["period"] as? NSDictionary {
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
-			if let val = js["photo"] as? [NSDictionary] {
-				self.photo = Attachment.from(val, owner: self) as? [Attachment]
+			if let val = js["role"] as? FHIRJSON {
+				self.role = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["qualification"] as? [NSDictionary] {
-				self.qualification = PractitionerQualification.from(val, owner: self) as? [PractitionerQualification]
-			}
-			if let val = js["role"] as? [NSDictionary] {
-				self.role = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
-			}
-			if let val = js["specialty"] as? [NSDictionary] {
+			if let val = js["specialty"] as? [FHIRJSON] {
 				self.specialty = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
-			if let val = js["telecom"] as? [NSDictionary] {
-				self.telecom = Contact.from(val, owner: self) as? [Contact]
-			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
-			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let healthcareService = self.healthcareService {
+			json["healthcareService"] = Reference.asJSONArray(healthcareService)
+		}
+		if let location = self.location {
+			json["location"] = Reference.asJSONArray(location)
+		}
+		if let managingOrganization = self.managingOrganization {
+			json["managingOrganization"] = managingOrganization.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let role = self.role {
+			json["role"] = role.asJSON()
+		}
+		if let specialty = self.specialty {
+			json["specialty"] = CodeableConcept.asJSONArray(specialty)
+		}
+		
+		return json
 	}
 }
 
@@ -133,12 +207,19 @@ public class Practitioner: FHIRResource
  *  Qualifications obtained by training and certification.
  */
 public class PractitionerQualification: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "PractitionerQualification" }
+	}
+	
 	/// Coded representation of the qualification
 	public var code: CodeableConcept?
 	
+	/// An identifier for this qualification for the practitioner
+	public var identifier: [Identifier]?
+	
 	/// Organization that regulates and issues the qualification
-	public var issuer: FHIRReference<Organization>?
+	public var issuer: Reference?
 	
 	/// Period during which the qualification is valid
 	public var period: Period?
@@ -148,21 +229,43 @@ public class PractitionerQualification: FHIRElement
 		if nil != code {
 			self.code = code
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["issuer"] as? NSDictionary {
-				self.issuer = FHIRReference(json: val, owner: self)
+			if let val = js["identifier"] as? [FHIRJSON] {
+				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["period"] as? NSDictionary {
+			if let val = js["issuer"] as? FHIRJSON {
+				self.issuer = Reference(json: val, owner: self)
+			}
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let issuer = self.issuer {
+			json["issuer"] = issuer.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		
+		return json
 	}
 }
 

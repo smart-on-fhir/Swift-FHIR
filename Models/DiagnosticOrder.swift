@@ -1,9 +1,9 @@
 //
 //  DiagnosticOrder.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (diagnosticorder.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -12,21 +12,9 @@ import Foundation
 /**
  *  A request for a diagnostic service.
  *
- *  Scope and Usage A Diagnostic Order is a record of a request for a set of diagnostic investigations to be performed.
- *  The investigation will lead to a Diagnostic Report that summarizes the outcome of the investigation, and includes
- *  any useful data and/or images that are relevant to the treatment/management of the subject.
- *  
- *  The principal intention of the Diagnostic Order is to support ordering diagnostic investigations on patients (which
- *  includes non-human patients in veterinary medicine). However in many contexts, healthcare related processes include
- *  performing diagnostic investigations on groups of subjects, devices involved in the provision of healthcare, and
- *  even environmental locations such as ducts, bodies of water, etc. The Diagnostic Order supports all these usages.
- *  
- *  The general work flow that this resource facilitates is that a clinical system creates a diagnostic order. The
- *  diagnostic order is then exchanged, perhaps via intermediaries, with a system that represents a diagnostic service
- *  that can perform the investigation as a request to do so. The diagnostic service will update the request as the work
- *  is performed, and then finally issue a report that references the requests that it fulfills.
+ *  A record of a request for a diagnostic investigation service to be performed.
  */
-public class DiagnosticOrder: FHIRResource
+public class DiagnosticOrder: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "DiagnosticOrder" }
@@ -36,7 +24,7 @@ public class DiagnosticOrder: FHIRResource
 	public var clinicalNotes: String?
 	
 	/// The encounter that this diagnostic order is associated with
-	public var encounter: FHIRReference<Encounter>?
+	public var encounter: Reference?
 	
 	/// A list of events of interest in the lifecycle
 	public var event: [DiagnosticOrderEvent]?
@@ -48,67 +36,107 @@ public class DiagnosticOrder: FHIRResource
 	public var item: [DiagnosticOrderItem]?
 	
 	/// Who ordered the test
-	public var orderer: FHIRReference<Practitioner>?
+	public var orderer: Reference?
 	
 	/// routine | urgent | stat | asap
 	public var priority: String?
 	
 	/// If the whole order relates to specific specimens
-	public var specimen: [FHIRReference<Specimen>]?
+	public var specimen: [Reference]?
 	
-	/// requested | received | accepted | in progress | review | completed | suspended | rejected | failed
+	/// proposed | draft | planned | requested | received | accepted | in-progress | review | completed | cancelled | suspended | rejected | failed
 	public var status: String?
 	
 	/// Who and/or what test is about
-	public var subject: FHIRReference<Patient>?
+	public var subject: Reference?
 	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
+	/// Additional clinical information
+	public var supportingInformation: [Reference]?
 	
-	public convenience init(subject: FHIRReference<Patient>?) {
+	public convenience init(subject: Reference?) {
 		self.init(json: nil)
 		if nil != subject {
 			self.subject = subject
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["clinicalNotes"] as? String {
 				self.clinicalNotes = val
 			}
-			if let val = js["encounter"] as? NSDictionary {
-				self.encounter = FHIRReference(json: val, owner: self)
+			if let val = js["encounter"] as? FHIRJSON {
+				self.encounter = Reference(json: val, owner: self)
 			}
-			if let val = js["event"] as? [NSDictionary] {
+			if let val = js["event"] as? [FHIRJSON] {
 				self.event = DiagnosticOrderEvent.from(val, owner: self) as? [DiagnosticOrderEvent]
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["item"] as? [NSDictionary] {
+			if let val = js["item"] as? [FHIRJSON] {
 				self.item = DiagnosticOrderItem.from(val, owner: self) as? [DiagnosticOrderItem]
 			}
-			if let val = js["orderer"] as? NSDictionary {
-				self.orderer = FHIRReference(json: val, owner: self)
+			if let val = js["orderer"] as? FHIRJSON {
+				self.orderer = Reference(json: val, owner: self)
 			}
 			if let val = js["priority"] as? String {
 				self.priority = val
 			}
-			if let val = js["specimen"] as? [NSDictionary] {
-				self.specimen = FHIRReference.from(val, owner: self)
+			if let val = js["specimen"] as? [FHIRJSON] {
+				self.specimen = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["subject"] as? NSDictionary {
-				self.subject = FHIRReference(json: val, owner: self)
+			if let val = js["subject"] as? FHIRJSON {
+				self.subject = Reference(json: val, owner: self)
 			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
+			if let val = js["supportingInformation"] as? [FHIRJSON] {
+				self.supportingInformation = Reference.from(val, owner: self) as? [Reference]
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let clinicalNotes = self.clinicalNotes {
+			json["clinicalNotes"] = clinicalNotes.asJSON()
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let event = self.event {
+			json["event"] = DiagnosticOrderEvent.asJSONArray(event)
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let item = self.item {
+			json["item"] = DiagnosticOrderItem.asJSONArray(item)
+		}
+		if let orderer = self.orderer {
+			json["orderer"] = orderer.asJSON()
+		}
+		if let priority = self.priority {
+			json["priority"] = priority.asJSON()
+		}
+		if let specimen = self.specimen {
+			json["specimen"] = Reference.asJSONArray(specimen)
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
+		if let supportingInformation = self.supportingInformation {
+			json["supportingInformation"] = Reference.asJSONArray(supportingInformation)
+		}
+		
+		return json
 	}
 }
 
@@ -120,20 +148,24 @@ public class DiagnosticOrder: FHIRResource
  *  various processing steps (specimens received), when it was completed.
  */
 public class DiagnosticOrderEvent: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "DiagnosticOrderEvent" }
+	}
+	
 	/// Who recorded or did this
-	public var actor: FHIRReference<Practitioner>?
+	public var actor: Reference?
 	
 	/// The date at which the event happened
-	public var dateTime: NSDate?
+	public var dateTime: DateTime?
 	
-	/// More information about the event and it's context
-	public var description: CodeableConcept?
+	/// More information about the event and its context
+	public var description_fhir: CodeableConcept?
 	
-	/// requested | received | accepted | in progress | review | completed | suspended | rejected | failed
+	/// proposed | draft | planned | requested | received | accepted | in-progress | review | completed | cancelled | suspended | rejected | failed
 	public var status: String?
 	
-	public convenience init(dateTime: NSDate?, status: String?) {
+	public convenience init(dateTime: DateTime?, status: String?) {
 		self.init(json: nil)
 		if nil != dateTime {
 			self.dateTime = dateTime
@@ -141,24 +173,43 @@ public class DiagnosticOrderEvent: FHIRElement
 		if nil != status {
 			self.status = status
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["actor"] as? NSDictionary {
-				self.actor = FHIRReference(json: val, owner: self)
+			if let val = js["actor"] as? FHIRJSON {
+				self.actor = Reference(json: val, owner: self)
 			}
 			if let val = js["dateTime"] as? String {
-				self.dateTime = NSDate(json: val)
+				self.dateTime = DateTime(string: val)
 			}
-			if let val = js["description"] as? NSDictionary {
-				self.description = CodeableConcept(json: val, owner: self)
+			if let val = js["description"] as? FHIRJSON {
+				self.description_fhir = CodeableConcept(json: val, owner: self)
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let actor = self.actor {
+			json["actor"] = actor.asJSON()
+		}
+		if let dateTime = self.dateTime {
+			json["dateTime"] = dateTime.asJSON()
+		}
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		
+		return json
 	}
 }
 
@@ -170,20 +221,27 @@ public class DiagnosticOrderEvent: FHIRElement
  *  item per request, but in most contexts, more than one investigation can be requested.
  */
 public class DiagnosticOrderItem: FHIRElement
-{	
+{
+	override public class var resourceName: String {
+		get { return "DiagnosticOrderItem" }
+	}
+	
 	/// Location of requested test (if applicable)
-	public var bodySite: CodeableConcept?
+	public var bodySiteCodeableConcept: CodeableConcept?
+	
+	/// Location of requested test (if applicable)
+	public var bodySiteReference: Reference?
 	
 	/// Code to indicate the item (test or panel) being ordered
 	public var code: CodeableConcept?
 	
-	/// Events specific to this item
-	public var event: [DiagnosticOrderItemEvent]?
+	/// A list of events of interest in the lifecycle
+	public var event: [DiagnosticOrderEvent]?
 	
 	/// If this item relates to specific specimens
-	public var specimen: [FHIRReference<Specimen>]?
+	public var specimen: [Reference]?
 	
-	/// requested | received | accepted | in progress | review | completed | suspended | rejected | failed
+	/// proposed | draft | planned | requested | received | accepted | in-progress | review | completed | cancelled | suspended | rejected | failed
 	public var status: String?
 	
 	public convenience init(code: CodeableConcept?) {
@@ -191,38 +249,55 @@ public class DiagnosticOrderItem: FHIRElement
 		if nil != code {
 			self.code = code
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["bodySite"] as? NSDictionary {
-				self.bodySite = CodeableConcept(json: val, owner: self)
+			if let val = js["bodySiteCodeableConcept"] as? FHIRJSON {
+				self.bodySiteCodeableConcept = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["code"] as? NSDictionary {
+			if let val = js["bodySiteReference"] as? FHIRJSON {
+				self.bodySiteReference = Reference(json: val, owner: self)
+			}
+			if let val = js["code"] as? FHIRJSON {
 				self.code = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["event"] as? [NSDictionary] {
-				self.event = DiagnosticOrderItemEvent.from(val, owner: self) as? [DiagnosticOrderItemEvent]
+			if let val = js["event"] as? [FHIRJSON] {
+				self.event = DiagnosticOrderEvent.from(val, owner: self) as? [DiagnosticOrderEvent]
 			}
-			if let val = js["specimen"] as? [NSDictionary] {
-				self.specimen = FHIRReference.from(val, owner: self)
+			if let val = js["specimen"] as? [FHIRJSON] {
+				self.specimen = Reference.from(val, owner: self) as? [Reference]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
 		}
 	}
-}
-
-
-/**
- *  Events specific to this item.
- *
- *  A summary of the events of interest that have occurred as this item of the request is processed.
- */
-public class DiagnosticOrderItemEvent: FHIRElement
-{	
-
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let bodySiteCodeableConcept = self.bodySiteCodeableConcept {
+			json["bodySiteCodeableConcept"] = bodySiteCodeableConcept.asJSON()
+		}
+		if let bodySiteReference = self.bodySiteReference {
+			json["bodySiteReference"] = bodySiteReference.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let event = self.event {
+			json["event"] = DiagnosticOrderEvent.asJSONArray(event)
+		}
+		if let specimen = self.specimen {
+			json["specimen"] = Reference.asJSONArray(specimen)
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		
+		return json
+	}
 }
 

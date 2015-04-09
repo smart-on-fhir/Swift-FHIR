@@ -1,211 +1,328 @@
 //
 //  ProcedureTests.swift
-//  ProcedureTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
-import Cocoa
 import XCTest
 import SwiftFHIR
 
 
 class ProcedureTests: FHIRModelTestCase
 {
-	func instantiateFrom(filename: String) -> Procedure? {
-		let json = readJSONFile(filename)
+	func instantiateFrom(# filename: String) -> Procedure {
+		return instantiateFrom(json: readJSONFile(filename)!)
+	}
+	
+	func instantiateFrom(# json: FHIRJSON) -> Procedure {
 		let instance = Procedure(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
 	func testProcedure1() {
-		let inst = instantiateFrom("procedure-example-biopsy.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Procedure instance")
+		let instance = testProcedure1_impl()
+		testProcedure1_impl(json: instance.asJSON())
+	}
+	
+	func testProcedure1_impl(json: FHIRJSON? = nil) -> Procedure {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-example-biopsy.json")
 		
-		XCTAssertEqual(inst!.bodySite![0].coding![0].code!, "368225008")	
-		XCTAssertEqual(inst!.bodySite![0].coding![0].display!, "Entire Left Forearm")
-		XCTAssertEqual(inst!.bodySite![0].coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
-		XCTAssertEqual(inst!.bodySite![0].text!, "Left forearm")
-		XCTAssertEqual(inst!.date!.start!, NSDate.dateFromISOString("2014-02-03")!)	
-		XCTAssertEqual(inst!.followUp!, "Review in clinic")	
-		XCTAssertEqual(inst!.indication![0].text!, "Dark lesion l) forearm. getting darker last 3 months.")	
-		XCTAssertEqual(inst!.notes!, "Standard Biopsy")	
-		XCTAssertEqual(inst!.performer![0].person!.display!, "Dr Bert Biopser")	
-		XCTAssertEqual(inst!.performer![0].person!.reference!, "Practitioner/example")	
-		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")	
-		XCTAssertEqual(inst!.text!.div!, "<div>Biopsy of suspected melanoma L) arm</div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")	
-		XCTAssertEqual(inst!.type!.coding![0].code!, "90105005")	
-		XCTAssertEqual(inst!.type!.coding![0].display!, "Biopsy of soft tissue of forearm (Procedure)")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
-		XCTAssertEqual(inst!.type!.text!, "Biopsy of suspected melanoma L) arm")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "368225008")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].display!, "Entire Left Forearm")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.text!, "Left forearm")
+		XCTAssertEqual(inst.followUp![0].text!, "Review in clinic")
+		XCTAssertEqual(inst.id!, "biopsy")
+		XCTAssertEqual(inst.indication![0].text!, "Dark lesion l) forearm. getting darker last 3 months.")
+		XCTAssertEqual(inst.notes!, "Standard Biopsy")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.performedDateTime!.description, "2014-02-03")
+		XCTAssertEqual(inst.performer![0].person!.display!, "Dr Bert Biopser")
+		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.div!, "<div>Biopsy of suspected melanoma L) arm</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "90105005")
+		XCTAssertEqual(inst.type!.coding![0].display!, "Biopsy of soft tissue of forearm (Procedure)")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.type!.text!, "Biopsy of suspected melanoma L) arm")
+		
+		return inst
 	}
 	
 	func testProcedure2() {
-		let inst = instantiateFrom("procedure-example-f001-heart.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Procedure instance")
+		let instance = testProcedure2_impl()
+		testProcedure2_impl(json: instance.asJSON())
+	}
+	
+	func testProcedure2_impl(json: FHIRJSON? = nil) -> Procedure {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-example-f001-heart.json")
 		
-		XCTAssertEqual(inst!.bodySite![0].coding![0].code!, "17401000")	
-		XCTAssertEqual(inst!.bodySite![0].coding![0].display!, "Heart valve structure")
-		XCTAssertEqual(inst!.bodySite![0].coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
-		XCTAssertEqual(inst!.date!.end!, NSDate.dateFromISOString("2011-06-27")!)
-		XCTAssertEqual(inst!.date!.start!, NSDate.dateFromISOString("2011-06-26")!)	
-		XCTAssertEqual(inst!.encounter!.reference!, "Encounter/f001")	
-		XCTAssertEqual(inst!.followUp!, "described in care plan")	
-		XCTAssertEqual(inst!.indication![0].text!, "Heart valve disorder")	
-		XCTAssertEqual(inst!.outcome!, "improved blood circulation")	
-		XCTAssertEqual(inst!.performer![0].person!.display!, "P. Voigt")	
-		XCTAssertEqual(inst!.performer![0].person!.reference!, "Practitioner/f002")	
-		XCTAssertEqual(inst!.performer![0].role!.coding![0].code!, "01.000")	
-		XCTAssertEqual(inst!.performer![0].role!.coding![0].display!, "Arts")
-		XCTAssertEqual(inst!.performer![0].role!.coding![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.15.111")!)	
-		XCTAssertEqual(inst!.performer![0].role!.text!, "Care role")	
-		XCTAssertEqual(inst!.report![0].display!, "Lab results blood test")	
-		XCTAssertEqual(inst!.report![0].reference!, "DiagnosticReport/f001")	
-		XCTAssertEqual(inst!.subject!.display!, "P. van de Heuvel")	
-		XCTAssertEqual(inst!.subject!.reference!, "Patient/f001")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>subject</b>: P. van de Heuvel\n      </p>\n      <p>\n        <b>type</b>: \n        <span title=\"Codes: {http://snomed.info/sct 34068001}\">Heart valve replacement</span>\n      </p>\n      <p>\n        <b>bodySite</b>: \n        <span title=\"Codes: {http://snomed.info/sct 17401000}\">Heart valve structure</span>\n      </p>\n      <p>\n        <b>indication</b>: \n        <span title=\"Codes: \">Heart valve disorder</span>\n      </p>\n      <h3>Performers</h3>\n      <table class=\"grid\">\n        <tr>\n          <td>\n            <b>Person</b>\n          </td>\n          <td>\n            <b>Role</b>\n          </td>\n        </tr>\n        <tr>\n          <td>P. Voigt</td>\n          <td>\n            <span title=\"Codes: {urn:oid:2.16.840.1.113883.2.4.15.111 01.000}\">Care role</span>\n          </td>\n        </tr>\n      </table>\n      <p>\n        <b>date</b>: 26-Jun 2011 --&gt; 27-Jun 2011\n      </p>\n      <p>\n        <b>encounter</b>: \n        <a href=\"encounter-example-f001-heart.html\">v1451 (official); finished; outpatient; Patient-initiated encounter; 140 min; Heart valve replacement; Non-urgent cardiological admission</a>\n      </p>\n      <p>\n        <b>outcome</b>: improved blood circulation\n      </p>\n      <p>\n        <b>report</b>: Lab results blood test\n      </p>\n      <p>\n        <b>followUp</b>: described in care plan\n      </p>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")	
-		XCTAssertEqual(inst!.type!.coding![0].code!, "34068001")	
-		XCTAssertEqual(inst!.type!.coding![0].display!, "Heart valve replacement")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "17401000")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].display!, "Heart valve structure")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
+		XCTAssertEqual(inst.followUp![0].text!, "described in care plan")
+		XCTAssertEqual(inst.id!, "f001")
+		XCTAssertEqual(inst.indication![0].text!, "Heart valve disorder")
+		XCTAssertEqual(inst.outcome!.text!, "improved blood circulation")
+		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/f001")
+		XCTAssertEqual(inst.performedPeriod!.end!.description, "2011-06-27")
+		XCTAssertEqual(inst.performedPeriod!.start!.description, "2011-06-26")
+		XCTAssertEqual(inst.performer![0].person!.display!, "P. Voigt")
+		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/f002")
+		XCTAssertEqual(inst.performer![0].role!.coding![0].code!, "01.000")
+		XCTAssertEqual(inst.performer![0].role!.coding![0].display!, "Arts")
+		XCTAssertEqual(inst.performer![0].role!.coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.performer![0].role!.text!, "Care role")
+		XCTAssertEqual(inst.report![0].display!, "Lab results blood test")
+		XCTAssertEqual(inst.report![0].reference!, "DiagnosticReport/f001")
+		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "34068001")
+		XCTAssertEqual(inst.type!.coding![0].display!, "Heart valve replacement")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		
+		return inst
 	}
 	
 	func testProcedure3() {
-		let inst = instantiateFrom("procedure-example-f002-lung.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Procedure instance")
+		let instance = testProcedure3_impl()
+		testProcedure3_impl(json: instance.asJSON())
+	}
+	
+	func testProcedure3_impl(json: FHIRJSON? = nil) -> Procedure {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-example-f002-lung.json")
 		
-		XCTAssertEqual(inst!.bodySite![0].coding![0].code!, "39607008")	
-		XCTAssertEqual(inst!.bodySite![0].coding![0].display!, "Lung structure")
-		XCTAssertEqual(inst!.bodySite![0].coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
-		XCTAssertEqual(inst!.date!.end!, NSDate.dateFromISOString("2013-03-08T09:30:10+01:00")!)
-		XCTAssertEqual(inst!.date!.start!, NSDate.dateFromISOString("2013-03-08T09:00:10+01:00")!)	
-		XCTAssertEqual(inst!.encounter!.reference!, "Encounter/f002")	
-		XCTAssertEqual(inst!.followUp!, "described in care plan")	
-		XCTAssertEqual(inst!.indication![0].text!, "Malignant tumor of lung")	
-		XCTAssertEqual(inst!.outcome!, "improved blood circulation")	
-		XCTAssertEqual(inst!.performer![0].person!.display!, "M.I.M. Versteegh")	
-		XCTAssertEqual(inst!.performer![0].person!.reference!, "Practitioner/f003")	
-		XCTAssertEqual(inst!.performer![0].role!.coding![0].code!, "01.000")	
-		XCTAssertEqual(inst!.performer![0].role!.coding![0].display!, "Arts")
-		XCTAssertEqual(inst!.performer![0].role!.coding![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.15.111")!)	
-		XCTAssertEqual(inst!.performer![0].role!.text!, "Care role")	
-		XCTAssertEqual(inst!.report![0].display!, "Lab results blood test")	
-		XCTAssertEqual(inst!.report![0].reference!, "DiagnosticReport/f001")	
-		XCTAssertEqual(inst!.subject!.display!, "P. van de Heuvel")	
-		XCTAssertEqual(inst!.subject!.reference!, "Patient/f001")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>subject</b>: P. van de Heuvel\n      </p>\n      <p>\n        <b>type</b>: \n        <span title=\"Codes: {http://snomed.info/sct 359615001}\">Partial lobectomy of lung</span>\n      </p>\n      <p>\n        <b>bodySite</b>: \n        <span title=\"Codes: {http://snomed.info/sct 39607008}\">Lung structure</span>\n      </p>\n      <p>\n        <b>indication</b>: \n        <span title=\"Codes: \">Malignant tumor of lung</span>\n      </p>\n      <h3>Performers</h3>\n      <table class=\"grid\">\n        <tr>\n          <td>\n            <b>Person</b>\n          </td>\n          <td>\n            <b>Role</b>\n          </td>\n        </tr>\n        <tr>\n          <td>M.I.M. Versteegh</td>\n          <td>\n            <span title=\"Codes: {urn:oid:2.16.840.1.113883.2.4.15.111 01.000}\">Care role</span>\n          </td>\n        </tr>\n      </table>\n      <p>\n        <b>date</b>: 8-Mar 2013 9:0 --&gt; 8-Mar 2013 9:30\n      </p>\n      <p>\n        <b>encounter</b>: \n        <a href=\"encounter-example-f002-lung.html\">v3251 (official); finished; outpatient; Patient-initiated encounter; 140 min; Partial lobectomy of lung; Urgent</a>\n      </p>\n      <p>\n        <b>outcome</b>: improved blood circulation\n      </p>\n      <p>\n        <b>report</b>: Lab results blood test\n      </p>\n      <p>\n        <b>followUp</b>: described in care plan\n      </p>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")	
-		XCTAssertEqual(inst!.type!.coding![0].code!, "359615001")	
-		XCTAssertEqual(inst!.type!.coding![0].display!, "Partial lobectomy of lung")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "39607008")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].display!, "Lung structure")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f002")
+		XCTAssertEqual(inst.followUp![0].text!, "described in care plan")
+		XCTAssertEqual(inst.id!, "f002")
+		XCTAssertEqual(inst.indication![0].text!, "Malignant tumor of lung")
+		XCTAssertEqual(inst.outcome!.text!, "improved blood circulation")
+		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/f001")
+		XCTAssertEqual(inst.performedPeriod!.end!.description, "2013-03-08T09:30:10+01:00")
+		XCTAssertEqual(inst.performedPeriod!.start!.description, "2013-03-08T09:00:10+01:00")
+		XCTAssertEqual(inst.performer![0].person!.display!, "M.I.M. Versteegh")
+		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/f003")
+		XCTAssertEqual(inst.performer![0].role!.coding![0].code!, "01.000")
+		XCTAssertEqual(inst.performer![0].role!.coding![0].display!, "Arts")
+		XCTAssertEqual(inst.performer![0].role!.coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.performer![0].role!.text!, "Care role")
+		XCTAssertEqual(inst.report![0].display!, "Lab results blood test")
+		XCTAssertEqual(inst.report![0].reference!, "DiagnosticReport/f001")
+		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "359615001")
+		XCTAssertEqual(inst.type!.coding![0].display!, "Partial lobectomy of lung")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		
+		return inst
 	}
 	
 	func testProcedure4() {
-		let inst = instantiateFrom("procedure-example-f003-abscess.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Procedure instance")
+		let instance = testProcedure4_impl()
+		testProcedure4_impl(json: instance.asJSON())
+	}
+	
+	func testProcedure4_impl(json: FHIRJSON? = nil) -> Procedure {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-example-f003-abscess.json")
 		
-		XCTAssertEqual(inst!.bodySite![0].coding![0].code!, "83030008")	
-		XCTAssertEqual(inst!.bodySite![0].coding![0].display!, "Retropharyngeal area")
-		XCTAssertEqual(inst!.bodySite![0].coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
-		XCTAssertEqual(inst!.date!.end!, NSDate.dateFromISOString("2013-03-24T10:30:10+01:00")!)
-		XCTAssertEqual(inst!.date!.start!, NSDate.dateFromISOString("2013-03-24T09:30:10+01:00")!)	
-		XCTAssertEqual(inst!.encounter!.reference!, "Encounter/f003")	
-		XCTAssertEqual(inst!.followUp!, "described in care plan")	
-		XCTAssertEqual(inst!.indication![0].text!, "abcess in retropharyngeal area")	
-		XCTAssertEqual(inst!.outcome!, "removal of the retropharyngeal abscess")	
-		XCTAssertEqual(inst!.performer![0].person!.display!, "E.M.J.M. van den broek")	
-		XCTAssertEqual(inst!.performer![0].person!.reference!, "Practitioner/f001")	
-		XCTAssertEqual(inst!.performer![0].role!.coding![0].code!, "01.000")	
-		XCTAssertEqual(inst!.performer![0].role!.coding![0].display!, "Arts")
-		XCTAssertEqual(inst!.performer![0].role!.coding![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.15.111")!)	
-		XCTAssertEqual(inst!.performer![0].role!.text!, "Care role")	
-		XCTAssertEqual(inst!.report![0].display!, "Lab results blood test")	
-		XCTAssertEqual(inst!.report![0].reference!, "DiagnosticReport/f001")	
-		XCTAssertEqual(inst!.subject!.display!, "P. van de Heuvel")	
-		XCTAssertEqual(inst!.subject!.reference!, "Patient/f001")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>subject</b>: P. van de Heuvel\n      </p>\n      <p>\n        <b>type</b>: \n        <span title=\"Codes: {http://snomed.info/sct 172960003}\">Incision of retropharyngeal abscess</span>\n      </p>\n      <p>\n        <b>bodySite</b>: \n        <span title=\"Codes: {http://snomed.info/sct 83030008}\">Retropharyngeal area</span>\n      </p>\n      <p>\n        <b>indication</b>: \n        <span title=\"Codes: \">abcess in retropharyngeal area</span>\n      </p>\n      <h3>Performers</h3>\n      <table class=\"grid\">\n        <tr>\n          <td>\n            <b>Person</b>\n          </td>\n          <td>\n            <b>Role</b>\n          </td>\n        </tr>\n        <tr>\n          <td>E.M.J.M. van den broek</td>\n          <td>\n            <span title=\"Codes: {urn:oid:2.16.840.1.113883.2.4.15.111 01.000}\">Care role</span>\n          </td>\n        </tr>\n      </table>\n      <p>\n        <b>date</b>: 24-Mar 2013 9:30 --&gt; 24-Mar 2013 10:30\n      </p>\n      <p>\n        <b>encounter</b>: \n        <a href=\"encounter-example-f003-abscess.html\">v6751 (official); finished; outpatient; Patient-initiated encounter; 90 min; Retropharyngeal abscess; Non-urgent ear, nose and throat admission</a>\n      </p>\n      <p>\n        <b>outcome</b>: removal of the retropharyngeal abscess\n      </p>\n      <p>\n        <b>report</b>: Lab results blood test\n      </p>\n      <p>\n        <b>followUp</b>: described in care plan\n      </p>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")	
-		XCTAssertEqual(inst!.type!.coding![0].code!, "172960003")	
-		XCTAssertEqual(inst!.type!.coding![0].display!, "Incision of retropharyngeal abscess")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "83030008")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].display!, "Retropharyngeal area")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f003")
+		XCTAssertEqual(inst.followUp![0].text!, "described in care plan")
+		XCTAssertEqual(inst.id!, "f003")
+		XCTAssertEqual(inst.indication![0].text!, "abcess in retropharyngeal area")
+		XCTAssertEqual(inst.outcome!.text!, "removal of the retropharyngeal abscess")
+		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/f001")
+		XCTAssertEqual(inst.performedPeriod!.end!.description, "2013-03-24T10:30:10+01:00")
+		XCTAssertEqual(inst.performedPeriod!.start!.description, "2013-03-24T09:30:10+01:00")
+		XCTAssertEqual(inst.performer![0].person!.display!, "E.M.J.M. van den broek")
+		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/f001")
+		XCTAssertEqual(inst.performer![0].role!.coding![0].code!, "01.000")
+		XCTAssertEqual(inst.performer![0].role!.coding![0].display!, "Arts")
+		XCTAssertEqual(inst.performer![0].role!.coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.performer![0].role!.text!, "Care role")
+		XCTAssertEqual(inst.report![0].display!, "Lab results blood test")
+		XCTAssertEqual(inst.report![0].reference!, "DiagnosticReport/f001")
+		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "172960003")
+		XCTAssertEqual(inst.type!.coding![0].display!, "Incision of retropharyngeal abscess")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		
+		return inst
 	}
 	
 	func testProcedure5() {
-		let inst = instantiateFrom("procedure-example-f004-tracheotomy.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Procedure instance")
+		let instance = testProcedure5_impl()
+		testProcedure5_impl(json: instance.asJSON())
+	}
+	
+	func testProcedure5_impl(json: FHIRJSON? = nil) -> Procedure {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-example-f004-tracheotomy.json")
 		
-		XCTAssertEqual(inst!.bodySite![0].coding![0].code!, "83030008")	
-		XCTAssertEqual(inst!.bodySite![0].coding![0].display!, "Retropharyngeal area")
-		XCTAssertEqual(inst!.bodySite![0].coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
-		XCTAssertEqual(inst!.date!.end!, NSDate.dateFromISOString("2013-03-22T10:30:10+01:00")!)
-		XCTAssertEqual(inst!.date!.start!, NSDate.dateFromISOString("2013-03-22T09:30:10+01:00")!)	
-		XCTAssertEqual(inst!.encounter!.reference!, "Encounter/f003")	
-		XCTAssertEqual(inst!.followUp!, "described in care plan")	
-		XCTAssertEqual(inst!.indication![0].text!, "ensure breathing during surgery")	
-		XCTAssertEqual(inst!.outcome!, "removal of the retropharyngeal abscess")	
-		XCTAssertEqual(inst!.performer![0].person!.display!, "A. Langeveld")	
-		XCTAssertEqual(inst!.performer![0].person!.reference!, "Practitioner/f005")	
-		XCTAssertEqual(inst!.performer![0].role!.coding![0].code!, "01.000")	
-		XCTAssertEqual(inst!.performer![0].role!.coding![0].display!, "Arts")
-		XCTAssertEqual(inst!.performer![0].role!.coding![0].system!, NSURL(string: "urn:oid:2.16.840.1.113883.2.4.15.111")!)	
-		XCTAssertEqual(inst!.performer![0].role!.text!, "Care role")	
-		XCTAssertEqual(inst!.report![0].display!, "???????????")	
-		XCTAssertEqual(inst!.report![0].reference!, "DiagnosticReport/f001")	
-		XCTAssertEqual(inst!.subject!.display!, "P. van de Heuvel")	
-		XCTAssertEqual(inst!.subject!.reference!, "Patient/f001")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>subject</b>: P. van de Heuvel\n      </p>\n      <p>\n        <b>type</b>: \n        <span title=\"Codes: {http://snomed.info/sct 48387007}\">Tracheotomy</span>\n      </p>\n      <p>\n        <b>bodySite</b>: \n        <span title=\"Codes: {http://snomed.info/sct 83030008}\">Retropharyngeal area</span>\n      </p>\n      <p>\n        <b>indication</b>: \n        <span title=\"Codes: \">ensure breathing during surgery</span>\n      </p>\n      <h3>Performers</h3>\n      <table class=\"grid\">\n        <tr>\n          <td>\n            <b>Person</b>\n          </td>\n          <td>\n            <b>Role</b>\n          </td>\n        </tr>\n        <tr>\n          <td>A. Langeveld</td>\n          <td>\n            <span title=\"Codes: {urn:oid:2.16.840.1.113883.2.4.15.111 01.000}\">Care role</span>\n          </td>\n        </tr>\n      </table>\n      <p>\n        <b>date</b>: 22-Mar 2013 9:30 --&gt; 22-Mar 2013 10:30\n      </p>\n      <p>\n        <b>encounter</b>: \n        <a href=\"encounter-example-f003-abscess.html\">v6751 (official); finished; outpatient; Patient-initiated encounter; 90 min; Retropharyngeal abscess; Non-urgent ear, nose and throat admission</a>\n      </p>\n      <p>\n        <b>outcome</b>: removal of the retropharyngeal abscess\n      </p>\n      <p>\n        <b>report</b>: ???????????\n      </p>\n      <p>\n        <b>followUp</b>: described in care plan\n      </p>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")	
-		XCTAssertEqual(inst!.type!.coding![0].code!, "48387007")	
-		XCTAssertEqual(inst!.type!.coding![0].display!, "Tracheotomy")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "83030008")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].display!, "Retropharyngeal area")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f003")
+		XCTAssertEqual(inst.followUp![0].text!, "described in care plan")
+		XCTAssertEqual(inst.id!, "f004")
+		XCTAssertEqual(inst.indication![0].text!, "ensure breathing during surgery")
+		XCTAssertEqual(inst.outcome!.text!, "removal of the retropharyngeal abscess")
+		XCTAssertEqual(inst.patient!.display!, "P. van de Heuvel")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/f001")
+		XCTAssertEqual(inst.performedPeriod!.end!.description, "2013-03-22T10:30:10+01:00")
+		XCTAssertEqual(inst.performedPeriod!.start!.description, "2013-03-22T09:30:10+01:00")
+		XCTAssertEqual(inst.performer![0].person!.display!, "A. Langeveld")
+		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/f005")
+		XCTAssertEqual(inst.performer![0].role!.coding![0].code!, "01.000")
+		XCTAssertEqual(inst.performer![0].role!.coding![0].display!, "Arts")
+		XCTAssertEqual(inst.performer![0].role!.coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.performer![0].role!.text!, "Care role")
+		XCTAssertEqual(inst.report![0].display!, "???????????")
+		XCTAssertEqual(inst.report![0].reference!, "DiagnosticReport/f001")
+		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "48387007")
+		XCTAssertEqual(inst.type!.coding![0].display!, "Tracheotomy")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		
+		return inst
 	}
 	
 	func testProcedure6() {
-		let inst = instantiateFrom("procedure-example-f201-tpf.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Procedure instance")
+		let instance = testProcedure6_impl()
+		testProcedure6_impl(json: instance.asJSON())
+	}
+	
+	func testProcedure6_impl(json: FHIRJSON? = nil) -> Procedure {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-example-f201-tpf.json")
 		
-		XCTAssertEqual(inst!.bodySite![0].coding![0].code!, "272676008")	
-		XCTAssertEqual(inst!.bodySite![0].coding![0].display!, "Sphenoid bone")
-		XCTAssertEqual(inst!.bodySite![0].coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
-		XCTAssertEqual(inst!.date!.end!, NSDate.dateFromISOString("2013-01-28T14:27:00+01:00")!)
-		XCTAssertEqual(inst!.date!.start!, NSDate.dateFromISOString("2013-01-28T13:31:00+01:00")!)	
-		XCTAssertEqual(inst!.encounter!.display!, "Roel's encounter on January 28th, 2013")	
-		XCTAssertEqual(inst!.encounter!.reference!, "Encounter/f202")	
-		XCTAssertEqual(inst!.indication![0].text!, "DiagnosticReport/f201")	
-		XCTAssertEqual(inst!.notes!, "Eerste neo-adjuvante TPF-kuur bij groot proces in sphenoid met intracraniale uitbreiding.")	
-		XCTAssertEqual(inst!.performer![0].person!.display!, "Dokter Bronsig")	
-		XCTAssertEqual(inst!.performer![0].person!.reference!, "Practitioner/f201")	
-		XCTAssertEqual(inst!.performer![0].role!.coding![0].code!, "310512001")	
-		XCTAssertEqual(inst!.performer![0].role!.coding![0].display!, "Medical oncologist")
-		XCTAssertEqual(inst!.performer![0].role!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
-		XCTAssertEqual(inst!.subject!.display!, "Roel")	
-		XCTAssertEqual(inst!.subject!.reference!, "Patient/f201")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>\n        <b>Generated Narrative</b>\n      </p>\n      <p>\n        <b>subject</b>: Roel\n      </p>\n      <p>\n        <b>type</b>: \n        <span title=\"Codes: {http://snomed.info/sct 367336001}\">Chemotherapy</span>\n      </p>\n      <p>\n        <b>bodySite</b>: \n        <span title=\"Codes: {http://snomed.info/sct 272676008}\">Sphenoid bone</span>\n      </p>\n      <p>\n        <b>indication</b>: \n        <span title=\"Codes: \">DiagnosticReport/f201</span>\n      </p>\n      <h3>Performers</h3>\n      <table class=\"grid\">\n        <tr>\n          <td>\n            <b>Person</b>\n          </td>\n          <td>\n            <b>Role</b>\n          </td>\n        </tr>\n        <tr>\n          <td>Dokter Bronsig</td>\n          <td>\n            <span title=\"Codes: {http://snomed.info/sct 310512001}\">Medical oncologist</span>\n          </td>\n        </tr>\n      </table>\n      <p>\n        <b>date</b>: 28-Jan 2013 13:31 --&gt; 28-Jan 2013 14:27\n      </p>\n      <p>\n        <b>encounter</b>: Roel's encounter on January 28th, 2013\n      </p>\n      <p>\n        <b>notes</b>: Eerste neo-adjuvante TPF-kuur bij groot proces in sphenoid met intracraniale uitbreiding.\n      </p>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")	
-		XCTAssertEqual(inst!.type!.coding![0].code!, "367336001")	
-		XCTAssertEqual(inst!.type!.coding![0].display!, "Chemotherapy")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "272676008")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].display!, "Sphenoid bone")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.encounter!.display!, "Roel's encounter on January 28th, 2013")
+		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f202")
+		XCTAssertEqual(inst.id!, "f201")
+		XCTAssertEqual(inst.indication![0].text!, "DiagnosticReport/f201")
+		XCTAssertEqual(inst.notes!, "Eerste neo-adjuvante TPF-kuur bij groot proces in sphenoid met intracraniale uitbreiding.")
+		XCTAssertEqual(inst.patient!.display!, "Roel")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/f201")
+		XCTAssertEqual(inst.performedPeriod!.end!.description, "2013-01-28T14:27:00+01:00")
+		XCTAssertEqual(inst.performedPeriod!.start!.description, "2013-01-28T13:31:00+01:00")
+		XCTAssertEqual(inst.performer![0].person!.display!, "Dokter Bronsig")
+		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/f201")
+		XCTAssertEqual(inst.performer![0].role!.coding![0].code!, "310512001")
+		XCTAssertEqual(inst.performer![0].role!.coding![0].display!, "Medical oncologist")
+		XCTAssertEqual(inst.performer![0].role!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "367336001")
+		XCTAssertEqual(inst.type!.coding![0].display!, "Chemotherapy")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		
+		return inst
 	}
 	
 	func testProcedure7() {
-		let inst = instantiateFrom("procedure-example.json")
-		XCTAssertNotNil(inst, "Must have instantiated a Procedure instance")
+		let instance = testProcedure7_impl()
+		testProcedure7_impl(json: instance.asJSON())
+	}
 	
-		XCTAssertEqual(inst!.date!.start!, NSDate.dateFromISOString("2013-04-05")!)	
-		XCTAssertEqual(inst!.followUp!, "ROS 5 days  - 2013-04-10")	
-		XCTAssertEqual(inst!.indication![0].text!, "Generalized abdominal pain 24 hours. Localized in RIF with rebound and guarding")	
-		XCTAssertEqual(inst!.notes!, "Routine Appendicectomy. Appendix was inflamed and in retro-caecal position")	
-		XCTAssertEqual(inst!.performer![0].person!.display!, "Dr Cyril Surgeon")	
-		XCTAssertEqual(inst!.performer![0].person!.reference!, "Practitioner/example")	
-		XCTAssertEqual(inst!.subject!.reference!, "Patient/example")	
-		XCTAssertEqual(inst!.text!.div!, "<div>Routine appendicectomy</div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")	
-		XCTAssertEqual(inst!.type!.coding![0].code!, "80146002")	
-		XCTAssertEqual(inst!.type!.coding![0].display!, "Appendectomy (Procedure)")
-		XCTAssertEqual(inst!.type!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
-		XCTAssertEqual(inst!.type!.text!, "Appendicectomy")
+	func testProcedure7_impl(json: FHIRJSON? = nil) -> Procedure {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-example-implant.json")
+		
+		XCTAssertEqual(inst.device![0].action!.coding![0].code!, "implanted")
+		XCTAssertEqual(inst.device![0].action!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/device-action")
+		XCTAssertEqual(inst.device![0].manipulated!.reference!, "Device/example-pacemaker")
+		XCTAssertEqual(inst.followUp![0].text!, "ROS 5 days  - 2013-04-10")
+		XCTAssertEqual(inst.id!, "example-implant")
+		XCTAssertEqual(inst.indication![0].text!, "Bradycardia")
+		XCTAssertEqual(inst.notes!, "Routine Appendectomy. Appendix was inflamed and in retro-caecal position")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.performedDateTime!.description, "2015-04-05")
+		XCTAssertEqual(inst.performer![0].person!.display!, "Dr Cecil Surgeon")
+		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "25267002")
+		XCTAssertEqual(inst.type!.coding![0].display!, "Insertion of intracardiac pacemaker (procedure)")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.type!.text!, "Implant Pacemaker")
+		
+		return inst
+	}
+	
+	func testProcedure8() {
+		let instance = testProcedure8_impl()
+		testProcedure8_impl(json: instance.asJSON())
+	}
+	
+	func testProcedure8_impl(json: FHIRJSON? = nil) -> Procedure {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-example.json")
+		
+		XCTAssertEqual(inst.followUp![0].text!, "ROS 5 days  - 2013-04-10")
+		XCTAssertEqual(inst.id!, "example")
+		XCTAssertEqual(inst.indication![0].text!, "Generalized abdominal pain 24 hours. Localized in RIF with rebound and guarding")
+		XCTAssertEqual(inst.notes!, "Routine Appendectomy. Appendix was inflamed and in retro-caecal position")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.performedDateTime!.description, "2013-04-05")
+		XCTAssertEqual(inst.performer![0].person!.display!, "Dr Cecil Surgeon")
+		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.div!, "<div>Routine Appendectomy</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "80146002")
+		XCTAssertEqual(inst.type!.coding![0].display!, "Appendectomy (Procedure)")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.type!.text!, "Appendectomy")
+		
+		return inst
+	}
+	
+	func testProcedure9() {
+		let instance = testProcedure9_impl()
+		testProcedure9_impl(json: instance.asJSON())
+	}
+	
+	func testProcedure9_impl(json: FHIRJSON? = nil) -> Procedure {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "procedure-qicore-example.json")
+		
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "66754008")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].display!, "Appendix structure")
+		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.encounter!.reference!, "Encounter/example")
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/procedure-approachBodySite")
+		XCTAssertEqual(inst.extension_fhir![0].valueReference!.reference!, "BodySite/example")
+		XCTAssertEqual(inst.extension_fhir![1].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/procedure-incisionDateTime")
+		XCTAssertEqual(inst.extension_fhir![1].valueDateTime!.description, "2013-04-05T09:30:00-04:00")
+		XCTAssertEqual(inst.id!, "qicore")
+		XCTAssertEqual(inst.indication![0].coding![0].code!, "163220003")
+		XCTAssertEqual(inst.indication![0].coding![0].display!, "On examination - abdominal pain - right iliac")
+		XCTAssertEqual(inst.indication![0].coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.performedPeriod!.end!.description, "2013-04-05T10:30:00-04:00")
+		XCTAssertEqual(inst.performedPeriod!.start!.description, "2013-04-05T09:20:00-04:00")
+		XCTAssertEqual(inst.performer![0].person!.display!, "Dr Cecil Surgeon")
+		XCTAssertEqual(inst.performer![0].person!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "80146002")
+		XCTAssertEqual(inst.type!.coding![0].display!, "Appendectomy (Procedure)")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.type!.text!, "Appendectomy")
+		
+		return inst
 	}
 }

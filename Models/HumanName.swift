@@ -1,9 +1,9 @@
 //
 //  HumanName.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-HumanName.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -11,6 +11,8 @@ import Foundation
 
 /**
  *  Name of a human - parts and usage.
+ *
+ *  A human's name with the ability to identify parts and usage.
  */
 public class HumanName: FHIRElement
 {
@@ -39,8 +41,7 @@ public class HumanName: FHIRElement
 	/// usual | official | temp | nickname | anonymous | old | maiden
 	public var use: String?
 	
-
-	public required init(json: NSDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["family"] as? [String] {
@@ -49,7 +50,7 @@ public class HumanName: FHIRElement
 			if let val = js["given"] as? [String] {
 				self.given = val
 			}
-			if let val = js["period"] as? NSDictionary {
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
 			}
 			if let val = js["prefix"] as? [String] {
@@ -65,6 +66,50 @@ public class HumanName: FHIRElement
 				self.use = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let family = self.family {
+			var arr = [AnyObject]()
+			for val in family {
+				arr.append(val.asJSON())
+			}
+			json["family"] = arr
+		}
+		if let given = self.given {
+			var arr = [AnyObject]()
+			for val in given {
+				arr.append(val.asJSON())
+			}
+			json["given"] = arr
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let prefix = self.prefix {
+			var arr = [AnyObject]()
+			for val in prefix {
+				arr.append(val.asJSON())
+			}
+			json["prefix"] = arr
+		}
+		if let suffix = self.suffix {
+			var arr = [AnyObject]()
+			for val in suffix {
+				arr.append(val.asJSON())
+			}
+			json["suffix"] = arr
+		}
+		if let text = self.text {
+			json["text"] = text.asJSON()
+		}
+		if let use = self.use {
+			json["use"] = use.asJSON()
+		}
+		
+		return json
 	}
 }
 

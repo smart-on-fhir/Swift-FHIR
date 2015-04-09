@@ -1,35 +1,45 @@
 //
 //  OperationOutcomeTests.swift
-//  OperationOutcomeTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
-import Cocoa
 import XCTest
 import SwiftFHIR
 
 
 class OperationOutcomeTests: FHIRModelTestCase
 {
-	func instantiateFrom(filename: String) -> OperationOutcome? {
-		let json = readJSONFile(filename)
+	func instantiateFrom(# filename: String) -> OperationOutcome {
+		return instantiateFrom(json: readJSONFile(filename)!)
+	}
+	
+	func instantiateFrom(# json: FHIRJSON) -> OperationOutcome {
 		let instance = OperationOutcome(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
 	func testOperationOutcome1() {
-		let inst = instantiateFrom("operationoutcome-example.json")
-		XCTAssertNotNil(inst, "Must have instantiated a OperationOutcome instance")
+		let instance = testOperationOutcome1_impl()
+		testOperationOutcome1_impl(json: instance.asJSON())
+	}
+	
+	func testOperationOutcome1_impl(json: FHIRJSON? = nil) -> OperationOutcome {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "operationoutcome-example.json")
 		
-		XCTAssertEqual(inst!.issue![0].location![0], "/Person[1]/gender[1]")	
-		XCTAssertEqual(inst!.issue![0].severity!, "error")	
-		XCTAssertEqual(inst!.issue![0].type!.code!, "V15")	
-		XCTAssertEqual(inst!.issue![0].type!.display!, "InvalidCode")
-		XCTAssertEqual(inst!.issue![0].type!.system!, NSURL(string: "http://test.org/issueCodeSystem")!)	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>W is not a recognized code for Gender.</p>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "additional")
+		XCTAssertEqual(inst.id!, "101")
+		XCTAssertEqual(inst.issue![0].code!.coding![0].code!, "code-unknown")
+		XCTAssertEqual(inst.issue![0].code!.coding![0].display!, "Code Unknown")
+		XCTAssertEqual(inst.issue![0].code!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/issue-type")
+		XCTAssertEqual(inst.issue![0].code!.text!, "Unknown code")
+		XCTAssertEqual(inst.issue![0].details!, "The code \"W\" in the system \"http://acme.com/intranet/fhir/codesystems/gender\" is not known (source = Acme.Interop.FHIRProcessors.Patient.processGender)")
+		XCTAssertEqual(inst.issue![0].location![0], "/Person[1]/gender[1]")
+		XCTAssertEqual(inst.issue![0].severity!, "error")
+		XCTAssertEqual(inst.text!.status!, "additional")
+		
+		return inst
 	}
 }

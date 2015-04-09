@@ -1,41 +1,75 @@
 //
 //  MedicationStatementTests.swift
-//  MedicationStatementTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
-import Cocoa
 import XCTest
 import SwiftFHIR
 
 
 class MedicationStatementTests: FHIRModelTestCase
 {
-	func instantiateFrom(filename: String) -> MedicationStatement? {
-		let json = readJSONFile(filename)
+	func instantiateFrom(# filename: String) -> MedicationStatement {
+		return instantiateFrom(json: readJSONFile(filename)!)
+	}
+	
+	func instantiateFrom(# json: FHIRJSON) -> MedicationStatement {
 		let instance = MedicationStatement(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
 	func testMedicationStatement1() {
-		let inst = instantiateFrom("medicationstatement-example.json")
-		XCTAssertNotNil(inst, "Must have instantiated a MedicationStatement instance")
+		let instance = testMedicationStatement1_impl()
+		testMedicationStatement1_impl(json: instance.asJSON())
+	}
+	
+	func testMedicationStatement1_impl(json: FHIRJSON? = nil) -> MedicationStatement {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationstatement-example-tylenol.json")
 		
-		XCTAssertEqual(inst!.dosage![0].quantity!.code!, "ml")
-		XCTAssertEqual(inst!.dosage![0].quantity!.system!, NSURL(string: "http://unitsofmeasure.org")!)	
-		XCTAssertEqual(inst!.dosage![0].quantity!.units!, "ml")
-		XCTAssertEqual(inst!.dosage![0].quantity!.value!, 10)	
-		XCTAssertEqual(inst!.dosage![0].route!.coding![0].code!, "394899003")	
-		XCTAssertEqual(inst!.dosage![0].route!.coding![0].display!, "oral administration of treatment")
-		XCTAssertEqual(inst!.dosage![0].route!.coding![0].system!, NSURL(string: "http://snomed.info/sct")!)	
-		XCTAssertEqual(inst!.medication!.reference!, "Medication/example")	
-		XCTAssertEqual(inst!.patient!.reference!, "Patient/example")	
-		XCTAssertEqual(inst!.text!.div!, "<div>\n      <p>Penicillin VK 10ml suspension administered by oral route at 14:30 on 1 June 2012</p>\n      <p>to patient ref: a23</p>\n    </div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")
-		XCTAssertEqual(inst!.whenGiven!.end!, NSDate.dateFromISOString("2012-06-01T14:30:00")!)
-		XCTAssertEqual(inst!.whenGiven!.start!, NSDate.dateFromISOString("2012-06-01T14:30:00")!)
+		XCTAssertTrue(inst.dosage![0].asNeededBoolean!)
+		XCTAssertEqual(inst.dosage![0].quantity!.value!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosage![0].route!.coding![0].code!, "394899003")
+		XCTAssertEqual(inst.dosage![0].route!.coding![0].display!, "oral administration of treatment")
+		XCTAssertEqual(inst.dosage![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.dosage![0].schedule!.repeat!.frequency!, 1)
+		XCTAssertEqual(inst.dosage![0].schedule!.repeat!.period!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.dosage![0].schedule!.repeat!.periodUnits!, "d")
+		XCTAssertEqual(inst.effectiveDateTime!.description, "2010")
+		XCTAssertEqual(inst.id!, "tylenol")
+		XCTAssertEqual(inst.medication!.reference!, "#2")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testMedicationStatement2() {
+		let instance = testMedicationStatement2_impl()
+		testMedicationStatement2_impl(json: instance.asJSON())
+	}
+	
+	func testMedicationStatement2_impl(json: FHIRJSON? = nil) -> MedicationStatement {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "medicationstatement-qicore-example.json")
+		
+		XCTAssertEqual(inst.dosage![0].quantity!.code!, "ml")
+		XCTAssertEqual(inst.dosage![0].quantity!.system!.absoluteString!, "http://unitsofmeasure.org")
+		XCTAssertEqual(inst.dosage![0].quantity!.units!, "ml")
+		XCTAssertEqual(inst.dosage![0].quantity!.value!, NSDecimalNumber(string: "10"))
+		XCTAssertEqual(inst.dosage![0].route!.coding![0].code!, "394899003")
+		XCTAssertEqual(inst.dosage![0].route!.coding![0].display!, "oral administration of treatment")
+		XCTAssertEqual(inst.dosage![0].route!.coding![0].system!.absoluteString!, "http://snomed.info/sct")
+		XCTAssertEqual(inst.effectiveDateTime!.description, "2012-06-01T14:30:00+14:00")
+		XCTAssertEqual(inst.id!, "qicore")
+		XCTAssertEqual(inst.medication!.reference!, "Medication/example")
+		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
+		XCTAssertEqual(inst.status!, "completed")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
 	}
 }

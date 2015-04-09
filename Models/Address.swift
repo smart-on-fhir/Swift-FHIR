@@ -1,9 +1,9 @@
 //
 //  Address.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Address.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Address) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -11,6 +11,9 @@ import Foundation
 
 /**
  *  A postal address.
+ *
+ *  There is a variety of postal address formats defined around the world. This format defines a superset that is the
+ *  basis for all addresses around the world.
  */
 public class Address: FHIRElement
 {
@@ -30,6 +33,9 @@ public class Address: FHIRElement
 	/// Time period when address was/is in use
 	public var period: Period?
 	
+	/// Postal code for area
+	public var postalCode: String?
+	
 	/// Sub-unit of country (abreviations ok)
 	public var state: String?
 	
@@ -39,11 +45,7 @@ public class Address: FHIRElement
 	/// home | work | temp | old - purpose of this address
 	public var use: String?
 	
-	/// Postal code for area
-	public var zip: String?
-	
-
-	public required init(json: NSDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["city"] as? String {
@@ -55,8 +57,11 @@ public class Address: FHIRElement
 			if let val = js["line"] as? [String] {
 				self.line = val
 			}
-			if let val = js["period"] as? NSDictionary {
+			if let val = js["period"] as? FHIRJSON {
 				self.period = Period(json: val, owner: self)
+			}
+			if let val = js["postalCode"] as? String {
+				self.postalCode = val
 			}
 			if let val = js["state"] as? String {
 				self.state = val
@@ -67,10 +72,42 @@ public class Address: FHIRElement
 			if let val = js["use"] as? String {
 				self.use = val
 			}
-			if let val = js["zip"] as? String {
-				self.zip = val
-			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let city = self.city {
+			json["city"] = city.asJSON()
+		}
+		if let country = self.country {
+			json["country"] = country.asJSON()
+		}
+		if let line = self.line {
+			var arr = [AnyObject]()
+			for val in line {
+				arr.append(val.asJSON())
+			}
+			json["line"] = arr
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let postalCode = self.postalCode {
+			json["postalCode"] = postalCode.asJSON()
+		}
+		if let state = self.state {
+			json["state"] = state.asJSON()
+		}
+		if let text = self.text {
+			json["text"] = text.asJSON()
+		}
+		if let use = self.use {
+			json["use"] = use.asJSON()
+		}
+		
+		return json
 	}
 }
 

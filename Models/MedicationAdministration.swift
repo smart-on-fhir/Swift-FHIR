@@ -1,9 +1,9 @@
 //
 //  MedicationAdministration.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (medicationadministration.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -12,138 +12,192 @@ import Foundation
 /**
  *  Administration of medication to a patient.
  *
- *  Scope and Usage This resource covers the administration of all medications with the exception of vaccines. It will
- *  principally be used within inpatient settings to record the capture of medication administrations including self-
- *  administrations of oral medications, injections, intra-venous adjustments, etc. It can also be used in out-patient
- *  settings to record allergy shots and other non-immunization administrations. In some cases it might be used for
- *  home-health reporting, such as recording self-administered or even device-administered insulin.
+ *  Describes the event of a patient consuming or otherwise being administered a medication.  This may be as simple as
+ *  swallowing a tablet or it may be a long running infusion.Related resources tie this event to the authorizing
+ *  prescription, and the specific encounter between patient and health care practitioner.
  */
-public class MedicationAdministration: FHIRResource
+public class MedicationAdministration: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "MedicationAdministration" }
 	}
 	
 	/// Device used to administer
-	public var device: [FHIRReference<Device>]?
+	public var device: [Reference]?
 	
-	/// Medicine administration instructions to the patient/carer
-	public var dosage: [MedicationAdministrationDosage]?
+	/// Details of how medication was taken
+	public var dosage: MedicationAdministrationDosage?
+	
+	/// Start and end time of administration
+	public var effectiveTimeDateTime: DateTime?
+	
+	/// Start and end time of administration
+	public var effectiveTimePeriod: Period?
 	
 	/// Encounter administered as part of
-	public var encounter: FHIRReference<Encounter>?
+	public var encounter: Reference?
 	
 	/// External identifier
 	public var identifier: [Identifier]?
 	
 	/// What was administered?
-	public var medication: FHIRReference<Medication>?
+	public var medication: Reference?
+	
+	/// Information about the administration
+	public var note: String?
 	
 	/// Who received medication?
-	public var patient: FHIRReference<Patient>?
+	public var patient: Reference?
 	
 	/// Who administered substance?
-	public var practitioner: FHIRReference<Practitioner>?
+	public var practitioner: Reference?
 	
 	/// Order administration performed against
-	public var prescription: FHIRReference<MedicationPrescription>?
+	public var prescription: Reference?
+	
+	/// Reason administration performed
+	public var reasonGiven: [CodeableConcept]?
 	
 	/// Reason administration not performed
 	public var reasonNotGiven: [CodeableConcept]?
 	
-	/// in progress | on hold | completed | entered in error | stopped
+	/// in-progress | on-hold | completed | entered-in-error | stopped
 	public var status: String?
-	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
 	
 	/// True if medication not administered
 	public var wasNotGiven: Bool?
 	
-	/// Start and end time of administration
-	public var whenGiven: Period?
-	
-	public convenience init(patient: FHIRReference<Patient>?, practitioner: FHIRReference<Practitioner>?, prescription: FHIRReference<MedicationPrescription>?, status: String?, whenGiven: Period?) {
+	public convenience init(effectiveTimeDateTime: DateTime?, effectiveTimePeriod: Period?, patient: Reference?, status: String?) {
 		self.init(json: nil)
+		if nil != effectiveTimeDateTime {
+			self.effectiveTimeDateTime = effectiveTimeDateTime
+		}
+		if nil != effectiveTimePeriod {
+			self.effectiveTimePeriod = effectiveTimePeriod
+		}
 		if nil != patient {
 			self.patient = patient
-		}
-		if nil != practitioner {
-			self.practitioner = practitioner
-		}
-		if nil != prescription {
-			self.prescription = prescription
 		}
 		if nil != status {
 			self.status = status
 		}
-		if nil != whenGiven {
-			self.whenGiven = whenGiven
-		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["device"] as? [NSDictionary] {
-				self.device = FHIRReference.from(val, owner: self)
+			if let val = js["device"] as? [FHIRJSON] {
+				self.device = Reference.from(val, owner: self) as? [Reference]
 			}
-			if let val = js["dosage"] as? [NSDictionary] {
-				self.dosage = MedicationAdministrationDosage.from(val, owner: self) as? [MedicationAdministrationDosage]
+			if let val = js["dosage"] as? FHIRJSON {
+				self.dosage = MedicationAdministrationDosage(json: val, owner: self)
 			}
-			if let val = js["encounter"] as? NSDictionary {
-				self.encounter = FHIRReference(json: val, owner: self)
+			if let val = js["effectiveTimeDateTime"] as? String {
+				self.effectiveTimeDateTime = DateTime(string: val)
 			}
-			if let val = js["identifier"] as? [NSDictionary] {
+			if let val = js["effectiveTimePeriod"] as? FHIRJSON {
+				self.effectiveTimePeriod = Period(json: val, owner: self)
+			}
+			if let val = js["encounter"] as? FHIRJSON {
+				self.encounter = Reference(json: val, owner: self)
+			}
+			if let val = js["identifier"] as? [FHIRJSON] {
 				self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 			}
-			if let val = js["medication"] as? NSDictionary {
-				self.medication = FHIRReference(json: val, owner: self)
+			if let val = js["medication"] as? FHIRJSON {
+				self.medication = Reference(json: val, owner: self)
 			}
-			if let val = js["patient"] as? NSDictionary {
-				self.patient = FHIRReference(json: val, owner: self)
+			if let val = js["note"] as? String {
+				self.note = val
 			}
-			if let val = js["practitioner"] as? NSDictionary {
-				self.practitioner = FHIRReference(json: val, owner: self)
+			if let val = js["patient"] as? FHIRJSON {
+				self.patient = Reference(json: val, owner: self)
 			}
-			if let val = js["prescription"] as? NSDictionary {
-				self.prescription = FHIRReference(json: val, owner: self)
+			if let val = js["practitioner"] as? FHIRJSON {
+				self.practitioner = Reference(json: val, owner: self)
 			}
-			if let val = js["reasonNotGiven"] as? [NSDictionary] {
+			if let val = js["prescription"] as? FHIRJSON {
+				self.prescription = Reference(json: val, owner: self)
+			}
+			if let val = js["reasonGiven"] as? [FHIRJSON] {
+				self.reasonGiven = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			}
+			if let val = js["reasonNotGiven"] as? [FHIRJSON] {
 				self.reasonNotGiven = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 			}
 			if let val = js["status"] as? String {
 				self.status = val
 			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
-			}
 			if let val = js["wasNotGiven"] as? Bool {
 				self.wasNotGiven = val
 			}
-			if let val = js["whenGiven"] as? NSDictionary {
-				self.whenGiven = Period(json: val, owner: self)
-			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let device = self.device {
+			json["device"] = Reference.asJSONArray(device)
+		}
+		if let dosage = self.dosage {
+			json["dosage"] = dosage.asJSON()
+		}
+		if let effectiveTimeDateTime = self.effectiveTimeDateTime {
+			json["effectiveTimeDateTime"] = effectiveTimeDateTime.asJSON()
+		}
+		if let effectiveTimePeriod = self.effectiveTimePeriod {
+			json["effectiveTimePeriod"] = effectiveTimePeriod.asJSON()
+		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let medication = self.medication {
+			json["medication"] = medication.asJSON()
+		}
+		if let note = self.note {
+			json["note"] = note.asJSON()
+		}
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
+		}
+		if let practitioner = self.practitioner {
+			json["practitioner"] = practitioner.asJSON()
+		}
+		if let prescription = self.prescription {
+			json["prescription"] = prescription.asJSON()
+		}
+		if let reasonGiven = self.reasonGiven {
+			json["reasonGiven"] = CodeableConcept.asJSONArray(reasonGiven)
+		}
+		if let reasonNotGiven = self.reasonNotGiven {
+			json["reasonNotGiven"] = CodeableConcept.asJSONArray(reasonNotGiven)
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let wasNotGiven = self.wasNotGiven {
+			json["wasNotGiven"] = wasNotGiven.asJSON()
+		}
+		
+		return json
 	}
 }
 
 
 /**
- *  Medicine administration instructions to the patient/carer.
+ *  Details of how medication was taken.
  *
- *  Provides details of how much of the medication was administered.
+ *  Indicates how the medication is/was used by the patient.
  */
 public class MedicationAdministrationDosage: FHIRElement
-{	
-	/// Take "as needed" f(or x)
-	public var asNeededBoolean: Bool?
-	
-	/// Take "as needed" f(or x)
-	public var asNeededCodeableConcept: CodeableConcept?
-	
-	/// Total dose that was consumed per unit of time
-	public var maxDosePerPeriod: Ratio?
+{
+	override public class var resourceName: String {
+		get { return "MedicationAdministrationDosage" }
+	}
 	
 	/// How drug was administered
 	public var method: CodeableConcept?
@@ -160,47 +214,56 @@ public class MedicationAdministrationDosage: FHIRElement
 	/// Body site administered to
 	public var site: CodeableConcept?
 	
-	/// When dose(s) were given
-	public var timingDateTime: NSDate?
+	/// Dosage Instructions
+	public var text: String?
 	
-	/// When dose(s) were given
-	public var timingPeriod: Period?
-	
-
-	public required init(json: NSDictionary?) {
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["asNeededBoolean"] as? Bool {
-				self.asNeededBoolean = val
-			}
-			if let val = js["asNeededCodeableConcept"] as? NSDictionary {
-				self.asNeededCodeableConcept = CodeableConcept(json: val, owner: self)
-			}
-			if let val = js["maxDosePerPeriod"] as? NSDictionary {
-				self.maxDosePerPeriod = Ratio(json: val, owner: self)
-			}
-			if let val = js["method"] as? NSDictionary {
+			if let val = js["method"] as? FHIRJSON {
 				self.method = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["quantity"] as? NSDictionary {
+			if let val = js["quantity"] as? FHIRJSON {
 				self.quantity = Quantity(json: val, owner: self)
 			}
-			if let val = js["rate"] as? NSDictionary {
+			if let val = js["rate"] as? FHIRJSON {
 				self.rate = Ratio(json: val, owner: self)
 			}
-			if let val = js["route"] as? NSDictionary {
+			if let val = js["route"] as? FHIRJSON {
 				self.route = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["site"] as? NSDictionary {
+			if let val = js["site"] as? FHIRJSON {
 				self.site = CodeableConcept(json: val, owner: self)
 			}
-			if let val = js["timingDateTime"] as? String {
-				self.timingDateTime = NSDate(json: val)
-			}
-			if let val = js["timingPeriod"] as? NSDictionary {
-				self.timingPeriod = Period(json: val, owner: self)
+			if let val = js["text"] as? String {
+				self.text = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let method = self.method {
+			json["method"] = method.asJSON()
+		}
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let rate = self.rate {
+			json["rate"] = rate.asJSON()
+		}
+		if let route = self.route {
+			json["route"] = route.asJSON()
+		}
+		if let site = self.site {
+			json["site"] = site.asJSON()
+		}
+		if let text = self.text {
+			json["text"] = text.asJSON()
+		}
+		
+		return json
 	}
 }
 

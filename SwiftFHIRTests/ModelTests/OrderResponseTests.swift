@@ -1,35 +1,44 @@
 //
 //  OrderResponseTests.swift
-//  OrderResponseTests
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
-import Cocoa
 import XCTest
 import SwiftFHIR
 
 
 class OrderResponseTests: FHIRModelTestCase
 {
-	func instantiateFrom(filename: String) -> OrderResponse? {
-		let json = readJSONFile(filename)
+	func instantiateFrom(# filename: String) -> OrderResponse {
+		return instantiateFrom(json: readJSONFile(filename)!)
+	}
+	
+	func instantiateFrom(# json: FHIRJSON) -> OrderResponse {
 		let instance = OrderResponse(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
 	func testOrderResponse1() {
-		let inst = instantiateFrom("orderresponse-example.json")
-		XCTAssertNotNil(inst, "Must have instantiated a OrderResponse instance")
+		let instance = testOrderResponse1_impl()
+		testOrderResponse1_impl(json: instance.asJSON())
+	}
+	
+	func testOrderResponse1_impl(json: FHIRJSON? = nil) -> OrderResponse {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "orderresponse-example.json")
 		
-		XCTAssertEqual(inst!.code!, "complete")
-		XCTAssertEqual(inst!.date!, NSDate.dateFromISOString("2012-12-28T13:10:56+11:00")!)	
-		XCTAssertEqual(inst!.fulfillment![0].reference!, "DiagnosticReport/101")	
-		XCTAssertEqual(inst!.request!.reference!, "Order/example")	
-		XCTAssertEqual(inst!.text!.div!, "<div>Lab Report completed at 13:10 28-Dec 2012</div>")	
-		XCTAssertEqual(inst!.text!.status!, "generated")	
-		XCTAssertEqual(inst!.who!.reference!, "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f")
+		XCTAssertEqual(inst.date!.description, "2012-12-28T13:10:56+11:00")
+		XCTAssertEqual(inst.fulfillment![0].reference!, "DiagnosticReport/101")
+		XCTAssertEqual(inst.id!, "example")
+		XCTAssertEqual(inst.orderStatus!, "completed")
+		XCTAssertEqual(inst.request!.reference!, "Order/example")
+		XCTAssertEqual(inst.text!.div!, "<div>Lab Report completed at 13:10 28-Dec 2012</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.who!.reference!, "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f")
+		
+		return inst
 	}
 }

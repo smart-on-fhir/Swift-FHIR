@@ -1,9 +1,9 @@
 //
 //  Narrative.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (type-Narrative.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Narrative) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -21,7 +21,7 @@ public class Narrative: FHIRElement
 	/// Limited xhtml content
 	public var div: String?
 	
-	/// generated | extensions | additional
+	/// generated | extensions | additional | empty
 	public var status: String?
 	
 	public convenience init(div: String?, status: String?) {
@@ -32,9 +32,9 @@ public class Narrative: FHIRElement
 		if nil != status {
 			self.status = status
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
 			if let val = js["div"] as? String {
@@ -44,6 +44,19 @@ public class Narrative: FHIRElement
 				self.status = val
 			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let div = self.div {
+			json["div"] = div.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		
+		return json
 	}
 }
 

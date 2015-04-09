@@ -1,9 +1,9 @@
 //
 //  OperationOutcome.swift
-//  SMART-on-FHIR
+//  SwiftFHIR
 //
-//  Generated from FHIR 0.0.82.2943 (operationoutcome.profile.json) on 2014-11-12.
-//  2014, SMART Platforms.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2015-04-03.
+//  2015, SMART Health IT.
 //
 
 import Foundation
@@ -12,17 +12,9 @@ import Foundation
 /**
  *  Information about the success/failure of an action.
  *
- *  Scope and Usage Operation Outcomes are sets of error, warning and information messages that provide detailed
- *  information about the outcome of some attempted system operation. They are provided as a direct system response, or
- *  component of one, where they provide information about the outcome of the operation.
- *  
- *  Specifically, OperationOutcomes are used in the following circumstances:
- *  
- *  * When an RESTful operation fails
- *  * As the response on a validation operation, to provide information about the outcomes
- *  * As part of a message response, usually when the message has not been processed correctly
+ *  A collection of error, warning or information messages that result from a system action.
  */
-public class OperationOutcome: FHIRResource
+public class OperationOutcome: DomainResource
 {
 	override public class var resourceName: String {
 		get { return "OperationOutcome" }
@@ -31,26 +23,30 @@ public class OperationOutcome: FHIRResource
 	/// A single issue associated with the action
 	public var issue: [OperationOutcomeIssue]?
 	
-	/// Text summary of the resource, for human interpretation
-	public var text: Narrative?
-	
 	public convenience init(issue: [OperationOutcomeIssue]?) {
 		self.init(json: nil)
 		if nil != issue {
 			self.issue = issue
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
-			if let val = js["issue"] as? [NSDictionary] {
+			if let val = js["issue"] as? [FHIRJSON] {
 				self.issue = OperationOutcomeIssue.from(val, owner: self) as? [OperationOutcomeIssue]
 			}
-			if let val = js["text"] as? NSDictionary {
-				self.text = Narrative(json: val, owner: self)
-			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let issue = self.issue {
+			json["issue"] = OperationOutcomeIssue.asJSONArray(issue)
+		}
+		
+		return json
 	}
 }
 
@@ -61,8 +57,15 @@ public class OperationOutcome: FHIRResource
  *  An error, warning or information message that results from a system action.
  */
 public class OperationOutcomeIssue: FHIRElement
-{	
-	/// Additional description of the issue
+{
+	override public class var resourceName: String {
+		get { return "OperationOutcomeIssue" }
+	}
+	
+	/// Error or warning code
+	public var code: CodeableConcept?
+	
+	/// Additional diagnostic information about the issue
 	public var details: String?
 	
 	/// XPath of element(s) related to issue
@@ -71,19 +74,22 @@ public class OperationOutcomeIssue: FHIRElement
 	/// fatal | error | warning | information
 	public var severity: String?
 	
-	/// Error or warning code
-	public var type: Coding?
-	
-	public convenience init(severity: String?) {
+	public convenience init(code: CodeableConcept?, severity: String?) {
 		self.init(json: nil)
+		if nil != code {
+			self.code = code
+		}
 		if nil != severity {
 			self.severity = severity
 		}
-	}	
-
-	public required init(json: NSDictionary?) {
+	}
+	
+	public required init(json: FHIRJSON?) {
 		super.init(json: json)
 		if let js = json {
+			if let val = js["code"] as? FHIRJSON {
+				self.code = CodeableConcept(json: val, owner: self)
+			}
 			if let val = js["details"] as? String {
 				self.details = val
 			}
@@ -93,10 +99,30 @@ public class OperationOutcomeIssue: FHIRElement
 			if let val = js["severity"] as? String {
 				self.severity = val
 			}
-			if let val = js["type"] as? NSDictionary {
-				self.type = Coding(json: val, owner: self)
-			}
 		}
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let details = self.details {
+			json["details"] = details.asJSON()
+		}
+		if let location = self.location {
+			var arr = [AnyObject]()
+			for val in location {
+				arr.append(val.asJSON())
+			}
+			json["location"] = arr
+		}
+		if let severity = self.severity {
+			json["severity"] = severity.asJSON()
+		}
+		
+		return json
 	}
 }
 

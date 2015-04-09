@@ -135,7 +135,7 @@ public extension Resource
 	public func perform(operation: FHIROperation, callback: FHIRResourceErrorCallback) {
 		if let server = _server {
 			operation.instance = self
-			self.dynamicType._perform(operation, server: server, callback)
+			self.dynamicType._perform(operation, server: server, callback: callback)
 		}
 		else {
 			callback(resource: nil, error: genServerError("The resource \(self) is not assigned to a server, cannot execute operation"))
@@ -147,7 +147,7 @@ public extension Resource
 	 */
 	public class func perform(operation: FHIROperation, server: FHIRServer, callback: FHIRResourceErrorCallback) {
 		operation.type = self
-		_perform(operation, server: server, callback)
+		_perform(operation, server: server, callback: callback)
 	}
 	
 	class func _perform(operation: FHIROperation, server: FHIRServer, callback: FHIRResourceErrorCallback) {

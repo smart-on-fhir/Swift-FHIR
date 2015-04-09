@@ -82,12 +82,12 @@ public class FHIRSearch
 		// expand
 		let qry = query.expand(extraArguments: extra)
 		if let type = profileType {
-			if countElements(qry) > 0 {
+			if count(qry) > 0 {
 				return "\(type.resourceName)?\(qry)"
 			}
 			return type.resourceName
 		}
-		if countElements(qry) > 0 {
+		if count(qry) > 0 {
 			return "?\(qry)"
 		}
 		return ""
@@ -206,7 +206,7 @@ class FHIRSearchParam: Printable
 		}
 	}
 	var description: String {
-		return "<FHIRSearchParam> \(name ?? nil) [parent \(parent?.description ?? nil) and \(nil != children ? countElements(children!) : 0) children]"
+		return "<FHIRSearchParam> \(name ?? nil) [parent \(parent?.description ?? nil) and \(nil != children ? count(children!) : 0) children]"
 	}
 	
 	init(name: String, parent: FHIRSearchParam?) {

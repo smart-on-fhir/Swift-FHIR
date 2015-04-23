@@ -2,7 +2,7 @@
 //  Distance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Distance) on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Distance) on 2015-04-23.
 //  2015, SMART Health IT.
 //
 
@@ -19,6 +19,12 @@ public class Distance: Quantity
 {
 	override public class var resourceName: String {
 		get { return "Distance" }
+	}
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
 	}
 
 }

@@ -2,7 +2,7 @@
 //  Meta.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Meta) on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Meta) on 2015-04-23.
 //  2015, SMART Health IT.
 //
 
@@ -36,25 +36,62 @@ public class Meta: FHIRElement
 	/// Version specific identifier
 	public var versionId: String?
 	
+	
+	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?) {
 		super.init(json: json)
+	}
+	
+	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
+		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
 		if let js = json {
-			if let val = js["lastUpdated"] as? String {
-				self.lastUpdated = Instant(string: val)
+			if let exist: AnyObject = js["lastUpdated"] {
+				presentKeys.addObject("lastUpdated")
+				if let val = exist as? String {
+					self.lastUpdated = Instant(string: val)
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"lastUpdated\" to be `String`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["profile"] as? [String] {
-				self.profile = NSURL.from(val)
+			if let exist: AnyObject = js["profile"] {
+				presentKeys.addObject("profile")
+				if let val = exist as? [String] {
+					self.profile = NSURL.from(val)
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"profile\" to be an array of `String`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["security"] as? [FHIRJSON] {
-				self.security = Coding.from(val, owner: self) as? [Coding]
+			if let exist: AnyObject = js["security"] {
+				presentKeys.addObject("security")
+				if let val = exist as? [FHIRJSON] {
+					self.security = Coding.from(val, owner: self) as? [Coding]
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"security\" to be an array of `FHIRJSON`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["tag"] as? [FHIRJSON] {
-				self.tag = Coding.from(val, owner: self) as? [Coding]
+			if let exist: AnyObject = js["tag"] {
+				presentKeys.addObject("tag")
+				if let val = exist as? [FHIRJSON] {
+					self.tag = Coding.from(val, owner: self) as? [Coding]
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"tag\" to be an array of `FHIRJSON`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["versionId"] as? String {
-				self.versionId = val
+			if let exist: AnyObject = js["versionId"] {
+				presentKeys.addObject("versionId")
+				if let val = exist as? String {
+					self.versionId = val
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"versionId\" to be `String`, but is \(exist.dynamicType)"))
+				}
 			}
 		}
+		return errors.isEmpty ? nil : errors
 	}
 	
 	override public func asJSON() -> FHIRJSON {

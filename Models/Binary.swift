@@ -2,7 +2,7 @@
 //  Binary.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Binary) on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Binary) on 2015-04-23.
 //  2015, SMART Health IT.
 //
 
@@ -26,6 +26,13 @@ public class Binary: Resource
 	/// MimeType of the binary content
 	public var contentType: String?
 	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+	}
+	
+	/** Convenience initializer, taking all required properties an arguments. */
 	public convenience init(content: Base64Binary?, contentType: String?) {
 		self.init(json: nil)
 		if nil != content {
@@ -36,16 +43,35 @@ public class Binary: Resource
 		}
 	}
 	
-	public required init(json: FHIRJSON?) {
-		super.init(json: json)
+	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
+		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
 		if let js = json {
-			if let val = js["content"] as? String {
-				self.content = Base64Binary(string: val)
+			if let exist: AnyObject = js["content"] {
+				presentKeys.addObject("content")
+				if let val = exist as? String {
+					self.content = Base64Binary(string: val)
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"content\" to be `String`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["contentType"] as? String {
-				self.contentType = val
+			else {
+				errors.append(fhir_generateJSONError("\(self) expects nonoptional JSON property \"content\" but it is missing"))
+			}
+			if let exist: AnyObject = js["contentType"] {
+				presentKeys.addObject("contentType")
+				if let val = exist as? String {
+					self.contentType = val
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"contentType\" to be `String`, but is \(exist.dynamicType)"))
+				}
+			}
+			else {
+				errors.append(fhir_generateJSONError("\(self) expects nonoptional JSON property \"contentType\" but it is missing"))
 			}
 		}
+		return errors.isEmpty ? nil : errors
 	}
 	
 	override public func asJSON() -> FHIRJSON {

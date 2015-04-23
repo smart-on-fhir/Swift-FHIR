@@ -2,7 +2,7 @@
 //  Period.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Period) on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Period) on 2015-04-23.
 //  2015, SMART Health IT.
 //
 
@@ -26,16 +26,35 @@ public class Period: FHIRElement
 	/// Starting time with inclusive boundary
 	public var start: DateTime?
 	
+	
+	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?) {
 		super.init(json: json)
+	}
+	
+	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
+		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
 		if let js = json {
-			if let val = js["end"] as? String {
-				self.end = DateTime(string: val)
+			if let exist: AnyObject = js["end"] {
+				presentKeys.addObject("end")
+				if let val = exist as? String {
+					self.end = DateTime(string: val)
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"end\" to be `String`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["start"] as? String {
-				self.start = DateTime(string: val)
+			if let exist: AnyObject = js["start"] {
+				presentKeys.addObject("start")
+				if let val = exist as? String {
+					self.start = DateTime(string: val)
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"start\" to be `String`, but is \(exist.dynamicType)"))
+				}
 			}
 		}
+		return errors.isEmpty ? nil : errors
 	}
 	
 	override public func asJSON() -> FHIRJSON {

@@ -2,7 +2,7 @@
 //  Resource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Resource) on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Resource) on 2015-04-23.
 //  2015, SMART Health IT.
 //
 
@@ -29,19 +29,44 @@ public class Resource: FHIRResource
 	/// Metadata about the resource
 	public var meta: Meta?
 	
+	
+	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?) {
 		super.init(json: json)
+	}
+	
+	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
+		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
 		if let js = json {
-			if let val = js["implicitRules"] as? String {
-				self.implicitRules = NSURL(string: val)
+			if let exist: AnyObject = js["implicitRules"] {
+				presentKeys.addObject("implicitRules")
+				if let val = exist as? String {
+					self.implicitRules = NSURL(string: val)
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"implicitRules\" to be `String`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["language"] as? String {
-				self.language = val
+			if let exist: AnyObject = js["language"] {
+				presentKeys.addObject("language")
+				if let val = exist as? String {
+					self.language = val
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"language\" to be `String`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["meta"] as? FHIRJSON {
-				self.meta = Meta(json: val, owner: self)
+			if let exist: AnyObject = js["meta"] {
+				presentKeys.addObject("meta")
+				if let val = exist as? FHIRJSON {
+					self.meta = Meta(json: val, owner: self)
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"meta\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+				}
 			}
 		}
+		return errors.isEmpty ? nil : errors
 	}
 	
 	override public func asJSON() -> FHIRJSON {

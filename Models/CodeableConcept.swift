@@ -2,7 +2,7 @@
 //  CodeableConcept.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/CodeableConcept) on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/CodeableConcept) on 2015-04-23.
 //  2015, SMART Health IT.
 //
 
@@ -26,16 +26,35 @@ public class CodeableConcept: FHIRElement
 	/// Plain text representation of the concept
 	public var text: String?
 	
+	
+	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?) {
 		super.init(json: json)
+	}
+	
+	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
+		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
 		if let js = json {
-			if let val = js["coding"] as? [FHIRJSON] {
-				self.coding = Coding.from(val, owner: self) as? [Coding]
+			if let exist: AnyObject = js["coding"] {
+				presentKeys.addObject("coding")
+				if let val = exist as? [FHIRJSON] {
+					self.coding = Coding.from(val, owner: self) as? [Coding]
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"coding\" to be an array of `FHIRJSON`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["text"] as? String {
-				self.text = val
+			if let exist: AnyObject = js["text"] {
+				presentKeys.addObject("text")
+				if let val = exist as? String {
+					self.text = val
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"text\" to be `String`, but is \(exist.dynamicType)"))
+				}
 			}
 		}
+		return errors.isEmpty ? nil : errors
 	}
 	
 	override public func asJSON() -> FHIRJSON {

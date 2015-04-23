@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2015-04-23.
 //  2015, SMART Health IT.
 //
 
@@ -47,6 +47,13 @@ public class Subscription: DomainResource
 	/// A tag to add to matching resources
 	public var tag: [Coding]?
 	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+	}
+	
+	/** Convenience initializer, taking all required properties an arguments. */
 	public convenience init(channel: SubscriptionChannel?, criteria: String?, reason: String?, status: String?) {
 		self.init(json: nil)
 		if nil != channel {
@@ -63,34 +70,95 @@ public class Subscription: DomainResource
 		}
 	}
 	
-	public required init(json: FHIRJSON?) {
-		super.init(json: json)
+	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
+		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
 		if let js = json {
-			if let val = js["channel"] as? FHIRJSON {
-				self.channel = SubscriptionChannel(json: val, owner: self)
+			if let exist: AnyObject = js["channel"] {
+				presentKeys.addObject("channel")
+				if let val = exist as? FHIRJSON {
+					self.channel = SubscriptionChannel(json: val, owner: self)
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"channel\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["contact"] as? [FHIRJSON] {
-				self.contact = ContactPoint.from(val, owner: self) as? [ContactPoint]
+			else {
+				errors.append(fhir_generateJSONError("\(self) expects nonoptional JSON property \"channel\" but it is missing"))
 			}
-			if let val = js["criteria"] as? String {
-				self.criteria = val
+			if let exist: AnyObject = js["contact"] {
+				presentKeys.addObject("contact")
+				if let val = exist as? [FHIRJSON] {
+					self.contact = ContactPoint.from(val, owner: self) as? [ContactPoint]
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"contact\" to be an array of `FHIRJSON`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["end"] as? String {
-				self.end = Instant(string: val)
+			if let exist: AnyObject = js["criteria"] {
+				presentKeys.addObject("criteria")
+				if let val = exist as? String {
+					self.criteria = val
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"criteria\" to be `String`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["error"] as? String {
-				self.error = val
+			else {
+				errors.append(fhir_generateJSONError("\(self) expects nonoptional JSON property \"criteria\" but it is missing"))
 			}
-			if let val = js["reason"] as? String {
-				self.reason = val
+			if let exist: AnyObject = js["end"] {
+				presentKeys.addObject("end")
+				if let val = exist as? String {
+					self.end = Instant(string: val)
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"end\" to be `String`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["status"] as? String {
-				self.status = val
+			if let exist: AnyObject = js["error"] {
+				presentKeys.addObject("error")
+				if let val = exist as? String {
+					self.error = val
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"error\" to be `String`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["tag"] as? [FHIRJSON] {
-				self.tag = Coding.from(val, owner: self) as? [Coding]
+			if let exist: AnyObject = js["reason"] {
+				presentKeys.addObject("reason")
+				if let val = exist as? String {
+					self.reason = val
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"reason\" to be `String`, but is \(exist.dynamicType)"))
+				}
+			}
+			else {
+				errors.append(fhir_generateJSONError("\(self) expects nonoptional JSON property \"reason\" but it is missing"))
+			}
+			if let exist: AnyObject = js["status"] {
+				presentKeys.addObject("status")
+				if let val = exist as? String {
+					self.status = val
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"status\" to be `String`, but is \(exist.dynamicType)"))
+				}
+			}
+			else {
+				errors.append(fhir_generateJSONError("\(self) expects nonoptional JSON property \"status\" but it is missing"))
+			}
+			if let exist: AnyObject = js["tag"] {
+				presentKeys.addObject("tag")
+				if let val = exist as? [FHIRJSON] {
+					self.tag = Coding.from(val, owner: self) as? [Coding]
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"tag\" to be an array of `FHIRJSON`, but is \(exist.dynamicType)"))
+				}
 			}
 		}
+		return errors.isEmpty ? nil : errors
 	}
 	
 	override public func asJSON() -> FHIRJSON {
@@ -149,6 +217,13 @@ public class SubscriptionChannel: FHIRElement
 	/// rest-hook | websocket | email | sms | message
 	public var type: String?
 	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+	}
+	
+	/** Convenience initializer, taking all required properties an arguments. */
 	public convenience init(payload: String?, type: String?) {
 		self.init(json: nil)
 		if nil != payload {
@@ -159,22 +234,53 @@ public class SubscriptionChannel: FHIRElement
 		}
 	}
 	
-	public required init(json: FHIRJSON?) {
-		super.init(json: json)
+	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
+		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
 		if let js = json {
-			if let val = js["endpoint"] as? String {
-				self.endpoint = NSURL(string: val)
+			if let exist: AnyObject = js["endpoint"] {
+				presentKeys.addObject("endpoint")
+				if let val = exist as? String {
+					self.endpoint = NSURL(string: val)
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"endpoint\" to be `String`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["header"] as? String {
-				self.header = val
+			if let exist: AnyObject = js["header"] {
+				presentKeys.addObject("header")
+				if let val = exist as? String {
+					self.header = val
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"header\" to be `String`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["payload"] as? String {
-				self.payload = val
+			if let exist: AnyObject = js["payload"] {
+				presentKeys.addObject("payload")
+				if let val = exist as? String {
+					self.payload = val
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"payload\" to be `String`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["type"] as? String {
-				self.type = val
+			else {
+				errors.append(fhir_generateJSONError("\(self) expects nonoptional JSON property \"payload\" but it is missing"))
+			}
+			if let exist: AnyObject = js["type"] {
+				presentKeys.addObject("type")
+				if let val = exist as? String {
+					self.type = val
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"type\" to be `String`, but is \(exist.dynamicType)"))
+				}
+			}
+			else {
+				errors.append(fhir_generateJSONError("\(self) expects nonoptional JSON property \"type\" but it is missing"))
 			}
 		}
+		return errors.isEmpty ? nil : errors
 	}
 	
 	override public func asJSON() -> FHIRJSON {

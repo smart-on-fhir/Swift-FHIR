@@ -2,7 +2,7 @@
 //  ContactPoint.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2015-04-23.
 //  2015, SMART Health IT.
 //
 
@@ -33,22 +33,53 @@ public class ContactPoint: FHIRElement
 	/// The actual contact point details
 	public var value: String?
 	
+	
+	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?) {
 		super.init(json: json)
+	}
+	
+	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
+		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
 		if let js = json {
-			if let val = js["period"] as? FHIRJSON {
-				self.period = Period(json: val, owner: self)
+			if let exist: AnyObject = js["period"] {
+				presentKeys.addObject("period")
+				if let val = exist as? FHIRJSON {
+					self.period = Period(json: val, owner: self)
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"period\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["system"] as? String {
-				self.system = val
+			if let exist: AnyObject = js["system"] {
+				presentKeys.addObject("system")
+				if let val = exist as? String {
+					self.system = val
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"system\" to be `String`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["use"] as? String {
-				self.use = val
+			if let exist: AnyObject = js["use"] {
+				presentKeys.addObject("use")
+				if let val = exist as? String {
+					self.use = val
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"use\" to be `String`, but is \(exist.dynamicType)"))
+				}
 			}
-			if let val = js["value"] as? String {
-				self.value = val
+			if let exist: AnyObject = js["value"] {
+				presentKeys.addObject("value")
+				if let val = exist as? String {
+					self.value = val
+				}
+				else {
+					errors.append(fhir_generateJSONError("\(self) expects JSON property \"value\" to be `String`, but is \(exist.dynamicType)"))
+				}
 			}
 		}
+		return errors.isEmpty ? nil : errors
 	}
 	
 	override public func asJSON() -> FHIRJSON {

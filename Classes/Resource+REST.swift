@@ -34,6 +34,7 @@ public extension Resource
 			if let display = preferredRelativeReferenceDisplay() {
 				reference.display = display
 			}
+			return reference
 		}
 		return nil
 	}

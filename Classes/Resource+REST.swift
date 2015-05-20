@@ -20,17 +20,36 @@ public let FHIRResourceErrorDomain = "FHIRResourceError"
 
 
 /**
-	Extension to `Resource` to support REST interactions and operations.
+    Extension to `Resource` to support REST interactions and operations.
  */
 public extension Resource
 {
+	/**
+	    Creates a `Reference` instance containing a relative reference to the receiver.
+	 */
+	public func asRelativeReference() -> Reference? {
+		if let path = relativeURLPath() {
+			let reference = Reference(json: nil)
+			reference.reference = path
+			if let display = preferredRelativeReferenceDisplay() {
+				reference.display = display
+			}
+		}
+		return nil
+	}
+	
+	/** The string used to fill a reference's "display" property for the instance. */
+	public func preferredRelativeReferenceDisplay() -> String? {
+		return nil
+	}
+	
 	
 	// MARK: - Retrieving Resources
 	
 	/**
-		The relative URL path of the resource; the instance needs to have an id.
+	    The relative URL path of the resource; the instance needs to have an id.
 	 */
-	public func relativeURL() -> String? {
+	public func relativeURLPath() -> String? {
 		if let myID = id {
 			return "\(self.dynamicType.resourceName)/\(myID)"
 		}
@@ -38,7 +57,7 @@ public extension Resource
 	}
 	
 	/**
-		The absolute URI of the resource; needs the instance's `server` property to be set and have an id.
+	    The absolute URI of the resource; needs the instance's `server` property to be set and have an id.
 	 */
 	public func absoluteURI() -> NSURL? {
 		if let myID = id {
@@ -48,7 +67,7 @@ public extension Resource
 	}
 	
 	/**
-		Reads the resource with the given id from the given server.
+	    Reads the resource with the given id from the given server.
 	 */
 	public class func read(id: String, server: FHIRServer, callback: FHIRResourceErrorCallback) {
 		let path = "\(resourceName)/\(id)"
@@ -56,7 +75,7 @@ public extension Resource
 	}
 	
 	/**
-		Reads the resource from the given path on the given server.
+	    Reads the resource from the given path on the given server.
 	 */
 	public class func readFrom(path: String, server: FHIRServer, callback: FHIRResourceErrorCallback) {
 		server.getJSON(path) { response in
@@ -75,20 +94,20 @@ public extension Resource
 	// MARK: - Sending Resources
 	
 	/**
-		Create the receiver on the given server.
+	    Create the receiver on the given server.
 	 */
 	public func create(server: FHIRServer, callback: FHIRErrorCallback) {
 		callback(error: genResourceError("Not implemented"))
 	}
 	
 	/**
-		Update the resource's server representation with its current values.
+	    Update the resource's server representation with its current values.
 	
-		This method serializes the instance to JSON and issues a PUT call to the receiver's `_server` instance.
+	    This method serializes the instance to JSON and issues a PUT call to the receiver's `_server` instance.
 	 */
 	public func update(callback: FHIRErrorCallback) {
 		if let server = _server {
-			if let path = relativeURL() {
+			if let path = relativeURLPath() {
 				server.putJSON(path, body: asJSON()) { response in
 					// should we do some header inspection (response.headers)?
 					callback(error: response.error)
@@ -107,9 +126,9 @@ public extension Resource
 	// MARK: - Search
 	
 	/**
-		Perform a search against the receiver's type's compartment.
+	    Perform a search against the receiver's type's compartment.
 	
-		UNFINISHED.
+	    UNFINISHED.
 	 */
 	public func search(query: AnyObject) -> FHIRSearch {
 		if let myID = self.id {
@@ -120,7 +139,7 @@ public extension Resource
 	}
 	
 	/**
-		Perform a search, wich the given query construct, against the receiver's compartment.
+	    Perform a search, wich the given query construct, against the receiver's compartment.
 	 */
 	public class func search(query: AnyObject) -> FHIRSearch {
 		return FHIRSearch(type: self, query: query)
@@ -130,7 +149,7 @@ public extension Resource
 	// MARK: - Operations
 	
 	/**
-		Perform a given operation on the receiver.
+	    Perform a given operation on the receiver.
 	 */
 	public func perform(operation: FHIROperation, callback: FHIRResourceErrorCallback) {
 		if let server = _server {
@@ -143,7 +162,7 @@ public extension Resource
 	}
 	
 	/**
-		Perform a given operation on the receiving type.
+	    Perform a given operation on the receiving type.
 	 */
 	public class func perform(operation: FHIROperation, server: FHIRServer, callback: FHIRResourceErrorCallback) {
 		operation.type = self

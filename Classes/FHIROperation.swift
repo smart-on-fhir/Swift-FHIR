@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
-	The context an operation is to be performed against.
+    The context an operation is to be performed against.
  */
 public enum FHIROperationContext
 {
@@ -19,7 +19,7 @@ public enum FHIROperationContext
 
 
 /**
-	Named operations to be performed against a FHIR REST endpoint.
+    Named operations to be performed against a FHIR REST endpoint.
  */
 public class FHIROperation: Printable
 {
@@ -59,7 +59,7 @@ public class FHIROperation: Printable
 	// MARK: - Validation
 	
 	/**
-		Validate the receiver against its operation definition.
+	    Validate the receiver against its operation definition.
 	 */
 	public func validateWith(definition: OperationDefinition, error: NSErrorPointer) -> Bool {
 		if !validateContextWith(definition, error: error) {
@@ -106,7 +106,7 @@ public class FHIROperation: Printable
 				}
 				return false
 			}
-			if nil == instance?.relativeURL() {
+			if nil == instance?.relativeURLPath() {
 				if nil != error {
 					error.memory = genServerError("Operation \(self) to be executed in instance context must have an instance with an id")
 				}
@@ -160,9 +160,9 @@ public class FHIROperation: Printable
 	// MARK: - Execution
 	
 	/**
-		Return the relative server URL the operation will call.
-		
-		ATTENTION: It is **only** safe to call this method after validating the operation.
+	    Return the relative server URL the operation will call.
+	
+	    ATTENTION: It is **only** safe to call this method after validating the operation.
 	 */
 	public func serverPath() -> String {
 		switch context {
@@ -173,7 +173,7 @@ public class FHIROperation: Printable
 		case .Type:
 			return "\(type!.resourceName)/$\(name)"
 		case .Instance:
-			return "\(instance!.relativeURL()!)/$\(name)"
+			return "\(instance!.relativeURLPath()!)/$\(name)"
 		}
 	}
 	

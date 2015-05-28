@@ -136,14 +136,16 @@ public class FHIRSearch
 		}
 		
 		busy = true
-		server.getJSON(queryPath) { response in
+		let handler = FHIRServerJSONRequestHandler(.GET)
+		server.performRequestAgainst(queryPath, handler: handler) { response in
 			self.busy = false
 			
 			if let error = response.error {
 				callback(bundle: nil, error: error)
 			}
 			else {
-				let bundle = Bundle(json: response.json)
+				let jsonres = response as! FHIRServerJSONResponse
+				let bundle = Bundle(json: jsonres.json)
 				bundle._server = server
 				if let entries = bundle.entry {
 					for entry in entries {

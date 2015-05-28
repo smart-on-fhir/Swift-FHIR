@@ -77,14 +77,22 @@ public extension Resource
 	
 	/**
 	    Reads the resource from the given path on the given server.
+	
+	    This method creates a FHIRServerJSONRequestHandler for a GET request, then deserializes the returned JSON into an instance.
+	
+	    :param: path The relative path on the server from which to read resource data from
+	    :param: server The server to use
+	    :param: callback The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	 */
 	public class func readFrom(path: String, server: FHIRServer, callback: FHIRResourceErrorCallback) {
-		server.getJSON(path) { response in
+		let handler = FHIRServerJSONRequestHandler(.GET)
+		server.performRequestAgainst(path, handler: handler) { response in
 			if let error = response.error {
 				callback(resource: nil, error: error)
 			}
 			else {
-				let resource = self(json: response.json)
+				let jsonres = response as! FHIRServerJSONResponse		// JSON request handlers always have JSON responses, not sure why the Swift compiler doesn't know
+				let resource = self(json: jsonres.json)
 				resource._server = server
 				callback(resource: resource, error: nil)
 			}
@@ -105,11 +113,14 @@ public extension Resource
 	    Update the resource's server representation with its current values.
 	
 	    This method serializes the instance to JSON and issues a PUT call to the receiver's `_server` instance.
+	
+	    :param: callback The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	 */
 	public func update(callback: FHIRErrorCallback) {
 		if let server = _server {
 			if let path = relativeURLPath() {
-				server.putJSON(path, body: asJSON()) { response in
+				let handler = FHIRServerJSONRequestHandler(.PUT, resource: self)
+				server.performRequestAgainst(path, handler: handler) { response in
 					// should we do some header inspection (response.headers)?
 					callback(error: response.error)
 				}
@@ -171,7 +182,7 @@ public extension Resource
 	}
 	
 	class func _perform(operation: FHIROperation, server: FHIRServer, callback: FHIRResourceErrorCallback) {
-		server.perform(operation) { response in
+		server.performOperation(operation) { response in
 			if let error = response.error {
 				callback(resource: nil, error: error)
 			}

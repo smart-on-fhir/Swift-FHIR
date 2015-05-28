@@ -10,9 +10,9 @@ import Foundation
 
 
 /**
-	Base for different request/response handlers.
+    Base for different request/response handlers.
 
-	Would love to make this a protocol but since it has an associated type it cannot be used nicely, hence a class.
+    Would love to make this a protocol but since it has an associated type it cannot be used nicely, hence a class.
  */
 public class FHIRServerRequestHandler
 {
@@ -27,9 +27,9 @@ public class FHIRServerRequestHandler
 	}
 	
 	/**
-		Give the request type a chance to prepare/alter the URL request.
+	    Give the request type a chance to prepare/alter the URL request.
 	
-		Typically the FHIRRequestType instance sets the correct HTTPMethod as well as correct FHIR headers.
+	    Typically the FHIRRequestType instance sets the correct HTTPMethod as well as correct FHIR headers.
 	 */
 	public func prepareRequest(req: NSMutableURLRequest, error: NSErrorPointer) -> Bool {
 		type.prepareRequest(req)
@@ -37,7 +37,7 @@ public class FHIRServerRequestHandler
 	}
 	
 	/**
-		Instantiate an object of ResponseType-type based on the response and data that we get.
+	    Instantiate an object of ResponseType-type based on the response and data that we get.
 	 */
 	public func response(# response: NSURLResponse?, data inData: NSData? = nil) -> ResponseType {
 		if let res = response {
@@ -47,7 +47,7 @@ public class FHIRServerRequestHandler
 	}
 	
 	/**
-		Convenience method to indicate a request that has not actually been sent.
+	    Convenience method to indicate a request that has not actually been sent.
 	 */
 	public func notSent(reason: String) -> ResponseType {
 		return self.dynamicType.ResType(notSentBecause: genServerError(reason, code: 700))
@@ -65,6 +65,9 @@ public class FHIRServerRequestHandler
 public class FHIRServerDataRequestHandler: FHIRServerRequestHandler
 {
 	public typealias ResponseType = FHIRServerDataResponse
+	
+	/// The receiver may hold on to a resource that supplies the request's body data
+	public var resource: FHIRResource?
 	
 	public var data: NSData?
 	
@@ -92,7 +95,9 @@ public class FHIRServerDataRequestHandler: FHIRServerRequestHandler
 
 
 /**
-	Prepare and handle a request returning JSON data.
+    Prepare and handle a request returning JSON data.
+
+    JSON body data can be greated from the resource, if the receiver holds on to one.
  */
 public class FHIRServerJSONRequestHandler: FHIRServerDataRequestHandler
 {
@@ -100,17 +105,23 @@ public class FHIRServerJSONRequestHandler: FHIRServerDataRequestHandler
 	
 	public var json: FHIRJSON?
 	
-	public init(_ type: FHIRRequestType, json: FHIRJSON? = nil) {
+	public init(_ type: FHIRRequestType, resource: FHIRResource? = nil) {
 		super.init(type)
-		self.json = json
+		self.resource = resource
 	}
 	
 	override public func prepareData(error: NSErrorPointer) -> Bool {
-		if nil == data && nil != json {
-			data = NSJSONSerialization.dataWithJSONObject(json!, options: nil, error: error)
+		if nil != data {
+			return true
+		}
+		if nil == json {
+			json = resource?.asJSON()
+		}
+		if let json = json {
+			data = NSJSONSerialization.dataWithJSONObject(json, options: nil, error: error)
 			return nil != data
 		}
-		return true
+		return false
 	}
 	
 	override class var ResType: FHIRServerResponse.Type {

@@ -178,7 +178,10 @@ public class FHIROperation: Printable
 	}
 	
 	public func perform(server: FHIRServer, callback: ((response: FHIRServerJSONResponse) -> Void)) {
-		server.getJSON(serverPath(), callback: callback)
+		let handler = FHIRServerJSONRequestHandler(.GET)
+		server.performRequestAgainst(serverPath(), handler: handler) { response in
+			callback(response: response as! FHIRServerJSONResponse)
+		}
 	}
 	
 	

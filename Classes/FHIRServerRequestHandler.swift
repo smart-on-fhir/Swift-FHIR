@@ -121,7 +121,7 @@ public class FHIRServerJSONRequestHandler: FHIRServerDataRequestHandler
 			data = NSJSONSerialization.dataWithJSONObject(json, options: nil, error: error)
 			return nil != data
 		}
-		return false
+		return true			// e.g. for GET requests, we don't have data, so that's fine too
 	}
 	
 	override class var ResType: FHIRServerResponse.Type {

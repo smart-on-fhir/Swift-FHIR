@@ -45,30 +45,44 @@ public extension Resource
 	}
 	
 	
-	// MARK: - Retrieving Resources
+	// MARK: - Resource URLs
+	
+	/**
+	    Returns the relative URL path to the receiver's type of resource. This usually is the same as the resource's name.
+	    :returns: A string indicating the relative URL base, e.g. "MedicationPrescription"
+	 */
+	public func relativeURLBase() -> String {
+		return self.dynamicType.resourceName
+	}
 	
 	/**
 	    The relative URL path of the resource; the instance needs to have an id.
+	    :returns: A string indicating the relative URL, e.g. "MedicationPrescription/1234"
 	 */
 	public func relativeURLPath() -> String? {
 		if let myID = id {
-			return "\(self.dynamicType.resourceName)/\(myID)"
+			return "\(relativeURLBase())/\(myID)"
 		}
 		return nil
 	}
 	
 	/**
-	    The absolute URI of the resource; needs the instance's `server` property to be set and have an id.
+	    The absolute URL of the resource; needs the instance's `server` property to be set and have an id.
 	 */
-	public func absoluteURI() -> NSURL? {
-		if let myID = id {
-			return _server?.baseURL.URLByAppendingPathComponent(self.dynamicType.resourceName).URLByAppendingPathComponent(myID)
+	public func absoluteURL() -> NSURL? {
+		if let relative = relativeURLPath() {
+			return _server?.baseURL.URLByAppendingPathComponent(relative)
 		}
 		return nil
 	}
+	
+	
+	// MARK: - CRUD
 	
 	/**
 	    Reads the resource with the given id from the given server.
+	
+	    Forwards to class method `readFrom` with the resource's relative URL, created from the supplied id and the resource's base.
 	 */
 	public class func read(id: String, server: FHIRServer, callback: FHIRResourceErrorCallback) {
 		let path = "\(resourceName)/\(id)"
@@ -78,7 +92,7 @@ public extension Resource
 	/**
 	    Reads the resource from the given path on the given server.
 	
-	    This method creates a FHIRServerJSONRequestHandler for a GET request, then deserializes the returned JSON into an instance.
+	    This method creates a FHIRServerJSONRequestHandler for a GET request and deserializes the returned JSON into an instance on success.
 	
 	    :param: path The relative path on the server from which to read resource data from
 	    :param: server The server to use
@@ -99,14 +113,32 @@ public extension Resource
 		}
 	}
 	
-	
-	// MARK: - Sending Resources
-	
 	/**
 	    Create the receiver on the given server.
+	
+	    This method issues a POST, with the receiver serialized to JSON as the request's body data, to the FHIR server. If the call succeeds
+	    (i.e. does not return an error), the receiver repopulates its properties with the server's response (if the server is returning the
+	    resource, which some servers may not) and the `_server` property is assigned.
+	
+	    :param: server The server on which to create the resource
+	    :param: callback The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	 */
 	public func create(server: FHIRServer, callback: FHIRErrorCallback) {
-		callback(error: genResourceError("Not implemented"))
+		if nil != id {
+			callback(error: genResourceError("Cannot use `create` with a resource that already has an `id`"))
+			return
+		}
+		
+		let handler = FHIRServerJSONRequestHandler(.POST, resource: self)
+		server.performRequestAgainst(relativeURLBase(), handler: handler) { response in
+			if nil == response.error, let json = (response as? FHIRServerJSONResponse)?.json {
+				self.populateFromJSON(json)
+				self._server = server
+			}
+			
+			// TODO: should we do some header inspection (response.headers)?
+			callback(error: response.error)
+		}
 	}
 	
 	/**
@@ -121,7 +153,7 @@ public extension Resource
 			if let path = relativeURLPath() {
 				let handler = FHIRServerJSONRequestHandler(.PUT, resource: self)
 				server.performRequestAgainst(path, handler: handler) { response in
-					// should we do some header inspection (response.headers)?
+					// TODO: should we do some header inspection (response.headers)?
 					callback(error: response.error)
 				}
 			}
@@ -131,6 +163,38 @@ public extension Resource
 		}
 		else {
 			callback(error: genResourceError("Cannot update a resource that doesn't have a server"))
+		}
+	}
+	
+	/**
+	    Deletes the receiver's representation from its server.
+	
+	    This method forwards to the `delete` class method, substituting the receiver's path and server.
+	 */
+	public func delete(callback: FHIRErrorCallback) {
+		if let server = _server {
+			if let path = relativeURLPath() {
+				self.dynamicType.delete(path, server: server, callback: callback)
+			}
+			else {
+				callback(error: genResourceError("Cannot delete a resource without an id"))
+			}
+		}
+		else {
+			callback(error: genResourceError("Cannot delete a resource that doesn't have a server"))
+		}
+	}
+	
+	/**
+	    Deletes the resource with the given ID from the server.
+	
+	    This implementation issues a DELETE call against the given path on the given server.
+	 */
+	public class func delete(path: String, server: FHIRServer, callback: FHIRErrorCallback) {
+		let handler = FHIRServerJSONRequestHandler(.DELETE)
+		server.performRequestAgainst(path, handler: handler) { response in
+			// TODO: should we do some header inspection (response.headers)?
+			callback(error: response.error)
 		}
 	}
 	

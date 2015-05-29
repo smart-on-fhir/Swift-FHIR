@@ -10,8 +10,8 @@ import Foundation
 
 
 /**
-	Encapsulates a server response, which can also indicate that there was no response or request (status >= 600), in
-	which case the `error` property carries the only useful information.
+    Encapsulates a server response, which can also indicate that there was no response or request (status >= 600), in which case the `error`
+    property carries the only useful information.
  */
 public class FHIRServerResponse
 {
@@ -49,7 +49,7 @@ public class FHIRServerResponse
 	}
 	
 	/**
-		Instantiate a FHIRServerResponse from an NS(HTTP)URLResponse and NSData.
+	    Instantiate a FHIRServerResponse from an NS(HTTP)URLResponse and NSData.
 	 */
 	public required init(response: NSURLResponse, data: NSData?) {
 		var status = 0
@@ -87,7 +87,7 @@ public class FHIRServerResponse
 
 
 /**
-	Encapsulates a server response holding an NSData body.
+    Encapsulates a server response holding an NSData body.
  */
 public class FHIRServerDataResponse: FHIRServerResponse
 {
@@ -112,7 +112,7 @@ public class FHIRServerDataResponse: FHIRServerResponse
 
 
 /**
-	Encapsulates a server response with JSON response body, if any.
+    Encapsulates a server response with JSON response body, if any.
  */
 public class FHIRServerJSONResponse: FHIRServerDataResponse
 {
@@ -124,13 +124,13 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse
 	}
 	
 	/**
-		If the status is >= 400, the response body is checked for an OperationOutcome and its first issue item is
-		turned into an error message.
+	    If the status is >= 400, the response body is checked for an OperationOutcome and its first issue item is turned into an error
+	    message.
 	 */
 	public required init(response: NSURLResponse, data inData: NSData?) {
 		super.init(response: response, data: inData)
 		
-		if let data = inData {
+		if let data = inData where data.length > 0 {
 			var error: NSError? = nil
 			if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? FHIRJSON {
 				self.json = json
@@ -144,7 +144,7 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse
 					}
 				}
 			}
-				
+			
 			// Cocoa error 3840 is JSON parsing error; some error responses may not return JSON, don't report an error on those
 			else if 3840 != error?.code || NSCocoaErrorDomain != (error?.domain ?? "") || status < 400 {
 				let errstr = "Failed to deserialize JSON into a dictionary: \(error?.localizedDescription)\n"
@@ -159,8 +159,8 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse
 	}
 	
 	/**
-		Uses FHIRElement's factory method to instantiate a resource from the response JSON, if any, and returns that
-		resource if it indeed is of the expected type.
+	    Uses FHIRElement's factory method to instantiate a resource from the response JSON, if any, and returns that resource if it indeed
+	    is of the expected type.
 	 */
 	public func resource<T: FHIRElement>(expectType: T.Type) -> T? {
 		if let json = self.json {
@@ -174,7 +174,7 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse
 
 
 /**
-	Return a human-readable, localized string for error codes of the NSURLErrorDomain.
+    Return a human-readable, localized string for error codes of the NSURLErrorDomain.
  */
 func NSURLErrorHumanize(error: NSError) -> String {
 	assert(NSURLErrorDomain == error.domain, "Can only use this function with errors in the NSURLErrorDomain")

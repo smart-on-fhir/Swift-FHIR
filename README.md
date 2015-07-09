@@ -28,6 +28,7 @@ Progress
 Here's a rough list of what still needs to be done.
 
 ```
+[ ] Add convenience methods to working with resources in code
 [X] Reference resolver: resolve contained resources
 [X] Reference resolver: resolve relative resources
 [ ] Reference resolver: resolve absolute resources
@@ -44,10 +45,13 @@ Working, at least to some extent:
 - Classes generated for FHIR's base resources
     + Use Swift native types whenever possible
     + Use custom Date/Time/DateTime/Instant structs
+- Create elements and resources programmatically
 - Use a FHIR server protocol for REST interactions with a server
 - Deserialize from JSON
 - Serialize to JSON
 - Resolve contained resources
+- Resolve relative resources (on the same server)
+- Contain resources programmatically
 - Construct searches with NoSQL-like statements (cf. [fhir.js](https://github.com/FHIR/fhir.js))
 - Perform operations
 - Use example resources for auto-created class unit tests
@@ -84,7 +88,21 @@ For classes representing models with non-optional properties, a convenience init
 
 FHIR makes use of [contained resources](http://hl7.org/implement/standards/fhir/references.html#contained).
 An extension on the `Reference` class is included that adds method to handle reference resolving.
-To resolve resource references, call `resolved(ModelClass)` on a reference property, which will return an instance of the referenced type if resolved successfully.
+To resolve resource references, call `resolve(ModelClass) { resource in }` on a reference property, which will return an instance of the referenced type in the callback if resolved successfully.
+To contain a resource and receive a `Reference` instance, call `parent.containResource(contained, withId: "id")`
+
+```swift
+// create a prescription with a contained medication
+let prescription = MedicationPrescription(json: nil)
+let medication = Medication(json: nil)
+prescription.medication = prescription.containResource(medication, withId: "med")
+
+// resolve the contained medication
+prescription.medication?.resolve(Medication.self) { medication in
+	if let medication = medication {
+		// successfully resolved
+	}
+}```
 
 ### Search
 

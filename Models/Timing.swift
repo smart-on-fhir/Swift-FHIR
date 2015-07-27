@@ -29,7 +29,7 @@ public class Timing: FHIRElement
 	public var event: [DateTime]?
 	
 	/// When the event is to occur
-	public var repeat: TimingRepeat?
+	public var repeat_fhir: TimingRepeat?
 	
 	
 	/** Initialize with a JSON object. */
@@ -61,7 +61,7 @@ public class Timing: FHIRElement
 			if let exist: AnyObject = js["repeat"] {
 				presentKeys.addObject("repeat")
 				if let val = exist as? FHIRJSON {
-					self.repeat = TimingRepeat(json: val, owner: self)
+					self.repeat_fhir = TimingRepeat(json: val, owner: self)
 				}
 				else {
 					errors.append(fhir_generateJSONError("\(self) expects JSON property \"repeat\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
@@ -84,8 +84,8 @@ public class Timing: FHIRElement
 			}
 			json["event"] = arr
 		}
-		if let repeat = self.repeat {
-			json["repeat"] = repeat.asJSON()
+		if let repeat_fhir = self.repeat_fhir {
+			json["repeat"] = repeat_fhir.asJSON()
 		}
 		
 		return json

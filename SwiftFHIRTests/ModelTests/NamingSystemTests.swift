@@ -2,7 +2,7 @@
 //  NamingSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -12,23 +12,23 @@ import SwiftFHIR
 
 class NamingSystemTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> NamingSystem {
-		return instantiateFrom(json: readJSONFile(filename)!)
+	func instantiateFrom(filename filename: String) throws -> NamingSystem {
+		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: FHIRJSON) -> NamingSystem {
+	func instantiateFrom(json json: FHIRJSON) -> NamingSystem {
 		let instance = NamingSystem(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testNamingSystem1() {
-		let instance = testNamingSystem1_impl()
-		testNamingSystem1_impl(json: instance.asJSON())
+	func testNamingSystem1() throws {
+		let instance = try testNamingSystem1_impl()
+		try testNamingSystem1_impl(instance.asJSON())
 	}
 	
-	func testNamingSystem1_impl(json: FHIRJSON? = nil) -> NamingSystem {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "namingsystem-example.json")
+	func testNamingSystem1_impl(json: FHIRJSON? = nil) throws -> NamingSystem {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2014-12-13")
 		XCTAssertEqual(inst.id!, "example")

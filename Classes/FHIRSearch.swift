@@ -80,14 +80,14 @@ public class FHIRSearch
 		}
 		
 		// expand
-		let qry = query.expand(extraArguments: extra)
+		let qry = query.expand(extra)
 		if let type = profileType {
-			if count(qry) > 0 {
+			if qry.characters.count > 0 {
 				return "\(type.resourceName)?\(qry)"
 			}
 			return type.resourceName
 		}
-		if count(qry) > 0 {
+		if qry.characters.count > 0 {
 			return "?\(qry)"
 		}
 		return ""
@@ -99,8 +99,8 @@ public class FHIRSearch
 	
 		Calling this method will always restart search, not fetch subsequent pages.
 	
-		:param: server The FHIRServer instance on which to perform the search
-		:param: callback The callback, receives the response Bundle or an NSError message describing what went wrong
+		- parameter server: The FHIRServer instance on which to perform the search
+		- parameter callback: The callback, receives the response Bundle or an NSError message describing what went wrong
 	 */
 	public func perform(server: FHIRServer, callback: ((bundle: Bundle?, error: NSError?) -> Void)) {
 		if nil == profileType {
@@ -117,8 +117,8 @@ public class FHIRSearch
 		Attempts to retrieve the next page of search results. If there are none, the callback is called immediately
 		with no bundle and no error.
 	
-		:param: server The FHIRServer instance on which to perform the search
-		:param: callback The callback, receives the response Bundle or an NSError message describing what went wrong
+		- parameter server: The FHIRServer instance on which to perform the search
+		- parameter callback: The callback, receives the response Bundle or an NSError message describing what went wrong
 	 */
 	public func nextPage(server: FHIRServer, callback: ((bundle: Bundle?, error: NSError?) -> Void)) {
 		if let next = nextPageURL?.absoluteString {
@@ -192,7 +192,7 @@ struct FHIRURLParam
 /**
 	This class is used to create FHIRURLParam instances from FHIRSearchConstruct objects.
  */
-class FHIRSearchParam: Printable
+class FHIRSearchParam: CustomStringConvertible
 {
 	var name: String?
 	var isModifier = false
@@ -208,7 +208,7 @@ class FHIRSearchParam: Printable
 		}
 	}
 	var description: String {
-		return "<FHIRSearchParam> \(name ?? nil) [parent \(parent?.description ?? nil) and \(nil != children ? count(children!) : 0) children]"
+		return "<FHIRSearchParam> \(name ?? nil) [parent \(parent?.description ?? nil) and \(nil != children ? (children!).count : 0) children]"
 	}
 	
 	init(name: String, parent: FHIRSearchParam?) {
@@ -325,7 +325,7 @@ struct FHIRSearchConstruct
 		if let dict = construct as? [String: AnyObject] {
 			for (key, val) in dict {
 				//println("-> \(key): \(val)")
-				var param = FHIRSearchParam(name: key, parent: parent)
+				let param = FHIRSearchParam(name: key, parent: parent)
 				
 				// special handling?
 				if let handler = self.dynamicType.handlerFor(key) {
@@ -343,14 +343,14 @@ struct FHIRSearchConstruct
 					param.value = str
 				}
 				else {
-					println("WARNING: no idea what to do with \(key): \(val), ignoring")
+					print("WARNING: no idea what to do with \(key): \(val), ignoring")
 				}
 				arr.append(param)
 			}
 			return arr
 		}
 		
-		println("WARNING: not sure what to do with \"\(construct)\"")
+		print("WARNING: not sure what to do with \"\(construct)\"")
 		return arr
 	}
 }
@@ -387,7 +387,7 @@ struct FHIRSearchConstructAndHandler: FHIRSearchConstructHandler
 			}
 		}
 		else {
-			println("ERROR: must supply an array of objects to an $and modifier")
+			print("ERROR: must supply an array of objects to an $and modifier")
 		}
 	}
 }
@@ -407,14 +407,14 @@ struct FHIRSearchConstructOrHandler: FHIRSearchConstructHandler
 					strs.append(str)
 				}
 				else {
-					println("WARNING: what do I do with \(obj)?")
+					print("WARNING: what do I do with \(obj)?")
 				}
 			}
 			param.name = nil
 			param.value = ",".join(strs)
 		}
 		else {
-			println("ERROR: must supply an array of objects to an $or modifier")
+			print("ERROR: must supply an array of objects to an $or modifier")
 		}
 	}
 }
@@ -432,7 +432,7 @@ struct FHIRSearchConstructModifierHandler: FHIRSearchConstructHandler
 	]
 	
 	func handles(key: String) -> Bool {
-		return contains(FHIRSearchConstructModifierHandler.map.keys, key)
+		return FHIRSearchConstructModifierHandler.map.keys.contains(key)
 	}
 	
 	func handle(param: FHIRSearchParam, value: AnyObject) {
@@ -442,7 +442,7 @@ struct FHIRSearchConstructModifierHandler: FHIRSearchConstructHandler
 			param.children = FHIRSearchParam.from(value, parent: param)
 		}
 		else {
-			println("ERROR: unknown modifier \(param.name)")
+			print("ERROR: unknown modifier \(param.name)")
 		}
 	}
 }
@@ -458,7 +458,7 @@ struct FHIRSearchConstructOperatorHandler: FHIRSearchConstructHandler
 	]
 	
 	func handles(key: String) -> Bool {
-		return contains(FHIRSearchConstructOperatorHandler.map.keys, key)
+		return FHIRSearchConstructOperatorHandler.map.keys.contains(key)
 	}
 	
 	func handle(param: FHIRSearchParam, value: AnyObject) {
@@ -469,7 +469,7 @@ struct FHIRSearchConstructOperatorHandler: FHIRSearchConstructHandler
 			}
 		}
 		else {
-			println("ERROR: unknown operator \(param.name) for \(value)")
+			print("ERROR: unknown operator \(param.name) for \(value)")
 		}
 	}
 }
@@ -487,11 +487,11 @@ struct FHIRSearchConstructTypeHandler: FHIRSearchConstructHandler
 				parent.name = (parent.name ?? "") + ":\(type)"
 			}
 			else {
-				println("ERROR: must have a parent parameter to use $type")
+				print("ERROR: must have a parent parameter to use $type")
 			}
 		}
 		else {
-			println("ERROR: must supply a String to a $type modifier, got \(value)")
+			print("ERROR: must supply a String to a $type modifier, got \(value)")
 		}
 	}
 }

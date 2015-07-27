@@ -2,7 +2,7 @@
 //  OrderResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -12,23 +12,23 @@ import SwiftFHIR
 
 class OrderResponseTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> OrderResponse {
-		return instantiateFrom(json: readJSONFile(filename)!)
+	func instantiateFrom(filename filename: String) throws -> OrderResponse {
+		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: FHIRJSON) -> OrderResponse {
+	func instantiateFrom(json json: FHIRJSON) -> OrderResponse {
 		let instance = OrderResponse(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testOrderResponse1() {
-		let instance = testOrderResponse1_impl()
-		testOrderResponse1_impl(json: instance.asJSON())
+	func testOrderResponse1() throws {
+		let instance = try testOrderResponse1_impl()
+		try testOrderResponse1_impl(instance.asJSON())
 	}
 	
-	func testOrderResponse1_impl(json: FHIRJSON? = nil) -> OrderResponse {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "orderresponse-example.json")
+	func testOrderResponse1_impl(json: FHIRJSON? = nil) throws -> OrderResponse {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "orderresponse-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2012-12-28T13:10:56+11:00")
 		XCTAssertEqual(inst.fulfillment![0].reference!, "DiagnosticReport/101")

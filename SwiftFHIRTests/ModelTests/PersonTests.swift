@@ -2,7 +2,7 @@
 //  PersonTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -12,23 +12,23 @@ import SwiftFHIR
 
 class PersonTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> Person {
-		return instantiateFrom(json: readJSONFile(filename)!)
+	func instantiateFrom(filename filename: String) throws -> Person {
+		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: FHIRJSON) -> Person {
+	func instantiateFrom(json json: FHIRJSON) -> Person {
 		let instance = Person(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testPerson1() {
-		let instance = testPerson1_impl()
-		testPerson1_impl(json: instance.asJSON())
+	func testPerson1() throws {
+		let instance = try testPerson1_impl()
+		try testPerson1_impl(instance.asJSON())
 	}
 	
-	func testPerson1_impl(json: FHIRJSON? = nil) -> Person {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "person-example.json")
+	func testPerson1_impl(json: FHIRJSON? = nil) throws -> Person {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "person-example.json")
 		
 		XCTAssertTrue(inst.active!)
 		XCTAssertEqual(inst.address![0].city!, "PleasantVille")
@@ -41,9 +41,9 @@ class PersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier![0].assigner!.display!, "Acme Healthcare")
 		XCTAssertEqual(inst.identifier![0].period!.start!.description, "2001-05-06")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:1.2.36.146.595.217.0.1")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:oid:1.2.36.146.595.217.0.1")
 		XCTAssertEqual(inst.identifier![0].type!.coding![0].code!, "MRN")
-		XCTAssertEqual(inst.identifier![0].type!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v2/0203")
+		XCTAssertEqual(inst.identifier![0].type!.coding![0].system!.absoluteString, "http://hl7.org/fhir/v2/0203")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
 		XCTAssertEqual(inst.identifier![0].value!, "12345")
 		XCTAssertEqual(inst.link![0].target!.display!, "Peter Chalmers")

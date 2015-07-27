@@ -2,7 +2,7 @@
 //  RelatedPersonTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -12,27 +12,27 @@ import SwiftFHIR
 
 class RelatedPersonTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> RelatedPerson {
-		return instantiateFrom(json: readJSONFile(filename)!)
+	func instantiateFrom(filename filename: String) throws -> RelatedPerson {
+		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: FHIRJSON) -> RelatedPerson {
+	func instantiateFrom(json json: FHIRJSON) -> RelatedPerson {
 		let instance = RelatedPerson(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testRelatedPerson1() {
-		let instance = testRelatedPerson1_impl()
-		testRelatedPerson1_impl(json: instance.asJSON())
+	func testRelatedPerson1() throws {
+		let instance = try testRelatedPerson1_impl()
+		try testRelatedPerson1_impl(instance.asJSON())
 	}
 	
-	func testRelatedPerson1_impl(json: FHIRJSON? = nil) -> RelatedPerson {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "relatedperson-example-f001-sarah.json")
+	func testRelatedPerson1_impl(json: FHIRJSON? = nil) throws -> RelatedPerson {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-f001-sarah.json")
 		
 		XCTAssertEqual(inst.gender!, "female")
 		XCTAssertEqual(inst.id!, "f001")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.6.3")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![0].type!.text!, "BSN")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.name!.family![0], "Abels")
@@ -40,7 +40,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.name!.use!, "usual")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f001")
 		XCTAssertEqual(inst.relationship!.coding![0].code!, "SIGOTHR")
-		XCTAssertEqual(inst.relationship!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/RoleCode")
+		XCTAssertEqual(inst.relationship!.coding![0].system!.absoluteString, "http://hl7.org/fhir/v3/RoleCode")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "mobile")
 		XCTAssertEqual(inst.telecom![0].value!, "0690383372")
@@ -52,13 +52,13 @@ class RelatedPersonTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testRelatedPerson2() {
-		let instance = testRelatedPerson2_impl()
-		testRelatedPerson2_impl(json: instance.asJSON())
+	func testRelatedPerson2() throws {
+		let instance = try testRelatedPerson2_impl()
+		try testRelatedPerson2_impl(instance.asJSON())
 	}
 	
-	func testRelatedPerson2_impl(json: FHIRJSON? = nil) -> RelatedPerson {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "relatedperson-example-f002-ariadne.json")
+	func testRelatedPerson2_impl(json: FHIRJSON? = nil) throws -> RelatedPerson {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-f002-ariadne.json")
 		
 		XCTAssertEqual(inst.gender!, "female")
 		XCTAssertEqual(inst.id!, "f002")
@@ -66,7 +66,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.name!.use!, "usual")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f201")
 		XCTAssertEqual(inst.relationship!.coding![0].code!, "SIGOTHR")
-		XCTAssertEqual(inst.relationship!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/v3/RoleCode")
+		XCTAssertEqual(inst.relationship!.coding![0].system!.absoluteString, "http://hl7.org/fhir/v3/RoleCode")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "home")
 		XCTAssertEqual(inst.telecom![0].value!, "+31201234567")
@@ -75,13 +75,13 @@ class RelatedPersonTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testRelatedPerson3() {
-		let instance = testRelatedPerson3_impl()
-		testRelatedPerson3_impl(json: instance.asJSON())
+	func testRelatedPerson3() throws {
+		let instance = try testRelatedPerson3_impl()
+		try testRelatedPerson3_impl(instance.asJSON())
 	}
 	
-	func testRelatedPerson3_impl(json: FHIRJSON? = nil) -> RelatedPerson {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "relatedperson-example-peter.json")
+	func testRelatedPerson3_impl(json: FHIRJSON? = nil) throws -> RelatedPerson {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-peter.json")
 		
 		XCTAssertEqual(inst.address!.city!, "PleasantVille")
 		XCTAssertEqual(inst.address!.line![0], "534 Erewhon St")
@@ -97,9 +97,9 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.patient!.reference!, "Patient/animal")
 		XCTAssertEqual(inst.period!.start!.description, "2012-03-11")
 		XCTAssertEqual(inst.photo![0].contentType!, "image/jpeg")
-		XCTAssertEqual(inst.photo![0].url!.absoluteString!, "Binary/f012")
+		XCTAssertEqual(inst.photo![0].url!.absoluteString, "Binary/f012")
 		XCTAssertEqual(inst.relationship!.coding![0].code!, "owner")
-		XCTAssertEqual(inst.relationship!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/patient-contact-relationship")
+		XCTAssertEqual(inst.relationship!.coding![0].system!.absoluteString, "http://hl7.org/fhir/patient-contact-relationship")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "work")
 		XCTAssertEqual(inst.telecom![0].value!, "(03) 5555 6473")
@@ -108,13 +108,13 @@ class RelatedPersonTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testRelatedPerson4() {
-		let instance = testRelatedPerson4_impl()
-		testRelatedPerson4_impl(json: instance.asJSON())
+	func testRelatedPerson4() throws {
+		let instance = try testRelatedPerson4_impl()
+		try testRelatedPerson4_impl(instance.asJSON())
 	}
 	
-	func testRelatedPerson4_impl(json: FHIRJSON? = nil) -> RelatedPerson {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "relatedperson-example.json")
+	func testRelatedPerson4_impl(json: FHIRJSON? = nil) throws -> RelatedPerson {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example.json")
 		
 		XCTAssertEqual(inst.address!.city!, "Paris")
 		XCTAssertEqual(inst.address!.country!, "FRA")
@@ -122,7 +122,7 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.address!.postalCode!, "75004")
 		XCTAssertEqual(inst.gender!, "female")
 		XCTAssertEqual(inst.id!, "benedicte")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:1.2.250.1.61")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:oid:1.2.250.1.61")
 		XCTAssertEqual(inst.identifier![0].type!.text!, "INSEE")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
 		XCTAssertEqual(inst.identifier![0].value!, "272117510400399")
@@ -131,11 +131,11 @@ class RelatedPersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.name!.given![0], "Bénédicte")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.photo![0].contentType!, "image/jpeg")
-		XCTAssertEqual(inst.photo![0].url!.absoluteString!, "Binary/f016")
+		XCTAssertEqual(inst.photo![0].url!.absoluteString, "Binary/f016")
 		XCTAssertEqual(inst.relationship!.coding![0].code!, "partner")
-		XCTAssertEqual(inst.relationship!.coding![0].system!.absoluteString!, "http://hl7.org/fhir/patient-contact-relationship")
+		XCTAssertEqual(inst.relationship!.coding![0].system!.absoluteString, "http://hl7.org/fhir/patient-contact-relationship")
 		XCTAssertEqual(inst.relationship!.coding![1].code!, "WIFE")
-		XCTAssertEqual(inst.relationship!.coding![1].system!.absoluteString!, "http://hl7.org/fhir/v3/RoleCode")
+		XCTAssertEqual(inst.relationship!.coding![1].system!.absoluteString, "http://hl7.org/fhir/v3/RoleCode")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].value!, "+33 (237) 998327")
 		XCTAssertEqual(inst.text!.status!, "generated")

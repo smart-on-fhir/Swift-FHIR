@@ -31,17 +31,16 @@ public class FHIRServerRequestHandler
 	
 	    Typically the FHIRRequestType instance sets the correct HTTPMethod as well as correct FHIR headers.
 	 */
-	public func prepareRequest(req: NSMutableURLRequest, error: NSErrorPointer) -> Bool {
+	public func prepareRequest(req: NSMutableURLRequest) throws {
 		type.prepareRequest(req)
-		return true
 	}
 	
 	/**
 	    Instantiate an object of ResponseType-type based on the response and data that we get.
 	 */
-	public func response(# response: NSURLResponse?, data inData: NSData? = nil) -> ResponseType {
+	public func response(response response: NSURLResponse?, data inData: NSData? = nil) -> ResponseType {
 		if let res = response {
-			return self.dynamicType.ResType(response: res, data: inData)
+			return self.dynamicType.ResType.init(response: res, data: inData)
 		}
 		return self.dynamicType.ResType.noneReceived()
 	}
@@ -50,7 +49,7 @@ public class FHIRServerRequestHandler
 	    Convenience method to indicate a request that has not actually been sent.
 	 */
 	public func notSent(reason: String) -> ResponseType {
-		return self.dynamicType.ResType(notSentBecause: genServerError(reason, code: 700))
+		return self.dynamicType.ResType.init(notSentBecause: genServerError(reason, code: 700))
 	}
 	
 	class var ResType: FHIRServerResponse.Type {
@@ -76,16 +75,19 @@ public class FHIRServerDataRequestHandler: FHIRServerRequestHandler
 		self.data = data
 	}
 	
-	public func prepareData(error: NSErrorPointer) -> Bool {
-		return true
+	public func prepareData() throws {
 	}
 	
-	public override func prepareRequest(req: NSMutableURLRequest, error: NSErrorPointer) -> Bool {
-		if prepareData(error) {
+	public override func prepareRequest(req: NSMutableURLRequest) throws {
+		var error: NSError! = NSError(domain: "Migrator", code: 0, userInfo: nil)
+		do {
+			try prepareData()
 			type.prepareRequest(req, body: data)
-			return true
+			return
+		} catch let error1 as NSError {
+			error = error1
 		}
-		return false
+		throw error
 	}
 	
 	override class var ResType: FHIRServerResponse.Type {
@@ -110,18 +112,26 @@ public class FHIRServerJSONRequestHandler: FHIRServerDataRequestHandler
 		self.resource = resource
 	}
 	
-	override public func prepareData(error: NSErrorPointer) -> Bool {
+	override public func prepareData() throws {
+		var error: NSError! = NSError(domain: "Migrator", code: 0, userInfo: nil)
 		if nil != data {
-			return true
+			return
 		}
 		if nil == json {
 			json = resource?.asJSON()
 		}
 		if let json = json {
-			data = NSJSONSerialization.dataWithJSONObject(json, options: nil, error: error)
-			return nil != data
-		}
-		return true			// e.g. for GET requests, we don't have data, so that's fine too
+			do {
+				data = try NSJSONSerialization.dataWithJSONObject(json, options: [])
+			} catch let error1 as NSError {
+				error = error1
+				data = nil
+			}
+			if nil != data {
+				return
+			}
+			throw error
+		}			// e.g. for GET requests, we don't have data, so that's fine too
 	}
 	
 	override class var ResType: FHIRServerResponse.Type {

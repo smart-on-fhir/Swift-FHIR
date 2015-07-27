@@ -2,7 +2,7 @@
 //  GroupTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -12,23 +12,23 @@ import SwiftFHIR
 
 class GroupTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> Group {
-		return instantiateFrom(json: readJSONFile(filename)!)
+	func instantiateFrom(filename filename: String) throws -> Group {
+		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: FHIRJSON) -> Group {
+	func instantiateFrom(json json: FHIRJSON) -> Group {
 		let instance = Group(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testGroup1() {
-		let instance = testGroup1_impl()
-		testGroup1_impl(json: instance.asJSON())
+	func testGroup1() throws {
+		let instance = try testGroup1_impl()
+		try testGroup1_impl(instance.asJSON())
 	}
 	
-	func testGroup1_impl(json: FHIRJSON? = nil) -> Group {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "group-example.json")
+	func testGroup1_impl(json: FHIRJSON? = nil) throws -> Group {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "group-example.json")
 		
 		XCTAssertTrue(inst.actual!)
 		XCTAssertEqual(inst.characteristic![0].code!.text!, "gender")

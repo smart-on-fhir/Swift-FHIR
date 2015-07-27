@@ -2,7 +2,7 @@
 //  ConformanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -12,23 +12,23 @@ import SwiftFHIR
 
 class ConformanceTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> Conformance {
-		return instantiateFrom(json: readJSONFile(filename)!)
+	func instantiateFrom(filename filename: String) throws -> Conformance {
+		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: FHIRJSON) -> Conformance {
+	func instantiateFrom(json json: FHIRJSON) -> Conformance {
 		let instance = Conformance(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testConformance1() {
-		let instance = testConformance1_impl()
-		testConformance1_impl(json: instance.asJSON())
+	func testConformance1() throws {
+		let instance = try testConformance1_impl()
+		try testConformance1_impl(instance.asJSON())
 	}
 	
-	func testConformance1_impl(json: FHIRJSON? = nil) -> Conformance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conformance-example.json")
+	func testConformance1_impl(json: FHIRJSON? = nil) throws -> Conformance {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "conformance-example.json")
 		
 		XCTAssertTrue(inst.acceptUnknown!)
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "email")
@@ -43,7 +43,7 @@ class ConformanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.format![1], "json")
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.messaging![0].event![0].code!.code!, "admin-notify")
-		XCTAssertEqual(inst.messaging![0].event![0].code!.system!.absoluteString!, "http://hl7.org/fhir/message-type")
+		XCTAssertEqual(inst.messaging![0].event![0].code!.system!.absoluteString, "http://hl7.org/fhir/message-type")
 		XCTAssertEqual(inst.messaging![0].event![0].focus!, "Patient")
 		XCTAssertEqual(inst.messaging![0].event![0].mode!, "receiver")
 		XCTAssertEqual(inst.messaging![0].event![0].request!.reference!, "StructureDefinition/101")
@@ -64,19 +64,19 @@ class ConformanceTests: FHIRModelTestCase
 		XCTAssertEqual(inst.software!.name!, "EHR")
 		XCTAssertEqual(inst.software!.version!, "0.00.020.2134")
 		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.url!.absoluteString!, "68D043B5-9ECF-4559-A57A-396E0D452311")
+		XCTAssertEqual(inst.url!.absoluteString, "68D043B5-9ECF-4559-A57A-396E0D452311")
 		XCTAssertEqual(inst.version!, "20130510")
 		
 		return inst
 	}
 	
-	func testConformance2() {
-		let instance = testConformance2_impl()
-		testConformance2_impl(json: instance.asJSON())
+	func testConformance2() throws {
+		let instance = try testConformance2_impl()
+		try testConformance2_impl(instance.asJSON())
 	}
 	
-	func testConformance2_impl(json: FHIRJSON? = nil) -> Conformance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "conformance-phr-example.json")
+	func testConformance2_impl(json: FHIRJSON? = nil) throws -> Conformance {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "conformance-phr-example.json")
 		
 		XCTAssertFalse(inst.acceptUnknown!)
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")

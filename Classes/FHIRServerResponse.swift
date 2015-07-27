@@ -63,7 +63,7 @@ public class FHIRServerResponse
 						headers[keystr] = valstr
 					}
 					else {
-						println("DEBUG: Not a string in location headers: \(val) (for \(keystr))")
+						print("DEBUG: Not a string in location headers: \(val) (for \(keystr))")
 					}
 				}
 			}
@@ -81,7 +81,7 @@ public class FHIRServerResponse
 	
 	/** Initializes with a status of 600 to signal that no response was received. */
 	public class func noneReceived() -> Self {
-		return self(status: 600, headers: [String: String]())
+		return self.init(status: 600, headers: [String: String]())
 	}
 }
 
@@ -131,8 +131,8 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse
 		super.init(response: response, data: inData)
 		
 		if let data = inData where data.length > 0 {
-			var error: NSError? = nil
-			if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &error) as? FHIRJSON {
+			do {
+				let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? FHIRJSON
 				self.json = json
 				
 				// check for OperationOutcome if there was an error
@@ -144,12 +144,13 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse
 					}
 				}
 			}
-			
-			// Cocoa error 3840 is JSON parsing error; some error responses may not return JSON, don't report an error on those
-			else if 3840 != error?.code || NSCocoaErrorDomain != (error?.domain ?? "") || status < 400 {
-				let errstr = "Failed to deserialize JSON into a dictionary: \(error?.localizedDescription)\n"
-				"\(NSString(data: data, encoding: NSUTF8StringEncoding))"
-				self.error = genServerError(errstr, code: status)
+			catch let error {
+				// Cocoa error 3840 is JSON parsing error; some error responses may not return JSON, don't report an error on those
+				if 3840 != (error as NSError).code || NSCocoaErrorDomain != ((error as NSError).domain ?? "") || status < 400 {
+					let errstr = "Failed to deserialize JSON into a dictionary: \((error as NSError).localizedDescription)\n"
+					"\(NSString(data: data, encoding: NSUTF8StringEncoding))"
+					self.error = genServerError(errstr, code: status)
+				}
 			}
 		}
 	}

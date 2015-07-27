@@ -2,7 +2,7 @@
 //  DeviceComponentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -12,33 +12,33 @@ import SwiftFHIR
 
 class DeviceComponentTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> DeviceComponent {
-		return instantiateFrom(json: readJSONFile(filename)!)
+	func instantiateFrom(filename filename: String) throws -> DeviceComponent {
+		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: FHIRJSON) -> DeviceComponent {
+	func instantiateFrom(json json: FHIRJSON) -> DeviceComponent {
 		let instance = DeviceComponent(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testDeviceComponent1() {
-		let instance = testDeviceComponent1_impl()
-		testDeviceComponent1_impl(json: instance.asJSON())
+	func testDeviceComponent1() throws {
+		let instance = try testDeviceComponent1_impl()
+		try testDeviceComponent1_impl(instance.asJSON())
 	}
 	
-	func testDeviceComponent1_impl(json: FHIRJSON? = nil) -> DeviceComponent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicecomponent-example-prodspec.json")
+	func testDeviceComponent1_impl(json: FHIRJSON? = nil) throws -> DeviceComponent {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "devicecomponent-example-prodspec.json")
 		
 		XCTAssertEqual(inst.id!, "example-prodspec")
 		XCTAssertEqual(inst.identifier!.type!.text!, "Handle ID")
 		XCTAssertEqual(inst.identifier!.value!, "0")
 		XCTAssertEqual(inst.languageCode!.coding![0].code!, "en-US")
-		XCTAssertEqual(inst.languageCode!.coding![0].system!.absoluteString!, "http://tools.ietf.org/html/bcp47")
+		XCTAssertEqual(inst.languageCode!.coding![0].system!.absoluteString, "http://tools.ietf.org/html/bcp47")
 		XCTAssertEqual(inst.lastSystemChange!.description, "2014-10-07T14:45:00Z")
 		XCTAssertEqual(inst.operationalStatus![0].coding![0].code!, "0")
 		XCTAssertEqual(inst.operationalStatus![0].coding![0].display!, "disconnected")
-		XCTAssertEqual(inst.operationalStatus![0].coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
+		XCTAssertEqual(inst.operationalStatus![0].coding![0].system!.absoluteString, "urn:std:iso:11073:10101")
 		XCTAssertEqual(inst.productionSpecification![0].productionSpec!, "xa-12324-b")
 		XCTAssertEqual(inst.productionSpecification![0].specType!.coding![0].code!, "1")
 		XCTAssertEqual(inst.productionSpecification![0].specType!.coding![0].display!, "Serial number")
@@ -55,33 +55,33 @@ class DeviceComponentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "2000")
 		XCTAssertEqual(inst.type!.coding![0].display!, "MDC_DEV_ANALY_SAT_O2_MDS")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString, "urn:std:iso:11073:10101")
 		
 		return inst
 	}
 	
-	func testDeviceComponent2() {
-		let instance = testDeviceComponent2_impl()
-		testDeviceComponent2_impl(json: instance.asJSON())
+	func testDeviceComponent2() throws {
+		let instance = try testDeviceComponent2_impl()
+		try testDeviceComponent2_impl(instance.asJSON())
 	}
 	
-	func testDeviceComponent2_impl(json: FHIRJSON? = nil) -> DeviceComponent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "devicecomponent-example.json")
+	func testDeviceComponent2_impl(json: FHIRJSON? = nil) throws -> DeviceComponent {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "devicecomponent-example.json")
 		
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier!.type!.text!, "Handle ID")
 		XCTAssertEqual(inst.identifier!.value!, "0")
 		XCTAssertEqual(inst.languageCode!.coding![0].code!, "en-US")
-		XCTAssertEqual(inst.languageCode!.coding![0].system!.absoluteString!, "http://tools.ietf.org/html/bcp47")
+		XCTAssertEqual(inst.languageCode!.coding![0].system!.absoluteString, "http://tools.ietf.org/html/bcp47")
 		XCTAssertEqual(inst.lastSystemChange!.description, "2014-10-07T14:45:00Z")
 		XCTAssertEqual(inst.operationalStatus![0].coding![0].code!, "0")
 		XCTAssertEqual(inst.operationalStatus![0].coding![0].display!, "disconnected")
-		XCTAssertEqual(inst.operationalStatus![0].coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
+		XCTAssertEqual(inst.operationalStatus![0].coding![0].system!.absoluteString, "urn:std:iso:11073:10101")
 		XCTAssertEqual(inst.source!.reference!, "#d1")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "2000")
 		XCTAssertEqual(inst.type!.coding![0].display!, "MDC_DEV_ANALY_SAT_O2_MDS")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "urn:std:iso:11073:10101")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString, "urn:std:iso:11073:10101")
 		
 		return inst
 	}

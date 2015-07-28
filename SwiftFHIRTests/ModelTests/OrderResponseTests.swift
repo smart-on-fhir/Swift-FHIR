@@ -23,11 +23,11 @@ class OrderResponseTests: FHIRModelTestCase
 	}
 	
 	func testOrderResponse1() throws {
-		let instance = try testOrderResponse1_impl()
-		try testOrderResponse1_impl(instance.asJSON())
+		let instance = try runOrderResponse1()
+		try runOrderResponse1(instance.asJSON())
 	}
 	
-	func testOrderResponse1_impl(json: FHIRJSON? = nil) throws -> OrderResponse {
+	func runOrderResponse1(json: FHIRJSON? = nil) throws -> OrderResponse {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "orderresponse-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2012-12-28T13:10:56+11:00")

@@ -23,11 +23,11 @@ class AppointmentTests: FHIRModelTestCase
 	}
 	
 	func testAppointment1() throws {
-		let instance = try testAppointment1_impl()
-		try testAppointment1_impl(instance.asJSON())
+		let instance = try runAppointment1()
+		try runAppointment1(instance.asJSON())
 	}
 	
-	func testAppointment1_impl(json: FHIRJSON? = nil) throws -> Appointment {
+	func runAppointment1(json: FHIRJSON? = nil) throws -> Appointment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "appointment-example.json")
 		
 		XCTAssertEqual(inst.comment!, "Further expand on the results of the MRI and determine the next actions that may be appropriate.")
@@ -59,11 +59,11 @@ class AppointmentTests: FHIRModelTestCase
 	}
 	
 	func testAppointment2() throws {
-		let instance = try testAppointment2_impl()
-		try testAppointment2_impl(instance.asJSON())
+		let instance = try runAppointment2()
+		try runAppointment2(instance.asJSON())
 	}
 	
-	func testAppointment2_impl(json: FHIRJSON? = nil) throws -> Appointment {
+	func runAppointment2(json: FHIRJSON? = nil) throws -> Appointment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "appointment-example2doctors.json")
 		
 		XCTAssertEqual(inst.comment!, "Clarify the results of the MRI to ensure context of test was correct")

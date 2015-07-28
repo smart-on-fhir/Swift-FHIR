@@ -23,11 +23,11 @@ class ImagingObjectSelectionTests: FHIRModelTestCase
 	}
 	
 	func testImagingObjectSelection1() throws {
-		let instance = try testImagingObjectSelection1_impl()
-		try testImagingObjectSelection1_impl(instance.asJSON())
+		let instance = try runImagingObjectSelection1()
+		try runImagingObjectSelection1(instance.asJSON())
 	}
 	
-	func testImagingObjectSelection1_impl(json: FHIRJSON? = nil) throws -> ImagingObjectSelection {
+	func runImagingObjectSelection1(json: FHIRJSON? = nil) throws -> ImagingObjectSelection {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "imagingobjectselection-example.json")
 		
 		XCTAssertEqual(inst.authoringTime!.description, "2014-11-20T11:01:20-08:00")

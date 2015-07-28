@@ -2,7 +2,7 @@
 //  Coding.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Coding) on 2015-04-23.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Coding) on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -39,52 +39,52 @@ public class Coding: FHIRElement
 		super.init(json: json)
 	}
 	
-	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
-		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["code"] {
-				presentKeys.addObject("code")
+				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"code\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "code", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["display"] {
-				presentKeys.addObject("display")
+				presentKeys.insert("display")
 				if let val = exist as? String {
 					self.display = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"display\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "display", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["primary"] {
-				presentKeys.addObject("primary")
+				presentKeys.insert("primary")
 				if let val = exist as? Bool {
 					self.primary = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"primary\" to be `Bool`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "primary", wants: Bool.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["system"] {
-				presentKeys.addObject("system")
+				presentKeys.insert("system")
 				if let val = exist as? String {
 					self.system = NSURL(string: val)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"system\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "system", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["version"] {
-				presentKeys.addObject("version")
+				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"version\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "version", wants: String.self, has: exist.dynamicType))
 				}
 			}
 		}

@@ -2,7 +2,7 @@
 //  NutritionOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2015-04-23.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -62,7 +62,7 @@ public class NutritionOrder: DomainResource
 		super.init(json: json)
 	}
 	
-	/** Convenience initializer, taking all required properties an arguments. */
+	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(dateTime: DateTime?, patient: Reference?) {
 		self.init(json: nil)
 		if nil != dateTime {
@@ -73,121 +73,121 @@ public class NutritionOrder: DomainResource
 		}
 	}
 	
-	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
-		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["allergyIntolerance"] {
-				presentKeys.addObject("allergyIntolerance")
+				presentKeys.insert("allergyIntolerance")
 				if let val = exist as? [FHIRJSON] {
 					self.allergyIntolerance = Reference.from(val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"allergyIntolerance\" to be an array of `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "allergyIntolerance", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["dateTime"] {
-				presentKeys.addObject("dateTime")
+				presentKeys.insert("dateTime")
 				if let val = exist as? String {
 					self.dateTime = DateTime(string: val)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"dateTime\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "dateTime", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(fhir_generateJSONError("\(self) expects nonoptional JSON property \"dateTime\" but it is missing"))
+				errors.append(FHIRJSONError(key: "dateTime"))
 			}
 			if let exist: AnyObject = js["encounter"] {
-				presentKeys.addObject("encounter")
+				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
 					self.encounter = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"encounter\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["enteralFormula"] {
-				presentKeys.addObject("enteralFormula")
+				presentKeys.insert("enteralFormula")
 				if let val = exist as? FHIRJSON {
 					self.enteralFormula = NutritionOrderEnteralFormula(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"enteralFormula\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "enteralFormula", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["excludeFoodModifier"] {
-				presentKeys.addObject("excludeFoodModifier")
+				presentKeys.insert("excludeFoodModifier")
 				if let val = exist as? [FHIRJSON] {
 					self.excludeFoodModifier = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"excludeFoodModifier\" to be an array of `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "excludeFoodModifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["foodPreferenceModifier"] {
-				presentKeys.addObject("foodPreferenceModifier")
+				presentKeys.insert("foodPreferenceModifier")
 				if let val = exist as? [FHIRJSON] {
 					self.foodPreferenceModifier = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"foodPreferenceModifier\" to be an array of `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "foodPreferenceModifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["identifier"] {
-				presentKeys.addObject("identifier")
+				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"identifier\" to be an array of `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["oralDiet"] {
-				presentKeys.addObject("oralDiet")
+				presentKeys.insert("oralDiet")
 				if let val = exist as? FHIRJSON {
 					self.oralDiet = NutritionOrderOralDiet(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"oralDiet\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "oralDiet", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["orderer"] {
-				presentKeys.addObject("orderer")
+				presentKeys.insert("orderer")
 				if let val = exist as? FHIRJSON {
 					self.orderer = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"orderer\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "orderer", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["patient"] {
-				presentKeys.addObject("patient")
+				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
 					self.patient = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"patient\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(fhir_generateJSONError("\(self) expects nonoptional JSON property \"patient\" but it is missing"))
+				errors.append(FHIRJSONError(key: "patient"))
 			}
 			if let exist: AnyObject = js["status"] {
-				presentKeys.addObject("status")
+				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"status\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["supplement"] {
-				presentKeys.addObject("supplement")
+				presentKeys.insert("supplement")
 				if let val = exist as? [FHIRJSON] {
 					self.supplement = NutritionOrderSupplement.from(val, owner: self) as? [NutritionOrderSupplement]
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"supplement\" to be an array of `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "supplement", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -293,115 +293,115 @@ public class NutritionOrderEnteralFormula: FHIRElement
 		super.init(json: json)
 	}
 	
-	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
-		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["additiveProductName"] {
-				presentKeys.addObject("additiveProductName")
+				presentKeys.insert("additiveProductName")
 				if let val = exist as? String {
 					self.additiveProductName = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"additiveProductName\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "additiveProductName", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["additiveType"] {
-				presentKeys.addObject("additiveType")
+				presentKeys.insert("additiveType")
 				if let val = exist as? FHIRJSON {
 					self.additiveType = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"additiveType\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "additiveType", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["administrationInstructions"] {
-				presentKeys.addObject("administrationInstructions")
+				presentKeys.insert("administrationInstructions")
 				if let val = exist as? String {
 					self.administrationInstructions = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"administrationInstructions\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "administrationInstructions", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["baseFormulaProductName"] {
-				presentKeys.addObject("baseFormulaProductName")
+				presentKeys.insert("baseFormulaProductName")
 				if let val = exist as? String {
 					self.baseFormulaProductName = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"baseFormulaProductName\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "baseFormulaProductName", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["baseFormulaType"] {
-				presentKeys.addObject("baseFormulaType")
+				presentKeys.insert("baseFormulaType")
 				if let val = exist as? FHIRJSON {
 					self.baseFormulaType = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"baseFormulaType\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "baseFormulaType", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["caloricDensity"] {
-				presentKeys.addObject("caloricDensity")
+				presentKeys.insert("caloricDensity")
 				if let val = exist as? FHIRJSON {
 					self.caloricDensity = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"caloricDensity\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "caloricDensity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["maxVolumeToDeliver"] {
-				presentKeys.addObject("maxVolumeToDeliver")
+				presentKeys.insert("maxVolumeToDeliver")
 				if let val = exist as? FHIRJSON {
 					self.maxVolumeToDeliver = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"maxVolumeToDeliver\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "maxVolumeToDeliver", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["quantity"] {
-				presentKeys.addObject("quantity")
+				presentKeys.insert("quantity")
 				if let val = exist as? FHIRJSON {
 					self.quantity = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"quantity\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["rate"] {
-				presentKeys.addObject("rate")
+				presentKeys.insert("rate")
 				if let val = exist as? FHIRJSON {
 					self.rate = Ratio(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"rate\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "rate", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["rateAdjustment"] {
-				presentKeys.addObject("rateAdjustment")
+				presentKeys.insert("rateAdjustment")
 				if let val = exist as? FHIRJSON {
 					self.rateAdjustment = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"rateAdjustment\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "rateAdjustment", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["routeofAdministration"] {
-				presentKeys.addObject("routeofAdministration")
+				presentKeys.insert("routeofAdministration")
 				if let val = exist as? FHIRJSON {
 					self.routeofAdministration = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"routeofAdministration\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "routeofAdministration", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["scheduled"] {
-				presentKeys.addObject("scheduled")
+				presentKeys.insert("scheduled")
 				if let val = exist as? FHIRJSON {
 					self.scheduled = Timing(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"scheduled\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "scheduled", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -488,61 +488,61 @@ public class NutritionOrderOralDiet: FHIRElement
 		super.init(json: json)
 	}
 	
-	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
-		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["fluidConsistencyType"] {
-				presentKeys.addObject("fluidConsistencyType")
+				presentKeys.insert("fluidConsistencyType")
 				if let val = exist as? [FHIRJSON] {
 					self.fluidConsistencyType = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"fluidConsistencyType\" to be an array of `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "fluidConsistencyType", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["instruction"] {
-				presentKeys.addObject("instruction")
+				presentKeys.insert("instruction")
 				if let val = exist as? String {
 					self.instruction = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"instruction\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "instruction", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["nutrient"] {
-				presentKeys.addObject("nutrient")
+				presentKeys.insert("nutrient")
 				if let val = exist as? [FHIRJSON] {
 					self.nutrient = NutritionOrderOralDietNutrient.from(val, owner: self) as? [NutritionOrderOralDietNutrient]
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"nutrient\" to be an array of `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "nutrient", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["scheduled"] {
-				presentKeys.addObject("scheduled")
+				presentKeys.insert("scheduled")
 				if let val = exist as? FHIRJSON {
 					self.scheduled = Timing(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"scheduled\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "scheduled", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["texture"] {
-				presentKeys.addObject("texture")
+				presentKeys.insert("texture")
 				if let val = exist as? [FHIRJSON] {
 					self.texture = NutritionOrderOralDietTexture.from(val, owner: self) as? [NutritionOrderOralDietTexture]
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"texture\" to be an array of `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "texture", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["type"] {
-				presentKeys.addObject("type")
+				presentKeys.insert("type")
 				if let val = exist as? [FHIRJSON] {
 					self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"type\" to be an array of `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "type", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -599,25 +599,25 @@ public class NutritionOrderOralDietNutrient: FHIRElement
 		super.init(json: json)
 	}
 	
-	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
-		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["amount"] {
-				presentKeys.addObject("amount")
+				presentKeys.insert("amount")
 				if let val = exist as? FHIRJSON {
 					self.amount = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"amount\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["modifier"] {
-				presentKeys.addObject("modifier")
+				presentKeys.insert("modifier")
 				if let val = exist as? FHIRJSON {
 					self.modifier_fhir = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"modifier\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "modifier", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -663,25 +663,25 @@ public class NutritionOrderOralDietTexture: FHIRElement
 		super.init(json: json)
 	}
 	
-	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
-		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["foodType"] {
-				presentKeys.addObject("foodType")
+				presentKeys.insert("foodType")
 				if let val = exist as? FHIRJSON {
 					self.foodType = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"foodType\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "foodType", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["modifier"] {
-				presentKeys.addObject("modifier")
+				presentKeys.insert("modifier")
 				if let val = exist as? FHIRJSON {
 					self.modifier_fhir = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"modifier\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "modifier", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -735,52 +735,52 @@ public class NutritionOrderSupplement: FHIRElement
 		super.init(json: json)
 	}
 	
-	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
-		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["instruction"] {
-				presentKeys.addObject("instruction")
+				presentKeys.insert("instruction")
 				if let val = exist as? String {
 					self.instruction = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"instruction\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "instruction", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["productName"] {
-				presentKeys.addObject("productName")
+				presentKeys.insert("productName")
 				if let val = exist as? String {
 					self.productName = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"productName\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "productName", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["quantity"] {
-				presentKeys.addObject("quantity")
+				presentKeys.insert("quantity")
 				if let val = exist as? FHIRJSON {
 					self.quantity = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"quantity\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["scheduled"] {
-				presentKeys.addObject("scheduled")
+				presentKeys.insert("scheduled")
 				if let val = exist as? FHIRJSON {
 					self.scheduled = Timing(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"scheduled\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "scheduled", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["type"] {
-				presentKeys.addObject("type")
+				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
 					self.type = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"type\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 		}

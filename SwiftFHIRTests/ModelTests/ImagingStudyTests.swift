@@ -23,11 +23,11 @@ class ImagingStudyTests: FHIRModelTestCase
 	}
 	
 	func testImagingStudy1() throws {
-		let instance = try testImagingStudy1_impl()
-		try testImagingStudy1_impl(instance.asJSON())
+		let instance = try runImagingStudy1()
+		try runImagingStudy1(instance.asJSON())
 	}
 	
-	func testImagingStudy1_impl(json: FHIRJSON? = nil) throws -> ImagingStudy {
+	func runImagingStudy1(json: FHIRJSON? = nil) throws -> ImagingStudy {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "imagingstudy-example.json")
 		
 		XCTAssertEqual(inst.id!, "example")
@@ -55,11 +55,11 @@ class ImagingStudyTests: FHIRModelTestCase
 	}
 	
 	func testImagingStudy2() throws {
-		let instance = try testImagingStudy2_impl()
-		try testImagingStudy2_impl(instance.asJSON())
+		let instance = try runImagingStudy2()
+		try runImagingStudy2(instance.asJSON())
 	}
 	
-	func testImagingStudy2_impl(json: FHIRJSON? = nil) throws -> ImagingStudy {
+	func runImagingStudy2(json: FHIRJSON? = nil) throws -> ImagingStudy {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "imagingstudy-qicore-example.json")
 		
 		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/imagingstudy-radiationDose")

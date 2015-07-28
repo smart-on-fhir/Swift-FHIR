@@ -23,11 +23,11 @@ class AllergyIntoleranceTests: FHIRModelTestCase
 	}
 	
 	func testAllergyIntolerance1() throws {
-		let instance = try testAllergyIntolerance1_impl()
-		try testAllergyIntolerance1_impl(instance.asJSON())
+		let instance = try runAllergyIntolerance1()
+		try runAllergyIntolerance1(instance.asJSON())
 	}
 	
-	func testAllergyIntolerance1_impl(json: FHIRJSON? = nil) throws -> AllergyIntolerance {
+	func runAllergyIntolerance1(json: FHIRJSON? = nil) throws -> AllergyIntolerance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "allergyintolerance-example.json")
 		
 		XCTAssertEqual(inst.category!, "food")
@@ -65,11 +65,11 @@ class AllergyIntoleranceTests: FHIRModelTestCase
 	}
 	
 	func testAllergyIntolerance2() throws {
-		let instance = try testAllergyIntolerance2_impl()
-		try testAllergyIntolerance2_impl(instance.asJSON())
+		let instance = try runAllergyIntolerance2()
+		try runAllergyIntolerance2(instance.asJSON())
 	}
 	
-	func testAllergyIntolerance2_impl(json: FHIRJSON? = nil) throws -> AllergyIntolerance {
+	func runAllergyIntolerance2(json: FHIRJSON? = nil) throws -> AllergyIntolerance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "allergyintolerance-qicore-example.json")
 		
 		XCTAssertEqual(inst.category!, "food")

@@ -23,11 +23,11 @@ class AppointmentResponseTests: FHIRModelTestCase
 	}
 	
 	func testAppointmentResponse1() throws {
-		let instance = try testAppointmentResponse1_impl()
-		try testAppointmentResponse1_impl(instance.asJSON())
+		let instance = try runAppointmentResponse1()
+		try runAppointmentResponse1(instance.asJSON())
 	}
 	
-	func testAppointmentResponse1_impl(json: FHIRJSON? = nil) throws -> AppointmentResponse {
+	func runAppointmentResponse1(json: FHIRJSON? = nil) throws -> AppointmentResponse {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "appointmentresponse-example.json")
 		
 		XCTAssertEqual(inst.actor!.display!, "Peter James Chalmers")

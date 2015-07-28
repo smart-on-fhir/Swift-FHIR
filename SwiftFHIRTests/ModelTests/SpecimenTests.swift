@@ -23,11 +23,11 @@ class SpecimenTests: FHIRModelTestCase
 	}
 	
 	func testSpecimen1() throws {
-		let instance = try testSpecimen1_impl()
-		try testSpecimen1_impl(instance.asJSON())
+		let instance = try runSpecimen1()
+		try runSpecimen1(instance.asJSON())
 	}
 	
-	func testSpecimen1_impl(json: FHIRJSON? = nil) throws -> Specimen {
+	func runSpecimen1(json: FHIRJSON? = nil) throws -> Specimen {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "spec-uslab-example1.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier!.system!.absoluteString, "http://lis.acmelabs.org/identifiers/accession")
@@ -60,11 +60,11 @@ class SpecimenTests: FHIRModelTestCase
 	}
 	
 	func testSpecimen2() throws {
-		let instance = try testSpecimen2_impl()
-		try testSpecimen2_impl(instance.asJSON())
+		let instance = try runSpecimen2()
+		try runSpecimen2(instance.asJSON())
 	}
 	
-	func testSpecimen2_impl(json: FHIRJSON? = nil) throws -> Specimen {
+	func runSpecimen2(json: FHIRJSON? = nil) throws -> Specimen {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "spec-uslab-example2.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier!.system!.absoluteString, "http://lis.acmelabs.org/identifiers/accession")
@@ -90,11 +90,11 @@ class SpecimenTests: FHIRModelTestCase
 	}
 	
 	func testSpecimen3() throws {
-		let instance = try testSpecimen3_impl()
-		try testSpecimen3_impl(instance.asJSON())
+		let instance = try runSpecimen3()
+		try runSpecimen3(instance.asJSON())
 	}
 	
-	func testSpecimen3_impl(json: FHIRJSON? = nil) throws -> Specimen {
+	func runSpecimen3(json: FHIRJSON? = nil) throws -> Specimen {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier!.system!.absoluteString, "http://lab.acme.org/specimens/2011")
@@ -128,11 +128,11 @@ class SpecimenTests: FHIRModelTestCase
 	}
 	
 	func testSpecimen4() throws {
-		let instance = try testSpecimen4_impl()
-		try testSpecimen4_impl(instance.asJSON())
+		let instance = try runSpecimen4()
+		try runSpecimen4(instance.asJSON())
 	}
 	
-	func testSpecimen4_impl(json: FHIRJSON? = nil) throws -> Specimen {
+	func runSpecimen4(json: FHIRJSON? = nil) throws -> Specimen {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-qicore-example.json")
 		
 		XCTAssertEqual(inst.collection!.collectedDateTime!.description, "2011-03-06T06:15:00Z")

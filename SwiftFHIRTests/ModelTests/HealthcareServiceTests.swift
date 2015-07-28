@@ -23,11 +23,11 @@ class HealthcareServiceTests: FHIRModelTestCase
 	}
 	
 	func testHealthcareService1() throws {
-		let instance = try testHealthcareService1_impl()
-		try testHealthcareService1_impl(instance.asJSON())
+		let instance = try runHealthcareService1()
+		try runHealthcareService1(instance.asJSON())
 	}
 	
-	func testHealthcareService1_impl(json: FHIRJSON? = nil) throws -> HealthcareService {
+	func runHealthcareService1(json: FHIRJSON? = nil) throws -> HealthcareService {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "healthcareservice-example.json")
 		
 		XCTAssertFalse(inst.appointmentRequired!)

@@ -23,11 +23,11 @@ class ReferralRequestTests: FHIRModelTestCase
 	}
 	
 	func testReferralRequest1() throws {
-		let instance = try testReferralRequest1_impl()
-		try testReferralRequest1_impl(instance.asJSON())
+		let instance = try runReferralRequest1()
+		try runReferralRequest1(instance.asJSON())
 	}
 	
-	func testReferralRequest1_impl(json: FHIRJSON? = nil) throws -> ReferralRequest {
+	func runReferralRequest1(json: FHIRJSON? = nil) throws -> ReferralRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "referralrequest-example.json")
 		
 		XCTAssertEqual(inst.dateSent!.description, "2014-02-14")
@@ -63,11 +63,11 @@ class ReferralRequestTests: FHIRModelTestCase
 	}
 	
 	func testReferralRequest2() throws {
-		let instance = try testReferralRequest2_impl()
-		try testReferralRequest2_impl(instance.asJSON())
+		let instance = try runReferralRequest2()
+		try runReferralRequest2(instance.asJSON())
 	}
 	
-	func testReferralRequest2_impl(json: FHIRJSON? = nil) throws -> ReferralRequest {
+	func runReferralRequest2(json: FHIRJSON? = nil) throws -> ReferralRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "referralrequest-qicore-example.json")
 		
 		XCTAssertEqual(inst.dateSent!.description, "2014-02-14")

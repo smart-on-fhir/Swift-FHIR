@@ -23,11 +23,11 @@ class ImmunizationRecommendationTests: FHIRModelTestCase
 	}
 	
 	func testImmunizationRecommendation1() throws {
-		let instance = try testImmunizationRecommendation1_impl()
-		try testImmunizationRecommendation1_impl(instance.asJSON())
+		let instance = try runImmunizationRecommendation1()
+		try runImmunizationRecommendation1(instance.asJSON())
 	}
 	
-	func testImmunizationRecommendation1_impl(json: FHIRJSON? = nil) throws -> ImmunizationRecommendation {
+	func runImmunizationRecommendation1(json: FHIRJSON? = nil) throws -> ImmunizationRecommendation {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "immunizationrecommendation-example.json")
 		
 		XCTAssertEqual(inst.id!, "example")

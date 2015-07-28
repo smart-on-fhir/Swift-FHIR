@@ -23,11 +23,11 @@ class EpisodeOfCareTests: FHIRModelTestCase
 	}
 	
 	func testEpisodeOfCare1() throws {
-		let instance = try testEpisodeOfCare1_impl()
-		try testEpisodeOfCare1_impl(instance.asJSON())
+		let instance = try runEpisodeOfCare1()
+		try runEpisodeOfCare1(instance.asJSON())
 	}
 	
-	func testEpisodeOfCare1_impl(json: FHIRJSON? = nil) throws -> EpisodeOfCare {
+	func runEpisodeOfCare1(json: FHIRJSON? = nil) throws -> EpisodeOfCare {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "episodeofcare-example.json")
 		
 		XCTAssertEqual(inst.careManager!.display!, "Amanda Assigned")

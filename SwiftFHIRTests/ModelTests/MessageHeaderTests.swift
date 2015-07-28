@@ -23,11 +23,11 @@ class MessageHeaderTests: FHIRModelTestCase
 	}
 	
 	func testMessageHeader1() throws {
-		let instance = try testMessageHeader1_impl()
-		try testMessageHeader1_impl(instance.asJSON())
+		let instance = try runMessageHeader1()
+		try runMessageHeader1(instance.asJSON())
 	}
 	
-	func testMessageHeader1_impl(json: FHIRJSON? = nil) throws -> MessageHeader {
+	func runMessageHeader1(json: FHIRJSON? = nil) throws -> MessageHeader {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "messageheader-example.json")
 		
 		XCTAssertEqual(inst.author!.reference!, "Practitioner/example")

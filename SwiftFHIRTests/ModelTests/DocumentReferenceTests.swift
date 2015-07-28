@@ -23,11 +23,11 @@ class DocumentReferenceTests: FHIRModelTestCase
 	}
 	
 	func testDocumentReference1() throws {
-		let instance = try testDocumentReference1_impl()
-		try testDocumentReference1_impl(instance.asJSON())
+		let instance = try runDocumentReference1()
+		try runDocumentReference1(instance.asJSON())
 	}
 	
-	func testDocumentReference1_impl(json: FHIRJSON? = nil) throws -> DocumentReference {
+	func runDocumentReference1(json: FHIRJSON? = nil) throws -> DocumentReference {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "documentreference-example.json")
 		
 		XCTAssertEqual(inst.author![0].reference!, "#a1")

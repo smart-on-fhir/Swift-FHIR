@@ -23,11 +23,11 @@ class GoalTests: FHIRModelTestCase
 	}
 	
 	func testGoal1() throws {
-		let instance = try testGoal1_impl()
-		try testGoal1_impl(instance.asJSON())
+		let instance = try runGoal1()
+		try runGoal1(instance.asJSON())
 	}
 	
-	func testGoal1_impl(json: FHIRJSON? = nil) throws -> Goal {
+	func runGoal1(json: FHIRJSON? = nil) throws -> Goal {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "goal-example.json")
 		
 		XCTAssertEqual(inst.concern![0].display!, "obesity")
@@ -57,11 +57,11 @@ class GoalTests: FHIRModelTestCase
 	}
 	
 	func testGoal2() throws {
-		let instance = try testGoal2_impl()
-		try testGoal2_impl(instance.asJSON())
+		let instance = try runGoal2()
+		try runGoal2(instance.asJSON())
 	}
 	
-	func testGoal2_impl(json: FHIRJSON? = nil) throws -> Goal {
+	func runGoal2(json: FHIRJSON? = nil) throws -> Goal {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "goal-qicore-example.json")
 		
 		XCTAssertEqual(inst.concern![0].display!, "obesity")

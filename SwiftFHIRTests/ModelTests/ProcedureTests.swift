@@ -23,11 +23,11 @@ class ProcedureTests: FHIRModelTestCase
 	}
 	
 	func testProcedure1() throws {
-		let instance = try testProcedure1_impl()
-		try testProcedure1_impl(instance.asJSON())
+		let instance = try runProcedure1()
+		try runProcedure1(instance.asJSON())
 	}
 	
-	func testProcedure1_impl(json: FHIRJSON? = nil) throws -> Procedure {
+	func runProcedure1(json: FHIRJSON? = nil) throws -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-biopsy.json")
 		
 		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "368225008")
@@ -54,11 +54,11 @@ class ProcedureTests: FHIRModelTestCase
 	}
 	
 	func testProcedure2() throws {
-		let instance = try testProcedure2_impl()
-		try testProcedure2_impl(instance.asJSON())
+		let instance = try runProcedure2()
+		try runProcedure2(instance.asJSON())
 	}
 	
-	func testProcedure2_impl(json: FHIRJSON? = nil) throws -> Procedure {
+	func runProcedure2(json: FHIRJSON? = nil) throws -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "17401000")
@@ -91,11 +91,11 @@ class ProcedureTests: FHIRModelTestCase
 	}
 	
 	func testProcedure3() throws {
-		let instance = try testProcedure3_impl()
-		try testProcedure3_impl(instance.asJSON())
+		let instance = try runProcedure3()
+		try runProcedure3(instance.asJSON())
 	}
 	
-	func testProcedure3_impl(json: FHIRJSON? = nil) throws -> Procedure {
+	func runProcedure3(json: FHIRJSON? = nil) throws -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "39607008")
@@ -128,11 +128,11 @@ class ProcedureTests: FHIRModelTestCase
 	}
 	
 	func testProcedure4() throws {
-		let instance = try testProcedure4_impl()
-		try testProcedure4_impl(instance.asJSON())
+		let instance = try runProcedure4()
+		try runProcedure4(instance.asJSON())
 	}
 	
-	func testProcedure4_impl(json: FHIRJSON? = nil) throws -> Procedure {
+	func runProcedure4(json: FHIRJSON? = nil) throws -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f003-abscess.json")
 		
 		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "83030008")
@@ -165,11 +165,11 @@ class ProcedureTests: FHIRModelTestCase
 	}
 	
 	func testProcedure5() throws {
-		let instance = try testProcedure5_impl()
-		try testProcedure5_impl(instance.asJSON())
+		let instance = try runProcedure5()
+		try runProcedure5(instance.asJSON())
 	}
 	
-	func testProcedure5_impl(json: FHIRJSON? = nil) throws -> Procedure {
+	func runProcedure5(json: FHIRJSON? = nil) throws -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f004-tracheotomy.json")
 		
 		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "83030008")
@@ -202,11 +202,11 @@ class ProcedureTests: FHIRModelTestCase
 	}
 	
 	func testProcedure6() throws {
-		let instance = try testProcedure6_impl()
-		try testProcedure6_impl(instance.asJSON())
+		let instance = try runProcedure6()
+		try runProcedure6(instance.asJSON())
 	}
 	
-	func testProcedure6_impl(json: FHIRJSON? = nil) throws -> Procedure {
+	func runProcedure6(json: FHIRJSON? = nil) throws -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f201-tpf.json")
 		
 		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "272676008")
@@ -236,11 +236,11 @@ class ProcedureTests: FHIRModelTestCase
 	}
 	
 	func testProcedure7() throws {
-		let instance = try testProcedure7_impl()
-		try testProcedure7_impl(instance.asJSON())
+		let instance = try runProcedure7()
+		try runProcedure7(instance.asJSON())
 	}
 	
-	func testProcedure7_impl(json: FHIRJSON? = nil) throws -> Procedure {
+	func runProcedure7(json: FHIRJSON? = nil) throws -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-implant.json")
 		
 		XCTAssertEqual(inst.device![0].action!.coding![0].code!, "implanted")
@@ -265,11 +265,11 @@ class ProcedureTests: FHIRModelTestCase
 	}
 	
 	func testProcedure8() throws {
-		let instance = try testProcedure8_impl()
-		try testProcedure8_impl(instance.asJSON())
+		let instance = try runProcedure8()
+		try runProcedure8(instance.asJSON())
 	}
 	
-	func testProcedure8_impl(json: FHIRJSON? = nil) throws -> Procedure {
+	func runProcedure8(json: FHIRJSON? = nil) throws -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example.json")
 		
 		XCTAssertEqual(inst.followUp![0].text!, "ROS 5 days  - 2013-04-10")
@@ -292,11 +292,11 @@ class ProcedureTests: FHIRModelTestCase
 	}
 	
 	func testProcedure9() throws {
-		let instance = try testProcedure9_impl()
-		try testProcedure9_impl(instance.asJSON())
+		let instance = try runProcedure9()
+		try runProcedure9(instance.asJSON())
 	}
 	
-	func testProcedure9_impl(json: FHIRJSON? = nil) throws -> Procedure {
+	func runProcedure9(json: FHIRJSON? = nil) throws -> Procedure {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-qicore-example.json")
 		
 		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "66754008")

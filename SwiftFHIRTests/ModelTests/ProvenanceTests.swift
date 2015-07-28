@@ -23,11 +23,11 @@ class ProvenanceTests: FHIRModelTestCase
 	}
 	
 	func testProvenance1() throws {
-		let instance = try testProvenance1_impl()
-		try testProvenance1_impl(instance.asJSON())
+		let instance = try runProvenance1()
+		try runProvenance1(instance.asJSON())
 	}
 	
-	func testProvenance1_impl(json: FHIRJSON? = nil) throws -> Provenance {
+	func runProvenance1(json: FHIRJSON? = nil) throws -> Provenance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "provenance-example.json")
 		
 		XCTAssertEqual(inst.agent![0].display!, "Grahame Grieve")

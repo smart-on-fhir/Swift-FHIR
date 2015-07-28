@@ -23,11 +23,11 @@ class DocumentManifestTests: FHIRModelTestCase
 	}
 	
 	func testDocumentManifest1() throws {
-		let instance = try testDocumentManifest1_impl()
-		try testDocumentManifest1_impl(instance.asJSON())
+		let instance = try runDocumentManifest1()
+		try runDocumentManifest1(instance.asJSON())
 	}
 	
-	func testDocumentManifest1_impl(json: FHIRJSON? = nil) throws -> DocumentManifest {
+	func runDocumentManifest1(json: FHIRJSON? = nil) throws -> DocumentManifest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "documentmanifest-example.json")
 		
 		XCTAssertEqual(inst.author![0].reference!, "#a1")

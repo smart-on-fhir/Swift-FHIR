@@ -23,11 +23,11 @@ class PatientTests: FHIRModelTestCase
 	}
 	
 	func testPatient1() throws {
-		let instance = try testPatient1_impl()
-		try testPatient1_impl(instance.asJSON())
+		let instance = try runPatient1()
+		try runPatient1(instance.asJSON())
 	}
 	
-	func testPatient1_impl(json: FHIRJSON? = nil) throws -> Patient {
+	func runPatient1(json: FHIRJSON? = nil) throws -> Patient {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-a.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -56,11 +56,11 @@ class PatientTests: FHIRModelTestCase
 	}
 	
 	func testPatient2() throws {
-		let instance = try testPatient2_impl()
-		try testPatient2_impl(instance.asJSON())
+		let instance = try runPatient2()
+		try runPatient2(instance.asJSON())
 	}
 	
-	func testPatient2_impl(json: FHIRJSON? = nil) throws -> Patient {
+	func runPatient2(json: FHIRJSON? = nil) throws -> Patient {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-animal.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -100,11 +100,11 @@ class PatientTests: FHIRModelTestCase
 	}
 	
 	func testPatient3() throws {
-		let instance = try testPatient3_impl()
-		try testPatient3_impl(instance.asJSON())
+		let instance = try runPatient3()
+		try runPatient3(instance.asJSON())
 	}
 	
-	func testPatient3_impl(json: FHIRJSON? = nil) throws -> Patient {
+	func runPatient3(json: FHIRJSON? = nil) throws -> Patient {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-b.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -130,11 +130,11 @@ class PatientTests: FHIRModelTestCase
 	}
 	
 	func testPatient4() throws {
-		let instance = try testPatient4_impl()
-		try testPatient4_impl(instance.asJSON())
+		let instance = try runPatient4()
+		try runPatient4(instance.asJSON())
 	}
 	
-	func testPatient4_impl(json: FHIRJSON? = nil) throws -> Patient {
+	func runPatient4(json: FHIRJSON? = nil) throws -> Patient {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-dicom.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -159,11 +159,11 @@ class PatientTests: FHIRModelTestCase
 	}
 	
 	func testPatient5() throws {
-		let instance = try testPatient5_impl()
-		try testPatient5_impl(instance.asJSON())
+		let instance = try runPatient5()
+		try runPatient5(instance.asJSON())
 	}
 	
-	func testPatient5_impl(json: FHIRJSON? = nil) throws -> Patient {
+	func runPatient5(json: FHIRJSON? = nil) throws -> Patient {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-f001-pieter.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -217,11 +217,11 @@ class PatientTests: FHIRModelTestCase
 	}
 	
 	func testPatient6() throws {
-		let instance = try testPatient6_impl()
-		try testPatient6_impl(instance.asJSON())
+		let instance = try runPatient6()
+		try runPatient6(instance.asJSON())
 	}
 	
-	func testPatient6_impl(json: FHIRJSON? = nil) throws -> Patient {
+	func runPatient6(json: FHIRJSON? = nil) throws -> Patient {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-f201-roel.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -284,11 +284,11 @@ class PatientTests: FHIRModelTestCase
 	}
 	
 	func testPatient7() throws {
-		let instance = try testPatient7_impl()
-		try testPatient7_impl(instance.asJSON())
+		let instance = try runPatient7()
+		try runPatient7(instance.asJSON())
 	}
 	
-	func testPatient7_impl(json: FHIRJSON? = nil) throws -> Patient {
+	func runPatient7(json: FHIRJSON? = nil) throws -> Patient {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-ihe-pcd.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -304,11 +304,11 @@ class PatientTests: FHIRModelTestCase
 	}
 	
 	func testPatient8() throws {
-		let instance = try testPatient8_impl()
-		try testPatient8_impl(instance.asJSON())
+		let instance = try runPatient8()
+		try runPatient8(instance.asJSON())
 	}
 	
-	func testPatient8_impl(json: FHIRJSON? = nil) throws -> Patient {
+	func runPatient8(json: FHIRJSON? = nil) throws -> Patient {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-proband.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -331,11 +331,11 @@ class PatientTests: FHIRModelTestCase
 	}
 	
 	func testPatient9() throws {
-		let instance = try testPatient9_impl()
-		try testPatient9_impl(instance.asJSON())
+		let instance = try runPatient9()
+		try runPatient9(instance.asJSON())
 	}
 	
-	func testPatient9_impl(json: FHIRJSON? = nil) throws -> Patient {
+	func runPatient9(json: FHIRJSON? = nil) throws -> Patient {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-us-extensions.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -371,11 +371,11 @@ class PatientTests: FHIRModelTestCase
 	}
 	
 	func testPatient10() throws {
-		let instance = try testPatient10_impl()
-		try testPatient10_impl(instance.asJSON())
+		let instance = try runPatient10()
+		try runPatient10(instance.asJSON())
 	}
 	
-	func testPatient10_impl(json: FHIRJSON? = nil) throws -> Patient {
+	func runPatient10(json: FHIRJSON? = nil) throws -> Patient {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-xcda.json")
 		
 		XCTAssertTrue(inst.active!)

@@ -23,11 +23,11 @@ class ConceptMapTests: FHIRModelTestCase
 	}
 	
 	func testConceptMap1() throws {
-		let instance = try testConceptMap1_impl()
-		try testConceptMap1_impl(instance.asJSON())
+		let instance = try runConceptMap1()
+		try runConceptMap1(instance.asJSON())
 	}
 	
-	func testConceptMap1_impl(json: FHIRJSON? = nil) throws -> ConceptMap {
+	func runConceptMap1(json: FHIRJSON? = nil) throws -> ConceptMap {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "conceptmap-example-specimen-type.json")
 		
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
@@ -115,11 +115,11 @@ class ConceptMapTests: FHIRModelTestCase
 	}
 	
 	func testConceptMap2() throws {
-		let instance = try testConceptMap2_impl()
-		try testConceptMap2_impl(instance.asJSON())
+		let instance = try runConceptMap2()
+		try runConceptMap2(instance.asJSON())
 	}
 	
-	func testConceptMap2_impl(json: FHIRJSON? = nil) throws -> ConceptMap {
+	func runConceptMap2(json: FHIRJSON? = nil) throws -> ConceptMap {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "conceptmap-example.json")
 		
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")

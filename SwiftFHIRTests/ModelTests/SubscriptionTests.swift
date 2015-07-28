@@ -23,11 +23,11 @@ class SubscriptionTests: FHIRModelTestCase
 	}
 	
 	func testSubscription1() throws {
-		let instance = try testSubscription1_impl()
-		try testSubscription1_impl(instance.asJSON())
+		let instance = try runSubscription1()
+		try runSubscription1(instance.asJSON())
 	}
 	
-	func testSubscription1_impl(json: FHIRJSON? = nil) throws -> Subscription {
+	func runSubscription1(json: FHIRJSON? = nil) throws -> Subscription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "subscription-example.json")
 		
 		XCTAssertEqual(inst.channel!.endpoint!.absoluteString, "https://biliwatch.com/customers/mount-auburn-miu/on-result")

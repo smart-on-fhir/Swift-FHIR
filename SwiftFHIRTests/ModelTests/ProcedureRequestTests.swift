@@ -23,11 +23,11 @@ class ProcedureRequestTests: FHIRModelTestCase
 	}
 	
 	func testProcedureRequest1() throws {
-		let instance = try testProcedureRequest1_impl()
-		try testProcedureRequest1_impl(instance.asJSON())
+		let instance = try runProcedureRequest1()
+		try runProcedureRequest1(instance.asJSON())
 	}
 	
-	func testProcedureRequest1_impl(json: FHIRJSON? = nil) throws -> ProcedureRequest {
+	func runProcedureRequest1(json: FHIRJSON? = nil) throws -> ProcedureRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedurerequest-example.json")
 		
 		XCTAssertEqual(inst.id!, "example")
@@ -42,11 +42,11 @@ class ProcedureRequestTests: FHIRModelTestCase
 	}
 	
 	func testProcedureRequest2() throws {
-		let instance = try testProcedureRequest2_impl()
-		try testProcedureRequest2_impl(instance.asJSON())
+		let instance = try runProcedureRequest2()
+		try runProcedureRequest2(instance.asJSON())
 	}
 	
-	func testProcedureRequest2_impl(json: FHIRJSON? = nil) throws -> ProcedureRequest {
+	func runProcedureRequest2(json: FHIRJSON? = nil) throws -> ProcedureRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedurerequest-qicore-example.json")
 		
 		XCTAssertEqual(inst.bodySite![0].siteCodeableConcept!.coding![0].code!, "66754008")

@@ -23,11 +23,11 @@ class PaymentReconciliationTests: FHIRModelTestCase
 	}
 	
 	func testPaymentReconciliation1() throws {
-		let instance = try testPaymentReconciliation1_impl()
-		try testPaymentReconciliation1_impl(instance.asJSON())
+		let instance = try runPaymentReconciliation1()
+		try runPaymentReconciliation1(instance.asJSON())
 	}
 	
-	func testPaymentReconciliation1_impl(json: FHIRJSON? = nil) throws -> PaymentReconciliation {
+	func runPaymentReconciliation1(json: FHIRJSON? = nil) throws -> PaymentReconciliation {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "paymentreconciliation-example.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")

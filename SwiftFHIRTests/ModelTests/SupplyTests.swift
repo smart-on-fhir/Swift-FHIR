@@ -23,11 +23,11 @@ class SupplyTests: FHIRModelTestCase
 	}
 	
 	func testSupply1() throws {
-		let instance = try testSupply1_impl()
-		try testSupply1_impl(instance.asJSON())
+		let instance = try runSupply1()
+		try runSupply1(instance.asJSON())
 	}
 	
-	func testSupply1_impl(json: FHIRJSON? = nil) throws -> Supply {
+	func runSupply1(json: FHIRJSON? = nil) throws -> Supply {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "supply-example1.json")
 		
 		XCTAssertEqual(inst.dispense![0].destination!.display!, "Neuro Radiology Operation Room ")

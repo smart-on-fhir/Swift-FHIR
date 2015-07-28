@@ -23,11 +23,11 @@ class MedicationTests: FHIRModelTestCase
 	}
 	
 	func testMedication1() throws {
-		let instance = try testMedication1_impl()
-		try testMedication1_impl(instance.asJSON())
+		let instance = try runMedication1()
+		try runMedication1(instance.asJSON())
 	}
 	
-	func testMedication1_impl(json: FHIRJSON? = nil) throws -> Medication {
+	func runMedication1(json: FHIRJSON? = nil) throws -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medication-example-f001-combivent.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "320442002")
@@ -53,11 +53,11 @@ class MedicationTests: FHIRModelTestCase
 	}
 	
 	func testMedication2() throws {
-		let instance = try testMedication2_impl()
-		try testMedication2_impl(instance.asJSON())
+		let instance = try runMedication2()
+		try runMedication2(instance.asJSON())
 	}
 	
-	func testMedication2_impl(json: FHIRJSON? = nil) throws -> Medication {
+	func runMedication2(json: FHIRJSON? = nil) throws -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medication-example-f002-crestor.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "408036003")
@@ -76,11 +76,11 @@ class MedicationTests: FHIRModelTestCase
 	}
 	
 	func testMedication3() throws {
-		let instance = try testMedication3_impl()
-		try testMedication3_impl(instance.asJSON())
+		let instance = try runMedication3()
+		try runMedication3(instance.asJSON())
 	}
 	
-	func testMedication3_impl(json: FHIRJSON? = nil) throws -> Medication {
+	func runMedication3(json: FHIRJSON? = nil) throws -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medication-example-f003-tolbutamide.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "325267004")
@@ -99,11 +99,11 @@ class MedicationTests: FHIRModelTestCase
 	}
 	
 	func testMedication4() throws {
-		let instance = try testMedication4_impl()
-		try testMedication4_impl(instance.asJSON())
+		let instance = try runMedication4()
+		try runMedication4(instance.asJSON())
 	}
 	
-	func testMedication4_impl(json: FHIRJSON? = nil) throws -> Medication {
+	func runMedication4(json: FHIRJSON? = nil) throws -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medication-example-f004-metoprolol.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "318475005")
@@ -122,11 +122,11 @@ class MedicationTests: FHIRModelTestCase
 	}
 	
 	func testMedication5() throws {
-		let instance = try testMedication5_impl()
-		try testMedication5_impl(instance.asJSON())
+		let instance = try runMedication5()
+		try runMedication5(instance.asJSON())
 	}
 	
-	func testMedication5_impl(json: FHIRJSON? = nil) throws -> Medication {
+	func runMedication5(json: FHIRJSON? = nil) throws -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medication-example-f005-enalapril.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "318851002")
@@ -145,11 +145,11 @@ class MedicationTests: FHIRModelTestCase
 	}
 	
 	func testMedication6() throws {
-		let instance = try testMedication6_impl()
-		try testMedication6_impl(instance.asJSON())
+		let instance = try runMedication6()
+		try runMedication6(instance.asJSON())
 	}
 	
-	func testMedication6_impl(json: FHIRJSON? = nil) throws -> Medication {
+	func runMedication6(json: FHIRJSON? = nil) throws -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medication-example-f201-salmeterol.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "411106009")
@@ -182,11 +182,11 @@ class MedicationTests: FHIRModelTestCase
 	}
 	
 	func testMedication7() throws {
-		let instance = try testMedication7_impl()
-		try testMedication7_impl(instance.asJSON())
+		let instance = try runMedication7()
+		try runMedication7(instance.asJSON())
 	}
 	
-	func testMedication7_impl(json: FHIRJSON? = nil) throws -> Medication {
+	func runMedication7(json: FHIRJSON? = nil) throws -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medication-example-f202-flucloxacilline.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "387544009")
@@ -205,11 +205,11 @@ class MedicationTests: FHIRModelTestCase
 	}
 	
 	func testMedication8() throws {
-		let instance = try testMedication8_impl()
-		try testMedication8_impl(instance.asJSON())
+		let instance = try runMedication8()
+		try runMedication8(instance.asJSON())
 	}
 	
-	func testMedication8_impl(json: FHIRJSON? = nil) throws -> Medication {
+	func runMedication8(json: FHIRJSON? = nil) throws -> Medication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medication-example-f203-paracetamol.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "387517004")

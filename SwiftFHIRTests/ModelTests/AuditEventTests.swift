@@ -23,11 +23,11 @@ class AuditEventTests: FHIRModelTestCase
 	}
 	
 	func testAuditEvent1() throws {
-		let instance = try testAuditEvent1_impl()
-		try testAuditEvent1_impl(instance.asJSON())
+		let instance = try runAuditEvent1()
+		try runAuditEvent1(instance.asJSON())
 	}
 	
-	func testAuditEvent1_impl(json: FHIRJSON? = nil) throws -> AuditEvent {
+	func runAuditEvent1(json: FHIRJSON? = nil) throws -> AuditEvent {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-login.json")
 		
 		XCTAssertEqual(inst.event!.action!, "E")
@@ -57,11 +57,11 @@ class AuditEventTests: FHIRModelTestCase
 	}
 	
 	func testAuditEvent2() throws {
-		let instance = try testAuditEvent2_impl()
-		try testAuditEvent2_impl(instance.asJSON())
+		let instance = try runAuditEvent2()
+		try runAuditEvent2(instance.asJSON())
 	}
 	
-	func testAuditEvent2_impl(json: FHIRJSON? = nil) throws -> AuditEvent {
+	func runAuditEvent2(json: FHIRJSON? = nil) throws -> AuditEvent {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-logout.json")
 		
 		XCTAssertEqual(inst.event!.action!, "E")
@@ -91,11 +91,11 @@ class AuditEventTests: FHIRModelTestCase
 	}
 	
 	func testAuditEvent3() throws {
-		let instance = try testAuditEvent3_impl()
-		try testAuditEvent3_impl(instance.asJSON())
+		let instance = try runAuditEvent3()
+		try runAuditEvent3(instance.asJSON())
 	}
 	
-	func testAuditEvent3_impl(json: FHIRJSON? = nil) throws -> AuditEvent {
+	func runAuditEvent3(json: FHIRJSON? = nil) throws -> AuditEvent {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-vread.json")
 		
 		XCTAssertEqual(inst.event!.action!, "R")
@@ -126,11 +126,11 @@ class AuditEventTests: FHIRModelTestCase
 	}
 	
 	func testAuditEvent4() throws {
-		let instance = try testAuditEvent4_impl()
-		try testAuditEvent4_impl(instance.asJSON())
+		let instance = try runAuditEvent4()
+		try runAuditEvent4(instance.asJSON())
 	}
 	
-	func testAuditEvent4_impl(json: FHIRJSON? = nil) throws -> AuditEvent {
+	func runAuditEvent4(json: FHIRJSON? = nil) throws -> AuditEvent {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "auditevent-example.json")
 		
 		XCTAssertEqual(inst.event!.action!, "E")

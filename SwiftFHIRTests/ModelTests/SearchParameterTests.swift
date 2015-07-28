@@ -23,11 +23,11 @@ class SearchParameterTests: FHIRModelTestCase
 	}
 	
 	func testSearchParameter1() throws {
-		let instance = try testSearchParameter1_impl()
-		try testSearchParameter1_impl(instance.asJSON())
+		let instance = try runSearchParameter1()
+		try runSearchParameter1(instance.asJSON())
 	}
 	
-	func testSearchParameter1_impl(json: FHIRJSON? = nil) throws -> SearchParameter {
+	func runSearchParameter1(json: FHIRJSON? = nil) throws -> SearchParameter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "searchparameter-example-extension.json")
 		
 		XCTAssertEqual(inst.base!, "Patient")
@@ -46,11 +46,11 @@ class SearchParameterTests: FHIRModelTestCase
 	}
 	
 	func testSearchParameter2() throws {
-		let instance = try testSearchParameter2_impl()
-		try testSearchParameter2_impl(instance.asJSON())
+		let instance = try runSearchParameter2()
+		try runSearchParameter2(instance.asJSON())
 	}
 	
-	func testSearchParameter2_impl(json: FHIRJSON? = nil) throws -> SearchParameter {
+	func runSearchParameter2(json: FHIRJSON? = nil) throws -> SearchParameter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "searchparameter-example.json")
 		
 		XCTAssertEqual(inst.base!, "Resource")

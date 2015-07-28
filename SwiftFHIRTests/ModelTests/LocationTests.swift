@@ -23,11 +23,11 @@ class LocationTests: FHIRModelTestCase
 	}
 	
 	func testLocation1() throws {
-		let instance = try testLocation1_impl()
-		try testLocation1_impl(instance.asJSON())
+		let instance = try runLocation1()
+		try runLocation1(instance.asJSON())
 	}
 	
-	func testLocation1_impl(json: FHIRJSON? = nil) throws -> Location {
+	func runLocation1(json: FHIRJSON? = nil) throws -> Location {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-ambulance.json")
 		
 		XCTAssertEqual(inst.description_fhir!, "Ambulance provided by Burgers University Medical Center")
@@ -52,11 +52,11 @@ class LocationTests: FHIRModelTestCase
 	}
 	
 	func testLocation2() throws {
-		let instance = try testLocation2_impl()
-		try testLocation2_impl(instance.asJSON())
+		let instance = try runLocation2()
+		try runLocation2(instance.asJSON())
 	}
 	
-	func testLocation2_impl(json: FHIRJSON? = nil) throws -> Location {
+	func runLocation2(json: FHIRJSON? = nil) throws -> Location {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-patients-home.json")
 		
 		XCTAssertEqual(inst.description_fhir!, "Patient's Home")
@@ -78,11 +78,11 @@ class LocationTests: FHIRModelTestCase
 	}
 	
 	func testLocation3() throws {
-		let instance = try testLocation3_impl()
-		try testLocation3_impl(instance.asJSON())
+		let instance = try runLocation3()
+		try runLocation3(instance.asJSON())
 	}
 	
-	func testLocation3_impl(json: FHIRJSON? = nil) throws -> Location {
+	func runLocation3(json: FHIRJSON? = nil) throws -> Location {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-room.json")
 		
 		XCTAssertEqual(inst.description_fhir!, "Old South Wing, Neuro Radiology Operation Room 1 on second floor")
@@ -108,11 +108,11 @@ class LocationTests: FHIRModelTestCase
 	}
 	
 	func testLocation4() throws {
-		let instance = try testLocation4_impl()
-		try testLocation4_impl(instance.asJSON())
+		let instance = try runLocation4()
+		try runLocation4(instance.asJSON())
 	}
 	
-	func testLocation4_impl(json: FHIRJSON? = nil) throws -> Location {
+	func runLocation4(json: FHIRJSON? = nil) throws -> Location {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-ukpharmacy.json")
 		
 		XCTAssertEqual(inst.description_fhir!, "All Pharmacies in the United Kingdom covered by the National Pharmacy Association")
@@ -133,11 +133,11 @@ class LocationTests: FHIRModelTestCase
 	}
 	
 	func testLocation5() throws {
-		let instance = try testLocation5_impl()
-		try testLocation5_impl(instance.asJSON())
+		let instance = try runLocation5()
+		try runLocation5(instance.asJSON())
 	}
 	
-	func testLocation5_impl(json: FHIRJSON? = nil) throws -> Location {
+	func runLocation5(json: FHIRJSON? = nil) throws -> Location {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example.json")
 		
 		XCTAssertEqual(inst.address!.city!, "Den Burg")

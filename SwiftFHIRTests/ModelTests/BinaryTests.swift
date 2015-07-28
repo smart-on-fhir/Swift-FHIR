@@ -23,11 +23,11 @@ class BinaryTests: FHIRModelTestCase
 	}
 	
 	func testBinary1() throws {
-		let instance = try testBinary1_impl()
-		try testBinary1_impl(instance.asJSON())
+		let instance = try runBinary1()
+		try runBinary1(instance.asJSON())
 	}
 	
-	func testBinary1_impl(json: FHIRJSON? = nil) throws -> Binary {
+	func runBinary1(json: FHIRJSON? = nil) throws -> Binary {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "binary-example.json")
 		
 		XCTAssertEqual(inst.contentType!, "application/pdf")

@@ -23,11 +23,11 @@ class MedicationDispenseTests: FHIRModelTestCase
 	}
 	
 	func testMedicationDispense1() throws {
-		let instance = try testMedicationDispense1_impl()
-		try testMedicationDispense1_impl(instance.asJSON())
+		let instance = try runMedicationDispense1()
+		try runMedicationDispense1(instance.asJSON())
 	}
 	
-	func testMedicationDispense1_impl(json: FHIRJSON? = nil) throws -> MedicationDispense {
+	func runMedicationDispense1(json: FHIRJSON? = nil) throws -> MedicationDispense {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medicationdispense-qicore-example.json")
 		
 		XCTAssertEqual(inst.authorizingPrescription![0].reference!, "MedicationPrescription/example")

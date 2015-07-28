@@ -23,11 +23,11 @@ class FlagTests: FHIRModelTestCase
 	}
 	
 	func testFlag1() throws {
-		let instance = try testFlag1_impl()
-		try testFlag1_impl(instance.asJSON())
+		let instance = try runFlag1()
+		try runFlag1(instance.asJSON())
 	}
 	
-	func testFlag1_impl(json: FHIRJSON? = nil) throws -> Flag {
+	func runFlag1(json: FHIRJSON? = nil) throws -> Flag {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "flag-example.json")
 		
 		XCTAssertEqual(inst.author!.display!, "Nancy Nurse")
@@ -51,11 +51,11 @@ class FlagTests: FHIRModelTestCase
 	}
 	
 	func testFlag2() throws {
-		let instance = try testFlag2_impl()
-		try testFlag2_impl(instance.asJSON())
+		let instance = try runFlag2()
+		try runFlag2(instance.asJSON())
 	}
 	
-	func testFlag2_impl(json: FHIRJSON? = nil) throws -> Flag {
+	func runFlag2(json: FHIRJSON? = nil) throws -> Flag {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "flag-qicore-example.json")
 		
 		XCTAssertEqual(inst.author!.display!, "Nancy Nurse")

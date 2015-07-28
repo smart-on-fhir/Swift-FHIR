@@ -23,11 +23,11 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 	}
 	
 	func testMedicationPrescription1() throws {
-		let instance = try testMedicationPrescription1_impl()
-		try testMedicationPrescription1_impl(instance.asJSON())
+		let instance = try runMedicationPrescription1()
+		try runMedicationPrescription1(instance.asJSON())
 	}
 	
-	func testMedicationPrescription1_impl(json: FHIRJSON? = nil) throws -> MedicationPrescription {
+	func runMedicationPrescription1(json: FHIRJSON? = nil) throws -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medicationprescription-example-f001-combivent.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2013-05-25T19:32:52+01:00")
@@ -81,11 +81,11 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 	}
 	
 	func testMedicationPrescription2() throws {
-		let instance = try testMedicationPrescription2_impl()
-		try testMedicationPrescription2_impl(instance.asJSON())
+		let instance = try runMedicationPrescription2()
+		try runMedicationPrescription2(instance.asJSON())
 	}
 	
-	func testMedicationPrescription2_impl(json: FHIRJSON? = nil) throws -> MedicationPrescription {
+	func runMedicationPrescription2(json: FHIRJSON? = nil) throws -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medicationprescription-example-f002-crestor.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2013-04-08")
@@ -129,11 +129,11 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 	}
 	
 	func testMedicationPrescription3() throws {
-		let instance = try testMedicationPrescription3_impl()
-		try testMedicationPrescription3_impl(instance.asJSON())
+		let instance = try runMedicationPrescription3()
+		try runMedicationPrescription3(instance.asJSON())
 	}
 	
-	func testMedicationPrescription3_impl(json: FHIRJSON? = nil) throws -> MedicationPrescription {
+	func runMedicationPrescription3(json: FHIRJSON? = nil) throws -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medicationprescription-example-f003-tolbutamide.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2011-05-01")
@@ -177,11 +177,11 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 	}
 	
 	func testMedicationPrescription4() throws {
-		let instance = try testMedicationPrescription4_impl()
-		try testMedicationPrescription4_impl(instance.asJSON())
+		let instance = try runMedicationPrescription4()
+		try runMedicationPrescription4(instance.asJSON())
 	}
 	
-	func testMedicationPrescription4_impl(json: FHIRJSON? = nil) throws -> MedicationPrescription {
+	func runMedicationPrescription4(json: FHIRJSON? = nil) throws -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medicationprescription-example-f004-metoprolol.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2011-05-01")
@@ -225,11 +225,11 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 	}
 	
 	func testMedicationPrescription5() throws {
-		let instance = try testMedicationPrescription5_impl()
-		try testMedicationPrescription5_impl(instance.asJSON())
+		let instance = try runMedicationPrescription5()
+		try runMedicationPrescription5(instance.asJSON())
 	}
 	
-	func testMedicationPrescription5_impl(json: FHIRJSON? = nil) throws -> MedicationPrescription {
+	func runMedicationPrescription5(json: FHIRJSON? = nil) throws -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medicationprescription-example-f005-enalapril.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2011-05-01")
@@ -273,11 +273,11 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 	}
 	
 	func testMedicationPrescription6() throws {
-		let instance = try testMedicationPrescription6_impl()
-		try testMedicationPrescription6_impl(instance.asJSON())
+		let instance = try runMedicationPrescription6()
+		try runMedicationPrescription6(instance.asJSON())
 	}
 	
-	func testMedicationPrescription6_impl(json: FHIRJSON? = nil) throws -> MedicationPrescription {
+	func runMedicationPrescription6(json: FHIRJSON? = nil) throws -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medicationprescription-example-f201-salmeterol.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2013-03-11")
@@ -323,11 +323,11 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 	}
 	
 	func testMedicationPrescription7() throws {
-		let instance = try testMedicationPrescription7_impl()
-		try testMedicationPrescription7_impl(instance.asJSON())
+		let instance = try runMedicationPrescription7()
+		try runMedicationPrescription7(instance.asJSON())
 	}
 	
-	func testMedicationPrescription7_impl(json: FHIRJSON? = nil) throws -> MedicationPrescription {
+	func runMedicationPrescription7(json: FHIRJSON? = nil) throws -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medicationprescription-example-f202-flucloxacilline.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2013-03-11")
@@ -365,11 +365,11 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 	}
 	
 	func testMedicationPrescription8() throws {
-		let instance = try testMedicationPrescription8_impl()
-		try testMedicationPrescription8_impl(instance.asJSON())
+		let instance = try runMedicationPrescription8()
+		try runMedicationPrescription8(instance.asJSON())
 	}
 	
-	func testMedicationPrescription8_impl(json: FHIRJSON? = nil) throws -> MedicationPrescription {
+	func runMedicationPrescription8(json: FHIRJSON? = nil) throws -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medicationprescription-example-f203-paracetamol.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2013-04-04")
@@ -402,11 +402,11 @@ class MedicationPrescriptionTests: FHIRModelTestCase
 	}
 	
 	func testMedicationPrescription9() throws {
-		let instance = try testMedicationPrescription9_impl()
-		try testMedicationPrescription9_impl(instance.asJSON())
+		let instance = try runMedicationPrescription9()
+		try runMedicationPrescription9(instance.asJSON())
 	}
 	
-	func testMedicationPrescription9_impl(json: FHIRJSON? = nil) throws -> MedicationPrescription {
+	func runMedicationPrescription9(json: FHIRJSON? = nil) throws -> MedicationPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medicationprescription-qicore-example.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2015-03-25T19:32:52-05:00")

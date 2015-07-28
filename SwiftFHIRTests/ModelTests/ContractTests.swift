@@ -23,11 +23,11 @@ class ContractTests: FHIRModelTestCase
 	}
 	
 	func testContract1() throws {
-		let instance = try testContract1_impl()
-		try testContract1_impl(instance.asJSON())
+		let instance = try runContract1()
+		try runContract1(instance.asJSON())
 	}
 	
-	func testContract1_impl(json: FHIRJSON? = nil) throws -> Contract {
+	func runContract1(json: FHIRJSON? = nil) throws -> Contract {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "contract-example.json")
 		
 		XCTAssertEqual(inst.id!, "C-123")

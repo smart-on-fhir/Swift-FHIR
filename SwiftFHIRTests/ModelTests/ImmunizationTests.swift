@@ -23,11 +23,11 @@ class ImmunizationTests: FHIRModelTestCase
 	}
 	
 	func testImmunization1() throws {
-		let instance = try testImmunization1_impl()
-		try testImmunization1_impl(instance.asJSON())
+		let instance = try runImmunization1()
+		try runImmunization1(instance.asJSON())
 	}
 	
-	func testImmunization1_impl(json: FHIRJSON? = nil) throws -> Immunization {
+	func runImmunization1(json: FHIRJSON? = nil) throws -> Immunization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "immunization-example-refused.json")
 		
 		XCTAssertEqual(inst.date!.description, "2013-01-10")
@@ -48,11 +48,11 @@ class ImmunizationTests: FHIRModelTestCase
 	}
 	
 	func testImmunization2() throws {
-		let instance = try testImmunization2_impl()
-		try testImmunization2_impl(instance.asJSON())
+		let instance = try runImmunization2()
+		try runImmunization2(instance.asJSON())
 	}
 	
-	func testImmunization2_impl(json: FHIRJSON? = nil) throws -> Immunization {
+	func runImmunization2(json: FHIRJSON? = nil) throws -> Immunization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "immunization-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2013-01-10")

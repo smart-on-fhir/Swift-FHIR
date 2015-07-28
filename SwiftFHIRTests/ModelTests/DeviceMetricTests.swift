@@ -23,11 +23,11 @@ class DeviceMetricTests: FHIRModelTestCase
 	}
 	
 	func testDeviceMetric1() throws {
-		let instance = try testDeviceMetric1_impl()
-		try testDeviceMetric1_impl(instance.asJSON())
+		let instance = try runDeviceMetric1()
+		try runDeviceMetric1(instance.asJSON())
 	}
 	
-	func testDeviceMetric1_impl(json: FHIRJSON? = nil) throws -> DeviceMetric {
+	func runDeviceMetric1(json: FHIRJSON? = nil) throws -> DeviceMetric {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "devicemetric-example.json")
 		
 		XCTAssertEqual(inst.category!, "measurement")

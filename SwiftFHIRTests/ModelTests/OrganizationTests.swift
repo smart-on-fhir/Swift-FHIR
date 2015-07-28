@@ -23,11 +23,11 @@ class OrganizationTests: FHIRModelTestCase
 	}
 	
 	func testOrganization1() throws {
-		let instance = try testOrganization1_impl()
-		try testOrganization1_impl(instance.asJSON())
+		let instance = try runOrganization1()
+		try runOrganization1(instance.asJSON())
 	}
 	
-	func testOrganization1_impl(json: FHIRJSON? = nil) throws -> Organization {
+	func runOrganization1(json: FHIRJSON? = nil) throws -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "org-uslab-example1.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Harrisburg")
@@ -54,11 +54,11 @@ class OrganizationTests: FHIRModelTestCase
 	}
 	
 	func testOrganization2() throws {
-		let instance = try testOrganization2_impl()
-		try testOrganization2_impl(instance.asJSON())
+		let instance = try runOrganization2()
+		try runOrganization2(instance.asJSON())
 	}
 	
-	func testOrganization2_impl(json: FHIRJSON? = nil) throws -> Organization {
+	func runOrganization2(json: FHIRJSON? = nil) throws -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "org-uslab-example2.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Boston")
@@ -88,11 +88,11 @@ class OrganizationTests: FHIRModelTestCase
 	}
 	
 	func testOrganization3() throws {
-		let instance = try testOrganization3_impl()
-		try testOrganization3_impl(instance.asJSON())
+		let instance = try runOrganization3()
+		try runOrganization3(instance.asJSON())
 	}
 	
-	func testOrganization3_impl(json: FHIRJSON? = nil) throws -> Organization {
+	func runOrganization3(json: FHIRJSON? = nil) throws -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "org-uslab-example3.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Harrisburg")
@@ -120,11 +120,11 @@ class OrganizationTests: FHIRModelTestCase
 	}
 	
 	func testOrganization4() throws {
-		let instance = try testOrganization4_impl()
-		try testOrganization4_impl(instance.asJSON())
+		let instance = try runOrganization4()
+		try runOrganization4(instance.asJSON())
 	}
 	
-	func testOrganization4_impl(json: FHIRJSON? = nil) throws -> Organization {
+	func runOrganization4(json: FHIRJSON? = nil) throws -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-f001-burgers.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Den Burg")
@@ -168,11 +168,11 @@ class OrganizationTests: FHIRModelTestCase
 	}
 	
 	func testOrganization5() throws {
-		let instance = try testOrganization5_impl()
-		try testOrganization5_impl(instance.asJSON())
+		let instance = try runOrganization5()
+		try runOrganization5(instance.asJSON())
 	}
 	
-	func testOrganization5_impl(json: FHIRJSON? = nil) throws -> Organization {
+	func runOrganization5(json: FHIRJSON? = nil) throws -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-f002-burgers-card.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -201,11 +201,11 @@ class OrganizationTests: FHIRModelTestCase
 	}
 	
 	func testOrganization6() throws {
-		let instance = try testOrganization6_impl()
-		try testOrganization6_impl(instance.asJSON())
+		let instance = try runOrganization6()
+		try runOrganization6(instance.asJSON())
 	}
 	
-	func testOrganization6_impl(json: FHIRJSON? = nil) throws -> Organization {
+	func runOrganization6(json: FHIRJSON? = nil) throws -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-f003-burgers-ENT.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -234,11 +234,11 @@ class OrganizationTests: FHIRModelTestCase
 	}
 	
 	func testOrganization7() throws {
-		let instance = try testOrganization7_impl()
-		try testOrganization7_impl(instance.asJSON())
+		let instance = try runOrganization7()
+		try runOrganization7(instance.asJSON())
 	}
 	
-	func testOrganization7_impl(json: FHIRJSON? = nil) throws -> Organization {
+	func runOrganization7(json: FHIRJSON? = nil) throws -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-f201-aumc.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -283,11 +283,11 @@ class OrganizationTests: FHIRModelTestCase
 	}
 	
 	func testOrganization8() throws {
-		let instance = try testOrganization8_impl()
-		try testOrganization8_impl(instance.asJSON())
+		let instance = try runOrganization8()
+		try runOrganization8(instance.asJSON())
 	}
 	
-	func testOrganization8_impl(json: FHIRJSON? = nil) throws -> Organization {
+	func runOrganization8(json: FHIRJSON? = nil) throws -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-f203-bumc.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -316,11 +316,11 @@ class OrganizationTests: FHIRModelTestCase
 	}
 	
 	func testOrganization9() throws {
-		let instance = try testOrganization9_impl()
-		try testOrganization9_impl(instance.asJSON())
+		let instance = try runOrganization9()
+		try runOrganization9(instance.asJSON())
 	}
 	
-	func testOrganization9_impl(json: FHIRJSON? = nil) throws -> Organization {
+	func runOrganization9(json: FHIRJSON? = nil) throws -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-gastro.json")
 		
 		XCTAssertEqual(inst.id!, "1")
@@ -341,11 +341,11 @@ class OrganizationTests: FHIRModelTestCase
 	}
 	
 	func testOrganization10() throws {
-		let instance = try testOrganization10_impl()
-		try testOrganization10_impl(instance.asJSON())
+		let instance = try runOrganization10()
+		try runOrganization10(instance.asJSON())
 	}
 	
-	func testOrganization10_impl(json: FHIRJSON? = nil) throws -> Organization {
+	func runOrganization10(json: FHIRJSON? = nil) throws -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-good-health-care.json")
 		
 		XCTAssertEqual(inst.id!, "2.16.840.1.113883.19.5")

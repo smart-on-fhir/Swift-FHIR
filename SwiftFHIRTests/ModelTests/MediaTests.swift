@@ -23,11 +23,11 @@ class MediaTests: FHIRModelTestCase
 	}
 	
 	func testMedia1() throws {
-		let instance = try testMedia1_impl()
-		try testMedia1_impl(instance.asJSON())
+		let instance = try runMedia1()
+		try runMedia1(instance.asJSON())
 	}
 	
-	func testMedia1_impl(json: FHIRJSON? = nil) throws -> Media {
+	func runMedia1(json: FHIRJSON? = nil) throws -> Media {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example-dicom.json")
 		
 		XCTAssertEqual(inst.content!.contentType!, "application/dicom")
@@ -60,11 +60,11 @@ class MediaTests: FHIRModelTestCase
 	}
 	
 	func testMedia2() throws {
-		let instance = try testMedia2_impl()
-		try testMedia2_impl(instance.asJSON())
+		let instance = try runMedia2()
+		try runMedia2(instance.asJSON())
 	}
 	
-	func testMedia2_impl(json: FHIRJSON? = nil) throws -> Media {
+	func runMedia2(json: FHIRJSON? = nil) throws -> Media {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example.json")
 		
 		XCTAssertEqual(inst.content!.contentType!, "image/gif")

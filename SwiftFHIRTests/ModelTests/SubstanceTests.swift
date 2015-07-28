@@ -23,11 +23,11 @@ class SubstanceTests: FHIRModelTestCase
 	}
 	
 	func testSubstance1() throws {
-		let instance = try testSubstance1_impl()
-		try testSubstance1_impl(instance.asJSON())
+		let instance = try runSubstance1()
+		try runSubstance1(instance.asJSON())
 	}
 	
-	func testSubstance1_impl(json: FHIRJSON? = nil) throws -> Substance {
+	func runSubstance1(json: FHIRJSON? = nil) throws -> Substance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-f201-dust.json")
 		
 		XCTAssertEqual(inst.id!, "f201")
@@ -40,11 +40,11 @@ class SubstanceTests: FHIRModelTestCase
 	}
 	
 	func testSubstance2() throws {
-		let instance = try testSubstance2_impl()
-		try testSubstance2_impl(instance.asJSON())
+		let instance = try runSubstance2()
+		try runSubstance2(instance.asJSON())
 	}
 	
-	func testSubstance2_impl(json: FHIRJSON? = nil) throws -> Substance {
+	func runSubstance2(json: FHIRJSON? = nil) throws -> Substance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-f202-staphylococcus.json")
 		
 		XCTAssertEqual(inst.id!, "f202")
@@ -57,11 +57,11 @@ class SubstanceTests: FHIRModelTestCase
 	}
 	
 	func testSubstance3() throws {
-		let instance = try testSubstance3_impl()
-		try testSubstance3_impl(instance.asJSON())
+		let instance = try runSubstance3()
+		try runSubstance3(instance.asJSON())
 	}
 	
-	func testSubstance3_impl(json: FHIRJSON? = nil) throws -> Substance {
+	func runSubstance3(json: FHIRJSON? = nil) throws -> Substance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-f203-potassium.json")
 		
 		XCTAssertEqual(inst.id!, "f203")
@@ -74,11 +74,11 @@ class SubstanceTests: FHIRModelTestCase
 	}
 	
 	func testSubstance4() throws {
-		let instance = try testSubstance4_impl()
-		try testSubstance4_impl(instance.asJSON())
+		let instance = try runSubstance4()
+		try runSubstance4(instance.asJSON())
 	}
 	
-	func testSubstance4_impl(json: FHIRJSON? = nil) throws -> Substance {
+	func runSubstance4(json: FHIRJSON? = nil) throws -> Substance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example.json")
 		
 		XCTAssertEqual(inst.id!, "example")

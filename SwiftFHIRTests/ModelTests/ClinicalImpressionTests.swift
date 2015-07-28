@@ -23,11 +23,11 @@ class ClinicalImpressionTests: FHIRModelTestCase
 	}
 	
 	func testClinicalImpression1() throws {
-		let instance = try testClinicalImpression1_impl()
-		try testClinicalImpression1_impl(instance.asJSON())
+		let instance = try runClinicalImpression1()
+		try runClinicalImpression1(instance.asJSON())
 	}
 	
-	func testClinicalImpression1_impl(json: FHIRJSON? = nil) throws -> ClinicalImpression {
+	func runClinicalImpression1(json: FHIRJSON? = nil) throws -> ClinicalImpression {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "clinicalimpression-example.json")
 		
 		XCTAssertEqual(inst.assessor!.reference!, "Practitioner/example")

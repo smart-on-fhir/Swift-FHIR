@@ -23,11 +23,11 @@ class ConditionTests: FHIRModelTestCase
 	}
 	
 	func testCondition1() throws {
-		let instance = try testCondition1_impl()
-		try testCondition1_impl(instance.asJSON())
+		let instance = try runCondition1()
+		try runCondition1(instance.asJSON())
 	}
 	
-	func testCondition1_impl(json: FHIRJSON? = nil) throws -> Condition {
+	func runCondition1(json: FHIRJSON? = nil) throws -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "cond-uslab-example1.json")
 		
 		XCTAssertEqual(inst.category!.coding![0].code!, "diagnosis")
@@ -48,11 +48,11 @@ class ConditionTests: FHIRModelTestCase
 	}
 	
 	func testCondition2() throws {
-		let instance = try testCondition2_impl()
-		try testCondition2_impl(instance.asJSON())
+		let instance = try runCondition2()
+		try runCondition2(instance.asJSON())
 	}
 	
-	func testCondition2_impl(json: FHIRJSON? = nil) throws -> Condition {
+	func runCondition2(json: FHIRJSON? = nil) throws -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "cond-uslab-example2.json")
 		
 		XCTAssertEqual(inst.category!.coding![0].code!, "diagnosis")
@@ -71,11 +71,11 @@ class ConditionTests: FHIRModelTestCase
 	}
 	
 	func testCondition3() throws {
-		let instance = try testCondition3_impl()
-		try testCondition3_impl(instance.asJSON())
+		let instance = try runCondition3()
+		try runCondition3(instance.asJSON())
 	}
 	
-	func testCondition3_impl(json: FHIRJSON? = nil) throws -> Condition {
+	func runCondition3(json: FHIRJSON? = nil) throws -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.asserter!.display!, "P. van de Heuvel")
@@ -109,11 +109,11 @@ class ConditionTests: FHIRModelTestCase
 	}
 	
 	func testCondition4() throws {
-		let instance = try testCondition4_impl()
-		try testCondition4_impl(instance.asJSON())
+		let instance = try runCondition4()
+		try runCondition4(instance.asJSON())
 	}
 	
-	func testCondition4_impl(json: FHIRJSON? = nil) throws -> Condition {
+	func runCondition4(json: FHIRJSON? = nil) throws -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.asserter!.display!, "P. van de Heuvel")
@@ -150,11 +150,11 @@ class ConditionTests: FHIRModelTestCase
 	}
 	
 	func testCondition5() throws {
-		let instance = try testCondition5_impl()
-		try testCondition5_impl(instance.asJSON())
+		let instance = try runCondition5()
+		try runCondition5(instance.asJSON())
 	}
 	
-	func testCondition5_impl(json: FHIRJSON? = nil) throws -> Condition {
+	func runCondition5(json: FHIRJSON? = nil) throws -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f003-abscess.json")
 		
 		XCTAssertEqual(inst.asserter!.display!, "P. van de Heuvel")
@@ -187,11 +187,11 @@ class ConditionTests: FHIRModelTestCase
 	}
 	
 	func testCondition6() throws {
-		let instance = try testCondition6_impl()
-		try testCondition6_impl(instance.asJSON())
+		let instance = try runCondition6()
+		try runCondition6(instance.asJSON())
 	}
 	
-	func testCondition6_impl(json: FHIRJSON? = nil) throws -> Condition {
+	func runCondition6(json: FHIRJSON? = nil) throws -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f201-fever.json")
 		
 		XCTAssertEqual(inst.asserter!.reference!, "Practitioner/f201")
@@ -231,11 +231,11 @@ class ConditionTests: FHIRModelTestCase
 	}
 	
 	func testCondition7() throws {
-		let instance = try testCondition7_impl()
-		try testCondition7_impl(instance.asJSON())
+		let instance = try runCondition7()
+		try runCondition7(instance.asJSON())
 	}
 	
-	func testCondition7_impl(json: FHIRJSON? = nil) throws -> Condition {
+	func runCondition7(json: FHIRJSON? = nil) throws -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f202-malignancy.json")
 		
 		XCTAssertEqual(inst.category!.coding![0].code!, "diagnose")
@@ -266,11 +266,11 @@ class ConditionTests: FHIRModelTestCase
 	}
 	
 	func testCondition8() throws {
-		let instance = try testCondition8_impl()
-		try testCondition8_impl(instance.asJSON())
+		let instance = try runCondition8()
+		try runCondition8(instance.asJSON())
 	}
 	
-	func testCondition8_impl(json: FHIRJSON? = nil) throws -> Condition {
+	func runCondition8(json: FHIRJSON? = nil) throws -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f203-sepsis.json")
 		
 		XCTAssertEqual(inst.asserter!.reference!, "Practitioner/f201")
@@ -304,11 +304,11 @@ class ConditionTests: FHIRModelTestCase
 	}
 	
 	func testCondition9() throws {
-		let instance = try testCondition9_impl()
-		try testCondition9_impl(instance.asJSON())
+		let instance = try runCondition9()
+		try runCondition9(instance.asJSON())
 	}
 	
-	func testCondition9_impl(json: FHIRJSON? = nil) throws -> Condition {
+	func runCondition9(json: FHIRJSON? = nil) throws -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f204-renal.json")
 		
 		XCTAssertEqual(inst.abatementDate!.description, "2013-03-20")
@@ -346,11 +346,11 @@ class ConditionTests: FHIRModelTestCase
 	}
 	
 	func testCondition10() throws {
-		let instance = try testCondition10_impl()
-		try testCondition10_impl(instance.asJSON())
+		let instance = try runCondition10()
+		try runCondition10(instance.asJSON())
 	}
 	
-	func testCondition10_impl(json: FHIRJSON? = nil) throws -> Condition {
+	func runCondition10(json: FHIRJSON? = nil) throws -> Condition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f205-infection.json")
 		
 		XCTAssertEqual(inst.asserter!.reference!, "Practitioner/f201")

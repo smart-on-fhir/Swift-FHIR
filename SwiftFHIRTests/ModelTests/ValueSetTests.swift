@@ -23,11 +23,11 @@ class ValueSetTests: FHIRModelTestCase
 	}
 	
 	func testValueSet1() throws {
-		let instance = try testValueSet1_impl()
-		try testValueSet1_impl(instance.asJSON())
+		let instance = try runValueSet1()
+		try runValueSet1(instance.asJSON())
 	}
 	
-	func testValueSet1_impl(json: FHIRJSON? = nil) throws -> ValueSet {
+	func runValueSet1(json: FHIRJSON? = nil) throws -> ValueSet {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example.json")
 		
 		XCTAssertEqual(inst.compose!.include![0].concept![0].code!, "14647-2")
@@ -54,11 +54,11 @@ class ValueSetTests: FHIRModelTestCase
 	}
 	
 	func testValueSet2() throws {
-		let instance = try testValueSet2_impl()
-		try testValueSet2_impl(instance.asJSON())
+		let instance = try runValueSet2()
+		try runValueSet2(instance.asJSON())
 	}
 	
-	func testValueSet2_impl(json: FHIRJSON? = nil) throws -> ValueSet {
+	func runValueSet2(json: FHIRJSON? = nil) throws -> ValueSet {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-list-example-codes.json")
 		
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")

@@ -23,11 +23,11 @@ class ProcessRequestTests: FHIRModelTestCase
 	}
 	
 	func testProcessRequest1() throws {
-		let instance = try testProcessRequest1_impl()
-		try testProcessRequest1_impl(instance.asJSON())
+		let instance = try runProcessRequest1()
+		try runProcessRequest1(instance.asJSON())
 	}
 	
-	func testProcessRequest1_impl(json: FHIRJSON? = nil) throws -> ProcessRequest {
+	func runProcessRequest1(json: FHIRJSON? = nil) throws -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-eob.json")
 		
 		XCTAssertEqual(inst.action!, "poll")
@@ -43,11 +43,11 @@ class ProcessRequestTests: FHIRModelTestCase
 	}
 	
 	func testProcessRequest2() throws {
-		let instance = try testProcessRequest2_impl()
-		try testProcessRequest2_impl(instance.asJSON())
+		let instance = try runProcessRequest2()
+		try runProcessRequest2(instance.asJSON())
 	}
 	
-	func testProcessRequest2_impl(json: FHIRJSON? = nil) throws -> ProcessRequest {
+	func runProcessRequest2(json: FHIRJSON? = nil) throws -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-exclusive.json")
 		
 		XCTAssertEqual(inst.action!, "poll")
@@ -65,11 +65,11 @@ class ProcessRequestTests: FHIRModelTestCase
 	}
 	
 	func testProcessRequest3() throws {
-		let instance = try testProcessRequest3_impl()
-		try testProcessRequest3_impl(instance.asJSON())
+		let instance = try runProcessRequest3()
+		try runProcessRequest3(instance.asJSON())
 	}
 	
-	func testProcessRequest3_impl(json: FHIRJSON? = nil) throws -> ProcessRequest {
+	func runProcessRequest3(json: FHIRJSON? = nil) throws -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-inclusive.json")
 		
 		XCTAssertEqual(inst.action!, "poll")
@@ -86,11 +86,11 @@ class ProcessRequestTests: FHIRModelTestCase
 	}
 	
 	func testProcessRequest4() throws {
-		let instance = try testProcessRequest4_impl()
-		try testProcessRequest4_impl(instance.asJSON())
+		let instance = try runProcessRequest4()
+		try runProcessRequest4(instance.asJSON())
 	}
 	
-	func testProcessRequest4_impl(json: FHIRJSON? = nil) throws -> ProcessRequest {
+	func runProcessRequest4(json: FHIRJSON? = nil) throws -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-payrec.json")
 		
 		XCTAssertEqual(inst.action!, "poll")
@@ -109,11 +109,11 @@ class ProcessRequestTests: FHIRModelTestCase
 	}
 	
 	func testProcessRequest5() throws {
-		let instance = try testProcessRequest5_impl()
-		try testProcessRequest5_impl(instance.asJSON())
+		let instance = try runProcessRequest5()
+		try runProcessRequest5(instance.asJSON())
 	}
 	
-	func testProcessRequest5_impl(json: FHIRJSON? = nil) throws -> ProcessRequest {
+	func runProcessRequest5(json: FHIRJSON? = nil) throws -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-specific.json")
 		
 		XCTAssertEqual(inst.action!, "poll")
@@ -130,11 +130,11 @@ class ProcessRequestTests: FHIRModelTestCase
 	}
 	
 	func testProcessRequest6() throws {
-		let instance = try testProcessRequest6_impl()
-		try testProcessRequest6_impl(instance.asJSON())
+		let instance = try runProcessRequest6()
+		try runProcessRequest6(instance.asJSON())
 	}
 	
-	func testProcessRequest6_impl(json: FHIRJSON? = nil) throws -> ProcessRequest {
+	func runProcessRequest6(json: FHIRJSON? = nil) throws -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-reprocess.json")
 		
 		XCTAssertEqual(inst.action!, "reprocess")
@@ -153,11 +153,11 @@ class ProcessRequestTests: FHIRModelTestCase
 	}
 	
 	func testProcessRequest7() throws {
-		let instance = try testProcessRequest7_impl()
-		try testProcessRequest7_impl(instance.asJSON())
+		let instance = try runProcessRequest7()
+		try runProcessRequest7(instance.asJSON())
 	}
 	
-	func testProcessRequest7_impl(json: FHIRJSON? = nil) throws -> ProcessRequest {
+	func runProcessRequest7(json: FHIRJSON? = nil) throws -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-reverse.json")
 		
 		XCTAssertEqual(inst.action!, "cancel")
@@ -175,11 +175,11 @@ class ProcessRequestTests: FHIRModelTestCase
 	}
 	
 	func testProcessRequest8() throws {
-		let instance = try testProcessRequest8_impl()
-		try testProcessRequest8_impl(instance.asJSON())
+		let instance = try runProcessRequest8()
+		try runProcessRequest8(instance.asJSON())
 	}
 	
-	func testProcessRequest8_impl(json: FHIRJSON? = nil) throws -> ProcessRequest {
+	func runProcessRequest8(json: FHIRJSON? = nil) throws -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-status.json")
 		
 		XCTAssertEqual(inst.action!, "status")
@@ -197,11 +197,11 @@ class ProcessRequestTests: FHIRModelTestCase
 	}
 	
 	func testProcessRequest9() throws {
-		let instance = try testProcessRequest9_impl()
-		try testProcessRequest9_impl(instance.asJSON())
+		let instance = try runProcessRequest9()
+		try runProcessRequest9(instance.asJSON())
 	}
 	
-	func testProcessRequest9_impl(json: FHIRJSON? = nil) throws -> ProcessRequest {
+	func runProcessRequest9(json: FHIRJSON? = nil) throws -> ProcessRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example.json")
 		
 		XCTAssertEqual(inst.action!, "poll")

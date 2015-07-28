@@ -23,11 +23,11 @@ class CommunicationTests: FHIRModelTestCase
 	}
 	
 	func testCommunication1() throws {
-		let instance = try testCommunication1_impl()
-		try testCommunication1_impl(instance.asJSON())
+		let instance = try runCommunication1()
+		try runCommunication1(instance.asJSON())
 	}
 	
-	func testCommunication1_impl(json: FHIRJSON? = nil) throws -> Communication {
+	func runCommunication1(json: FHIRJSON? = nil) throws -> Communication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example.json")
 		
 		XCTAssertEqual(inst.category!.coding![0].code!, "Alert")
@@ -51,11 +51,11 @@ class CommunicationTests: FHIRModelTestCase
 	}
 	
 	func testCommunication2() throws {
-		let instance = try testCommunication2_impl()
-		try testCommunication2_impl(instance.asJSON())
+		let instance = try runCommunication2()
+		try runCommunication2(instance.asJSON())
 	}
 	
-	func testCommunication2_impl(json: FHIRJSON? = nil) throws -> Communication {
+	func runCommunication2(json: FHIRJSON? = nil) throws -> Communication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-qicore-example.json")
 		
 		XCTAssertEqual(inst.category!.coding![0].code!, "Alert")

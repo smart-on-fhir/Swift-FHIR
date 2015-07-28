@@ -23,11 +23,11 @@ class ContraindicationTests: FHIRModelTestCase
 	}
 	
 	func testContraindication1() throws {
-		let instance = try testContraindication1_impl()
-		try testContraindication1_impl(instance.asJSON())
+		let instance = try runContraindication1()
+		try runContraindication1(instance.asJSON())
 	}
 	
-	func testContraindication1_impl(json: FHIRJSON? = nil) throws -> Contraindication {
+	func runContraindication1(json: FHIRJSON? = nil) throws -> Contraindication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "contraindication-example-allergy.json")
 		
 		XCTAssertEqual(inst.id!, "allergy")
@@ -38,11 +38,11 @@ class ContraindicationTests: FHIRModelTestCase
 	}
 	
 	func testContraindication2() throws {
-		let instance = try testContraindication2_impl()
-		try testContraindication2_impl(instance.asJSON())
+		let instance = try runContraindication2()
+		try runContraindication2(instance.asJSON())
 	}
 	
-	func testContraindication2_impl(json: FHIRJSON? = nil) throws -> Contraindication {
+	func runContraindication2(json: FHIRJSON? = nil) throws -> Contraindication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "contraindication-example-dup.json")
 		
 		XCTAssertEqual(inst.author!.reference!, "Device/dsp")
@@ -62,11 +62,11 @@ class ContraindicationTests: FHIRModelTestCase
 	}
 	
 	func testContraindication3() throws {
-		let instance = try testContraindication3_impl()
-		try testContraindication3_impl(instance.asJSON())
+		let instance = try runContraindication3()
+		try runContraindication3(instance.asJSON())
 	}
 	
-	func testContraindication3_impl(json: FHIRJSON? = nil) throws -> Contraindication {
+	func runContraindication3(json: FHIRJSON? = nil) throws -> Contraindication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "contraindication-example-lab.json")
 		
 		XCTAssertEqual(inst.id!, "lab")
@@ -77,11 +77,11 @@ class ContraindicationTests: FHIRModelTestCase
 	}
 	
 	func testContraindication4() throws {
-		let instance = try testContraindication4_impl()
-		try testContraindication4_impl(instance.asJSON())
+		let instance = try runContraindication4()
+		try runContraindication4(instance.asJSON())
 	}
 	
-	func testContraindication4_impl(json: FHIRJSON? = nil) throws -> Contraindication {
+	func runContraindication4(json: FHIRJSON? = nil) throws -> Contraindication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "contraindication-example.json")
 		
 		XCTAssertEqual(inst.author!.reference!, "Device/dsp")

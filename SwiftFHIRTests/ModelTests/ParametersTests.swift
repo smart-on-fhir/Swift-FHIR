@@ -23,11 +23,11 @@ class ParametersTests: FHIRModelTestCase
 	}
 	
 	func testParameters1() throws {
-		let instance = try testParameters1_impl()
-		try testParameters1_impl(instance.asJSON())
+		let instance = try runParameters1()
+		try runParameters1(instance.asJSON())
 	}
 	
-	func testParameters1_impl(json: FHIRJSON? = nil) throws -> Parameters {
+	func runParameters1(json: FHIRJSON? = nil) throws -> Parameters {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "parameters-example.json")
 		
 		XCTAssertEqual(inst.parameter![0].name!, "start")

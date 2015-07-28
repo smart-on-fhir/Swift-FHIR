@@ -23,11 +23,11 @@ class MedicationStatementTests: FHIRModelTestCase
 	}
 	
 	func testMedicationStatement1() throws {
-		let instance = try testMedicationStatement1_impl()
-		try testMedicationStatement1_impl(instance.asJSON())
+		let instance = try runMedicationStatement1()
+		try runMedicationStatement1(instance.asJSON())
 	}
 	
-	func testMedicationStatement1_impl(json: FHIRJSON? = nil) throws -> MedicationStatement {
+	func runMedicationStatement1(json: FHIRJSON? = nil) throws -> MedicationStatement {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medicationstatement-example-tylenol.json")
 		
 		XCTAssertTrue(inst.dosage![0].asNeededBoolean!)
@@ -49,11 +49,11 @@ class MedicationStatementTests: FHIRModelTestCase
 	}
 	
 	func testMedicationStatement2() throws {
-		let instance = try testMedicationStatement2_impl()
-		try testMedicationStatement2_impl(instance.asJSON())
+		let instance = try runMedicationStatement2()
+		try runMedicationStatement2(instance.asJSON())
 	}
 	
-	func testMedicationStatement2_impl(json: FHIRJSON? = nil) throws -> MedicationStatement {
+	func runMedicationStatement2(json: FHIRJSON? = nil) throws -> MedicationStatement {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "medicationstatement-qicore-example.json")
 		
 		XCTAssertEqual(inst.dosage![0].quantity!.code!, "ml")

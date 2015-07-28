@@ -23,11 +23,11 @@ class BundleTests: FHIRModelTestCase
 	}
 	
 	func testBundle1() throws {
-		let instance = try testBundle1_impl()
-		try testBundle1_impl(instance.asJSON())
+		let instance = try runBundle1()
+		try runBundle1(instance.asJSON())
 	}
 	
-	func testBundle1_impl(json: FHIRJSON? = nil) throws -> Bundle {
+	func runBundle1(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "bundle-example.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString, "http://example.com/base")
@@ -49,11 +49,11 @@ class BundleTests: FHIRModelTestCase
 	}
 	
 	func testBundle2() throws {
-		let instance = try testBundle2_impl()
-		try testBundle2_impl(instance.asJSON())
+		let instance = try runBundle2()
+		try runBundle2(instance.asJSON())
 	}
 	
-	func testBundle2_impl(json: FHIRJSON? = nil) throws -> Bundle {
+	func runBundle2(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-examples-general.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString, "http://hl7.org/fhir")
@@ -85,11 +85,11 @@ class BundleTests: FHIRModelTestCase
 	}
 	
 	func testBundle3() throws {
-		let instance = try testBundle3_impl()
-		try testBundle3_impl(instance.asJSON())
+		let instance = try runBundle3()
+		try runBundle3(instance.asJSON())
 	}
 	
-	func testBundle3_impl(json: FHIRJSON? = nil) throws -> Bundle {
+	func runBundle3(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-examples-lab-text.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString, "http://hl7.org/fhir")
@@ -121,11 +121,11 @@ class BundleTests: FHIRModelTestCase
 	}
 	
 	func testBundle4() throws {
-		let instance = try testBundle4_impl()
-		try testBundle4_impl(instance.asJSON())
+		let instance = try runBundle4()
+		try runBundle4(instance.asJSON())
 	}
 	
-	func testBundle4_impl(json: FHIRJSON? = nil) throws -> Bundle {
+	func runBundle4(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "document-example-dischargesummary.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString, "http://fhir.healthintersections.com.au/open")
@@ -165,11 +165,11 @@ class BundleTests: FHIRModelTestCase
 	}
 	
 	func testBundle5() throws {
-		let instance = try testBundle5_impl()
-		try testBundle5_impl(instance.asJSON())
+		let instance = try runBundle5()
+		try runBundle5(instance.asJSON())
 	}
 	
-	func testBundle5_impl(json: FHIRJSON? = nil) throws -> Bundle {
+	func runBundle5(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-bloodpressure.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString, "http://hl7.org/fhir")
@@ -187,11 +187,11 @@ class BundleTests: FHIRModelTestCase
 	}
 	
 	func testBundle6() throws {
-		let instance = try testBundle6_impl()
-		try testBundle6_impl(instance.asJSON())
+		let instance = try runBundle6()
+		try runBundle6(instance.asJSON())
 	}
 	
-	func testBundle6_impl(json: FHIRJSON? = nil) throws -> Bundle {
+	func runBundle6(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-examples-cypress-template.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString, "http://hl7.org/fhir")
@@ -223,11 +223,11 @@ class BundleTests: FHIRModelTestCase
 	}
 	
 	func testBundle7() throws {
-		let instance = try testBundle7_impl()
-		try testBundle7_impl(instance.asJSON())
+		let instance = try runBundle7()
+		try runBundle7(instance.asJSON())
 	}
 	
-	func testBundle7_impl(json: FHIRJSON? = nil) throws -> Bundle {
+	func runBundle7(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-examples-general.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString, "http://hl7.org/fhir")
@@ -259,11 +259,11 @@ class BundleTests: FHIRModelTestCase
 	}
 	
 	func testBundle8() throws {
-		let instance = try testBundle8_impl()
-		try testBundle8_impl(instance.asJSON())
+		let instance = try runBundle8()
+		try runBundle8(instance.asJSON())
 	}
 	
-	func testBundle8_impl(json: FHIRJSON? = nil) throws -> Bundle {
+	func runBundle8(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-examples-general.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString, "http://hl7.org/fhir")
@@ -295,11 +295,11 @@ class BundleTests: FHIRModelTestCase
 	}
 	
 	func testBundle9() throws {
-		let instance = try testBundle9_impl()
-		try testBundle9_impl(instance.asJSON())
+		let instance = try runBundle9()
+		try runBundle9(instance.asJSON())
 	}
 	
-	func testBundle9_impl(json: FHIRJSON? = nil) throws -> Bundle {
+	func runBundle9(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaire-sdc-profile-example.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString, "http://AHRQ.org/form")
@@ -334,11 +334,11 @@ class BundleTests: FHIRModelTestCase
 	}
 	
 	func testBundle10() throws {
-		let instance = try testBundle10_impl()
-		try testBundle10_impl(instance.asJSON())
+		let instance = try runBundle10()
+		try runBundle10(instance.asJSON())
 	}
 	
-	func testBundle10_impl(json: FHIRJSON? = nil) throws -> Bundle {
+	func runBundle10(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "xds-example.json")
 		
 		XCTAssertEqual(inst.base!.absoluteString, "cid:123@healthintersections.com.au")

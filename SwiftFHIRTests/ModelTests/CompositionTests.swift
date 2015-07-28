@@ -23,11 +23,11 @@ class CompositionTests: FHIRModelTestCase
 	}
 	
 	func testComposition1() throws {
-		let instance = try testComposition1_impl()
-		try testComposition1_impl(instance.asJSON())
+		let instance = try runComposition1()
+		try runComposition1(instance.asJSON())
 	}
 	
-	func testComposition1_impl(json: FHIRJSON? = nil) throws -> Composition {
+	func runComposition1(json: FHIRJSON? = nil) throws -> Composition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "composition-example.json")
 		
 		XCTAssertEqual(inst.attester![0].mode![0], "legal")

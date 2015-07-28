@@ -23,11 +23,11 @@ class GroupTests: FHIRModelTestCase
 	}
 	
 	func testGroup1() throws {
-		let instance = try testGroup1_impl()
-		try testGroup1_impl(instance.asJSON())
+		let instance = try runGroup1()
+		try runGroup1(instance.asJSON())
 	}
 	
-	func testGroup1_impl(json: FHIRJSON? = nil) throws -> Group {
+	func runGroup1(json: FHIRJSON? = nil) throws -> Group {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "group-example.json")
 		
 		XCTAssertTrue(inst.actual!)

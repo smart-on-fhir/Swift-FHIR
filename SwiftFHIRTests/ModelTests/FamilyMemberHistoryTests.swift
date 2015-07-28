@@ -23,11 +23,11 @@ class FamilyMemberHistoryTests: FHIRModelTestCase
 	}
 	
 	func testFamilyMemberHistory1() throws {
-		let instance = try testFamilyMemberHistory1_impl()
-		try testFamilyMemberHistory1_impl(instance.asJSON())
+		let instance = try runFamilyMemberHistory1()
+		try runFamilyMemberHistory1(instance.asJSON())
 	}
 	
-	func testFamilyMemberHistory1_impl(json: FHIRJSON? = nil) throws -> FamilyMemberHistory {
+	func runFamilyMemberHistory1(json: FHIRJSON? = nil) throws -> FamilyMemberHistory {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "familymemberhistory-example-mother.json")
 		
 		XCTAssertEqual(inst.condition![0].onsetAge!.system!.absoluteString, "http://unitsofmeasure.org")
@@ -49,11 +49,11 @@ class FamilyMemberHistoryTests: FHIRModelTestCase
 	}
 	
 	func testFamilyMemberHistory2() throws {
-		let instance = try testFamilyMemberHistory2_impl()
-		try testFamilyMemberHistory2_impl(instance.asJSON())
+		let instance = try runFamilyMemberHistory2()
+		try runFamilyMemberHistory2(instance.asJSON())
 	}
 	
-	func testFamilyMemberHistory2_impl(json: FHIRJSON? = nil) throws -> FamilyMemberHistory {
+	func runFamilyMemberHistory2(json: FHIRJSON? = nil) throws -> FamilyMemberHistory {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "familymemberhistory-example.json")
 		
 		XCTAssertEqual(inst.condition![0].note!, "Was fishing at the time. At least he went doing someting he loved.")
@@ -77,11 +77,11 @@ class FamilyMemberHistoryTests: FHIRModelTestCase
 	}
 	
 	func testFamilyMemberHistory3() throws {
-		let instance = try testFamilyMemberHistory3_impl()
-		try testFamilyMemberHistory3_impl(instance.asJSON())
+		let instance = try runFamilyMemberHistory3()
+		try runFamilyMemberHistory3(instance.asJSON())
 	}
 	
-	func testFamilyMemberHistory3_impl(json: FHIRJSON? = nil) throws -> FamilyMemberHistory {
+	func runFamilyMemberHistory3(json: FHIRJSON? = nil) throws -> FamilyMemberHistory {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "familymemberhistory-qicore-example.json")
 		
 		XCTAssertEqual(inst.condition![0].extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/familymemberhistory-severity")

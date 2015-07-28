@@ -23,11 +23,11 @@ class QuestionnaireTests: FHIRModelTestCase
 	}
 	
 	func testQuestionnaire1() throws {
-		let instance = try testQuestionnaire1_impl()
-		try testQuestionnaire1_impl(instance.asJSON())
+		let instance = try runQuestionnaire1()
+		try runQuestionnaire1(instance.asJSON())
 	}
 	
-	func testQuestionnaire1_impl(json: FHIRJSON? = nil) throws -> Questionnaire {
+	func runQuestionnaire1(json: FHIRJSON? = nil) throws -> Questionnaire {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaire-example-bluebook.json")
 		
 		XCTAssertEqual(inst.date!.description, "2013-02-19")
@@ -55,11 +55,11 @@ class QuestionnaireTests: FHIRModelTestCase
 	}
 	
 	func testQuestionnaire2() throws {
-		let instance = try testQuestionnaire2_impl()
-		try testQuestionnaire2_impl(instance.asJSON())
+		let instance = try runQuestionnaire2()
+		try runQuestionnaire2(instance.asJSON())
 	}
 	
-	func testQuestionnaire2_impl(json: FHIRJSON? = nil) throws -> Questionnaire {
+	func runQuestionnaire2(json: FHIRJSON? = nil) throws -> Questionnaire {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaire-example-f201-lifelines.json")
 		
 		XCTAssertEqual(inst.date!.description, "2010")
@@ -83,11 +83,11 @@ class QuestionnaireTests: FHIRModelTestCase
 	}
 	
 	func testQuestionnaire3() throws {
-		let instance = try testQuestionnaire3_impl()
-		try testQuestionnaire3_impl(instance.asJSON())
+		let instance = try runQuestionnaire3()
+		try runQuestionnaire3(instance.asJSON())
 	}
 	
-	func testQuestionnaire3_impl(json: FHIRJSON? = nil) throws -> Questionnaire {
+	func runQuestionnaire3(json: FHIRJSON? = nil) throws -> Questionnaire {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaire-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2012-01")
@@ -134,11 +134,11 @@ class QuestionnaireTests: FHIRModelTestCase
 	}
 	
 	func testQuestionnaire4() throws {
-		let instance = try testQuestionnaire4_impl()
-		try testQuestionnaire4_impl(instance.asJSON())
+		let instance = try runQuestionnaire4()
+		try runQuestionnaire4(instance.asJSON())
 	}
 	
-	func testQuestionnaire4_impl(json: FHIRJSON? = nil) throws -> Questionnaire {
+	func runQuestionnaire4(json: FHIRJSON? = nil) throws -> Questionnaire {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaire-sdc-profile-example-LOINC.json")
 		
 		XCTAssertEqual(inst.date!.description, "2012-04-01")

@@ -23,11 +23,11 @@ class EligibilityResponseTests: FHIRModelTestCase
 	}
 	
 	func testEligibilityResponse1() throws {
-		let instance = try testEligibilityResponse1_impl()
-		try testEligibilityResponse1_impl(instance.asJSON())
+		let instance = try runEligibilityResponse1()
+		try runEligibilityResponse1(instance.asJSON())
 	}
 	
-	func testEligibilityResponse1_impl(json: FHIRJSON? = nil) throws -> EligibilityResponse {
+	func runEligibilityResponse1(json: FHIRJSON? = nil) throws -> EligibilityResponse {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "eligibilityresponse-example.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")

@@ -23,11 +23,11 @@ class DataElementTests: FHIRModelTestCase
 	}
 	
 	func testDataElement1() throws {
-		let instance = try testDataElement1_impl()
-		try testDataElement1_impl(instance.asJSON())
+		let instance = try runDataElement1()
+		try runDataElement1(instance.asJSON())
 	}
 	
-	func testDataElement1_impl(json: FHIRJSON? = nil) throws -> DataElement {
+	func runDataElement1(json: FHIRJSON? = nil) throws -> DataElement {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "dataelement-example.json")
 		
 		XCTAssertEqual(inst.element![0].binding!.name!, "Gender")
@@ -77,11 +77,11 @@ class DataElementTests: FHIRModelTestCase
 	}
 	
 	func testDataElement2() throws {
-		let instance = try testDataElement2_impl()
-		try testDataElement2_impl(instance.asJSON())
+		let instance = try runDataElement2()
+		try runDataElement2(instance.asJSON())
 	}
 	
-	func testDataElement2_impl(json: FHIRJSON? = nil) throws -> DataElement {
+	func runDataElement2(json: FHIRJSON? = nil) throws -> DataElement {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "dataelement-labtestmaster-example.json")
 		
 		XCTAssertEqual(inst.element![0].alias![0], "Protime, PT")
@@ -118,11 +118,11 @@ class DataElementTests: FHIRModelTestCase
 	}
 	
 	func testDataElement3() throws {
-		let instance = try testDataElement3_impl()
-		try testDataElement3_impl(instance.asJSON())
+		let instance = try runDataElement3()
+		try runDataElement3(instance.asJSON())
 	}
 	
-	func testDataElement3_impl(json: FHIRJSON? = nil) throws -> DataElement {
+	func runDataElement3(json: FHIRJSON? = nil) throws -> DataElement {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "dataelement-sdc-profile-example-de.json")
 		
 		XCTAssertEqual(inst.contact![0].extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/11179-de-contact-address")
@@ -184,11 +184,11 @@ class DataElementTests: FHIRModelTestCase
 	}
 	
 	func testDataElement4() throws {
-		let instance = try testDataElement4_impl()
-		try testDataElement4_impl(instance.asJSON())
+		let instance = try runDataElement4()
+		try runDataElement4(instance.asJSON())
 	}
 	
-	func testDataElement4_impl(json: FHIRJSON? = nil) throws -> DataElement {
+	func runDataElement4(json: FHIRJSON? = nil) throws -> DataElement {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "dataelement-sdc-profile-example.json")
 		
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")

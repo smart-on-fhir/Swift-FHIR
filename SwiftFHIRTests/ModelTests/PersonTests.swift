@@ -23,11 +23,11 @@ class PersonTests: FHIRModelTestCase
 	}
 	
 	func testPerson1() throws {
-		let instance = try testPerson1_impl()
-		try testPerson1_impl(instance.asJSON())
+		let instance = try runPerson1()
+		try runPerson1(instance.asJSON())
 	}
 	
-	func testPerson1_impl(json: FHIRJSON? = nil) throws -> Person {
+	func runPerson1(json: FHIRJSON? = nil) throws -> Person {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "person-example.json")
 		
 		XCTAssertTrue(inst.active!)

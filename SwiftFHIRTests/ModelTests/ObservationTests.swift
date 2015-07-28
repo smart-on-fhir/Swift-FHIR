@@ -23,11 +23,11 @@ class ObservationTests: FHIRModelTestCase
 	}
 	
 	func testObservation1() throws {
-		let instance = try testObservation1_impl()
-		try testObservation1_impl(instance.asJSON())
+		let instance = try runObservation1()
+		try runObservation1(instance.asJSON())
 	}
 	
-	func testObservation1_impl(json: FHIRJSON? = nil) throws -> Observation {
+	func runObservation1(json: FHIRJSON? = nil) throws -> Observation {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "obs-genetics-example1-somatic.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "21665-5")
@@ -70,11 +70,11 @@ class ObservationTests: FHIRModelTestCase
 	}
 	
 	func testObservation2() throws {
-		let instance = try testObservation2_impl()
-		try testObservation2_impl(instance.asJSON())
+		let instance = try runObservation2()
+		try runObservation2(instance.asJSON())
 	}
 	
-	func testObservation2_impl(json: FHIRJSON? = nil) throws -> Observation {
+	func runObservation2(json: FHIRJSON? = nil) throws -> Observation {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "obs-genetics-example2-germline.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "21636-6")
@@ -116,11 +116,11 @@ class ObservationTests: FHIRModelTestCase
 	}
 	
 	func testObservation3() throws {
-		let instance = try testObservation3_impl()
-		try testObservation3_impl(instance.asJSON())
+		let instance = try runObservation3()
+		try runObservation3(instance.asJSON())
 	}
 	
-	func testObservation3_impl(json: FHIRJSON? = nil) throws -> Observation {
+	func runObservation3(json: FHIRJSON? = nil) throws -> Observation {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "obs-uslab-example1.json")
 		
 		XCTAssertEqual(inst.appliesDateTime!.description, "2014-12-03")
@@ -161,11 +161,11 @@ class ObservationTests: FHIRModelTestCase
 	}
 	
 	func testObservation4() throws {
-		let instance = try testObservation4_impl()
-		try testObservation4_impl(instance.asJSON())
+		let instance = try runObservation4()
+		try runObservation4(instance.asJSON())
 	}
 	
-	func testObservation4_impl(json: FHIRJSON? = nil) throws -> Observation {
+	func runObservation4(json: FHIRJSON? = nil) throws -> Observation {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "obs-uslab-example2.json")
 		
 		XCTAssertEqual(inst.appliesDateTime!.description, "2014-12-05")
@@ -206,11 +206,11 @@ class ObservationTests: FHIRModelTestCase
 	}
 	
 	func testObservation5() throws {
-		let instance = try testObservation5_impl()
-		try testObservation5_impl(instance.asJSON())
+		let instance = try runObservation5()
+		try runObservation5(instance.asJSON())
 	}
 	
-	func testObservation5_impl(json: FHIRJSON? = nil) throws -> Observation {
+	func runObservation5(json: FHIRJSON? = nil) throws -> Observation {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "obs-uslab-example3.json")
 		
 		XCTAssertEqual(inst.appliesDateTime!.description, "2014-12-05")
@@ -245,11 +245,11 @@ class ObservationTests: FHIRModelTestCase
 	}
 	
 	func testObservation6() throws {
-		let instance = try testObservation6_impl()
-		try testObservation6_impl(instance.asJSON())
+		let instance = try runObservation6()
+		try runObservation6(instance.asJSON())
 	}
 	
-	func testObservation6_impl(json: FHIRJSON? = nil) throws -> Observation {
+	func runObservation6(json: FHIRJSON? = nil) throws -> Observation {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "obs-uslab-example4.json")
 		
 		XCTAssertEqual(inst.appliesDateTime!.description, "2014-12-05")
@@ -286,11 +286,11 @@ class ObservationTests: FHIRModelTestCase
 	}
 	
 	func testObservation7() throws {
-		let instance = try testObservation7_impl()
-		try testObservation7_impl(instance.asJSON())
+		let instance = try runObservation7()
+		try runObservation7(instance.asJSON())
 	}
 	
-	func testObservation7_impl(json: FHIRJSON? = nil) throws -> Observation {
+	func runObservation7(json: FHIRJSON? = nil) throws -> Observation {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "obs-uslab-example5.json")
 		
 		XCTAssertEqual(inst.appliesDateTime!.description, "2014-12-05")
@@ -332,11 +332,11 @@ class ObservationTests: FHIRModelTestCase
 	}
 	
 	func testObservation8() throws {
-		let instance = try testObservation8_impl()
-		try testObservation8_impl(instance.asJSON())
+		let instance = try runObservation8()
+		try runObservation8(instance.asJSON())
 	}
 	
-	func testObservation8_impl(json: FHIRJSON? = nil) throws -> Observation {
+	func runObservation8(json: FHIRJSON? = nil) throws -> Observation {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "obs-uslab-example6.json")
 		
 		XCTAssertEqual(inst.appliesDateTime!.description, "2014-12-05")
@@ -374,11 +374,11 @@ class ObservationTests: FHIRModelTestCase
 	}
 	
 	func testObservation9() throws {
-		let instance = try testObservation9_impl()
-		try testObservation9_impl(instance.asJSON())
+		let instance = try runObservation9()
+		try runObservation9(instance.asJSON())
 	}
 	
-	func testObservation9_impl(json: FHIRJSON? = nil) throws -> Observation {
+	func runObservation9(json: FHIRJSON? = nil) throws -> Observation {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "obs-uslab-example7.json")
 		
 		XCTAssertEqual(inst.appliesDateTime!.description, "2014-12-05")
@@ -419,11 +419,11 @@ class ObservationTests: FHIRModelTestCase
 	}
 	
 	func testObservation10() throws {
-		let instance = try testObservation10_impl()
-		try testObservation10_impl(instance.asJSON())
+		let instance = try runObservation10()
+		try runObservation10(instance.asJSON())
 	}
 	
-	func testObservation10_impl(json: FHIRJSON? = nil) throws -> Observation {
+	func runObservation10(json: FHIRJSON? = nil) throws -> Observation {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "obs-uslab-example8.json")
 		
 		XCTAssertEqual(inst.appliesDateTime!.description, "2014-12-03")

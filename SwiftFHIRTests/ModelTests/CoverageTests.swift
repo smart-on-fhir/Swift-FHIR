@@ -23,11 +23,11 @@ class CoverageTests: FHIRModelTestCase
 	}
 	
 	func testCoverage1() throws {
-		let instance = try testCoverage1_impl()
-		try testCoverage1_impl(instance.asJSON())
+		let instance = try runCoverage1()
+		try runCoverage1(instance.asJSON())
 	}
 	
-	func testCoverage1_impl(json: FHIRJSON? = nil) throws -> Coverage {
+	func runCoverage1(json: FHIRJSON? = nil) throws -> Coverage {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "coverage-example-2.json")
 		
 		XCTAssertEqual(inst.dependent!, UInt(1))
@@ -50,11 +50,11 @@ class CoverageTests: FHIRModelTestCase
 	}
 	
 	func testCoverage2() throws {
-		let instance = try testCoverage2_impl()
-		try testCoverage2_impl(instance.asJSON())
+		let instance = try runCoverage2()
+		try runCoverage2(instance.asJSON())
 	}
 	
-	func testCoverage2_impl(json: FHIRJSON? = nil) throws -> Coverage {
+	func runCoverage2(json: FHIRJSON? = nil) throws -> Coverage {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "coverage-example.json")
 		
 		XCTAssertEqual(inst.dependent!, UInt(1))

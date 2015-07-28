@@ -23,11 +23,11 @@ class DeviceComponentTests: FHIRModelTestCase
 	}
 	
 	func testDeviceComponent1() throws {
-		let instance = try testDeviceComponent1_impl()
-		try testDeviceComponent1_impl(instance.asJSON())
+		let instance = try runDeviceComponent1()
+		try runDeviceComponent1(instance.asJSON())
 	}
 	
-	func testDeviceComponent1_impl(json: FHIRJSON? = nil) throws -> DeviceComponent {
+	func runDeviceComponent1(json: FHIRJSON? = nil) throws -> DeviceComponent {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "devicecomponent-example-prodspec.json")
 		
 		XCTAssertEqual(inst.id!, "example-prodspec")
@@ -61,11 +61,11 @@ class DeviceComponentTests: FHIRModelTestCase
 	}
 	
 	func testDeviceComponent2() throws {
-		let instance = try testDeviceComponent2_impl()
-		try testDeviceComponent2_impl(instance.asJSON())
+		let instance = try runDeviceComponent2()
+		try runDeviceComponent2(instance.asJSON())
 	}
 	
-	func testDeviceComponent2_impl(json: FHIRJSON? = nil) throws -> DeviceComponent {
+	func runDeviceComponent2(json: FHIRJSON? = nil) throws -> DeviceComponent {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "devicecomponent-example.json")
 		
 		XCTAssertEqual(inst.id!, "example")

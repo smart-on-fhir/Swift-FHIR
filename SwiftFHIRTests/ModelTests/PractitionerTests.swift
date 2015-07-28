@@ -23,11 +23,11 @@ class PractitionerTests: FHIRModelTestCase
 	}
 	
 	func testPractitioner1() throws {
-		let instance = try testPractitioner1_impl()
-		try testPractitioner1_impl(instance.asJSON())
+		let instance = try runPractitioner1()
+		try runPractitioner1(instance.asJSON())
 	}
 	
-	func testPractitioner1_impl(json: FHIRJSON? = nil) throws -> Practitioner {
+	func runPractitioner1(json: FHIRJSON? = nil) throws -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "pract-uslab-example1.json")
 		
 		XCTAssertEqual(inst.id!, "uslab-example1")
@@ -46,11 +46,11 @@ class PractitionerTests: FHIRModelTestCase
 	}
 	
 	func testPractitioner2() throws {
-		let instance = try testPractitioner2_impl()
-		try testPractitioner2_impl(instance.asJSON())
+		let instance = try runPractitioner2()
+		try runPractitioner2(instance.asJSON())
 	}
 	
-	func testPractitioner2_impl(json: FHIRJSON? = nil) throws -> Practitioner {
+	func runPractitioner2(json: FHIRJSON? = nil) throws -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "pract-uslab-example2.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Boston")
@@ -84,11 +84,11 @@ class PractitionerTests: FHIRModelTestCase
 	}
 	
 	func testPractitioner3() throws {
-		let instance = try testPractitioner3_impl()
-		try testPractitioner3_impl(instance.asJSON())
+		let instance = try runPractitioner3()
+		try runPractitioner3(instance.asJSON())
 	}
 	
-	func testPractitioner3_impl(json: FHIRJSON? = nil) throws -> Practitioner {
+	func runPractitioner3(json: FHIRJSON? = nil) throws -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "pract-uslab-example3.json")
 		
 		XCTAssertEqual(inst.id!, "uslab-example3")
@@ -107,11 +107,11 @@ class PractitionerTests: FHIRModelTestCase
 	}
 	
 	func testPractitioner4() throws {
-		let instance = try testPractitioner4_impl()
-		try testPractitioner4_impl(instance.asJSON())
+		let instance = try runPractitioner4()
+		try runPractitioner4(instance.asJSON())
 	}
 	
-	func testPractitioner4_impl(json: FHIRJSON? = nil) throws -> Practitioner {
+	func runPractitioner4(json: FHIRJSON? = nil) throws -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f001-evdb.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Den Burg")
@@ -157,11 +157,11 @@ class PractitionerTests: FHIRModelTestCase
 	}
 	
 	func testPractitioner5() throws {
-		let instance = try testPractitioner5_impl()
-		try testPractitioner5_impl(instance.asJSON())
+		let instance = try runPractitioner5()
+		try runPractitioner5(instance.asJSON())
 	}
 	
-	func testPractitioner5_impl(json: FHIRJSON? = nil) throws -> Practitioner {
+	func runPractitioner5(json: FHIRJSON? = nil) throws -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f002-pv.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Den Burg")
@@ -207,11 +207,11 @@ class PractitionerTests: FHIRModelTestCase
 	}
 	
 	func testPractitioner6() throws {
-		let instance = try testPractitioner6_impl()
-		try testPractitioner6_impl(instance.asJSON())
+		let instance = try runPractitioner6()
+		try runPractitioner6(instance.asJSON())
 	}
 	
-	func testPractitioner6_impl(json: FHIRJSON? = nil) throws -> Practitioner {
+	func runPractitioner6(json: FHIRJSON? = nil) throws -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f003-mv.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Amsterdam")
@@ -260,11 +260,11 @@ class PractitionerTests: FHIRModelTestCase
 	}
 	
 	func testPractitioner7() throws {
-		let instance = try testPractitioner7_impl()
-		try testPractitioner7_impl(instance.asJSON())
+		let instance = try runPractitioner7()
+		try runPractitioner7(instance.asJSON())
 	}
 	
-	func testPractitioner7_impl(json: FHIRJSON? = nil) throws -> Practitioner {
+	func runPractitioner7(json: FHIRJSON? = nil) throws -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f004-rb.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Amsterdam")
@@ -314,11 +314,11 @@ class PractitionerTests: FHIRModelTestCase
 	}
 	
 	func testPractitioner8() throws {
-		let instance = try testPractitioner8_impl()
-		try testPractitioner8_impl(instance.asJSON())
+		let instance = try runPractitioner8()
+		try runPractitioner8(instance.asJSON())
 	}
 	
-	func testPractitioner8_impl(json: FHIRJSON? = nil) throws -> Practitioner {
+	func runPractitioner8(json: FHIRJSON? = nil) throws -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f005-al.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Amsterdam")
@@ -367,11 +367,11 @@ class PractitionerTests: FHIRModelTestCase
 	}
 	
 	func testPractitioner9() throws {
-		let instance = try testPractitioner9_impl()
-		try testPractitioner9_impl(instance.asJSON())
+		let instance = try runPractitioner9()
+		try runPractitioner9(instance.asJSON())
 	}
 	
-	func testPractitioner9_impl(json: FHIRJSON? = nil) throws -> Practitioner {
+	func runPractitioner9(json: FHIRJSON? = nil) throws -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f006-rvdb.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Den Burg")
@@ -417,11 +417,11 @@ class PractitionerTests: FHIRModelTestCase
 	}
 	
 	func testPractitioner10() throws {
-		let instance = try testPractitioner10_impl()
-		try testPractitioner10_impl(instance.asJSON())
+		let instance = try runPractitioner10()
+		try runPractitioner10(instance.asJSON())
 	}
 	
-	func testPractitioner10_impl(json: FHIRJSON? = nil) throws -> Practitioner {
+	func runPractitioner10(json: FHIRJSON? = nil) throws -> Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f007-sh.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Den Burg")

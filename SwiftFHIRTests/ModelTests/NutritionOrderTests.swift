@@ -23,11 +23,11 @@ class NutritionOrderTests: FHIRModelTestCase
 	}
 	
 	func testNutritionOrder1() throws {
-		let instance = try testNutritionOrder1_impl()
-		try testNutritionOrder1_impl(instance.asJSON())
+		let instance = try runNutritionOrder1()
+		try runNutritionOrder1(instance.asJSON())
 	}
 	
-	func testNutritionOrder1_impl(json: FHIRJSON? = nil) throws -> NutritionOrder {
+	func runNutritionOrder1(json: FHIRJSON? = nil) throws -> NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-cardiacdiet.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance![0].display!, "Cashew Nuts")
@@ -84,11 +84,11 @@ class NutritionOrderTests: FHIRModelTestCase
 	}
 	
 	func testNutritionOrder2() throws {
-		let instance = try testNutritionOrder2_impl()
-		try testNutritionOrder2_impl(instance.asJSON())
+		let instance = try runNutritionOrder2()
+		try runNutritionOrder2(instance.asJSON())
 	}
 	
-	func testNutritionOrder2_impl(json: FHIRJSON? = nil) throws -> NutritionOrder {
+	func runNutritionOrder2(json: FHIRJSON? = nil) throws -> NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-diabeticdiet.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance![0].display!, "Cashew Nuts")
@@ -134,11 +134,11 @@ class NutritionOrderTests: FHIRModelTestCase
 	}
 	
 	func testNutritionOrder3() throws {
-		let instance = try testNutritionOrder3_impl()
-		try testNutritionOrder3_impl(instance.asJSON())
+		let instance = try runNutritionOrder3()
+		try runNutritionOrder3(instance.asJSON())
 	}
 	
-	func testNutritionOrder3_impl(json: FHIRJSON? = nil) throws -> NutritionOrder {
+	func runNutritionOrder3(json: FHIRJSON? = nil) throws -> NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-diabeticsupplement.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance![0].display!, "Cashew Nuts")
@@ -180,11 +180,11 @@ class NutritionOrderTests: FHIRModelTestCase
 	}
 	
 	func testNutritionOrder4() throws {
-		let instance = try testNutritionOrder4_impl()
-		try testNutritionOrder4_impl(instance.asJSON())
+		let instance = try runNutritionOrder4()
+		try runNutritionOrder4(instance.asJSON())
 	}
 	
-	func testNutritionOrder4_impl(json: FHIRJSON? = nil) throws -> NutritionOrder {
+	func runNutritionOrder4(json: FHIRJSON? = nil) throws -> NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-energysupplement.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance![0].display!, "Cashew Nuts")
@@ -226,11 +226,11 @@ class NutritionOrderTests: FHIRModelTestCase
 	}
 	
 	func testNutritionOrder5() throws {
-		let instance = try testNutritionOrder5_impl()
-		try testNutritionOrder5_impl(instance.asJSON())
+		let instance = try runNutritionOrder5()
+		try runNutritionOrder5(instance.asJSON())
 	}
 	
-	func testNutritionOrder5_impl(json: FHIRJSON? = nil) throws -> NutritionOrder {
+	func runNutritionOrder5(json: FHIRJSON? = nil) throws -> NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-enteralbolus.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance![0].display!, "Cashew Nuts")
@@ -286,11 +286,11 @@ class NutritionOrderTests: FHIRModelTestCase
 	}
 	
 	func testNutritionOrder6() throws {
-		let instance = try testNutritionOrder6_impl()
-		try testNutritionOrder6_impl(instance.asJSON())
+		let instance = try runNutritionOrder6()
+		try runNutritionOrder6(instance.asJSON())
 	}
 	
-	func testNutritionOrder6_impl(json: FHIRJSON? = nil) throws -> NutritionOrder {
+	func runNutritionOrder6(json: FHIRJSON? = nil) throws -> NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-enteralcontinuous.json")
 		
 		XCTAssertEqual(inst.dateTime!.description, "2014-09-17")
@@ -337,11 +337,11 @@ class NutritionOrderTests: FHIRModelTestCase
 	}
 	
 	func testNutritionOrder7() throws {
-		let instance = try testNutritionOrder7_impl()
-		try testNutritionOrder7_impl(instance.asJSON())
+		let instance = try runNutritionOrder7()
+		try runNutritionOrder7(instance.asJSON())
 	}
 	
-	func testNutritionOrder7_impl(json: FHIRJSON? = nil) throws -> NutritionOrder {
+	func runNutritionOrder7(json: FHIRJSON? = nil) throws -> NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-fiberrestricteddiet.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance![0].display!, "Cashew Nuts")
@@ -394,11 +394,11 @@ class NutritionOrderTests: FHIRModelTestCase
 	}
 	
 	func testNutritionOrder8() throws {
-		let instance = try testNutritionOrder8_impl()
-		try testNutritionOrder8_impl(instance.asJSON())
+		let instance = try runNutritionOrder8()
+		try runNutritionOrder8(instance.asJSON())
 	}
 	
-	func testNutritionOrder8_impl(json: FHIRJSON? = nil) throws -> NutritionOrder {
+	func runNutritionOrder8(json: FHIRJSON? = nil) throws -> NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-infantenteral.json")
 		
 		XCTAssertEqual(inst.dateTime!.description, "2014-09-17")
@@ -447,11 +447,11 @@ class NutritionOrderTests: FHIRModelTestCase
 	}
 	
 	func testNutritionOrder9() throws {
-		let instance = try testNutritionOrder9_impl()
-		try testNutritionOrder9_impl(instance.asJSON())
+		let instance = try runNutritionOrder9()
+		try runNutritionOrder9(instance.asJSON())
 	}
 	
-	func testNutritionOrder9_impl(json: FHIRJSON? = nil) throws -> NutritionOrder {
+	func runNutritionOrder9(json: FHIRJSON? = nil) throws -> NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-proteinsupplement.json")
 		
 		XCTAssertEqual(inst.dateTime!.description, "2014-09-17")
@@ -486,11 +486,11 @@ class NutritionOrderTests: FHIRModelTestCase
 	}
 	
 	func testNutritionOrder10() throws {
-		let instance = try testNutritionOrder10_impl()
-		try testNutritionOrder10_impl(instance.asJSON())
+		let instance = try runNutritionOrder10()
+		try runNutritionOrder10(instance.asJSON())
 	}
 	
-	func testNutritionOrder10_impl(json: FHIRJSON? = nil) throws -> NutritionOrder {
+	func runNutritionOrder10(json: FHIRJSON? = nil) throws -> NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-pureeddiet-simple.json")
 		
 		XCTAssertEqual(inst.dateTime!.description, "2014-09-17")

@@ -2,7 +2,7 @@
 //  Reference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Reference) on 2015-04-23.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Reference) on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -30,25 +30,25 @@ public class Reference: FHIRElement
 		super.init(json: json)
 	}
 	
-	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
-		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["display"] {
-				presentKeys.addObject("display")
+				presentKeys.insert("display")
 				if let val = exist as? String {
 					self.display = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"display\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "display", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["reference"] {
-				presentKeys.addObject("reference")
+				presentKeys.insert("reference")
 				if let val = exist as? String {
 					self.reference = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"reference\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "reference", wants: String.self, has: exist.dynamicType))
 				}
 			}
 		}

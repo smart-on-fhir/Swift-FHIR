@@ -23,11 +23,11 @@ class NamingSystemTests: FHIRModelTestCase
 	}
 	
 	func testNamingSystem1() throws {
-		let instance = try testNamingSystem1_impl()
-		try testNamingSystem1_impl(instance.asJSON())
+		let instance = try runNamingSystem1()
+		try runNamingSystem1(instance.asJSON())
 	}
 	
-	func testNamingSystem1_impl(json: FHIRJSON? = nil) throws -> NamingSystem {
+	func runNamingSystem1(json: FHIRJSON? = nil) throws -> NamingSystem {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2014-12-13")

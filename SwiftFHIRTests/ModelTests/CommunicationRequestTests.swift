@@ -23,11 +23,11 @@ class CommunicationRequestTests: FHIRModelTestCase
 	}
 	
 	func testCommunicationRequest1() throws {
-		let instance = try testCommunicationRequest1_impl()
-		try testCommunicationRequest1_impl(instance.asJSON())
+		let instance = try runCommunicationRequest1()
+		try runCommunicationRequest1(instance.asJSON())
 	}
 	
-	func testCommunicationRequest1_impl(json: FHIRJSON? = nil) throws -> CommunicationRequest {
+	func runCommunicationRequest1(json: FHIRJSON? = nil) throws -> CommunicationRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "communicationrequest-example.json")
 		
 		XCTAssertEqual(inst.id!, "example")
@@ -39,11 +39,11 @@ class CommunicationRequestTests: FHIRModelTestCase
 	}
 	
 	func testCommunicationRequest2() throws {
-		let instance = try testCommunicationRequest2_impl()
-		try testCommunicationRequest2_impl(instance.asJSON())
+		let instance = try runCommunicationRequest2()
+		try runCommunicationRequest2(instance.asJSON())
 	}
 	
-	func testCommunicationRequest2_impl(json: FHIRJSON? = nil) throws -> CommunicationRequest {
+	func runCommunicationRequest2(json: FHIRJSON? = nil) throws -> CommunicationRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "communicationrequest-qicore-example.json")
 		
 		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/communicationrequest-orderedBy")

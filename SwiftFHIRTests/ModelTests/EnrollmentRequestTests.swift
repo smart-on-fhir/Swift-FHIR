@@ -23,11 +23,11 @@ class EnrollmentRequestTests: FHIRModelTestCase
 	}
 	
 	func testEnrollmentRequest1() throws {
-		let instance = try testEnrollmentRequest1_impl()
-		try testEnrollmentRequest1_impl(instance.asJSON())
+		let instance = try runEnrollmentRequest1()
+		try runEnrollmentRequest1(instance.asJSON())
 	}
 	
-	func testEnrollmentRequest1_impl(json: FHIRJSON? = nil) throws -> EnrollmentRequest {
+	func runEnrollmentRequest1(json: FHIRJSON? = nil) throws -> EnrollmentRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "enrollmentrequest-example.json")
 		
 		XCTAssertEqual(inst.coverage!.reference!, "Coverage/9876B1")

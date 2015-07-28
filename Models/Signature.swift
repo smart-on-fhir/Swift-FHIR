@@ -2,7 +2,7 @@
 //  Signature.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Signature) on 2015-04-23.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Signature) on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -41,7 +41,7 @@ public class Signature: FHIRElement
 		super.init(json: json)
 	}
 	
-	/** Convenience initializer, taking all required properties an arguments. */
+	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(blob: Base64Binary?, type: [Coding]?, when: Instant?, whoReference: Reference?, whoUri: NSURL?) {
 		self.init(json: nil)
 		if nil != blob {
@@ -61,67 +61,67 @@ public class Signature: FHIRElement
 		}
 	}
 	
-	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
-		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["blob"] {
-				presentKeys.addObject("blob")
+				presentKeys.insert("blob")
 				if let val = exist as? String {
 					self.blob = Base64Binary(string: val)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"blob\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "blob", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(fhir_generateJSONError("\(self) expects nonoptional JSON property \"blob\" but it is missing"))
+				errors.append(FHIRJSONError(key: "blob"))
 			}
 			if let exist: AnyObject = js["type"] {
-				presentKeys.addObject("type")
+				presentKeys.insert("type")
 				if let val = exist as? [FHIRJSON] {
 					self.type = Coding.from(val, owner: self) as? [Coding]
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"type\" to be an array of `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "type", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(fhir_generateJSONError("\(self) expects nonoptional JSON property \"type\" but it is missing"))
+				errors.append(FHIRJSONError(key: "type"))
 			}
 			if let exist: AnyObject = js["when"] {
-				presentKeys.addObject("when")
+				presentKeys.insert("when")
 				if let val = exist as? String {
 					self.when = Instant(string: val)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"when\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "when", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(fhir_generateJSONError("\(self) expects nonoptional JSON property \"when\" but it is missing"))
+				errors.append(FHIRJSONError(key: "when"))
 			}
 			if let exist: AnyObject = js["whoReference"] {
-				presentKeys.addObject("whoReference")
+				presentKeys.insert("whoReference")
 				if let val = exist as? FHIRJSON {
 					self.whoReference = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"whoReference\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "whoReference", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["whoUri"] {
-				presentKeys.addObject("whoUri")
+				presentKeys.insert("whoUri")
 				if let val = exist as? String {
 					self.whoUri = NSURL(string: val)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"whoUri\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "whoUri", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			
 			// check if nonoptional expanded properties are present
 			if nil == self.whoUri && nil == self.whoReference {
-				errors.append(fhir_generateJSONError("\(self) expects at least one of nonoptional JSON property \"who[x]\" but none was found"))
+				errors.append(FHIRJSONError(key: "who[x]*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors

@@ -23,11 +23,11 @@ class DeviceUseStatementTests: FHIRModelTestCase
 	}
 	
 	func testDeviceUseStatement1() throws {
-		let instance = try testDeviceUseStatement1_impl()
-		try testDeviceUseStatement1_impl(instance.asJSON())
+		let instance = try runDeviceUseStatement1()
+		try runDeviceUseStatement1(instance.asJSON())
 	}
 	
-	func testDeviceUseStatement1_impl(json: FHIRJSON? = nil) throws -> DeviceUseStatement {
+	func runDeviceUseStatement1(json: FHIRJSON? = nil) throws -> DeviceUseStatement {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "deviceusestatement-example.json")
 		
 		XCTAssertEqual(inst.device!.reference!, "Device/example")

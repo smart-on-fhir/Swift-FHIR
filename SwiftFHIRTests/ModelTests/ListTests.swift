@@ -23,11 +23,11 @@ class ListTests: FHIRModelTestCase
 	}
 	
 	func testList1() throws {
-		let instance = try testList1_impl()
-		try testList1_impl(instance.asJSON())
+		let instance = try runList1()
+		try runList1(instance.asJSON())
 	}
 	
-	func testList1_impl(json: FHIRJSON? = nil) throws -> List {
+	func runList1(json: FHIRJSON? = nil) throws -> List {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-empty.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "182836005")
@@ -49,11 +49,11 @@ class ListTests: FHIRModelTestCase
 	}
 	
 	func testList2() throws {
-		let instance = try testList2_impl()
-		try testList2_impl(instance.asJSON())
+		let instance = try runList2()
+		try runList2(instance.asJSON())
 	}
 	
-	func testList2_impl(json: FHIRJSON? = nil) throws -> List {
+	func runList2(json: FHIRJSON? = nil) throws -> List {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-familyhistory-f201-roel.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "8670-2")
@@ -73,11 +73,11 @@ class ListTests: FHIRModelTestCase
 	}
 	
 	func testList3() throws {
-		let instance = try testList3_impl()
-		try testList3_impl(instance.asJSON())
+		let instance = try runList3()
+		try runList3(instance.asJSON())
 	}
 	
-	func testList3_impl(json: FHIRJSON? = nil) throws -> List {
+	func runList3(json: FHIRJSON? = nil) throws -> List {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-familyhistory-genetics-profile-annie.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "8670-2")
@@ -104,11 +104,11 @@ class ListTests: FHIRModelTestCase
 	}
 	
 	func testList4() throws {
-		let instance = try testList4_impl()
-		try testList4_impl(instance.asJSON())
+		let instance = try runList4()
+		try runList4(instance.asJSON())
 	}
 	
-	func testList4_impl(json: FHIRJSON? = nil) throws -> List {
+	func runList4(json: FHIRJSON? = nil) throws -> List {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-familyhistory-genetics-profile.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "8670-2")
@@ -134,11 +134,11 @@ class ListTests: FHIRModelTestCase
 	}
 	
 	func testList5() throws {
-		let instance = try testList5_impl()
-		try testList5_impl(instance.asJSON())
+		let instance = try runList5()
+		try runList5(instance.asJSON())
 	}
 	
-	func testList5_impl(json: FHIRJSON? = nil) throws -> List {
+	func runList5(json: FHIRJSON? = nil) throws -> List {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-medlist.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "182836005")
@@ -166,11 +166,11 @@ class ListTests: FHIRModelTestCase
 	}
 	
 	func testList6() throws {
-		let instance = try testList6_impl()
-		try testList6_impl(instance.asJSON())
+		let instance = try runList6()
+		try runList6(instance.asJSON())
 	}
 	
-	func testList6_impl(json: FHIRJSON? = nil) throws -> List {
+	func runList6(json: FHIRJSON? = nil) throws -> List {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2012-11-25T22:17:00+11:00")

@@ -23,11 +23,11 @@ class DeviceTests: FHIRModelTestCase
 	}
 	
 	func testDevice1() throws {
-		let instance = try testDevice1_impl()
-		try testDevice1_impl(instance.asJSON())
+		let instance = try runDevice1()
+		try runDevice1(instance.asJSON())
 	}
 	
-	func testDevice1_impl(json: FHIRJSON? = nil) throws -> Device {
+	func runDevice1(json: FHIRJSON? = nil) throws -> Device {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example-f001-feedingtube.json")
 		
 		XCTAssertEqual(inst.id!, "f001")
@@ -41,11 +41,11 @@ class DeviceTests: FHIRModelTestCase
 	}
 	
 	func testDevice2() throws {
-		let instance = try testDevice2_impl()
-		try testDevice2_impl(instance.asJSON())
+		let instance = try runDevice2()
+		try runDevice2(instance.asJSON())
 	}
 	
-	func testDevice2_impl(json: FHIRJSON? = nil) throws -> Device {
+	func runDevice2(json: FHIRJSON? = nil) throws -> Device {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example-ihe-pcd.json")
 		
 		XCTAssertEqual(inst.id!, "ihe-pcd")
@@ -63,11 +63,11 @@ class DeviceTests: FHIRModelTestCase
 	}
 	
 	func testDevice3() throws {
-		let instance = try testDevice3_impl()
-		try testDevice3_impl(instance.asJSON())
+		let instance = try runDevice3()
+		try runDevice3(instance.asJSON())
 	}
 	
-	func testDevice3_impl(json: FHIRJSON? = nil) throws -> Device {
+	func runDevice3(json: FHIRJSON? = nil) throws -> Device {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example-pacemaker.json")
 		
 		XCTAssertEqual(inst.contact![0].system!, "phone")
@@ -87,11 +87,11 @@ class DeviceTests: FHIRModelTestCase
 	}
 	
 	func testDevice4() throws {
-		let instance = try testDevice4_impl()
-		try testDevice4_impl(instance.asJSON())
+		let instance = try runDevice4()
+		try runDevice4(instance.asJSON())
 	}
 	
-	func testDevice4_impl(json: FHIRJSON? = nil) throws -> Device {
+	func runDevice4(json: FHIRJSON? = nil) throws -> Device {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example.json")
 		
 		XCTAssertEqual(inst.contact![0].system!, "phone")

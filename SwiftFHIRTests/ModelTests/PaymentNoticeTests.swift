@@ -23,11 +23,11 @@ class PaymentNoticeTests: FHIRModelTestCase
 	}
 	
 	func testPaymentNotice1() throws {
-		let instance = try testPaymentNotice1_impl()
-		try testPaymentNotice1_impl(instance.asJSON())
+		let instance = try runPaymentNotice1()
+		try runPaymentNotice1(instance.asJSON())
 	}
 	
-	func testPaymentNotice1_impl(json: FHIRJSON? = nil) throws -> PaymentNotice {
+	func runPaymentNotice1(json: FHIRJSON? = nil) throws -> PaymentNotice {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "paymentnotice-example.json")
 		
 		XCTAssertEqual(inst.created!.description, "2014-08-16")

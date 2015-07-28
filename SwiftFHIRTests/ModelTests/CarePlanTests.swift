@@ -23,11 +23,11 @@ class CarePlanTests: FHIRModelTestCase
 	}
 	
 	func testCarePlan1() throws {
-		let instance = try testCarePlan1_impl()
-		try testCarePlan1_impl(instance.asJSON())
+		let instance = try runCarePlan1()
+		try runCarePlan1(instance.asJSON())
 	}
 	
-	func testCarePlan1_impl(json: FHIRJSON? = nil) throws -> CarePlan {
+	func runCarePlan1(json: FHIRJSON? = nil) throws -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.activity![0].detail!.category!, "procedure")
@@ -60,11 +60,11 @@ class CarePlanTests: FHIRModelTestCase
 	}
 	
 	func testCarePlan2() throws {
-		let instance = try testCarePlan2_impl()
-		try testCarePlan2_impl(instance.asJSON())
+		let instance = try runCarePlan2()
+		try runCarePlan2(instance.asJSON())
 	}
 	
-	func testCarePlan2_impl(json: FHIRJSON? = nil) throws -> CarePlan {
+	func runCarePlan2(json: FHIRJSON? = nil) throws -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.activity![0].detail!.category!, "procedure")
@@ -97,11 +97,11 @@ class CarePlanTests: FHIRModelTestCase
 	}
 	
 	func testCarePlan3() throws {
-		let instance = try testCarePlan3_impl()
-		try testCarePlan3_impl(instance.asJSON())
+		let instance = try runCarePlan3()
+		try runCarePlan3(instance.asJSON())
 	}
 	
-	func testCarePlan3_impl(json: FHIRJSON? = nil) throws -> CarePlan {
+	func runCarePlan3(json: FHIRJSON? = nil) throws -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f003-pharynx.json")
 		
 		XCTAssertEqual(inst.activity![0].detail!.category!, "procedure")
@@ -134,11 +134,11 @@ class CarePlanTests: FHIRModelTestCase
 	}
 	
 	func testCarePlan4() throws {
-		let instance = try testCarePlan4_impl()
-		try testCarePlan4_impl(instance.asJSON())
+		let instance = try runCarePlan4()
+		try runCarePlan4(instance.asJSON())
 	}
 	
-	func testCarePlan4_impl(json: FHIRJSON? = nil) throws -> CarePlan {
+	func runCarePlan4(json: FHIRJSON? = nil) throws -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f201-renal.json")
 		
 		XCTAssertEqual(inst.activity![0].detail!.category!, "diet")
@@ -186,11 +186,11 @@ class CarePlanTests: FHIRModelTestCase
 	}
 	
 	func testCarePlan5() throws {
-		let instance = try testCarePlan5_impl()
-		try testCarePlan5_impl(instance.asJSON())
+		let instance = try runCarePlan5()
+		try runCarePlan5(instance.asJSON())
 	}
 	
-	func testCarePlan5_impl(json: FHIRJSON? = nil) throws -> CarePlan {
+	func runCarePlan5(json: FHIRJSON? = nil) throws -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f202-malignancy.json")
 		
 		XCTAssertEqual(inst.activity![0].actionResulting![0].display!, "Roel's Chemotherapy")
@@ -220,11 +220,11 @@ class CarePlanTests: FHIRModelTestCase
 	}
 	
 	func testCarePlan6() throws {
-		let instance = try testCarePlan6_impl()
-		try testCarePlan6_impl(instance.asJSON())
+		let instance = try runCarePlan6()
+		try runCarePlan6(instance.asJSON())
 	}
 	
-	func testCarePlan6_impl(json: FHIRJSON? = nil) throws -> CarePlan {
+	func runCarePlan6(json: FHIRJSON? = nil) throws -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f203-sepsis.json")
 		
 		XCTAssertEqual(inst.activity![0].detail!.category!, "observation")
@@ -259,11 +259,11 @@ class CarePlanTests: FHIRModelTestCase
 	}
 	
 	func testCarePlan7() throws {
-		let instance = try testCarePlan7_impl()
-		try testCarePlan7_impl(instance.asJSON())
+		let instance = try runCarePlan7()
+		try runCarePlan7(instance.asJSON())
 	}
 	
-	func testCarePlan7_impl(json: FHIRJSON? = nil) throws -> CarePlan {
+	func runCarePlan7(json: FHIRJSON? = nil) throws -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-GPVisit.json")
 		
 		XCTAssertEqual(inst.activity![0].actionResulting![0].reference!, "Encounter/example")
@@ -311,11 +311,11 @@ class CarePlanTests: FHIRModelTestCase
 	}
 	
 	func testCarePlan8() throws {
-		let instance = try testCarePlan8_impl()
-		try testCarePlan8_impl(instance.asJSON())
+		let instance = try runCarePlan8()
+		try runCarePlan8(instance.asJSON())
 	}
 	
-	func testCarePlan8_impl(json: FHIRJSON? = nil) throws -> CarePlan {
+	func runCarePlan8(json: FHIRJSON? = nil) throws -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-integrated.json")
 		
 		XCTAssertEqual(inst.activity![0].detail!.category!, "other")
@@ -427,11 +427,11 @@ class CarePlanTests: FHIRModelTestCase
 	}
 	
 	func testCarePlan9() throws {
-		let instance = try testCarePlan9_impl()
-		try testCarePlan9_impl(instance.asJSON())
+		let instance = try runCarePlan9()
+		try runCarePlan9(instance.asJSON())
 	}
 	
-	func testCarePlan9_impl(json: FHIRJSON? = nil) throws -> CarePlan {
+	func runCarePlan9(json: FHIRJSON? = nil) throws -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-pregnancy.json")
 		
 		XCTAssertEqual(inst.activity![0].detail!.category!, "encounter")
@@ -496,11 +496,11 @@ class CarePlanTests: FHIRModelTestCase
 	}
 	
 	func testCarePlan10() throws {
-		let instance = try testCarePlan10_impl()
-		try testCarePlan10_impl(instance.asJSON())
+		let instance = try runCarePlan10()
+		try runCarePlan10(instance.asJSON())
 	}
 	
-	func testCarePlan10_impl(json: FHIRJSON? = nil) throws -> CarePlan {
+	func runCarePlan10(json: FHIRJSON? = nil) throws -> CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example.json")
 		
 		XCTAssertEqual(inst.activity![0].detail!.category!, "observation")

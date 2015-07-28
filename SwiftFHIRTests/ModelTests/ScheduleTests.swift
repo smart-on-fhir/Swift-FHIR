@@ -23,11 +23,11 @@ class ScheduleTests: FHIRModelTestCase
 	}
 	
 	func testSchedule1() throws {
-		let instance = try testSchedule1_impl()
-		try testSchedule1_impl(instance.asJSON())
+		let instance = try runSchedule1()
+		try runSchedule1(instance.asJSON())
 	}
 	
-	func testSchedule1_impl(json: FHIRJSON? = nil) throws -> Schedule {
+	func runSchedule1(json: FHIRJSON? = nil) throws -> Schedule {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "schedule-example.json")
 		
 		XCTAssertEqual(inst.actor!.display!, "Burgers UMC, South Wing, second floor")

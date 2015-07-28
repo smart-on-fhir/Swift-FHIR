@@ -23,11 +23,11 @@ class BodySiteTests: FHIRModelTestCase
 	}
 	
 	func testBodySite1() throws {
-		let instance = try testBodySite1_impl()
-		try testBodySite1_impl(instance.asJSON())
+		let instance = try runBodySite1()
+		try runBodySite1(instance.asJSON())
 	}
 	
-	func testBodySite1_impl(json: FHIRJSON? = nil) throws -> BodySite {
+	func runBodySite1(json: FHIRJSON? = nil) throws -> BodySite {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "bodysite-example.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "53120007")

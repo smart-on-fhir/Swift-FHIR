@@ -23,11 +23,11 @@ class RiskAssessmentTests: FHIRModelTestCase
 	}
 	
 	func testRiskAssessment1() throws {
-		let instance = try testRiskAssessment1_impl()
-		try testRiskAssessment1_impl(instance.asJSON())
+		let instance = try runRiskAssessment1()
+		try runRiskAssessment1(instance.asJSON())
 	}
 	
-	func testRiskAssessment1_impl(json: FHIRJSON? = nil) throws -> RiskAssessment {
+	func runRiskAssessment1(json: FHIRJSON? = nil) throws -> RiskAssessment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example-cardiac.json")
 		
 		XCTAssertEqual(inst.basis![0].reference!, "Patient/example")
@@ -52,11 +52,11 @@ class RiskAssessmentTests: FHIRModelTestCase
 	}
 	
 	func testRiskAssessment2() throws {
-		let instance = try testRiskAssessment2_impl()
-		try testRiskAssessment2_impl(instance.asJSON())
+		let instance = try runRiskAssessment2()
+		try runRiskAssessment2(instance.asJSON())
 	}
 	
-	func testRiskAssessment2_impl(json: FHIRJSON? = nil) throws -> RiskAssessment {
+	func runRiskAssessment2(json: FHIRJSON? = nil) throws -> RiskAssessment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example-population.json")
 		
 		XCTAssertEqual(inst.id!, "population")
@@ -66,11 +66,11 @@ class RiskAssessmentTests: FHIRModelTestCase
 	}
 	
 	func testRiskAssessment3() throws {
-		let instance = try testRiskAssessment3_impl()
-		try testRiskAssessment3_impl(instance.asJSON())
+		let instance = try runRiskAssessment3()
+		try runRiskAssessment3(instance.asJSON())
 	}
 	
-	func testRiskAssessment3_impl(json: FHIRJSON? = nil) throws -> RiskAssessment {
+	func runRiskAssessment3(json: FHIRJSON? = nil) throws -> RiskAssessment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example-prognosis.json")
 		
 		XCTAssertEqual(inst.condition!.display!, "Ischemic Stroke")
@@ -89,11 +89,11 @@ class RiskAssessmentTests: FHIRModelTestCase
 	}
 	
 	func testRiskAssessment4() throws {
-		let instance = try testRiskAssessment4_impl()
-		try testRiskAssessment4_impl(instance.asJSON())
+		let instance = try runRiskAssessment4()
+		try runRiskAssessment4(instance.asJSON())
 	}
 	
-	func testRiskAssessment4_impl(json: FHIRJSON? = nil) throws -> RiskAssessment {
+	func runRiskAssessment4(json: FHIRJSON? = nil) throws -> RiskAssessment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example.json")
 		
 		XCTAssertEqual(inst.basis![0].reference!, "List/prognosis")

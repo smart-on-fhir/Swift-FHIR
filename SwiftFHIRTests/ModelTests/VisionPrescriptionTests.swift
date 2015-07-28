@@ -23,11 +23,11 @@ class VisionPrescriptionTests: FHIRModelTestCase
 	}
 	
 	func testVisionPrescription1() throws {
-		let instance = try testVisionPrescription1_impl()
-		try testVisionPrescription1_impl(instance.asJSON())
+		let instance = try runVisionPrescription1()
+		try runVisionPrescription1(instance.asJSON())
 	}
 	
-	func testVisionPrescription1_impl(json: FHIRJSON? = nil) throws -> VisionPrescription {
+	func runVisionPrescription1(json: FHIRJSON? = nil) throws -> VisionPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "visionprescription-example-1.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2014-06-15")
@@ -73,11 +73,11 @@ class VisionPrescriptionTests: FHIRModelTestCase
 	}
 	
 	func testVisionPrescription2() throws {
-		let instance = try testVisionPrescription2_impl()
-		try testVisionPrescription2_impl(instance.asJSON())
+		let instance = try runVisionPrescription2()
+		try runVisionPrescription2(instance.asJSON())
 	}
 	
-	func testVisionPrescription2_impl(json: FHIRJSON? = nil) throws -> VisionPrescription {
+	func runVisionPrescription2(json: FHIRJSON? = nil) throws -> VisionPrescription {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "visionprescription-example.json")
 		
 		XCTAssertEqual(inst.dateWritten!.description, "2014-06-15")

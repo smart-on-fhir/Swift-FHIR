@@ -23,11 +23,11 @@ class ConformanceTests: FHIRModelTestCase
 	}
 	
 	func testConformance1() throws {
-		let instance = try testConformance1_impl()
-		try testConformance1_impl(instance.asJSON())
+		let instance = try runConformance1()
+		try runConformance1(instance.asJSON())
 	}
 	
-	func testConformance1_impl(json: FHIRJSON? = nil) throws -> Conformance {
+	func runConformance1(json: FHIRJSON? = nil) throws -> Conformance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "conformance-example.json")
 		
 		XCTAssertTrue(inst.acceptUnknown!)
@@ -71,11 +71,11 @@ class ConformanceTests: FHIRModelTestCase
 	}
 	
 	func testConformance2() throws {
-		let instance = try testConformance2_impl()
-		try testConformance2_impl(instance.asJSON())
+		let instance = try runConformance2()
+		try runConformance2(instance.asJSON())
 	}
 	
-	func testConformance2_impl(json: FHIRJSON? = nil) throws -> Conformance {
+	func runConformance2(json: FHIRJSON? = nil) throws -> Conformance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "conformance-phr-example.json")
 		
 		XCTAssertFalse(inst.acceptUnknown!)

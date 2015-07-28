@@ -23,11 +23,11 @@ class BasicTests: FHIRModelTestCase
 	}
 	
 	func testBasic1() throws {
-		let instance = try testBasic1_impl()
-		try testBasic1_impl(instance.asJSON())
+		let instance = try runBasic1()
+		try runBasic1(instance.asJSON())
 	}
 	
-	func testBasic1_impl(json: FHIRJSON? = nil) throws -> Basic {
+	func runBasic1(json: FHIRJSON? = nil) throws -> Basic {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example-adverseevent-qicore.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "ADVEVENT")
@@ -57,11 +57,11 @@ class BasicTests: FHIRModelTestCase
 	}
 	
 	func testBasic2() throws {
-		let instance = try testBasic2_impl()
-		try testBasic2_impl(instance.asJSON())
+		let instance = try runBasic2()
+		try runBasic2(instance.asJSON())
 	}
 	
-	func testBasic2_impl(json: FHIRJSON? = nil) throws -> Basic {
+	func runBasic2(json: FHIRJSON? = nil) throws -> Basic {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example-narrative.json")
 		
 		XCTAssertEqual(inst.code!.text!, "Example Narrative Tester")
@@ -72,11 +72,11 @@ class BasicTests: FHIRModelTestCase
 	}
 	
 	func testBasic3() throws {
-		let instance = try testBasic3_impl()
-		try testBasic3_impl(instance.asJSON())
+		let instance = try runBasic3()
+		try runBasic3(instance.asJSON())
 	}
 	
-	func testBasic3_impl(json: FHIRJSON? = nil) throws -> Basic {
+	func runBasic3(json: FHIRJSON? = nil) throws -> Basic {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "REFERRAL")
@@ -106,11 +106,11 @@ class BasicTests: FHIRModelTestCase
 	}
 	
 	func testBasic4() throws {
-		let instance = try testBasic4_impl()
-		try testBasic4_impl(instance.asJSON())
+		let instance = try runBasic4()
+		try runBasic4(instance.asJSON())
 	}
 	
-	func testBasic4_impl(json: FHIRJSON? = nil) throws -> Basic {
+	func runBasic4(json: FHIRJSON? = nil) throws -> Basic {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example2.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "UMLCLASSMODEL")

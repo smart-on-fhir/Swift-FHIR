@@ -23,11 +23,11 @@ class StructureDefinitionTests: FHIRModelTestCase
 	}
 	
 	func testStructureDefinition1() throws {
-		let instance = try testStructureDefinition1_impl()
-		try testStructureDefinition1_impl(instance.asJSON())
+		let instance = try runStructureDefinition1()
+		try runStructureDefinition1(instance.asJSON())
 	}
 	
-	func testStructureDefinition1_impl(json: FHIRJSON? = nil) throws -> StructureDefinition {
+	func runStructureDefinition1(json: FHIRJSON? = nil) throws -> StructureDefinition {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "structuredefinition-example.json")
 		
 		XCTAssertFalse(inst.abstract!)

@@ -23,11 +23,11 @@ class OrderTests: FHIRModelTestCase
 	}
 	
 	func testOrder1() throws {
-		let instance = try testOrder1_impl()
-		try testOrder1_impl(instance.asJSON())
+		let instance = try runOrder1()
+		try runOrder1(instance.asJSON())
 	}
 	
-	func testOrder1_impl(json: FHIRJSON? = nil) throws -> Order {
+	func runOrder1(json: FHIRJSON? = nil) throws -> Order {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "order-example-f201-physiotherapy.json")
 		
 		XCTAssertEqual(inst.date!.description, "2013-03-05T12:00:00+01:00")
@@ -48,11 +48,11 @@ class OrderTests: FHIRModelTestCase
 	}
 	
 	func testOrder2() throws {
-		let instance = try testOrder2_impl()
-		try testOrder2_impl(instance.asJSON())
+		let instance = try runOrder2()
+		try runOrder2(instance.asJSON())
 	}
 	
-	func testOrder2_impl(json: FHIRJSON? = nil) throws -> Order {
+	func runOrder2(json: FHIRJSON? = nil) throws -> Order {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "order-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2012-12-28T09:03:04+11:00")

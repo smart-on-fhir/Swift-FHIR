@@ -23,11 +23,11 @@ class RelatedPersonTests: FHIRModelTestCase
 	}
 	
 	func testRelatedPerson1() throws {
-		let instance = try testRelatedPerson1_impl()
-		try testRelatedPerson1_impl(instance.asJSON())
+		let instance = try runRelatedPerson1()
+		try runRelatedPerson1(instance.asJSON())
 	}
 	
-	func testRelatedPerson1_impl(json: FHIRJSON? = nil) throws -> RelatedPerson {
+	func runRelatedPerson1(json: FHIRJSON? = nil) throws -> RelatedPerson {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-f001-sarah.json")
 		
 		XCTAssertEqual(inst.gender!, "female")
@@ -53,11 +53,11 @@ class RelatedPersonTests: FHIRModelTestCase
 	}
 	
 	func testRelatedPerson2() throws {
-		let instance = try testRelatedPerson2_impl()
-		try testRelatedPerson2_impl(instance.asJSON())
+		let instance = try runRelatedPerson2()
+		try runRelatedPerson2(instance.asJSON())
 	}
 	
-	func testRelatedPerson2_impl(json: FHIRJSON? = nil) throws -> RelatedPerson {
+	func runRelatedPerson2(json: FHIRJSON? = nil) throws -> RelatedPerson {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-f002-ariadne.json")
 		
 		XCTAssertEqual(inst.gender!, "female")
@@ -76,11 +76,11 @@ class RelatedPersonTests: FHIRModelTestCase
 	}
 	
 	func testRelatedPerson3() throws {
-		let instance = try testRelatedPerson3_impl()
-		try testRelatedPerson3_impl(instance.asJSON())
+		let instance = try runRelatedPerson3()
+		try runRelatedPerson3(instance.asJSON())
 	}
 	
-	func testRelatedPerson3_impl(json: FHIRJSON? = nil) throws -> RelatedPerson {
+	func runRelatedPerson3(json: FHIRJSON? = nil) throws -> RelatedPerson {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-peter.json")
 		
 		XCTAssertEqual(inst.address!.city!, "PleasantVille")
@@ -109,11 +109,11 @@ class RelatedPersonTests: FHIRModelTestCase
 	}
 	
 	func testRelatedPerson4() throws {
-		let instance = try testRelatedPerson4_impl()
-		try testRelatedPerson4_impl(instance.asJSON())
+		let instance = try runRelatedPerson4()
+		try runRelatedPerson4(instance.asJSON())
 	}
 	
-	func testRelatedPerson4_impl(json: FHIRJSON? = nil) throws -> RelatedPerson {
+	func runRelatedPerson4(json: FHIRJSON? = nil) throws -> RelatedPerson {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example.json")
 		
 		XCTAssertEqual(inst.address!.city!, "Paris")

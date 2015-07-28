@@ -23,11 +23,11 @@ class DeviceUseRequestTests: FHIRModelTestCase
 	}
 	
 	func testDeviceUseRequest1() throws {
-		let instance = try testDeviceUseRequest1_impl()
-		try testDeviceUseRequest1_impl(instance.asJSON())
+		let instance = try runDeviceUseRequest1()
+		try runDeviceUseRequest1(instance.asJSON())
 	}
 	
-	func testDeviceUseRequest1_impl(json: FHIRJSON? = nil) throws -> DeviceUseRequest {
+	func runDeviceUseRequest1(json: FHIRJSON? = nil) throws -> DeviceUseRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "deviceuserequest-example.json")
 		
 		XCTAssertEqual(inst.device!.reference!, "Device/example")
@@ -40,11 +40,11 @@ class DeviceUseRequestTests: FHIRModelTestCase
 	}
 	
 	func testDeviceUseRequest2() throws {
-		let instance = try testDeviceUseRequest2_impl()
-		try testDeviceUseRequest2_impl(instance.asJSON())
+		let instance = try runDeviceUseRequest2()
+		try runDeviceUseRequest2(instance.asJSON())
 	}
 	
-	func testDeviceUseRequest2_impl(json: FHIRJSON? = nil) throws -> DeviceUseRequest {
+	func runDeviceUseRequest2(json: FHIRJSON? = nil) throws -> DeviceUseRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "deviceuserequest-qicore-example.json")
 		
 		XCTAssertEqual(inst.device!.reference!, "Device/example")

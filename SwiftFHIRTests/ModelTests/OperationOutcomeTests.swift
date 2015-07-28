@@ -23,11 +23,11 @@ class OperationOutcomeTests: FHIRModelTestCase
 	}
 	
 	func testOperationOutcome1() throws {
-		let instance = try testOperationOutcome1_impl()
-		try testOperationOutcome1_impl(instance.asJSON())
+		let instance = try runOperationOutcome1()
+		try runOperationOutcome1(instance.asJSON())
 	}
 	
-	func testOperationOutcome1_impl(json: FHIRJSON? = nil) throws -> OperationOutcome {
+	func runOperationOutcome1(json: FHIRJSON? = nil) throws -> OperationOutcome {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example.json")
 		
 		XCTAssertEqual(inst.id!, "101")

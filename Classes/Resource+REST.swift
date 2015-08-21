@@ -80,33 +80,35 @@ public extension Resource
 	// MARK: - CRUD
 	
 	/**
-	    Reads the resource with the given id from the given server.
+	Reads the resource with the given id from the given server.
 	
-	    Forwards to class method `readFrom` with the resource's relative URL, created from the supplied id and the resource's base.
-	 */
+	Forwards to class method `readFrom` with the resource's relative URL, created from the supplied id and the resource's base.
+	*/
 	public class func read(id: String, server: FHIRServer, callback: FHIRResourceErrorCallback) {
 		let path = "\(resourceName)/\(id)"
 		readFrom(path, server: server, callback: callback)
 	}
 	
 	/**
-	    Reads the resource from the given path on the given server.
+	Reads the resource from the given path on the given server.
 	
-	    This method creates a FHIRServerJSONRequestHandler for a GET request and deserializes the returned JSON into an instance on success.
+	This method creates a FHIRServerJSONRequestHandler for a GET request and deserializes the returned JSON into an instance on success.
 	
-	    :param: path The relative path on the server from which to read resource data from
-	    :param: server The server to use
-	    :param: callback The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
-	 */
+	:param: path The relative path on the server from which to read resource data from
+	:param: server The server to use
+	:param: callback The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
+	*/
 	public class func readFrom(path: String, server: FHIRServer, callback: FHIRResourceErrorCallback) {
 		server.performRequestOfType(.GET, path: path, resource: nil) { response in
 			if let error = response.error {
 				callback(resource: nil, error: error)
 			}
-			else {
-				let resource = response.responseResource(Resource.self)
-				resource?._server = server
+			else if let resource = response.responseResource(Resource.self) {
+				resource._server = server
 				callback(resource: resource, error: nil)
+			}
+			else {
+				callback(resource: nil, error: genResourceError("Failed to instantiate resource when trying to read from «\(path)»"))
 			}
 		}
 	}

@@ -16,14 +16,31 @@ import Foundation
  */
 public class FHIRServerRequestHandler
 {
-	/// The response type instances of this class provide.
+	/// The type of response instances that this class provides.
 	public typealias ResponseType = FHIRServerResponse
 	
 	/// The HTTP type of the request.
 	public let type: FHIRRequestType
 	
-	public init(_ type: FHIRRequestType) {
+	/// The data to be used in the request body.
+	public var data: NSData?
+	
+	/// The receiver may hold on to a resource that supplies the request's body data.
+	public var resource: FHIRResource?
+	
+	public init(_ type: FHIRRequestType, resource: FHIRResource? = nil) {
 		self.type = type
+		self.resource = resource
+	}
+	
+	public func prepareData(error: NSErrorPointer) -> Bool {
+		if nil == resource {
+			return true
+		}
+		if nil != error {
+			error.memory = NSError(domain: "FHIRErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey: "`FHIRServerRequestHandler` cannot prepare request body data"])
+		}
+		return false
 	}
 	
 	/**
@@ -32,55 +49,6 @@ public class FHIRServerRequestHandler
 	    Typically the FHIRRequestType instance sets the correct HTTPMethod as well as correct FHIR headers.
 	 */
 	public func prepareRequest(req: NSMutableURLRequest, error: NSErrorPointer) -> Bool {
-		type.prepareRequest(req)
-		return true
-	}
-	
-	/**
-	    Instantiate an object of ResponseType-type based on the response and data that we get.
-	 */
-	public func response(# response: NSURLResponse?, data inData: NSData? = nil) -> ResponseType {
-		if let res = response {
-			return self.dynamicType.ResType(response: res, data: inData)
-		}
-		return self.dynamicType.ResType.noneReceived()
-	}
-	
-	/**
-	    Convenience method to indicate a request that has not actually been sent.
-	 */
-	public func notSent(reason: String) -> ResponseType {
-		return self.dynamicType.ResType(notSentBecause: genServerError(reason, code: 700))
-	}
-	
-	class var ResType: FHIRServerResponse.Type {
-		return FHIRServerResponse.self
-	}
-}
-
-
-/**
-	Prepare and handle a request for data.
- */
-public class FHIRServerDataRequestHandler: FHIRServerRequestHandler
-{
-	public typealias ResponseType = FHIRServerDataResponse
-	
-	/// The receiver may hold on to a resource that supplies the request's body data
-	public var resource: FHIRResource?
-	
-	public var data: NSData?
-	
-	public init(_ type: FHIRRequestType, data: NSData? = nil) {
-		super.init(type)
-		self.data = data
-	}
-	
-	public func prepareData(error: NSErrorPointer) -> Bool {
-		return true
-	}
-	
-	public override func prepareRequest(req: NSMutableURLRequest, error: NSErrorPointer) -> Bool {
 		if prepareData(error) {
 			type.prepareRequest(req, body: data)
 			return true
@@ -88,8 +56,28 @@ public class FHIRServerDataRequestHandler: FHIRServerRequestHandler
 		return false
 	}
 	
-	override class var ResType: FHIRServerResponse.Type {
-		return FHIRServerDataResponse.self
+	/**
+	    Instantiate an object of ResponseType-type based on the response and data that we get.
+	 */
+	public func response(# response: NSURLResponse?, data inData: NSData? = nil) -> ResponseType {
+		if let res = response {
+			return self.dynamicType.ResponseType(response: res, data: inData)
+		}
+		return self.dynamicType.ResponseType.noneReceived()
+	}
+	
+	/**
+	Convenience method to indicate a request that has not actually been sent.
+	*/
+	public func notSent(reason: String) -> ResponseType {
+		return self.dynamicType.ResponseType(notSentBecause: genServerError(reason, code: 710))
+	}
+	
+	/**
+	Convenience method to indicate that no request handler for the given type is available.
+	*/
+	public class func noneAvailableForType(type: FHIRRequestType) -> ResponseType {
+		return self.ResponseType(notSentBecause: genServerError("No request handler is available for \(type.rawValue) requests", code: 700))
 	}
 }
 
@@ -99,16 +87,12 @@ public class FHIRServerDataRequestHandler: FHIRServerRequestHandler
 
     JSON body data can be greated from the resource, if the receiver holds on to one.
  */
-public class FHIRServerJSONRequestHandler: FHIRServerDataRequestHandler
+public class FHIRServerJSONRequestHandler: FHIRServerRequestHandler
 {
 	public typealias ResponseType = FHIRServerJSONResponse
 	
 	public var json: FHIRJSON?
 	
-	public init(_ type: FHIRRequestType, resource: FHIRResource? = nil) {
-		super.init(type)
-		self.resource = resource
-	}
 	
 	override public func prepareData(error: NSErrorPointer) -> Bool {
 		if nil != data {
@@ -124,8 +108,20 @@ public class FHIRServerJSONRequestHandler: FHIRServerDataRequestHandler
 		return true			// e.g. for GET requests, we don't have data, so that's fine too
 	}
 	
-	override class var ResType: FHIRServerResponse.Type {
-		return FHIRServerJSONResponse.self
+	public override func prepareRequest(req: NSMutableURLRequest, error: NSErrorPointer) -> Bool {
+		if super.prepareRequest(req, error: error) {
+			req.setValue("application/json+fhir", forHTTPHeaderField: "Accept")
+			switch type {
+			case .PUT:
+				req.setValue("application/json+fhir; charset=utf-8", forHTTPHeaderField: "Content-Type")
+			case .POST:
+				req.setValue("application/json+fhir; charset=utf-8", forHTTPHeaderField: "Content-Type")
+			default:
+				break
+			}
+			return true
+		}
+		return false
 	}
 }
 

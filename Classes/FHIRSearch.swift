@@ -136,8 +136,7 @@ public class FHIRSearch
 		}
 		
 		busy = true
-		let handler = FHIRServerJSONRequestHandler(.GET)
-		server.performRequestAgainst(queryPath, handler: handler) { response in
+		server.performRequestOfType(.GET, path: queryPath, resource: nil) { response in
 			self.busy = false
 			
 			if let error = response.error {

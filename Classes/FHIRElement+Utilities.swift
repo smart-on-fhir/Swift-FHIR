@@ -23,9 +23,9 @@ public extension FHIRResource
 	/**
 	Attempt to instantiate a Resource of the receiving class by reading a JSON file at the given filesystem path.
 	
-	:param path: The local path to read the JSON file from
-	:param error: An NSError pointer to fill on failure
-	:returns: An instance of the receiving class or nil
+	- param path: The local path to read the JSON file from
+	- param error: An NSError pointer to fill on failure
+	- returns: An instance of the receiving class or nil
 	*/
 	final class func instantiateFromPath(path: String) throws -> Self? {
 		let data = try NSData(contentsOfFile: path, options: [])
@@ -41,7 +41,7 @@ extension NSBundle
 	Attempt to read a JSON file with the given name (.json) from the bundle, parse the JSON and instantiate a FHIR resource corresponding
 	to the "resourceType" in the file.
 	
-	:returns: A FHIRResource subclass corresponding to the "resourceType" entry or nil
+	- returns: A FHIRResource subclass corresponding to the "resourceType" entry or nil
 	*/
 	public func fhir_bundledResource(name: String) throws -> FHIRResource? {
 		if let url = URLForResource(name, withExtension: "json"), let data = NSData(contentsOfURL: url) {

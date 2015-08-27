@@ -21,6 +21,12 @@ public class FHIRServerResponse
 	/// Response headers
 	public let headers: [String: String]
 	
+	/// The response body data
+	public var body: NSData?
+	
+	/// The request's operation outcome, if any.
+	public internal(set) var outcome: OperationOutcome?
+	
 	/// An NSError, generated from status code unless it was explicitly assigned.
 	public var error: NSError? {
 		get {
@@ -49,8 +55,8 @@ public class FHIRServerResponse
 	}
 	
 	/**
-	    Instantiate a FHIRServerResponse from an NS(HTTP)URLResponse and NSData.
-	 */
+	Instantiate a FHIRServerResponse from an NS(HTTP)URLResponse and NSData.
+	*/
 	public required init(response: NSURLResponse, data: NSData?) {
 		var status = 0
 		var headers = [String: String]()
@@ -63,10 +69,13 @@ public class FHIRServerResponse
 						headers[keystr] = valstr
 					}
 					else {
-						print("DEBUG: Not a string in location headers: \(val) (for \(keystr))")
+						print("DEBUG: Not a string in headers: \(val) (for \(keystr))")
 					}
 				}
 			}
+		}
+		if let data = data {
+			body = data
 		}
 		
 		self.status = status
@@ -79,6 +88,16 @@ public class FHIRServerResponse
 		error = notSentBecause
 	}
 	
+	
+	// MARK: - Responses
+	
+	public func responseResource<T: FHIRElement>(expectType: T.Type) -> T? {
+		return nil
+	}
+	
+	public func applyToResource(resource: FHIRResource) {
+	}
+	
 	/** Initializes with a status of 600 to signal that no response was received. */
 	public class func noneReceived() -> Self {
 		return self.init(status: 600, headers: [String: String]())
@@ -87,34 +106,9 @@ public class FHIRServerResponse
 
 
 /**
-    Encapsulates a server response holding an NSData body.
- */
-public class FHIRServerDataResponse: FHIRServerResponse
-{
-	/// The response body data
-	public var body: NSData?
-	
-	public required init(status: Int, headers: [String: String]) {
-		super.init(status: status, headers: headers)
-	}
-	
-	public required init(response: NSURLResponse, data inData: NSData?) {
-		super.init(response: response, data: inData)
-		if let data = inData {
-			body = data
-		}
-	}
-	
-	public required init(notSentBecause error: NSError) {
-		super.init(notSentBecause: error)
-	}
-}
-
-
-/**
     Encapsulates a server response with JSON response body, if any.
  */
-public class FHIRServerJSONResponse: FHIRServerDataResponse
+public class FHIRServerJSONResponse: FHIRServerResponse
 {
 	/// The response body, decoded into a FHIRJSON
 	public var json: FHIRJSON?
@@ -134,10 +128,11 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse
 			do {
 				let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? FHIRJSON
 				self.json = json
+				self.outcome = responseResource(OperationOutcome)
 				
 				// check for OperationOutcome if there was an error
 				if status >= 400 {
-					if let erritem = resource(OperationOutcome)?.issue?.first {
+					if let erritem = self.outcome?.issue?.first {
 						let none = "unknown"
 						let errstr = "[\(erritem.severity ?? none)] \(erritem.details ?? none)"
 						self.error = genServerError(errstr, code: status)
@@ -160,15 +155,21 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse
 	}
 	
 	/**
-	    Uses FHIRElement's factory method to instantiate a resource from the response JSON, if any, and returns that resource if it indeed
-	    is of the expected type.
-	 */
-	public func resource<T: FHIRElement>(expectType: T.Type) -> T? {
-		if let json = self.json {
+	Uses FHIRElement's factory method to instantiate a resource from the response JSON, if any, and returns that resource if it is indeed of
+	the expected type.
+	*/
+	public override func responseResource<T: FHIRElement>(expectType: T.Type) -> T? {
+		if let json = json {
 			let resource = FHIRElement.instantiateFrom(json, owner: nil)
 			return resource as? T
 		}
 		return nil
+	}
+	
+	public override func applyToResource(resource: FHIRResource) {
+		if let json = json {
+			resource.populateFromJSON(json)
+		}
 	}
 }
 

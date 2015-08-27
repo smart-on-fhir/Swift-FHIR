@@ -440,6 +440,8 @@
 		EE6DA8631A5D4B3A00E00708 /* SwiftFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE6DA8571A5D4B1000E00708 /* SwiftFHIR.framework */; };
 		EE6DA86A1A5D4BD000E00708 /* BaseTests+iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6DA8691A5D4BD000E00708 /* BaseTests+iOS.swift */; };
 		EE6DA86C1A5D4BD700E00708 /* BaseTests+OSX.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6DA86B1A5D4BD700E00708 /* BaseTests+OSX.swift */; };
+		EE8901231B7E07D700F1EDBF /* FHIRElement+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8901221B7E07D700F1EDBF /* FHIRElement+Utilities.swift */; };
+		EE8901241B7E07D700F1EDBF /* FHIRElement+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8901221B7E07D700F1EDBF /* FHIRElement+Utilities.swift */; };
 		EE8DD2341A6B118000038123 /* DateAndTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DD2331A6B118000038123 /* DateAndTime.swift */; };
 		EE8DD2351A6B118000038123 /* DateAndTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DD2331A6B118000038123 /* DateAndTime.swift */; };
 		EE9B31F41ACAD93400980AA9 /* Resource+REST.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9B31F31ACAD93400980AA9 /* Resource+REST.swift */; };
@@ -701,6 +703,7 @@
 		EE6DA85D1A5D4B3A00E00708 /* SwiftFHIRiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftFHIRiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE6DA8691A5D4BD000E00708 /* BaseTests+iOS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseTests+iOS.swift"; sourceTree = "<group>"; };
 		EE6DA86B1A5D4BD700E00708 /* BaseTests+OSX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BaseTests+OSX.swift"; sourceTree = "<group>"; };
+		EE8901221B7E07D700F1EDBF /* FHIRElement+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIRElement+Utilities.swift"; sourceTree = "<group>"; };
 		EE8DD2331A6B118000038123 /* DateAndTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateAndTime.swift; sourceTree = "<group>"; };
 		EE9B31F31ACAD93400980AA9 /* Resource+REST.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Resource+REST.swift"; sourceTree = "<group>"; };
 		EE9B31FF1ACADE8000980AA9 /* Reference+Resolving.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Reference+Resolving.swift"; sourceTree = "<group>"; };
@@ -936,6 +939,7 @@
 			children = (
 				EE9B31F31ACAD93400980AA9 /* Resource+REST.swift */,
 				EE9B31FF1ACADE8000980AA9 /* Reference+Resolving.swift */,
+				EE8901221B7E07D700F1EDBF /* FHIRElement+Utilities.swift */,
 				EEA2C96F1A7391F8008726B0 /* FHIRServer.swift */,
 				EE9B320C1ACAE79500980AA9 /* FHIRServerRequestHandler.swift */,
 				EE9B320D1ACAE79500980AA9 /* FHIRServerResponse.swift */,
@@ -1297,6 +1301,7 @@
 				EE02F60B1ACF252000179969 /* Appointment.swift in Sources */,
 				EE02F66F1ACF252000179969 /* Group.swift in Sources */,
 				EE02F6351ACF252000179969 /* Contract.swift in Sources */,
+				EE8901231B7E07D700F1EDBF /* FHIRElement+Utilities.swift in Sources */,
 				EE02F6751ACF252000179969 /* Identifier.swift in Sources */,
 				EE02F6D51ACF252000179969 /* Schedule.swift in Sources */,
 				EE02F65D1ACF252000179969 /* Encounter.swift in Sources */,
@@ -1535,6 +1540,7 @@
 				EE02F60C1ACF252000179969 /* Appointment.swift in Sources */,
 				EE02F6701ACF252000179969 /* Group.swift in Sources */,
 				EE02F6361ACF252000179969 /* Contract.swift in Sources */,
+				EE8901241B7E07D700F1EDBF /* FHIRElement+Utilities.swift in Sources */,
 				EE02F6761ACF252000179969 /* Identifier.swift in Sources */,
 				EE02F6D61ACF252000179969 /* Schedule.swift in Sources */,
 				EE02F65E1ACF252000179969 /* Encounter.swift in Sources */,

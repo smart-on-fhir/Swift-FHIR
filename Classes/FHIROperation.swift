@@ -149,11 +149,8 @@ public class FHIROperation: CustomStringConvertible
 		}
 	}
 	
-	public func perform(server: FHIRServer, callback: ((response: FHIRServerJSONResponse) -> Void)) {
-		let handler = FHIRServerJSONRequestHandler(.GET)
-		server.performRequestAgainst(serverPath(), handler: handler) { response in
-			callback(response: response as! FHIRServerJSONResponse)
-		}
+	public func perform(server: FHIRServer, callback: ((response: FHIRServerResponse) -> Void)) {
+		server.performRequestOfType(.GET, path: serverPath(), resource: nil, callback: callback)
 	}
 	
 	

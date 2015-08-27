@@ -60,7 +60,7 @@ extension NSURL
 	func queryPairs() -> [String] {
 		if let comp = NSURLComponents(URL: self, resolvingAgainstBaseURL: false) {
 			if let qry = comp.query {
-				return split(qry.characters) {$0 == "&"}.map { String($0) }
+				return qry.characters.split() {$0 == "&"}.map { String($0) }
 			}
 		}
 		return []

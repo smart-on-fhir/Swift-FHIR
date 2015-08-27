@@ -136,8 +136,7 @@ public class FHIRSearch
 		}
 		
 		busy = true
-		let handler = FHIRServerJSONRequestHandler(.GET)
-		server.performRequestAgainst(queryPath, handler: handler) { response in
+		server.performRequestOfType(.GET, path: queryPath, resource: nil) { response in
 			self.busy = false
 			
 			if let error = response.error {
@@ -258,7 +257,7 @@ class FHIRSearchParam: CustomStringConvertible
 		if let chldren = children {
 			var arr = [FHIRURLParam]()
 			for child in chldren {
-				arr.extend(child.expand())
+				arr.appendContentsOf(child.expand())
 			}
 			return arr
 		}
@@ -309,7 +308,7 @@ struct FHIRSearchConstruct
 			}
 		}
 		
-		return "&".join(arr)
+		return arr.joinWithSeparator("&")
 	}
 	
 	func prepare(parent: FHIRSearchParam?) -> [FHIRSearchParam] {
@@ -317,7 +316,7 @@ struct FHIRSearchConstruct
 		if let myarr = construct as? [AnyObject] {
 			for any in myarr {
 				let sub = FHIRSearchConstruct(construct: any)
-				arr.extend(sub.prepare(nil))
+				arr.appendContentsOf(sub.prepare(nil))
 			}
 			return arr
 		}
@@ -376,11 +375,11 @@ struct FHIRSearchConstructAndHandler: FHIRSearchConstructHandler
 			param.name = nil
 			var ret = [FHIRSearchParam]()
 			for obj in arr {
-				ret.extend(FHIRSearchParam.from(obj, parent: param.parent))
+				ret.appendContentsOf(FHIRSearchParam.from(obj, parent: param.parent))
 			}
 			
 			if nil != param.children {
-				param.children!.extend(ret)
+				param.children!.appendContentsOf(ret)
 			}
 			else {
 				param.children = ret
@@ -411,7 +410,7 @@ struct FHIRSearchConstructOrHandler: FHIRSearchConstructHandler
 				}
 			}
 			param.name = nil
-			param.value = ",".join(strs)
+			param.value = strs.joinWithSeparator(",")
 		}
 		else {
 			print("ERROR: must supply an array of objects to an $or modifier")

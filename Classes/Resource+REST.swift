@@ -80,35 +80,35 @@ public extension Resource
 	// MARK: - CRUD
 	
 	/**
-	    Reads the resource with the given id from the given server.
+	Reads the resource with the given id from the given server.
 	
-	    Forwards to class method `readFrom` with the resource's relative URL, created from the supplied id and the resource's base.
-	 */
+	Forwards to class method `readFrom` with the resource's relative URL, created from the supplied id and the resource's base.
+	*/
 	public class func read(id: String, server: FHIRServer, callback: FHIRResourceErrorCallback) {
 		let path = "\(resourceName)/\(id)"
 		readFrom(path, server: server, callback: callback)
 	}
 	
 	/**
-	    Reads the resource from the given path on the given server.
+	Reads the resource from the given path on the given server.
 	
-	    This method creates a FHIRServerJSONRequestHandler for a GET request and deserializes the returned JSON into an instance on success.
+	This method creates a FHIRServerJSONRequestHandler for a GET request and deserializes the returned JSON into an instance on success.
 	
-	    - parameter path: The relative path on the server from which to read resource data from
-	    - parameter server: The server to use
-	    - parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
-	 */
+	- parameter path: The relative path on the server from which to read resource data from
+	- parameter server: The server to use
+	- parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
+	*/
 	public class func readFrom(path: String, server: FHIRServer, callback: FHIRResourceErrorCallback) {
-		let handler = FHIRServerJSONRequestHandler(.GET)
-		server.performRequestAgainst(path, handler: handler) { response in
+		server.performRequestOfType(.GET, path: path, resource: nil) { response in
 			if let error = response.error {
 				callback(resource: nil, error: error)
 			}
-			else {
-				let jsonres = response as! FHIRServerJSONResponse		// JSON request handlers always have JSON responses, not sure why the Swift compiler doesn't know
-				let resource = self.init(json: jsonres.json)
+			else if let resource = response.responseResource(Resource.self) {
 				resource._server = server
 				callback(resource: resource, error: nil)
+			}
+			else {
+				callback(resource: nil, error: genResourceError("Failed to instantiate resource when trying to read from «\(path)»"))
 			}
 		}
 	}
@@ -129,10 +129,9 @@ public extension Resource
 			return
 		}
 		
-		let handler = FHIRServerJSONRequestHandler(.POST, resource: self)
-		server.performRequestAgainst(relativeURLBase(), handler: handler) { response in
-			if nil == response.error, let json = (response as? FHIRServerJSONResponse)?.json {
-				self.populateFromJSON(json)
+		server.performRequestOfType(.POST, path: relativeURLBase(), resource: self) { response in
+			if nil == response.error {
+				response.applyToResource(self)
 				self._server = server
 			}
 			
@@ -151,8 +150,7 @@ public extension Resource
 	public func update(callback: FHIRErrorCallback) {
 		if let server = _server {
 			if let path = relativeURLPath() {
-				let handler = FHIRServerJSONRequestHandler(.PUT, resource: self)
-				server.performRequestAgainst(path, handler: handler) { response in
+				server.performRequestOfType(.PUT, path: path, resource: self) { response in
 					// TODO: should we do some header inspection (response.headers)?
 					callback(error: response.error)
 				}
@@ -191,8 +189,7 @@ public extension Resource
 	    This implementation issues a DELETE call against the given path on the given server.
 	 */
 	public class func delete(path: String, server: FHIRServer, callback: FHIRErrorCallback) {
-		let handler = FHIRServerJSONRequestHandler(.DELETE)
-		server.performRequestAgainst(path, handler: handler) { response in
+		server.performRequestOfType(.DELETE, path: path, resource: nil) { response in
 			// TODO: should we do some header inspection (response.headers)?
 			callback(error: response.error)
 		}
@@ -227,10 +224,10 @@ public extension Resource
 	/**
 	    Perform a given operation on the receiver.
 	 */
-	public func perform(operation: FHIROperation, callback: FHIRResourceErrorCallback) {
+	public func performOperation(operation: FHIROperation, callback: FHIRResourceErrorCallback) {
 		if let server = _server {
 			operation.instance = self
-			self.dynamicType._perform(operation, server: server, callback: callback)
+			self.dynamicType._performOperation(operation, server: server, callback: callback)
 		}
 		else {
 			callback(resource: nil, error: genServerError("The resource \(self) is not assigned to a server, cannot execute operation"))
@@ -242,16 +239,16 @@ public extension Resource
 	 */
 	public class func perform(operation: FHIROperation, server: FHIRServer, callback: FHIRResourceErrorCallback) {
 		operation.type = self
-		_perform(operation, server: server, callback: callback)
+		_performOperation(operation, server: server, callback: callback)
 	}
 	
-	class func _perform(operation: FHIROperation, server: FHIRServer, callback: FHIRResourceErrorCallback) {
+	class func _performOperation(operation: FHIROperation, server: FHIRServer, callback: FHIRResourceErrorCallback) {
 		server.performOperation(operation) { response in
 			if let error = response.error {
 				callback(resource: nil, error: error)
 			}
 			else {
-				let resource = FHIRElement.instantiateFrom(response.json, owner: nil) as? Resource
+				let resource = response.responseResource(Resource.self)
 				resource?._server = server
 				callback(resource: resource, error: nil)
 			}

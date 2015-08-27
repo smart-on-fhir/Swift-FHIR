@@ -16,9 +16,6 @@ import Foundation
  */
 public class FHIRServerRequestHandler
 {
-	/// The type of response instances that this class provides.
-	public typealias ResponseType = FHIRServerResponse
-	
 	/// The HTTP type of the request.
 	public let type: FHIRRequestType
 	
@@ -50,12 +47,16 @@ public class FHIRServerRequestHandler
 		type.prepareRequest(req, body: data)
 	}
 	
+	public class var ResponseType: FHIRServerResponse.Type {
+		return FHIRServerResponse.self
+	}
+	
 	/**
 	    Instantiate an object of ResponseType-type based on the response and data that we get.
 	 */
-	public func response(response response: NSURLResponse?, data inData: NSData? = nil) -> ResponseType {
+	public func response(response response: NSURLResponse?, data inData: NSData? = nil) -> FHIRServerResponse {
 		if let res = response {
-			return self.dynamicType.ResponseType(response: res, data: inData)
+			return self.dynamicType.ResponseType.init(response: res, data: inData)
 		}
 		return self.dynamicType.ResponseType.noneReceived()
 	}
@@ -63,15 +64,15 @@ public class FHIRServerRequestHandler
 	/**
 	Convenience method to indicate a request that has not actually been sent.
 	*/
-	public func notSent(reason: String) -> ResponseType {
-		return self.dynamicType.ResponseType(notSentBecause: genServerError(reason, code: 710))
+	public func notSent(reason: String) -> FHIRServerResponse {
+		return self.dynamicType.ResponseType.init(notSentBecause: genServerError(reason, code: 710))
 	}
 	
 	/**
 	Convenience method to indicate that no request handler for the given type is available.
 	*/
-	public class func noneAvailableForType(type: FHIRRequestType) -> ResponseType {
-		return self.ResponseType(notSentBecause: genServerError("No request handler is available for \(type.rawValue) requests", code: 700))
+	public class func noneAvailableForType(type: FHIRRequestType) -> FHIRServerResponse {
+		return ResponseType.init(notSentBecause: genServerError("No request handler is available for \(type.rawValue) requests", code: 700))
 	}
 }
 
@@ -83,8 +84,6 @@ public class FHIRServerRequestHandler
  */
 public class FHIRServerJSONRequestHandler: FHIRServerRequestHandler
 {
-	public typealias ResponseType = FHIRServerJSONResponse
-	
 	public var json: FHIRJSON?
 	
 	
@@ -111,6 +110,10 @@ public class FHIRServerJSONRequestHandler: FHIRServerRequestHandler
 		default:
 			break
 		}
+	}
+	
+	public override class var ResponseType: FHIRServerResponse.Type {
+		return FHIRServerJSONResponse.self
 	}
 }
 

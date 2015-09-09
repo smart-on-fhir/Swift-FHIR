@@ -2,7 +2,7 @@
 //  SampledData.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2015-04-23.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -48,7 +48,7 @@ public class SampledData: FHIRElement
 		super.init(json: json)
 	}
 	
-	/** Convenience initializer, taking all required properties an arguments. */
+	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(data: String?, dimensions: UInt?, origin: Quantity?, period: NSDecimalNumber?) {
 		self.init(json: nil)
 		if nil != data {
@@ -65,82 +65,82 @@ public class SampledData: FHIRElement
 		}
 	}
 	
-	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
-		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["data"] {
-				presentKeys.addObject("data")
+				presentKeys.insert("data")
 				if let val = exist as? String {
 					self.data = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"data\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "data", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(fhir_generateJSONError("\(self) expects nonoptional JSON property \"data\" but it is missing"))
+				errors.append(FHIRJSONError(key: "data"))
 			}
 			if let exist: AnyObject = js["dimensions"] {
-				presentKeys.addObject("dimensions")
+				presentKeys.insert("dimensions")
 				if let val = exist as? UInt {
 					self.dimensions = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"dimensions\" to be `UInt`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "dimensions", wants: UInt.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(fhir_generateJSONError("\(self) expects nonoptional JSON property \"dimensions\" but it is missing"))
+				errors.append(FHIRJSONError(key: "dimensions"))
 			}
 			if let exist: AnyObject = js["factor"] {
-				presentKeys.addObject("factor")
+				presentKeys.insert("factor")
 				if let val = exist as? NSNumber {
 					self.factor = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"factor\" to be `NSNumber`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "factor", wants: NSNumber.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["lowerLimit"] {
-				presentKeys.addObject("lowerLimit")
+				presentKeys.insert("lowerLimit")
 				if let val = exist as? NSNumber {
 					self.lowerLimit = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"lowerLimit\" to be `NSNumber`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "lowerLimit", wants: NSNumber.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["origin"] {
-				presentKeys.addObject("origin")
+				presentKeys.insert("origin")
 				if let val = exist as? FHIRJSON {
 					self.origin = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"origin\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "origin", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(fhir_generateJSONError("\(self) expects nonoptional JSON property \"origin\" but it is missing"))
+				errors.append(FHIRJSONError(key: "origin"))
 			}
 			if let exist: AnyObject = js["period"] {
-				presentKeys.addObject("period")
+				presentKeys.insert("period")
 				if let val = exist as? NSNumber {
 					self.period = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"period\" to be `NSNumber`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "period", wants: NSNumber.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(fhir_generateJSONError("\(self) expects nonoptional JSON property \"period\" but it is missing"))
+				errors.append(FHIRJSONError(key: "period"))
 			}
 			if let exist: AnyObject = js["upperLimit"] {
-				presentKeys.addObject("upperLimit")
+				presentKeys.insert("upperLimit")
 				if let val = exist as? NSNumber {
 					self.upperLimit = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"upperLimit\" to be `NSNumber`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "upperLimit", wants: NSNumber.self, has: exist.dynamicType))
 				}
 			}
 		}

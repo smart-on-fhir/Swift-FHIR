@@ -49,7 +49,7 @@ public extension Resource
 	
 	/**
 	    Returns the relative URL path to the receiver's type of resource. This usually is the same as the resource's name.
-	    :returns: A string indicating the relative URL base, e.g. "MedicationPrescription"
+	    - returns: A string indicating the relative URL base, e.g. "MedicationPrescription"
 	 */
 	public func relativeURLBase() -> String {
 		return self.dynamicType.resourceName
@@ -57,7 +57,7 @@ public extension Resource
 	
 	/**
 	    The relative URL path of the resource; the instance needs to have an id.
-	    :returns: A string indicating the relative URL, e.g. "MedicationPrescription/1234"
+	    - returns: A string indicating the relative URL, e.g. "MedicationPrescription/1234"
 	 */
 	public func relativeURLPath() -> String? {
 		if let myID = id {
@@ -94,9 +94,9 @@ public extension Resource
 	
 	This method creates a FHIRServerJSONRequestHandler for a GET request and deserializes the returned JSON into an instance on success.
 	
-	:param: path The relative path on the server from which to read resource data from
-	:param: server The server to use
-	:param: callback The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
+	- parameter path: The relative path on the server from which to read resource data from
+	- parameter server: The server to use
+	- parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	*/
 	public class func readFrom(path: String, server: FHIRServer, callback: FHIRResourceErrorCallback) {
 		server.performRequestOfType(.GET, path: path, resource: nil) { response in
@@ -120,8 +120,8 @@ public extension Resource
 	    (i.e. does not return an error), the receiver repopulates its properties with the server's response (if the server is returning the
 	    resource, which some servers may not) and the `_server` property is assigned.
 	
-	    :param: server The server on which to create the resource
-	    :param: callback The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
+	    - parameter server: The server on which to create the resource
+	    - parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	 */
 	public func create(server: FHIRServer, callback: FHIRErrorCallback) {
 		if nil != id {
@@ -145,7 +145,7 @@ public extension Resource
 	
 	    This method serializes the instance to JSON and issues a PUT call to the receiver's `_server` instance.
 	
-	    :param: callback The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
+	    - parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	 */
 	public func update(callback: FHIRErrorCallback) {
 		if let server = _server {
@@ -204,7 +204,7 @@ public extension Resource
 	    UNFINISHED.
 	 */
 	public func search(query: AnyObject) -> FHIRSearch {
-		if let myID = self.id {
+		if let _ = self.id {
 			NSLog("UNFINISHED, must add '_id' reference to search expression")
 			//return FHIRSearch(subject: "_id", reference: myID, type: self.dynamicType)
 		}

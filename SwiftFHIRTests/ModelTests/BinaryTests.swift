@@ -2,7 +2,7 @@
 //  BinaryTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -12,23 +12,23 @@ import SwiftFHIR
 
 class BinaryTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> Binary {
-		return instantiateFrom(json: readJSONFile(filename)!)
+	func instantiateFrom(filename filename: String) throws -> Binary {
+		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: FHIRJSON) -> Binary {
+	func instantiateFrom(json json: FHIRJSON) -> Binary {
 		let instance = Binary(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testBinary1() {
-		let instance = testBinary1_impl()
-		testBinary1_impl(json: instance.asJSON())
+	func testBinary1() throws {
+		let instance = try runBinary1()
+		try runBinary1(instance.asJSON())
 	}
 	
-	func testBinary1_impl(json: FHIRJSON? = nil) -> Binary {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "binary-example.json")
+	func runBinary1(json: FHIRJSON? = nil) throws -> Binary {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "binary-example.json")
 		
 		XCTAssertEqual(inst.contentType!, "application/pdf")
 		XCTAssertEqual(inst.id!, "example")

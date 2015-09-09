@@ -2,7 +2,7 @@
 //  Distance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Distance) on 2015-04-23.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Distance) on 2015-07-28.
 //  2015, SMART Health IT.
 //
 

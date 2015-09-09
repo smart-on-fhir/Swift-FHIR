@@ -2,7 +2,7 @@
 //  PractitionerTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -12,26 +12,26 @@ import SwiftFHIR
 
 class PractitionerTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> Practitioner {
-		return instantiateFrom(json: readJSONFile(filename)!)
+	func instantiateFrom(filename filename: String) throws -> Practitioner {
+		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: FHIRJSON) -> Practitioner {
+	func instantiateFrom(json json: FHIRJSON) -> Practitioner {
 		let instance = Practitioner(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testPractitioner1() {
-		let instance = testPractitioner1_impl()
-		testPractitioner1_impl(json: instance.asJSON())
+	func testPractitioner1() throws {
+		let instance = try runPractitioner1()
+		try runPractitioner1(instance.asJSON())
 	}
 	
-	func testPractitioner1_impl(json: FHIRJSON? = nil) -> Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "pract-uslab-example1.json")
+	func runPractitioner1(json: FHIRJSON? = nil) throws -> Practitioner {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "pract-uslab-example1.json")
 		
 		XCTAssertEqual(inst.id!, "uslab-example1")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "https://nppes.cms.hhs.gov/NPPES/")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "https://nppes.cms.hhs.gov/NPPES/")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "4444444445")
 		XCTAssertEqual(inst.name!.family![0], "Bloodraw")
@@ -45,27 +45,27 @@ class PractitionerTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testPractitioner2() {
-		let instance = testPractitioner2_impl()
-		testPractitioner2_impl(json: instance.asJSON())
+	func testPractitioner2() throws {
+		let instance = try runPractitioner2()
+		try runPractitioner2(instance.asJSON())
 	}
 	
-	func testPractitioner2_impl(json: FHIRJSON? = nil) -> Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "pract-uslab-example2.json")
+	func runPractitioner2(json: FHIRJSON? = nil) throws -> Practitioner {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "pract-uslab-example2.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Boston")
 		XCTAssertEqual(inst.address![0].country!, "USA")
-		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].url!.absoluteString!, "http://example.org//iso21090-SC-coding")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].url!.absoluteString, "http://example.org//iso21090-SC-coding")
 		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].valueCoding!.code!, "42043")
-		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].valueCoding!.system!.absoluteString!, "https://www.census.gov/geo/reference")
-		XCTAssertEqual(inst.address![0].extension_fhir![0].url!.absoluteString!, "http://example.org/us-core-county")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].extension_fhir![0].valueCoding!.system!.absoluteString, "https://www.census.gov/geo/reference")
+		XCTAssertEqual(inst.address![0].extension_fhir![0].url!.absoluteString, "http://example.org/us-core-county")
 		XCTAssertEqual(inst.address![0].line![0], "100 Medical Drive")
 		XCTAssertEqual(inst.address![0].line![1], "Suite 6")
 		XCTAssertEqual(inst.address![0].postalCode!, "01236")
 		XCTAssertEqual(inst.address![0].state!, "MA")
 		XCTAssertEqual(inst.address![0].use!, "work")
 		XCTAssertEqual(inst.id!, "uslab-example2")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "https://nppes.cms.hhs.gov/NPPES/")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "https://nppes.cms.hhs.gov/NPPES/")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "121121121")
 		XCTAssertEqual(inst.name!.family![0], "Lookafter")
@@ -83,16 +83,16 @@ class PractitionerTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testPractitioner3() {
-		let instance = testPractitioner3_impl()
-		testPractitioner3_impl(json: instance.asJSON())
+	func testPractitioner3() throws {
+		let instance = try runPractitioner3()
+		try runPractitioner3(instance.asJSON())
 	}
 	
-	func testPractitioner3_impl(json: FHIRJSON? = nil) -> Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "pract-uslab-example3.json")
+	func runPractitioner3(json: FHIRJSON? = nil) throws -> Practitioner {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "pract-uslab-example3.json")
 		
 		XCTAssertEqual(inst.id!, "uslab-example3")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "https://nppes.cms.hhs.gov/NPPES/")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "https://nppes.cms.hhs.gov/NPPES/")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "1234567893")
 		XCTAssertEqual(inst.name!.family![0], "House")
@@ -106,13 +106,13 @@ class PractitionerTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testPractitioner4() {
-		let instance = testPractitioner4_impl()
-		testPractitioner4_impl(json: instance.asJSON())
+	func testPractitioner4() throws {
+		let instance = try runPractitioner4()
+		try runPractitioner4(instance.asJSON())
 	}
 	
-	func testPractitioner4_impl(json: FHIRJSON? = nil) -> Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "practitioner-example-f001-evdb.json")
+	func runPractitioner4(json: FHIRJSON? = nil) throws -> Practitioner {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f001-evdb.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Den Burg")
 		XCTAssertEqual(inst.address![0].country!, "NLD")
@@ -122,10 +122,10 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.birthDate!.description, "1975-12-07")
 		XCTAssertEqual(inst.gender!, "male")
 		XCTAssertEqual(inst.id!, "f001")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1.1007.3.1")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:oid:2.16.528.1.1007.3.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "938273695")
-		XCTAssertEqual(inst.identifier![1].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.6.3")
+		XCTAssertEqual(inst.identifier![1].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![1].use!, "usual")
 		XCTAssertEqual(inst.identifier![1].value!, "129IDH4OP733")
 		XCTAssertEqual(inst.name!.family![0], "van den broek")
@@ -136,11 +136,11 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].code!, "01.000")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].display!, "Arts")
-		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.practitionerRole![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].code!, "01.018")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].display!, "Ear-, Nose and Throat")
-		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].text!, "specialisation")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "work")
@@ -156,13 +156,13 @@ class PractitionerTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testPractitioner5() {
-		let instance = testPractitioner5_impl()
-		testPractitioner5_impl(json: instance.asJSON())
+	func testPractitioner5() throws {
+		let instance = try runPractitioner5()
+		try runPractitioner5(instance.asJSON())
 	}
 	
-	func testPractitioner5_impl(json: FHIRJSON? = nil) -> Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "practitioner-example-f002-pv.json")
+	func runPractitioner5(json: FHIRJSON? = nil) throws -> Practitioner {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f002-pv.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Den Burg")
 		XCTAssertEqual(inst.address![0].country!, "NLD")
@@ -172,10 +172,10 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.birthDate!.description, "1979-04-29")
 		XCTAssertEqual(inst.gender!, "male")
 		XCTAssertEqual(inst.id!, "f002")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1.1007.3.1")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:oid:2.16.528.1.1007.3.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "730291637")
-		XCTAssertEqual(inst.identifier![1].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.6.3")
+		XCTAssertEqual(inst.identifier![1].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![1].use!, "usual")
 		XCTAssertEqual(inst.identifier![1].value!, "174BIP3JH438")
 		XCTAssertEqual(inst.name!.family![0], "Voigt")
@@ -186,11 +186,11 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].code!, "01.000")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].display!, "Arts")
-		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.practitionerRole![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].code!, "01.011")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].display!, "Cardiothoracal surgery")
-		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].text!, "specialisation")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "work")
@@ -206,13 +206,13 @@ class PractitionerTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testPractitioner6() {
-		let instance = testPractitioner6_impl()
-		testPractitioner6_impl(json: instance.asJSON())
+	func testPractitioner6() throws {
+		let instance = try runPractitioner6()
+		try runPractitioner6(instance.asJSON())
 	}
 	
-	func testPractitioner6_impl(json: FHIRJSON? = nil) -> Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "practitioner-example-f003-mv.json")
+	func runPractitioner6(json: FHIRJSON? = nil) throws -> Practitioner {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f003-mv.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Amsterdam")
 		XCTAssertEqual(inst.address![0].country!, "NLD")
@@ -222,13 +222,13 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.birthDate!.description, "1963-07-01")
 		XCTAssertEqual(inst.communication![0].coding![0].code!, "nl")
 		XCTAssertEqual(inst.communication![0].coding![0].display!, "Dutch")
-		XCTAssertEqual(inst.communication![0].coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.6.121")
+		XCTAssertEqual(inst.communication![0].coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.6.121")
 		XCTAssertEqual(inst.gender!, "male")
 		XCTAssertEqual(inst.id!, "f003")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1.1007.3.1")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:oid:2.16.528.1.1007.3.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "846100293")
-		XCTAssertEqual(inst.identifier![1].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.6.3")
+		XCTAssertEqual(inst.identifier![1].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![1].use!, "usual")
 		XCTAssertEqual(inst.identifier![1].value!, "243HID3RT938")
 		XCTAssertEqual(inst.name!.family![0], "Versteegh")
@@ -239,11 +239,11 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].code!, "01.000")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].display!, "Arts")
-		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.practitionerRole![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].code!, "01.011")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].display!, "Cardiothoracal surgery")
-		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].text!, "specialisation")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "work")
@@ -259,13 +259,13 @@ class PractitionerTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testPractitioner7() {
-		let instance = testPractitioner7_impl()
-		testPractitioner7_impl(json: instance.asJSON())
+	func testPractitioner7() throws {
+		let instance = try runPractitioner7()
+		try runPractitioner7(instance.asJSON())
 	}
 	
-	func testPractitioner7_impl(json: FHIRJSON? = nil) -> Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "practitioner-example-f004-rb.json")
+	func runPractitioner7(json: FHIRJSON? = nil) throws -> Practitioner {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f004-rb.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Amsterdam")
 		XCTAssertEqual(inst.address![0].country!, "NLD")
@@ -275,14 +275,14 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.birthDate!.description, "1980-02-04")
 		XCTAssertEqual(inst.communication![0].coding![0].code!, "nl")
 		XCTAssertEqual(inst.communication![0].coding![0].display!, "Netherlands")
-		XCTAssertEqual(inst.communication![0].coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.6.121")
+		XCTAssertEqual(inst.communication![0].coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.6.121")
 		XCTAssertEqual(inst.communication![0].text!, "Language")
 		XCTAssertEqual(inst.gender!, "male")
 		XCTAssertEqual(inst.id!, "f004")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1.1007.3.1")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:oid:2.16.528.1.1007.3.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "118265112")
-		XCTAssertEqual(inst.identifier![1].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.6.3")
+		XCTAssertEqual(inst.identifier![1].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![1].use!, "usual")
 		XCTAssertEqual(inst.identifier![1].value!, "523ASA1LK927")
 		XCTAssertEqual(inst.name!.family![0], "Briet")
@@ -293,11 +293,11 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].code!, "01.000")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].display!, "Arts")
-		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.practitionerRole![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].code!, "01.018")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].display!, "Ear-, Nose and Throat")
-		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].text!, "specialisation")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "work")
@@ -313,13 +313,13 @@ class PractitionerTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testPractitioner8() {
-		let instance = testPractitioner8_impl()
-		testPractitioner8_impl(json: instance.asJSON())
+	func testPractitioner8() throws {
+		let instance = try runPractitioner8()
+		try runPractitioner8(instance.asJSON())
 	}
 	
-	func testPractitioner8_impl(json: FHIRJSON? = nil) -> Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "practitioner-example-f005-al.json")
+	func runPractitioner8(json: FHIRJSON? = nil) throws -> Practitioner {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f005-al.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Amsterdam")
 		XCTAssertEqual(inst.address![0].country!, "NLD")
@@ -329,13 +329,13 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.birthDate!.description, "1959-03-11")
 		XCTAssertEqual(inst.communication![0].coding![0].code!, "fr")
 		XCTAssertEqual(inst.communication![0].coding![0].display!, "France")
-		XCTAssertEqual(inst.communication![0].coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.6.121")
+		XCTAssertEqual(inst.communication![0].coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.6.121")
 		XCTAssertEqual(inst.gender!, "female")
 		XCTAssertEqual(inst.id!, "f005")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1.1007.3.1")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:oid:2.16.528.1.1007.3.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "118265112")
-		XCTAssertEqual(inst.identifier![1].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.6.3")
+		XCTAssertEqual(inst.identifier![1].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![1].use!, "usual")
 		XCTAssertEqual(inst.identifier![1].value!, "191REW8WE916")
 		XCTAssertEqual(inst.name!.family![0], "Anne")
@@ -346,11 +346,11 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].code!, "01.000")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].display!, "Arts")
-		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.practitionerRole![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].code!, "01.018")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].display!, "Keel- neus- en oorarts")
-		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].text!, "specialisation")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "work")
@@ -366,13 +366,13 @@ class PractitionerTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testPractitioner9() {
-		let instance = testPractitioner9_impl()
-		testPractitioner9_impl(json: instance.asJSON())
+	func testPractitioner9() throws {
+		let instance = try runPractitioner9()
+		try runPractitioner9(instance.asJSON())
 	}
 	
-	func testPractitioner9_impl(json: FHIRJSON? = nil) -> Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "practitioner-example-f006-rvdb.json")
+	func runPractitioner9(json: FHIRJSON? = nil) throws -> Practitioner {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f006-rvdb.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Den Burg")
 		XCTAssertEqual(inst.address![0].country!, "NLD")
@@ -382,10 +382,10 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.birthDate!.description, "1975-12-07")
 		XCTAssertEqual(inst.gender!, "male")
 		XCTAssertEqual(inst.id!, "f006")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1.1007.3.1")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:oid:2.16.528.1.1007.3.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "937223645")
-		XCTAssertEqual(inst.identifier![1].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.6.3")
+		XCTAssertEqual(inst.identifier![1].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![1].use!, "usual")
 		XCTAssertEqual(inst.identifier![1].value!, "134IDY41W988")
 		XCTAssertEqual(inst.name!.family![0], "van den Berk")
@@ -396,11 +396,11 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].code!, "01.000")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].display!, "Arts")
-		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.practitionerRole![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].code!, "17.000")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].display!, "Pharmacist")
-		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].text!, "specialisation")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "work")
@@ -416,13 +416,13 @@ class PractitionerTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testPractitioner10() {
-		let instance = testPractitioner10_impl()
-		testPractitioner10_impl(json: instance.asJSON())
+	func testPractitioner10() throws {
+		let instance = try runPractitioner10()
+		try runPractitioner10(instance.asJSON())
 	}
 	
-	func testPractitioner10_impl(json: FHIRJSON? = nil) -> Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "practitioner-example-f007-sh.json")
+	func runPractitioner10(json: FHIRJSON? = nil) throws -> Practitioner {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f007-sh.json")
 		
 		XCTAssertEqual(inst.address![0].city!, "Den Burg")
 		XCTAssertEqual(inst.address![0].country!, "NLD")
@@ -432,10 +432,10 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.birthDate!.description, "1971-11-07")
 		XCTAssertEqual(inst.gender!, "female")
 		XCTAssertEqual(inst.id!, "f007")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString!, "urn:oid:2.16.528.1.1007.3.1")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:oid:2.16.528.1.1007.3.1")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "874635264")
-		XCTAssertEqual(inst.identifier![1].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.6.3")
+		XCTAssertEqual(inst.identifier![1].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![1].use!, "usual")
 		XCTAssertEqual(inst.identifier![1].value!, "567IUI51C154")
 		XCTAssertEqual(inst.name!.family![0], "Heps")
@@ -446,11 +446,11 @@ class PractitionerTests: FHIRModelTestCase
 		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].code!, "01.000")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].display!, "Arts")
-		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.practitionerRole![0].role!.text!, "Care role")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].code!, "01.015")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].display!, "Physician")
-		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].system!.absoluteString!, "urn:oid:2.16.840.1.113883.2.4.15.111")
+		XCTAssertEqual(inst.practitionerRole![0].specialty![0].coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.practitionerRole![0].specialty![0].text!, "specialisation")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "work")

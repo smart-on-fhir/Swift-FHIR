@@ -2,7 +2,7 @@
 //  StructureDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -12,23 +12,23 @@ import SwiftFHIR
 
 class StructureDefinitionTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> StructureDefinition {
-		return instantiateFrom(json: readJSONFile(filename)!)
+	func instantiateFrom(filename filename: String) throws -> StructureDefinition {
+		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: FHIRJSON) -> StructureDefinition {
+	func instantiateFrom(json json: FHIRJSON) -> StructureDefinition {
 		let instance = StructureDefinition(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testStructureDefinition1() {
-		let instance = testStructureDefinition1_impl()
-		testStructureDefinition1_impl(json: instance.asJSON())
+	func testStructureDefinition1() throws {
+		let instance = try runStructureDefinition1()
+		try runStructureDefinition1(instance.asJSON())
 	}
 	
-	func testStructureDefinition1_impl(json: FHIRJSON? = nil) -> StructureDefinition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "structuredefinition-example.json")
+	func runStructureDefinition1(json: FHIRJSON? = nil) throws -> StructureDefinition {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "structuredefinition-example.json")
 		
 		XCTAssertFalse(inst.abstract!)
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
@@ -126,7 +126,7 @@ class StructureDefinitionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.status!, "draft")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!, "constraint")
-		XCTAssertEqual(inst.url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/example")
+		XCTAssertEqual(inst.url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/example")
 		
 		return inst
 	}

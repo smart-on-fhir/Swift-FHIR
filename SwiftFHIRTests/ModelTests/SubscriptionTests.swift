@@ -2,7 +2,7 @@
 //  SubscriptionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -12,25 +12,25 @@ import SwiftFHIR
 
 class SubscriptionTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> Subscription {
-		return instantiateFrom(json: readJSONFile(filename)!)
+	func instantiateFrom(filename filename: String) throws -> Subscription {
+		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: FHIRJSON) -> Subscription {
+	func instantiateFrom(json json: FHIRJSON) -> Subscription {
 		let instance = Subscription(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testSubscription1() {
-		let instance = testSubscription1_impl()
-		testSubscription1_impl(json: instance.asJSON())
+	func testSubscription1() throws {
+		let instance = try runSubscription1()
+		try runSubscription1(instance.asJSON())
 	}
 	
-	func testSubscription1_impl(json: FHIRJSON? = nil) -> Subscription {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "subscription-example.json")
+	func runSubscription1(json: FHIRJSON? = nil) throws -> Subscription {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "subscription-example.json")
 		
-		XCTAssertEqual(inst.channel!.endpoint!.absoluteString!, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
+		XCTAssertEqual(inst.channel!.endpoint!.absoluteString, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
 		XCTAssertEqual(inst.channel!.header!, "Authorization: Bearer secret-token-abc-123")
 		XCTAssertEqual(inst.channel!.payload!, "application/json")
 		XCTAssertEqual(inst.channel!.type!, "rest-hook")

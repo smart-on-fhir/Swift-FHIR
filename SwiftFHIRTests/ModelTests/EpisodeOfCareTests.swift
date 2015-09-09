@@ -2,7 +2,7 @@
 //  EpisodeOfCareTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -12,23 +12,23 @@ import SwiftFHIR
 
 class EpisodeOfCareTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> EpisodeOfCare {
-		return instantiateFrom(json: readJSONFile(filename)!)
+	func instantiateFrom(filename filename: String) throws -> EpisodeOfCare {
+		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: FHIRJSON) -> EpisodeOfCare {
+	func instantiateFrom(json json: FHIRJSON) -> EpisodeOfCare {
 		let instance = EpisodeOfCare(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testEpisodeOfCare1() {
-		let instance = testEpisodeOfCare1_impl()
-		testEpisodeOfCare1_impl(json: instance.asJSON())
+	func testEpisodeOfCare1() throws {
+		let instance = try runEpisodeOfCare1()
+		try runEpisodeOfCare1(instance.asJSON())
 	}
 	
-	func testEpisodeOfCare1_impl(json: FHIRJSON? = nil) -> EpisodeOfCare {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "episodeofcare-example.json")
+	func runEpisodeOfCare1(json: FHIRJSON? = nil) throws -> EpisodeOfCare {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "episodeofcare-example.json")
 		
 		XCTAssertEqual(inst.careManager!.display!, "Amanda Assigned")
 		XCTAssertEqual(inst.careManager!.reference!, "Practitioner/14")
@@ -38,7 +38,7 @@ class EpisodeOfCareTests: FHIRModelTestCase
 		XCTAssertEqual(inst.careTeam![0].period!.start!.description, "2014-09-01")
 		XCTAssertEqual(inst.careTeam![0].role![0].coding![0].code!, "AO")
 		XCTAssertEqual(inst.careTeam![0].role![0].coding![0].display!, "Assessment Worker")
-		XCTAssertEqual(inst.careTeam![0].role![0].coding![0].system!.absoluteString!, "http://example.org/EpisodeOfCare/Role")
+		XCTAssertEqual(inst.careTeam![0].role![0].coding![0].system!.absoluteString, "http://example.org/EpisodeOfCare/Role")
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/hl7")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
@@ -58,7 +58,7 @@ class EpisodeOfCareTests: FHIRModelTestCase
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type![0].coding![0].code!, "HACC")
 		XCTAssertEqual(inst.type![0].coding![0].display!, "Home and Community Care Package")
-		XCTAssertEqual(inst.type![0].coding![0].system!.absoluteString!, "http://example.org/EpisodeOfCare/Type")
+		XCTAssertEqual(inst.type![0].coding![0].system!.absoluteString, "http://example.org/EpisodeOfCare/Type")
 		
 		return inst
 	}

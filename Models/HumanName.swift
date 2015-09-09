@@ -2,7 +2,7 @@
 //  HumanName.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2015-04-23.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -47,70 +47,70 @@ public class HumanName: FHIRElement
 		super.init(json: json)
 	}
 	
-	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
-		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["family"] {
-				presentKeys.addObject("family")
+				presentKeys.insert("family")
 				if let val = exist as? [String] {
 					self.family = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"family\" to be an array of `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "family", wants: Array<String>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["given"] {
-				presentKeys.addObject("given")
+				presentKeys.insert("given")
 				if let val = exist as? [String] {
 					self.given = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"given\" to be an array of `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "given", wants: Array<String>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["period"] {
-				presentKeys.addObject("period")
+				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
 					self.period = Period(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"period\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["prefix"] {
-				presentKeys.addObject("prefix")
+				presentKeys.insert("prefix")
 				if let val = exist as? [String] {
 					self.prefix = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"prefix\" to be an array of `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "prefix", wants: Array<String>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["suffix"] {
-				presentKeys.addObject("suffix")
+				presentKeys.insert("suffix")
 				if let val = exist as? [String] {
 					self.suffix = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"suffix\" to be an array of `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "suffix", wants: Array<String>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["text"] {
-				presentKeys.addObject("text")
+				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"text\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "text", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["use"] {
-				presentKeys.addObject("use")
+				presentKeys.insert("use")
 				if let val = exist as? String {
 					self.use = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"use\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "use", wants: String.self, has: exist.dynamicType))
 				}
 			}
 		}

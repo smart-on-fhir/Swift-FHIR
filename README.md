@@ -4,11 +4,22 @@ FHIR Swift Classes
 These are [Swift](https://developer.apple.com/swift/) classes representing data models of [🔥 FHIR](http://www.hl7.org/fhir) resource profiles, compatible with **iOS 7** and **OS X 10.9** and later.
 Building Swift frameworks requires Xcode 6 or later, using frameworks on iOS requires **iOS 8**.
 
-The `master` branch is currently on the _May 2015 DSTU 2_ ballot version.  
-The `develop` branch is work in progress for _DSTU 2_.
-
-For specific FHIR and Swift versions not on the bleeding edge, see [releases](https://github.com/smart-on-fhir/Swift-FHIR/releases).
 This work is [Apache licensed](LICENSE.txt).
+
+
+### Versioning
+
+Due to the complications of combining two volatile technologies, here's an overview of which version numbers use which **Swift** and **FHIR versions**.
+The `master` branch should always compile and is on (point releases of) these main versions.
+See the `develop` branch or specific `feature/x` branches for new Swift or FHIR versions, and check the [tags](https://github.com/smart-on-fhir/Swift-FHIR/releases).
+
+Version  | Swift Version | FHIR Version
+---------|---------------|-------------
+ **2.1** |           2.0 | DSTU 2 (Sept 2015, `1.0.0`)
+ **2.0** |           2.0 | DSTU 2 (May 2015, `0.5.0.5149`)
+ **1.0** |           1.2 | DSTU 2 (May 2015, `0.5.0.5149`)
+ **0.2** |           1.1 | DSTU 2 (May 2015, `0.5.0.5149`)
+ **0.1** |           1.0 | DSTU 1 (`0.0.81.2382`)
 
 
 SMART on FHIR
@@ -102,7 +113,8 @@ prescription.medication?.resolve(Medication.self) { medication in
 	if let medication = medication {
 		// successfully resolved
 	}
-}```
+}
+```
 
 ### Search
 

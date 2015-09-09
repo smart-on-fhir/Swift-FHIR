@@ -2,7 +2,7 @@
 //  ParametersTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -12,23 +12,23 @@ import SwiftFHIR
 
 class ParametersTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> Parameters {
-		return instantiateFrom(json: readJSONFile(filename)!)
+	func instantiateFrom(filename filename: String) throws -> Parameters {
+		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: FHIRJSON) -> Parameters {
+	func instantiateFrom(json json: FHIRJSON) -> Parameters {
 		let instance = Parameters(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testParameters1() {
-		let instance = testParameters1_impl()
-		testParameters1_impl(json: instance.asJSON())
+	func testParameters1() throws {
+		let instance = try runParameters1()
+		try runParameters1(instance.asJSON())
 	}
 	
-	func testParameters1_impl(json: FHIRJSON? = nil) -> Parameters {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "parameters-example.json")
+	func runParameters1(json: FHIRJSON? = nil) throws -> Parameters {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "parameters-example.json")
 		
 		XCTAssertEqual(inst.parameter![0].name!, "start")
 		XCTAssertEqual(inst.parameter![0].valueDate!.description, "2010-01-01")

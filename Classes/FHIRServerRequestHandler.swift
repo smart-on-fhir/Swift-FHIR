@@ -30,14 +30,11 @@ public class FHIRServerRequestHandler
 		self.resource = resource
 	}
 	
-	public func prepareData(error: NSErrorPointer) -> Bool {
+	public func prepareData() throws {
 		if nil == resource {
-			return true
+			return
 		}
-		if nil != error {
-			error.memory = NSError(domain: "FHIRErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey: "`FHIRServerRequestHandler` cannot prepare request body data"])
-		}
-		return false
+		throw NSError(domain: "FHIRErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey: "`FHIRServerRequestHandler` cannot prepare request body data"])
 	}
 	
 	/**
@@ -45,12 +42,9 @@ public class FHIRServerRequestHandler
 	
 	    Typically the FHIRRequestType instance sets the correct HTTPMethod as well as correct FHIR headers.
 	 */
-	public func prepareRequest(req: NSMutableURLRequest, error: NSErrorPointer) -> Bool {
-		if prepareData(error) {
-			type.prepareRequest(req, body: data)
-			return true
-		}
-		return false
+	public func prepareRequest(req: NSMutableURLRequest) throws {
+		try prepareData()
+		type.prepareRequest(req, body: data)
 	}
 	
 	public class var ResponseType: FHIRServerResponse.Type {
@@ -60,9 +54,9 @@ public class FHIRServerRequestHandler
 	/**
 	    Instantiate an object of ResponseType-type based on the response and data that we get.
 	 */
-	public func response(# response: NSURLResponse?, data inData: NSData? = nil) -> FHIRServerResponse {
+	public func response(response response: NSURLResponse?, data inData: NSData? = nil) -> FHIRServerResponse {
 		if let res = response {
-			return self.dynamicType.ResponseType(response: res, data: inData)
+			return self.dynamicType.ResponseType.init(response: res, data: inData)
 		}
 		return self.dynamicType.ResponseType.noneReceived()
 	}
@@ -71,14 +65,14 @@ public class FHIRServerRequestHandler
 	Convenience method to indicate a request that has not actually been sent.
 	*/
 	public func notSent(reason: String) -> FHIRServerResponse {
-		return self.dynamicType.ResponseType(notSentBecause: genServerError(reason, code: 710))
+		return self.dynamicType.ResponseType.init(notSentBecause: genServerError(reason, code: 710))
 	}
 	
 	/**
 	Convenience method to indicate that no request handler for the given type is available.
 	*/
 	public class func noneAvailableForType(type: FHIRRequestType) -> FHIRServerResponse {
-		return self.ResponseType(notSentBecause: genServerError("No request handler is available for \(type.rawValue) requests", code: 700))
+		return ResponseType.init(notSentBecause: genServerError("No request handler is available for \(type.rawValue) requests", code: 700))
 	}
 }
 
@@ -93,34 +87,29 @@ public class FHIRServerJSONRequestHandler: FHIRServerRequestHandler
 	public var json: FHIRJSON?
 	
 	
-	override public func prepareData(error: NSErrorPointer) -> Bool {
+	override public func prepareData() throws {
 		if nil != data {
-			return true
+			return
 		}
 		if nil == json {
 			json = resource?.asJSON()
 		}
 		if let json = json {
-			data = NSJSONSerialization.dataWithJSONObject(json, options: nil, error: error)
-			return nil != data
-		}
-		return true			// e.g. for GET requests, we don't have data, so that's fine too
+			data = try NSJSONSerialization.dataWithJSONObject(json, options: [])
+		}			// e.g. for GET requests, we don't have data, so that's fine too
 	}
 	
-	public override func prepareRequest(req: NSMutableURLRequest, error: NSErrorPointer) -> Bool {
-		if super.prepareRequest(req, error: error) {
-			req.setValue("application/json+fhir", forHTTPHeaderField: "Accept")
-			switch type {
-			case .PUT:
-				req.setValue("application/json+fhir; charset=utf-8", forHTTPHeaderField: "Content-Type")
-			case .POST:
-				req.setValue("application/json+fhir; charset=utf-8", forHTTPHeaderField: "Content-Type")
-			default:
-				break
-			}
-			return true
+	public override func prepareRequest(req: NSMutableURLRequest) throws {
+		try super.prepareRequest(req)
+		req.setValue("application/json+fhir", forHTTPHeaderField: "Accept")
+		switch type {
+		case .PUT:
+			req.setValue("application/json+fhir; charset=utf-8", forHTTPHeaderField: "Content-Type")
+		case .POST:
+			req.setValue("application/json+fhir; charset=utf-8", forHTTPHeaderField: "Content-Type")
+		default:
+			break
 		}
-		return false
 	}
 	
 	public override class var ResponseType: FHIRServerResponse.Type {

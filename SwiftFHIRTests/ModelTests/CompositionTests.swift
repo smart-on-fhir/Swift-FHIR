@@ -2,7 +2,7 @@
 //  CompositionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -12,23 +12,23 @@ import SwiftFHIR
 
 class CompositionTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> Composition {
-		return instantiateFrom(json: readJSONFile(filename)!)
+	func instantiateFrom(filename filename: String) throws -> Composition {
+		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: FHIRJSON) -> Composition {
+	func instantiateFrom(json json: FHIRJSON) -> Composition {
 		let instance = Composition(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testComposition1() {
-		let instance = testComposition1_impl()
-		testComposition1_impl(json: instance.asJSON())
+	func testComposition1() throws {
+		let instance = try runComposition1()
+		try runComposition1(instance.asJSON())
 	}
 	
-	func testComposition1_impl(json: FHIRJSON? = nil) -> Composition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "composition-example.json")
+	func runComposition1(json: FHIRJSON? = nil) throws -> Composition {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "composition-example.json")
 		
 		XCTAssertEqual(inst.attester![0].mode![0], "legal")
 		XCTAssertEqual(inst.attester![0].party!.display!, "Robert Dolin MD")
@@ -40,7 +40,7 @@ class CompositionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.custodian!.reference!, "Organization/2.16.840.1.113883.19.5")
 		XCTAssertEqual(inst.date!.description, "2012-01-04T09:10:14Z")
 		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.identifier!.system!.absoluteString!, "http://healthintersections.com.au/test")
+		XCTAssertEqual(inst.identifier!.system!.absoluteString, "http://healthintersections.com.au/test")
 		XCTAssertEqual(inst.identifier!.value!, "1")
 		XCTAssertEqual(inst.section![0].content!.reference!, "List/example")
 		XCTAssertEqual(inst.section![0].title!, "History of present illness")
@@ -50,7 +50,7 @@ class CompositionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "11488-4")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Consult note")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString!, "http://loinc.org")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString, "http://loinc.org")
 		
 		return inst
 	}

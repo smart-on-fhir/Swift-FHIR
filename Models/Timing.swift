@@ -2,7 +2,7 @@
 //  Timing.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Timing) on 2015-04-23.
+//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Timing) on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -29,7 +29,7 @@ public class Timing: FHIRElement
 	public var event: [DateTime]?
 	
 	/// When the event is to occur
-	public var repeat: TimingRepeat?
+	public var repeat_fhir: TimingRepeat?
 	
 	
 	/** Initialize with a JSON object. */
@@ -37,34 +37,34 @@ public class Timing: FHIRElement
 		super.init(json: json)
 	}
 	
-	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
-		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["code"] {
-				presentKeys.addObject("code")
+				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
 					self.code = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"code\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["event"] {
-				presentKeys.addObject("event")
+				presentKeys.insert("event")
 				if let val = exist as? [String] {
 					self.event = DateTime.from(val)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"event\" to be an array of `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "event", wants: Array<String>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["repeat"] {
-				presentKeys.addObject("repeat")
+				presentKeys.insert("repeat")
 				if let val = exist as? FHIRJSON {
-					self.repeat = TimingRepeat(json: val, owner: self)
+					self.repeat_fhir = TimingRepeat(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"repeat\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "repeat", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -84,8 +84,8 @@ public class Timing: FHIRElement
 			}
 			json["event"] = arr
 		}
-		if let repeat = self.repeat {
-			json["repeat"] = repeat.asJSON()
+		if let repeat_fhir = self.repeat_fhir {
+			json["repeat"] = repeat_fhir.asJSON()
 		}
 		
 		return json
@@ -140,97 +140,97 @@ public class TimingRepeat: FHIRElement
 		super.init(json: json)
 	}
 	
-	override func populateFromJSON(json: FHIRJSON?, presentKeys: NSMutableSet) -> [NSError]? {
-		var errors = super.populateFromJSON(json, presentKeys: presentKeys) ?? [NSError]()
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["bounds"] {
-				presentKeys.addObject("bounds")
+				presentKeys.insert("bounds")
 				if let val = exist as? FHIRJSON {
 					self.bounds = Period(json: val, owner: self)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"bounds\" to be `FHIRJSON`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "bounds", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["count"] {
-				presentKeys.addObject("count")
+				presentKeys.insert("count")
 				if let val = exist as? Int {
 					self.count = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"count\" to be `Int`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "count", wants: Int.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["duration"] {
-				presentKeys.addObject("duration")
+				presentKeys.insert("duration")
 				if let val = exist as? NSNumber {
 					self.duration = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"duration\" to be `NSNumber`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "duration", wants: NSNumber.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["durationUnits"] {
-				presentKeys.addObject("durationUnits")
+				presentKeys.insert("durationUnits")
 				if let val = exist as? String {
 					self.durationUnits = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"durationUnits\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "durationUnits", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["frequency"] {
-				presentKeys.addObject("frequency")
+				presentKeys.insert("frequency")
 				if let val = exist as? Int {
 					self.frequency = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"frequency\" to be `Int`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "frequency", wants: Int.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["frequencyMax"] {
-				presentKeys.addObject("frequencyMax")
+				presentKeys.insert("frequencyMax")
 				if let val = exist as? Int {
 					self.frequencyMax = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"frequencyMax\" to be `Int`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "frequencyMax", wants: Int.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["period"] {
-				presentKeys.addObject("period")
+				presentKeys.insert("period")
 				if let val = exist as? NSNumber {
 					self.period = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"period\" to be `NSNumber`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "period", wants: NSNumber.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["periodMax"] {
-				presentKeys.addObject("periodMax")
+				presentKeys.insert("periodMax")
 				if let val = exist as? NSNumber {
 					self.periodMax = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"periodMax\" to be `NSNumber`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "periodMax", wants: NSNumber.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["periodUnits"] {
-				presentKeys.addObject("periodUnits")
+				presentKeys.insert("periodUnits")
 				if let val = exist as? String {
 					self.periodUnits = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"periodUnits\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "periodUnits", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["when"] {
-				presentKeys.addObject("when")
+				presentKeys.insert("when")
 				if let val = exist as? String {
 					self.when = val
 				}
 				else {
-					errors.append(fhir_generateJSONError("\(self) expects JSON property \"when\" to be `String`, but is \(exist.dynamicType)"))
+					errors.append(FHIRJSONError(key: "when", wants: String.self, has: exist.dynamicType))
 				}
 			}
 		}

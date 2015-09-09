@@ -2,7 +2,7 @@
 //  ValueSetTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -12,29 +12,29 @@ import SwiftFHIR
 
 class ValueSetTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> ValueSet {
-		return instantiateFrom(json: readJSONFile(filename)!)
+	func instantiateFrom(filename filename: String) throws -> ValueSet {
+		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: FHIRJSON) -> ValueSet {
+	func instantiateFrom(json json: FHIRJSON) -> ValueSet {
 		let instance = ValueSet(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testValueSet1() {
-		let instance = testValueSet1_impl()
-		testValueSet1_impl(json: instance.asJSON())
+	func testValueSet1() throws {
+		let instance = try runValueSet1()
+		try runValueSet1(instance.asJSON())
 	}
 	
-	func testValueSet1_impl(json: FHIRJSON? = nil) -> ValueSet {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "valueset-example.json")
+	func runValueSet1(json: FHIRJSON? = nil) throws -> ValueSet {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example.json")
 		
 		XCTAssertEqual(inst.compose!.include![0].concept![0].code!, "14647-2")
 		XCTAssertEqual(inst.compose!.include![0].concept![1].code!, "2093-3")
 		XCTAssertEqual(inst.compose!.include![0].concept![2].code!, "35200-5")
 		XCTAssertEqual(inst.compose!.include![0].concept![3].code!, "9342-7")
-		XCTAssertEqual(inst.compose!.include![0].system!.absoluteString!, "http://loinc.org")
+		XCTAssertEqual(inst.compose!.include![0].system!.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.compose!.include![0].version!, "2.36")
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
 		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
@@ -47,19 +47,19 @@ class ValueSetTests: FHIRModelTestCase
 		XCTAssertEqual(inst.publisher!, "FHIR project team (example)")
 		XCTAssertEqual(inst.status!, "draft")
 		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.url!.absoluteString!, "urn:uuid:256a5231-a2bb-49bd-9fea-f349d428b70d")
+		XCTAssertEqual(inst.url!.absoluteString, "urn:uuid:256a5231-a2bb-49bd-9fea-f349d428b70d")
 		XCTAssertEqual(inst.version!, "20120613")
 		
 		return inst
 	}
 	
-	func testValueSet2() {
-		let instance = testValueSet2_impl()
-		testValueSet2_impl(json: instance.asJSON())
+	func testValueSet2() throws {
+		let instance = try runValueSet2()
+		try runValueSet2(instance.asJSON())
 	}
 	
-	func testValueSet2_impl(json: FHIRJSON? = nil) -> ValueSet {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "valueset-list-example-codes.json")
+	func runValueSet2(json: FHIRJSON? = nil) throws -> ValueSet {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-list-example-codes.json")
 		
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "url")
 		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
@@ -91,21 +91,21 @@ class ValueSetTests: FHIRModelTestCase
 		XCTAssertEqual(inst.define!.concept![8].code!, "plans")
 		XCTAssertEqual(inst.define!.concept![8].definition!, "A set of care plans that apply in a particular context of care")
 		XCTAssertEqual(inst.define!.concept![8].display!, "Care Plans")
-		XCTAssertEqual(inst.define!.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/valueset-oid")
-		XCTAssertEqual(inst.define!.extension_fhir![0].valueUri!.absoluteString!, "urn:oid:null")
-		XCTAssertEqual(inst.define!.system!.absoluteString!, "http://hl7.org/fhir/list-example-use-codes")
+		XCTAssertEqual(inst.define!.extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-oid")
+		XCTAssertEqual(inst.define!.extension_fhir![0].valueUri!.absoluteString, "urn:oid:null")
+		XCTAssertEqual(inst.define!.system!.absoluteString, "http://hl7.org/fhir/list-example-use-codes")
 		XCTAssertEqual(inst.description_fhir!, "Example use codes for the List resource - typical kinds of use. TODO: Does LOINC define useful codes?")
 		XCTAssertTrue(inst.experimental!)
-		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString!, "http://hl7.org/fhir/StructureDefinition/valueset-oid")
-		XCTAssertEqual(inst.extension_fhir![0].valueUri!.absoluteString!, "urn:oid:2.16.840.1.113883.4.642.2.320")
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-oid")
+		XCTAssertEqual(inst.extension_fhir![0].valueUri!.absoluteString, "urn:oid:2.16.840.1.113883.4.642.2.320")
 		XCTAssertEqual(inst.id!, "valueset-list-example-codes")
-		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2015-04-03T14:24:32+11:00")
-		XCTAssertEqual(inst.meta!.profile![0].absoluteString!, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
+		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2015-04-03T14:24:32.000+11:00")
+		XCTAssertEqual(inst.meta!.profile![0].absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
 		XCTAssertEqual(inst.name!, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher!, "FHIR Project")
 		XCTAssertEqual(inst.status!, "draft")
 		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.url!.absoluteString!, "http://hl7.org/fhir/vs/list-example-codes")
+		XCTAssertEqual(inst.url!.absoluteString, "http://hl7.org/fhir/vs/list-example-codes")
 		XCTAssertEqual(inst.version!, "0.5.0")
 		
 		return inst

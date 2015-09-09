@@ -2,7 +2,7 @@
 //  ScheduleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -12,23 +12,23 @@ import SwiftFHIR
 
 class ScheduleTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> Schedule {
-		return instantiateFrom(json: readJSONFile(filename)!)
+	func instantiateFrom(filename filename: String) throws -> Schedule {
+		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: FHIRJSON) -> Schedule {
+	func instantiateFrom(json json: FHIRJSON) -> Schedule {
 		let instance = Schedule(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testSchedule1() {
-		let instance = testSchedule1_impl()
-		testSchedule1_impl(json: instance.asJSON())
+	func testSchedule1() throws {
+		let instance = try runSchedule1()
+		try runSchedule1(instance.asJSON())
 	}
 	
-	func testSchedule1_impl(json: FHIRJSON? = nil) -> Schedule {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "schedule-example.json")
+	func runSchedule1(json: FHIRJSON? = nil) throws -> Schedule {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "schedule-example.json")
 		
 		XCTAssertEqual(inst.actor!.display!, "Burgers UMC, South Wing, second floor")
 		XCTAssertEqual(inst.actor!.reference!, "Location/1")

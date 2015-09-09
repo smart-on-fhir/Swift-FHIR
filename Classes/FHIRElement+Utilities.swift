@@ -23,17 +23,14 @@ public extension FHIRResource
 	/**
 	Attempt to instantiate a Resource of the receiving class by reading a JSON file at the given filesystem path.
 	
-	:param path: The local path to read the JSON file from
-	:param error: An NSError pointer to fill on failure
-	:returns: An instance of the receiving class or nil
+	- parameter path: The local path to read the JSON file from
+	- parameter error: An NSError pointer to fill on failure
+	- returns: An instance of the receiving class or nil
 	*/
-	final class func instantiateFromPath(path: String, error: NSErrorPointer) -> Self? {
-		if let data = NSData(contentsOfFile: path, options: nil, error: error) {
-			if let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: error) as? FHIRJSON {
-				return self.init(json: json)
-			}
-		}
-		return nil
+	final class func instantiateFromPath(path: String) throws -> Self? {
+		let data = try NSData(contentsOfFile: path, options: [])
+		let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? FHIRJSON
+		return self.init(json: json)
 	}
 }
 
@@ -44,16 +41,16 @@ extension NSBundle
 	Attempt to read a JSON file with the given name (.json) from the bundle, parse the JSON and instantiate a FHIR resource corresponding
 	to the "resourceType" in the file.
 	
-	:returns: A FHIRResource subclass corresponding to the "resourceType" entry or nil
+	- returns: A FHIRResource subclass corresponding to the "resourceType" entry or nil
 	*/
-	public func fhir_bundledResource(name: String) -> FHIRResource? {
-		if let url = URLForResource(name, withExtension: "json"),
-			let data = NSData(contentsOfURL: url),
-			let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: nil) as? FHIRJSON {
+	public func fhir_bundledResource(name: String) throws -> FHIRResource? {
+		if let url = URLForResource(name, withExtension: "json"), let data = NSData(contentsOfURL: url) {
+			if let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? FHIRJSON {
 				return FHIRElement.instantiateFrom(json, owner: nil) as? FHIRResource
+			}
+			throw NSError(domain: "FHIRErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to deserialize JSON of bundled resource as FHIRJSON"])
 		}
-		fhir_logIfDebug("Failed to read bundled resource named «\(name)»")
-		return nil
+		throw NSError(domain: "FHIRErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey: "Failed to read bundled resource named «\(name)»"])
 	}
 }
 

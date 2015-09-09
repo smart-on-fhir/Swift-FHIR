@@ -2,7 +2,7 @@
 //  DeviceUseStatementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-04-03.
+//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
 //  2015, SMART Health IT.
 //
 
@@ -12,23 +12,23 @@ import SwiftFHIR
 
 class DeviceUseStatementTests: FHIRModelTestCase
 {
-	func instantiateFrom(# filename: String) -> DeviceUseStatement {
-		return instantiateFrom(json: readJSONFile(filename)!)
+	func instantiateFrom(filename filename: String) throws -> DeviceUseStatement {
+		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(# json: FHIRJSON) -> DeviceUseStatement {
+	func instantiateFrom(json json: FHIRJSON) -> DeviceUseStatement {
 		let instance = DeviceUseStatement(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testDeviceUseStatement1() {
-		let instance = testDeviceUseStatement1_impl()
-		testDeviceUseStatement1_impl(json: instance.asJSON())
+	func testDeviceUseStatement1() throws {
+		let instance = try runDeviceUseStatement1()
+		try runDeviceUseStatement1(instance.asJSON())
 	}
 	
-	func testDeviceUseStatement1_impl(json: FHIRJSON? = nil) -> DeviceUseStatement {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : instantiateFrom(filename: "deviceusestatement-example.json")
+	func runDeviceUseStatement1(json: FHIRJSON? = nil) throws -> DeviceUseStatement {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "deviceusestatement-example.json")
 		
 		XCTAssertEqual(inst.device!.reference!, "Device/example")
 		XCTAssertEqual(inst.id!, "example")

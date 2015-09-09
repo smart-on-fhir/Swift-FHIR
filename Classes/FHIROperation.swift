@@ -21,7 +21,7 @@ public enum FHIROperationContext
 /**
     Named operations to be performed against a FHIR REST endpoint.
  */
-public class FHIROperation: Printable
+public class FHIROperation: CustomStringConvertible
 {
 	/// The name of the operation.
 	let name: String
@@ -61,63 +61,39 @@ public class FHIROperation: Printable
 	/**
 	    Validate the receiver against its operation definition.
 	 */
-	public func validateWith(definition: OperationDefinition, error: NSErrorPointer) -> Bool {
-		if !validateContextWith(definition, error: error) {
-			return false
-		}
-		if !validateInParamsWith(definition, error: error) {
-			return false
-		}
-		return true
+	public func validateWith(definition: OperationDefinition) throws {
+		try validateContextWith(definition)
+		try validateInParamsWith(definition)
 	}
 	
 	/** Check if the receiver's context is permissible. */
-	func validateContextWith(definition: OperationDefinition, error: NSErrorPointer) -> Bool {
+	func validateContextWith(definition: OperationDefinition) throws {
 		switch context {
 		case .None:
-			if nil != error {
-				error.memory = genServerError("Operation \(self) has not been properly set up")
-			}
-			return false
+			throw genServerError("Operation \(self) has not been properly set up")
 		case .System:
 			if nil == definition.system || !definition.system! {
-				if nil != error {
-					error.memory = genServerError("Operation \(self) cannot be executed in system context")
-				}
-				return false
+				throw genServerError("Operation \(self) cannot be executed in system context")
 			}
 		case .Type:
 			if nil == definition.type {
-				if nil != error {
-					error.memory = genServerError("Operation \(self) cannot be executed in type context")
-				}
-				return false
+				throw genServerError("Operation \(self) cannot be executed in type context")
 			}
-			else if nil == type || !contains(definition.type!, type!.resourceName) {
-				if nil != error {
-					error.memory = genServerError("Operation \(self) cannot be executed against \(type ?? nil) type")
-				}
-				return false
+			else if nil == type || !(definition.type!).contains(type!.resourceName) {
+				throw genServerError("Operation \(self) cannot be executed against \(type ?? nil) type")
 			}
 		case .Instance:
 			if nil == definition.instance || !definition.instance! {
-				if nil != error {
-					error.memory = genServerError("Operation \(self) cannot be executed in instance context")
-				}
-				return false
+				throw genServerError("Operation \(self) cannot be executed in instance context")
 			}
 			if nil == instance?.relativeURLPath() {
-				if nil != error {
-					error.memory = genServerError("Operation \(self) to be executed in instance context must have an instance with an id")
-				}
-				return false
+				throw genServerError("Operation \(self) to be executed in instance context must have an instance with an id")
 			}
 		}
-		return true
 	}
 	
 	/** Check if the receiver's "in" params adhere to the definition. */
-	func validateInParamsWith(definition: OperationDefinition, error: NSErrorPointer) -> Bool {
+	func validateInParamsWith(definition: OperationDefinition) throws {
 		var leftover = inParams ?? FHIRJSON()
 		
 		// do we have all mandatory ones and are the ones that we have valid?
@@ -130,7 +106,7 @@ public class FHIROperation: Printable
 				if "in" == param.use {
 					
 					// have the parameter, validate it
-					if let has: AnyObject = inParams?[param.name!] {
+					if let _: AnyObject = inParams?[param.name!] {
 						leftover.removeValueForKey(param.name!)
 						
 						// TODO: actually validate!
@@ -139,10 +115,7 @@ public class FHIROperation: Printable
 					// check if mandatory parameter is missing
 					else if let min = param.min {
 						if min > 0 {
-							if nil != error {
-								error.memory = genServerError("Operation \(self) is missing input parameter \"\(param.name)\"")
-							}
-							return false
+							throw genServerError("Operation \(self) is missing input parameter \"\(param.name)\"")
 						}
 					}
 				}
@@ -151,9 +124,8 @@ public class FHIROperation: Printable
 		
 		// do we have leftover parameters
 		for over in leftover {
-			println("-->  Ignored operation parameter \(over) in \(self)")
+			print("-->  Ignored operation parameter \(over) in \(self)")
 		}
-		return true
 	}
 	
 	

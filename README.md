@@ -113,7 +113,8 @@ prescription.medication?.resolve(Medication.self) { medication in
 	if let medication = medication {
 		// successfully resolved
 	}
-}```
+}
+```
 
 ### Search
 

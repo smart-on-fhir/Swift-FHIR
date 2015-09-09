@@ -23,8 +23,8 @@ public extension FHIRResource
 	/**
 	Attempt to instantiate a Resource of the receiving class by reading a JSON file at the given filesystem path.
 	
-	- param path: The local path to read the JSON file from
-	- param error: An NSError pointer to fill on failure
+	- parameter path: The local path to read the JSON file from
+	- parameter error: An NSError pointer to fill on failure
 	- returns: An instance of the receiving class or nil
 	*/
 	final class func instantiateFromPath(path: String) throws -> Self? {

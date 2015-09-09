@@ -247,7 +247,7 @@ public class FHIRElement: CustomStringConvertible
 	/**
 	Contains the given contained resource instance and returns the Reference element on success.
 	
-	- param containedResource: The instance to add to the `contained` dictionary
+	- parameter containedResource: The instance to add to the `contained` dictionary
 	- returns: A `Reference` instance if containment was successful
 	*/
 	func containReference(containedResource: FHIRContainedResource) -> Reference? {
@@ -267,8 +267,8 @@ public class FHIRElement: CustomStringConvertible
 	/**
 	Embeds the given resource as a contained resource with the given id.
 	
-	- param resource: The resource to contain
-	- param withId: The id to use as internal reference
+	- parameter resource: The resource to contain
+	- parameter withId: The id to use as internal reference
 	- returns: A `Reference` instance if containment was successful
 	*/
 	public func containResource(resource: Resource, withId: String) -> Reference? {

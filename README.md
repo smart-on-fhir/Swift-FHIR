@@ -15,7 +15,7 @@ See the `develop` branch or specific `feature/x` branches for new Swift or FHIR 
 
 Version  | Swift |          FHIR | &nbsp;
 ---------|-------|---------------|---
- **2.1** |   2.0 |       `1.0.1` | (DSTU 2)
+ **2.1** |   2.0 |  `1.0.1.7108` | (DSTU 2)
  **2.0** |   2.0 |  `0.5.0.5149` | (DSTU 2 Ballot, May 2015)
  **1.0** |   1.2 |  `0.5.0.5149` | (DSTU 2 Ballot, May 2015)
  **0.2** |   1.1 |  `0.5.0.5149` | (DSTU 2 Ballot, May 2015)

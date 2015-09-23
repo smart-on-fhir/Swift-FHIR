@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *
  *  The findings and interpretation of diagnostic  tests performed on patients, groups of patients, devices, and
  *  locations, and/or specimens derived from these. The report includes clinical context such as requesting and provider
- *  information, and some mix of atomic results, images, textual and coded interpretation, and formatted representation
+ *  information, and some mix of atomic results, images, textual and coded interpretations, and formatted representation
  *  of diagnostic reports.
  */
 public class DiagnosticReport: DomainResource
@@ -24,17 +24,23 @@ public class DiagnosticReport: DomainResource
 		get { return "DiagnosticReport" }
 	}
 	
+	/// Service category
+	public var category: CodeableConcept?
+	
+	/// Name/Code for this diagnostic report
+	public var code: CodeableConcept?
+	
 	/// Codes for the conclusion
 	public var codedDiagnosis: [CodeableConcept]?
 	
 	/// Clinical Interpretation of test results
 	public var conclusion: String?
 	
-	/// Physiologically Relevant time/time-period for report
-	public var diagnosticDateTime: DateTime?
+	/// Clinically Relevant time/time-period for report
+	public var effectiveDateTime: DateTime?
 	
-	/// Physiologically Relevant time/time-period for report
-	public var diagnosticPeriod: Period?
+	/// Clinically Relevant time/time-period for report
+	public var effectivePeriod: Period?
 	
 	/// Health care event when test ordered
 	public var encounter: Reference?
@@ -48,26 +54,20 @@ public class DiagnosticReport: DomainResource
 	/// Reference to full details of imaging associated with the diagnostic report
 	public var imagingStudy: [Reference]?
 	
-	/// Date this version was released
-	public var issued: DateTime?
-	
-	/// Name/Code for this diagnostic report
-	public var name: CodeableConcept?
+	/// DateTime this version was released
+	public var issued: Instant?
 	
 	/// Responsible Diagnostic Service
 	public var performer: Reference?
 	
-	/// Entire Report as issued
+	/// Entire report as issued
 	public var presentedForm: [Attachment]?
 	
 	/// What was requested
-	public var requestDetail: [Reference]?
+	public var request: [Reference]?
 	
 	/// Observations - simple, or complex nested groups
 	public var result: [Reference]?
-	
-	/// Biochemistry, Hematology etc.
-	public var serviceCategory: CodeableConcept?
 	
 	/// Specimens this report is based on
 	public var specimen: [Reference]?
@@ -85,34 +85,41 @@ public class DiagnosticReport: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(diagnosticDateTime: DateTime?, diagnosticPeriod: Period?, issued: DateTime?, name: CodeableConcept?, performer: Reference?, status: String?, subject: Reference?) {
+	public convenience init(code: CodeableConcept, effectiveDateTime: DateTime, effectivePeriod: Period, issued: Instant, performer: Reference, status: String, subject: Reference) {
 		self.init(json: nil)
-		if nil != diagnosticDateTime {
-			self.diagnosticDateTime = diagnosticDateTime
-		}
-		if nil != diagnosticPeriod {
-			self.diagnosticPeriod = diagnosticPeriod
-		}
-		if nil != issued {
-			self.issued = issued
-		}
-		if nil != name {
-			self.name = name
-		}
-		if nil != performer {
-			self.performer = performer
-		}
-		if nil != status {
-			self.status = status
-		}
-		if nil != subject {
-			self.subject = subject
-		}
+		self.code = code
+		self.effectiveDateTime = effectiveDateTime
+		self.effectivePeriod = effectivePeriod
+		self.issued = issued
+		self.performer = performer
+		self.status = status
+		self.subject = subject
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["category"] {
+				presentKeys.insert("category")
+				if let val = exist as? FHIRJSON {
+					self.category = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["code"] {
+				presentKeys.insert("code")
+				if let val = exist as? FHIRJSON {
+					self.code = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "code"))
+			}
 			if let exist: AnyObject = js["codedDiagnosis"] {
 				presentKeys.insert("codedDiagnosis")
 				if let val = exist as? [FHIRJSON] {
@@ -131,22 +138,22 @@ public class DiagnosticReport: DomainResource
 					errors.append(FHIRJSONError(key: "conclusion", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["diagnosticDateTime"] {
-				presentKeys.insert("diagnosticDateTime")
+			if let exist: AnyObject = js["effectiveDateTime"] {
+				presentKeys.insert("effectiveDateTime")
 				if let val = exist as? String {
-					self.diagnosticDateTime = DateTime(string: val)
+					self.effectiveDateTime = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "diagnosticDateTime", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "effectiveDateTime", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["diagnosticPeriod"] {
-				presentKeys.insert("diagnosticPeriod")
+			if let exist: AnyObject = js["effectivePeriod"] {
+				presentKeys.insert("effectivePeriod")
 				if let val = exist as? FHIRJSON {
-					self.diagnosticPeriod = Period(json: val, owner: self)
+					self.effectivePeriod = Period(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "diagnosticPeriod", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "effectivePeriod", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["encounter"] {
@@ -188,7 +195,7 @@ public class DiagnosticReport: DomainResource
 			if let exist: AnyObject = js["issued"] {
 				presentKeys.insert("issued")
 				if let val = exist as? String {
-					self.issued = DateTime(string: val)
+					self.issued = Instant(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "issued", wants: String.self, has: exist.dynamicType))
@@ -196,18 +203,6 @@ public class DiagnosticReport: DomainResource
 			}
 			else {
 				errors.append(FHIRJSONError(key: "issued"))
-			}
-			if let exist: AnyObject = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? FHIRJSON {
-					self.name = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "name"))
 			}
 			if let exist: AnyObject = js["performer"] {
 				presentKeys.insert("performer")
@@ -230,13 +225,13 @@ public class DiagnosticReport: DomainResource
 					errors.append(FHIRJSONError(key: "presentedForm", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["requestDetail"] {
-				presentKeys.insert("requestDetail")
+			if let exist: AnyObject = js["request"] {
+				presentKeys.insert("request")
 				if let val = exist as? [FHIRJSON] {
-					self.requestDetail = Reference.from(val, owner: self) as? [Reference]
+					self.request = Reference.from(val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requestDetail", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "request", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["result"] {
@@ -246,15 +241,6 @@ public class DiagnosticReport: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "result", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["serviceCategory"] {
-				presentKeys.insert("serviceCategory")
-				if let val = exist as? FHIRJSON {
-					self.serviceCategory = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "serviceCategory", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["specimen"] {
@@ -292,8 +278,8 @@ public class DiagnosticReport: DomainResource
 			}
 			
 			// check if nonoptional expanded properties are present
-			if nil == self.diagnosticDateTime && nil == self.diagnosticPeriod {
-				errors.append(FHIRJSONError(key: "diagnostic[x]*"))
+			if nil == self.effectiveDateTime && nil == self.effectivePeriod {
+				errors.append(FHIRJSONError(key: "effective[x]*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -302,17 +288,23 @@ public class DiagnosticReport: DomainResource
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
 		if let codedDiagnosis = self.codedDiagnosis {
 			json["codedDiagnosis"] = CodeableConcept.asJSONArray(codedDiagnosis)
 		}
 		if let conclusion = self.conclusion {
 			json["conclusion"] = conclusion.asJSON()
 		}
-		if let diagnosticDateTime = self.diagnosticDateTime {
-			json["diagnosticDateTime"] = diagnosticDateTime.asJSON()
+		if let effectiveDateTime = self.effectiveDateTime {
+			json["effectiveDateTime"] = effectiveDateTime.asJSON()
 		}
-		if let diagnosticPeriod = self.diagnosticPeriod {
-			json["diagnosticPeriod"] = diagnosticPeriod.asJSON()
+		if let effectivePeriod = self.effectivePeriod {
+			json["effectivePeriod"] = effectivePeriod.asJSON()
 		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()
@@ -329,23 +321,17 @@ public class DiagnosticReport: DomainResource
 		if let issued = self.issued {
 			json["issued"] = issued.asJSON()
 		}
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
 		if let performer = self.performer {
 			json["performer"] = performer.asJSON()
 		}
 		if let presentedForm = self.presentedForm {
 			json["presentedForm"] = Attachment.asJSONArray(presentedForm)
 		}
-		if let requestDetail = self.requestDetail {
-			json["requestDetail"] = Reference.asJSONArray(requestDetail)
+		if let request = self.request {
+			json["request"] = Reference.asJSONArray(request)
 		}
 		if let result = self.result {
 			json["result"] = Reference.asJSONArray(result)
-		}
-		if let serviceCategory = self.serviceCategory {
-			json["serviceCategory"] = serviceCategory.asJSON()
 		}
 		if let specimen = self.specimen {
 			json["specimen"] = Reference.asJSONArray(specimen)
@@ -387,11 +373,9 @@ public class DiagnosticReportImage: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(link: Reference?) {
+	public convenience init(link: Reference) {
 		self.init(json: nil)
-		if nil != link {
-			self.link = link
-		}
+		self.link = link
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

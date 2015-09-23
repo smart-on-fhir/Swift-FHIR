@@ -2,7 +2,7 @@
 //  Communication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Communication) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Communication) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -12,7 +12,7 @@ import Foundation
 /**
  *  A record of information transmitted from a sender to a receiver.
  *
- *  An occurrence of information being transmitted. E.g., an alert that was sent to a responsible provider, a public
+ *  An occurrence of information being transmitted; e.g. an alert that was sent to a responsible provider, a public
  *  health agency was notified about a reportable condition.
  */
 public class Communication: DomainResource
@@ -30,7 +30,7 @@ public class Communication: DomainResource
 	/// Unique identifier
 	public var identifier: [Identifier]?
 	
-	/// Communication medium
+	/// A channel of communication
 	public var medium: [CodeableConcept]?
 	
 	/// Message payload
@@ -44,6 +44,9 @@ public class Communication: DomainResource
 	
 	/// Message recipient
 	public var recipient: [Reference]?
+	
+	/// CommunicationRequest producing this message
+	public var requestDetail: Reference?
 	
 	/// Message sender
 	public var sender: Reference?
@@ -138,6 +141,15 @@ public class Communication: DomainResource
 					errors.append(FHIRJSONError(key: "recipient", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["requestDetail"] {
+				presentKeys.insert("requestDetail")
+				if let val = exist as? FHIRJSON {
+					self.requestDetail = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "requestDetail", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["sender"] {
 				presentKeys.insert("sender")
 				if let val = exist as? FHIRJSON {
@@ -205,6 +217,9 @@ public class Communication: DomainResource
 		if let recipient = self.recipient {
 			json["recipient"] = Reference.asJSONArray(recipient)
 		}
+		if let requestDetail = self.requestDetail {
+			json["requestDetail"] = requestDetail.asJSON()
+		}
 		if let sender = self.sender {
 			json["sender"] = sender.asJSON()
 		}
@@ -250,17 +265,11 @@ public class CommunicationPayload: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(contentAttachment: Attachment?, contentReference: Reference?, contentString: String?) {
+	public convenience init(contentAttachment: Attachment, contentReference: Reference, contentString: String) {
 		self.init(json: nil)
-		if nil != contentAttachment {
-			self.contentAttachment = contentAttachment
-		}
-		if nil != contentReference {
-			self.contentReference = contentReference
-		}
-		if nil != contentString {
-			self.contentString = contentString
-		}
+		self.contentAttachment = contentAttachment
+		self.contentReference = contentReference
+		self.contentString = contentString
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

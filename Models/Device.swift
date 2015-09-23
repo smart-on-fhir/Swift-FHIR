@@ -2,7 +2,7 @@
 //  Device.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Device) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Device) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,12 +10,13 @@ import Foundation
 
 
 /**
- *  An instance of a manufactured thing that is used in the provision of healthcare.
+ *  An instance of a manufactured te that is used in the provision of healthcare.
  *
- *  This resource identifies an instance of a manufactured thing that is used in the provision of healthcare without
- *  being substantially changed through that activity. The device may be a machine, an insert, a computer, an
- *  application, etc. This includes durable (reusable) medical equipment as well as disposable equipment used for
- *  diagnostic, treatment, and research for healthcare and public health.
+ *  This resource identifies an instance of a manufactured item that is used in the provision of healthcare without
+ *  being substantially changed through that activity. The device may be a medical or non-medical device.  Medical
+ *  devices includes durable (reusable) medical equipment, implantable devices, as well as disposable equipment used for
+ *  diagnostic, treatment, and research for healthcare and public health.  Non-medical devices may include items such as
+ *  a machine, cellphone, computer, application, etc.
  */
 public class Device: DomainResource
 {
@@ -47,6 +48,9 @@ public class Device: DomainResource
 	/// Model id assigned by the manufacturer
 	public var model: String?
 	
+	/// Device notes and comments
+	public var note: [Annotation]?
+	
 	/// Organization responsible for device
 	public var owner: Reference?
 	
@@ -59,7 +63,7 @@ public class Device: DomainResource
 	/// What kind of device this is
 	public var type: CodeableConcept?
 	
-	/// FDA Mandated Unique Device Identifier
+	/// FDA mandated Unique Device Identifier
 	public var udi: String?
 	
 	/// Network address to contact device
@@ -75,11 +79,9 @@ public class Device: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: CodeableConcept?) {
+	public convenience init(type: CodeableConcept) {
 		self.init(json: nil)
-		if nil != type {
-			self.type = type
-		}
+		self.type = type
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -155,6 +157,15 @@ public class Device: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "model", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["note"] {
+				presentKeys.insert("note")
+				if let val = exist as? [FHIRJSON] {
+					self.note = Annotation.from(val, owner: self) as? [Annotation]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["owner"] {
@@ -253,6 +264,9 @@ public class Device: DomainResource
 		}
 		if let model = self.model {
 			json["model"] = model.asJSON()
+		}
+		if let note = self.note {
+			json["note"] = Annotation.asJSONArray(note)
 		}
 		if let owner = self.owner {
 			json["owner"] = owner.asJSON()

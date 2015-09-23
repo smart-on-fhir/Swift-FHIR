@@ -2,7 +2,7 @@
 //  Quantity.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Quantity) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Quantity) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -31,7 +31,7 @@ public class Quantity: FHIRElement
 	public var system: NSURL?
 	
 	/// Unit representation
-	public var units: String?
+	public var unit: String?
 	
 	/// Numerical value (with implicit precision)
 	public var value: NSDecimalNumber?
@@ -72,13 +72,13 @@ public class Quantity: FHIRElement
 					errors.append(FHIRJSONError(key: "system", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["units"] {
-				presentKeys.insert("units")
+			if let exist: AnyObject = js["unit"] {
+				presentKeys.insert("unit")
 				if let val = exist as? String {
-					self.units = val
+					self.unit = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "units", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "unit", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["value"] {
@@ -106,8 +106,8 @@ public class Quantity: FHIRElement
 		if let system = self.system {
 			json["system"] = system.asJSON()
 		}
-		if let units = self.units {
-			json["units"] = units.asJSON()
+		if let unit = self.unit {
+			json["unit"] = unit.asJSON()
 		}
 		if let value = self.value {
 			json["value"] = value.asJSON()

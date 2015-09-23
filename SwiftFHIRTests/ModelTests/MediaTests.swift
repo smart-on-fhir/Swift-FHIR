@@ -2,7 +2,7 @@
 //  MediaTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class MediaTests: FHIRModelTestCase
+class MediaTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Media {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class MediaTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testMedia1() throws {
-		let instance = try runMedia1()
-		try runMedia1(instance.asJSON())
+	func testMedia1() {
+		let instance = try? runMedia1()
+		XCTAssertNotNil(instance, "Must instantiate Media")
+		try! runMedia1(instance!.asJSON())
 	}
 	
 	func runMedia1(json: FHIRJSON? = nil) throws -> Media {
@@ -54,28 +55,58 @@ class MediaTests: FHIRModelTestCase
 		XCTAssertEqual(inst.subtype!.coding![0].system!.absoluteString, "http://nema.org/dicom/dicm")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!, "photo")
+		XCTAssertEqual(inst.view!.coding![0].code!, "399067008")
+		XCTAssertEqual(inst.view!.coding![0].display!, "Lateral projection")
+		XCTAssertEqual(inst.view!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.width!, UInt(640))
 		
 		return inst
 	}
 	
-	func testMedia2() throws {
-		let instance = try runMedia2()
-		try runMedia2(instance.asJSON())
+	func testMedia2() {
+		let instance = try? runMedia2()
+		XCTAssertNotNil(instance, "Must instantiate Media")
+		try! runMedia2(instance!.asJSON())
 	}
 	
 	func runMedia2(json: FHIRJSON? = nil) throws -> Media {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example-sound.json")
+		
+		XCTAssertEqual(inst.content!.contentType!, "audio/mpeg")
+		XCTAssertEqual(inst.content!.data!, Base64Binary(value: "dG9vIGJpZyB0b28gaW5jbHVkZSB0aGUgd2hvbGU="))
+		XCTAssertEqual(inst.content!.id!, "a1")
+		XCTAssertEqual(inst.duration!, UInt(65))
+		XCTAssertEqual(inst.id!, "sound")
+		XCTAssertEqual(inst.operator_fhir!.reference!, "Practitioner/xcda-author")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/xcda")
+		XCTAssertEqual(inst.text!.div!, "<div>Sound recording of speech example for Patient Henry Levin (MRN 12345):<br/><img alt=\"diagram\" src=\"#11\"/></div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!, "video")
+		
+		return inst
+	}
+	
+	func testMedia3() {
+		let instance = try? runMedia3()
+		XCTAssertNotNil(instance, "Must instantiate Media")
+		try! runMedia3(instance!.asJSON())
+	}
+	
+	func runMedia3(json: FHIRJSON? = nil) throws -> Media {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example.json")
 		
 		XCTAssertEqual(inst.content!.contentType!, "image/gif")
 		XCTAssertEqual(inst.content!.creation!.description, "2009-09-03")
 		XCTAssertEqual(inst.content!.id!, "a1")
 		XCTAssertEqual(inst.deviceName!, "Acme Camera")
+		XCTAssertEqual(inst.frames!, UInt(1))
 		XCTAssertEqual(inst.height!, UInt(145))
 		XCTAssertEqual(inst.id!, "example")
+		XCTAssertEqual(inst.operator_fhir!.reference!, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/xcda")
 		XCTAssertEqual(inst.subtype!.coding![0].code!, "diagram")
 		XCTAssertEqual(inst.subtype!.coding![0].system!.absoluteString, "http://hl7.org/fhir/media-method")
+		XCTAssertEqual(inst.text!.div!, "<div>Diagram for Patient Henry Levin (MRN 12345):<br/><img alt=\"diagram\" src=\"#11\"/></div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!, "photo")
 		XCTAssertEqual(inst.width!, UInt(126))

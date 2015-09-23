@@ -2,7 +2,7 @@
 //  Slot.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Slot) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Slot) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -24,7 +24,7 @@ public class Slot: DomainResource
 	/// Date/Time that the slot is to conclude
 	public var end: Instant?
 	
-	/// BUSY | FREE | BUSY-UNAVAILABLE | BUSY-TENTATIVE
+	/// busy | free | busy-unavailable | busy-tentative
 	public var freeBusyType: String?
 	
 	/// External Ids for this item
@@ -49,20 +49,12 @@ public class Slot: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(end: Instant?, freeBusyType: String?, schedule: Reference?, start: Instant?) {
+	public convenience init(end: Instant, freeBusyType: String, schedule: Reference, start: Instant) {
 		self.init(json: nil)
-		if nil != end {
-			self.end = end
-		}
-		if nil != freeBusyType {
-			self.freeBusyType = freeBusyType
-		}
-		if nil != schedule {
-			self.schedule = schedule
-		}
-		if nil != start {
-			self.start = start
-		}
+		self.end = end
+		self.freeBusyType = freeBusyType
+		self.schedule = schedule
+		self.start = start
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

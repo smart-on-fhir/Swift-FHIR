@@ -2,7 +2,7 @@
 //  EligibilityRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class EligibilityRequestTests: FHIRModelTestCase
+class EligibilityRequestTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> EligibilityRequest {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class EligibilityRequestTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testEligibilityRequest1() throws {
-		let instance = try runEligibilityRequest1()
-		try runEligibilityRequest1(instance.asJSON())
+	func testEligibilityRequest1() {
+		let instance = try? runEligibilityRequest1()
+		XCTAssertNotNil(instance, "Must instantiate EligibilityRequest")
+		try! runEligibilityRequest1(instance!.asJSON())
 	}
 	
 	func runEligibilityRequest1(json: FHIRJSON? = nil) throws -> EligibilityRequest {

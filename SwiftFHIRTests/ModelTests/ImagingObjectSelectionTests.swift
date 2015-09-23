@@ -2,7 +2,7 @@
 //  ImagingObjectSelectionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class ImagingObjectSelectionTests: FHIRModelTestCase
+class ImagingObjectSelectionTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> ImagingObjectSelection {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class ImagingObjectSelectionTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testImagingObjectSelection1() throws {
-		let instance = try runImagingObjectSelection1()
-		try runImagingObjectSelection1(instance.asJSON())
+	func testImagingObjectSelection1() {
+		let instance = try? runImagingObjectSelection1()
+		XCTAssertNotNil(instance, "Must instantiate ImagingObjectSelection")
+		try! runImagingObjectSelection1(instance!.asJSON())
 	}
 	
 	func runImagingObjectSelection1(json: FHIRJSON? = nil) throws -> ImagingObjectSelection {

@@ -2,7 +2,7 @@
 //  OrderResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class OrderResponseTests: FHIRModelTestCase
+class OrderResponseTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> OrderResponse {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class OrderResponseTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testOrderResponse1() throws {
-		let instance = try runOrderResponse1()
-		try runOrderResponse1(instance.asJSON())
+	func testOrderResponse1() {
+		let instance = try? runOrderResponse1()
+		XCTAssertNotNil(instance, "Must instantiate OrderResponse")
+		try! runOrderResponse1(instance!.asJSON())
 	}
 	
 	func runOrderResponse1(json: FHIRJSON? = nil) throws -> OrderResponse {

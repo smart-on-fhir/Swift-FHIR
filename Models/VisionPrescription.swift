@@ -2,7 +2,7 @@
 //  VisionPrescription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- *  Prescription for Vision correction products for a patient.
+ *  Prescription for vision correction products for a patient.
  *
  *  An authorization for the supply of glasses and/or contact lenses to a patient.
  */
@@ -35,7 +35,7 @@ public class VisionPrescription: DomainResource
 	/// Who prescription is for
 	public var patient: Reference?
 	
-	/// Who authorizes the Vision product
+	/// Who authorizes the vision product
 	public var prescriber: Reference?
 	
 	/// Reason or indication for writing the prescription
@@ -194,7 +194,7 @@ public class VisionPrescriptionDispense: FHIRElement
 	/// Lens cylinder
 	public var cylinder: NSDecimalNumber?
 	
-	/// Contact Lens diameter
+	/// Contact lens diameter
 	public var diameter: NSDecimalNumber?
 	
 	/// Lens wear duration
@@ -206,7 +206,7 @@ public class VisionPrescriptionDispense: FHIRElement
 	/// Notes for coatings
 	public var notes: String?
 	
-	/// Contact Lens power
+	/// Contact lens power
 	public var power: NSDecimalNumber?
 	
 	/// Lens prism
@@ -225,11 +225,9 @@ public class VisionPrescriptionDispense: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(product: Coding?) {
+	public convenience init(product: Coding) {
 		self.init(json: nil)
-		if nil != product {
-			self.product = product
-		}
+		self.product = product
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

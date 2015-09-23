@@ -2,7 +2,7 @@
 //  Signature.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Signature) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Signature) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,9 +10,11 @@ import Foundation
 
 
 /**
- *  An XML digital Signature.
+ *  A digital Signature - XML DigSig, JWT, Graphical image of signature, etc..
  *
- *  An XML digital signature along with supporting context.
+ *  A digital signature along with supporting context. The signature may be electronic/cryptographic in nature, or a
+ *  graphical image representing a hand-written signature, or a signature process. Different Signature approaches have
+ *  different utilities.
  */
 public class Signature: FHIRElement
 {
@@ -20,8 +22,11 @@ public class Signature: FHIRElement
 		get { return "Signature" }
 	}
 	
-	/// The actual XML Dig-Sig
+	/// The actual signature content (XML DigSig. JWT, picture, etc.)
 	public var blob: Base64Binary?
+	
+	/// The technical format of the signature
+	public var contentType: String?
 	
 	/// Indication of the reason the entity signed the object(s)
 	public var type: [Coding]?
@@ -42,23 +47,14 @@ public class Signature: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(blob: Base64Binary?, type: [Coding]?, when: Instant?, whoReference: Reference?, whoUri: NSURL?) {
+	public convenience init(blob: Base64Binary, contentType: String, type: [Coding], when: Instant, whoReference: Reference, whoUri: NSURL) {
 		self.init(json: nil)
-		if nil != blob {
-			self.blob = blob
-		}
-		if nil != type {
-			self.type = type
-		}
-		if nil != when {
-			self.when = when
-		}
-		if nil != whoReference {
-			self.whoReference = whoReference
-		}
-		if nil != whoUri {
-			self.whoUri = whoUri
-		}
+		self.blob = blob
+		self.contentType = contentType
+		self.type = type
+		self.when = when
+		self.whoReference = whoReference
+		self.whoUri = whoUri
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -75,6 +71,18 @@ public class Signature: FHIRElement
 			}
 			else {
 				errors.append(FHIRJSONError(key: "blob"))
+			}
+			if let exist: AnyObject = js["contentType"] {
+				presentKeys.insert("contentType")
+				if let val = exist as? String {
+					self.contentType = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "contentType", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "contentType"))
 			}
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")
@@ -132,6 +140,9 @@ public class Signature: FHIRElement
 		
 		if let blob = self.blob {
 			json["blob"] = blob.asJSON()
+		}
+		if let contentType = self.contentType {
+			json["contentType"] = contentType.asJSON()
 		}
 		if let type = self.type {
 			json["type"] = Coding.asJSONArray(type)

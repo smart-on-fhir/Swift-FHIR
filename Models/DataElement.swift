@@ -2,7 +2,7 @@
 //  DataElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -23,7 +23,7 @@ public class DataElement: DomainResource
 	/// Contact details of the publisher
 	public var contact: [DataElementContact]?
 	
-	/// Use and/or Publishing restrictions
+	/// Use and/or publishing restrictions
 	public var copyright: String?
 	
 	/// Date for this version of the data element
@@ -36,7 +36,7 @@ public class DataElement: DomainResource
 	public var experimental: Bool?
 	
 	/// Logical id to reference this data element
-	public var identifier: Identifier?
+	public var identifier: [Identifier]?
 	
 	/// External specification mapped to
 	public var mapping: [DataElementMapping]?
@@ -47,11 +47,11 @@ public class DataElement: DomainResource
 	/// Name of the publisher (Organization or individual)
 	public var publisher: String?
 	
-	/// comparable | fully-specified | equivalent | convertable | scaleable | flexible
-	public var specificity: String?
-	
 	/// draft | active | retired
 	public var status: String?
+	
+	/// comparable | fully-specified | equivalent | convertable | scaleable | flexible
+	public var stringency: String?
 	
 	/// Globally unique logical id for data element
 	public var url: NSURL?
@@ -69,14 +69,10 @@ public class DataElement: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(element: [ElementDefinition]?, status: String?) {
+	public convenience init(element: [ElementDefinition], status: String) {
 		self.init(json: nil)
-		if nil != element {
-			self.element = element
-		}
-		if nil != status {
-			self.status = status
-		}
+		self.element = element
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -132,11 +128,11 @@ public class DataElement: DomainResource
 			}
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
-				if let val = exist as? FHIRJSON {
-					self.identifier = Identifier(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["mapping"] {
@@ -166,15 +162,6 @@ public class DataElement: DomainResource
 					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["specificity"] {
-				presentKeys.insert("specificity")
-				if let val = exist as? String {
-					self.specificity = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "specificity", wants: String.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["status"] {
 				presentKeys.insert("status")
 				if let val = exist as? String {
@@ -186,6 +173,15 @@ public class DataElement: DomainResource
 			}
 			else {
 				errors.append(FHIRJSONError(key: "status"))
+			}
+			if let exist: AnyObject = js["stringency"] {
+				presentKeys.insert("stringency")
+				if let val = exist as? String {
+					self.stringency = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "stringency", wants: String.self, has: exist.dynamicType))
+				}
 			}
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
@@ -237,7 +233,7 @@ public class DataElement: DomainResource
 			json["experimental"] = experimental.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
+			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
 		if let mapping = self.mapping {
 			json["mapping"] = DataElementMapping.asJSONArray(mapping)
@@ -248,11 +244,11 @@ public class DataElement: DomainResource
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
 		}
-		if let specificity = self.specificity {
-			json["specificity"] = specificity.asJSON()
-		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
+		}
+		if let stringency = self.stringency {
+			json["stringency"] = stringency.asJSON()
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
@@ -335,8 +331,8 @@ public class DataElementContact: FHIRElement
 /**
  *  External specification mapped to.
  *
- *  Identifies a specification (other than a terminology) that the elements that make up the DataElement hav some
- *  correspondance with.
+ *  Identifies a specification (other than a terminology) that the elements which make up the DataElement have some
+ *  correspondence with.
  */
 public class DataElementMapping: FHIRElement
 {
@@ -344,7 +340,7 @@ public class DataElementMapping: FHIRElement
 		get { return "DataElementMapping" }
 	}
 	
-	/// Versions, Issues, Scope limitations etc
+	/// Versions, Issues, Scope limitations etc.
 	public var comments: String?
 	
 	/// Internal id when this mapping is used
@@ -363,11 +359,9 @@ public class DataElementMapping: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identity: String?) {
+	public convenience init(identity: String) {
 		self.init(json: nil)
-		if nil != identity {
-			self.identity = identity
-		}
+		self.identity = identity
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

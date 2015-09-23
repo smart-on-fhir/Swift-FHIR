@@ -2,7 +2,7 @@
 //  Binary.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Binary) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Binary) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- *  Pure binary content defined by sime other format than FHIR.
+ *  Pure binary content defined by some other format than FHIR.
  *
  *  A binary resource can contain any content, whether text, image, pdf, zip archive, etc.
  */
@@ -33,14 +33,10 @@ public class Binary: Resource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(content: Base64Binary?, contentType: String?) {
+	public convenience init(content: Base64Binary, contentType: String) {
 		self.init(json: nil)
-		if nil != content {
-			self.content = content
-		}
-		if nil != contentType {
-			self.contentType = contentType
-		}
+		self.content = content
+		self.contentType = contentType
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

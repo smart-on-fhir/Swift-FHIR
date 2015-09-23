@@ -2,7 +2,7 @@
 //  ClaimResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -60,13 +60,13 @@ public class ClaimResponse: DomainResource
 	public var payeeType: Coding?
 	
 	/// Payment adjustment for non-Claim issues
-	public var paymentAdjustment: Money?
+	public var paymentAdjustment: Quantity?
 	
 	/// Reason for Payment adjustment
 	public var paymentAdjustmentReason: Coding?
 	
 	/// Payment amount
-	public var paymentAmount: Money?
+	public var paymentAmount: Quantity?
 	
 	/// Expected data of Payment
 	public var paymentDate: Date?
@@ -90,13 +90,13 @@ public class ClaimResponse: DomainResource
 	public var ruleset: Coding?
 	
 	/// Total benefit payable for the Claim
-	public var totalBenefit: Money?
+	public var totalBenefit: Quantity?
 	
 	/// Total Cost of service from the Claim
-	public var totalCost: Money?
+	public var totalCost: Quantity?
 	
-	/// Unallocated deductable
-	public var unallocDeductable: Money?
+	/// Unallocated deductible
+	public var unallocDeductable: Quantity?
 	
 	
 	/** Initialize with a JSON object. */
@@ -227,7 +227,7 @@ public class ClaimResponse: DomainResource
 			if let exist: AnyObject = js["paymentAdjustment"] {
 				presentKeys.insert("paymentAdjustment")
 				if let val = exist as? FHIRJSON {
-					self.paymentAdjustment = Money(json: val, owner: self)
+					self.paymentAdjustment = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "paymentAdjustment", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -245,7 +245,7 @@ public class ClaimResponse: DomainResource
 			if let exist: AnyObject = js["paymentAmount"] {
 				presentKeys.insert("paymentAmount")
 				if let val = exist as? FHIRJSON {
-					self.paymentAmount = Money(json: val, owner: self)
+					self.paymentAmount = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "paymentAmount", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -317,7 +317,7 @@ public class ClaimResponse: DomainResource
 			if let exist: AnyObject = js["totalBenefit"] {
 				presentKeys.insert("totalBenefit")
 				if let val = exist as? FHIRJSON {
-					self.totalBenefit = Money(json: val, owner: self)
+					self.totalBenefit = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "totalBenefit", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -326,7 +326,7 @@ public class ClaimResponse: DomainResource
 			if let exist: AnyObject = js["totalCost"] {
 				presentKeys.insert("totalCost")
 				if let val = exist as? FHIRJSON {
-					self.totalCost = Money(json: val, owner: self)
+					self.totalCost = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "totalCost", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -335,7 +335,7 @@ public class ClaimResponse: DomainResource
 			if let exist: AnyObject = js["unallocDeductable"] {
 				presentKeys.insert("unallocDeductable")
 				if let val = exist as? FHIRJSON {
-					self.unallocDeductable = Money(json: val, owner: self)
+					self.unallocDeductable = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "unallocDeductable", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -450,7 +450,7 @@ public class ClaimResponseAddItem: FHIRElement
 	public var detail: [ClaimResponseAddItemDetail]?
 	
 	/// Professional fee or Product charge
-	public var fee: Money?
+	public var fee: Quantity?
 	
 	/// List of note numbers which apply
 	public var noteNumberLinkId: [UInt]?
@@ -468,11 +468,9 @@ public class ClaimResponseAddItem: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(service: Coding?) {
+	public convenience init(service: Coding) {
 		self.init(json: nil)
-		if nil != service {
-			self.service = service
-		}
+		self.service = service
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -499,7 +497,7 @@ public class ClaimResponseAddItem: FHIRElement
 			if let exist: AnyObject = js["fee"] {
 				presentKeys.insert("fee")
 				if let val = exist as? FHIRJSON {
-					self.fee = Money(json: val, owner: self)
+					self.fee = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fee", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -585,13 +583,13 @@ public class ClaimResponseAddItemAdjudication: FHIRElement
 		get { return "ClaimResponseAddItemAdjudication" }
 	}
 	
-	/// Monitary amount
-	public var amount: Money?
+	/// Monetary amount
+	public var amount: Quantity?
 	
 	/// Adjudication category such as co-pay, eligible, benefit, etc.
 	public var code: Coding?
 	
-	/// Non-monitory value
+	/// Non-monetary value
 	public var value: NSDecimalNumber?
 	
 	
@@ -601,11 +599,9 @@ public class ClaimResponseAddItemAdjudication: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding?) {
+	public convenience init(code: Coding) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
+		self.code = code
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -614,7 +610,7 @@ public class ClaimResponseAddItemAdjudication: FHIRElement
 			if let exist: AnyObject = js["amount"] {
 				presentKeys.insert("amount")
 				if let val = exist as? FHIRJSON {
-					self.amount = Money(json: val, owner: self)
+					self.amount = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -678,7 +674,7 @@ public class ClaimResponseAddItemDetail: FHIRElement
 	public var adjudication: [ClaimResponseAddItemDetailAdjudication]?
 	
 	/// Professional fee or Product charge
-	public var fee: Money?
+	public var fee: Quantity?
 	
 	/// Service or Product
 	public var service: Coding?
@@ -690,11 +686,9 @@ public class ClaimResponseAddItemDetail: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(service: Coding?) {
+	public convenience init(service: Coding) {
 		self.init(json: nil)
-		if nil != service {
-			self.service = service
-		}
+		self.service = service
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -712,7 +706,7 @@ public class ClaimResponseAddItemDetail: FHIRElement
 			if let exist: AnyObject = js["fee"] {
 				presentKeys.insert("fee")
 				if let val = exist as? FHIRJSON {
-					self.fee = Money(json: val, owner: self)
+					self.fee = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fee", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -763,13 +757,13 @@ public class ClaimResponseAddItemDetailAdjudication: FHIRElement
 		get { return "ClaimResponseAddItemDetailAdjudication" }
 	}
 	
-	/// Monitary amount
-	public var amount: Money?
+	/// Monetary amount
+	public var amount: Quantity?
 	
 	/// Adjudication category such as co-pay, eligible, benefit, etc.
 	public var code: Coding?
 	
-	/// Non-monitory value
+	/// Non-monetary value
 	public var value: NSDecimalNumber?
 	
 	
@@ -779,11 +773,9 @@ public class ClaimResponseAddItemDetailAdjudication: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding?) {
+	public convenience init(code: Coding) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
+		self.code = code
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -792,7 +784,7 @@ public class ClaimResponseAddItemDetailAdjudication: FHIRElement
 			if let exist: AnyObject = js["amount"] {
 				presentKeys.insert("amount")
 				if let val = exist as? FHIRJSON {
-					self.amount = Money(json: val, owner: self)
+					self.amount = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -883,20 +875,12 @@ public class ClaimResponseCoverage: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(coverage: Reference?, focal: Bool?, relationship: Coding?, sequence: UInt?) {
+	public convenience init(coverage: Reference, focal: Bool, relationship: Coding, sequence: UInt) {
 		self.init(json: nil)
-		if nil != coverage {
-			self.coverage = coverage
-		}
-		if nil != focal {
-			self.focal = focal
-		}
-		if nil != relationship {
-			self.relationship = relationship
-		}
-		if nil != sequence {
-			self.sequence = sequence
-		}
+		self.coverage = coverage
+		self.focal = focal
+		self.relationship = relationship
+		self.sequence = sequence
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1057,11 +1041,9 @@ public class ClaimResponseError: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding?) {
+	public convenience init(code: Coding) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
+		self.code = code
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1161,11 +1143,9 @@ public class ClaimResponseItem: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(sequenceLinkId: UInt?) {
+	public convenience init(sequenceLinkId: UInt) {
 		self.init(json: nil)
-		if nil != sequenceLinkId {
-			self.sequenceLinkId = sequenceLinkId
-		}
+		self.sequenceLinkId = sequenceLinkId
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1250,13 +1230,13 @@ public class ClaimResponseItemAdjudication: FHIRElement
 		get { return "ClaimResponseItemAdjudication" }
 	}
 	
-	/// Monitary amount
-	public var amount: Money?
+	/// Monetary amount
+	public var amount: Quantity?
 	
 	/// Adjudication category such as co-pay, eligible, benefit, etc.
 	public var code: Coding?
 	
-	/// Non-monitory value
+	/// Non-monetary value
 	public var value: NSDecimalNumber?
 	
 	
@@ -1266,11 +1246,9 @@ public class ClaimResponseItemAdjudication: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding?) {
+	public convenience init(code: Coding) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
+		self.code = code
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1279,7 +1257,7 @@ public class ClaimResponseItemAdjudication: FHIRElement
 			if let exist: AnyObject = js["amount"] {
 				presentKeys.insert("amount")
 				if let val = exist as? FHIRJSON {
-					self.amount = Money(json: val, owner: self)
+					self.amount = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -1355,11 +1333,9 @@ public class ClaimResponseItemDetail: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(sequenceLinkId: UInt?) {
+	public convenience init(sequenceLinkId: UInt) {
 		self.init(json: nil)
-		if nil != sequenceLinkId {
-			self.sequenceLinkId = sequenceLinkId
-		}
+		self.sequenceLinkId = sequenceLinkId
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1428,13 +1404,13 @@ public class ClaimResponseItemDetailAdjudication: FHIRElement
 		get { return "ClaimResponseItemDetailAdjudication" }
 	}
 	
-	/// Monitary amount
-	public var amount: Money?
+	/// Monetary amount
+	public var amount: Quantity?
 	
 	/// Adjudication category such as co-pay, eligible, benefit, etc.
 	public var code: Coding?
 	
-	/// Non-monitory value
+	/// Non-monetary value
 	public var value: NSDecimalNumber?
 	
 	
@@ -1444,11 +1420,9 @@ public class ClaimResponseItemDetailAdjudication: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding?) {
+	public convenience init(code: Coding) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
+		self.code = code
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1457,7 +1431,7 @@ public class ClaimResponseItemDetailAdjudication: FHIRElement
 			if let exist: AnyObject = js["amount"] {
 				presentKeys.insert("amount")
 				if let val = exist as? FHIRJSON {
-					self.amount = Money(json: val, owner: self)
+					self.amount = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -1530,11 +1504,9 @@ public class ClaimResponseItemDetailSubDetail: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(sequenceLinkId: UInt?) {
+	public convenience init(sequenceLinkId: UInt) {
 		self.init(json: nil)
-		if nil != sequenceLinkId {
-			self.sequenceLinkId = sequenceLinkId
-		}
+		self.sequenceLinkId = sequenceLinkId
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1591,13 +1563,13 @@ public class ClaimResponseItemDetailSubDetailAdjudication: FHIRElement
 		get { return "ClaimResponseItemDetailSubDetailAdjudication" }
 	}
 	
-	/// Monitary amount
-	public var amount: Money?
+	/// Monetary amount
+	public var amount: Quantity?
 	
 	/// Adjudication category such as co-pay, eligible, benefit, etc.
 	public var code: Coding?
 	
-	/// Non-monitory value
+	/// Non-monetary value
 	public var value: NSDecimalNumber?
 	
 	
@@ -1607,11 +1579,9 @@ public class ClaimResponseItemDetailSubDetailAdjudication: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding?) {
+	public convenience init(code: Coding) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
+		self.code = code
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1620,7 +1590,7 @@ public class ClaimResponseItemDetailSubDetailAdjudication: FHIRElement
 			if let exist: AnyObject = js["amount"] {
 				presentKeys.insert("amount")
 				if let val = exist as? FHIRJSON {
-					self.amount = Money(json: val, owner: self)
+					self.amount = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -1683,7 +1653,7 @@ public class ClaimResponseNote: FHIRElement
 	/// Note Number for this note
 	public var number: UInt?
 	
-	/// Note explanitory text
+	/// Note explanatory text
 	public var text: String?
 	
 	/// display | print | printoper

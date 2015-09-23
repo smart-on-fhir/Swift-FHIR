@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -11,6 +11,8 @@ import Foundation
 
 /**
  *  A reference to a document.
+ *
+ *  A reference to a document .
  */
 public class DocumentReference: DomainResource
 {
@@ -18,7 +20,7 @@ public class DocumentReference: DomainResource
 		get { return "DocumentReference" }
 	}
 	
-	/// Who/What authenticated the document
+	/// Who/what authenticated the document
 	public var authenticator: Reference?
 	
 	/// Who and/or what authored the document
@@ -27,11 +29,8 @@ public class DocumentReference: DomainResource
 	/// Categorization of document
 	public var class_fhir: CodeableConcept?
 	
-	/// Document security-tags
-	public var confidentiality: [CodeableConcept]?
-	
-	/// Where to access the document
-	public var content: [Attachment]?
+	/// Document referenced
+	public var content: [DocumentReferenceContent]?
 	
 	/// Clinical context of document
 	public var context: DocumentReferenceContext?
@@ -39,7 +38,7 @@ public class DocumentReference: DomainResource
 	/// Document creation time
 	public var created: DateTime?
 	
-	/// Org which maintains the document
+	/// Organization which maintains the document
 	public var custodian: Reference?
 	
 	/// Human-readable description (title)
@@ -47,9 +46,6 @@ public class DocumentReference: DomainResource
 	
 	/// preliminary | final | appended | amended | entered-in-error
 	public var docStatus: CodeableConcept?
-	
-	/// Format/content rules for the document
-	public var format: [NSURL]?
 	
 	/// Other identifiers for the document
 	public var identifier: [Identifier]?
@@ -63,13 +59,16 @@ public class DocumentReference: DomainResource
 	/// Relationships to other documents
 	public var relatesTo: [DocumentReferenceRelatesTo]?
 	
-	/// current | superceded | entered-in-error
+	/// Document security-tags
+	public var securityLabel: [CodeableConcept]?
+	
+	/// current | superseded | entered-in-error
 	public var status: String?
 	
-	/// Who|what is the subject of the document
+	/// Who/what is the subject of the document
 	public var subject: Reference?
 	
-	/// Kind of document
+	/// Kind of document (LOINC if possible)
 	public var type: CodeableConcept?
 	
 	
@@ -79,23 +78,12 @@ public class DocumentReference: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(author: [Reference]?, content: [Attachment]?, indexed: Instant?, status: String?, type: CodeableConcept?) {
+	public convenience init(content: [DocumentReferenceContent], indexed: Instant, status: String, type: CodeableConcept) {
 		self.init(json: nil)
-		if nil != author {
-			self.author = author
-		}
-		if nil != content {
-			self.content = content
-		}
-		if nil != indexed {
-			self.indexed = indexed
-		}
-		if nil != status {
-			self.status = status
-		}
-		if nil != type {
-			self.type = type
-		}
+		self.content = content
+		self.indexed = indexed
+		self.status = status
+		self.type = type
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -119,9 +107,6 @@ public class DocumentReference: DomainResource
 					errors.append(FHIRJSONError(key: "author", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			else {
-				errors.append(FHIRJSONError(key: "author"))
-			}
 			if let exist: AnyObject = js["class"] {
 				presentKeys.insert("class")
 				if let val = exist as? FHIRJSON {
@@ -131,19 +116,10 @@ public class DocumentReference: DomainResource
 					errors.append(FHIRJSONError(key: "class", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["confidentiality"] {
-				presentKeys.insert("confidentiality")
-				if let val = exist as? [FHIRJSON] {
-					self.confidentiality = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "confidentiality", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["content"] {
 				presentKeys.insert("content")
 				if let val = exist as? [FHIRJSON] {
-					self.content = Attachment.from(val, owner: self) as? [Attachment]
+					self.content = DocumentReferenceContent.from(val, owner: self) as? [DocumentReferenceContent]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "content", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -197,15 +173,6 @@ public class DocumentReference: DomainResource
 					errors.append(FHIRJSONError(key: "docStatus", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["format"] {
-				presentKeys.insert("format")
-				if let val = exist as? [String] {
-					self.format = NSURL.from(val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "format", wants: Array<String>.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
@@ -243,6 +210,15 @@ public class DocumentReference: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "relatesTo", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["securityLabel"] {
+				presentKeys.insert("securityLabel")
+				if let val = exist as? [FHIRJSON] {
+					self.securityLabel = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "securityLabel", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["status"] {
@@ -294,11 +270,8 @@ public class DocumentReference: DomainResource
 		if let class_fhir = self.class_fhir {
 			json["class"] = class_fhir.asJSON()
 		}
-		if let confidentiality = self.confidentiality {
-			json["confidentiality"] = CodeableConcept.asJSONArray(confidentiality)
-		}
 		if let content = self.content {
-			json["content"] = Attachment.asJSONArray(content)
+			json["content"] = DocumentReferenceContent.asJSONArray(content)
 		}
 		if let context = self.context {
 			json["context"] = context.asJSON()
@@ -315,13 +288,6 @@ public class DocumentReference: DomainResource
 		if let docStatus = self.docStatus {
 			json["docStatus"] = docStatus.asJSON()
 		}
-		if let format = self.format {
-			var arr = [AnyObject]()
-			for val in format {
-				arr.append(val.asJSON())
-			}
-			json["format"] = arr
-		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
@@ -334,6 +300,9 @@ public class DocumentReference: DomainResource
 		if let relatesTo = self.relatesTo {
 			json["relatesTo"] = DocumentReferenceRelatesTo.asJSONArray(relatesTo)
 		}
+		if let securityLabel = self.securityLabel {
+			json["securityLabel"] = CodeableConcept.asJSONArray(securityLabel)
+		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
 		}
@@ -342,6 +311,78 @@ public class DocumentReference: DomainResource
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Document referenced.
+ *
+ *  The document and format referenced. There may be multiple content element repetitions, each with a different format.
+ */
+public class DocumentReferenceContent: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "DocumentReferenceContent" }
+	}
+	
+	/// Where to access the document
+	public var attachment: Attachment?
+	
+	/// Format/content rules for the document
+	public var format: [Coding]?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(attachment: Attachment) {
+		self.init(json: nil)
+		self.attachment = attachment
+	}
+	
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist: AnyObject = js["attachment"] {
+				presentKeys.insert("attachment")
+				if let val = exist as? FHIRJSON {
+					self.attachment = Attachment(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "attachment", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "attachment"))
+			}
+			if let exist: AnyObject = js["format"] {
+				presentKeys.insert("format")
+				if let val = exist as? [FHIRJSON] {
+					self.format = Coding.from(val, owner: self) as? [Coding]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "format", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let attachment = self.attachment {
+			json["attachment"] = attachment.asJSON()
+		}
+		if let format = self.format {
+			json["format"] = Coding.asJSONArray(format)
 		}
 		
 		return json
@@ -360,6 +401,9 @@ public class DocumentReferenceContext: FHIRElement
 		get { return "DocumentReferenceContext" }
 	}
 	
+	/// Context of the document  content
+	public var encounter: Reference?
+	
 	/// Main Clinical Acts Documented
 	public var event: [CodeableConcept]?
 	
@@ -372,10 +416,10 @@ public class DocumentReferenceContext: FHIRElement
 	/// Additional details about where the content was created (e.g. clinical specialty)
 	public var practiceSetting: CodeableConcept?
 	
-	/// Related things
+	/// Related identifiers or resources
 	public var related: [DocumentReferenceContextRelated]?
 	
-	/// Source patient info
+	/// Patient demographics from source
 	public var sourcePatientInfo: Reference?
 	
 	
@@ -387,6 +431,15 @@ public class DocumentReferenceContext: FHIRElement
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["encounter"] {
+				presentKeys.insert("encounter")
+				if let val = exist as? FHIRJSON {
+					self.encounter = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["event"] {
 				presentKeys.insert("event")
 				if let val = exist as? [FHIRJSON] {
@@ -448,6 +501,9 @@ public class DocumentReferenceContext: FHIRElement
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
 		if let event = self.event {
 			json["event"] = CodeableConcept.asJSONArray(event)
 		}
@@ -473,7 +529,7 @@ public class DocumentReferenceContext: FHIRElement
 
 
 /**
- *  Related things.
+ *  Related identifiers or resources.
  *
  *  Related identifiers or resources associated with the DocumentReference.
  */
@@ -483,7 +539,7 @@ public class DocumentReferenceContextRelated: FHIRElement
 		get { return "DocumentReferenceContextRelated" }
 	}
 	
-	/// Related Identifier
+	/// Identifier of related objects or events
 	public var identifier: Identifier?
 	
 	/// Related Resource
@@ -559,14 +615,10 @@ public class DocumentReferenceRelatesTo: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String?, target: Reference?) {
+	public convenience init(code: String, target: Reference) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
-		if nil != target {
-			self.target = target
-		}
+		self.code = code
+		self.target = target
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -12,8 +12,8 @@ import Foundation
 /**
  *  A resource that describes a message that is exchanged between systems.
  *
- *  The header for a message exchange that is either requesting or responding to an action.  The Reference(s) that are
- *  the subject of the action as well as other Information related to the action are typically transmitted in a bundle
+ *  The header for a message exchange that is either requesting or responding to an action.  The reference(s) that are
+ *  the subject of the action as well as other information related to the action are typically transmitted in a bundle
  *  in which the MessageHeader resource instance is the first resource in the bundle.
  */
 public class MessageHeader: DomainResource
@@ -36,9 +36,6 @@ public class MessageHeader: DomainResource
 	
 	/// Code for the event this message represents
 	public var event: Coding?
-	
-	/// Id of this message
-	public var identifier: String?
 	
 	/// Cause of event
 	public var reason: CodeableConcept?
@@ -65,20 +62,11 @@ public class MessageHeader: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(event: Coding?, identifier: String?, source: MessageHeaderSource?, timestamp: Instant?) {
+	public convenience init(event: Coding, source: MessageHeaderSource, timestamp: Instant) {
 		self.init(json: nil)
-		if nil != event {
-			self.event = event
-		}
-		if nil != identifier {
-			self.identifier = identifier
-		}
-		if nil != source {
-			self.source = source
-		}
-		if nil != timestamp {
-			self.timestamp = timestamp
-		}
+		self.event = event
+		self.source = source
+		self.timestamp = timestamp
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -131,18 +119,6 @@ public class MessageHeader: DomainResource
 			}
 			else {
 				errors.append(FHIRJSONError(key: "event"))
-			}
-			if let exist: AnyObject = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? String {
-					self.identifier = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "identifier"))
 			}
 			if let exist: AnyObject = js["reason"] {
 				presentKeys.insert("reason")
@@ -226,9 +202,6 @@ public class MessageHeader: DomainResource
 		if let event = self.event {
 			json["event"] = event.asJSON()
 		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
-		}
 		if let reason = self.reason {
 			json["reason"] = reason.asJSON()
 		}
@@ -280,11 +253,9 @@ public class MessageHeaderDestination: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(endpoint: NSURL?) {
+	public convenience init(endpoint: NSURL) {
 		self.init(json: nil)
-		if nil != endpoint {
-			self.endpoint = endpoint
-		}
+		self.endpoint = endpoint
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -369,14 +340,10 @@ public class MessageHeaderResponse: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String?, identifier: String?) {
+	public convenience init(code: String, identifier: String) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
-		if nil != identifier {
-			self.identifier = identifier
-		}
+		self.code = code
+		self.identifier = identifier
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -470,11 +437,9 @@ public class MessageHeaderSource: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(endpoint: NSURL?) {
+	public convenience init(endpoint: NSURL) {
 		self.init(json: nil)
-		if nil != endpoint {
-			self.endpoint = endpoint
-		}
+		self.endpoint = endpoint
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

@@ -2,7 +2,7 @@
 //  BodySite.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -46,11 +46,9 @@ public class BodySite: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference?) {
+	public convenience init(patient: Reference) {
 		self.init(json: nil)
-		if nil != patient {
-			self.patient = patient
-		}
+		self.patient = patient
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

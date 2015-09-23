@@ -2,7 +2,7 @@
 //  GroupTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class GroupTests: FHIRModelTestCase
+class GroupTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Group {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,12 +22,39 @@ class GroupTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testGroup1() throws {
-		let instance = try runGroup1()
-		try runGroup1(instance.asJSON())
+	func testGroup1() {
+		let instance = try? runGroup1()
+		XCTAssertNotNil(instance, "Must instantiate Group")
+		try! runGroup1(instance!.asJSON())
 	}
 	
 	func runGroup1(json: FHIRJSON? = nil) throws -> Group {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "group-example-member.json")
+		
+		XCTAssertTrue(inst.actual!)
+		XCTAssertEqual(inst.id!, "102")
+		XCTAssertEqual(inst.member![0].entity!.reference!, "Patient/pat1")
+		XCTAssertEqual(inst.member![0].period!.start!.description, "2014-10-08")
+		XCTAssertEqual(inst.member![1].entity!.reference!, "Patient/pat2")
+		XCTAssertTrue(inst.member![1].inactive!)
+		XCTAssertEqual(inst.member![1].period!.start!.description, "2015-04-02")
+		XCTAssertEqual(inst.member![2].entity!.reference!, "Patient/pat3")
+		XCTAssertEqual(inst.member![2].period!.start!.description, "2015-08-06")
+		XCTAssertEqual(inst.member![3].entity!.reference!, "Patient/pat4")
+		XCTAssertEqual(inst.member![3].period!.start!.description, "2015-08-06")
+		XCTAssertEqual(inst.text!.status!, "additional")
+		XCTAssertEqual(inst.type!, "person")
+		
+		return inst
+	}
+	
+	func testGroup2() {
+		let instance = try? runGroup2()
+		XCTAssertNotNil(instance, "Must instantiate Group")
+		try! runGroup2(instance!.asJSON())
+	}
+	
+	func runGroup2(json: FHIRJSON? = nil) throws -> Group {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "group-example.json")
 		
 		XCTAssertTrue(inst.actual!)

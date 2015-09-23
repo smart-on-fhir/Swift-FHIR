@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Substance) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Substance) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -18,17 +18,23 @@ public class Substance: DomainResource
 		get { return "Substance" }
 	}
 	
+	/// What class/type of substance this is
+	public var category: [CodeableConcept]?
+	
+	/// What substance this is
+	public var code: CodeableConcept?
+	
 	/// Textual description of the substance, comments
 	public var description_fhir: String?
+	
+	/// Unique identifier
+	public var identifier: [Identifier]?
 	
 	/// Composition information about the substance
 	public var ingredient: [SubstanceIngredient]?
 	
 	/// If this describes a specific package/container of the substance
-	public var instance: SubstanceInstance?
-	
-	/// What kind of substance this is
-	public var type: CodeableConcept?
+	public var instance: [SubstanceInstance]?
 	
 	
 	/** Initialize with a JSON object. */
@@ -37,16 +43,35 @@ public class Substance: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: CodeableConcept?) {
+	public convenience init(code: CodeableConcept) {
 		self.init(json: nil)
-		if nil != type {
-			self.type = type
-		}
+		self.code = code
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["category"] {
+				presentKeys.insert("category")
+				if let val = exist as? [FHIRJSON] {
+					self.category = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "category", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["code"] {
+				presentKeys.insert("code")
+				if let val = exist as? FHIRJSON {
+					self.code = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "code"))
+			}
 			if let exist: AnyObject = js["description"] {
 				presentKeys.insert("description")
 				if let val = exist as? String {
@@ -54,6 +79,15 @@ public class Substance: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["identifier"] {
+				presentKeys.insert("identifier")
+				if let val = exist as? [FHIRJSON] {
+					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["ingredient"] {
@@ -67,24 +101,12 @@ public class Substance: DomainResource
 			}
 			if let exist: AnyObject = js["instance"] {
 				presentKeys.insert("instance")
-				if let val = exist as? FHIRJSON {
-					self.instance = SubstanceInstance(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.instance = SubstanceInstance.from(val, owner: self) as? [SubstanceInstance]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "instance", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "instance", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
-			}
-			if let exist: AnyObject = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "type"))
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -93,17 +115,23 @@ public class Substance: DomainResource
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let category = self.category {
+			json["category"] = CodeableConcept.asJSONArray(category)
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
+		}
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
 		if let ingredient = self.ingredient {
 			json["ingredient"] = SubstanceIngredient.asJSONArray(ingredient)
 		}
 		if let instance = self.instance {
-			json["instance"] = instance.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
+			json["instance"] = SubstanceInstance.asJSONArray(instance)
 		}
 		
 		return json
@@ -135,11 +163,9 @@ public class SubstanceIngredient: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(substance: Reference?) {
+	public convenience init(substance: Reference) {
 		self.init(json: nil)
-		if nil != substance {
-			self.substance = substance
-		}
+		self.substance = substance
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

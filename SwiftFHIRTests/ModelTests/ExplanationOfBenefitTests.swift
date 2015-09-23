@@ -2,7 +2,7 @@
 //  ExplanationOfBenefitTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class ExplanationOfBenefitTests: FHIRModelTestCase
+class ExplanationOfBenefitTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> ExplanationOfBenefit {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class ExplanationOfBenefitTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testExplanationOfBenefit1() throws {
-		let instance = try runExplanationOfBenefit1()
-		try runExplanationOfBenefit1(instance.asJSON())
+	func testExplanationOfBenefit1() {
+		let instance = try? runExplanationOfBenefit1()
+		XCTAssertNotNil(instance, "Must instantiate ExplanationOfBenefit")
+		try! runExplanationOfBenefit1(instance!.asJSON())
 	}
 	
 	func runExplanationOfBenefit1(json: FHIRJSON? = nil) throws -> ExplanationOfBenefit {

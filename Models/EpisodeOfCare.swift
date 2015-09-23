@@ -2,7 +2,7 @@
 //  EpisodeOfCare.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -22,37 +22,37 @@ public class EpisodeOfCare: DomainResource
 		get { return "EpisodeOfCare" }
 	}
 	
-	/// The practitioner that is the care manager/care co-ordinator for this patient
+	/// Care manager/care co-ordinator for the patient
 	public var careManager: Reference?
 	
-	/// The list of practitioners that may be facilitating this episode of care for specific purposes
+	/// Other practitioners facilitating this episode of care
 	public var careTeam: [EpisodeOfCareCareTeam]?
 	
-	/// A list of conditions/problems/diagnoses that this episode of care is intended to be providing care for
+	/// Conditions/problems/diagnoses this episode of care is for
 	public var condition: [Reference]?
 	
-	/// Identifier(s) by which this EpisodeOfCare is known
+	/// Identifier(s) for the EpisodeOfCare
 	public var identifier: [Identifier]?
 	
-	/// The organization that has assumed the specific responsibilities for the specified duration
+	/// Organization that assumes care
 	public var managingOrganization: Reference?
 	
-	/// The patient that this EpisodeOfCare applies to
+	/// Patient for this episode of care
 	public var patient: Reference?
 	
-	/// The interval during which the managing organization assumes the defined responsibility
+	/// Interval during responsibility is assumed
 	public var period: Period?
 	
-	/// Referral Request(s) that this EpisodeOfCare manages activities within
+	/// Originating Referral Request(s)
 	public var referralRequest: [Reference]?
 	
 	/// planned | waitlist | active | onhold | finished | cancelled
 	public var status: String?
 	
-	/// The status history for the EpisodeOfCare
+	/// Past list of status codes
 	public var statusHistory: [EpisodeOfCareStatusHistory]?
 	
-	/// Specific type of EpisodeOfCare
+	/// Type/class  - e.g. specialist referral, disease management
 	public var type: [CodeableConcept]?
 	
 	
@@ -62,14 +62,10 @@ public class EpisodeOfCare: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference?, status: String?) {
+	public convenience init(patient: Reference, status: String) {
 		self.init(json: nil)
-		if nil != patient {
-			self.patient = patient
-		}
-		if nil != status {
-			self.status = status
-		}
+		self.patient = patient
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -227,6 +223,8 @@ public class EpisodeOfCare: DomainResource
 
 
 /**
+ *  Other practitioners facilitating this episode of care.
+ *
  *  The list of practitioners that may be facilitating this episode of care for specific purposes.
  */
 public class EpisodeOfCareCareTeam: FHIRElement
@@ -238,10 +236,10 @@ public class EpisodeOfCareCareTeam: FHIRElement
 	/// The practitioner (or Organization) within the team
 	public var member: Reference?
 	
-	/// The period of time that this practitioner is performing some role within the episode of care
+	/// Period of time for this role
 	public var period: Period?
 	
-	/// The role that this team member is taking within this episode of care
+	/// Role taken by this team member
 	public var role: [CodeableConcept]?
 	
 	
@@ -303,7 +301,10 @@ public class EpisodeOfCareCareTeam: FHIRElement
 
 
 /**
- *  The status history for the EpisodeOfCare.
+ *  Past list of status codes.
+ *
+ *  The history of statuses that the EpisodeOfCare has been through (without requiring processing the history of the
+ *  resource).
  */
 public class EpisodeOfCareStatusHistory: FHIRElement
 {
@@ -311,7 +312,7 @@ public class EpisodeOfCareStatusHistory: FHIRElement
 		get { return "EpisodeOfCareStatusHistory" }
 	}
 	
-	/// The period during this EpisodeOfCare that the specific status applied
+	/// Period for the status
 	public var period: Period?
 	
 	/// planned | waitlist | active | onhold | finished | cancelled
@@ -324,14 +325,10 @@ public class EpisodeOfCareStatusHistory: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(period: Period?, status: String?) {
+	public convenience init(period: Period, status: String) {
 		self.init(json: nil)
-		if nil != period {
-			self.period = period
-		}
-		if nil != status {
-			self.status = status
-		}
+		self.period = period
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

@@ -2,7 +2,7 @@
 //  BasicTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class BasicTests: FHIRModelTestCase
+class BasicTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Basic {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,46 +22,13 @@ class BasicTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testBasic1() throws {
-		let instance = try runBasic1()
-		try runBasic1(instance.asJSON())
+	func testBasic1() {
+		let instance = try? runBasic1()
+		XCTAssertNotNil(instance, "Must instantiate Basic")
+		try! runBasic1(instance!.asJSON())
 	}
 	
 	func runBasic1(json: FHIRJSON? = nil) throws -> Basic {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example-adverseevent-qicore.json")
-		
-		XCTAssertEqual(inst.code!.coding![0].code!, "ADVEVENT")
-		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString, "http://hl7.org/fhir/other-resource-type")
-		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/adverseevent-qicore-cause-item")
-		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![0].valueReference!.reference!, "Medication/example")
-		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/adverseevent-qicore-cause-certainty")
-		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].valueCodeableConcept!.coding![0].code!, "415684004")
-		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].valueCodeableConcept!.coding![0].display!, "Suspected (qualifier)")
-		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].valueCodeableConcept!.coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/adverseevent-qicore-cause")
-		XCTAssertEqual(inst.extension_fhir![1].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/adverseevent-qicore-type")
-		XCTAssertEqual(inst.extension_fhir![1].valueCodeableConcept!.coding![0].code!, "28926001")
-		XCTAssertEqual(inst.extension_fhir![1].valueCodeableConcept!.coding![0].display!, "Eruption due to drug (disorder)")
-		XCTAssertEqual(inst.extension_fhir![1].valueCodeableConcept!.coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.extension_fhir![2].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/adverseevent-qicore-period")
-		XCTAssertEqual(inst.extension_fhir![2].valuePeriod!.end!.description, "2014-01-15")
-		XCTAssertEqual(inst.extension_fhir![2].valuePeriod!.start!.description, "2014-01-14")
-		XCTAssertEqual(inst.id!, "qicore")
-		XCTAssertEqual(inst.modifierExtension![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/adverseevent-qicore-didNotOccur")
-		XCTAssertFalse(inst.modifierExtension![0].valueBoolean!)
-		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testBasic2() throws {
-		let instance = try runBasic2()
-		try runBasic2(instance.asJSON())
-	}
-	
-	func runBasic2(json: FHIRJSON? = nil) throws -> Basic {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example-narrative.json")
 		
 		XCTAssertEqual(inst.code!.text!, "Example Narrative Tester")
@@ -71,16 +38,19 @@ class BasicTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testBasic3() throws {
-		let instance = try runBasic3()
-		try runBasic3(instance.asJSON())
+	func testBasic2() {
+		let instance = try? runBasic2()
+		XCTAssertNotNil(instance, "Must instantiate Basic")
+		try! runBasic2(instance!.asJSON())
 	}
 	
-	func runBasic3(json: FHIRJSON? = nil) throws -> Basic {
+	func runBasic2(json: FHIRJSON? = nil) throws -> Basic {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example.json")
 		
-		XCTAssertEqual(inst.code!.coding![0].code!, "REFERRAL")
+		XCTAssertEqual(inst.author!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.code!.coding![0].code!, "referral")
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString, "http://hl7.org/fhir/basic-resource-type")
+		XCTAssertEqual(inst.created!.description, "2013-05-14")
 		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString, "http://example.org/do-not-use/fhir-extensions/referral#requestingPractitioner")
 		XCTAssertEqual(inst.extension_fhir![0].valueReference!.display!, "Dokter Bronsig")
 		XCTAssertEqual(inst.extension_fhir![0].valueReference!.reference!, "Practitioner/f201")
@@ -105,12 +75,13 @@ class BasicTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testBasic4() throws {
-		let instance = try runBasic4()
-		try runBasic4(instance.asJSON())
+	func testBasic3() {
+		let instance = try? runBasic3()
+		XCTAssertNotNil(instance, "Must instantiate Basic")
+		try! runBasic3(instance!.asJSON())
 	}
 	
-	func runBasic4(json: FHIRJSON? = nil) throws -> Basic {
+	func runBasic3(json: FHIRJSON? = nil) throws -> Basic {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example2.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "UMLCLASSMODEL")

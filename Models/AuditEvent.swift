@@ -2,7 +2,7 @@
 //  AuditEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -40,17 +40,11 @@ public class AuditEvent: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(event: AuditEventEvent?, participant: [AuditEventParticipant]?, source: AuditEventSource?) {
+	public convenience init(event: AuditEventEvent, participant: [AuditEventParticipant], source: AuditEventSource) {
 		self.init(json: nil)
-		if nil != event {
-			self.event = event
-		}
-		if nil != participant {
-			self.participant = participant
-		}
-		if nil != source {
-			self.source = source
-		}
+		self.event = event
+		self.participant = participant
+		self.source = source
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -153,10 +147,10 @@ public class AuditEventEvent: FHIRElement
 	public var purposeOfEvent: [Coding]?
 	
 	/// More specific type/id for the event
-	public var subtype: [CodeableConcept]?
+	public var subtype: [Coding]?
 	
 	/// Type/identifier of event
-	public var type: CodeableConcept?
+	public var type: Coding?
 	
 	
 	/** Initialize with a JSON object. */
@@ -165,14 +159,10 @@ public class AuditEventEvent: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(dateTime: Instant?, type: CodeableConcept?) {
+	public convenience init(dateTime: Instant, type: Coding) {
 		self.init(json: nil)
-		if nil != dateTime {
-			self.dateTime = dateTime
-		}
-		if nil != type {
-			self.type = type
-		}
+		self.dateTime = dateTime
+		self.type = type
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -229,7 +219,7 @@ public class AuditEventEvent: FHIRElement
 			if let exist: AnyObject = js["subtype"] {
 				presentKeys.insert("subtype")
 				if let val = exist as? [FHIRJSON] {
-					self.subtype = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.subtype = Coding.from(val, owner: self) as? [Coding]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subtype", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -238,7 +228,7 @@ public class AuditEventEvent: FHIRElement
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
+					self.type = Coding(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -270,7 +260,7 @@ public class AuditEventEvent: FHIRElement
 			json["purposeOfEvent"] = Coding.asJSONArray(purposeOfEvent)
 		}
 		if let subtype = self.subtype {
-			json["subtype"] = CodeableConcept.asJSONArray(subtype)
+			json["subtype"] = Coding.asJSONArray(subtype)
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -300,7 +290,7 @@ public class AuditEventObject: FHIRElement
 	public var identifier: Identifier?
 	
 	/// Life-cycle stage for the object
-	public var lifecycle: String?
+	public var lifecycle: Coding?
 	
 	/// Instance-specific descriptor for Object
 	public var name: String?
@@ -312,13 +302,13 @@ public class AuditEventObject: FHIRElement
 	public var reference: Reference?
 	
 	/// What role the Object played
-	public var role: String?
+	public var role: Coding?
 	
-	/// Policy-defined sensitivity for the object
-	public var sensitivity: CodeableConcept?
+	/// Security labels applied to the object
+	public var securityLabel: [Coding]?
 	
 	/// Type of object involved
-	public var type: String?
+	public var type: Coding?
 	
 	
 	/** Initialize with a JSON object. */
@@ -358,11 +348,11 @@ public class AuditEventObject: FHIRElement
 			}
 			if let exist: AnyObject = js["lifecycle"] {
 				presentKeys.insert("lifecycle")
-				if let val = exist as? String {
-					self.lifecycle = val
+				if let val = exist as? FHIRJSON {
+					self.lifecycle = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "lifecycle", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "lifecycle", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["name"] {
@@ -394,29 +384,29 @@ public class AuditEventObject: FHIRElement
 			}
 			if let exist: AnyObject = js["role"] {
 				presentKeys.insert("role")
-				if let val = exist as? String {
-					self.role = val
+				if let val = exist as? FHIRJSON {
+					self.role = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "role", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "role", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["sensitivity"] {
-				presentKeys.insert("sensitivity")
-				if let val = exist as? FHIRJSON {
-					self.sensitivity = CodeableConcept(json: val, owner: self)
+			if let exist: AnyObject = js["securityLabel"] {
+				presentKeys.insert("securityLabel")
+				if let val = exist as? [FHIRJSON] {
+					self.securityLabel = Coding.from(val, owner: self) as? [Coding]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "sensitivity", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "securityLabel", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")
-				if let val = exist as? String {
-					self.type = val
+				if let val = exist as? FHIRJSON {
+					self.type = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -450,8 +440,8 @@ public class AuditEventObject: FHIRElement
 		if let role = self.role {
 			json["role"] = role.asJSON()
 		}
-		if let sensitivity = self.sensitivity {
-			json["sensitivity"] = sensitivity.asJSON()
+		if let securityLabel = self.securityLabel {
+			json["securityLabel"] = Coding.asJSONArray(securityLabel)
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -484,14 +474,10 @@ public class AuditEventObjectDetail: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String?, value: Base64Binary?) {
+	public convenience init(type: String, value: Base64Binary) {
 		self.init(json: nil)
-		if nil != type {
-			self.type = type
-		}
-		if nil != value {
-			self.value = value
-		}
+		self.type = type
+		self.value = value
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -567,7 +553,7 @@ public class AuditEventParticipant: FHIRElement
 	/// Policy that authorized event
 	public var policy: [NSURL]?
 	
-	/// Participant purposeOfUse
+	/// Reason given for this user
 	public var purposeOfUse: [Coding]?
 	
 	/// Direct reference to resource
@@ -580,7 +566,7 @@ public class AuditEventParticipant: FHIRElement
 	public var role: [CodeableConcept]?
 	
 	/// Unique identifier for the user
-	public var userId: String?
+	public var userId: Identifier?
 	
 	
 	/** Initialize with a JSON object. */
@@ -589,11 +575,9 @@ public class AuditEventParticipant: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(requestor: Bool?) {
+	public convenience init(requestor: Bool) {
 		self.init(json: nil)
-		if nil != requestor {
-			self.requestor = requestor
-		}
+		self.requestor = requestor
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -694,11 +678,11 @@ public class AuditEventParticipant: FHIRElement
 			}
 			if let exist: AnyObject = js["userId"] {
 				presentKeys.insert("userId")
-				if let val = exist as? String {
-					self.userId = val
+				if let val = exist as? FHIRJSON {
+					self.userId = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "userId", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "userId", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -763,7 +747,7 @@ public class AuditEventParticipantNetwork: FHIRElement
 	}
 	
 	/// Identifier for the network access point of the user device
-	public var identifier: String?
+	public var address: String?
 	
 	/// The type of network access point
 	public var type: String?
@@ -777,13 +761,13 @@ public class AuditEventParticipantNetwork: FHIRElement
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["identifier"] {
-				presentKeys.insert("identifier")
+			if let exist: AnyObject = js["address"] {
+				presentKeys.insert("address")
 				if let val = exist as? String {
-					self.identifier = val
+					self.address = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "address", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["type"] {
@@ -802,8 +786,8 @@ public class AuditEventParticipantNetwork: FHIRElement
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
+		if let address = self.address {
+			json["address"] = address.asJSON()
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -823,8 +807,8 @@ public class AuditEventSource: FHIRElement
 		get { return "AuditEventSource" }
 	}
 	
-	/// The id of source where event originated
-	public var identifier: String?
+	/// The identity of source detecting the event
+	public var identifier: Identifier?
 	
 	/// Logical source location within the enterprise
 	public var site: String?
@@ -839,11 +823,9 @@ public class AuditEventSource: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identifier: String?) {
+	public convenience init(identifier: Identifier) {
 		self.init(json: nil)
-		if nil != identifier {
-			self.identifier = identifier
-		}
+		self.identifier = identifier
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -851,11 +833,11 @@ public class AuditEventSource: FHIRElement
 		if let js = json {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
-				if let val = exist as? String {
-					self.identifier = val
+				if let val = exist as? FHIRJSON {
+					self.identifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			else {

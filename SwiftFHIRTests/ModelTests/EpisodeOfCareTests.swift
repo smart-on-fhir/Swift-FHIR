@@ -2,7 +2,7 @@
 //  EpisodeOfCareTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class EpisodeOfCareTests: FHIRModelTestCase
+class EpisodeOfCareTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> EpisodeOfCare {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class EpisodeOfCareTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testEpisodeOfCare1() throws {
-		let instance = try runEpisodeOfCare1()
-		try runEpisodeOfCare1(instance.asJSON())
+	func testEpisodeOfCare1() {
+		let instance = try? runEpisodeOfCare1()
+		XCTAssertNotNil(instance, "Must instantiate EpisodeOfCare")
+		try! runEpisodeOfCare1(instance!.asJSON())
 	}
 	
 	func runEpisodeOfCare1(json: FHIRJSON? = nil) throws -> EpisodeOfCare {
@@ -39,10 +40,15 @@ class EpisodeOfCareTests: FHIRModelTestCase
 		XCTAssertEqual(inst.careTeam![0].role![0].coding![0].code!, "AO")
 		XCTAssertEqual(inst.careTeam![0].role![0].coding![0].display!, "Assessment Worker")
 		XCTAssertEqual(inst.careTeam![0].role![0].coding![0].system!.absoluteString, "http://example.org/EpisodeOfCare/Role")
+		XCTAssertEqual(inst.condition![0].display!, "Severe burn of left ear")
+		XCTAssertEqual(inst.condition![0].reference!, "Condition/example")
 		XCTAssertEqual(inst.id!, "example")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://example.org/sampleepisodeofcare-identifier")
+		XCTAssertEqual(inst.identifier![0].value!, "123")
 		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/hl7")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/example")
 		XCTAssertEqual(inst.period!.start!.description, "2014-09-01")
+		XCTAssertEqual(inst.referralRequest![0].display!, "Referral from Example Aged Care Services")
 		XCTAssertEqual(inst.status!, "active")
 		XCTAssertEqual(inst.statusHistory![0].period!.end!.description, "2014-09-14")
 		XCTAssertEqual(inst.statusHistory![0].period!.start!.description, "2014-09-01")

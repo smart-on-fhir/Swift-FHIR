@@ -2,7 +2,7 @@
 //  ContactPoint.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,9 +10,9 @@ import Foundation
 
 
 /**
- *  Details of a Technology mediated contact point (phone, fax, email, etc).
+ *  Details of a Technology mediated contact point (phone, fax, email, etc.).
  *
- *  Details for All kinds of technology mediated contact points for a person or organization, including telephone,
+ *  Details for all kinds of technology mediated contact points for a person or organization, including telephone,
  *  email, etc.
  */
 public class ContactPoint: FHIRElement
@@ -24,7 +24,10 @@ public class ContactPoint: FHIRElement
 	/// Time period when the contact point was/is in use
 	public var period: Period?
 	
-	/// phone | fax | email | url
+	/// Specify preferred order of use (1 = highest)
+	public var rank: UInt?
+	
+	/// phone | fax | email | pager | other
 	public var system: String?
 	
 	/// home | work | temp | old | mobile - purpose of this contact point
@@ -49,6 +52,15 @@ public class ContactPoint: FHIRElement
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["rank"] {
+				presentKeys.insert("rank")
+				if let val = exist as? UInt {
+					self.rank = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "rank", wants: UInt.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["system"] {
@@ -87,6 +99,9 @@ public class ContactPoint: FHIRElement
 		
 		if let period = self.period {
 			json["period"] = period.asJSON()
+		}
+		if let rank = self.rank {
+			json["rank"] = rank.asJSON()
 		}
 		if let system = self.system {
 			json["system"] = system.asJSON()

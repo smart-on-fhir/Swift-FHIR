@@ -2,7 +2,7 @@
 //  ProcessRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class ProcessRequestTests: FHIRModelTestCase
+class ProcessRequestTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> ProcessRequest {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class ProcessRequestTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testProcessRequest1() throws {
-		let instance = try runProcessRequest1()
-		try runProcessRequest1(instance.asJSON())
+	func testProcessRequest1() {
+		let instance = try? runProcessRequest1()
+		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
+		try! runProcessRequest1(instance!.asJSON())
 	}
 	
 	func runProcessRequest1(json: FHIRJSON? = nil) throws -> ProcessRequest {
@@ -42,9 +43,10 @@ class ProcessRequestTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testProcessRequest2() throws {
-		let instance = try runProcessRequest2()
-		try runProcessRequest2(instance.asJSON())
+	func testProcessRequest2() {
+		let instance = try? runProcessRequest2()
+		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
+		try! runProcessRequest2(instance!.asJSON())
 	}
 	
 	func runProcessRequest2(json: FHIRJSON? = nil) throws -> ProcessRequest {
@@ -64,9 +66,10 @@ class ProcessRequestTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testProcessRequest3() throws {
-		let instance = try runProcessRequest3()
-		try runProcessRequest3(instance.asJSON())
+	func testProcessRequest3() {
+		let instance = try? runProcessRequest3()
+		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
+		try! runProcessRequest3(instance!.asJSON())
 	}
 	
 	func runProcessRequest3(json: FHIRJSON? = nil) throws -> ProcessRequest {
@@ -85,9 +88,10 @@ class ProcessRequestTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testProcessRequest4() throws {
-		let instance = try runProcessRequest4()
-		try runProcessRequest4(instance.asJSON())
+	func testProcessRequest4() {
+		let instance = try? runProcessRequest4()
+		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
+		try! runProcessRequest4(instance!.asJSON())
 	}
 	
 	func runProcessRequest4(json: FHIRJSON? = nil) throws -> ProcessRequest {
@@ -108,9 +112,10 @@ class ProcessRequestTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testProcessRequest5() throws {
-		let instance = try runProcessRequest5()
-		try runProcessRequest5(instance.asJSON())
+	func testProcessRequest5() {
+		let instance = try? runProcessRequest5()
+		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
+		try! runProcessRequest5(instance!.asJSON())
 	}
 	
 	func runProcessRequest5(json: FHIRJSON? = nil) throws -> ProcessRequest {
@@ -129,9 +134,10 @@ class ProcessRequestTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testProcessRequest6() throws {
-		let instance = try runProcessRequest6()
-		try runProcessRequest6(instance.asJSON())
+	func testProcessRequest6() {
+		let instance = try? runProcessRequest6()
+		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
+		try! runProcessRequest6(instance!.asJSON())
 	}
 	
 	func runProcessRequest6(json: FHIRJSON? = nil) throws -> ProcessRequest {
@@ -152,9 +158,10 @@ class ProcessRequestTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testProcessRequest7() throws {
-		let instance = try runProcessRequest7()
-		try runProcessRequest7(instance.asJSON())
+	func testProcessRequest7() {
+		let instance = try? runProcessRequest7()
+		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
+		try! runProcessRequest7(instance!.asJSON())
 	}
 	
 	func runProcessRequest7(json: FHIRJSON? = nil) throws -> ProcessRequest {
@@ -174,9 +181,10 @@ class ProcessRequestTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testProcessRequest8() throws {
-		let instance = try runProcessRequest8()
-		try runProcessRequest8(instance.asJSON())
+	func testProcessRequest8() {
+		let instance = try? runProcessRequest8()
+		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
+		try! runProcessRequest8(instance!.asJSON())
 	}
 	
 	func runProcessRequest8(json: FHIRJSON? = nil) throws -> ProcessRequest {
@@ -196,9 +204,10 @@ class ProcessRequestTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testProcessRequest9() throws {
-		let instance = try runProcessRequest9()
-		try runProcessRequest9(instance.asJSON())
+	func testProcessRequest9() {
+		let instance = try? runProcessRequest9()
+		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
+		try! runProcessRequest9(instance!.asJSON())
 	}
 	
 	func runProcessRequest9(json: FHIRJSON? = nil) throws -> ProcessRequest {

@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -21,26 +21,29 @@ public class AllergyIntolerance: DomainResource
 		get { return "AllergyIntolerance" }
 	}
 	
-	/// food | medication | environment - Category of Substance
+	/// food | medication | environment | other - Category of Substance
 	public var category: String?
 	
-	/// Additional text not captured in other fields
-	public var comment: String?
-	
-	/// low | high | unassessible - Estimated potential clinical harm
+	/// CRITL | CRITH | CRITU
 	public var criticality: String?
 	
-	/// Adverse Reaction Events linked to exposure to substance
-	public var event: [AllergyIntoleranceEvent]?
-	
-	/// External Ids for this item
+	/// External ids for this item
 	public var identifier: [Identifier]?
 	
-	/// Date(/time) of last known occurence of a reaction
+	/// Date(/time) of last known occurrence of a reaction
 	public var lastOccurence: DateTime?
+	
+	/// Additional text not captured in other fields
+	public var note: Annotation?
+	
+	/// Date(/time) when manifestations showed
+	public var onset: DateTime?
 	
 	/// Who the sensitivity is for
 	public var patient: Reference?
+	
+	/// Adverse Reaction Events linked to exposure to substance
+	public var reaction: [AllergyIntoleranceReaction]?
 	
 	/// When recorded
 	public var recordedDate: DateTime?
@@ -51,13 +54,13 @@ public class AllergyIntolerance: DomainResource
 	/// Source of the information about the allergy
 	public var reporter: Reference?
 	
-	/// unconfirmed | confirmed | resolved | refuted | entered-in-error
+	/// active | unconfirmed | confirmed | inactive | resolved | refuted | entered-in-error
 	public var status: String?
 	
 	/// Substance, (or class) considered to be responsible for risk
 	public var substance: CodeableConcept?
 	
-	/// immune | non-immune - Underlying mechanism (if known)
+	/// allergy | intolerance - Underlying mechanism (if known)
 	public var type: String?
 	
 	
@@ -67,14 +70,10 @@ public class AllergyIntolerance: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference?, substance: CodeableConcept?) {
+	public convenience init(patient: Reference, substance: CodeableConcept) {
 		self.init(json: nil)
-		if nil != patient {
-			self.patient = patient
-		}
-		if nil != substance {
-			self.substance = substance
-		}
+		self.patient = patient
+		self.substance = substance
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -89,15 +88,6 @@ public class AllergyIntolerance: DomainResource
 					errors.append(FHIRJSONError(key: "category", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["comment"] {
-				presentKeys.insert("comment")
-				if let val = exist as? String {
-					self.comment = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["criticality"] {
 				presentKeys.insert("criticality")
 				if let val = exist as? String {
@@ -105,15 +95,6 @@ public class AllergyIntolerance: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "criticality", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["event"] {
-				presentKeys.insert("event")
-				if let val = exist as? [FHIRJSON] {
-					self.event = AllergyIntoleranceEvent.from(val, owner: self) as? [AllergyIntoleranceEvent]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "event", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["identifier"] {
@@ -134,6 +115,24 @@ public class AllergyIntolerance: DomainResource
 					errors.append(FHIRJSONError(key: "lastOccurence", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["note"] {
+				presentKeys.insert("note")
+				if let val = exist as? FHIRJSON {
+					self.note = Annotation(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "note", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["onset"] {
+				presentKeys.insert("onset")
+				if let val = exist as? String {
+					self.onset = DateTime(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "onset", wants: String.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
@@ -145,6 +144,15 @@ public class AllergyIntolerance: DomainResource
 			}
 			else {
 				errors.append(FHIRJSONError(key: "patient"))
+			}
+			if let exist: AnyObject = js["reaction"] {
+				presentKeys.insert("reaction")
+				if let val = exist as? [FHIRJSON] {
+					self.reaction = AllergyIntoleranceReaction.from(val, owner: self) as? [AllergyIntoleranceReaction]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reaction", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
 			}
 			if let exist: AnyObject = js["recordedDate"] {
 				presentKeys.insert("recordedDate")
@@ -213,14 +221,8 @@ public class AllergyIntolerance: DomainResource
 		if let category = self.category {
 			json["category"] = category.asJSON()
 		}
-		if let comment = self.comment {
-			json["comment"] = comment.asJSON()
-		}
 		if let criticality = self.criticality {
 			json["criticality"] = criticality.asJSON()
-		}
-		if let event = self.event {
-			json["event"] = AllergyIntoleranceEvent.asJSONArray(event)
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
@@ -228,8 +230,17 @@ public class AllergyIntolerance: DomainResource
 		if let lastOccurence = self.lastOccurence {
 			json["lastOccurence"] = lastOccurence.asJSON()
 		}
+		if let note = self.note {
+			json["note"] = note.asJSON()
+		}
+		if let onset = self.onset {
+			json["onset"] = onset.asJSON()
+		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
+		}
+		if let reaction = self.reaction {
+			json["reaction"] = AllergyIntoleranceReaction.asJSONArray(reaction)
 		}
 		if let recordedDate = self.recordedDate {
 			json["recordedDate"] = recordedDate.asJSON()
@@ -258,31 +269,28 @@ public class AllergyIntolerance: DomainResource
 /**
  *  Adverse Reaction Events linked to exposure to substance.
  *
- *  Details about each Adverse Reaction Event linked to exposure to the identified Substance.
+ *  Details about each adverse reaction event linked to exposure to the identified Substance.
  */
-public class AllergyIntoleranceEvent: FHIRElement
+public class AllergyIntoleranceReaction: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "AllergyIntoleranceEvent" }
+		get { return "AllergyIntoleranceReaction" }
 	}
 	
 	/// unlikely | likely | confirmed - clinical certainty about the specific substance
 	public var certainty: String?
 	
-	/// Text about event not captured in other fields
-	public var comment: String?
-	
 	/// Description of the event as a whole
 	public var description_fhir: String?
-	
-	/// How long Manifestations persisted
-	public var duration: Duration?
 	
 	/// How the subject was exposed to the substance
 	public var exposureRoute: CodeableConcept?
 	
 	/// Clinical symptoms/signs associated with the Event
 	public var manifestation: [CodeableConcept]?
+	
+	/// Text about event not captured in other fields
+	public var note: Annotation?
 	
 	/// Date(/time) when manifestations showed
 	public var onset: DateTime?
@@ -300,11 +308,9 @@ public class AllergyIntoleranceEvent: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(manifestation: [CodeableConcept]?) {
+	public convenience init(manifestation: [CodeableConcept]) {
 		self.init(json: nil)
-		if nil != manifestation {
-			self.manifestation = manifestation
-		}
+		self.manifestation = manifestation
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -319,15 +325,6 @@ public class AllergyIntoleranceEvent: FHIRElement
 					errors.append(FHIRJSONError(key: "certainty", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["comment"] {
-				presentKeys.insert("comment")
-				if let val = exist as? String {
-					self.comment = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["description"] {
 				presentKeys.insert("description")
 				if let val = exist as? String {
@@ -335,15 +332,6 @@ public class AllergyIntoleranceEvent: FHIRElement
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["duration"] {
-				presentKeys.insert("duration")
-				if let val = exist as? FHIRJSON {
-					self.duration = Duration(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "duration", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["exposureRoute"] {
@@ -366,6 +354,15 @@ public class AllergyIntoleranceEvent: FHIRElement
 			}
 			else {
 				errors.append(FHIRJSONError(key: "manifestation"))
+			}
+			if let exist: AnyObject = js["note"] {
+				presentKeys.insert("note")
+				if let val = exist as? FHIRJSON {
+					self.note = Annotation(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "note", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
 			}
 			if let exist: AnyObject = js["onset"] {
 				presentKeys.insert("onset")
@@ -404,20 +401,17 @@ public class AllergyIntoleranceEvent: FHIRElement
 		if let certainty = self.certainty {
 			json["certainty"] = certainty.asJSON()
 		}
-		if let comment = self.comment {
-			json["comment"] = comment.asJSON()
-		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
-		}
-		if let duration = self.duration {
-			json["duration"] = duration.asJSON()
 		}
 		if let exposureRoute = self.exposureRoute {
 			json["exposureRoute"] = exposureRoute.asJSON()
 		}
 		if let manifestation = self.manifestation {
 			json["manifestation"] = CodeableConcept.asJSONArray(manifestation)
+		}
+		if let note = self.note {
+			json["note"] = note.asJSON()
 		}
 		if let onset = self.onset {
 			json["onset"] = onset.asJSON()

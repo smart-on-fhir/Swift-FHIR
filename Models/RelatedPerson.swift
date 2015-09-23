@@ -2,7 +2,7 @@
 //  RelatedPerson.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -22,12 +22,15 @@ public class RelatedPerson: DomainResource
 	}
 	
 	/// Address where the related person can be contacted or visited
-	public var address: Address?
+	public var address: [Address]?
+	
+	/// The date on which the related person was born
+	public var birthDate: Date?
 	
 	/// male | female | other | unknown
 	public var gender: String?
 	
-	/// A Human identifier for this person
+	/// A human identifier for this person
 	public var identifier: [Identifier]?
 	
 	/// A name associated with the person
@@ -55,11 +58,9 @@ public class RelatedPerson: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference?) {
+	public convenience init(patient: Reference) {
 		self.init(json: nil)
-		if nil != patient {
-			self.patient = patient
-		}
+		self.patient = patient
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -67,11 +68,20 @@ public class RelatedPerson: DomainResource
 		if let js = json {
 			if let exist: AnyObject = js["address"] {
 				presentKeys.insert("address")
-				if let val = exist as? FHIRJSON {
-					self.address = Address(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.address = Address.from(val, owner: self) as? [Address]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "address", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "address", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["birthDate"] {
+				presentKeys.insert("birthDate")
+				if let val = exist as? String {
+					self.birthDate = Date(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "birthDate", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["gender"] {
@@ -157,7 +167,10 @@ public class RelatedPerson: DomainResource
 		var json = super.asJSON()
 		
 		if let address = self.address {
-			json["address"] = address.asJSON()
+			json["address"] = Address.asJSONArray(address)
+		}
+		if let birthDate = self.birthDate {
+			json["birthDate"] = birthDate.asJSON()
 		}
 		if let gender = self.gender {
 			json["gender"] = gender.asJSON()

@@ -2,7 +2,7 @@
 //  Practitioner.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -20,10 +20,13 @@ public class Practitioner: DomainResource
 		get { return "Practitioner" }
 	}
 	
+	/// Whether this practitioner's record is in active use
+	public var active: Bool?
+	
 	/// Where practitioner can be found/visited
 	public var address: [Address]?
 	
-	/// The date  of birth for the practitioner
+	/// The date  on which the practitioner was born
 	public var birthDate: Date?
 	
 	/// A language the practitioner is able to use in patient communication
@@ -41,7 +44,7 @@ public class Practitioner: DomainResource
 	/// Image of the person
 	public var photo: [Attachment]?
 	
-	/// The list of Roles/Organizations that the Practitioner is associated with
+	/// Roles/organizations the practitioner is associated with
 	public var practitionerRole: [PractitionerPractitionerRole]?
 	
 	/// Qualifications obtained by training and certification
@@ -59,6 +62,15 @@ public class Practitioner: DomainResource
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["active"] {
+				presentKeys.insert("active")
+				if let val = exist as? Bool {
+					self.active = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "active", wants: Bool.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["address"] {
 				presentKeys.insert("address")
 				if let val = exist as? [FHIRJSON] {
@@ -156,6 +168,9 @@ public class Practitioner: DomainResource
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let active = self.active {
+			json["active"] = active.asJSON()
+		}
 		if let address = self.address {
 			json["address"] = Address.asJSONArray(address)
 		}
@@ -193,7 +208,9 @@ public class Practitioner: DomainResource
 
 
 /**
- *  The list of Roles/Organizations that the Practitioner is associated with.
+ *  Roles/organizations the practitioner is associated with.
+ *
+ *  The list of roles/organizations that the practitioner is associated with.
  */
 public class PractitionerPractitionerRole: FHIRElement
 {
@@ -207,7 +224,7 @@ public class PractitionerPractitionerRole: FHIRElement
 	/// The location(s) at which this practitioner provides care
 	public var location: [Reference]?
 	
-	/// The Organization where the Practitioner performs the roles associated
+	/// Organization where the roles are performed
 	public var managingOrganization: Reference?
 	
 	/// The period during which the practitioner is authorized to perform in these role(s)
@@ -341,11 +358,9 @@ public class PractitionerQualification: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept?) {
+	public convenience init(code: CodeableConcept) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
+		self.code = code
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

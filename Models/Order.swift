@@ -2,7 +2,7 @@
 //  Order.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Order) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Order) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -17,9 +17,6 @@ public class Order: DomainResource
 	override public class var resourceName: String {
 		get { return "Order" }
 	}
-	
-	/// If required by policy
-	public var authority: Reference?
 	
 	/// When the order was made
 	public var date: DateTime?
@@ -55,25 +52,14 @@ public class Order: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(detail: [Reference]?) {
+	public convenience init(detail: [Reference]) {
 		self.init(json: nil)
-		if nil != detail {
-			self.detail = detail
-		}
+		self.detail = detail
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["authority"] {
-				presentKeys.insert("authority")
-				if let val = exist as? FHIRJSON {
-					self.authority = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "authority", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["date"] {
 				presentKeys.insert("date")
 				if let val = exist as? String {
@@ -165,9 +151,6 @@ public class Order: DomainResource
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let authority = self.authority {
-			json["authority"] = authority.asJSON()
-		}
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}

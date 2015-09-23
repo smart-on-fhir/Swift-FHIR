@@ -2,7 +2,7 @@
 //  Attachment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -29,7 +29,7 @@ public class Attachment: FHIRElement
 	/// Data inline, base64ed
 	public var data: Base64Binary?
 	
-	/// Hash of the data (sha-1, base64ed )
+	/// Hash of the data (sha-1, base64ed)
 	public var hash: Base64Binary?
 	
 	/// Human language of the content (BCP-47)

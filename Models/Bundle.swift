@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -20,22 +20,19 @@ public class Bundle: Resource
 		get { return "Bundle" }
 	}
 	
-	/// Stated Base URL
-	public var base: NSURL?
-	
 	/// Entry in the bundle - will have a resource, or information
 	public var entry: [BundleEntry]?
 	
 	/// Links related to this Bundle
 	public var link: [BundleLink]?
 	
-	/// XML Digital Signature (base64 encoded)
-	public var signature: Base64Binary?
+	/// Digital Signature
+	public var signature: Signature?
 	
 	/// If search, the total number of matches
 	public var total: UInt?
 	
-	/// document | message | transaction | transaction-response | history | searchset | collection
+	/// document | message | transaction | transaction-response | batch | batch-response | history | searchset | collection
 	public var type: String?
 	
 	
@@ -45,25 +42,14 @@ public class Bundle: Resource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String?) {
+	public convenience init(type: String) {
 		self.init(json: nil)
-		if nil != type {
-			self.type = type
-		}
+		self.type = type
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["base"] {
-				presentKeys.insert("base")
-				if let val = exist as? String {
-					self.base = NSURL(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "base", wants: String.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["entry"] {
 				presentKeys.insert("entry")
 				if let val = exist as? [FHIRJSON] {
@@ -84,11 +70,11 @@ public class Bundle: Resource
 			}
 			if let exist: AnyObject = js["signature"] {
 				presentKeys.insert("signature")
-				if let val = exist as? String {
-					self.signature = Base64Binary(string: val)
+				if let val = exist as? FHIRJSON {
+					self.signature = Signature(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "signature", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "signature", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["total"] {
@@ -119,9 +105,6 @@ public class Bundle: Resource
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let base = self.base {
-			json["base"] = base.asJSON()
-		}
 		if let entry = self.entry {
 			json["entry"] = BundleEntry.asJSONArray(entry)
 		}
@@ -155,23 +138,23 @@ public class BundleEntry: FHIRElement
 		get { return "BundleEntry" }
 	}
 	
-	/// Base URL, if different to bundle base
-	public var base: NSURL?
+	/// Absolute URL for resource (server address, or UUID/OID)
+	public var fullUrl: NSURL?
 	
 	/// Links related to this entry
 	public var link: [BundleLink]?
 	
-	/// Resources in this bundle
+	/// Transaction Related Information
+	public var request: BundleEntryRequest?
+	
+	/// A resource in the bundle
 	public var resource: Resource?
+	
+	/// Transaction Related Information
+	public var response: BundleEntryResponse?
 	
 	/// Search related information
 	public var search: BundleEntrySearch?
-	
-	/// Transaction Related Information
-	public var transaction: BundleEntryTransaction?
-	
-	/// Transaction Related Information
-	public var transactionResponse: BundleEntryTransactionResponse?
 	
 	
 	/** Initialize with a JSON object. */
@@ -182,13 +165,13 @@ public class BundleEntry: FHIRElement
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["base"] {
-				presentKeys.insert("base")
+			if let exist: AnyObject = js["fullUrl"] {
+				presentKeys.insert("fullUrl")
 				if let val = exist as? String {
-					self.base = NSURL(string: val)
+					self.fullUrl = NSURL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "base", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "fullUrl", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["link"] {
@@ -200,6 +183,15 @@ public class BundleEntry: FHIRElement
 					errors.append(FHIRJSONError(key: "link", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["request"] {
+				presentKeys.insert("request")
+				if let val = exist as? FHIRJSON {
+					self.request = BundleEntryRequest(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["resource"] {
 				presentKeys.insert("resource")
 				if let val = exist as? FHIRJSON {
@@ -207,6 +199,15 @@ public class BundleEntry: FHIRElement
 				}
 				else {
 					errors.append(FHIRJSONError(key: "resource", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["response"] {
+				presentKeys.insert("response")
+				if let val = exist as? FHIRJSON {
+					self.response = BundleEntryResponse(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "response", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["search"] {
@@ -218,24 +219,6 @@ public class BundleEntry: FHIRElement
 					errors.append(FHIRJSONError(key: "search", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["transaction"] {
-				presentKeys.insert("transaction")
-				if let val = exist as? FHIRJSON {
-					self.transaction = BundleEntryTransaction(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "transaction", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["transactionResponse"] {
-				presentKeys.insert("transactionResponse")
-				if let val = exist as? FHIRJSON {
-					self.transactionResponse = BundleEntryTransactionResponse(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "transactionResponse", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -243,86 +226,23 @@ public class BundleEntry: FHIRElement
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let base = self.base {
-			json["base"] = base.asJSON()
+		if let fullUrl = self.fullUrl {
+			json["fullUrl"] = fullUrl.asJSON()
 		}
 		if let link = self.link {
 			json["link"] = BundleLink.asJSONArray(link)
 		}
+		if let request = self.request {
+			json["request"] = request.asJSON()
+		}
 		if let resource = self.resource {
 			json["resource"] = resource.asJSON()
 		}
+		if let response = self.response {
+			json["response"] = response.asJSON()
+		}
 		if let search = self.search {
 			json["search"] = search.asJSON()
-		}
-		if let transaction = self.transaction {
-			json["transaction"] = transaction.asJSON()
-		}
-		if let transactionResponse = self.transactionResponse {
-			json["transactionResponse"] = transactionResponse.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Search related information.
- *
- *  Information about the search process that lead to the creation of this entry.
- */
-public class BundleEntrySearch: FHIRElement
-{
-	override public class var resourceName: String {
-		get { return "BundleEntrySearch" }
-	}
-	
-	/// match | include - why this is in the result set
-	public var mode: String?
-	
-	/// Search ranking (between 0 and 1)
-	public var score: NSDecimalNumber?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?) {
-		super.init(json: json)
-	}
-	
-	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist: AnyObject = js["mode"] {
-				presentKeys.insert("mode")
-				if let val = exist as? String {
-					self.mode = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["score"] {
-				presentKeys.insert("score")
-				if let val = exist as? NSNumber {
-					self.score = NSDecimalNumber(json: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "score", wants: NSNumber.self, has: exist.dynamicType))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override public func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let mode = self.mode {
-			json["mode"] = mode.asJSON()
-		}
-		if let score = self.score {
-			json["score"] = score.asJSON()
 		}
 		
 		return json
@@ -335,10 +255,10 @@ public class BundleEntrySearch: FHIRElement
  *
  *  Additional information about how this entry should be processed as part of a transaction.
  */
-public class BundleEntryTransaction: FHIRElement
+public class BundleEntryRequest: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "BundleEntryTransaction" }
+		get { return "BundleEntryRequest" }
 	}
 	
 	/// For managing update contention
@@ -356,7 +276,7 @@ public class BundleEntryTransaction: FHIRElement
 	/// GET | POST | PUT | DELETE
 	public var method: String?
 	
-	/// The URL for the transaction
+	/// URL for HTTP equivalent of this entry
 	public var url: NSURL?
 	
 	
@@ -366,14 +286,10 @@ public class BundleEntryTransaction: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(method: String?, url: NSURL?) {
+	public convenience init(method: String, url: NSURL) {
 		self.init(json: nil)
-		if nil != method {
-			self.method = method
-		}
-		if nil != url {
-			self.url = url
-		}
+		self.method = method
+		self.url = url
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -475,10 +391,10 @@ public class BundleEntryTransaction: FHIRElement
  *
  *  Additional information about how this entry should be processed as part of a transaction.
  */
-public class BundleEntryTransactionResponse: FHIRElement
+public class BundleEntryResponse: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "BundleEntryTransactionResponse" }
+		get { return "BundleEntryResponse" }
 	}
 	
 	/// The etag for the resource (if relevant)
@@ -500,11 +416,9 @@ public class BundleEntryTransactionResponse: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String?) {
+	public convenience init(status: String) {
 		self.init(json: nil)
-		if nil != status {
-			self.status = status
-		}
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -575,6 +489,69 @@ public class BundleEntryTransactionResponse: FHIRElement
 
 
 /**
+ *  Search related information.
+ *
+ *  Information about the search process that lead to the creation of this entry.
+ */
+public class BundleEntrySearch: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "BundleEntrySearch" }
+	}
+	
+	/// match | include | outcome - why this is in the result set
+	public var mode: String?
+	
+	/// Search ranking (between 0 and 1)
+	public var score: NSDecimalNumber?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+	}
+	
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist: AnyObject = js["mode"] {
+				presentKeys.insert("mode")
+				if let val = exist as? String {
+					self.mode = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["score"] {
+				presentKeys.insert("score")
+				if let val = exist as? NSNumber {
+					self.score = NSDecimalNumber(json: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "score", wants: NSNumber.self, has: exist.dynamicType))
+				}
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let mode = self.mode {
+			json["mode"] = mode.asJSON()
+		}
+		if let score = self.score {
+			json["score"] = score.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
  *  Links related to this Bundle.
  *
  *  A series of links that provide context to this bundle.
@@ -598,14 +575,10 @@ public class BundleLink: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(relation: String?, url: NSURL?) {
+	public convenience init(relation: String, url: NSURL) {
 		self.init(json: nil)
-		if nil != relation {
-			self.relation = relation
-		}
-		if nil != url {
-			self.url = url
-		}
+		self.relation = relation
+		self.url = url
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

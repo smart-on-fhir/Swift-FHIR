@@ -2,7 +2,7 @@
 //  PatientTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class PatientTests: FHIRModelTestCase
+class PatientTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Patient {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class PatientTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testPatient1() throws {
-		let instance = try runPatient1()
-		try runPatient1(instance.asJSON())
+	func testPatient1() {
+		let instance = try? runPatient1()
+		XCTAssertNotNil(instance, "Must instantiate Patient")
+		try! runPatient1(instance!.asJSON())
 	}
 	
 	func runPatient1(json: FHIRJSON? = nil) throws -> Patient {
@@ -38,7 +39,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.gender!, "male")
 		XCTAssertEqual(inst.id!, "pat1")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:oid:0.1.2.3.4.5.6.7")
-		XCTAssertEqual(inst.identifier![0].type!.coding![0].code!, "MRN")
+		XCTAssertEqual(inst.identifier![0].type!.coding![0].code!, "MR")
 		XCTAssertEqual(inst.identifier![0].type!.coding![0].system!.absoluteString, "http://hl7.org/fhir/v2/0203")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
 		XCTAssertEqual(inst.identifier![0].value!, "654321")
@@ -55,9 +56,10 @@ class PatientTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testPatient2() throws {
-		let instance = try runPatient2()
-		try runPatient2(instance.asJSON())
+	func testPatient2() {
+		let instance = try? runPatient2()
+		XCTAssertNotNil(instance, "Must instantiate Patient")
+		try! runPatient2(instance!.asJSON())
 	}
 	
 	func runPatient2(json: FHIRJSON? = nil) throws -> Patient {
@@ -99,9 +101,10 @@ class PatientTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testPatient3() throws {
-		let instance = try runPatient3()
-		try runPatient3(instance.asJSON())
+	func testPatient3() {
+		let instance = try? runPatient3()
+		XCTAssertNotNil(instance, "Must instantiate Patient")
+		try! runPatient3(instance!.asJSON())
 	}
 	
 	func runPatient3(json: FHIRJSON? = nil) throws -> Patient {
@@ -111,7 +114,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.gender!, "other")
 		XCTAssertEqual(inst.id!, "pat2")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:oid:0.1.2.3.4.5.6.7")
-		XCTAssertEqual(inst.identifier![0].type!.coding![0].code!, "MRN")
+		XCTAssertEqual(inst.identifier![0].type!.coding![0].code!, "MR")
 		XCTAssertEqual(inst.identifier![0].type!.coding![0].system!.absoluteString, "http://hl7.org/fhir/v2/0203")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
 		XCTAssertEqual(inst.identifier![0].value!, "123456")
@@ -129,23 +132,82 @@ class PatientTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testPatient4() throws {
-		let instance = try runPatient4()
-		try runPatient4(instance.asJSON())
+	func testPatient4() {
+		let instance = try? runPatient4()
+		XCTAssertNotNil(instance, "Must instantiate Patient")
+		try! runPatient4(instance!.asJSON())
 	}
 	
 	func runPatient4(json: FHIRJSON? = nil) throws -> Patient {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-c.json")
+		
+		XCTAssertTrue(inst.active!)
+		XCTAssertEqual(inst.birthDate!.description, "1982-01-23")
+		XCTAssertEqual(inst.deceasedDateTime!.description, "2015-02-14T13:42:00+10:00")
+		XCTAssertEqual(inst.gender!, "male")
+		XCTAssertEqual(inst.id!, "pat3")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:oid:0.1.2.3.4.5.6.7")
+		XCTAssertEqual(inst.identifier![0].type!.coding![0].code!, "MR")
+		XCTAssertEqual(inst.identifier![0].type!.coding![0].system!.absoluteString, "http://hl7.org/fhir/v2/0203")
+		XCTAssertEqual(inst.identifier![0].use!, "usual")
+		XCTAssertEqual(inst.identifier![0].value!, "123457")
+		XCTAssertEqual(inst.managingOrganization!.display!, "ACME Healthcare, Inc")
+		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.name![0].family![0], "Notsowell")
+		XCTAssertEqual(inst.name![0].given![0], "Simon")
+		XCTAssertEqual(inst.name![0].use!, "official")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testPatient5() {
+		let instance = try? runPatient5()
+		XCTAssertNotNil(instance, "Must instantiate Patient")
+		try! runPatient5(instance!.asJSON())
+	}
+	
+	func runPatient5(json: FHIRJSON? = nil) throws -> Patient {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-d.json")
+		
+		XCTAssertTrue(inst.active!)
+		XCTAssertEqual(inst.birthDate!.description, "1982-08-02")
+		XCTAssertTrue(inst.deceasedBoolean!)
+		XCTAssertEqual(inst.gender!, "female")
+		XCTAssertEqual(inst.id!, "pat4")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:oid:0.1.2.3.4.5.6.7")
+		XCTAssertEqual(inst.identifier![0].type!.coding![0].code!, "MR")
+		XCTAssertEqual(inst.identifier![0].type!.coding![0].system!.absoluteString, "http://hl7.org/fhir/v2/0203")
+		XCTAssertEqual(inst.identifier![0].use!, "usual")
+		XCTAssertEqual(inst.identifier![0].value!, "123458")
+		XCTAssertEqual(inst.managingOrganization!.display!, "ACME Healthcare, Inc")
+		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.name![0].family![0], "Notsowell")
+		XCTAssertEqual(inst.name![0].given![0], "Sandy")
+		XCTAssertEqual(inst.name![0].use!, "official")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testPatient6() {
+		let instance = try? runPatient6()
+		XCTAssertNotNil(instance, "Must instantiate Patient")
+		try! runPatient6(instance!.asJSON())
+	}
+	
+	func runPatient6(json: FHIRJSON? = nil) throws -> Patient {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-dicom.json")
 		
 		XCTAssertTrue(inst.active!)
 		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString, "http://nema.org/fhir/extensions#0010:1010")
-		XCTAssertEqual(inst.extension_fhir![0].valueQuantity!.units!, "Y")
+		XCTAssertEqual(inst.extension_fhir![0].valueQuantity!.unit!, "Y")
 		XCTAssertEqual(inst.extension_fhir![0].valueQuantity!.value!, NSDecimalNumber(string: "56"))
 		XCTAssertEqual(inst.extension_fhir![1].url!.absoluteString, "http://nema.org/fhir/extensions#0010:1020")
-		XCTAssertEqual(inst.extension_fhir![1].valueQuantity!.units!, "m")
+		XCTAssertEqual(inst.extension_fhir![1].valueQuantity!.unit!, "m")
 		XCTAssertEqual(inst.extension_fhir![1].valueQuantity!.value!, NSDecimalNumber(string: "1.83"))
 		XCTAssertEqual(inst.extension_fhir![2].url!.absoluteString, "http://nema.org/fhir/extensions#0010:1030")
-		XCTAssertEqual(inst.extension_fhir![2].valueQuantity!.units!, "kg")
+		XCTAssertEqual(inst.extension_fhir![2].valueQuantity!.unit!, "kg")
 		XCTAssertEqual(inst.extension_fhir![2].valueQuantity!.value!, NSDecimalNumber(string: "72.58"))
 		XCTAssertEqual(inst.gender!, "male")
 		XCTAssertEqual(inst.id!, "dicom")
@@ -158,12 +220,13 @@ class PatientTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testPatient5() throws {
-		let instance = try runPatient5()
-		try runPatient5(instance.asJSON())
+	func testPatient7() {
+		let instance = try? runPatient7()
+		XCTAssertNotNil(instance, "Must instantiate Patient")
+		try! runPatient7(instance!.asJSON())
 	}
 	
-	func runPatient5(json: FHIRJSON? = nil) throws -> Patient {
+	func runPatient7(json: FHIRJSON? = nil) throws -> Patient {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-f001-pieter.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -216,12 +279,13 @@ class PatientTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testPatient6() throws {
-		let instance = try runPatient6()
-		try runPatient6(instance.asJSON())
+	func testPatient8() {
+		let instance = try? runPatient8()
+		XCTAssertNotNil(instance, "Must instantiate Patient")
+		try! runPatient8(instance!.asJSON())
 	}
 	
-	func runPatient6(json: FHIRJSON? = nil) throws -> Patient {
+	func runPatient8(json: FHIRJSON? = nil) throws -> Patient {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-f201-roel.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -233,7 +297,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.birthDate!.description, "1960-03-13")
 		XCTAssertEqual(inst.communication![0].language!.coding![0].code!, "nl-NL")
 		XCTAssertEqual(inst.communication![0].language!.coding![0].display!, "Dutch")
-		XCTAssertEqual(inst.communication![0].language!.coding![0].system!.absoluteString, "urn:std:iso:639-1")
+		XCTAssertEqual(inst.communication![0].language!.coding![0].system!.absoluteString, "urn:ietf:bcp:47")
 		XCTAssertTrue(inst.communication![0].preferred!)
 		XCTAssertEqual(inst.contact![0].name!.text!, "Ariadne Bor-Jansma")
 		XCTAssertEqual(inst.contact![0].name!.use!, "usual")
@@ -271,7 +335,7 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.name![0].text!, "Roel")
 		XCTAssertEqual(inst.name![0].use!, "official")
 		XCTAssertEqual(inst.photo![0].contentType!, "image/jpeg")
-		XCTAssertEqual(inst.photo![0].url!.absoluteString, "binary/@f006")
+		XCTAssertEqual(inst.photo![0].url!.absoluteString, "Binary/f006")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "mobile")
 		XCTAssertEqual(inst.telecom![0].value!, "+31612345678")
@@ -283,12 +347,13 @@ class PatientTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testPatient7() throws {
-		let instance = try runPatient7()
-		try runPatient7(instance.asJSON())
+	func testPatient9() {
+		let instance = try? runPatient9()
+		XCTAssertNotNil(instance, "Must instantiate Patient")
+		try! runPatient9(instance!.asJSON())
 	}
 	
-	func runPatient7(json: FHIRJSON? = nil) throws -> Patient {
+	func runPatient9(json: FHIRJSON? = nil) throws -> Patient {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-ihe-pcd.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -303,12 +368,13 @@ class PatientTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testPatient8() throws {
-		let instance = try runPatient8()
-		try runPatient8(instance.asJSON())
+	func testPatient10() {
+		let instance = try? runPatient10()
+		XCTAssertNotNil(instance, "Must instantiate Patient")
+		try! runPatient10(instance!.asJSON())
 	}
 	
-	func runPatient8(json: FHIRJSON? = nil) throws -> Patient {
+	func runPatient10(json: FHIRJSON? = nil) throws -> Patient {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-proband.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -325,72 +391,6 @@ class PatientTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].type!.text!, "Computer-Stored Abulatory Records (COSTAR)")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
 		XCTAssertEqual(inst.identifier![0].value!, "999999999")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testPatient9() throws {
-		let instance = try runPatient9()
-		try runPatient9(instance.asJSON())
-	}
-	
-	func runPatient9(json: FHIRJSON? = nil) throws -> Patient {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-us-extensions.json")
-		
-		XCTAssertTrue(inst.active!)
-		XCTAssertEqual(inst.address![0].city!, "PleasantVille")
-		XCTAssertEqual(inst.address![0].extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/us-core-county")
-		XCTAssertEqual(inst.address![0].extension_fhir![0].valueString!, "Orange County")
-		XCTAssertEqual(inst.address![0].line![0], "534 Erewhon St")
-		XCTAssertEqual(inst.address![0].postalCode!, "3999")
-		XCTAssertEqual(inst.address![0].state!, "Vic")
-		XCTAssertEqual(inst.address![0].use!, "home")
-		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/us-core-race")
-		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "1096-7")
-		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString, "http://hl7.org/fhir/v3/Race")
-		XCTAssertEqual(inst.extension_fhir![1].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/us-core-ethnicity")
-		XCTAssertEqual(inst.extension_fhir![1].valueCodeableConcept!.coding![0].code!, "2162-6")
-		XCTAssertEqual(inst.extension_fhir![1].valueCodeableConcept!.coding![0].system!.absoluteString, "http://hl7.org/fhir/v3/Ethnicity")
-		XCTAssertEqual(inst.id!, "us01")
-		XCTAssertEqual(inst.name![0].family![0], "Chalmers")
-		XCTAssertEqual(inst.name![0].given![0], "Peter")
-		XCTAssertEqual(inst.name![0].given![1], "James")
-		XCTAssertEqual(inst.name![0].use!, "official")
-		XCTAssertEqual(inst.telecom![0].system!, "phone")
-		XCTAssertEqual(inst.telecom![0].use!, "work")
-		XCTAssertEqual(inst.telecom![0].value!, "(03) 5555 6473")
-		XCTAssertEqual(inst.telecom![1].extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/us-core-direct")
-		XCTAssertTrue(inst.telecom![1].extension_fhir![0].valueBoolean!)
-		XCTAssertEqual(inst.telecom![1].system!, "email")
-		XCTAssertEqual(inst.telecom![1].use!, "work")
-		XCTAssertEqual(inst.telecom![1].value!, "person@example.org")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		
-		return inst
-	}
-	
-	func testPatient10() throws {
-		let instance = try runPatient10()
-		try runPatient10(instance.asJSON())
-	}
-	
-	func runPatient10(json: FHIRJSON? = nil) throws -> Patient {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-example-xcda.json")
-		
-		XCTAssertTrue(inst.active!)
-		XCTAssertEqual(inst.birthDate!.description, "1932-09-24")
-		XCTAssertEqual(inst.gender!, "male")
-		XCTAssertEqual(inst.id!, "xcda")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.19.5")
-		XCTAssertEqual(inst.identifier![0].type!.coding![0].code!, "MRN")
-		XCTAssertEqual(inst.identifier![0].type!.coding![0].system!.absoluteString, "http://hl7.org/fhir/v2/0203")
-		XCTAssertEqual(inst.identifier![0].use!, "usual")
-		XCTAssertEqual(inst.identifier![0].value!, "12345")
-		XCTAssertEqual(inst.managingOrganization!.display!, "Good Health Clinic")
-		XCTAssertEqual(inst.managingOrganization!.reference!, "Organization/2.16.840.1.113883.19.5")
-		XCTAssertEqual(inst.name![0].family![0], "Levin")
-		XCTAssertEqual(inst.name![0].given![0], "Henry")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst

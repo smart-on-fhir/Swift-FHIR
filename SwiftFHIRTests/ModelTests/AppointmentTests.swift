@@ -2,7 +2,7 @@
 //  AppointmentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class AppointmentTests: FHIRModelTestCase
+class AppointmentTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Appointment {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,12 +22,51 @@ class AppointmentTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testAppointment1() throws {
-		let instance = try runAppointment1()
-		try runAppointment1(instance.asJSON())
+	func testAppointment1() {
+		let instance = try? runAppointment1()
+		XCTAssertNotNil(instance, "Must instantiate Appointment")
+		try! runAppointment1(instance!.asJSON())
 	}
 	
 	func runAppointment1(json: FHIRJSON? = nil) throws -> Appointment {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "appointment-example-request.json")
+		
+		XCTAssertEqual(inst.comment!, "Further expand on the results of the MRI and determine the next actions that may be appropriate.")
+		XCTAssertEqual(inst.description_fhir!, "Discussion on the results of your recent MRI")
+		XCTAssertEqual(inst.id!, "examplereq")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://example.org/sampleappointment-identifier")
+		XCTAssertEqual(inst.identifier![0].value!, "123")
+		XCTAssertEqual(inst.minutesDuration!, UInt(15))
+		XCTAssertEqual(inst.participant![0].actor!.display!, "Peter James Chalmers")
+		XCTAssertEqual(inst.participant![0].actor!.reference!, "Patient/example")
+		XCTAssertEqual(inst.participant![0].required!, "required")
+		XCTAssertEqual(inst.participant![0].status!, "needs-action")
+		XCTAssertEqual(inst.participant![1].required!, "required")
+		XCTAssertEqual(inst.participant![1].status!, "needs-action")
+		XCTAssertEqual(inst.participant![1].type![0].coding![0].code!, "attending")
+		XCTAssertEqual(inst.participant![2].actor!.display!, "South Wing, second floor")
+		XCTAssertEqual(inst.participant![2].actor!.reference!, "Location/1")
+		XCTAssertEqual(inst.participant![2].required!, "required")
+		XCTAssertEqual(inst.participant![2].status!, "accepted")
+		XCTAssertEqual(inst.priority!, UInt(5))
+		XCTAssertEqual(inst.reason!.text!, "Clinical Review")
+		XCTAssertEqual(inst.slot![0].reference!, "Slot/example")
+		XCTAssertEqual(inst.status!, "proposed")
+		XCTAssertEqual(inst.text!.div!, "<div>Brian MRI results discussion</div>")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.type!.coding![0].code!, "52")
+		XCTAssertEqual(inst.type!.coding![0].display!, "General Discussion")
+		
+		return inst
+	}
+	
+	func testAppointment2() {
+		let instance = try? runAppointment2()
+		XCTAssertNotNil(instance, "Must instantiate Appointment")
+		try! runAppointment2(instance!.asJSON())
+	}
+	
+	func runAppointment2(json: FHIRJSON? = nil) throws -> Appointment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "appointment-example.json")
 		
 		XCTAssertEqual(inst.comment!, "Further expand on the results of the MRI and determine the next actions that may be appropriate.")
@@ -58,12 +97,13 @@ class AppointmentTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testAppointment2() throws {
-		let instance = try runAppointment2()
-		try runAppointment2(instance.asJSON())
+	func testAppointment3() {
+		let instance = try? runAppointment3()
+		XCTAssertNotNil(instance, "Must instantiate Appointment")
+		try! runAppointment3(instance!.asJSON())
 	}
 	
-	func runAppointment2(json: FHIRJSON? = nil) throws -> Appointment {
+	func runAppointment3(json: FHIRJSON? = nil) throws -> Appointment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "appointment-example2doctors.json")
 		
 		XCTAssertEqual(inst.comment!, "Clarify the results of the MRI to ensure context of test was correct")

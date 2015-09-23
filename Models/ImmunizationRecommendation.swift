@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -12,7 +12,8 @@ import Foundation
 /**
  *  Guidance or advice relating to an immunization.
  *
- *  A patient's point-of-time immunization status and recommendation with optional supporting justification.
+ *  A patient's point-in-time immunization and recommendation (i.e. forecasting a patient's immunization eligibility
+ *  according to a published schedule) with optional supporting justification.
  */
 public class ImmunizationRecommendation: DomainResource
 {
@@ -36,14 +37,10 @@ public class ImmunizationRecommendation: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference?, recommendation: [ImmunizationRecommendationRecommendation]?) {
+	public convenience init(patient: Reference, recommendation: [ImmunizationRecommendationRecommendation]) {
 		self.init(json: nil)
-		if nil != patient {
-			self.patient = patient
-		}
-		if nil != recommendation {
-			self.recommendation = recommendation
-		}
+		self.patient = patient
+		self.recommendation = recommendation
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -135,7 +132,7 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 	public var supportingPatientInformation: [Reference]?
 	
 	/// Vaccine recommendation applies to
-	public var vaccineType: CodeableConcept?
+	public var vaccineCode: CodeableConcept?
 	
 	
 	/** Initialize with a JSON object. */
@@ -144,17 +141,11 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(date: DateTime?, forecastStatus: CodeableConcept?, vaccineType: CodeableConcept?) {
+	public convenience init(date: DateTime, forecastStatus: CodeableConcept, vaccineCode: CodeableConcept) {
 		self.init(json: nil)
-		if nil != date {
-			self.date = date
-		}
-		if nil != forecastStatus {
-			self.forecastStatus = forecastStatus
-		}
-		if nil != vaccineType {
-			self.vaccineType = vaccineType
-		}
+		self.date = date
+		self.forecastStatus = forecastStatus
+		self.vaccineCode = vaccineCode
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -229,17 +220,17 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 					errors.append(FHIRJSONError(key: "supportingPatientInformation", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["vaccineType"] {
-				presentKeys.insert("vaccineType")
+			if let exist: AnyObject = js["vaccineCode"] {
+				presentKeys.insert("vaccineCode")
 				if let val = exist as? FHIRJSON {
-					self.vaccineType = CodeableConcept(json: val, owner: self)
+					self.vaccineCode = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "vaccineType", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "vaccineCode", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "vaccineType"))
+				errors.append(FHIRJSONError(key: "vaccineCode"))
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -269,8 +260,8 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 		if let supportingPatientInformation = self.supportingPatientInformation {
 			json["supportingPatientInformation"] = Reference.asJSONArray(supportingPatientInformation)
 		}
-		if let vaccineType = self.vaccineType {
-			json["vaccineType"] = vaccineType.asJSON()
+		if let vaccineCode = self.vaccineCode {
+			json["vaccineCode"] = vaccineCode.asJSON()
 		}
 		
 		return json
@@ -281,7 +272,7 @@ public class ImmunizationRecommendationRecommendation: FHIRElement
 /**
  *  Dates governing proposed immunization.
  *
- *  Vaccine date recommendations - e.g. earliest date to administer, latest date to administer, etc.
+ *  Vaccine date recommendations.  For example, earliest date to administer, latest date to administer, etc.
  */
 public class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
 {
@@ -302,14 +293,10 @@ public class ImmunizationRecommendationRecommendationDateCriterion: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept?, value: DateTime?) {
+	public convenience init(code: CodeableConcept, value: DateTime) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
-		if nil != value {
-			self.value = value
-		}
+		self.code = code
+		self.value = value
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -375,7 +362,7 @@ public class ImmunizationRecommendationRecommendationProtocol: FHIRElement
 	/// Protocol details
 	public var description_fhir: String?
 	
-	/// Number of dose within sequence
+	/// Dose number within sequence
 	public var doseSequence: Int?
 	
 	/// Name of vaccination series

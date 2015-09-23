@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -27,7 +27,7 @@ public class Questionnaire: DomainResource
 	/// Grouped questions
 	public var group: QuestionnaireGroup?
 	
-	/// External Ids for this questionnaire
+	/// External identifiers for this questionnaire
 	public var identifier: [Identifier]?
 	
 	/// Organization/individual who designed the questionnaire
@@ -36,10 +36,13 @@ public class Questionnaire: DomainResource
 	/// draft | published | retired
 	public var status: String?
 	
+	/// Resource that can be subject of QuestionnaireResponse
+	public var subjectType: [String]?
+	
 	/// Contact information of the publisher
 	public var telecom: [ContactPoint]?
 	
-	/// Logical id for this version of Questionnaire
+	/// Logical identifier for this version of Questionnaire
 	public var version: String?
 	
 	
@@ -49,14 +52,10 @@ public class Questionnaire: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(group: QuestionnaireGroup?, status: String?) {
+	public convenience init(group: QuestionnaireGroup, status: String) {
 		self.init(json: nil)
-		if nil != group {
-			self.group = group
-		}
-		if nil != status {
-			self.status = status
-		}
+		self.group = group
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -113,6 +112,15 @@ public class Questionnaire: DomainResource
 			else {
 				errors.append(FHIRJSONError(key: "status"))
 			}
+			if let exist: AnyObject = js["subjectType"] {
+				presentKeys.insert("subjectType")
+				if let val = exist as? [String] {
+					self.subjectType = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "subjectType", wants: Array<String>.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["telecom"] {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
@@ -153,6 +161,13 @@ public class Questionnaire: DomainResource
 		if let status = self.status {
 			json["status"] = status.asJSON()
 		}
+		if let subjectType = self.subjectType {
+			var arr = [AnyObject]()
+			for val in subjectType {
+				arr.append(val.asJSON())
+			}
+			json["subjectType"] = arr
+		}
 		if let telecom = self.telecom {
 			json["telecom"] = ContactPoint.asJSONArray(telecom)
 		}
@@ -176,13 +191,13 @@ public class QuestionnaireGroup: FHIRElement
 		get { return "QuestionnaireGroup" }
 	}
 	
-	/// Concept that represents this section on a questionnaire
+	/// Concept that represents this section in a questionnaire
 	public var concept: [Coding]?
 	
 	/// Nested questionnaire group
 	public var group: [QuestionnaireGroup]?
 	
-	/// To link questionnaire with questionnaire answers
+	/// To link questionnaire with questionnaire response
 	public var linkId: String?
 	
 	/// Questions in this group
@@ -191,7 +206,7 @@ public class QuestionnaireGroup: FHIRElement
 	/// Whether the group may repeat
 	public var repeats: Bool?
 	
-	/// Must group be included in data results?
+	/// Whether the group must be included in data results
 	public var required: Bool?
 	
 	/// Additional text for the group
@@ -335,16 +350,19 @@ public class QuestionnaireGroupQuestion: FHIRElement
 	/// Nested questionnaire group
 	public var group: [QuestionnaireGroup]?
 	
-	/// To link questionnaire with questionnaire answers
+	/// To link questionnaire with questionnaire response
 	public var linkId: String?
 	
-	/// Valueset containing the possible options
+	/// Permitted answer
+	public var option: [Coding]?
+	
+	/// Valueset containing permitted answers
 	public var options: Reference?
 	
-	/// Can question  have multiple answers?
+	/// Whether the question  can have multiple answers
 	public var repeats: Bool?
 	
-	/// Must question be answered in data results?
+	/// Whether the question must be answered in data results
 	public var required: Bool?
 	
 	/// Text of the question as it is shown to the user
@@ -387,6 +405,15 @@ public class QuestionnaireGroupQuestion: FHIRElement
 				}
 				else {
 					errors.append(FHIRJSONError(key: "linkId", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["option"] {
+				presentKeys.insert("option")
+				if let val = exist as? [FHIRJSON] {
+					self.option = Coding.from(val, owner: self) as? [Coding]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "option", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["options"] {
@@ -449,6 +476,9 @@ public class QuestionnaireGroupQuestion: FHIRElement
 		}
 		if let linkId = self.linkId {
 			json["linkId"] = linkId.asJSON()
+		}
+		if let option = self.option {
+			json["option"] = Coding.asJSONArray(option)
 		}
 		if let options = self.options {
 			json["options"] = options.asJSON()

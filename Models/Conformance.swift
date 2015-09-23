@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -12,8 +12,8 @@ import Foundation
 /**
  *  A conformance statement.
  *
- *  A conformance statement is a set of requirements for a desired implementation or a description of how a target
- *  application fulfills those requirements in a particular implementation.
+ *  A conformance statement is a set of capabilities of a FHIR Server that may be used as a statement of actual server
+ *  functionality or a statement of required or desired server implementation.
  */
 public class Conformance: DomainResource
 {
@@ -21,13 +21,13 @@ public class Conformance: DomainResource
 		get { return "Conformance" }
 	}
 	
-	/// True if application accepts unknown elements
-	public var acceptUnknown: Bool?
+	/// no | extensions | elements | both
+	public var acceptUnknown: String?
 	
 	/// Contact details of the publisher
 	public var contact: [ConformanceContact]?
 	
-	/// Use and/or Publishing restrictions
+	/// Use and/or publishing restrictions
 	public var copyright: String?
 	
 	/// Publication Date(/time)
@@ -42,7 +42,7 @@ public class Conformance: DomainResource
 	/// If for testing purposes, not real usage
 	public var experimental: Bool?
 	
-	/// FHIR Version
+	/// FHIR Version the system uses
 	public var fhirVersion: String?
 	
 	/// formats supported (xml | json | mime type)
@@ -51,13 +51,16 @@ public class Conformance: DomainResource
 	/// If this describes a specific instance
 	public var implementation: ConformanceImplementation?
 	
+	/// instance | capability | requirements
+	public var kind: String?
+	
 	/// If messaging is supported
 	public var messaging: [ConformanceMessaging]?
 	
 	/// Informal name for this conformance statement
 	public var name: String?
 	
-	/// Profiles supported by the system
+	/// Profiles for use cases supported
 	public var profile: [Reference]?
 	
 	/// Name of the publisher (Organization or individual)
@@ -88,20 +91,13 @@ public class Conformance: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(acceptUnknown: Bool?, date: DateTime?, fhirVersion: String?, format: [String]?) {
+	public convenience init(acceptUnknown: String, date: DateTime, fhirVersion: String, format: [String], kind: String) {
 		self.init(json: nil)
-		if nil != acceptUnknown {
-			self.acceptUnknown = acceptUnknown
-		}
-		if nil != date {
-			self.date = date
-		}
-		if nil != fhirVersion {
-			self.fhirVersion = fhirVersion
-		}
-		if nil != format {
-			self.format = format
-		}
+		self.acceptUnknown = acceptUnknown
+		self.date = date
+		self.fhirVersion = fhirVersion
+		self.format = format
+		self.kind = kind
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -109,11 +105,11 @@ public class Conformance: DomainResource
 		if let js = json {
 			if let exist: AnyObject = js["acceptUnknown"] {
 				presentKeys.insert("acceptUnknown")
-				if let val = exist as? Bool {
+				if let val = exist as? String {
 					self.acceptUnknown = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "acceptUnknown", wants: Bool.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "acceptUnknown", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			else {
@@ -208,6 +204,18 @@ public class Conformance: DomainResource
 				else {
 					errors.append(FHIRJSONError(key: "implementation", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
+			}
+			if let exist: AnyObject = js["kind"] {
+				presentKeys.insert("kind")
+				if let val = exist as? String {
+					self.kind = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "kind", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "kind"))
 			}
 			if let exist: AnyObject = js["messaging"] {
 				presentKeys.insert("messaging")
@@ -340,6 +348,9 @@ public class Conformance: DomainResource
 		if let implementation = self.implementation {
 			json["implementation"] = implementation.asJSON()
 		}
+		if let kind = self.kind {
+			json["kind"] = kind.asJSON()
+		}
 		if let messaging = self.messaging {
 			json["messaging"] = ConformanceMessaging.asJSONArray(messaging)
 		}
@@ -466,14 +477,10 @@ public class ConformanceDocument: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: String?, profile: Reference?) {
+	public convenience init(mode: String, profile: Reference) {
 		self.init(json: nil)
-		if nil != mode {
-			self.mode = mode
-		}
-		if nil != profile {
-			self.profile = profile
-		}
+		self.mode = mode
+		self.profile = profile
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -559,11 +566,9 @@ public class ConformanceImplementation: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(description_fhir: String?) {
+	public convenience init(description_fhir: String) {
 		self.init(json: nil)
-		if nil != description_fhir {
-			self.description_fhir = description_fhir
-		}
+		self.description_fhir = description_fhir
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -623,8 +628,8 @@ public class ConformanceMessaging: FHIRElement
 	/// Messaging interface behavior details
 	public var documentation: String?
 	
-	/// Actual endpoint being described
-	public var endpoint: NSURL?
+	/// A messaging service end-point
+	public var endpoint: [ConformanceMessagingEndpoint]?
 	
 	/// Declare support for this event
 	public var event: [ConformanceMessagingEvent]?
@@ -639,11 +644,9 @@ public class ConformanceMessaging: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(event: [ConformanceMessagingEvent]?) {
+	public convenience init(event: [ConformanceMessagingEvent]) {
 		self.init(json: nil)
-		if nil != event {
-			self.event = event
-		}
+		self.event = event
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -660,11 +663,11 @@ public class ConformanceMessaging: FHIRElement
 			}
 			if let exist: AnyObject = js["endpoint"] {
 				presentKeys.insert("endpoint")
-				if let val = exist as? String {
-					self.endpoint = NSURL(string: val)
+				if let val = exist as? [FHIRJSON] {
+					self.endpoint = ConformanceMessagingEndpoint.from(val, owner: self) as? [ConformanceMessagingEndpoint]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "endpoint", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "endpoint", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["event"] {
@@ -699,7 +702,7 @@ public class ConformanceMessaging: FHIRElement
 			json["documentation"] = documentation.asJSON()
 		}
 		if let endpoint = self.endpoint {
-			json["endpoint"] = endpoint.asJSON()
+			json["endpoint"] = ConformanceMessagingEndpoint.asJSONArray(endpoint)
 		}
 		if let event = self.event {
 			json["event"] = ConformanceMessagingEvent.asJSONArray(event)
@@ -714,9 +717,85 @@ public class ConformanceMessaging: FHIRElement
 
 
 /**
+ *  A messaging service end-point.
+ *
+ *  An endpoint (network accessible address) to which messages and/or replies are to be sent.
+ */
+public class ConformanceMessagingEndpoint: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ConformanceMessagingEndpoint" }
+	}
+	
+	/// Address of end-point
+	public var address: NSURL?
+	
+	/// http | ftp | mllp +
+	public var protocol_fhir: Coding?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(address: NSURL, protocol_fhir: Coding) {
+		self.init(json: nil)
+		self.address = address
+		self.protocol_fhir = protocol_fhir
+	}
+	
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist: AnyObject = js["address"] {
+				presentKeys.insert("address")
+				if let val = exist as? String {
+					self.address = NSURL(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "address", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "address"))
+			}
+			if let exist: AnyObject = js["protocol"] {
+				presentKeys.insert("protocol")
+				if let val = exist as? FHIRJSON {
+					self.protocol_fhir = Coding(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "protocol", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "protocol"))
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let address = self.address {
+			json["address"] = address.asJSON()
+		}
+		if let protocol_fhir = self.protocol_fhir {
+			json["protocol"] = protocol_fhir.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
  *  Declare support for this event.
  *
- *  A description of the solution's support for an event at this end point.
+ *  A description of the solution's support for an event at this end-point.
  */
 public class ConformanceMessagingEvent: FHIRElement
 {
@@ -739,9 +818,6 @@ public class ConformanceMessagingEvent: FHIRElement
 	/// sender | receiver
 	public var mode: String?
 	
-	/// http | ftp | mllp +
-	public var protocol_fhir: [Coding]?
-	
 	/// Profile that describes the request
 	public var request: Reference?
 	
@@ -755,23 +831,13 @@ public class ConformanceMessagingEvent: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding?, focus: String?, mode: String?, request: Reference?, response: Reference?) {
+	public convenience init(code: Coding, focus: String, mode: String, request: Reference, response: Reference) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
-		if nil != focus {
-			self.focus = focus
-		}
-		if nil != mode {
-			self.mode = mode
-		}
-		if nil != request {
-			self.request = request
-		}
-		if nil != response {
-			self.response = response
-		}
+		self.code = code
+		self.focus = focus
+		self.mode = mode
+		self.request = request
+		self.response = response
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -831,15 +897,6 @@ public class ConformanceMessagingEvent: FHIRElement
 			else {
 				errors.append(FHIRJSONError(key: "mode"))
 			}
-			if let exist: AnyObject = js["protocol"] {
-				presentKeys.insert("protocol")
-				if let val = exist as? [FHIRJSON] {
-					self.protocol_fhir = Coding.from(val, owner: self) as? [Coding]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "protocol", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["request"] {
 				presentKeys.insert("request")
 				if let val = exist as? FHIRJSON {
@@ -886,9 +943,6 @@ public class ConformanceMessagingEvent: FHIRElement
 		if let mode = self.mode {
 			json["mode"] = mode.asJSON()
 		}
-		if let protocol_fhir = self.protocol_fhir {
-			json["protocol"] = Coding.asJSONArray(protocol_fhir)
-		}
 		if let request = self.request {
 			json["request"] = request.asJSON()
 		}
@@ -915,9 +969,6 @@ public class ConformanceRest: FHIRElement
 	/// Compartments served/used by system
 	public var compartment: [NSURL]?
 	
-	/// How documents are accepted in /Mailbox
-	public var documentMailbox: [NSURL]?
-	
 	/// General description of implementation
 	public var documentation: String?
 	
@@ -933,8 +984,14 @@ public class ConformanceRest: FHIRElement
 	/// Resource served on the REST interface
 	public var resource: [ConformanceRestResource]?
 	
+	/// Search params for searching all resources
+	public var searchParam: [ConformanceRestResourceSearchParam]?
+	
 	/// Information about security of implementation
 	public var security: ConformanceRestSecurity?
+	
+	/// not-supported | batch | transaction | both
+	public var transactionMode: String?
 	
 	
 	/** Initialize with a JSON object. */
@@ -943,14 +1000,10 @@ public class ConformanceRest: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: String?, resource: [ConformanceRestResource]?) {
+	public convenience init(mode: String, resource: [ConformanceRestResource]) {
 		self.init(json: nil)
-		if nil != mode {
-			self.mode = mode
-		}
-		if nil != resource {
-			self.resource = resource
-		}
+		self.mode = mode
+		self.resource = resource
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -963,15 +1016,6 @@ public class ConformanceRest: FHIRElement
 				}
 				else {
 					errors.append(FHIRJSONError(key: "compartment", wants: Array<String>.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["documentMailbox"] {
-				presentKeys.insert("documentMailbox")
-				if let val = exist as? [String] {
-					self.documentMailbox = NSURL.from(val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "documentMailbox", wants: Array<String>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["documentation"] {
@@ -1025,6 +1069,15 @@ public class ConformanceRest: FHIRElement
 			else {
 				errors.append(FHIRJSONError(key: "resource"))
 			}
+			if let exist: AnyObject = js["searchParam"] {
+				presentKeys.insert("searchParam")
+				if let val = exist as? [FHIRJSON] {
+					self.searchParam = ConformanceRestResourceSearchParam.from(val, owner: self) as? [ConformanceRestResourceSearchParam]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "searchParam", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["security"] {
 				presentKeys.insert("security")
 				if let val = exist as? FHIRJSON {
@@ -1032,6 +1085,15 @@ public class ConformanceRest: FHIRElement
 				}
 				else {
 					errors.append(FHIRJSONError(key: "security", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["transactionMode"] {
+				presentKeys.insert("transactionMode")
+				if let val = exist as? String {
+					self.transactionMode = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "transactionMode", wants: String.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -1048,13 +1110,6 @@ public class ConformanceRest: FHIRElement
 			}
 			json["compartment"] = arr
 		}
-		if let documentMailbox = self.documentMailbox {
-			var arr = [AnyObject]()
-			for val in documentMailbox {
-				arr.append(val.asJSON())
-			}
-			json["documentMailbox"] = arr
-		}
 		if let documentation = self.documentation {
 			json["documentation"] = documentation.asJSON()
 		}
@@ -1070,8 +1125,14 @@ public class ConformanceRest: FHIRElement
 		if let resource = self.resource {
 			json["resource"] = ConformanceRestResource.asJSONArray(resource)
 		}
+		if let searchParam = self.searchParam {
+			json["searchParam"] = ConformanceRestResourceSearchParam.asJSONArray(searchParam)
+		}
 		if let security = self.security {
 			json["security"] = security.asJSON()
+		}
+		if let transactionMode = self.transactionMode {
+			json["transactionMode"] = transactionMode.asJSON()
 		}
 		
 		return json
@@ -1103,11 +1164,9 @@ public class ConformanceRestInteraction: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String?) {
+	public convenience init(code: String) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
+		self.code = code
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1177,14 +1236,10 @@ public class ConformanceRestOperation: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(definition: Reference?, name: String?) {
+	public convenience init(definition: Reference, name: String) {
 		self.init(json: nil)
-		if nil != definition {
-			self.definition = definition
-		}
-		if nil != name {
-			self.name = name
-		}
+		self.definition = definition
+		self.name = name
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1247,8 +1302,8 @@ public class ConformanceRestResource: FHIRElement
 	/// If allows/uses conditional create
 	public var conditionalCreate: Bool?
 	
-	/// If allows/uses conditional delete
-	public var conditionalDelete: Bool?
+	/// not-supported | single | multiple - how conditional delete is supported
+	public var conditionalDelete: String?
 	
 	/// If allows/uses conditional update
 	public var conditionalUpdate: Bool?
@@ -1256,7 +1311,7 @@ public class ConformanceRestResource: FHIRElement
 	/// What operations are supported?
 	public var interaction: [ConformanceRestResourceInteraction]?
 	
-	/// What structural features are supported
+	/// Base System profile for all uses of resource
 	public var profile: Reference?
 	
 	/// Whether vRead can return past versions
@@ -1267,6 +1322,9 @@ public class ConformanceRestResource: FHIRElement
 	
 	/// Search params supported by implementation
 	public var searchParam: [ConformanceRestResourceSearchParam]?
+	
+	/// _revinclude values supported by the server
+	public var searchRevInclude: [String]?
 	
 	/// A resource type that is supported
 	public var type: String?
@@ -1284,14 +1342,10 @@ public class ConformanceRestResource: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(interaction: [ConformanceRestResourceInteraction]?, type: String?) {
+	public convenience init(interaction: [ConformanceRestResourceInteraction], type: String) {
 		self.init(json: nil)
-		if nil != interaction {
-			self.interaction = interaction
-		}
-		if nil != type {
-			self.type = type
-		}
+		self.interaction = interaction
+		self.type = type
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1308,11 +1362,11 @@ public class ConformanceRestResource: FHIRElement
 			}
 			if let exist: AnyObject = js["conditionalDelete"] {
 				presentKeys.insert("conditionalDelete")
-				if let val = exist as? Bool {
+				if let val = exist as? String {
 					self.conditionalDelete = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "conditionalDelete", wants: Bool.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "conditionalDelete", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["conditionalUpdate"] {
@@ -1370,6 +1424,15 @@ public class ConformanceRestResource: FHIRElement
 				}
 				else {
 					errors.append(FHIRJSONError(key: "searchParam", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["searchRevInclude"] {
+				presentKeys.insert("searchRevInclude")
+				if let val = exist as? [String] {
+					self.searchRevInclude = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "searchRevInclude", wants: Array<String>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["type"] {
@@ -1437,6 +1500,13 @@ public class ConformanceRestResource: FHIRElement
 		if let searchParam = self.searchParam {
 			json["searchParam"] = ConformanceRestResourceSearchParam.asJSONArray(searchParam)
 		}
+		if let searchRevInclude = self.searchRevInclude {
+			var arr = [AnyObject]()
+			for val in searchRevInclude {
+				arr.append(val.asJSON())
+			}
+			json["searchRevInclude"] = arr
+		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
 		}
@@ -1476,11 +1546,9 @@ public class ConformanceRestResourceInteraction: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String?) {
+	public convenience init(code: String) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
+		self.code = code
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1547,6 +1615,9 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 	/// Server-specific usage
 	public var documentation: String?
 	
+	/// missing | exact | contains | not | text | in | not-in | below | above | type
+	public var modifier_fhir: [String]?
+	
 	/// Name of search parameter
 	public var name: String?
 	
@@ -1563,14 +1634,10 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String?, type: String?) {
+	public convenience init(name: String, type: String) {
 		self.init(json: nil)
-		if nil != name {
-			self.name = name
-		}
-		if nil != type {
-			self.type = type
-		}
+		self.name = name
+		self.type = type
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1601,6 +1668,15 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 				}
 				else {
 					errors.append(FHIRJSONError(key: "documentation", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["modifier"] {
+				presentKeys.insert("modifier")
+				if let val = exist as? [String] {
+					self.modifier_fhir = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "modifier", wants: Array<String>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["name"] {
@@ -1656,6 +1732,13 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 		if let documentation = self.documentation {
 			json["documentation"] = documentation.asJSON()
 		}
+		if let modifier_fhir = self.modifier_fhir {
+			var arr = [AnyObject]()
+			for val in modifier_fhir {
+				arr.append(val.asJSON())
+			}
+			json["modifier"] = arr
+		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
@@ -1695,7 +1778,7 @@ public class ConformanceRestSecurity: FHIRElement
 	/// General description of how security works
 	public var description_fhir: String?
 	
-	/// OAuth | OAuth2 | NTLM | Basic | Kerberos
+	/// OAuth | SMART-on-FHIR | NTLM | Basic | Kerberos | Certificates
 	public var service: [CodeableConcept]?
 	
 	
@@ -1857,11 +1940,9 @@ public class ConformanceSoftware: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String?) {
+	public convenience init(name: String) {
 		self.init(json: nil)
-		if nil != name {
-			self.name = name
-		}
+		self.name = name
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

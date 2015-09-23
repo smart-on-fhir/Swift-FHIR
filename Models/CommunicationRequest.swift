@@ -2,7 +2,7 @@
 //  CommunicationRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/CommunicationRequest) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/CommunicationRequest) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -12,7 +12,7 @@ import Foundation
 /**
  *  A request for information to be sent to a receiver.
  *
- *  A request to convey information. E.g., the CDS system proposes that an alert be sent to a responsible provider, the
+ *  A request to convey information; e.g. the CDS system proposes that an alert be sent to a responsible provider, the
  *  CDS system proposes that the public health agency be notified about a reportable condition.
  */
 public class CommunicationRequest: DomainResource
@@ -30,11 +30,8 @@ public class CommunicationRequest: DomainResource
 	/// Unique identifier
 	public var identifier: [Identifier]?
 	
-	/// Communication medium
+	/// A channel of communication
 	public var medium: [CodeableConcept]?
-	
-	/// When ordered or proposed
-	public var orderedOn: DateTime?
 	
 	/// Message payload
 	public var payload: [CommunicationRequestPayload]?
@@ -48,11 +45,17 @@ public class CommunicationRequest: DomainResource
 	/// Message recipient
 	public var recipient: [Reference]?
 	
-	/// Requester of communication
+	/// When ordered or proposed
+	public var requestedOn: DateTime?
+	
+	/// An individual who requested a communication
 	public var requester: Reference?
 	
 	/// When scheduled
-	public var scheduledTime: DateTime?
+	public var scheduledDateTime: DateTime?
+	
+	/// When scheduled
+	public var scheduledPeriod: Period?
 	
 	/// Message sender
 	public var sender: Reference?
@@ -108,15 +111,6 @@ public class CommunicationRequest: DomainResource
 					errors.append(FHIRJSONError(key: "medium", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["orderedOn"] {
-				presentKeys.insert("orderedOn")
-				if let val = exist as? String {
-					self.orderedOn = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "orderedOn", wants: String.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["payload"] {
 				presentKeys.insert("payload")
 				if let val = exist as? [FHIRJSON] {
@@ -153,6 +147,15 @@ public class CommunicationRequest: DomainResource
 					errors.append(FHIRJSONError(key: "recipient", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["requestedOn"] {
+				presentKeys.insert("requestedOn")
+				if let val = exist as? String {
+					self.requestedOn = DateTime(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "requestedOn", wants: String.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["requester"] {
 				presentKeys.insert("requester")
 				if let val = exist as? FHIRJSON {
@@ -162,13 +165,22 @@ public class CommunicationRequest: DomainResource
 					errors.append(FHIRJSONError(key: "requester", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["scheduledTime"] {
-				presentKeys.insert("scheduledTime")
+			if let exist: AnyObject = js["scheduledDateTime"] {
+				presentKeys.insert("scheduledDateTime")
 				if let val = exist as? String {
-					self.scheduledTime = DateTime(string: val)
+					self.scheduledDateTime = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "scheduledTime", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "scheduledDateTime", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["scheduledPeriod"] {
+				presentKeys.insert("scheduledPeriod")
+				if let val = exist as? FHIRJSON {
+					self.scheduledPeriod = Period(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "scheduledPeriod", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["sender"] {
@@ -217,9 +229,6 @@ public class CommunicationRequest: DomainResource
 		if let medium = self.medium {
 			json["medium"] = CodeableConcept.asJSONArray(medium)
 		}
-		if let orderedOn = self.orderedOn {
-			json["orderedOn"] = orderedOn.asJSON()
-		}
 		if let payload = self.payload {
 			json["payload"] = CommunicationRequestPayload.asJSONArray(payload)
 		}
@@ -232,11 +241,17 @@ public class CommunicationRequest: DomainResource
 		if let recipient = self.recipient {
 			json["recipient"] = Reference.asJSONArray(recipient)
 		}
+		if let requestedOn = self.requestedOn {
+			json["requestedOn"] = requestedOn.asJSON()
+		}
 		if let requester = self.requester {
 			json["requester"] = requester.asJSON()
 		}
-		if let scheduledTime = self.scheduledTime {
-			json["scheduledTime"] = scheduledTime.asJSON()
+		if let scheduledDateTime = self.scheduledDateTime {
+			json["scheduledDateTime"] = scheduledDateTime.asJSON()
+		}
+		if let scheduledPeriod = self.scheduledPeriod {
+			json["scheduledPeriod"] = scheduledPeriod.asJSON()
 		}
 		if let sender = self.sender {
 			json["sender"] = sender.asJSON()
@@ -280,17 +295,11 @@ public class CommunicationRequestPayload: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(contentAttachment: Attachment?, contentReference: Reference?, contentString: String?) {
+	public convenience init(contentAttachment: Attachment, contentReference: Reference, contentString: String) {
 		self.init(json: nil)
-		if nil != contentAttachment {
-			self.contentAttachment = contentAttachment
-		}
-		if nil != contentReference {
-			self.contentReference = contentReference
-		}
-		if nil != contentString {
-			self.contentString = contentString
-		}
+		self.contentAttachment = contentAttachment
+		self.contentReference = contentReference
+		self.contentString = contentString
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

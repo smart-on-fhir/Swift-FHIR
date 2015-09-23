@@ -2,7 +2,7 @@
 //  Timing.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Timing) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Timing) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -22,7 +22,7 @@ public class Timing: FHIRElement
 		get { return "Timing" }
 	}
 	
-	/// BID | TID | QID | AM | PM +
+	/// QD | QOD | Q4H | Q6H | BID | TID | QID | AM | PM +
 	public var code: CodeableConcept?
 	
 	/// When the event occurs
@@ -104,8 +104,14 @@ public class TimingRepeat: FHIRElement
 		get { return "TimingRepeat" }
 	}
 	
-	/// Start and/or end limits
-	public var bounds: Period?
+	/// Length/Range of lengths, or (Start and/or end) limits
+	public var boundsPeriod: Period?
+	
+	/// Length/Range of lengths, or (Start and/or end) limits
+	public var boundsQuantity: Quantity?
+	
+	/// Length/Range of lengths, or (Start and/or end) limits
+	public var boundsRange: Range?
 	
 	/// Number of times to repeat
 	public var count: Int?
@@ -113,13 +119,16 @@ public class TimingRepeat: FHIRElement
 	/// How long when it happens
 	public var duration: NSDecimalNumber?
 	
+	/// How long when it happens (Max)
+	public var durationMax: NSDecimalNumber?
+	
 	/// s | min | h | d | wk | mo | a - unit of time (UCUM)
 	public var durationUnits: String?
 	
-	/// Event occurs frequency times per duration
+	/// Event occurs frequency times per period
 	public var frequency: Int?
 	
-	/// Event occurs frequency times per duration
+	/// Event occurs up to frequencyMax times per period
 	public var frequencyMax: Int?
 	
 	/// Event occurs frequency times per period
@@ -143,13 +152,31 @@ public class TimingRepeat: FHIRElement
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["bounds"] {
-				presentKeys.insert("bounds")
+			if let exist: AnyObject = js["boundsPeriod"] {
+				presentKeys.insert("boundsPeriod")
 				if let val = exist as? FHIRJSON {
-					self.bounds = Period(json: val, owner: self)
+					self.boundsPeriod = Period(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "bounds", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "boundsPeriod", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["boundsQuantity"] {
+				presentKeys.insert("boundsQuantity")
+				if let val = exist as? FHIRJSON {
+					self.boundsQuantity = Quantity(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "boundsQuantity", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["boundsRange"] {
+				presentKeys.insert("boundsRange")
+				if let val = exist as? FHIRJSON {
+					self.boundsRange = Range(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "boundsRange", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["count"] {
@@ -168,6 +195,15 @@ public class TimingRepeat: FHIRElement
 				}
 				else {
 					errors.append(FHIRJSONError(key: "duration", wants: NSNumber.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["durationMax"] {
+				presentKeys.insert("durationMax")
+				if let val = exist as? NSNumber {
+					self.durationMax = NSDecimalNumber(json: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "durationMax", wants: NSNumber.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["durationUnits"] {
@@ -240,14 +276,23 @@ public class TimingRepeat: FHIRElement
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let bounds = self.bounds {
-			json["bounds"] = bounds.asJSON()
+		if let boundsPeriod = self.boundsPeriod {
+			json["boundsPeriod"] = boundsPeriod.asJSON()
+		}
+		if let boundsQuantity = self.boundsQuantity {
+			json["boundsQuantity"] = boundsQuantity.asJSON()
+		}
+		if let boundsRange = self.boundsRange {
+			json["boundsRange"] = boundsRange.asJSON()
 		}
 		if let count = self.count {
 			json["count"] = count.asJSON()
 		}
 		if let duration = self.duration {
 			json["duration"] = duration.asJSON()
+		}
+		if let durationMax = self.durationMax {
+			json["durationMax"] = durationMax.asJSON()
 		}
 		if let durationUnits = self.durationUnits {
 			json["durationUnits"] = durationUnits.asJSON()

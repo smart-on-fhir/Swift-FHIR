@@ -2,7 +2,7 @@
 //  Contract.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Contract) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Contract) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -351,11 +351,9 @@ public class ContractActor: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(entity: Reference?) {
+	public convenience init(entity: Reference) {
 		self.init(json: nil)
-		if nil != entity {
-			self.entity = entity
-		}
+		self.entity = entity
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -428,14 +426,10 @@ public class ContractFriendly: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(contentAttachment: Attachment?, contentReference: Reference?) {
+	public convenience init(contentAttachment: Attachment, contentReference: Reference) {
 		self.init(json: nil)
-		if nil != contentAttachment {
-			self.contentAttachment = contentAttachment
-		}
-		if nil != contentReference {
-			self.contentReference = contentReference
-		}
+		self.contentAttachment = contentAttachment
+		self.contentReference = contentReference
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -507,14 +501,10 @@ public class ContractLegal: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(contentAttachment: Attachment?, contentReference: Reference?) {
+	public convenience init(contentAttachment: Attachment, contentReference: Reference) {
 		self.init(json: nil)
-		if nil != contentAttachment {
-			self.contentAttachment = contentAttachment
-		}
-		if nil != contentReference {
-			self.contentReference = contentReference
-		}
+		self.contentAttachment = contentAttachment
+		self.contentReference = contentReference
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -586,14 +576,10 @@ public class ContractRule: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(contentAttachment: Attachment?, contentReference: Reference?) {
+	public convenience init(contentAttachment: Attachment, contentReference: Reference) {
 		self.init(json: nil)
-		if nil != contentAttachment {
-			self.contentAttachment = contentAttachment
-		}
-		if nil != contentReference {
-			self.contentReference = contentReference
-		}
+		self.contentAttachment = contentAttachment
+		self.contentReference = contentReference
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -668,17 +654,11 @@ public class ContractSigner: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(party: Reference?, signature: String?, type: Coding?) {
+	public convenience init(party: Reference, signature: String, type: Coding) {
 		self.init(json: nil)
-		if nil != party {
-			self.party = party
-		}
-		if nil != signature {
-			self.signature = signature
-		}
-		if nil != type {
-			self.type = type
-		}
+		self.party = party
+		self.signature = signature
+		self.type = type
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -979,11 +959,9 @@ public class ContractTermActor: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(entity: Reference?) {
+	public convenience init(entity: Reference) {
 		self.init(json: nil)
-		if nil != entity {
-			self.entity = entity
-		}
+		self.entity = entity
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1056,7 +1034,7 @@ public class ContractTermValuedItem: FHIRElement
 	public var identifier: Identifier?
 	
 	/// Total Contract Term Valued Item Value
-	public var net: Money?
+	public var net: Quantity?
 	
 	/// Contract Term Valued Item Difficulty Scaling Factor
 	public var points: NSDecimalNumber?
@@ -1065,7 +1043,7 @@ public class ContractTermValuedItem: FHIRElement
 	public var quantity: Quantity?
 	
 	/// Contract Term Valued Item fee, charge, or cost
-	public var unitPrice: Money?
+	public var unitPrice: Quantity?
 	
 	
 	/** Initialize with a JSON object. */
@@ -1124,7 +1102,7 @@ public class ContractTermValuedItem: FHIRElement
 			if let exist: AnyObject = js["net"] {
 				presentKeys.insert("net")
 				if let val = exist as? FHIRJSON {
-					self.net = Money(json: val, owner: self)
+					self.net = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "net", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -1151,7 +1129,7 @@ public class ContractTermValuedItem: FHIRElement
 			if let exist: AnyObject = js["unitPrice"] {
 				presentKeys.insert("unitPrice")
 				if let val = exist as? FHIRJSON {
-					self.unitPrice = Money(json: val, owner: self)
+					self.unitPrice = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "unitPrice", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -1224,7 +1202,7 @@ public class ContractValuedItem: FHIRElement
 	public var identifier: Identifier?
 	
 	/// Total Contract Valued Item Value
-	public var net: Money?
+	public var net: Quantity?
 	
 	/// Contract Valued Item Difficulty Scaling Factor
 	public var points: NSDecimalNumber?
@@ -1233,7 +1211,7 @@ public class ContractValuedItem: FHIRElement
 	public var quantity: Quantity?
 	
 	/// Contract Valued Item fee, charge, or cost
-	public var unitPrice: Money?
+	public var unitPrice: Quantity?
 	
 	
 	/** Initialize with a JSON object. */
@@ -1292,7 +1270,7 @@ public class ContractValuedItem: FHIRElement
 			if let exist: AnyObject = js["net"] {
 				presentKeys.insert("net")
 				if let val = exist as? FHIRJSON {
-					self.net = Money(json: val, owner: self)
+					self.net = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "net", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -1319,7 +1297,7 @@ public class ContractValuedItem: FHIRElement
 			if let exist: AnyObject = js["unitPrice"] {
 				presentKeys.insert("unitPrice")
 				if let val = exist as? FHIRJSON {
-					self.unitPrice = Money(json: val, owner: self)
+					self.unitPrice = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "unitPrice", wants: FHIRJSON.self, has: exist.dynamicType))

@@ -2,7 +2,7 @@
 //  NutritionOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -26,7 +26,7 @@ public class NutritionOrder: DomainResource
 	/// Date and time the nutrition order was requested
 	public var dateTime: DateTime?
 	
-	/// The encounter associated with that this nutrition order
+	/// The encounter associated with this nutrition order
 	public var encounter: Reference?
 	
 	/// Enteral formula components
@@ -63,14 +63,10 @@ public class NutritionOrder: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(dateTime: DateTime?, patient: Reference?) {
+	public convenience init(dateTime: DateTime, patient: Reference) {
 		self.init(json: nil)
-		if nil != dateTime {
-			self.dateTime = dateTime
-		}
-		if nil != patient {
-			self.patient = patient
-		}
+		self.dateTime = dateTime
+		self.patient = patient
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -257,8 +253,11 @@ public class NutritionOrderEnteralFormula: FHIRElement
 	/// Type of modular component to add to the feeding
 	public var additiveType: CodeableConcept?
 	
+	/// Formula feeding instruction as structured data
+	public var administration: [NutritionOrderEnteralFormulaAdministration]?
+	
 	/// Formula feeding instructions expressed as text
-	public var administrationInstructions: String?
+	public var administrationInstruction: String?
 	
 	/// Product or brand name of the enteral or infant formula
 	public var baseFormulaProductName: String?
@@ -272,20 +271,8 @@ public class NutritionOrderEnteralFormula: FHIRElement
 	/// Upper limit on formula volume per unit of time
 	public var maxVolumeToDeliver: Quantity?
 	
-	/// The volume of formula to provide
-	public var quantity: Quantity?
-	
-	/// Speed with which the formula is provided per period of time
-	public var rate: Ratio?
-	
-	/// Change in the rate of administration over a given time
-	public var rateAdjustment: Quantity?
-	
 	/// How the formula should enter the patient's gastrointestinal tract
 	public var routeofAdministration: CodeableConcept?
-	
-	/// Scheduled frequency of enteral feeding
-	public var scheduled: Timing?
 	
 	
 	/** Initialize with a JSON object. */
@@ -314,13 +301,22 @@ public class NutritionOrderEnteralFormula: FHIRElement
 					errors.append(FHIRJSONError(key: "additiveType", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["administrationInstructions"] {
-				presentKeys.insert("administrationInstructions")
-				if let val = exist as? String {
-					self.administrationInstructions = val
+			if let exist: AnyObject = js["administration"] {
+				presentKeys.insert("administration")
+				if let val = exist as? [FHIRJSON] {
+					self.administration = NutritionOrderEnteralFormulaAdministration.from(val, owner: self) as? [NutritionOrderEnteralFormulaAdministration]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "administrationInstructions", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "administration", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["administrationInstruction"] {
+				presentKeys.insert("administrationInstruction")
+				if let val = exist as? String {
+					self.administrationInstruction = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "administrationInstruction", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["baseFormulaProductName"] {
@@ -359,33 +355,6 @@ public class NutritionOrderEnteralFormula: FHIRElement
 					errors.append(FHIRJSONError(key: "maxVolumeToDeliver", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["quantity"] {
-				presentKeys.insert("quantity")
-				if let val = exist as? FHIRJSON {
-					self.quantity = Quantity(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["rate"] {
-				presentKeys.insert("rate")
-				if let val = exist as? FHIRJSON {
-					self.rate = Ratio(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "rate", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["rateAdjustment"] {
-				presentKeys.insert("rateAdjustment")
-				if let val = exist as? FHIRJSON {
-					self.rateAdjustment = Quantity(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "rateAdjustment", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["routeofAdministration"] {
 				presentKeys.insert("routeofAdministration")
 				if let val = exist as? FHIRJSON {
@@ -393,15 +362,6 @@ public class NutritionOrderEnteralFormula: FHIRElement
 				}
 				else {
 					errors.append(FHIRJSONError(key: "routeofAdministration", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["scheduled"] {
-				presentKeys.insert("scheduled")
-				if let val = exist as? FHIRJSON {
-					self.scheduled = Timing(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "scheduled", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -417,8 +377,11 @@ public class NutritionOrderEnteralFormula: FHIRElement
 		if let additiveType = self.additiveType {
 			json["additiveType"] = additiveType.asJSON()
 		}
-		if let administrationInstructions = self.administrationInstructions {
-			json["administrationInstructions"] = administrationInstructions.asJSON()
+		if let administration = self.administration {
+			json["administration"] = NutritionOrderEnteralFormulaAdministration.asJSONArray(administration)
+		}
+		if let administrationInstruction = self.administrationInstruction {
+			json["administrationInstruction"] = administrationInstruction.asJSON()
 		}
 		if let baseFormulaProductName = self.baseFormulaProductName {
 			json["baseFormulaProductName"] = baseFormulaProductName.asJSON()
@@ -432,20 +395,103 @@ public class NutritionOrderEnteralFormula: FHIRElement
 		if let maxVolumeToDeliver = self.maxVolumeToDeliver {
 			json["maxVolumeToDeliver"] = maxVolumeToDeliver.asJSON()
 		}
-		if let quantity = self.quantity {
-			json["quantity"] = quantity.asJSON()
-		}
-		if let rate = self.rate {
-			json["rate"] = rate.asJSON()
-		}
-		if let rateAdjustment = self.rateAdjustment {
-			json["rateAdjustment"] = rateAdjustment.asJSON()
-		}
 		if let routeofAdministration = self.routeofAdministration {
 			json["routeofAdministration"] = routeofAdministration.asJSON()
 		}
-		if let scheduled = self.scheduled {
-			json["scheduled"] = scheduled.asJSON()
+		
+		return json
+	}
+}
+
+
+/**
+ *  Formula feeding instruction as structured data.
+ *
+ *  Formula administration instructions as structured data.  This repeating structure allows for changing the
+ *  administration rate or volume over time for both bolus and continuous feeding.  An example of this would be an
+ *  instruction to increase the rate of continuous feeding every 2 hours.
+ */
+public class NutritionOrderEnteralFormulaAdministration: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "NutritionOrderEnteralFormulaAdministration" }
+	}
+	
+	/// The volume of formula to provide
+	public var quantity: Quantity?
+	
+	/// Speed with which the formula is provided per period of time
+	public var rateQuantity: Quantity?
+	
+	/// Speed with which the formula is provided per period of time
+	public var rateRatio: Ratio?
+	
+	/// Scheduled frequency of enteral feeding
+	public var schedule: Timing?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+	}
+	
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist: AnyObject = js["quantity"] {
+				presentKeys.insert("quantity")
+				if let val = exist as? FHIRJSON {
+					self.quantity = Quantity(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["rateQuantity"] {
+				presentKeys.insert("rateQuantity")
+				if let val = exist as? FHIRJSON {
+					self.rateQuantity = Quantity(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "rateQuantity", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["rateRatio"] {
+				presentKeys.insert("rateRatio")
+				if let val = exist as? FHIRJSON {
+					self.rateRatio = Ratio(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "rateRatio", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["schedule"] {
+				presentKeys.insert("schedule")
+				if let val = exist as? FHIRJSON {
+					self.schedule = Timing(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "schedule", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let quantity = self.quantity {
+			json["quantity"] = quantity.asJSON()
+		}
+		if let rateQuantity = self.rateQuantity {
+			json["rateQuantity"] = rateQuantity.asJSON()
+		}
+		if let rateRatio = self.rateRatio {
+			json["rateRatio"] = rateRatio.asJSON()
+		}
+		if let schedule = self.schedule {
+			json["schedule"] = schedule.asJSON()
 		}
 		
 		return json
@@ -474,7 +520,7 @@ public class NutritionOrderOralDiet: FHIRElement
 	public var nutrient: [NutritionOrderOralDietNutrient]?
 	
 	/// Scheduled frequency of diet
-	public var scheduled: Timing?
+	public var schedule: [Timing]?
 	
 	/// Required  texture modifications
 	public var texture: [NutritionOrderOralDietTexture]?
@@ -518,13 +564,13 @@ public class NutritionOrderOralDiet: FHIRElement
 					errors.append(FHIRJSONError(key: "nutrient", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["scheduled"] {
-				presentKeys.insert("scheduled")
-				if let val = exist as? FHIRJSON {
-					self.scheduled = Timing(json: val, owner: self)
+			if let exist: AnyObject = js["schedule"] {
+				presentKeys.insert("schedule")
+				if let val = exist as? [FHIRJSON] {
+					self.schedule = Timing.from(val, owner: self) as? [Timing]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "scheduled", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "schedule", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["texture"] {
@@ -561,8 +607,8 @@ public class NutritionOrderOralDiet: FHIRElement
 		if let nutrient = self.nutrient {
 			json["nutrient"] = NutritionOrderOralDietNutrient.asJSONArray(nutrient)
 		}
-		if let scheduled = self.scheduled {
-			json["scheduled"] = scheduled.asJSON()
+		if let schedule = self.schedule {
+			json["schedule"] = Timing.asJSONArray(schedule)
 		}
 		if let texture = self.texture {
 			json["texture"] = NutritionOrderOralDietTexture.asJSONArray(texture)
@@ -654,7 +700,7 @@ public class NutritionOrderOralDietTexture: FHIRElement
 	/// Concepts that are used to identify an entity that is ingested for nutritional purposes
 	public var foodType: CodeableConcept?
 	
-	/// Code to indicate how to alter the texture of the foods, e.g., pureed
+	/// Code to indicate how to alter the texture of the foods, e.g. pureed
 	public var modifier_fhir: CodeableConcept?
 	
 	
@@ -724,7 +770,7 @@ public class NutritionOrderSupplement: FHIRElement
 	public var quantity: Quantity?
 	
 	/// Scheduled frequency of supplement
-	public var scheduled: Timing?
+	public var schedule: [Timing]?
 	
 	/// Type of supplement product requested
 	public var type: CodeableConcept?
@@ -765,13 +811,13 @@ public class NutritionOrderSupplement: FHIRElement
 					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["scheduled"] {
-				presentKeys.insert("scheduled")
-				if let val = exist as? FHIRJSON {
-					self.scheduled = Timing(json: val, owner: self)
+			if let exist: AnyObject = js["schedule"] {
+				presentKeys.insert("schedule")
+				if let val = exist as? [FHIRJSON] {
+					self.schedule = Timing.from(val, owner: self) as? [Timing]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "scheduled", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "schedule", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["type"] {
@@ -799,8 +845,8 @@ public class NutritionOrderSupplement: FHIRElement
 		if let quantity = self.quantity {
 			json["quantity"] = quantity.asJSON()
 		}
-		if let scheduled = self.scheduled {
-			json["scheduled"] = scheduled.asJSON()
+		if let schedule = self.schedule {
+			json["schedule"] = Timing.asJSONArray(schedule)
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()

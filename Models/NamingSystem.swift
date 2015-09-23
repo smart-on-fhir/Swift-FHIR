@@ -2,7 +2,7 @@
 //  NamingSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -21,20 +21,17 @@ public class NamingSystem: DomainResource
 		get { return "NamingSystem" }
 	}
 	
-	/// e.g. driver,  provider,  patient, bank etc
-	public var category: CodeableConcept?
-	
 	/// Contact details of the publisher
 	public var contact: [NamingSystemContact]?
-	
-	/// ISO 3-char country code
-	public var country: String?
 	
 	/// Publication Date(/time)
 	public var date: DateTime?
 	
-	/// What does namingsystem identify?
+	/// What does naming system identify?
 	public var description_fhir: String?
+	
+	/// codesystem | identifier | root
+	public var kind: String?
 	
 	/// Human-readable label
 	public var name: String?
@@ -51,14 +48,17 @@ public class NamingSystem: DomainResource
 	/// draft | active | retired
 	public var status: String?
 	
-	/// codesystem | identifier | root
-	public var type: String?
+	/// e.g. driver,  provider,  patient, bank etc.
+	public var type: CodeableConcept?
 	
 	/// Unique identifiers used for system
 	public var uniqueId: [NamingSystemUniqueId]?
 	
 	/// How/where is it used
 	public var usage: String?
+	
+	/// Content intends to support these contexts
+	public var useContext: [CodeableConcept]?
 	
 	
 	/** Initialize with a JSON object. */
@@ -67,37 +67,18 @@ public class NamingSystem: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(date: DateTime?, name: String?, status: String?, type: String?, uniqueId: [NamingSystemUniqueId]?) {
+	public convenience init(date: DateTime, kind: String, name: String, status: String, uniqueId: [NamingSystemUniqueId]) {
 		self.init(json: nil)
-		if nil != date {
-			self.date = date
-		}
-		if nil != name {
-			self.name = name
-		}
-		if nil != status {
-			self.status = status
-		}
-		if nil != type {
-			self.type = type
-		}
-		if nil != uniqueId {
-			self.uniqueId = uniqueId
-		}
+		self.date = date
+		self.kind = kind
+		self.name = name
+		self.status = status
+		self.uniqueId = uniqueId
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["category"] {
-				presentKeys.insert("category")
-				if let val = exist as? FHIRJSON {
-					self.category = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
@@ -105,15 +86,6 @@ public class NamingSystem: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["country"] {
-				presentKeys.insert("country")
-				if let val = exist as? String {
-					self.country = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "country", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["date"] {
@@ -136,6 +108,18 @@ public class NamingSystem: DomainResource
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: exist.dynamicType))
 				}
+			}
+			if let exist: AnyObject = js["kind"] {
+				presentKeys.insert("kind")
+				if let val = exist as? String {
+					self.kind = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "kind", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "kind"))
 			}
 			if let exist: AnyObject = js["name"] {
 				presentKeys.insert("name")
@@ -190,15 +174,12 @@ public class NamingSystem: DomainResource
 			}
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")
-				if let val = exist as? String {
-					self.type = val
+				if let val = exist as? FHIRJSON {
+					self.type = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "type"))
 			}
 			if let exist: AnyObject = js["uniqueId"] {
 				presentKeys.insert("uniqueId")
@@ -221,6 +202,15 @@ public class NamingSystem: DomainResource
 					errors.append(FHIRJSONError(key: "usage", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["useContext"] {
+				presentKeys.insert("useContext")
+				if let val = exist as? [FHIRJSON] {
+					self.useContext = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -228,20 +218,17 @@ public class NamingSystem: DomainResource
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let category = self.category {
-			json["category"] = category.asJSON()
-		}
 		if let contact = self.contact {
 			json["contact"] = NamingSystemContact.asJSONArray(contact)
-		}
-		if let country = self.country {
-			json["country"] = country.asJSON()
 		}
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
+		}
+		if let kind = self.kind {
+			json["kind"] = kind.asJSON()
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -266,6 +253,9 @@ public class NamingSystem: DomainResource
 		}
 		if let usage = self.usage {
 			json["usage"] = usage.asJSON()
+		}
+		if let useContext = self.useContext {
+			json["useContext"] = CodeableConcept.asJSONArray(useContext)
 		}
 		
 		return json
@@ -366,14 +356,10 @@ public class NamingSystemUniqueId: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String?, value: String?) {
+	public convenience init(type: String, value: String) {
 		self.init(json: nil)
-		if nil != type {
-			self.type = type
-		}
-		if nil != value {
-			self.value = value
-		}
+		self.type = type
+		self.value = value
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

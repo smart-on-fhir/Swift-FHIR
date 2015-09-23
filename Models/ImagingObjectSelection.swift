@@ -2,7 +2,7 @@
 //  ImagingObjectSelection.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -12,8 +12,13 @@ import Foundation
 /**
  *  Key Object Selection.
  *
- *  A set of DICOM SOP Instances of a patient, selected for some application purpose, e.g., quality assurance, teaching,
- *  conference, consulting, etc.  Objects selected can be from different studies, but must be of the same patient.
+ *  A manifest of a set of DICOM Service-Object Pair Instances (SOP Instances).  The referenced SOP Instances (images or
+ *  other content) are for a single patient, and may be from one or more studies. The referenced SOP Instances have been
+ *  selected for a purpose, such as quality assurance, conference, or consult. Reflecting that range of purposes,
+ *  typical ImagingObjectSelection resources may include all SOP Instances in a study (perhaps for sharing through a
+ *  Health Information Exchange); key images from multiple studies (for reference by a referring or treating physician);
+ *  a multi-frame ultrasound instance ("cine" video clip) and a set of measurements taken from that instance (for
+ *  inclusion in a teaching file); and so on.
  */
 public class ImagingObjectSelection: DomainResource
 {
@@ -49,20 +54,12 @@ public class ImagingObjectSelection: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference?, study: [ImagingObjectSelectionStudy]?, title: CodeableConcept?, uid: String?) {
+	public convenience init(patient: Reference, study: [ImagingObjectSelectionStudy], title: CodeableConcept, uid: String) {
 		self.init(json: nil)
-		if nil != patient {
-			self.patient = patient
-		}
-		if nil != study {
-			self.study = study
-		}
-		if nil != title {
-			self.title = title
-		}
-		if nil != uid {
-			self.uid = uid
-		}
+		self.patient = patient
+		self.study = study
+		self.title = title
+		self.uid = uid
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -188,13 +185,16 @@ public class ImagingObjectSelectionStudy: FHIRElement
 		get { return "ImagingObjectSelectionStudy" }
 	}
 	
+	/// Reference to ImagingStudy
+	public var imagingStudy: Reference?
+	
 	/// Series identity of the selected instances
 	public var series: [ImagingObjectSelectionStudySeries]?
 	
-	/// Study instance uid
+	/// Study instance UID
 	public var uid: String?
 	
-	/// Retrieve URL
+	/// Retrieve study URL
 	public var url: NSURL?
 	
 	
@@ -204,19 +204,24 @@ public class ImagingObjectSelectionStudy: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(series: [ImagingObjectSelectionStudySeries]?, uid: String?) {
+	public convenience init(series: [ImagingObjectSelectionStudySeries], uid: String) {
 		self.init(json: nil)
-		if nil != series {
-			self.series = series
-		}
-		if nil != uid {
-			self.uid = uid
-		}
+		self.series = series
+		self.uid = uid
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["imagingStudy"] {
+				presentKeys.insert("imagingStudy")
+				if let val = exist as? FHIRJSON {
+					self.imagingStudy = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "imagingStudy", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["series"] {
 				presentKeys.insert("series")
 				if let val = exist as? [FHIRJSON] {
@@ -257,6 +262,9 @@ public class ImagingObjectSelectionStudy: FHIRElement
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let imagingStudy = self.imagingStudy {
+			json["imagingStudy"] = imagingStudy.asJSON()
+		}
 		if let series = self.series {
 			json["series"] = ImagingObjectSelectionStudySeries.asJSONArray(series)
 		}
@@ -275,7 +283,7 @@ public class ImagingObjectSelectionStudy: FHIRElement
 /**
  *  Series identity of the selected instances.
  *
- *  Series indetity and locating information of the DICOM SOP instances in the selection.
+ *  Series identity and locating information of the DICOM SOP instances in the selection.
  */
 public class ImagingObjectSelectionStudySeries: FHIRElement
 {
@@ -286,10 +294,10 @@ public class ImagingObjectSelectionStudySeries: FHIRElement
 	/// The selected instance
 	public var instance: [ImagingObjectSelectionStudySeriesInstance]?
 	
-	/// Series instance uid
+	/// Series instance UID
 	public var uid: String?
 	
-	/// Retrieve URL
+	/// Retrieve series URL
 	public var url: NSURL?
 	
 	
@@ -299,11 +307,9 @@ public class ImagingObjectSelectionStudySeries: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(instance: [ImagingObjectSelectionStudySeriesInstance]?) {
+	public convenience init(instance: [ImagingObjectSelectionStudySeriesInstance]) {
 		self.init(json: nil)
-		if nil != instance {
-			self.instance = instance
-		}
+		self.instance = instance
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -375,13 +381,13 @@ public class ImagingObjectSelectionStudySeriesInstance: FHIRElement
 	/// The frame set
 	public var frames: [ImagingObjectSelectionStudySeriesInstanceFrames]?
 	
-	/// SOP class uid of instance
+	/// SOP class UID of instance
 	public var sopClass: String?
 	
-	/// Uid of the selected instance
+	/// Selected instance UID
 	public var uid: String?
 	
-	/// Retrieve URL
+	/// Retrieve instance URL
 	public var url: NSURL?
 	
 	
@@ -391,17 +397,11 @@ public class ImagingObjectSelectionStudySeriesInstance: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(sopClass: String?, uid: String?, url: NSURL?) {
+	public convenience init(sopClass: String, uid: String, url: NSURL) {
 		self.init(json: nil)
-		if nil != sopClass {
-			self.sopClass = sopClass
-		}
-		if nil != uid {
-			self.uid = uid
-		}
-		if nil != url {
-			self.url = url
-		}
+		self.sopClass = sopClass
+		self.uid = uid
+		self.url = url
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -491,7 +491,7 @@ public class ImagingObjectSelectionStudySeriesInstanceFrames: FHIRElement
 	/// Frame numbers
 	public var frameNumbers: [UInt]?
 	
-	/// Retrieve URL
+	/// Retrieve frame URL
 	public var url: NSURL?
 	
 	
@@ -501,14 +501,10 @@ public class ImagingObjectSelectionStudySeriesInstanceFrames: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(frameNumbers: [UInt]?, url: NSURL?) {
+	public convenience init(frameNumbers: [UInt], url: NSURL) {
 		self.init(json: nil)
-		if nil != frameNumbers {
-			self.frameNumbers = frameNumbers
-		}
-		if nil != url {
-			self.url = url
-		}
+		self.frameNumbers = frameNumbers
+		self.url = url
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

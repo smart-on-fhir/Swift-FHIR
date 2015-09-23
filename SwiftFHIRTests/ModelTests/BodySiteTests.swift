@@ -2,7 +2,7 @@
 //  BodySiteTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class BodySiteTests: FHIRModelTestCase
+class BodySiteTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> BodySite {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class BodySiteTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testBodySite1() throws {
-		let instance = try runBodySite1()
-		try runBodySite1(instance.asJSON())
+	func testBodySite1() {
+		let instance = try? runBodySite1()
+		XCTAssertNotNil(instance, "Must instantiate BodySite")
+		try! runBodySite1(instance!.asJSON())
 	}
 	
 	func runBodySite1(json: FHIRJSON? = nil) throws -> BodySite {

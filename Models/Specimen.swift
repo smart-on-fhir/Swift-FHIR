@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -11,6 +11,8 @@ import Foundation
 
 /**
  *  Sample for analysis.
+ *
+ *  A sample to be used for analysis.
  */
 public class Specimen: DomainResource
 {
@@ -24,7 +26,7 @@ public class Specimen: DomainResource
 	/// Collection details
 	public var collection: SpecimenCollection?
 	
-	/// Direct container of specimen (tube/slide, etc)
+	/// Direct container of specimen (tube/slide, etc.)
 	public var container: [SpecimenContainer]?
 	
 	/// External Identifier
@@ -35,6 +37,9 @@ public class Specimen: DomainResource
 	
 	/// The time when specimen was received for processing
 	public var receivedTime: DateTime?
+	
+	/// available | unavailable | unsatisfactory | entered-in-error
+	public var status: String?
 	
 	/// Where the specimen came from. This may be from the patient(s) or from the environment or a device
 	public var subject: Reference?
@@ -52,11 +57,9 @@ public class Specimen: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(subject: Reference?) {
+	public convenience init(subject: Reference) {
 		self.init(json: nil)
-		if nil != subject {
-			self.subject = subject
-		}
+		self.subject = subject
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -116,6 +119,15 @@ public class Specimen: DomainResource
 					errors.append(FHIRJSONError(key: "receivedTime", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["status"] {
+				presentKeys.insert("status")
+				if let val = exist as? String {
+					self.status = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
@@ -171,6 +183,9 @@ public class Specimen: DomainResource
 		if let receivedTime = self.receivedTime {
 			json["receivedTime"] = receivedTime.asJSON()
 		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON()
 		}
@@ -198,10 +213,7 @@ public class SpecimenCollection: FHIRElement
 	}
 	
 	/// Anatomical collection site
-	public var bodySiteCodeableConcept: CodeableConcept?
-	
-	/// Anatomical collection site
-	public var bodySiteReference: Reference?
+	public var bodySite: CodeableConcept?
 	
 	/// Collection time
 	public var collectedDateTime: DateTime?
@@ -230,22 +242,13 @@ public class SpecimenCollection: FHIRElement
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["bodySiteCodeableConcept"] {
-				presentKeys.insert("bodySiteCodeableConcept")
+			if let exist: AnyObject = js["bodySite"] {
+				presentKeys.insert("bodySite")
 				if let val = exist as? FHIRJSON {
-					self.bodySiteCodeableConcept = CodeableConcept(json: val, owner: self)
+					self.bodySite = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "bodySiteCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["bodySiteReference"] {
-				presentKeys.insert("bodySiteReference")
-				if let val = exist as? FHIRJSON {
-					self.bodySiteReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "bodySiteReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "bodySite", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["collectedDateTime"] {
@@ -309,11 +312,8 @@ public class SpecimenCollection: FHIRElement
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let bodySiteCodeableConcept = self.bodySiteCodeableConcept {
-			json["bodySiteCodeableConcept"] = bodySiteCodeableConcept.asJSON()
-		}
-		if let bodySiteReference = self.bodySiteReference {
-			json["bodySiteReference"] = bodySiteReference.asJSON()
+		if let bodySite = self.bodySite {
+			json["bodySite"] = bodySite.asJSON()
 		}
 		if let collectedDateTime = self.collectedDateTime {
 			json["collectedDateTime"] = collectedDateTime.asJSON()
@@ -344,7 +344,7 @@ public class SpecimenCollection: FHIRElement
 
 
 /**
- *  Direct container of specimen (tube/slide, etc).
+ *  Direct container of specimen (tube/slide, etc.).
  *
  *  The container holding the specimen.  The recursive nature of containers; i.e. blood in tube in tray in rack is not
  *  addressed here.

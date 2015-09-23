@@ -2,7 +2,7 @@
 //  PaymentReconciliation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -63,7 +63,7 @@ public class PaymentReconciliation: DomainResource
 	public var ruleset: Coding?
 	
 	/// Total amount of Payment
-	public var total: Money?
+	public var total: Quantity?
 	
 	
 	/** Initialize with a JSON object. */
@@ -72,11 +72,9 @@ public class PaymentReconciliation: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(total: Money?) {
+	public convenience init(total: Quantity) {
 		self.init(json: nil)
-		if nil != total {
-			self.total = total
-		}
+		self.total = total
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -211,7 +209,7 @@ public class PaymentReconciliation: DomainResource
 			if let exist: AnyObject = js["total"] {
 				presentKeys.insert("total")
 				if let val = exist as? FHIRJSON {
-					self.total = Money(json: val, owner: self)
+					self.total = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "total", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -290,7 +288,7 @@ public class PaymentReconciliationDetail: FHIRElement
 	}
 	
 	/// Detail amount
-	public var amount: Money?
+	public var amount: Quantity?
 	
 	/// Invoice date
 	public var date: Date?
@@ -317,11 +315,9 @@ public class PaymentReconciliationDetail: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: Coding?) {
+	public convenience init(type: Coding) {
 		self.init(json: nil)
-		if nil != type {
-			self.type = type
-		}
+		self.type = type
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -330,7 +326,7 @@ public class PaymentReconciliationDetail: FHIRElement
 			if let exist: AnyObject = js["amount"] {
 				presentKeys.insert("amount")
 				if let val = exist as? FHIRJSON {
-					self.amount = Money(json: val, owner: self)
+					self.amount = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: exist.dynamicType))

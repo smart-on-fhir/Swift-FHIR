@@ -2,7 +2,7 @@
 //  DeviceUseRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -76,14 +76,10 @@ public class DeviceUseRequest: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(device: Reference?, subject: Reference?) {
+	public convenience init(device: Reference, subject: Reference) {
 		self.init(json: nil)
-		if nil != device {
-			self.device = device
-		}
-		if nil != subject {
-			self.subject = subject
-		}
+		self.device = device
+		self.subject = subject
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

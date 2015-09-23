@@ -2,7 +2,7 @@
 //  Extension.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Extension) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Extension) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- *  Optional Extensions Element - found in all resources..
+ *  None.
  *
  *  Optional Extensions Element - found in all resources.
  */
@@ -25,6 +25,9 @@ public class Extension: FHIRElement
 	
 	/// Value of extension
 	public var valueAddress: Address?
+	
+	/// Value of extension
+	public var valueAnnotation: Annotation?
 	
 	/// Value of extension
 	public var valueAttachment: Attachment?
@@ -60,6 +63,9 @@ public class Extension: FHIRElement
 	public var valueHumanName: HumanName?
 	
 	/// Value of extension
+	public var valueId: String?
+	
+	/// Value of extension
 	public var valueIdentifier: Identifier?
 	
 	/// Value of extension
@@ -69,7 +75,19 @@ public class Extension: FHIRElement
 	public var valueInteger: Int?
 	
 	/// Value of extension
+	public var valueMarkdown: String?
+	
+	/// Value of extension
+	public var valueMeta: Meta?
+	
+	/// Value of extension
+	public var valueOid: String?
+	
+	/// Value of extension
 	public var valuePeriod: Period?
+	
+	/// Value of extension
+	public var valuePositiveInt: UInt?
 	
 	/// Value of extension
 	public var valueQuantity: Quantity?
@@ -84,6 +102,9 @@ public class Extension: FHIRElement
 	public var valueReference: Reference?
 	
 	/// Value of extension
+	public var valueSampledData: SampledData?
+	
+	/// Value of extension
 	public var valueSignature: Signature?
 	
 	/// Value of extension
@@ -96,6 +117,9 @@ public class Extension: FHIRElement
 	public var valueTiming: Timing?
 	
 	/// Value of extension
+	public var valueUnsignedInt: UInt?
+	
+	/// Value of extension
 	public var valueUri: NSURL?
 	
 	
@@ -105,11 +129,9 @@ public class Extension: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(url: NSURL?) {
+	public convenience init(url: NSURL) {
 		self.init(json: nil)
-		if nil != url {
-			self.url = url
-		}
+		self.url = url
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -134,6 +156,15 @@ public class Extension: FHIRElement
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueAddress", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueAnnotation"] {
+				presentKeys.insert("valueAnnotation")
+				if let val = exist as? FHIRJSON {
+					self.valueAnnotation = Annotation(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueAnnotation", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["valueAttachment"] {
@@ -235,6 +266,15 @@ public class Extension: FHIRElement
 					errors.append(FHIRJSONError(key: "valueHumanName", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["valueId"] {
+				presentKeys.insert("valueId")
+				if let val = exist as? String {
+					self.valueId = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueId", wants: String.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["valueIdentifier"] {
 				presentKeys.insert("valueIdentifier")
 				if let val = exist as? FHIRJSON {
@@ -262,6 +302,33 @@ public class Extension: FHIRElement
 					errors.append(FHIRJSONError(key: "valueInteger", wants: Int.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["valueMarkdown"] {
+				presentKeys.insert("valueMarkdown")
+				if let val = exist as? String {
+					self.valueMarkdown = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueMarkdown", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueMeta"] {
+				presentKeys.insert("valueMeta")
+				if let val = exist as? FHIRJSON {
+					self.valueMeta = Meta(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueMeta", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueOid"] {
+				presentKeys.insert("valueOid")
+				if let val = exist as? String {
+					self.valueOid = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueOid", wants: String.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["valuePeriod"] {
 				presentKeys.insert("valuePeriod")
 				if let val = exist as? FHIRJSON {
@@ -269,6 +336,15 @@ public class Extension: FHIRElement
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valuePeriod", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valuePositiveInt"] {
+				presentKeys.insert("valuePositiveInt")
+				if let val = exist as? UInt {
+					self.valuePositiveInt = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valuePositiveInt", wants: UInt.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["valueQuantity"] {
@@ -307,6 +383,15 @@ public class Extension: FHIRElement
 					errors.append(FHIRJSONError(key: "valueReference", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["valueSampledData"] {
+				presentKeys.insert("valueSampledData")
+				if let val = exist as? FHIRJSON {
+					self.valueSampledData = SampledData(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueSampledData", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["valueSignature"] {
 				presentKeys.insert("valueSignature")
 				if let val = exist as? FHIRJSON {
@@ -343,6 +428,15 @@ public class Extension: FHIRElement
 					errors.append(FHIRJSONError(key: "valueTiming", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["valueUnsignedInt"] {
+				presentKeys.insert("valueUnsignedInt")
+				if let val = exist as? UInt {
+					self.valueUnsignedInt = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueUnsignedInt", wants: UInt.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["valueUri"] {
 				presentKeys.insert("valueUri")
 				if let val = exist as? String {
@@ -364,6 +458,9 @@ public class Extension: FHIRElement
 		}
 		if let valueAddress = self.valueAddress {
 			json["valueAddress"] = valueAddress.asJSON()
+		}
+		if let valueAnnotation = self.valueAnnotation {
+			json["valueAnnotation"] = valueAnnotation.asJSON()
 		}
 		if let valueAttachment = self.valueAttachment {
 			json["valueAttachment"] = valueAttachment.asJSON()
@@ -398,6 +495,9 @@ public class Extension: FHIRElement
 		if let valueHumanName = self.valueHumanName {
 			json["valueHumanName"] = valueHumanName.asJSON()
 		}
+		if let valueId = self.valueId {
+			json["valueId"] = valueId.asJSON()
+		}
 		if let valueIdentifier = self.valueIdentifier {
 			json["valueIdentifier"] = valueIdentifier.asJSON()
 		}
@@ -407,8 +507,20 @@ public class Extension: FHIRElement
 		if let valueInteger = self.valueInteger {
 			json["valueInteger"] = valueInteger.asJSON()
 		}
+		if let valueMarkdown = self.valueMarkdown {
+			json["valueMarkdown"] = valueMarkdown.asJSON()
+		}
+		if let valueMeta = self.valueMeta {
+			json["valueMeta"] = valueMeta.asJSON()
+		}
+		if let valueOid = self.valueOid {
+			json["valueOid"] = valueOid.asJSON()
+		}
 		if let valuePeriod = self.valuePeriod {
 			json["valuePeriod"] = valuePeriod.asJSON()
+		}
+		if let valuePositiveInt = self.valuePositiveInt {
+			json["valuePositiveInt"] = valuePositiveInt.asJSON()
 		}
 		if let valueQuantity = self.valueQuantity {
 			json["valueQuantity"] = valueQuantity.asJSON()
@@ -422,6 +534,9 @@ public class Extension: FHIRElement
 		if let valueReference = self.valueReference {
 			json["valueReference"] = valueReference.asJSON()
 		}
+		if let valueSampledData = self.valueSampledData {
+			json["valueSampledData"] = valueSampledData.asJSON()
+		}
 		if let valueSignature = self.valueSignature {
 			json["valueSignature"] = valueSignature.asJSON()
 		}
@@ -433,6 +548,9 @@ public class Extension: FHIRElement
 		}
 		if let valueTiming = self.valueTiming {
 			json["valueTiming"] = valueTiming.asJSON()
+		}
+		if let valueUnsignedInt = self.valueUnsignedInt {
+			json["valueUnsignedInt"] = valueUnsignedInt.asJSON()
 		}
 		if let valueUri = self.valueUri {
 			json["valueUri"] = valueUri.asJSON()

@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -11,6 +11,10 @@ import Foundation
 
 /**
  *  Immunization event information.
+ *
+ *  Describes the event of a patient being administered a vaccination or a record of a vaccination as reported by a
+ *  patient, a clinician or another party and may include vaccine reaction information and what vaccination protocol was
+ *  followed.
  */
 public class Immunization: DomainResource
 {
@@ -30,13 +34,13 @@ public class Immunization: DomainResource
 	/// Vaccine expiration date
 	public var expirationDate: Date?
 	
-	/// Administration / non-administration reasons
+	/// Administration/non-administration reasons
 	public var explanation: ImmunizationExplanation?
 	
 	/// Business identifier
 	public var identifier: [Identifier]?
 	
-	/// Where did vaccination occur?
+	/// Where vaccination occurred
 	public var location: Reference?
 	
 	/// Vaccine lot number
@@ -45,19 +49,22 @@ public class Immunization: DomainResource
 	/// Vaccine manufacturer
 	public var manufacturer: Reference?
 	
-	/// Who was immunized?
+	/// Vaccination notes
+	public var note: [Annotation]?
+	
+	/// Who was immunized
 	public var patient: Reference?
 	
-	/// Who administered vaccine?
+	/// Who administered vaccine
 	public var performer: Reference?
 	
 	/// Details of a reaction that follows immunization
 	public var reaction: [ImmunizationReaction]?
 	
-	/// Is this a self-reported record?
+	/// Indicates a self-reported record
 	public var reported: Bool?
 	
-	/// Who ordered vaccination?
+	/// Who ordered vaccination
 	public var requester: Reference?
 	
 	/// How vaccine entered body
@@ -66,13 +73,16 @@ public class Immunization: DomainResource
 	/// Body site vaccine  was administered
 	public var site: CodeableConcept?
 	
+	/// in-progress | on-hold | completed | entered-in-error | stopped
+	public var status: String?
+	
 	/// What protocol was followed
 	public var vaccinationProtocol: [ImmunizationVaccinationProtocol]?
 	
 	/// Vaccine product administered
-	public var vaccineType: CodeableConcept?
+	public var vaccineCode: CodeableConcept?
 	
-	/// Was immunization given?
+	/// Flag for whether immunization was given
 	public var wasNotGiven: Bool?
 	
 	
@@ -82,23 +92,13 @@ public class Immunization: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(date: DateTime?, patient: Reference?, reported: Bool?, vaccineType: CodeableConcept?, wasNotGiven: Bool?) {
+	public convenience init(patient: Reference, reported: Bool, status: String, vaccineCode: CodeableConcept, wasNotGiven: Bool) {
 		self.init(json: nil)
-		if nil != date {
-			self.date = date
-		}
-		if nil != patient {
-			self.patient = patient
-		}
-		if nil != reported {
-			self.reported = reported
-		}
-		if nil != vaccineType {
-			self.vaccineType = vaccineType
-		}
-		if nil != wasNotGiven {
-			self.wasNotGiven = wasNotGiven
-		}
+		self.patient = patient
+		self.reported = reported
+		self.status = status
+		self.vaccineCode = vaccineCode
+		self.wasNotGiven = wasNotGiven
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -112,9 +112,6 @@ public class Immunization: DomainResource
 				else {
 					errors.append(FHIRJSONError(key: "date", wants: String.self, has: exist.dynamicType))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "date"))
 			}
 			if let exist: AnyObject = js["doseQuantity"] {
 				presentKeys.insert("doseQuantity")
@@ -188,6 +185,15 @@ public class Immunization: DomainResource
 					errors.append(FHIRJSONError(key: "manufacturer", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["note"] {
+				presentKeys.insert("note")
+				if let val = exist as? [FHIRJSON] {
+					self.note = Annotation.from(val, owner: self) as? [Annotation]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
@@ -257,6 +263,18 @@ public class Immunization: DomainResource
 					errors.append(FHIRJSONError(key: "site", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["status"] {
+				presentKeys.insert("status")
+				if let val = exist as? String {
+					self.status = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "status"))
+			}
 			if let exist: AnyObject = js["vaccinationProtocol"] {
 				presentKeys.insert("vaccinationProtocol")
 				if let val = exist as? [FHIRJSON] {
@@ -266,17 +284,17 @@ public class Immunization: DomainResource
 					errors.append(FHIRJSONError(key: "vaccinationProtocol", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["vaccineType"] {
-				presentKeys.insert("vaccineType")
+			if let exist: AnyObject = js["vaccineCode"] {
+				presentKeys.insert("vaccineCode")
 				if let val = exist as? FHIRJSON {
-					self.vaccineType = CodeableConcept(json: val, owner: self)
+					self.vaccineCode = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "vaccineType", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "vaccineCode", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "vaccineType"))
+				errors.append(FHIRJSONError(key: "vaccineCode"))
 			}
 			if let exist: AnyObject = js["wasNotGiven"] {
 				presentKeys.insert("wasNotGiven")
@@ -324,6 +342,9 @@ public class Immunization: DomainResource
 		if let manufacturer = self.manufacturer {
 			json["manufacturer"] = manufacturer.asJSON()
 		}
+		if let note = self.note {
+			json["note"] = Annotation.asJSONArray(note)
+		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
 		}
@@ -345,11 +366,14 @@ public class Immunization: DomainResource
 		if let site = self.site {
 			json["site"] = site.asJSON()
 		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
 		if let vaccinationProtocol = self.vaccinationProtocol {
 			json["vaccinationProtocol"] = ImmunizationVaccinationProtocol.asJSONArray(vaccinationProtocol)
 		}
-		if let vaccineType = self.vaccineType {
-			json["vaccineType"] = vaccineType.asJSON()
+		if let vaccineCode = self.vaccineCode {
+			json["vaccineCode"] = vaccineCode.asJSON()
 		}
 		if let wasNotGiven = self.wasNotGiven {
 			json["wasNotGiven"] = wasNotGiven.asJSON()
@@ -361,7 +385,7 @@ public class Immunization: DomainResource
 
 
 /**
- *  Administration / non-administration reasons.
+ *  Administration/non-administration reasons.
  *
  *  Reasons why a vaccine was or was not administered.
  */
@@ -434,13 +458,13 @@ public class ImmunizationReaction: FHIRElement
 		get { return "ImmunizationReaction" }
 	}
 	
-	/// When did reaction start?
+	/// When reaction started
 	public var date: DateTime?
 	
 	/// Additional information on reaction
 	public var detail: Reference?
 	
-	/// Was reaction self-reported?
+	/// Indicates self-reported reaction
 	public var reported: Bool?
 	
 	
@@ -518,23 +542,23 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 	/// Details of vaccine protocol
 	public var description_fhir: String?
 	
-	/// What dose number within series?
+	/// Dose number within series
 	public var doseSequence: UInt?
 	
-	/// Does dose count towards immunity?
+	/// Indicates if dose counts towards immunity
 	public var doseStatus: CodeableConcept?
 	
-	/// Why does does count/not count?
+	/// Why dose does (not) count
 	public var doseStatusReason: CodeableConcept?
-	
-	/// Disease immunized against
-	public var doseTarget: CodeableConcept?
 	
 	/// Name of vaccine series
 	public var series: String?
 	
 	/// Recommended number of doses for immunity
 	public var seriesDoses: UInt?
+	
+	/// Disease immunized against
+	public var targetDisease: [CodeableConcept]?
 	
 	
 	/** Initialize with a JSON object. */
@@ -543,17 +567,11 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(doseSequence: UInt?, doseStatus: CodeableConcept?, doseTarget: CodeableConcept?) {
+	public convenience init(doseSequence: UInt, doseStatus: CodeableConcept, targetDisease: [CodeableConcept]) {
 		self.init(json: nil)
-		if nil != doseSequence {
-			self.doseSequence = doseSequence
-		}
-		if nil != doseStatus {
-			self.doseStatus = doseStatus
-		}
-		if nil != doseTarget {
-			self.doseTarget = doseTarget
-		}
+		self.doseSequence = doseSequence
+		self.doseStatus = doseStatus
+		self.targetDisease = targetDisease
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -610,18 +628,6 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 					errors.append(FHIRJSONError(key: "doseStatusReason", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["doseTarget"] {
-				presentKeys.insert("doseTarget")
-				if let val = exist as? FHIRJSON {
-					self.doseTarget = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "doseTarget", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "doseTarget"))
-			}
 			if let exist: AnyObject = js["series"] {
 				presentKeys.insert("series")
 				if let val = exist as? String {
@@ -639,6 +645,18 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 				else {
 					errors.append(FHIRJSONError(key: "seriesDoses", wants: UInt.self, has: exist.dynamicType))
 				}
+			}
+			if let exist: AnyObject = js["targetDisease"] {
+				presentKeys.insert("targetDisease")
+				if let val = exist as? [FHIRJSON] {
+					self.targetDisease = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "targetDisease", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "targetDisease"))
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -662,14 +680,14 @@ public class ImmunizationVaccinationProtocol: FHIRElement
 		if let doseStatusReason = self.doseStatusReason {
 			json["doseStatusReason"] = doseStatusReason.asJSON()
 		}
-		if let doseTarget = self.doseTarget {
-			json["doseTarget"] = doseTarget.asJSON()
-		}
 		if let series = self.series {
 			json["series"] = series.asJSON()
 		}
 		if let seriesDoses = self.seriesDoses {
 			json["seriesDoses"] = seriesDoses.asJSON()
+		}
+		if let targetDisease = self.targetDisease {
+			json["targetDisease"] = CodeableConcept.asJSONArray(targetDisease)
 		}
 		
 		return json

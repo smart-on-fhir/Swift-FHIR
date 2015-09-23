@@ -8,6 +8,7 @@
 
 import Cocoa			// this is needed to avoid "Library not loaded: @rpath/libswiftAppKit.dylib" errors
 import XCTest
+import AppKit
 
 class BaseTests: XCTestCase
 {

@@ -2,7 +2,7 @@
 //  VisionPrescriptionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class VisionPrescriptionTests: FHIRModelTestCase
+class VisionPrescriptionTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> VisionPrescription {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class VisionPrescriptionTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testVisionPrescription1() throws {
-		let instance = try runVisionPrescription1()
-		try runVisionPrescription1(instance.asJSON())
+	func testVisionPrescription1() {
+		let instance = try? runVisionPrescription1()
+		XCTAssertNotNil(instance, "Must instantiate VisionPrescription")
+		try! runVisionPrescription1(instance!.asJSON())
 	}
 	
 	func runVisionPrescription1(json: FHIRJSON? = nil) throws -> VisionPrescription {
@@ -40,7 +41,7 @@ class VisionPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dispense![0].diameter!, NSDecimalNumber(string: "14.0"))
 		XCTAssertEqual(inst.dispense![0].duration!.code!, "month")
 		XCTAssertEqual(inst.dispense![0].duration!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.dispense![0].duration!.units!, "month")
+		XCTAssertEqual(inst.dispense![0].duration!.unit!, "month")
 		XCTAssertEqual(inst.dispense![0].duration!.value!, NSDecimalNumber(string: "1"))
 		XCTAssertEqual(inst.dispense![0].eye!, "right")
 		XCTAssertEqual(inst.dispense![0].power!, NSDecimalNumber(string: "-2.75"))
@@ -55,7 +56,7 @@ class VisionPrescriptionTests: FHIRModelTestCase
 		XCTAssertEqual(inst.dispense![1].diameter!, NSDecimalNumber(string: "14.0"))
 		XCTAssertEqual(inst.dispense![1].duration!.code!, "month")
 		XCTAssertEqual(inst.dispense![1].duration!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.dispense![1].duration!.units!, "month")
+		XCTAssertEqual(inst.dispense![1].duration!.unit!, "month")
 		XCTAssertEqual(inst.dispense![1].duration!.value!, NSDecimalNumber(string: "1"))
 		XCTAssertEqual(inst.dispense![1].eye!, "left")
 		XCTAssertEqual(inst.dispense![1].power!, NSDecimalNumber(string: "-2.75"))
@@ -72,9 +73,10 @@ class VisionPrescriptionTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testVisionPrescription2() throws {
-		let instance = try runVisionPrescription2()
-		try runVisionPrescription2(instance.asJSON())
+	func testVisionPrescription2() {
+		let instance = try? runVisionPrescription2()
+		XCTAssertNotNil(instance, "Must instantiate VisionPrescription")
+		try! runVisionPrescription2(instance!.asJSON())
 	}
 	
 	func runVisionPrescription2(json: FHIRJSON? = nil) throws -> VisionPrescription {

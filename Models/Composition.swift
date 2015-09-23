@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Composition) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Composition) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -14,7 +14,9 @@ import Foundation
  *
  *  A set of healthcare-related information that is assembled together into a single logical document that provides a
  *  single coherent statement of meaning, establishes its own context and that has clinical attestation with regard to
- *  who is making the statement.
+ *  who is making the statement. While a Composition defines the structure, it does not actually contain the content:
+ *  rather the full content of a document is contained in a Bundle, of which the Composition is the first resource
+ *  contained.
  */
 public class Composition: DomainResource
 {
@@ -34,13 +36,13 @@ public class Composition: DomainResource
 	/// As defined by affinity domain
 	public var confidentiality: String?
 	
-	/// Org which maintains the composition
+	/// Organization which maintains the composition
 	public var custodian: Reference?
 	
 	/// Composition editing time
 	public var date: DateTime?
 	
-	/// Context of the conposition
+	/// Context of the Composition
 	public var encounter: Reference?
 	
 	/// The clinical service(s) being documented
@@ -52,7 +54,7 @@ public class Composition: DomainResource
 	/// Composition is broken into sections
 	public var section: [CompositionSection]?
 	
-	/// preliminary | final | appended | amended | entered-in-error
+	/// preliminary | final | amended | entered-in-error
 	public var status: String?
 	
 	/// Who and/or what the composition is about
@@ -71,23 +73,14 @@ public class Composition: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(author: [Reference]?, date: DateTime?, status: String?, subject: Reference?, type: CodeableConcept?) {
+	public convenience init(author: [Reference], date: DateTime, status: String, subject: Reference, title: String, type: CodeableConcept) {
 		self.init(json: nil)
-		if nil != author {
-			self.author = author
-		}
-		if nil != date {
-			self.date = date
-		}
-		if nil != status {
-			self.status = status
-		}
-		if nil != subject {
-			self.subject = subject
-		}
-		if nil != type {
-			self.type = type
-		}
+		self.author = author
+		self.date = date
+		self.status = status
+		self.subject = subject
+		self.title = title
+		self.type = type
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -222,6 +215,9 @@ public class Composition: DomainResource
 					errors.append(FHIRJSONError(key: "title", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			else {
+				errors.append(FHIRJSONError(key: "title"))
+			}
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
@@ -316,11 +312,9 @@ public class CompositionAttester: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: [String]?) {
+	public convenience init(mode: [String]) {
 		self.init(json: nil)
-		if nil != mode {
-			self.mode = mode
-		}
+		self.mode = mode
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -396,7 +390,7 @@ public class CompositionEvent: FHIRElement
 	/// Code(s) that apply to the event being documented
 	public var code: [CodeableConcept]?
 	
-	/// Full details for the event(s) the composition consents
+	/// The event(s) being documented
 	public var detail: [Reference]?
 	
 	/// The period covered by the documentation
@@ -474,11 +468,23 @@ public class CompositionSection: FHIRElement
 	/// Classification of section (recommended)
 	public var code: CodeableConcept?
 	
-	/// The Content of the section (narrative + data entries)
-	public var content: Reference?
+	/// Why the section is empty
+	public var emptyReason: CodeableConcept?
+	
+	/// A reference to data that supports this section
+	public var entry: [Reference]?
+	
+	/// working | snapshot | changes
+	public var mode: String?
+	
+	/// Order of section entries
+	public var orderedBy: CodeableConcept?
 	
 	/// Nested Section
 	public var section: [CompositionSection]?
+	
+	/// Text summary of the section, for human interpretation
+	public var text: Narrative?
 	
 	/// Label for section (e.g. for ToC)
 	public var title: String?
@@ -501,13 +507,40 @@ public class CompositionSection: FHIRElement
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["content"] {
-				presentKeys.insert("content")
+			if let exist: AnyObject = js["emptyReason"] {
+				presentKeys.insert("emptyReason")
 				if let val = exist as? FHIRJSON {
-					self.content = Reference(json: val, owner: self)
+					self.emptyReason = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "content", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "emptyReason", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["entry"] {
+				presentKeys.insert("entry")
+				if let val = exist as? [FHIRJSON] {
+					self.entry = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "entry", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["mode"] {
+				presentKeys.insert("mode")
+				if let val = exist as? String {
+					self.mode = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["orderedBy"] {
+				presentKeys.insert("orderedBy")
+				if let val = exist as? FHIRJSON {
+					self.orderedBy = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "orderedBy", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["section"] {
@@ -517,6 +550,15 @@ public class CompositionSection: FHIRElement
 				}
 				else {
 					errors.append(FHIRJSONError(key: "section", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["text"] {
+				presentKeys.insert("text")
+				if let val = exist as? FHIRJSON {
+					self.text = Narrative(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "text", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["title"] {
@@ -538,11 +580,23 @@ public class CompositionSection: FHIRElement
 		if let code = self.code {
 			json["code"] = code.asJSON()
 		}
-		if let content = self.content {
-			json["content"] = content.asJSON()
+		if let emptyReason = self.emptyReason {
+			json["emptyReason"] = emptyReason.asJSON()
+		}
+		if let entry = self.entry {
+			json["entry"] = Reference.asJSONArray(entry)
+		}
+		if let mode = self.mode {
+			json["mode"] = mode.asJSON()
+		}
+		if let orderedBy = self.orderedBy {
+			json["orderedBy"] = orderedBy.asJSON()
 		}
 		if let section = self.section {
 			json["section"] = CompositionSection.asJSONArray(section)
+		}
+		if let text = self.text {
+			json["text"] = text.asJSON()
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()

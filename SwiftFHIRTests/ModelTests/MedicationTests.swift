@@ -2,7 +2,7 @@
 //  MedicationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class MedicationTests: FHIRModelTestCase
+class MedicationTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Medication {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class MedicationTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testMedication1() throws {
-		let instance = try runMedication1()
-		try runMedication1(instance.asJSON())
+	func testMedication1() {
+		let instance = try? runMedication1()
+		XCTAssertNotNil(instance, "Must instantiate Medication")
+		try! runMedication1(instance!.asJSON())
 	}
 	
 	func runMedication1(json: FHIRJSON? = nil) throws -> Medication {
@@ -35,15 +36,13 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.id!, "f001")
 		XCTAssertTrue(inst.isBrand!)
-		XCTAssertEqual(inst.kind!, "product")
-		XCTAssertEqual(inst.name!, "Combivent")
 		XCTAssertEqual(inst.product!.form!.coding![0].code!, "420317006")
 		XCTAssertEqual(inst.product!.form!.coding![0].display!, "Inhaler (qualifier value)")
 		XCTAssertEqual(inst.product!.form!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.product!.ingredient![0].amount!.denominator!.value!, NSDecimalNumber(string: "1"))
 		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.code!, "ml")
 		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.units!, "ml")
+		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.unit!, "ml")
 		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.value!, NSDecimalNumber(string: "100"))
 		XCTAssertEqual(inst.product!.ingredient![0].item!.display!, "Combivent")
 		XCTAssertEqual(inst.product!.ingredient![0].item!.reference!, "Medication/f001")
@@ -52,9 +51,10 @@ class MedicationTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testMedication2() throws {
-		let instance = try runMedication2()
-		try runMedication2(instance.asJSON())
+	func testMedication2() {
+		let instance = try? runMedication2()
+		XCTAssertNotNil(instance, "Must instantiate Medication")
+		try! runMedication2(instance!.asJSON())
 	}
 	
 	func runMedication2(json: FHIRJSON? = nil) throws -> Medication {
@@ -65,8 +65,6 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertTrue(inst.isBrand!)
-		XCTAssertEqual(inst.kind!, "product")
-		XCTAssertEqual(inst.name!, "Crestor")
 		XCTAssertEqual(inst.package!.container!.coding![0].code!, "398124009")
 		XCTAssertEqual(inst.package!.container!.coding![0].display!, "drug container")
 		XCTAssertEqual(inst.package!.container!.coding![0].system!.absoluteString, "http://snomed.info/sct")
@@ -75,9 +73,10 @@ class MedicationTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testMedication3() throws {
-		let instance = try runMedication3()
-		try runMedication3(instance.asJSON())
+	func testMedication3() {
+		let instance = try? runMedication3()
+		XCTAssertNotNil(instance, "Must instantiate Medication")
+		try! runMedication3(instance!.asJSON())
 	}
 	
 	func runMedication3(json: FHIRJSON? = nil) throws -> Medication {
@@ -88,8 +87,6 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.id!, "f003")
 		XCTAssertTrue(inst.isBrand!)
-		XCTAssertEqual(inst.kind!, "product")
-		XCTAssertEqual(inst.name!, "Tolbutamide")
 		XCTAssertEqual(inst.package!.container!.coding![0].code!, "398124009")
 		XCTAssertEqual(inst.package!.container!.coding![0].display!, "drug container")
 		XCTAssertEqual(inst.package!.container!.coding![0].system!.absoluteString, "http://snomed.info/sct")
@@ -98,9 +95,10 @@ class MedicationTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testMedication4() throws {
-		let instance = try runMedication4()
-		try runMedication4(instance.asJSON())
+	func testMedication4() {
+		let instance = try? runMedication4()
+		XCTAssertNotNil(instance, "Must instantiate Medication")
+		try! runMedication4(instance!.asJSON())
 	}
 	
 	func runMedication4(json: FHIRJSON? = nil) throws -> Medication {
@@ -111,8 +109,6 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.id!, "f004")
 		XCTAssertTrue(inst.isBrand!)
-		XCTAssertEqual(inst.kind!, "product")
-		XCTAssertEqual(inst.name!, "Metoprolol")
 		XCTAssertEqual(inst.package!.container!.coding![0].code!, "398124009")
 		XCTAssertEqual(inst.package!.container!.coding![0].display!, "drug container")
 		XCTAssertEqual(inst.package!.container!.coding![0].system!.absoluteString, "http://snomed.info/sct")
@@ -121,9 +117,10 @@ class MedicationTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testMedication5() throws {
-		let instance = try runMedication5()
-		try runMedication5(instance.asJSON())
+	func testMedication5() {
+		let instance = try? runMedication5()
+		XCTAssertNotNil(instance, "Must instantiate Medication")
+		try! runMedication5(instance!.asJSON())
 	}
 	
 	func runMedication5(json: FHIRJSON? = nil) throws -> Medication {
@@ -134,8 +131,6 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.id!, "f005")
 		XCTAssertTrue(inst.isBrand!)
-		XCTAssertEqual(inst.kind!, "product")
-		XCTAssertEqual(inst.name!, "Enalapril")
 		XCTAssertEqual(inst.package!.container!.coding![0].code!, "398124009")
 		XCTAssertEqual(inst.package!.container!.coding![0].display!, "drug container")
 		XCTAssertEqual(inst.package!.container!.coding![0].system!.absoluteString, "http://snomed.info/sct")
@@ -144,9 +139,10 @@ class MedicationTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testMedication6() throws {
-		let instance = try runMedication6()
-		try runMedication6(instance.asJSON())
+	func testMedication6() {
+		let instance = try? runMedication6()
+		XCTAssertNotNil(instance, "Must instantiate Medication")
+		try! runMedication6(instance!.asJSON())
 	}
 	
 	func runMedication6(json: FHIRJSON? = nil) throws -> Medication {
@@ -157,8 +153,6 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertFalse(inst.isBrand!)
-		XCTAssertEqual(inst.kind!, "product")
-		XCTAssertEqual(inst.name!, "Salmeterol/fluticason")
 		XCTAssertEqual(inst.product!.form!.coding![0].code!, "421606006")
 		XCTAssertEqual(inst.product!.form!.coding![0].display!, "Aerosol spray")
 		XCTAssertEqual(inst.product!.form!.coding![0].system!.absoluteString, "http://snomed.info/sct")
@@ -181,9 +175,10 @@ class MedicationTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testMedication7() throws {
-		let instance = try runMedication7()
-		try runMedication7(instance.asJSON())
+	func testMedication7() {
+		let instance = try? runMedication7()
+		XCTAssertNotNil(instance, "Must instantiate Medication")
+		try! runMedication7(instance!.asJSON())
 	}
 	
 	func runMedication7(json: FHIRJSON? = nil) throws -> Medication {
@@ -194,8 +189,6 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.id!, "f202")
 		XCTAssertFalse(inst.isBrand!)
-		XCTAssertEqual(inst.kind!, "product")
-		XCTAssertEqual(inst.name!, "Flucloxacillin")
 		XCTAssertEqual(inst.product!.form!.coding![0].code!, "385218009")
 		XCTAssertEqual(inst.product!.form!.coding![0].display!, "Injection")
 		XCTAssertEqual(inst.product!.form!.coding![0].system!.absoluteString, "http://snomed.info/sct")
@@ -204,9 +197,10 @@ class MedicationTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testMedication8() throws {
-		let instance = try runMedication8()
-		try runMedication8(instance.asJSON())
+	func testMedication8() {
+		let instance = try? runMedication8()
+		XCTAssertNotNil(instance, "Must instantiate Medication")
+		try! runMedication8(instance!.asJSON())
 	}
 	
 	func runMedication8(json: FHIRJSON? = nil) throws -> Medication {
@@ -217,8 +211,6 @@ class MedicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.id!, "f203")
 		XCTAssertFalse(inst.isBrand!)
-		XCTAssertEqual(inst.kind!, "product")
-		XCTAssertEqual(inst.name!, "Paracetamol")
 		XCTAssertEqual(inst.product!.form!.coding![0].code!, "385055001")
 		XCTAssertEqual(inst.product!.form!.coding![0].display!, "Tablet")
 		XCTAssertEqual(inst.product!.form!.coding![0].system!.absoluteString, "http://snomed.info/sct")

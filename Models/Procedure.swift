@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  An action that was or is currently being performed on a patient.
+ *  An action that is being or was performed on a patient.
  *
- *  An action that is or was performed on a patient. This can be a physical 'thing' like an operation, or less invasive
- *  like counseling or hypnotherapy.
+ *  An action that is or was performed on a patient. This can be a physical intervention like an operation, or less
+ *  invasive like counseling or hypnotherapy.
  */
 public class Procedure: DomainResource
 {
@@ -21,41 +21,41 @@ public class Procedure: DomainResource
 		get { return "Procedure" }
 	}
 	
-	/// Precise location details
-	public var bodySite: [ProcedureBodySite]?
+	/// Target body sites
+	public var bodySite: [CodeableConcept]?
 	
 	/// Classification of the procedure
 	public var category: CodeableConcept?
 	
+	/// Identification of the procedure
+	public var code: CodeableConcept?
+	
 	/// Complication following the procedure
 	public var complication: [CodeableConcept]?
 	
-	/// Device changed in procedure
-	public var device: [ProcedureDevice]?
-	
-	/// The encounter when procedure performed
+	/// The encounter associated with the procedure
 	public var encounter: Reference?
+	
+	/// Device changed in procedure
+	public var focalDevice: [ProcedureFocalDevice]?
 	
 	/// Instructions for follow up
 	public var followUp: [CodeableConcept]?
 	
-	/// External Ids for this procedure
+	/// External Identifiers for this procedure
 	public var identifier: [Identifier]?
-	
-	/// Reason procedure performed
-	public var indication: [CodeableConcept]?
 	
 	/// Where the procedure happened
 	public var location: Reference?
 	
-	/// Additional information about procedure
-	public var notes: String?
+	/// True if procedure was not performed as scheduled
+	public var notPerformed: Bool?
 	
-	/// What was result of procedure?
+	/// Additional information about the procedure
+	public var notes: [Annotation]?
+	
+	/// The result of procedure
 	public var outcome: CodeableConcept?
-	
-	/// Who procedure was performed on
-	public var patient: Reference?
 	
 	/// Date/Period the procedure was performed
 	public var performedDateTime: DateTime?
@@ -66,17 +66,26 @@ public class Procedure: DomainResource
 	/// The people who performed the procedure
 	public var performer: [ProcedurePerformer]?
 	
-	/// A procedure that is related to this one
-	public var relatedItem: [ProcedureRelatedItem]?
+	/// Reason procedure performed
+	public var reasonCodeableConcept: CodeableConcept?
 	
-	/// Any report that results from the procedure
+	/// Reason procedure was not performed
+	public var reasonNotPerformed: [CodeableConcept]?
+	
+	/// Reason procedure performed
+	public var reasonReference: Reference?
+	
+	/// Any report resulting from the procedure
 	public var report: [Reference]?
+	
+	/// A request for this procedure
+	public var request: Reference?
 	
 	/// in-progress | aborted | completed | entered-in-error
 	public var status: String?
 	
-	/// Identification of the procedure
-	public var type: CodeableConcept?
+	/// Who the procedure was performed on
+	public var subject: Reference?
 	
 	/// Items used during procedure
 	public var used: [Reference]?
@@ -88,17 +97,11 @@ public class Procedure: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference?, status: String?, type: CodeableConcept?) {
+	public convenience init(code: CodeableConcept, status: String, subject: Reference) {
 		self.init(json: nil)
-		if nil != patient {
-			self.patient = patient
-		}
-		if nil != status {
-			self.status = status
-		}
-		if nil != type {
-			self.type = type
-		}
+		self.code = code
+		self.status = status
+		self.subject = subject
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -107,7 +110,7 @@ public class Procedure: DomainResource
 			if let exist: AnyObject = js["bodySite"] {
 				presentKeys.insert("bodySite")
 				if let val = exist as? [FHIRJSON] {
-					self.bodySite = ProcedureBodySite.from(val, owner: self) as? [ProcedureBodySite]
+					self.bodySite = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bodySite", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -122,6 +125,18 @@ public class Procedure: DomainResource
 					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["code"] {
+				presentKeys.insert("code")
+				if let val = exist as? FHIRJSON {
+					self.code = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "code"))
+			}
 			if let exist: AnyObject = js["complication"] {
 				presentKeys.insert("complication")
 				if let val = exist as? [FHIRJSON] {
@@ -131,15 +146,6 @@ public class Procedure: DomainResource
 					errors.append(FHIRJSONError(key: "complication", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["device"] {
-				presentKeys.insert("device")
-				if let val = exist as? [FHIRJSON] {
-					self.device = ProcedureDevice.from(val, owner: self) as? [ProcedureDevice]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "device", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
@@ -147,6 +153,15 @@ public class Procedure: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["focalDevice"] {
+				presentKeys.insert("focalDevice")
+				if let val = exist as? [FHIRJSON] {
+					self.focalDevice = ProcedureFocalDevice.from(val, owner: self) as? [ProcedureFocalDevice]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "focalDevice", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["followUp"] {
@@ -167,15 +182,6 @@ public class Procedure: DomainResource
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["indication"] {
-				presentKeys.insert("indication")
-				if let val = exist as? [FHIRJSON] {
-					self.indication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "indication", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["location"] {
 				presentKeys.insert("location")
 				if let val = exist as? FHIRJSON {
@@ -185,13 +191,22 @@ public class Procedure: DomainResource
 					errors.append(FHIRJSONError(key: "location", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["notes"] {
-				presentKeys.insert("notes")
-				if let val = exist as? String {
-					self.notes = val
+			if let exist: AnyObject = js["notPerformed"] {
+				presentKeys.insert("notPerformed")
+				if let val = exist as? Bool {
+					self.notPerformed = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "notes", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "notPerformed", wants: Bool.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["notes"] {
+				presentKeys.insert("notes")
+				if let val = exist as? [FHIRJSON] {
+					self.notes = Annotation.from(val, owner: self) as? [Annotation]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "notes", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["outcome"] {
@@ -202,18 +217,6 @@ public class Procedure: DomainResource
 				else {
 					errors.append(FHIRJSONError(key: "outcome", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
-			}
-			if let exist: AnyObject = js["patient"] {
-				presentKeys.insert("patient")
-				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "patient"))
 			}
 			if let exist: AnyObject = js["performedDateTime"] {
 				presentKeys.insert("performedDateTime")
@@ -242,13 +245,31 @@ public class Procedure: DomainResource
 					errors.append(FHIRJSONError(key: "performer", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["relatedItem"] {
-				presentKeys.insert("relatedItem")
-				if let val = exist as? [FHIRJSON] {
-					self.relatedItem = ProcedureRelatedItem.from(val, owner: self) as? [ProcedureRelatedItem]
+			if let exist: AnyObject = js["reasonCodeableConcept"] {
+				presentKeys.insert("reasonCodeableConcept")
+				if let val = exist as? FHIRJSON {
+					self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "relatedItem", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reasonCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["reasonNotPerformed"] {
+				presentKeys.insert("reasonNotPerformed")
+				if let val = exist as? [FHIRJSON] {
+					self.reasonNotPerformed = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reasonNotPerformed", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["reasonReference"] {
+				presentKeys.insert("reasonReference")
+				if let val = exist as? FHIRJSON {
+					self.reasonReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reasonReference", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["report"] {
@@ -258,6 +279,15 @@ public class Procedure: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "report", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["request"] {
+				presentKeys.insert("request")
+				if let val = exist as? FHIRJSON {
+					self.request = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["status"] {
@@ -272,17 +302,17 @@ public class Procedure: DomainResource
 			else {
 				errors.append(FHIRJSONError(key: "status"))
 			}
-			if let exist: AnyObject = js["type"] {
-				presentKeys.insert("type")
+			if let exist: AnyObject = js["subject"] {
+				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
+					self.subject = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "type"))
+				errors.append(FHIRJSONError(key: "subject"))
 			}
 			if let exist: AnyObject = js["used"] {
 				presentKeys.insert("used")
@@ -301,19 +331,22 @@ public class Procedure: DomainResource
 		var json = super.asJSON()
 		
 		if let bodySite = self.bodySite {
-			json["bodySite"] = ProcedureBodySite.asJSONArray(bodySite)
+			json["bodySite"] = CodeableConcept.asJSONArray(bodySite)
 		}
 		if let category = self.category {
 			json["category"] = category.asJSON()
 		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
 		if let complication = self.complication {
 			json["complication"] = CodeableConcept.asJSONArray(complication)
 		}
-		if let device = self.device {
-			json["device"] = ProcedureDevice.asJSONArray(device)
-		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()
+		}
+		if let focalDevice = self.focalDevice {
+			json["focalDevice"] = ProcedureFocalDevice.asJSONArray(focalDevice)
 		}
 		if let followUp = self.followUp {
 			json["followUp"] = CodeableConcept.asJSONArray(followUp)
@@ -321,20 +354,17 @@ public class Procedure: DomainResource
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
-		if let indication = self.indication {
-			json["indication"] = CodeableConcept.asJSONArray(indication)
-		}
 		if let location = self.location {
 			json["location"] = location.asJSON()
 		}
+		if let notPerformed = self.notPerformed {
+			json["notPerformed"] = notPerformed.asJSON()
+		}
 		if let notes = self.notes {
-			json["notes"] = notes.asJSON()
+			json["notes"] = Annotation.asJSONArray(notes)
 		}
 		if let outcome = self.outcome {
 			json["outcome"] = outcome.asJSON()
-		}
-		if let patient = self.patient {
-			json["patient"] = patient.asJSON()
 		}
 		if let performedDateTime = self.performedDateTime {
 			json["performedDateTime"] = performedDateTime.asJSON()
@@ -345,17 +375,26 @@ public class Procedure: DomainResource
 		if let performer = self.performer {
 			json["performer"] = ProcedurePerformer.asJSONArray(performer)
 		}
-		if let relatedItem = self.relatedItem {
-			json["relatedItem"] = ProcedureRelatedItem.asJSONArray(relatedItem)
+		if let reasonCodeableConcept = self.reasonCodeableConcept {
+			json["reasonCodeableConcept"] = reasonCodeableConcept.asJSON()
+		}
+		if let reasonNotPerformed = self.reasonNotPerformed {
+			json["reasonNotPerformed"] = CodeableConcept.asJSONArray(reasonNotPerformed)
+		}
+		if let reasonReference = self.reasonReference {
+			json["reasonReference"] = reasonReference.asJSON()
 		}
 		if let report = self.report {
 			json["report"] = Reference.asJSONArray(report)
 		}
+		if let request = self.request {
+			json["request"] = request.asJSON()
+		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
 		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
 		}
 		if let used = self.used {
 			json["used"] = Reference.asJSONArray(used)
@@ -367,94 +406,15 @@ public class Procedure: DomainResource
 
 
 /**
- *  Precise location details.
- *
- *  Detailed and structured anatomical location information. Multiple locations are allowed - e.g. multiple punch
- *  biopsies of a lesion.
- */
-public class ProcedureBodySite: FHIRElement
-{
-	override public class var resourceName: String {
-		get { return "ProcedureBodySite" }
-	}
-	
-	/// Precise location details
-	public var siteCodeableConcept: CodeableConcept?
-	
-	/// Precise location details
-	public var siteReference: Reference?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?) {
-		super.init(json: json)
-	}
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(siteCodeableConcept: CodeableConcept?, siteReference: Reference?) {
-		self.init(json: nil)
-		if nil != siteCodeableConcept {
-			self.siteCodeableConcept = siteCodeableConcept
-		}
-		if nil != siteReference {
-			self.siteReference = siteReference
-		}
-	}
-	
-	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist: AnyObject = js["siteCodeableConcept"] {
-				presentKeys.insert("siteCodeableConcept")
-				if let val = exist as? FHIRJSON {
-					self.siteCodeableConcept = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "siteCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["siteReference"] {
-				presentKeys.insert("siteReference")
-				if let val = exist as? FHIRJSON {
-					self.siteReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "siteReference", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			
-			// check if nonoptional expanded properties are present
-			if nil == self.siteCodeableConcept && nil == self.siteReference {
-				errors.append(FHIRJSONError(key: "site[x]*"))
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override public func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let siteCodeableConcept = self.siteCodeableConcept {
-			json["siteCodeableConcept"] = siteCodeableConcept.asJSON()
-		}
-		if let siteReference = self.siteReference {
-			json["siteReference"] = siteReference.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
  *  Device changed in procedure.
  *
- *  A device change during the procedure.
+ *  A device that is implanted, removed or otherwise manipulated (calibration, battery replacement, fitting a
+ *  prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure.
  */
-public class ProcedureDevice: FHIRElement
+public class ProcedureFocalDevice: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "ProcedureDevice" }
+		get { return "ProcedureFocalDevice" }
 	}
 	
 	/// Kind of change to device
@@ -470,11 +430,9 @@ public class ProcedureDevice: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(manipulated: Reference?) {
+	public convenience init(manipulated: Reference) {
 		self.init(json: nil)
-		if nil != manipulated {
-			self.manipulated = manipulated
-		}
+		self.manipulated = manipulated
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -532,9 +490,9 @@ public class ProcedurePerformer: FHIRElement
 	}
 	
 	/// The reference to the practitioner
-	public var person: Reference?
+	public var actor: Reference?
 	
-	/// The role the person was in
+	/// The role the actor was in
 	public var role: CodeableConcept?
 	
 	
@@ -546,13 +504,13 @@ public class ProcedurePerformer: FHIRElement
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["person"] {
-				presentKeys.insert("person")
+			if let exist: AnyObject = js["actor"] {
+				presentKeys.insert("actor")
 				if let val = exist as? FHIRJSON {
-					self.person = Reference(json: val, owner: self)
+					self.actor = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "person", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "actor", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["role"] {
@@ -571,75 +529,11 @@ public class ProcedurePerformer: FHIRElement
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let person = self.person {
-			json["person"] = person.asJSON()
+		if let actor = self.actor {
+			json["actor"] = actor.asJSON()
 		}
 		if let role = self.role {
 			json["role"] = role.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  A procedure that is related to this one.
- *
- *  Procedures may be related to other items such as procedures or medications. For example treating wound dehiscence
- *  following a previous procedure.
- */
-public class ProcedureRelatedItem: FHIRElement
-{
-	override public class var resourceName: String {
-		get { return "ProcedureRelatedItem" }
-	}
-	
-	/// The related item - e.g. a procedure
-	public var target: Reference?
-	
-	/// caused-by | because-of
-	public var type: String?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?) {
-		super.init(json: json)
-	}
-	
-	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist: AnyObject = js["target"] {
-				presentKeys.insert("target")
-				if let val = exist as? FHIRJSON {
-					self.target = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "target", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? String {
-					self.type = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: exist.dynamicType))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override public func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let target = self.target {
-			json["target"] = target.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
 		}
 		
 		return json

@@ -2,7 +2,7 @@
 //  OrderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class OrderTests: FHIRModelTestCase
+class OrderTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Order {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class OrderTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testOrder1() throws {
-		let instance = try runOrder1()
-		try runOrder1(instance.asJSON())
+	func testOrder1() {
+		let instance = try? runOrder1()
+		XCTAssertNotNil(instance, "Must instantiate Order")
+		try! runOrder1(instance!.asJSON())
 	}
 	
 	func runOrder1(json: FHIRJSON? = nil) throws -> Order {
@@ -47,16 +48,17 @@ class OrderTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testOrder2() throws {
-		let instance = try runOrder2()
-		try runOrder2(instance.asJSON())
+	func testOrder2() {
+		let instance = try? runOrder2()
+		XCTAssertNotNil(instance, "Must instantiate Order")
+		try! runOrder2(instance!.asJSON())
 	}
 	
 	func runOrder2(json: FHIRJSON? = nil) throws -> Order {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "order-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2012-12-28T09:03:04+11:00")
-		XCTAssertEqual(inst.detail![0].reference!, "MedicationPrescription/example")
+		XCTAssertEqual(inst.detail![0].reference!, "MedicationOrder/example")
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.reasonCodeableConcept!.text!, "Standard admission testing")
 		XCTAssertEqual(inst.source!.reference!, "Practitioner/example")

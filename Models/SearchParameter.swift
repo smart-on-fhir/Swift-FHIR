@@ -2,7 +2,7 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -12,7 +12,7 @@ import Foundation
 /**
  *  Search Parameter for a resource.
  *
- *  A Search Parameter that defines a named search item that can be used to search/filter on a resource.
+ *  A search parameter that defines a named search item that can be used to search/filter on a resource.
  */
 public class SearchParameter: DomainResource
 {
@@ -22,6 +22,9 @@ public class SearchParameter: DomainResource
 	
 	/// The resource type this search parameter applies to
 	public var base: String?
+	
+	/// Code used in URL
+	public var code: String?
 	
 	/// Contact details of the publisher
 	public var contact: [SearchParameterContact]?
@@ -35,7 +38,7 @@ public class SearchParameter: DomainResource
 	/// If for testing purposes, not real usage
 	public var experimental: Bool?
 	
-	/// Name of search parameter
+	/// Informal name for this search parameter
 	public var name: String?
 	
 	/// Name of the publisher (Organization or individual)
@@ -53,11 +56,14 @@ public class SearchParameter: DomainResource
 	/// number | date | string | token | reference | composite | quantity | uri
 	public var type: String?
 	
-	/// Literal URL used to reference this search parameter
+	/// Absolute URL used to reference this search parameter
 	public var url: NSURL?
 	
 	/// XPath that extracts the values
 	public var xpath: String?
+	
+	/// normal | phonetic | nearby | distance | other
+	public var xpathUsage: String?
 	
 	
 	/** Initialize with a JSON object. */
@@ -66,23 +72,14 @@ public class SearchParameter: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(base: String?, description_fhir: String?, name: String?, type: String?, url: NSURL?) {
+	public convenience init(base: String, code: String, description_fhir: String, name: String, type: String, url: NSURL) {
 		self.init(json: nil)
-		if nil != base {
-			self.base = base
-		}
-		if nil != description_fhir {
-			self.description_fhir = description_fhir
-		}
-		if nil != name {
-			self.name = name
-		}
-		if nil != type {
-			self.type = type
-		}
-		if nil != url {
-			self.url = url
-		}
+		self.base = base
+		self.code = code
+		self.description_fhir = description_fhir
+		self.name = name
+		self.type = type
+		self.url = url
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -99,6 +96,18 @@ public class SearchParameter: DomainResource
 			}
 			else {
 				errors.append(FHIRJSONError(key: "base"))
+			}
+			if let exist: AnyObject = js["code"] {
+				presentKeys.insert("code")
+				if let val = exist as? String {
+					self.code = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "code", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "code"))
 			}
 			if let exist: AnyObject = js["contact"] {
 				presentKeys.insert("contact")
@@ -220,6 +229,15 @@ public class SearchParameter: DomainResource
 					errors.append(FHIRJSONError(key: "xpath", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["xpathUsage"] {
+				presentKeys.insert("xpathUsage")
+				if let val = exist as? String {
+					self.xpathUsage = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "xpathUsage", wants: String.self, has: exist.dynamicType))
+				}
+			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -229,6 +247,9 @@ public class SearchParameter: DomainResource
 		
 		if let base = self.base {
 			json["base"] = base.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
 		}
 		if let contact = self.contact {
 			json["contact"] = SearchParameterContact.asJSONArray(contact)
@@ -269,6 +290,9 @@ public class SearchParameter: DomainResource
 		}
 		if let xpath = self.xpath {
 			json["xpath"] = xpath.asJSON()
+		}
+		if let xpathUsage = self.xpathUsage {
+			json["xpathUsage"] = xpathUsage.asJSON()
 		}
 		
 		return json

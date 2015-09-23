@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Observation) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Observation) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -20,17 +20,11 @@ public class Observation: DomainResource
 		get { return "Observation" }
 	}
 	
-	/// Physiologically Relevant time/time-period for observation
-	public var appliesDateTime: DateTime?
-	
-	/// Physiologically Relevant time/time-period for observation
-	public var appliesPeriod: Period?
-	
 	/// Observed body part
-	public var bodySiteCodeableConcept: CodeableConcept?
+	public var bodySite: CodeableConcept?
 	
-	/// Observed body part
-	public var bodySiteReference: Reference?
+	/// Classification of  type of observation
+	public var category: CodeableConcept?
 	
 	/// Type of observation (code / type)
 	public var code: CodeableConcept?
@@ -38,11 +32,20 @@ public class Observation: DomainResource
 	/// Comments about result
 	public var comments: String?
 	
+	/// Component results
+	public var component: [ObservationComponent]?
+	
 	/// Why the result is missing
 	public var dataAbsentReason: CodeableConcept?
 	
 	/// (Measurement) Device
 	public var device: Reference?
+	
+	/// Clinically relevant time/time-period for observation
+	public var effectiveDateTime: DateTime?
+	
+	/// Clinically relevant time/time-period for observation
+	public var effectivePeriod: Period?
 	
 	/// Healthcare event during which this observation is made
 	public var encounter: Reference?
@@ -59,17 +62,14 @@ public class Observation: DomainResource
 	/// How it was done
 	public var method: CodeableConcept?
 	
-	/// Who did the observation
+	/// Who is responsible for the observation
 	public var performer: [Reference]?
 	
 	/// Provides guide for interpretation
 	public var referenceRange: [ObservationReferenceRange]?
 	
-	/// Observations related to this observation
+	/// Resource related to this observation
 	public var related: [ObservationRelated]?
-	
-	/// ok | ongoing | early | questionable | calibrating | error +
-	public var reliability: String?
 	
 	/// Specimen used for this observation
 	public var specimen: Reference?
@@ -117,53 +117,31 @@ public class Observation: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept?, status: String?) {
+	public convenience init(code: CodeableConcept, status: String) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
-		if nil != status {
-			self.status = status
-		}
+		self.code = code
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["appliesDateTime"] {
-				presentKeys.insert("appliesDateTime")
-				if let val = exist as? String {
-					self.appliesDateTime = DateTime(string: val)
+			if let exist: AnyObject = js["bodySite"] {
+				presentKeys.insert("bodySite")
+				if let val = exist as? FHIRJSON {
+					self.bodySite = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "appliesDateTime", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "bodySite", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["appliesPeriod"] {
-				presentKeys.insert("appliesPeriod")
+			if let exist: AnyObject = js["category"] {
+				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
-					self.appliesPeriod = Period(json: val, owner: self)
+					self.category = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "appliesPeriod", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["bodySiteCodeableConcept"] {
-				presentKeys.insert("bodySiteCodeableConcept")
-				if let val = exist as? FHIRJSON {
-					self.bodySiteCodeableConcept = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "bodySiteCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["bodySiteReference"] {
-				presentKeys.insert("bodySiteReference")
-				if let val = exist as? FHIRJSON {
-					self.bodySiteReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "bodySiteReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["code"] {
@@ -187,6 +165,15 @@ public class Observation: DomainResource
 					errors.append(FHIRJSONError(key: "comments", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["component"] {
+				presentKeys.insert("component")
+				if let val = exist as? [FHIRJSON] {
+					self.component = ObservationComponent.from(val, owner: self) as? [ObservationComponent]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "component", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["dataAbsentReason"] {
 				presentKeys.insert("dataAbsentReason")
 				if let val = exist as? FHIRJSON {
@@ -203,6 +190,24 @@ public class Observation: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "device", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["effectiveDateTime"] {
+				presentKeys.insert("effectiveDateTime")
+				if let val = exist as? String {
+					self.effectiveDateTime = DateTime(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "effectiveDateTime", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["effectivePeriod"] {
+				presentKeys.insert("effectivePeriod")
+				if let val = exist as? FHIRJSON {
+					self.effectivePeriod = Period(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "effectivePeriod", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["encounter"] {
@@ -275,15 +280,6 @@ public class Observation: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "related", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["reliability"] {
-				presentKeys.insert("reliability")
-				if let val = exist as? String {
-					self.reliability = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "reliability", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["specimen"] {
@@ -413,17 +409,11 @@ public class Observation: DomainResource
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let appliesDateTime = self.appliesDateTime {
-			json["appliesDateTime"] = appliesDateTime.asJSON()
+		if let bodySite = self.bodySite {
+			json["bodySite"] = bodySite.asJSON()
 		}
-		if let appliesPeriod = self.appliesPeriod {
-			json["appliesPeriod"] = appliesPeriod.asJSON()
-		}
-		if let bodySiteCodeableConcept = self.bodySiteCodeableConcept {
-			json["bodySiteCodeableConcept"] = bodySiteCodeableConcept.asJSON()
-		}
-		if let bodySiteReference = self.bodySiteReference {
-			json["bodySiteReference"] = bodySiteReference.asJSON()
+		if let category = self.category {
+			json["category"] = category.asJSON()
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON()
@@ -431,11 +421,20 @@ public class Observation: DomainResource
 		if let comments = self.comments {
 			json["comments"] = comments.asJSON()
 		}
+		if let component = self.component {
+			json["component"] = ObservationComponent.asJSONArray(component)
+		}
 		if let dataAbsentReason = self.dataAbsentReason {
 			json["dataAbsentReason"] = dataAbsentReason.asJSON()
 		}
 		if let device = self.device {
 			json["device"] = device.asJSON()
+		}
+		if let effectiveDateTime = self.effectiveDateTime {
+			json["effectiveDateTime"] = effectiveDateTime.asJSON()
+		}
+		if let effectivePeriod = self.effectivePeriod {
+			json["effectivePeriod"] = effectivePeriod.asJSON()
 		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()
@@ -461,9 +460,6 @@ public class Observation: DomainResource
 		if let related = self.related {
 			json["related"] = ObservationRelated.asJSONArray(related)
 		}
-		if let reliability = self.reliability {
-			json["reliability"] = reliability.asJSON()
-		}
 		if let specimen = self.specimen {
 			json["specimen"] = specimen.asJSON()
 		}
@@ -472,6 +468,245 @@ public class Observation: DomainResource
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON()
+		}
+		if let valueAttachment = self.valueAttachment {
+			json["valueAttachment"] = valueAttachment.asJSON()
+		}
+		if let valueCodeableConcept = self.valueCodeableConcept {
+			json["valueCodeableConcept"] = valueCodeableConcept.asJSON()
+		}
+		if let valueDateTime = self.valueDateTime {
+			json["valueDateTime"] = valueDateTime.asJSON()
+		}
+		if let valuePeriod = self.valuePeriod {
+			json["valuePeriod"] = valuePeriod.asJSON()
+		}
+		if let valueQuantity = self.valueQuantity {
+			json["valueQuantity"] = valueQuantity.asJSON()
+		}
+		if let valueRange = self.valueRange {
+			json["valueRange"] = valueRange.asJSON()
+		}
+		if let valueRatio = self.valueRatio {
+			json["valueRatio"] = valueRatio.asJSON()
+		}
+		if let valueSampledData = self.valueSampledData {
+			json["valueSampledData"] = valueSampledData.asJSON()
+		}
+		if let valueString = self.valueString {
+			json["valueString"] = valueString.asJSON()
+		}
+		if let valueTime = self.valueTime {
+			json["valueTime"] = valueTime.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Component results.
+ *
+ *  Some observations have multiple component observations.  These component observations are expressed as separate code
+ *  value pairs that share the same attributes.  Examples include systolic and diastolic component observations for
+ *  blood pressure measurement and multiple component observations for genetics observations.
+ */
+public class ObservationComponent: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ObservationComponent" }
+	}
+	
+	/// Type of component observation (code / type)
+	public var code: CodeableConcept?
+	
+	/// Why the component result is missing
+	public var dataAbsentReason: CodeableConcept?
+	
+	/// Provides guide for interpretation of component result
+	public var referenceRange: [ObservationReferenceRange]?
+	
+	/// Actual component result
+	public var valueAttachment: Attachment?
+	
+	/// Actual component result
+	public var valueCodeableConcept: CodeableConcept?
+	
+	/// Actual component result
+	public var valueDateTime: DateTime?
+	
+	/// Actual component result
+	public var valuePeriod: Period?
+	
+	/// Actual component result
+	public var valueQuantity: Quantity?
+	
+	/// Actual component result
+	public var valueRange: Range?
+	
+	/// Actual component result
+	public var valueRatio: Ratio?
+	
+	/// Actual component result
+	public var valueSampledData: SampledData?
+	
+	/// Actual component result
+	public var valueString: String?
+	
+	/// Actual component result
+	public var valueTime: Time?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(code: CodeableConcept) {
+		self.init(json: nil)
+		self.code = code
+	}
+	
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist: AnyObject = js["code"] {
+				presentKeys.insert("code")
+				if let val = exist as? FHIRJSON {
+					self.code = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "code"))
+			}
+			if let exist: AnyObject = js["dataAbsentReason"] {
+				presentKeys.insert("dataAbsentReason")
+				if let val = exist as? FHIRJSON {
+					self.dataAbsentReason = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "dataAbsentReason", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["referenceRange"] {
+				presentKeys.insert("referenceRange")
+				if let val = exist as? [FHIRJSON] {
+					self.referenceRange = ObservationReferenceRange.from(val, owner: self) as? [ObservationReferenceRange]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "referenceRange", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueAttachment"] {
+				presentKeys.insert("valueAttachment")
+				if let val = exist as? FHIRJSON {
+					self.valueAttachment = Attachment(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueAttachment", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueCodeableConcept"] {
+				presentKeys.insert("valueCodeableConcept")
+				if let val = exist as? FHIRJSON {
+					self.valueCodeableConcept = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueDateTime"] {
+				presentKeys.insert("valueDateTime")
+				if let val = exist as? String {
+					self.valueDateTime = DateTime(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueDateTime", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valuePeriod"] {
+				presentKeys.insert("valuePeriod")
+				if let val = exist as? FHIRJSON {
+					self.valuePeriod = Period(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valuePeriod", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueQuantity"] {
+				presentKeys.insert("valueQuantity")
+				if let val = exist as? FHIRJSON {
+					self.valueQuantity = Quantity(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueQuantity", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueRange"] {
+				presentKeys.insert("valueRange")
+				if let val = exist as? FHIRJSON {
+					self.valueRange = Range(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueRange", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueRatio"] {
+				presentKeys.insert("valueRatio")
+				if let val = exist as? FHIRJSON {
+					self.valueRatio = Ratio(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueRatio", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueSampledData"] {
+				presentKeys.insert("valueSampledData")
+				if let val = exist as? FHIRJSON {
+					self.valueSampledData = SampledData(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueSampledData", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueString"] {
+				presentKeys.insert("valueString")
+				if let val = exist as? String {
+					self.valueString = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueString", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueTime"] {
+				presentKeys.insert("valueTime")
+				if let val = exist as? String {
+					self.valueTime = Time(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueTime", wants: String.self, has: exist.dynamicType))
+				}
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let dataAbsentReason = self.dataAbsentReason {
+			json["dataAbsentReason"] = dataAbsentReason.asJSON()
+		}
+		if let referenceRange = self.referenceRange {
+			json["referenceRange"] = ObservationReferenceRange.asJSONArray(referenceRange)
 		}
 		if let valueAttachment = self.valueAttachment {
 			json["valueAttachment"] = valueAttachment.asJSON()
@@ -618,9 +853,10 @@ public class ObservationReferenceRange: FHIRElement
 
 
 /**
- *  Observations related to this observation.
+ *  Resource related to this observation.
  *
- *  Related observations - either components, or previous observations, or statements of derivation.
+ *  A  reference to another resource (usually another Observation but could  also be a QuestionnaireAnswer) whose
+ *  relationship is defined by the relationship type code.
  */
 public class ObservationRelated: FHIRElement
 {
@@ -628,10 +864,10 @@ public class ObservationRelated: FHIRElement
 		get { return "ObservationRelated" }
 	}
 	
-	/// Observation that is related to this one
+	/// Resource that is related to this one
 	public var target: Reference?
 	
-	/// has-component | has-member | derived-from | sequel-to | replaces | qualified-by | interfered-by
+	/// has-member | derived-from | sequel-to | replaces | qualified-by | interfered-by
 	public var type: String?
 	
 	
@@ -641,11 +877,9 @@ public class ObservationRelated: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(target: Reference?) {
+	public convenience init(target: Reference) {
 		self.init(json: nil)
-		if nil != target {
-			self.target = target
-		}
+		self.target = target
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

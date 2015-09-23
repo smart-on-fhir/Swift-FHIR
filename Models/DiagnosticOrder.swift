@@ -2,7 +2,7 @@
 //  DiagnosticOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -20,9 +20,6 @@ public class DiagnosticOrder: DomainResource
 		get { return "DiagnosticOrder" }
 	}
 	
-	/// Explanation/Justification for test
-	public var clinicalNotes: String?
-	
 	/// The encounter that this diagnostic order is associated with
 	public var encounter: Reference?
 	
@@ -35,11 +32,17 @@ public class DiagnosticOrder: DomainResource
 	/// The items the orderer requested
 	public var item: [DiagnosticOrderItem]?
 	
+	/// Other notes and comments
+	public var note: [Annotation]?
+	
 	/// Who ordered the test
 	public var orderer: Reference?
 	
 	/// routine | urgent | stat | asap
 	public var priority: String?
+	
+	/// Explanation/Justification for test
+	public var reason: [CodeableConcept]?
 	
 	/// If the whole order relates to specific specimens
 	public var specimen: [Reference]?
@@ -60,25 +63,14 @@ public class DiagnosticOrder: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(subject: Reference?) {
+	public convenience init(subject: Reference) {
 		self.init(json: nil)
-		if nil != subject {
-			self.subject = subject
-		}
+		self.subject = subject
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["clinicalNotes"] {
-				presentKeys.insert("clinicalNotes")
-				if let val = exist as? String {
-					self.clinicalNotes = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "clinicalNotes", wants: String.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
@@ -115,6 +107,15 @@ public class DiagnosticOrder: DomainResource
 					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["note"] {
+				presentKeys.insert("note")
+				if let val = exist as? [FHIRJSON] {
+					self.note = Annotation.from(val, owner: self) as? [Annotation]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["orderer"] {
 				presentKeys.insert("orderer")
 				if let val = exist as? FHIRJSON {
@@ -131,6 +132,15 @@ public class DiagnosticOrder: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "priority", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["reason"] {
+				presentKeys.insert("reason")
+				if let val = exist as? [FHIRJSON] {
+					self.reason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reason", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["specimen"] {
@@ -179,9 +189,6 @@ public class DiagnosticOrder: DomainResource
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let clinicalNotes = self.clinicalNotes {
-			json["clinicalNotes"] = clinicalNotes.asJSON()
-		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()
 		}
@@ -194,11 +201,17 @@ public class DiagnosticOrder: DomainResource
 		if let item = self.item {
 			json["item"] = DiagnosticOrderItem.asJSONArray(item)
 		}
+		if let note = self.note {
+			json["note"] = Annotation.asJSONArray(note)
+		}
 		if let orderer = self.orderer {
 			json["orderer"] = orderer.asJSON()
 		}
 		if let priority = self.priority {
 			json["priority"] = priority.asJSON()
+		}
+		if let reason = self.reason {
+			json["reason"] = CodeableConcept.asJSONArray(reason)
 		}
 		if let specimen = self.specimen {
 			json["specimen"] = Reference.asJSONArray(specimen)
@@ -221,7 +234,7 @@ public class DiagnosticOrder: DomainResource
 /**
  *  A list of events of interest in the lifecycle.
  *
- *  A summary of the events of interest that have occurred as the request is processed. E.g. when the order was made,
+ *  A summary of the events of interest that have occurred as the request is processed; e.g. when the order was made,
  *  various processing steps (specimens received), when it was completed.
  */
 public class DiagnosticOrderEvent: FHIRElement
@@ -249,14 +262,10 @@ public class DiagnosticOrderEvent: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(dateTime: DateTime?, status: String?) {
+	public convenience init(dateTime: DateTime, status: String) {
 		self.init(json: nil)
-		if nil != dateTime {
-			self.dateTime = dateTime
-		}
-		if nil != status {
-			self.status = status
-		}
+		self.dateTime = dateTime
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -342,10 +351,7 @@ public class DiagnosticOrderItem: FHIRElement
 	}
 	
 	/// Location of requested test (if applicable)
-	public var bodySiteCodeableConcept: CodeableConcept?
-	
-	/// Location of requested test (if applicable)
-	public var bodySiteReference: Reference?
+	public var bodySite: CodeableConcept?
 	
 	/// Code to indicate the item (test or panel) being ordered
 	public var code: CodeableConcept?
@@ -366,32 +372,21 @@ public class DiagnosticOrderItem: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept?) {
+	public convenience init(code: CodeableConcept) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
+		self.code = code
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["bodySiteCodeableConcept"] {
-				presentKeys.insert("bodySiteCodeableConcept")
+			if let exist: AnyObject = js["bodySite"] {
+				presentKeys.insert("bodySite")
 				if let val = exist as? FHIRJSON {
-					self.bodySiteCodeableConcept = CodeableConcept(json: val, owner: self)
+					self.bodySite = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "bodySiteCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["bodySiteReference"] {
-				presentKeys.insert("bodySiteReference")
-				if let val = exist as? FHIRJSON {
-					self.bodySiteReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "bodySiteReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "bodySite", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["code"] {
@@ -440,11 +435,8 @@ public class DiagnosticOrderItem: FHIRElement
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let bodySiteCodeableConcept = self.bodySiteCodeableConcept {
-			json["bodySiteCodeableConcept"] = bodySiteCodeableConcept.asJSON()
-		}
-		if let bodySiteReference = self.bodySiteReference {
-			json["bodySiteReference"] = bodySiteReference.asJSON()
+		if let bodySite = self.bodySite {
+			json["bodySite"] = bodySite.asJSON()
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON()

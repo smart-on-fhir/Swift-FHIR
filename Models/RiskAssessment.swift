@@ -2,7 +2,7 @@
 //  RiskAssessment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -28,6 +28,9 @@ public class RiskAssessment: DomainResource
 	
 	/// When was assessment made?
 	public var date: DateTime?
+	
+	/// Where was assessment performed?
+	public var encounter: Reference?
 	
 	/// Unique identifier for the assessment
 	public var identifier: Identifier?
@@ -81,6 +84,15 @@ public class RiskAssessment: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "date", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["encounter"] {
+				presentKeys.insert("encounter")
+				if let val = exist as? FHIRJSON {
+					self.encounter = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["identifier"] {
@@ -153,6 +165,9 @@ public class RiskAssessment: DomainResource
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
 		}
@@ -219,11 +234,9 @@ public class RiskAssessmentPrediction: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(outcome: CodeableConcept?) {
+	public convenience init(outcome: CodeableConcept) {
 		self.init(json: nil)
-		if nil != outcome {
-			self.outcome = outcome
-		}
+		self.outcome = outcome
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

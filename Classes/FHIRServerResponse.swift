@@ -134,7 +134,7 @@ public class FHIRServerJSONResponse: FHIRServerResponse
 				if status >= 400 {
 					if let erritem = self.outcome?.issue?.first {
 						let none = "unknown"
-						let errstr = "[\(erritem.severity ?? none)] \(erritem.details ?? none)"
+						let errstr = "[\(erritem.severity ?? none)] \(erritem.diagnostics ?? none)"
 						self.error = genServerError(errstr, code: status)
 					}
 				}

@@ -2,7 +2,7 @@
 //  MedicationDispense.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -12,8 +12,9 @@ import Foundation
 /**
  *  Dispensing a medication to a named patient.
  *
- *  Dispensing a medication to a named patient.  This includes a description of the supply provided and the instructions
- *  for administering the medication.
+ *  Indicates that a medication product is to be or has been dispensed for a named person/patient.  This includes a
+ *  description of the medication product (supply) provided and the instructions for administering the medication.  The
+ *  medication dispense is the result of a pharmacy system responding to a medication order.
  */
 public class MedicationDispense: DomainResource
 {
@@ -33,14 +34,17 @@ public class MedicationDispense: DomainResource
 	/// Practitioner responsible for dispensing medication
 	public var dispenser: Reference?
 	
-	/// Medicine administration instructions to the patient/carer
+	/// Medicine administration instructions to the patient/caregiver
 	public var dosageInstruction: [MedicationDispenseDosageInstruction]?
 	
 	/// External identifier
 	public var identifier: Identifier?
 	
 	/// What medication was supplied
-	public var medication: Reference?
+	public var medicationCodeableConcept: CodeableConcept?
+	
+	/// What medication was supplied
+	public var medicationReference: Reference?
 	
 	/// Information about the dispense
 	public var note: String?
@@ -63,7 +67,7 @@ public class MedicationDispense: DomainResource
 	/// Trial fill, partial fill, emergency fill, etc.
 	public var type: CodeableConcept?
 	
-	/// Handover time
+	/// When product was given out
 	public var whenHandedOver: DateTime?
 	
 	/// Dispense processing time
@@ -73,6 +77,13 @@ public class MedicationDispense: DomainResource
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?) {
 		super.init(json: json)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(medicationCodeableConcept: CodeableConcept, medicationReference: Reference) {
+		self.init(json: nil)
+		self.medicationCodeableConcept = medicationCodeableConcept
+		self.medicationReference = medicationReference
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -132,13 +143,22 @@ public class MedicationDispense: DomainResource
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["medication"] {
-				presentKeys.insert("medication")
+			if let exist: AnyObject = js["medicationCodeableConcept"] {
+				presentKeys.insert("medicationCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.medication = Reference(json: val, owner: self)
+					self.medicationCodeableConcept = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "medication", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "medicationCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["medicationReference"] {
+				presentKeys.insert("medicationReference")
+				if let val = exist as? FHIRJSON {
+					self.medicationReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "medicationReference", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["note"] {
@@ -222,6 +242,11 @@ public class MedicationDispense: DomainResource
 					errors.append(FHIRJSONError(key: "whenPrepared", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			
+			// check if nonoptional expanded properties are present
+			if nil == self.medicationCodeableConcept && nil == self.medicationReference {
+				errors.append(FHIRJSONError(key: "medication[x]*"))
+			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -247,8 +272,11 @@ public class MedicationDispense: DomainResource
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
 		}
-		if let medication = self.medication {
-			json["medication"] = medication.asJSON()
+		if let medicationCodeableConcept = self.medicationCodeableConcept {
+			json["medicationCodeableConcept"] = medicationCodeableConcept.asJSON()
+		}
+		if let medicationReference = self.medicationReference {
+			json["medicationReference"] = medicationReference.asJSON()
 		}
 		if let note = self.note {
 			json["note"] = note.asJSON()
@@ -284,7 +312,7 @@ public class MedicationDispense: DomainResource
 
 
 /**
- *  Medicine administration instructions to the patient/carer.
+ *  Medicine administration instructions to the patient/caregiver.
  *
  *  Indicates how the medication is to be used by the patient.
  */
@@ -316,22 +344,25 @@ public class MedicationDispenseDosageInstruction: FHIRElement
 	public var method: CodeableConcept?
 	
 	/// Amount of medication per unit of time
-	public var rate: Ratio?
+	public var rateRange: Range?
+	
+	/// Amount of medication per unit of time
+	public var rateRatio: Ratio?
 	
 	/// How drug should enter body
 	public var route: CodeableConcept?
 	
-	/// When medication should be administered
-	public var scheduleDateTime: DateTime?
-	
-	/// When medication should be administered
-	public var schedulePeriod: Period?
-	
-	/// When medication should be administered
-	public var scheduleTiming: Timing?
+	/// Body site to administer to
+	public var siteCodeableConcept: CodeableConcept?
 	
 	/// Body site to administer to
-	public var site: CodeableConcept?
+	public var siteReference: Reference?
+	
+	/// Dosage Instructions
+	public var text: String?
+	
+	/// When medication should be administered
+	public var timing: Timing?
 	
 	
 	/** Initialize with a JSON object. */
@@ -405,13 +436,22 @@ public class MedicationDispenseDosageInstruction: FHIRElement
 					errors.append(FHIRJSONError(key: "method", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["rate"] {
-				presentKeys.insert("rate")
+			if let exist: AnyObject = js["rateRange"] {
+				presentKeys.insert("rateRange")
 				if let val = exist as? FHIRJSON {
-					self.rate = Ratio(json: val, owner: self)
+					self.rateRange = Range(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "rate", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "rateRange", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["rateRatio"] {
+				presentKeys.insert("rateRatio")
+				if let val = exist as? FHIRJSON {
+					self.rateRatio = Ratio(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "rateRatio", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["route"] {
@@ -423,40 +463,40 @@ public class MedicationDispenseDosageInstruction: FHIRElement
 					errors.append(FHIRJSONError(key: "route", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["scheduleDateTime"] {
-				presentKeys.insert("scheduleDateTime")
+			if let exist: AnyObject = js["siteCodeableConcept"] {
+				presentKeys.insert("siteCodeableConcept")
+				if let val = exist as? FHIRJSON {
+					self.siteCodeableConcept = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "siteCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["siteReference"] {
+				presentKeys.insert("siteReference")
+				if let val = exist as? FHIRJSON {
+					self.siteReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "siteReference", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["text"] {
+				presentKeys.insert("text")
 				if let val = exist as? String {
-					self.scheduleDateTime = DateTime(string: val)
+					self.text = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "scheduleDateTime", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "text", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["schedulePeriod"] {
-				presentKeys.insert("schedulePeriod")
+			if let exist: AnyObject = js["timing"] {
+				presentKeys.insert("timing")
 				if let val = exist as? FHIRJSON {
-					self.schedulePeriod = Period(json: val, owner: self)
+					self.timing = Timing(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "schedulePeriod", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["scheduleTiming"] {
-				presentKeys.insert("scheduleTiming")
-				if let val = exist as? FHIRJSON {
-					self.scheduleTiming = Timing(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "scheduleTiming", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["site"] {
-				presentKeys.insert("site")
-				if let val = exist as? FHIRJSON {
-					self.site = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "site", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "timing", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -487,23 +527,26 @@ public class MedicationDispenseDosageInstruction: FHIRElement
 		if let method = self.method {
 			json["method"] = method.asJSON()
 		}
-		if let rate = self.rate {
-			json["rate"] = rate.asJSON()
+		if let rateRange = self.rateRange {
+			json["rateRange"] = rateRange.asJSON()
+		}
+		if let rateRatio = self.rateRatio {
+			json["rateRatio"] = rateRatio.asJSON()
 		}
 		if let route = self.route {
 			json["route"] = route.asJSON()
 		}
-		if let scheduleDateTime = self.scheduleDateTime {
-			json["scheduleDateTime"] = scheduleDateTime.asJSON()
+		if let siteCodeableConcept = self.siteCodeableConcept {
+			json["siteCodeableConcept"] = siteCodeableConcept.asJSON()
 		}
-		if let schedulePeriod = self.schedulePeriod {
-			json["schedulePeriod"] = schedulePeriod.asJSON()
+		if let siteReference = self.siteReference {
+			json["siteReference"] = siteReference.asJSON()
 		}
-		if let scheduleTiming = self.scheduleTiming {
-			json["scheduleTiming"] = scheduleTiming.asJSON()
+		if let text = self.text {
+			json["text"] = text.asJSON()
 		}
-		if let site = self.site {
-			json["site"] = site.asJSON()
+		if let timing = self.timing {
+			json["timing"] = timing.asJSON()
 		}
 		
 		return json
@@ -515,8 +558,8 @@ public class MedicationDispenseDosageInstruction: FHIRElement
  *  Deals with substitution of one medicine for another.
  *
  *  Indicates whether or not substitution was made as part of the dispense.  In some cases substitution will be expected
- *  but doesn't happen, in other cases substitution is not expected but does happen.  This block explains what
- *  substitition did or did not happen and why.
+ *  but does not happen, in other cases substitution is not expected but does happen.  This block explains what
+ *  substitution did or did not happen and why.
  */
 public class MedicationDispenseSubstitution: FHIRElement
 {
@@ -530,7 +573,7 @@ public class MedicationDispenseSubstitution: FHIRElement
 	/// Who is responsible for the substitution
 	public var responsibleParty: [Reference]?
 	
-	/// Type of substitiution
+	/// Type of substitution
 	public var type: CodeableConcept?
 	
 	
@@ -540,11 +583,9 @@ public class MedicationDispenseSubstitution: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: CodeableConcept?) {
+	public convenience init(type: CodeableConcept) {
 		self.init(json: nil)
-		if nil != type {
-			self.type = type
-		}
+		self.type = type
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

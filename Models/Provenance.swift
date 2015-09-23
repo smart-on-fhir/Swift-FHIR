@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -16,8 +16,8 @@ import Foundation
  *  otherwise influencing that resource. Provenance provides a critical foundation for assessing authenticity, enabling
  *  trust, and allowing reproducibility. Provenance assertions are a form of contextual metadata and can themselves
  *  become important records with their own provenance. Provenance statement indicates clinical significance in terms of
- *  confidence in authenticity, reliability, and trustworthiness, integrity, and stage in lifecycle (e.g., Document
- *  Completion - has the artifact been legally authenticated), all of which may impact Security, Privacy, and Trust
+ *  confidence in authenticity, reliability, and trustworthiness, integrity, and stage in lifecycle (e.g. Document
+ *  Completion - has the artifact been legally authenticated), all of which may impact security, privacy, and trust
  *  policies.
  */
 public class Provenance: DomainResource
@@ -25,6 +25,9 @@ public class Provenance: DomainResource
 	override public class var resourceName: String {
 		get { return "Provenance" }
 	}
+	
+	/// Activity that occurred
+	public var activity: CodeableConcept?
 	
 	/// Agents involved in creating resource
 	public var agent: [ProvenanceAgent]?
@@ -42,7 +45,7 @@ public class Provenance: DomainResource
 	public var policy: [NSURL]?
 	
 	/// Reason the activity is occurring
-	public var reason: CodeableConcept?
+	public var reason: [CodeableConcept]?
 	
 	/// When the activity was recorded / updated
 	public var recorded: Instant?
@@ -60,19 +63,24 @@ public class Provenance: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(recorded: Instant?, target: [Reference]?) {
+	public convenience init(recorded: Instant, target: [Reference]) {
 		self.init(json: nil)
-		if nil != recorded {
-			self.recorded = recorded
-		}
-		if nil != target {
-			self.target = target
-		}
+		self.recorded = recorded
+		self.target = target
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["activity"] {
+				presentKeys.insert("activity")
+				if let val = exist as? FHIRJSON {
+					self.activity = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "activity", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["agent"] {
 				presentKeys.insert("agent")
 				if let val = exist as? [FHIRJSON] {
@@ -120,11 +128,11 @@ public class Provenance: DomainResource
 			}
 			if let exist: AnyObject = js["reason"] {
 				presentKeys.insert("reason")
-				if let val = exist as? FHIRJSON {
-					self.reason = CodeableConcept(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.reason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reason", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["recorded"] {
@@ -167,6 +175,9 @@ public class Provenance: DomainResource
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let activity = self.activity {
+			json["activity"] = activity.asJSON()
+		}
 		if let agent = self.agent {
 			json["agent"] = ProvenanceAgent.asJSONArray(agent)
 		}
@@ -187,7 +198,7 @@ public class Provenance: DomainResource
 			json["policy"] = arr
 		}
 		if let reason = self.reason {
-			json["reason"] = reason.asJSON()
+			json["reason"] = CodeableConcept.asJSONArray(reason)
 		}
 		if let recorded = self.recorded {
 			json["recorded"] = recorded.asJSON()
@@ -217,20 +228,17 @@ public class ProvenanceAgent: FHIRElement
 		get { return "ProvenanceAgent" }
 	}
 	
-	/// Human description of participant
-	public var display: String?
+	/// Individual, device or organization playing role
+	public var actor: Reference?
 	
-	/// Identity of agent
-	public var referenceReference: Reference?
+	/// Track delegation between agents
+	public var relatedAgent: [ProvenanceAgentRelatedAgent]?
 	
-	/// Identity of agent
-	public var referenceUri: NSURL?
-	
-	/// Agents Role
+	/// What the agents involvement was
 	public var role: Coding?
 	
-	/// Agent Type
-	public var type: Coding?
+	/// Authorization-system identifier for the agent
+	public var userId: Identifier?
 	
 	
 	/** Initialize with a JSON object. */
@@ -239,44 +247,30 @@ public class ProvenanceAgent: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(role: Coding?, type: Coding?) {
+	public convenience init(role: Coding) {
 		self.init(json: nil)
-		if nil != role {
-			self.role = role
-		}
-		if nil != type {
-			self.type = type
-		}
+		self.role = role
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["display"] {
-				presentKeys.insert("display")
-				if let val = exist as? String {
-					self.display = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "display", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["referenceReference"] {
-				presentKeys.insert("referenceReference")
+			if let exist: AnyObject = js["actor"] {
+				presentKeys.insert("actor")
 				if let val = exist as? FHIRJSON {
-					self.referenceReference = Reference(json: val, owner: self)
+					self.actor = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "referenceReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "actor", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["referenceUri"] {
-				presentKeys.insert("referenceUri")
-				if let val = exist as? String {
-					self.referenceUri = NSURL(string: val)
+			if let exist: AnyObject = js["relatedAgent"] {
+				presentKeys.insert("relatedAgent")
+				if let val = exist as? [FHIRJSON] {
+					self.relatedAgent = ProvenanceAgentRelatedAgent.from(val, owner: self) as? [ProvenanceAgentRelatedAgent]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "referenceUri", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "relatedAgent", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["role"] {
@@ -291,10 +285,91 @@ public class ProvenanceAgent: FHIRElement
 			else {
 				errors.append(FHIRJSONError(key: "role"))
 			}
+			if let exist: AnyObject = js["userId"] {
+				presentKeys.insert("userId")
+				if let val = exist as? FHIRJSON {
+					self.userId = Identifier(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "userId", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let actor = self.actor {
+			json["actor"] = actor.asJSON()
+		}
+		if let relatedAgent = self.relatedAgent {
+			json["relatedAgent"] = ProvenanceAgentRelatedAgent.asJSONArray(relatedAgent)
+		}
+		if let role = self.role {
+			json["role"] = role.asJSON()
+		}
+		if let userId = self.userId {
+			json["userId"] = userId.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Track delegation between agents.
+ *
+ *  A relationship between two the agents referenced in this resource. This is defined to allow for explicit description
+ *  of the delegation between agents.  For example, this human author used this device, or one person acted on another's
+ *  behest.
+ */
+public class ProvenanceAgentRelatedAgent: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ProvenanceAgentRelatedAgent" }
+	}
+	
+	/// Reference to other agent in this resource by identifier
+	public var target: NSURL?
+	
+	/// Type of relationship between agents
+	public var type: CodeableConcept?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(target: NSURL, type: CodeableConcept) {
+		self.init(json: nil)
+		self.target = target
+		self.type = type
+	}
+	
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist: AnyObject = js["target"] {
+				presentKeys.insert("target")
+				if let val = exist as? String {
+					self.target = NSURL(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "target", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "target"))
+			}
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = Coding(json: val, owner: self)
+					self.type = CodeableConcept(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -310,17 +385,8 @@ public class ProvenanceAgent: FHIRElement
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let display = self.display {
-			json["display"] = display.asJSON()
-		}
-		if let referenceReference = self.referenceReference {
-			json["referenceReference"] = referenceReference.asJSON()
-		}
-		if let referenceUri = self.referenceUri {
-			json["referenceUri"] = referenceUri.asJSON()
-		}
-		if let role = self.role {
-			json["role"] = role.asJSON()
+		if let target = self.target {
+			json["target"] = target.asJSON()
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -352,7 +418,7 @@ public class ProvenanceEntity: FHIRElement
 	/// derivation | revision | quotation | source
 	public var role: String?
 	
-	/// Entity Type
+	/// The type of resource in this entity
 	public var type: Coding?
 	
 	
@@ -362,17 +428,11 @@ public class ProvenanceEntity: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(reference: NSURL?, role: String?, type: Coding?) {
+	public convenience init(reference: NSURL, role: String, type: Coding) {
 		self.init(json: nil)
-		if nil != reference {
-			self.reference = reference
-		}
-		if nil != role {
-			self.role = role
-		}
-		if nil != type {
-			self.type = type
-		}
+		self.reference = reference
+		self.role = role
+		self.type = type
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

@@ -2,7 +2,7 @@
 //  ReferralRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import Foundation
  *  A request for referral or transfer of care.
  *
  *  Used to record and send details about a request for referral service or transfer of a patient to the care of another
- *  provider or provider organisation.
+ *  provider or provider organization.
  */
 public class ReferralRequest: DomainResource
 {
@@ -21,19 +21,22 @@ public class ReferralRequest: DomainResource
 		get { return "ReferralRequest" }
 	}
 	
+	/// Date of creation/activation
+	public var date: DateTime?
+	
 	/// Date referral/transfer of care request is sent
 	public var dateSent: DateTime?
 	
 	/// A textual description of the referral
 	public var description_fhir: String?
 	
-	/// Encounter
+	/// Originating encounter
 	public var encounter: Reference?
 	
 	/// Requested service(s) fulfillment time
 	public var fulfillmentTime: Period?
 	
-	/// Identifier of request
+	/// Business identifier
 	public var identifier: [Identifier]?
 	
 	/// Patient referred to care or transfer
@@ -42,7 +45,7 @@ public class ReferralRequest: DomainResource
 	/// Urgency of referral / transfer of care request
 	public var priority: CodeableConcept?
 	
-	/// Reason for referral / Transfer of care request
+	/// Reason for referral / transfer of care request
 	public var reason: CodeableConcept?
 	
 	/// Receiver of referral / transfer of care request
@@ -51,7 +54,7 @@ public class ReferralRequest: DomainResource
 	/// Requester of referral / transfer of care
 	public var requester: Reference?
 	
-	/// Service(s) requested
+	/// Actions requested as part of the referral
 	public var serviceRequested: [CodeableConcept]?
 	
 	/// The clinical specialty (discipline) that the referral is requested for
@@ -73,16 +76,23 @@ public class ReferralRequest: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String?) {
+	public convenience init(status: String) {
 		self.init(json: nil)
-		if nil != status {
-			self.status = status
-		}
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["date"] {
+				presentKeys.insert("date")
+				if let val = exist as? String {
+					self.date = DateTime(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "date", wants: String.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["dateSent"] {
 				presentKeys.insert("dateSent")
 				if let val = exist as? String {
@@ -228,6 +238,9 @@ public class ReferralRequest: DomainResource
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let date = self.date {
+			json["date"] = date.asJSON()
+		}
 		if let dateSent = self.dateSent {
 			json["dateSent"] = dateSent.asJSON()
 		}

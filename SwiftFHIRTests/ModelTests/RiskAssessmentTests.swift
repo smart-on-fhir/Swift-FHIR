@@ -2,7 +2,7 @@
 //  RiskAssessmentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class RiskAssessmentTests: FHIRModelTestCase
+class RiskAssessmentTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> RiskAssessment {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class RiskAssessmentTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testRiskAssessment1() throws {
-		let instance = try runRiskAssessment1()
-		try runRiskAssessment1(instance.asJSON())
+	func testRiskAssessment1() {
+		let instance = try? runRiskAssessment1()
+		XCTAssertNotNil(instance, "Must instantiate RiskAssessment")
+		try! runRiskAssessment1(instance!.asJSON())
 	}
 	
 	func runRiskAssessment1(json: FHIRJSON? = nil) throws -> RiskAssessment {
@@ -40,20 +41,21 @@ class RiskAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.prediction![0].probabilityDecimal!, NSDecimalNumber(string: "0.02"))
 		XCTAssertEqual(inst.prediction![0].whenRange!.high!.code!, "a")
 		XCTAssertEqual(inst.prediction![0].whenRange!.high!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.prediction![0].whenRange!.high!.units!, "years")
+		XCTAssertEqual(inst.prediction![0].whenRange!.high!.unit!, "years")
 		XCTAssertEqual(inst.prediction![0].whenRange!.high!.value!, NSDecimalNumber(string: "49"))
 		XCTAssertEqual(inst.prediction![0].whenRange!.low!.code!, "a")
 		XCTAssertEqual(inst.prediction![0].whenRange!.low!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.prediction![0].whenRange!.low!.units!, "years")
+		XCTAssertEqual(inst.prediction![0].whenRange!.low!.unit!, "years")
 		XCTAssertEqual(inst.prediction![0].whenRange!.low!.value!, NSDecimalNumber(string: "39"))
 		XCTAssertEqual(inst.text!.status!, "additional")
 		
 		return inst
 	}
 	
-	func testRiskAssessment2() throws {
-		let instance = try runRiskAssessment2()
-		try runRiskAssessment2(instance.asJSON())
+	func testRiskAssessment2() {
+		let instance = try? runRiskAssessment2()
+		XCTAssertNotNil(instance, "Must instantiate RiskAssessment")
+		try! runRiskAssessment2(instance!.asJSON())
 	}
 	
 	func runRiskAssessment2(json: FHIRJSON? = nil) throws -> RiskAssessment {
@@ -65,9 +67,10 @@ class RiskAssessmentTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testRiskAssessment3() throws {
-		let instance = try runRiskAssessment3()
-		try runRiskAssessment3(instance.asJSON())
+	func testRiskAssessment3() {
+		let instance = try? runRiskAssessment3()
+		XCTAssertNotNil(instance, "Must instantiate RiskAssessment")
+		try! runRiskAssessment3(instance!.asJSON())
 	}
 	
 	func runRiskAssessment3(json: FHIRJSON? = nil) throws -> RiskAssessment {
@@ -88,9 +91,10 @@ class RiskAssessmentTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testRiskAssessment4() throws {
-		let instance = try runRiskAssessment4()
-		try runRiskAssessment4(instance.asJSON())
+	func testRiskAssessment4() {
+		let instance = try? runRiskAssessment4()
+		XCTAssertNotNil(instance, "Must instantiate RiskAssessment")
+		try! runRiskAssessment4(instance!.asJSON())
 	}
 	
 	func runRiskAssessment4(json: FHIRJSON? = nil) throws -> RiskAssessment {
@@ -104,77 +108,77 @@ class RiskAssessmentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.prediction![0].probabilityDecimal!, NSDecimalNumber(string: "0.000168"))
 		XCTAssertEqual(inst.prediction![0].whenRange!.high!.code!, "a")
 		XCTAssertEqual(inst.prediction![0].whenRange!.high!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.prediction![0].whenRange!.high!.units!, "years")
+		XCTAssertEqual(inst.prediction![0].whenRange!.high!.unit!, "years")
 		XCTAssertEqual(inst.prediction![0].whenRange!.high!.value!, NSDecimalNumber(string: "53"))
 		XCTAssertEqual(inst.prediction![1].outcome!.text!, "Breast Cancer")
 		XCTAssertEqual(inst.prediction![1].probabilityDecimal!, NSDecimalNumber(string: "0.000368"))
 		XCTAssertEqual(inst.prediction![1].whenRange!.high!.code!, "a")
 		XCTAssertEqual(inst.prediction![1].whenRange!.high!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.prediction![1].whenRange!.high!.units!, "years")
+		XCTAssertEqual(inst.prediction![1].whenRange!.high!.unit!, "years")
 		XCTAssertEqual(inst.prediction![1].whenRange!.high!.value!, NSDecimalNumber(string: "57"))
 		XCTAssertEqual(inst.prediction![1].whenRange!.low!.code!, "a")
 		XCTAssertEqual(inst.prediction![1].whenRange!.low!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.prediction![1].whenRange!.low!.units!, "years")
+		XCTAssertEqual(inst.prediction![1].whenRange!.low!.unit!, "years")
 		XCTAssertEqual(inst.prediction![1].whenRange!.low!.value!, NSDecimalNumber(string: "54"))
 		XCTAssertEqual(inst.prediction![2].outcome!.text!, "Breast Cancer")
 		XCTAssertEqual(inst.prediction![2].probabilityDecimal!, NSDecimalNumber(string: "0.000594"))
 		XCTAssertEqual(inst.prediction![2].whenRange!.high!.code!, "a")
 		XCTAssertEqual(inst.prediction![2].whenRange!.high!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.prediction![2].whenRange!.high!.units!, "years")
+		XCTAssertEqual(inst.prediction![2].whenRange!.high!.unit!, "years")
 		XCTAssertEqual(inst.prediction![2].whenRange!.high!.value!, NSDecimalNumber(string: "62"))
 		XCTAssertEqual(inst.prediction![2].whenRange!.low!.code!, "a")
 		XCTAssertEqual(inst.prediction![2].whenRange!.low!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.prediction![2].whenRange!.low!.units!, "years")
+		XCTAssertEqual(inst.prediction![2].whenRange!.low!.unit!, "years")
 		XCTAssertEqual(inst.prediction![2].whenRange!.low!.value!, NSDecimalNumber(string: "58"))
 		XCTAssertEqual(inst.prediction![3].outcome!.text!, "Breast Cancer")
 		XCTAssertEqual(inst.prediction![3].probabilityDecimal!, NSDecimalNumber(string: "0.000838"))
 		XCTAssertEqual(inst.prediction![3].whenRange!.high!.code!, "a")
 		XCTAssertEqual(inst.prediction![3].whenRange!.high!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.prediction![3].whenRange!.high!.units!, "years")
+		XCTAssertEqual(inst.prediction![3].whenRange!.high!.unit!, "years")
 		XCTAssertEqual(inst.prediction![3].whenRange!.high!.value!, NSDecimalNumber(string: "67"))
 		XCTAssertEqual(inst.prediction![3].whenRange!.low!.code!, "a")
 		XCTAssertEqual(inst.prediction![3].whenRange!.low!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.prediction![3].whenRange!.low!.units!, "years")
+		XCTAssertEqual(inst.prediction![3].whenRange!.low!.unit!, "years")
 		XCTAssertEqual(inst.prediction![3].whenRange!.low!.value!, NSDecimalNumber(string: "63"))
 		XCTAssertEqual(inst.prediction![4].outcome!.text!, "Breast Cancer")
 		XCTAssertEqual(inst.prediction![4].probabilityDecimal!, NSDecimalNumber(string: "0.001089"))
 		XCTAssertEqual(inst.prediction![4].whenRange!.high!.code!, "a")
 		XCTAssertEqual(inst.prediction![4].whenRange!.high!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.prediction![4].whenRange!.high!.units!, "years")
+		XCTAssertEqual(inst.prediction![4].whenRange!.high!.unit!, "years")
 		XCTAssertEqual(inst.prediction![4].whenRange!.high!.value!, NSDecimalNumber(string: "72"))
 		XCTAssertEqual(inst.prediction![4].whenRange!.low!.code!, "a")
 		XCTAssertEqual(inst.prediction![4].whenRange!.low!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.prediction![4].whenRange!.low!.units!, "years")
+		XCTAssertEqual(inst.prediction![4].whenRange!.low!.unit!, "years")
 		XCTAssertEqual(inst.prediction![4].whenRange!.low!.value!, NSDecimalNumber(string: "68"))
 		XCTAssertEqual(inst.prediction![5].outcome!.text!, "Breast Cancer")
 		XCTAssertEqual(inst.prediction![5].probabilityDecimal!, NSDecimalNumber(string: "0.001327"))
 		XCTAssertEqual(inst.prediction![5].whenRange!.high!.code!, "a")
 		XCTAssertEqual(inst.prediction![5].whenRange!.high!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.prediction![5].whenRange!.high!.units!, "years")
+		XCTAssertEqual(inst.prediction![5].whenRange!.high!.unit!, "years")
 		XCTAssertEqual(inst.prediction![5].whenRange!.high!.value!, NSDecimalNumber(string: "77"))
 		XCTAssertEqual(inst.prediction![5].whenRange!.low!.code!, "a")
 		XCTAssertEqual(inst.prediction![5].whenRange!.low!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.prediction![5].whenRange!.low!.units!, "years")
+		XCTAssertEqual(inst.prediction![5].whenRange!.low!.unit!, "years")
 		XCTAssertEqual(inst.prediction![5].whenRange!.low!.value!, NSDecimalNumber(string: "73"))
 		XCTAssertEqual(inst.prediction![6].outcome!.text!, "Breast Cancer")
 		XCTAssertEqual(inst.prediction![6].probabilityDecimal!, NSDecimalNumber(string: "0.00153"))
 		XCTAssertEqual(inst.prediction![6].whenRange!.high!.code!, "a")
 		XCTAssertEqual(inst.prediction![6].whenRange!.high!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.prediction![6].whenRange!.high!.units!, "years")
+		XCTAssertEqual(inst.prediction![6].whenRange!.high!.unit!, "years")
 		XCTAssertEqual(inst.prediction![6].whenRange!.high!.value!, NSDecimalNumber(string: "82"))
 		XCTAssertEqual(inst.prediction![6].whenRange!.low!.code!, "a")
 		XCTAssertEqual(inst.prediction![6].whenRange!.low!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.prediction![6].whenRange!.low!.units!, "years")
+		XCTAssertEqual(inst.prediction![6].whenRange!.low!.unit!, "years")
 		XCTAssertEqual(inst.prediction![6].whenRange!.low!.value!, NSDecimalNumber(string: "78"))
 		XCTAssertEqual(inst.prediction![7].outcome!.text!, "Breast Cancer")
 		XCTAssertEqual(inst.prediction![7].probabilityDecimal!, NSDecimalNumber(string: "0.001663"))
 		XCTAssertEqual(inst.prediction![7].whenRange!.high!.code!, "a")
 		XCTAssertEqual(inst.prediction![7].whenRange!.high!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.prediction![7].whenRange!.high!.units!, "years")
+		XCTAssertEqual(inst.prediction![7].whenRange!.high!.unit!, "years")
 		XCTAssertEqual(inst.prediction![7].whenRange!.high!.value!, NSDecimalNumber(string: "88"))
 		XCTAssertEqual(inst.prediction![7].whenRange!.low!.code!, "a")
 		XCTAssertEqual(inst.prediction![7].whenRange!.low!.system!.absoluteString, "http://unitsofmeasure.org")
-		XCTAssertEqual(inst.prediction![7].whenRange!.low!.units!, "years")
+		XCTAssertEqual(inst.prediction![7].whenRange!.low!.unit!, "years")
 		XCTAssertEqual(inst.prediction![7].whenRange!.low!.value!, NSDecimalNumber(string: "83"))
 		XCTAssertEqual(inst.text!.status!, "generated")
 		

@@ -2,7 +2,7 @@
 //  Medication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Medication) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Medication) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -12,7 +12,8 @@ import Foundation
 /**
  *  Definition of a Medication.
  *
- *  Primarily used for identification and definition of Medication, but also covers ingredients and packaging.
+ *  This resource is primarily used for the identification and definition of a medication. It covers the ingredients and
+ *  the packaging for a medication.
  */
 public class Medication: DomainResource
 {
@@ -26,14 +27,8 @@ public class Medication: DomainResource
 	/// True if a brand
 	public var isBrand: Bool?
 	
-	/// product | package
-	public var kind: String?
-	
 	/// Manufacturer of the item
 	public var manufacturer: Reference?
-	
-	/// Common / Commercial name
-	public var name: String?
 	
 	/// Details about packaged medications
 	public var package: MedicationPackage?
@@ -68,15 +63,6 @@ public class Medication: DomainResource
 					errors.append(FHIRJSONError(key: "isBrand", wants: Bool.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["kind"] {
-				presentKeys.insert("kind")
-				if let val = exist as? String {
-					self.kind = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "kind", wants: String.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["manufacturer"] {
 				presentKeys.insert("manufacturer")
 				if let val = exist as? FHIRJSON {
@@ -84,15 +70,6 @@ public class Medication: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "manufacturer", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["package"] {
@@ -126,14 +103,8 @@ public class Medication: DomainResource
 		if let isBrand = self.isBrand {
 			json["isBrand"] = isBrand.asJSON()
 		}
-		if let kind = self.kind {
-			json["kind"] = kind.asJSON()
-		}
 		if let manufacturer = self.manufacturer {
 			json["manufacturer"] = manufacturer.asJSON()
-		}
-		if let name = self.name {
-			json["name"] = name.asJSON()
 		}
 		if let package = self.package {
 			json["package"] = package.asJSON()
@@ -161,7 +132,7 @@ public class MedicationPackage: FHIRElement
 	/// E.g. box, vial, blister-pack
 	public var container: CodeableConcept?
 	
-	/// What is  in the package?
+	/// What is  in the package
 	public var content: [MedicationPackageContent]?
 	
 	
@@ -211,7 +182,7 @@ public class MedicationPackage: FHIRElement
 
 
 /**
- *  What is  in the package?.
+ *  What is  in the package.
  *
  *  A set of components that go to make up the described item.
  */
@@ -221,7 +192,7 @@ public class MedicationPackageContent: FHIRElement
 		get { return "MedicationPackageContent" }
 	}
 	
-	/// How many are in the package?
+	/// Quantity present in the package
 	public var amount: Quantity?
 	
 	/// A product in the package
@@ -234,11 +205,9 @@ public class MedicationPackageContent: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(item: Reference?) {
+	public convenience init(item: Reference) {
 		self.init(json: nil)
-		if nil != item {
-			self.item = item
-		}
+		self.item = item
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -295,7 +264,7 @@ public class MedicationProduct: FHIRElement
 		get { return "MedicationProduct" }
 	}
 	
-	/// Information about a group of medication produced or packaged from one production run.
+	/// None
 	public var batch: [MedicationProductBatch]?
 	
 	/// powder | tablets | carton +
@@ -363,7 +332,7 @@ public class MedicationProduct: FHIRElement
 
 
 /**
- *  Information about a group of medication produced or packaged from one production run..
+ *  None.
  *
  *  Information about a group of medication produced or packaged from one production run.
  */
@@ -373,10 +342,10 @@ public class MedicationProductBatch: FHIRElement
 		get { return "MedicationProductBatch" }
 	}
 	
-	/// When this specific batch of product will expire.
+	/// None
 	public var expirationDate: DateTime?
 	
-	/// The assigned lot number of a batch of the specified product.
+	/// None
 	public var lotNumber: String?
 	
 	
@@ -436,7 +405,7 @@ public class MedicationProductIngredient: FHIRElement
 		get { return "MedicationProductIngredient" }
 	}
 	
-	/// How much ingredient in product
+	/// Quantity of ingredient present
 	public var amount: Ratio?
 	
 	/// The product contained
@@ -449,11 +418,9 @@ public class MedicationProductIngredient: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(item: Reference?) {
+	public convenience init(item: Reference) {
 		self.init(json: nil)
-		if nil != item {
-			self.item = item
-		}
+		self.item = item
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

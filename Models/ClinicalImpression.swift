@@ -2,7 +2,7 @@
 //  ClinicalImpression.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -39,10 +39,10 @@ public class ClinicalImpression: DomainResource
 	/// Possible or likely findings and diagnoses
 	public var finding: [ClinicalImpressionFinding]?
 	
-	/// One or more sets of investigations (signs, symptions, etc)
+	/// One or more sets of investigations (signs, symptions, etc.)
 	public var investigations: [ClinicalImpressionInvestigations]?
 	
-	/// The patient being asssesed
+	/// The patient being assessed
 	public var patient: Reference?
 	
 	/// Plan of action after assessment
@@ -60,7 +60,7 @@ public class ClinicalImpression: DomainResource
 	/// Clinical Protocol followed
 	public var protocol_fhir: NSURL?
 	
-	/// Diagnosies/conditions resolved since previous assessment
+	/// Diagnoses/conditions resolved since previous assessment
 	public var resolved: [CodeableConcept]?
 	
 	/// Diagnosis considered not possible
@@ -85,14 +85,10 @@ public class ClinicalImpression: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference?, status: String?) {
+	public convenience init(patient: Reference, status: String) {
 		self.init(json: nil)
-		if nil != patient {
-			self.patient = patient
-		}
-		if nil != status {
-			self.status = status
-		}
+		self.patient = patient
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -357,11 +353,9 @@ public class ClinicalImpressionFinding: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(item: CodeableConcept?) {
+	public convenience init(item: CodeableConcept) {
 		self.init(json: nil)
-		if nil != item {
-			self.item = item
-		}
+		self.item = item
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -408,9 +402,9 @@ public class ClinicalImpressionFinding: FHIRElement
 
 
 /**
- *  One or more sets of investigations (signs, symptions, etc).
+ *  One or more sets of investigations (signs, symptions, etc.).
  *
- *  One or more sets of investigations (signs, symptions, etc). The actual grouping of investigations vary greatly
+ *  One or more sets of investigations (signs, symptions, etc.). The actual grouping of investigations vary greatly
  *  depending on the type and context of the assessment. These investigations may include data generated during the
  *  assessment process, or data previously generated and recorded that is pertinent to the outcomes.
  */
@@ -433,11 +427,9 @@ public class ClinicalImpressionInvestigations: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept?) {
+	public convenience init(code: CodeableConcept) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
+		self.code = code
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -505,11 +497,9 @@ public class ClinicalImpressionRuledOut: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(item: CodeableConcept?) {
+	public convenience init(item: CodeableConcept) {
 		self.init(json: nil)
-		if nil != item {
-			self.item = item
-		}
+		self.item = item
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

@@ -2,7 +2,7 @@
 //  OperationDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -39,7 +39,7 @@ public class OperationDefinition: DomainResource
 	/// If for testing purposes, not real usage
 	public var experimental: Bool?
 	
-	/// Whether operation causes changes to content
+	/// Whether content is unchanged by operation
 	public var idempotent: Bool?
 	
 	/// Invoke on an instance?
@@ -48,7 +48,7 @@ public class OperationDefinition: DomainResource
 	/// operation | query
 	public var kind: String?
 	
-	/// Informal name for this profile
+	/// Informal name for this operation
 	public var name: String?
 	
 	/// Additional information about use
@@ -72,7 +72,7 @@ public class OperationDefinition: DomainResource
 	/// Invoke at resource level for these type
 	public var type: [String]?
 	
-	/// Logical url to reference this operation definition
+	/// Logical URL to reference this operation definition
 	public var url: NSURL?
 	
 	/// Logical id for this version of the operation definition
@@ -85,26 +85,14 @@ public class OperationDefinition: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String?, instance: Bool?, kind: String?, name: String?, status: String?, system: Bool?) {
+	public convenience init(code: String, instance: Bool, kind: String, name: String, status: String, system: Bool) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
-		if nil != instance {
-			self.instance = instance
-		}
-		if nil != kind {
-			self.kind = kind
-		}
-		if nil != name {
-			self.name = name
-		}
-		if nil != status {
-			self.status = status
-		}
-		if nil != system {
-			self.system = system
-		}
+		self.code = code
+		self.instance = instance
+		self.kind = kind
+		self.name = name
+		self.status = status
+		self.system = system
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -447,6 +435,9 @@ public class OperationDefinitionParameter: FHIRElement
 		get { return "OperationDefinitionParameter" }
 	}
 	
+	/// ValueSet details if this is coded
+	public var binding: OperationDefinitionParameterBinding?
+	
 	/// Description of meaning/use
 	public var documentation: String?
 	
@@ -456,16 +447,16 @@ public class OperationDefinitionParameter: FHIRElement
 	/// Minimum Cardinality
 	public var min: Int?
 	
-	/// Name of the parameter
+	/// Name in Parameters.parameter.name or in URL
 	public var name: String?
 	
 	/// Parts of a Tuple Parameter
-	public var part: [OperationDefinitionParameterPart]?
+	public var part: [OperationDefinitionParameter]?
 	
 	/// Profile on the type
 	public var profile: Reference?
 	
-	/// What type this parameter hs
+	/// What type this parameter has
 	public var type: String?
 	
 	/// in | out
@@ -478,25 +469,26 @@ public class OperationDefinitionParameter: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(max: String?, min: Int?, name: String?, use: String?) {
+	public convenience init(max: String, min: Int, name: String, use: String) {
 		self.init(json: nil)
-		if nil != max {
-			self.max = max
-		}
-		if nil != min {
-			self.min = min
-		}
-		if nil != name {
-			self.name = name
-		}
-		if nil != use {
-			self.use = use
-		}
+		self.max = max
+		self.min = min
+		self.name = name
+		self.use = use
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["binding"] {
+				presentKeys.insert("binding")
+				if let val = exist as? FHIRJSON {
+					self.binding = OperationDefinitionParameterBinding(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "binding", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["documentation"] {
 				presentKeys.insert("documentation")
 				if let val = exist as? String {
@@ -545,7 +537,7 @@ public class OperationDefinitionParameter: FHIRElement
 			if let exist: AnyObject = js["part"] {
 				presentKeys.insert("part")
 				if let val = exist as? [FHIRJSON] {
-					self.part = OperationDefinitionParameterPart.from(val, owner: self) as? [OperationDefinitionParameterPart]
+					self.part = OperationDefinitionParameter.from(val, owner: self) as? [OperationDefinitionParameter]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "part", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -588,6 +580,9 @@ public class OperationDefinitionParameter: FHIRElement
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let binding = self.binding {
+			json["binding"] = binding.asJSON()
+		}
 		if let documentation = self.documentation {
 			json["documentation"] = documentation.asJSON()
 		}
@@ -601,7 +596,7 @@ public class OperationDefinitionParameter: FHIRElement
 			json["name"] = name.asJSON()
 		}
 		if let part = self.part {
-			json["part"] = OperationDefinitionParameterPart.asJSONArray(part)
+			json["part"] = OperationDefinitionParameter.asJSONArray(part)
 		}
 		if let profile = self.profile {
 			json["profile"] = profile.asJSON()
@@ -619,33 +614,24 @@ public class OperationDefinitionParameter: FHIRElement
 
 
 /**
- *  Parts of a Tuple Parameter.
+ *  ValueSet details if this is coded.
  *
- *  The parts of a Tuple Parameter.
+ *  Binds to a value set if this parameter is coded (code, Coding, CodeableConcept).
  */
-public class OperationDefinitionParameterPart: FHIRElement
+public class OperationDefinitionParameterBinding: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "OperationDefinitionParameterPart" }
+		get { return "OperationDefinitionParameterBinding" }
 	}
 	
-	/// Description of meaning/use
-	public var documentation: String?
+	/// required | extensible | preferred | example
+	public var strength: String?
 	
-	/// Maximum Cardinality (a number or *)
-	public var max: String?
+	/// Source of value set
+	public var valueSetReference: Reference?
 	
-	/// Minimum Cardinality
-	public var min: UInt?
-	
-	/// Name of the parameter
-	public var name: String?
-	
-	/// Profile on the type
-	public var profile: Reference?
-	
-	/// What type this parameter hs
-	public var type: String?
+	/// Source of value set
+	public var valueSetUri: NSURL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -654,90 +640,50 @@ public class OperationDefinitionParameterPart: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(max: String?, min: UInt?, name: String?, type: String?) {
+	public convenience init(strength: String, valueSetReference: Reference, valueSetUri: NSURL) {
 		self.init(json: nil)
-		if nil != max {
-			self.max = max
-		}
-		if nil != min {
-			self.min = min
-		}
-		if nil != name {
-			self.name = name
-		}
-		if nil != type {
-			self.type = type
-		}
+		self.strength = strength
+		self.valueSetReference = valueSetReference
+		self.valueSetUri = valueSetUri
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["documentation"] {
-				presentKeys.insert("documentation")
+			if let exist: AnyObject = js["strength"] {
+				presentKeys.insert("strength")
 				if let val = exist as? String {
-					self.documentation = val
+					self.strength = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "documentation", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["max"] {
-				presentKeys.insert("max")
-				if let val = exist as? String {
-					self.max = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "max", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "strength", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "max"))
+				errors.append(FHIRJSONError(key: "strength"))
 			}
-			if let exist: AnyObject = js["min"] {
-				presentKeys.insert("min")
-				if let val = exist as? UInt {
-					self.min = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "min", wants: UInt.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "min"))
-			}
-			if let exist: AnyObject = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "name"))
-			}
-			if let exist: AnyObject = js["profile"] {
-				presentKeys.insert("profile")
+			if let exist: AnyObject = js["valueSetReference"] {
+				presentKeys.insert("valueSetReference")
 				if let val = exist as? FHIRJSON {
-					self.profile = Reference(json: val, owner: self)
+					self.valueSetReference = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "profile", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "valueSetReference", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["type"] {
-				presentKeys.insert("type")
+			if let exist: AnyObject = js["valueSetUri"] {
+				presentKeys.insert("valueSetUri")
 				if let val = exist as? String {
-					self.type = val
+					self.valueSetUri = NSURL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "valueSetUri", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			else {
-				errors.append(FHIRJSONError(key: "type"))
+			
+			// check if nonoptional expanded properties are present
+			if nil == self.valueSetUri && nil == self.valueSetReference {
+				errors.append(FHIRJSONError(key: "valueSet[x]*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -746,23 +692,14 @@ public class OperationDefinitionParameterPart: FHIRElement
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let documentation = self.documentation {
-			json["documentation"] = documentation.asJSON()
+		if let strength = self.strength {
+			json["strength"] = strength.asJSON()
 		}
-		if let max = self.max {
-			json["max"] = max.asJSON()
+		if let valueSetReference = self.valueSetReference {
+			json["valueSetReference"] = valueSetReference.asJSON()
 		}
-		if let min = self.min {
-			json["min"] = min.asJSON()
-		}
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if let profile = self.profile {
-			json["profile"] = profile.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
+		if let valueSetUri = self.valueSetUri {
+			json["valueSetUri"] = valueSetUri.asJSON()
 		}
 		
 		return json

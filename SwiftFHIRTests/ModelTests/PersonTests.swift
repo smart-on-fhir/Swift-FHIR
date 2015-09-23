@@ -2,7 +2,7 @@
 //  PersonTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class PersonTests: FHIRModelTestCase
+class PersonTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Person {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,12 +22,39 @@ class PersonTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testPerson1() throws {
-		let instance = try runPerson1()
-		try runPerson1(instance.asJSON())
+	func testPerson1() {
+		let instance = try? runPerson1()
+		XCTAssertNotNil(instance, "Must instantiate Person")
+		try! runPerson1(instance!.asJSON())
 	}
 	
 	func runPerson1(json: FHIRJSON? = nil) throws -> Person {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "person-example-f002-ariadne.json")
+		
+		XCTAssertTrue(inst.active!)
+		XCTAssertEqual(inst.birthDate!.description, "1963")
+		XCTAssertEqual(inst.gender!, "female")
+		XCTAssertEqual(inst.id!, "f002")
+		XCTAssertEqual(inst.link![0].target!.display!, "Ariadne Bor-Jansma")
+		XCTAssertEqual(inst.link![0].target!.reference!, "RelatedPerson/f002")
+		XCTAssertEqual(inst.name![0].text!, "Ariadne Bor-Jansma")
+		XCTAssertEqual(inst.name![0].use!, "usual")
+		XCTAssertEqual(inst.photo!.contentType!, "image/jpeg")
+		XCTAssertEqual(inst.telecom![0].system!, "phone")
+		XCTAssertEqual(inst.telecom![0].use!, "home")
+		XCTAssertEqual(inst.telecom![0].value!, "+31201234567")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testPerson2() {
+		let instance = try? runPerson2()
+		XCTAssertNotNil(instance, "Must instantiate Person")
+		try! runPerson2(instance!.asJSON())
+	}
+	
+	func runPerson2(json: FHIRJSON? = nil) throws -> Person {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "person-example.json")
 		
 		XCTAssertTrue(inst.active!)
@@ -42,7 +69,7 @@ class PersonTests: FHIRModelTestCase
 		XCTAssertEqual(inst.identifier![0].assigner!.display!, "Acme Healthcare")
 		XCTAssertEqual(inst.identifier![0].period!.start!.description, "2001-05-06")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:oid:1.2.36.146.595.217.0.1")
-		XCTAssertEqual(inst.identifier![0].type!.coding![0].code!, "MRN")
+		XCTAssertEqual(inst.identifier![0].type!.coding![0].code!, "MR")
 		XCTAssertEqual(inst.identifier![0].type!.coding![0].system!.absoluteString, "http://hl7.org/fhir/v2/0203")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
 		XCTAssertEqual(inst.identifier![0].value!, "12345")

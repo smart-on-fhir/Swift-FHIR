@@ -1,8 +1,8 @@
 //
-//  ContraindicationTests.swift
+//  DetectedIssueTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,25 +10,26 @@ import XCTest
 import SwiftFHIR
 
 
-class ContraindicationTests: FHIRModelTestCase
+class DetectedIssueTests: XCTestCase
 {
-	func instantiateFrom(filename filename: String) throws -> Contraindication {
+	func instantiateFrom(filename filename: String) throws -> DetectedIssue {
 		return instantiateFrom(json: try readJSONFile(filename)!)
 	}
 	
-	func instantiateFrom(json json: FHIRJSON) -> Contraindication {
-		let instance = Contraindication(json: json)
+	func instantiateFrom(json json: FHIRJSON) -> DetectedIssue {
+		let instance = DetectedIssue(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testContraindication1() throws {
-		let instance = try runContraindication1()
-		try runContraindication1(instance.asJSON())
+	func testDetectedIssue1() {
+		let instance = try? runDetectedIssue1()
+		XCTAssertNotNil(instance, "Must instantiate DetectedIssue")
+		try! runDetectedIssue1(instance!.asJSON())
 	}
 	
-	func runContraindication1(json: FHIRJSON? = nil) throws -> Contraindication {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "contraindication-example-allergy.json")
+	func runDetectedIssue1(json: FHIRJSON? = nil) throws -> DetectedIssue {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example-allergy.json")
 		
 		XCTAssertEqual(inst.id!, "allergy")
 		XCTAssertEqual(inst.text!.div!, "<div>[Put rendering here]</div>")
@@ -37,13 +38,14 @@ class ContraindicationTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testContraindication2() throws {
-		let instance = try runContraindication2()
-		try runContraindication2(instance.asJSON())
+	func testDetectedIssue2() {
+		let instance = try? runDetectedIssue2()
+		XCTAssertNotNil(instance, "Must instantiate DetectedIssue")
+		try! runDetectedIssue2(instance!.asJSON())
 	}
 	
-	func runContraindication2(json: FHIRJSON? = nil) throws -> Contraindication {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "contraindication-example-dup.json")
+	func runDetectedIssue2(json: FHIRJSON? = nil) throws -> DetectedIssue {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example-dup.json")
 		
 		XCTAssertEqual(inst.author!.reference!, "Device/dsp")
 		XCTAssertEqual(inst.category!.coding![0].code!, "DUPTHPY")
@@ -61,13 +63,14 @@ class ContraindicationTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testContraindication3() throws {
-		let instance = try runContraindication3()
-		try runContraindication3(instance.asJSON())
+	func testDetectedIssue3() {
+		let instance = try? runDetectedIssue3()
+		XCTAssertNotNil(instance, "Must instantiate DetectedIssue")
+		try! runDetectedIssue3(instance!.asJSON())
 	}
 	
-	func runContraindication3(json: FHIRJSON? = nil) throws -> Contraindication {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "contraindication-example-lab.json")
+	func runDetectedIssue3(json: FHIRJSON? = nil) throws -> DetectedIssue {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example-lab.json")
 		
 		XCTAssertEqual(inst.id!, "lab")
 		XCTAssertEqual(inst.text!.div!, "<div>[Put rendering here]</div>")
@@ -76,13 +79,14 @@ class ContraindicationTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testContraindication4() throws {
-		let instance = try runContraindication4()
-		try runContraindication4(instance.asJSON())
+	func testDetectedIssue4() {
+		let instance = try? runDetectedIssue4()
+		XCTAssertNotNil(instance, "Must instantiate DetectedIssue")
+		try! runDetectedIssue4(instance!.asJSON())
 	}
 	
-	func runContraindication4(json: FHIRJSON? = nil) throws -> Contraindication {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "contraindication-example.json")
+	func runDetectedIssue4(json: FHIRJSON? = nil) throws -> DetectedIssue {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example.json")
 		
 		XCTAssertEqual(inst.author!.reference!, "Device/dsp")
 		XCTAssertEqual(inst.category!.coding![0].code!, "DRG")
@@ -93,15 +97,15 @@ class ContraindicationTests: FHIRModelTestCase
 		XCTAssertEqual(inst.implicated![0].display!, "500 mg Acetaminophen tablet 1/day, PRN since 2010")
 		XCTAssertEqual(inst.implicated![0].reference!, "MedicationStatement/tylenol")
 		XCTAssertEqual(inst.implicated![1].display!, "Warfarin 1 MG TAB prescribed Jan. 5, 2014")
-		XCTAssertEqual(inst.implicated![1].reference!, "MedicationPrescription/warfarin")
-		XCTAssertEqual(inst.mitigation![0].action!.coding![0].code!, "30")
+		XCTAssertEqual(inst.implicated![1].reference!, "MedicationOrder/warfarin")
+		XCTAssertEqual(inst.mitigation![0].action!.coding![0].code!, "13")
 		XCTAssertEqual(inst.mitigation![0].action!.coding![0].display!, "Stopped Concurrent Therapy")
 		XCTAssertEqual(inst.mitigation![0].action!.coding![0].system!.absoluteString, "http://hl7.org/fhir/v3/ActCode")
 		XCTAssertEqual(inst.mitigation![0].action!.text!, "Asked patient to discontinue regular use of Tylenol and to consult with clinician if they need to resume to allow appropriate INR monitoring")
 		XCTAssertEqual(inst.mitigation![0].author!.display!, "Dr. Adam Careful")
 		XCTAssertEqual(inst.mitigation![0].author!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.mitigation![0].date!.description, "2014-01-05")
-		XCTAssertEqual(inst.severity!, "H")
+		XCTAssertEqual(inst.severity!, "high")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst

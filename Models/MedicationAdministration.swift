@@ -2,7 +2,7 @@
 //  MedicationAdministration.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import Foundation
  *  Administration of medication to a patient.
  *
  *  Describes the event of a patient consuming or otherwise being administered a medication.  This may be as simple as
- *  swallowing a tablet or it may be a long running infusion.Related resources tie this event to the authorizing
+ *  swallowing a tablet or it may be a long running infusion.  Related resources tie this event to the authorizing
  *  prescription, and the specific encounter between patient and health care practitioner.
  */
 public class MedicationAdministration: DomainResource
@@ -40,16 +40,19 @@ public class MedicationAdministration: DomainResource
 	/// External identifier
 	public var identifier: [Identifier]?
 	
-	/// What was administered?
-	public var medication: Reference?
+	/// What was administered
+	public var medicationCodeableConcept: CodeableConcept?
+	
+	/// What was administered
+	public var medicationReference: Reference?
 	
 	/// Information about the administration
 	public var note: String?
 	
-	/// Who received medication?
+	/// Who received medication
 	public var patient: Reference?
 	
-	/// Who administered substance?
+	/// Who administered substance
 	public var practitioner: Reference?
 	
 	/// Order administration performed against
@@ -74,20 +77,14 @@ public class MedicationAdministration: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(effectiveTimeDateTime: DateTime?, effectiveTimePeriod: Period?, patient: Reference?, status: String?) {
+	public convenience init(effectiveTimeDateTime: DateTime, effectiveTimePeriod: Period, medicationCodeableConcept: CodeableConcept, medicationReference: Reference, patient: Reference, status: String) {
 		self.init(json: nil)
-		if nil != effectiveTimeDateTime {
-			self.effectiveTimeDateTime = effectiveTimeDateTime
-		}
-		if nil != effectiveTimePeriod {
-			self.effectiveTimePeriod = effectiveTimePeriod
-		}
-		if nil != patient {
-			self.patient = patient
-		}
-		if nil != status {
-			self.status = status
-		}
+		self.effectiveTimeDateTime = effectiveTimeDateTime
+		self.effectiveTimePeriod = effectiveTimePeriod
+		self.medicationCodeableConcept = medicationCodeableConcept
+		self.medicationReference = medicationReference
+		self.patient = patient
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -147,13 +144,22 @@ public class MedicationAdministration: DomainResource
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["medication"] {
-				presentKeys.insert("medication")
+			if let exist: AnyObject = js["medicationCodeableConcept"] {
+				presentKeys.insert("medicationCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.medication = Reference(json: val, owner: self)
+					self.medicationCodeableConcept = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "medication", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "medicationCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["medicationReference"] {
+				presentKeys.insert("medicationReference")
+				if let val = exist as? FHIRJSON {
+					self.medicationReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "medicationReference", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["note"] {
@@ -236,6 +242,9 @@ public class MedicationAdministration: DomainResource
 			}
 			
 			// check if nonoptional expanded properties are present
+			if nil == self.medicationCodeableConcept && nil == self.medicationReference {
+				errors.append(FHIRJSONError(key: "medication[x]*"))
+			}
 			if nil == self.effectiveTimeDateTime && nil == self.effectiveTimePeriod {
 				errors.append(FHIRJSONError(key: "effectiveTime[x]*"))
 			}
@@ -264,8 +273,11 @@ public class MedicationAdministration: DomainResource
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
-		if let medication = self.medication {
-			json["medication"] = medication.asJSON()
+		if let medicationCodeableConcept = self.medicationCodeableConcept {
+			json["medicationCodeableConcept"] = medicationCodeableConcept.asJSON()
+		}
+		if let medicationReference = self.medicationReference {
+			json["medicationReference"] = medicationReference.asJSON()
 		}
 		if let note = self.note {
 			json["note"] = note.asJSON()
@@ -300,7 +312,7 @@ public class MedicationAdministration: DomainResource
 /**
  *  Details of how medication was taken.
  *
- *  Indicates how the medication is/was used by the patient.
+ *  Describes the medication dosage information details e.g. dose, rate, site, route, etc.
  */
 public class MedicationAdministrationDosage: FHIRElement
 {
@@ -315,13 +327,19 @@ public class MedicationAdministrationDosage: FHIRElement
 	public var quantity: Quantity?
 	
 	/// Dose quantity per unit of time
-	public var rate: Ratio?
+	public var rateRange: Range?
+	
+	/// Dose quantity per unit of time
+	public var rateRatio: Ratio?
 	
 	/// Path of substance into body
 	public var route: CodeableConcept?
 	
 	/// Body site administered to
-	public var site: CodeableConcept?
+	public var siteCodeableConcept: CodeableConcept?
+	
+	/// Body site administered to
+	public var siteReference: Reference?
 	
 	/// Dosage Instructions
 	public var text: String?
@@ -353,13 +371,22 @@ public class MedicationAdministrationDosage: FHIRElement
 					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["rate"] {
-				presentKeys.insert("rate")
+			if let exist: AnyObject = js["rateRange"] {
+				presentKeys.insert("rateRange")
 				if let val = exist as? FHIRJSON {
-					self.rate = Ratio(json: val, owner: self)
+					self.rateRange = Range(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "rate", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "rateRange", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["rateRatio"] {
+				presentKeys.insert("rateRatio")
+				if let val = exist as? FHIRJSON {
+					self.rateRatio = Ratio(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "rateRatio", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["route"] {
@@ -371,13 +398,22 @@ public class MedicationAdministrationDosage: FHIRElement
 					errors.append(FHIRJSONError(key: "route", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["site"] {
-				presentKeys.insert("site")
+			if let exist: AnyObject = js["siteCodeableConcept"] {
+				presentKeys.insert("siteCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.site = CodeableConcept(json: val, owner: self)
+					self.siteCodeableConcept = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "site", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "siteCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["siteReference"] {
+				presentKeys.insert("siteReference")
+				if let val = exist as? FHIRJSON {
+					self.siteReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "siteReference", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["text"] {
@@ -402,14 +438,20 @@ public class MedicationAdministrationDosage: FHIRElement
 		if let quantity = self.quantity {
 			json["quantity"] = quantity.asJSON()
 		}
-		if let rate = self.rate {
-			json["rate"] = rate.asJSON()
+		if let rateRange = self.rateRange {
+			json["rateRange"] = rateRange.asJSON()
+		}
+		if let rateRatio = self.rateRatio {
+			json["rateRatio"] = rateRatio.asJSON()
 		}
 		if let route = self.route {
 			json["route"] = route.asJSON()
 		}
-		if let site = self.site {
-			json["site"] = site.asJSON()
+		if let siteCodeableConcept = self.siteCodeableConcept {
+			json["siteCodeableConcept"] = siteCodeableConcept.asJSON()
+		}
+		if let siteReference = self.siteReference {
+			json["siteReference"] = siteReference.asJSON()
 		}
 		if let text = self.text {
 			json["text"] = text.asJSON()

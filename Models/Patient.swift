@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Patient) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Patient) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -27,13 +27,13 @@ public class Patient: DomainResource
 	/// Addresses for the individual
 	public var address: [Address]?
 	
-	/// If this patient is an animal (non-human)
+	/// This patient is known to be an animal (non-human)
 	public var animal: PatientAnimal?
 	
 	/// The date of birth for the individual
 	public var birthDate: Date?
 	
-	/// Patient's nominated care provider
+	/// Patient's nominated primary care provider
 	public var careProvider: [Reference]?
 	
 	/// A list of Languages which may be used to communicate with the patient about his or her health
@@ -329,9 +329,9 @@ public class Patient: DomainResource
 
 
 /**
- *  If this patient is an animal (non-human).
+ *  This patient is known to be an animal (non-human).
  *
- *  This element has a value if the patient is an animal.
+ *  This patient is known to be an animal.
  */
 public class PatientAnimal: FHIRElement
 {
@@ -355,11 +355,9 @@ public class PatientAnimal: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(species: CodeableConcept?) {
+	public convenience init(species: CodeableConcept) {
 		self.init(json: nil)
-		if nil != species {
-			self.species = species
-		}
+		self.species = species
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -441,11 +439,9 @@ public class PatientCommunication: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(language: CodeableConcept?) {
+	public convenience init(language: CodeableConcept) {
 		self.init(json: nil)
-		if nil != language {
-			self.language = language
-		}
+		self.language = language
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -651,14 +647,10 @@ public class PatientLink: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(other: Reference?, type: String?) {
+	public convenience init(other: Reference, type: String) {
 		self.init(json: nil)
-		if nil != other {
-			self.other = other
-		}
-		if nil != type {
-			self.type = type
-		}
+		self.other = other
+		self.type = type
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

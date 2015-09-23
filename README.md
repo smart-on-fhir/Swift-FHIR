@@ -13,12 +13,13 @@ Due to the complications of combining two volatile technologies, here's an overv
 The `master` branch should always compile and is on (point releases of) these main versions.
 See the `develop` branch or specific `feature/x` branches for new Swift or FHIR versions, and check the [tags](https://github.com/smart-on-fhir/Swift-FHIR/releases).
 
-Version  | Swift Version | FHIR Version
----------|---------------|-------------
- **2.0** |           2.0 | DSTU 2 (May 2015, `0.5.0.5149`)
- **1.0** |           1.2 | DSTU 2 (May 2015, `0.5.0.5149`)
- **0.2** |           1.1 | DSTU 2 (May 2015, `0.5.0.5149`)
- **0.1** |           1.0 | DSTU 1 (`0.0.81.2382`)
+Version  | Swift |          FHIR | &nbsp;
+---------|-------|---------------|---
+ **2.1** |   2.0 |       `1.0.1` | (DSTU 2)
+ **2.0** |   2.0 |  `0.5.0.5149` | (DSTU 2 Ballot, May 2015)
+ **1.0** |   1.2 |  `0.5.0.5149` | (DSTU 2 Ballot, May 2015)
+ **0.2** |   1.1 |  `0.5.0.5149` | (DSTU 2 Ballot, May 2015)
+ **0.1** |   1.0 | `0.0.81.2382` | (DSTU 1)
 
 
 SMART on FHIR

@@ -2,7 +2,7 @@
 //  RelatedPersonTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class RelatedPersonTests: FHIRModelTestCase
+class RelatedPersonTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> RelatedPerson {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class RelatedPersonTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testRelatedPerson1() throws {
-		let instance = try runRelatedPerson1()
-		try runRelatedPerson1(instance.asJSON())
+	func testRelatedPerson1() {
+		let instance = try? runRelatedPerson1()
+		XCTAssertNotNil(instance, "Must instantiate RelatedPerson")
+		try! runRelatedPerson1(instance!.asJSON())
 	}
 	
 	func runRelatedPerson1(json: FHIRJSON? = nil) throws -> RelatedPerson {
@@ -52,19 +53,23 @@ class RelatedPersonTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testRelatedPerson2() throws {
-		let instance = try runRelatedPerson2()
-		try runRelatedPerson2(instance.asJSON())
+	func testRelatedPerson2() {
+		let instance = try? runRelatedPerson2()
+		XCTAssertNotNil(instance, "Must instantiate RelatedPerson")
+		try! runRelatedPerson2(instance!.asJSON())
 	}
 	
 	func runRelatedPerson2(json: FHIRJSON? = nil) throws -> RelatedPerson {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-f002-ariadne.json")
 		
+		XCTAssertEqual(inst.birthDate!.description, "1963")
 		XCTAssertEqual(inst.gender!, "female")
 		XCTAssertEqual(inst.id!, "f002")
 		XCTAssertEqual(inst.name!.text!, "Ariadne Bor-Jansma")
 		XCTAssertEqual(inst.name!.use!, "usual")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f201")
+		XCTAssertEqual(inst.period!.start!.description, "1975")
+		XCTAssertEqual(inst.photo![0].contentType!, "image/jpeg")
 		XCTAssertEqual(inst.relationship!.coding![0].code!, "SIGOTHR")
 		XCTAssertEqual(inst.relationship!.coding![0].system!.absoluteString, "http://hl7.org/fhir/v3/RoleCode")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
@@ -75,19 +80,20 @@ class RelatedPersonTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testRelatedPerson3() throws {
-		let instance = try runRelatedPerson3()
-		try runRelatedPerson3(instance.asJSON())
+	func testRelatedPerson3() {
+		let instance = try? runRelatedPerson3()
+		XCTAssertNotNil(instance, "Must instantiate RelatedPerson")
+		try! runRelatedPerson3(instance!.asJSON())
 	}
 	
 	func runRelatedPerson3(json: FHIRJSON? = nil) throws -> RelatedPerson {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-peter.json")
 		
-		XCTAssertEqual(inst.address!.city!, "PleasantVille")
-		XCTAssertEqual(inst.address!.line![0], "534 Erewhon St")
-		XCTAssertEqual(inst.address!.postalCode!, "3999")
-		XCTAssertEqual(inst.address!.state!, "Vic")
-		XCTAssertEqual(inst.address!.use!, "home")
+		XCTAssertEqual(inst.address![0].city!, "PleasantVille")
+		XCTAssertEqual(inst.address![0].line![0], "534 Erewhon St")
+		XCTAssertEqual(inst.address![0].postalCode!, "3999")
+		XCTAssertEqual(inst.address![0].state!, "Vic")
+		XCTAssertEqual(inst.address![0].use!, "home")
 		XCTAssertEqual(inst.gender!, "male")
 		XCTAssertEqual(inst.id!, "peter")
 		XCTAssertEqual(inst.name!.family![0], "Chalmers")
@@ -108,18 +114,19 @@ class RelatedPersonTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testRelatedPerson4() throws {
-		let instance = try runRelatedPerson4()
-		try runRelatedPerson4(instance.asJSON())
+	func testRelatedPerson4() {
+		let instance = try? runRelatedPerson4()
+		XCTAssertNotNil(instance, "Must instantiate RelatedPerson")
+		try! runRelatedPerson4(instance!.asJSON())
 	}
 	
 	func runRelatedPerson4(json: FHIRJSON? = nil) throws -> RelatedPerson {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example.json")
 		
-		XCTAssertEqual(inst.address!.city!, "Paris")
-		XCTAssertEqual(inst.address!.country!, "FRA")
-		XCTAssertEqual(inst.address!.line![0], "43, Place du Marché Sainte Catherine")
-		XCTAssertEqual(inst.address!.postalCode!, "75004")
+		XCTAssertEqual(inst.address![0].city!, "Paris")
+		XCTAssertEqual(inst.address![0].country!, "FRA")
+		XCTAssertEqual(inst.address![0].line![0], "43, Place du Marché Sainte Catherine")
+		XCTAssertEqual(inst.address![0].postalCode!, "75004")
 		XCTAssertEqual(inst.gender!, "female")
 		XCTAssertEqual(inst.id!, "benedicte")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:oid:1.2.250.1.61")

@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Condition) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Condition) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -13,8 +13,8 @@ import Foundation
  *  Detailed information about conditions, problems or diagnoses.
  *
  *  Use to record detailed information about conditions, problems or diagnoses recognized by a clinician. There are many
- *  uses including: recording a Diagnosis during an Encounter; populating a problem List or a Summary Statement, such as
- *  a Discharge Summary.
+ *  uses including: recording a diagnosis during an encounter; populating a problem list or a summary statement, such as
+ *  a discharge summary.
  */
 public class Condition: DomainResource
 {
@@ -23,16 +23,16 @@ public class Condition: DomainResource
 	}
 	
 	/// If/when in resolution/remission
-	public var abatementAge: Age?
-	
-	/// If/when in resolution/remission
 	public var abatementBoolean: Bool?
 	
 	/// If/when in resolution/remission
-	public var abatementDate: Date?
+	public var abatementDateTime: DateTime?
 	
 	/// If/when in resolution/remission
 	public var abatementPeriod: Period?
+	
+	/// If/when in resolution/remission
+	public var abatementQuantity: Quantity?
 	
 	/// If/when in resolution/remission
 	public var abatementRange: Range?
@@ -43,20 +43,20 @@ public class Condition: DomainResource
 	/// Person who asserts this condition
 	public var asserter: Reference?
 	
-	/// E.g. complaint | symptom | finding | diagnosis
+	/// Anatomical location, if relevant
+	public var bodySite: [CodeableConcept]?
+	
+	/// complaint | symptom | finding | diagnosis
 	public var category: CodeableConcept?
 	
-	/// provisional | working | confirmed | refuted | entered-in-error | unknown
+	/// active | relapse | remission | resolved
 	public var clinicalStatus: String?
 	
 	/// Identification of the condition, problem or diagnosis
 	public var code: CodeableConcept?
 	
-	/// When first detected/suspected/entered
-	public var dateAsserted: Date?
-	
-	/// Causes for this Condition
-	public var dueTo: [ConditionDueTo]?
+	/// When first entered
+	public var dateRecorded: Date?
 	
 	/// Encounter when condition first asserted
 	public var encounter: Reference?
@@ -67,23 +67,17 @@ public class Condition: DomainResource
 	/// External Ids for this condition
 	public var identifier: [Identifier]?
 	
-	/// Anatomical location, if relevant
-	public var location: [ConditionLocation]?
-	
 	/// Additional information about the Condition
 	public var notes: String?
-	
-	/// Precedent for this Condition
-	public var occurredFollowing: [ConditionOccurredFollowing]?
-	
-	/// Estimated or actual date,  date-time, or age
-	public var onsetAge: Age?
 	
 	/// Estimated or actual date,  date-time, or age
 	public var onsetDateTime: DateTime?
 	
 	/// Estimated or actual date,  date-time, or age
 	public var onsetPeriod: Period?
+	
+	/// Estimated or actual date,  date-time, or age
+	public var onsetQuantity: Quantity?
 	
 	/// Estimated or actual date,  date-time, or age
 	public var onsetRange: Range?
@@ -100,6 +94,9 @@ public class Condition: DomainResource
 	/// Stage/grade, usually assessed formally
 	public var stage: ConditionStage?
 	
+	/// provisional | differential | confirmed | refuted | entered-in-error | unknown
+	public var verificationStatus: String?
+	
 	
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?) {
@@ -107,31 +104,16 @@ public class Condition: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(clinicalStatus: String?, code: CodeableConcept?, patient: Reference?) {
+	public convenience init(code: CodeableConcept, patient: Reference, verificationStatus: String) {
 		self.init(json: nil)
-		if nil != clinicalStatus {
-			self.clinicalStatus = clinicalStatus
-		}
-		if nil != code {
-			self.code = code
-		}
-		if nil != patient {
-			self.patient = patient
-		}
+		self.code = code
+		self.patient = patient
+		self.verificationStatus = verificationStatus
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["abatementAge"] {
-				presentKeys.insert("abatementAge")
-				if let val = exist as? FHIRJSON {
-					self.abatementAge = Age(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "abatementAge", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["abatementBoolean"] {
 				presentKeys.insert("abatementBoolean")
 				if let val = exist as? Bool {
@@ -141,13 +123,13 @@ public class Condition: DomainResource
 					errors.append(FHIRJSONError(key: "abatementBoolean", wants: Bool.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["abatementDate"] {
-				presentKeys.insert("abatementDate")
+			if let exist: AnyObject = js["abatementDateTime"] {
+				presentKeys.insert("abatementDateTime")
 				if let val = exist as? String {
-					self.abatementDate = Date(string: val)
+					self.abatementDateTime = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "abatementDate", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "abatementDateTime", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["abatementPeriod"] {
@@ -157,6 +139,15 @@ public class Condition: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "abatementPeriod", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["abatementQuantity"] {
+				presentKeys.insert("abatementQuantity")
+				if let val = exist as? FHIRJSON {
+					self.abatementQuantity = Quantity(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "abatementQuantity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["abatementRange"] {
@@ -186,6 +177,15 @@ public class Condition: DomainResource
 					errors.append(FHIRJSONError(key: "asserter", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["bodySite"] {
+				presentKeys.insert("bodySite")
+				if let val = exist as? [FHIRJSON] {
+					self.bodySite = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "bodySite", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
@@ -204,9 +204,6 @@ public class Condition: DomainResource
 					errors.append(FHIRJSONError(key: "clinicalStatus", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			else {
-				errors.append(FHIRJSONError(key: "clinicalStatus"))
-			}
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
@@ -219,22 +216,13 @@ public class Condition: DomainResource
 			else {
 				errors.append(FHIRJSONError(key: "code"))
 			}
-			if let exist: AnyObject = js["dateAsserted"] {
-				presentKeys.insert("dateAsserted")
+			if let exist: AnyObject = js["dateRecorded"] {
+				presentKeys.insert("dateRecorded")
 				if let val = exist as? String {
-					self.dateAsserted = Date(string: val)
+					self.dateRecorded = Date(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "dateAsserted", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["dueTo"] {
-				presentKeys.insert("dueTo")
-				if let val = exist as? [FHIRJSON] {
-					self.dueTo = ConditionDueTo.from(val, owner: self) as? [ConditionDueTo]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "dueTo", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "dateRecorded", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["encounter"] {
@@ -264,15 +252,6 @@ public class Condition: DomainResource
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["location"] {
-				presentKeys.insert("location")
-				if let val = exist as? [FHIRJSON] {
-					self.location = ConditionLocation.from(val, owner: self) as? [ConditionLocation]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "location", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["notes"] {
 				presentKeys.insert("notes")
 				if let val = exist as? String {
@@ -280,24 +259,6 @@ public class Condition: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "notes", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["occurredFollowing"] {
-				presentKeys.insert("occurredFollowing")
-				if let val = exist as? [FHIRJSON] {
-					self.occurredFollowing = ConditionOccurredFollowing.from(val, owner: self) as? [ConditionOccurredFollowing]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "occurredFollowing", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["onsetAge"] {
-				presentKeys.insert("onsetAge")
-				if let val = exist as? FHIRJSON {
-					self.onsetAge = Age(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "onsetAge", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["onsetDateTime"] {
@@ -316,6 +277,15 @@ public class Condition: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "onsetPeriod", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["onsetQuantity"] {
+				presentKeys.insert("onsetQuantity")
+				if let val = exist as? FHIRJSON {
+					self.onsetQuantity = Quantity(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "onsetQuantity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["onsetRange"] {
@@ -366,6 +336,18 @@ public class Condition: DomainResource
 					errors.append(FHIRJSONError(key: "stage", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["verificationStatus"] {
+				presentKeys.insert("verificationStatus")
+				if let val = exist as? String {
+					self.verificationStatus = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "verificationStatus", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "verificationStatus"))
+			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -373,17 +355,17 @@ public class Condition: DomainResource
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let abatementAge = self.abatementAge {
-			json["abatementAge"] = abatementAge.asJSON()
-		}
 		if let abatementBoolean = self.abatementBoolean {
 			json["abatementBoolean"] = abatementBoolean.asJSON()
 		}
-		if let abatementDate = self.abatementDate {
-			json["abatementDate"] = abatementDate.asJSON()
+		if let abatementDateTime = self.abatementDateTime {
+			json["abatementDateTime"] = abatementDateTime.asJSON()
 		}
 		if let abatementPeriod = self.abatementPeriod {
 			json["abatementPeriod"] = abatementPeriod.asJSON()
+		}
+		if let abatementQuantity = self.abatementQuantity {
+			json["abatementQuantity"] = abatementQuantity.asJSON()
 		}
 		if let abatementRange = self.abatementRange {
 			json["abatementRange"] = abatementRange.asJSON()
@@ -394,6 +376,9 @@ public class Condition: DomainResource
 		if let asserter = self.asserter {
 			json["asserter"] = asserter.asJSON()
 		}
+		if let bodySite = self.bodySite {
+			json["bodySite"] = CodeableConcept.asJSONArray(bodySite)
+		}
 		if let category = self.category {
 			json["category"] = category.asJSON()
 		}
@@ -403,11 +388,8 @@ public class Condition: DomainResource
 		if let code = self.code {
 			json["code"] = code.asJSON()
 		}
-		if let dateAsserted = self.dateAsserted {
-			json["dateAsserted"] = dateAsserted.asJSON()
-		}
-		if let dueTo = self.dueTo {
-			json["dueTo"] = ConditionDueTo.asJSONArray(dueTo)
+		if let dateRecorded = self.dateRecorded {
+			json["dateRecorded"] = dateRecorded.asJSON()
 		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()
@@ -418,23 +400,17 @@ public class Condition: DomainResource
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
-		if let location = self.location {
-			json["location"] = ConditionLocation.asJSONArray(location)
-		}
 		if let notes = self.notes {
 			json["notes"] = notes.asJSON()
-		}
-		if let occurredFollowing = self.occurredFollowing {
-			json["occurredFollowing"] = ConditionOccurredFollowing.asJSONArray(occurredFollowing)
-		}
-		if let onsetAge = self.onsetAge {
-			json["onsetAge"] = onsetAge.asJSON()
 		}
 		if let onsetDateTime = self.onsetDateTime {
 			json["onsetDateTime"] = onsetDateTime.asJSON()
 		}
 		if let onsetPeriod = self.onsetPeriod {
 			json["onsetPeriod"] = onsetPeriod.asJSON()
+		}
+		if let onsetQuantity = self.onsetQuantity {
+			json["onsetQuantity"] = onsetQuantity.asJSON()
 		}
 		if let onsetRange = self.onsetRange {
 			json["onsetRange"] = onsetRange.asJSON()
@@ -451,68 +427,8 @@ public class Condition: DomainResource
 		if let stage = self.stage {
 			json["stage"] = stage.asJSON()
 		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Causes for this Condition.
- *
- *  Further conditions, problems, diagnoses, procedures or events or the substance that caused/triggered this Condition.
- */
-public class ConditionDueTo: FHIRElement
-{
-	override public class var resourceName: String {
-		get { return "ConditionDueTo" }
-	}
-	
-	/// Relationship target by means of a predefined code
-	public var code: CodeableConcept?
-	
-	/// Relationship target resource
-	public var target: Reference?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?) {
-		super.init(json: json)
-	}
-	
-	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist: AnyObject = js["code"] {
-				presentKeys.insert("code")
-				if let val = exist as? FHIRJSON {
-					self.code = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["target"] {
-				presentKeys.insert("target")
-				if let val = exist as? FHIRJSON {
-					self.target = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "target", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override public func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		if let target = self.target {
-			json["target"] = target.asJSON()
+		if let verificationStatus = self.verificationStatus {
+			json["verificationStatus"] = verificationStatus.asJSON()
 		}
 		
 		return json
@@ -576,132 +492,6 @@ public class ConditionEvidence: FHIRElement
 		}
 		if let detail = self.detail {
 			json["detail"] = Reference.asJSONArray(detail)
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Anatomical location, if relevant.
- *
- *  The anatomical location where this condition manifests itself.
- */
-public class ConditionLocation: FHIRElement
-{
-	override public class var resourceName: String {
-		get { return "ConditionLocation" }
-	}
-	
-	/// Location - may include laterality
-	public var siteCodeableConcept: CodeableConcept?
-	
-	/// Location - may include laterality
-	public var siteReference: Reference?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?) {
-		super.init(json: json)
-	}
-	
-	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist: AnyObject = js["siteCodeableConcept"] {
-				presentKeys.insert("siteCodeableConcept")
-				if let val = exist as? FHIRJSON {
-					self.siteCodeableConcept = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "siteCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["siteReference"] {
-				presentKeys.insert("siteReference")
-				if let val = exist as? FHIRJSON {
-					self.siteReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "siteReference", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override public func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let siteCodeableConcept = self.siteCodeableConcept {
-			json["siteCodeableConcept"] = siteCodeableConcept.asJSON()
-		}
-		if let siteReference = self.siteReference {
-			json["siteReference"] = siteReference.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Precedent for this Condition.
- *
- *  Further conditions, problems, diagnoses, procedures or events or the substance that preceded this Condition.
- */
-public class ConditionOccurredFollowing: FHIRElement
-{
-	override public class var resourceName: String {
-		get { return "ConditionOccurredFollowing" }
-	}
-	
-	/// Relationship target by means of a predefined code
-	public var code: CodeableConcept?
-	
-	/// Relationship target resource
-	public var target: Reference?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?) {
-		super.init(json: json)
-	}
-	
-	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist: AnyObject = js["code"] {
-				presentKeys.insert("code")
-				if let val = exist as? FHIRJSON {
-					self.code = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["target"] {
-				presentKeys.insert("target")
-				if let val = exist as? FHIRJSON {
-					self.target = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "target", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override public func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		if let target = self.target {
-			json["target"] = target.asJSON()
 		}
 		
 		return json

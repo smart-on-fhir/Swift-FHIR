@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -17,12 +17,6 @@ public class OrderResponse: DomainResource
 	override public class var resourceName: String {
 		get { return "OrderResponse" }
 	}
-	
-	/// If required by policy
-	public var authorityCodeableConcept: CodeableConcept?
-	
-	/// If required by policy
-	public var authorityReference: Reference?
 	
 	/// When the response was made
 	public var date: DateTime?
@@ -52,37 +46,15 @@ public class OrderResponse: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(orderStatus: String?, request: Reference?) {
+	public convenience init(orderStatus: String, request: Reference) {
 		self.init(json: nil)
-		if nil != orderStatus {
-			self.orderStatus = orderStatus
-		}
-		if nil != request {
-			self.request = request
-		}
+		self.orderStatus = orderStatus
+		self.request = request
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["authorityCodeableConcept"] {
-				presentKeys.insert("authorityCodeableConcept")
-				if let val = exist as? FHIRJSON {
-					self.authorityCodeableConcept = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "authorityCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["authorityReference"] {
-				presentKeys.insert("authorityReference")
-				if let val = exist as? FHIRJSON {
-					self.authorityReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "authorityReference", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["date"] {
 				presentKeys.insert("date")
 				if let val = exist as? String {
@@ -159,12 +131,6 @@ public class OrderResponse: DomainResource
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let authorityCodeableConcept = self.authorityCodeableConcept {
-			json["authorityCodeableConcept"] = authorityCodeableConcept.asJSON()
-		}
-		if let authorityReference = self.authorityReference {
-			json["authorityReference"] = authorityReference.asJSON()
-		}
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}

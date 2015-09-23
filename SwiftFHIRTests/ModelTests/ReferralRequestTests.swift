@@ -2,7 +2,7 @@
 //  ReferralRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class ReferralRequestTests: FHIRModelTestCase
+class ReferralRequestTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> ReferralRequest {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class ReferralRequestTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testReferralRequest1() throws {
-		let instance = try runReferralRequest1()
-		try runReferralRequest1(instance.asJSON())
+	func testReferralRequest1() {
+		let instance = try? runReferralRequest1()
+		XCTAssertNotNil(instance, "Must instantiate ReferralRequest")
+		try! runReferralRequest1(instance!.asJSON())
 	}
 	
 	func runReferralRequest1(json: FHIRJSON? = nil) throws -> ReferralRequest {
@@ -58,48 +59,6 @@ class ReferralRequestTests: FHIRModelTestCase
 		XCTAssertEqual(inst.type!.coding![0].code!, "rfs")
 		XCTAssertEqual(inst.type!.coding![0].display!, "Referral for service")
 		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString, "http://orionhealth.com/fhir/apps/referraltypes")
-		
-		return inst
-	}
-	
-	func testReferralRequest2() throws {
-		let instance = try runReferralRequest2()
-		try runReferralRequest2(instance.asJSON())
-	}
-	
-	func runReferralRequest2(json: FHIRJSON? = nil) throws -> ReferralRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "referralrequest-qicore-example.json")
-		
-		XCTAssertEqual(inst.dateSent!.description, "2014-02-14")
-		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/referralrequest-reasonRefused")
-		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "609589008")
-		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].display!, "Refused by parents of subject")
-		XCTAssertEqual(inst.extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.id!, "qicore")
-		XCTAssertEqual(inst.patient!.display!, "Beverly Weaver")
-		XCTAssertEqual(inst.patient!.reference!, "https://fhir.orionhealth.com/blaze/fhir/Patient/77662")
-		XCTAssertEqual(inst.priority!.coding![0].code!, "394848005")
-		XCTAssertEqual(inst.priority!.coding![0].display!, "Normal priority")
-		XCTAssertEqual(inst.priority!.coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.reason!.coding![0].code!, "65363002")
-		XCTAssertEqual(inst.reason!.coding![0].display!, "Otitis media")
-		XCTAssertEqual(inst.reason!.coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.recipient![0].display!, "Dr Dave")
-		XCTAssertEqual(inst.recipient![0].reference!, "https://fhir.orionhealth.com/blaze/fhir/Practitioner/76597")
-		XCTAssertEqual(inst.requester!.display!, "Serena Shrink")
-		XCTAssertEqual(inst.requester!.reference!, "https://fhir.orionhealth.com/blaze/fhir/Practitioner/77272")
-		XCTAssertEqual(inst.serviceRequested![0].coding![0].code!, "172676009")
-		XCTAssertEqual(inst.serviceRequested![0].coding![0].display!, "Myringotomy and insertion of short-term tympanic ventilation tube (procedure)")
-		XCTAssertEqual(inst.serviceRequested![0].coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.specialty!.coding![0].code!, "417887005")
-		XCTAssertEqual(inst.specialty!.coding![0].display!, "Pediatric otolaryngology")
-		XCTAssertEqual(inst.specialty!.coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.status!, "rejected")
-		XCTAssertEqual(inst.text!.div!, "<div>Referral to Dr Dave for Beverly weaver to have grommets inserted in her r) ear</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!.coding![0].code!, "700274009")
-		XCTAssertEqual(inst.type!.coding![0].display!, "Referral for procedure")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		
 		return inst
 	}

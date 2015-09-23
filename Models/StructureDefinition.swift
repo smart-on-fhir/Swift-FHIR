@@ -2,7 +2,7 @@
 //  StructureDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -30,6 +30,9 @@ public class StructureDefinition: DomainResource
 	/// Assist with indexing and finding
 	public var code: [Coding]?
 	
+	/// Any datatype or resource, including abstract ones
+	public var constrainedType: String?
+	
 	/// Contact details of the publisher
 	public var contact: [StructureDefinitionContact]?
 	
@@ -39,7 +42,7 @@ public class StructureDefinition: DomainResource
 	/// resource | datatype | mapping | extension
 	public var contextType: String?
 	
-	/// Use and/or Publishing restrictions
+	/// Use and/or publishing restrictions
 	public var copyright: String?
 	
 	/// Date for this version of the StructureDefinition
@@ -63,6 +66,9 @@ public class StructureDefinition: DomainResource
 	/// Other identifiers for the StructureDefinition
 	public var identifier: [Identifier]?
 	
+	/// datatype | resource | logical
+	public var kind: String?
+	
 	/// External specification that the content is mapped to
 	public var mapping: [StructureDefinitionMapping]?
 	
@@ -81,10 +87,7 @@ public class StructureDefinition: DomainResource
 	/// draft | active | retired
 	public var status: String?
 	
-	/// type | resource | constraint | extension
-	public var type: String?
-	
-	/// Literal URL used to reference this StructureDefinition
+	/// Absolute URL used to reference this StructureDefinition
 	public var url: NSURL?
 	
 	/// Content intends to support these contexts
@@ -100,23 +103,13 @@ public class StructureDefinition: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(abstract: Bool?, name: String?, status: String?, type: String?, url: NSURL?) {
+	public convenience init(abstract: Bool, kind: String, name: String, status: String, url: NSURL) {
 		self.init(json: nil)
-		if nil != abstract {
-			self.abstract = abstract
-		}
-		if nil != name {
-			self.name = name
-		}
-		if nil != status {
-			self.status = status
-		}
-		if nil != type {
-			self.type = type
-		}
-		if nil != url {
-			self.url = url
-		}
+		self.abstract = abstract
+		self.kind = kind
+		self.name = name
+		self.status = status
+		self.url = url
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -150,6 +143,15 @@ public class StructureDefinition: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["constrainedType"] {
+				presentKeys.insert("constrainedType")
+				if let val = exist as? String {
+					self.constrainedType = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "constrainedType", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["contact"] {
@@ -251,6 +253,18 @@ public class StructureDefinition: DomainResource
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["kind"] {
+				presentKeys.insert("kind")
+				if let val = exist as? String {
+					self.kind = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "kind", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "kind"))
+			}
 			if let exist: AnyObject = js["mapping"] {
 				presentKeys.insert("mapping")
 				if let val = exist as? [FHIRJSON] {
@@ -311,18 +325,6 @@ public class StructureDefinition: DomainResource
 			else {
 				errors.append(FHIRJSONError(key: "status"))
 			}
-			if let exist: AnyObject = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? String {
-					self.type = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "type"))
-			}
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
@@ -369,6 +371,9 @@ public class StructureDefinition: DomainResource
 		if let code = self.code {
 			json["code"] = Coding.asJSONArray(code)
 		}
+		if let constrainedType = self.constrainedType {
+			json["constrainedType"] = constrainedType.asJSON()
+		}
 		if let contact = self.contact {
 			json["contact"] = StructureDefinitionContact.asJSONArray(contact)
 		}
@@ -406,6 +411,9 @@ public class StructureDefinition: DomainResource
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
+		if let kind = self.kind {
+			json["kind"] = kind.asJSON()
+		}
 		if let mapping = self.mapping {
 			json["mapping"] = StructureDefinitionMapping.asJSONArray(mapping)
 		}
@@ -423,9 +431,6 @@ public class StructureDefinition: DomainResource
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
@@ -527,11 +532,9 @@ public class StructureDefinitionDifferential: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(element: [ElementDefinition]?) {
+	public convenience init(element: [ElementDefinition]) {
 		self.init(json: nil)
-		if nil != element {
-			self.element = element
-		}
+		self.element = element
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -576,7 +579,7 @@ public class StructureDefinitionMapping: FHIRElement
 		get { return "StructureDefinitionMapping" }
 	}
 	
-	/// Versions, Issues, Scope limitations etc
+	/// Versions, Issues, Scope limitations etc.
 	public var comments: String?
 	
 	/// Internal id when this mapping is used
@@ -595,11 +598,9 @@ public class StructureDefinitionMapping: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identity: String?) {
+	public convenience init(identity: String) {
 		self.init(json: nil)
-		if nil != identity {
-			self.identity = identity
-		}
+		self.identity = identity
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -691,11 +692,9 @@ public class StructureDefinitionSnapshot: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(element: [ElementDefinition]?) {
+	public convenience init(element: [ElementDefinition]) {
 		self.init(json: nil)
-		if nil != element {
-			self.element = element
-		}
+		self.element = element
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

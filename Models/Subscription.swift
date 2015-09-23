@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -54,20 +54,12 @@ public class Subscription: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(channel: SubscriptionChannel?, criteria: String?, reason: String?, status: String?) {
+	public convenience init(channel: SubscriptionChannel, criteria: String, reason: String, status: String) {
 		self.init(json: nil)
-		if nil != channel {
-			self.channel = channel
-		}
-		if nil != criteria {
-			self.criteria = criteria
-		}
-		if nil != reason {
-			self.reason = reason
-		}
-		if nil != status {
-			self.status = status
-		}
+		self.channel = channel
+		self.criteria = criteria
+		self.reason = reason
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -224,14 +216,10 @@ public class SubscriptionChannel: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(payload: String?, type: String?) {
+	public convenience init(payload: String, type: String) {
 		self.init(json: nil)
-		if nil != payload {
-			self.payload = payload
-		}
-		if nil != type {
-			self.type = type
-		}
+		self.payload = payload
+		self.type = type
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

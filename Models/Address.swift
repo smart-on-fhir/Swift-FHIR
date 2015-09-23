@@ -2,7 +2,7 @@
 //  Address.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Address) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Address) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -27,7 +27,10 @@ public class Address: FHIRElement
 	/// Country (can be ISO 3166 3 letter code)
 	public var country: String?
 	
-	/// Street name, number, direction & P.O. Box etc
+	/// District name (aka county)
+	public var district: String?
+	
+	/// Street name, number, direction & P.O. Box etc.
 	public var line: [String]?
 	
 	/// Time period when address was/is in use
@@ -36,11 +39,14 @@ public class Address: FHIRElement
 	/// Postal code for area
 	public var postalCode: String?
 	
-	/// Sub-unit of country (abreviations ok)
+	/// Sub-unit of country (abbreviations ok)
 	public var state: String?
 	
 	/// Text representation of the address
 	public var text: String?
+	
+	/// postal | physical | both
+	public var type: String?
 	
 	/// home | work | temp | old - purpose of this address
 	public var use: String?
@@ -70,6 +76,15 @@ public class Address: FHIRElement
 				}
 				else {
 					errors.append(FHIRJSONError(key: "country", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["district"] {
+				presentKeys.insert("district")
+				if let val = exist as? String {
+					self.district = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "district", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["line"] {
@@ -117,6 +132,15 @@ public class Address: FHIRElement
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["type"] {
+				presentKeys.insert("type")
+				if let val = exist as? String {
+					self.type = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "type", wants: String.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["use"] {
 				presentKeys.insert("use")
 				if let val = exist as? String {
@@ -139,6 +163,9 @@ public class Address: FHIRElement
 		if let country = self.country {
 			json["country"] = country.asJSON()
 		}
+		if let district = self.district {
+			json["district"] = district.asJSON()
+		}
 		if let line = self.line {
 			var arr = [AnyObject]()
 			for val in line {
@@ -157,6 +184,9 @@ public class Address: FHIRElement
 		}
 		if let text = self.text {
 			json["text"] = text.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
 		}
 		if let use = self.use {
 			json["use"] = use.asJSON()

@@ -2,7 +2,7 @@
 //  NamingSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class NamingSystemTests: FHIRModelTestCase
+class NamingSystemTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> NamingSystem {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,22 +22,91 @@ class NamingSystemTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testNamingSystem1() throws {
-		let instance = try runNamingSystem1()
-		try runNamingSystem1(instance.asJSON())
+	func testNamingSystem1() {
+		let instance = try? runNamingSystem1()
+		XCTAssertNotNil(instance, "Must instantiate NamingSystem")
+		try! runNamingSystem1(instance!.asJSON())
 	}
 	
 	func runNamingSystem1(json: FHIRJSON? = nil) throws -> NamingSystem {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example.json")
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example-id.json")
 		
-		XCTAssertEqual(inst.date!.description, "2014-12-13")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.name!, "SNOMED CT")
+		XCTAssertEqual(inst.contact![0].name!, "HL7 Australia FHIR Team")
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "other")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7-australia.wikispaces.com/FHIR+Australia")
+		XCTAssertEqual(inst.date!.description, "2015-08-31")
+		XCTAssertEqual(inst.description_fhir!, "Australian HI Identifier as established by relevant regulations etc")
+		XCTAssertEqual(inst.id!, "example-id")
+		XCTAssertEqual(inst.kind!, "identifier")
+		XCTAssertEqual(inst.name!, "Austalian Healthcare Identifier - Individual")
+		XCTAssertEqual(inst.publisher!, "HL7 Australia on behalf of NEHTA")
+		XCTAssertEqual(inst.responsible!, "HI Service Operator / NEHTA")
 		XCTAssertEqual(inst.status!, "active")
 		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!, "codesystem")
+		XCTAssertEqual(inst.type!.coding![0].code!, "NI")
+		XCTAssertEqual(inst.type!.coding![0].display!, "National unique individual identifier")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString, "http://hl7.org/fhir/v2/0203")
+		XCTAssertEqual(inst.type!.text!, "IHI")
+		XCTAssertEqual(inst.uniqueId![0].type!, "oid")
+		XCTAssertEqual(inst.uniqueId![0].value!, "1.2.36.1.2001.1003.0")
+		XCTAssertEqual(inst.uniqueId![1].period!.start!.description, "2015-08-21")
+		XCTAssertTrue(inst.uniqueId![1].preferred!)
+		XCTAssertEqual(inst.uniqueId![1].type!, "uri")
+		XCTAssertEqual(inst.uniqueId![1].value!, "http://ns.electronichealth.net.au/id/hi/ihi/1.0")
+		XCTAssertEqual(inst.usage!, "Used in Australia for identifying patients")
+		XCTAssertEqual(inst.useContext![0].coding![0].code!, "AU")
+		XCTAssertEqual(inst.useContext![0].coding![0].system!.absoluteString, "urn:iso:std:iso:3166")
+		
+		return inst
+	}
+	
+	func testNamingSystem2() {
+		let instance = try? runNamingSystem2()
+		XCTAssertNotNil(instance, "Must instantiate NamingSystem")
+		try! runNamingSystem2(instance!.asJSON())
+	}
+	
+	func runNamingSystem2(json: FHIRJSON? = nil) throws -> NamingSystem {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example-replaced.json")
+		
+		XCTAssertEqual(inst.date!.description, "2005-01-25")
+		XCTAssertEqual(inst.description_fhir!, "This was a wrong registration for the spanish editions of SNOMED CT. Do not use")
+		XCTAssertEqual(inst.id!, "example-replaced")
+		XCTAssertEqual(inst.kind!, "codesystem")
+		XCTAssertEqual(inst.name!, "SNOMED CT Spanish")
+		XCTAssertEqual(inst.publisher!, "Not HL7!")
+		XCTAssertEqual(inst.replacedBy!.reference!, "NamingSystem/example")
+		XCTAssertEqual(inst.status!, "retired")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.uniqueId![0].type!, "oid")
+		XCTAssertEqual(inst.uniqueId![0].value!, "2.16.840.1.113883.6.96.1")
+		
+		return inst
+	}
+	
+	func testNamingSystem3() {
+		let instance = try? runNamingSystem3()
+		XCTAssertNotNil(instance, "Must instantiate NamingSystem")
+		try! runNamingSystem3(instance!.asJSON())
+	}
+	
+	func runNamingSystem3(json: FHIRJSON? = nil) throws -> NamingSystem {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example.json")
+		
+		XCTAssertEqual(inst.contact![0].name!, "FHIR project team")
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "other")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.date!.description, "2014-12-13")
+		XCTAssertEqual(inst.id!, "example")
+		XCTAssertEqual(inst.kind!, "codesystem")
+		XCTAssertEqual(inst.name!, "SNOMED CT")
+		XCTAssertEqual(inst.publisher!, "HL7 International on behalf of IHTSDO")
+		XCTAssertEqual(inst.responsible!, "IHTSDO & affiliates")
+		XCTAssertEqual(inst.status!, "active")
+		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.uniqueId![0].type!, "oid")
 		XCTAssertEqual(inst.uniqueId![0].value!, "2.16.840.1.113883.6.96")
+		XCTAssertTrue(inst.uniqueId![1].preferred!)
 		XCTAssertEqual(inst.uniqueId![1].type!, "uri")
 		XCTAssertEqual(inst.uniqueId![1].value!, "http://snomed.info/sct")
 		

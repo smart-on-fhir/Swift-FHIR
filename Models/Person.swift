@@ -2,7 +2,7 @@
 //  Person.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Person) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Person) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -26,25 +26,25 @@ public class Person: DomainResource
 	/// One or more addresses for the person
 	public var address: [Address]?
 	
-	/// The birth date for the person
-	public var birthDate: DateTime?
+	/// The date on which the person was born
+	public var birthDate: Date?
 	
 	/// male | female | other | unknown
 	public var gender: String?
 	
-	/// A Human identifier for this person
+	/// A human identifier for this person
 	public var identifier: [Identifier]?
 	
 	/// Link to a resource that concerns the same actual person
 	public var link: [PersonLink]?
 	
-	/// The Organization that is the custodian of the person record
+	/// The organization that is the custodian of the person record
 	public var managingOrganization: Reference?
 	
 	/// A name associated with the person
 	public var name: [HumanName]?
 	
-	/// Image of the Person
+	/// Image of the person
 	public var photo: Attachment?
 	
 	/// A contact detail for the person
@@ -80,7 +80,7 @@ public class Person: DomainResource
 			if let exist: AnyObject = js["birthDate"] {
 				presentKeys.insert("birthDate")
 				if let val = exist as? String {
-					self.birthDate = DateTime(string: val)
+					self.birthDate = Date(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "birthDate", wants: String.self, has: exist.dynamicType))
@@ -214,11 +214,9 @@ public class PersonLink: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(target: Reference?) {
+	public convenience init(target: Reference) {
 		self.init(json: nil)
-		if nil != target {
-			self.target = target
-		}
+		self.target = target
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

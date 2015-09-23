@@ -2,7 +2,7 @@
 //  EnrollmentRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class EnrollmentRequestTests: FHIRModelTestCase
+class EnrollmentRequestTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> EnrollmentRequest {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class EnrollmentRequestTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testEnrollmentRequest1() throws {
-		let instance = try runEnrollmentRequest1()
-		try runEnrollmentRequest1(instance.asJSON())
+	func testEnrollmentRequest1() {
+		let instance = try? runEnrollmentRequest1()
+		XCTAssertNotNil(instance, "Must instantiate EnrollmentRequest")
+		try! runEnrollmentRequest1(instance!.asJSON())
 	}
 	
 	func runEnrollmentRequest1(json: FHIRJSON? = nil) throws -> EnrollmentRequest {

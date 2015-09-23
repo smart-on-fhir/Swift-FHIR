@@ -2,7 +2,7 @@
 //  Location.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Location) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Location) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -24,13 +24,13 @@ public class Location: DomainResource
 	/// Physical location
 	public var address: Address?
 	
-	/// Description of the Location, which helps in finding or referencing the place
+	/// Description of the location
 	public var description_fhir: String?
 	
 	/// Unique code or number identifying the location to its users
 	public var identifier: [Identifier]?
 	
-	/// The organization that is responsible for the provisioning and upkeep of the location
+	/// Organization responsible for provisioning and upkeep
 	public var managingOrganization: Reference?
 	
 	/// instance | kind
@@ -39,7 +39,7 @@ public class Location: DomainResource
 	/// Name of the location as used by humans
 	public var name: String?
 	
-	/// Another Location which this Location is physically part of
+	/// Another Location this one is physically part of
 	public var partOf: Reference?
 	
 	/// Physical form of the location
@@ -54,7 +54,7 @@ public class Location: DomainResource
 	/// Contact details of the location
 	public var telecom: [ContactPoint]?
 	
-	/// Indicates the type of function performed at the location
+	/// Type of function performed
 	public var type: CodeableConcept?
 	
 	
@@ -226,7 +226,7 @@ public class Location: DomainResource
 /**
  *  The absolute geographic location.
  *
- *  The absolute geographic location of the Location, expressed in with the WGS84 datum (This is the same co-ordinate
+ *  The absolute geographic location of the Location, expressed using the WGS84 datum (This is the same co-ordinate
  *  system used in KML).
  */
 public class LocationPosition: FHIRElement
@@ -251,14 +251,10 @@ public class LocationPosition: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(latitude: NSDecimalNumber?, longitude: NSDecimalNumber?) {
+	public convenience init(latitude: NSDecimalNumber, longitude: NSDecimalNumber) {
 		self.init(json: nil)
-		if nil != latitude {
-			self.latitude = latitude
-		}
-		if nil != longitude {
-			self.longitude = longitude
-		}
+		self.latitude = latitude
+		self.longitude = longitude
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

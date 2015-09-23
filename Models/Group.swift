@@ -2,7 +2,7 @@
 //  Group.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Group) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Group) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -13,8 +13,8 @@ import Foundation
  *  Group of multiple entities.
  *
  *  Represents a defined collection of entities that may be discussed or acted upon collectively but which are not
- *  expected to act collectively and are not formally or legally recognized.  I.e. A collection of entities that isn't
- *  an Organization.
+ *  expected to act collectively and are not formally or legally recognized; i.e. a collection of entities that isn't an
+ *  Organization.
  */
 public class Group: DomainResource
 {
@@ -32,10 +32,10 @@ public class Group: DomainResource
 	public var code: CodeableConcept?
 	
 	/// Unique id
-	public var identifier: Identifier?
+	public var identifier: [Identifier]?
 	
 	/// Who or what is in group
-	public var member: [Reference]?
+	public var member: [GroupMember]?
 	
 	/// Label for Group
 	public var name: String?
@@ -53,14 +53,10 @@ public class Group: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(actual: Bool?, type: String?) {
+	public convenience init(actual: Bool, type: String) {
 		self.init(json: nil)
-		if nil != actual {
-			self.actual = actual
-		}
-		if nil != type {
-			self.type = type
-		}
+		self.actual = actual
+		self.type = type
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -98,17 +94,17 @@ public class Group: DomainResource
 			}
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
-				if let val = exist as? FHIRJSON {
-					self.identifier = Identifier(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["member"] {
 				presentKeys.insert("member")
 				if let val = exist as? [FHIRJSON] {
-					self.member = Reference.from(val, owner: self) as? [Reference]
+					self.member = GroupMember.from(val, owner: self) as? [GroupMember]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "member", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -161,10 +157,10 @@ public class Group: DomainResource
 			json["code"] = code.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
+			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
 		if let member = self.member {
-			json["member"] = Reference.asJSONArray(member)
+			json["member"] = GroupMember.asJSONArray(member)
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -198,6 +194,9 @@ public class GroupCharacteristic: FHIRElement
 	/// Group includes or excludes
 	public var exclude: Bool?
 	
+	/// Period over which characteristic is tested
+	public var period: Period?
+	
 	/// Value held by characteristic
 	public var valueBoolean: Bool?
 	
@@ -217,26 +216,14 @@ public class GroupCharacteristic: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept?, exclude: Bool?, valueBoolean: Bool?, valueCodeableConcept: CodeableConcept?, valueQuantity: Quantity?, valueRange: Range?) {
+	public convenience init(code: CodeableConcept, exclude: Bool, valueBoolean: Bool, valueCodeableConcept: CodeableConcept, valueQuantity: Quantity, valueRange: Range) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
-		if nil != exclude {
-			self.exclude = exclude
-		}
-		if nil != valueBoolean {
-			self.valueBoolean = valueBoolean
-		}
-		if nil != valueCodeableConcept {
-			self.valueCodeableConcept = valueCodeableConcept
-		}
-		if nil != valueQuantity {
-			self.valueQuantity = valueQuantity
-		}
-		if nil != valueRange {
-			self.valueRange = valueRange
-		}
+		self.code = code
+		self.exclude = exclude
+		self.valueBoolean = valueBoolean
+		self.valueCodeableConcept = valueCodeableConcept
+		self.valueQuantity = valueQuantity
+		self.valueRange = valueRange
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -265,6 +252,15 @@ public class GroupCharacteristic: FHIRElement
 			}
 			else {
 				errors.append(FHIRJSONError(key: "exclude"))
+			}
+			if let exist: AnyObject = js["period"] {
+				presentKeys.insert("period")
+				if let val = exist as? FHIRJSON {
+					self.period = Period(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
 			}
 			if let exist: AnyObject = js["valueBoolean"] {
 				presentKeys.insert("valueBoolean")
@@ -320,6 +316,9 @@ public class GroupCharacteristic: FHIRElement
 		if let exclude = self.exclude {
 			json["exclude"] = exclude.asJSON()
 		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
 		if let valueBoolean = self.valueBoolean {
 			json["valueBoolean"] = valueBoolean.asJSON()
 		}
@@ -331,6 +330,93 @@ public class GroupCharacteristic: FHIRElement
 		}
 		if let valueRange = self.valueRange {
 			json["valueRange"] = valueRange.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Who or what is in group.
+ *
+ *  Identifies the resource instances that are members of the group.
+ */
+public class GroupMember: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "GroupMember" }
+	}
+	
+	/// Reference to the group member
+	public var entity: Reference?
+	
+	/// If member is no longer in group
+	public var inactive: Bool?
+	
+	/// Period member belonged to the group
+	public var period: Period?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(entity: Reference) {
+		self.init(json: nil)
+		self.entity = entity
+	}
+	
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist: AnyObject = js["entity"] {
+				presentKeys.insert("entity")
+				if let val = exist as? FHIRJSON {
+					self.entity = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "entity", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "entity"))
+			}
+			if let exist: AnyObject = js["inactive"] {
+				presentKeys.insert("inactive")
+				if let val = exist as? Bool {
+					self.inactive = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "inactive", wants: Bool.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["period"] {
+				presentKeys.insert("period")
+				if let val = exist as? FHIRJSON {
+					self.period = Period(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let entity = self.entity {
+			json["entity"] = entity.asJSON()
+		}
+		if let inactive = self.inactive {
+			json["inactive"] = inactive.asJSON()
+		}
+		if let period = self.period {
+			json["period"] = period.asJSON()
 		}
 		
 		return json

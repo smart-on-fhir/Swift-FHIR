@@ -2,7 +2,7 @@
 //  EnrollmentResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/EnrollmentResponse) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/EnrollmentResponse) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -12,7 +12,7 @@ import Foundation
 /**
  *  EnrollmentResponse resource.
  *
- *  This resource provides Enrollment and plan details from the processing of an Enrollment resource.
+ *  This resource provides enrollment and plan details from the processing of an Enrollment resource.
  */
 public class EnrollmentResponse: DomainResource
 {

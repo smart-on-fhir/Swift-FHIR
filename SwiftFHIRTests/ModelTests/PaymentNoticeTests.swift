@@ -2,7 +2,7 @@
 //  PaymentNoticeTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class PaymentNoticeTests: FHIRModelTestCase
+class PaymentNoticeTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> PaymentNotice {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class PaymentNoticeTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testPaymentNotice1() throws {
-		let instance = try runPaymentNotice1()
-		try runPaymentNotice1(instance.asJSON())
+	func testPaymentNotice1() {
+		let instance = try? runPaymentNotice1()
+		XCTAssertNotNil(instance, "Must instantiate PaymentNotice")
+		try! runPaymentNotice1(instance!.asJSON())
 	}
 	
 	func runPaymentNotice1(json: FHIRJSON? = nil) throws -> PaymentNotice {

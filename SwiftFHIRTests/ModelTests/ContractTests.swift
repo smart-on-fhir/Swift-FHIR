@@ -2,7 +2,7 @@
 //  ContractTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class ContractTests: FHIRModelTestCase
+class ContractTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Contract {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class ContractTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testContract1() throws {
-		let instance = try runContract1()
-		try runContract1(instance.asJSON())
+	func testContract1() {
+		let instance = try? runContract1()
+		XCTAssertNotNil(instance, "Must instantiate Contract")
+		try! runContract1(instance!.asJSON())
 	}
 	
 	func runContract1(json: FHIRJSON? = nil) throws -> Contract {

@@ -1,8 +1,8 @@
 //
-//  Contraindication.swift
+//  DetectedIssue.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Contraindication) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -13,18 +13,18 @@ import Foundation
  *  Clinical issue with action.
  *
  *  Indicates an actual or potential clinical issue with or between one or more active or proposed clinical actions for
- *  a patient.  E.g. Drug-drug interaction, Ineffective treatment frequency, Procedure-condition conflict, etc.
+ *  a patient; e.g. Drug-drug interaction, Ineffective treatment frequency, Procedure-condition conflict, etc.
  */
-public class Contraindication: DomainResource
+public class DetectedIssue: DomainResource
 {
 	override public class var resourceName: String {
-		get { return "Contraindication" }
+		get { return "DetectedIssue" }
 	}
 	
-	/// Who found issue?
+	/// The provider or device that identified the issue
 	public var author: Reference?
 	
-	/// E.g. Drug-drug, duplicate therapy, etc.
+	/// Issue Category, e.g. drug-drug, duplicate therapy, etc.
 	public var category: CodeableConcept?
 	
 	/// When identified
@@ -33,14 +33,14 @@ public class Contraindication: DomainResource
 	/// Description and context
 	public var detail: String?
 	
-	/// Unique id for the contraindication
+	/// Unique id for the detected issue
 	public var identifier: Identifier?
 	
 	/// Problem resource
 	public var implicated: [Reference]?
 	
 	/// Step taken to address
-	public var mitigation: [ContraindicationMitigation]?
+	public var mitigation: [DetectedIssueMitigation]?
 	
 	/// Associated patient
 	public var patient: Reference?
@@ -48,7 +48,7 @@ public class Contraindication: DomainResource
 	/// Authority for issue
 	public var reference: NSURL?
 	
-	/// high | medium | low
+	/// high | moderate | low
 	public var severity: String?
 	
 	
@@ -117,7 +117,7 @@ public class Contraindication: DomainResource
 			if let exist: AnyObject = js["mitigation"] {
 				presentKeys.insert("mitigation")
 				if let val = exist as? [FHIRJSON] {
-					self.mitigation = ContraindicationMitigation.from(val, owner: self) as? [ContraindicationMitigation]
+					self.mitigation = DetectedIssueMitigation.from(val, owner: self) as? [DetectedIssueMitigation]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "mitigation", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -176,7 +176,7 @@ public class Contraindication: DomainResource
 			json["implicated"] = Reference.asJSONArray(implicated)
 		}
 		if let mitigation = self.mitigation {
-			json["mitigation"] = ContraindicationMitigation.asJSONArray(mitigation)
+			json["mitigation"] = DetectedIssueMitigation.asJSONArray(mitigation)
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
@@ -197,13 +197,13 @@ public class Contraindication: DomainResource
  *  Step taken to address.
  *
  *  Indicates an action that has been taken or is committed to to reduce or eliminate the likelihood of the risk
- *  identified by the contraindicaiton from manifesting.  Can also reflect an observation of known mitigating factors
- *  that may reduce/eliminate the need for any action.
+ *  identified by the detected issue from manifesting.  Can also reflect an observation of known mitigating factors that
+ *  may reduce/eliminate the need for any action.
  */
-public class ContraindicationMitigation: FHIRElement
+public class DetectedIssueMitigation: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "ContraindicationMitigation" }
+		get { return "DetectedIssueMitigation" }
 	}
 	
 	/// What mitigation?
@@ -222,11 +222,9 @@ public class ContraindicationMitigation: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(action: CodeableConcept?) {
+	public convenience init(action: CodeableConcept) {
 		self.init(json: nil)
-		if nil != action {
-			self.action = action
-		}
+		self.action = action
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

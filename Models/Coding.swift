@@ -2,7 +2,7 @@
 //  Coding.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Coding) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Coding) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -24,11 +24,11 @@ public class Coding: FHIRElement
 	/// Representation defined by the system
 	public var display: String?
 	
-	/// If this code was chosen directly by the user
-	public var primary: Bool?
-	
 	/// Identity of the terminology system
 	public var system: NSURL?
+	
+	/// If this coding was chosen directly by the user
+	public var userSelected: Bool?
 	
 	/// Version of the system - if relevant
 	public var version: String?
@@ -60,15 +60,6 @@ public class Coding: FHIRElement
 					errors.append(FHIRJSONError(key: "display", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["primary"] {
-				presentKeys.insert("primary")
-				if let val = exist as? Bool {
-					self.primary = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "primary", wants: Bool.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["system"] {
 				presentKeys.insert("system")
 				if let val = exist as? String {
@@ -76,6 +67,15 @@ public class Coding: FHIRElement
 				}
 				else {
 					errors.append(FHIRJSONError(key: "system", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["userSelected"] {
+				presentKeys.insert("userSelected")
+				if let val = exist as? Bool {
+					self.userSelected = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "userSelected", wants: Bool.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["version"] {
@@ -100,11 +100,11 @@ public class Coding: FHIRElement
 		if let display = self.display {
 			json["display"] = display.asJSON()
 		}
-		if let primary = self.primary {
-			json["primary"] = primary.asJSON()
-		}
 		if let system = self.system {
 			json["system"] = system.asJSON()
+		}
+		if let userSelected = self.userSelected {
+			json["userSelected"] = userSelected.asJSON()
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()

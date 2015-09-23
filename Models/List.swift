@@ -2,7 +2,7 @@
 //  List.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/List) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/List) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -29,6 +29,9 @@ public class List: DomainResource
 	/// Why list is empty
 	public var emptyReason: CodeableConcept?
 	
+	/// Context in which list created
+	public var encounter: Reference?
+	
 	/// Entries in the list
 	public var entry: [ListEntry]?
 	
@@ -38,13 +41,13 @@ public class List: DomainResource
 	/// working | snapshot | changes
 	public var mode: String?
 	
-	/// Comments about the note
+	/// Comments about the list
 	public var note: String?
 	
 	/// What order the list has
 	public var orderedBy: CodeableConcept?
 	
-	/// Who and/or what defined the list contents
+	/// Who and/or what defined the list contents (aka Author)
 	public var source: Reference?
 	
 	/// current | retired | entered-in-error
@@ -63,14 +66,10 @@ public class List: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: String?, status: String?) {
+	public convenience init(mode: String, status: String) {
 		self.init(json: nil)
-		if nil != mode {
-			self.mode = mode
-		}
-		if nil != status {
-			self.status = status
-		}
+		self.mode = mode
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -101,6 +100,15 @@ public class List: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "emptyReason", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["encounter"] {
+				presentKeys.insert("encounter")
+				if let val = exist as? FHIRJSON {
+					self.encounter = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["entry"] {
@@ -206,6 +214,9 @@ public class List: DomainResource
 		if let emptyReason = self.emptyReason {
 			json["emptyReason"] = emptyReason.asJSON()
 		}
+		if let encounter = self.encounter {
+			json["encounter"] = encounter.asJSON()
+		}
 		if let entry = self.entry {
 			json["entry"] = ListEntry.asJSONArray(entry)
 		}
@@ -256,8 +267,8 @@ public class ListEntry: FHIRElement
 	/// If this item is actually marked as deleted
 	public var deleted: Bool?
 	
-	/// Workflow information about this item
-	public var flag: [CodeableConcept]?
+	/// Status/Workflow information about this item
+	public var flag: CodeableConcept?
 	
 	/// Actual entry
 	public var item: Reference?
@@ -269,11 +280,9 @@ public class ListEntry: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(item: Reference?) {
+	public convenience init(item: Reference) {
 		self.init(json: nil)
-		if nil != item {
-			self.item = item
-		}
+		self.item = item
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -299,11 +308,11 @@ public class ListEntry: FHIRElement
 			}
 			if let exist: AnyObject = js["flag"] {
 				presentKeys.insert("flag")
-				if let val = exist as? [FHIRJSON] {
-					self.flag = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+				if let val = exist as? FHIRJSON {
+					self.flag = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "flag", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "flag", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["item"] {
@@ -332,7 +341,7 @@ public class ListEntry: FHIRElement
 			json["deleted"] = deleted.asJSON()
 		}
 		if let flag = self.flag {
-			json["flag"] = CodeableConcept.asJSONArray(flag)
+			json["flag"] = flag.asJSON()
 		}
 		if let item = self.item {
 			json["item"] = item.asJSON()

@@ -2,7 +2,7 @@
 //  DeviceMetric.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -57,17 +57,11 @@ public class DeviceMetric: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(category: String?, identifier: Identifier?, type: CodeableConcept?) {
+	public convenience init(category: String, identifier: Identifier, type: CodeableConcept) {
 		self.init(json: nil)
-		if nil != category {
-			self.category = category
-		}
-		if nil != identifier {
-			self.identifier = identifier
-		}
-		if nil != type {
-			self.type = type
-		}
+		self.category = category
+		self.identifier = identifier
+		self.type = type
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -12,10 +12,10 @@ import Foundation
 /**
  *  A set of images produced in single study (one or more series of references images).
  *
- *  Representation of the content produced in a DICOM imaging study. A study comprises a set of Series, each of which
+ *  Representation of the content produced in a DICOM imaging study. A study comprises a set of series, each of which
  *  includes a set of Service-Object Pair Instances (SOP Instances - images or other data) acquired or produced in a
- *  common context.  A Series is of only one modality (e.g., X-ray, CT, MR, ultrasound), but a Study may have multiple
- *  Series of different modalities.
+ *  common context.  A series is of only one modality (e.g. X-ray, CT, MR, ultrasound), but a study may have multiple
+ *  series of different modalities.
  */
 public class ImagingStudy: DomainResource
 {
@@ -23,31 +23,28 @@ public class ImagingStudy: DomainResource
 		get { return "ImagingStudy" }
 	}
 	
-	/// Accession Number (0008,0050)
+	/// Related workflow identifier ("Accession Number")
 	public var accession: Identifier?
 	
 	/// ONLINE | OFFLINE | NEARLINE | UNAVAILABLE (0008,0056)
 	public var availability: String?
 	
-	/// Diagnoses etc with request (0040,1002)
-	public var clinicalInformation: String?
-	
-	/// Institution-generated description (0008,1030)
+	/// Institution-generated description
 	public var description_fhir: String?
 	
-	/// Other identifiers for the study (0020,0010)
+	/// Other identifiers for the study
 	public var identifier: [Identifier]?
 	
-	/// Who interpreted images (0008,1060)
+	/// Who interpreted images
 	public var interpreter: Reference?
 	
-	/// All series.modality if actual acquisition modalities
-	public var modalityList: [String]?
+	/// All series modality if actual acquisition modalities
+	public var modalityList: [Coding]?
 	
-	/// Number of Study Related Instances (0020,1208)
+	/// Number of Study Related Instances
 	public var numberOfInstances: UInt?
 	
-	/// Number of Study Related Series (0020,1206)
+	/// Number of Study Related Series
 	public var numberOfSeries: UInt?
 	
 	/// Order(s) that caused this study to be performed
@@ -56,8 +53,8 @@ public class ImagingStudy: DomainResource
 	/// Who the images are of
 	public var patient: Reference?
 	
-	/// Type of procedure performed (0008,1032)
-	public var procedure: [Coding]?
+	/// Type of procedure performed
+	public var procedure: [Reference]?
 	
 	/// Referring physician (0008,0090)
 	public var referrer: Reference?
@@ -65,13 +62,13 @@ public class ImagingStudy: DomainResource
 	/// Each study has one or more series of instances
 	public var series: [ImagingStudySeries]?
 	
-	/// When the study was started (0008,0020)+(0008,0030)
+	/// When the study was started
 	public var started: DateTime?
 	
-	/// Formal identifier for the study (0020,000D)
+	/// Formal identifier for the study
 	public var uid: String?
 	
-	/// Retrieve URI (0008,1190)
+	/// Retrieve URI
 	public var url: NSURL?
 	
 	
@@ -81,20 +78,12 @@ public class ImagingStudy: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(numberOfInstances: UInt?, numberOfSeries: UInt?, patient: Reference?, uid: String?) {
+	public convenience init(numberOfInstances: UInt, numberOfSeries: UInt, patient: Reference, uid: String) {
 		self.init(json: nil)
-		if nil != numberOfInstances {
-			self.numberOfInstances = numberOfInstances
-		}
-		if nil != numberOfSeries {
-			self.numberOfSeries = numberOfSeries
-		}
-		if nil != patient {
-			self.patient = patient
-		}
-		if nil != uid {
-			self.uid = uid
-		}
+		self.numberOfInstances = numberOfInstances
+		self.numberOfSeries = numberOfSeries
+		self.patient = patient
+		self.uid = uid
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -116,15 +105,6 @@ public class ImagingStudy: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "availability", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["clinicalInformation"] {
-				presentKeys.insert("clinicalInformation")
-				if let val = exist as? String {
-					self.clinicalInformation = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "clinicalInformation", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["description"] {
@@ -156,11 +136,11 @@ public class ImagingStudy: DomainResource
 			}
 			if let exist: AnyObject = js["modalityList"] {
 				presentKeys.insert("modalityList")
-				if let val = exist as? [String] {
-					self.modalityList = val
+				if let val = exist as? [FHIRJSON] {
+					self.modalityList = Coding.from(val, owner: self) as? [Coding]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "modalityList", wants: Array<String>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "modalityList", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["numberOfInstances"] {
@@ -211,7 +191,7 @@ public class ImagingStudy: DomainResource
 			if let exist: AnyObject = js["procedure"] {
 				presentKeys.insert("procedure")
 				if let val = exist as? [FHIRJSON] {
-					self.procedure = Coding.from(val, owner: self) as? [Coding]
+					self.procedure = Reference.from(val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "procedure", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -278,9 +258,6 @@ public class ImagingStudy: DomainResource
 		if let availability = self.availability {
 			json["availability"] = availability.asJSON()
 		}
-		if let clinicalInformation = self.clinicalInformation {
-			json["clinicalInformation"] = clinicalInformation.asJSON()
-		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
@@ -291,11 +268,7 @@ public class ImagingStudy: DomainResource
 			json["interpreter"] = interpreter.asJSON()
 		}
 		if let modalityList = self.modalityList {
-			var arr = [AnyObject]()
-			for val in modalityList {
-				arr.append(val.asJSON())
-			}
-			json["modalityList"] = arr
+			json["modalityList"] = Coding.asJSONArray(modalityList)
 		}
 		if let numberOfInstances = self.numberOfInstances {
 			json["numberOfInstances"] = numberOfInstances.asJSON()
@@ -310,7 +283,7 @@ public class ImagingStudy: DomainResource
 			json["patient"] = patient.asJSON()
 		}
 		if let procedure = self.procedure {
-			json["procedure"] = Coding.asJSONArray(procedure)
+			json["procedure"] = Reference.asJSONArray(procedure)
 		}
 		if let referrer = self.referrer {
 			json["referrer"] = referrer.asJSON()
@@ -336,7 +309,7 @@ public class ImagingStudy: DomainResource
 /**
  *  Each study has one or more series of instances.
  *
- *  Each study has one or more series of image instances.
+ *  Each study has one or more series of images or other content.
  */
 public class ImagingStudySeries: FHIRElement
 {
@@ -344,37 +317,37 @@ public class ImagingStudySeries: FHIRElement
 		get { return "ImagingStudySeries" }
 	}
 	
-	/// ONLINE | OFFLINE | NEARLINE | UNAVAILABLE (0008,0056)
+	/// ONLINE | OFFLINE | NEARLINE | UNAVAILABLE
 	public var availability: String?
 	
-	/// Body part examined (Map from 0018,0015)
+	/// Body part examined
 	public var bodySite: Coding?
 	
-	/// When the series started
-	public var dateTime: DateTime?
-	
-	/// A description of the series (0008,103E)
+	/// A description of the series
 	public var description_fhir: String?
 	
-	/// A single instance taken from a patient (image or other)
+	/// A single SOP instance from the series
 	public var instance: [ImagingStudySeriesInstance]?
 	
 	/// Body part laterality
 	public var laterality: Coding?
 	
-	/// The modality of the instances in the series (0008,0060)
-	public var modality: String?
+	/// The modality of the instances in the series
+	public var modality: Coding?
 	
-	/// Numeric identifier of this series (0020,0011)
+	/// Numeric identifier of this series
 	public var number: UInt?
 	
-	/// Number of Series Related Instances (0020,1209)
+	/// Number of Series Related Instances
 	public var numberOfInstances: UInt?
 	
-	/// Formal identifier for this series (0020,000E)
+	/// When the series started
+	public var started: DateTime?
+	
+	/// Formal identifier for this series
 	public var uid: String?
 	
-	/// Retrieve URI (0008,1115 > 0008,1190)
+	/// Location of the referenced instance(s)
 	public var url: NSURL?
 	
 	
@@ -384,17 +357,11 @@ public class ImagingStudySeries: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(modality: String?, numberOfInstances: UInt?, uid: String?) {
+	public convenience init(modality: Coding, numberOfInstances: UInt, uid: String) {
 		self.init(json: nil)
-		if nil != modality {
-			self.modality = modality
-		}
-		if nil != numberOfInstances {
-			self.numberOfInstances = numberOfInstances
-		}
-		if nil != uid {
-			self.uid = uid
-		}
+		self.modality = modality
+		self.numberOfInstances = numberOfInstances
+		self.uid = uid
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -416,15 +383,6 @@ public class ImagingStudySeries: FHIRElement
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bodySite", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["dateTime"] {
-				presentKeys.insert("dateTime")
-				if let val = exist as? String {
-					self.dateTime = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "dateTime", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["description"] {
@@ -456,11 +414,11 @@ public class ImagingStudySeries: FHIRElement
 			}
 			if let exist: AnyObject = js["modality"] {
 				presentKeys.insert("modality")
-				if let val = exist as? String {
-					self.modality = val
+				if let val = exist as? FHIRJSON {
+					self.modality = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "modality", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "modality", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			else {
@@ -486,6 +444,15 @@ public class ImagingStudySeries: FHIRElement
 			}
 			else {
 				errors.append(FHIRJSONError(key: "numberOfInstances"))
+			}
+			if let exist: AnyObject = js["started"] {
+				presentKeys.insert("started")
+				if let val = exist as? String {
+					self.started = DateTime(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "started", wants: String.self, has: exist.dynamicType))
+				}
 			}
 			if let exist: AnyObject = js["uid"] {
 				presentKeys.insert("uid")
@@ -521,9 +488,6 @@ public class ImagingStudySeries: FHIRElement
 		if let bodySite = self.bodySite {
 			json["bodySite"] = bodySite.asJSON()
 		}
-		if let dateTime = self.dateTime {
-			json["dateTime"] = dateTime.asJSON()
-		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
@@ -542,6 +506,9 @@ public class ImagingStudySeries: FHIRElement
 		if let numberOfInstances = self.numberOfInstances {
 			json["numberOfInstances"] = numberOfInstances.asJSON()
 		}
+		if let started = self.started {
+			json["started"] = started.asJSON()
+		}
 		if let uid = self.uid {
 			json["uid"] = uid.asJSON()
 		}
@@ -555,9 +522,9 @@ public class ImagingStudySeries: FHIRElement
 
 
 /**
- *  A single instance taken from a patient (image or other).
+ *  A single SOP instance from the series.
  *
- *  A single SOP Instance within the series, e.g., an image, or presentation state.
+ *  A single SOP Instance within the series, e.g. an image, or presentation state.
  */
 public class ImagingStudySeriesInstance: FHIRElement
 {
@@ -568,19 +535,19 @@ public class ImagingStudySeriesInstance: FHIRElement
 	/// Content of the instance
 	public var content: [Attachment]?
 	
-	/// The number of this instance in the series (0020,0013)
+	/// The number of this instance in the series
 	public var number: UInt?
 	
-	/// DICOM class type (0008,0016)
-	public var sopclass: String?
+	/// DICOM class type
+	public var sopClass: String?
 	
-	/// Description (0070,0080 | 0040,A043 > 0008,0104 | 0042,0010 | 0008,0008)
+	/// Description of instance
 	public var title: String?
 	
-	/// Type of instance (image etc) (0004,1430)
+	/// Type of instance (image etc.)
 	public var type: String?
 	
-	/// Formal identifier for this instance (0008,0018)
+	/// Formal identifier for this instance
 	public var uid: String?
 	
 	
@@ -590,14 +557,10 @@ public class ImagingStudySeriesInstance: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(sopclass: String?, uid: String?) {
+	public convenience init(sopClass: String, uid: String) {
 		self.init(json: nil)
-		if nil != sopclass {
-			self.sopclass = sopclass
-		}
-		if nil != uid {
-			self.uid = uid
-		}
+		self.sopClass = sopClass
+		self.uid = uid
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -621,17 +584,17 @@ public class ImagingStudySeriesInstance: FHIRElement
 					errors.append(FHIRJSONError(key: "number", wants: UInt.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["sopclass"] {
-				presentKeys.insert("sopclass")
+			if let exist: AnyObject = js["sopClass"] {
+				presentKeys.insert("sopClass")
 				if let val = exist as? String {
-					self.sopclass = val
+					self.sopClass = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "sopclass", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "sopClass", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "sopclass"))
+				errors.append(FHIRJSONError(key: "sopClass"))
 			}
 			if let exist: AnyObject = js["title"] {
 				presentKeys.insert("title")
@@ -676,8 +639,8 @@ public class ImagingStudySeriesInstance: FHIRElement
 		if let number = self.number {
 			json["number"] = number.asJSON()
 		}
-		if let sopclass = self.sopclass {
-			json["sopclass"] = sopclass.asJSON()
+		if let sopClass = self.sopClass {
+			json["sopClass"] = sopClass.asJSON()
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()

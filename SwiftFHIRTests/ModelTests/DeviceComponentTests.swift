@@ -2,7 +2,7 @@
 //  DeviceComponentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class DeviceComponentTests: FHIRModelTestCase
+class DeviceComponentTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> DeviceComponent {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class DeviceComponentTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testDeviceComponent1() throws {
-		let instance = try runDeviceComponent1()
-		try runDeviceComponent1(instance.asJSON())
+	func testDeviceComponent1() {
+		let instance = try? runDeviceComponent1()
+		XCTAssertNotNil(instance, "Must instantiate DeviceComponent")
+		try! runDeviceComponent1(instance!.asJSON())
 	}
 	
 	func runDeviceComponent1(json: FHIRJSON? = nil) throws -> DeviceComponent {
@@ -38,7 +39,7 @@ class DeviceComponentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.lastSystemChange!.description, "2014-10-07T14:45:00Z")
 		XCTAssertEqual(inst.operationalStatus![0].coding![0].code!, "0")
 		XCTAssertEqual(inst.operationalStatus![0].coding![0].display!, "disconnected")
-		XCTAssertEqual(inst.operationalStatus![0].coding![0].system!.absoluteString, "urn:std:iso:11073:10101")
+		XCTAssertEqual(inst.operationalStatus![0].coding![0].system!.absoluteString, "urn:iso:std:iso:11073:10101")
 		XCTAssertEqual(inst.productionSpecification![0].productionSpec!, "xa-12324-b")
 		XCTAssertEqual(inst.productionSpecification![0].specType!.coding![0].code!, "1")
 		XCTAssertEqual(inst.productionSpecification![0].specType!.coding![0].display!, "Serial number")
@@ -55,14 +56,15 @@ class DeviceComponentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "2000")
 		XCTAssertEqual(inst.type!.coding![0].display!, "MDC_DEV_ANALY_SAT_O2_MDS")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString, "urn:std:iso:11073:10101")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString, "urn:iso:std:iso:11073:10101")
 		
 		return inst
 	}
 	
-	func testDeviceComponent2() throws {
-		let instance = try runDeviceComponent2()
-		try runDeviceComponent2(instance.asJSON())
+	func testDeviceComponent2() {
+		let instance = try? runDeviceComponent2()
+		XCTAssertNotNil(instance, "Must instantiate DeviceComponent")
+		try! runDeviceComponent2(instance!.asJSON())
 	}
 	
 	func runDeviceComponent2(json: FHIRJSON? = nil) throws -> DeviceComponent {
@@ -76,12 +78,12 @@ class DeviceComponentTests: FHIRModelTestCase
 		XCTAssertEqual(inst.lastSystemChange!.description, "2014-10-07T14:45:00Z")
 		XCTAssertEqual(inst.operationalStatus![0].coding![0].code!, "0")
 		XCTAssertEqual(inst.operationalStatus![0].coding![0].display!, "disconnected")
-		XCTAssertEqual(inst.operationalStatus![0].coding![0].system!.absoluteString, "urn:std:iso:11073:10101")
+		XCTAssertEqual(inst.operationalStatus![0].coding![0].system!.absoluteString, "urn:iso:std:iso:11073:10101")
 		XCTAssertEqual(inst.source!.reference!, "#d1")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!.coding![0].code!, "2000")
 		XCTAssertEqual(inst.type!.coding![0].display!, "MDC_DEV_ANALY_SAT_O2_MDS")
-		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString, "urn:std:iso:11073:10101")
+		XCTAssertEqual(inst.type!.coding![0].system!.absoluteString, "urn:iso:std:iso:11073:10101")
 		
 		return inst
 	}

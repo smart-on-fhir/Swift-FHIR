@@ -2,7 +2,7 @@
 //  CoverageTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class CoverageTests: FHIRModelTestCase
+class CoverageTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Coverage {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class CoverageTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testCoverage1() throws {
-		let instance = try runCoverage1()
-		try runCoverage1(instance.asJSON())
+	func testCoverage1() {
+		let instance = try? runCoverage1()
+		XCTAssertNotNil(instance, "Must instantiate Coverage")
+		try! runCoverage1(instance!.asJSON())
 	}
 	
 	func runCoverage1(json: FHIRJSON? = nil) throws -> Coverage {
@@ -49,9 +50,10 @@ class CoverageTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testCoverage2() throws {
-		let instance = try runCoverage2()
-		try runCoverage2(instance.asJSON())
+	func testCoverage2() {
+		let instance = try? runCoverage2()
+		XCTAssertNotNil(instance, "Must instantiate Coverage")
+		try! runCoverage2(instance!.asJSON())
 	}
 	
 	func runCoverage2(json: FHIRJSON? = nil) throws -> Coverage {

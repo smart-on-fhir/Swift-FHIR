@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -30,11 +30,9 @@ public class OperationOutcome: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(issue: [OperationOutcomeIssue]?) {
+	public convenience init(issue: [OperationOutcomeIssue]) {
 		self.init(json: nil)
-		if nil != issue {
-			self.issue = issue
-		}
+		self.issue = issue
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -80,10 +78,13 @@ public class OperationOutcomeIssue: FHIRElement
 	}
 	
 	/// Error or warning code
-	public var code: CodeableConcept?
+	public var code: String?
+	
+	/// Additional details about the error
+	public var details: CodeableConcept?
 	
 	/// Additional diagnostic information about the issue
-	public var details: String?
+	public var diagnostics: String?
 	
 	/// XPath of element(s) related to issue
 	public var location: [String]?
@@ -98,14 +99,10 @@ public class OperationOutcomeIssue: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept?, severity: String?) {
+	public convenience init(code: String, severity: String) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
-		if nil != severity {
-			self.severity = severity
-		}
+		self.code = code
+		self.severity = severity
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -113,11 +110,11 @@ public class OperationOutcomeIssue: FHIRElement
 		if let js = json {
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")
-				if let val = exist as? FHIRJSON {
-					self.code = CodeableConcept(json: val, owner: self)
+				if let val = exist as? String {
+					self.code = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "code", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			else {
@@ -125,11 +122,20 @@ public class OperationOutcomeIssue: FHIRElement
 			}
 			if let exist: AnyObject = js["details"] {
 				presentKeys.insert("details")
-				if let val = exist as? String {
-					self.details = val
+				if let val = exist as? FHIRJSON {
+					self.details = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "details", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "details", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["diagnostics"] {
+				presentKeys.insert("diagnostics")
+				if let val = exist as? String {
+					self.diagnostics = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "diagnostics", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["location"] {
@@ -165,6 +171,9 @@ public class OperationOutcomeIssue: FHIRElement
 		}
 		if let details = self.details {
 			json["details"] = details.asJSON()
+		}
+		if let diagnostics = self.diagnostics {
+			json["diagnostics"] = diagnostics.asJSON()
 		}
 		if let location = self.location {
 			var arr = [AnyObject]()

@@ -2,7 +2,7 @@
 //  FamilyMemberHistory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -22,7 +22,7 @@ public class FamilyMemberHistory: DomainResource
 	}
 	
 	/// (approximate) age
-	public var ageAge: Age?
+	public var ageQuantity: Quantity?
 	
 	/// (approximate) age
 	public var ageRange: Range?
@@ -46,13 +46,13 @@ public class FamilyMemberHistory: DomainResource
 	public var date: DateTime?
 	
 	/// Dead? How old/when?
-	public var deceasedAge: Age?
-	
-	/// Dead? How old/when?
 	public var deceasedBoolean: Bool?
 	
 	/// Dead? How old/when?
 	public var deceasedDate: Date?
+	
+	/// Dead? How old/when?
+	public var deceasedQuantity: Quantity?
 	
 	/// Dead? How old/when?
 	public var deceasedRange: Range?
@@ -70,13 +70,16 @@ public class FamilyMemberHistory: DomainResource
 	public var name: String?
 	
 	/// General note about related person
-	public var note: String?
+	public var note: Annotation?
 	
 	/// Patient history is about
 	public var patient: Reference?
 	
 	/// Relationship to the subject
 	public var relationship: CodeableConcept?
+	
+	/// partial | completed | entered-in-error | health-unknown
+	public var status: String?
 	
 	
 	/** Initialize with a JSON object. */
@@ -85,26 +88,23 @@ public class FamilyMemberHistory: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference?, relationship: CodeableConcept?) {
+	public convenience init(patient: Reference, relationship: CodeableConcept, status: String) {
 		self.init(json: nil)
-		if nil != patient {
-			self.patient = patient
-		}
-		if nil != relationship {
-			self.relationship = relationship
-		}
+		self.patient = patient
+		self.relationship = relationship
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["ageAge"] {
-				presentKeys.insert("ageAge")
+			if let exist: AnyObject = js["ageQuantity"] {
+				presentKeys.insert("ageQuantity")
 				if let val = exist as? FHIRJSON {
-					self.ageAge = Age(json: val, owner: self)
+					self.ageQuantity = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "ageAge", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "ageQuantity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["ageRange"] {
@@ -170,15 +170,6 @@ public class FamilyMemberHistory: DomainResource
 					errors.append(FHIRJSONError(key: "date", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["deceasedAge"] {
-				presentKeys.insert("deceasedAge")
-				if let val = exist as? FHIRJSON {
-					self.deceasedAge = Age(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "deceasedAge", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["deceasedBoolean"] {
 				presentKeys.insert("deceasedBoolean")
 				if let val = exist as? Bool {
@@ -195,6 +186,15 @@ public class FamilyMemberHistory: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "deceasedDate", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["deceasedQuantity"] {
+				presentKeys.insert("deceasedQuantity")
+				if let val = exist as? FHIRJSON {
+					self.deceasedQuantity = Quantity(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "deceasedQuantity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["deceasedRange"] {
@@ -244,11 +244,11 @@ public class FamilyMemberHistory: DomainResource
 			}
 			if let exist: AnyObject = js["note"] {
 				presentKeys.insert("note")
-				if let val = exist as? String {
-					self.note = val
+				if let val = exist as? FHIRJSON {
+					self.note = Annotation(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "note", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "note", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["patient"] {
@@ -275,6 +275,18 @@ public class FamilyMemberHistory: DomainResource
 			else {
 				errors.append(FHIRJSONError(key: "relationship"))
 			}
+			if let exist: AnyObject = js["status"] {
+				presentKeys.insert("status")
+				if let val = exist as? String {
+					self.status = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "status"))
+			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -282,8 +294,8 @@ public class FamilyMemberHistory: DomainResource
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let ageAge = self.ageAge {
-			json["ageAge"] = ageAge.asJSON()
+		if let ageQuantity = self.ageQuantity {
+			json["ageQuantity"] = ageQuantity.asJSON()
 		}
 		if let ageRange = self.ageRange {
 			json["ageRange"] = ageRange.asJSON()
@@ -306,14 +318,14 @@ public class FamilyMemberHistory: DomainResource
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}
-		if let deceasedAge = self.deceasedAge {
-			json["deceasedAge"] = deceasedAge.asJSON()
-		}
 		if let deceasedBoolean = self.deceasedBoolean {
 			json["deceasedBoolean"] = deceasedBoolean.asJSON()
 		}
 		if let deceasedDate = self.deceasedDate {
 			json["deceasedDate"] = deceasedDate.asJSON()
+		}
+		if let deceasedQuantity = self.deceasedQuantity {
+			json["deceasedQuantity"] = deceasedQuantity.asJSON()
 		}
 		if let deceasedRange = self.deceasedRange {
 			json["deceasedRange"] = deceasedRange.asJSON()
@@ -339,6 +351,9 @@ public class FamilyMemberHistory: DomainResource
 		if let relationship = self.relationship {
 			json["relationship"] = relationship.asJSON()
 		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
 		
 		return json
 	}
@@ -358,11 +373,17 @@ public class FamilyMemberHistoryCondition: FHIRElement
 		get { return "FamilyMemberHistoryCondition" }
 	}
 	
+	/// Condition suffered by relation
+	public var code: CodeableConcept?
+	
 	/// Extra information about condition
-	public var note: String?
+	public var note: Annotation?
 	
 	/// When condition first manifested
-	public var onsetAge: Age?
+	public var onsetPeriod: Period?
+	
+	/// When condition first manifested
+	public var onsetQuantity: Quantity?
 	
 	/// When condition first manifested
 	public var onsetRange: Range?
@@ -373,9 +394,6 @@ public class FamilyMemberHistoryCondition: FHIRElement
 	/// deceased | permanent disability | etc.
 	public var outcome: CodeableConcept?
 	
-	/// Condition suffered by relation
-	public var type: CodeableConcept?
-	
 	
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?) {
@@ -383,32 +401,51 @@ public class FamilyMemberHistoryCondition: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: CodeableConcept?) {
+	public convenience init(code: CodeableConcept) {
 		self.init(json: nil)
-		if nil != type {
-			self.type = type
-		}
+		self.code = code
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["note"] {
-				presentKeys.insert("note")
-				if let val = exist as? String {
-					self.note = val
+			if let exist: AnyObject = js["code"] {
+				presentKeys.insert("code")
+				if let val = exist as? FHIRJSON {
+					self.code = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "note", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["onsetAge"] {
-				presentKeys.insert("onsetAge")
+			else {
+				errors.append(FHIRJSONError(key: "code"))
+			}
+			if let exist: AnyObject = js["note"] {
+				presentKeys.insert("note")
 				if let val = exist as? FHIRJSON {
-					self.onsetAge = Age(json: val, owner: self)
+					self.note = Annotation(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "onsetAge", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "note", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["onsetPeriod"] {
+				presentKeys.insert("onsetPeriod")
+				if let val = exist as? FHIRJSON {
+					self.onsetPeriod = Period(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "onsetPeriod", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["onsetQuantity"] {
+				presentKeys.insert("onsetQuantity")
+				if let val = exist as? FHIRJSON {
+					self.onsetQuantity = Quantity(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "onsetQuantity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["onsetRange"] {
@@ -438,18 +475,6 @@ public class FamilyMemberHistoryCondition: FHIRElement
 					errors.append(FHIRJSONError(key: "outcome", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "type"))
-			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -457,11 +482,17 @@ public class FamilyMemberHistoryCondition: FHIRElement
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
 		if let note = self.note {
 			json["note"] = note.asJSON()
 		}
-		if let onsetAge = self.onsetAge {
-			json["onsetAge"] = onsetAge.asJSON()
+		if let onsetPeriod = self.onsetPeriod {
+			json["onsetPeriod"] = onsetPeriod.asJSON()
+		}
+		if let onsetQuantity = self.onsetQuantity {
+			json["onsetQuantity"] = onsetQuantity.asJSON()
 		}
 		if let onsetRange = self.onsetRange {
 			json["onsetRange"] = onsetRange.asJSON()
@@ -471,9 +502,6 @@ public class FamilyMemberHistoryCondition: FHIRElement
 		}
 		if let outcome = self.outcome {
 			json["outcome"] = outcome.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
 		}
 		
 		return json

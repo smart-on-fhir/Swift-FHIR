@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -20,20 +20,20 @@ public class ValueSet: DomainResource
 		get { return "ValueSet" }
 	}
 	
+	/// An inline code system - part of this value set
+	public var codeSystem: ValueSetCodeSystem?
+	
 	/// When value set includes codes from elsewhere
 	public var compose: ValueSetCompose?
 	
 	/// Contact details of the publisher
 	public var contact: [ValueSetContact]?
 	
-	/// Use and/or Publishing restrictions
+	/// Use and/or publishing restrictions
 	public var copyright: String?
 	
 	/// Date for given status
 	public var date: DateTime?
-	
-	/// When value set defines its own codes
-	public var define: ValueSetDefine?
 	
 	/// Human language description of the value set
 	public var description_fhir: String?
@@ -47,7 +47,7 @@ public class ValueSet: DomainResource
 	/// Whether this is intended to be used with an extensible binding
 	public var extensible: Bool?
 	
-	/// Additional identifier for the value set (v2 / CDA)
+	/// Additional identifier for the value set (e.g. HL7 v2 / CDA)
 	public var identifier: Identifier?
 	
 	/// Indicates whether or not any change to the content logical definition may occur
@@ -59,22 +59,22 @@ public class ValueSet: DomainResource
 	/// Informal name for this value set
 	public var name: String?
 	
-	/// Name of the publisher (Organization or individual)
+	/// Name of the publisher (organization or individual)
 	public var publisher: String?
 	
-	/// Why is this needed?
+	/// Why needed
 	public var requirements: String?
 	
 	/// draft | active | retired
 	public var status: String?
 	
-	/// Globally unique logical id for  value set
+	/// Globally unique logical identifier for  value set
 	public var url: NSURL?
 	
 	/// Content intends to support these contexts
 	public var useContext: [CodeableConcept]?
 	
-	/// Logical id for this version of the value set
+	/// Logical identifier for this version of the value set
 	public var version: String?
 	
 	
@@ -84,16 +84,23 @@ public class ValueSet: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String?) {
+	public convenience init(status: String) {
 		self.init(json: nil)
-		if nil != status {
-			self.status = status
-		}
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["codeSystem"] {
+				presentKeys.insert("codeSystem")
+				if let val = exist as? FHIRJSON {
+					self.codeSystem = ValueSetCodeSystem(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "codeSystem", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["compose"] {
 				presentKeys.insert("compose")
 				if let val = exist as? FHIRJSON {
@@ -128,15 +135,6 @@ public class ValueSet: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "date", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["define"] {
-				presentKeys.insert("define")
-				if let val = exist as? FHIRJSON {
-					self.define = ValueSetDefine(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "define", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["description"] {
@@ -275,6 +273,9 @@ public class ValueSet: DomainResource
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let codeSystem = self.codeSystem {
+			json["codeSystem"] = codeSystem.asJSON()
+		}
 		if let compose = self.compose {
 			json["compose"] = compose.asJSON()
 		}
@@ -286,9 +287,6 @@ public class ValueSet: DomainResource
 		}
 		if let date = self.date {
 			json["date"] = date.asJSON()
-		}
-		if let define = self.define {
-			json["define"] = define.asJSON()
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
@@ -339,7 +337,338 @@ public class ValueSet: DomainResource
 
 
 /**
+ *  An inline code system - part of this value set.
+ *
+ *  A definition of a code system, inlined into the value set (as a packaging convenience). Note that the inline code
+ *  system may be used from other value sets by referring to it's (codeSystem.system) directly.
+ */
+public class ValueSetCodeSystem: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ValueSetCodeSystem" }
+	}
+	
+	/// If code comparison is case sensitive
+	public var caseSensitive: Bool?
+	
+	/// Concepts in the code system
+	public var concept: [ValueSetCodeSystemConcept]?
+	
+	/// URI to identify the code system (e.g. in Coding.system)
+	public var system: NSURL?
+	
+	/// Version (for use in Coding.version)
+	public var version: String?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(concept: [ValueSetCodeSystemConcept], system: NSURL) {
+		self.init(json: nil)
+		self.concept = concept
+		self.system = system
+	}
+	
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist: AnyObject = js["caseSensitive"] {
+				presentKeys.insert("caseSensitive")
+				if let val = exist as? Bool {
+					self.caseSensitive = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "caseSensitive", wants: Bool.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["concept"] {
+				presentKeys.insert("concept")
+				if let val = exist as? [FHIRJSON] {
+					self.concept = ValueSetCodeSystemConcept.from(val, owner: self) as? [ValueSetCodeSystemConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "concept", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "concept"))
+			}
+			if let exist: AnyObject = js["system"] {
+				presentKeys.insert("system")
+				if let val = exist as? String {
+					self.system = NSURL(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "system", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "system"))
+			}
+			if let exist: AnyObject = js["version"] {
+				presentKeys.insert("version")
+				if let val = exist as? String {
+					self.version = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "version", wants: String.self, has: exist.dynamicType))
+				}
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let caseSensitive = self.caseSensitive {
+			json["caseSensitive"] = caseSensitive.asJSON()
+		}
+		if let concept = self.concept {
+			json["concept"] = ValueSetCodeSystemConcept.asJSONArray(concept)
+		}
+		if let system = self.system {
+			json["system"] = system.asJSON()
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Concepts in the code system.
+ *
+ *  Concepts that are in the code system. The concept definitions are inherently hierarchical, but the definitions must
+ *  be consulted to determine what the meaning of the hierarchical relationships are.
+ */
+public class ValueSetCodeSystemConcept: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ValueSetCodeSystemConcept" }
+	}
+	
+	/// If this code is not for use as a real concept
+	public var abstract: Bool?
+	
+	/// Code that identifies concept
+	public var code: String?
+	
+	/// Child Concepts (is-a/contains/categorizes)
+	public var concept: [ValueSetCodeSystemConcept]?
+	
+	/// Formal Definition
+	public var definition: String?
+	
+	/// Additional representations for the concept
+	public var designation: [ValueSetCodeSystemConceptDesignation]?
+	
+	/// Text to Display to the user
+	public var display: String?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(code: String) {
+		self.init(json: nil)
+		self.code = code
+	}
+	
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist: AnyObject = js["abstract"] {
+				presentKeys.insert("abstract")
+				if let val = exist as? Bool {
+					self.abstract = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "abstract", wants: Bool.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["code"] {
+				presentKeys.insert("code")
+				if let val = exist as? String {
+					self.code = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "code", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "code"))
+			}
+			if let exist: AnyObject = js["concept"] {
+				presentKeys.insert("concept")
+				if let val = exist as? [FHIRJSON] {
+					self.concept = ValueSetCodeSystemConcept.from(val, owner: self) as? [ValueSetCodeSystemConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "concept", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["definition"] {
+				presentKeys.insert("definition")
+				if let val = exist as? String {
+					self.definition = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "definition", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["designation"] {
+				presentKeys.insert("designation")
+				if let val = exist as? [FHIRJSON] {
+					self.designation = ValueSetCodeSystemConceptDesignation.from(val, owner: self) as? [ValueSetCodeSystemConceptDesignation]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "designation", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["display"] {
+				presentKeys.insert("display")
+				if let val = exist as? String {
+					self.display = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "display", wants: String.self, has: exist.dynamicType))
+				}
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let abstract = self.abstract {
+			json["abstract"] = abstract.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let concept = self.concept {
+			json["concept"] = ValueSetCodeSystemConcept.asJSONArray(concept)
+		}
+		if let definition = self.definition {
+			json["definition"] = definition.asJSON()
+		}
+		if let designation = self.designation {
+			json["designation"] = ValueSetCodeSystemConceptDesignation.asJSONArray(designation)
+		}
+		if let display = self.display {
+			json["display"] = display.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Additional representations for the concept.
+ *
+ *  Additional representations for the concept - other languages, aliases, specialized purposes, used for particular
+ *  purposes, etc.
+ */
+public class ValueSetCodeSystemConceptDesignation: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "ValueSetCodeSystemConceptDesignation" }
+	}
+	
+	/// Human language of the designation
+	public var language: String?
+	
+	/// Details how this designation would be used
+	public var use: Coding?
+	
+	/// The text value for this designation
+	public var value: String?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(value: String) {
+		self.init(json: nil)
+		self.value = value
+	}
+	
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist: AnyObject = js["language"] {
+				presentKeys.insert("language")
+				if let val = exist as? String {
+					self.language = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "language", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["use"] {
+				presentKeys.insert("use")
+				if let val = exist as? FHIRJSON {
+					self.use = Coding(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "use", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["value"] {
+				presentKeys.insert("value")
+				if let val = exist as? String {
+					self.value = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "value", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "value"))
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let language = self.language {
+			json["language"] = language.asJSON()
+		}
+		if let use = self.use {
+			json["use"] = use.asJSON()
+		}
+		if let value = self.value {
+			json["value"] = value.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
  *  When value set includes codes from elsewhere.
+ *
+ *  A set of criteria that provide the content logical definition of the value set by including or excluding codes from
+ *  outside this value set.
  */
 public class ValueSetCompose: FHIRElement
 {
@@ -446,11 +775,9 @@ public class ValueSetComposeInclude: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(system: NSURL?) {
+	public convenience init(system: NSURL) {
 		self.init(json: nil)
-		if nil != system {
-			self.system = system
-		}
+		self.system = system
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -535,7 +862,7 @@ public class ValueSetComposeIncludeConcept: FHIRElement
 	public var code: String?
 	
 	/// Additional representations for this valueset
-	public var designation: [ValueSetDefineConceptDesignation]?
+	public var designation: [ValueSetCodeSystemConceptDesignation]?
 	
 	/// Test to display for this code for this value set
 	public var display: String?
@@ -547,11 +874,9 @@ public class ValueSetComposeIncludeConcept: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String?) {
+	public convenience init(code: String) {
 		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
+		self.code = code
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -572,7 +897,7 @@ public class ValueSetComposeIncludeConcept: FHIRElement
 			if let exist: AnyObject = js["designation"] {
 				presentKeys.insert("designation")
 				if let val = exist as? [FHIRJSON] {
-					self.designation = ValueSetDefineConceptDesignation.from(val, owner: self) as? [ValueSetDefineConceptDesignation]
+					self.designation = ValueSetCodeSystemConceptDesignation.from(val, owner: self) as? [ValueSetCodeSystemConceptDesignation]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "designation", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -598,7 +923,7 @@ public class ValueSetComposeIncludeConcept: FHIRElement
 			json["code"] = code.asJSON()
 		}
 		if let designation = self.designation {
-			json["designation"] = ValueSetDefineConceptDesignation.asJSONArray(designation)
+			json["designation"] = ValueSetCodeSystemConceptDesignation.asJSONArray(designation)
 		}
 		if let display = self.display {
 			json["display"] = display.asJSON()
@@ -637,17 +962,11 @@ public class ValueSetComposeIncludeFilter: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(op: String?, property: String?, value: String?) {
+	public convenience init(op: String, property: String, value: String) {
 		self.init(json: nil)
-		if nil != op {
-			self.op = op
-		}
-		if nil != property {
-			self.property = property
-		}
-		if nil != value {
-			self.value = value
-		}
+		self.op = op
+		self.property = property
+		self.value = value
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -722,7 +1041,7 @@ public class ValueSetContact: FHIRElement
 		get { return "ValueSetContact" }
 	}
 	
-	/// Name of a individual to contact
+	/// Name of an individual to contact
 	public var name: String?
 	
 	/// Contact details for individual or publisher
@@ -775,332 +1094,6 @@ public class ValueSetContact: FHIRElement
 
 
 /**
- *  When value set defines its own codes.
- *
- *  A definition of an code system, inlined into the value set.
- */
-public class ValueSetDefine: FHIRElement
-{
-	override public class var resourceName: String {
-		get { return "ValueSetDefine" }
-	}
-	
-	/// If code comparison is case sensitive
-	public var caseSensitive: Bool?
-	
-	/// Concepts in the code system
-	public var concept: [ValueSetDefineConcept]?
-	
-	/// URI to identify the code system
-	public var system: NSURL?
-	
-	/// Version of this system
-	public var version: String?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?) {
-		super.init(json: json)
-	}
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(system: NSURL?) {
-		self.init(json: nil)
-		if nil != system {
-			self.system = system
-		}
-	}
-	
-	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist: AnyObject = js["caseSensitive"] {
-				presentKeys.insert("caseSensitive")
-				if let val = exist as? Bool {
-					self.caseSensitive = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "caseSensitive", wants: Bool.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["concept"] {
-				presentKeys.insert("concept")
-				if let val = exist as? [FHIRJSON] {
-					self.concept = ValueSetDefineConcept.from(val, owner: self) as? [ValueSetDefineConcept]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "concept", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["system"] {
-				presentKeys.insert("system")
-				if let val = exist as? String {
-					self.system = NSURL(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "system", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "system"))
-			}
-			if let exist: AnyObject = js["version"] {
-				presentKeys.insert("version")
-				if let val = exist as? String {
-					self.version = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "version", wants: String.self, has: exist.dynamicType))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override public func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let caseSensitive = self.caseSensitive {
-			json["caseSensitive"] = caseSensitive.asJSON()
-		}
-		if let concept = self.concept {
-			json["concept"] = ValueSetDefineConcept.asJSONArray(concept)
-		}
-		if let system = self.system {
-			json["system"] = system.asJSON()
-		}
-		if let version = self.version {
-			json["version"] = version.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Concepts in the code system.
- */
-public class ValueSetDefineConcept: FHIRElement
-{
-	override public class var resourceName: String {
-		get { return "ValueSetDefineConcept" }
-	}
-	
-	/// If this code is not for use as a real concept
-	public var abstract: Bool?
-	
-	/// Code that identifies concept
-	public var code: String?
-	
-	/// Child Concepts (is-a / contains)
-	public var concept: [ValueSetDefineConcept]?
-	
-	/// Formal Definition
-	public var definition: String?
-	
-	/// Additional representations for the concept
-	public var designation: [ValueSetDefineConceptDesignation]?
-	
-	/// Text to Display to the user
-	public var display: String?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?) {
-		super.init(json: json)
-	}
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String?) {
-		self.init(json: nil)
-		if nil != code {
-			self.code = code
-		}
-	}
-	
-	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist: AnyObject = js["abstract"] {
-				presentKeys.insert("abstract")
-				if let val = exist as? Bool {
-					self.abstract = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "abstract", wants: Bool.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["code"] {
-				presentKeys.insert("code")
-				if let val = exist as? String {
-					self.code = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "code", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "code"))
-			}
-			if let exist: AnyObject = js["concept"] {
-				presentKeys.insert("concept")
-				if let val = exist as? [FHIRJSON] {
-					self.concept = ValueSetDefineConcept.from(val, owner: self) as? [ValueSetDefineConcept]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "concept", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["definition"] {
-				presentKeys.insert("definition")
-				if let val = exist as? String {
-					self.definition = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "definition", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["designation"] {
-				presentKeys.insert("designation")
-				if let val = exist as? [FHIRJSON] {
-					self.designation = ValueSetDefineConceptDesignation.from(val, owner: self) as? [ValueSetDefineConceptDesignation]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "designation", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["display"] {
-				presentKeys.insert("display")
-				if let val = exist as? String {
-					self.display = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "display", wants: String.self, has: exist.dynamicType))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override public func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let abstract = self.abstract {
-			json["abstract"] = abstract.asJSON()
-		}
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		if let concept = self.concept {
-			json["concept"] = ValueSetDefineConcept.asJSONArray(concept)
-		}
-		if let definition = self.definition {
-			json["definition"] = definition.asJSON()
-		}
-		if let designation = self.designation {
-			json["designation"] = ValueSetDefineConceptDesignation.asJSONArray(designation)
-		}
-		if let display = self.display {
-			json["display"] = display.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Additional representations for the concept.
- *
- *  Additional representations for the concept - other languages, aliases, specialised purposes, used for particular
- *  purposes, etc.
- */
-public class ValueSetDefineConceptDesignation: FHIRElement
-{
-	override public class var resourceName: String {
-		get { return "ValueSetDefineConceptDesignation" }
-	}
-	
-	/// Language of the designation
-	public var language: String?
-	
-	/// Details how this designation would be used
-	public var use: Coding?
-	
-	/// The text value for this designation
-	public var value: String?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?) {
-		super.init(json: json)
-	}
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(value: String?) {
-		self.init(json: nil)
-		if nil != value {
-			self.value = value
-		}
-	}
-	
-	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist: AnyObject = js["language"] {
-				presentKeys.insert("language")
-				if let val = exist as? String {
-					self.language = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "language", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["use"] {
-				presentKeys.insert("use")
-				if let val = exist as? FHIRJSON {
-					self.use = Coding(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "use", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["value"] {
-				presentKeys.insert("value")
-				if let val = exist as? String {
-					self.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "value", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "value"))
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override public func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let language = self.language {
-			json["language"] = language.asJSON()
-		}
-		if let use = self.use {
-			json["use"] = use.asJSON()
-		}
-		if let value = self.value {
-			json["value"] = value.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
  *  Used when the value set is "expanded".
  *
  *  A value set can also be "expanded", where the value set is turned into a simple collection of enumerated codes. This
@@ -1118,11 +1111,17 @@ public class ValueSetExpansion: FHIRElement
 	/// Uniquely identifies this expansion
 	public var identifier: NSURL?
 	
+	/// Offset at which this resource starts
+	public var offset: Int?
+	
 	/// Parameter that controlled the expansion process
 	public var parameter: [ValueSetExpansionParameter]?
 	
-	/// Time valueset expansion happened
+	/// Time ValueSet expansion happened
 	public var timestamp: DateTime?
+	
+	/// Total number of codes in the expansion
+	public var total: Int?
 	
 	
 	/** Initialize with a JSON object. */
@@ -1131,14 +1130,10 @@ public class ValueSetExpansion: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identifier: NSURL?, timestamp: DateTime?) {
+	public convenience init(identifier: NSURL, timestamp: DateTime) {
 		self.init(json: nil)
-		if nil != identifier {
-			self.identifier = identifier
-		}
-		if nil != timestamp {
-			self.timestamp = timestamp
-		}
+		self.identifier = identifier
+		self.timestamp = timestamp
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1165,6 +1160,15 @@ public class ValueSetExpansion: FHIRElement
 			else {
 				errors.append(FHIRJSONError(key: "identifier"))
 			}
+			if let exist: AnyObject = js["offset"] {
+				presentKeys.insert("offset")
+				if let val = exist as? Int {
+					self.offset = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "offset", wants: Int.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["parameter"] {
 				presentKeys.insert("parameter")
 				if let val = exist as? [FHIRJSON] {
@@ -1186,6 +1190,15 @@ public class ValueSetExpansion: FHIRElement
 			else {
 				errors.append(FHIRJSONError(key: "timestamp"))
 			}
+			if let exist: AnyObject = js["total"] {
+				presentKeys.insert("total")
+				if let val = exist as? Int {
+					self.total = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "total", wants: Int.self, has: exist.dynamicType))
+				}
+			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -1199,11 +1212,17 @@ public class ValueSetExpansion: FHIRElement
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
 		}
+		if let offset = self.offset {
+			json["offset"] = offset.asJSON()
+		}
 		if let parameter = self.parameter {
 			json["parameter"] = ValueSetExpansionParameter.asJSONArray(parameter)
 		}
 		if let timestamp = self.timestamp {
 			json["timestamp"] = timestamp.asJSON()
+		}
+		if let total = self.total {
+			json["total"] = total.asJSON()
 		}
 		
 		return json
@@ -1225,10 +1244,10 @@ public class ValueSetExpansionContains: FHIRElement
 	/// If user cannot select this entry
 	public var abstract: Bool?
 	
-	/// Code - if blank, this is not a choosable code
+	/// Code - if blank, this is not a selectable code
 	public var code: String?
 	
-	/// Codes contained in this concept
+	/// Codes contained under this entry
 	public var contains: [ValueSetExpansionContains]?
 	
 	/// User display for the concept
@@ -1237,7 +1256,7 @@ public class ValueSetExpansionContains: FHIRElement
 	/// System value for the code
 	public var system: NSURL?
 	
-	/// Version in which this code / display is defined
+	/// Version in which this code/display is defined
 	public var version: String?
 	
 	
@@ -1337,7 +1356,7 @@ public class ValueSetExpansionContains: FHIRElement
 /**
  *  Parameter that controlled the expansion process.
  *
- *  A Parameter that controlled the expansion process. These paameters may be used by users of expanded value sets to
+ *  A Parameter that controlled the expansion process. These parameters may be used by users of expanded value sets to
  *  check whether the expansion is suitable for a particular purpose, or to pick the correct expansion.
  */
 public class ValueSetExpansionParameter: FHIRElement
@@ -1349,22 +1368,22 @@ public class ValueSetExpansionParameter: FHIRElement
 	/// Name as assigned by server
 	public var name: String?
 	
-	/// Value of the parameter
+	/// Value of the named parameter
 	public var valueBoolean: Bool?
 	
-	/// Value of the parameter
+	/// Value of the named parameter
 	public var valueCode: String?
 	
-	/// Value of the parameter
+	/// Value of the named parameter
 	public var valueDecimal: NSDecimalNumber?
 	
-	/// Value of the parameter
+	/// Value of the named parameter
 	public var valueInteger: Int?
 	
-	/// Value of the parameter
+	/// Value of the named parameter
 	public var valueString: String?
 	
-	/// Value of the parameter
+	/// Value of the named parameter
 	public var valueUri: NSURL?
 	
 	
@@ -1374,11 +1393,9 @@ public class ValueSetExpansionParameter: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String?) {
+	public convenience init(name: String) {
 		self.init(json: nil)
-		if nil != name {
-			self.name = name
-		}
+		self.name = name
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

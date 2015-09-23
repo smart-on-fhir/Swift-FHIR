@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -40,11 +40,9 @@ public class Schedule: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(actor: Reference?) {
+	public convenience init(actor: Reference) {
 		self.init(json: nil)
-		if nil != actor {
-			self.actor = actor
-		}
+		self.actor = actor
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

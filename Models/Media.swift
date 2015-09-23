@@ -2,7 +2,7 @@
 //  Media.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Media) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Media) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -31,7 +31,7 @@ public class Media: DomainResource
 	/// Number of frames if > 1 (photo)
 	public var frames: UInt?
 	
-	/// Height of the image in pixels(photo/video)
+	/// Height of the image in pixels (photo/video)
 	public var height: UInt?
 	
 	/// Identifier(s) for the image
@@ -49,7 +49,7 @@ public class Media: DomainResource
 	/// photo | video | audio
 	public var type: String?
 	
-	/// Imaging view e.g Lateral or Antero-posterior
+	/// Imaging view, e.g. Lateral or Antero-posterior
 	public var view: CodeableConcept?
 	
 	/// Width of the image in pixels (photo/video)
@@ -62,14 +62,10 @@ public class Media: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(content: Attachment?, type: String?) {
+	public convenience init(content: Attachment, type: String) {
 		self.init(json: nil)
-		if nil != content {
-			self.content = content
-		}
-		if nil != type {
-			self.type = type
-		}
+		self.content = content
+		self.type = type
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

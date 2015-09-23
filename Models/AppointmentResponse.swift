@@ -2,7 +2,7 @@
 //  AppointmentResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -18,16 +18,16 @@ public class AppointmentResponse: DomainResource
 		get { return "AppointmentResponse" }
 	}
 	
-	/// A Person, Location/HealthcareService or Device that is participating in the appointment
+	/// Person, Location/HealthcareService or Device
 	public var actor: Reference?
 	
-	/// Parent appointment that this response is replying to
+	/// Appointment this response relates to
 	public var appointment: Reference?
 	
-	/// Additional comments about the appointment
+	/// Additional comments
 	public var comment: String?
 	
-	/// Date/Time that the appointment is to conclude, or requested new end time
+	/// Time from appointment, or requested new end time
 	public var end: Instant?
 	
 	/// External Ids for this item
@@ -39,7 +39,7 @@ public class AppointmentResponse: DomainResource
 	/// Role of participant in the appointment
 	public var participantType: [CodeableConcept]?
 	
-	/// Date/Time that the appointment is to take place, or requested new start time
+	/// Time from appointment, or requested new start time
 	public var start: Instant?
 	
 	
@@ -49,14 +49,10 @@ public class AppointmentResponse: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(appointment: Reference?, participantStatus: String?) {
+	public convenience init(appointment: Reference, participantStatus: String) {
 		self.init(json: nil)
-		if nil != appointment {
-			self.appointment = appointment
-		}
-		if nil != participantStatus {
-			self.participantStatus = participantStatus
-		}
+		self.appointment = appointment
+		self.participantStatus = participantStatus
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

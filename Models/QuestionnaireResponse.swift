@@ -1,8 +1,8 @@
 //
-//  QuestionnaireAnswers.swift
+//  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/QuestionnaireAnswers) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -15,10 +15,10 @@ import Foundation
  *  A structured set of questions and their answers. The questions are ordered and grouped into coherent subsets,
  *  corresponding to the structure of the grouping of the underlying questions.
  */
-public class QuestionnaireAnswers: DomainResource
+public class QuestionnaireResponse: DomainResource
 {
 	override public class var resourceName: String {
-		get { return "QuestionnaireAnswers" }
+		get { return "QuestionnaireResponse" }
 	}
 	
 	/// Person who received and recorded the answers
@@ -31,7 +31,7 @@ public class QuestionnaireAnswers: DomainResource
 	public var encounter: Reference?
 	
 	/// Grouped questions
-	public var group: QuestionnaireAnswersGroup?
+	public var group: QuestionnaireResponseGroup?
 	
 	/// Unique id for this set of answers
 	public var identifier: Identifier?
@@ -55,11 +55,9 @@ public class QuestionnaireAnswers: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String?) {
+	public convenience init(status: String) {
 		self.init(json: nil)
-		if nil != status {
-			self.status = status
-		}
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -95,7 +93,7 @@ public class QuestionnaireAnswers: DomainResource
 			if let exist: AnyObject = js["group"] {
 				presentKeys.insert("group")
 				if let val = exist as? FHIRJSON {
-					self.group = QuestionnaireAnswersGroup(json: val, owner: self)
+					self.group = QuestionnaireResponseGroup(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "group", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -192,22 +190,22 @@ public class QuestionnaireAnswers: DomainResource
 /**
  *  Grouped questions.
  *
- *  A group of questions to a possibly similarly grouped set of questions in the questionnaire answers.
+ *  A group of questions to a possibly similarly grouped set of questions in the questionnaire response.
  */
-public class QuestionnaireAnswersGroup: FHIRElement
+public class QuestionnaireResponseGroup: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "QuestionnaireAnswersGroup" }
+		get { return "QuestionnaireResponseGroup" }
 	}
 	
-	/// Nested questionnaire answers group
-	public var group: [QuestionnaireAnswersGroup]?
+	/// Nested questionnaire response group
+	public var group: [QuestionnaireResponseGroup]?
 	
 	/// Corresponding group within Questionnaire
 	public var linkId: String?
 	
 	/// Questions in this group
-	public var question: [QuestionnaireAnswersGroupQuestion]?
+	public var question: [QuestionnaireResponseGroupQuestion]?
 	
 	/// The subject this group's answers are about
 	public var subject: Reference?
@@ -230,7 +228,7 @@ public class QuestionnaireAnswersGroup: FHIRElement
 			if let exist: AnyObject = js["group"] {
 				presentKeys.insert("group")
 				if let val = exist as? [FHIRJSON] {
-					self.group = QuestionnaireAnswersGroup.from(val, owner: self) as? [QuestionnaireAnswersGroup]
+					self.group = QuestionnaireResponseGroup.from(val, owner: self) as? [QuestionnaireResponseGroup]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "group", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -248,7 +246,7 @@ public class QuestionnaireAnswersGroup: FHIRElement
 			if let exist: AnyObject = js["question"] {
 				presentKeys.insert("question")
 				if let val = exist as? [FHIRJSON] {
-					self.question = QuestionnaireAnswersGroupQuestion.from(val, owner: self) as? [QuestionnaireAnswersGroupQuestion]
+					self.question = QuestionnaireResponseGroupQuestion.from(val, owner: self) as? [QuestionnaireResponseGroupQuestion]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "question", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -289,13 +287,13 @@ public class QuestionnaireAnswersGroup: FHIRElement
 		var json = super.asJSON()
 		
 		if let group = self.group {
-			json["group"] = QuestionnaireAnswersGroup.asJSONArray(group)
+			json["group"] = QuestionnaireResponseGroup.asJSONArray(group)
 		}
 		if let linkId = self.linkId {
 			json["linkId"] = linkId.asJSON()
 		}
 		if let question = self.question {
-			json["question"] = QuestionnaireAnswersGroupQuestion.asJSONArray(question)
+			json["question"] = QuestionnaireResponseGroupQuestion.asJSONArray(question)
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON()
@@ -317,17 +315,14 @@ public class QuestionnaireAnswersGroup: FHIRElement
  *
  *  Set of questions within this group. The order of questions within the group is relevant.
  */
-public class QuestionnaireAnswersGroupQuestion: FHIRElement
+public class QuestionnaireResponseGroupQuestion: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "QuestionnaireAnswersGroupQuestion" }
+		get { return "QuestionnaireResponseGroupQuestion" }
 	}
 	
 	/// The response(s) to the question
-	public var answer: [QuestionnaireAnswersGroupQuestionAnswer]?
-	
-	/// Nested questionnaire group
-	public var group: [QuestionnaireAnswersGroup]?
+	public var answer: [QuestionnaireResponseGroupQuestionAnswer]?
 	
 	/// Corresponding question within Questionnaire
 	public var linkId: String?
@@ -347,19 +342,10 @@ public class QuestionnaireAnswersGroupQuestion: FHIRElement
 			if let exist: AnyObject = js["answer"] {
 				presentKeys.insert("answer")
 				if let val = exist as? [FHIRJSON] {
-					self.answer = QuestionnaireAnswersGroupQuestionAnswer.from(val, owner: self) as? [QuestionnaireAnswersGroupQuestionAnswer]
+					self.answer = QuestionnaireResponseGroupQuestionAnswer.from(val, owner: self) as? [QuestionnaireResponseGroupQuestionAnswer]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "answer", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["group"] {
-				presentKeys.insert("group")
-				if let val = exist as? [FHIRJSON] {
-					self.group = QuestionnaireAnswersGroup.from(val, owner: self) as? [QuestionnaireAnswersGroup]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "group", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["linkId"] {
@@ -388,10 +374,7 @@ public class QuestionnaireAnswersGroupQuestion: FHIRElement
 		var json = super.asJSON()
 		
 		if let answer = self.answer {
-			json["answer"] = QuestionnaireAnswersGroupQuestionAnswer.asJSONArray(answer)
-		}
-		if let group = self.group {
-			json["group"] = QuestionnaireAnswersGroup.asJSONArray(group)
+			json["answer"] = QuestionnaireResponseGroupQuestionAnswer.asJSONArray(answer)
 		}
 		if let linkId = self.linkId {
 			json["linkId"] = linkId.asJSON()
@@ -410,11 +393,14 @@ public class QuestionnaireAnswersGroupQuestion: FHIRElement
  *
  *  The respondent's answer(s) to the question.
  */
-public class QuestionnaireAnswersGroupQuestionAnswer: FHIRElement
+public class QuestionnaireResponseGroupQuestionAnswer: FHIRElement
 {
 	override public class var resourceName: String {
-		get { return "QuestionnaireAnswersGroupQuestionAnswer" }
+		get { return "QuestionnaireResponseGroupQuestionAnswer" }
 	}
+	
+	/// Nested questionnaire group
+	public var group: [QuestionnaireResponseGroup]?
 	
 	/// Single-valued answer to the question
 	public var valueAttachment: Attachment?
@@ -464,6 +450,15 @@ public class QuestionnaireAnswersGroupQuestionAnswer: FHIRElement
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["group"] {
+				presentKeys.insert("group")
+				if let val = exist as? [FHIRJSON] {
+					self.group = QuestionnaireResponseGroup.from(val, owner: self) as? [QuestionnaireResponseGroup]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "group", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["valueAttachment"] {
 				presentKeys.insert("valueAttachment")
 				if let val = exist as? FHIRJSON {
@@ -588,6 +583,9 @@ public class QuestionnaireAnswersGroupQuestionAnswer: FHIRElement
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let group = self.group {
+			json["group"] = QuestionnaireResponseGroup.asJSONArray(group)
+		}
 		if let valueAttachment = self.valueAttachment {
 			json["valueAttachment"] = valueAttachment.asJSON()
 		}

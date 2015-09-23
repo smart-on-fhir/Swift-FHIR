@@ -2,7 +2,7 @@
 //  DeviceUseStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,8 +10,7 @@ import Foundation
 
 
 /**
- *  A record of a device being used by a patient where the record is the result of a report from the patient or another
- *  clinician..
+ *  None.
  *
  *  A record of a device being used by a patient where the record is the result of a report from the patient or another
  *  clinician.
@@ -28,34 +27,34 @@ public class DeviceUseStatement: DomainResource
 	/// Target body site
 	public var bodySiteReference: Reference?
 	
-	/// The details of the device used.
+	/// None
 	public var device: Reference?
 	
-	/// An external identifier for this statement such as an IRI.
+	/// None
 	public var identifier: [Identifier]?
 	
-	/// Reason or justification for the use of the device.
+	/// None
 	public var indication: [CodeableConcept]?
 	
-	/// Details about the device statement that were not represented at all or sufficiently in one of the attributes provided in a class. These may include for example a comment, an instruction, or a note associated with the statement.
+	/// None
 	public var notes: [String]?
 	
-	/// The time at which the statement was made/recorded.
+	/// None
 	public var recordedOn: DateTime?
 	
-	/// The patient who used the device.
+	/// None
 	public var subject: Reference?
 	
-	/// How often the device was used.
+	/// None
 	public var timingDateTime: DateTime?
 	
-	/// How often the device was used.
+	/// None
 	public var timingPeriod: Period?
 	
-	/// How often the device was used.
+	/// None
 	public var timingTiming: Timing?
 	
-	/// The time period over which the device was used.
+	/// None
 	public var whenUsed: Period?
 	
 	
@@ -65,14 +64,10 @@ public class DeviceUseStatement: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(device: Reference?, subject: Reference?) {
+	public convenience init(device: Reference, subject: Reference) {
 		self.init(json: nil)
-		if nil != device {
-			self.device = device
-		}
-		if nil != subject {
-			self.subject = subject
-		}
+		self.device = device
+		self.subject = subject
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

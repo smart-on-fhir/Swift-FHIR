@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -21,31 +21,31 @@ public class Encounter: DomainResource
 		get { return "Encounter" }
 	}
 	
+	/// The appointment that scheduled this encounter
+	public var appointment: Reference?
+	
 	/// inpatient | outpatient | ambulatory | emergency +
 	public var class_fhir: String?
 	
-	/// An episode of care that this encounter should be recorded against
-	public var episodeOfCare: Reference?
+	/// Episode(s) of care that this encounter should be recorded against
+	public var episodeOfCare: [Reference]?
 	
-	/// The appointment that scheduled this encounter
-	public var fulfills: Reference?
-	
-	/// Details about an admission to a clinic
+	/// Details about the admission to a healthcare service
 	public var hospitalization: EncounterHospitalization?
 	
 	/// Identifier(s) by which this encounter is known
 	public var identifier: [Identifier]?
 	
-	/// Incoming Referral Request
-	public var incomingReferralRequest: [Reference]?
+	/// The ReferralRequest that initiated this encounter
+	public var incomingReferral: [Reference]?
 	
 	/// Reason the encounter takes place (resource)
 	public var indication: [Reference]?
 	
 	/// Quantity of time the encounter lasted (less time absent)
-	public var length: Duration?
+	public var length: Quantity?
 	
-	/// List of locations the patient has been at
+	/// List of locations where the patient has been
 	public var location: [EncounterLocation]?
 	
 	/// Another Encounter this encounter is part of
@@ -72,7 +72,7 @@ public class Encounter: DomainResource
 	/// planned | arrived | in-progress | onleave | finished | cancelled
 	public var status: String?
 	
-	/// List of Encounter statuses
+	/// List of past encounter statuses
 	public var statusHistory: [EncounterStatusHistory]?
 	
 	/// Specific type of encounter
@@ -85,16 +85,23 @@ public class Encounter: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String?) {
+	public convenience init(status: String) {
 		self.init(json: nil)
-		if nil != status {
-			self.status = status
-		}
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["appointment"] {
+				presentKeys.insert("appointment")
+				if let val = exist as? FHIRJSON {
+					self.appointment = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "appointment", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["class"] {
 				presentKeys.insert("class")
 				if let val = exist as? String {
@@ -106,20 +113,11 @@ public class Encounter: DomainResource
 			}
 			if let exist: AnyObject = js["episodeOfCare"] {
 				presentKeys.insert("episodeOfCare")
-				if let val = exist as? FHIRJSON {
-					self.episodeOfCare = Reference(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.episodeOfCare = Reference.from(val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "episodeOfCare", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["fulfills"] {
-				presentKeys.insert("fulfills")
-				if let val = exist as? FHIRJSON {
-					self.fulfills = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "fulfills", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "episodeOfCare", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["hospitalization"] {
@@ -140,13 +138,13 @@ public class Encounter: DomainResource
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["incomingReferralRequest"] {
-				presentKeys.insert("incomingReferralRequest")
+			if let exist: AnyObject = js["incomingReferral"] {
+				presentKeys.insert("incomingReferral")
 				if let val = exist as? [FHIRJSON] {
-					self.incomingReferralRequest = Reference.from(val, owner: self) as? [Reference]
+					self.incomingReferral = Reference.from(val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "incomingReferralRequest", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "incomingReferral", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["indication"] {
@@ -161,7 +159,7 @@ public class Encounter: DomainResource
 			if let exist: AnyObject = js["length"] {
 				presentKeys.insert("length")
 				if let val = exist as? FHIRJSON {
-					self.length = Duration(json: val, owner: self)
+					self.length = Quantity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "length", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -276,14 +274,14 @@ public class Encounter: DomainResource
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let appointment = self.appointment {
+			json["appointment"] = appointment.asJSON()
+		}
 		if let class_fhir = self.class_fhir {
 			json["class"] = class_fhir.asJSON()
 		}
 		if let episodeOfCare = self.episodeOfCare {
-			json["episodeOfCare"] = episodeOfCare.asJSON()
-		}
-		if let fulfills = self.fulfills {
-			json["fulfills"] = fulfills.asJSON()
+			json["episodeOfCare"] = Reference.asJSONArray(episodeOfCare)
 		}
 		if let hospitalization = self.hospitalization {
 			json["hospitalization"] = hospitalization.asJSON()
@@ -291,8 +289,8 @@ public class Encounter: DomainResource
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
-		if let incomingReferralRequest = self.incomingReferralRequest {
-			json["incomingReferralRequest"] = Reference.asJSONArray(incomingReferralRequest)
+		if let incomingReferral = self.incomingReferral {
+			json["incomingReferral"] = Reference.asJSONArray(incomingReferral)
 		}
 		if let indication = self.indication {
 			json["indication"] = Reference.asJSONArray(indication)
@@ -340,7 +338,7 @@ public class Encounter: DomainResource
 
 
 /**
- *  Details about an admission to a clinic.
+ *  Details about the admission to a healthcare service.
  */
 public class EncounterHospitalization: FHIRElement
 {
@@ -351,14 +349,17 @@ public class EncounterHospitalization: FHIRElement
 	/// From where patient was admitted (physician referral, transfer)
 	public var admitSource: CodeableConcept?
 	
+	/// The admitting diagnosis as reported by admitting practitioner
+	public var admittingDiagnosis: [Reference]?
+	
 	/// Location to which the patient is discharged
 	public var destination: Reference?
 	
 	/// Diet preferences reported by the patient
-	public var dietPreference: CodeableConcept?
+	public var dietPreference: [CodeableConcept]?
 	
 	/// The final diagnosis given a patient before release from the hospital after all testing, surgery, and workup are complete
-	public var dischargeDiagnosis: Reference?
+	public var dischargeDiagnosis: [Reference]?
 	
 	/// Category or kind of location after discharge
 	public var dischargeDisposition: CodeableConcept?
@@ -369,10 +370,10 @@ public class EncounterHospitalization: FHIRElement
 	/// Pre-admission identifier
 	public var preAdmissionIdentifier: Identifier?
 	
-	/// Is this hospitalization a readmission?
-	public var reAdmission: Bool?
+	/// The type of hospital re-admission that has occurred (if any). If the value is absent, then this is not identified as a readmission
+	public var reAdmission: CodeableConcept?
 	
-	/// Wheelchair, translator, stretcher, etc
+	/// Wheelchair, translator, stretcher, etc.
 	public var specialArrangement: [CodeableConcept]?
 	
 	/// Special courtesies (VIP, board member)
@@ -396,6 +397,15 @@ public class EncounterHospitalization: FHIRElement
 					errors.append(FHIRJSONError(key: "admitSource", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["admittingDiagnosis"] {
+				presentKeys.insert("admittingDiagnosis")
+				if let val = exist as? [FHIRJSON] {
+					self.admittingDiagnosis = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "admittingDiagnosis", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["destination"] {
 				presentKeys.insert("destination")
 				if let val = exist as? FHIRJSON {
@@ -407,20 +417,20 @@ public class EncounterHospitalization: FHIRElement
 			}
 			if let exist: AnyObject = js["dietPreference"] {
 				presentKeys.insert("dietPreference")
-				if let val = exist as? FHIRJSON {
-					self.dietPreference = CodeableConcept(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.dietPreference = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "dietPreference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "dietPreference", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["dischargeDiagnosis"] {
 				presentKeys.insert("dischargeDiagnosis")
-				if let val = exist as? FHIRJSON {
-					self.dischargeDiagnosis = Reference(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.dischargeDiagnosis = Reference.from(val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "dischargeDiagnosis", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "dischargeDiagnosis", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["dischargeDisposition"] {
@@ -452,11 +462,11 @@ public class EncounterHospitalization: FHIRElement
 			}
 			if let exist: AnyObject = js["reAdmission"] {
 				presentKeys.insert("reAdmission")
-				if let val = exist as? Bool {
-					self.reAdmission = val
+				if let val = exist as? FHIRJSON {
+					self.reAdmission = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reAdmission", wants: Bool.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reAdmission", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["specialArrangement"] {
@@ -487,14 +497,17 @@ public class EncounterHospitalization: FHIRElement
 		if let admitSource = self.admitSource {
 			json["admitSource"] = admitSource.asJSON()
 		}
+		if let admittingDiagnosis = self.admittingDiagnosis {
+			json["admittingDiagnosis"] = Reference.asJSONArray(admittingDiagnosis)
+		}
 		if let destination = self.destination {
 			json["destination"] = destination.asJSON()
 		}
 		if let dietPreference = self.dietPreference {
-			json["dietPreference"] = dietPreference.asJSON()
+			json["dietPreference"] = CodeableConcept.asJSONArray(dietPreference)
 		}
 		if let dischargeDiagnosis = self.dischargeDiagnosis {
-			json["dischargeDiagnosis"] = dischargeDiagnosis.asJSON()
+			json["dischargeDiagnosis"] = Reference.asJSONArray(dischargeDiagnosis)
 		}
 		if let dischargeDisposition = self.dischargeDisposition {
 			json["dischargeDisposition"] = dischargeDisposition.asJSON()
@@ -521,9 +534,9 @@ public class EncounterHospitalization: FHIRElement
 
 
 /**
- *  List of locations the patient has been at.
+ *  List of locations where the patient has been.
  *
- *  List of locations at which the patient has been.
+ *  List of locations where  the patient has been during this encounter.
  */
 public class EncounterLocation: FHIRElement
 {
@@ -537,7 +550,7 @@ public class EncounterLocation: FHIRElement
 	/// Time period during which the patient was present at the location
 	public var period: Period?
 	
-	/// planned | present | reserved
+	/// planned | active | reserved | completed
 	public var status: String?
 	
 	
@@ -547,11 +560,9 @@ public class EncounterLocation: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(location: Reference?) {
+	public convenience init(location: Reference) {
 		self.init(json: nil)
-		if nil != location {
-			self.location = location
-		}
+		self.location = location
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -612,7 +623,7 @@ public class EncounterLocation: FHIRElement
 /**
  *  List of participants involved in the encounter.
  *
- *  The main practitioner responsible for providing the service.
+ *  The list of people responsible for providing the service.
  */
 public class EncounterParticipant: FHIRElement
 {
@@ -688,11 +699,10 @@ public class EncounterParticipant: FHIRElement
 
 
 /**
- *  List of Encounter statuses.
+ *  List of past encounter statuses.
  *
- *  The current status is always found in the current version of the resource. This status history permits the encounter
- *  resource to contain the status history without the needing to read through the historical versions of the resource,
- *  or even have the server store them.
+ *  The status history permits the encounter resource to contain the status history without needing to read through the
+ *  historical versions of the resource, or even have the server store them.
  */
 public class EncounterStatusHistory: FHIRElement
 {
@@ -713,14 +723,10 @@ public class EncounterStatusHistory: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(period: Period?, status: String?) {
+	public convenience init(period: Period, status: String) {
 		self.init(json: nil)
-		if nil != period {
-			self.period = period
-		}
-		if nil != status {
-			self.status = status
-		}
+		self.period = period
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

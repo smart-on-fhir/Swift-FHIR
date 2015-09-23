@@ -2,7 +2,7 @@
 //  HealthcareService.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- *  The details of a Healthcare Service available at a location.
+ *  The details of a healthcare service available at a location.
  */
 public class HealthcareService: DomainResource
 {
@@ -18,25 +18,25 @@ public class HealthcareService: DomainResource
 		get { return "HealthcareService" }
 	}
 	
-	/// Indicates if an appointment is required for access to this service
+	/// If an appointment is required for access to this service
 	public var appointmentRequired: Bool?
 	
-	/// A description of Site availability exceptions, e.g., public holiday availability. Succinctly describing all possible exceptions to normal Site availability as details in the Available Times and Not Available Times
+	/// Description of availability exceptions
 	public var availabilityExceptions: String?
 	
-	/// A Collection of times that the Service Site is available
+	/// Times the Service Site is available
 	public var availableTime: [HealthcareServiceAvailableTime]?
 	
-	/// Collection of Characteristics (attributes)
+	/// Collection of characteristics (attributes)
 	public var characteristic: [CodeableConcept]?
 	
-	/// Any additional description of the service and/or any specific issues not covered by the other attributes, which can be displayed as further detail under the serviceName
+	/// Additional description and/or any specific issues not covered elsewhere
 	public var comment: String?
 	
-	/// The location(s) that this service is available to (not where the service is provided)
+	/// Location(s) service is inteded for/available to
 	public var coverageArea: [Reference]?
 	
-	/// Does this service have specific eligibility requirements that need to be met in order to use the service
+	/// Specific eligibility requirements required to use the service
 	public var eligibility: CodeableConcept?
 	
 	/// Describes the eligibility conditions for the service
@@ -45,43 +45,43 @@ public class HealthcareService: DomainResource
 	/// Extra details about the service that can't be placed in the other fields
 	public var extraDetails: String?
 	
-	/// External Identifiers for this item
+	/// External identifiers for this item
 	public var identifier: [Identifier]?
 	
-	/// The location where this healthcare service may be provided
+	/// Location where service may be provided
 	public var location: Reference?
 	
-	/// The HealthcareService is not available during this period of time due to the provided reason
+	/// Not available during this time due to provided reason
 	public var notAvailable: [HealthcareServiceNotAvailable]?
 	
-	/// If there is a photo/symbol associated with this HealthcareService, it may be included here to facilitate quick identification of the service in a list
+	/// Facilitates quick identification of the service
 	public var photo: Attachment?
 	
-	/// Program Names that can be used to categorize the service
+	/// Program Names that categorize the service
 	public var programName: [String]?
 	
-	/// The organization that provides this Healthcare Service
+	/// Organization that provides this service
 	public var providedBy: Reference?
 	
-	/// The public part of the 'keys' allocated to an Organization by an accredited body to support secure exchange of data over the internet. To be provided by the Organization, where available
+	/// PKI Public keys to support secure communications
 	public var publicKey: String?
 	
 	/// Ways that the service accepts referrals
 	public var referralMethod: [CodeableConcept]?
 	
-	/// Identifies the broad category of service being performed or delivered. Selecting a Service Category then determines the list of relevant service types that can be selected in the Primary Service Type
+	/// Broad category of service being performed or delivered
 	public var serviceCategory: CodeableConcept?
 	
-	/// Further description of the service as it would be presented to a consumer while searching
+	/// Description of service as presented to a consumer while searching
 	public var serviceName: String?
 	
-	/// The code(s) that detail the conditions under which the healthcare service is available/offered
+	/// Conditions under which service is available/offered
 	public var serviceProvisionCode: [CodeableConcept]?
 	
-	/// A specific type of service that may be delivered or performed
+	/// Specific service delivered or performed
 	public var serviceType: [HealthcareServiceServiceType]?
 	
-	/// List of contacts related to this specific healthcare service. If this is empty, then refer to the location's contacts
+	/// Contacts related to the healthcare service
 	public var telecom: [ContactPoint]?
 	
 	
@@ -91,11 +91,9 @@ public class HealthcareService: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(location: Reference?) {
+	public convenience init(location: Reference) {
 		self.init(json: nil)
-		if nil != location {
-			self.location = location
-		}
+		self.location = location
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -386,7 +384,9 @@ public class HealthcareService: DomainResource
 
 
 /**
- *  A Collection of times that the Service Site is available.
+ *  Times the Service Site is available.
+ *
+ *  A collection of times that the Service Site is available.
  */
 public class HealthcareServiceAvailableTime: FHIRElement
 {
@@ -394,13 +394,13 @@ public class HealthcareServiceAvailableTime: FHIRElement
 		get { return "HealthcareServiceAvailableTime" }
 	}
 	
-	/// Is this always available? (hence times are irrelevant) e.g. 24 hour service
+	/// Always available? e.g. 24 hour service
 	public var allDay: Bool?
 	
-	/// The closing time of day. Note: If the AllDay flag is set, then this time is ignored
+	/// Closing time of day (ignored if allDay = true)
 	public var availableEndTime: Time?
 	
-	/// The opening time of day. Note: If the AllDay flag is set, then this time is ignored
+	/// Opening time of day (ignored if allDay = true)
 	public var availableStartTime: Time?
 	
 	/// mon | tue | wed | thu | fri | sat | sun
@@ -481,6 +481,8 @@ public class HealthcareServiceAvailableTime: FHIRElement
 
 
 /**
+ *  Not available during this time due to provided reason.
+ *
  *  The HealthcareService is not available during this period of time due to the provided reason.
  */
 public class HealthcareServiceNotAvailable: FHIRElement
@@ -489,10 +491,10 @@ public class HealthcareServiceNotAvailable: FHIRElement
 		get { return "HealthcareServiceNotAvailable" }
 	}
 	
-	/// The reason that can be presented to the user as to why this time is not available
+	/// Reason presented to the user explaining why time not available
 	public var description_fhir: String?
 	
-	/// Service is not available (seasonally or for a public holiday) from this date
+	/// Service not availablefrom this date
 	public var during: Period?
 	
 	
@@ -502,11 +504,9 @@ public class HealthcareServiceNotAvailable: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(description_fhir: String?) {
+	public convenience init(description_fhir: String) {
 		self.init(json: nil)
-		if nil != description_fhir {
-			self.description_fhir = description_fhir
-		}
+		self.description_fhir = description_fhir
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -553,6 +553,8 @@ public class HealthcareServiceNotAvailable: FHIRElement
 
 
 /**
+ *  Specific service delivered or performed.
+ *
  *  A specific type of service that may be delivered or performed.
  */
 public class HealthcareServiceServiceType: FHIRElement
@@ -561,10 +563,10 @@ public class HealthcareServiceServiceType: FHIRElement
 		get { return "HealthcareServiceServiceType" }
 	}
 	
-	/// Collection of Specialties handled by the Service Site. This is more of a Medical Term
+	/// Specialties handled by the Service Site
 	public var specialty: [CodeableConcept]?
 	
-	/// The specific type of service being delivered or performed
+	/// Type of service delivered or performed
 	public var type: CodeableConcept?
 	
 	
@@ -574,11 +576,9 @@ public class HealthcareServiceServiceType: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: CodeableConcept?) {
+	public convenience init(type: CodeableConcept) {
 		self.init(json: nil)
-		if nil != type {
-			self.type = type
-		}
+		self.type = type
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {

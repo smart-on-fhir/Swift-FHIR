@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -18,10 +18,10 @@ public class DocumentManifest: DomainResource
 		get { return "DocumentManifest" }
 	}
 	
-	/// Who and/or what authored the document
+	/// Who and/or what authored the manifest
 	public var author: [Reference]?
 	
-	/// Contents of the manifest
+	/// The items included
 	public var content: [DocumentManifestContent]?
 	
 	/// When this document manifest created
@@ -45,13 +45,13 @@ public class DocumentManifest: DomainResource
 	/// The source system/application/software
 	public var source: NSURL?
 	
-	/// current | superceded | entered-in-error
+	/// current | superseded | entered-in-error
 	public var status: String?
 	
 	/// The subject of the set of documents
 	public var subject: Reference?
 	
-	/// What kind of document set this is
+	/// Kind of document set
 	public var type: CodeableConcept?
 	
 	
@@ -61,14 +61,10 @@ public class DocumentManifest: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(content: [DocumentManifestContent]?, status: String?) {
+	public convenience init(content: [DocumentManifestContent], status: String) {
 		self.init(json: nil)
-		if nil != content {
-			self.content = content
-		}
-		if nil != status {
-			self.status = status
-		}
+		self.content = content
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -238,9 +234,9 @@ public class DocumentManifest: DomainResource
 
 
 /**
- *  Contents of the manifest.
+ *  The items included.
  *
- *  The manifest list.
+ *  The list of Documents included in the manifest.
  */
 public class DocumentManifestContent: FHIRElement
 {
@@ -261,14 +257,10 @@ public class DocumentManifestContent: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(pAttachment: Attachment?, pReference: Reference?) {
+	public convenience init(pAttachment: Attachment, pReference: Reference) {
 		self.init(json: nil)
-		if nil != pAttachment {
-			self.pAttachment = pAttachment
-		}
-		if nil != pReference {
-			self.pReference = pReference
-		}
+		self.pAttachment = pAttachment
+		self.pReference = pReference
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -327,7 +319,7 @@ public class DocumentManifestRelated: FHIRElement
 		get { return "DocumentManifestRelated" }
 	}
 	
-	/// Related Identifier
+	/// Identifiers of things that are related
 	public var identifier: Identifier?
 	
 	/// Related Resource

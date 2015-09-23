@@ -2,7 +2,7 @@
 //  ListTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class ListTests: FHIRModelTestCase
+class ListTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> List {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,12 +22,41 @@ class ListTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testList1() throws {
-		let instance = try runList1()
-		try runList1(instance.asJSON())
+	func testList1() {
+		let instance = try? runList1()
+		XCTAssertNotNil(instance, "Must instantiate List")
+		try! runList1(instance!.asJSON())
 	}
 	
 	func runList1(json: FHIRJSON? = nil) throws -> List {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-allergies.json")
+		
+		XCTAssertEqual(inst.code!.coding![0].code!, "52472-8")
+		XCTAssertEqual(inst.code!.coding![0].display!, "Allergies and Adverse Drug Reactions")
+		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.code!.text!, "Current Allergy List")
+		XCTAssertEqual(inst.date!.description, "2015-07-14T23:10:23+11:00")
+		XCTAssertEqual(inst.entry![0].item!.reference!, "AllergyIntolerance/example")
+		XCTAssertEqual(inst.entry![1].item!.reference!, "AllergyIntolerance/medication")
+		XCTAssertEqual(inst.id!, "current-allergies")
+		XCTAssertEqual(inst.mode!, "working")
+		XCTAssertEqual(inst.orderedBy!.coding![0].code!, "entry-date")
+		XCTAssertEqual(inst.orderedBy!.coding![0].system!.absoluteString, "http://hl7.org/fhir/list-order")
+		XCTAssertEqual(inst.source!.reference!, "Patient/example")
+		XCTAssertEqual(inst.status!, "current")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.title!, "Current Allergy List")
+		
+		return inst
+	}
+	
+	func testList2() {
+		let instance = try? runList2()
+		XCTAssertNotNil(instance, "Must instantiate List")
+		try! runList2(instance!.asJSON())
+	}
+	
+	func runList2(json: FHIRJSON? = nil) throws -> List {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-empty.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "182836005")
@@ -35,9 +64,9 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.code!.text!, "Medication Review")
 		XCTAssertEqual(inst.date!.description, "2012-11-26T07:30:23+11:00")
-		XCTAssertEqual(inst.emptyReason!.coding![0].code!, "nil-known")
+		XCTAssertEqual(inst.emptyReason!.coding![0].code!, "nilknown")
 		XCTAssertEqual(inst.emptyReason!.coding![0].display!, "Nil Known")
-		XCTAssertEqual(inst.emptyReason!.coding![0].system!.absoluteString, "http://hl7.org/fhir/special-values")
+		XCTAssertEqual(inst.emptyReason!.coding![0].system!.absoluteString, "http://hl7.org/fhir/list-empty-reason")
 		XCTAssertEqual(inst.emptyReason!.text!, "The patient is not on any medications")
 		XCTAssertEqual(inst.id!, "example-empty")
 		XCTAssertEqual(inst.mode!, "snapshot")
@@ -48,12 +77,13 @@ class ListTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testList2() throws {
-		let instance = try runList2()
-		try runList2(instance.asJSON())
+	func testList3() {
+		let instance = try? runList3()
+		XCTAssertNotNil(instance, "Must instantiate List")
+		try! runList3(instance!.asJSON())
 	}
 	
-	func runList2(json: FHIRJSON? = nil) throws -> List {
+	func runList3(json: FHIRJSON? = nil) throws -> List {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-familyhistory-f201-roel.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "8670-2")
@@ -72,12 +102,13 @@ class ListTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testList3() throws {
-		let instance = try runList3()
-		try runList3(instance.asJSON())
+	func testList4() {
+		let instance = try? runList4()
+		XCTAssertNotNil(instance, "Must instantiate List")
+		try! runList4(instance!.asJSON())
 	}
 	
-	func runList3(json: FHIRJSON? = nil) throws -> List {
+	func runList4(json: FHIRJSON? = nil) throws -> List {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-familyhistory-genetics-profile-annie.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "8670-2")
@@ -103,12 +134,13 @@ class ListTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testList4() throws {
-		let instance = try runList4()
-		try runList4(instance.asJSON())
+	func testList5() {
+		let instance = try? runList5()
+		XCTAssertNotNil(instance, "Must instantiate List")
+		try! runList5(instance!.asJSON())
 	}
 	
-	func runList4(json: FHIRJSON? = nil) throws -> List {
+	func runList5(json: FHIRJSON? = nil) throws -> List {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-familyhistory-genetics-profile.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "8670-2")
@@ -133,12 +165,13 @@ class ListTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testList5() throws {
-		let instance = try runList5()
-		try runList5(instance.asJSON())
+	func testList6() {
+		let instance = try? runList6()
+		XCTAssertNotNil(instance, "Must instantiate List")
+		try! runList6(instance!.asJSON())
 	}
 	
-	func runList5(json: FHIRJSON? = nil) throws -> List {
+	func runList6(json: FHIRJSON? = nil) throws -> List {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-medlist.json")
 		
 		XCTAssertEqual(inst.code!.coding![0].code!, "182836005")
@@ -146,15 +179,14 @@ class ListTests: FHIRModelTestCase
 		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.code!.text!, "Medication Review")
 		XCTAssertEqual(inst.date!.description, "2013-11-20T23:10:23+11:00")
-		XCTAssertEqual(inst.entry![0].flag![0].coding![0].code!, "01")
-		XCTAssertEqual(inst.entry![0].flag![0].coding![0].display!, "Prescribed")
-		XCTAssertEqual(inst.entry![0].flag![0].coding![0].system!.absoluteString, "http://nehta.gov.au/codes/medications/changetype")
-		XCTAssertEqual(inst.entry![0].flag![1].text!, "Review required")
+		XCTAssertEqual(inst.entry![0].flag!.coding![0].code!, "01")
+		XCTAssertEqual(inst.entry![0].flag!.coding![0].display!, "Prescribed")
+		XCTAssertEqual(inst.entry![0].flag!.coding![0].system!.absoluteString, "http://nehta.gov.au/codes/medications/changetype")
 		XCTAssertEqual(inst.entry![0].item!.display!, "hydroxocobalamin")
 		XCTAssertTrue(inst.entry![1].deleted!)
-		XCTAssertEqual(inst.entry![1].flag![0].coding![0].code!, "02")
-		XCTAssertEqual(inst.entry![1].flag![0].coding![0].display!, "Cancelled")
-		XCTAssertEqual(inst.entry![1].flag![0].coding![0].system!.absoluteString, "http://nehta.gov.au/codes/medications/changetype")
+		XCTAssertEqual(inst.entry![1].flag!.coding![0].code!, "02")
+		XCTAssertEqual(inst.entry![1].flag!.coding![0].display!, "Cancelled")
+		XCTAssertEqual(inst.entry![1].flag!.coding![0].system!.absoluteString, "http://nehta.gov.au/codes/medications/changetype")
 		XCTAssertEqual(inst.entry![1].item!.display!, "Morphine Sulfate")
 		XCTAssertEqual(inst.id!, "med-list")
 		XCTAssertEqual(inst.mode!, "changes")
@@ -165,24 +197,30 @@ class ListTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testList6() throws {
-		let instance = try runList6()
-		try runList6(instance.asJSON())
+	func testList7() {
+		let instance = try? runList7()
+		XCTAssertNotNil(instance, "Must instantiate List")
+		try! runList7(instance!.asJSON())
 	}
 	
-	func runList6(json: FHIRJSON? = nil) throws -> List {
+	func runList7(json: FHIRJSON? = nil) throws -> List {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example.json")
 		
 		XCTAssertEqual(inst.date!.description, "2012-11-25T22:17:00+11:00")
+		XCTAssertEqual(inst.encounter!.reference!, "Encounter/example")
 		XCTAssertTrue(inst.entry![0].deleted!)
-		XCTAssertEqual(inst.entry![0].flag![0].text!, "Deleted due to error")
+		XCTAssertEqual(inst.entry![0].flag!.text!, "Deleted due to error")
 		XCTAssertEqual(inst.entry![0].item!.reference!, "Condition/example")
-		XCTAssertEqual(inst.entry![1].flag![0].text!, "Added")
+		XCTAssertEqual(inst.entry![1].date!.description, "2012-11-21")
+		XCTAssertEqual(inst.entry![1].flag!.text!, "Added")
 		XCTAssertEqual(inst.entry![1].item!.reference!, "Condition/example2")
 		XCTAssertEqual(inst.id!, "example")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "urn:uuid:a9fcea7c-fcdf-4d17-a5e0-f26dda030b59")
+		XCTAssertEqual(inst.identifier![0].value!, "23974652")
 		XCTAssertEqual(inst.mode!, "changes")
 		XCTAssertEqual(inst.source!.reference!, "Patient/example")
 		XCTAssertEqual(inst.status!, "current")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst

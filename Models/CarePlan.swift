@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  Healthcare plan for patient.
+ *  Healthcare plan for patient or group.
  *
- *  Describes the intention of how one or more practitioners intend to deliver care for a particular patient for a
- *  period of time, possibly limited to care for a specific condition or set of conditions.
+ *  Describes the intention of how one or more practitioners intend to deliver care for a particular patient, group or
+ *  community for a period of time, possibly limited to care for a specific condition or set of conditions.
  */
 public class CarePlan: DomainResource
 {
@@ -24,14 +24,20 @@ public class CarePlan: DomainResource
 	/// Action to occur as part of plan
 	public var activity: [CarePlanActivity]?
 	
-	/// Who is responsible for plan
+	/// Health issues this plan addresses
+	public var addresses: [Reference]?
+	
+	/// Who is responsible for contents of the plan
 	public var author: [Reference]?
 	
 	/// Type of plan
 	public var category: [CodeableConcept]?
 	
-	/// Health issues this plan addresses
-	public var concern: [Reference]?
+	/// Created in context of
+	public var context: Reference?
+	
+	/// Summary of nature of plan
+	public var description_fhir: String?
 	
 	/// Desired outcome of plan
 	public var goal: [Reference]?
@@ -43,19 +49,22 @@ public class CarePlan: DomainResource
 	public var modified: DateTime?
 	
 	/// Comments about the plan
-	public var notes: String?
+	public var note: Annotation?
 	
 	/// Who's involved in plan?
 	public var participant: [CarePlanParticipant]?
 	
-	/// Who care plan is for
-	public var patient: Reference?
-	
 	/// Time period plan covers
 	public var period: Period?
 	
-	/// planned | active | completed
+	/// Plans related to this one
+	public var relatedPlan: [CarePlanRelatedPlan]?
+	
+	/// proposed | draft | active | completed | cancelled
 	public var status: String?
+	
+	/// Who care plan is for
+	public var subject: Reference?
 	
 	/// Information considered as part of plan
 	public var support: [Reference]?
@@ -67,11 +76,9 @@ public class CarePlan: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String?) {
+	public convenience init(status: String) {
 		self.init(json: nil)
-		if nil != status {
-			self.status = status
-		}
+		self.status = status
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -84,6 +91,15 @@ public class CarePlan: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "activity", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["addresses"] {
+				presentKeys.insert("addresses")
+				if let val = exist as? [FHIRJSON] {
+					self.addresses = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "addresses", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["author"] {
@@ -104,13 +120,22 @@ public class CarePlan: DomainResource
 					errors.append(FHIRJSONError(key: "category", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["concern"] {
-				presentKeys.insert("concern")
-				if let val = exist as? [FHIRJSON] {
-					self.concern = Reference.from(val, owner: self) as? [Reference]
+			if let exist: AnyObject = js["context"] {
+				presentKeys.insert("context")
+				if let val = exist as? FHIRJSON {
+					self.context = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "concern", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "context", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["description"] {
+				presentKeys.insert("description")
+				if let val = exist as? String {
+					self.description_fhir = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "description", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["goal"] {
@@ -140,13 +165,13 @@ public class CarePlan: DomainResource
 					errors.append(FHIRJSONError(key: "modified", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["notes"] {
-				presentKeys.insert("notes")
-				if let val = exist as? String {
-					self.notes = val
+			if let exist: AnyObject = js["note"] {
+				presentKeys.insert("note")
+				if let val = exist as? FHIRJSON {
+					self.note = Annotation(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "notes", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "note", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["participant"] {
@@ -158,15 +183,6 @@ public class CarePlan: DomainResource
 					errors.append(FHIRJSONError(key: "participant", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["patient"] {
-				presentKeys.insert("patient")
-				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
@@ -174,6 +190,15 @@ public class CarePlan: DomainResource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["relatedPlan"] {
+				presentKeys.insert("relatedPlan")
+				if let val = exist as? [FHIRJSON] {
+					self.relatedPlan = CarePlanRelatedPlan.from(val, owner: self) as? [CarePlanRelatedPlan]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "relatedPlan", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["status"] {
@@ -187,6 +212,15 @@ public class CarePlan: DomainResource
 			}
 			else {
 				errors.append(FHIRJSONError(key: "status"))
+			}
+			if let exist: AnyObject = js["subject"] {
+				presentKeys.insert("subject")
+				if let val = exist as? FHIRJSON {
+					self.subject = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
 			}
 			if let exist: AnyObject = js["support"] {
 				presentKeys.insert("support")
@@ -207,14 +241,20 @@ public class CarePlan: DomainResource
 		if let activity = self.activity {
 			json["activity"] = CarePlanActivity.asJSONArray(activity)
 		}
+		if let addresses = self.addresses {
+			json["addresses"] = Reference.asJSONArray(addresses)
+		}
 		if let author = self.author {
 			json["author"] = Reference.asJSONArray(author)
 		}
 		if let category = self.category {
 			json["category"] = CodeableConcept.asJSONArray(category)
 		}
-		if let concern = self.concern {
-			json["concern"] = Reference.asJSONArray(concern)
+		if let context = self.context {
+			json["context"] = context.asJSON()
+		}
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
 		}
 		if let goal = self.goal {
 			json["goal"] = Reference.asJSONArray(goal)
@@ -225,20 +265,23 @@ public class CarePlan: DomainResource
 		if let modified = self.modified {
 			json["modified"] = modified.asJSON()
 		}
-		if let notes = self.notes {
-			json["notes"] = notes.asJSON()
+		if let note = self.note {
+			json["note"] = note.asJSON()
 		}
 		if let participant = self.participant {
 			json["participant"] = CarePlanParticipant.asJSONArray(participant)
 		}
-		if let patient = self.patient {
-			json["patient"] = patient.asJSON()
-		}
 		if let period = self.period {
 			json["period"] = period.asJSON()
 		}
+		if let relatedPlan = self.relatedPlan {
+			json["relatedPlan"] = CarePlanRelatedPlan.asJSONArray(relatedPlan)
+		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
 		}
 		if let support = self.support {
 			json["support"] = Reference.asJSONArray(support)
@@ -267,8 +310,8 @@ public class CarePlanActivity: FHIRElement
 	/// In-line definition of activity
 	public var detail: CarePlanActivityDetail?
 	
-	/// Comments about the activity
-	public var notes: String?
+	/// Comments about the activity status/progress
+	public var progress: [Annotation]?
 	
 	/// Activity details defined in specific resource
 	public var reference: Reference?
@@ -300,13 +343,13 @@ public class CarePlanActivity: FHIRElement
 					errors.append(FHIRJSONError(key: "detail", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["notes"] {
-				presentKeys.insert("notes")
-				if let val = exist as? String {
-					self.notes = val
+			if let exist: AnyObject = js["progress"] {
+				presentKeys.insert("progress")
+				if let val = exist as? [FHIRJSON] {
+					self.progress = Annotation.from(val, owner: self) as? [Annotation]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "notes", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "progress", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["reference"] {
@@ -331,8 +374,8 @@ public class CarePlanActivity: FHIRElement
 		if let detail = self.detail {
 			json["detail"] = detail.asJSON()
 		}
-		if let notes = self.notes {
-			json["notes"] = notes.asJSON()
+		if let progress = self.progress {
+			json["progress"] = Annotation.asJSONArray(progress)
 		}
 		if let reference = self.reference {
 			json["reference"] = reference.asJSON()
@@ -356,7 +399,7 @@ public class CarePlanActivityDetail: FHIRElement
 	}
 	
 	/// diet | drug | encounter | observation | procedure | supply | other
-	public var category: String?
+	public var category: CodeableConcept?
 	
 	/// Detail type of activity
 	public var code: CodeableConcept?
@@ -364,20 +407,23 @@ public class CarePlanActivityDetail: FHIRElement
 	/// How to consume/day?
 	public var dailyAmount: Quantity?
 	
+	/// Extra info describing activity to perform
+	public var description_fhir: String?
+	
 	/// Goals this activity relates to
 	public var goal: [Reference]?
 	
 	/// Where it should happen
 	public var location: Reference?
 	
-	/// Extra info on activity occurrence
-	public var note: String?
-	
 	/// Who will be responsible?
 	public var performer: [Reference]?
 	
 	/// What is to be administered/supplied
-	public var product: Reference?
+	public var productCodeableConcept: CodeableConcept?
+	
+	/// What is to be administered/supplied
+	public var productReference: Reference?
 	
 	/// Do NOT do
 	public var prohibited: Bool?
@@ -386,10 +432,10 @@ public class CarePlanActivityDetail: FHIRElement
 	public var quantity: Quantity?
 	
 	/// Why activity should be done
-	public var reasonCodeableConcept: CodeableConcept?
+	public var reasonCode: [CodeableConcept]?
 	
-	/// Why activity should be done
-	public var reasonReference: Reference?
+	/// Condition triggering need for activity
+	public var reasonReference: [Reference]?
 	
 	/// When activity is to occur
 	public var scheduledPeriod: Period?
@@ -413,14 +459,9 @@ public class CarePlanActivityDetail: FHIRElement
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(category: String?, prohibited: Bool?) {
+	public convenience init(prohibited: Bool) {
 		self.init(json: nil)
-		if nil != category {
-			self.category = category
-		}
-		if nil != prohibited {
-			self.prohibited = prohibited
-		}
+		self.prohibited = prohibited
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -428,15 +469,12 @@ public class CarePlanActivityDetail: FHIRElement
 		if let js = json {
 			if let exist: AnyObject = js["category"] {
 				presentKeys.insert("category")
-				if let val = exist as? String {
-					self.category = val
+				if let val = exist as? FHIRJSON {
+					self.category = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "category", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "category"))
 			}
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")
@@ -454,6 +492,15 @@ public class CarePlanActivityDetail: FHIRElement
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dailyAmount", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["description"] {
+				presentKeys.insert("description")
+				if let val = exist as? String {
+					self.description_fhir = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "description", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["goal"] {
@@ -474,15 +521,6 @@ public class CarePlanActivityDetail: FHIRElement
 					errors.append(FHIRJSONError(key: "location", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["note"] {
-				presentKeys.insert("note")
-				if let val = exist as? String {
-					self.note = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "note", wants: String.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["performer"] {
 				presentKeys.insert("performer")
 				if let val = exist as? [FHIRJSON] {
@@ -492,13 +530,22 @@ public class CarePlanActivityDetail: FHIRElement
 					errors.append(FHIRJSONError(key: "performer", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["product"] {
-				presentKeys.insert("product")
+			if let exist: AnyObject = js["productCodeableConcept"] {
+				presentKeys.insert("productCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.product = Reference(json: val, owner: self)
+					self.productCodeableConcept = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "product", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "productCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["productReference"] {
+				presentKeys.insert("productReference")
+				if let val = exist as? FHIRJSON {
+					self.productReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "productReference", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["prohibited"] {
@@ -522,22 +569,22 @@ public class CarePlanActivityDetail: FHIRElement
 					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["reasonCodeableConcept"] {
-				presentKeys.insert("reasonCodeableConcept")
-				if let val = exist as? FHIRJSON {
-					self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
+			if let exist: AnyObject = js["reasonCode"] {
+				presentKeys.insert("reasonCode")
+				if let val = exist as? [FHIRJSON] {
+					self.reasonCode = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reasonCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reasonCode", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["reasonReference"] {
 				presentKeys.insert("reasonReference")
-				if let val = exist as? FHIRJSON {
-					self.reasonReference = Reference(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.reasonReference = Reference.from(val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reasonReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reasonReference", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["scheduledPeriod"] {
@@ -601,20 +648,23 @@ public class CarePlanActivityDetail: FHIRElement
 		if let dailyAmount = self.dailyAmount {
 			json["dailyAmount"] = dailyAmount.asJSON()
 		}
+		if let description_fhir = self.description_fhir {
+			json["description"] = description_fhir.asJSON()
+		}
 		if let goal = self.goal {
 			json["goal"] = Reference.asJSONArray(goal)
 		}
 		if let location = self.location {
 			json["location"] = location.asJSON()
 		}
-		if let note = self.note {
-			json["note"] = note.asJSON()
-		}
 		if let performer = self.performer {
 			json["performer"] = Reference.asJSONArray(performer)
 		}
-		if let product = self.product {
-			json["product"] = product.asJSON()
+		if let productCodeableConcept = self.productCodeableConcept {
+			json["productCodeableConcept"] = productCodeableConcept.asJSON()
+		}
+		if let productReference = self.productReference {
+			json["productReference"] = productReference.asJSON()
 		}
 		if let prohibited = self.prohibited {
 			json["prohibited"] = prohibited.asJSON()
@@ -622,11 +672,11 @@ public class CarePlanActivityDetail: FHIRElement
 		if let quantity = self.quantity {
 			json["quantity"] = quantity.asJSON()
 		}
-		if let reasonCodeableConcept = self.reasonCodeableConcept {
-			json["reasonCodeableConcept"] = reasonCodeableConcept.asJSON()
+		if let reasonCode = self.reasonCode {
+			json["reasonCode"] = CodeableConcept.asJSONArray(reasonCode)
 		}
 		if let reasonReference = self.reasonReference {
-			json["reasonReference"] = reasonReference.asJSON()
+			json["reasonReference"] = Reference.asJSONArray(reasonReference)
 		}
 		if let scheduledPeriod = self.scheduledPeriod {
 			json["scheduledPeriod"] = scheduledPeriod.asJSON()
@@ -672,14 +722,6 @@ public class CarePlanParticipant: FHIRElement
 		super.init(json: json)
 	}
 	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(member: Reference?) {
-		self.init(json: nil)
-		if nil != member {
-			self.member = member
-		}
-	}
-	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
@@ -691,9 +733,6 @@ public class CarePlanParticipant: FHIRElement
 				else {
 					errors.append(FHIRJSONError(key: "member", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "member"))
 			}
 			if let exist: AnyObject = js["role"] {
 				presentKeys.insert("role")
@@ -716,6 +755,78 @@ public class CarePlanParticipant: FHIRElement
 		}
 		if let role = self.role {
 			json["role"] = role.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Plans related to this one.
+ *
+ *  Identifies CarePlans with some sort of formal relationship to the current plan.
+ */
+public class CarePlanRelatedPlan: FHIRElement
+{
+	override public class var resourceName: String {
+		get { return "CarePlanRelatedPlan" }
+	}
+	
+	/// includes | replaces | fulfills
+	public var code: String?
+	
+	/// Plan relationship exists with
+	public var plan: Reference?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?) {
+		super.init(json: json)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(plan: Reference) {
+		self.init(json: nil)
+		self.plan = plan
+	}
+	
+	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist: AnyObject = js["code"] {
+				presentKeys.insert("code")
+				if let val = exist as? String {
+					self.code = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "code", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["plan"] {
+				presentKeys.insert("plan")
+				if let val = exist as? FHIRJSON {
+					self.plan = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "plan", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "plan"))
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let plan = self.plan {
+			json["plan"] = plan.asJSON()
 		}
 		
 		return json

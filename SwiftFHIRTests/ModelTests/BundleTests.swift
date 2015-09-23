@@ -2,7 +2,7 @@
 //  BundleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class BundleTests: FHIRModelTestCase
+class BundleTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Bundle {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,25 +22,27 @@ class BundleTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testBundle1() throws {
-		let instance = try runBundle1()
-		try runBundle1(instance.asJSON())
+	func testBundle1() {
+		let instance = try? runBundle1()
+		XCTAssertNotNil(instance, "Must instantiate Bundle")
+		try! runBundle1(instance!.asJSON())
 	}
 	
 	func runBundle1(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "bundle-example.json")
 		
-		XCTAssertEqual(inst.base!.absoluteString, "http://example.com/base")
+		XCTAssertEqual(inst.entry![0].fullUrl!.absoluteString, "https://example.com/base/MedicationOrder/3123")
 		XCTAssertEqual(inst.entry![0].resource!.id!, "3123")
 		XCTAssertEqual(inst.entry![0].search!.mode!, "match")
 		XCTAssertEqual(inst.entry![0].search!.score!, NSDecimalNumber(string: "1"))
+		XCTAssertEqual(inst.entry![1].fullUrl!.absoluteString, "https://example.com/base/Medication/example")
 		XCTAssertEqual(inst.entry![1].resource!.id!, "example")
 		XCTAssertEqual(inst.entry![1].search!.mode!, "include")
 		XCTAssertEqual(inst.id!, "bundle-example")
 		XCTAssertEqual(inst.link![0].relation!, "self")
-		XCTAssertEqual(inst.link![0].url!.absoluteString, "https://example.com/base/MedicationPrescription?patient=347&_include=MedicationPrescription.medication")
+		XCTAssertEqual(inst.link![0].url!.absoluteString, "https://example.com/base/MedicationOrder?patient=347&_include=MedicationOrder.medication")
 		XCTAssertEqual(inst.link![1].relation!, "next")
-		XCTAssertEqual(inst.link![1].url!.absoluteString, "https://example.com/base/MedicationPrescription?patient=347&searchId=ff15fd40-ff71-4b48-b366-09c706bed9d0&page=2")
+		XCTAssertEqual(inst.link![1].url!.absoluteString, "https://example.com/base/MedicationOrder?patient=347&searchId=ff15fd40-ff71-4b48-b366-09c706bed9d0&page=2")
 		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2014-08-18T01:43:30Z")
 		XCTAssertEqual(inst.total!, UInt(3))
 		XCTAssertEqual(inst.type!, "searchset")
@@ -48,33 +50,43 @@ class BundleTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testBundle2() throws {
-		let instance = try runBundle2()
-		try runBundle2(instance.asJSON())
+	func testBundle2() {
+		let instance = try? runBundle2()
+		XCTAssertNotNil(instance, "Must instantiate Bundle")
+		try! runBundle2(instance!.asJSON())
 	}
 	
 	func runBundle2(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-examples-general.json")
 		
-		XCTAssertEqual(inst.base!.absoluteString, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.entry![0].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/3")
 		XCTAssertEqual(inst.entry![0].resource!.id!, "3")
 		XCTAssertEqual(inst.entry![0].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![1].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/4")
 		XCTAssertEqual(inst.entry![1].resource!.id!, "4")
 		XCTAssertEqual(inst.entry![1].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![2].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/5")
 		XCTAssertEqual(inst.entry![2].resource!.id!, "5")
 		XCTAssertEqual(inst.entry![2].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![3].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/6")
 		XCTAssertEqual(inst.entry![3].resource!.id!, "6")
 		XCTAssertEqual(inst.entry![3].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![4].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/7")
 		XCTAssertEqual(inst.entry![4].resource!.id!, "7")
 		XCTAssertEqual(inst.entry![4].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![5].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/8")
 		XCTAssertEqual(inst.entry![5].resource!.id!, "8")
 		XCTAssertEqual(inst.entry![5].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![6].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/9")
 		XCTAssertEqual(inst.entry![6].resource!.id!, "9")
 		XCTAssertEqual(inst.entry![6].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![7].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/15")
 		XCTAssertEqual(inst.entry![7].resource!.id!, "15")
 		XCTAssertEqual(inst.entry![7].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![8].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/16")
 		XCTAssertEqual(inst.entry![8].resource!.id!, "16")
 		XCTAssertEqual(inst.entry![8].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![9].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/17")
 		XCTAssertEqual(inst.entry![9].resource!.id!, "17")
 		XCTAssertEqual(inst.entry![9].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
 		XCTAssertEqual(inst.id!, "72ac8493-52ac-41bd-8d5d-7258c289b5ea")
@@ -84,135 +96,129 @@ class BundleTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testBundle3() throws {
-		let instance = try runBundle3()
-		try runBundle3(instance.asJSON())
+	func testBundle3() {
+		let instance = try? runBundle3()
+		XCTAssertNotNil(instance, "Must instantiate Bundle")
+		try! runBundle3(instance!.asJSON())
 	}
 	
 	func runBundle3(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-examples-lab-text.json")
 		
-		XCTAssertEqual(inst.base!.absoluteString, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.entry![0].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/103")
 		XCTAssertEqual(inst.entry![0].resource!.id!, "103")
 		XCTAssertEqual(inst.entry![0].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![1].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/104")
 		XCTAssertEqual(inst.entry![1].resource!.id!, "104")
 		XCTAssertEqual(inst.entry![1].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![2].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/105")
 		XCTAssertEqual(inst.entry![2].resource!.id!, "105")
 		XCTAssertEqual(inst.entry![2].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![3].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/106")
 		XCTAssertEqual(inst.entry![3].resource!.id!, "106")
 		XCTAssertEqual(inst.entry![3].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![4].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/107")
 		XCTAssertEqual(inst.entry![4].resource!.id!, "107")
 		XCTAssertEqual(inst.entry![4].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![5].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/108")
 		XCTAssertEqual(inst.entry![5].resource!.id!, "108")
 		XCTAssertEqual(inst.entry![5].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![6].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/109")
 		XCTAssertEqual(inst.entry![6].resource!.id!, "109")
 		XCTAssertEqual(inst.entry![6].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![7].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/110")
 		XCTAssertEqual(inst.entry![7].resource!.id!, "110")
 		XCTAssertEqual(inst.entry![7].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![8].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/111")
 		XCTAssertEqual(inst.entry![8].resource!.id!, "111")
 		XCTAssertEqual(inst.entry![8].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
+		XCTAssertEqual(inst.entry![9].fullUrl!.absoluteString, "http://hl7.org/fhir/DiagnosticReport/112")
 		XCTAssertEqual(inst.entry![9].resource!.id!, "112")
 		XCTAssertEqual(inst.entry![9].resource!.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
-		XCTAssertEqual(inst.id!, "72ac8493-52ac-41bd-8d5d-7258c289b5ea")
+		XCTAssertEqual(inst.id!, "2763c3ea-6bce-4f15-bdc9-4b41aaceee03")
 		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2012-04-14T10:35:23Z")
 		XCTAssertEqual(inst.type!, "collection")
 		
 		return inst
 	}
 	
-	func testBundle4() throws {
-		let instance = try runBundle4()
-		try runBundle4(instance.asJSON())
+	func testBundle4() {
+		let instance = try? runBundle4()
+		XCTAssertNotNil(instance, "Must instantiate Bundle")
+		try! runBundle4(instance!.asJSON())
 	}
 	
 	func runBundle4(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "document-example-dischargesummary.json")
 		
-		XCTAssertEqual(inst.base!.absoluteString, "http://fhir.healthintersections.com.au/open")
-		XCTAssertEqual(inst.entry![0].base!.absoluteString, "urn:uuid:")
+		XCTAssertEqual(inst.entry![0].fullUrl!.absoluteString, "http://fhir.healthintersections.com.au/open/Composition/180f219f-97a8-486d-99d9-ed631fe4fc57")
 		XCTAssertEqual(inst.entry![0].resource!.id!, "180f219f-97a8-486d-99d9-ed631fe4fc57")
 		XCTAssertEqual(inst.entry![0].resource!.meta!.lastUpdated!.description, "2013-05-28T22:12:21Z")
+		XCTAssertEqual(inst.entry![1].fullUrl!.absoluteString, "http://fhir.healthintersections.com.au/open/Practitioner/example")
 		XCTAssertEqual(inst.entry![1].resource!.id!, "example")
 		XCTAssertEqual(inst.entry![1].resource!.meta!.lastUpdated!.description, "2013-05-05T16:13:03Z")
+		XCTAssertEqual(inst.entry![2].fullUrl!.absoluteString, "http://fhir.healthintersections.com.au/open/Patient/d1")
 		XCTAssertEqual(inst.entry![2].resource!.id!, "d1")
+		XCTAssertEqual(inst.entry![3].fullUrl!.absoluteString, "http://fhir.healthintersections.com.au/open/Encounter/doc-example")
 		XCTAssertEqual(inst.entry![3].resource!.id!, "doc-example")
 		XCTAssertEqual(inst.entry![3].resource!.meta!.lastUpdated!.description, "2013-05-05T16:13:03Z")
-		XCTAssertEqual(inst.entry![4].base!.absoluteString, "urn:uuid:")
-		XCTAssertEqual(inst.entry![4].resource!.id!, "d0dd51d3-3ab2-4c84-b697-a630c3e40e7a")
+		XCTAssertEqual(inst.entry![4].fullUrl!.absoluteString, "urn:uuid:541a72a8-df75-4484-ac89-ac4923f03b81")
 		XCTAssertEqual(inst.entry![4].resource!.meta!.lastUpdated!.description, "2013-05-05T16:13:03Z")
-		XCTAssertEqual(inst.entry![5].base!.absoluteString, "urn:uuid:")
-		XCTAssertEqual(inst.entry![5].resource!.id!, "541a72a8-df75-4484-ac89-ac4923f03b81")
+		XCTAssertEqual(inst.entry![5].fullUrl!.absoluteString, "urn:uuid:124a6916-5d84-4b8c-b250-10cefb8e6e86")
 		XCTAssertEqual(inst.entry![5].resource!.meta!.lastUpdated!.description, "2013-05-05T16:13:03Z")
-		XCTAssertEqual(inst.entry![6].base!.absoluteString, "urn:uuid:")
-		XCTAssertEqual(inst.entry![6].resource!.id!, "673f8db5-0ffd-4395-9657-6da00420bbc1")
-		XCTAssertEqual(inst.entry![6].resource!.meta!.lastUpdated!.description, "2013-05-05T16:13:03Z")
-		XCTAssertEqual(inst.entry![7].base!.absoluteString, "urn:uuid:")
-		XCTAssertEqual(inst.entry![7].resource!.id!, "124a6916-5d84-4b8c-b250-10cefb8e6e86")
+		XCTAssertEqual(inst.entry![6].fullUrl!.absoluteString, "urn:uuid:673f8db5-0ffd-4395-9657-6da00420bbc1")
+		XCTAssertEqual(inst.entry![7].fullUrl!.absoluteString, "urn:uuid:47600e0f-b6b5-4308-84b5-5dec157f7637")
 		XCTAssertEqual(inst.entry![7].resource!.meta!.lastUpdated!.description, "2013-05-05T16:13:03Z")
-		XCTAssertEqual(inst.entry![8].base!.absoluteString, "urn:uuid:")
-		XCTAssertEqual(inst.entry![8].resource!.id!, "68f86194-e6e1-4f65-b64a-5314256f8d7b")
-		XCTAssertEqual(inst.entry![8].resource!.meta!.lastUpdated!.description, "2013-05-05T16:13:03Z")
-		XCTAssertEqual(inst.entry![9].base!.absoluteString, "urn:uuid:")
-		XCTAssertEqual(inst.entry![9].resource!.id!, "47600e0f-b6b5-4308-84b5-5dec157f7637")
-		XCTAssertEqual(inst.entry![9].resource!.meta!.lastUpdated!.description, "2013-05-05T16:13:03Z")
 		XCTAssertEqual(inst.id!, "father")
 		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2013-05-28T22:12:21Z")
-		XCTAssertEqual(inst.meta!.tag![0].code!, "document")
-		XCTAssertEqual(inst.meta!.tag![0].system!.absoluteString, "http://hl7.org/fhir/tag")
+		XCTAssertEqual(inst.signature!.contentType!, "image/jpg")
+		XCTAssertEqual(inst.signature!.type![0].code!, "1.2.840.10065.1.12.1.1")
+		XCTAssertEqual(inst.signature!.type![0].display!, "AuthorID")
+		XCTAssertEqual(inst.signature!.type![0].system!.absoluteString, "http://hl7.org/fhir/valueset-signature-type")
+		XCTAssertEqual(inst.signature!.when!.description, "2015-08-31T07:42:33+10:00")
+		XCTAssertEqual(inst.signature!.whoReference!.reference!, "Device/software")
 		XCTAssertEqual(inst.type!, "document")
 		
 		return inst
 	}
 	
-	func testBundle5() throws {
-		let instance = try runBundle5()
-		try runBundle5(instance.asJSON())
+	func testBundle5() {
+		let instance = try? runBundle5()
+		XCTAssertNotNil(instance, "Must instantiate Bundle")
+		try! runBundle5(instance!.asJSON())
 	}
 	
 	func runBundle5(json: FHIRJSON? = nil) throws -> Bundle {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-bloodpressure.json")
-		
-		XCTAssertEqual(inst.base!.absoluteString, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.entry![0].resource!.id!, "34252345234")
-		XCTAssertEqual(inst.entry![0].resource!.meta!.lastUpdated!.description, "2014-01-30T22:35:23+11:00")
-		XCTAssertEqual(inst.entry![1].resource!.id!, "34252345234-s")
-		XCTAssertEqual(inst.entry![1].resource!.meta!.lastUpdated!.description, "2014-01-30T22:35:23+11:00")
-		XCTAssertEqual(inst.entry![2].resource!.id!, "34252345234-d")
-		XCTAssertEqual(inst.entry![2].resource!.meta!.lastUpdated!.description, "2014-01-30T22:35:23+11:00")
-		XCTAssertEqual(inst.id!, "blood-pressure")
-		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2014-01-30T22:35:23+11:00")
-		XCTAssertEqual(inst.type!, "collection")
-		
-		return inst
-	}
-	
-	func testBundle6() throws {
-		let instance = try runBundle6()
-		try runBundle6(instance.asJSON())
-	}
-	
-	func runBundle6(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-examples-cypress-template.json")
 		
-		XCTAssertEqual(inst.base!.absoluteString, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.entry![0].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/71")
 		XCTAssertEqual(inst.entry![0].resource!.id!, "71")
 		XCTAssertEqual(inst.entry![0].resource!.meta!.lastUpdated!.description, "2012-06-03T23:45:32Z")
+		XCTAssertEqual(inst.entry![1].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/72")
 		XCTAssertEqual(inst.entry![1].resource!.id!, "72")
 		XCTAssertEqual(inst.entry![1].resource!.meta!.lastUpdated!.description, "2012-06-03T23:45:32Z")
+		XCTAssertEqual(inst.entry![2].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/73")
 		XCTAssertEqual(inst.entry![2].resource!.id!, "73")
 		XCTAssertEqual(inst.entry![2].resource!.meta!.lastUpdated!.description, "2012-06-03T23:45:32Z")
+		XCTAssertEqual(inst.entry![3].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/74")
 		XCTAssertEqual(inst.entry![3].resource!.id!, "74")
 		XCTAssertEqual(inst.entry![3].resource!.meta!.lastUpdated!.description, "2012-06-03T23:45:32Z")
+		XCTAssertEqual(inst.entry![4].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/75")
 		XCTAssertEqual(inst.entry![4].resource!.id!, "75")
 		XCTAssertEqual(inst.entry![4].resource!.meta!.lastUpdated!.description, "2012-06-03T23:45:32Z")
+		XCTAssertEqual(inst.entry![5].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/76")
 		XCTAssertEqual(inst.entry![5].resource!.id!, "76")
 		XCTAssertEqual(inst.entry![5].resource!.meta!.lastUpdated!.description, "2012-06-03T23:45:32Z")
+		XCTAssertEqual(inst.entry![6].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/77")
 		XCTAssertEqual(inst.entry![6].resource!.id!, "77")
 		XCTAssertEqual(inst.entry![6].resource!.meta!.lastUpdated!.description, "2012-06-03T23:45:32Z")
+		XCTAssertEqual(inst.entry![7].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/78")
 		XCTAssertEqual(inst.entry![7].resource!.id!, "78")
 		XCTAssertEqual(inst.entry![7].resource!.meta!.lastUpdated!.description, "2012-06-03T23:45:32Z")
+		XCTAssertEqual(inst.entry![8].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/79")
 		XCTAssertEqual(inst.entry![8].resource!.id!, "79")
 		XCTAssertEqual(inst.entry![8].resource!.meta!.lastUpdated!.description, "2012-06-03T23:45:32Z")
+		XCTAssertEqual(inst.entry![9].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/80")
 		XCTAssertEqual(inst.entry![9].resource!.id!, "80")
 		XCTAssertEqual(inst.entry![9].resource!.meta!.lastUpdated!.description, "2012-06-03T23:45:32Z")
 		XCTAssertEqual(inst.id!, "b0a5e4277-83c4-4adb-87e2-e3efe3369b6f")
@@ -222,33 +228,43 @@ class BundleTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testBundle7() throws {
-		let instance = try runBundle7()
-		try runBundle7(instance.asJSON())
+	func testBundle6() {
+		let instance = try? runBundle6()
+		XCTAssertNotNil(instance, "Must instantiate Bundle")
+		try! runBundle6(instance!.asJSON())
 	}
 	
-	func runBundle7(json: FHIRJSON? = nil) throws -> Bundle {
+	func runBundle6(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-examples-general.json")
 		
-		XCTAssertEqual(inst.base!.absoluteString, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.entry![0].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/1")
 		XCTAssertEqual(inst.entry![0].resource!.id!, "1")
 		XCTAssertEqual(inst.entry![0].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![1].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/2")
 		XCTAssertEqual(inst.entry![1].resource!.id!, "2")
 		XCTAssertEqual(inst.entry![1].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![2].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/3")
 		XCTAssertEqual(inst.entry![2].resource!.id!, "3")
 		XCTAssertEqual(inst.entry![2].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![3].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/4")
 		XCTAssertEqual(inst.entry![3].resource!.id!, "4")
 		XCTAssertEqual(inst.entry![3].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![4].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/5")
 		XCTAssertEqual(inst.entry![4].resource!.id!, "5")
 		XCTAssertEqual(inst.entry![4].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![5].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/6")
 		XCTAssertEqual(inst.entry![5].resource!.id!, "6")
 		XCTAssertEqual(inst.entry![5].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![6].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/7")
 		XCTAssertEqual(inst.entry![6].resource!.id!, "7")
 		XCTAssertEqual(inst.entry![6].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![7].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/8")
 		XCTAssertEqual(inst.entry![7].resource!.id!, "8")
 		XCTAssertEqual(inst.entry![7].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![8].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/9")
 		XCTAssertEqual(inst.entry![8].resource!.id!, "9")
 		XCTAssertEqual(inst.entry![8].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![9].fullUrl!.absoluteString, "http://hl7.org/fhir/Patient/10")
 		XCTAssertEqual(inst.entry![9].resource!.id!, "10")
 		XCTAssertEqual(inst.entry![9].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
 		XCTAssertEqual(inst.id!, "b248b1b2-1686-4b94-9936-37d7a5f94b51")
@@ -258,33 +274,43 @@ class BundleTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testBundle8() throws {
-		let instance = try runBundle8()
-		try runBundle8(instance.asJSON())
+	func testBundle7() {
+		let instance = try? runBundle7()
+		XCTAssertNotNil(instance, "Must instantiate Bundle")
+		try! runBundle7(instance!.asJSON())
 	}
 	
-	func runBundle8(json: FHIRJSON? = nil) throws -> Bundle {
+	func runBundle7(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-examples-general.json")
 		
-		XCTAssertEqual(inst.base!.absoluteString, "http://hl7.org/fhir")
+		XCTAssertEqual(inst.entry![0].fullUrl!.absoluteString, "http://hl7.org/fhir/Practitioner/13")
 		XCTAssertEqual(inst.entry![0].resource!.id!, "13")
 		XCTAssertEqual(inst.entry![0].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![1].fullUrl!.absoluteString, "http://hl7.org/fhir/Practitioner/14")
 		XCTAssertEqual(inst.entry![1].resource!.id!, "14")
 		XCTAssertEqual(inst.entry![1].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![2].fullUrl!.absoluteString, "http://hl7.org/fhir/Practitioner/15")
 		XCTAssertEqual(inst.entry![2].resource!.id!, "15")
 		XCTAssertEqual(inst.entry![2].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![3].fullUrl!.absoluteString, "http://hl7.org/fhir/Practitioner/16")
 		XCTAssertEqual(inst.entry![3].resource!.id!, "16")
 		XCTAssertEqual(inst.entry![3].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![4].fullUrl!.absoluteString, "http://hl7.org/fhir/Practitioner/17")
 		XCTAssertEqual(inst.entry![4].resource!.id!, "17")
 		XCTAssertEqual(inst.entry![4].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![5].fullUrl!.absoluteString, "http://hl7.org/fhir/Practitioner/18")
 		XCTAssertEqual(inst.entry![5].resource!.id!, "18")
 		XCTAssertEqual(inst.entry![5].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![6].fullUrl!.absoluteString, "http://hl7.org/fhir/Practitioner/19")
 		XCTAssertEqual(inst.entry![6].resource!.id!, "19")
 		XCTAssertEqual(inst.entry![6].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![7].fullUrl!.absoluteString, "http://hl7.org/fhir/Practitioner/20")
 		XCTAssertEqual(inst.entry![7].resource!.id!, "20")
 		XCTAssertEqual(inst.entry![7].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![8].fullUrl!.absoluteString, "http://hl7.org/fhir/Practitioner/21")
 		XCTAssertEqual(inst.entry![8].resource!.id!, "21")
 		XCTAssertEqual(inst.entry![8].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.entry![9].fullUrl!.absoluteString, "http://hl7.org/fhir/Practitioner/22")
 		XCTAssertEqual(inst.entry![9].resource!.id!, "22")
 		XCTAssertEqual(inst.entry![9].resource!.meta!.lastUpdated!.description, "2012-05-29T23:45:32Z")
 		XCTAssertEqual(inst.id!, "3ad0687e-f477-468c-afd5-fcc2bf897809")
@@ -294,75 +320,40 @@ class BundleTests: FHIRModelTestCase
 		return inst
 	}
 	
-	func testBundle9() throws {
-		let instance = try runBundle9()
-		try runBundle9(instance.asJSON())
+	func testBundle8() {
+		let instance = try? runBundle8()
+		XCTAssertNotNil(instance, "Must instantiate Bundle")
+		try! runBundle8(instance!.asJSON())
 	}
 	
-	func runBundle9(json: FHIRJSON? = nil) throws -> Bundle {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaire-sdc-profile-example.json")
-		
-		XCTAssertEqual(inst.base!.absoluteString, "http://AHRQ.org/form")
-		XCTAssertEqual(inst.entry![0].resource!.extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/questionnaire-category")
-		XCTAssertEqual(inst.entry![0].resource!.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "Acute Care Hospitals")
-		XCTAssertEqual(inst.entry![0].resource!.id!, "F8-1.2")
-		XCTAssertEqual(inst.entry![0].resource!.meta!.lastUpdated!.description, "2014-05-15T17:25:15Z")
-		XCTAssertEqual(inst.entry![1].resource!.id!, "HERF-1.2")
-		XCTAssertEqual(inst.entry![1].resource!.meta!.lastUpdated!.description, "2014-05-15T17:25:15Z")
-		XCTAssertEqual(inst.entry![2].resource!.extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/questionnaire-category")
-		XCTAssertEqual(inst.entry![2].resource!.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "CRF")
-		XCTAssertEqual(inst.entry![2].resource!.id!, "3921052v1.0")
-		XCTAssertEqual(inst.entry![2].resource!.language!, "en")
-		XCTAssertEqual(inst.entry![2].resource!.meta!.lastUpdated!.description, "2014-05-15T17:25:15Z")
-		XCTAssertEqual(inst.entry![3].resource!.extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/questionnaire-category")
-		XCTAssertEqual(inst.entry![3].resource!.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "CRF")
-		XCTAssertEqual(inst.entry![3].resource!.extension_fhir![1].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/questionnaire-category")
-		XCTAssertEqual(inst.entry![3].resource!.extension_fhir![1].valueCodeableConcept!.coding![0].code!, "Demographic")
-		XCTAssertEqual(inst.entry![3].resource!.id!, "2674812v4.0")
-		XCTAssertEqual(inst.entry![3].resource!.language!, "en")
-		XCTAssertEqual(inst.entry![3].resource!.meta!.lastUpdated!.description, "2014-05-15T17:25:15Z")
-		XCTAssertEqual(inst.entry![4].resource!.extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/questionnaire-category")
-		XCTAssertEqual(inst.entry![4].resource!.extension_fhir![0].valueCodeableConcept!.coding![0].code!, "CRF")
-		XCTAssertEqual(inst.entry![4].resource!.id!, "3265657v2.0")
-		XCTAssertEqual(inst.entry![4].resource!.language!, "en")
-		XCTAssertEqual(inst.entry![4].resource!.meta!.lastUpdated!.description, "2014-05-15T17:25:15Z")
-		XCTAssertEqual(inst.id!, "sdc")
-		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2014-05-15T17:25:15Z")
-		XCTAssertEqual(inst.type!, "collection")
-		
-		return inst
-	}
-	
-	func testBundle10() throws {
-		let instance = try runBundle10()
-		try runBundle10(instance.asJSON())
-	}
-	
-	func runBundle10(json: FHIRJSON? = nil) throws -> Bundle {
+	func runBundle8(json: FHIRJSON? = nil) throws -> Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "xds-example.json")
 		
-		XCTAssertEqual(inst.base!.absoluteString, "cid:123@healthintersections.com.au")
-		XCTAssertEqual(inst.entry![0].resource!.id!, "a1")
+		XCTAssertEqual(inst.entry![0].fullUrl!.absoluteString, "urn:uuid:3fdc72f4-a11d-4a9d-9260-a9f745779e1d")
+		XCTAssertEqual(inst.entry![0].request!.method!, "POST")
+		XCTAssertEqual(inst.entry![0].request!.url!.absoluteString, "DocumentReference")
 		XCTAssertEqual(inst.entry![0].resource!.meta!.lastUpdated!.description, "2013-07-01T13:11:33Z")
-		XCTAssertEqual(inst.entry![0].transaction!.method!, "POST")
-		XCTAssertEqual(inst.entry![0].transaction!.url!.absoluteString, "DocumentReference")
+		XCTAssertEqual(inst.entry![1].fullUrl!.absoluteString, "http://localhost:9556/svc/fhir/Patient/a2")
+		XCTAssertEqual(inst.entry![1].request!.ifNoneExist!, "Patient?identifier=http://acme.org/xds/patients!89765a87b")
+		XCTAssertEqual(inst.entry![1].request!.method!, "POST")
+		XCTAssertEqual(inst.entry![1].request!.url!.absoluteString, "Patient")
 		XCTAssertEqual(inst.entry![1].resource!.id!, "a2")
 		XCTAssertEqual(inst.entry![1].resource!.meta!.lastUpdated!.description, "2013-07-01T13:11:33Z")
-		XCTAssertEqual(inst.entry![1].transaction!.ifNoneExist!, "Patient?identifier=http://acme.org/xds/patients!89765a87b")
-		XCTAssertEqual(inst.entry![1].transaction!.method!, "POST")
-		XCTAssertEqual(inst.entry![1].transaction!.url!.absoluteString, "Patient")
+		XCTAssertEqual(inst.entry![2].fullUrl!.absoluteString, "http://localhost:9556/svc/fhir/Practitioner/a3")
+		XCTAssertEqual(inst.entry![2].request!.method!, "POST")
+		XCTAssertEqual(inst.entry![2].request!.url!.absoluteString, "Practitioner")
 		XCTAssertEqual(inst.entry![2].resource!.id!, "a3")
 		XCTAssertEqual(inst.entry![2].resource!.meta!.lastUpdated!.description, "2013-07-01T13:11:33Z")
-		XCTAssertEqual(inst.entry![2].transaction!.method!, "POST")
-		XCTAssertEqual(inst.entry![2].transaction!.url!.absoluteString, "Practitioner")
+		XCTAssertEqual(inst.entry![3].fullUrl!.absoluteString, "http://localhost:9556/svc/fhir/Practitioner/a4")
+		XCTAssertEqual(inst.entry![3].request!.method!, "POST")
+		XCTAssertEqual(inst.entry![3].request!.url!.absoluteString, "Practitioner")
 		XCTAssertEqual(inst.entry![3].resource!.id!, "a4")
 		XCTAssertEqual(inst.entry![3].resource!.meta!.lastUpdated!.description, "2013-07-01T13:11:33Z")
-		XCTAssertEqual(inst.entry![3].transaction!.method!, "POST")
-		XCTAssertEqual(inst.entry![3].transaction!.url!.absoluteString, "Practitioner")
+		XCTAssertEqual(inst.entry![4].fullUrl!.absoluteString, "http://localhost:9556/svc/fhir/Binary/1e404af3-077f-4bee-b7a6-a9be97e1ce32")
+		XCTAssertEqual(inst.entry![4].request!.method!, "POST")
+		XCTAssertEqual(inst.entry![4].request!.url!.absoluteString, "Binary")
 		XCTAssertEqual(inst.entry![4].resource!.id!, "1e404af3-077f-4bee-b7a6-a9be97e1ce32")
 		XCTAssertEqual(inst.entry![4].resource!.meta!.lastUpdated!.description, "2013-07-01T13:11:33Z")
-		XCTAssertEqual(inst.entry![4].transaction!.method!, "POST")
-		XCTAssertEqual(inst.entry![4].transaction!.url!.absoluteString, "Binary")
 		XCTAssertEqual(inst.id!, "xds")
 		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2013-07-01T13:11:33Z")
 		XCTAssertEqual(inst.type!, "transaction")

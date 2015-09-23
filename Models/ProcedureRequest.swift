@@ -2,7 +2,7 @@
 //  ProcedureRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -20,56 +20,59 @@ public class ProcedureRequest: DomainResource
 		get { return "ProcedureRequest" }
 	}
 	
-	/// PRN
+	/// Preconditions for procedure
 	public var asNeededBoolean: Bool?
 	
-	/// PRN
+	/// Preconditions for procedure
 	public var asNeededCodeableConcept: CodeableConcept?
 	
-	/// Target body sites
-	public var bodySite: [ProcedureRequestBodySite]?
+	/// What part of body to perform on
+	public var bodySite: [CodeableConcept]?
 	
-	/// Encounter
+	/// What procedure to perform
+	public var code: CodeableConcept?
+	
+	/// Encounter request created during
 	public var encounter: Reference?
 	
-	/// Identifier
+	/// Unique identifier for the request
 	public var identifier: [Identifier]?
 	
-	/// Indication
-	public var indication: [CodeableConcept]?
+	/// Additional information about desired procedure
+	public var notes: [Annotation]?
 	
-	/// Notes
-	public var notes: [String]?
-	
-	/// When Requested
+	/// When request was created
 	public var orderedOn: DateTime?
 	
-	/// Ordering Party
+	/// Who made request
 	public var orderer: Reference?
 	
-	/// Performer
+	/// Who should perform the procedure
 	public var performer: Reference?
 	
 	/// routine | urgent | stat | asap
 	public var priority: String?
 	
+	/// Why procedure should occur
+	public var reasonCodeableConcept: CodeableConcept?
+	
+	/// Why procedure should occur
+	public var reasonReference: Reference?
+	
+	/// When procedure should occur
+	public var scheduledDateTime: DateTime?
+	
+	/// When procedure should occur
+	public var scheduledPeriod: Period?
+	
+	/// When procedure should occur
+	public var scheduledTiming: Timing?
+	
 	/// proposed | draft | requested | received | accepted | in-progress | completed | suspended | rejected | aborted
 	public var status: String?
 	
-	/// Subject
+	/// Who the procedure should be done to
 	public var subject: Reference?
-	
-	/// Procedure timing schedule
-	public var timingDateTime: DateTime?
-	
-	/// Procedure timing schedule
-	public var timingPeriod: Period?
-	
-	/// Procedure timing schedule
-	public var timingTiming: Timing?
-	
-	/// Procedure Type
-	public var type: CodeableConcept?
 	
 	
 	/** Initialize with a JSON object. */
@@ -78,14 +81,10 @@ public class ProcedureRequest: DomainResource
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(subject: Reference?, type: CodeableConcept?) {
+	public convenience init(code: CodeableConcept, subject: Reference) {
 		self.init(json: nil)
-		if nil != subject {
-			self.subject = subject
-		}
-		if nil != type {
-			self.type = type
-		}
+		self.code = code
+		self.subject = subject
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -112,11 +111,23 @@ public class ProcedureRequest: DomainResource
 			if let exist: AnyObject = js["bodySite"] {
 				presentKeys.insert("bodySite")
 				if let val = exist as? [FHIRJSON] {
-					self.bodySite = ProcedureRequestBodySite.from(val, owner: self) as? [ProcedureRequestBodySite]
+					self.bodySite = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bodySite", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
+			}
+			if let exist: AnyObject = js["code"] {
+				presentKeys.insert("code")
+				if let val = exist as? FHIRJSON {
+					self.code = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "code"))
 			}
 			if let exist: AnyObject = js["encounter"] {
 				presentKeys.insert("encounter")
@@ -136,22 +147,13 @@ public class ProcedureRequest: DomainResource
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["indication"] {
-				presentKeys.insert("indication")
-				if let val = exist as? [FHIRJSON] {
-					self.indication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "indication", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["notes"] {
 				presentKeys.insert("notes")
-				if let val = exist as? [String] {
-					self.notes = val
+				if let val = exist as? [FHIRJSON] {
+					self.notes = Annotation.from(val, owner: self) as? [Annotation]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "notes", wants: Array<String>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "notes", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["orderedOn"] {
@@ -190,6 +192,51 @@ public class ProcedureRequest: DomainResource
 					errors.append(FHIRJSONError(key: "priority", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["reasonCodeableConcept"] {
+				presentKeys.insert("reasonCodeableConcept")
+				if let val = exist as? FHIRJSON {
+					self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reasonCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["reasonReference"] {
+				presentKeys.insert("reasonReference")
+				if let val = exist as? FHIRJSON {
+					self.reasonReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reasonReference", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["scheduledDateTime"] {
+				presentKeys.insert("scheduledDateTime")
+				if let val = exist as? String {
+					self.scheduledDateTime = DateTime(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "scheduledDateTime", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["scheduledPeriod"] {
+				presentKeys.insert("scheduledPeriod")
+				if let val = exist as? FHIRJSON {
+					self.scheduledPeriod = Period(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "scheduledPeriod", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["scheduledTiming"] {
+				presentKeys.insert("scheduledTiming")
+				if let val = exist as? FHIRJSON {
+					self.scheduledTiming = Timing(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "scheduledTiming", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["status"] {
 				presentKeys.insert("status")
 				if let val = exist as? String {
@@ -211,45 +258,6 @@ public class ProcedureRequest: DomainResource
 			else {
 				errors.append(FHIRJSONError(key: "subject"))
 			}
-			if let exist: AnyObject = js["timingDateTime"] {
-				presentKeys.insert("timingDateTime")
-				if let val = exist as? String {
-					self.timingDateTime = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "timingDateTime", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["timingPeriod"] {
-				presentKeys.insert("timingPeriod")
-				if let val = exist as? FHIRJSON {
-					self.timingPeriod = Period(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "timingPeriod", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["timingTiming"] {
-				presentKeys.insert("timingTiming")
-				if let val = exist as? FHIRJSON {
-					self.timingTiming = Timing(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "timingTiming", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "type"))
-			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -264,7 +272,10 @@ public class ProcedureRequest: DomainResource
 			json["asNeededCodeableConcept"] = asNeededCodeableConcept.asJSON()
 		}
 		if let bodySite = self.bodySite {
-			json["bodySite"] = ProcedureRequestBodySite.asJSONArray(bodySite)
+			json["bodySite"] = CodeableConcept.asJSONArray(bodySite)
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
 		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()
@@ -272,15 +283,8 @@ public class ProcedureRequest: DomainResource
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
-		if let indication = self.indication {
-			json["indication"] = CodeableConcept.asJSONArray(indication)
-		}
 		if let notes = self.notes {
-			var arr = [AnyObject]()
-			for val in notes {
-				arr.append(val.asJSON())
-			}
-			json["notes"] = arr
+			json["notes"] = Annotation.asJSONArray(notes)
 		}
 		if let orderedOn = self.orderedOn {
 			json["orderedOn"] = orderedOn.asJSON()
@@ -294,102 +298,26 @@ public class ProcedureRequest: DomainResource
 		if let priority = self.priority {
 			json["priority"] = priority.asJSON()
 		}
+		if let reasonCodeableConcept = self.reasonCodeableConcept {
+			json["reasonCodeableConcept"] = reasonCodeableConcept.asJSON()
+		}
+		if let reasonReference = self.reasonReference {
+			json["reasonReference"] = reasonReference.asJSON()
+		}
+		if let scheduledDateTime = self.scheduledDateTime {
+			json["scheduledDateTime"] = scheduledDateTime.asJSON()
+		}
+		if let scheduledPeriod = self.scheduledPeriod {
+			json["scheduledPeriod"] = scheduledPeriod.asJSON()
+		}
+		if let scheduledTiming = self.scheduledTiming {
+			json["scheduledTiming"] = scheduledTiming.asJSON()
+		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON()
-		}
-		if let timingDateTime = self.timingDateTime {
-			json["timingDateTime"] = timingDateTime.asJSON()
-		}
-		if let timingPeriod = self.timingPeriod {
-			json["timingPeriod"] = timingPeriod.asJSON()
-		}
-		if let timingTiming = self.timingTiming {
-			json["timingTiming"] = timingTiming.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Target body sites.
- *
- *  Indicates the sites on the subject's body where the procedure should be performed ( i.e. the target sites).
- */
-public class ProcedureRequestBodySite: FHIRElement
-{
-	override public class var resourceName: String {
-		get { return "ProcedureRequestBodySite" }
-	}
-	
-	/// Target body site
-	public var siteCodeableConcept: CodeableConcept?
-	
-	/// Target body site
-	public var siteReference: Reference?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?) {
-		super.init(json: json)
-	}
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(siteCodeableConcept: CodeableConcept?, siteReference: Reference?) {
-		self.init(json: nil)
-		if nil != siteCodeableConcept {
-			self.siteCodeableConcept = siteCodeableConcept
-		}
-		if nil != siteReference {
-			self.siteReference = siteReference
-		}
-	}
-	
-	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist: AnyObject = js["siteCodeableConcept"] {
-				presentKeys.insert("siteCodeableConcept")
-				if let val = exist as? FHIRJSON {
-					self.siteCodeableConcept = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "siteCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["siteReference"] {
-				presentKeys.insert("siteReference")
-				if let val = exist as? FHIRJSON {
-					self.siteReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "siteReference", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			
-			// check if nonoptional expanded properties are present
-			if nil == self.siteCodeableConcept && nil == self.siteReference {
-				errors.append(FHIRJSONError(key: "site[x]*"))
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override public func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let siteCodeableConcept = self.siteCodeableConcept {
-			json["siteCodeableConcept"] = siteCodeableConcept.asJSON()
-		}
-		if let siteReference = self.siteReference {
-			json["siteReference"] = siteReference.asJSON()
 		}
 		
 		return json

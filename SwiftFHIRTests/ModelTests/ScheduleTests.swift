@@ -2,7 +2,7 @@
 //  ScheduleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 0.5.0.5149 on 2015-07-28.
+//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
 //  2015, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import XCTest
 import SwiftFHIR
 
 
-class ScheduleTests: FHIRModelTestCase
+class ScheduleTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Schedule {
 		return instantiateFrom(json: try readJSONFile(filename)!)
@@ -22,9 +22,10 @@ class ScheduleTests: FHIRModelTestCase
 		return instance
 	}
 	
-	func testSchedule1() throws {
-		let instance = try runSchedule1()
-		try runSchedule1(instance.asJSON())
+	func testSchedule1() {
+		let instance = try? runSchedule1()
+		XCTAssertNotNil(instance, "Must instantiate Schedule")
+		try! runSchedule1(instance!.asJSON())
 	}
 	
 	func runSchedule1(json: FHIRJSON? = nil) throws -> Schedule {
@@ -34,6 +35,9 @@ class ScheduleTests: FHIRModelTestCase
 		XCTAssertEqual(inst.actor!.reference!, "Location/1")
 		XCTAssertEqual(inst.comment!, "Assessments should be performed before requesting appointments in this slot.")
 		XCTAssertEqual(inst.id!, "example")
+		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://example.org/scheduleid")
+		XCTAssertEqual(inst.identifier![0].use!, "usual")
+		XCTAssertEqual(inst.identifier![0].value!, "45")
 		XCTAssertEqual(inst.planningHorizon!.end!.description, "2013-12-25T09:30:00Z")
 		XCTAssertEqual(inst.planningHorizon!.start!.description, "2013-12-25T09:15:00Z")
 		XCTAssertEqual(inst.text!.status!, "generated")

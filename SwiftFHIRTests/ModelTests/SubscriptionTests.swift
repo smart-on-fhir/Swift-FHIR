@@ -2,7 +2,7 @@
 //  SubscriptionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class SubscriptionTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Subscription {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Subscription {
@@ -25,7 +25,9 @@ class SubscriptionTests: XCTestCase
 	func testSubscription1() {
 		let instance = try? runSubscription1()
 		XCTAssertNotNil(instance, "Must instantiate Subscription")
-		try! runSubscription1(instance!.asJSON())
+		if let instance = instance {
+			try! runSubscription1(instance.asJSON())
+		}
 	}
 	
 	func runSubscription1(json: FHIRJSON? = nil) throws -> Subscription {
@@ -37,7 +39,7 @@ class SubscriptionTests: XCTestCase
 		XCTAssertEqual(inst.channel!.type!, "rest-hook")
 		XCTAssertEqual(inst.contact![0].system!, "phone")
 		XCTAssertEqual(inst.contact![0].value!, "ext 4123")
-		XCTAssertEqual(inst.criteria!, "Observation?name=http://loinc.org|1975-2")
+		XCTAssertEqual(inst.criteria!, "Observation?code=http://loinc.org|1975-2")
 		XCTAssertEqual(inst.end!.description, "2021-01-01T00:00:00Z")
 		XCTAssertEqual(inst.error!, "Socket Error 10060 - can't connect to host")
 		XCTAssertEqual(inst.id!, "example-error")
@@ -54,7 +56,9 @@ class SubscriptionTests: XCTestCase
 	func testSubscription2() {
 		let instance = try? runSubscription2()
 		XCTAssertNotNil(instance, "Must instantiate Subscription")
-		try! runSubscription2(instance!.asJSON())
+		if let instance = instance {
+			try! runSubscription2(instance.asJSON())
+		}
 	}
 	
 	func runSubscription2(json: FHIRJSON? = nil) throws -> Subscription {
@@ -66,7 +70,7 @@ class SubscriptionTests: XCTestCase
 		XCTAssertEqual(inst.channel!.type!, "rest-hook")
 		XCTAssertEqual(inst.contact![0].system!, "phone")
 		XCTAssertEqual(inst.contact![0].value!, "ext 4123")
-		XCTAssertEqual(inst.criteria!, "Observation?name=http://loinc.org|1975-2")
+		XCTAssertEqual(inst.criteria!, "Observation?code=http://loinc.org|1975-2")
 		XCTAssertEqual(inst.end!.description, "2021-01-01T00:00:00Z")
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.reason!, "Monitor new neonatal function")

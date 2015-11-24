@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -24,10 +24,10 @@ public class ElementDefinition: FHIRElement
 	public var alias: [String]?
 	
 	/// Base definition information for tools
-	public var base: ElementDefinitionBase?
+	public var base: FHIRElement?
 	
 	/// ValueSet details if this is coded
-	public var binding: ElementDefinitionBinding?
+	public var binding: FHIRElement?
 	
 	/// Defining code
 	public var code: [Coding]?
@@ -39,7 +39,7 @@ public class ElementDefinition: FHIRElement
 	public var condition: [String]?
 	
 	/// Condition that must evaluate to true
-	public var constraint: [ElementDefinitionConstraint]?
+	public var constraint: [FHIRElement]?
 	
 	/// Specified value it missing from instance
 	public var defaultValueAddress: Address?
@@ -351,7 +351,7 @@ public class ElementDefinition: FHIRElement
 	public var label: String?
 	
 	/// Map element to another set of definitions
-	public var mapping: [ElementDefinitionMapping]?
+	public var mapping: [FHIRElement]?
 	
 	/// Maximum Cardinality (a number or *)
 	public var max: String?
@@ -684,10 +684,10 @@ public class ElementDefinition: FHIRElement
 	public var short: String?
 	
 	/// This element is sliced - slices follow
-	public var slicing: ElementDefinitionSlicing?
+	public var slicing: FHIRElement?
 	
 	/// Data type and Profile for this element
-	public var type: [ElementDefinitionType]?
+	public var type: [FHIRElement]?
 	
 	
 	/** Initialize with a JSON object. */
@@ -716,7 +716,7 @@ public class ElementDefinition: FHIRElement
 			if let exist: AnyObject = js["base"] {
 				presentKeys.insert("base")
 				if let val = exist as? FHIRJSON {
-					self.base = ElementDefinitionBase(json: val, owner: self)
+					self.base = FHIRElement(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "base", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -725,7 +725,7 @@ public class ElementDefinition: FHIRElement
 			if let exist: AnyObject = js["binding"] {
 				presentKeys.insert("binding")
 				if let val = exist as? FHIRJSON {
-					self.binding = ElementDefinitionBinding(json: val, owner: self)
+					self.binding = FHIRElement(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "binding", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -761,7 +761,7 @@ public class ElementDefinition: FHIRElement
 			if let exist: AnyObject = js["constraint"] {
 				presentKeys.insert("constraint")
 				if let val = exist as? [FHIRJSON] {
-					self.constraint = ElementDefinitionConstraint.from(val, owner: self) as? [ElementDefinitionConstraint]
+					self.constraint = FHIRElement.from(val, owner: self) as? [FHIRElement]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "constraint", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -1697,7 +1697,7 @@ public class ElementDefinition: FHIRElement
 			if let exist: AnyObject = js["mapping"] {
 				presentKeys.insert("mapping")
 				if let val = exist as? [FHIRJSON] {
-					self.mapping = ElementDefinitionMapping.from(val, owner: self) as? [ElementDefinitionMapping]
+					self.mapping = FHIRElement.from(val, owner: self) as? [FHIRElement]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "mapping", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -2699,7 +2699,7 @@ public class ElementDefinition: FHIRElement
 			if let exist: AnyObject = js["slicing"] {
 				presentKeys.insert("slicing")
 				if let val = exist as? FHIRJSON {
-					self.slicing = ElementDefinitionSlicing(json: val, owner: self)
+					self.slicing = FHIRElement(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "slicing", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -2708,7 +2708,7 @@ public class ElementDefinition: FHIRElement
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? [FHIRJSON] {
-					self.type = ElementDefinitionType.from(val, owner: self) as? [ElementDefinitionType]
+					self.type = FHIRElement.from(val, owner: self) as? [FHIRElement]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -2748,7 +2748,7 @@ public class ElementDefinition: FHIRElement
 			json["condition"] = arr
 		}
 		if let constraint = self.constraint {
-			json["constraint"] = ElementDefinitionConstraint.asJSONArray(constraint)
+			json["constraint"] = FHIRElement.asJSONArray(constraint)
 		}
 		if let defaultValueAddress = self.defaultValueAddress {
 			json["defaultValueAddress"] = defaultValueAddress.asJSON()
@@ -3060,7 +3060,7 @@ public class ElementDefinition: FHIRElement
 			json["label"] = label.asJSON()
 		}
 		if let mapping = self.mapping {
-			json["mapping"] = ElementDefinitionMapping.asJSONArray(mapping)
+			json["mapping"] = FHIRElement.asJSONArray(mapping)
 		}
 		if let max = self.max {
 			json["max"] = max.asJSON()
@@ -3400,7 +3400,7 @@ public class ElementDefinition: FHIRElement
 			json["slicing"] = slicing.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = ElementDefinitionType.asJSONArray(type)
+			json["type"] = FHIRElement.asJSONArray(type)
 		}
 		
 		return json

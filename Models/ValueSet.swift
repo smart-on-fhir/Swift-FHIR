@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -20,7 +20,7 @@ public class ValueSet: DomainResource
 		get { return "ValueSet" }
 	}
 	
-	/// An inline code system - part of this value set
+	/// An inline code system, which is part of this value set
 	public var codeSystem: ValueSetCodeSystem?
 	
 	/// When value set includes codes from elsewhere
@@ -337,10 +337,10 @@ public class ValueSet: DomainResource
 
 
 /**
- *  An inline code system - part of this value set.
+ *  An inline code system, which is part of this value set.
  *
  *  A definition of a code system, inlined into the value set (as a packaging convenience). Note that the inline code
- *  system may be used from other value sets by referring to it's (codeSystem.system) directly.
+ *  system may be used from other value sets by referring to its (codeSystem.system) directly.
  */
 public class ValueSetCodeSystem: FHIRElement
 {
@@ -464,13 +464,13 @@ public class ValueSetCodeSystemConcept: FHIRElement
 	/// Child Concepts (is-a/contains/categorizes)
 	public var concept: [ValueSetCodeSystemConcept]?
 	
-	/// Formal Definition
+	/// Formal definition
 	public var definition: String?
 	
 	/// Additional representations for the concept
 	public var designation: [ValueSetCodeSystemConceptDesignation]?
 	
-	/// Text to Display to the user
+	/// Text to display to the user
 	public var display: String?
 	
 	
@@ -1356,7 +1356,7 @@ public class ValueSetExpansionContains: FHIRElement
 /**
  *  Parameter that controlled the expansion process.
  *
- *  A Parameter that controlled the expansion process. These parameters may be used by users of expanded value sets to
+ *  A parameter that controlled the expansion process. These parameters may be used by users of expanded value sets to
  *  check whether the expansion is suitable for a particular purpose, or to pick the correct expansion.
  */
 public class ValueSetExpansionParameter: FHIRElement
@@ -1365,7 +1365,7 @@ public class ValueSetExpansionParameter: FHIRElement
 		get { return "ValueSetExpansionParameter" }
 	}
 	
-	/// Name as assigned by server
+	/// Name as assigned by the server
 	public var name: String?
 	
 	/// Value of the named parameter

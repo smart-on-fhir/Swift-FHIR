@@ -2,7 +2,7 @@
 //  ImplementationGuideTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class ImplementationGuideTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> ImplementationGuide {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> ImplementationGuide {
@@ -25,7 +25,9 @@ class ImplementationGuideTests: XCTestCase
 	func testImplementationGuide1() {
 		let instance = try? runImplementationGuide1()
 		XCTAssertNotNil(instance, "Must instantiate ImplementationGuide")
-		try! runImplementationGuide1(instance!.asJSON())
+		if let instance = instance {
+			try! runImplementationGuide1(instance.asJSON())
+		}
 	}
 	
 	func runImplementationGuide1(json: FHIRJSON? = nil) throws -> ImplementationGuide {

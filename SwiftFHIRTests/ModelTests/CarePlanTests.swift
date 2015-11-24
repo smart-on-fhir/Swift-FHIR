@@ -2,7 +2,7 @@
 //  CarePlanTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class CarePlanTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> CarePlan {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> CarePlan {
@@ -25,7 +25,9 @@ class CarePlanTests: XCTestCase
 	func testCarePlan1() {
 		let instance = try? runCarePlan1()
 		XCTAssertNotNil(instance, "Must instantiate CarePlan")
-		try! runCarePlan1(instance!.asJSON())
+		if let instance = instance {
+			try! runCarePlan1(instance.asJSON())
+		}
 	}
 	
 	func runCarePlan1(json: FHIRJSON? = nil) throws -> CarePlan {
@@ -64,7 +66,9 @@ class CarePlanTests: XCTestCase
 	func testCarePlan2() {
 		let instance = try? runCarePlan2()
 		XCTAssertNotNil(instance, "Must instantiate CarePlan")
-		try! runCarePlan2(instance!.asJSON())
+		if let instance = instance {
+			try! runCarePlan2(instance.asJSON())
+		}
 	}
 	
 	func runCarePlan2(json: FHIRJSON? = nil) throws -> CarePlan {
@@ -103,7 +107,9 @@ class CarePlanTests: XCTestCase
 	func testCarePlan3() {
 		let instance = try? runCarePlan3()
 		XCTAssertNotNil(instance, "Must instantiate CarePlan")
-		try! runCarePlan3(instance!.asJSON())
+		if let instance = instance {
+			try! runCarePlan3(instance.asJSON())
+		}
 	}
 	
 	func runCarePlan3(json: FHIRJSON? = nil) throws -> CarePlan {
@@ -142,7 +148,9 @@ class CarePlanTests: XCTestCase
 	func testCarePlan4() {
 		let instance = try? runCarePlan4()
 		XCTAssertNotNil(instance, "Must instantiate CarePlan")
-		try! runCarePlan4(instance!.asJSON())
+		if let instance = instance {
+			try! runCarePlan4(instance.asJSON())
+		}
 	}
 	
 	func runCarePlan4(json: FHIRJSON? = nil) throws -> CarePlan {
@@ -197,7 +205,9 @@ class CarePlanTests: XCTestCase
 	func testCarePlan5() {
 		let instance = try? runCarePlan5()
 		XCTAssertNotNil(instance, "Must instantiate CarePlan")
-		try! runCarePlan5(instance!.asJSON())
+		if let instance = instance {
+			try! runCarePlan5(instance.asJSON())
+		}
 	}
 	
 	func runCarePlan5(json: FHIRJSON? = nil) throws -> CarePlan {
@@ -233,7 +243,9 @@ class CarePlanTests: XCTestCase
 	func testCarePlan6() {
 		let instance = try? runCarePlan6()
 		XCTAssertNotNil(instance, "Must instantiate CarePlan")
-		try! runCarePlan6(instance!.asJSON())
+		if let instance = instance {
+			try! runCarePlan6(instance.asJSON())
+		}
 	}
 	
 	func runCarePlan6(json: FHIRJSON? = nil) throws -> CarePlan {
@@ -274,7 +286,9 @@ class CarePlanTests: XCTestCase
 	func testCarePlan7() {
 		let instance = try? runCarePlan7()
 		XCTAssertNotNil(instance, "Must instantiate CarePlan")
-		try! runCarePlan7(instance!.asJSON())
+		if let instance = instance {
+			try! runCarePlan7(instance.asJSON())
+		}
 	}
 	
 	func runCarePlan7(json: FHIRJSON? = nil) throws -> CarePlan {
@@ -329,7 +343,9 @@ class CarePlanTests: XCTestCase
 	func testCarePlan8() {
 		let instance = try? runCarePlan8()
 		XCTAssertNotNil(instance, "Must instantiate CarePlan")
-		try! runCarePlan8(instance!.asJSON())
+		if let instance = instance {
+			try! runCarePlan8(instance.asJSON())
+		}
 	}
 	
 	func runCarePlan8(json: FHIRJSON? = nil) throws -> CarePlan {
@@ -472,7 +488,9 @@ class CarePlanTests: XCTestCase
 	func testCarePlan9() {
 		let instance = try? runCarePlan9()
 		XCTAssertNotNil(instance, "Must instantiate CarePlan")
-		try! runCarePlan9(instance!.asJSON())
+		if let instance = instance {
+			try! runCarePlan9(instance.asJSON())
+		}
 	}
 	
 	func runCarePlan9(json: FHIRJSON? = nil) throws -> CarePlan {
@@ -487,8 +505,6 @@ class CarePlanTests: XCTestCase
 		XCTAssertEqual(inst.activity![0].detail!.performer![0].display!, "Mavis Midwife")
 		XCTAssertEqual(inst.activity![0].detail!.performer![0].reference!, "#pr1")
 		XCTAssertFalse(inst.activity![0].detail!.prohibited!)
-		XCTAssertEqual(inst.activity![0].detail!.scheduledTiming!.repeat_fhir!.boundsPeriod!.end!.description, "2013-02-28")
-		XCTAssertEqual(inst.activity![0].detail!.scheduledTiming!.repeat_fhir!.boundsPeriod!.start!.description, "2013-02-14")
 		XCTAssertEqual(inst.activity![0].detail!.status!, "scheduled")
 		XCTAssertEqual(inst.activity![0].extension_fhir![0].url!.absoluteString, "http://example.org/DoNotUse/careplan#andetails")
 		XCTAssertEqual(inst.activity![0].extension_fhir![0].valueUri!.absoluteString, "http://orionhealth.com/fhir/careplan/1andetails")
@@ -501,8 +517,6 @@ class CarePlanTests: XCTestCase
 		XCTAssertEqual(inst.activity![1].detail!.performer![0].display!, "Mavis Midwife")
 		XCTAssertEqual(inst.activity![1].detail!.performer![0].reference!, "#pr1")
 		XCTAssertFalse(inst.activity![1].detail!.prohibited!)
-		XCTAssertEqual(inst.activity![1].detail!.scheduledTiming!.repeat_fhir!.boundsPeriod!.end!.description, "2013-03-14")
-		XCTAssertEqual(inst.activity![1].detail!.scheduledTiming!.repeat_fhir!.boundsPeriod!.start!.description, "2013-03-01")
 		XCTAssertEqual(inst.activity![1].detail!.status!, "not-started")
 		XCTAssertEqual(inst.activity![2].detail!.category!.coding![0].code!, "encounter")
 		XCTAssertEqual(inst.activity![2].detail!.category!.coding![0].system!.absoluteString, "http://hl7.org/fhir/care-plan-activity-category")
@@ -513,8 +527,6 @@ class CarePlanTests: XCTestCase
 		XCTAssertEqual(inst.activity![2].detail!.performer![0].display!, "Mavis Midwife")
 		XCTAssertEqual(inst.activity![2].detail!.performer![0].reference!, "#pr1")
 		XCTAssertFalse(inst.activity![2].detail!.prohibited!)
-		XCTAssertEqual(inst.activity![2].detail!.scheduledTiming!.repeat_fhir!.boundsPeriod!.end!.description, "2013-09-14")
-		XCTAssertEqual(inst.activity![2].detail!.scheduledTiming!.repeat_fhir!.boundsPeriod!.start!.description, "2013-09-01")
 		XCTAssertEqual(inst.activity![2].detail!.status!, "not-started")
 		XCTAssertEqual(inst.addresses![0].display!, "pregnancy")
 		XCTAssertEqual(inst.addresses![0].reference!, "#p1")
@@ -545,7 +557,9 @@ class CarePlanTests: XCTestCase
 	func testCarePlan10() {
 		let instance = try? runCarePlan10()
 		XCTAssertNotNil(instance, "Must instantiate CarePlan")
-		try! runCarePlan10(instance!.asJSON())
+		if let instance = instance {
+			try! runCarePlan10(instance.asJSON())
+		}
 	}
 	
 	func runCarePlan10(json: FHIRJSON? = nil) throws -> CarePlan {
@@ -557,9 +571,6 @@ class CarePlanTests: XCTestCase
 		XCTAssertEqual(inst.activity![0].detail!.performer![0].display!, "Peter James Chalmers")
 		XCTAssertEqual(inst.activity![0].detail!.performer![0].reference!, "Patient/example")
 		XCTAssertFalse(inst.activity![0].detail!.prohibited!)
-		XCTAssertEqual(inst.activity![0].detail!.scheduledTiming!.repeat_fhir!.frequency!, 1)
-		XCTAssertEqual(inst.activity![0].detail!.scheduledTiming!.repeat_fhir!.period!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.activity![0].detail!.scheduledTiming!.repeat_fhir!.periodUnits!, "d")
 		XCTAssertEqual(inst.addresses![0].display!, "obesity")
 		XCTAssertEqual(inst.addresses![0].reference!, "#p1")
 		XCTAssertEqual(inst.goal![0].reference!, "#goal")

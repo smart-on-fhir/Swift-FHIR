@@ -2,7 +2,7 @@
 //  ConditionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class ConditionTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Condition {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Condition {
@@ -25,7 +25,9 @@ class ConditionTests: XCTestCase
 	func testCondition1() {
 		let instance = try? runCondition1()
 		XCTAssertNotNil(instance, "Must instantiate Condition")
-		try! runCondition1(instance!.asJSON())
+		if let instance = instance {
+			try! runCondition1(instance.asJSON())
+		}
 	}
 	
 	func runCondition1(json: FHIRJSON? = nil) throws -> Condition {
@@ -65,7 +67,9 @@ class ConditionTests: XCTestCase
 	func testCondition2() {
 		let instance = try? runCondition2()
 		XCTAssertNotNil(instance, "Must instantiate Condition")
-		try! runCondition2(instance!.asJSON())
+		if let instance = instance {
+			try! runCondition2(instance.asJSON())
+		}
 	}
 	
 	func runCondition2(json: FHIRJSON? = nil) throws -> Condition {
@@ -107,7 +111,9 @@ class ConditionTests: XCTestCase
 	func testCondition3() {
 		let instance = try? runCondition3()
 		XCTAssertNotNil(instance, "Must instantiate Condition")
-		try! runCondition3(instance!.asJSON())
+		if let instance = instance {
+			try! runCondition3(instance.asJSON())
+		}
 	}
 	
 	func runCondition3(json: FHIRJSON? = nil) throws -> Condition {
@@ -146,7 +152,9 @@ class ConditionTests: XCTestCase
 	func testCondition4() {
 		let instance = try? runCondition4()
 		XCTAssertNotNil(instance, "Must instantiate Condition")
-		try! runCondition4(instance!.asJSON())
+		if let instance = instance {
+			try! runCondition4(instance.asJSON())
+		}
 	}
 	
 	func runCondition4(json: FHIRJSON? = nil) throws -> Condition {
@@ -188,7 +196,9 @@ class ConditionTests: XCTestCase
 	func testCondition5() {
 		let instance = try? runCondition5()
 		XCTAssertNotNil(instance, "Must instantiate Condition")
-		try! runCondition5(instance!.asJSON())
+		if let instance = instance {
+			try! runCondition5(instance.asJSON())
+		}
 	}
 	
 	func runCondition5(json: FHIRJSON? = nil) throws -> Condition {
@@ -225,7 +235,9 @@ class ConditionTests: XCTestCase
 	func testCondition6() {
 		let instance = try? runCondition6()
 		XCTAssertNotNil(instance, "Must instantiate Condition")
-		try! runCondition6(instance!.asJSON())
+		if let instance = instance {
+			try! runCondition6(instance.asJSON())
+		}
 	}
 	
 	func runCondition6(json: FHIRJSON? = nil) throws -> Condition {
@@ -265,7 +277,9 @@ class ConditionTests: XCTestCase
 	func testCondition7() {
 		let instance = try? runCondition7()
 		XCTAssertNotNil(instance, "Must instantiate Condition")
-		try! runCondition7(instance!.asJSON())
+		if let instance = instance {
+			try! runCondition7(instance.asJSON())
+		}
 	}
 	
 	func runCondition7(json: FHIRJSON? = nil) throws -> Condition {
@@ -307,7 +321,9 @@ class ConditionTests: XCTestCase
 	func testCondition8() {
 		let instance = try? runCondition8()
 		XCTAssertNotNil(instance, "Must instantiate Condition")
-		try! runCondition8(instance!.asJSON())
+		if let instance = instance {
+			try! runCondition8(instance.asJSON())
+		}
 	}
 	
 	func runCondition8(json: FHIRJSON? = nil) throws -> Condition {
@@ -331,7 +347,9 @@ class ConditionTests: XCTestCase
 	func testCondition9() {
 		let instance = try? runCondition9()
 		XCTAssertNotNil(instance, "Must instantiate Condition")
-		try! runCondition9(instance!.asJSON())
+		if let instance = instance {
+			try! runCondition9(instance.asJSON())
+		}
 	}
 	
 	func runCondition9(json: FHIRJSON? = nil) throws -> Condition {
@@ -358,7 +376,9 @@ class ConditionTests: XCTestCase
 	func testCondition10() {
 		let instance = try? runCondition10()
 		XCTAssertNotNil(instance, "Must instantiate Condition")
-		try! runCondition10(instance!.asJSON())
+		if let instance = instance {
+			try! runCondition10(instance.asJSON())
+		}
 	}
 	
 	func runCondition10(json: FHIRJSON? = nil) throws -> Condition {

@@ -2,7 +2,7 @@
 //  TestScriptTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class TestScriptTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> TestScript {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> TestScript {
@@ -25,7 +25,9 @@ class TestScriptTests: XCTestCase
 	func testTestScript1() {
 		let instance = try? runTestScript1()
 		XCTAssertNotNil(instance, "Must instantiate TestScript")
-		try! runTestScript1(instance!.asJSON())
+		if let instance = instance {
+			try! runTestScript1(instance.asJSON())
+		}
 	}
 	
 	func runTestScript1(json: FHIRJSON? = nil) throws -> TestScript {
@@ -127,7 +129,9 @@ class TestScriptTests: XCTestCase
 	func testTestScript2() {
 		let instance = try? runTestScript2()
 		XCTAssertNotNil(instance, "Must instantiate TestScript")
-		try! runTestScript2(instance!.asJSON())
+		if let instance = instance {
+			try! runTestScript2(instance.asJSON())
+		}
 	}
 	
 	func runTestScript2(json: FHIRJSON? = nil) throws -> TestScript {

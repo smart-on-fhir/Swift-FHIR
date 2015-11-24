@@ -2,7 +2,7 @@
 //  ListTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class ListTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> List {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> List {
@@ -25,7 +25,9 @@ class ListTests: XCTestCase
 	func testList1() {
 		let instance = try? runList1()
 		XCTAssertNotNil(instance, "Must instantiate List")
-		try! runList1(instance!.asJSON())
+		if let instance = instance {
+			try! runList1(instance.asJSON())
+		}
 	}
 	
 	func runList1(json: FHIRJSON? = nil) throws -> List {
@@ -53,7 +55,9 @@ class ListTests: XCTestCase
 	func testList2() {
 		let instance = try? runList2()
 		XCTAssertNotNil(instance, "Must instantiate List")
-		try! runList2(instance!.asJSON())
+		if let instance = instance {
+			try! runList2(instance.asJSON())
+		}
 	}
 	
 	func runList2(json: FHIRJSON? = nil) throws -> List {
@@ -80,7 +84,9 @@ class ListTests: XCTestCase
 	func testList3() {
 		let instance = try? runList3()
 		XCTAssertNotNil(instance, "Must instantiate List")
-		try! runList3(instance!.asJSON())
+		if let instance = instance {
+			try! runList3(instance.asJSON())
+		}
 	}
 	
 	func runList3(json: FHIRJSON? = nil) throws -> List {
@@ -105,7 +111,9 @@ class ListTests: XCTestCase
 	func testList4() {
 		let instance = try? runList4()
 		XCTAssertNotNil(instance, "Must instantiate List")
-		try! runList4(instance!.asJSON())
+		if let instance = instance {
+			try! runList4(instance.asJSON())
+		}
 	}
 	
 	func runList4(json: FHIRJSON? = nil) throws -> List {
@@ -137,7 +145,9 @@ class ListTests: XCTestCase
 	func testList5() {
 		let instance = try? runList5()
 		XCTAssertNotNil(instance, "Must instantiate List")
-		try! runList5(instance!.asJSON())
+		if let instance = instance {
+			try! runList5(instance.asJSON())
+		}
 	}
 	
 	func runList5(json: FHIRJSON? = nil) throws -> List {
@@ -168,7 +178,9 @@ class ListTests: XCTestCase
 	func testList6() {
 		let instance = try? runList6()
 		XCTAssertNotNil(instance, "Must instantiate List")
-		try! runList6(instance!.asJSON())
+		if let instance = instance {
+			try! runList6(instance.asJSON())
+		}
 	}
 	
 	func runList6(json: FHIRJSON? = nil) throws -> List {
@@ -200,7 +212,9 @@ class ListTests: XCTestCase
 	func testList7() {
 		let instance = try? runList7()
 		XCTAssertNotNil(instance, "Must instantiate List")
-		try! runList7(instance!.asJSON())
+		if let instance = instance {
+			try! runList7(instance.asJSON())
+		}
 	}
 	
 	func runList7(json: FHIRJSON? = nil) throws -> List {

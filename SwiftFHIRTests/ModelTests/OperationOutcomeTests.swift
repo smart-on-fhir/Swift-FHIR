@@ -2,7 +2,7 @@
 //  OperationOutcomeTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class OperationOutcomeTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> OperationOutcome {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> OperationOutcome {
@@ -25,7 +25,9 @@ class OperationOutcomeTests: XCTestCase
 	func testOperationOutcome1() {
 		let instance = try? runOperationOutcome1()
 		XCTAssertNotNil(instance, "Must instantiate OperationOutcome")
-		try! runOperationOutcome1(instance!.asJSON())
+		if let instance = instance {
+			try! runOperationOutcome1(instance.asJSON())
+		}
 	}
 	
 	func runOperationOutcome1(json: FHIRJSON? = nil) throws -> OperationOutcome {
@@ -43,7 +45,9 @@ class OperationOutcomeTests: XCTestCase
 	func testOperationOutcome2() {
 		let instance = try? runOperationOutcome2()
 		XCTAssertNotNil(instance, "Must instantiate OperationOutcome")
-		try! runOperationOutcome2(instance!.asJSON())
+		if let instance = instance {
+			try! runOperationOutcome2(instance.asJSON())
+		}
 	}
 	
 	func runOperationOutcome2(json: FHIRJSON? = nil) throws -> OperationOutcome {
@@ -64,7 +68,9 @@ class OperationOutcomeTests: XCTestCase
 	func testOperationOutcome3() {
 		let instance = try? runOperationOutcome3()
 		XCTAssertNotNil(instance, "Must instantiate OperationOutcome")
-		try! runOperationOutcome3(instance!.asJSON())
+		if let instance = instance {
+			try! runOperationOutcome3(instance.asJSON())
+		}
 	}
 	
 	func runOperationOutcome3(json: FHIRJSON? = nil) throws -> OperationOutcome {
@@ -82,7 +88,9 @@ class OperationOutcomeTests: XCTestCase
 	func testOperationOutcome4() {
 		let instance = try? runOperationOutcome4()
 		XCTAssertNotNil(instance, "Must instantiate OperationOutcome")
-		try! runOperationOutcome4(instance!.asJSON())
+		if let instance = instance {
+			try! runOperationOutcome4(instance.asJSON())
+		}
 	}
 	
 	func runOperationOutcome4(json: FHIRJSON? = nil) throws -> OperationOutcome {
@@ -101,7 +109,9 @@ class OperationOutcomeTests: XCTestCase
 	func testOperationOutcome5() {
 		let instance = try? runOperationOutcome5()
 		XCTAssertNotNil(instance, "Must instantiate OperationOutcome")
-		try! runOperationOutcome5(instance!.asJSON())
+		if let instance = instance {
+			try! runOperationOutcome5(instance.asJSON())
+		}
 	}
 	
 	func runOperationOutcome5(json: FHIRJSON? = nil) throws -> OperationOutcome {
@@ -120,7 +130,9 @@ class OperationOutcomeTests: XCTestCase
 	func testOperationOutcome6() {
 		let instance = try? runOperationOutcome6()
 		XCTAssertNotNil(instance, "Must instantiate OperationOutcome")
-		try! runOperationOutcome6(instance!.asJSON())
+		if let instance = instance {
+			try! runOperationOutcome6(instance.asJSON())
+		}
 	}
 	
 	func runOperationOutcome6(json: FHIRJSON? = nil) throws -> OperationOutcome {

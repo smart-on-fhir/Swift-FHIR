@@ -2,7 +2,7 @@
 //  ImmunizationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class ImmunizationTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Immunization {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Immunization {
@@ -25,7 +25,9 @@ class ImmunizationTests: XCTestCase
 	func testImmunization1() {
 		let instance = try? runImmunization1()
 		XCTAssertNotNil(instance, "Must instantiate Immunization")
-		try! runImmunization1(instance!.asJSON())
+		if let instance = instance {
+			try! runImmunization1(instance.asJSON())
+		}
 	}
 	
 	func runImmunization1(json: FHIRJSON? = nil) throws -> Immunization {
@@ -51,7 +53,9 @@ class ImmunizationTests: XCTestCase
 	func testImmunization2() {
 		let instance = try? runImmunization2()
 		XCTAssertNotNil(instance, "Must instantiate Immunization")
-		try! runImmunization2(instance!.asJSON())
+		if let instance = instance {
+			try! runImmunization2(instance.asJSON())
+		}
 	}
 	
 	func runImmunization2(json: FHIRJSON? = nil) throws -> Immunization {

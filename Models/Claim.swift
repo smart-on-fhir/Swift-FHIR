@@ -2,7 +2,7 @@
 //  Claim.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Claim) on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Claim) on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -769,7 +769,7 @@ public class ClaimItem: FHIRElement
 	public var factor: NSDecimalNumber?
 	
 	/// Service/Product billing modifiers
-	public var modifier_fhir: [Coding]?
+	public var modifier: [Coding]?
 	
 	/// Total item cost
 	public var net: Quantity?
@@ -863,7 +863,7 @@ public class ClaimItem: FHIRElement
 			if let exist: AnyObject = js["modifier"] {
 				presentKeys.insert("modifier")
 				if let val = exist as? [FHIRJSON] {
-					self.modifier_fhir = Coding.from(val, owner: self) as? [Coding]
+					self.modifier = Coding.from(val, owner: self) as? [Coding]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "modifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -1009,8 +1009,8 @@ public class ClaimItem: FHIRElement
 		if let factor = self.factor {
 			json["factor"] = factor.asJSON()
 		}
-		if let modifier_fhir = self.modifier_fhir {
-			json["modifier"] = Coding.asJSONArray(modifier_fhir)
+		if let modifier = self.modifier {
+			json["modifier"] = Coding.asJSONArray(modifier)
 		}
 		if let net = self.net {
 			json["net"] = net.asJSON()

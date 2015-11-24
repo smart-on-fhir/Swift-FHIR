@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -1616,7 +1616,7 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 	public var documentation: String?
 	
 	/// missing | exact | contains | not | text | in | not-in | below | above | type
-	public var modifier_fhir: [String]?
+	public var modifier: [String]?
 	
 	/// Name of search parameter
 	public var name: String?
@@ -1673,7 +1673,7 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 			if let exist: AnyObject = js["modifier"] {
 				presentKeys.insert("modifier")
 				if let val = exist as? [String] {
-					self.modifier_fhir = val
+					self.modifier = val
 				}
 				else {
 					errors.append(FHIRJSONError(key: "modifier", wants: Array<String>.self, has: exist.dynamicType))
@@ -1732,9 +1732,9 @@ public class ConformanceRestResourceSearchParam: FHIRElement
 		if let documentation = self.documentation {
 			json["documentation"] = documentation.asJSON()
 		}
-		if let modifier_fhir = self.modifier_fhir {
+		if let modifier = self.modifier {
 			var arr = [AnyObject]()
-			for val in modifier_fhir {
+			for val in modifier {
 				arr.append(val.asJSON())
 			}
 			json["modifier"] = arr

@@ -2,7 +2,7 @@
 //  MedicationAdministration.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -242,11 +242,11 @@ public class MedicationAdministration: DomainResource
 			}
 			
 			// check if nonoptional expanded properties are present
-			if nil == self.medicationCodeableConcept && nil == self.medicationReference {
-				errors.append(FHIRJSONError(key: "medication[x]*"))
-			}
 			if nil == self.effectiveTimeDateTime && nil == self.effectiveTimePeriod {
 				errors.append(FHIRJSONError(key: "effectiveTime[x]*"))
+			}
+			if nil == self.medicationCodeableConcept && nil == self.medicationReference {
+				errors.append(FHIRJSONError(key: "medication[x]*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors

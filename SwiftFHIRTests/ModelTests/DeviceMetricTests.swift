@@ -2,7 +2,7 @@
 //  DeviceMetricTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class DeviceMetricTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> DeviceMetric {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> DeviceMetric {
@@ -25,7 +25,9 @@ class DeviceMetricTests: XCTestCase
 	func testDeviceMetric1() {
 		let instance = try? runDeviceMetric1()
 		XCTAssertNotNil(instance, "Must instantiate DeviceMetric")
-		try! runDeviceMetric1(instance!.asJSON())
+		if let instance = instance {
+			try! runDeviceMetric1(instance.asJSON())
+		}
 	}
 	
 	func runDeviceMetric1(json: FHIRJSON? = nil) throws -> DeviceMetric {

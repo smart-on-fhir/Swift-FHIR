@@ -2,7 +2,7 @@
 //  PractitionerTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class PractitionerTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Practitioner {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Practitioner {
@@ -25,7 +25,9 @@ class PractitionerTests: XCTestCase
 	func testPractitioner1() {
 		let instance = try? runPractitioner1()
 		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		try! runPractitioner1(instance!.asJSON())
+		if let instance = instance {
+			try! runPractitioner1(instance.asJSON())
+		}
 	}
 	
 	func runPractitioner1(json: FHIRJSON? = nil) throws -> Practitioner {
@@ -76,7 +78,9 @@ class PractitionerTests: XCTestCase
 	func testPractitioner2() {
 		let instance = try? runPractitioner2()
 		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		try! runPractitioner2(instance!.asJSON())
+		if let instance = instance {
+			try! runPractitioner2(instance.asJSON())
+		}
 	}
 	
 	func runPractitioner2(json: FHIRJSON? = nil) throws -> Practitioner {
@@ -127,7 +131,9 @@ class PractitionerTests: XCTestCase
 	func testPractitioner3() {
 		let instance = try? runPractitioner3()
 		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		try! runPractitioner3(instance!.asJSON())
+		if let instance = instance {
+			try! runPractitioner3(instance.asJSON())
+		}
 	}
 	
 	func runPractitioner3(json: FHIRJSON? = nil) throws -> Practitioner {
@@ -181,7 +187,9 @@ class PractitionerTests: XCTestCase
 	func testPractitioner4() {
 		let instance = try? runPractitioner4()
 		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		try! runPractitioner4(instance!.asJSON())
+		if let instance = instance {
+			try! runPractitioner4(instance.asJSON())
+		}
 	}
 	
 	func runPractitioner4(json: FHIRJSON? = nil) throws -> Practitioner {
@@ -236,7 +244,9 @@ class PractitionerTests: XCTestCase
 	func testPractitioner5() {
 		let instance = try? runPractitioner5()
 		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		try! runPractitioner5(instance!.asJSON())
+		if let instance = instance {
+			try! runPractitioner5(instance.asJSON())
+		}
 	}
 	
 	func runPractitioner5(json: FHIRJSON? = nil) throws -> Practitioner {
@@ -291,7 +301,9 @@ class PractitionerTests: XCTestCase
 	func testPractitioner6() {
 		let instance = try? runPractitioner6()
 		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		try! runPractitioner6(instance!.asJSON())
+		if let instance = instance {
+			try! runPractitioner6(instance.asJSON())
+		}
 	}
 	
 	func runPractitioner6(json: FHIRJSON? = nil) throws -> Practitioner {
@@ -342,7 +354,9 @@ class PractitionerTests: XCTestCase
 	func testPractitioner7() {
 		let instance = try? runPractitioner7()
 		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		try! runPractitioner7(instance!.asJSON())
+		if let instance = instance {
+			try! runPractitioner7(instance.asJSON())
+		}
 	}
 	
 	func runPractitioner7(json: FHIRJSON? = nil) throws -> Practitioner {
@@ -393,7 +407,9 @@ class PractitionerTests: XCTestCase
 	func testPractitioner8() {
 		let instance = try? runPractitioner8()
 		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		try! runPractitioner8(instance!.asJSON())
+		if let instance = instance {
+			try! runPractitioner8(instance.asJSON())
+		}
 	}
 	
 	func runPractitioner8(json: FHIRJSON? = nil) throws -> Practitioner {
@@ -440,7 +456,9 @@ class PractitionerTests: XCTestCase
 	func testPractitioner9() {
 		let instance = try? runPractitioner9()
 		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		try! runPractitioner9(instance!.asJSON())
+		if let instance = instance {
+			try! runPractitioner9(instance.asJSON())
+		}
 	}
 	
 	func runPractitioner9(json: FHIRJSON? = nil) throws -> Practitioner {
@@ -488,7 +506,9 @@ class PractitionerTests: XCTestCase
 	func testPractitioner10() {
 		let instance = try? runPractitioner10()
 		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		try! runPractitioner10(instance!.asJSON())
+		if let instance = instance {
+			try! runPractitioner10(instance.asJSON())
+		}
 	}
 	
 	func runPractitioner10(json: FHIRJSON? = nil) throws -> Practitioner {

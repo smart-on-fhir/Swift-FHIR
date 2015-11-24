@@ -2,7 +2,7 @@
 //  QuestionnaireResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class QuestionnaireResponseTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> QuestionnaireResponse {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> QuestionnaireResponse {
@@ -25,7 +25,9 @@ class QuestionnaireResponseTests: XCTestCase
 	func testQuestionnaireResponse1() {
 		let instance = try? runQuestionnaireResponse1()
 		XCTAssertNotNil(instance, "Must instantiate QuestionnaireResponse")
-		try! runQuestionnaireResponse1(instance!.asJSON())
+		if let instance = instance {
+			try! runQuestionnaireResponse1(instance.asJSON())
+		}
 	}
 	
 	func runQuestionnaireResponse1(json: FHIRJSON? = nil) throws -> QuestionnaireResponse {
@@ -83,7 +85,9 @@ class QuestionnaireResponseTests: XCTestCase
 	func testQuestionnaireResponse2() {
 		let instance = try? runQuestionnaireResponse2()
 		XCTAssertNotNil(instance, "Must instantiate QuestionnaireResponse")
-		try! runQuestionnaireResponse2(instance!.asJSON())
+		if let instance = instance {
+			try! runQuestionnaireResponse2(instance.asJSON())
+		}
 	}
 	
 	func runQuestionnaireResponse2(json: FHIRJSON? = nil) throws -> QuestionnaireResponse {
@@ -131,7 +135,9 @@ class QuestionnaireResponseTests: XCTestCase
 	func testQuestionnaireResponse3() {
 		let instance = try? runQuestionnaireResponse3()
 		XCTAssertNotNil(instance, "Must instantiate QuestionnaireResponse")
-		try! runQuestionnaireResponse3(instance!.asJSON())
+		if let instance = instance {
+			try! runQuestionnaireResponse3(instance.asJSON())
+		}
 	}
 	
 	func runQuestionnaireResponse3(json: FHIRJSON? = nil) throws -> QuestionnaireResponse {
@@ -172,7 +178,9 @@ class QuestionnaireResponseTests: XCTestCase
 	func testQuestionnaireResponse4() {
 		let instance = try? runQuestionnaireResponse4()
 		XCTAssertNotNil(instance, "Must instantiate QuestionnaireResponse")
-		try! runQuestionnaireResponse4(instance!.asJSON())
+		if let instance = instance {
+			try! runQuestionnaireResponse4(instance.asJSON())
+		}
 	}
 	
 	func runQuestionnaireResponse4(json: FHIRJSON? = nil) throws -> QuestionnaireResponse {

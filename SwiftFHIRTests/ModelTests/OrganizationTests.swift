@@ -2,7 +2,7 @@
 //  OrganizationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class OrganizationTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Organization {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Organization {
@@ -25,7 +25,9 @@ class OrganizationTests: XCTestCase
 	func testOrganization1() {
 		let instance = try? runOrganization1()
 		XCTAssertNotNil(instance, "Must instantiate Organization")
-		try! runOrganization1(instance!.asJSON())
+		if let instance = instance {
+			try! runOrganization1(instance.asJSON())
+		}
 	}
 	
 	func runOrganization1(json: FHIRJSON? = nil) throws -> Organization {
@@ -74,7 +76,9 @@ class OrganizationTests: XCTestCase
 	func testOrganization2() {
 		let instance = try? runOrganization2()
 		XCTAssertNotNil(instance, "Must instantiate Organization")
-		try! runOrganization2(instance!.asJSON())
+		if let instance = instance {
+			try! runOrganization2(instance.asJSON())
+		}
 	}
 	
 	func runOrganization2(json: FHIRJSON? = nil) throws -> Organization {
@@ -108,7 +112,9 @@ class OrganizationTests: XCTestCase
 	func testOrganization3() {
 		let instance = try? runOrganization3()
 		XCTAssertNotNil(instance, "Must instantiate Organization")
-		try! runOrganization3(instance!.asJSON())
+		if let instance = instance {
+			try! runOrganization3(instance.asJSON())
+		}
 	}
 	
 	func runOrganization3(json: FHIRJSON? = nil) throws -> Organization {
@@ -142,7 +148,9 @@ class OrganizationTests: XCTestCase
 	func testOrganization4() {
 		let instance = try? runOrganization4()
 		XCTAssertNotNil(instance, "Must instantiate Organization")
-		try! runOrganization4(instance!.asJSON())
+		if let instance = instance {
+			try! runOrganization4(instance.asJSON())
+		}
 	}
 	
 	func runOrganization4(json: FHIRJSON? = nil) throws -> Organization {
@@ -192,7 +200,9 @@ class OrganizationTests: XCTestCase
 	func testOrganization5() {
 		let instance = try? runOrganization5()
 		XCTAssertNotNil(instance, "Must instantiate Organization")
-		try! runOrganization5(instance!.asJSON())
+		if let instance = instance {
+			try! runOrganization5(instance.asJSON())
+		}
 	}
 	
 	func runOrganization5(json: FHIRJSON? = nil) throws -> Organization {
@@ -226,7 +236,9 @@ class OrganizationTests: XCTestCase
 	func testOrganization6() {
 		let instance = try? runOrganization6()
 		XCTAssertNotNil(instance, "Must instantiate Organization")
-		try! runOrganization6(instance!.asJSON())
+		if let instance = instance {
+			try! runOrganization6(instance.asJSON())
+		}
 	}
 	
 	func runOrganization6(json: FHIRJSON? = nil) throws -> Organization {
@@ -252,7 +264,9 @@ class OrganizationTests: XCTestCase
 	func testOrganization7() {
 		let instance = try? runOrganization7()
 		XCTAssertNotNil(instance, "Must instantiate Organization")
-		try! runOrganization7(instance!.asJSON())
+		if let instance = instance {
+			try! runOrganization7(instance.asJSON())
+		}
 	}
 	
 	func runOrganization7(json: FHIRJSON? = nil) throws -> Organization {
@@ -270,7 +284,9 @@ class OrganizationTests: XCTestCase
 	func testOrganization8() {
 		let instance = try? runOrganization8()
 		XCTAssertNotNil(instance, "Must instantiate Organization")
-		try! runOrganization8(instance!.asJSON())
+		if let instance = instance {
+			try! runOrganization8(instance.asJSON())
+		}
 	}
 	
 	func runOrganization8(json: FHIRJSON? = nil) throws -> Organization {
@@ -288,7 +304,9 @@ class OrganizationTests: XCTestCase
 	func testOrganization9() {
 		let instance = try? runOrganization9()
 		XCTAssertNotNil(instance, "Must instantiate Organization")
-		try! runOrganization9(instance!.asJSON())
+		if let instance = instance {
+			try! runOrganization9(instance.asJSON())
+		}
 	}
 	
 	func runOrganization9(json: FHIRJSON? = nil) throws -> Organization {
@@ -312,7 +330,9 @@ class OrganizationTests: XCTestCase
 	func testOrganization10() {
 		let instance = try? runOrganization10()
 		XCTAssertNotNil(instance, "Must instantiate Organization")
-		try! runOrganization10(instance!.asJSON())
+		if let instance = instance {
+			try! runOrganization10(instance.asJSON())
+		}
 	}
 	
 	func runOrganization10(json: FHIRJSON? = nil) throws -> Organization {

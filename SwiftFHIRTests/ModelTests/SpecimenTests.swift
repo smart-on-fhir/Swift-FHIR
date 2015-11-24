@@ -2,7 +2,7 @@
 //  SpecimenTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class SpecimenTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Specimen {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Specimen {
@@ -25,7 +25,9 @@ class SpecimenTests: XCTestCase
 	func testSpecimen1() {
 		let instance = try? runSpecimen1()
 		XCTAssertNotNil(instance, "Must instantiate Specimen")
-		try! runSpecimen1(instance!.asJSON())
+		if let instance = instance {
+			try! runSpecimen1(instance.asJSON())
+		}
 	}
 	
 	func runSpecimen1(json: FHIRJSON? = nil) throws -> Specimen {
@@ -53,7 +55,9 @@ class SpecimenTests: XCTestCase
 	func testSpecimen2() {
 		let instance = try? runSpecimen2()
 		XCTAssertNotNil(instance, "Must instantiate Specimen")
-		try! runSpecimen2(instance!.asJSON())
+		if let instance = instance {
+			try! runSpecimen2(instance.asJSON())
+		}
 	}
 	
 	func runSpecimen2(json: FHIRJSON? = nil) throws -> Specimen {
@@ -86,7 +90,9 @@ class SpecimenTests: XCTestCase
 	func testSpecimen3() {
 		let instance = try? runSpecimen3()
 		XCTAssertNotNil(instance, "Must instantiate Specimen")
-		try! runSpecimen3(instance!.asJSON())
+		if let instance = instance {
+			try! runSpecimen3(instance.asJSON())
+		}
 	}
 	
 	func runSpecimen3(json: FHIRJSON? = nil) throws -> Specimen {

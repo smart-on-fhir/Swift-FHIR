@@ -2,7 +2,7 @@
 //  MedicationOrderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class MedicationOrderTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> MedicationOrder {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> MedicationOrder {
@@ -25,7 +25,9 @@ class MedicationOrderTests: XCTestCase
 	func testMedicationOrder1() {
 		let instance = try? runMedicationOrder1()
 		XCTAssertNotNil(instance, "Must instantiate MedicationOrder")
-		try! runMedicationOrder1(instance!.asJSON())
+		if let instance = instance {
+			try! runMedicationOrder1(instance.asJSON())
+		}
 	}
 	
 	func runMedicationOrder1(json: FHIRJSON? = nil) throws -> MedicationOrder {
@@ -55,11 +57,6 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].siteCodeableConcept!.coding![0].display!, "Entire oral cavity")
 		XCTAssertEqual(inst.dosageInstruction![0].siteCodeableConcept!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.dosageInstruction![0].text!, "3 tot 4 maal daags 1 flacon")
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.boundsPeriod!.end!.description, "2013-11-05")
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.boundsPeriod!.start!.description, "2013-08-04")
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.frequency!, 3)
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.period!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnits!, "d")
 		XCTAssertEqual(inst.encounter!.display!, "visit who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
 		XCTAssertEqual(inst.id!, "f001")
@@ -84,7 +81,9 @@ class MedicationOrderTests: XCTestCase
 	func testMedicationOrder2() {
 		let instance = try? runMedicationOrder2()
 		XCTAssertNotNil(instance, "Must instantiate MedicationOrder")
-		try! runMedicationOrder2(instance!.asJSON())
+		if let instance = instance {
+			try! runMedicationOrder2(instance.asJSON())
+		}
 	}
 	
 	func runMedicationOrder2(json: FHIRJSON? = nil) throws -> MedicationOrder {
@@ -105,10 +104,6 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].siteCodeableConcept!.coding![0].code!, "181220002")
 		XCTAssertEqual(inst.dosageInstruction![0].siteCodeableConcept!.coding![0].display!, "Entire oral cavity")
 		XCTAssertEqual(inst.dosageInstruction![0].siteCodeableConcept!.coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.boundsPeriod!.start!.description, "2013-08-04")
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.frequency!, 1)
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.period!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnits!, "d")
 		XCTAssertEqual(inst.encounter!.display!, "encounter who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
 		XCTAssertEqual(inst.id!, "f002")
@@ -133,7 +128,9 @@ class MedicationOrderTests: XCTestCase
 	func testMedicationOrder3() {
 		let instance = try? runMedicationOrder3()
 		XCTAssertNotNil(instance, "Must instantiate MedicationOrder")
-		try! runMedicationOrder3(instance!.asJSON())
+		if let instance = instance {
+			try! runMedicationOrder3(instance.asJSON())
+		}
 	}
 	
 	func runMedicationOrder3(json: FHIRJSON? = nil) throws -> MedicationOrder {
@@ -154,10 +151,6 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].siteCodeableConcept!.coding![0].code!, "181220002")
 		XCTAssertEqual(inst.dosageInstruction![0].siteCodeableConcept!.coding![0].display!, "Entire oral cavity")
 		XCTAssertEqual(inst.dosageInstruction![0].siteCodeableConcept!.coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.boundsPeriod!.start!.description, "2011-05-01")
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.frequency!, 3)
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.period!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnits!, "d")
 		XCTAssertEqual(inst.encounter!.display!, "encounter who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f002")
 		XCTAssertEqual(inst.id!, "f003")
@@ -182,7 +175,9 @@ class MedicationOrderTests: XCTestCase
 	func testMedicationOrder4() {
 		let instance = try? runMedicationOrder4()
 		XCTAssertNotNil(instance, "Must instantiate MedicationOrder")
-		try! runMedicationOrder4(instance!.asJSON())
+		if let instance = instance {
+			try! runMedicationOrder4(instance.asJSON())
+		}
 	}
 	
 	func runMedicationOrder4(json: FHIRJSON? = nil) throws -> MedicationOrder {
@@ -203,10 +198,6 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].siteCodeableConcept!.coding![0].code!, "181220002")
 		XCTAssertEqual(inst.dosageInstruction![0].siteCodeableConcept!.coding![0].display!, "Entire oral cavity")
 		XCTAssertEqual(inst.dosageInstruction![0].siteCodeableConcept!.coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.boundsPeriod!.start!.description, "2011-05-01")
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.frequency!, 1)
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.period!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnits!, "d")
 		XCTAssertEqual(inst.encounter!.display!, "encounter who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
 		XCTAssertEqual(inst.id!, "f004")
@@ -231,7 +222,9 @@ class MedicationOrderTests: XCTestCase
 	func testMedicationOrder5() {
 		let instance = try? runMedicationOrder5()
 		XCTAssertNotNil(instance, "Must instantiate MedicationOrder")
-		try! runMedicationOrder5(instance!.asJSON())
+		if let instance = instance {
+			try! runMedicationOrder5(instance.asJSON())
+		}
 	}
 	
 	func runMedicationOrder5(json: FHIRJSON? = nil) throws -> MedicationOrder {
@@ -252,10 +245,6 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].siteCodeableConcept!.coding![0].code!, "181220002")
 		XCTAssertEqual(inst.dosageInstruction![0].siteCodeableConcept!.coding![0].display!, "Entire oral cavity")
 		XCTAssertEqual(inst.dosageInstruction![0].siteCodeableConcept!.coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.boundsPeriod!.start!.description, "2011-05-01")
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.frequency!, 1)
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.period!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnits!, "d")
 		XCTAssertEqual(inst.encounter!.display!, "encounter who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
 		XCTAssertEqual(inst.id!, "f005")
@@ -280,7 +269,9 @@ class MedicationOrderTests: XCTestCase
 	func testMedicationOrder6() {
 		let instance = try? runMedicationOrder6()
 		XCTAssertNotNil(instance, "Must instantiate MedicationOrder")
-		try! runMedicationOrder6(instance!.asJSON())
+		if let instance = instance {
+			try! runMedicationOrder6(instance.asJSON())
+		}
 	}
 	
 	func runMedicationOrder6(json: FHIRJSON? = nil) throws -> MedicationOrder {
@@ -308,11 +299,6 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].siteCodeableConcept!.coding![0].display!, "Oral cavity")
 		XCTAssertEqual(inst.dosageInstruction![0].siteCodeableConcept!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.dosageInstruction![0].text!, "aerosol 25/250ug/do 120do 2x - 1 dose - daily")
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.boundsPeriod!.end!.description, "2013-05-11")
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.boundsPeriod!.start!.description, "2013-03-11")
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.frequency!, 2)
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.period!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnits!, "d")
 		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.medicationReference!.display!, "25ug Salmeterol + 250ug Fluticasone")
 		XCTAssertEqual(inst.medicationReference!.reference!, "Medication/f201")
@@ -331,7 +317,9 @@ class MedicationOrderTests: XCTestCase
 	func testMedicationOrder7() {
 		let instance = try? runMedicationOrder7()
 		XCTAssertNotNil(instance, "Must instantiate MedicationOrder")
-		try! runMedicationOrder7(instance!.asJSON())
+		if let instance = instance {
+			try! runMedicationOrder7(instance.asJSON())
+		}
 	}
 	
 	func runMedicationOrder7(json: FHIRJSON? = nil) throws -> MedicationOrder {
@@ -353,8 +341,6 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].display!, "Intravenous route")
 		XCTAssertEqual(inst.dosageInstruction![0].route!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.dosageInstruction![0].text!, "Flucloxacilline 12g/24h")
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.boundsPeriod!.end!.description, "2013-03-21")
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.boundsPeriod!.start!.description, "2013-03-11")
 		XCTAssertEqual(inst.encounter!.display!, "Roel's encounter on March eleventh 2013")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f203")
 		XCTAssertEqual(inst.id!, "f202")
@@ -374,7 +360,9 @@ class MedicationOrderTests: XCTestCase
 	func testMedicationOrder8() {
 		let instance = try? runMedicationOrder8()
 		XCTAssertNotNil(instance, "Must instantiate MedicationOrder")
-		try! runMedicationOrder8(instance!.asJSON())
+		if let instance = instance {
+			try! runMedicationOrder8(instance.asJSON())
+		}
 	}
 	
 	func runMedicationOrder8(json: FHIRJSON? = nil) throws -> MedicationOrder {

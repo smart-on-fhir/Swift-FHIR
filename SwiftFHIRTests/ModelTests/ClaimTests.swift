@@ -2,7 +2,7 @@
 //  ClaimTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class ClaimTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Claim {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Claim {
@@ -25,7 +25,9 @@ class ClaimTests: XCTestCase
 	func testClaim1() {
 		let instance = try? runClaim1()
 		XCTAssertNotNil(instance, "Must instantiate Claim")
-		try! runClaim1(instance!.asJSON())
+		if let instance = instance {
+			try! runClaim1(instance.asJSON())
+		}
 	}
 	
 	func runClaim1(json: FHIRJSON? = nil) throws -> Claim {
@@ -69,7 +71,9 @@ class ClaimTests: XCTestCase
 	func testClaim2() {
 		let instance = try? runClaim2()
 		XCTAssertNotNil(instance, "Must instantiate Claim")
-		try! runClaim2(instance!.asJSON())
+		if let instance = instance {
+			try! runClaim2(instance.asJSON())
+		}
 	}
 	
 	func runClaim2(json: FHIRJSON? = nil) throws -> Claim {
@@ -163,7 +167,9 @@ class ClaimTests: XCTestCase
 	func testClaim3() {
 		let instance = try? runClaim3()
 		XCTAssertNotNil(instance, "Must instantiate Claim")
-		try! runClaim3(instance!.asJSON())
+		if let instance = instance {
+			try! runClaim3(instance.asJSON())
+		}
 	}
 	
 	func runClaim3(json: FHIRJSON? = nil) throws -> Claim {
@@ -206,7 +212,9 @@ class ClaimTests: XCTestCase
 	func testClaim4() {
 		let instance = try? runClaim4()
 		XCTAssertNotNil(instance, "Must instantiate Claim")
-		try! runClaim4(instance!.asJSON())
+		if let instance = instance {
+			try! runClaim4(instance.asJSON())
+		}
 	}
 	
 	func runClaim4(json: FHIRJSON? = nil) throws -> Claim {
@@ -354,7 +362,9 @@ class ClaimTests: XCTestCase
 	func testClaim5() {
 		let instance = try? runClaim5()
 		XCTAssertNotNil(instance, "Must instantiate Claim")
-		try! runClaim5(instance!.asJSON())
+		if let instance = instance {
+			try! runClaim5(instance.asJSON())
+		}
 	}
 	
 	func runClaim5(json: FHIRJSON? = nil) throws -> Claim {
@@ -398,7 +408,9 @@ class ClaimTests: XCTestCase
 	func testClaim6() {
 		let instance = try? runClaim6()
 		XCTAssertNotNil(instance, "Must instantiate Claim")
-		try! runClaim6(instance!.asJSON())
+		if let instance = instance {
+			try! runClaim6(instance.asJSON())
+		}
 	}
 	
 	func runClaim6(json: FHIRJSON? = nil) throws -> Claim {
@@ -442,7 +454,9 @@ class ClaimTests: XCTestCase
 	func testClaim7() {
 		let instance = try? runClaim7()
 		XCTAssertNotNil(instance, "Must instantiate Claim")
-		try! runClaim7(instance!.asJSON())
+		if let instance = instance {
+			try! runClaim7(instance.asJSON())
+		}
 	}
 	
 	func runClaim7(json: FHIRJSON? = nil) throws -> Claim {
@@ -519,7 +533,9 @@ class ClaimTests: XCTestCase
 	func testClaim8() {
 		let instance = try? runClaim8()
 		XCTAssertNotNil(instance, "Must instantiate Claim")
-		try! runClaim8(instance!.asJSON())
+		if let instance = instance {
+			try! runClaim8(instance.asJSON())
+		}
 	}
 	
 	func runClaim8(json: FHIRJSON? = nil) throws -> Claim {
@@ -563,7 +579,9 @@ class ClaimTests: XCTestCase
 	func testClaim9() {
 		let instance = try? runClaim9()
 		XCTAssertNotNil(instance, "Must instantiate Claim")
-		try! runClaim9(instance!.asJSON())
+		if let instance = instance {
+			try! runClaim9(instance.asJSON())
+		}
 	}
 	
 	func runClaim9(json: FHIRJSON? = nil) throws -> Claim {

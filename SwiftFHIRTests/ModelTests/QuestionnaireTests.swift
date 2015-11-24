@@ -2,7 +2,7 @@
 //  QuestionnaireTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class QuestionnaireTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Questionnaire {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Questionnaire {
@@ -25,7 +25,9 @@ class QuestionnaireTests: XCTestCase
 	func testQuestionnaire1() {
 		let instance = try? runQuestionnaire1()
 		XCTAssertNotNil(instance, "Must instantiate Questionnaire")
-		try! runQuestionnaire1(instance!.asJSON())
+		if let instance = instance {
+			try! runQuestionnaire1(instance.asJSON())
+		}
 	}
 	
 	func runQuestionnaire1(json: FHIRJSON? = nil) throws -> Questionnaire {
@@ -74,7 +76,9 @@ class QuestionnaireTests: XCTestCase
 	func testQuestionnaire2() {
 		let instance = try? runQuestionnaire2()
 		XCTAssertNotNil(instance, "Must instantiate Questionnaire")
-		try! runQuestionnaire2(instance!.asJSON())
+		if let instance = instance {
+			try! runQuestionnaire2(instance.asJSON())
+		}
 	}
 	
 	func runQuestionnaire2(json: FHIRJSON? = nil) throws -> Questionnaire {
@@ -116,7 +120,9 @@ class QuestionnaireTests: XCTestCase
 	func testQuestionnaire3() {
 		let instance = try? runQuestionnaire3()
 		XCTAssertNotNil(instance, "Must instantiate Questionnaire")
-		try! runQuestionnaire3(instance!.asJSON())
+		if let instance = instance {
+			try! runQuestionnaire3(instance.asJSON())
+		}
 	}
 	
 	func runQuestionnaire3(json: FHIRJSON? = nil) throws -> Questionnaire {
@@ -155,7 +161,9 @@ class QuestionnaireTests: XCTestCase
 	func testQuestionnaire4() {
 		let instance = try? runQuestionnaire4()
 		XCTAssertNotNil(instance, "Must instantiate Questionnaire")
-		try! runQuestionnaire4(instance!.asJSON())
+		if let instance = instance {
+			try! runQuestionnaire4(instance.asJSON())
+		}
 	}
 	
 	func runQuestionnaire4(json: FHIRJSON? = nil) throws -> Questionnaire {

@@ -2,7 +2,7 @@
 //  DeviceComponentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class DeviceComponentTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> DeviceComponent {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> DeviceComponent {
@@ -25,7 +25,9 @@ class DeviceComponentTests: XCTestCase
 	func testDeviceComponent1() {
 		let instance = try? runDeviceComponent1()
 		XCTAssertNotNil(instance, "Must instantiate DeviceComponent")
-		try! runDeviceComponent1(instance!.asJSON())
+		if let instance = instance {
+			try! runDeviceComponent1(instance.asJSON())
+		}
 	}
 	
 	func runDeviceComponent1(json: FHIRJSON? = nil) throws -> DeviceComponent {
@@ -64,7 +66,9 @@ class DeviceComponentTests: XCTestCase
 	func testDeviceComponent2() {
 		let instance = try? runDeviceComponent2()
 		XCTAssertNotNil(instance, "Must instantiate DeviceComponent")
-		try! runDeviceComponent2(instance!.asJSON())
+		if let instance = instance {
+			try! runDeviceComponent2(instance.asJSON())
+		}
 	}
 	
 	func runDeviceComponent2(json: FHIRJSON? = nil) throws -> DeviceComponent {

@@ -2,7 +2,7 @@
 //  PersonTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class PersonTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Person {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Person {
@@ -25,7 +25,9 @@ class PersonTests: XCTestCase
 	func testPerson1() {
 		let instance = try? runPerson1()
 		XCTAssertNotNil(instance, "Must instantiate Person")
-		try! runPerson1(instance!.asJSON())
+		if let instance = instance {
+			try! runPerson1(instance.asJSON())
+		}
 	}
 	
 	func runPerson1(json: FHIRJSON? = nil) throws -> Person {
@@ -51,7 +53,9 @@ class PersonTests: XCTestCase
 	func testPerson2() {
 		let instance = try? runPerson2()
 		XCTAssertNotNil(instance, "Must instantiate Person")
-		try! runPerson2(instance!.asJSON())
+		if let instance = instance {
+			try! runPerson2(instance.asJSON())
+		}
 	}
 	
 	func runPerson2(json: FHIRJSON? = nil) throws -> Person {

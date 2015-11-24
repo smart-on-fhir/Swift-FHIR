@@ -2,7 +2,7 @@
 //  NutritionOrderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class NutritionOrderTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> NutritionOrder {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> NutritionOrder {
@@ -25,7 +25,9 @@ class NutritionOrderTests: XCTestCase
 	func testNutritionOrder1() {
 		let instance = try? runNutritionOrder1()
 		XCTAssertNotNil(instance, "Must instantiate NutritionOrder")
-		try! runNutritionOrder1(instance!.asJSON())
+		if let instance = instance {
+			try! runNutritionOrder1(instance.asJSON())
+		}
 	}
 	
 	func runNutritionOrder1(json: FHIRJSON? = nil) throws -> NutritionOrder {
@@ -50,16 +52,16 @@ class NutritionOrderTests: XCTestCase
 		XCTAssertEqual(inst.oralDiet!.nutrient![0].amount!.system!.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.oralDiet!.nutrient![0].amount!.unit!, "grams")
 		XCTAssertEqual(inst.oralDiet!.nutrient![0].amount!.value!, NSDecimalNumber(string: "2"))
-		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier_fhir!.coding![0].code!, "39972003")
-		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier_fhir!.coding![0].display!, "Sodium")
-		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier_fhir!.coding![0].system!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier!.coding![0].code!, "39972003")
+		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier!.coding![0].display!, "Sodium")
+		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.oralDiet!.nutrient![1].amount!.code!, "mL")
 		XCTAssertEqual(inst.oralDiet!.nutrient![1].amount!.system!.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.oralDiet!.nutrient![1].amount!.unit!, "milliliter")
 		XCTAssertEqual(inst.oralDiet!.nutrient![1].amount!.value!, NSDecimalNumber(string: "1500"))
-		XCTAssertEqual(inst.oralDiet!.nutrient![1].modifier_fhir!.coding![0].code!, "33463005")
-		XCTAssertEqual(inst.oralDiet!.nutrient![1].modifier_fhir!.coding![0].display!, "Fluid")
-		XCTAssertEqual(inst.oralDiet!.nutrient![1].modifier_fhir!.coding![0].system!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.oralDiet!.nutrient![1].modifier!.coding![0].code!, "33463005")
+		XCTAssertEqual(inst.oralDiet!.nutrient![1].modifier!.coding![0].display!, "Fluid")
+		XCTAssertEqual(inst.oralDiet!.nutrient![1].modifier!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.oralDiet!.type![0].coding![0].code!, "386619000")
 		XCTAssertEqual(inst.oralDiet!.type![0].coding![0].display!, "Low sodium diet")
 		XCTAssertEqual(inst.oralDiet!.type![0].coding![0].system!.absoluteString, "http://snomed.info/sct")
@@ -87,7 +89,9 @@ class NutritionOrderTests: XCTestCase
 	func testNutritionOrder2() {
 		let instance = try? runNutritionOrder2()
 		XCTAssertNotNil(instance, "Must instantiate NutritionOrder")
-		try! runNutritionOrder2(instance!.asJSON())
+		if let instance = instance {
+			try! runNutritionOrder2(instance.asJSON())
+		}
 	}
 	
 	func runNutritionOrder2(json: FHIRJSON? = nil) throws -> NutritionOrder {
@@ -111,13 +115,9 @@ class NutritionOrderTests: XCTestCase
 		XCTAssertEqual(inst.oralDiet!.nutrient![0].amount!.system!.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.oralDiet!.nutrient![0].amount!.unit!, "grams")
 		XCTAssertEqual(inst.oralDiet!.nutrient![0].amount!.value!, NSDecimalNumber(string: "75"))
-		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier_fhir!.coding![0].code!, "2331003")
-		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier_fhir!.coding![0].display!, "Carbohydrate")
-		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier_fhir!.coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.oralDiet!.schedule![0].repeat_fhir!.boundsPeriod!.start!.description, "2015-02-10")
-		XCTAssertEqual(inst.oralDiet!.schedule![0].repeat_fhir!.frequency!, 3)
-		XCTAssertEqual(inst.oralDiet!.schedule![0].repeat_fhir!.period!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.oralDiet!.schedule![0].repeat_fhir!.periodUnits!, "d")
+		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier!.coding![0].code!, "2331003")
+		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier!.coding![0].display!, "Carbohydrate")
+		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.oralDiet!.type![0].coding![0].code!, "160670007")
 		XCTAssertEqual(inst.oralDiet!.type![0].coding![0].display!, "Diabetic diet")
 		XCTAssertEqual(inst.oralDiet!.type![0].coding![0].system!.absoluteString, "http://snomed.info/sct")
@@ -138,7 +138,9 @@ class NutritionOrderTests: XCTestCase
 	func testNutritionOrder3() {
 		let instance = try? runNutritionOrder3()
 		XCTAssertNotNil(instance, "Must instantiate NutritionOrder")
-		try! runNutritionOrder3(instance!.asJSON())
+		if let instance = instance {
+			try! runNutritionOrder3(instance.asJSON())
+		}
 	}
 	
 	func runNutritionOrder3(json: FHIRJSON? = nil) throws -> NutritionOrder {
@@ -166,13 +168,6 @@ class NutritionOrderTests: XCTestCase
 		XCTAssertEqual(inst.supplement![0].productName!, "Glucerna")
 		XCTAssertEqual(inst.supplement![0].quantity!.unit!, "8 oz bottle")
 		XCTAssertEqual(inst.supplement![0].quantity!.value!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.supplement![0].schedule![0].repeat_fhir!.boundsPeriod!.start!.description, "2015-02-10T15:00:00Z")
-		XCTAssertEqual(inst.supplement![0].schedule![0].repeat_fhir!.frequency!, 1)
-		XCTAssertEqual(inst.supplement![0].schedule![0].repeat_fhir!.period!, NSDecimalNumber(string: "24"))
-		XCTAssertEqual(inst.supplement![0].schedule![0].repeat_fhir!.periodUnits!, "h")
-		XCTAssertEqual(inst.supplement![0].schedule![1].repeat_fhir!.duration!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.supplement![0].schedule![1].repeat_fhir!.durationUnits!, "h")
-		XCTAssertEqual(inst.supplement![0].schedule![1].repeat_fhir!.when!, "HS")
 		XCTAssertEqual(inst.supplement![0].type!.coding![0].code!, "443051000124104")
 		XCTAssertEqual(inst.supplement![0].type!.coding![0].display!, "Adult diabetes specialty formula")
 		XCTAssertEqual(inst.supplement![0].type!.coding![0].system!.absoluteString, "http://snomed.info/sct")
@@ -188,7 +183,9 @@ class NutritionOrderTests: XCTestCase
 	func testNutritionOrder4() {
 		let instance = try? runNutritionOrder4()
 		XCTAssertNotNil(instance, "Must instantiate NutritionOrder")
-		try! runNutritionOrder4(instance!.asJSON())
+		if let instance = instance {
+			try! runNutritionOrder4(instance.asJSON())
+		}
 	}
 	
 	func runNutritionOrder4(json: FHIRJSON? = nil) throws -> NutritionOrder {
@@ -216,10 +213,6 @@ class NutritionOrderTests: XCTestCase
 		XCTAssertEqual(inst.supplement![0].productName!, "Ensure")
 		XCTAssertEqual(inst.supplement![0].quantity!.unit!, "8 oz can")
 		XCTAssertEqual(inst.supplement![0].quantity!.value!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.supplement![0].schedule![0].repeat_fhir!.boundsPeriod!.start!.description, "2015-02-10")
-		XCTAssertEqual(inst.supplement![0].schedule![0].repeat_fhir!.frequency!, 3)
-		XCTAssertEqual(inst.supplement![0].schedule![0].repeat_fhir!.period!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.supplement![0].schedule![0].repeat_fhir!.periodUnits!, "d")
 		XCTAssertEqual(inst.supplement![0].type!.coding![0].code!, "442971000124100")
 		XCTAssertEqual(inst.supplement![0].type!.coding![0].display!, "Adult high energy formula")
 		XCTAssertEqual(inst.supplement![0].type!.coding![0].system!.absoluteString, "http://snomed.info/sct")
@@ -235,7 +228,9 @@ class NutritionOrderTests: XCTestCase
 	func testNutritionOrder5() {
 		let instance = try? runNutritionOrder5()
 		XCTAssertNotNil(instance, "Must instantiate NutritionOrder")
-		try! runNutritionOrder5(instance!.asJSON())
+		if let instance = instance {
+			try! runNutritionOrder5(instance.asJSON())
+		}
 	}
 	
 	func runNutritionOrder5(json: FHIRJSON? = nil) throws -> NutritionOrder {
@@ -254,10 +249,6 @@ class NutritionOrderTests: XCTestCase
 		XCTAssertEqual(inst.enteralFormula!.administration![0].quantity!.system!.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.enteralFormula!.administration![0].quantity!.unit!, "milliliters")
 		XCTAssertEqual(inst.enteralFormula!.administration![0].quantity!.value!, NSDecimalNumber(string: "240"))
-		XCTAssertEqual(inst.enteralFormula!.administration![0].schedule!.repeat_fhir!.boundsPeriod!.start!.description, "2014-09-17T16:00:00Z")
-		XCTAssertEqual(inst.enteralFormula!.administration![0].schedule!.repeat_fhir!.frequency!, 1)
-		XCTAssertEqual(inst.enteralFormula!.administration![0].schedule!.repeat_fhir!.period!, NSDecimalNumber(string: "4"))
-		XCTAssertEqual(inst.enteralFormula!.administration![0].schedule!.repeat_fhir!.periodUnits!, "h")
 		XCTAssertEqual(inst.enteralFormula!.administrationInstruction!, "240 mls every 4hrs ")
 		XCTAssertEqual(inst.enteralFormula!.baseFormulaProductName!, "Acme High Protein Formula")
 		XCTAssertEqual(inst.enteralFormula!.baseFormulaType!.coding![0].code!, "659311000124118")
@@ -296,7 +287,9 @@ class NutritionOrderTests: XCTestCase
 	func testNutritionOrder6() {
 		let instance = try? runNutritionOrder6()
 		XCTAssertNotNil(instance, "Must instantiate NutritionOrder")
-		try! runNutritionOrder6(instance!.asJSON())
+		if let instance = instance {
+			try! runNutritionOrder6(instance.asJSON())
+		}
 	}
 	
 	func runNutritionOrder6(json: FHIRJSON? = nil) throws -> NutritionOrder {
@@ -309,17 +302,14 @@ class NutritionOrderTests: XCTestCase
 		XCTAssertEqual(inst.enteralFormula!.administration![0].rateQuantity!.system!.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.enteralFormula!.administration![0].rateQuantity!.unit!, "ml/hr")
 		XCTAssertEqual(inst.enteralFormula!.administration![0].rateQuantity!.value!, NSDecimalNumber(string: "60"))
-		XCTAssertEqual(inst.enteralFormula!.administration![0].schedule!.repeat_fhir!.boundsPeriod!.start!.description, "2014-09-17T07:00:00Z")
 		XCTAssertEqual(inst.enteralFormula!.administration![1].rateQuantity!.code!, "mL/h")
 		XCTAssertEqual(inst.enteralFormula!.administration![1].rateQuantity!.system!.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.enteralFormula!.administration![1].rateQuantity!.unit!, "ml/hr")
 		XCTAssertEqual(inst.enteralFormula!.administration![1].rateQuantity!.value!, NSDecimalNumber(string: "80"))
-		XCTAssertEqual(inst.enteralFormula!.administration![1].schedule!.repeat_fhir!.boundsPeriod!.start!.description, "2014-09-17T11:00:00Z")
 		XCTAssertEqual(inst.enteralFormula!.administration![2].rateQuantity!.code!, "mL/h")
 		XCTAssertEqual(inst.enteralFormula!.administration![2].rateQuantity!.system!.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.enteralFormula!.administration![2].rateQuantity!.unit!, "ml/hr")
 		XCTAssertEqual(inst.enteralFormula!.administration![2].rateQuantity!.value!, NSDecimalNumber(string: "100"))
-		XCTAssertEqual(inst.enteralFormula!.administration![2].schedule!.repeat_fhir!.boundsPeriod!.start!.description, "2014-09-17T15:00:00Z")
 		XCTAssertEqual(inst.enteralFormula!.administrationInstruction!, "Hold feedings from 7 pm to 7 am. Add MCT oil to increase calories from 1.0 cal/mL to 1.5 cal/mL")
 		XCTAssertEqual(inst.enteralFormula!.baseFormulaProductName!, " Acme Diabetes Formula")
 		XCTAssertEqual(inst.enteralFormula!.baseFormulaType!.coding![0].code!, "6547210000124112")
@@ -352,7 +342,9 @@ class NutritionOrderTests: XCTestCase
 	func testNutritionOrder7() {
 		let instance = try? runNutritionOrder7()
 		XCTAssertNotNil(instance, "Must instantiate NutritionOrder")
-		try! runNutritionOrder7(instance!.asJSON())
+		if let instance = instance {
+			try! runNutritionOrder7(instance.asJSON())
+		}
 	}
 	
 	func runNutritionOrder7(json: FHIRJSON? = nil) throws -> NutritionOrder {
@@ -376,13 +368,9 @@ class NutritionOrderTests: XCTestCase
 		XCTAssertEqual(inst.oralDiet!.nutrient![0].amount!.system!.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.oralDiet!.nutrient![0].amount!.unit!, "grams")
 		XCTAssertEqual(inst.oralDiet!.nutrient![0].amount!.value!, NSDecimalNumber(string: "50"))
-		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier_fhir!.coding![0].code!, "256674009")
-		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier_fhir!.coding![0].display!, "Fat")
-		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier_fhir!.coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.oralDiet!.schedule![0].repeat_fhir!.boundsPeriod!.start!.description, "2015-02-10")
-		XCTAssertEqual(inst.oralDiet!.schedule![0].repeat_fhir!.frequency!, 3)
-		XCTAssertEqual(inst.oralDiet!.schedule![0].repeat_fhir!.period!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.oralDiet!.schedule![0].repeat_fhir!.periodUnits!, "d")
+		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier!.coding![0].code!, "256674009")
+		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier!.coding![0].display!, "Fat")
+		XCTAssertEqual(inst.oralDiet!.nutrient![0].modifier!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.oralDiet!.type![0].coding![0].code!, "15108003")
 		XCTAssertEqual(inst.oralDiet!.type![0].coding![0].display!, "Restricted fiber diet")
 		XCTAssertEqual(inst.oralDiet!.type![0].coding![0].system!.absoluteString, "http://snomed.info/sct")
@@ -410,7 +398,9 @@ class NutritionOrderTests: XCTestCase
 	func testNutritionOrder8() {
 		let instance = try? runNutritionOrder8()
 		XCTAssertNotNil(instance, "Must instantiate NutritionOrder")
-		try! runNutritionOrder8(instance!.asJSON())
+		if let instance = instance {
+			try! runNutritionOrder8(instance.asJSON())
+		}
 	}
 	
 	func runNutritionOrder8(json: FHIRJSON? = nil) throws -> NutritionOrder {
@@ -427,10 +417,6 @@ class NutritionOrderTests: XCTestCase
 		XCTAssertEqual(inst.enteralFormula!.administration![0].quantity!.system!.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.enteralFormula!.administration![0].quantity!.unit!, "ounces")
 		XCTAssertEqual(inst.enteralFormula!.administration![0].quantity!.value!, NSDecimalNumber(string: "4"))
-		XCTAssertEqual(inst.enteralFormula!.administration![0].schedule!.repeat_fhir!.boundsPeriod!.start!.description, "2014-09-17")
-		XCTAssertEqual(inst.enteralFormula!.administration![0].schedule!.repeat_fhir!.frequency!, 1)
-		XCTAssertEqual(inst.enteralFormula!.administration![0].schedule!.repeat_fhir!.period!, NSDecimalNumber(string: "3"))
-		XCTAssertEqual(inst.enteralFormula!.administration![0].schedule!.repeat_fhir!.periodUnits!, "h")
 		XCTAssertEqual(inst.enteralFormula!.administrationInstruction!, "Add high calorie high carbohydrate additive to increase cal/oz from 24 cal/oz to 27 cal/oz.")
 		XCTAssertEqual(inst.enteralFormula!.baseFormulaProductName!, "Acme Infant Formula + Iron")
 		XCTAssertEqual(inst.enteralFormula!.baseFormulaType!.coding![0].code!, "412414007")
@@ -464,7 +450,9 @@ class NutritionOrderTests: XCTestCase
 	func testNutritionOrder9() {
 		let instance = try? runNutritionOrder9()
 		XCTAssertNotNil(instance, "Must instantiate NutritionOrder")
-		try! runNutritionOrder9(instance!.asJSON())
+		if let instance = instance {
+			try! runNutritionOrder9(instance.asJSON())
+		}
 	}
 	
 	func runNutritionOrder9(json: FHIRJSON? = nil) throws -> NutritionOrder {
@@ -487,8 +475,6 @@ class NutritionOrderTests: XCTestCase
 		XCTAssertEqual(inst.supplement![0].quantity!.system!.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.supplement![0].quantity!.unit!, "scoop")
 		XCTAssertEqual(inst.supplement![0].quantity!.value!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.supplement![0].schedule![0].repeat_fhir!.boundsPeriod!.start!.description, "2015-02-10")
-		XCTAssertEqual(inst.supplement![0].schedule![0].repeat_fhir!.when!, "C")
 		XCTAssertEqual(inst.supplement![0].type!.coding![0].code!, "442991000124104")
 		XCTAssertEqual(inst.supplement![0].type!.coding![0].display!, "Adult high protein formula")
 		XCTAssertEqual(inst.supplement![0].type!.coding![0].system!.absoluteString, "http://snomed.info/sct")
@@ -504,7 +490,9 @@ class NutritionOrderTests: XCTestCase
 	func testNutritionOrder10() {
 		let instance = try? runNutritionOrder10()
 		XCTAssertNotNil(instance, "Must instantiate NutritionOrder")
-		try! runNutritionOrder10(instance!.asJSON())
+		if let instance = instance {
+			try! runNutritionOrder10(instance.asJSON())
+		}
 	}
 	
 	func runNutritionOrder10(json: FHIRJSON? = nil) throws -> NutritionOrder {
@@ -518,14 +506,10 @@ class NutritionOrderTests: XCTestCase
 		XCTAssertEqual(inst.oralDiet!.fluidConsistencyType![0].coding![0].display!, "Dietary liquid consistency - nectar thick liquid")
 		XCTAssertEqual(inst.oralDiet!.fluidConsistencyType![0].coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.oralDiet!.fluidConsistencyType![0].text!, "Nectar thick liquids")
-		XCTAssertEqual(inst.oralDiet!.schedule![0].repeat_fhir!.boundsPeriod!.start!.description, "2015-02-10")
-		XCTAssertEqual(inst.oralDiet!.schedule![0].repeat_fhir!.frequency!, 3)
-		XCTAssertEqual(inst.oralDiet!.schedule![0].repeat_fhir!.period!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.oralDiet!.schedule![0].repeat_fhir!.periodUnits!, "d")
-		XCTAssertEqual(inst.oralDiet!.texture![0].modifier_fhir!.coding![0].code!, "228055009")
-		XCTAssertEqual(inst.oralDiet!.texture![0].modifier_fhir!.coding![0].display!, "Liquidized food")
-		XCTAssertEqual(inst.oralDiet!.texture![0].modifier_fhir!.coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.oralDiet!.texture![0].modifier_fhir!.text!, "Pureed")
+		XCTAssertEqual(inst.oralDiet!.texture![0].modifier!.coding![0].code!, "228055009")
+		XCTAssertEqual(inst.oralDiet!.texture![0].modifier!.coding![0].display!, "Liquidized food")
+		XCTAssertEqual(inst.oralDiet!.texture![0].modifier!.coding![0].system!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.oralDiet!.texture![0].modifier!.text!, "Pureed")
 		XCTAssertEqual(inst.oralDiet!.type![0].coding![0].code!, "226211001")
 		XCTAssertEqual(inst.oralDiet!.type![0].coding![0].display!, "Pureed diet")
 		XCTAssertEqual(inst.oralDiet!.type![0].coding![0].system!.absoluteString, "http://snomed.info/sct")

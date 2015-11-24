@@ -2,7 +2,7 @@
 //  DiagnosticOrderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class DiagnosticOrderTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> DiagnosticOrder {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> DiagnosticOrder {
@@ -25,7 +25,9 @@ class DiagnosticOrderTests: XCTestCase
 	func testDiagnosticOrder1() {
 		let instance = try? runDiagnosticOrder1()
 		XCTAssertNotNil(instance, "Must instantiate DiagnosticOrder")
-		try! runDiagnosticOrder1(instance!.asJSON())
+		if let instance = instance {
+			try! runDiagnosticOrder1(instance.asJSON())
+		}
 	}
 	
 	func runDiagnosticOrder1(json: FHIRJSON? = nil) throws -> DiagnosticOrder {
@@ -53,7 +55,9 @@ class DiagnosticOrderTests: XCTestCase
 	func testDiagnosticOrder2() {
 		let instance = try? runDiagnosticOrder2()
 		XCTAssertNotNil(instance, "Must instantiate DiagnosticOrder")
-		try! runDiagnosticOrder2(instance!.asJSON())
+		if let instance = instance {
+			try! runDiagnosticOrder2(instance.asJSON())
+		}
 	}
 	
 	func runDiagnosticOrder2(json: FHIRJSON? = nil) throws -> DiagnosticOrder {
@@ -78,7 +82,9 @@ class DiagnosticOrderTests: XCTestCase
 	func testDiagnosticOrder3() {
 		let instance = try? runDiagnosticOrder3()
 		XCTAssertNotNil(instance, "Must instantiate DiagnosticOrder")
-		try! runDiagnosticOrder3(instance!.asJSON())
+		if let instance = instance {
+			try! runDiagnosticOrder3(instance.asJSON())
+		}
 	}
 	
 	func runDiagnosticOrder3(json: FHIRJSON? = nil) throws -> DiagnosticOrder {

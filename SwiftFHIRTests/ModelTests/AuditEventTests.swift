@@ -2,7 +2,7 @@
 //  AuditEventTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class AuditEventTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> AuditEvent {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> AuditEvent {
@@ -25,7 +25,9 @@ class AuditEventTests: XCTestCase
 	func testAuditEvent1() {
 		let instance = try? runAuditEvent1()
 		XCTAssertNotNil(instance, "Must instantiate AuditEvent")
-		try! runAuditEvent1(instance!.asJSON())
+		if let instance = instance {
+			try! runAuditEvent1(instance.asJSON())
+		}
 	}
 	
 	func runAuditEvent1(json: FHIRJSON? = nil) throws -> AuditEvent {
@@ -60,7 +62,9 @@ class AuditEventTests: XCTestCase
 	func testAuditEvent2() {
 		let instance = try? runAuditEvent2()
 		XCTAssertNotNil(instance, "Must instantiate AuditEvent")
-		try! runAuditEvent2(instance!.asJSON())
+		if let instance = instance {
+			try! runAuditEvent2(instance.asJSON())
+		}
 	}
 	
 	func runAuditEvent2(json: FHIRJSON? = nil) throws -> AuditEvent {
@@ -95,7 +99,9 @@ class AuditEventTests: XCTestCase
 	func testAuditEvent3() {
 		let instance = try? runAuditEvent3()
 		XCTAssertNotNil(instance, "Must instantiate AuditEvent")
-		try! runAuditEvent3(instance!.asJSON())
+		if let instance = instance {
+			try! runAuditEvent3(instance.asJSON())
+		}
 	}
 	
 	func runAuditEvent3(json: FHIRJSON? = nil) throws -> AuditEvent {
@@ -155,7 +161,9 @@ class AuditEventTests: XCTestCase
 	func testAuditEvent4() {
 		let instance = try? runAuditEvent4()
 		XCTAssertNotNil(instance, "Must instantiate AuditEvent")
-		try! runAuditEvent4(instance!.asJSON())
+		if let instance = instance {
+			try! runAuditEvent4(instance.asJSON())
+		}
 	}
 	
 	func runAuditEvent4(json: FHIRJSON? = nil) throws -> AuditEvent {
@@ -207,7 +215,9 @@ class AuditEventTests: XCTestCase
 	func testAuditEvent5() {
 		let instance = try? runAuditEvent5()
 		XCTAssertNotNil(instance, "Must instantiate AuditEvent")
-		try! runAuditEvent5(instance!.asJSON())
+		if let instance = instance {
+			try! runAuditEvent5(instance.asJSON())
+		}
 	}
 	
 	func runAuditEvent5(json: FHIRJSON? = nil) throws -> AuditEvent {
@@ -247,7 +257,9 @@ class AuditEventTests: XCTestCase
 	func testAuditEvent6() {
 		let instance = try? runAuditEvent6()
 		XCTAssertNotNil(instance, "Must instantiate AuditEvent")
-		try! runAuditEvent6(instance!.asJSON())
+		if let instance = instance {
+			try! runAuditEvent6(instance.asJSON())
+		}
 	}
 	
 	func runAuditEvent6(json: FHIRJSON? = nil) throws -> AuditEvent {
@@ -287,7 +299,9 @@ class AuditEventTests: XCTestCase
 	func testAuditEvent7() {
 		let instance = try? runAuditEvent7()
 		XCTAssertNotNil(instance, "Must instantiate AuditEvent")
-		try! runAuditEvent7(instance!.asJSON())
+		if let instance = instance {
+			try! runAuditEvent7(instance.asJSON())
+		}
 	}
 	
 	func runAuditEvent7(json: FHIRJSON? = nil) throws -> AuditEvent {
@@ -371,7 +385,9 @@ class AuditEventTests: XCTestCase
 	func testAuditEvent8() {
 		let instance = try? runAuditEvent8()
 		XCTAssertNotNil(instance, "Must instantiate AuditEvent")
-		try! runAuditEvent8(instance!.asJSON())
+		if let instance = instance {
+			try! runAuditEvent8(instance.asJSON())
+		}
 	}
 	
 	func runAuditEvent8(json: FHIRJSON? = nil) throws -> AuditEvent {

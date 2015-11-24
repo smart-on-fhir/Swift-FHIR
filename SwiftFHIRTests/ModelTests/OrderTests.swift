@@ -2,7 +2,7 @@
 //  OrderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class OrderTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Order {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Order {
@@ -25,7 +25,9 @@ class OrderTests: XCTestCase
 	func testOrder1() {
 		let instance = try? runOrder1()
 		XCTAssertNotNil(instance, "Must instantiate Order")
-		try! runOrder1(instance!.asJSON())
+		if let instance = instance {
+			try! runOrder1(instance.asJSON())
+		}
 	}
 	
 	func runOrder1(json: FHIRJSON? = nil) throws -> Order {
@@ -51,7 +53,9 @@ class OrderTests: XCTestCase
 	func testOrder2() {
 		let instance = try? runOrder2()
 		XCTAssertNotNil(instance, "Must instantiate Order")
-		try! runOrder2(instance!.asJSON())
+		if let instance = instance {
+			try! runOrder2(instance.asJSON())
+		}
 	}
 	
 	func runOrder2(json: FHIRJSON? = nil) throws -> Order {

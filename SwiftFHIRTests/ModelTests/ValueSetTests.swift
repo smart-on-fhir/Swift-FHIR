@@ -2,7 +2,7 @@
 //  ValueSetTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class ValueSetTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> ValueSet {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> ValueSet {
@@ -25,7 +25,9 @@ class ValueSetTests: XCTestCase
 	func testValueSet1() {
 		let instance = try? runValueSet1()
 		XCTAssertNotNil(instance, "Must instantiate ValueSet")
-		try! runValueSet1(instance!.asJSON())
+		if let instance = instance {
+			try! runValueSet1(instance.asJSON())
+		}
 	}
 	
 	func runValueSet1(json: FHIRJSON? = nil) throws -> ValueSet {
@@ -100,7 +102,9 @@ class ValueSetTests: XCTestCase
 	func testValueSet2() {
 		let instance = try? runValueSet2()
 		XCTAssertNotNil(instance, "Must instantiate ValueSet")
-		try! runValueSet2(instance!.asJSON())
+		if let instance = instance {
+			try! runValueSet2(instance.asJSON())
+		}
 	}
 	
 	func runValueSet2(json: FHIRJSON? = nil) throws -> ValueSet {
@@ -150,7 +154,9 @@ class ValueSetTests: XCTestCase
 	func testValueSet3() {
 		let instance = try? runValueSet3()
 		XCTAssertNotNil(instance, "Must instantiate ValueSet")
-		try! runValueSet3(instance!.asJSON())
+		if let instance = instance {
+			try! runValueSet3(instance.asJSON())
+		}
 	}
 	
 	func runValueSet3(json: FHIRJSON? = nil) throws -> ValueSet {
@@ -187,7 +193,9 @@ class ValueSetTests: XCTestCase
 	func testValueSet4() {
 		let instance = try? runValueSet4()
 		XCTAssertNotNil(instance, "Must instantiate ValueSet")
-		try! runValueSet4(instance!.asJSON())
+		if let instance = instance {
+			try! runValueSet4(instance.asJSON())
+		}
 	}
 	
 	func runValueSet4(json: FHIRJSON? = nil) throws -> ValueSet {
@@ -221,7 +229,9 @@ class ValueSetTests: XCTestCase
 	func testValueSet5() {
 		let instance = try? runValueSet5()
 		XCTAssertNotNil(instance, "Must instantiate ValueSet")
-		try! runValueSet5(instance!.asJSON())
+		if let instance = instance {
+			try! runValueSet5(instance.asJSON())
+		}
 	}
 	
 	func runValueSet5(json: FHIRJSON? = nil) throws -> ValueSet {
@@ -262,7 +272,9 @@ class ValueSetTests: XCTestCase
 	func testValueSet6() {
 		let instance = try? runValueSet6()
 		XCTAssertNotNil(instance, "Must instantiate ValueSet")
-		try! runValueSet6(instance!.asJSON())
+		if let instance = instance {
+			try! runValueSet6(instance.asJSON())
+		}
 	}
 	
 	func runValueSet6(json: FHIRJSON? = nil) throws -> ValueSet {
@@ -301,20 +313,20 @@ class ValueSetTests: XCTestCase
 		XCTAssertEqual(inst.codeSystem!.system!.absoluteString, "http://hl7.org/fhir/list-example-use-codes")
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "other")
 		XCTAssertEqual(inst.contact![0].telecom![0].value!, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.date!.description, "2015-09-22T13:47:23+10:00")
+		XCTAssertEqual(inst.date!.description, "2015-10-24T07:41:03+11:00")
 		XCTAssertEqual(inst.description_fhir!, "Example use codes for the List resource - typical kinds of use.")
 		XCTAssertTrue(inst.experimental!)
 		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-oid")
 		XCTAssertEqual(inst.extension_fhir![0].valueUri!.absoluteString, "urn:oid:2.16.840.1.113883.4.642.2.173")
 		XCTAssertEqual(inst.id!, "list-example-codes")
-		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2015-09-22T13:47:23.514+10:00")
+		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2015-10-24T07:41:03.495+11:00")
 		XCTAssertEqual(inst.meta!.profile![0].absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
 		XCTAssertEqual(inst.name!, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher!, "FHIR Project")
 		XCTAssertEqual(inst.status!, "draft")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.url!.absoluteString, "http://hl7.org/fhir/ValueSet/list-example-codes")
-		XCTAssertEqual(inst.version!, "1.0.1")
+		XCTAssertEqual(inst.version!, "1.0.2")
 		
 		return inst
 	}

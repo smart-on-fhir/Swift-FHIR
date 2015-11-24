@@ -70,24 +70,24 @@ public class FHIROperation: CustomStringConvertible
 	func validateContextWith(definition: OperationDefinition) throws {
 		switch context {
 		case .None:
-			throw genServerError("Operation \(self) has not been properly set up")
+			throw FHIRError.OperationConfigurationError("Operation \(self) has not been properly set up")
 		case .System:
 			if nil == definition.system || !definition.system! {
-				throw genServerError("Operation \(self) cannot be executed in system context")
+				throw FHIRError.OperationConfigurationError("Operation \(self) cannot be executed in system context")
 			}
 		case .Type:
 			if nil == definition.type {
-				throw genServerError("Operation \(self) cannot be executed in type context")
+				throw FHIRError.OperationConfigurationError("Operation \(self) cannot be executed in type context")
 			}
 			else if nil == type || !(definition.type!).contains(type!.resourceName) {
-				throw genServerError("Operation \(self) cannot be executed against \(type ?? nil) type")
+				throw FHIRError.OperationConfigurationError("Operation \(self) cannot be executed against \(type ?? nil) type")
 			}
 		case .Instance:
 			if nil == definition.instance || !definition.instance! {
-				throw genServerError("Operation \(self) cannot be executed in instance context")
+				throw FHIRError.OperationConfigurationError("Operation \(self) cannot be executed in instance context")
 			}
 			if nil == instance?.relativeURLPath() {
-				throw genServerError("Operation \(self) to be executed in instance context must have an instance with an id")
+				throw FHIRError.OperationConfigurationError("Operation \(self) to be executed in instance context must have an instance with an id")
 			}
 		}
 	}
@@ -115,7 +115,7 @@ public class FHIROperation: CustomStringConvertible
 					// check if mandatory parameter is missing
 					else if let min = param.min {
 						if min > 0 {
-							throw genServerError("Operation \(self) is missing input parameter \"\(param.name)\"")
+							throw FHIRError.OperationInputParameterMissing(param.name ?? "unknown")
 						}
 					}
 				}

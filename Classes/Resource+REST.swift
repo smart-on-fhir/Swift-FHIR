@@ -10,13 +10,10 @@ import Foundation
 
 
 /// The block signature for server interaction callbacks that return an error.
-public typealias FHIRErrorCallback = ((error: NSError?) -> Void)
+public typealias FHIRErrorCallback = ((error: FHIRError?) -> Void)
 
 /// The block signature for most server interaction callbacks that return a resource and an error.
-public typealias FHIRResourceErrorCallback = ((resource: Resource?, error: NSError?) -> Void)
-
-/// The FHIR resource error domain
-public let FHIRResourceErrorDomain = "FHIRResourceError"
+public typealias FHIRResourceErrorCallback = ((resource: Resource?, error: FHIRError?) -> Void)
 
 
 /**
@@ -108,7 +105,7 @@ public extension Resource
 				callback(resource: resource, error: nil)
 			}
 			else {
-				callback(resource: nil, error: genResourceError("Failed to instantiate resource when trying to read from «\(path)»"))
+				callback(resource: nil, error: FHIRError.ResourceFailedToInstantiate(path))
 			}
 		}
 	}
@@ -125,7 +122,7 @@ public extension Resource
 	 */
 	public func create(server: FHIRServer, callback: FHIRErrorCallback) {
 		if nil != id {
-			callback(error: genResourceError("Cannot use `create` with a resource that already has an `id`"))
+			callback(error: FHIRError.ResourceAlreadyHasId)
 			return
 		}
 		
@@ -156,11 +153,11 @@ public extension Resource
 				}
 			}
 			else {
-				callback(error: genResourceError("Cannot update a resource without id"))
+				callback(error: FHIRError.ResourceWithoutId)
 			}
 		}
 		else {
-			callback(error: genResourceError("Cannot update a resource that doesn't have a server"))
+			callback(error: FHIRError.ResourceWithoutServer)
 		}
 	}
 	
@@ -175,11 +172,11 @@ public extension Resource
 				self.dynamicType.delete(path, server: server, callback: callback)
 			}
 			else {
-				callback(error: genResourceError("Cannot delete a resource without an id"))
+				callback(error: FHIRError.ResourceWithoutId)
 			}
 		}
 		else {
-			callback(error: genResourceError("Cannot delete a resource that doesn't have a server"))
+			callback(error: FHIRError.ResourceWithoutServer)
 		}
 	}
 	
@@ -230,7 +227,7 @@ public extension Resource
 			self.dynamicType._performOperation(operation, server: server, callback: callback)
 		}
 		else {
-			callback(resource: nil, error: genServerError("The resource \(self) is not assigned to a server, cannot execute operation"))
+			callback(resource: nil, error: FHIRError.ResourceWithoutServer)
 		}
 	}
 	
@@ -254,11 +251,5 @@ public extension Resource
 			}
 		}
 	}
-}
-
-
-/** Create an error in the FHIRResourceErrorDomain error domain. */
-func genResourceError(message: String, code: Int = 0) -> NSError {
-	return NSError(domain: FHIRResourceErrorDomain, code: code, userInfo: [NSLocalizedDescriptionKey: message])
 }
 

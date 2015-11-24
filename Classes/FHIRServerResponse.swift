@@ -10,57 +10,39 @@ import Foundation
 
 
 /**
-    Encapsulates a server response, which can also indicate that there was no response or request (status >= 600), in which case the `error`
+    Encapsulates a server response, which can also indicate that there was no response or not even a request, in which case the `error`
     property carries the only useful information.
  */
 public class FHIRServerResponse
 {
-	/// The HTTP status code
+	/// The HTTP status code.
 	public let status: Int
 	
-	/// Response headers
+	/// Response headers.
 	public let headers: [String: String]
 	
-	/// The response body data
+	/// The response body data.
 	public var body: NSData?
 	
 	/// The request's operation outcome, if any.
 	public internal(set) var outcome: OperationOutcome?
 	
-	/// An NSError, generated from status code unless it was explicitly assigned.
-	public var error: NSError? {
-		get {
-			if nil == _error && status >= 400 {
-				let errstr = (status >= 600) ? (status >= 700 ? "No request sent".localized : "No response received".localized) : NSHTTPURLResponse.localizedStringForStatusCode(status)
-				_error = genServerError(errstr, code: status)
-			}
-			return _error
-		}
-		set {
-			if nil != newValue && NSURLErrorDomain == newValue!.domain {
-				var usr = newValue?.userInfo ?? [String: AnyObject]()
-				usr[NSLocalizedDescriptionKey] = NSURLErrorHumanize(newValue!)
-				_error = NSError(domain: NSURLErrorDomain, code: newValue!.code, userInfo: usr)
-			}
-			else {
-				_error = newValue
-			}
-		}
-	}
-	private var _error: NSError?
+	/// The error encountered, if any.
+	public var error: FHIRError?
 	
-	public required init(status: Int, headers: [String: String]) {
-		self.status = status
+	public required init(headers: [String: String]) {
+		self.status = 0
 		self.headers = headers
 	}
 	
 	/**
-	Instantiate a FHIRServerResponse from an NS(HTTP)URLResponse and NSData.
+	Instantiate a FHIRServerResponse from an NS(HTTP)URLResponse, NSData and an optional NSError.
 	*/
-	public required init(response: NSURLResponse, data: NSData?) {
+	public required init(response: NSURLResponse, data: NSData?, urlError: NSError?) {
 		var status = 0
 		var headers = [String: String]()
 		
+		// parse status and headers from the URL response
 		if let http = response as? NSHTTPURLResponse {
 			status = http.statusCode
 			for (key, val) in http.allHeaderFields {
@@ -74,18 +56,29 @@ public class FHIRServerResponse
 				}
 			}
 		}
-		if let data = data {
-			body = data
+		
+		// was there an error?
+		if let error = urlError where NSURLErrorDomain == error.domain {
+			self.error = FHIRError.RequestError(status, NSURLErrorHumanize(error))
+		}
+		else if let error = urlError {
+			self.error = FHIRError.Error(error.description)
 		}
 		
 		self.status = status
 		self.headers = headers
+		self.body = data
 	}
 	
-	public required init(notSentBecause: NSError) {
-		status = 700
-		headers = [String: String]()
-		error = notSentBecause
+	public required init(error: ErrorType) {
+		self.status = 0
+		self.headers = [String: String]()
+		if let error = error as? FHIRError {
+			self.error = error
+		}
+		else {
+			self.error = FHIRError.Error("\(error)")
+		}
 	}
 	
 	
@@ -98,9 +91,9 @@ public class FHIRServerResponse
 	public func applyToResource(resource: FHIRResource) {
 	}
 	
-	/** Initializes with a status of 600 to signal that no response was received. */
+	/** Initializes with a no-response error. */
 	public class func noneReceived() -> Self {
-		return self.init(status: 600, headers: [String: String]())
+		return self.init(error: FHIRError.NoResponseReceived)
 	}
 }
 
@@ -113,17 +106,17 @@ public class FHIRServerJSONResponse: FHIRServerResponse
 	/// The response body, decoded into a FHIRJSON
 	public var json: FHIRJSON?
 	
-	public required init(status: Int, headers: [String: String]) {
-		super.init(status: status, headers: headers)
+	public required init(headers: [String: String]) {
+		super.init(headers: headers)
 	}
 	
 	/**
-	    If the status is >= 400, the response body is checked for an OperationOutcome and its first issue item is turned into an error
-	    message.
-	 */
-	public required init(response: NSURLResponse, data inData: NSData?) {
-		super.init(response: response, data: inData)
+	If the status is >= 400, the response body is checked for an OperationOutcome and its first issue item is turned into an error message.
+	*/
+	public required init(response: NSURLResponse, data inData: NSData?, urlError: NSError?) {
+		super.init(response: response, data: inData, urlError: urlError)
 		
+		// parse data as JSON
 		if let data = inData where data.length > 0 {
 			do {
 				let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? FHIRJSON
@@ -133,25 +126,29 @@ public class FHIRServerJSONResponse: FHIRServerResponse
 				// check for OperationOutcome if there was an error
 				if status >= 400 {
 					if let erritem = self.outcome?.issue?.first {
-						let none = "unknown"
-						let errstr = "[\(erritem.severity ?? none)] \(erritem.diagnostics ?? none)"
-						self.error = genServerError(errstr, code: status)
+						let errstr = "[\(erritem.severity ?? "unknown")] \(erritem.diagnostics ?? "unknown")"
+						self.error = FHIRError.RequestError(status, errstr)
 					}
 				}
 			}
-			catch let error {
+			catch let error as NSError {
 				// Cocoa error 3840 is JSON parsing error; some error responses may not return JSON, don't report an error on those
-				if 3840 != (error as NSError).code || NSCocoaErrorDomain != ((error as NSError).domain ?? "") || status < 400 {
-					let errstr = "Failed to deserialize JSON into a dictionary: \((error as NSError).localizedDescription)\n"
-					"\(NSString(data: data, encoding: NSUTF8StringEncoding))"
-					self.error = genServerError(errstr, code: status)
+				if 3840 != error.code || NSCocoaErrorDomain != (error.domain ?? "") || status < 400 {
+					let raw = NSString(data: data, encoding: NSUTF8StringEncoding) as? String ?? ""
+					self.error = FHIRError.JSONParsingError(error.localizedDescription, raw)
 				}
+			}
+			catch let error as FHIRError {
+				self.error = error
+			}
+			catch let error {
+				self.error = FHIRError.Error("\(error)")
 			}
 		}
 	}
 	
-	public required init(notSentBecause error: NSError) {
-		super.init(notSentBecause: error)
+	public required init(error: ErrorType) {
+		super.init(error: error)
 	}
 	
 	/**

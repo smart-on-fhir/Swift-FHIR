@@ -34,7 +34,7 @@ public class FHIRServerRequestHandler
 		if nil == resource {
 			return
 		}
-		throw NSError(domain: "FHIRErrorDomain", code: 0, userInfo: [NSLocalizedDescriptionKey: "`FHIRServerRequestHandler` cannot prepare request body data"])
+		throw FHIRError.RequestCannotPrepareBody
 	}
 	
 	/**
@@ -54,9 +54,9 @@ public class FHIRServerRequestHandler
 	/**
 	    Instantiate an object of ResponseType-type based on the response and data that we get.
 	 */
-	public func response(response response: NSURLResponse?, data inData: NSData? = nil) -> FHIRServerResponse {
+	public func response(response response: NSURLResponse?, data inData: NSData? = nil, error: NSError? = nil) -> FHIRServerResponse {
 		if let res = response {
-			return self.dynamicType.ResponseType.init(response: res, data: inData)
+			return self.dynamicType.ResponseType.init(response: res, data: inData, urlError: error)
 		}
 		return self.dynamicType.ResponseType.noneReceived()
 	}
@@ -65,14 +65,14 @@ public class FHIRServerRequestHandler
 	Convenience method to indicate a request that has not actually been sent.
 	*/
 	public func notSent(reason: String) -> FHIRServerResponse {
-		return self.dynamicType.ResponseType.init(notSentBecause: genServerError(reason, code: 710))
+		return self.dynamicType.ResponseType.init(error: FHIRError.RequestNotSent(reason))
 	}
 	
 	/**
 	Convenience method to indicate that no request handler for the given type is available.
 	*/
 	public class func noneAvailableForType(type: FHIRRequestType) -> FHIRServerResponse {
-		return ResponseType.init(notSentBecause: genServerError("No request handler is available for \(type.rawValue) requests", code: 700))
+		return ResponseType.init(error: FHIRError.NoRequestHandlerAvailable(type.rawValue))
 	}
 }
 

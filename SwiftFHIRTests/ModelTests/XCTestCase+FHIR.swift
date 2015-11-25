@@ -26,16 +26,14 @@ extension XCTestCase
 		XCTAssertTrue(NSFileManager.defaultManager().fileExistsAtPath(dir), "You must either first download the FHIR spec or manually adjust `XCTestCase.testsDirectory` to point to your FHIR download directory")
 		
 		let path = (dir as NSString).stringByAppendingPathComponent(filename)
-		let data = NSData(contentsOfFile: path)
-		if nil == data {
-			throw FHIRError.Error("Unable to read «\(path)»")
+		if let data = NSData(contentsOfFile: path) {
+			if let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? FHIRJSON {
+				return json
+			}
+			let raw = NSString(data: data, encoding: NSUTF8StringEncoding) as? String ?? ""
+			throw FHIRError.JSONParsingError("Unable to decode «\(path)» to JSON", raw)
 		}
-		
-		let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? FHIRJSON
-		if let json = json {
-			return json
-		}
-		throw FHIRError.Error("Unable to decode «\(path)» to JSON")
+		throw FHIRError.Error("Unable to read «\(path)»")
 	}
 }
 

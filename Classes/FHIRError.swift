@@ -10,6 +10,7 @@
 public enum FHIRError: ErrorType, CustomStringConvertible {
 	case Error(String)
 	
+	case ResourceLocationUnknown
 	case ResourceWithoutServer
 	case ResourceWithoutId
 	case ResourceAlreadyHasId
@@ -35,6 +36,8 @@ public enum FHIRError: ErrorType, CustomStringConvertible {
 		case .Error(let message):
 			return message
 		
+		case .ResourceLocationUnknown:
+			return "The location of the resource is not known".localized
 		case .ResourceWithoutServer:
 			return "The resource does not have a server instance assigned".localized
 		case .ResourceWithoutId:

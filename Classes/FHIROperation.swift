@@ -86,9 +86,7 @@ public class FHIROperation: CustomStringConvertible
 			if nil == definition.instance || !definition.instance! {
 				throw FHIRError.OperationConfigurationError("Operation \(self) cannot be executed in instance context")
 			}
-			if nil == instance?.relativeURLPath() {
-				throw FHIRError.OperationConfigurationError("Operation \(self) to be executed in instance context must have an instance with an id")
-			}
+			try instance?.relativeURLPath()
 		}
 	}
 	
@@ -132,25 +130,28 @@ public class FHIROperation: CustomStringConvertible
 	// MARK: - Execution
 	
 	/**
-	    Return the relative server URL the operation will call.
-	
-	    ATTENTION: It is **only** safe to call this method after validating the operation.
-	 */
-	public func serverPath() -> String {
+	Return the relative server URL the operation will call.
+	*/
+	public func serverPath() throws -> String {
 		switch context {
 		case .None:
-			fatalError("Must not use `serverPath()` on an operation that has not been set up correctly")
+			throw FHIRError.OperationConfigurationError("Operation \(self) has not been properly set up")
 		case .System:
 			return "$\(name)"
 		case .Type:
 			return "\(type!.resourceName)/$\(name)"
 		case .Instance:
-			return "\(instance!.relativeURLPath()!)/$\(name)"
+			let path = try instance!.relativeURLPath()
+			return "\(path)/$\(name)"
 		}
 	}
 	
-	public func perform(server: FHIRServer, callback: ((response: FHIRServerResponse) -> Void)) {
-		server.performRequestOfType(.GET, path: serverPath(), resource: nil, callback: callback)
+	/**
+	Perform the operation on the given server. You probably want to call `validateWith()` first.
+	*/
+	public func perform(server: FHIRServer, callback: ((response: FHIRServerResponse) -> Void)) throws {
+		let path = try serverPath()
+		server.performRequestOfType(.GET, path: path, resource: nil, callback: callback)
 	}
 	
 	

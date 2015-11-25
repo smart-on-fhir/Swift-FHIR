@@ -22,18 +22,20 @@ public typealias FHIRResourceErrorCallback = ((resource: Resource?, error: FHIRE
 public extension Resource
 {
 	/**
-	    Creates a `Reference` instance containing a relative reference to the receiver.
-	 */
-	public func asRelativeReference() -> Reference? {
-		if let path = relativeURLPath() {
-			let reference = Reference(json: nil)
-			reference.reference = path
-			if let display = preferredRelativeReferenceDisplay() {
-				reference.display = display
-			}
-			return reference
+	Creates a `Reference` instance containing a relative reference to the receiver.
+	
+	Throws if creating the reference fails; mostly happens when the instance doesn't have an id.
+	
+	- returns: A Reference instance on success
+	*/
+	public func asRelativeReference() throws -> Reference {
+		let path = try relativeURLPath()
+		let reference = Reference(json: nil)
+		reference.reference = path
+		if let display = preferredRelativeReferenceDisplay() {
+			reference.display = display
 		}
-		return nil
+		return reference
 	}
 	
 	/** The string used to fill a reference's "display" property for the instance. */
@@ -53,24 +55,28 @@ public extension Resource
 	}
 	
 	/**
-	    The relative URL path of the resource; the instance needs to have an id.
-	    - returns: A string indicating the relative URL, e.g. "MedicationPrescription/1234"
-	 */
-	public func relativeURLPath() -> String? {
+	The relative URL path of the resource; the instance needs to have an id, otherwise a FHIRError is thrown.
+	
+	- returns: A string indicating the relative URL, e.g. "MedicationPrescription/1234"
+	*/
+	public func relativeURLPath() throws -> String {
 		if let myID = id {
 			return "\(relativeURLBase())/\(myID)"
 		}
-		return nil
+		throw FHIRError.ResourceWithoutId
 	}
 	
 	/**
-	    The absolute URL of the resource; needs the instance's `server` property to be set and have an id.
-	 */
-	public func absoluteURL() -> NSURL? {
-		if let relative = relativeURLPath() {
-			return _server?.baseURL.URLByAppendingPathComponent(relative)
+	The absolute URL of the resource. Needs the instance's `server` property to be set and have an id, otherwise a FHIRError is thrown.
+	
+	- returns: The resource's absolute URL, e.g. "https://fhir.smarthealthit.org/MedicationPrescription/1234"
+	*/
+	public func absoluteURL() throws -> NSURL {
+		let relative = try relativeURLPath()
+		if let server = _server {
+			return server.baseURL.URLByAppendingPathComponent(relative)
 		}
-		return nil
+		throw FHIRError.ResourceWithoutServer
 	}
 	
 	
@@ -146,14 +152,15 @@ public extension Resource
 	 */
 	public func update(callback: FHIRErrorCallback) {
 		if let server = _server {
-			if let path = relativeURLPath() {
+			do {
+				let path = try relativeURLPath()
 				server.performRequestOfType(.PUT, path: path, resource: self) { response in
 					// TODO: should we do some header inspection (response.headers)?
 					callback(error: response.error)
 				}
 			}
-			else {
-				callback(error: FHIRError.ResourceWithoutId)
+			catch let error {
+				callback(error: (error as! FHIRError))
 			}
 		}
 		else {
@@ -168,11 +175,12 @@ public extension Resource
 	 */
 	public func delete(callback: FHIRErrorCallback) {
 		if let server = _server {
-			if let path = relativeURLPath() {
+			do {
+				let path = try relativeURLPath()
 				self.dynamicType.delete(path, server: server, callback: callback)
 			}
-			else {
-				callback(error: FHIRError.ResourceWithoutId)
+			catch let error {
+				callback(error: (error as! FHIRError))
 			}
 		}
 		else {

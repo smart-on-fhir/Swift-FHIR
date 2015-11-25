@@ -694,6 +694,7 @@
 		EE02F7481ACF259B00179969 /* ValueSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueSetTests.swift; sourceTree = "<group>"; };
 		EE02F7491ACF259B00179969 /* VisionPrescriptionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionPrescriptionTests.swift; sourceTree = "<group>"; };
 		EE1F49951C0500E90095BF0F /* FHIRError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRError.swift; sourceTree = "<group>"; };
+		EE1F49AE1C066E7B0095BF0F /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		EE5120551A4B3212002D434A /* FHIRElement+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIRElement+Factory.swift"; sourceTree = "<group>"; };
 		EE684C1E19A789BA00B5A2C0 /* SwiftFHIR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftFHIR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE684C2219A789BA00B5A2C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1092,6 +1093,7 @@
 				EEEE31211BB2828D008866E2 /* generate.sh */,
 				EEEE31221BB2828D008866E2 /* generator-settings.py */,
 				EEEE31201BB2828D008866E2 /* generate-docs.sh */,
+				EE1F49AE1C066E7B0095BF0F /* CHANGELOG.md */,
 				EEEE31231BB2828D008866E2 /* LICENSE.txt */,
 			);
 			name = Metadata;

@@ -2,7 +2,7 @@
 //  ConceptMapTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class ConceptMapTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> ConceptMap {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> ConceptMap {
@@ -25,7 +25,9 @@ class ConceptMapTests: XCTestCase
 	func testConceptMap1() {
 		let instance = try? runConceptMap1()
 		XCTAssertNotNil(instance, "Must instantiate ConceptMap")
-		try! runConceptMap1(instance!.asJSON())
+		if let instance = instance {
+			try! runConceptMap1(instance.asJSON())
+		}
 	}
 	
 	func runConceptMap1(json: FHIRJSON? = nil) throws -> ConceptMap {
@@ -118,7 +120,9 @@ class ConceptMapTests: XCTestCase
 	func testConceptMap2() {
 		let instance = try? runConceptMap2()
 		XCTAssertNotNil(instance, "Must instantiate ConceptMap")
-		try! runConceptMap2(instance!.asJSON())
+		if let instance = instance {
+			try! runConceptMap2(instance.asJSON())
+		}
 	}
 	
 	func runConceptMap2(json: FHIRJSON? = nil) throws -> ConceptMap {

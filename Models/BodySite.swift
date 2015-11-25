@@ -2,7 +2,7 @@
 //  BodySite.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -34,7 +34,7 @@ public class BodySite: DomainResource
 	public var image: [Attachment]?
 	
 	/// Modification to location code
-	public var modifier_fhir: [CodeableConcept]?
+	public var modifier: [CodeableConcept]?
 	
 	/// Patient
 	public var patient: Reference?
@@ -93,7 +93,7 @@ public class BodySite: DomainResource
 			if let exist: AnyObject = js["modifier"] {
 				presentKeys.insert("modifier")
 				if let val = exist as? [FHIRJSON] {
-					self.modifier_fhir = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.modifier = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "modifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -130,8 +130,8 @@ public class BodySite: DomainResource
 		if let image = self.image {
 			json["image"] = Attachment.asJSONArray(image)
 		}
-		if let modifier_fhir = self.modifier_fhir {
-			json["modifier"] = CodeableConcept.asJSONArray(modifier_fhir)
+		if let modifier = self.modifier {
+			json["modifier"] = CodeableConcept.asJSONArray(modifier)
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()

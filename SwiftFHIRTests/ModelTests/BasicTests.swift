@@ -2,7 +2,7 @@
 //  BasicTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class BasicTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Basic {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Basic {
@@ -25,7 +25,9 @@ class BasicTests: XCTestCase
 	func testBasic1() {
 		let instance = try? runBasic1()
 		XCTAssertNotNil(instance, "Must instantiate Basic")
-		try! runBasic1(instance!.asJSON())
+		if let instance = instance {
+			try! runBasic1(instance.asJSON())
+		}
 	}
 	
 	func runBasic1(json: FHIRJSON? = nil) throws -> Basic {
@@ -41,7 +43,9 @@ class BasicTests: XCTestCase
 	func testBasic2() {
 		let instance = try? runBasic2()
 		XCTAssertNotNil(instance, "Must instantiate Basic")
-		try! runBasic2(instance!.asJSON())
+		if let instance = instance {
+			try! runBasic2(instance.asJSON())
+		}
 	}
 	
 	func runBasic2(json: FHIRJSON? = nil) throws -> Basic {
@@ -78,7 +82,9 @@ class BasicTests: XCTestCase
 	func testBasic3() {
 		let instance = try? runBasic3()
 		XCTAssertNotNil(instance, "Must instantiate Basic")
-		try! runBasic3(instance!.asJSON())
+		if let instance = instance {
+			try! runBasic3(instance.asJSON())
+		}
 	}
 	
 	func runBasic3(json: FHIRJSON? = nil) throws -> Basic {

@@ -2,7 +2,7 @@
 //  ConformanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class ConformanceTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Conformance {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Conformance {
@@ -25,7 +25,9 @@ class ConformanceTests: XCTestCase
 	func testConformance1() {
 		let instance = try? runConformance1()
 		XCTAssertNotNil(instance, "Must instantiate Conformance")
-		try! runConformance1(instance!.asJSON())
+		if let instance = instance {
+			try! runConformance1(instance.asJSON())
+		}
 	}
 	
 	func runConformance1(json: FHIRJSON? = nil) throws -> Conformance {
@@ -85,13 +87,13 @@ class ConformanceTests: XCTestCase
 		XCTAssertEqual(inst.rest![0].resource![0].searchInclude![0], "Organization")
 		XCTAssertEqual(inst.rest![0].resource![0].searchParam![0].definition!.absoluteString, "http://hl7.org/fhir/SearchParameter/Patient-identifier")
 		XCTAssertEqual(inst.rest![0].resource![0].searchParam![0].documentation!, "Only supports search by institution MRN")
-		XCTAssertEqual(inst.rest![0].resource![0].searchParam![0].modifier_fhir![0], "missing")
+		XCTAssertEqual(inst.rest![0].resource![0].searchParam![0].modifier![0], "missing")
 		XCTAssertEqual(inst.rest![0].resource![0].searchParam![0].name!, "identifier")
 		XCTAssertEqual(inst.rest![0].resource![0].searchParam![0].type!, "token")
 		XCTAssertEqual(inst.rest![0].resource![0].searchParam![1].chain![0], "name")
 		XCTAssertEqual(inst.rest![0].resource![0].searchParam![1].chain![1], "identifier")
 		XCTAssertEqual(inst.rest![0].resource![0].searchParam![1].definition!.absoluteString, "http://hl7.org/fhir/SearchParameter/Patient-careprovider")
-		XCTAssertEqual(inst.rest![0].resource![0].searchParam![1].modifier_fhir![0], "missing")
+		XCTAssertEqual(inst.rest![0].resource![0].searchParam![1].modifier![0], "missing")
 		XCTAssertEqual(inst.rest![0].resource![0].searchParam![1].name!, "careprovider")
 		XCTAssertEqual(inst.rest![0].resource![0].searchParam![1].target![0], "Organization")
 		XCTAssertEqual(inst.rest![0].resource![0].searchParam![1].type!, "reference")
@@ -119,7 +121,9 @@ class ConformanceTests: XCTestCase
 	func testConformance2() {
 		let instance = try? runConformance2()
 		XCTAssertNotNil(instance, "Must instantiate Conformance")
-		try! runConformance2(instance!.asJSON())
+		if let instance = instance {
+			try! runConformance2(instance.asJSON())
+		}
 	}
 	
 	func runConformance2(json: FHIRJSON? = nil) throws -> Conformance {

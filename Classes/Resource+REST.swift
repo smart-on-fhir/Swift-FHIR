@@ -10,13 +10,10 @@ import Foundation
 
 
 /// The block signature for server interaction callbacks that return an error.
-public typealias FHIRErrorCallback = ((error: NSError?) -> Void)
+public typealias FHIRErrorCallback = ((error: FHIRError?) -> Void)
 
 /// The block signature for most server interaction callbacks that return a resource and an error.
-public typealias FHIRResourceErrorCallback = ((resource: Resource?, error: NSError?) -> Void)
-
-/// The FHIR resource error domain
-public let FHIRResourceErrorDomain = "FHIRResourceError"
+public typealias FHIRResourceErrorCallback = ((resource: Resource?, error: FHIRError?) -> Void)
 
 
 /**
@@ -25,18 +22,20 @@ public let FHIRResourceErrorDomain = "FHIRResourceError"
 public extension Resource
 {
 	/**
-	    Creates a `Reference` instance containing a relative reference to the receiver.
-	 */
-	public func asRelativeReference() -> Reference? {
-		if let path = relativeURLPath() {
-			let reference = Reference(json: nil)
-			reference.reference = path
-			if let display = preferredRelativeReferenceDisplay() {
-				reference.display = display
-			}
-			return reference
+	Creates a `Reference` instance containing a relative reference to the receiver.
+	
+	Throws if creating the reference fails; mostly happens when the instance doesn't have an id.
+	
+	- returns: A Reference instance on success
+	*/
+	public func asRelativeReference() throws -> Reference {
+		let path = try relativeURLPath()
+		let reference = Reference(json: nil)
+		reference.reference = path
+		if let display = preferredRelativeReferenceDisplay() {
+			reference.display = display
 		}
-		return nil
+		return reference
 	}
 	
 	/** The string used to fill a reference's "display" property for the instance. */
@@ -56,24 +55,28 @@ public extension Resource
 	}
 	
 	/**
-	    The relative URL path of the resource; the instance needs to have an id.
-	    - returns: A string indicating the relative URL, e.g. "MedicationPrescription/1234"
-	 */
-	public func relativeURLPath() -> String? {
+	The relative URL path of the resource; the instance needs to have an id, otherwise a FHIRError is thrown.
+	
+	- returns: A string indicating the relative URL, e.g. "MedicationPrescription/1234"
+	*/
+	public func relativeURLPath() throws -> String {
 		if let myID = id {
 			return "\(relativeURLBase())/\(myID)"
 		}
-		return nil
+		throw FHIRError.ResourceWithoutId
 	}
 	
 	/**
-	    The absolute URL of the resource; needs the instance's `server` property to be set and have an id.
-	 */
-	public func absoluteURL() -> NSURL? {
-		if let relative = relativeURLPath() {
-			return _server?.baseURL.URLByAppendingPathComponent(relative)
+	The absolute URL of the resource. Needs the instance's `server` property to be set and have an id, otherwise a FHIRError is thrown.
+	
+	- returns: The resource's absolute URL, e.g. "https://fhir.smarthealthit.org/MedicationPrescription/1234"
+	*/
+	public func absoluteURL() throws -> NSURL {
+		let relative = try relativeURLPath()
+		if let server = _server {
+			return server.baseURL.URLByAppendingPathComponent(relative)
 		}
-		return nil
+		throw FHIRError.ResourceWithoutServer
 	}
 	
 	
@@ -108,7 +111,7 @@ public extension Resource
 				callback(resource: resource, error: nil)
 			}
 			else {
-				callback(resource: nil, error: genResourceError("Failed to instantiate resource when trying to read from «\(path)»"))
+				callback(resource: nil, error: FHIRError.ResourceFailedToInstantiate(path))
 			}
 		}
 	}
@@ -125,7 +128,7 @@ public extension Resource
 	 */
 	public func create(server: FHIRServer, callback: FHIRErrorCallback) {
 		if nil != id {
-			callback(error: genResourceError("Cannot use `create` with a resource that already has an `id`"))
+			callback(error: FHIRError.ResourceAlreadyHasId)
 			return
 		}
 		
@@ -149,18 +152,19 @@ public extension Resource
 	 */
 	public func update(callback: FHIRErrorCallback) {
 		if let server = _server {
-			if let path = relativeURLPath() {
+			do {
+				let path = try relativeURLPath()
 				server.performRequestOfType(.PUT, path: path, resource: self) { response in
 					// TODO: should we do some header inspection (response.headers)?
 					callback(error: response.error)
 				}
 			}
-			else {
-				callback(error: genResourceError("Cannot update a resource without id"))
+			catch let error {
+				callback(error: (error as! FHIRError))
 			}
 		}
 		else {
-			callback(error: genResourceError("Cannot update a resource that doesn't have a server"))
+			callback(error: FHIRError.ResourceWithoutServer)
 		}
 	}
 	
@@ -171,15 +175,16 @@ public extension Resource
 	 */
 	public func delete(callback: FHIRErrorCallback) {
 		if let server = _server {
-			if let path = relativeURLPath() {
+			do {
+				let path = try relativeURLPath()
 				self.dynamicType.delete(path, server: server, callback: callback)
 			}
-			else {
-				callback(error: genResourceError("Cannot delete a resource without an id"))
+			catch let error {
+				callback(error: (error as! FHIRError))
 			}
 		}
 		else {
-			callback(error: genResourceError("Cannot delete a resource that doesn't have a server"))
+			callback(error: FHIRError.ResourceWithoutServer)
 		}
 	}
 	
@@ -230,7 +235,7 @@ public extension Resource
 			self.dynamicType._performOperation(operation, server: server, callback: callback)
 		}
 		else {
-			callback(resource: nil, error: genServerError("The resource \(self) is not assigned to a server, cannot execute operation"))
+			callback(resource: nil, error: FHIRError.ResourceWithoutServer)
 		}
 	}
 	
@@ -254,11 +259,5 @@ public extension Resource
 			}
 		}
 	}
-}
-
-
-/** Create an error in the FHIRResourceErrorDomain error domain. */
-func genResourceError(message: String, code: Int = 0) -> NSError {
-	return NSError(domain: FHIRResourceErrorDomain, code: code, userInfo: [NSLocalizedDescriptionKey: message])
 }
 

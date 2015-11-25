@@ -2,7 +2,7 @@
 //  ParametersTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class ParametersTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Parameters {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Parameters {
@@ -25,7 +25,9 @@ class ParametersTests: XCTestCase
 	func testParameters1() {
 		let instance = try? runParameters1()
 		XCTAssertNotNil(instance, "Must instantiate Parameters")
-		try! runParameters1(instance!.asJSON())
+		if let instance = instance {
+			try! runParameters1(instance.asJSON())
+		}
 	}
 	
 	func runParameters1(json: FHIRJSON? = nil) throws -> Parameters {

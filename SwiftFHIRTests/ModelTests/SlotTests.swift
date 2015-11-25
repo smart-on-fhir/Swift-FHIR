@@ -2,7 +2,7 @@
 //  SlotTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class SlotTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Slot {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Slot {
@@ -25,7 +25,9 @@ class SlotTests: XCTestCase
 	func testSlot1() {
 		let instance = try? runSlot1()
 		XCTAssertNotNil(instance, "Must instantiate Slot")
-		try! runSlot1(instance!.asJSON())
+		if let instance = instance {
+			try! runSlot1(instance.asJSON())
+		}
 	}
 	
 	func runSlot1(json: FHIRJSON? = nil) throws -> Slot {
@@ -50,7 +52,9 @@ class SlotTests: XCTestCase
 	func testSlot2() {
 		let instance = try? runSlot2()
 		XCTAssertNotNil(instance, "Must instantiate Slot")
-		try! runSlot2(instance!.asJSON())
+		if let instance = instance {
+			try! runSlot2(instance.asJSON())
+		}
 	}
 	
 	func runSlot2(json: FHIRJSON? = nil) throws -> Slot {
@@ -72,7 +76,9 @@ class SlotTests: XCTestCase
 	func testSlot3() {
 		let instance = try? runSlot3()
 		XCTAssertNotNil(instance, "Must instantiate Slot")
-		try! runSlot3(instance!.asJSON())
+		if let instance = instance {
+			try! runSlot3(instance.asJSON())
+		}
 	}
 	
 	func runSlot3(json: FHIRJSON? = nil) throws -> Slot {
@@ -94,7 +100,9 @@ class SlotTests: XCTestCase
 	func testSlot4() {
 		let instance = try? runSlot4()
 		XCTAssertNotNil(instance, "Must instantiate Slot")
-		try! runSlot4(instance!.asJSON())
+		if let instance = instance {
+			try! runSlot4(instance.asJSON())
+		}
 	}
 	
 	func runSlot4(json: FHIRJSON? = nil) throws -> Slot {

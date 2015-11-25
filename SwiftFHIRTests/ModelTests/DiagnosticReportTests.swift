@@ -2,7 +2,7 @@
 //  DiagnosticReportTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class DiagnosticReportTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> DiagnosticReport {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> DiagnosticReport {
@@ -25,7 +25,9 @@ class DiagnosticReportTests: XCTestCase
 	func testDiagnosticReport1() {
 		let instance = try? runDiagnosticReport1()
 		XCTAssertNotNil(instance, "Must instantiate DiagnosticReport")
-		try! runDiagnosticReport1(instance!.asJSON())
+		if let instance = instance {
+			try! runDiagnosticReport1(instance.asJSON())
+		}
 	}
 	
 	func runDiagnosticReport1(json: FHIRJSON? = nil) throws -> DiagnosticReport {
@@ -53,7 +55,9 @@ class DiagnosticReportTests: XCTestCase
 	func testDiagnosticReport2() {
 		let instance = try? runDiagnosticReport2()
 		XCTAssertNotNil(instance, "Must instantiate DiagnosticReport")
-		try! runDiagnosticReport2(instance!.asJSON())
+		if let instance = instance {
+			try! runDiagnosticReport2(instance.asJSON())
+		}
 	}
 	
 	func runDiagnosticReport2(json: FHIRJSON? = nil) throws -> DiagnosticReport {
@@ -93,7 +97,9 @@ class DiagnosticReportTests: XCTestCase
 	func testDiagnosticReport3() {
 		let instance = try? runDiagnosticReport3()
 		XCTAssertNotNil(instance, "Must instantiate DiagnosticReport")
-		try! runDiagnosticReport3(instance!.asJSON())
+		if let instance = instance {
+			try! runDiagnosticReport3(instance.asJSON())
+		}
 	}
 	
 	func runDiagnosticReport3(json: FHIRJSON? = nil) throws -> DiagnosticReport {
@@ -129,7 +135,9 @@ class DiagnosticReportTests: XCTestCase
 	func testDiagnosticReport4() {
 		let instance = try? runDiagnosticReport4()
 		XCTAssertNotNil(instance, "Must instantiate DiagnosticReport")
-		try! runDiagnosticReport4(instance!.asJSON())
+		if let instance = instance {
+			try! runDiagnosticReport4(instance.asJSON())
+		}
 	}
 	
 	func runDiagnosticReport4(json: FHIRJSON? = nil) throws -> DiagnosticReport {
@@ -166,7 +174,9 @@ class DiagnosticReportTests: XCTestCase
 	func testDiagnosticReport5() {
 		let instance = try? runDiagnosticReport5()
 		XCTAssertNotNil(instance, "Must instantiate DiagnosticReport")
-		try! runDiagnosticReport5(instance!.asJSON())
+		if let instance = instance {
+			try! runDiagnosticReport5(instance.asJSON())
+		}
 	}
 	
 	func runDiagnosticReport5(json: FHIRJSON? = nil) throws -> DiagnosticReport {
@@ -205,7 +215,9 @@ class DiagnosticReportTests: XCTestCase
 	func testDiagnosticReport6() {
 		let instance = try? runDiagnosticReport6()
 		XCTAssertNotNil(instance, "Must instantiate DiagnosticReport")
-		try! runDiagnosticReport6(instance!.asJSON())
+		if let instance = instance {
+			try! runDiagnosticReport6(instance.asJSON())
+		}
 	}
 	
 	func runDiagnosticReport6(json: FHIRJSON? = nil) throws -> DiagnosticReport {
@@ -238,7 +250,9 @@ class DiagnosticReportTests: XCTestCase
 	func testDiagnosticReport7() {
 		let instance = try? runDiagnosticReport7()
 		XCTAssertNotNil(instance, "Must instantiate DiagnosticReport")
-		try! runDiagnosticReport7(instance!.asJSON())
+		if let instance = instance {
+			try! runDiagnosticReport7(instance.asJSON())
+		}
 	}
 	
 	func runDiagnosticReport7(json: FHIRJSON? = nil) throws -> DiagnosticReport {
@@ -271,7 +285,9 @@ class DiagnosticReportTests: XCTestCase
 	func testDiagnosticReport8() {
 		let instance = try? runDiagnosticReport8()
 		XCTAssertNotNil(instance, "Must instantiate DiagnosticReport")
-		try! runDiagnosticReport8(instance!.asJSON())
+		if let instance = instance {
+			try! runDiagnosticReport8(instance.asJSON())
+		}
 	}
 	
 	func runDiagnosticReport8(json: FHIRJSON? = nil) throws -> DiagnosticReport {

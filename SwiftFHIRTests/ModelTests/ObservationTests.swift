@@ -2,7 +2,7 @@
 //  ObservationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class ObservationTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Observation {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Observation {
@@ -25,7 +25,9 @@ class ObservationTests: XCTestCase
 	func testObservation1() {
 		let instance = try? runObservation1()
 		XCTAssertNotNil(instance, "Must instantiate Observation")
-		try! runObservation1(instance!.asJSON())
+		if let instance = instance {
+			try! runObservation1(instance.asJSON())
+		}
 	}
 	
 	func runObservation1(json: FHIRJSON? = nil) throws -> Observation {
@@ -79,7 +81,9 @@ class ObservationTests: XCTestCase
 	func testObservation2() {
 		let instance = try? runObservation2()
 		XCTAssertNotNil(instance, "Must instantiate Observation")
-		try! runObservation2(instance!.asJSON())
+		if let instance = instance {
+			try! runObservation2(instance.asJSON())
+		}
 	}
 	
 	func runObservation2(json: FHIRJSON? = nil) throws -> Observation {
@@ -130,7 +134,9 @@ class ObservationTests: XCTestCase
 	func testObservation3() {
 		let instance = try? runObservation3()
 		XCTAssertNotNil(instance, "Must instantiate Observation")
-		try! runObservation3(instance!.asJSON())
+		if let instance = instance {
+			try! runObservation3(instance.asJSON())
+		}
 	}
 	
 	func runObservation3(json: FHIRJSON? = nil) throws -> Observation {
@@ -167,7 +173,9 @@ class ObservationTests: XCTestCase
 	func testObservation4() {
 		let instance = try? runObservation4()
 		XCTAssertNotNil(instance, "Must instantiate Observation")
-		try! runObservation4(instance!.asJSON())
+		if let instance = instance {
+			try! runObservation4(instance.asJSON())
+		}
 	}
 	
 	func runObservation4(json: FHIRJSON? = nil) throws -> Observation {
@@ -206,7 +214,9 @@ class ObservationTests: XCTestCase
 	func testObservation5() {
 		let instance = try? runObservation5()
 		XCTAssertNotNil(instance, "Must instantiate Observation")
-		try! runObservation5(instance!.asJSON())
+		if let instance = instance {
+			try! runObservation5(instance.asJSON())
+		}
 	}
 	
 	func runObservation5(json: FHIRJSON? = nil) throws -> Observation {
@@ -243,7 +253,9 @@ class ObservationTests: XCTestCase
 	func testObservation6() {
 		let instance = try? runObservation6()
 		XCTAssertNotNil(instance, "Must instantiate Observation")
-		try! runObservation6(instance!.asJSON())
+		if let instance = instance {
+			try! runObservation6(instance.asJSON())
+		}
 	}
 	
 	func runObservation6(json: FHIRJSON? = nil) throws -> Observation {
@@ -280,7 +292,9 @@ class ObservationTests: XCTestCase
 	func testObservation7() {
 		let instance = try? runObservation7()
 		XCTAssertNotNil(instance, "Must instantiate Observation")
-		try! runObservation7(instance!.asJSON())
+		if let instance = instance {
+			try! runObservation7(instance.asJSON())
+		}
 	}
 	
 	func runObservation7(json: FHIRJSON? = nil) throws -> Observation {
@@ -323,7 +337,9 @@ class ObservationTests: XCTestCase
 	func testObservation8() {
 		let instance = try? runObservation8()
 		XCTAssertNotNil(instance, "Must instantiate Observation")
-		try! runObservation8(instance!.asJSON())
+		if let instance = instance {
+			try! runObservation8(instance.asJSON())
+		}
 	}
 	
 	func runObservation8(json: FHIRJSON? = nil) throws -> Observation {
@@ -374,7 +390,9 @@ class ObservationTests: XCTestCase
 	func testObservation9() {
 		let instance = try? runObservation9()
 		XCTAssertNotNil(instance, "Must instantiate Observation")
-		try! runObservation9(instance!.asJSON())
+		if let instance = instance {
+			try! runObservation9(instance.asJSON())
+		}
 	}
 	
 	func runObservation9(json: FHIRJSON? = nil) throws -> Observation {
@@ -422,7 +440,9 @@ class ObservationTests: XCTestCase
 	func testObservation10() {
 		let instance = try? runObservation10()
 		XCTAssertNotNil(instance, "Must instantiate Observation")
-		try! runObservation10(instance!.asJSON())
+		if let instance = instance {
+			try! runObservation10(instance.asJSON())
+		}
 	}
 	
 	func runObservation10(json: FHIRJSON? = nil) throws -> Observation {

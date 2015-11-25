@@ -2,7 +2,7 @@
 //  SearchParameterTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class SearchParameterTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> SearchParameter {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> SearchParameter {
@@ -25,7 +25,9 @@ class SearchParameterTests: XCTestCase
 	func testSearchParameter1() {
 		let instance = try? runSearchParameter1()
 		XCTAssertNotNil(instance, "Must instantiate SearchParameter")
-		try! runSearchParameter1(instance!.asJSON())
+		if let instance = instance {
+			try! runSearchParameter1(instance.asJSON())
+		}
 	}
 	
 	func runSearchParameter1(json: FHIRJSON? = nil) throws -> SearchParameter {
@@ -43,7 +45,7 @@ class SearchParameterTests: XCTestCase
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.type!, "reference")
 		XCTAssertEqual(inst.url!.absoluteString, "http://hl7.org/fhir/SearchParameter/example-extension")
-		XCTAssertEqual(inst.xpath!, "http://example.org/fhir/StructureDefinition/participation-agreement")
+		XCTAssertEqual(inst.xpath!, "f:DocumentReference/f:extension[@url='http://example.org/fhir/StructureDefinition/participation-agreement']")
 		XCTAssertEqual(inst.xpathUsage!, "normal")
 		
 		return inst
@@ -52,7 +54,9 @@ class SearchParameterTests: XCTestCase
 	func testSearchParameter2() {
 		let instance = try? runSearchParameter2()
 		XCTAssertNotNil(instance, "Must instantiate SearchParameter")
-		try! runSearchParameter2(instance!.asJSON())
+		if let instance = instance {
+			try! runSearchParameter2(instance.asJSON())
+		}
 	}
 	
 	func runSearchParameter2(json: FHIRJSON? = nil) throws -> SearchParameter {

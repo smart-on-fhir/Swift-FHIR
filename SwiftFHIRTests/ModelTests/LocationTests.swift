@@ -2,7 +2,7 @@
 //  LocationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class LocationTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Location {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Location {
@@ -25,7 +25,9 @@ class LocationTests: XCTestCase
 	func testLocation1() {
 		let instance = try? runLocation1()
 		XCTAssertNotNil(instance, "Must instantiate Location")
-		try! runLocation1(instance!.asJSON())
+		if let instance = instance {
+			try! runLocation1(instance.asJSON())
+		}
 	}
 	
 	func runLocation1(json: FHIRJSON? = nil) throws -> Location {
@@ -55,7 +57,9 @@ class LocationTests: XCTestCase
 	func testLocation2() {
 		let instance = try? runLocation2()
 		XCTAssertNotNil(instance, "Must instantiate Location")
-		try! runLocation2(instance!.asJSON())
+		if let instance = instance {
+			try! runLocation2(instance.asJSON())
+		}
 	}
 	
 	func runLocation2(json: FHIRJSON? = nil) throws -> Location {
@@ -93,7 +97,9 @@ class LocationTests: XCTestCase
 	func testLocation3() {
 		let instance = try? runLocation3()
 		XCTAssertNotNil(instance, "Must instantiate Location")
-		try! runLocation3(instance!.asJSON())
+		if let instance = instance {
+			try! runLocation3(instance.asJSON())
+		}
 	}
 	
 	func runLocation3(json: FHIRJSON? = nil) throws -> Location {
@@ -120,7 +126,9 @@ class LocationTests: XCTestCase
 	func testLocation4() {
 		let instance = try? runLocation4()
 		XCTAssertNotNil(instance, "Must instantiate Location")
-		try! runLocation4(instance!.asJSON())
+		if let instance = instance {
+			try! runLocation4(instance.asJSON())
+		}
 	}
 	
 	func runLocation4(json: FHIRJSON? = nil) throws -> Location {
@@ -151,7 +159,9 @@ class LocationTests: XCTestCase
 	func testLocation5() {
 		let instance = try? runLocation5()
 		XCTAssertNotNil(instance, "Must instantiate Location")
-		try! runLocation5(instance!.asJSON())
+		if let instance = instance {
+			try! runLocation5(instance.asJSON())
+		}
 	}
 	
 	func runLocation5(json: FHIRJSON? = nil) throws -> Location {
@@ -177,7 +187,9 @@ class LocationTests: XCTestCase
 	func testLocation6() {
 		let instance = try? runLocation6()
 		XCTAssertNotNil(instance, "Must instantiate Location")
-		try! runLocation6(instance!.asJSON())
+		if let instance = instance {
+			try! runLocation6(instance.asJSON())
+		}
 	}
 	
 	func runLocation6(json: FHIRJSON? = nil) throws -> Location {

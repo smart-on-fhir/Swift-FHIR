@@ -2,7 +2,7 @@
 //  GroupTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class GroupTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Group {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Group {
@@ -25,7 +25,9 @@ class GroupTests: XCTestCase
 	func testGroup1() {
 		let instance = try? runGroup1()
 		XCTAssertNotNil(instance, "Must instantiate Group")
-		try! runGroup1(instance!.asJSON())
+		if let instance = instance {
+			try! runGroup1(instance.asJSON())
+		}
 	}
 	
 	func runGroup1(json: FHIRJSON? = nil) throws -> Group {
@@ -51,7 +53,9 @@ class GroupTests: XCTestCase
 	func testGroup2() {
 		let instance = try? runGroup2()
 		XCTAssertNotNil(instance, "Must instantiate Group")
-		try! runGroup2(instance!.asJSON())
+		if let instance = instance {
+			try! runGroup2(instance.asJSON())
+		}
 	}
 	
 	func runGroup2(json: FHIRJSON? = nil) throws -> Group {

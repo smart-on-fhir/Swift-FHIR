@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -261,11 +261,11 @@ public class ConceptMap: DomainResource
 			}
 			
 			// check if nonoptional expanded properties are present
-			if nil == self.targetUri && nil == self.targetReference {
-				errors.append(FHIRJSONError(key: "target[x]*"))
-			}
 			if nil == self.sourceUri && nil == self.sourceReference {
 				errors.append(FHIRJSONError(key: "source[x]*"))
+			}
+			if nil == self.targetUri && nil == self.targetReference {
+				errors.append(FHIRJSONError(key: "target[x]*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors

@@ -2,7 +2,7 @@
 //  RelatedPersonTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class RelatedPersonTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> RelatedPerson {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> RelatedPerson {
@@ -25,7 +25,9 @@ class RelatedPersonTests: XCTestCase
 	func testRelatedPerson1() {
 		let instance = try? runRelatedPerson1()
 		XCTAssertNotNil(instance, "Must instantiate RelatedPerson")
-		try! runRelatedPerson1(instance!.asJSON())
+		if let instance = instance {
+			try! runRelatedPerson1(instance.asJSON())
+		}
 	}
 	
 	func runRelatedPerson1(json: FHIRJSON? = nil) throws -> RelatedPerson {
@@ -56,7 +58,9 @@ class RelatedPersonTests: XCTestCase
 	func testRelatedPerson2() {
 		let instance = try? runRelatedPerson2()
 		XCTAssertNotNil(instance, "Must instantiate RelatedPerson")
-		try! runRelatedPerson2(instance!.asJSON())
+		if let instance = instance {
+			try! runRelatedPerson2(instance.asJSON())
+		}
 	}
 	
 	func runRelatedPerson2(json: FHIRJSON? = nil) throws -> RelatedPerson {
@@ -83,7 +87,9 @@ class RelatedPersonTests: XCTestCase
 	func testRelatedPerson3() {
 		let instance = try? runRelatedPerson3()
 		XCTAssertNotNil(instance, "Must instantiate RelatedPerson")
-		try! runRelatedPerson3(instance!.asJSON())
+		if let instance = instance {
+			try! runRelatedPerson3(instance.asJSON())
+		}
 	}
 	
 	func runRelatedPerson3(json: FHIRJSON? = nil) throws -> RelatedPerson {
@@ -117,7 +123,9 @@ class RelatedPersonTests: XCTestCase
 	func testRelatedPerson4() {
 		let instance = try? runRelatedPerson4()
 		XCTAssertNotNil(instance, "Must instantiate RelatedPerson")
-		try! runRelatedPerson4(instance!.asJSON())
+		if let instance = instance {
+			try! runRelatedPerson4(instance.asJSON())
+		}
 	}
 	
 	func runRelatedPerson4(json: FHIRJSON? = nil) throws -> RelatedPerson {

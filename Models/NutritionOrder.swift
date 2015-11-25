@@ -2,7 +2,7 @@
 //  NutritionOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -637,7 +637,7 @@ public class NutritionOrderOralDietNutrient: FHIRElement
 	public var amount: Quantity?
 	
 	/// Type of nutrient that is being modified
-	public var modifier_fhir: CodeableConcept?
+	public var modifier: CodeableConcept?
 	
 	
 	/** Initialize with a JSON object. */
@@ -660,7 +660,7 @@ public class NutritionOrderOralDietNutrient: FHIRElement
 			if let exist: AnyObject = js["modifier"] {
 				presentKeys.insert("modifier")
 				if let val = exist as? FHIRJSON {
-					self.modifier_fhir = CodeableConcept(json: val, owner: self)
+					self.modifier = CodeableConcept(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "modifier", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -676,8 +676,8 @@ public class NutritionOrderOralDietNutrient: FHIRElement
 		if let amount = self.amount {
 			json["amount"] = amount.asJSON()
 		}
-		if let modifier_fhir = self.modifier_fhir {
-			json["modifier"] = modifier_fhir.asJSON()
+		if let modifier = self.modifier {
+			json["modifier"] = modifier.asJSON()
 		}
 		
 		return json
@@ -701,7 +701,7 @@ public class NutritionOrderOralDietTexture: FHIRElement
 	public var foodType: CodeableConcept?
 	
 	/// Code to indicate how to alter the texture of the foods, e.g. pureed
-	public var modifier_fhir: CodeableConcept?
+	public var modifier: CodeableConcept?
 	
 	
 	/** Initialize with a JSON object. */
@@ -724,7 +724,7 @@ public class NutritionOrderOralDietTexture: FHIRElement
 			if let exist: AnyObject = js["modifier"] {
 				presentKeys.insert("modifier")
 				if let val = exist as? FHIRJSON {
-					self.modifier_fhir = CodeableConcept(json: val, owner: self)
+					self.modifier = CodeableConcept(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "modifier", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -740,8 +740,8 @@ public class NutritionOrderOralDietTexture: FHIRElement
 		if let foodType = self.foodType {
 			json["foodType"] = foodType.asJSON()
 		}
-		if let modifier_fhir = self.modifier_fhir {
-			json["modifier"] = modifier_fhir.asJSON()
+		if let modifier = self.modifier {
+			json["modifier"] = modifier.asJSON()
 		}
 		
 		return json

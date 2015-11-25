@@ -2,7 +2,7 @@
 //  HealthcareServiceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class HealthcareServiceTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> HealthcareService {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> HealthcareService {
@@ -25,7 +25,9 @@ class HealthcareServiceTests: XCTestCase
 	func testHealthcareService1() {
 		let instance = try? runHealthcareService1()
 		XCTAssertNotNil(instance, "Must instantiate HealthcareService")
-		try! runHealthcareService1(instance!.asJSON())
+		if let instance = instance {
+			try! runHealthcareService1(instance.asJSON())
+		}
 	}
 	
 	func runHealthcareService1(json: FHIRJSON? = nil) throws -> HealthcareService {

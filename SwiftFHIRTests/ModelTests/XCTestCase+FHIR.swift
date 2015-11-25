@@ -21,19 +21,19 @@ extension XCTestCase
 		return proj.stringByAppendingPathComponent("fhir-parser/downloads")
 	}
 	
-	func readJSONFile(filename: String) throws -> FHIRJSON? {
+	func readJSONFile(filename: String) throws -> FHIRJSON {
 		let dir = self.dynamicType.testsDirectory
 		XCTAssertTrue(NSFileManager.defaultManager().fileExistsAtPath(dir), "You must either first download the FHIR spec or manually adjust `XCTestCase.testsDirectory` to point to your FHIR download directory")
 		
 		let path = (dir as NSString).stringByAppendingPathComponent(filename)
-		let data = NSData(contentsOfFile: path)
-		XCTAssertNotNil(data, "Unable to read \"\(path)")
-		if nil == data { return nil }
-		
-		let json = try NSJSONSerialization.JSONObjectWithData(data!, options: []) as? FHIRJSON
-		XCTAssertNotNil(json, "Unable to decode \"\(path)")
-		
-		return json
+		if let data = NSData(contentsOfFile: path) {
+			if let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? FHIRJSON {
+				return json
+			}
+			let raw = NSString(data: data, encoding: NSUTF8StringEncoding) as? String ?? ""
+			throw FHIRError.JSONParsingError("Unable to decode «\(path)» to JSON", raw)
+		}
+		throw FHIRError.Error("Unable to read «\(path)»")
 	}
 }
 

@@ -2,7 +2,7 @@
 //  SubstanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class SubstanceTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Substance {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Substance {
@@ -25,7 +25,9 @@ class SubstanceTests: XCTestCase
 	func testSubstance1() {
 		let instance = try? runSubstance1()
 		XCTAssertNotNil(instance, "Must instantiate Substance")
-		try! runSubstance1(instance!.asJSON())
+		if let instance = instance {
+			try! runSubstance1(instance.asJSON())
+		}
 	}
 	
 	func runSubstance1(json: FHIRJSON? = nil) throws -> Substance {
@@ -65,7 +67,9 @@ class SubstanceTests: XCTestCase
 	func testSubstance2() {
 		let instance = try? runSubstance2()
 		XCTAssertNotNil(instance, "Must instantiate Substance")
-		try! runSubstance2(instance!.asJSON())
+		if let instance = instance {
+			try! runSubstance2(instance.asJSON())
+		}
 	}
 	
 	func runSubstance2(json: FHIRJSON? = nil) throws -> Substance {
@@ -83,7 +87,9 @@ class SubstanceTests: XCTestCase
 	func testSubstance3() {
 		let instance = try? runSubstance3()
 		XCTAssertNotNil(instance, "Must instantiate Substance")
-		try! runSubstance3(instance!.asJSON())
+		if let instance = instance {
+			try! runSubstance3(instance.asJSON())
+		}
 	}
 	
 	func runSubstance3(json: FHIRJSON? = nil) throws -> Substance {
@@ -101,7 +107,9 @@ class SubstanceTests: XCTestCase
 	func testSubstance4() {
 		let instance = try? runSubstance4()
 		XCTAssertNotNil(instance, "Must instantiate Substance")
-		try! runSubstance4(instance!.asJSON())
+		if let instance = instance {
+			try! runSubstance4(instance.asJSON())
+		}
 	}
 	
 	func runSubstance4(json: FHIRJSON? = nil) throws -> Substance {
@@ -124,7 +132,9 @@ class SubstanceTests: XCTestCase
 	func testSubstance5() {
 		let instance = try? runSubstance5()
 		XCTAssertNotNil(instance, "Must instantiate Substance")
-		try! runSubstance5(instance!.asJSON())
+		if let instance = instance {
+			try! runSubstance5(instance.asJSON())
+		}
 	}
 	
 	func runSubstance5(json: FHIRJSON? = nil) throws -> Substance {
@@ -155,7 +165,9 @@ class SubstanceTests: XCTestCase
 	func testSubstance6() {
 		let instance = try? runSubstance6()
 		XCTAssertNotNil(instance, "Must instantiate Substance")
-		try! runSubstance6(instance!.asJSON())
+		if let instance = instance {
+			try! runSubstance6(instance.asJSON())
+		}
 	}
 	
 	func runSubstance6(json: FHIRJSON? = nil) throws -> Substance {

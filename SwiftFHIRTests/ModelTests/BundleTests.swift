@@ -2,7 +2,7 @@
 //  BundleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class BundleTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Bundle {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Bundle {
@@ -25,7 +25,9 @@ class BundleTests: XCTestCase
 	func testBundle1() {
 		let instance = try? runBundle1()
 		XCTAssertNotNil(instance, "Must instantiate Bundle")
-		try! runBundle1(instance!.asJSON())
+		if let instance = instance {
+			try! runBundle1(instance.asJSON())
+		}
 	}
 	
 	func runBundle1(json: FHIRJSON? = nil) throws -> Bundle {
@@ -53,7 +55,9 @@ class BundleTests: XCTestCase
 	func testBundle2() {
 		let instance = try? runBundle2()
 		XCTAssertNotNil(instance, "Must instantiate Bundle")
-		try! runBundle2(instance!.asJSON())
+		if let instance = instance {
+			try! runBundle2(instance.asJSON())
+		}
 	}
 	
 	func runBundle2(json: FHIRJSON? = nil) throws -> Bundle {
@@ -99,7 +103,9 @@ class BundleTests: XCTestCase
 	func testBundle3() {
 		let instance = try? runBundle3()
 		XCTAssertNotNil(instance, "Must instantiate Bundle")
-		try! runBundle3(instance!.asJSON())
+		if let instance = instance {
+			try! runBundle3(instance.asJSON())
+		}
 	}
 	
 	func runBundle3(json: FHIRJSON? = nil) throws -> Bundle {
@@ -145,7 +151,9 @@ class BundleTests: XCTestCase
 	func testBundle4() {
 		let instance = try? runBundle4()
 		XCTAssertNotNil(instance, "Must instantiate Bundle")
-		try! runBundle4(instance!.asJSON())
+		if let instance = instance {
+			try! runBundle4(instance.asJSON())
+		}
 	}
 	
 	func runBundle4(json: FHIRJSON? = nil) throws -> Bundle {
@@ -185,7 +193,9 @@ class BundleTests: XCTestCase
 	func testBundle5() {
 		let instance = try? runBundle5()
 		XCTAssertNotNil(instance, "Must instantiate Bundle")
-		try! runBundle5(instance!.asJSON())
+		if let instance = instance {
+			try! runBundle5(instance.asJSON())
+		}
 	}
 	
 	func runBundle5(json: FHIRJSON? = nil) throws -> Bundle {
@@ -231,7 +241,9 @@ class BundleTests: XCTestCase
 	func testBundle6() {
 		let instance = try? runBundle6()
 		XCTAssertNotNil(instance, "Must instantiate Bundle")
-		try! runBundle6(instance!.asJSON())
+		if let instance = instance {
+			try! runBundle6(instance.asJSON())
+		}
 	}
 	
 	func runBundle6(json: FHIRJSON? = nil) throws -> Bundle {
@@ -277,7 +289,9 @@ class BundleTests: XCTestCase
 	func testBundle7() {
 		let instance = try? runBundle7()
 		XCTAssertNotNil(instance, "Must instantiate Bundle")
-		try! runBundle7(instance!.asJSON())
+		if let instance = instance {
+			try! runBundle7(instance.asJSON())
+		}
 	}
 	
 	func runBundle7(json: FHIRJSON? = nil) throws -> Bundle {
@@ -323,7 +337,9 @@ class BundleTests: XCTestCase
 	func testBundle8() {
 		let instance = try? runBundle8()
 		XCTAssertNotNil(instance, "Must instantiate Bundle")
-		try! runBundle8(instance!.asJSON())
+		if let instance = instance {
+			try! runBundle8(instance.asJSON())
+		}
 	}
 	
 	func runBundle8(json: FHIRJSON? = nil) throws -> Bundle {

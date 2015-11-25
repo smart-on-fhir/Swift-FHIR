@@ -24,7 +24,7 @@ let FHIRSearchErrorDomain = "FHIRSearchErrorDomain"
  */
 public class FHIRSearch
 {
-	/// Search must define a profile type to which the search is applied.
+	/// Search must define a resource type to which the search is applied.
 	public var profileType: FHIRResource.Type?
 	
 	/// The query construct used to describe the search
@@ -102,10 +102,9 @@ public class FHIRSearch
 		- parameter server: The FHIRServer instance on which to perform the search
 		- parameter callback: The callback, receives the response Bundle or an NSError message describing what went wrong
 	 */
-	public func perform(server: FHIRServer, callback: ((bundle: Bundle?, error: NSError?) -> Void)) {
+	public func perform(server: FHIRServer, callback: ((bundle: Bundle?, error: FHIRError?) -> Void)) {
 		if nil == profileType {
-			let err = NSError(domain: FHIRSearchErrorDomain, code: 0, userInfo: [NSLocalizedDescriptionKey: "Cannot find the profile type against which to run the search"])
-			callback(bundle: nil, error: err)
+			callback(bundle: nil, error: FHIRError.SearchResourceTypeNotDefined)
 			return
 		}
 		
@@ -120,7 +119,7 @@ public class FHIRSearch
 		- parameter server: The FHIRServer instance on which to perform the search
 		- parameter callback: The callback, receives the response Bundle or an NSError message describing what went wrong
 	 */
-	public func nextPage(server: FHIRServer, callback: ((bundle: Bundle?, error: NSError?) -> Void)) {
+	public func nextPage(server: FHIRServer, callback: ((bundle: Bundle?, error: FHIRError?) -> Void)) {
 		if let next = nextPageURL?.absoluteString {
 			performSearch(server, queryPath: next, callback: callback)
 		}
@@ -129,7 +128,7 @@ public class FHIRSearch
 		}
 	}
 	
-	func performSearch(server: FHIRServer, queryPath: String, callback: ((bundle: Bundle?, error: NSError?) -> Void)) {
+	func performSearch(server: FHIRServer, queryPath: String, callback: ((bundle: Bundle?, error: FHIRError?) -> Void)) {
 		if busy {
 			callback(bundle: nil, error: nil)
 			return

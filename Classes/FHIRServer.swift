@@ -9,10 +9,6 @@
 import Foundation
 
 
-/// The FHIR server error domain.
-public let FHIRServerErrorDomain = "FHIRServerError"
-
-
 /**
     Struct to describe REST request types, with a convenience method to make a request FHIR compliant.
  */
@@ -22,6 +18,7 @@ public enum FHIRRequestType: String
 	case PUT = "PUT"
 	case POST = "POST"
 	case DELETE = "DELETE"
+	case OPTIONS = "OPTIONS"
 	
 	/** Prepare a given mutable URL request with appropriate headers, methods and body values. */
 	func prepareRequest(req: NSMutableURLRequest, body: NSData? = nil) {
@@ -36,6 +33,8 @@ public enum FHIRRequestType: String
 		case .POST:
 			req.HTTPBody = body
 		case .DELETE:
+			break
+		case .OPTIONS:
 			break
 		}
 	}
@@ -78,11 +77,5 @@ public protocol FHIRServer
 	    - parameter callback: The callback to call when the request ends (success or failure)
 	 */
 	func performOperation(operation: FHIROperation, callback: ((response: FHIRServerResponse) -> Void))
-}
-
-
-/** Create an error in the FHIRServerErrorDomain error domain. */
-func genServerError(message: String, code: Int = 0) -> NSError {
-	return NSError(domain: FHIRServerErrorDomain, code: code, userInfo: [NSLocalizedDescriptionKey: message])
 }
 

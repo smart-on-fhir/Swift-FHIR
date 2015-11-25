@@ -2,7 +2,7 @@
 //  EncounterTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class EncounterTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> Encounter {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> Encounter {
@@ -25,7 +25,9 @@ class EncounterTests: XCTestCase
 	func testEncounter1() {
 		let instance = try? runEncounter1()
 		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		try! runEncounter1(instance!.asJSON())
+		if let instance = instance {
+			try! runEncounter1(instance.asJSON())
+		}
 	}
 	
 	func runEncounter1(json: FHIRJSON? = nil) throws -> Encounter {
@@ -73,7 +75,9 @@ class EncounterTests: XCTestCase
 	func testEncounter2() {
 		let instance = try? runEncounter2()
 		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		try! runEncounter2(instance!.asJSON())
+		if let instance = instance {
+			try! runEncounter2(instance.asJSON())
+		}
 	}
 	
 	func runEncounter2(json: FHIRJSON? = nil) throws -> Encounter {
@@ -121,7 +125,9 @@ class EncounterTests: XCTestCase
 	func testEncounter3() {
 		let instance = try? runEncounter3()
 		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		try! runEncounter3(instance!.asJSON())
+		if let instance = instance {
+			try! runEncounter3(instance.asJSON())
+		}
 	}
 	
 	func runEncounter3(json: FHIRJSON? = nil) throws -> Encounter {
@@ -170,7 +176,9 @@ class EncounterTests: XCTestCase
 	func testEncounter4() {
 		let instance = try? runEncounter4()
 		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		try! runEncounter4(instance!.asJSON())
+		if let instance = instance {
+			try! runEncounter4(instance.asJSON())
+		}
 	}
 	
 	func runEncounter4(json: FHIRJSON? = nil) throws -> Encounter {
@@ -200,7 +208,9 @@ class EncounterTests: XCTestCase
 	func testEncounter5() {
 		let instance = try? runEncounter5()
 		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		try! runEncounter5(instance!.asJSON())
+		if let instance = instance {
+			try! runEncounter5(instance.asJSON())
+		}
 	}
 	
 	func runEncounter5(json: FHIRJSON? = nil) throws -> Encounter {
@@ -240,7 +250,9 @@ class EncounterTests: XCTestCase
 	func testEncounter6() {
 		let instance = try? runEncounter6()
 		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		try! runEncounter6(instance!.asJSON())
+		if let instance = instance {
+			try! runEncounter6(instance.asJSON())
+		}
 	}
 	
 	func runEncounter6(json: FHIRJSON? = nil) throws -> Encounter {
@@ -279,7 +291,9 @@ class EncounterTests: XCTestCase
 	func testEncounter7() {
 		let instance = try? runEncounter7()
 		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		try! runEncounter7(instance!.asJSON())
+		if let instance = instance {
+			try! runEncounter7(instance.asJSON())
+		}
 	}
 	
 	func runEncounter7(json: FHIRJSON? = nil) throws -> Encounter {
@@ -309,7 +323,9 @@ class EncounterTests: XCTestCase
 	func testEncounter8() {
 		let instance = try? runEncounter8()
 		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		try! runEncounter8(instance!.asJSON())
+		if let instance = instance {
+			try! runEncounter8(instance.asJSON())
+		}
 	}
 	
 	func runEncounter8(json: FHIRJSON? = nil) throws -> Encounter {
@@ -334,7 +350,9 @@ class EncounterTests: XCTestCase
 	func testEncounter9() {
 		let instance = try? runEncounter9()
 		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		try! runEncounter9(instance!.asJSON())
+		if let instance = instance {
+			try! runEncounter9(instance.asJSON())
+		}
 	}
 	
 	func runEncounter9(json: FHIRJSON? = nil) throws -> Encounter {

@@ -2,7 +2,7 @@
 //  DeviceUseRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.1.7108 on 2015-09-23.
+//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
 //  2015, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import SwiftFHIR
 class DeviceUseRequestTests: XCTestCase
 {
 	func instantiateFrom(filename filename: String) throws -> DeviceUseRequest {
-		return instantiateFrom(json: try readJSONFile(filename)!)
+		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
 	func instantiateFrom(json json: FHIRJSON) -> DeviceUseRequest {
@@ -25,7 +25,9 @@ class DeviceUseRequestTests: XCTestCase
 	func testDeviceUseRequest1() {
 		let instance = try? runDeviceUseRequest1()
 		XCTAssertNotNil(instance, "Must instantiate DeviceUseRequest")
-		try! runDeviceUseRequest1(instance!.asJSON())
+		if let instance = instance {
+			try! runDeviceUseRequest1(instance.asJSON())
+		}
 	}
 	
 	func runDeviceUseRequest1(json: FHIRJSON? = nil) throws -> DeviceUseRequest {

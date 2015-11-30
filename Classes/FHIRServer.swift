@@ -12,8 +12,7 @@ import Foundation
 /**
     Struct to describe REST request types, with a convenience method to make a request FHIR compliant.
  */
-public enum FHIRRequestType: String
-{
+public enum FHIRRequestType: String {
 	case GET = "GET"
 	case PUT = "PUT"
 	case POST = "POST"
@@ -44,17 +43,19 @@ public enum FHIRRequestType: String
 /**
     Protocol for server objects to be used by `FHIRResource` and subclasses.
  */
-public protocol FHIRServer
-{
-	/** A server object must always have a base URL. */
+public protocol FHIRServer {
+	
+	/// A server object must always have a base URL.
 	var baseURL: NSURL { get }
+	
+	/** Designated initializer. */
+	init(baseURL base: NSURL, auth: [String: AnyObject]?)
 	
 	
 	// MARK: - HTTP Request
 	
 	/*
-	This method should first execute `handlerForRequestOfType()` to obtain an appropriate request handler, then execute the prepared
-	request against the server.
+	Execute a request of given type against the given path, which is relative to the receiver's `baseURL`, with the given resource (if any).
 	
 	- parameter type: The type of the request (GET, PUT, POST or DELETE)
 	- parameter path: The relative path on the server to be interacting against
@@ -67,15 +68,15 @@ public protocol FHIRServer
 	// MARK: - Operations
 	
 	/**
-	    Performs the given Operation.
+	Performs the given Operation.
 	
-	    The server should first validate the operation and only proceed with execution if validation succeeds.
+	The server should first validate the operation and only proceed with execution if validation succeeds.
 	
-	    `Resource` has extensions to facilitate working with operations, be sure to take a look.
+	`Resource` has extensions to facilitate working with operations, be sure to take a look.
 	
-	    - parameter operation: The operation instance to perform
-	    - parameter callback: The callback to call when the request ends (success or failure)
-	 */
+	- parameter operation: The operation instance to perform
+	- parameter callback: The callback to call when the request ends (success or failure)
+	*/
 	func performOperation(operation: FHIROperation, callback: ((response: FHIRServerResponse) -> Void))
 }
 

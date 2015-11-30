@@ -12,10 +12,10 @@
  *
  *  The id of contained resources will be referenced from their parents as URL fragment, meaning "med1" will be referenced as "#med1".
  *
- *  http://hl7.org/implement/standards/fhir/references.html#contained
+ *  http://hl7.org/fhir/references.html#contained
  */
-public final class FHIRContainedResource
-{
+public final class FHIRContainedResource {
+	
 	/// The id of the resource.
 	public var id: String?
 	
@@ -34,6 +34,13 @@ public final class FHIRContainedResource
 	public convenience init(json: FHIRJSON, owner: FHIRElement) {
 		let id = json["id"] as? String
 		self.init(id: id, json: json, owner: owner)
+	}
+	
+	public func resolvedInstanceWithReferenceId<T: Resource>(refid: String, ofType type: T.Type) -> T {
+		let instance = type.init(json: json)	// cannot use init(json:owner:) as it's not a required initializer
+		instance._owner = owner
+		owner.didResolveReference(refid, resolved: instance)
+		return instance
 	}
 }
 

@@ -1,0 +1,24 @@
+{
+	"resourceType": "MedicationOrder",
+	"id": "order-ref-contained",
+	"contained": [
+		{
+			"resourceType": "Medication",
+			"id": "med",
+			"code": {
+				"text": "Red Pill"
+			},
+			"manufacturer": {
+				"reference": "#morpheus"
+			}
+		},
+		{
+			"resourceType": "Organization",
+			"id": "morpheus",
+			"name": "Morpheus Co."
+		}
+	],
+	"medicationReference": {
+		"reference": "#med"
+	}
+}

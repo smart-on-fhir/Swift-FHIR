@@ -341,14 +341,14 @@ struct FHIRSearchConstruct
 					param.value = str
 				}
 				else {
-					print("WARNING: no idea what to do with \(key): \(val), ignoring")
+					fhir_warn("no idea what to do with \(key): \(val), ignoring")
 				}
 				arr.append(param)
 			}
 			return arr
 		}
 		
-		print("WARNING: not sure what to do with \"\(construct)\"")
+		fhir_warn("not sure what to do with \"\(construct)\"")
 		return arr
 	}
 }
@@ -385,7 +385,7 @@ struct FHIRSearchConstructAndHandler: FHIRSearchConstructHandler
 			}
 		}
 		else {
-			print("ERROR: must supply an array of objects to an $and modifier")
+			fhir_warn("must supply an array of objects to an $and modifier")
 		}
 	}
 }
@@ -405,14 +405,14 @@ struct FHIRSearchConstructOrHandler: FHIRSearchConstructHandler
 					strs.append(str)
 				}
 				else {
-					print("WARNING: what do I do with \(obj)?")
+					fhir_warn("what do I do with \(obj)?")
 				}
 			}
 			param.name = nil
 			param.value = strs.joinWithSeparator(",")
 		}
 		else {
-			print("ERROR: must supply an array of objects to an $or modifier")
+			fhir_warn("must supply an array of objects to an $or modifier")
 		}
 	}
 }
@@ -440,7 +440,7 @@ struct FHIRSearchConstructModifierHandler: FHIRSearchConstructHandler
 			param.children = FHIRSearchParam.from(value, parent: param)
 		}
 		else {
-			print("ERROR: unknown modifier \(param.name)")
+			fhir_warn("unknown modifier \(param.name)")
 		}
 	}
 }
@@ -467,7 +467,7 @@ struct FHIRSearchConstructOperatorHandler: FHIRSearchConstructHandler
 			}
 		}
 		else {
-			print("ERROR: unknown operator \(param.name) for \(value)")
+			fhir_warn("unknown operator \(param.name) for \(value)")
 		}
 	}
 }
@@ -485,11 +485,11 @@ struct FHIRSearchConstructTypeHandler: FHIRSearchConstructHandler
 				parent.name = (parent.name ?? "") + ":\(type)"
 			}
 			else {
-				print("ERROR: must have a parent parameter to use $type")
+				fhir_warn("must have a parent parameter to use $type")
 			}
 		}
 		else {
-			print("ERROR: must supply a String to a $type modifier, got \(value)")
+			fhir_warn("must supply a String to a $type modifier, got \(value)")
 		}
 	}
 }

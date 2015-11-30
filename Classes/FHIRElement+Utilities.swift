@@ -27,7 +27,7 @@ public extension FHIRResource
 	- parameter error: An NSError pointer to fill on failure
 	- returns: An instance of the receiving class or nil
 	*/
-	final class func instantiateFromPath(path: String) throws -> Self? {
+	final class func instantiateFromPath(path: String) throws -> Self {
 		let data = try NSData(contentsOfFile: path, options: [])
 		let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? FHIRJSON
 		return self.init(json: json)

@@ -12,12 +12,12 @@
  */
 public class FHIRElement: CustomStringConvertible
 {
-	/// The name of the resource or element
+	/// The name of the resource or element.
 	public class var resourceName: String {
 		get { return "Element" }
 	}
 	
-	/// Logical id of this artefact
+	/// Logical id of this artefact.
 	public var id: String?
 	
 	/// Contained, inline Resources, indexed by resource id.
@@ -29,10 +29,10 @@ public class FHIRElement: CustomStringConvertible
 	/// Resolved references.
 	var _resolved: [String: Resource]?
 	
-	/// Additional Content defined by implementations
+	/// Additional Content defined by implementations.
 	public var extension_fhir: [Extension]?
 	
-	/// Extensions that cannot be ignored
+	/// Extensions that cannot be ignored.
 	public var modifierExtension: [Extension]?
 	
 	
@@ -44,7 +44,7 @@ public class FHIRElement: CustomStringConvertible
 	public required init(json: FHIRJSON?) {
 		if let errors = populateFromJSON(json) {
 			for error in errors {
-				fhir_logIfDebug(error.description)
+				fhir_warn(error.description)
 			}
 		}
 	}
@@ -61,13 +61,16 @@ public class FHIRElement: CustomStringConvertible
 	 */
 	public final func populateFromJSON(json: FHIRJSON?) -> [FHIRJSONError]? {
 		var present = Set<String>()
+		present.insert("fhir_comments")
 		var errors = populateFromJSON(json, presentKeys: &present) ?? [FHIRJSONError]()
 		
-		// superfluous JSON entries?
+		// superfluous JSON entries? Ignore "fhir_comments" and "_xy".
 		let superfluous = json?.keys.filter() { !present.contains($0) }
 		if let supflu = superfluous where !supflu.isEmpty {
 			for sup in supflu {
-				errors.append(FHIRJSONError(key: sup, has: json![sup]!.dynamicType))
+				if let first = sup.characters.first where "_" != first {
+					errors.append(FHIRJSONError(key: sup, has: json![sup]!.dynamicType))
+				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -106,7 +109,7 @@ public class FHIRElement: CustomStringConvertible
 							cont[res_id] = res
 						}
 						else {
-							print("Contained resource in \(self) without “id” will be ignored")
+							fhir_warn("contained resource in \(self) without “id” will be ignored")
 						}
 					}
 					contained = cont
@@ -240,6 +243,9 @@ public class FHIRElement: CustomStringConvertible
 	func containedReference(refid: String) -> FHIRContainedResource? {
 		if let cont = contained?[refid] {
 			return cont
+		}
+		if nil == _owner {
+			fhir_warn("Cannot find contained resource referenced as “\(refid)” in \(self)")
 		}
 		return _owner?.containedReference(refid)
 	}

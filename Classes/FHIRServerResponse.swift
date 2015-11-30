@@ -51,7 +51,7 @@ public class FHIRServerResponse
 						headers[keystr] = valstr
 					}
 					else {
-						print("DEBUG: Not a string in headers: \(val) (for \(keystr))")
+						fhir_logIfDebug("Not a string in headers: \(val) (for \(keystr))")
 					}
 				}
 			}

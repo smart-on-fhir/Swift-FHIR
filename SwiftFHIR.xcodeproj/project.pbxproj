@@ -403,6 +403,14 @@
 		EE02F7FD1ACF259B00179969 /* VisionPrescriptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F7491ACF259B00179969 /* VisionPrescriptionTests.swift */; };
 		EE1F49961C0500E90095BF0F /* FHIRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F49951C0500E90095BF0F /* FHIRError.swift */; };
 		EE1F49971C0500E90095BF0F /* FHIRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F49951C0500E90095BF0F /* FHIRError.swift */; };
+		EE1F49CF1C0D06360095BF0F /* FHIROpenServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F49CE1C0D06360095BF0F /* FHIROpenServer.swift */; };
+		EE1F49D01C0D06360095BF0F /* FHIROpenServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F49CE1C0D06360095BF0F /* FHIROpenServer.swift */; };
+		EE1F49D21C0D11060095BF0F /* FHIRBaseServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F49D11C0D11060095BF0F /* FHIRBaseServer.swift */; };
+		EE1F49D31C0D11060095BF0F /* FHIRBaseServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F49D11C0D11060095BF0F /* FHIRBaseServer.swift */; };
+		EE1F49D51C0D14F60095BF0F /* ReferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F49D41C0D14F60095BF0F /* ReferenceTests.swift */; };
+		EE1F49D61C0D14F60095BF0F /* ReferenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE1F49D41C0D14F60095BF0F /* ReferenceTests.swift */; };
+		EE1F49DF1C0D1BB40095BF0F /* TestResources in Resources */ = {isa = PBXBuildFile; fileRef = EE1F49DE1C0D1BB40095BF0F /* TestResources */; };
+		EE1F49E01C0D1BB40095BF0F /* TestResources in Resources */ = {isa = PBXBuildFile; fileRef = EE1F49DE1C0D1BB40095BF0F /* TestResources */; };
 		EE5120561A4B3212002D434A /* FHIRElement+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5120551A4B3212002D434A /* FHIRElement+Factory.swift */; };
 		EE545F3B1A66805600E17B0C /* SwiftFHIR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE684C1E19A789BA00B5A2C0 /* SwiftFHIR.framework */; };
 		EE684C2419A789BA00B5A2C0 /* SwiftFHIR.h in Headers */ = {isa = PBXBuildFile; fileRef = EE684C2319A789BA00B5A2C0 /* SwiftFHIR.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -695,6 +703,10 @@
 		EE02F7491ACF259B00179969 /* VisionPrescriptionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisionPrescriptionTests.swift; sourceTree = "<group>"; };
 		EE1F49951C0500E90095BF0F /* FHIRError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRError.swift; sourceTree = "<group>"; };
 		EE1F49AE1C066E7B0095BF0F /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		EE1F49CE1C0D06360095BF0F /* FHIROpenServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIROpenServer.swift; sourceTree = "<group>"; };
+		EE1F49D11C0D11060095BF0F /* FHIRBaseServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FHIRBaseServer.swift; sourceTree = "<group>"; };
+		EE1F49D41C0D14F60095BF0F /* ReferenceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceTests.swift; sourceTree = "<group>"; };
+		EE1F49DE1C0D1BB40095BF0F /* TestResources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = TestResources; sourceTree = "<group>"; };
 		EE5120551A4B3212002D434A /* FHIRElement+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FHIRElement+Factory.swift"; sourceTree = "<group>"; };
 		EE684C1E19A789BA00B5A2C0 /* SwiftFHIR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftFHIR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE684C2219A789BA00B5A2C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -820,6 +832,8 @@
 				EE684C2C19A789BA00B5A2C0 /* Info.plist */,
 				EE684CCE19A7CEF000B5A2C0 /* ExtensionsTest.swift */,
 				EEE5DF361A5D862B002AFF53 /* FHIRSearchTests.swift */,
+				EE1F49D41C0D14F60095BF0F /* ReferenceTests.swift */,
+				EE1F49DE1C0D1BB40095BF0F /* TestResources */,
 				EEEB096E19AD248700C324FC /* ModelTests */,
 				EEEE31191BB278E3008866E2 /* AppKit.framework */,
 			);
@@ -976,6 +990,8 @@
 				EE9B31FF1ACADE8000980AA9 /* Reference+Resolving.swift */,
 				EE8901221B7E07D700F1EDBF /* FHIRElement+Utilities.swift */,
 				EEA2C96F1A7391F8008726B0 /* FHIRServer.swift */,
+				EE1F49CE1C0D06360095BF0F /* FHIROpenServer.swift */,
+				EE1F49D11C0D11060095BF0F /* FHIRBaseServer.swift */,
 				EE9B320C1ACAE79500980AA9 /* FHIRServerRequestHandler.swift */,
 				EE9B320D1ACAE79500980AA9 /* FHIRServerResponse.swift */,
 				EE02F6ED1ACF257000179969 /* FHIRSearch.swift */,
@@ -1120,9 +1136,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		EE684C1D19A789BA00B5A2C0 /* SwiftFHIR */ = {
+		EE684C1D19A789BA00B5A2C0 /* SwiftFHIR-OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EE684C3119A789BA00B5A2C0 /* Build configuration list for PBXNativeTarget "SwiftFHIR" */;
+			buildConfigurationList = EE684C3119A789BA00B5A2C0 /* Build configuration list for PBXNativeTarget "SwiftFHIR-OSX" */;
 			buildPhases = (
 				EE684C1919A789BA00B5A2C0 /* Sources */,
 				EE684C1A19A789BA00B5A2C0 /* Frameworks */,
@@ -1133,7 +1149,7 @@
 			);
 			dependencies = (
 			);
-			name = SwiftFHIR;
+			name = "SwiftFHIR-OSX";
 			productName = SwiftFHIR;
 			productReference = EE684C1E19A789BA00B5A2C0 /* SwiftFHIR.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1156,9 +1172,9 @@
 			productReference = EE684C2919A789BA00B5A2C0 /* SwiftFHIRTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		EE6DA7CD1A5D4B1000E00708 /* SwiftFHIRiOS */ = {
+		EE6DA7CD1A5D4B1000E00708 /* SwiftFHIR-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EE6DA8541A5D4B1000E00708 /* Build configuration list for PBXNativeTarget "SwiftFHIRiOS" */;
+			buildConfigurationList = EE6DA8541A5D4B1000E00708 /* Build configuration list for PBXNativeTarget "SwiftFHIR-iOS" */;
 			buildPhases = (
 				EE6DA7CE1A5D4B1000E00708 /* Sources */,
 				EE6DA8501A5D4B1000E00708 /* Frameworks */,
@@ -1169,7 +1185,7 @@
 			);
 			dependencies = (
 			);
-			name = SwiftFHIRiOS;
+			name = "SwiftFHIR-iOS";
 			productName = SwiftFHIR;
 			productReference = EE6DA8571A5D4B1000E00708 /* SwiftFHIR.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1226,9 +1242,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EE684C1D19A789BA00B5A2C0 /* SwiftFHIR */,
+				EE684C1D19A789BA00B5A2C0 /* SwiftFHIR-OSX */,
 				EE684C2819A789BA00B5A2C0 /* SwiftFHIRTests */,
-				EE6DA7CD1A5D4B1000E00708 /* SwiftFHIRiOS */,
+				EE6DA7CD1A5D4B1000E00708 /* SwiftFHIR-iOS */,
 				EE6DA85C1A5D4B3A00E00708 /* SwiftFHIRiOSTests */,
 			);
 		};
@@ -1246,6 +1262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE1F49DF1C0D1BB40095BF0F /* TestResources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1260,6 +1277,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE1F49E01C0D1BB40095BF0F /* TestResources in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1317,6 +1335,7 @@
 				EE02F6BF1ACF252000179969 /* Quantity.swift in Sources */,
 				EE02F6C91ACF252000179969 /* Reference.swift in Sources */,
 				EEA2C9701A7391F8008726B0 /* FHIRServer.swift in Sources */,
+				EE1F49CF1C0D06360095BF0F /* FHIROpenServer.swift in Sources */,
 				EE02F6A51ACF252000179969 /* Organization.swift in Sources */,
 				EE8DD2341A6B118000038123 /* DateAndTime.swift in Sources */,
 				EE02F6571ACF252000179969 /* ElementDefinition.swift in Sources */,
@@ -1339,6 +1358,7 @@
 				EE02F6631ACF252000179969 /* EpisodeOfCare.swift in Sources */,
 				EE02F6A31ACF252000179969 /* OrderResponse.swift in Sources */,
 				EE02F6111ACF252000179969 /* AuditEvent.swift in Sources */,
+				EE1F49D21C0D11060095BF0F /* FHIRBaseServer.swift in Sources */,
 				EE02F65F1ACF252000179969 /* EnrollmentRequest.swift in Sources */,
 				EE02F6331ACF252000179969 /* ContactPoint.swift in Sources */,
 				EE02F6771ACF252000179969 /* ImagingObjectSelection.swift in Sources */,
@@ -1464,6 +1484,7 @@
 				EE02F7941ACF259B00179969 /* EpisodeOfCareTests.swift in Sources */,
 				EE02F7581ACF259B00179969 /* BundleTests.swift in Sources */,
 				EE02F7721ACF259B00179969 /* CoverageTests.swift in Sources */,
+				EE1F49D51C0D14F60095BF0F /* ReferenceTests.swift in Sources */,
 				EE02F7BA1ACF259B00179969 /* MessageHeaderTests.swift in Sources */,
 				EE02F7FC1ACF259B00179969 /* VisionPrescriptionTests.swift in Sources */,
 				EE02F7601ACF259B00179969 /* ClinicalImpressionTests.swift in Sources */,
@@ -1564,6 +1585,7 @@
 				EE02F6C01ACF252000179969 /* Quantity.swift in Sources */,
 				EE02F6CA1ACF252000179969 /* Reference.swift in Sources */,
 				EEA2C9711A7391FE008726B0 /* FHIRServer.swift in Sources */,
+				EE1F49D01C0D06360095BF0F /* FHIROpenServer.swift in Sources */,
 				EE02F6A61ACF252000179969 /* Organization.swift in Sources */,
 				EE8DD2351A6B118000038123 /* DateAndTime.swift in Sources */,
 				EE02F6581ACF252000179969 /* ElementDefinition.swift in Sources */,
@@ -1586,6 +1608,7 @@
 				EE02F6641ACF252000179969 /* EpisodeOfCare.swift in Sources */,
 				EE02F6A41ACF252000179969 /* OrderResponse.swift in Sources */,
 				EE02F6121ACF252000179969 /* AuditEvent.swift in Sources */,
+				EE1F49D31C0D11060095BF0F /* FHIRBaseServer.swift in Sources */,
 				EE02F6601ACF252000179969 /* EnrollmentRequest.swift in Sources */,
 				EE02F6341ACF252000179969 /* ContactPoint.swift in Sources */,
 				EE02F6781ACF252000179969 /* ImagingObjectSelection.swift in Sources */,
@@ -1711,6 +1734,7 @@
 				EEF20DAE1A5D4ECD009A6EDA /* ExtensionsTest.swift in Sources */,
 				EE02F7591ACF259B00179969 /* BundleTests.swift in Sources */,
 				EE02F7731ACF259B00179969 /* CoverageTests.swift in Sources */,
+				EE1F49D61C0D14F60095BF0F /* ReferenceTests.swift in Sources */,
 				EE02F7BB1ACF259B00179969 /* MessageHeaderTests.swift in Sources */,
 				EE02F7FD1ACF259B00179969 /* VisionPrescriptionTests.swift in Sources */,
 				EE02F7611ACF259B00179969 /* ClinicalImpressionTests.swift in Sources */,
@@ -1765,12 +1789,12 @@
 /* Begin PBXTargetDependency section */
 		EE545F3A1A66805100E17B0C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EE684C1D19A789BA00B5A2C0 /* SwiftFHIR */;
+			target = EE684C1D19A789BA00B5A2C0 /* SwiftFHIR-OSX */;
 			targetProxy = EE545F391A66805100E17B0C /* PBXContainerItemProxy */;
 		};
 		EE6DA8651A5D4B3A00E00708 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EE6DA7CD1A5D4B1000E00708 /* SwiftFHIRiOS */;
+			target = EE6DA7CD1A5D4B1000E00708 /* SwiftFHIR-iOS */;
 			targetProxy = EE6DA8641A5D4B3A00E00708 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1871,11 +1895,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.chip.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SwiftFHIR;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -1890,11 +1914,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.chip.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SwiftFHIR;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 			};
@@ -2020,7 +2044,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EE684C3119A789BA00B5A2C0 /* Build configuration list for PBXNativeTarget "SwiftFHIR" */ = {
+		EE684C3119A789BA00B5A2C0 /* Build configuration list for PBXNativeTarget "SwiftFHIR-OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EE684C3219A789BA00B5A2C0 /* Debug */,
@@ -2038,7 +2062,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EE6DA8541A5D4B1000E00708 /* Build configuration list for PBXNativeTarget "SwiftFHIRiOS" */ = {
+		EE6DA8541A5D4B1000E00708 /* Build configuration list for PBXNativeTarget "SwiftFHIR-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EE6DA8551A5D4B1000E00708 /* Debug */,

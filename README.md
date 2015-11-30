@@ -41,9 +41,6 @@ Here's a rough list of what still needs to be done.
 
 ```
 [ ] Add convenience methods to working with resources in code
-[X] Reference resolver: resolve contained resources
-[X] Reference resolver: resolve relative resources
-[ ] Reference resolver: resolve absolute resources
 [?] Serialization validator
 [ ] Handle resource versions nicely
 [ ] Create a default behavior when a modifierExtension is detected
@@ -61,9 +58,8 @@ Working, at least to some extent:
 - Use a FHIR server protocol for REST interactions with a server
 - Deserialize from JSON
 - Serialize to JSON
-- Resolve contained resources
-- Resolve relative resources (on the same server)
-- Contain resources programmatically
+- Resolve contained/relative/absolute resource references
+- Contain resources
 - Construct searches with NoSQL-like statements (cf. [fhir.js](https://github.com/FHIR/fhir.js))
 - Perform operations
 - Use example resources for auto-created class unit tests

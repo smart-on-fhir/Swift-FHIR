@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EE6DA7CD1A5D4B1000E00708"
                BuildableName = "SwiftFHIR.framework"
-               BlueprintName = "SwiftFHIRiOS"
+               BlueprintName = "SwiftFHIR-iOS"
                ReferencedContainer = "container:SwiftFHIR.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -58,7 +58,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EE6DA7CD1A5D4B1000E00708"
             BuildableName = "SwiftFHIR.framework"
-            BlueprintName = "SwiftFHIRiOS"
+            BlueprintName = "SwiftFHIR-iOS"
             ReferencedContainer = "container:SwiftFHIR.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -80,7 +80,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EE6DA7CD1A5D4B1000E00708"
             BuildableName = "SwiftFHIR.framework"
-            BlueprintName = "SwiftFHIRiOS"
+            BlueprintName = "SwiftFHIR-iOS"
             ReferencedContainer = "container:SwiftFHIR.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -98,7 +98,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EE6DA7CD1A5D4B1000E00708"
             BuildableName = "SwiftFHIR.framework"
-            BlueprintName = "SwiftFHIRiOS"
+            BlueprintName = "SwiftFHIR-iOS"
             ReferencedContainer = "container:SwiftFHIR.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

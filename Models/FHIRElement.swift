@@ -243,9 +243,6 @@ public class FHIRElement: CustomStringConvertible
 		if let cont = contained?[refid] {
 			return cont
 		}
-		if nil == _owner {
-			fhir_warn("Cannot find contained resource referenced as “\(refid)” in \(self)")
-		}
 		return _owner?.containedReference(refid)
 	}
 	

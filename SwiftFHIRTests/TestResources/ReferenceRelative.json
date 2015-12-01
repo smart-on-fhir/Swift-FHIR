@@ -1,0 +1,7 @@
+{
+	"resourceType": "MedicationOrder",
+	"id": "order-ref-relative",
+	"medicationReference": {
+		"reference": "Medication/med-1234"
+	}
+}

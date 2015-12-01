@@ -1,0 +1,7 @@
+{
+	"resourceType": "MedicationOrder",
+	"id": "order-ref-absolute",
+	"medicationReference": {
+		"reference": "https://fhir-open-api-dstu2.smarthealthit.org/Medication/1"
+	}
+}

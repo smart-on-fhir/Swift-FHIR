@@ -58,6 +58,9 @@ public class FHIRServerRequestHandler
 		if let res = response {
 			return self.dynamicType.ResponseType.init(response: res, data: inData, urlError: error)
 		}
+		if let error = error {
+			return self.dynamicType.ResponseType.init(error: error)
+		}
 		return self.dynamicType.ResponseType.noneReceived()
 	}
 	

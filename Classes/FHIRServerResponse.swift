@@ -73,7 +73,10 @@ public class FHIRServerResponse
 	public required init(error: ErrorType) {
 		self.status = 0
 		self.headers = [String: String]()
-		if let error = error as? FHIRError {
+		if NSURLErrorDomain == (error as NSError).domain {
+			self.error = FHIRError.RequestError(status, NSURLErrorHumanize(error as NSError))
+		}
+		else if let error = error as? FHIRError {
 			self.error = error
 		}
 		else {

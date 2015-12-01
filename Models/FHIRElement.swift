@@ -93,7 +93,6 @@ public class FHIRElement: CustomStringConvertible
 					id = val
 				}
 				else {
-					String.Type.self
 					errors.append(FHIRJSONError(key: "id", wants: String.self, has: exist.dynamicType))
 				}
 			}

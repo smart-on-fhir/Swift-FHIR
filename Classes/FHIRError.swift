@@ -7,6 +7,9 @@
 //
 
 
+/**
+Our FHIR errors.
+*/
 public enum FHIRError: ErrorType, CustomStringConvertible {
 	case Error(String)
 	
@@ -72,5 +75,79 @@ public enum FHIRError: ErrorType, CustomStringConvertible {
 			return "\("Failed to parse JSON".localized): \(reason)\n\(raw)"
 		}
 	}
+}
+
+
+/**
+Errors thrown during JSON parsing.
+*/
+public struct FHIRJSONError: ErrorType, CustomStringConvertible {
+	public let _domain = "FHIRJSONError"
+	
+	public var _code: Int {
+		return code.rawValue
+	}
+	
+	public var code: FHIRJSONErrorType
+	
+	/// The JSON property key generating the error.
+	public var key: String
+	
+	/// The type expected for values of this key.
+	public var wants: Any.Type?
+	
+	/// The type received for this key.
+	public var has: Any.Type?
+	
+	/// The resource type name received.
+	public var hasType: String?
+	
+	
+	init(code: FHIRJSONErrorType, key: String) {
+		self.code = code
+		self.key = key
+	}
+	
+	public init(key: String) {
+		self.init(code: .MissingKey, key: key)
+	}
+	
+	public init(key: String, has: Any.Type) {
+		self.init(code: .UnknownKey, key: key)
+		self.has = has
+	}
+	
+	public init(key: String, wants: Any.Type, has: Any.Type) {
+		self.init(code: .WrongValueTypeForKey, key: key)
+		self.wants = wants
+		self.has = has
+	}
+	
+	public init(wantsType: Any.Type?, hasType: String) {
+		self.init(code: .WrongResourceType, key: "resourceType")
+		self.wants = wantsType
+		self.hasType = hasType
+	}
+	
+	public var description: String {
+		let nul = Any.self
+		switch code {
+		case .MissingKey:
+			return "Expecting nonoptional JSON property “\(key)” but it is missing"
+		case .UnknownKey:
+			return "Superfluous JSON property “\(key)” of type \(has ?? nul), ignoring"
+		case .WrongValueTypeForKey:
+			return "Expecting JSON property “\(key)” to be `\(wants ?? nul)`, but is \(has ?? nul)"
+		case .WrongResourceType:
+			 return "Expecting resource type “\(wants ?? nul)” but received “\(hasType ?? "unknown")”"
+		}
+	}
+}
+
+public enum FHIRJSONErrorType: Int {
+	case MissingKey
+	case UnknownKey
+	case WrongValueTypeForKey
+	case WrongResourceType
 }
 

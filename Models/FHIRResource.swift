@@ -32,10 +32,20 @@ public class FHIRResource: FHIRElement
 	}
 	
 	override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		if let _ = json?["resourceType"] as? String {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let exist: AnyObject = json?["resourceType"] {
 			presentKeys.insert("resourceType")
+			
+			if let val = exist as? String {
+				if val != self.dynamicType.resourceName {
+					errors.append(FHIRJSONError(wantsType: self.dynamicType, hasType: val))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "id", wants: String.self, has: exist.dynamicType))
+			}
 		}
-		return super.populateFromJSON(json, presentKeys: &presentKeys)
+		return errors.isEmpty ? nil : errors
 	}
 	
 	/** Serialize the receiver to JSON. */

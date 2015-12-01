@@ -1,0 +1,14 @@
+{
+	"resourceType": "MedicationOrder",
+	"id": "order-ref-contained-wrong",
+	"contained": [
+		{
+			"resourceType": "Organization",
+			"id": "morpheus",
+			"name": "Morpheus Co."
+		}
+	],
+	"medicationReference": {
+		"reference": "#morpheus"
+	}
+}

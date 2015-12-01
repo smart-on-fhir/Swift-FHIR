@@ -36,11 +36,12 @@ public final class FHIRContainedResource {
 		self.init(id: id, json: json, owner: owner)
 	}
 	
-	public func resolvedInstanceWithReferenceId<T: Resource>(refid: String, ofType type: T.Type) -> T {
-		let instance = type.init(json: json)	// cannot use init(json:owner:) as it's not a required initializer
-		instance._owner = owner
-		owner.didResolveReference(refid, resolved: instance)
-		return instance
+	public func resolvedInstanceWithReferenceId<T: Resource>(refid: String, ofType type: T.Type) -> T? {
+		if let instance = T.instantiateFrom(json, owner: owner) as? T {
+			owner.didResolveReference(refid, resolved: instance)
+			return instance
+		}
+		return nil
 	}
 }
 

@@ -12,6 +12,7 @@ generate/downloads/site
 **.pbxuser
 **.mode?v?
 **.perspectivev?
+**.xcscmblueprint
 xcuserdata
 build
 docs

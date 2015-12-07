@@ -132,6 +132,9 @@ public class FHIRServerJSONResponse: FHIRServerResponse
 						let errstr = "[\(erritem.severity ?? "unknown")] \(erritem.diagnostics ?? "unknown")"
 						self.error = FHIRError.RequestError(status, errstr)
 					}
+					else if let errstr = json?["error"] as? String {
+						self.error = FHIRError.RequestError(status, errstr)
+					}
 				}
 			}
 			catch let error as NSError {

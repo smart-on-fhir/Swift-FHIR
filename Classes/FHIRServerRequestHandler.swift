@@ -99,7 +99,7 @@ public class FHIRServerJSONRequestHandler: FHIRServerRequestHandler
 		}
 		if let json = json {
 			data = try NSJSONSerialization.dataWithJSONObject(json, options: [])
-		}			// e.g. for GET requests, we don't have data, so that's fine too
+		}			// for GET requests we don't have data, which is fine too
 	}
 	
 	public override func prepareRequest(req: NSMutableURLRequest) throws {
@@ -117,6 +117,44 @@ public class FHIRServerJSONRequestHandler: FHIRServerRequestHandler
 	
 	public override class var ResponseType: FHIRServerResponse.Type {
 		return FHIRServerJSONResponse.self
+	}
+}
+
+
+/**
+    PRELIMINARY! Prepare and handle a request returning some type of data.
+
+    If you use this as PUT/POST, you are responsible for setting the `data` property to an appropriate NSData representation.
+*/
+public class FHIRServerDataRequestHandler: FHIRServerRequestHandler {
+	
+	public let contentType: String
+	
+	init(_ type: FHIRRequestType, contentType: String) {
+		self.contentType = contentType
+		super.init(type, resource: nil)
+	}
+	
+	override public func prepareData() throws {
+	}
+	
+	public override func prepareRequest(req: NSMutableURLRequest) throws {
+		try super.prepareRequest(req)
+		switch type {
+		case .GET:
+			req.setValue(contentType, forHTTPHeaderField: "Accept")
+		case .PUT:
+			// TODO: make useful for PUT/POST (by setting correct "Accept" headers) and implement error handling (i.e. OperationOutcome) for GET requests
+			req.setValue(contentType, forHTTPHeaderField: "Content-Type")
+		case .POST:
+			req.setValue(contentType, forHTTPHeaderField: "Content-Type")
+		default:
+			break
+		}
+	}
+	
+	public override class var ResponseType: FHIRServerResponse.Type {
+		return FHIRServerResponse.self
 	}
 }
 

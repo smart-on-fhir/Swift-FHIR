@@ -77,7 +77,7 @@ public class FHIROpenServer: FHIRServer {
 	
 	
 	/**
-	Method to execute a given request with a given request/response handler.
+	Method to execute a request against a given relative URL with a given request/response handler.
 	
 	- parameter path: The path, relative to the server's base; may include URL query and URL fragment (!)
 	- parameter handler: The RequestHandler that prepares the request and processes the response
@@ -85,19 +85,29 @@ public class FHIROpenServer: FHIRServer {
 	*/
 	public func performRequestAgainst<R: FHIRServerRequestHandler>(path: String, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
 		if let url = absoluteURLForPath(path, handler: handler) {
-			let request = configurableRequestForURL(url)
-			do {
-				try handler.prepareRequest(request)
-				self.performPreparedRequest(request, handler: handler, callback: callback)
-			}
-			catch let error {
-				let err = (error as NSError).localizedDescription ?? "if only I knew why (\(__FILE__):\(__LINE__))"
-				callback(response: handler.notSent("Failed to prepare request against \(url): \(err)"))
-			}
+			performRequestWithURL(url, handler: handler, callback: callback)
 		}
 		else {
 			let res = handler.notSent("Failed to parse path «\(path)» relative to server base URL")
 			callback(response: res)
+		}
+	}
+	
+	/**
+	Method to execute a request against a given absolute URL with a given request/response handler.
+	
+	- parameter path: The path, relative to the server's base; may include URL query and URL fragment (!)
+	- parameter handler: The RequestHandler that prepares the request and processes the response
+	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
+	*/
+	public func performRequestWithURL<R: FHIRServerRequestHandler>(url: NSURL, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
+		let request = configurableRequestForURL(url)
+		do {
+			try handler.prepareRequest(request)
+			self.performPreparedRequest(request, handler: handler, callback: callback)
+		}
+		catch let error {
+			callback(response: handler.notSent("Failed to prepare request against \(url): \(error)"))
 		}
 	}
 	

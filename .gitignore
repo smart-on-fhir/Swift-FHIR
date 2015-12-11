@@ -2,6 +2,7 @@
 __pycache__
 *.pyc
 env
+.build
 
 # downloads
 generate/downloads/fhir-spec*

@@ -82,12 +82,8 @@ public enum FHIRError: ErrorType, CustomStringConvertible {
 Errors thrown during JSON parsing.
 */
 public struct FHIRJSONError: ErrorType, CustomStringConvertible {
-	public let _domain = "FHIRJSONError"
 	
-	public var _code: Int {
-		return code.rawValue
-	}
-	
+	/// The error type.
 	public var code: FHIRJSONErrorType
 	
 	/// The JSON property key generating the error.

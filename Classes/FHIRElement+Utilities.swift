@@ -24,8 +24,7 @@ public extension FHIRResource
 	Attempt to instantiate a Resource of the receiving class by reading a JSON file at the given filesystem path.
 	
 	- parameter path: The local path to read the JSON file from
-	- parameter error: An NSError pointer to fill on failure
-	- returns: An instance of the receiving class or nil
+	- returns: An instance of the receiving class
 	*/
 	final class func instantiateFromPath(path: String) throws -> Self {
 		let data = try NSData(contentsOfFile: path, options: [])

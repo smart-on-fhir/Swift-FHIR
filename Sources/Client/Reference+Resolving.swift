@@ -3,18 +3,13 @@
 //  SwiftFHIR
 //
 //  Created by Pascal Pfiffner on 10/14/14.
-//  2014, SMART Platforms.
+//  2014, SMART Health IT.
 //
 
 import Foundation
 #if !NO_MODEL_IMPORT
 import Models
 #endif
-
-
-extension FHIRAbstractBase {
-	
-}
 
 
 /**
@@ -43,9 +38,9 @@ extension Reference {
 		}
 		
 		// not yet resolved, let's look at contained resources
-//		if let contained = containedReference(refid) {
-//			return contained.resolvedInstanceWithReferenceId(refid, ofType: type)
-//		}
+		if let contained = owningResource()?.containedResource(refid) as? T {
+			return contained
+		}
 		return nil
 	}
 	
@@ -79,7 +74,7 @@ extension Reference {
 			if let server = server {
 				T.readFrom(path, server: server) { resource, error in
 					if let res = resource {
-//						self.owningResource()?.didResolveReference(ref, resolved: res)
+						self.owningResource()?.didResolveReference(ref, resolved: res)
 						callback(res as? T)		// `readFrom()` will always instantiate its own type, so this should never fail
 					}
 					else {

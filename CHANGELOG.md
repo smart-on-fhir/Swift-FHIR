@@ -1,10 +1,21 @@
 Changelog
 =========
 
+
+## 2.2.2
+
+- Re-implement handling of contained resources and containing of resources
+- Add `Package.swift` and reorganize code to be compatible with the upcoming Swift package manager
+- Support PATCH operation (but no convenience implementation yet)
+
+## 2.2.1
+
+- Add a very simple base implementation of `FHIRServer` called `FHIROpenServer`and a typealias `FHIRBaseServer`
+- Improvements to reference resolving
+
 ## 2.2
 
 - Update to FHIR `1.0.2.7202` (DSTU 2 with technical errata, compatible to `1.0.1`)
-- Add a very simple base implementation of `FHIRServer` called `FHIROpenServer`and a typealias `FHIRBaseServer`
 - New error handling using `FHIRError`
 - Implement absolute reference resolver (will not work if the other server is protected)
 - Fixes to `ElementDefinition`

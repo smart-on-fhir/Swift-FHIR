@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EE01F9701C58F6AB003AEA7E /* DomainResource+Containment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01F96F1C58F6AB003AEA7E /* DomainResource+Containment.swift */; };
+		EE01F9711C58F6AB003AEA7E /* DomainResource+Containment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01F96F1C58F6AB003AEA7E /* DomainResource+Containment.swift */; };
+		EE01F9731C58FC51003AEA7E /* ResourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE01F9721C58FC51003AEA7E /* ResourceTests.swift */; };
 		EE02F6051ACF252000179969 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5911ACF252000179969 /* Address.swift */; };
 		EE02F6061ACF252000179969 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5911ACF252000179969 /* Address.swift */; };
 		EE02F6071ACF252000179969 /* Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE02F5921ACF252000179969 /* Age.swift */; };
@@ -507,6 +510,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE01F96F1C58F6AB003AEA7E /* DomainResource+Containment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DomainResource+Containment.swift"; sourceTree = "<group>"; };
+		EE01F9721C58FC51003AEA7E /* ResourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceTests.swift; sourceTree = "<group>"; };
 		EE02F5911ACF252000179969 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		EE02F5921ACF252000179969 /* Age.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Age.swift; sourceTree = "<group>"; };
 		EE02F5931ACF252000179969 /* AllergyIntolerance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllergyIntolerance.swift; sourceTree = "<group>"; };
@@ -837,6 +842,7 @@
 				EE684CCE19A7CEF000B5A2C0 /* ExtensionsTest.swift */,
 				EEE5DF361A5D862B002AFF53 /* FHIRSearchTests.swift */,
 				EE1F49D41C0D14F60095BF0F /* ReferenceTests.swift */,
+				EE01F9721C58FC51003AEA7E /* ResourceTests.swift */,
 				EE1F49DE1C0D1BB40095BF0F /* TestResources */,
 				EEEB096E19AD248700C324FC /* ModelTests */,
 				EEEE31191BB278E3008866E2 /* AppKit.framework */,
@@ -992,6 +998,7 @@
 				EE9B31F31ACAD93400980AA9 /* Resource+REST.swift */,
 				EE1310CE1C1B5EE500D9DAE7 /* Resource+Instantiation.swift */,
 				EE9B31FF1ACADE8000980AA9 /* Reference+Resolving.swift */,
+				EE01F96F1C58F6AB003AEA7E /* DomainResource+Containment.swift */,
 				EE1F49CE1C0D06360095BF0F /* FHIROpenServer.swift */,
 				EE1F49D11C0D11060095BF0F /* FHIRBaseServer.swift */,
 				EE1310D61C1B608E00D9DAE7 /* FHIRServerRequestHandler.swift */,
@@ -1364,6 +1371,7 @@
 				EEEE30EA1BB1FD94008866E2 /* Account.swift in Sources */,
 				EE02F6511ACF252000179969 /* DocumentReference.swift in Sources */,
 				EE02F6851ACF252000179969 /* Medication.swift in Sources */,
+				EE01F9701C58F6AB003AEA7E /* DomainResource+Containment.swift in Sources */,
 				EEEE30EE1BB1FD94008866E2 /* MedicationOrder.swift in Sources */,
 				EE02F6711ACF252000179969 /* HealthcareService.swift in Sources */,
 				EE02F6591ACF252000179969 /* EligibilityRequest.swift in Sources */,
@@ -1467,6 +1475,7 @@
 				EE02F7E81ACF259B00179969 /* RiskAssessmentTests.swift in Sources */,
 				EE02F7D41ACF259B00179969 /* PractitionerTests.swift in Sources */,
 				EE02F7EA1ACF259B00179969 /* ScheduleTests.swift in Sources */,
+				EE01F9731C58FC51003AEA7E /* ResourceTests.swift in Sources */,
 				EE02F7981ACF259B00179969 /* FamilyMemberHistoryTests.swift in Sources */,
 				EE02F7AA1ACF259B00179969 /* ImmunizationTests.swift in Sources */,
 				EE02F76E1ACF259B00179969 /* ContractTests.swift in Sources */,
@@ -1616,6 +1625,7 @@
 				EEEE31061BB1FE26008866E2 /* Account.swift in Sources */,
 				EE02F6521ACF252000179969 /* DocumentReference.swift in Sources */,
 				EE1310C11C1B542100D9DAE7 /* Element.swift in Sources */,
+				EE01F9711C58F6AB003AEA7E /* DomainResource+Containment.swift in Sources */,
 				EE02F6861ACF252000179969 /* Medication.swift in Sources */,
 				EEEE310A1BB1FE26008866E2 /* MedicationOrder.swift in Sources */,
 				EE1310D21C1B604600D9DAE7 /* FHIRServer.swift in Sources */,

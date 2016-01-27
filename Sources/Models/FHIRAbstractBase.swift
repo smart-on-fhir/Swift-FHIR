@@ -112,10 +112,9 @@ public class FHIRAbstractBase: CustomStringConvertible {
 	
 	/**
 	Instantiates an array of the receiver's type and returns it.
-	TODO: Returning [Self] is not yet possible (Swift 2.1), too bad
 	*/
 	public final class func from(array: [FHIRJSON], owner: FHIRAbstractBase? = nil) -> [FHIRAbstractBase] {
-		return array.map() { self.init(json: $0, owner: owner) }
+		return array.map() { instantiateFrom($0, owner: owner) }
 	}
 	
 	
@@ -132,10 +131,13 @@ public class FHIRAbstractBase: CustomStringConvertible {
 	/**
 	Stores the resolved reference into the `_resolved` dictionary.
 	
+	This method is public because it's used in an extension in our client. You likely don't need to use it explicitly, use the
+	`resolve(type:callback:)` method on `Reference` instead.
+	
 	- parameter refid: The reference identifier as String
-	- parameter resolved: The element that was resolved
+	- parameter resolved: The resource that was resolved
 	*/
-	func didResolveReference(refid: String, resolved: Resource) {
+	public func didResolveReference(refid: String, resolved: Resource) {
 		if nil != _resolved {
 			_resolved![refid] = resolved
 		}
@@ -147,15 +149,15 @@ public class FHIRAbstractBase: CustomStringConvertible {
 	/**
 	The resource owning the receiver; used during reference resolving and to look up the instance's `_server`, if any.
 	*/
-	public func owningResource() -> Resource? {
+	public func owningResource() -> DomainResource? {
 		var owner = _owner
 		while nil != owner {
-			if nil != owner as? Resource {
-				break
+			if let owner = owner as? DomainResource {
+				return owner
 			}
 			owner = owner?._owner
 		}
-		return owner as? Resource
+		return nil
 	}
 	
 	

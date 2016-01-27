@@ -16,7 +16,7 @@ import Models
     The context an operation is to be performed against.
  */
 public enum FHIROperationContext {
-	case None, System, Type, Instance
+	case None, System, ResourceType, Instance
 }
 
 
@@ -38,7 +38,7 @@ public class FHIROperation: CustomStringConvertible {
 	var type: Resource.Type? {
 		didSet {
 			if nil != type {
-				context = .Type
+				context = .ResourceType
 			}
 		}
 	}
@@ -77,7 +77,7 @@ public class FHIROperation: CustomStringConvertible {
 			if nil == definition.system || !definition.system! {
 				throw FHIRError.OperationConfigurationError("Operation \(self) cannot be executed in system context")
 			}
-		case .Type:
+		case .ResourceType:
 			if nil == definition.type {
 				throw FHIRError.OperationConfigurationError("Operation \(self) cannot be executed in type context")
 			}
@@ -140,7 +140,7 @@ public class FHIROperation: CustomStringConvertible {
 			throw FHIRError.OperationConfigurationError("Operation \(self) has not been properly set up")
 		case .System:
 			return "$\(name)"
-		case .Type:
+		case .ResourceType:
 			return "\(type!.resourceName)/$\(name)"
 		case .Instance:
 			let path = try instance!.relativeURLPath()

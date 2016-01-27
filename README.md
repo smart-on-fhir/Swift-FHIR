@@ -41,6 +41,7 @@ Here's a rough list of what still needs to be done.
 
 ```
 [ ] Add convenience methods to working with resources in code
+[ ] Nice support for simple PATCH operations
 [?] Serialization validator
 [ ] Handle resource versions nicely
 [ ] Create a default behavior when a modifierExtension is detected
@@ -94,19 +95,25 @@ For classes representing models with non-optional properties, a convenience init
 
 ### Contained Resources
 
-FHIR makes use of [contained resources](http://hl7.org/implement/standards/fhir/references.html#contained).
+FHIR makes use of [contained resources](http://hl7.org/fhir/references.html#contained).
 An extension on the `Reference` class is included that adds method to handle reference resolving.
+
 To resolve resource references, call `resolve(ModelClass) { resource in }` on a reference property, which will return an instance of the referenced type in the callback if resolved successfully.
-To contain a resource and receive a `Reference` instance, call `parent.containResource(contained, withId: "id")`
+To contain a resource and receive a `Reference` instance, call `parent.containResource(contained)`
 
 ```swift
 // create a prescription with a contained medication
-let prescription = MedicationPrescription(json: nil)
-let medication = Medication(json: nil)
-prescription.medication = prescription.containResource(medication, withId: "med")
+let order = MedicationOrder(json: nil)
+let medication = Medication(json: {"id": "med"})
+do {
+    order.medicationReference = try order.containResource(medication)
+}
+catch let error {
+    // failed to contain, either because no id or containing itself
+}
 
 // resolve the contained medication
-prescription.medication?.resolve(Medication.self) { medication in
+order.medication?.resolve(Medication.self) { medication in
 	if let medication = medication {
 		// successfully resolved
 	}
@@ -119,7 +126,7 @@ The client supports the NoSQL-like approach proposed and used by [fhir.js](https
 
 #### Compartments
 
-Search can be restricted to [compartments](http://hl7.org/fhir/extras.html#compartment), these however are not yet supported in the SMART server nor in these classes.
+Search can be restricted to [compartments](https://www.hl7.org/fhir/compartments.html), these however are not yet supported in the SMART server nor in these classes.
 
 ```
 [ ] Patient/23/procedure?date=>2010-01-01&date=<2011-12-31

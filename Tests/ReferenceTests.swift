@@ -3,7 +3,7 @@
 //  SwiftFHIR
 //
 //  Created by Pascal Pfiffner on 11/30/15.
-//  Copyright © 2015 SMART Health IT. All rights reserved.
+//  2016, SMART Health IT.
 //
 
 import XCTest
@@ -19,8 +19,9 @@ class ReferenceTests: XCTestCase {
 		if let path = NSBundle(forClass: self.dynamicType).pathForResource("ReferenceContained1", ofType: "json", inDirectory: "TestResources") {
 			let order1 = try! MedicationOrder.instantiateFromPath(path)
 			XCTAssertEqual("order-ref-contained", order1.id)
-			XCTAssertEqual("Red Pill",  order1.medicationReference?.resolved(Medication)?.code?.text ?? "missing")
-			XCTAssertEqual("Red Pill",  order1.medicationReference?.resolved(Medication)?.code?.text ?? "missing")		// second time, reading from `_resolved`
+			XCTAssertNotNil(order1.medicationReference)
+			XCTAssertEqual("Red Pill", order1.medicationReference?.resolved(Medication)?.code?.text ?? "missing")
+			XCTAssertEqual("Red Pill", order1.medicationReference?.resolved(Medication)?.code?.text ?? "missing")		// second time, reading from `_resolved`
 			XCTAssertEqual("Morpheus Co.", order1.medicationReference?.resolved(Medication)?.manufacturer?.resolved(Organization)?.name)
 		}
 		else {

@@ -34,7 +34,8 @@ public extension NSBundle {
 	Attempt to read a JSON file with the given name (.json) from the bundle, parse the JSON and instantiate a FHIR resource corresponding
 	to the "resourceType" in the file.
 	
-	- returns: A FHIRResource subclass corresponding to the "resourceType" entry or nil
+	- parameter name: The filename, without ".json" extension, to read the resource from
+	- returns: A Resource subclass corresponding to the "resourceType" entry
 	*/
 	public func fhir_bundledResource(name: String) throws -> Resource? {
 		if let url = URLForResource(name, withExtension: "json"), let data = NSData(contentsOfURL: url) {

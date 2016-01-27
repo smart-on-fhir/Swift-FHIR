@@ -7,13 +7,14 @@
     <meta charset='utf-8'>
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
+    
   </head>
   <body>
     <a name="//apple_ref/swift/Class/ImagingStudy" class="dashAnchor"></a>
     <a title="ImagingStudy Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">SwiftFHIR Docs</a> (82% documented)</p>
+        <p><a href="../index.html">SwiftFHIR Docs</a> (76% documented)</p>
         <p class="header-right"><a href="https://github.com/smart-on-fhir/Swift-FHIR"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right"><a href="dash-feed://http%3A%2F%2Fsmart%2Don%2Dfhir%2Egithub%2Eio%2Fdocsets%2FSwiftFHIR%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
       </div>
@@ -29,10 +30,10 @@
       <nav class="sidebar">
         <ul class="nav-groups">
           <li class="nav-group-name">
-          <a href="../Classes.html">Classes</a>
+            <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/Account.html">Account</a>
+                <a href="../Classes/VisionPrescriptionDispense.html">VisionPrescriptionDispense</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Address.html">Address</a>
@@ -81,6 +82,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/AuditEventSource.html">AuditEventSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BackboneElement.html">BackboneElement</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Basic.html">Basic</a>
@@ -431,6 +435,9 @@
                 <a href="../Classes/Duration.html">Duration</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/Element.html">Element</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/ElementDefinition.html">ElementDefinition</a>
               </li>
               <li class="nav-group-task">
@@ -494,19 +501,25 @@
                 <a href="../Classes/Extension.html">Extension</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/FHIRContainedResource.html">FHIRContainedResource</a>
+                <a href="../Classes/FHIRAbstractBase.html">FHIRAbstractBase</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/FHIRElement.html">FHIRElement</a>
+                <a href="../Classes/FHIRAbstractResource.html">FHIRAbstractResource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FHIROpenServer.html">FHIROpenServer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/FHIROperation.html">FHIROperation</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/FHIRResource.html">FHIRResource</a>
+                <a href="../Classes/FHIRSearch.html">FHIRSearch</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/FHIRSearch.html">FHIRSearch</a>
+                <a href="../Classes/FHIRServerDataRequestHandler.html">FHIRServerDataRequestHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FHIRServerDataResponse.html">FHIRServerDataResponse</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/FHIRServerJSONRequestHandler.html">FHIRServerJSONRequestHandler</a>
@@ -516,9 +529,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/FHIRServerRequestHandler.html">FHIRServerRequestHandler</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerResponse.html">FHIRServerResponse</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/FamilyMemberHistory.html">FamilyMemberHistory</a>
@@ -1091,24 +1101,16 @@
                 <a href="../Classes/VisionPrescription.html">VisionPrescription</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/VisionPrescriptionDispense.html">VisionPrescriptionDispense</a>
+                <a href="../Classes/Account.html">Account</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Global Variables.html">Global Variables</a>
+            <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Global Variables.html#/s:v9SwiftFHIR23FHIRResourceErrorDomainSS">FHIRResourceErrorDomain</a>
+                <a href="../Enums/FHIRError.html">FHIRError</a>
               </li>
-              <li class="nav-group-task">
-                <a href="../Global Variables.html#/s:v9SwiftFHIR21FHIRServerErrorDomainSS">FHIRServerErrorDomain</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-          <a href="../Enums.html">Enums</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Enums/FHIRJSONErrorType.html">FHIRJSONErrorType</a>
               </li>
@@ -1121,28 +1123,10 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Extensions.html">Extensions</a>
+            <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Base64Binary.html">Base64Binary</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Bool.html">Bool</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Date.html">Date</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/DateTime.html">DateTime</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/FHIRElement.html">FHIRElement</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/FHIRResource.html">FHIRResource</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Instant.html">Instant</a>
+                <a href="../Extensions/UInt.html">UInt</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Int.html">Int</a>
@@ -1160,33 +1144,18 @@
                 <a href="../Extensions/NSURL.html">NSURL</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/Reference.html">Reference</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Resource.html">Resource</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/Time.html">Time</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UInt.html">UInt</a>
+                <a href="../Extensions/Bool.html">Bool</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Functions.html">Functions</a>
+            <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_7InstantS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_8DateTimeS0__Sb">&lt;(_:_:)</a>
+                <a href="../Functions.html#/s:F9SwiftFHIR9fhir_warnFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_warn(_:function:file:line:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
@@ -1195,13 +1164,10 @@
                 <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
+                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_8DateTimeS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
+                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_7InstantS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
@@ -1210,20 +1176,35 @@
                 <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_8DateTimeS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:F9SwiftFHIR15fhir_logIfDebugFSST_">fhir_logIfDebug(_:)</a>
+                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F9SwiftFHIR15fhir_logIfDebugFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_logIfDebug(_:function:file:line:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Protocols.html">Protocols</a>
+            <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Protocols/FHIRServer.html">FHIRServer</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/FHIRServerResponse.html">FHIRServerResponse</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Structs.html">Structs</a>
+            <a href="../Structs.html">Structs</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Structs/Base64Binary.html">Base64Binary</a>
@@ -1246,7 +1227,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Typealiases.html">Typealiases</a>
+            <a href="../Typealiases.html">Typealiases</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:9SwiftFHIR1$">$</a>
@@ -1269,19 +1250,17 @@
           <section class="section">
             <h1>ImagingStudy</h1>
               <div class="declaration">
-                <div class="Swift">
+                <div class="language">
                   <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ImagingStudy</span><span class="p">:</span> <span class="kt">DomainResource</span></code></pre>
 
                 </div>
               </div>
-            <ul>
-<li>A set of images produced in single study (one or more series of references images).
-*</li>
-<li>Representation of the content produced in a DICOM imaging study. A study comprises a set of series, each of which</li>
-<li>includes a set of Service-Object Pair Instances (SOP Instances - images or other data) acquired or produced in a</li>
-<li>common context.  A series is of only one modality (e.g. X-ray, CT, MR, ultrasound), but a study may have multiple</li>
-<li>series of different modalities.</li>
-</ul>
+            <p>A set of images produced in single study (one or more series of references images).</p>
+
+<p>Representation of the content produced in a DICOM imaging study. A study comprises a set of series, each of which
+  includes a set of Service-Object Pair Instances (SOP Instances - images or other data) acquired or produced in a
+  common context.  A series is of only one modality (e.g. X-ray, CT, MR, ultrasound), but a study may have multiple
+  series of different modalities.</p>
 
           </section>
           <section class="section task-group-section">
@@ -1305,7 +1284,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ImagingStudy</span><span class="p">:</span> <span class="kt">DomainResource</span></code></pre>
 
@@ -1327,12 +1306,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Related workflow identifier (<q>Accession Number</q>)</p>
+                        <p>Related workflow identifier (<q>Accession Number</q>).</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">accession</span><span class="p">:</span> <span class="kt">Identifier</span><span class="p">?</span></code></pre>
 
@@ -1354,12 +1333,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>ONLINE | OFFLINE | NEARLINE | UNAVAILABLE (0008,0056)</p>
+                        <p>ONLINE | OFFLINE | NEARLINE | UNAVAILABLE (0008,0056).</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">availability</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -1381,12 +1360,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Institution-generated description</p>
+                        <p>Institution-generated description.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">description_fhir</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -1408,12 +1387,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Other identifiers for the study</p>
+                        <p>Other identifiers for the study.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">identifier</span><span class="p">:</span> <span class="p">[</span><span class="kt">Identifier</span><span class="p">]?</span></code></pre>
 
@@ -1435,12 +1414,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Who interpreted images</p>
+                        <p>Who interpreted images.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">interpreter</span><span class="p">:</span> <span class="kt">Reference</span><span class="p">?</span></code></pre>
 
@@ -1462,12 +1441,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>All series modality if actual acquisition modalities</p>
+                        <p>All series modality if actual acquisition modalities.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">modalityList</span><span class="p">:</span> <span class="p">[</span><span class="kt">Coding</span><span class="p">]?</span></code></pre>
 
@@ -1489,12 +1468,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Number of Study Related Instances</p>
+                        <p>Number of Study Related Instances.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">numberOfInstances</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">?</span></code></pre>
 
@@ -1516,12 +1495,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Number of Study Related Series</p>
+                        <p>Number of Study Related Series.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">numberOfSeries</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">?</span></code></pre>
 
@@ -1543,12 +1522,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Order(s) that caused this study to be performed</p>
+                        <p>Order(s) that caused this study to be performed.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">order</span><span class="p">:</span> <span class="p">[</span><span class="kt">Reference</span><span class="p">]?</span></code></pre>
 
@@ -1570,12 +1549,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Who the images are of</p>
+                        <p>Who the images are of.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">patient</span><span class="p">:</span> <span class="kt">Reference</span><span class="p">?</span></code></pre>
 
@@ -1597,12 +1576,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Type of procedure performed</p>
+                        <p>Type of procedure performed.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">procedure</span><span class="p">:</span> <span class="p">[</span><span class="kt">Reference</span><span class="p">]?</span></code></pre>
 
@@ -1624,12 +1603,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Referring physician (0008,0090)</p>
+                        <p>Referring physician (0008,0090).</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">referrer</span><span class="p">:</span> <span class="kt">Reference</span><span class="p">?</span></code></pre>
 
@@ -1651,12 +1630,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Each study has one or more series of instances</p>
+                        <p>Each study has one or more series of instances.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">series</span><span class="p">:</span> <span class="p">[</span><span class="kt">ImagingStudySeries</span><span class="p">]?</span></code></pre>
 
@@ -1678,12 +1657,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>When the study was started</p>
+                        <p>When the study was started.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">started</span><span class="p">:</span> <span class="kt">DateTime</span><span class="p">?</span></code></pre>
 
@@ -1705,12 +1684,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Formal identifier for the study</p>
+                        <p>Formal identifier for the study.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">uid</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -1732,12 +1711,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Retrieve URI</p>
+                        <p>Retrieve URI.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">url</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">?</span></code></pre>
 
@@ -1749,9 +1728,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9SwiftFHIR12ImagingStudycFMS0_FT4jsonGSqGVSs10DictionarySSPSs9AnyObject____S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(json:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9SwiftFHIR12ImagingStudycFMS0_FT4jsonGSqGVSs10DictionarySSPSs9AnyObject____S0_">init(json:)</a>
+                    <a name="/s:FC9SwiftFHIR12ImagingStudycFMS0_FT4jsonGSqGVSs10DictionarySSPSs9AnyObject___5ownerGSqCS_16FHIRAbstractBase__S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(json:owner:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftFHIR12ImagingStudycFMS0_FT4jsonGSqGVSs10DictionarySSPSs9AnyObject___5ownerGSqCS_16FHIRAbstractBase__S0_">init(json:owner:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1764,9 +1743,9 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="nv">json</span><span class="p">:</span> <span class="kt">FHIRJSON</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="nv">json</span><span class="p">:</span> <span class="kt">FHIRJSON</span><span class="p">?,</span> <span class="nv">owner</span><span class="p">:</span> <span class="kt">FHIRAbstractBase</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1791,9 +1770,36 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">numberOfInstances</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">,</span> <span class="nv">numberOfSeries</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">,</span> <span class="nv">patient</span><span class="p">:</span> <span class="kt">Reference</span><span class="p">,</span> <span class="nv">uid</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftFHIR12ImagingStudy16populateFromJSONFS0_FTGSqGVSs10DictionarySSPSs9AnyObject___11presentKeysRGVSs3SetSS__GSqGSaVS_13FHIRJSONError__"></a>
+                    <a name="//apple_ref/swift/Method/populateFromJSON(_:presentKeys:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftFHIR12ImagingStudy16populateFromJSONFS0_FTGSqGVSs10DictionarySSPSs9AnyObject___11presentKeysRGVSs3SetSS__GSqGSaVS_13FHIRJSONError__">populateFromJSON(_:presentKeys:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ImagingStudy</span><span class="p">:</span> <span class="kt">DomainResource</span></code></pre>
 
                         </div>
                       </div>
@@ -1818,7 +1824,7 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">ImagingStudy</span><span class="p">:</span> <span class="kt">DomainResource</span></code></pre>
 
@@ -1832,8 +1838,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2015-09-23)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.3.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2016-01-27)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

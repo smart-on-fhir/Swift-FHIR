@@ -7,12 +7,13 @@
     <meta charset='utf-8'>
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
+    
   </head>
   <body>
     <a title="SwiftFHIR  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">SwiftFHIR Docs</a> (82% documented)</p>
+        <p><a href="index.html">SwiftFHIR Docs</a> (76% documented)</p>
         <p class="header-right"><a href="https://github.com/smart-on-fhir/Swift-FHIR"><img src="img/gh.png"/>View on GitHub</a></p>
         <p class="header-right"><a href="dash-feed://http%3A%2F%2Fsmart%2Don%2Dfhir%2Egithub%2Eio%2Fdocsets%2FSwiftFHIR%2Exml"><img src="img/dash.png"/>Install in Dash</a></p>
       </div>
@@ -28,10 +29,10 @@
       <nav class="sidebar">
         <ul class="nav-groups">
           <li class="nav-group-name">
-          <a href="Classes.html">Classes</a>
+            <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Classes/Account.html">Account</a>
+                <a href="Classes/VisionPrescriptionDispense.html">VisionPrescriptionDispense</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Address.html">Address</a>
@@ -80,6 +81,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/AuditEventSource.html">AuditEventSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/BackboneElement.html">BackboneElement</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Basic.html">Basic</a>
@@ -430,6 +434,9 @@
                 <a href="Classes/Duration.html">Duration</a>
               </li>
               <li class="nav-group-task">
+                <a href="Classes/Element.html">Element</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Classes/ElementDefinition.html">ElementDefinition</a>
               </li>
               <li class="nav-group-task">
@@ -493,19 +500,25 @@
                 <a href="Classes/Extension.html">Extension</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/FHIRContainedResource.html">FHIRContainedResource</a>
+                <a href="Classes/FHIRAbstractBase.html">FHIRAbstractBase</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/FHIRElement.html">FHIRElement</a>
+                <a href="Classes/FHIRAbstractResource.html">FHIRAbstractResource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/FHIROpenServer.html">FHIROpenServer</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/FHIROperation.html">FHIROperation</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/FHIRResource.html">FHIRResource</a>
+                <a href="Classes/FHIRSearch.html">FHIRSearch</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/FHIRSearch.html">FHIRSearch</a>
+                <a href="Classes/FHIRServerDataRequestHandler.html">FHIRServerDataRequestHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/FHIRServerDataResponse.html">FHIRServerDataResponse</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/FHIRServerJSONRequestHandler.html">FHIRServerJSONRequestHandler</a>
@@ -515,9 +528,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/FHIRServerRequestHandler.html">FHIRServerRequestHandler</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Classes/FHIRServerResponse.html">FHIRServerResponse</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/FamilyMemberHistory.html">FamilyMemberHistory</a>
@@ -1090,24 +1100,16 @@
                 <a href="Classes/VisionPrescription.html">VisionPrescription</a>
               </li>
               <li class="nav-group-task">
-                <a href="Classes/VisionPrescriptionDispense.html">VisionPrescriptionDispense</a>
+                <a href="Classes/Account.html">Account</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="Global Variables.html">Global Variables</a>
+            <a href="Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Global Variables.html#/s:v9SwiftFHIR23FHIRResourceErrorDomainSS">FHIRResourceErrorDomain</a>
+                <a href="Enums/FHIRError.html">FHIRError</a>
               </li>
-              <li class="nav-group-task">
-                <a href="Global Variables.html#/s:v9SwiftFHIR21FHIRServerErrorDomainSS">FHIRServerErrorDomain</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-          <a href="Enums.html">Enums</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Enums/FHIRJSONErrorType.html">FHIRJSONErrorType</a>
               </li>
@@ -1120,28 +1122,10 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="Extensions.html">Extensions</a>
+            <a href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Extensions/Base64Binary.html">Base64Binary</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/Bool.html">Bool</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/Date.html">Date</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/DateTime.html">DateTime</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/FHIRElement.html">FHIRElement</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/FHIRResource.html">FHIRResource</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/Instant.html">Instant</a>
+                <a href="Extensions/UInt.html">UInt</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Int.html">Int</a>
@@ -1159,33 +1143,18 @@
                 <a href="Extensions/NSURL.html">NSURL</a>
               </li>
               <li class="nav-group-task">
-                <a href="Extensions/Reference.html">Reference</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/Resource.html">Resource</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
-                <a href="Extensions/Time.html">Time</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Extensions/UInt.html">UInt</a>
+                <a href="Extensions/Bool.html">Bool</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="Functions.html">Functions</a>
+            <a href="Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_7InstantS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_8DateTimeS0__Sb">&lt;(_:_:)</a>
+                <a href="Functions.html#/s:F9SwiftFHIR9fhir_warnFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_warn(_:function:file:line:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
@@ -1194,13 +1163,10 @@
                 <a href="Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
+                <a href="Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_8DateTimeS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
+                <a href="Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_7InstantS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
@@ -1209,20 +1175,35 @@
                 <a href="Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_8DateTimeS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="Functions.html#/s:F9SwiftFHIR15fhir_logIfDebugFSST_">fhir_logIfDebug(_:)</a>
+                <a href="Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:F9SwiftFHIR15fhir_logIfDebugFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_logIfDebug(_:function:file:line:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="Protocols.html">Protocols</a>
+            <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Protocols/FHIRServer.html">FHIRServer</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Protocols/FHIRServerResponse.html">FHIRServerResponse</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="Structs.html">Structs</a>
+            <a href="Structs.html">Structs</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Structs/Base64Binary.html">Base64Binary</a>
@@ -1245,7 +1226,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="Typealiases.html">Typealiases</a>
+            <a href="Typealiases.html">Typealiases</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Typealiases.html#/s:9SwiftFHIR1$">$</a>
@@ -1288,34 +1269,40 @@ See the <code>develop</code> branch or specific <code>feature/x</code> branches 
 </tr>
 </thead><tbody>
 <tr>
+<td><strong>2.2</strong></td>
+<td>2.0/2.1</td>
+<td><code>1.0.2.7202</code></td>
+<td>DSTU 2 (<em>+ technical errata</em>)</td>
+</tr>
+<tr>
 <td><strong>2.1</strong></td>
-<td>2.0</td>
-<td><code>1.0.1</code></td>
-<td>(DSTU 2)</td>
+<td>2.0/2.1</td>
+<td><code>1.0.1.7108</code></td>
+<td>DSTU 2</td>
 </tr>
 <tr>
 <td><strong>2.0</strong></td>
-<td>2.0</td>
+<td>2.0/2.1</td>
 <td><code>0.5.0.5149</code></td>
-<td>(DSTU 2 Ballot, May 2015)</td>
+<td>DSTU 2 Ballot, May 2015</td>
 </tr>
 <tr>
 <td><strong>1.0</strong></td>
 <td>1.2</td>
 <td><code>0.5.0.5149</code></td>
-<td>(DSTU 2 Ballot, May 2015)</td>
+<td>DSTU 2 Ballot, May 2015</td>
 </tr>
 <tr>
 <td><strong>0.2</strong></td>
 <td>1.1</td>
 <td><code>0.5.0.5149</code></td>
-<td>(DSTU 2 Ballot, May 2015)</td>
+<td>DSTU 2 Ballot, May 2015</td>
 </tr>
 <tr>
 <td><strong>0.1</strong></td>
 <td>1.0</td>
 <td><code>0.0.81.2382</code></td>
-<td>(DSTU 1)</td>
+<td>DSTU 1</td>
 </tr>
 </tbody></table>
 <a href='#smart_on_fhir' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='smart_on_fhir'>SMART on FHIR</h2>
@@ -1332,9 +1319,7 @@ It also adds an implementation of the <em>FHIRServer</em> protocol to make for a
 
 <p>Here&rsquo;s a rough list of what still needs to be done.</p>
 <pre class="highlight plaintext"><code>[ ] Add convenience methods to working with resources in code
-[X] Reference resolver: resolve contained resources
-[X] Reference resolver: resolve relative resources
-[ ] Reference resolver: resolve absolute resources
+[ ] Nice support for simple PATCH operations
 [?] Serialization validator
 [ ] Handle resource versions nicely
 [ ] Create a default behavior when a modifierExtension is detected
@@ -1356,9 +1341,8 @@ It also adds an implementation of the <em>FHIRServer</em> protocol to make for a
 <li>Use a FHIR server protocol for REST interactions with a server</li>
 <li>Deserialize from JSON</li>
 <li>Serialize to JSON</li>
-<li>Resolve contained resources</li>
-<li>Resolve relative resources (on the same server)</li>
-<li>Contain resources programmatically</li>
+<li>Resolve contained/relative/absolute resource references</li>
+<li>Contain resources</li>
 <li>Construct searches with NoSQL-like statements (cf. <a href="https://github.com/FHIR/fhir.js">fhir.js</a>)</li>
 <li>Perform operations</li>
 <li>Use example resources for auto-created class unit tests
@@ -1388,17 +1372,23 @@ While these can be enforced to never be nil in Swift by <strong>not</strong> mak
 For classes representing models with non-optional properties, a convenience initializer is supplied to reflect the need to set those properties without enforcing it.</p>
 <a href='#contained_resources' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='contained_resources'>Contained Resources</h3>
 
-<p>FHIR makes use of <a href="http://hl7.org/implement/standards/fhir/references.html#contained">contained resources</a>.
-An extension on the <code>Reference</code> class is included that adds method to handle reference resolving.
-To resolve resource references, call <code>resolve(ModelClass) { resource in }</code> on a reference property, which will return an instance of the referenced type in the callback if resolved successfully.
-To contain a resource and receive a <code>Reference</code> instance, call <code>parent.containResource(contained, withId: &quot;id&quot;)</code></p>
+<p>FHIR makes use of <a href="http://hl7.org/fhir/references.html#contained">contained resources</a>.
+An extension on the <code>Reference</code> class is included that adds method to handle reference resolving.</p>
+
+<p>To resolve resource references, call <code>resolve(ModelClass) { resource in }</code> on a reference property, which will return an instance of the referenced type in the callback if resolved successfully.
+To contain a resource and receive a <code>Reference</code> instance, call <code>parent.containResource(contained)</code></p>
 <pre class="highlight swift"><code><span class="c1">// create a prescription with a contained medication</span>
-<span class="k">let</span> <span class="nv">prescription</span> <span class="o">=</span> <span class="kt">MedicationPrescription</span><span class="p">(</span><span class="nv">json</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
-<span class="k">let</span> <span class="nv">medication</span> <span class="o">=</span> <span class="kt">Medication</span><span class="p">(</span><span class="nv">json</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
-<span class="n">prescription</span><span class="o">.</span><span class="n">medication</span> <span class="o">=</span> <span class="n">prescription</span><span class="o">.</span><span class="nf">containResource</span><span class="p">(</span><span class="n">medication</span><span class="p">,</span> <span class="nv">withId</span><span class="p">:</span> <span class="s">"med"</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">order</span> <span class="o">=</span> <span class="kt">MedicationOrder</span><span class="p">(</span><span class="nv">json</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+<span class="k">let</span> <span class="nv">medication</span> <span class="o">=</span> <span class="kt">Medication</span><span class="p">(</span><span class="nv">json</span><span class="p">:</span> <span class="p">{</span><span class="s">"id"</span><span class="p">:</span> <span class="s">"med"</span><span class="p">})</span>
+<span class="k">do</span> <span class="p">{</span>
+    <span class="n">order</span><span class="o">.</span><span class="n">medicationReference</span> <span class="o">=</span> <span class="k">try</span> <span class="n">order</span><span class="o">.</span><span class="nf">containResource</span><span class="p">(</span><span class="n">medication</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="k">catch</span> <span class="k">let</span> <span class="nv">error</span> <span class="p">{</span>
+    <span class="c1">// failed to contain, either because no id or containing itself</span>
+<span class="p">}</span>
 
 <span class="c1">// resolve the contained medication</span>
-<span class="n">prescription</span><span class="o">.</span><span class="n">medication</span><span class="p">?</span><span class="o">.</span><span class="nf">resolve</span><span class="p">(</span><span class="kt">Medication</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">medication</span> <span class="k">in</span>
+<span class="n">order</span><span class="o">.</span><span class="n">medication</span><span class="p">?</span><span class="o">.</span><span class="nf">resolve</span><span class="p">(</span><span class="kt">Medication</span><span class="o">.</span><span class="k">self</span><span class="p">)</span> <span class="p">{</span> <span class="n">medication</span> <span class="k">in</span>
     <span class="k">if</span> <span class="k">let</span> <span class="nv">medication</span> <span class="o">=</span> <span class="n">medication</span> <span class="p">{</span>
         <span class="c1">// successfully resolved</span>
     <span class="p">}</span>
@@ -1409,7 +1399,7 @@ To contain a resource and receive a <code>Reference</code> instance, call <code>
 <p>The client supports the NoSQL-like approach proposed and used by <a href="https://github.com/FHIR/fhir.js#search">fhir.js</a>.</p>
 <a href='#compartments' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='compartments'>Compartments</h4>
 
-<p>Search can be restricted to <a href="http://hl7.org/fhir/extras.html#compartment">compartments</a>, these however are not yet supported in the SMART server nor in these classes.</p>
+<p>Search can be restricted to <a href="https://www.hl7.org/fhir/compartments.html">compartments</a>, these however are not yet supported in the SMART server nor in these classes.</p>
 <pre class="highlight plaintext"><code>[ ] Patient/23/procedure?date=&gt;2010-01-01&amp;date=&lt;2011-12-31
 </code></pre>
 <a href='#referenced_not_yet_implemented' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='referenced_not_yet_implemented'>Referenced (not yet implemented)</h4>
@@ -1426,8 +1416,8 @@ To contain a resource and receive a <code>Reference</code> instance, call <code>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2015-09-23)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.3.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2016-01-27)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

@@ -7,13 +7,14 @@
     <meta charset='utf-8'>
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
+    
   </head>
   <body>
     <a name="//apple_ref/swift/Class/Resource" class="dashAnchor"></a>
     <a title="Resource Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">SwiftFHIR Docs</a> (82% documented)</p>
+        <p><a href="../index.html">SwiftFHIR Docs</a> (76% documented)</p>
         <p class="header-right"><a href="https://github.com/smart-on-fhir/Swift-FHIR"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right"><a href="dash-feed://http%3A%2F%2Fsmart%2Don%2Dfhir%2Egithub%2Eio%2Fdocsets%2FSwiftFHIR%2Exml"><img src="../img/dash.png"/>Install in Dash</a></p>
       </div>
@@ -29,10 +30,10 @@
       <nav class="sidebar">
         <ul class="nav-groups">
           <li class="nav-group-name">
-          <a href="../Classes.html">Classes</a>
+            <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/Account.html">Account</a>
+                <a href="../Classes/VisionPrescriptionDispense.html">VisionPrescriptionDispense</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Address.html">Address</a>
@@ -81,6 +82,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/AuditEventSource.html">AuditEventSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/BackboneElement.html">BackboneElement</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/Basic.html">Basic</a>
@@ -431,6 +435,9 @@
                 <a href="../Classes/Duration.html">Duration</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/Element.html">Element</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/ElementDefinition.html">ElementDefinition</a>
               </li>
               <li class="nav-group-task">
@@ -494,19 +501,25 @@
                 <a href="../Classes/Extension.html">Extension</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/FHIRContainedResource.html">FHIRContainedResource</a>
+                <a href="../Classes/FHIRAbstractBase.html">FHIRAbstractBase</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/FHIRElement.html">FHIRElement</a>
+                <a href="../Classes/FHIRAbstractResource.html">FHIRAbstractResource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FHIROpenServer.html">FHIROpenServer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/FHIROperation.html">FHIROperation</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/FHIRResource.html">FHIRResource</a>
+                <a href="../Classes/FHIRSearch.html">FHIRSearch</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/FHIRSearch.html">FHIRSearch</a>
+                <a href="../Classes/FHIRServerDataRequestHandler.html">FHIRServerDataRequestHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/FHIRServerDataResponse.html">FHIRServerDataResponse</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/FHIRServerJSONRequestHandler.html">FHIRServerJSONRequestHandler</a>
@@ -516,9 +529,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/FHIRServerRequestHandler.html">FHIRServerRequestHandler</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Classes/FHIRServerResponse.html">FHIRServerResponse</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/FamilyMemberHistory.html">FamilyMemberHistory</a>
@@ -1091,24 +1101,16 @@
                 <a href="../Classes/VisionPrescription.html">VisionPrescription</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/VisionPrescriptionDispense.html">VisionPrescriptionDispense</a>
+                <a href="../Classes/Account.html">Account</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Global Variables.html">Global Variables</a>
+            <a href="../Enums.html">Enums</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Global Variables.html#/s:v9SwiftFHIR23FHIRResourceErrorDomainSS">FHIRResourceErrorDomain</a>
+                <a href="../Enums/FHIRError.html">FHIRError</a>
               </li>
-              <li class="nav-group-task">
-                <a href="../Global Variables.html#/s:v9SwiftFHIR21FHIRServerErrorDomainSS">FHIRServerErrorDomain</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-          <a href="../Enums.html">Enums</a>
-            <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Enums/FHIRJSONErrorType.html">FHIRJSONErrorType</a>
               </li>
@@ -1121,28 +1123,10 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Extensions.html">Extensions</a>
+            <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Base64Binary.html">Base64Binary</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Bool.html">Bool</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Date.html">Date</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/DateTime.html">DateTime</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/FHIRElement.html">FHIRElement</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/FHIRResource.html">FHIRResource</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Instant.html">Instant</a>
+                <a href="../Extensions/UInt.html">UInt</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Int.html">Int</a>
@@ -1160,33 +1144,18 @@
                 <a href="../Extensions/NSURL.html">NSURL</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/Reference.html">Reference</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/Resource.html">Resource</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Extensions/String.html">String</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Extensions/Time.html">Time</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UInt.html">UInt</a>
+                <a href="../Extensions/Bool.html">Bool</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Functions.html">Functions</a>
+            <a href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_7InstantS0__Sb">&lt;(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_8DateTimeS0__Sb">&lt;(_:_:)</a>
+                <a href="../Functions.html#/s:F9SwiftFHIR9fhir_warnFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_warn(_:function:file:line:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_4DateS0__Sb">&lt;(_:_:)</a>
@@ -1195,13 +1164,10 @@
                 <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_4TimeS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
+                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_8DateTimeS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
+                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_7InstantS0__Sb">&lt;(_:_:)</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_12Base64BinaryS0__Sb">==(_:_:)</a>
@@ -1210,20 +1176,35 @@
                 <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_8DateTimeS0__Sb">==(_:_:)</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:F9SwiftFHIR15fhir_logIfDebugFSST_">fhir_logIfDebug(_:)</a>
+                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4TimeS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_4DateS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF9SwiftFHIRoi2eeFTVS_7InstantS0__Sb">==(_:_:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:F9SwiftFHIR15fhir_logIfDebugFTKT_SS8functionSS4fileCSo8NSString4lineSi_T_">fhir_logIfDebug(_:function:file:line:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:ZF9SwiftFHIRoi1lFTVS_12Base64BinaryS0__Sb">&lt;(_:_:)</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Protocols.html">Protocols</a>
+            <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Protocols/FHIRServer.html">FHIRServer</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/FHIRServerResponse.html">FHIRServerResponse</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Structs.html">Structs</a>
+            <a href="../Structs.html">Structs</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Structs/Base64Binary.html">Base64Binary</a>
@@ -1246,7 +1227,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-          <a href="../Typealiases.html">Typealiases</a>
+            <a href="../Typealiases.html">Typealiases</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:9SwiftFHIR1$">$</a>
@@ -1269,16 +1250,14 @@
           <section class="section">
             <h1>Resource</h1>
               <div class="declaration">
-                <div class="Swift">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Resource</span><span class="p">:</span> <span class="kt">FHIRResource</span></code></pre>
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Resource</span><span class="p">:</span> <span class="kt">FHIRAbstractResource</span></code></pre>
 
                 </div>
               </div>
-            <ul>
-<li>Base Resource.
-*</li>
-<li>This is the base resource type for everything.</li>
-</ul>
+            <p>Base Resource.</p>
+
+<p>This is the base resource type for everything.</p>
 
           </section>
           <section class="section task-group-section">
@@ -1302,9 +1281,36 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Resource</span><span class="p">:</span> <span class="kt">FHIRResource</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Resource</span><span class="p">:</span> <span class="kt">FHIRAbstractResource</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC9SwiftFHIR8Resource2idGSqSS_"></a>
+                    <a name="//apple_ref/swift/Property/id" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC9SwiftFHIR8Resource2idGSqSS_">id</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Logical id of this artifact.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1324,12 +1330,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A set of rules under which this content was created</p>
+                        <p>A set of rules under which this content was created.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">implicitRules</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">?</span></code></pre>
 
@@ -1351,12 +1357,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Language of the resource content</p>
+                        <p>Language of the resource content.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">language</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
 
@@ -1378,12 +1384,12 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Metadata about the resource</p>
+                        <p>Metadata about the resource.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">meta</span><span class="p">:</span> <span class="kt">Meta</span><span class="p">?</span></code></pre>
 
@@ -1395,9 +1401,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC9SwiftFHIR8ResourcecFMS0_FT4jsonGSqGVSs10DictionarySSPSs9AnyObject____S0_"></a>
-                    <a name="//apple_ref/swift/Method/init(json:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC9SwiftFHIR8ResourcecFMS0_FT4jsonGSqGVSs10DictionarySSPSs9AnyObject____S0_">init(json:)</a>
+                    <a name="/s:FC9SwiftFHIR8ResourcecFMS0_FT4jsonGSqGVSs10DictionarySSPSs9AnyObject___5ownerGSqCS_16FHIRAbstractBase__S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(json:owner:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftFHIR8ResourcecFMS0_FT4jsonGSqGVSs10DictionarySSPSs9AnyObject___5ownerGSqCS_16FHIRAbstractBase__S0_">init(json:owner:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1410,9 +1416,36 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="nv">json</span><span class="p">:</span> <span class="kt">FHIRJSON</span><span class="p">?)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="nv">json</span><span class="p">:</span> <span class="kt">FHIRJSON</span><span class="p">?,</span> <span class="nv">owner</span><span class="p">:</span> <span class="kt">FHIRAbstractBase</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftFHIR8Resource16populateFromJSONFS0_FTGSqGVSs10DictionarySSPSs9AnyObject___11presentKeysRGVSs3SetSS__GSqGSaVS_13FHIRJSONError__"></a>
+                    <a name="//apple_ref/swift/Method/populateFromJSON(_:presentKeys:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftFHIR8Resource16populateFromJSONFS0_FTGSqGVSs10DictionarySSPSs9AnyObject___11presentKeysRGVSs3SetSS__GSqGSaVS_13FHIRJSONError__">populateFromJSON(_:presentKeys:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Resource</span><span class="p">:</span> <span class="kt">FHIRAbstractResource</span></code></pre>
 
                         </div>
                       </div>
@@ -1437,9 +1470,683 @@
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
-                        <div class="Swift">
+                        <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Resource</span><span class="p">:</span> <span class="kt">FHIRResource</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Resource</span><span class="p">:</span> <span class="kt">FHIRAbstractResource</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9SwiftFHIR8Resource19instantiateFromPathFMS0_FzSSDS0_"></a>
+                    <a name="//apple_ref/swift/Method/instantiateFromPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9SwiftFHIR8Resource19instantiateFromPathFMS0_FzSSDS0_">instantiateFromPath(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Attempt to instantiate a Resource of the receiving class by reading a JSON file at the given filesystem path.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">instantiateFromPath</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>path</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The local path to read the JSON file from</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An instance of the receiving class</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftFHIR8Resource19asRelativeReferenceFS0_FzT_CS_9Reference"></a>
+                    <a name="//apple_ref/swift/Method/asRelativeReference()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftFHIR8Resource19asRelativeReferenceFS0_FzT_CS_9Reference">asRelativeReference()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a <code><a href="../Classes/Reference.html">Reference</a></code> instance containing a relative reference to the receiver.</p>
+
+<p>Throws if creating the reference fails; mostly happens when the instance doesn&rsquo;t have an id.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">asRelativeReference</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Reference</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A Reference instance on success</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftFHIR8Resource33preferredRelativeReferenceDisplayFS0_FT_GSqSS_"></a>
+                    <a name="//apple_ref/swift/Method/preferredRelativeReferenceDisplay()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftFHIR8Resource33preferredRelativeReferenceDisplayFS0_FT_GSqSS_">preferredRelativeReferenceDisplay()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The string used to fill a reference&rsquo;s <q>display</q> property for the instance.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">preferredRelativeReferenceDisplay</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Resource%20URLs"></a>
+                <a name="//apple_ref/swift/Section/Resource URLs" class="dashAnchor"></a>
+                <a href="#/Resource%20URLs">
+                  <h3 class="section-name">Resource URLs</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftFHIR8Resource15relativeURLBaseFS0_FT_SS"></a>
+                    <a name="//apple_ref/swift/Method/relativeURLBase()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftFHIR8Resource15relativeURLBaseFS0_FT_SS">relativeURLBase()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the relative URL path to the receiver&rsquo;s type of resource. This usually is the same as the resource&rsquo;s name.
+- returns: A string indicating the relative URL base, e.g. <q>MedicationPrescription</q></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">relativeURLBase</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A string indicating the relative URL base, e.g. <q>MedicationPrescription</q></p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftFHIR8Resource15relativeURLPathFS0_FzT_SS"></a>
+                    <a name="//apple_ref/swift/Method/relativeURLPath()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftFHIR8Resource15relativeURLPathFS0_FzT_SS">relativeURLPath()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The relative URL path of the resource; the instance needs to have an id, otherwise a FHIRError is thrown.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">relativeURLPath</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A string indicating the relative URL, e.g. <q>MedicationPrescription/1234</q></p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftFHIR8Resource11absoluteURLFS0_FzT_CSo5NSURL"></a>
+                    <a name="//apple_ref/swift/Method/absoluteURL()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftFHIR8Resource11absoluteURLFS0_FzT_CSo5NSURL">absoluteURL()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The absolute URL of the resource. Needs the instance&rsquo;s <code>server</code> property to be set and have an id, otherwise a FHIRError is thrown.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">absoluteURL</span><span class="p">()</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">NSURL</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The resource&rsquo;s absolute URL, e.g. <q>https://fhir.smarthealthit.org/MedicationPrescription/1234</q></p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/CRUD"></a>
+                <a name="//apple_ref/swift/Section/CRUD" class="dashAnchor"></a>
+                <a href="#/CRUD">
+                  <h3 class="section-name">CRUD</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9SwiftFHIR8Resource4readFMS0_FTSS6serverPS_10FHIRServer_8callbackFT8resourceGSqS0__5errorGSqOS_9FHIRError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/read(_:server:callback:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9SwiftFHIR8Resource4readFMS0_FTSS6serverPS_10FHIRServer_8callbackFT8resourceGSqS0__5errorGSqOS_9FHIRError__T__T_">read(_:server:callback:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reads the resource with the given id from the given server.</p>
+
+<p>Forwards to class method <code>readFrom</code> with the resource&rsquo;s relative URL, created from the supplied id and the resource&rsquo;s base.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">read</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">server</span><span class="p">:</span> <span class="kt">FHIRServer</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="kt">FHIRResourceErrorCallback</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9SwiftFHIR8Resource8readFromFMS0_FTSS6serverPS_10FHIRServer_8callbackFT8resourceGSqS0__5errorGSqOS_9FHIRError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/readFrom(_:server:callback:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9SwiftFHIR8Resource8readFromFMS0_FTSS6serverPS_10FHIRServer_8callbackFT8resourceGSqS0__5errorGSqOS_9FHIRError__T__T_">readFrom(_:server:callback:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Reads the resource from the given path on the given server.</p>
+
+<p>This method creates a FHIRServerJSONRequestHandler for a GET request and deserializes the returned JSON into an instance on success.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">readFrom</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">server</span><span class="p">:</span> <span class="kt">FHIRServer</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="kt">FHIRResourceErrorCallback</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>path</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The relative path on the server from which to read resource data from</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>server</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The server to use</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>callback</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftFHIR8Resource6createFS0_FTPS_10FHIRServer_8callbackFT5errorGSqOS_9FHIRError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/create(_:callback:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftFHIR8Resource6createFS0_FTPS_10FHIRServer_8callbackFT5errorGSqOS_9FHIRError__T__T_">create(_:callback:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create the receiver on the given server.</p>
+
+<p>This method issues a POST, with the receiver serialized to JSON as the request&rsquo;s body data, to the FHIR server. If the call succeeds
+(i.e. does not return an error), the receiver repopulates its properties with the server&rsquo;s response (if the server is returning the
+resource, which some servers may not) and the <code>_server</code> property is assigned.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">create</span><span class="p">(</span><span class="nv">server</span><span class="p">:</span> <span class="kt">FHIRServer</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="kt">FHIRErrorCallback</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>server</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The server on which to create the resource</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>callback</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftFHIR8Resource6updateFS0_FFT5errorGSqOS_9FHIRError__T_T_"></a>
+                    <a name="//apple_ref/swift/Method/update(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftFHIR8Resource6updateFS0_FFT5errorGSqOS_9FHIRError__T_T_">update(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Update the resource&rsquo;s server representation with its current values.</p>
+
+<p>This method serializes the instance to JSON and issues a PUT call to the receiver&rsquo;s <code>_server</code> instance.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">update</span><span class="p">(</span><span class="nv">callback</span><span class="p">:</span> <span class="kt">FHIRErrorCallback</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>callback</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftFHIR8Resource6deleteFS0_FFT5errorGSqOS_9FHIRError__T_T_"></a>
+                    <a name="//apple_ref/swift/Method/delete(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftFHIR8Resource6deleteFS0_FFT5errorGSqOS_9FHIRError__T_T_">delete(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Deletes the receiver&rsquo;s representation from its server.</p>
+
+<p>This method forwards to the <code>delete</code> class method, substituting the receiver&rsquo;s path and server.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">delete</span><span class="p">(</span><span class="nv">callback</span><span class="p">:</span> <span class="kt">FHIRErrorCallback</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9SwiftFHIR8Resource6deleteFMS0_FTSS6serverPS_10FHIRServer_8callbackFT5errorGSqOS_9FHIRError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/delete(_:server:callback:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9SwiftFHIR8Resource6deleteFMS0_FTSS6serverPS_10FHIRServer_8callbackFT5errorGSqOS_9FHIRError__T__T_">delete(_:server:callback:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Deletes the resource with the given ID from the server.</p>
+
+<p>This implementation issues a DELETE call against the given path on the given server.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">delete</span><span class="p">(</span><span class="nv">path</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">server</span><span class="p">:</span> <span class="kt">FHIRServer</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="kt">FHIRErrorCallback</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Search"></a>
+                <a name="//apple_ref/swift/Section/Search" class="dashAnchor"></a>
+                <a href="#/Search">
+                  <h3 class="section-name">Search</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftFHIR8Resource6searchFS0_FPSs9AnyObject_CS_10FHIRSearch"></a>
+                    <a name="//apple_ref/swift/Method/search(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftFHIR8Resource6searchFS0_FPSs9AnyObject_CS_10FHIRSearch">search(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Perform a search against the receiver&rsquo;s type&rsquo;s compartment.</p>
+
+<p>UNFINISHED.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">search</span><span class="p">(</span><span class="nv">query</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">FHIRSearch</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9SwiftFHIR8Resource6searchFMS0_FPSs9AnyObject_CS_10FHIRSearch"></a>
+                    <a name="//apple_ref/swift/Method/search(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9SwiftFHIR8Resource6searchFMS0_FPSs9AnyObject_CS_10FHIRSearch">search(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Perform a search, wich the given query construct, against the receiver&rsquo;s compartment.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">search</span><span class="p">(</span><span class="nv">query</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">FHIRSearch</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Operations"></a>
+                <a name="//apple_ref/swift/Section/Operations" class="dashAnchor"></a>
+                <a href="#/Operations">
+                  <h3 class="section-name">Operations</h3>
+                </a>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC9SwiftFHIR8Resource16performOperationFS0_FTCS_13FHIROperation8callbackFT8resourceGSqS0__5errorGSqOS_9FHIRError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/performOperation(_:callback:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC9SwiftFHIR8Resource16performOperationFS0_FTCS_13FHIROperation8callbackFT8resourceGSqS0__5errorGSqOS_9FHIRError__T__T_">performOperation(_:callback:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Perform a given operation on the receiver.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">performOperation</span><span class="p">(</span><span class="nv">operation</span><span class="p">:</span> <span class="kt">FHIROperation</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="kt">FHIRResourceErrorCallback</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9SwiftFHIR8Resource7performFMS0_FTCS_13FHIROperation6serverCS_14FHIROpenServer8callbackFT8resourceGSqS0__5errorGSqOS_9FHIRError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/perform(_:server:callback:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9SwiftFHIR8Resource7performFMS0_FTCS_13FHIROperation6serverCS_14FHIROpenServer8callbackFT8resourceGSqS0__5errorGSqOS_9FHIRError__T__T_">perform(_:server:callback:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Perform a given operation on the receiving type.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">perform</span><span class="p">(</span><span class="nv">operation</span><span class="p">:</span> <span class="kt">FHIROperation</span><span class="p">,</span> <span class="nv">server</span><span class="p">:</span> <span class="kt">FHIROpenServer</span><span class="p">,</span> <span class="nv">callback</span><span class="p">:</span> <span class="kt">FHIRResourceErrorCallback</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC9SwiftFHIR8Resource17_performOperationFMS0_FTCS_13FHIROperation6serverCS_14FHIROpenServer8callbackFT8resourceGSqS0__5errorGSqOS_9FHIRError__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/_performOperation(_:server:callback:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC9SwiftFHIR8Resource17_performOperationFMS0_FTCS_13FHIROperation6serverCS_14FHIROpenServer8callbackFT8resourceGSqS0__5errorGSqOS_9FHIRError__T__T_">_performOperation(_:server:callback:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Resource</span><span class="p">:</span> <span class="kt">FHIRAbstractResource</span></code></pre>
 
                         </div>
                       </div>
@@ -1451,8 +2158,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2015-09-23)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.3.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2016 <a class="link" href="http://www.smarthealthit.org" target="_blank" rel="external">SMART Health IT</a>. All rights reserved. (Last updated: 2016-01-27)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.5.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

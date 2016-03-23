@@ -261,10 +261,10 @@ public class ConceptMap: DomainResource {
 			
 			// check if nonoptional expanded properties are present
 			if nil == self.sourceUri && nil == self.sourceReference {
-				errors.append(FHIRJSONError(key: "source[x]*"))
+				errors.append(FHIRJSONError(key: "source*"))
 			}
 			if nil == self.targetUri && nil == self.targetReference {
-				errors.append(FHIRJSONError(key: "target[x]*"))
+				errors.append(FHIRJSONError(key: "target*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors

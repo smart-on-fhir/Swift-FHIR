@@ -303,7 +303,7 @@ public class CommunicationPayload: BackboneElement {
 			
 			// check if nonoptional expanded properties are present
 			if nil == self.contentString && nil == self.contentAttachment && nil == self.contentReference {
-				errors.append(FHIRJSONError(key: "content[x]*"))
+				errors.append(FHIRJSONError(key: "content*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors

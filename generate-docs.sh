@@ -10,4 +10,4 @@ jazzy \
 	-g "https://github.com/smart-on-fhir/Swift-FHIR" \
 	-r "http://smart-on-fhir.github.io/Swift-FHIR" \
 	-o "docs" \
-	--module-version "2.2.2"
+	--module-version "2.2.3"

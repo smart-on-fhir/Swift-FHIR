@@ -278,7 +278,7 @@ public class DiagnosticReport: DomainResource {
 			
 			// check if nonoptional expanded properties are present
 			if nil == self.effectiveDateTime && nil == self.effectivePeriod {
-				errors.append(FHIRJSONError(key: "effective[x]*"))
+				errors.append(FHIRJSONError(key: "effective*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors

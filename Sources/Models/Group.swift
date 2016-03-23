@@ -299,7 +299,7 @@ public class GroupCharacteristic: BackboneElement {
 			
 			// check if nonoptional expanded properties are present
 			if nil == self.valueCodeableConcept && nil == self.valueBoolean && nil == self.valueQuantity && nil == self.valueRange {
-				errors.append(FHIRJSONError(key: "value[x]*"))
+				errors.append(FHIRJSONError(key: "value*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors

@@ -242,10 +242,10 @@ public class MedicationAdministration: DomainResource {
 			
 			// check if nonoptional expanded properties are present
 			if nil == self.effectiveTimeDateTime && nil == self.effectiveTimePeriod {
-				errors.append(FHIRJSONError(key: "effectiveTime[x]*"))
+				errors.append(FHIRJSONError(key: "effectiveTime*"))
 			}
 			if nil == self.medicationCodeableConcept && nil == self.medicationReference {
-				errors.append(FHIRJSONError(key: "medication[x]*"))
+				errors.append(FHIRJSONError(key: "medication*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors

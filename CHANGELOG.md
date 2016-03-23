@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+## 2.2.3
+
+- Address deprecation warnings appearing with Swift 2.2
+
+
 ## 2.2.2
 
 - Re-implement handling of contained resources and containing of resources

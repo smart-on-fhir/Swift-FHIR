@@ -128,7 +128,7 @@ public class Signature: Element {
 			
 			// check if nonoptional expanded properties are present
 			if nil == self.whoUri && nil == self.whoReference {
-				errors.append(FHIRJSONError(key: "who[x]*"))
+				errors.append(FHIRJSONError(key: "who*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors

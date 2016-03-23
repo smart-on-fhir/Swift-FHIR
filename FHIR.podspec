@@ -7,7 +7,7 @@
 
 Pod::Spec.new do |s|
   s.name         = "FHIR"
-  s.version      = "2.2.2"
+  s.version      = "2.2.3"
   s.summary      = "Swift 🔥FHIR data model classes, with some goodies."
   s.description  = <<-DESC
                    Swift 🔥FHIR data model classes, generated from spec. Uses custom Date/Time structs to facilitate

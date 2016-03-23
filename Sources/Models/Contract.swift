@@ -453,7 +453,7 @@ public class ContractFriendly: BackboneElement {
 			
 			// check if nonoptional expanded properties are present
 			if nil == self.contentAttachment && nil == self.contentReference {
-				errors.append(FHIRJSONError(key: "content[x]*"))
+				errors.append(FHIRJSONError(key: "content*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -527,7 +527,7 @@ public class ContractLegal: BackboneElement {
 			
 			// check if nonoptional expanded properties are present
 			if nil == self.contentAttachment && nil == self.contentReference {
-				errors.append(FHIRJSONError(key: "content[x]*"))
+				errors.append(FHIRJSONError(key: "content*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -601,7 +601,7 @@ public class ContractRule: BackboneElement {
 			
 			// check if nonoptional expanded properties are present
 			if nil == self.contentAttachment && nil == self.contentReference {
-				errors.append(FHIRJSONError(key: "content[x]*"))
+				errors.append(FHIRJSONError(key: "content*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors

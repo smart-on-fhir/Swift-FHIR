@@ -244,7 +244,7 @@ public class MedicationOrder: DomainResource {
 			
 			// check if nonoptional expanded properties are present
 			if nil == self.medicationCodeableConcept && nil == self.medicationReference {
-				errors.append(FHIRJSONError(key: "medication[x]*"))
+				errors.append(FHIRJSONError(key: "medication*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors

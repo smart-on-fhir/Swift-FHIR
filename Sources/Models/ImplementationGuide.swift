@@ -748,7 +748,7 @@ public class ImplementationGuidePackageResource: BackboneElement {
 			
 			// check if nonoptional expanded properties are present
 			if nil == self.sourceUri && nil == self.sourceReference {
-				errors.append(FHIRJSONError(key: "source[x]*"))
+				errors.append(FHIRJSONError(key: "source*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors

@@ -285,7 +285,7 @@ public class DocumentManifestContent: BackboneElement {
 			
 			// check if nonoptional expanded properties are present
 			if nil == self.pAttachment && nil == self.pReference {
-				errors.append(FHIRJSONError(key: "p[x]*"))
+				errors.append(FHIRJSONError(key: "p*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors

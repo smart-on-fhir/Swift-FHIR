@@ -679,7 +679,7 @@ public class OperationDefinitionParameterBinding: BackboneElement {
 			
 			// check if nonoptional expanded properties are present
 			if nil == self.valueSetUri && nil == self.valueSetReference {
-				errors.append(FHIRJSONError(key: "valueSet[x]*"))
+				errors.append(FHIRJSONError(key: "valueSet*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors

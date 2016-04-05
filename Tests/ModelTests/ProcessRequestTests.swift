@@ -2,16 +2,16 @@
 //  ProcessRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class ProcessRequestTests: XCTestCase
-{
+class ProcessRequestTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> ProcessRequest {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class ProcessRequestTests: XCTestCase
 	}
 	
 	func testProcessRequest1() {
-		let instance = try? runProcessRequest1()
-		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
-		if let instance = instance {
-			try! runProcessRequest1(instance.asJSON())
+		do {
+			let instance = try runProcessRequest1()
+			try runProcessRequest1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 	}
 	
@@ -46,10 +48,12 @@ class ProcessRequestTests: XCTestCase
 	}
 	
 	func testProcessRequest2() {
-		let instance = try? runProcessRequest2()
-		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
-		if let instance = instance {
-			try! runProcessRequest2(instance.asJSON())
+		do {
+			let instance = try runProcessRequest2()
+			try runProcessRequest2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 	}
 	
@@ -63,7 +67,7 @@ class ProcessRequestTests: XCTestCase
 		XCTAssertEqual(inst.id!, "1113")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "113")
-		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.organizationReference!.reference!, "Organization/1")
 		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
@@ -71,10 +75,12 @@ class ProcessRequestTests: XCTestCase
 	}
 	
 	func testProcessRequest3() {
-		let instance = try? runProcessRequest3()
-		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
-		if let instance = instance {
-			try! runProcessRequest3(instance.asJSON())
+		do {
+			let instance = try runProcessRequest3()
+			try runProcessRequest3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 	}
 	
@@ -87,7 +93,7 @@ class ProcessRequestTests: XCTestCase
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "112")
 		XCTAssertEqual(inst.include![0], "Reconciliation")
-		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.organizationReference!.reference!, "Organization/1")
 		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
@@ -95,10 +101,12 @@ class ProcessRequestTests: XCTestCase
 	}
 	
 	func testProcessRequest4() {
-		let instance = try? runProcessRequest4()
-		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
-		if let instance = instance {
-			try! runProcessRequest4(instance.asJSON())
+		do {
+			let instance = try runProcessRequest4()
+			try runProcessRequest4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 	}
 	
@@ -111,7 +119,7 @@ class ProcessRequestTests: XCTestCase
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "114")
 		XCTAssertEqual(inst.include![0], "Reconciliation")
-		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.organizationReference!.reference!, "Organization/1")
 		XCTAssertEqual(inst.period!.end!.description, "2014-08-20")
 		XCTAssertEqual(inst.period!.start!.description, "2014-08-10")
 		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Poll ProcessRequest</div>")
@@ -121,10 +129,12 @@ class ProcessRequestTests: XCTestCase
 	}
 	
 	func testProcessRequest5() {
-		let instance = try? runProcessRequest5()
-		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
-		if let instance = instance {
-			try! runProcessRequest5(instance.asJSON())
+		do {
+			let instance = try runProcessRequest5()
+			try runProcessRequest5(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 	}
 	
@@ -136,8 +146,8 @@ class ProcessRequestTests: XCTestCase
 		XCTAssertEqual(inst.id!, "1111")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "111")
-		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
-		XCTAssertEqual(inst.request!.reference!, "http://benefitco.com/oralhealthclaim/12345")
+		XCTAssertEqual(inst.organizationReference!.reference!, "Organization/1")
+		XCTAssertEqual(inst.requestReference!.reference!, "http://benefitco.com/oralhealthclaim/12345")
 		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
@@ -145,10 +155,12 @@ class ProcessRequestTests: XCTestCase
 	}
 	
 	func testProcessRequest6() {
-		let instance = try? runProcessRequest6()
-		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
-		if let instance = instance {
-			try! runProcessRequest6(instance.asJSON())
+		do {
+			let instance = try runProcessRequest6()
+			try runProcessRequest6(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 	}
 	
@@ -161,9 +173,9 @@ class ProcessRequestTests: XCTestCase
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "44543")
 		XCTAssertEqual(inst.item![0].sequenceLinkId!, 1)
-		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.organizationReference!.reference!, "Organization/1")
 		XCTAssertEqual(inst.reference!, "ABC12345G")
-		XCTAssertEqual(inst.request!.reference!, "http://BenefitsInc.com/fhir/oralhealthclaim/12345")
+		XCTAssertEqual(inst.requestReference!.reference!, "http://BenefitsInc.com/fhir/oralhealthclaim/12345")
 		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the ReProcess ProcessRequest resource.</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
@@ -171,10 +183,12 @@ class ProcessRequestTests: XCTestCase
 	}
 	
 	func testProcessRequest7() {
-		let instance = try? runProcessRequest7()
-		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
-		if let instance = instance {
-			try! runProcessRequest7(instance.asJSON())
+		do {
+			let instance = try runProcessRequest7()
+			try runProcessRequest7(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 	}
 	
@@ -187,8 +201,8 @@ class ProcessRequestTests: XCTestCase
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "76543")
 		XCTAssertFalse(inst.nullify!)
-		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
-		XCTAssertEqual(inst.request!.reference!, "http://BenefitsInc.com/fhir/oralhealthclaim/12345")
+		XCTAssertEqual(inst.organizationReference!.reference!, "Organization/1")
+		XCTAssertEqual(inst.requestReference!.reference!, "http://BenefitsInc.com/fhir/oralhealthclaim/12345")
 		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Reversal ProcessRequest</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
@@ -196,10 +210,12 @@ class ProcessRequestTests: XCTestCase
 	}
 	
 	func testProcessRequest8() {
-		let instance = try? runProcessRequest8()
-		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
-		if let instance = instance {
-			try! runProcessRequest8(instance.asJSON())
+		do {
+			let instance = try runProcessRequest8()
+			try runProcessRequest8(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 	}
 	
@@ -211,9 +227,9 @@ class ProcessRequestTests: XCTestCase
 		XCTAssertEqual(inst.id!, "87655")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "1776543")
-		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
-		XCTAssertEqual(inst.request!.reference!, "http://BenefitsInc.com/oralhealthclaim/12345")
-		XCTAssertEqual(inst.response!.reference!, "http://BenefitsInc.com/fhir/claimresponse/3500")
+		XCTAssertEqual(inst.organizationReference!.reference!, "Organization/1")
+		XCTAssertEqual(inst.requestReference!.reference!, "http://BenefitsInc.com/oralhealthclaim/12345")
+		XCTAssertEqual(inst.responseReference!.reference!, "http://BenefitsInc.com/fhir/claimresponse/3500")
 		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Status ProcessRequest</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
@@ -221,10 +237,12 @@ class ProcessRequestTests: XCTestCase
 	}
 	
 	func testProcessRequest9() {
-		let instance = try? runProcessRequest9()
-		XCTAssertNotNil(instance, "Must instantiate ProcessRequest")
-		if let instance = instance {
-			try! runProcessRequest9(instance.asJSON())
+		do {
+			let instance = try runProcessRequest9()
+			try runProcessRequest9(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 	}
 	
@@ -236,7 +254,7 @@ class ProcessRequestTests: XCTestCase
 		XCTAssertEqual(inst.id!, "1110")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier![0].value!, "110")
-		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.organizationReference!.reference!, "Organization/1")
 		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		

@@ -2,16 +2,16 @@
 //  ClinicalImpressionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class ClinicalImpressionTests: XCTestCase
-{
+class ClinicalImpressionTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> ClinicalImpression {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class ClinicalImpressionTests: XCTestCase
 	}
 	
 	func testClinicalImpression1() {
-		let instance = try? runClinicalImpression1()
-		XCTAssertNotNil(instance, "Must instantiate ClinicalImpression")
-		if let instance = instance {
-			try! runClinicalImpression1(instance.asJSON())
+		do {
+			let instance = try runClinicalImpression1()
+			try runClinicalImpression1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test ClinicalImpression successfully, but threw")
 		}
 	}
 	

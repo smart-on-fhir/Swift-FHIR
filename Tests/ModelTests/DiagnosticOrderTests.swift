@@ -2,16 +2,16 @@
 //  DiagnosticOrderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class DiagnosticOrderTests: XCTestCase
-{
+class DiagnosticOrderTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> DiagnosticOrder {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class DiagnosticOrderTests: XCTestCase
 	}
 	
 	func testDiagnosticOrder1() {
-		let instance = try? runDiagnosticOrder1()
-		XCTAssertNotNil(instance, "Must instantiate DiagnosticOrder")
-		if let instance = instance {
-			try! runDiagnosticOrder1(instance.asJSON())
+		do {
+			let instance = try runDiagnosticOrder1()
+			try runDiagnosticOrder1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticOrder successfully, but threw")
 		}
 	}
 	
@@ -53,10 +55,12 @@ class DiagnosticOrderTests: XCTestCase
 	}
 	
 	func testDiagnosticOrder2() {
-		let instance = try? runDiagnosticOrder2()
-		XCTAssertNotNil(instance, "Must instantiate DiagnosticOrder")
-		if let instance = instance {
-			try! runDiagnosticOrder2(instance.asJSON())
+		do {
+			let instance = try runDiagnosticOrder2()
+			try runDiagnosticOrder2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticOrder successfully, but threw")
 		}
 	}
 	
@@ -81,10 +85,12 @@ class DiagnosticOrderTests: XCTestCase
 	}
 	
 	func testDiagnosticOrder3() {
-		let instance = try? runDiagnosticOrder3()
-		XCTAssertNotNil(instance, "Must instantiate DiagnosticOrder")
-		if let instance = instance {
-			try! runDiagnosticOrder3(instance.asJSON())
+		do {
+			let instance = try runDiagnosticOrder3()
+			try runDiagnosticOrder3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticOrder successfully, but threw")
 		}
 	}
 	
@@ -114,6 +120,69 @@ class DiagnosticOrderTests: XCTestCase
 		XCTAssertEqual(inst.status!, "received")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		XCTAssertEqual(inst.supportingInformation![0].reference!, "#fasting")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testDiagnosticOrder4() {
+		do {
+			let instance = try runDiagnosticOrder4()
+			try runDiagnosticOrder4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticOrder successfully, but threw")
+		}
+	}
+	
+	func runDiagnosticOrder4(json: FHIRJSON? = nil) throws -> DiagnosticOrder {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticorder-genetics-example-1.json")
+		
+		XCTAssertEqual(inst.encounter!.reference!, "Encounter/example")
+		XCTAssertEqual(inst.event![0].actor!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.event![0].dateTime!.description, "2014-05-12T16:16:00-07:00")
+		XCTAssertEqual(inst.event![0].status!, "requested")
+		XCTAssertEqual(inst.id!, "og-example1")
+		XCTAssertEqual(inst.item![0].code!.coding![0].code!, "49874-1")
+		XCTAssertEqual(inst.item![0].code!.coding![0].system!.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.item![0].code!.text!, "ABCB4 gene mutation analysis")
+		XCTAssertEqual(inst.item![0].specimen![0].reference!, "Specimen/example")
+		XCTAssertEqual(inst.orderer!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.status!, "received")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testDiagnosticOrder5() {
+		do {
+			let instance = try runDiagnosticOrder5()
+			try runDiagnosticOrder5(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticOrder successfully, but threw")
+		}
+	}
+	
+	func runDiagnosticOrder5(json: FHIRJSON? = nil) throws -> DiagnosticOrder {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticorder-genetics-example-2.json")
+		
+		XCTAssertEqual(inst.encounter!.reference!, "Encounter/example")
+		XCTAssertEqual(inst.event![0].actor!.reference!, "Practitioner/456")
+		XCTAssertEqual(inst.event![0].dateTime!.description, "2014-05-12T16:16:00-07:00")
+		XCTAssertEqual(inst.event![0].status!, "requested")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![0].url!.absoluteString, "code")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![0].valueCodeableConcept!.coding![0].code!, "49874-1")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![0].valueCodeableConcept!.coding![0].system!.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![0].valueCodeableConcept!.text!, "ABCB4 gene mutation analysis")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].url!.absoluteString, "sequence")
+		XCTAssertEqual(inst.extension_fhir![0].extension_fhir![1].valueReference!.reference!, "Sequence/example")
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/diagnosticorder-geneticsItem")
+		XCTAssertEqual(inst.id!, "og-example2")
+		XCTAssertEqual(inst.orderer!.reference!, "Practitioner/example")
+		XCTAssertEqual(inst.status!, "received")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst

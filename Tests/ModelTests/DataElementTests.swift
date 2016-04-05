@@ -2,16 +2,16 @@
 //  DataElementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class DataElementTests: XCTestCase
-{
+class DataElementTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> DataElement {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class DataElementTests: XCTestCase
 	}
 	
 	func testDataElement1() {
-		let instance = try? runDataElement1()
-		XCTAssertNotNil(instance, "Must instantiate DataElement")
-		if let instance = instance {
-			try! runDataElement1(instance.asJSON())
+		do {
+			let instance = try runDataElement1()
+			try runDataElement1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DataElement successfully, but threw")
 		}
 	}
 	
@@ -34,8 +36,9 @@ class DataElementTests: XCTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "dataelement-example.json")
 		
 		XCTAssertEqual(inst.contained![0].id!, "2179414")
-		XCTAssertEqual(inst.contained![1].id!, "2179414-permitted")
-		XCTAssertEqual(inst.contained![2].id!, "2179414-cm")
+		XCTAssertEqual(inst.contained![1].id!, "2179414-permitted-cs")
+		XCTAssertEqual(inst.contained![2].id!, "2179414-permitted")
+		XCTAssertEqual(inst.contained![3].id!, "2179414-cm")
 		XCTAssertEqual(inst.element![0].binding!.strength!, "required")
 		XCTAssertEqual(inst.element![0].binding!.valueSetReference!.extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-valueset")
 		XCTAssertEqual(inst.element![0].binding!.valueSetReference!.extension_fhir![0].valueReference!.reference!, "#2179414-permitted")
@@ -82,10 +85,12 @@ class DataElementTests: XCTestCase
 	}
 	
 	func testDataElement2() {
-		let instance = try? runDataElement2()
-		XCTAssertNotNil(instance, "Must instantiate DataElement")
-		if let instance = instance {
-			try! runDataElement2(instance.asJSON())
+		do {
+			let instance = try runDataElement2()
+			try runDataElement2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DataElement successfully, but threw")
 		}
 	}
 	
@@ -114,7 +119,7 @@ class DataElementTests: XCTestCase
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://www.CenturyHospital/Laboratory/DirectoryofServices")
 		XCTAssertEqual(inst.identifier![0].type!.text!, "Prothrombin Time, PT")
 		XCTAssertEqual(inst.identifier![0].value!, "11")
-		XCTAssertEqual(inst.mapping![0].comments!, "Version 2.48 or later")
+		XCTAssertEqual(inst.mapping![0].comment!, "Version 2.48 or later")
 		XCTAssertEqual(inst.mapping![0].identity!, "loinc")
 		XCTAssertEqual(inst.mapping![0].name!, "LOINC")
 		XCTAssertEqual(inst.mapping![0].uri!.absoluteString, "http://loinc.org/")

@@ -2,16 +2,16 @@
 //  RiskAssessmentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class RiskAssessmentTests: XCTestCase
-{
+class RiskAssessmentTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> RiskAssessment {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class RiskAssessmentTests: XCTestCase
 	}
 	
 	func testRiskAssessment1() {
-		let instance = try? runRiskAssessment1()
-		XCTAssertNotNil(instance, "Must instantiate RiskAssessment")
-		if let instance = instance {
-			try! runRiskAssessment1(instance.asJSON())
+		do {
+			let instance = try runRiskAssessment1()
+			try runRiskAssessment1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw")
 		}
 	}
 	
@@ -55,10 +57,12 @@ class RiskAssessmentTests: XCTestCase
 	}
 	
 	func testRiskAssessment2() {
-		let instance = try? runRiskAssessment2()
-		XCTAssertNotNil(instance, "Must instantiate RiskAssessment")
-		if let instance = instance {
-			try! runRiskAssessment2(instance.asJSON())
+		do {
+			let instance = try runRiskAssessment2()
+			try runRiskAssessment2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw")
 		}
 	}
 	
@@ -72,10 +76,12 @@ class RiskAssessmentTests: XCTestCase
 	}
 	
 	func testRiskAssessment3() {
-		let instance = try? runRiskAssessment3()
-		XCTAssertNotNil(instance, "Must instantiate RiskAssessment")
-		if let instance = instance {
-			try! runRiskAssessment3(instance.asJSON())
+		do {
+			let instance = try runRiskAssessment3()
+			try runRiskAssessment3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw")
 		}
 	}
 	
@@ -98,10 +104,12 @@ class RiskAssessmentTests: XCTestCase
 	}
 	
 	func testRiskAssessment4() {
-		let instance = try? runRiskAssessment4()
-		XCTAssertNotNil(instance, "Must instantiate RiskAssessment")
-		if let instance = instance {
-			try! runRiskAssessment4(instance.asJSON())
+		do {
+			let instance = try runRiskAssessment4()
+			try runRiskAssessment4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw")
 		}
 	}
 	

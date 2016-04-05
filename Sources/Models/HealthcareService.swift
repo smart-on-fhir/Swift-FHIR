@@ -2,8 +2,8 @@
 //  HealthcareService.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import Foundation
@@ -47,8 +47,8 @@ public class HealthcareService: DomainResource {
 	/// External identifiers for this item.
 	public var identifier: [Identifier]?
 	
-	/// Location where service may be provided.
-	public var location: Reference?
+	/// Location(s) where service may be provided.
+	public var location: [Reference]?
 	
 	/// Not available during this time due to provided reason.
 	public var notAvailable: [HealthcareServiceNotAvailable]?
@@ -77,8 +77,11 @@ public class HealthcareService: DomainResource {
 	/// Conditions under which service is available/offered.
 	public var serviceProvisionCode: [CodeableConcept]?
 	
-	/// Specific service delivered or performed.
-	public var serviceType: [HealthcareServiceServiceType]?
+	/// Type of service that may be delivered or performed.
+	public var serviceType: [CodeableConcept]?
+	
+	/// Specialties handled by the HealthcareService.
+	public var specialty: [CodeableConcept]?
 	
 	/// Contacts related to the healthcare service.
 	public var telecom: [ContactPoint]?
@@ -87,12 +90,6 @@ public class HealthcareService: DomainResource {
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
 		super.init(json: json, owner: owner)
-	}
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(location: Reference) {
-		self.init(json: nil)
-		self.location = location
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -190,15 +187,12 @@ public class HealthcareService: DomainResource {
 			}
 			if let exist: AnyObject = js["location"] {
 				presentKeys.insert("location")
-				if let val = exist as? FHIRJSON {
-					self.location = Reference(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.location = Reference.from(val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "location", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "location", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "location"))
 			}
 			if let exist: AnyObject = js["notAvailable"] {
 				presentKeys.insert("notAvailable")
@@ -284,10 +278,19 @@ public class HealthcareService: DomainResource {
 			if let exist: AnyObject = js["serviceType"] {
 				presentKeys.insert("serviceType")
 				if let val = exist as? [FHIRJSON] {
-					self.serviceType = HealthcareServiceServiceType.from(val, owner: self) as? [HealthcareServiceServiceType]
+					self.serviceType = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "serviceType", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["specialty"] {
+				presentKeys.insert("specialty")
+				if let val = exist as? [FHIRJSON] {
+					self.specialty = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "specialty", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["telecom"] {
@@ -337,7 +340,7 @@ public class HealthcareService: DomainResource {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
 		if let location = self.location {
-			json["location"] = location.asJSON()
+			json["location"] = Reference.asJSONArray(location)
 		}
 		if let notAvailable = self.notAvailable {
 			json["notAvailable"] = HealthcareServiceNotAvailable.asJSONArray(notAvailable)
@@ -371,7 +374,10 @@ public class HealthcareService: DomainResource {
 			json["serviceProvisionCode"] = CodeableConcept.asJSONArray(serviceProvisionCode)
 		}
 		if let serviceType = self.serviceType {
-			json["serviceType"] = HealthcareServiceServiceType.asJSONArray(serviceType)
+			json["serviceType"] = CodeableConcept.asJSONArray(serviceType)
+		}
+		if let specialty = self.specialty {
+			json["specialty"] = CodeableConcept.asJSONArray(specialty)
 		}
 		if let telecom = self.telecom {
 			json["telecom"] = ContactPoint.asJSONArray(telecom)
@@ -542,77 +548,6 @@ public class HealthcareServiceNotAvailable: BackboneElement {
 		}
 		if let during = self.during {
 			json["during"] = during.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Specific service delivered or performed.
- *
- *  A specific type of service that may be delivered or performed.
- */
-public class HealthcareServiceServiceType: BackboneElement {
-	override public class var resourceName: String {
-		get { return "HealthcareServiceServiceType" }
-	}
-	
-	/// Specialties handled by the Service Site.
-	public var specialty: [CodeableConcept]?
-	
-	/// Type of service delivered or performed.
-	public var type: CodeableConcept?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: CodeableConcept) {
-		self.init(json: nil)
-		self.type = type
-	}
-	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist: AnyObject = js["specialty"] {
-				presentKeys.insert("specialty")
-				if let val = exist as? [FHIRJSON] {
-					self.specialty = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "specialty", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "type"))
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override public func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let specialty = self.specialty {
-			json["specialty"] = CodeableConcept.asJSONArray(specialty)
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
 		}
 		
 		return json

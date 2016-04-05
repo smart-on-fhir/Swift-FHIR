@@ -2,8 +2,8 @@
 //  DataElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import Foundation
@@ -274,7 +274,7 @@ public class DataElementContact: BackboneElement {
 		get { return "DataElementContact" }
 	}
 	
-	/// Name of a individual to contact.
+	/// Name of an individual to contact.
 	public var name: String?
 	
 	/// Contact details for individual or publisher.
@@ -338,7 +338,7 @@ public class DataElementMapping: BackboneElement {
 	}
 	
 	/// Versions, Issues, Scope limitations etc..
-	public var comments: String?
+	public var comment: String?
 	
 	/// Internal id when this mapping is used.
 	public var identity: String?
@@ -364,13 +364,13 @@ public class DataElementMapping: BackboneElement {
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["comments"] {
-				presentKeys.insert("comments")
+			if let exist: AnyObject = js["comment"] {
+				presentKeys.insert("comment")
 				if let val = exist as? String {
-					self.comments = val
+					self.comment = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "comments", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["identity"] {
@@ -410,8 +410,8 @@ public class DataElementMapping: BackboneElement {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let comments = self.comments {
-			json["comments"] = comments.asJSON()
+		if let comment = self.comment {
+			json["comment"] = comment.asJSON()
 		}
 		if let identity = self.identity {
 			json["identity"] = identity.asJSON()

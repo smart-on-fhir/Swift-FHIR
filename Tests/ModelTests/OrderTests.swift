@@ -2,16 +2,16 @@
 //  OrderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class OrderTests: XCTestCase
-{
+class OrderTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Order {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class OrderTests: XCTestCase
 	}
 	
 	func testOrder1() {
-		let instance = try? runOrder1()
-		XCTAssertNotNil(instance, "Must instantiate Order")
-		if let instance = instance {
-			try! runOrder1(instance.asJSON())
+		do {
+			let instance = try runOrder1()
+			try runOrder1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Order successfully, but threw")
 		}
 	}
 	
@@ -51,10 +53,12 @@ class OrderTests: XCTestCase
 	}
 	
 	func testOrder2() {
-		let instance = try? runOrder2()
-		XCTAssertNotNil(instance, "Must instantiate Order")
-		if let instance = instance {
-			try! runOrder2(instance.asJSON())
+		do {
+			let instance = try runOrder2()
+			try runOrder2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Order successfully, but threw")
 		}
 	}
 	

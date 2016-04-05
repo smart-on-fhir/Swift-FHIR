@@ -2,16 +2,16 @@
 //  AppointmentResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class AppointmentResponseTests: XCTestCase
-{
+class AppointmentResponseTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> AppointmentResponse {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class AppointmentResponseTests: XCTestCase
 	}
 	
 	func testAppointmentResponse1() {
-		let instance = try? runAppointmentResponse1()
-		XCTAssertNotNil(instance, "Must instantiate AppointmentResponse")
-		if let instance = instance {
-			try! runAppointmentResponse1(instance.asJSON())
+		do {
+			let instance = try runAppointmentResponse1()
+			try runAppointmentResponse1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test AppointmentResponse successfully, but threw")
 		}
 	}
 	
@@ -43,7 +45,8 @@ class AppointmentResponseTests: XCTestCase
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://example.org/sampleappointmentresponse-identifier")
 		XCTAssertEqual(inst.identifier![0].value!, "response123")
 		XCTAssertEqual(inst.participantStatus!, "tentative")
-		XCTAssertEqual(inst.participantType![0].coding![0].code!, "attending")
+		XCTAssertEqual(inst.participantType![0].coding![0].code!, "ATND")
+		XCTAssertEqual(inst.participantType![0].coding![0].system!.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.start!.description, "2013-12-25T13:15:00Z")
 		XCTAssertEqual(inst.text!.div!, "<div>Accept Brian MRI results discussion</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
@@ -52,10 +55,12 @@ class AppointmentResponseTests: XCTestCase
 	}
 	
 	func testAppointmentResponse2() {
-		let instance = try? runAppointmentResponse2()
-		XCTAssertNotNil(instance, "Must instantiate AppointmentResponse")
-		if let instance = instance {
-			try! runAppointmentResponse2(instance.asJSON())
+		do {
+			let instance = try runAppointmentResponse2()
+			try runAppointmentResponse2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test AppointmentResponse successfully, but threw")
 		}
 	}
 	

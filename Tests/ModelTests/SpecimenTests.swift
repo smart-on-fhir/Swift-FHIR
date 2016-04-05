@@ -2,16 +2,16 @@
 //  SpecimenTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class SpecimenTests: XCTestCase
-{
+class SpecimenTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Specimen {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class SpecimenTests: XCTestCase
 	}
 	
 	func testSpecimen1() {
-		let instance = try? runSpecimen1()
-		XCTAssertNotNil(instance, "Must instantiate Specimen")
-		if let instance = instance {
-			try! runSpecimen1(instance.asJSON())
+		do {
+			let instance = try runSpecimen1()
+			try runSpecimen1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw")
 		}
 	}
 	
@@ -54,10 +56,12 @@ class SpecimenTests: XCTestCase
 	}
 	
 	func testSpecimen2() {
-		let instance = try? runSpecimen2()
-		XCTAssertNotNil(instance, "Must instantiate Specimen")
-		if let instance = instance {
-			try! runSpecimen2(instance.asJSON())
+		do {
+			let instance = try runSpecimen2()
+			try runSpecimen2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw")
 		}
 	}
 	
@@ -89,10 +93,12 @@ class SpecimenTests: XCTestCase
 	}
 	
 	func testSpecimen3() {
-		let instance = try? runSpecimen3()
-		XCTAssertNotNil(instance, "Must instantiate Specimen")
-		if let instance = instance {
-			try! runSpecimen3(instance.asJSON())
+		do {
+			let instance = try runSpecimen3()
+			try runSpecimen3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw")
 		}
 	}
 	
@@ -103,7 +109,7 @@ class SpecimenTests: XCTestCase
 		XCTAssertEqual(inst.accessionIdentifier!.value!, "X352356")
 		XCTAssertEqual(inst.collection!.collectedDateTime!.description, "2011-05-30T06:15:00Z")
 		XCTAssertEqual(inst.collection!.collector!.reference!, "Practitioner/example")
-		XCTAssertEqual(inst.collection!.comment![0], "Specimen is grossly lipemic")
+		XCTAssertEqual(inst.collection!.comment!, "Specimen is grossly lipemic")
 		XCTAssertEqual(inst.collection!.method!.coding![0].code!, "LNV")
 		XCTAssertEqual(inst.collection!.method!.coding![0].system!.absoluteString, "http://hl7.org/fhir/v2/0488")
 		XCTAssertEqual(inst.collection!.quantity!.unit!, "mL")

@@ -2,16 +2,16 @@
 //  VisionPrescriptionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class VisionPrescriptionTests: XCTestCase
-{
+class VisionPrescriptionTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> VisionPrescription {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class VisionPrescriptionTests: XCTestCase
 	}
 	
 	func testVisionPrescription1() {
-		let instance = try? runVisionPrescription1()
-		XCTAssertNotNil(instance, "Must instantiate VisionPrescription")
-		if let instance = instance {
-			try! runVisionPrescription1(instance.asJSON())
+		do {
+			let instance = try runVisionPrescription1()
+			try runVisionPrescription1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test VisionPrescription successfully, but threw")
 		}
 	}
 	
@@ -76,10 +78,12 @@ class VisionPrescriptionTests: XCTestCase
 	}
 	
 	func testVisionPrescription2() {
-		let instance = try? runVisionPrescription2()
-		XCTAssertNotNil(instance, "Must instantiate VisionPrescription")
-		if let instance = instance {
-			try! runVisionPrescription2(instance.asJSON())
+		do {
+			let instance = try runVisionPrescription2()
+			try runVisionPrescription2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test VisionPrescription successfully, but threw")
 		}
 	}
 	

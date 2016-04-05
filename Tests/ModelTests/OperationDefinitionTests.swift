@@ -2,16 +2,16 @@
 //  OperationDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class OperationDefinitionTests: XCTestCase
-{
+class OperationDefinitionTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> OperationDefinition {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class OperationDefinitionTests: XCTestCase
 	}
 	
 	func testOperationDefinition1() {
-		let instance = try? runOperationDefinition1()
-		XCTAssertNotNil(instance, "Must instantiate OperationDefinition")
-		if let instance = instance {
-			try! runOperationDefinition1(instance.asJSON())
+		do {
+			let instance = try runOperationDefinition1()
+			try runOperationDefinition1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test OperationDefinition successfully, but threw")
 		}
 	}
 	
@@ -35,6 +37,7 @@ class OperationDefinitionTests: XCTestCase
 		
 		XCTAssertEqual(inst.base!.reference!, "OperationDefinition/Questionnaire-populate")
 		XCTAssertEqual(inst.code!, "populate")
+		XCTAssertEqual(inst.comment!, "Only implemented for Labs and Medications so far")
 		XCTAssertEqual(inst.contact![0].name!, "System Administrator")
 		XCTAssertEqual(inst.contact![0].telecom![0].system!, "email")
 		XCTAssertEqual(inst.contact![0].telecom![0].value!, "beep@coyote.acme.com")
@@ -44,7 +47,6 @@ class OperationDefinitionTests: XCTestCase
 		XCTAssertTrue(inst.instance!)
 		XCTAssertEqual(inst.kind!, "operation")
 		XCTAssertEqual(inst.name!, "Populate Questionnaire")
-		XCTAssertEqual(inst.notes!, "Only implemented for Labs and Medications so far")
 		XCTAssertEqual(inst.parameter![0].max!, "1")
 		XCTAssertEqual(inst.parameter![0].min!, 1)
 		XCTAssertEqual(inst.parameter![0].name!, "subject")

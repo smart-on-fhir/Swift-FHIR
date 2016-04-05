@@ -2,16 +2,16 @@
 //  OperationOutcomeTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class OperationOutcomeTests: XCTestCase
-{
+class OperationOutcomeTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> OperationOutcome {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class OperationOutcomeTests: XCTestCase
 	}
 	
 	func testOperationOutcome1() {
-		let instance = try? runOperationOutcome1()
-		XCTAssertNotNil(instance, "Must instantiate OperationOutcome")
-		if let instance = instance {
-			try! runOperationOutcome1(instance.asJSON())
+		do {
+			let instance = try runOperationOutcome1()
+			try runOperationOutcome1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
 		}
 	}
 	
@@ -43,10 +45,12 @@ class OperationOutcomeTests: XCTestCase
 	}
 	
 	func testOperationOutcome2() {
-		let instance = try? runOperationOutcome2()
-		XCTAssertNotNil(instance, "Must instantiate OperationOutcome")
-		if let instance = instance {
-			try! runOperationOutcome2(instance.asJSON())
+		do {
+			let instance = try runOperationOutcome2()
+			try runOperationOutcome2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
 		}
 	}
 	
@@ -66,10 +70,12 @@ class OperationOutcomeTests: XCTestCase
 	}
 	
 	func testOperationOutcome3() {
-		let instance = try? runOperationOutcome3()
-		XCTAssertNotNil(instance, "Must instantiate OperationOutcome")
-		if let instance = instance {
-			try! runOperationOutcome3(instance.asJSON())
+		do {
+			let instance = try runOperationOutcome3()
+			try runOperationOutcome3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
 		}
 	}
 	
@@ -86,10 +92,12 @@ class OperationOutcomeTests: XCTestCase
 	}
 	
 	func testOperationOutcome4() {
-		let instance = try? runOperationOutcome4()
-		XCTAssertNotNil(instance, "Must instantiate OperationOutcome")
-		if let instance = instance {
-			try! runOperationOutcome4(instance.asJSON())
+		do {
+			let instance = try runOperationOutcome4()
+			try runOperationOutcome4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
 		}
 	}
 	
@@ -107,10 +115,12 @@ class OperationOutcomeTests: XCTestCase
 	}
 	
 	func testOperationOutcome5() {
-		let instance = try? runOperationOutcome5()
-		XCTAssertNotNil(instance, "Must instantiate OperationOutcome")
-		if let instance = instance {
-			try! runOperationOutcome5(instance.asJSON())
+		do {
+			let instance = try runOperationOutcome5()
+			try runOperationOutcome5(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
 		}
 	}
 	
@@ -128,10 +138,12 @@ class OperationOutcomeTests: XCTestCase
 	}
 	
 	func testOperationOutcome6() {
-		let instance = try? runOperationOutcome6()
-		XCTAssertNotNil(instance, "Must instantiate OperationOutcome")
-		if let instance = instance {
-			try! runOperationOutcome6(instance.asJSON())
+		do {
+			let instance = try runOperationOutcome6()
+			try runOperationOutcome6(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
 		}
 	}
 	

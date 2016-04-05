@@ -2,16 +2,16 @@
 //  LocationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class LocationTests: XCTestCase
-{
+class LocationTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Location {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class LocationTests: XCTestCase
 	}
 	
 	func testLocation1() {
-		let instance = try? runLocation1()
-		XCTAssertNotNil(instance, "Must instantiate Location")
-		if let instance = instance {
-			try! runLocation1(instance.asJSON())
+		do {
+			let instance = try runLocation1()
+			try runLocation1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
 		}
 	}
 	
@@ -55,10 +57,12 @@ class LocationTests: XCTestCase
 	}
 	
 	func testLocation2() {
-		let instance = try? runLocation2()
-		XCTAssertNotNil(instance, "Must instantiate Location")
-		if let instance = instance {
-			try! runLocation2(instance.asJSON())
+		do {
+			let instance = try runLocation2()
+			try runLocation2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
 		}
 	}
 	
@@ -95,10 +99,12 @@ class LocationTests: XCTestCase
 	}
 	
 	func testLocation3() {
-		let instance = try? runLocation3()
-		XCTAssertNotNil(instance, "Must instantiate Location")
-		if let instance = instance {
-			try! runLocation3(instance.asJSON())
+		do {
+			let instance = try runLocation3()
+			try runLocation3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
 		}
 	}
 	
@@ -124,10 +130,12 @@ class LocationTests: XCTestCase
 	}
 	
 	func testLocation4() {
-		let instance = try? runLocation4()
-		XCTAssertNotNil(instance, "Must instantiate Location")
-		if let instance = instance {
-			try! runLocation4(instance.asJSON())
+		do {
+			let instance = try runLocation4()
+			try runLocation4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
 		}
 	}
 	
@@ -157,10 +165,12 @@ class LocationTests: XCTestCase
 	}
 	
 	func testLocation5() {
-		let instance = try? runLocation5()
-		XCTAssertNotNil(instance, "Must instantiate Location")
-		if let instance = instance {
-			try! runLocation5(instance.asJSON())
+		do {
+			let instance = try runLocation5()
+			try runLocation5(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
 		}
 	}
 	
@@ -185,10 +195,12 @@ class LocationTests: XCTestCase
 	}
 	
 	func testLocation6() {
-		let instance = try? runLocation6()
-		XCTAssertNotNil(instance, "Must instantiate Location")
-		if let instance = instance {
-			try! runLocation6(instance.asJSON())
+		do {
+			let instance = try runLocation6()
+			try runLocation6(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
 		}
 	}
 	

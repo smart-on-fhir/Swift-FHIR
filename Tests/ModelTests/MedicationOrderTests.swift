@@ -2,16 +2,16 @@
 //  MedicationOrderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class MedicationOrderTests: XCTestCase
-{
+class MedicationOrderTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> MedicationOrder {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class MedicationOrderTests: XCTestCase
 	}
 	
 	func testMedicationOrder1() {
-		let instance = try? runMedicationOrder1()
-		XCTAssertNotNil(instance, "Must instantiate MedicationOrder")
-		if let instance = instance {
-			try! runMedicationOrder1(instance.asJSON())
+		do {
+			let instance = try runMedicationOrder1()
+			try runMedicationOrder1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test MedicationOrder successfully, but threw")
 		}
 	}
 	
@@ -61,7 +63,7 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.boundsPeriod!.start!.description, "2013-08-04")
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.frequency!, 3)
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.period!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnits!, "d")
+		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnit!, "d")
 		XCTAssertEqual(inst.encounter!.display!, "visit who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
 		XCTAssertEqual(inst.id!, "f001")
@@ -74,9 +76,9 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f001")
 		XCTAssertEqual(inst.prescriber!.display!, "R.A. van den Berk")
 		XCTAssertEqual(inst.prescriber!.reference!, "Practitioner/f006")
-		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].code!, "13645005")
-		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].display!, "Chronic obstructive pulmonary disease")
-		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].system!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.reasonCode![0].coding![0].code!, "13645005")
+		XCTAssertEqual(inst.reasonCode![0].coding![0].display!, "Chronic obstructive pulmonary disease")
+		XCTAssertEqual(inst.reasonCode![0].coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.status!, "active")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
@@ -84,10 +86,12 @@ class MedicationOrderTests: XCTestCase
 	}
 	
 	func testMedicationOrder2() {
-		let instance = try? runMedicationOrder2()
-		XCTAssertNotNil(instance, "Must instantiate MedicationOrder")
-		if let instance = instance {
-			try! runMedicationOrder2(instance.asJSON())
+		do {
+			let instance = try runMedicationOrder2()
+			try runMedicationOrder2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test MedicationOrder successfully, but threw")
 		}
 	}
 	
@@ -112,7 +116,7 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.boundsPeriod!.start!.description, "2013-08-04")
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.frequency!, 1)
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.period!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnits!, "d")
+		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnit!, "d")
 		XCTAssertEqual(inst.encounter!.display!, "encounter who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
 		XCTAssertEqual(inst.id!, "f002")
@@ -125,9 +129,9 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f001")
 		XCTAssertEqual(inst.prescriber!.display!, "R.A. van den Berk")
 		XCTAssertEqual(inst.prescriber!.reference!, "Practitioner/f006")
-		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].code!, "28036006")
-		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].display!, "High density lipoprotein cholesterol level")
-		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].system!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.reasonCode![0].coding![0].code!, "28036006")
+		XCTAssertEqual(inst.reasonCode![0].coding![0].display!, "High density lipoprotein cholesterol level")
+		XCTAssertEqual(inst.reasonCode![0].coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.status!, "active")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
@@ -135,10 +139,12 @@ class MedicationOrderTests: XCTestCase
 	}
 	
 	func testMedicationOrder3() {
-		let instance = try? runMedicationOrder3()
-		XCTAssertNotNil(instance, "Must instantiate MedicationOrder")
-		if let instance = instance {
-			try! runMedicationOrder3(instance.asJSON())
+		do {
+			let instance = try runMedicationOrder3()
+			try runMedicationOrder3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test MedicationOrder successfully, but threw")
 		}
 	}
 	
@@ -163,7 +169,7 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.boundsPeriod!.start!.description, "2011-05-01")
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.frequency!, 3)
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.period!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnits!, "d")
+		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnit!, "d")
 		XCTAssertEqual(inst.encounter!.display!, "encounter who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f002")
 		XCTAssertEqual(inst.id!, "f003")
@@ -176,9 +182,9 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f001")
 		XCTAssertEqual(inst.prescriber!.display!, "S.M. Heps")
 		XCTAssertEqual(inst.prescriber!.reference!, "Practitioner/f007")
-		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].code!, "444780001")
-		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].display!, "High glucose level in blood")
-		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].system!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.reasonCode![0].coding![0].code!, "444780001")
+		XCTAssertEqual(inst.reasonCode![0].coding![0].display!, "High glucose level in blood")
+		XCTAssertEqual(inst.reasonCode![0].coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.status!, "active")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
@@ -186,10 +192,12 @@ class MedicationOrderTests: XCTestCase
 	}
 	
 	func testMedicationOrder4() {
-		let instance = try? runMedicationOrder4()
-		XCTAssertNotNil(instance, "Must instantiate MedicationOrder")
-		if let instance = instance {
-			try! runMedicationOrder4(instance.asJSON())
+		do {
+			let instance = try runMedicationOrder4()
+			try runMedicationOrder4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test MedicationOrder successfully, but threw")
 		}
 	}
 	
@@ -214,7 +222,7 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.boundsPeriod!.start!.description, "2011-05-01")
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.frequency!, 1)
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.period!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnits!, "d")
+		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnit!, "d")
 		XCTAssertEqual(inst.encounter!.display!, "encounter who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
 		XCTAssertEqual(inst.id!, "f004")
@@ -227,9 +235,9 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f001")
 		XCTAssertEqual(inst.prescriber!.display!, "S.M. Heps")
 		XCTAssertEqual(inst.prescriber!.reference!, "Practitioner/f007")
-		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].code!, "38341003")
-		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].display!, "High blood pressure")
-		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].system!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.reasonCode![0].coding![0].code!, "38341003")
+		XCTAssertEqual(inst.reasonCode![0].coding![0].display!, "High blood pressure")
+		XCTAssertEqual(inst.reasonCode![0].coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.status!, "active")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
@@ -237,10 +245,12 @@ class MedicationOrderTests: XCTestCase
 	}
 	
 	func testMedicationOrder5() {
-		let instance = try? runMedicationOrder5()
-		XCTAssertNotNil(instance, "Must instantiate MedicationOrder")
-		if let instance = instance {
-			try! runMedicationOrder5(instance.asJSON())
+		do {
+			let instance = try runMedicationOrder5()
+			try runMedicationOrder5(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test MedicationOrder successfully, but threw")
 		}
 	}
 	
@@ -265,7 +275,7 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.boundsPeriod!.start!.description, "2011-05-01")
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.frequency!, 1)
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.period!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnits!, "d")
+		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnit!, "d")
 		XCTAssertEqual(inst.encounter!.display!, "encounter who leads to this priscription")
 		XCTAssertEqual(inst.encounter!.reference!, "Encounter/f001")
 		XCTAssertEqual(inst.id!, "f005")
@@ -278,9 +288,9 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f001")
 		XCTAssertEqual(inst.prescriber!.display!, "S.M. Heps")
 		XCTAssertEqual(inst.prescriber!.reference!, "Practitioner/f007")
-		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].code!, "38341003")
-		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].display!, "High blood pressure")
-		XCTAssertEqual(inst.reasonCodeableConcept!.coding![0].system!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.reasonCode![0].coding![0].code!, "38341003")
+		XCTAssertEqual(inst.reasonCode![0].coding![0].display!, "High blood pressure")
+		XCTAssertEqual(inst.reasonCode![0].coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.status!, "active")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
@@ -288,10 +298,12 @@ class MedicationOrderTests: XCTestCase
 	}
 	
 	func testMedicationOrder6() {
-		let instance = try? runMedicationOrder6()
-		XCTAssertNotNil(instance, "Must instantiate MedicationOrder")
-		if let instance = instance {
-			try! runMedicationOrder6(instance.asJSON())
+		do {
+			let instance = try runMedicationOrder6()
+			try runMedicationOrder6(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test MedicationOrder successfully, but threw")
 		}
 	}
 	
@@ -324,7 +336,7 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.boundsPeriod!.start!.description, "2013-03-11")
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.frequency!, 2)
 		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.period!, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnits!, "d")
+		XCTAssertEqual(inst.dosageInstruction![0].timing!.repeat_fhir!.periodUnit!, "d")
 		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.medicationReference!.display!, "25ug Salmeterol + 250ug Fluticasone")
 		XCTAssertEqual(inst.medicationReference!.reference!, "Medication/f201")
@@ -332,8 +344,8 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f201")
 		XCTAssertEqual(inst.prescriber!.display!, "Dokter Bonsig")
 		XCTAssertEqual(inst.prescriber!.reference!, "Practitioner/f201")
-		XCTAssertEqual(inst.reasonReference!.display!, "fever")
-		XCTAssertEqual(inst.reasonReference!.reference!, "Condition/f201")
+		XCTAssertEqual(inst.reasonReference![0].display!, "fever")
+		XCTAssertEqual(inst.reasonReference![0].reference!, "Condition/f201")
 		XCTAssertEqual(inst.status!, "active")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
@@ -341,10 +353,12 @@ class MedicationOrderTests: XCTestCase
 	}
 	
 	func testMedicationOrder7() {
-		let instance = try? runMedicationOrder7()
-		XCTAssertNotNil(instance, "Must instantiate MedicationOrder")
-		if let instance = instance {
-			try! runMedicationOrder7(instance.asJSON())
+		do {
+			let instance = try runMedicationOrder7()
+			try runMedicationOrder7(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test MedicationOrder successfully, but threw")
 		}
 	}
 	
@@ -377,8 +391,8 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.patient!.display!, "Roel")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f201")
 		XCTAssertEqual(inst.prescriber!.reference!, "Practitioner/f201")
-		XCTAssertEqual(inst.reasonReference!.display!, "sepsis")
-		XCTAssertEqual(inst.reasonReference!.reference!, "Condition/f203")
+		XCTAssertEqual(inst.reasonReference![0].display!, "sepsis")
+		XCTAssertEqual(inst.reasonReference![0].reference!, "Condition/f203")
 		XCTAssertEqual(inst.status!, "completed")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
@@ -386,10 +400,12 @@ class MedicationOrderTests: XCTestCase
 	}
 	
 	func testMedicationOrder8() {
-		let instance = try? runMedicationOrder8()
-		XCTAssertNotNil(instance, "Must instantiate MedicationOrder")
-		if let instance = instance {
-			try! runMedicationOrder8(instance.asJSON())
+		do {
+			let instance = try runMedicationOrder8()
+			try runMedicationOrder8(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test MedicationOrder successfully, but threw")
 		}
 	}
 	
@@ -417,8 +433,8 @@ class MedicationOrderTests: XCTestCase
 		XCTAssertEqual(inst.patient!.display!, "Roel")
 		XCTAssertEqual(inst.patient!.reference!, "Patient/f201")
 		XCTAssertEqual(inst.prescriber!.reference!, "Practitioner/f201")
-		XCTAssertEqual(inst.reasonReference!.display!, "fever")
-		XCTAssertEqual(inst.reasonReference!.reference!, "Condition/f201")
+		XCTAssertEqual(inst.reasonReference![0].display!, "fever")
+		XCTAssertEqual(inst.reasonReference![0].reference!, "Condition/f201")
 		XCTAssertEqual(inst.status!, "active")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		

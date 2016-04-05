@@ -2,16 +2,16 @@
 //  GroupTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class GroupTests: XCTestCase
-{
+class GroupTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Group {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class GroupTests: XCTestCase
 	}
 	
 	func testGroup1() {
-		let instance = try? runGroup1()
-		XCTAssertNotNil(instance, "Must instantiate Group")
-		if let instance = instance {
-			try! runGroup1(instance.asJSON())
+		do {
+			let instance = try runGroup1()
+			try runGroup1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw")
 		}
 	}
 	
@@ -51,10 +53,12 @@ class GroupTests: XCTestCase
 	}
 	
 	func testGroup2() {
-		let instance = try? runGroup2()
-		XCTAssertNotNil(instance, "Must instantiate Group")
-		if let instance = instance {
-			try! runGroup2(instance.asJSON())
+		do {
+			let instance = try runGroup2()
+			try runGroup2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw")
 		}
 	}
 	

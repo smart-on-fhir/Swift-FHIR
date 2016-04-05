@@ -2,8 +2,8 @@
 //  Conformance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import Foundation
@@ -65,7 +65,7 @@ public class Conformance: DomainResource {
 	/// Name of the publisher (Organization or individual).
 	public var publisher: String?
 	
-	/// Why is this needed?.
+	/// Why this resource has been created.
 	public var requirements: String?
 	
 	/// If the endpoint is a RESTful one.
@@ -80,6 +80,9 @@ public class Conformance: DomainResource {
 	/// Logical uri to reference this statement.
 	public var url: NSURL?
 	
+	/// Content intends to support these contexts.
+	public var useContext: [CodeableConcept]?
+	
 	/// Logical id for this version of the statement.
 	public var version: String?
 	
@@ -90,13 +93,14 @@ public class Conformance: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(acceptUnknown: String, date: DateTime, fhirVersion: String, format: [String], kind: String) {
+	public convenience init(acceptUnknown: String, date: DateTime, fhirVersion: String, format: [String], kind: String, status: String) {
 		self.init(json: nil)
 		self.acceptUnknown = acceptUnknown
 		self.date = date
 		self.fhirVersion = fhirVersion
 		self.format = format
 		self.kind = kind
+		self.status = status
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -288,6 +292,9 @@ public class Conformance: DomainResource {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			else {
+				errors.append(FHIRJSONError(key: "status"))
+			}
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
@@ -295,6 +302,15 @@ public class Conformance: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["useContext"] {
+				presentKeys.insert("useContext")
+				if let val = exist as? [FHIRJSON] {
+					self.useContext = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["version"] {
@@ -377,6 +393,9 @@ public class Conformance: DomainResource {
 		if let url = self.url {
 			json["url"] = url.asJSON()
 		}
+		if let useContext = self.useContext {
+			json["useContext"] = CodeableConcept.asJSONArray(useContext)
+		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
 		}
@@ -396,7 +415,7 @@ public class ConformanceContact: BackboneElement {
 		get { return "ConformanceContact" }
 	}
 	
-	/// Name of a individual to contact.
+	/// Name of an individual to contact.
 	public var name: String?
 	
 	/// Contact details for individual or publisher.
@@ -623,7 +642,7 @@ public class ConformanceMessaging: BackboneElement {
 	/// Messaging interface behavior details.
 	public var documentation: String?
 	
-	/// A messaging service end-point.
+	/// Where messages should be sent.
 	public var endpoint: [ConformanceMessagingEndpoint]?
 	
 	/// Declare support for this event.
@@ -712,7 +731,7 @@ public class ConformanceMessaging: BackboneElement {
 
 
 /**
- *  A messaging service end-point.
+ *  Where messages should be sent.
  *
  *  An endpoint (network accessible address) to which messages and/or replies are to be sent.
  */
@@ -992,10 +1011,9 @@ public class ConformanceRest: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: String, resource: [ConformanceRestResource]) {
+	public convenience init(mode: String) {
 		self.init(json: nil)
 		self.mode = mode
-		self.resource = resource
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1057,9 +1075,6 @@ public class ConformanceRest: BackboneElement {
 				else {
 					errors.append(FHIRJSONError(key: "resource", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "resource"))
 			}
 			if let exist: AnyObject = js["searchParam"] {
 				presentKeys.insert("searchParam")
@@ -1521,7 +1536,7 @@ public class ConformanceRestResourceInteraction: BackboneElement {
 		get { return "ConformanceRestResourceInteraction" }
 	}
 	
-	/// read | vread | update | delete | history-instance | validate | history-type | create | search-type.
+	/// read | vread | update | delete | history-instance | history-type | create | search-type.
 	public var code: String?
 	
 	/// Anything special about operation behavior.

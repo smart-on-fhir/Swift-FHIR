@@ -2,8 +2,8 @@
 //  ClaimResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import Foundation
@@ -47,7 +47,10 @@ public class ClaimResponse: DomainResource {
 	public var note: [ClaimResponseNote]?
 	
 	/// Insurer.
-	public var organization: Reference?
+	public var organizationIdentifier: Identifier?
+	
+	/// Insurer.
+	public var organizationReference: Reference?
 	
 	/// Original version.
 	public var originalRuleset: Coding?
@@ -74,13 +77,22 @@ public class ClaimResponse: DomainResource {
 	public var paymentRef: Identifier?
 	
 	/// Id of resource triggering adjudication.
-	public var request: Reference?
+	public var requestIdentifier: Identifier?
 	
 	/// Responsible organization.
-	public var requestOrganization: Reference?
+	public var requestOrganizationIdentifier: Identifier?
+	
+	/// Responsible organization.
+	public var requestOrganizationReference: Reference?
 	
 	/// Responsible practitioner.
-	public var requestProvider: Reference?
+	public var requestProviderIdentifier: Identifier?
+	
+	/// Responsible practitioner.
+	public var requestProviderReference: Reference?
+	
+	/// Id of resource triggering adjudication.
+	public var requestReference: Reference?
 	
 	/// Funds reserved status.
 	public var reserved: Coding?
@@ -187,13 +199,22 @@ public class ClaimResponse: DomainResource {
 					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["organization"] {
-				presentKeys.insert("organization")
+			if let exist: AnyObject = js["organizationIdentifier"] {
+				presentKeys.insert("organizationIdentifier")
 				if let val = exist as? FHIRJSON {
-					self.organization = Reference(json: val, owner: self)
+					self.organizationIdentifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "organization", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "organizationIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["organizationReference"] {
+				presentKeys.insert("organizationReference")
+				if let val = exist as? FHIRJSON {
+					self.organizationReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "organizationReference", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["originalRuleset"] {
@@ -268,31 +289,58 @@ public class ClaimResponse: DomainResource {
 					errors.append(FHIRJSONError(key: "paymentRef", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["request"] {
-				presentKeys.insert("request")
+			if let exist: AnyObject = js["requestIdentifier"] {
+				presentKeys.insert("requestIdentifier")
 				if let val = exist as? FHIRJSON {
-					self.request = Reference(json: val, owner: self)
+					self.requestIdentifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "requestIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["requestOrganization"] {
-				presentKeys.insert("requestOrganization")
+			if let exist: AnyObject = js["requestOrganizationIdentifier"] {
+				presentKeys.insert("requestOrganizationIdentifier")
 				if let val = exist as? FHIRJSON {
-					self.requestOrganization = Reference(json: val, owner: self)
+					self.requestOrganizationIdentifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requestOrganization", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "requestOrganizationIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["requestProvider"] {
-				presentKeys.insert("requestProvider")
+			if let exist: AnyObject = js["requestOrganizationReference"] {
+				presentKeys.insert("requestOrganizationReference")
 				if let val = exist as? FHIRJSON {
-					self.requestProvider = Reference(json: val, owner: self)
+					self.requestOrganizationReference = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requestProvider", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "requestOrganizationReference", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["requestProviderIdentifier"] {
+				presentKeys.insert("requestProviderIdentifier")
+				if let val = exist as? FHIRJSON {
+					self.requestProviderIdentifier = Identifier(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "requestProviderIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["requestProviderReference"] {
+				presentKeys.insert("requestProviderReference")
+				if let val = exist as? FHIRJSON {
+					self.requestProviderReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "requestProviderReference", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["requestReference"] {
+				presentKeys.insert("requestReference")
+				if let val = exist as? FHIRJSON {
+					self.requestReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "requestReference", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["reserved"] {
@@ -374,8 +422,11 @@ public class ClaimResponse: DomainResource {
 		if let note = self.note {
 			json["note"] = ClaimResponseNote.asJSONArray(note)
 		}
-		if let organization = self.organization {
-			json["organization"] = organization.asJSON()
+		if let organizationIdentifier = self.organizationIdentifier {
+			json["organizationIdentifier"] = organizationIdentifier.asJSON()
+		}
+		if let organizationReference = self.organizationReference {
+			json["organizationReference"] = organizationReference.asJSON()
 		}
 		if let originalRuleset = self.originalRuleset {
 			json["originalRuleset"] = originalRuleset.asJSON()
@@ -401,14 +452,23 @@ public class ClaimResponse: DomainResource {
 		if let paymentRef = self.paymentRef {
 			json["paymentRef"] = paymentRef.asJSON()
 		}
-		if let request = self.request {
-			json["request"] = request.asJSON()
+		if let requestIdentifier = self.requestIdentifier {
+			json["requestIdentifier"] = requestIdentifier.asJSON()
 		}
-		if let requestOrganization = self.requestOrganization {
-			json["requestOrganization"] = requestOrganization.asJSON()
+		if let requestOrganizationIdentifier = self.requestOrganizationIdentifier {
+			json["requestOrganizationIdentifier"] = requestOrganizationIdentifier.asJSON()
 		}
-		if let requestProvider = self.requestProvider {
-			json["requestProvider"] = requestProvider.asJSON()
+		if let requestOrganizationReference = self.requestOrganizationReference {
+			json["requestOrganizationReference"] = requestOrganizationReference.asJSON()
+		}
+		if let requestProviderIdentifier = self.requestProviderIdentifier {
+			json["requestProviderIdentifier"] = requestProviderIdentifier.asJSON()
+		}
+		if let requestProviderReference = self.requestProviderReference {
+			json["requestProviderReference"] = requestProviderReference.asJSON()
+		}
+		if let requestReference = self.requestReference {
+			json["requestReference"] = requestReference.asJSON()
 		}
 		if let reserved = self.reserved {
 			json["reserved"] = reserved.asJSON()
@@ -584,7 +644,10 @@ public class ClaimResponseAddItemAdjudication: BackboneElement {
 	public var amount: Quantity?
 	
 	/// Adjudication category such as co-pay, eligible, benefit, etc..
-	public var code: Coding?
+	public var category: Coding?
+	
+	/// Adjudication reason.
+	public var reason: Coding?
 	
 	/// Non-monetary value.
 	public var value: NSDecimalNumber?
@@ -596,9 +659,9 @@ public class ClaimResponseAddItemAdjudication: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding) {
+	public convenience init(category: Coding) {
 		self.init(json: nil)
-		self.code = code
+		self.category = category
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -613,17 +676,26 @@ public class ClaimResponseAddItemAdjudication: BackboneElement {
 					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["code"] {
-				presentKeys.insert("code")
+			if let exist: AnyObject = js["category"] {
+				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
-					self.code = Coding(json: val, owner: self)
+					self.category = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "code"))
+				errors.append(FHIRJSONError(key: "category"))
+			}
+			if let exist: AnyObject = js["reason"] {
+				presentKeys.insert("reason")
+				if let val = exist as? FHIRJSON {
+					self.reason = Coding(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
 			}
 			if let exist: AnyObject = js["value"] {
 				presentKeys.insert("value")
@@ -644,8 +716,11 @@ public class ClaimResponseAddItemAdjudication: BackboneElement {
 		if let amount = self.amount {
 			json["amount"] = amount.asJSON()
 		}
-		if let code = self.code {
-			json["code"] = code.asJSON()
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
 		}
 		if let value = self.value {
 			json["value"] = value.asJSON()
@@ -756,7 +831,10 @@ public class ClaimResponseAddItemDetailAdjudication: BackboneElement {
 	public var amount: Quantity?
 	
 	/// Adjudication category such as co-pay, eligible, benefit, etc..
-	public var code: Coding?
+	public var category: Coding?
+	
+	/// Adjudication reason.
+	public var reason: Coding?
 	
 	/// Non-monetary value.
 	public var value: NSDecimalNumber?
@@ -768,9 +846,9 @@ public class ClaimResponseAddItemDetailAdjudication: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding) {
+	public convenience init(category: Coding) {
 		self.init(json: nil)
-		self.code = code
+		self.category = category
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -785,17 +863,26 @@ public class ClaimResponseAddItemDetailAdjudication: BackboneElement {
 					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["code"] {
-				presentKeys.insert("code")
+			if let exist: AnyObject = js["category"] {
+				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
-					self.code = Coding(json: val, owner: self)
+					self.category = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "code"))
+				errors.append(FHIRJSONError(key: "category"))
+			}
+			if let exist: AnyObject = js["reason"] {
+				presentKeys.insert("reason")
+				if let val = exist as? FHIRJSON {
+					self.reason = Coding(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
 			}
 			if let exist: AnyObject = js["value"] {
 				presentKeys.insert("value")
@@ -816,8 +903,11 @@ public class ClaimResponseAddItemDetailAdjudication: BackboneElement {
 		if let amount = self.amount {
 			json["amount"] = amount.asJSON()
 		}
-		if let code = self.code {
-			json["code"] = code.asJSON()
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
 		}
 		if let value = self.value {
 			json["value"] = value.asJSON()
@@ -845,19 +935,16 @@ public class ClaimResponseCoverage: BackboneElement {
 	public var claimResponse: Reference?
 	
 	/// Insurance information.
-	public var coverage: Reference?
+	public var coverageIdentifier: Identifier?
+	
+	/// Insurance information.
+	public var coverageReference: Reference?
 	
 	/// Is the focal Coverage.
 	public var focal: Bool?
 	
-	/// Original version.
-	public var originalRuleset: Coding?
-	
 	/// Pre-Authorization/Determination Reference.
 	public var preAuthRef: [String]?
-	
-	/// Patient relationship to subscriber.
-	public var relationship: Coding?
 	
 	/// Service instance identifier.
 	public var sequence: UInt?
@@ -869,11 +956,11 @@ public class ClaimResponseCoverage: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(coverage: Reference, focal: Bool, relationship: Coding, sequence: UInt) {
+	public convenience init(coverageIdentifier: Identifier, coverageReference: Reference, focal: Bool, sequence: UInt) {
 		self.init(json: nil)
-		self.coverage = coverage
+		self.coverageIdentifier = coverageIdentifier
+		self.coverageReference = coverageReference
 		self.focal = focal
-		self.relationship = relationship
 		self.sequence = sequence
 	}
 	
@@ -898,17 +985,23 @@ public class ClaimResponseCoverage: BackboneElement {
 					errors.append(FHIRJSONError(key: "claimResponse", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["coverage"] {
-				presentKeys.insert("coverage")
+			if let exist: AnyObject = js["coverageIdentifier"] {
+				presentKeys.insert("coverageIdentifier")
 				if let val = exist as? FHIRJSON {
-					self.coverage = Reference(json: val, owner: self)
+					self.coverageIdentifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "coverage", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "coverageIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			else {
-				errors.append(FHIRJSONError(key: "coverage"))
+			if let exist: AnyObject = js["coverageReference"] {
+				presentKeys.insert("coverageReference")
+				if let val = exist as? FHIRJSON {
+					self.coverageReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "coverageReference", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
 			}
 			if let exist: AnyObject = js["focal"] {
 				presentKeys.insert("focal")
@@ -922,15 +1015,6 @@ public class ClaimResponseCoverage: BackboneElement {
 			else {
 				errors.append(FHIRJSONError(key: "focal"))
 			}
-			if let exist: AnyObject = js["originalRuleset"] {
-				presentKeys.insert("originalRuleset")
-				if let val = exist as? FHIRJSON {
-					self.originalRuleset = Coding(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "originalRuleset", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["preAuthRef"] {
 				presentKeys.insert("preAuthRef")
 				if let val = exist as? [String] {
@@ -939,18 +1023,6 @@ public class ClaimResponseCoverage: BackboneElement {
 				else {
 					errors.append(FHIRJSONError(key: "preAuthRef", wants: Array<String>.self, has: exist.dynamicType))
 				}
-			}
-			if let exist: AnyObject = js["relationship"] {
-				presentKeys.insert("relationship")
-				if let val = exist as? FHIRJSON {
-					self.relationship = Coding(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "relationship", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "relationship"))
 			}
 			if let exist: AnyObject = js["sequence"] {
 				presentKeys.insert("sequence")
@@ -963,6 +1035,11 @@ public class ClaimResponseCoverage: BackboneElement {
 			}
 			else {
 				errors.append(FHIRJSONError(key: "sequence"))
+			}
+			
+			// check if nonoptional expanded properties are present
+			if nil == self.coverageIdentifier && nil == self.coverageReference {
+				errors.append(FHIRJSONError(key: "coverage*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -977,14 +1054,14 @@ public class ClaimResponseCoverage: BackboneElement {
 		if let claimResponse = self.claimResponse {
 			json["claimResponse"] = claimResponse.asJSON()
 		}
-		if let coverage = self.coverage {
-			json["coverage"] = coverage.asJSON()
+		if let coverageIdentifier = self.coverageIdentifier {
+			json["coverageIdentifier"] = coverageIdentifier.asJSON()
+		}
+		if let coverageReference = self.coverageReference {
+			json["coverageReference"] = coverageReference.asJSON()
 		}
 		if let focal = self.focal {
 			json["focal"] = focal.asJSON()
-		}
-		if let originalRuleset = self.originalRuleset {
-			json["originalRuleset"] = originalRuleset.asJSON()
 		}
 		if let preAuthRef = self.preAuthRef {
 			var arr = [AnyObject]()
@@ -992,9 +1069,6 @@ public class ClaimResponseCoverage: BackboneElement {
 				arr.append(val.asJSON())
 			}
 			json["preAuthRef"] = arr
-		}
-		if let relationship = self.relationship {
-			json["relationship"] = relationship.asJSON()
 		}
 		if let sequence = self.sequence {
 			json["sequence"] = sequence.asJSON()
@@ -1225,7 +1299,10 @@ public class ClaimResponseItemAdjudication: BackboneElement {
 	public var amount: Quantity?
 	
 	/// Adjudication category such as co-pay, eligible, benefit, etc..
-	public var code: Coding?
+	public var category: Coding?
+	
+	/// Adjudication reason.
+	public var reason: Coding?
 	
 	/// Non-monetary value.
 	public var value: NSDecimalNumber?
@@ -1237,9 +1314,9 @@ public class ClaimResponseItemAdjudication: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding) {
+	public convenience init(category: Coding) {
 		self.init(json: nil)
-		self.code = code
+		self.category = category
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1254,17 +1331,26 @@ public class ClaimResponseItemAdjudication: BackboneElement {
 					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["code"] {
-				presentKeys.insert("code")
+			if let exist: AnyObject = js["category"] {
+				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
-					self.code = Coding(json: val, owner: self)
+					self.category = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "code"))
+				errors.append(FHIRJSONError(key: "category"))
+			}
+			if let exist: AnyObject = js["reason"] {
+				presentKeys.insert("reason")
+				if let val = exist as? FHIRJSON {
+					self.reason = Coding(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
 			}
 			if let exist: AnyObject = js["value"] {
 				presentKeys.insert("value")
@@ -1285,8 +1371,11 @@ public class ClaimResponseItemAdjudication: BackboneElement {
 		if let amount = self.amount {
 			json["amount"] = amount.asJSON()
 		}
-		if let code = self.code {
-			json["code"] = code.asJSON()
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
 		}
 		if let value = self.value {
 			json["value"] = value.asJSON()
@@ -1397,7 +1486,10 @@ public class ClaimResponseItemDetailAdjudication: BackboneElement {
 	public var amount: Quantity?
 	
 	/// Adjudication category such as co-pay, eligible, benefit, etc..
-	public var code: Coding?
+	public var category: Coding?
+	
+	/// Adjudication reason.
+	public var reason: Coding?
 	
 	/// Non-monetary value.
 	public var value: NSDecimalNumber?
@@ -1409,9 +1501,9 @@ public class ClaimResponseItemDetailAdjudication: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding) {
+	public convenience init(category: Coding) {
 		self.init(json: nil)
-		self.code = code
+		self.category = category
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1426,17 +1518,26 @@ public class ClaimResponseItemDetailAdjudication: BackboneElement {
 					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["code"] {
-				presentKeys.insert("code")
+			if let exist: AnyObject = js["category"] {
+				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
-					self.code = Coding(json: val, owner: self)
+					self.category = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "code"))
+				errors.append(FHIRJSONError(key: "category"))
+			}
+			if let exist: AnyObject = js["reason"] {
+				presentKeys.insert("reason")
+				if let val = exist as? FHIRJSON {
+					self.reason = Coding(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
 			}
 			if let exist: AnyObject = js["value"] {
 				presentKeys.insert("value")
@@ -1457,8 +1558,11 @@ public class ClaimResponseItemDetailAdjudication: BackboneElement {
 		if let amount = self.amount {
 			json["amount"] = amount.asJSON()
 		}
-		if let code = self.code {
-			json["code"] = code.asJSON()
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
 		}
 		if let value = self.value {
 			json["value"] = value.asJSON()
@@ -1554,7 +1658,10 @@ public class ClaimResponseItemDetailSubDetailAdjudication: BackboneElement {
 	public var amount: Quantity?
 	
 	/// Adjudication category such as co-pay, eligible, benefit, etc..
-	public var code: Coding?
+	public var category: Coding?
+	
+	/// Adjudication reason.
+	public var reason: Coding?
 	
 	/// Non-monetary value.
 	public var value: NSDecimalNumber?
@@ -1566,9 +1673,9 @@ public class ClaimResponseItemDetailSubDetailAdjudication: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding) {
+	public convenience init(category: Coding) {
 		self.init(json: nil)
-		self.code = code
+		self.category = category
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1583,17 +1690,26 @@ public class ClaimResponseItemDetailSubDetailAdjudication: BackboneElement {
 					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["code"] {
-				presentKeys.insert("code")
+			if let exist: AnyObject = js["category"] {
+				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
-					self.code = Coding(json: val, owner: self)
+					self.category = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "code"))
+				errors.append(FHIRJSONError(key: "category"))
+			}
+			if let exist: AnyObject = js["reason"] {
+				presentKeys.insert("reason")
+				if let val = exist as? FHIRJSON {
+					self.reason = Coding(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
 			}
 			if let exist: AnyObject = js["value"] {
 				presentKeys.insert("value")
@@ -1614,8 +1730,11 @@ public class ClaimResponseItemDetailSubDetailAdjudication: BackboneElement {
 		if let amount = self.amount {
 			json["amount"] = amount.asJSON()
 		}
-		if let code = self.code {
-			json["code"] = code.asJSON()
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
 		}
 		if let value = self.value {
 			json["value"] = value.asJSON()

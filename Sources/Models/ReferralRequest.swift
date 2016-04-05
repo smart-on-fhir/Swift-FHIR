@@ -2,8 +2,8 @@
 //  ReferralRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import Foundation
@@ -21,22 +21,28 @@ public class ReferralRequest: DomainResource {
 	}
 	
 	/// Date of creation/activation.
-	public var date: DateTime?
+	public var authored: DateTime?
 	
-	/// Date referral/transfer of care request is sent.
-	public var dateSent: DateTime?
+	/// Request fulfilled by this request.
+	public var basedOn: [Reference]?
+	
+	/// proposal | plan | request.
+	public var category: String?
+	
+	/// Originating encounter.
+	public var context: Reference?
 	
 	/// A textual description of the referral.
 	public var description_fhir: String?
-	
-	/// Originating encounter.
-	public var encounter: Reference?
 	
 	/// Requested service(s) fulfillment time.
 	public var fulfillmentTime: Period?
 	
 	/// Business identifier.
 	public var identifier: [Identifier]?
+	
+	/// Composite request this is part of.
+	public var parent: Identifier?
 	
 	/// Patient referred to care or transfer.
 	public var patient: Reference?
@@ -59,7 +65,7 @@ public class ReferralRequest: DomainResource {
 	/// The clinical specialty (discipline) that the referral is requested for.
 	public var specialty: CodeableConcept?
 	
-	/// draft | requested | active | cancelled | accepted | rejected | completed.
+	/// draft | active | cancelled | completed | entered-in-error.
 	public var status: String?
 	
 	/// Additonal information to support referral or transfer of care request.
@@ -75,30 +81,52 @@ public class ReferralRequest: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
+	public convenience init(category: String, status: String) {
 		self.init(json: nil)
+		self.category = category
 		self.status = status
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["date"] {
-				presentKeys.insert("date")
+			if let exist: AnyObject = js["authored"] {
+				presentKeys.insert("authored")
 				if let val = exist as? String {
-					self.date = DateTime(string: val)
+					self.authored = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "date", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "authored", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["dateSent"] {
-				presentKeys.insert("dateSent")
-				if let val = exist as? String {
-					self.dateSent = DateTime(string: val)
+			if let exist: AnyObject = js["basedOn"] {
+				presentKeys.insert("basedOn")
+				if let val = exist as? [FHIRJSON] {
+					self.basedOn = Reference.from(val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "dateSent", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "basedOn", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["category"] {
+				presentKeys.insert("category")
+				if let val = exist as? String {
+					self.category = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "category", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "category"))
+			}
+			if let exist: AnyObject = js["context"] {
+				presentKeys.insert("context")
+				if let val = exist as? FHIRJSON {
+					self.context = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "context", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["description"] {
@@ -108,15 +136,6 @@ public class ReferralRequest: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["encounter"] {
-				presentKeys.insert("encounter")
-				if let val = exist as? FHIRJSON {
-					self.encounter = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["fulfillmentTime"] {
@@ -135,6 +154,15 @@ public class ReferralRequest: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["parent"] {
+				presentKeys.insert("parent")
+				if let val = exist as? FHIRJSON {
+					self.parent = Identifier(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "parent", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["patient"] {
@@ -237,23 +265,29 @@ public class ReferralRequest: DomainResource {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let date = self.date {
-			json["date"] = date.asJSON()
+		if let authored = self.authored {
+			json["authored"] = authored.asJSON()
 		}
-		if let dateSent = self.dateSent {
-			json["dateSent"] = dateSent.asJSON()
+		if let basedOn = self.basedOn {
+			json["basedOn"] = Reference.asJSONArray(basedOn)
+		}
+		if let category = self.category {
+			json["category"] = category.asJSON()
+		}
+		if let context = self.context {
+			json["context"] = context.asJSON()
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
-		}
-		if let encounter = self.encounter {
-			json["encounter"] = encounter.asJSON()
 		}
 		if let fulfillmentTime = self.fulfillmentTime {
 			json["fulfillmentTime"] = fulfillmentTime.asJSON()
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let parent = self.parent {
+			json["parent"] = parent.asJSON()
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()

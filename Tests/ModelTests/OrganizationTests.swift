@@ -2,16 +2,16 @@
 //  OrganizationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class OrganizationTests: XCTestCase
-{
+class OrganizationTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Organization {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class OrganizationTests: XCTestCase
 	}
 	
 	func testOrganization1() {
-		let instance = try? runOrganization1()
-		XCTAssertNotNil(instance, "Must instantiate Organization")
-		if let instance = instance {
-			try! runOrganization1(instance.asJSON())
+		do {
+			let instance = try runOrganization1()
+			try runOrganization1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
 		}
 	}
 	
@@ -74,17 +76,19 @@ class OrganizationTests: XCTestCase
 	}
 	
 	func testOrganization2() {
-		let instance = try? runOrganization2()
-		XCTAssertNotNil(instance, "Must instantiate Organization")
-		if let instance = instance {
-			try! runOrganization2(instance.asJSON())
+		do {
+			let instance = try runOrganization2()
+			try runOrganization2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
 		}
 	}
 	
 	func runOrganization2(json: FHIRJSON? = nil) throws -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-f002-burgers-card.json")
 		
-		XCTAssertTrue(inst.active!)
+		XCTAssertFalse(inst.active!)
 		XCTAssertEqual(inst.address![0].line![0], "South Wing, floor 2")
 		XCTAssertEqual(inst.contact![0].address!.line![0], "South Wing, floor 2")
 		XCTAssertEqual(inst.contact![0].name!.text!, "mevr. D. de Haan")
@@ -110,17 +114,19 @@ class OrganizationTests: XCTestCase
 	}
 	
 	func testOrganization3() {
-		let instance = try? runOrganization3()
-		XCTAssertNotNil(instance, "Must instantiate Organization")
-		if let instance = instance {
-			try! runOrganization3(instance.asJSON())
+		do {
+			let instance = try runOrganization3()
+			try runOrganization3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
 		}
 	}
 	
 	func runOrganization3(json: FHIRJSON? = nil) throws -> Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-f003-burgers-ENT.json")
 		
-		XCTAssertTrue(inst.active!)
+		XCTAssertFalse(inst.active!)
 		XCTAssertEqual(inst.address![0].line![0], "West Wing, floor 5")
 		XCTAssertEqual(inst.contact![0].address!.line![0], "West Wing, floor 5")
 		XCTAssertEqual(inst.contact![0].name!.text!, "mr. F. de Hond")
@@ -146,10 +152,12 @@ class OrganizationTests: XCTestCase
 	}
 	
 	func testOrganization4() {
-		let instance = try? runOrganization4()
-		XCTAssertNotNil(instance, "Must instantiate Organization")
-		if let instance = instance {
-			try! runOrganization4(instance.asJSON())
+		do {
+			let instance = try runOrganization4()
+			try runOrganization4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
 		}
 	}
 	
@@ -198,10 +206,12 @@ class OrganizationTests: XCTestCase
 	}
 	
 	func testOrganization5() {
-		let instance = try? runOrganization5()
-		XCTAssertNotNil(instance, "Must instantiate Organization")
-		if let instance = instance {
-			try! runOrganization5(instance.asJSON())
+		do {
+			let instance = try runOrganization5()
+			try runOrganization5(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
 		}
 	}
 	
@@ -234,10 +244,12 @@ class OrganizationTests: XCTestCase
 	}
 	
 	func testOrganization6() {
-		let instance = try? runOrganization6()
-		XCTAssertNotNil(instance, "Must instantiate Organization")
-		if let instance = instance {
-			try! runOrganization6(instance.asJSON())
+		do {
+			let instance = try runOrganization6()
+			try runOrganization6(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
 		}
 	}
 	
@@ -262,10 +274,12 @@ class OrganizationTests: XCTestCase
 	}
 	
 	func testOrganization7() {
-		let instance = try? runOrganization7()
-		XCTAssertNotNil(instance, "Must instantiate Organization")
-		if let instance = instance {
-			try! runOrganization7(instance.asJSON())
+		do {
+			let instance = try runOrganization7()
+			try runOrganization7(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
 		}
 	}
 	
@@ -282,10 +296,12 @@ class OrganizationTests: XCTestCase
 	}
 	
 	func testOrganization8() {
-		let instance = try? runOrganization8()
-		XCTAssertNotNil(instance, "Must instantiate Organization")
-		if let instance = instance {
-			try! runOrganization8(instance.asJSON())
+		do {
+			let instance = try runOrganization8()
+			try runOrganization8(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
 		}
 	}
 	
@@ -302,10 +318,12 @@ class OrganizationTests: XCTestCase
 	}
 	
 	func testOrganization9() {
-		let instance = try? runOrganization9()
-		XCTAssertNotNil(instance, "Must instantiate Organization")
-		if let instance = instance {
-			try! runOrganization9(instance.asJSON())
+		do {
+			let instance = try runOrganization9()
+			try runOrganization9(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
 		}
 	}
 	
@@ -328,10 +346,12 @@ class OrganizationTests: XCTestCase
 	}
 	
 	func testOrganization10() {
-		let instance = try? runOrganization10()
-		XCTAssertNotNil(instance, "Must instantiate Organization")
-		if let instance = instance {
-			try! runOrganization10(instance.asJSON())
+		do {
+			let instance = try runOrganization10()
+			try runOrganization10(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
 		}
 	}
 	

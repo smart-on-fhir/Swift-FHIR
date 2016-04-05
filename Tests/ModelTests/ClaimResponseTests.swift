@@ -2,16 +2,16 @@
 //  ClaimResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class ClaimResponseTests: XCTestCase
-{
+class ClaimResponseTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> ClaimResponse {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class ClaimResponseTests: XCTestCase
 	}
 	
 	func testClaimResponse1() {
-		let instance = try? runClaimResponse1()
-		XCTAssertNotNil(instance, "Must instantiate ClaimResponse")
-		if let instance = instance {
-			try! runClaimResponse1(instance.asJSON())
+		do {
+			let instance = try runClaimResponse1()
+			try runClaimResponse1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test ClaimResponse successfully, but threw")
 		}
 	}
 	
@@ -41,19 +43,20 @@ class ClaimResponseTests: XCTestCase
 		XCTAssertEqual(inst.item![0].adjudication![0].amount!.code!, "USD")
 		XCTAssertEqual(inst.item![0].adjudication![0].amount!.system!.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.item![0].adjudication![0].amount!.value!, NSDecimalNumber(string: "135.57"))
-		XCTAssertEqual(inst.item![0].adjudication![0].code!.code!, "eligible")
+		XCTAssertEqual(inst.item![0].adjudication![0].category!.code!, "eligible")
 		XCTAssertEqual(inst.item![0].adjudication![1].amount!.code!, "USD")
 		XCTAssertEqual(inst.item![0].adjudication![1].amount!.system!.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.item![0].adjudication![1].amount!.value!, NSDecimalNumber(string: "10.0"))
-		XCTAssertEqual(inst.item![0].adjudication![1].code!.code!, "copay")
-		XCTAssertEqual(inst.item![0].adjudication![2].code!.code!, "eligpercent")
+		XCTAssertEqual(inst.item![0].adjudication![1].category!.code!, "copay")
+		XCTAssertEqual(inst.item![0].adjudication![2].category!.code!, "eligpercent")
 		XCTAssertEqual(inst.item![0].adjudication![2].value!, NSDecimalNumber(string: "80.0"))
 		XCTAssertEqual(inst.item![0].adjudication![3].amount!.code!, "USD")
 		XCTAssertEqual(inst.item![0].adjudication![3].amount!.system!.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.item![0].adjudication![3].amount!.value!, NSDecimalNumber(string: "100.47"))
-		XCTAssertEqual(inst.item![0].adjudication![3].code!.code!, "benefit")
+		XCTAssertEqual(inst.item![0].adjudication![3].category!.code!, "benefit")
 		XCTAssertEqual(inst.item![0].sequenceLinkId!, UInt(1))
-		XCTAssertEqual(inst.organization!.reference!, "Organization/2")
+		XCTAssertEqual(inst.organizationIdentifier!.system!.absoluteString, "http://www.jurisdiction.org/insurers")
+		XCTAssertEqual(inst.organizationIdentifier!.value!, "555123")
 		XCTAssertEqual(inst.outcome!, "complete")
 		XCTAssertEqual(inst.payeeType!.code!, "provider")
 		XCTAssertEqual(inst.payeeType!.system!.absoluteString, "http://hl7.org/fhir/payeetype")
@@ -63,8 +66,7 @@ class ClaimResponseTests: XCTestCase
 		XCTAssertEqual(inst.paymentDate!.description, "2014-08-31")
 		XCTAssertEqual(inst.paymentRef!.system!.absoluteString, "http://www.BenefitsInc.com/fhir/paymentRef")
 		XCTAssertEqual(inst.paymentRef!.value!, "201408-2-1569478")
-		XCTAssertEqual(inst.request!.reference!, "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402")
-		XCTAssertEqual(inst.requestOrganization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.requestReference!.reference!, "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402")
 		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the ClaimResponse</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.totalBenefit!.code!, "USD")

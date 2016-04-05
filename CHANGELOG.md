@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+## x.x
+
+- Update to FHIR `1.4.0.8139`
+
+
 ## 2.2.3
 
 - Address deprecation warnings appearing with Swift 2.2

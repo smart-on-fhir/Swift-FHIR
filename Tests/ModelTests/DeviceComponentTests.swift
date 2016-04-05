@@ -2,16 +2,16 @@
 //  DeviceComponentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class DeviceComponentTests: XCTestCase
-{
+class DeviceComponentTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> DeviceComponent {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class DeviceComponentTests: XCTestCase
 	}
 	
 	func testDeviceComponent1() {
-		let instance = try? runDeviceComponent1()
-		XCTAssertNotNil(instance, "Must instantiate DeviceComponent")
-		if let instance = instance {
-			try! runDeviceComponent1(instance.asJSON())
+		do {
+			let instance = try runDeviceComponent1()
+			try runDeviceComponent1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DeviceComponent successfully, but threw")
 		}
 	}
 	
@@ -65,10 +67,12 @@ class DeviceComponentTests: XCTestCase
 	}
 	
 	func testDeviceComponent2() {
-		let instance = try? runDeviceComponent2()
-		XCTAssertNotNil(instance, "Must instantiate DeviceComponent")
-		if let instance = instance {
-			try! runDeviceComponent2(instance.asJSON())
+		do {
+			let instance = try runDeviceComponent2()
+			try runDeviceComponent2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DeviceComponent successfully, but threw")
 		}
 	}
 	

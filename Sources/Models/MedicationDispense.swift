@@ -2,8 +2,8 @@
 //  MedicationDispense.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import Foundation
@@ -24,7 +24,7 @@ public class MedicationDispense: DomainResource {
 	/// Medication order that authorizes the dispense.
 	public var authorizingPrescription: [Reference]?
 	
-	/// Days Supply.
+	/// Amount of medication expressed as a timing amount.
 	public var daysSupply: Quantity?
 	
 	/// Where the medication was sent.
@@ -46,7 +46,7 @@ public class MedicationDispense: DomainResource {
 	public var medicationReference: Reference?
 	
 	/// Information about the dispense.
-	public var note: String?
+	public var note: [Annotation]?
 	
 	/// Who the dispense is for.
 	public var patient: Reference?
@@ -162,11 +162,11 @@ public class MedicationDispense: DomainResource {
 			}
 			if let exist: AnyObject = js["note"] {
 				presentKeys.insert("note")
-				if let val = exist as? String {
-					self.note = val
+				if let val = exist as? [FHIRJSON] {
+					self.note = Annotation.from(val, owner: self) as? [Annotation]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "note", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["patient"] {
@@ -278,7 +278,7 @@ public class MedicationDispense: DomainResource {
 			json["medicationReference"] = medicationReference.asJSON()
 		}
 		if let note = self.note {
-			json["note"] = note.asJSON()
+			json["note"] = Annotation.asJSONArray(note)
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
@@ -313,7 +313,8 @@ public class MedicationDispense: DomainResource {
 /**
  *  Medicine administration instructions to the patient/caregiver.
  *
- *  Indicates how the medication is to be used by the patient.
+ *  Indicates how the medication is to be used by the patient.  The pharmacist reviews the medication order prior to
+ *  dispense and updates the dosageInstruction based on the actual product being dispensed.
  */
 public class MedicationDispenseDosageInstruction: BackboneElement {
 	override public class var resourceName: String {
@@ -356,7 +357,7 @@ public class MedicationDispenseDosageInstruction: BackboneElement {
 	/// Body site to administer to.
 	public var siteReference: Reference?
 	
-	/// Dosage Instructions.
+	/// Free text dosage instructions e.g. SIG.
 	public var text: String?
 	
 	/// When medication should be administered.
@@ -570,7 +571,7 @@ public class MedicationDispenseSubstitution: BackboneElement {
 	/// Who is responsible for the substitution.
 	public var responsibleParty: [Reference]?
 	
-	/// Type of substitution.
+	/// Code signifying whether a different drug was dispensed from what was prescribed.
 	public var type: CodeableConcept?
 	
 	

@@ -2,16 +2,16 @@
 //  ListTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class ListTests: XCTestCase
-{
+class ListTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> List {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class ListTests: XCTestCase
 	}
 	
 	func testList1() {
-		let instance = try? runList1()
-		XCTAssertNotNil(instance, "Must instantiate List")
-		if let instance = instance {
-			try! runList1(instance.asJSON())
+		do {
+			let instance = try runList1()
+			try runList1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
 		}
 	}
 	
@@ -53,10 +55,12 @@ class ListTests: XCTestCase
 	}
 	
 	func testList2() {
-		let instance = try? runList2()
-		XCTAssertNotNil(instance, "Must instantiate List")
-		if let instance = instance {
-			try! runList2(instance.asJSON())
+		do {
+			let instance = try runList2()
+			try runList2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
 		}
 	}
 	
@@ -82,10 +86,12 @@ class ListTests: XCTestCase
 	}
 	
 	func testList3() {
-		let instance = try? runList3()
-		XCTAssertNotNil(instance, "Must instantiate List")
-		if let instance = instance {
-			try! runList3(instance.asJSON())
+		do {
+			let instance = try runList3()
+			try runList3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
 		}
 	}
 	
@@ -101,7 +107,7 @@ class ListTests: XCTestCase
 		XCTAssertEqual(inst.entry![1].item!.reference!, "#fmh-2")
 		XCTAssertEqual(inst.id!, "f201")
 		XCTAssertEqual(inst.mode!, "snapshot")
-		XCTAssertEqual(inst.note!, "Both parents, both brothers and both children (twin) are still alive.")
+		XCTAssertEqual(inst.note![0].text!, "Both parents, both brothers and both children (twin) are still alive.")
 		XCTAssertEqual(inst.status!, "current")
 		XCTAssertEqual(inst.subject!.display!, "Roel")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
@@ -111,10 +117,12 @@ class ListTests: XCTestCase
 	}
 	
 	func testList4() {
-		let instance = try? runList4()
-		XCTAssertNotNil(instance, "Must instantiate List")
-		if let instance = instance {
-			try! runList4(instance.asJSON())
+		do {
+			let instance = try runList4()
+			try runList4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
 		}
 	}
 	
@@ -155,10 +163,12 @@ class ListTests: XCTestCase
 	}
 	
 	func testList5() {
-		let instance = try? runList5()
-		XCTAssertNotNil(instance, "Must instantiate List")
-		if let instance = instance {
-			try! runList5(instance.asJSON())
+		do {
+			let instance = try runList5()
+			try runList5(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
 		}
 	}
 	
@@ -196,10 +206,12 @@ class ListTests: XCTestCase
 	}
 	
 	func testList6() {
-		let instance = try? runList6()
-		XCTAssertNotNil(instance, "Must instantiate List")
-		if let instance = instance {
-			try! runList6(instance.asJSON())
+		do {
+			let instance = try runList6()
+			try runList6(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
 		}
 	}
 	
@@ -230,10 +242,12 @@ class ListTests: XCTestCase
 	}
 	
 	func testList7() {
-		let instance = try? runList7()
-		XCTAssertNotNil(instance, "Must instantiate List")
-		if let instance = instance {
-			try! runList7(instance.asJSON())
+		do {
+			let instance = try runList7()
+			try runList7(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
 		}
 	}
 	

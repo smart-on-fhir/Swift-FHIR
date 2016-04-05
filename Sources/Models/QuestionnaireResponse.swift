@@ -2,8 +2,8 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import Foundation
@@ -29,11 +29,11 @@ public class QuestionnaireResponse: DomainResource {
 	/// Primary encounter during which the answers were collected.
 	public var encounter: Reference?
 	
-	/// Grouped questions.
-	public var group: QuestionnaireResponseGroup?
-	
 	/// Unique id for this set of answers.
 	public var identifier: Identifier?
+	
+	/// Groups and questions.
+	public var item: [QuestionnaireResponseItem]?
 	
 	/// Form being answered.
 	public var questionnaire: Reference?
@@ -89,15 +89,6 @@ public class QuestionnaireResponse: DomainResource {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["group"] {
-				presentKeys.insert("group")
-				if let val = exist as? FHIRJSON {
-					self.group = QuestionnaireResponseGroup(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "group", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
@@ -105,6 +96,15 @@ public class QuestionnaireResponse: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["item"] {
+				presentKeys.insert("item")
+				if let val = exist as? [FHIRJSON] {
+					self.item = QuestionnaireResponseItem.from(val, owner: self) as? [QuestionnaireResponseItem]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["questionnaire"] {
@@ -162,11 +162,11 @@ public class QuestionnaireResponse: DomainResource {
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()
 		}
-		if let group = self.group {
-			json["group"] = group.asJSON()
-		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
+		}
+		if let item = self.item {
+			json["item"] = QuestionnaireResponseItem.asJSONArray(item)
 		}
 		if let questionnaire = self.questionnaire {
 			json["questionnaire"] = questionnaire.asJSON()
@@ -187,32 +187,29 @@ public class QuestionnaireResponse: DomainResource {
 
 
 /**
- *  Grouped questions.
+ *  Groups and questions.
  *
- *  A group of questions to a possibly similarly grouped set of questions in the questionnaire response.
+ *  Corresponds to a group or question item from the original questionnaire.
  */
-public class QuestionnaireResponseGroup: BackboneElement {
+public class QuestionnaireResponseItem: BackboneElement {
 	override public class var resourceName: String {
-		get { return "QuestionnaireResponseGroup" }
+		get { return "QuestionnaireResponseItem" }
 	}
 	
-	/// Nested questionnaire response group.
-	public var group: [QuestionnaireResponseGroup]?
+	/// The response(s) to the question.
+	public var answer: [QuestionnaireResponseItemAnswer]?
 	
-	/// Corresponding group within Questionnaire.
+	/// Nested questionnaire response items.
+	public var item: [QuestionnaireResponseItem]?
+	
+	/// Corresponding item within Questionnaire.
 	public var linkId: String?
-	
-	/// Questions in this group.
-	public var question: [QuestionnaireResponseGroupQuestion]?
 	
 	/// The subject this group's answers are about.
 	public var subject: Reference?
 	
-	/// Additional text for the group.
+	/// Name for group or question text.
 	public var text: String?
-	
-	/// Name for this group.
-	public var title: String?
 	
 	
 	/** Initialize with a JSON object. */
@@ -223,13 +220,22 @@ public class QuestionnaireResponseGroup: BackboneElement {
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["group"] {
-				presentKeys.insert("group")
+			if let exist: AnyObject = js["answer"] {
+				presentKeys.insert("answer")
 				if let val = exist as? [FHIRJSON] {
-					self.group = QuestionnaireResponseGroup.from(val, owner: self) as? [QuestionnaireResponseGroup]
+					self.answer = QuestionnaireResponseItemAnswer.from(val, owner: self) as? [QuestionnaireResponseItemAnswer]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "group", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "answer", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["item"] {
+				presentKeys.insert("item")
+				if let val = exist as? [FHIRJSON] {
+					self.item = QuestionnaireResponseItem.from(val, owner: self) as? [QuestionnaireResponseItem]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["linkId"] {
@@ -239,15 +245,6 @@ public class QuestionnaireResponseGroup: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "linkId", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["question"] {
-				presentKeys.insert("question")
-				if let val = exist as? [FHIRJSON] {
-					self.question = QuestionnaireResponseGroupQuestion.from(val, owner: self) as? [QuestionnaireResponseGroupQuestion]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "question", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["subject"] {
@@ -268,101 +265,6 @@ public class QuestionnaireResponseGroup: BackboneElement {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["title"] {
-				presentKeys.insert("title")
-				if let val = exist as? String {
-					self.title = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "title", wants: String.self, has: exist.dynamicType))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override public func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let group = self.group {
-			json["group"] = QuestionnaireResponseGroup.asJSONArray(group)
-		}
-		if let linkId = self.linkId {
-			json["linkId"] = linkId.asJSON()
-		}
-		if let question = self.question {
-			json["question"] = QuestionnaireResponseGroupQuestion.asJSONArray(question)
-		}
-		if let subject = self.subject {
-			json["subject"] = subject.asJSON()
-		}
-		if let text = self.text {
-			json["text"] = text.asJSON()
-		}
-		if let title = self.title {
-			json["title"] = title.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Questions in this group.
- *
- *  Set of questions within this group. The order of questions within the group is relevant.
- */
-public class QuestionnaireResponseGroupQuestion: BackboneElement {
-	override public class var resourceName: String {
-		get { return "QuestionnaireResponseGroupQuestion" }
-	}
-	
-	/// The response(s) to the question.
-	public var answer: [QuestionnaireResponseGroupQuestionAnswer]?
-	
-	/// Corresponding question within Questionnaire.
-	public var linkId: String?
-	
-	/// Text of the question as it is shown to the user.
-	public var text: String?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist: AnyObject = js["answer"] {
-				presentKeys.insert("answer")
-				if let val = exist as? [FHIRJSON] {
-					self.answer = QuestionnaireResponseGroupQuestionAnswer.from(val, owner: self) as? [QuestionnaireResponseGroupQuestionAnswer]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "answer", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["linkId"] {
-				presentKeys.insert("linkId")
-				if let val = exist as? String {
-					self.linkId = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "linkId", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["text"] {
-				presentKeys.insert("text")
-				if let val = exist as? String {
-					self.text = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "text", wants: String.self, has: exist.dynamicType))
-				}
-			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -371,10 +273,16 @@ public class QuestionnaireResponseGroupQuestion: BackboneElement {
 		var json = super.asJSON()
 		
 		if let answer = self.answer {
-			json["answer"] = QuestionnaireResponseGroupQuestionAnswer.asJSONArray(answer)
+			json["answer"] = QuestionnaireResponseItemAnswer.asJSONArray(answer)
+		}
+		if let item = self.item {
+			json["item"] = QuestionnaireResponseItem.asJSONArray(item)
 		}
 		if let linkId = self.linkId {
 			json["linkId"] = linkId.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
 		}
 		if let text = self.text {
 			json["text"] = text.asJSON()
@@ -390,13 +298,13 @@ public class QuestionnaireResponseGroupQuestion: BackboneElement {
  *
  *  The respondent's answer(s) to the question.
  */
-public class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
+public class QuestionnaireResponseItemAnswer: BackboneElement {
 	override public class var resourceName: String {
-		get { return "QuestionnaireResponseGroupQuestionAnswer" }
+		get { return "QuestionnaireResponseItemAnswer" }
 	}
 	
-	/// Nested questionnaire group.
-	public var group: [QuestionnaireResponseGroup]?
+	/// Nested groups and questions.
+	public var item: [QuestionnaireResponseItem]?
 	
 	/// Single-valued answer to the question.
 	public var valueAttachment: Attachment?
@@ -446,13 +354,13 @@ public class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["group"] {
-				presentKeys.insert("group")
+			if let exist: AnyObject = js["item"] {
+				presentKeys.insert("item")
 				if let val = exist as? [FHIRJSON] {
-					self.group = QuestionnaireResponseGroup.from(val, owner: self) as? [QuestionnaireResponseGroup]
+					self.item = QuestionnaireResponseItem.from(val, owner: self) as? [QuestionnaireResponseItem]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "group", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["valueAttachment"] {
@@ -579,8 +487,8 @@ public class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let group = self.group {
-			json["group"] = QuestionnaireResponseGroup.asJSONArray(group)
+		if let item = self.item {
+			json["item"] = QuestionnaireResponseItem.asJSONArray(item)
 		}
 		if let valueAttachment = self.valueAttachment {
 			json["valueAttachment"] = valueAttachment.asJSON()

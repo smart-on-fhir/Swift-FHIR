@@ -2,16 +2,16 @@
 //  MediaTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class MediaTests: XCTestCase
-{
+class MediaTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Media {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class MediaTests: XCTestCase
 	}
 	
 	func testMedia1() {
-		let instance = try? runMedia1()
-		XCTAssertNotNil(instance, "Must instantiate Media")
-		if let instance = instance {
-			try! runMedia1(instance.asJSON())
+		do {
+			let instance = try runMedia1()
+			try runMedia1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
 		}
 	}
 	
@@ -66,10 +68,12 @@ class MediaTests: XCTestCase
 	}
 	
 	func testMedia2() {
-		let instance = try? runMedia2()
-		XCTAssertNotNil(instance, "Must instantiate Media")
-		if let instance = instance {
-			try! runMedia2(instance.asJSON())
+		do {
+			let instance = try runMedia2()
+			try runMedia2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
 		}
 	}
 	
@@ -91,10 +95,12 @@ class MediaTests: XCTestCase
 	}
 	
 	func testMedia3() {
-		let instance = try? runMedia3()
-		XCTAssertNotNil(instance, "Must instantiate Media")
-		if let instance = instance {
-			try! runMedia3(instance.asJSON())
+		do {
+			let instance = try runMedia3()
+			try runMedia3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
 		}
 	}
 	

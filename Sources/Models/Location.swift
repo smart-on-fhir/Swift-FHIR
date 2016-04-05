@@ -2,8 +2,8 @@
 //  Location.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Location) on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Location) on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import Foundation
@@ -23,7 +23,7 @@ public class Location: DomainResource {
 	/// Physical location.
 	public var address: Address?
 	
-	/// Description of the location.
+	/// Additional details about the location that could be displayed as further information to identify the location beyond its name.
 	public var description_fhir: String?
 	
 	/// Unique code or number identifying the location to its users.

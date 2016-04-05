@@ -2,16 +2,16 @@
 //  ProvenanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class ProvenanceTests: XCTestCase
-{
+class ProvenanceTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Provenance {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,33 +23,35 @@ class ProvenanceTests: XCTestCase
 	}
 	
 	func testProvenance1() {
-		let instance = try? runProvenance1()
-		XCTAssertNotNil(instance, "Must instantiate Provenance")
-		if let instance = instance {
-			try! runProvenance1(instance.asJSON())
+		do {
+			let instance = try runProvenance1()
+			try runProvenance1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Provenance successfully, but threw")
 		}
 	}
 	
 	func runProvenance1(json: FHIRJSON? = nil) throws -> Provenance {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "provenance-example-sig.json")
 		
-		XCTAssertEqual(inst.activity!.coding![0].code!, "AU")
-		XCTAssertEqual(inst.activity!.coding![0].display!, "authenticated")
-		XCTAssertEqual(inst.activity!.coding![0].system!.absoluteString, "http://hl7.org/fhir/v3/DocumentCompletion")
+		XCTAssertEqual(inst.activity!.code!, "AU")
+		XCTAssertEqual(inst.activity!.display!, "authenticated")
+		XCTAssertEqual(inst.activity!.system!.absoluteString, "http://hl7.org/fhir/v3/DocumentCompletion")
 		XCTAssertEqual(inst.agent![0].actor!.reference!, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.agent![0].role!.code!, "verifier")
 		XCTAssertEqual(inst.agent![0].role!.system!.absoluteString, "http://hl7.org/fhir/provenance-participant-role")
 		XCTAssertEqual(inst.agent![0].userId!.system!.absoluteString, "http://acme.com/fhir/users/sso")
 		XCTAssertEqual(inst.agent![0].userId!.value!, "hhd")
 		XCTAssertEqual(inst.id!, "signature")
-		XCTAssertEqual(inst.reason![0].coding![0].code!, "TREAT")
-		XCTAssertEqual(inst.reason![0].coding![0].display!, "treatment")
-		XCTAssertEqual(inst.reason![0].coding![0].system!.absoluteString, "http://hl7.org/fhir/v3/ActReason")
+		XCTAssertEqual(inst.reason![0].code!, "TREAT")
+		XCTAssertEqual(inst.reason![0].display!, "treatment")
+		XCTAssertEqual(inst.reason![0].system!.absoluteString, "http://hl7.org/fhir/v3/ActReason")
 		XCTAssertEqual(inst.recorded!.description, "2015-08-27T08:39:24+10:00")
 		XCTAssertEqual(inst.signature![0].blob!, Base64Binary(value: "Li4u"))
 		XCTAssertEqual(inst.signature![0].contentType!, "application/signature+xml")
 		XCTAssertEqual(inst.signature![0].type![0].code!, "1.2.840.10065.1.12.1.5")
-		XCTAssertEqual(inst.signature![0].type![0].display!, "Verification")
+		XCTAssertEqual(inst.signature![0].type![0].display!, "Verification Signature")
 		XCTAssertEqual(inst.signature![0].type![0].system!.absoluteString, "http://hl7.org/fhir/valueset-signature-type")
 		XCTAssertEqual(inst.signature![0].when!.description, "2015-08-27T08:39:24+10:00")
 		XCTAssertEqual(inst.signature![0].whoReference!.reference!, "Practitioner/xcda-author")
@@ -61,10 +63,12 @@ class ProvenanceTests: XCTestCase
 	}
 	
 	func testProvenance2() {
-		let instance = try? runProvenance2()
-		XCTAssertNotNil(instance, "Must instantiate Provenance")
-		if let instance = instance {
-			try! runProvenance2(instance.asJSON())
+		do {
+			let instance = try runProvenance2()
+			try runProvenance2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Provenance successfully, but threw")
 		}
 	}
 	
@@ -92,10 +96,9 @@ class ProvenanceTests: XCTestCase
 		XCTAssertEqual(inst.location!.reference!, "Location/1")
 		XCTAssertEqual(inst.period!.start!.description, "2015-06-27")
 		XCTAssertEqual(inst.policy![0].absoluteString, "http://acme.com/fhir/Consent/25")
-		XCTAssertEqual(inst.reason![0].coding![0].code!, "3457005")
-		XCTAssertEqual(inst.reason![0].coding![0].display!, "Referral")
-		XCTAssertEqual(inst.reason![0].coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.reason![0].text!, "Accepting a referral")
+		XCTAssertEqual(inst.reason![0].code!, "3457005")
+		XCTAssertEqual(inst.reason![0].display!, "Referral")
+		XCTAssertEqual(inst.reason![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.recorded!.description, "2015-06-27T08:39:24+10:00")
 		XCTAssertEqual(inst.target![0].reference!, "Procedure/example/_history/1")
 		XCTAssertEqual(inst.text!.div!, "<div>procedure record authored on 27-June 2015 by Harold Hippocrates, MD Content extracted from Referral received 26-June</div>")

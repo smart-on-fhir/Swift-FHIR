@@ -2,8 +2,8 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import Foundation
@@ -37,6 +37,9 @@ public class SearchParameter: DomainResource {
 	/// If for testing purposes, not real usage.
 	public var experimental: Bool?
 	
+	/// FluentPath expression that extracts the values.
+	public var expression: String?
+	
 	/// Informal name for this search parameter.
 	public var name: String?
 	
@@ -57,6 +60,9 @@ public class SearchParameter: DomainResource {
 	
 	/// Absolute URL used to reference this search parameter.
 	public var url: NSURL?
+	
+	/// Content intends to support these contexts.
+	public var useContext: [CodeableConcept]?
 	
 	/// XPath that extracts the values.
 	public var xpath: String?
@@ -147,6 +153,15 @@ public class SearchParameter: DomainResource {
 					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["expression"] {
+				presentKeys.insert("expression")
+				if let val = exist as? String {
+					self.expression = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "expression", wants: String.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
@@ -219,6 +234,15 @@ public class SearchParameter: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "url"))
 			}
+			if let exist: AnyObject = js["useContext"] {
+				presentKeys.insert("useContext")
+				if let val = exist as? [FHIRJSON] {
+					self.useContext = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["xpath"] {
 				presentKeys.insert("xpath")
 				if let val = exist as? String {
@@ -262,6 +286,9 @@ public class SearchParameter: DomainResource {
 		if let experimental = self.experimental {
 			json["experimental"] = experimental.asJSON()
 		}
+		if let expression = self.expression {
+			json["expression"] = expression.asJSON()
+		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
@@ -287,6 +314,9 @@ public class SearchParameter: DomainResource {
 		if let url = self.url {
 			json["url"] = url.asJSON()
 		}
+		if let useContext = self.useContext {
+			json["useContext"] = CodeableConcept.asJSONArray(useContext)
+		}
 		if let xpath = self.xpath {
 			json["xpath"] = xpath.asJSON()
 		}
@@ -309,7 +339,7 @@ public class SearchParameterContact: BackboneElement {
 		get { return "SearchParameterContact" }
 	}
 	
-	/// Name of a individual to contact.
+	/// Name of an individual to contact.
 	public var name: String?
 	
 	/// Contact details for individual or publisher.

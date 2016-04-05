@@ -2,16 +2,16 @@
 //  AppointmentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class AppointmentTests: XCTestCase
-{
+class AppointmentTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Appointment {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,17 +23,23 @@ class AppointmentTests: XCTestCase
 	}
 	
 	func testAppointment1() {
-		let instance = try? runAppointment1()
-		XCTAssertNotNil(instance, "Must instantiate Appointment")
-		if let instance = instance {
-			try! runAppointment1(instance.asJSON())
+		do {
+			let instance = try runAppointment1()
+			try runAppointment1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw")
 		}
 	}
 	
 	func runAppointment1(json: FHIRJSON? = nil) throws -> Appointment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "appointment-example-request.json")
 		
+		XCTAssertEqual(inst.appointmentType!.coding![0].code!, "wi")
+		XCTAssertEqual(inst.appointmentType!.coding![0].display!, "Walk in")
+		XCTAssertEqual(inst.appointmentType!.coding![0].system!.absoluteString, "http://example.org/appointment-type")
 		XCTAssertEqual(inst.comment!, "Further expand on the results of the MRI and determine the next actions that may be appropriate.")
+		XCTAssertEqual(inst.created!.description, "2015-12-02")
 		XCTAssertEqual(inst.description_fhir!, "Discussion on the results of your recent MRI")
 		XCTAssertEqual(inst.id!, "examplereq")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://example.org/sampleappointment-identifier")
@@ -45,35 +51,48 @@ class AppointmentTests: XCTestCase
 		XCTAssertEqual(inst.participant![0].status!, "needs-action")
 		XCTAssertEqual(inst.participant![1].required!, "required")
 		XCTAssertEqual(inst.participant![1].status!, "needs-action")
-		XCTAssertEqual(inst.participant![1].type![0].coding![0].code!, "attending")
+		XCTAssertEqual(inst.participant![1].type![0].coding![0].code!, "ATND")
+		XCTAssertEqual(inst.participant![1].type![0].coding![0].system!.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.participant![2].actor!.display!, "South Wing, second floor")
 		XCTAssertEqual(inst.participant![2].actor!.reference!, "Location/1")
 		XCTAssertEqual(inst.participant![2].required!, "required")
 		XCTAssertEqual(inst.participant![2].status!, "accepted")
 		XCTAssertEqual(inst.priority!, UInt(5))
+		XCTAssertEqual(inst.reason!.coding![0].code!, "413095006")
+		XCTAssertEqual(inst.reason!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.reason!.text!, "Clinical Review")
+		XCTAssertEqual(inst.serviceCategory!.coding![0].code!, "gp")
+		XCTAssertEqual(inst.serviceCategory!.coding![0].display!, "General Practice")
+		XCTAssertEqual(inst.serviceCategory!.coding![0].system!.absoluteString, "http://example.org/service-category")
 		XCTAssertEqual(inst.slot![0].reference!, "Slot/example")
+		XCTAssertEqual(inst.specialty![0].coding![0].code!, "gp")
+		XCTAssertEqual(inst.specialty![0].coding![0].display!, "General Practice")
+		XCTAssertEqual(inst.specialty![0].coding![0].system!.absoluteString, "http://example.org/specialty")
 		XCTAssertEqual(inst.status!, "proposed")
 		XCTAssertEqual(inst.text!.div!, "<div>Brian MRI results discussion</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!.coding![0].code!, "52")
-		XCTAssertEqual(inst.type!.coding![0].display!, "General Discussion")
 		
 		return inst
 	}
 	
 	func testAppointment2() {
-		let instance = try? runAppointment2()
-		XCTAssertNotNil(instance, "Must instantiate Appointment")
-		if let instance = instance {
-			try! runAppointment2(instance.asJSON())
+		do {
+			let instance = try runAppointment2()
+			try runAppointment2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw")
 		}
 	}
 	
 	func runAppointment2(json: FHIRJSON? = nil) throws -> Appointment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "appointment-example.json")
 		
+		XCTAssertEqual(inst.appointmentType!.coding![0].code!, "follow")
+		XCTAssertEqual(inst.appointmentType!.coding![0].display!, "Followup")
+		XCTAssertEqual(inst.appointmentType!.coding![0].system!.absoluteString, "http://example.org/appointment-type")
 		XCTAssertEqual(inst.comment!, "Further expand on the results of the MRI and determine the next actions that may be appropriate.")
+		XCTAssertEqual(inst.created!.description, "2013-10-10")
 		XCTAssertEqual(inst.description_fhir!, "Discussion on the results of your recent MRI")
 		XCTAssertEqual(inst.end!.description, "2013-12-10T11:00:00Z")
 		XCTAssertEqual(inst.id!, "example")
@@ -85,33 +104,45 @@ class AppointmentTests: XCTestCase
 		XCTAssertEqual(inst.participant![1].actor!.reference!, "Practitioner/example")
 		XCTAssertEqual(inst.participant![1].required!, "required")
 		XCTAssertEqual(inst.participant![1].status!, "accepted")
-		XCTAssertEqual(inst.participant![1].type![0].coding![0].code!, "attending")
+		XCTAssertEqual(inst.participant![1].type![0].coding![0].code!, "ATND")
+		XCTAssertEqual(inst.participant![1].type![0].coding![0].system!.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.participant![2].actor!.display!, "South Wing, second floor")
 		XCTAssertEqual(inst.participant![2].actor!.reference!, "Location/1")
 		XCTAssertEqual(inst.participant![2].required!, "required")
 		XCTAssertEqual(inst.participant![2].status!, "accepted")
 		XCTAssertEqual(inst.priority!, UInt(5))
+		XCTAssertEqual(inst.serviceCategory!.coding![0].code!, "gp")
+		XCTAssertEqual(inst.serviceCategory!.coding![0].display!, "General Practice")
+		XCTAssertEqual(inst.serviceCategory!.coding![0].system!.absoluteString, "http://example.org/service-category")
+		XCTAssertEqual(inst.serviceType![0].coding![0].code!, "52")
+		XCTAssertEqual(inst.serviceType![0].coding![0].display!, "General Discussion")
+		XCTAssertEqual(inst.specialty![0].coding![0].code!, "gp")
+		XCTAssertEqual(inst.specialty![0].coding![0].display!, "General Practice")
+		XCTAssertEqual(inst.specialty![0].coding![0].system!.absoluteString, "http://example.org/specialty")
 		XCTAssertEqual(inst.start!.description, "2013-12-10T09:00:00Z")
 		XCTAssertEqual(inst.status!, "booked")
 		XCTAssertEqual(inst.text!.div!, "<div>Brian MRI results discussion</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!.coding![0].code!, "52")
-		XCTAssertEqual(inst.type!.coding![0].display!, "General Discussion")
 		
 		return inst
 	}
 	
 	func testAppointment3() {
-		let instance = try? runAppointment3()
-		XCTAssertNotNil(instance, "Must instantiate Appointment")
-		if let instance = instance {
-			try! runAppointment3(instance.asJSON())
+		do {
+			let instance = try runAppointment3()
+			try runAppointment3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw")
 		}
 	}
 	
 	func runAppointment3(json: FHIRJSON? = nil) throws -> Appointment {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "appointment-example2doctors.json")
 		
+		XCTAssertEqual(inst.appointmentType!.coding![0].code!, "wi")
+		XCTAssertEqual(inst.appointmentType!.coding![0].display!, "Walk in")
+		XCTAssertEqual(inst.appointmentType!.coding![0].system!.absoluteString, "http://example.org/appointment-type")
 		XCTAssertEqual(inst.comment!, "Clarify the results of the MRI to ensure context of test was correct")
 		XCTAssertEqual(inst.description_fhir!, "Discussion about Peter Chalmers MRI results")
 		XCTAssertEqual(inst.end!.description, "2013-12-09T11:00:00Z")
@@ -132,12 +163,18 @@ class AppointmentTests: XCTestCase
 		XCTAssertEqual(inst.participant![3].required!, "information-only")
 		XCTAssertEqual(inst.participant![3].status!, "accepted")
 		XCTAssertEqual(inst.priority!, UInt(5))
+		XCTAssertEqual(inst.serviceCategory!.coding![0].code!, "gp")
+		XCTAssertEqual(inst.serviceCategory!.coding![0].display!, "General Practice")
+		XCTAssertEqual(inst.serviceCategory!.coding![0].system!.absoluteString, "http://example.org/service-category")
+		XCTAssertEqual(inst.serviceType![0].coding![0].code!, "52")
+		XCTAssertEqual(inst.serviceType![0].coding![0].display!, "General Discussion")
+		XCTAssertEqual(inst.specialty![0].coding![0].code!, "gp")
+		XCTAssertEqual(inst.specialty![0].coding![0].display!, "General Practice")
+		XCTAssertEqual(inst.specialty![0].coding![0].system!.absoluteString, "http://example.org/specialty")
 		XCTAssertEqual(inst.start!.description, "2013-12-09T09:00:00Z")
 		XCTAssertEqual(inst.status!, "booked")
 		XCTAssertEqual(inst.text!.div!, "<div>Brian MRI results discussion</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type!.coding![0].code!, "52")
-		XCTAssertEqual(inst.type!.coding![0].display!, "General Discussion")
 		
 		return inst
 	}

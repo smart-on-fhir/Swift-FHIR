@@ -2,16 +2,16 @@
 //  RelatedPersonTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class RelatedPersonTests: XCTestCase
-{
+class RelatedPersonTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> RelatedPerson {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class RelatedPersonTests: XCTestCase
 	}
 	
 	func testRelatedPerson1() {
-		let instance = try? runRelatedPerson1()
-		XCTAssertNotNil(instance, "Must instantiate RelatedPerson")
-		if let instance = instance {
-			try! runRelatedPerson1(instance.asJSON())
+		do {
+			let instance = try runRelatedPerson1()
+			try runRelatedPerson1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw")
 		}
 	}
 	
@@ -56,10 +58,12 @@ class RelatedPersonTests: XCTestCase
 	}
 	
 	func testRelatedPerson2() {
-		let instance = try? runRelatedPerson2()
-		XCTAssertNotNil(instance, "Must instantiate RelatedPerson")
-		if let instance = instance {
-			try! runRelatedPerson2(instance.asJSON())
+		do {
+			let instance = try runRelatedPerson2()
+			try runRelatedPerson2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw")
 		}
 	}
 	
@@ -85,10 +89,12 @@ class RelatedPersonTests: XCTestCase
 	}
 	
 	func testRelatedPerson3() {
-		let instance = try? runRelatedPerson3()
-		XCTAssertNotNil(instance, "Must instantiate RelatedPerson")
-		if let instance = instance {
-			try! runRelatedPerson3(instance.asJSON())
+		do {
+			let instance = try runRelatedPerson3()
+			try runRelatedPerson3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw")
 		}
 	}
 	
@@ -121,10 +127,12 @@ class RelatedPersonTests: XCTestCase
 	}
 	
 	func testRelatedPerson4() {
-		let instance = try? runRelatedPerson4()
-		XCTAssertNotNil(instance, "Must instantiate RelatedPerson")
-		if let instance = instance {
-			try! runRelatedPerson4(instance.asJSON())
+		do {
+			let instance = try runRelatedPerson4()
+			try runRelatedPerson4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw")
 		}
 	}
 	

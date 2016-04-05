@@ -2,16 +2,16 @@
 //  EncounterTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class EncounterTests: XCTestCase
-{
+class EncounterTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Encounter {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class EncounterTests: XCTestCase
 	}
 	
 	func testEncounter1() {
-		let instance = try? runEncounter1()
-		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		if let instance = instance {
-			try! runEncounter1(instance.asJSON())
+		do {
+			let instance = try runEncounter1()
+			try runEncounter1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
 		}
 	}
 	
@@ -73,10 +75,12 @@ class EncounterTests: XCTestCase
 	}
 	
 	func testEncounter2() {
-		let instance = try? runEncounter2()
-		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		if let instance = instance {
-			try! runEncounter2(instance.asJSON())
+		do {
+			let instance = try runEncounter2()
+			try runEncounter2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
 		}
 	}
 	
@@ -123,10 +127,12 @@ class EncounterTests: XCTestCase
 	}
 	
 	func testEncounter3() {
-		let instance = try? runEncounter3()
-		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		if let instance = instance {
-			try! runEncounter3(instance.asJSON())
+		do {
+			let instance = try runEncounter3()
+			try runEncounter3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
 		}
 	}
 	
@@ -162,7 +168,7 @@ class EncounterTests: XCTestCase
 		XCTAssertEqual(inst.reason![0].coding![0].display!, "Retropharyngeal abscess")
 		XCTAssertEqual(inst.reason![0].coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.reason![0].extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/encounter-primaryDiagnosis")
-		XCTAssertEqual(inst.reason![0].extension_fhir![0].valueInteger!, 1)
+		XCTAssertEqual(inst.reason![0].extension_fhir![0].valuePositiveInt!, UInt(1))
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.status!, "finished")
 		XCTAssertEqual(inst.text!.status!, "generated")
@@ -174,10 +180,12 @@ class EncounterTests: XCTestCase
 	}
 	
 	func testEncounter4() {
-		let instance = try? runEncounter4()
-		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		if let instance = instance {
-			try! runEncounter4(instance.asJSON())
+		do {
+			let instance = try runEncounter4()
+			try runEncounter4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
 		}
 	}
 	
@@ -206,10 +214,12 @@ class EncounterTests: XCTestCase
 	}
 	
 	func testEncounter5() {
-		let instance = try? runEncounter5()
-		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		if let instance = instance {
-			try! runEncounter5(instance.asJSON())
+		do {
+			let instance = try runEncounter5()
+			try runEncounter5(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
 		}
 	}
 	
@@ -222,7 +232,7 @@ class EncounterTests: XCTestCase
 		XCTAssertEqual(inst.identifier![0].value!, "Encounter_Roel_20130128")
 		XCTAssertEqual(inst.indication![0].display!, "Roel's TPF chemotherapy on January 28th, 2013")
 		XCTAssertEqual(inst.indication![0].extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/encounter-primaryDiagnosis")
-		XCTAssertEqual(inst.indication![0].extension_fhir![0].valueInteger!, 1)
+		XCTAssertEqual(inst.indication![0].extension_fhir![0].valuePositiveInt!, UInt(1))
 		XCTAssertEqual(inst.indication![0].reference!, "Procedure/f201")
 		XCTAssertEqual(inst.length!.code!, "258701004")
 		XCTAssertEqual(inst.length!.system!.absoluteString, "http://snomed.info/sct")
@@ -235,7 +245,7 @@ class EncounterTests: XCTestCase
 		XCTAssertEqual(inst.priority!.coding![0].display!, "Urgent")
 		XCTAssertEqual(inst.priority!.coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.reason![0].extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/encounter-primaryDiagnosis")
-		XCTAssertEqual(inst.reason![0].extension_fhir![0].valueInteger!, 2)
+		XCTAssertEqual(inst.reason![0].extension_fhir![0].valuePositiveInt!, UInt(2))
 		XCTAssertEqual(inst.reason![0].text!, "The patient is treated for a tumor.")
 		XCTAssertEqual(inst.serviceProvider!.reference!, "Organization/f201")
 		XCTAssertEqual(inst.status!, "finished")
@@ -248,10 +258,12 @@ class EncounterTests: XCTestCase
 	}
 	
 	func testEncounter6() {
-		let instance = try? runEncounter6()
-		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		if let instance = instance {
-			try! runEncounter6(instance.asJSON())
+		do {
+			let instance = try runEncounter6()
+			try runEncounter6(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
 		}
 	}
 	
@@ -289,10 +301,12 @@ class EncounterTests: XCTestCase
 	}
 	
 	func testEncounter7() {
-		let instance = try? runEncounter7()
-		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		if let instance = instance {
-			try! runEncounter7(instance.asJSON())
+		do {
+			let instance = try runEncounter7()
+			try runEncounter7(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
 		}
 	}
 	
@@ -322,10 +336,12 @@ class EncounterTests: XCTestCase
 	}
 	
 	func testEncounter8() {
-		let instance = try? runEncounter8()
-		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		if let instance = instance {
-			try! runEncounter8(instance.asJSON())
+		do {
+			let instance = try runEncounter8()
+			try runEncounter8(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
 		}
 	}
 	
@@ -349,10 +365,12 @@ class EncounterTests: XCTestCase
 	}
 	
 	func testEncounter9() {
-		let instance = try? runEncounter9()
-		XCTAssertNotNil(instance, "Must instantiate Encounter")
-		if let instance = instance {
-			try! runEncounter9(instance.asJSON())
+		do {
+			let instance = try runEncounter9()
+			try runEncounter9(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
 		}
 	}
 	

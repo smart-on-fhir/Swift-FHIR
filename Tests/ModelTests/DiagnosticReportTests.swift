@@ -2,16 +2,16 @@
 //  DiagnosticReportTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class DiagnosticReportTests: XCTestCase
-{
+class DiagnosticReportTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> DiagnosticReport {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class DiagnosticReportTests: XCTestCase
 	}
 	
 	func testDiagnosticReport1() {
-		let instance = try? runDiagnosticReport1()
-		XCTAssertNotNil(instance, "Must instantiate DiagnosticReport")
-		if let instance = instance {
-			try! runDiagnosticReport1(instance.asJSON())
+		do {
+			let instance = try runDiagnosticReport1()
+			try runDiagnosticReport1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
 		}
 	}
 	
@@ -54,10 +56,12 @@ class DiagnosticReportTests: XCTestCase
 	}
 	
 	func testDiagnosticReport2() {
-		let instance = try? runDiagnosticReport2()
-		XCTAssertNotNil(instance, "Must instantiate DiagnosticReport")
-		if let instance = instance {
-			try! runDiagnosticReport2(instance.asJSON())
+		do {
+			let instance = try runDiagnosticReport2()
+			try runDiagnosticReport2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
 		}
 	}
 	
@@ -97,10 +101,12 @@ class DiagnosticReportTests: XCTestCase
 	}
 	
 	func testDiagnosticReport3() {
-		let instance = try? runDiagnosticReport3()
-		XCTAssertNotNil(instance, "Must instantiate DiagnosticReport")
-		if let instance = instance {
-			try! runDiagnosticReport3(instance.asJSON())
+		do {
+			let instance = try runDiagnosticReport3()
+			try runDiagnosticReport3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
 		}
 	}
 	
@@ -135,10 +141,12 @@ class DiagnosticReportTests: XCTestCase
 	}
 	
 	func testDiagnosticReport4() {
-		let instance = try? runDiagnosticReport4()
-		XCTAssertNotNil(instance, "Must instantiate DiagnosticReport")
-		if let instance = instance {
-			try! runDiagnosticReport4(instance.asJSON())
+		do {
+			let instance = try runDiagnosticReport4()
+			try runDiagnosticReport4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
 		}
 	}
 	
@@ -175,10 +183,12 @@ class DiagnosticReportTests: XCTestCase
 	}
 	
 	func testDiagnosticReport5() {
-		let instance = try? runDiagnosticReport5()
-		XCTAssertNotNil(instance, "Must instantiate DiagnosticReport")
-		if let instance = instance {
-			try! runDiagnosticReport5(instance.asJSON())
+		do {
+			let instance = try runDiagnosticReport5()
+			try runDiagnosticReport5(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
 		}
 	}
 	
@@ -226,10 +236,12 @@ class DiagnosticReportTests: XCTestCase
 	}
 	
 	func testDiagnosticReport6() {
-		let instance = try? runDiagnosticReport6()
-		XCTAssertNotNil(instance, "Must instantiate DiagnosticReport")
-		if let instance = instance {
-			try! runDiagnosticReport6(instance.asJSON())
+		do {
+			let instance = try runDiagnosticReport6()
+			try runDiagnosticReport6(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
 		}
 	}
 	
@@ -265,10 +277,12 @@ class DiagnosticReportTests: XCTestCase
 	}
 	
 	func testDiagnosticReport7() {
-		let instance = try? runDiagnosticReport7()
-		XCTAssertNotNil(instance, "Must instantiate DiagnosticReport")
-		if let instance = instance {
-			try! runDiagnosticReport7(instance.asJSON())
+		do {
+			let instance = try runDiagnosticReport7()
+			try runDiagnosticReport7(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
 		}
 	}
 	
@@ -300,10 +314,12 @@ class DiagnosticReportTests: XCTestCase
 	}
 	
 	func testDiagnosticReport8() {
-		let instance = try? runDiagnosticReport8()
-		XCTAssertNotNil(instance, "Must instantiate DiagnosticReport")
-		if let instance = instance {
-			try! runDiagnosticReport8(instance.asJSON())
+		do {
+			let instance = try runDiagnosticReport8()
+			try runDiagnosticReport8(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
 		}
 	}
 	
@@ -351,6 +367,87 @@ class DiagnosticReportTests: XCTestCase
 		XCTAssertEqual(inst.result![9].reference!, "#r10")
 		XCTAssertEqual(inst.status!, "final")
 		XCTAssertEqual(inst.subject!.reference!, "Patient/pat2")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testDiagnosticReport9() {
+		do {
+			let instance = try runDiagnosticReport9()
+			try runDiagnosticReport9(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
+		}
+	}
+	
+	func runDiagnosticReport9(json: FHIRJSON? = nil) throws -> DiagnosticReport {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-genetics-example-2 with familyhistory.json")
+		
+		XCTAssertEqual(inst.category!.coding![0].code!, "15220000")
+		XCTAssertEqual(inst.category!.coding![0].display!, "Laboratory test")
+		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.category!.coding![1].code!, "LAB")
+		XCTAssertEqual(inst.category!.coding![1].system!.absoluteString, "http://hl7.org/fhir/v2/0074")
+		XCTAssertEqual(inst.code!.coding![0].code!, "55233-1")
+		XCTAssertEqual(inst.code!.coding![0].display!, "Genetic analysis master panel")
+		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString, "http://loinc.org")
+		XCTAssertEqual(inst.contained![0].id!, "f1-genetics")
+		XCTAssertEqual(inst.effectiveDateTime!.description, "2015-05-26T15:30:10+01:00")
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/DiagnosticReport-geneticsFamilyMemberHistory")
+		XCTAssertEqual(inst.extension_fhir![0].valueReference!.reference!, "#dg1")
+		XCTAssertEqual(inst.id!, "dg2")
+		XCTAssertEqual(inst.issued!.description, "2014-05-16T10:28:00+01:00")
+		XCTAssertEqual(inst.performer!.display!, "Molecular Diagnostic Laboratory")
+		XCTAssertEqual(inst.performer!.reference!, "Practitioner/genetics-example2")
+		XCTAssertEqual(inst.result![0].display!, "Genetic analysis for BRAC -1")
+		XCTAssertEqual(inst.result![0].reference!, "Observation/ob-genetics-3-1")
+		XCTAssertEqual(inst.result![1].display!, "Genetic analysis for BRAC -2")
+		XCTAssertEqual(inst.result![1].reference!, "Observation/ob-genetics-3-2")
+		XCTAssertEqual(inst.specimen![0].display!, "Molecular Specimen ID: MLD45-Z4-1234")
+		XCTAssertEqual(inst.specimen![0].reference!, "Specimen/genetics-example2")
+		XCTAssertEqual(inst.status!, "final")
+		XCTAssertEqual(inst.subject!.display!, "Peter James Chalmers(MRN: 12345)")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		
+		return inst
+	}
+	
+	func testDiagnosticReport10() {
+		do {
+			let instance = try runDiagnosticReport10()
+			try runDiagnosticReport10(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticReport successfully, but threw")
+		}
+	}
+	
+	func runDiagnosticReport10(json: FHIRJSON? = nil) throws -> DiagnosticReport {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-hla-genetics-results-example.json")
+		
+		XCTAssertEqual(inst.code!.text!, "HLA genotyping results")
+		XCTAssertEqual(inst.effectiveDateTime!.description, "2015-05-26T15:30:10+01:00")
+		XCTAssertEqual(inst.extension_fhir![0].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsAlleleAsignmentDate")
+		XCTAssertEqual(inst.extension_fhir![0].valueDate!.description, "2014-10-22")
+		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![0].url!.absoluteString, "text")
+		XCTAssertEqual(inst.extension_fhir![1].extension_fhir![0].valueString!, "HLA-A*01:01:01+HLA-A*24:02:01")
+		XCTAssertEqual(inst.extension_fhir![1].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsGlstring")
+		XCTAssertEqual(inst.extension_fhir![2].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsConsensusSequenceBlock")
+		XCTAssertEqual(inst.extension_fhir![2].valueReference!.reference!, "Observation/consensus-sequence-block-example-1")
+		XCTAssertEqual(inst.extension_fhir![3].url!.absoluteString, "http://hl7.org/fhir/StructureDefinition/hla-genotyping-resultsConsensusSequenceBlock")
+		XCTAssertEqual(inst.extension_fhir![3].valueReference!.reference!, "Observation/consensus-sequence-block-example-2")
+		XCTAssertEqual(inst.id!, "hla-1")
+		XCTAssertEqual(inst.issued!.description, "2015-05-26T15:30:10+01:00")
+		XCTAssertEqual(inst.performer!.display!, "Molecular Diagnostic Laboratory")
+		XCTAssertEqual(inst.performer!.reference!, "Practitioner/genetics-example2")
+		XCTAssertEqual(inst.specimen![0].display!, "Molecular Specimen ID: MLD45-Z4-1234")
+		XCTAssertEqual(inst.specimen![0].reference!, "Specimen/genetics-example2")
+		XCTAssertEqual(inst.status!, "final")
+		XCTAssertEqual(inst.subject!.display!, "Molecular Lab Patient ID: HOSP-23456")
+		XCTAssertEqual(inst.subject!.reference!, "Patient/genetics-example2")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst

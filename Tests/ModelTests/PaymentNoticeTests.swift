@@ -2,16 +2,16 @@
 //  PaymentNoticeTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class PaymentNoticeTests: XCTestCase
-{
+class PaymentNoticeTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> PaymentNotice {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class PaymentNoticeTests: XCTestCase
 	}
 	
 	func testPaymentNotice1() {
-		let instance = try? runPaymentNotice1()
-		XCTAssertNotNil(instance, "Must instantiate PaymentNotice")
-		if let instance = instance {
-			try! runPaymentNotice1(instance.asJSON())
+		do {
+			let instance = try runPaymentNotice1()
+			try runPaymentNotice1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test PaymentNotice successfully, but threw")
 		}
 	}
 	
@@ -37,10 +39,10 @@ class PaymentNoticeTests: XCTestCase
 		XCTAssertEqual(inst.id!, "77654")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://benefitsinc.com/paymentnotice")
 		XCTAssertEqual(inst.identifier![0].value!, "776543")
-		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.organizationReference!.reference!, "Organization/1")
 		XCTAssertEqual(inst.paymentStatus!.code!, "paid")
 		XCTAssertEqual(inst.paymentStatus!.system!.absoluteString, "http://hl7.org/fhir/paymentstatus")
-		XCTAssertEqual(inst.request!.reference!, "http://benefitsinc.com/fhir/oralhealthclaim/12345")
+		XCTAssertEqual(inst.requestReference!.reference!, "http://benefitsinc.com/fhir/oralhealthclaim/12345")
 		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the PaymentNotice</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		

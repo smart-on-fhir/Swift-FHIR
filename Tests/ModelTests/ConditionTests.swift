@@ -2,16 +2,16 @@
 //  ConditionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class ConditionTests: XCTestCase
-{
+class ConditionTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Condition {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class ConditionTests: XCTestCase
 	}
 	
 	func testCondition1() {
-		let instance = try? runCondition1()
-		XCTAssertNotNil(instance, "Must instantiate Condition")
-		if let instance = instance {
-			try! runCondition1(instance.asJSON())
+		do {
+			let instance = try runCondition1()
+			try runCondition1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 	}
 	
@@ -65,10 +67,12 @@ class ConditionTests: XCTestCase
 	}
 	
 	func testCondition2() {
-		let instance = try? runCondition2()
-		XCTAssertNotNil(instance, "Must instantiate Condition")
-		if let instance = instance {
-			try! runCondition2(instance.asJSON())
+		do {
+			let instance = try runCondition2()
+			try runCondition2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 	}
 	
@@ -109,10 +113,12 @@ class ConditionTests: XCTestCase
 	}
 	
 	func testCondition3() {
-		let instance = try? runCondition3()
-		XCTAssertNotNil(instance, "Must instantiate Condition")
-		if let instance = instance {
-			try! runCondition3(instance.asJSON())
+		do {
+			let instance = try runCondition3()
+			try runCondition3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 	}
 	
@@ -150,10 +156,12 @@ class ConditionTests: XCTestCase
 	}
 	
 	func testCondition4() {
-		let instance = try? runCondition4()
-		XCTAssertNotNil(instance, "Must instantiate Condition")
-		if let instance = instance {
-			try! runCondition4(instance.asJSON())
+		do {
+			let instance = try runCondition4()
+			try runCondition4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 	}
 	
@@ -194,10 +202,12 @@ class ConditionTests: XCTestCase
 	}
 	
 	func testCondition5() {
-		let instance = try? runCondition5()
-		XCTAssertNotNil(instance, "Must instantiate Condition")
-		if let instance = instance {
-			try! runCondition5(instance.asJSON())
+		do {
+			let instance = try runCondition5()
+			try runCondition5(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 	}
 	
@@ -233,10 +243,12 @@ class ConditionTests: XCTestCase
 	}
 	
 	func testCondition6() {
-		let instance = try? runCondition6()
-		XCTAssertNotNil(instance, "Must instantiate Condition")
-		if let instance = instance {
-			try! runCondition6(instance.asJSON())
+		do {
+			let instance = try runCondition6()
+			try runCondition6(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 	}
 	
@@ -275,10 +287,12 @@ class ConditionTests: XCTestCase
 	}
 	
 	func testCondition7() {
-		let instance = try? runCondition7()
-		XCTAssertNotNil(instance, "Must instantiate Condition")
-		if let instance = instance {
-			try! runCondition7(instance.asJSON())
+		do {
+			let instance = try runCondition7()
+			try runCondition7(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 	}
 	
@@ -319,10 +333,12 @@ class ConditionTests: XCTestCase
 	}
 	
 	func testCondition8() {
-		let instance = try? runCondition8()
-		XCTAssertNotNil(instance, "Must instantiate Condition")
-		if let instance = instance {
-			try! runCondition8(instance.asJSON())
+		do {
+			let instance = try runCondition8()
+			try runCondition8(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 	}
 	
@@ -345,10 +361,12 @@ class ConditionTests: XCTestCase
 	}
 	
 	func testCondition9() {
-		let instance = try? runCondition9()
-		XCTAssertNotNil(instance, "Must instantiate Condition")
-		if let instance = instance {
-			try! runCondition9(instance.asJSON())
+		do {
+			let instance = try runCondition9()
+			try runCondition9(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 	}
 	
@@ -374,10 +392,12 @@ class ConditionTests: XCTestCase
 	}
 	
 	func testCondition10() {
-		let instance = try? runCondition10()
-		XCTAssertNotNil(instance, "Must instantiate Condition")
-		if let instance = instance {
-			try! runCondition10(instance.asJSON())
+		do {
+			let instance = try runCondition10()
+			try runCondition10(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 	}
 	

@@ -2,16 +2,16 @@
 //  EnrollmentResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class EnrollmentResponseTests: XCTestCase
-{
+class EnrollmentResponseTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> EnrollmentResponse {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class EnrollmentResponseTests: XCTestCase
 	}
 	
 	func testEnrollmentResponse1() {
-		let instance = try? runEnrollmentResponse1()
-		XCTAssertNotNil(instance, "Must instantiate EnrollmentResponse")
-		if let instance = instance {
-			try! runEnrollmentResponse1(instance.asJSON())
+		do {
+			let instance = try runEnrollmentResponse1()
+			try runEnrollmentResponse1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test EnrollmentResponse successfully, but threw")
 		}
 	}
 	

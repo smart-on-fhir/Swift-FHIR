@@ -2,16 +2,16 @@
 //  ScheduleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class ScheduleTests: XCTestCase
-{
+class ScheduleTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Schedule {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class ScheduleTests: XCTestCase
 	}
 	
 	func testSchedule1() {
-		let instance = try? runSchedule1()
-		XCTAssertNotNil(instance, "Must instantiate Schedule")
-		if let instance = instance {
-			try! runSchedule1(instance.asJSON())
+		do {
+			let instance = try runSchedule1()
+			try runSchedule1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Schedule successfully, but threw")
 		}
 	}
 	
@@ -35,16 +37,20 @@ class ScheduleTests: XCTestCase
 		
 		XCTAssertEqual(inst.actor!.display!, "Burgers UMC, South Wing, second floor")
 		XCTAssertEqual(inst.actor!.reference!, "Location/1")
-		XCTAssertEqual(inst.comment!, "Assessments should be performed before requesting appointments in this slot.")
+		XCTAssertEqual(inst.comment!, "The slots attached to this schedule should be specialized to cover immunizations within the clinic")
 		XCTAssertEqual(inst.id!, "example")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://example.org/scheduleid")
 		XCTAssertEqual(inst.identifier![0].use!, "usual")
 		XCTAssertEqual(inst.identifier![0].value!, "45")
 		XCTAssertEqual(inst.planningHorizon!.end!.description, "2013-12-25T09:30:00Z")
 		XCTAssertEqual(inst.planningHorizon!.start!.description, "2013-12-25T09:15:00Z")
+		XCTAssertEqual(inst.serviceCategory!.coding![0].code!, "17")
+		XCTAssertEqual(inst.serviceCategory!.coding![0].display!, "General Practice")
+		XCTAssertEqual(inst.serviceType![0].coding![0].code!, "57")
+		XCTAssertEqual(inst.serviceType![0].coding![0].display!, "Immunisation")
+		XCTAssertEqual(inst.specialty![0].coding![0].code!, "408480009")
+		XCTAssertEqual(inst.specialty![0].coding![0].display!, "Clinical immunology")
 		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.type![0].coding![0].code!, "45")
-		XCTAssertEqual(inst.type![0].coding![0].display!, "Physiotherapy")
 		
 		return inst
 	}

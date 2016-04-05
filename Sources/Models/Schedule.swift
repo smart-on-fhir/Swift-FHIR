@@ -2,8 +2,8 @@
 //  Schedule.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import Foundation
@@ -29,8 +29,14 @@ public class Schedule: DomainResource {
 	/// The period of time that the slots that are attached to this Schedule resource cover (even if none exist). These  cover the amount of time that an organization's planning horizon; the interval for which they are currently accepting appointments. This does not define a "template" for planning outside these dates.
 	public var planningHorizon: Period?
 	
-	/// The schedule type can be used for the categorization of healthcare services or other appointment types.
-	public var type: [CodeableConcept]?
+	/// A broad categorisation of the service that is to be performed during this appointment.
+	public var serviceCategory: CodeableConcept?
+	
+	/// The specific service that is to be performed during this appointment.
+	public var serviceType: [CodeableConcept]?
+	
+	/// The specialty of a practitioner that would be required to perform the service requested in this appointment.
+	public var specialty: [CodeableConcept]?
 	
 	
 	/** Initialize with a JSON object. */
@@ -86,13 +92,31 @@ public class Schedule: DomainResource {
 					errors.append(FHIRJSONError(key: "planningHorizon", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? [FHIRJSON] {
-					self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+			if let exist: AnyObject = js["serviceCategory"] {
+				presentKeys.insert("serviceCategory")
+				if let val = exist as? FHIRJSON {
+					self.serviceCategory = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "serviceCategory", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["serviceType"] {
+				presentKeys.insert("serviceType")
+				if let val = exist as? [FHIRJSON] {
+					self.serviceType = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "serviceType", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["specialty"] {
+				presentKeys.insert("specialty")
+				if let val = exist as? [FHIRJSON] {
+					self.specialty = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "specialty", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -114,8 +138,14 @@ public class Schedule: DomainResource {
 		if let planningHorizon = self.planningHorizon {
 			json["planningHorizon"] = planningHorizon.asJSON()
 		}
-		if let type = self.type {
-			json["type"] = CodeableConcept.asJSONArray(type)
+		if let serviceCategory = self.serviceCategory {
+			json["serviceCategory"] = serviceCategory.asJSON()
+		}
+		if let serviceType = self.serviceType {
+			json["serviceType"] = CodeableConcept.asJSONArray(serviceType)
+		}
+		if let specialty = self.specialty {
+			json["specialty"] = CodeableConcept.asJSONArray(specialty)
 		}
 		
 		return json

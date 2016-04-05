@@ -2,16 +2,16 @@
 //  SupplyDeliveryTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class SupplyDeliveryTests: XCTestCase
-{
+class SupplyDeliveryTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> SupplyDelivery {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class SupplyDeliveryTests: XCTestCase
 	}
 	
 	func testSupplyDelivery1() {
-		let instance = try? runSupplyDelivery1()
-		XCTAssertNotNil(instance, "Must instantiate SupplyDelivery")
-		if let instance = instance {
-			try! runSupplyDelivery1(instance.asJSON())
+		do {
+			let instance = try runSupplyDelivery1()
+			try runSupplyDelivery1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test SupplyDelivery successfully, but threw")
 		}
 	}
 	

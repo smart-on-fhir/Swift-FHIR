@@ -2,16 +2,16 @@
 //  EpisodeOfCareTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class EpisodeOfCareTests: XCTestCase
-{
+class EpisodeOfCareTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> EpisodeOfCare {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class EpisodeOfCareTests: XCTestCase
 	}
 	
 	func testEpisodeOfCare1() {
-		let instance = try? runEpisodeOfCare1()
-		XCTAssertNotNil(instance, "Must instantiate EpisodeOfCare")
-		if let instance = instance {
-			try! runEpisodeOfCare1(instance.asJSON())
+		do {
+			let instance = try runEpisodeOfCare1()
+			try runEpisodeOfCare1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test EpisodeOfCare successfully, but threw")
 		}
 	}
 	
@@ -35,13 +37,6 @@ class EpisodeOfCareTests: XCTestCase
 		
 		XCTAssertEqual(inst.careManager!.display!, "Amanda Assigned")
 		XCTAssertEqual(inst.careManager!.reference!, "Practitioner/14")
-		XCTAssertEqual(inst.careTeam![0].member!.display!, "Henry Seven")
-		XCTAssertEqual(inst.careTeam![0].member!.reference!, "Practitioner/13")
-		XCTAssertEqual(inst.careTeam![0].period!.end!.description, "2014-09-16")
-		XCTAssertEqual(inst.careTeam![0].period!.start!.description, "2014-09-01")
-		XCTAssertEqual(inst.careTeam![0].role![0].coding![0].code!, "AO")
-		XCTAssertEqual(inst.careTeam![0].role![0].coding![0].display!, "Assessment Worker")
-		XCTAssertEqual(inst.careTeam![0].role![0].coding![0].system!.absoluteString, "http://example.org/EpisodeOfCare/Role")
 		XCTAssertEqual(inst.condition![0].display!, "Severe burn of left ear")
 		XCTAssertEqual(inst.condition![0].reference!, "Condition/example")
 		XCTAssertEqual(inst.id!, "example")

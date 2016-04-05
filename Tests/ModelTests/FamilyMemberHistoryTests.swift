@@ -2,16 +2,16 @@
 //  FamilyMemberHistoryTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class FamilyMemberHistoryTests: XCTestCase
-{
+class FamilyMemberHistoryTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> FamilyMemberHistory {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class FamilyMemberHistoryTests: XCTestCase
 	}
 	
 	func testFamilyMemberHistory1() {
-		let instance = try? runFamilyMemberHistory1()
-		XCTAssertNotNil(instance, "Must instantiate FamilyMemberHistory")
-		if let instance = instance {
-			try! runFamilyMemberHistory1(instance.asJSON())
+		do {
+			let instance = try runFamilyMemberHistory1()
+			try runFamilyMemberHistory1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory successfully, but threw")
 		}
 	}
 	
@@ -53,10 +55,12 @@ class FamilyMemberHistoryTests: XCTestCase
 	}
 	
 	func testFamilyMemberHistory2() {
-		let instance = try? runFamilyMemberHistory2()
-		XCTAssertNotNil(instance, "Must instantiate FamilyMemberHistory")
-		if let instance = instance {
-			try! runFamilyMemberHistory2(instance.asJSON())
+		do {
+			let instance = try runFamilyMemberHistory2()
+			try runFamilyMemberHistory2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory successfully, but threw")
 		}
 	}
 	

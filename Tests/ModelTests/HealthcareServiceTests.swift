@@ -2,16 +2,16 @@
 //  HealthcareServiceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class HealthcareServiceTests: XCTestCase
-{
+class HealthcareServiceTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> HealthcareService {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class HealthcareServiceTests: XCTestCase
 	}
 	
 	func testHealthcareService1() {
-		let instance = try? runHealthcareService1()
-		XCTAssertNotNil(instance, "Must instantiate HealthcareService")
-		if let instance = instance {
-			try! runHealthcareService1(instance.asJSON())
+		do {
+			let instance = try runHealthcareService1()
+			try runHealthcareService1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test HealthcareService successfully, but threw")
 		}
 	}
 	
@@ -54,7 +56,7 @@ class HealthcareServiceTests: XCTestCase
 		XCTAssertEqual(inst.eligibility!.coding![0].display!, "DVA Required")
 		XCTAssertEqual(inst.eligibilityNote!, "Evidence of application for DVA status may be sufficient for commencing assessment")
 		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.location!.reference!, "Location/1")
+		XCTAssertEqual(inst.location![0].reference!, "Location/1")
 		XCTAssertEqual(inst.notAvailable![0].description_fhir!, "Christmas/Boxing Day")
 		XCTAssertEqual(inst.notAvailable![0].during!.end!.description, "2015-12-26")
 		XCTAssertEqual(inst.notAvailable![0].during!.start!.description, "2015-12-25")
@@ -72,15 +74,15 @@ class HealthcareServiceTests: XCTestCase
 		XCTAssertEqual(inst.referralMethod![3].coding![0].code!, "semail")
 		XCTAssertEqual(inst.referralMethod![3].coding![0].display!, "Secure Email")
 		XCTAssertEqual(inst.serviceName!, "Consulting psychologists and/or psychology services")
-		XCTAssertEqual(inst.serviceType![0].type!.coding![0].code!, "394913002")
-		XCTAssertEqual(inst.serviceType![0].type!.coding![0].display!, "Psychotherapy")
-		XCTAssertEqual(inst.serviceType![0].type!.coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.serviceType![1].specialty![0].coding![0].code!, "47505003")
-		XCTAssertEqual(inst.serviceType![1].specialty![0].coding![0].display!, "Posttraumatic stress disorder")
-		XCTAssertEqual(inst.serviceType![1].specialty![0].coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.serviceType![1].type!.coding![0].code!, "394587001")
-		XCTAssertEqual(inst.serviceType![1].type!.coding![0].display!, "Psychiatry")
-		XCTAssertEqual(inst.serviceType![1].type!.coding![0].system!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.serviceType![0].coding![0].code!, "394913002")
+		XCTAssertEqual(inst.serviceType![0].coding![0].display!, "Psychotherapy")
+		XCTAssertEqual(inst.serviceType![0].coding![0].system!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.serviceType![1].coding![0].code!, "394587001")
+		XCTAssertEqual(inst.serviceType![1].coding![0].display!, "Psychiatry")
+		XCTAssertEqual(inst.serviceType![1].coding![0].system!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.specialty![0].coding![0].code!, "47505003")
+		XCTAssertEqual(inst.specialty![0].coding![0].display!, "Posttraumatic stress disorder")
+		XCTAssertEqual(inst.specialty![0].coding![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.telecom![0].system!, "phone")
 		XCTAssertEqual(inst.telecom![0].use!, "work")
 		XCTAssertEqual(inst.telecom![0].value!, "(555) silent")

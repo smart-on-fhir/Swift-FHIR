@@ -2,16 +2,16 @@
 //  EligibilityResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class EligibilityResponseTests: XCTestCase
-{
+class EligibilityResponseTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> EligibilityResponse {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class EligibilityResponseTests: XCTestCase
 	}
 	
 	func testEligibilityResponse1() {
-		let instance = try? runEligibilityResponse1()
-		XCTAssertNotNil(instance, "Must instantiate EligibilityResponse")
-		if let instance = instance {
-			try! runEligibilityResponse1(instance.asJSON())
+		do {
+			let instance = try runEligibilityResponse1()
+			try runEligibilityResponse1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test EligibilityResponse successfully, but threw")
 		}
 	}
 	
@@ -38,10 +40,10 @@ class EligibilityResponseTests: XCTestCase
 		XCTAssertEqual(inst.id!, "E2500")
 		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://www.BenefitsInc.com/fhir/eligibilityresponse")
 		XCTAssertEqual(inst.identifier![0].value!, "881234")
-		XCTAssertEqual(inst.organization!.reference!, "Organization/2")
+		XCTAssertTrue(inst.inforce!)
+		XCTAssertEqual(inst.organizationReference!.reference!, "Organization/2")
 		XCTAssertEqual(inst.outcome!, "complete")
-		XCTAssertEqual(inst.request!.reference!, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
-		XCTAssertEqual(inst.requestOrganization!.reference!, "Organization/1")
+		XCTAssertEqual(inst.requestReference!.reference!, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
 		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the EligibilityResponse.</div>")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		

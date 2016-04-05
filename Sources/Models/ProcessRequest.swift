@@ -2,8 +2,8 @@
 //  ProcessRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import Foundation
@@ -42,7 +42,10 @@ public class ProcessRequest: DomainResource {
 	public var nullify: Bool?
 	
 	/// Responsible organization.
-	public var organization: Reference?
+	public var organizationIdentifier: Identifier?
+	
+	/// Responsible organization.
+	public var organizationReference: Reference?
 	
 	/// Original version.
 	public var originalRuleset: Coding?
@@ -51,22 +54,34 @@ public class ProcessRequest: DomainResource {
 	public var period: Period?
 	
 	/// Responsible practitioner.
-	public var provider: Reference?
+	public var providerIdentifier: Identifier?
+	
+	/// Responsible practitioner.
+	public var providerReference: Reference?
 	
 	/// Reference number/string.
 	public var reference: String?
 	
 	/// Request reference.
-	public var request: Reference?
+	public var requestIdentifier: Identifier?
+	
+	/// Request reference.
+	public var requestReference: Reference?
 	
 	/// Response reference.
-	public var response: Reference?
+	public var responseIdentifier: Identifier?
+	
+	/// Response reference.
+	public var responseReference: Reference?
 	
 	/// Resource version.
 	public var ruleset: Coding?
 	
 	/// Target of the request.
-	public var target: Reference?
+	public var targetIdentifier: Identifier?
+	
+	/// Target of the request.
+	public var targetReference: Reference?
 	
 	
 	/** Initialize with a JSON object. */
@@ -149,13 +164,22 @@ public class ProcessRequest: DomainResource {
 					errors.append(FHIRJSONError(key: "nullify", wants: Bool.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["organization"] {
-				presentKeys.insert("organization")
+			if let exist: AnyObject = js["organizationIdentifier"] {
+				presentKeys.insert("organizationIdentifier")
 				if let val = exist as? FHIRJSON {
-					self.organization = Reference(json: val, owner: self)
+					self.organizationIdentifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "organization", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "organizationIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["organizationReference"] {
+				presentKeys.insert("organizationReference")
+				if let val = exist as? FHIRJSON {
+					self.organizationReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "organizationReference", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["originalRuleset"] {
@@ -176,13 +200,22 @@ public class ProcessRequest: DomainResource {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["provider"] {
-				presentKeys.insert("provider")
+			if let exist: AnyObject = js["providerIdentifier"] {
+				presentKeys.insert("providerIdentifier")
 				if let val = exist as? FHIRJSON {
-					self.provider = Reference(json: val, owner: self)
+					self.providerIdentifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "provider", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "providerIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["providerReference"] {
+				presentKeys.insert("providerReference")
+				if let val = exist as? FHIRJSON {
+					self.providerReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "providerReference", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["reference"] {
@@ -194,22 +227,40 @@ public class ProcessRequest: DomainResource {
 					errors.append(FHIRJSONError(key: "reference", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["request"] {
-				presentKeys.insert("request")
+			if let exist: AnyObject = js["requestIdentifier"] {
+				presentKeys.insert("requestIdentifier")
 				if let val = exist as? FHIRJSON {
-					self.request = Reference(json: val, owner: self)
+					self.requestIdentifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "requestIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["response"] {
-				presentKeys.insert("response")
+			if let exist: AnyObject = js["requestReference"] {
+				presentKeys.insert("requestReference")
 				if let val = exist as? FHIRJSON {
-					self.response = Reference(json: val, owner: self)
+					self.requestReference = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "response", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "requestReference", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["responseIdentifier"] {
+				presentKeys.insert("responseIdentifier")
+				if let val = exist as? FHIRJSON {
+					self.responseIdentifier = Identifier(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "responseIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["responseReference"] {
+				presentKeys.insert("responseReference")
+				if let val = exist as? FHIRJSON {
+					self.responseReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "responseReference", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["ruleset"] {
@@ -221,13 +272,22 @@ public class ProcessRequest: DomainResource {
 					errors.append(FHIRJSONError(key: "ruleset", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["target"] {
-				presentKeys.insert("target")
+			if let exist: AnyObject = js["targetIdentifier"] {
+				presentKeys.insert("targetIdentifier")
 				if let val = exist as? FHIRJSON {
-					self.target = Reference(json: val, owner: self)
+					self.targetIdentifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "target", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "targetIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["targetReference"] {
+				presentKeys.insert("targetReference")
+				if let val = exist as? FHIRJSON {
+					self.targetReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "targetReference", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -266,8 +326,11 @@ public class ProcessRequest: DomainResource {
 		if let nullify = self.nullify {
 			json["nullify"] = nullify.asJSON()
 		}
-		if let organization = self.organization {
-			json["organization"] = organization.asJSON()
+		if let organizationIdentifier = self.organizationIdentifier {
+			json["organizationIdentifier"] = organizationIdentifier.asJSON()
+		}
+		if let organizationReference = self.organizationReference {
+			json["organizationReference"] = organizationReference.asJSON()
 		}
 		if let originalRuleset = self.originalRuleset {
 			json["originalRuleset"] = originalRuleset.asJSON()
@@ -275,23 +338,35 @@ public class ProcessRequest: DomainResource {
 		if let period = self.period {
 			json["period"] = period.asJSON()
 		}
-		if let provider = self.provider {
-			json["provider"] = provider.asJSON()
+		if let providerIdentifier = self.providerIdentifier {
+			json["providerIdentifier"] = providerIdentifier.asJSON()
+		}
+		if let providerReference = self.providerReference {
+			json["providerReference"] = providerReference.asJSON()
 		}
 		if let reference = self.reference {
 			json["reference"] = reference.asJSON()
 		}
-		if let request = self.request {
-			json["request"] = request.asJSON()
+		if let requestIdentifier = self.requestIdentifier {
+			json["requestIdentifier"] = requestIdentifier.asJSON()
 		}
-		if let response = self.response {
-			json["response"] = response.asJSON()
+		if let requestReference = self.requestReference {
+			json["requestReference"] = requestReference.asJSON()
+		}
+		if let responseIdentifier = self.responseIdentifier {
+			json["responseIdentifier"] = responseIdentifier.asJSON()
+		}
+		if let responseReference = self.responseReference {
+			json["responseReference"] = responseReference.asJSON()
 		}
 		if let ruleset = self.ruleset {
 			json["ruleset"] = ruleset.asJSON()
 		}
-		if let target = self.target {
-			json["target"] = target.asJSON()
+		if let targetIdentifier = self.targetIdentifier {
+			json["targetIdentifier"] = targetIdentifier.asJSON()
+		}
+		if let targetReference = self.targetReference {
+			json["targetReference"] = targetReference.asJSON()
 		}
 		
 		return json

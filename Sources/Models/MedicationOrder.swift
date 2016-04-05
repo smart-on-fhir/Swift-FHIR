@@ -2,8 +2,8 @@
 //  MedicationOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationOrder) on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/MedicationOrder) on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import Foundation
@@ -46,7 +46,7 @@ public class MedicationOrder: DomainResource {
 	public var medicationReference: Reference?
 	
 	/// Information about the prescription.
-	public var note: String?
+	public var note: [Annotation]?
 	
 	/// Who prescription is for.
 	public var patient: Reference?
@@ -58,13 +58,13 @@ public class MedicationOrder: DomainResource {
 	public var priorPrescription: Reference?
 	
 	/// Reason or indication for writing the prescription.
-	public var reasonCodeableConcept: CodeableConcept?
+	public var reasonCode: [CodeableConcept]?
 	
 	/// Why prescription was stopped.
 	public var reasonEnded: CodeableConcept?
 	
-	/// Reason or indication for writing the prescription.
-	public var reasonReference: Reference?
+	/// Condition that supports why the prescription is being written.
+	public var reasonReference: [Reference]?
 	
 	/// active | on-hold | completed | entered-in-error | stopped | draft.
 	public var status: String?
@@ -162,11 +162,11 @@ public class MedicationOrder: DomainResource {
 			}
 			if let exist: AnyObject = js["note"] {
 				presentKeys.insert("note")
-				if let val = exist as? String {
-					self.note = val
+				if let val = exist as? [FHIRJSON] {
+					self.note = Annotation.from(val, owner: self) as? [Annotation]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "note", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["patient"] {
@@ -196,13 +196,13 @@ public class MedicationOrder: DomainResource {
 					errors.append(FHIRJSONError(key: "priorPrescription", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["reasonCodeableConcept"] {
-				presentKeys.insert("reasonCodeableConcept")
-				if let val = exist as? FHIRJSON {
-					self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
+			if let exist: AnyObject = js["reasonCode"] {
+				presentKeys.insert("reasonCode")
+				if let val = exist as? [FHIRJSON] {
+					self.reasonCode = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reasonCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reasonCode", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["reasonEnded"] {
@@ -216,11 +216,11 @@ public class MedicationOrder: DomainResource {
 			}
 			if let exist: AnyObject = js["reasonReference"] {
 				presentKeys.insert("reasonReference")
-				if let val = exist as? FHIRJSON {
-					self.reasonReference = Reference(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.reasonReference = Reference.from(val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reasonReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reasonReference", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["status"] {
@@ -278,7 +278,7 @@ public class MedicationOrder: DomainResource {
 			json["medicationReference"] = medicationReference.asJSON()
 		}
 		if let note = self.note {
-			json["note"] = note.asJSON()
+			json["note"] = Annotation.asJSONArray(note)
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
@@ -289,14 +289,14 @@ public class MedicationOrder: DomainResource {
 		if let priorPrescription = self.priorPrescription {
 			json["priorPrescription"] = priorPrescription.asJSON()
 		}
-		if let reasonCodeableConcept = self.reasonCodeableConcept {
-			json["reasonCodeableConcept"] = reasonCodeableConcept.asJSON()
+		if let reasonCode = self.reasonCode {
+			json["reasonCode"] = CodeableConcept.asJSONArray(reasonCode)
 		}
 		if let reasonEnded = self.reasonEnded {
 			json["reasonEnded"] = reasonEnded.asJSON()
 		}
 		if let reasonReference = self.reasonReference {
-			json["reasonReference"] = reasonReference.asJSON()
+			json["reasonReference"] = Reference.asJSONArray(reasonReference)
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
@@ -467,6 +467,9 @@ public class MedicationOrderDosageInstruction: BackboneElement {
 	public var method: CodeableConcept?
 	
 	/// Amount of medication per unit of time.
+	public var rateQuantity: Quantity?
+	
+	/// Amount of medication per unit of time.
 	public var rateRange: Range?
 	
 	/// Amount of medication per unit of time.
@@ -481,7 +484,7 @@ public class MedicationOrderDosageInstruction: BackboneElement {
 	/// Body site to administer to.
 	public var siteReference: Reference?
 	
-	/// Dosage instructions expressed as text.
+	/// Free text dosage instructions e.g. SIG.
 	public var text: String?
 	
 	/// When medication should be administered.
@@ -557,6 +560,15 @@ public class MedicationOrderDosageInstruction: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "method", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["rateQuantity"] {
+				presentKeys.insert("rateQuantity")
+				if let val = exist as? FHIRJSON {
+					self.rateQuantity = Quantity(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "rateQuantity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["rateRange"] {
@@ -649,6 +661,9 @@ public class MedicationOrderDosageInstruction: BackboneElement {
 		}
 		if let method = self.method {
 			json["method"] = method.asJSON()
+		}
+		if let rateQuantity = self.rateQuantity {
+			json["rateQuantity"] = rateQuantity.asJSON()
 		}
 		if let rateRange = self.rateRange {
 			json["rateRange"] = rateRange.asJSON()

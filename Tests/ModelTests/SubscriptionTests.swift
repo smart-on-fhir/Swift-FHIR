@@ -2,16 +2,16 @@
 //  SubscriptionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class SubscriptionTests: XCTestCase
-{
+class SubscriptionTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Subscription {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class SubscriptionTests: XCTestCase
 	}
 	
 	func testSubscription1() {
-		let instance = try? runSubscription1()
-		XCTAssertNotNil(instance, "Must instantiate Subscription")
-		if let instance = instance {
-			try! runSubscription1(instance.asJSON())
+		do {
+			let instance = try runSubscription1()
+			try runSubscription1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw")
 		}
 	}
 	
@@ -54,10 +56,12 @@ class SubscriptionTests: XCTestCase
 	}
 	
 	func testSubscription2() {
-		let instance = try? runSubscription2()
-		XCTAssertNotNil(instance, "Must instantiate Subscription")
-		if let instance = instance {
-			try! runSubscription2(instance.asJSON())
+		do {
+			let instance = try runSubscription2()
+			try runSubscription2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw")
 		}
 	}
 	

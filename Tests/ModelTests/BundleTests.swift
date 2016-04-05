@@ -2,16 +2,16 @@
 //  BundleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class BundleTests: XCTestCase
-{
+class BundleTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Bundle {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class BundleTests: XCTestCase
 	}
 	
 	func testBundle1() {
-		let instance = try? runBundle1()
-		XCTAssertNotNil(instance, "Must instantiate Bundle")
-		if let instance = instance {
-			try! runBundle1(instance.asJSON())
+		do {
+			let instance = try runBundle1()
+			try runBundle1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
 		}
 	}
 	
@@ -53,10 +55,12 @@ class BundleTests: XCTestCase
 	}
 	
 	func testBundle2() {
-		let instance = try? runBundle2()
-		XCTAssertNotNil(instance, "Must instantiate Bundle")
-		if let instance = instance {
-			try! runBundle2(instance.asJSON())
+		do {
+			let instance = try runBundle2()
+			try runBundle2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
 		}
 	}
 	
@@ -101,10 +105,12 @@ class BundleTests: XCTestCase
 	}
 	
 	func testBundle3() {
-		let instance = try? runBundle3()
-		XCTAssertNotNil(instance, "Must instantiate Bundle")
-		if let instance = instance {
-			try! runBundle3(instance.asJSON())
+		do {
+			let instance = try runBundle3()
+			try runBundle3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
 		}
 	}
 	
@@ -149,10 +155,12 @@ class BundleTests: XCTestCase
 	}
 	
 	func testBundle4() {
-		let instance = try? runBundle4()
-		XCTAssertNotNil(instance, "Must instantiate Bundle")
-		if let instance = instance {
-			try! runBundle4(instance.asJSON())
+		do {
+			let instance = try runBundle4()
+			try runBundle4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
 		}
 	}
 	
@@ -181,7 +189,7 @@ class BundleTests: XCTestCase
 		XCTAssertEqual(inst.meta!.lastUpdated!.description, "2013-05-28T22:12:21Z")
 		XCTAssertEqual(inst.signature!.contentType!, "image/jpg")
 		XCTAssertEqual(inst.signature!.type![0].code!, "1.2.840.10065.1.12.1.1")
-		XCTAssertEqual(inst.signature!.type![0].display!, "AuthorID")
+		XCTAssertEqual(inst.signature!.type![0].display!, "Author's Signature")
 		XCTAssertEqual(inst.signature!.type![0].system!.absoluteString, "http://hl7.org/fhir/valueset-signature-type")
 		XCTAssertEqual(inst.signature!.when!.description, "2015-08-31T07:42:33+10:00")
 		XCTAssertEqual(inst.signature!.whoReference!.reference!, "Device/software")
@@ -191,10 +199,12 @@ class BundleTests: XCTestCase
 	}
 	
 	func testBundle5() {
-		let instance = try? runBundle5()
-		XCTAssertNotNil(instance, "Must instantiate Bundle")
-		if let instance = instance {
-			try! runBundle5(instance.asJSON())
+		do {
+			let instance = try runBundle5()
+			try runBundle5(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
 		}
 	}
 	
@@ -239,10 +249,12 @@ class BundleTests: XCTestCase
 	}
 	
 	func testBundle6() {
-		let instance = try? runBundle6()
-		XCTAssertNotNil(instance, "Must instantiate Bundle")
-		if let instance = instance {
-			try! runBundle6(instance.asJSON())
+		do {
+			let instance = try runBundle6()
+			try runBundle6(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
 		}
 	}
 	
@@ -287,10 +299,12 @@ class BundleTests: XCTestCase
 	}
 	
 	func testBundle7() {
-		let instance = try? runBundle7()
-		XCTAssertNotNil(instance, "Must instantiate Bundle")
-		if let instance = instance {
-			try! runBundle7(instance.asJSON())
+		do {
+			let instance = try runBundle7()
+			try runBundle7(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
 		}
 	}
 	
@@ -335,10 +349,12 @@ class BundleTests: XCTestCase
 	}
 	
 	func testBundle8() {
-		let instance = try? runBundle8()
-		XCTAssertNotNil(instance, "Must instantiate Bundle")
-		if let instance = instance {
-			try! runBundle8(instance.asJSON())
+		do {
+			let instance = try runBundle8()
+			try runBundle8(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
 		}
 	}
 	

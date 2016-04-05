@@ -2,8 +2,8 @@
 //  ImplementationGuide.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import Foundation
@@ -336,7 +336,7 @@ public class ImplementationGuideContact: BackboneElement {
 		get { return "ImplementationGuideContact" }
 	}
 	
-	/// Name of a individual to contact.
+	/// Name of an individual to contact.
 	public var name: String?
 	
 	/// Contact details for individual or publisher.
@@ -647,14 +647,14 @@ public class ImplementationGuidePackageResource: BackboneElement {
 	/// Reason why included in guide.
 	public var description_fhir: String?
 	
+	/// If not an example, has it's normal meaning.
+	public var example: Bool?
+	
 	/// Resource this is an example of (if applicable).
 	public var exampleFor: Reference?
 	
 	/// Human Name for the resource.
 	public var name: String?
-	
-	/// example | terminology | profile | extension | dictionary | logical.
-	public var purpose: String?
 	
 	/// Location of the resource.
 	public var sourceReference: Reference?
@@ -669,9 +669,9 @@ public class ImplementationGuidePackageResource: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(purpose: String, sourceReference: Reference, sourceUri: NSURL) {
+	public convenience init(example: Bool, sourceReference: Reference, sourceUri: NSURL) {
 		self.init(json: nil)
-		self.purpose = purpose
+		self.example = example
 		self.sourceReference = sourceReference
 		self.sourceUri = sourceUri
 	}
@@ -697,6 +697,18 @@ public class ImplementationGuidePackageResource: BackboneElement {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["example"] {
+				presentKeys.insert("example")
+				if let val = exist as? Bool {
+					self.example = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "example", wants: Bool.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "example"))
+			}
 			if let exist: AnyObject = js["exampleFor"] {
 				presentKeys.insert("exampleFor")
 				if let val = exist as? FHIRJSON {
@@ -714,18 +726,6 @@ public class ImplementationGuidePackageResource: BackboneElement {
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
 				}
-			}
-			if let exist: AnyObject = js["purpose"] {
-				presentKeys.insert("purpose")
-				if let val = exist as? String {
-					self.purpose = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "purpose", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "purpose"))
 			}
 			if let exist: AnyObject = js["sourceReference"] {
 				presentKeys.insert("sourceReference")
@@ -763,14 +763,14 @@ public class ImplementationGuidePackageResource: BackboneElement {
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
+		if let example = self.example {
+			json["example"] = example.asJSON()
+		}
 		if let exampleFor = self.exampleFor {
 			json["exampleFor"] = exampleFor.asJSON()
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
-		}
-		if let purpose = self.purpose {
-			json["purpose"] = purpose.asJSON()
 		}
 		if let sourceReference = self.sourceReference {
 			json["sourceReference"] = sourceReference.asJSON()

@@ -2,16 +2,16 @@
 //  ConceptMapTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class ConceptMapTests: XCTestCase
-{
+class ConceptMapTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> ConceptMap {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class ConceptMapTests: XCTestCase
 	}
 	
 	func testConceptMap1() {
-		let instance = try? runConceptMap1()
-		XCTAssertNotNil(instance, "Must instantiate ConceptMap")
-		if let instance = instance {
-			try! runConceptMap1(instance.asJSON())
+		do {
+			let instance = try runConceptMap1()
+			try runConceptMap1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test ConceptMap successfully, but threw")
 		}
 	}
 	
@@ -39,70 +41,70 @@ class ConceptMapTests: XCTestCase
 		XCTAssertEqual(inst.contact![1].telecom![0].value!, "http://www.phconnect.org/group/laboratorymessagingcommunityofpractice/forum/attachment/download?id=3649725%3AUploadedFile%3A145786")
 		XCTAssertEqual(inst.date!.description, "2013-07-25")
 		XCTAssertEqual(inst.element![0].code!, "ACNE")
-		XCTAssertEqual(inst.element![0].codeSystem!.absoluteString, "http://hl7.org/fhir/v2/0487")
+		XCTAssertEqual(inst.element![0].system!.absoluteString, "http://hl7.org/fhir/v2/0487")
 		XCTAssertEqual(inst.element![0].target![0].code!, "309068002")
-		XCTAssertEqual(inst.element![0].target![0].codeSystem!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![0].target![0].equivalence!, "equivalent")
+		XCTAssertEqual(inst.element![0].target![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![1].code!, "ACNFLD")
-		XCTAssertEqual(inst.element![1].codeSystem!.absoluteString, "http://hl7.org/fhir/v2/0487")
+		XCTAssertEqual(inst.element![1].system!.absoluteString, "http://hl7.org/fhir/v2/0487")
 		XCTAssertEqual(inst.element![1].target![0].code!, "119323008")
-		XCTAssertEqual(inst.element![1].target![0].codeSystem!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![1].target![0].comments!, "HL7 term is a historical term. mapped to Pus")
 		XCTAssertEqual(inst.element![1].target![0].equivalence!, "equivalent")
 		XCTAssertEqual(inst.element![1].target![0].product![0].code!, "47002008")
-		XCTAssertEqual(inst.element![1].target![0].product![0].codeSystem!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![1].target![0].product![0].element!.absoluteString, "http://hl7.org/fhir/v2/element/SPM-5")
+		XCTAssertEqual(inst.element![1].target![0].product![0].system!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.element![1].target![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![2].code!, "AIRS")
-		XCTAssertEqual(inst.element![2].codeSystem!.absoluteString, "http://hl7.org/fhir/v2/0487")
+		XCTAssertEqual(inst.element![2].system!.absoluteString, "http://hl7.org/fhir/v2/0487")
 		XCTAssertEqual(inst.element![2].target![0].code!, "446302006")
-		XCTAssertEqual(inst.element![2].target![0].codeSystem!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![2].target![0].equivalence!, "equivalent")
+		XCTAssertEqual(inst.element![2].target![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![3].code!, "ALL")
-		XCTAssertEqual(inst.element![3].codeSystem!.absoluteString, "http://hl7.org/fhir/v2/0487")
+		XCTAssertEqual(inst.element![3].system!.absoluteString, "http://hl7.org/fhir/v2/0487")
 		XCTAssertEqual(inst.element![3].target![0].code!, "119376003")
-		XCTAssertEqual(inst.element![3].target![0].codeSystem!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![3].target![0].equivalence!, "equivalent")
 		XCTAssertEqual(inst.element![3].target![0].product![0].code!, "7970006")
-		XCTAssertEqual(inst.element![3].target![0].product![0].codeSystem!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![3].target![0].product![0].element!.absoluteString, "http://hl7.org/fhir/v2/element/SPM-5")
+		XCTAssertEqual(inst.element![3].target![0].product![0].system!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.element![3].target![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![4].code!, "AMP")
-		XCTAssertEqual(inst.element![4].codeSystem!.absoluteString, "http://hl7.org/fhir/v2/0487")
+		XCTAssertEqual(inst.element![4].system!.absoluteString, "http://hl7.org/fhir/v2/0487")
 		XCTAssertEqual(inst.element![4].target![0].code!, "408654003")
-		XCTAssertEqual(inst.element![4].target![0].codeSystem!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![4].target![0].equivalence!, "equivalent")
 		XCTAssertEqual(inst.element![4].target![0].product![0].code!, "81723002")
-		XCTAssertEqual(inst.element![4].target![0].product![0].codeSystem!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![4].target![0].product![0].element!.absoluteString, "http://hl7.org/fhir/v2/element/SPM-7")
+		XCTAssertEqual(inst.element![4].target![0].product![0].system!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.element![4].target![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![5].code!, "ANGI")
-		XCTAssertEqual(inst.element![5].codeSystem!.absoluteString, "http://hl7.org/fhir/v2/0487")
+		XCTAssertEqual(inst.element![5].system!.absoluteString, "http://hl7.org/fhir/v2/0487")
 		XCTAssertEqual(inst.element![5].target![0].code!, "119312009")
-		XCTAssertEqual(inst.element![5].target![0].codeSystem!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![5].target![0].comments!, "TBD in detail")
 		XCTAssertEqual(inst.element![5].target![0].equivalence!, "equivalent")
+		XCTAssertEqual(inst.element![5].target![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![6].code!, "ARTC")
-		XCTAssertEqual(inst.element![6].codeSystem!.absoluteString, "http://hl7.org/fhir/v2/0487")
+		XCTAssertEqual(inst.element![6].system!.absoluteString, "http://hl7.org/fhir/v2/0487")
 		XCTAssertEqual(inst.element![6].target![0].code!, "119312009")
-		XCTAssertEqual(inst.element![6].target![0].codeSystem!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![6].target![0].comments!, "TBD in detail")
 		XCTAssertEqual(inst.element![6].target![0].equivalence!, "equivalent")
+		XCTAssertEqual(inst.element![6].target![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![7].code!, "ASERU")
-		XCTAssertEqual(inst.element![7].codeSystem!.absoluteString, "http://hl7.org/fhir/v2/0487")
-		XCTAssertEqual(inst.element![7].target![0].codeSystem!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.element![7].system!.absoluteString, "http://hl7.org/fhir/v2/0487")
 		XCTAssertEqual(inst.element![7].target![0].comments!, "pending")
 		XCTAssertEqual(inst.element![7].target![0].equivalence!, "unmatched")
+		XCTAssertEqual(inst.element![7].target![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![8].code!, "ASP")
-		XCTAssertEqual(inst.element![8].codeSystem!.absoluteString, "http://hl7.org/fhir/v2/0487")
+		XCTAssertEqual(inst.element![8].system!.absoluteString, "http://hl7.org/fhir/v2/0487")
 		XCTAssertEqual(inst.element![8].target![0].code!, "119295008")
-		XCTAssertEqual(inst.element![8].target![0].codeSystem!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![8].target![0].equivalence!, "equivalent")
 		XCTAssertEqual(inst.element![8].target![0].product![0].code!, "14766002")
-		XCTAssertEqual(inst.element![8].target![0].product![0].codeSystem!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![8].target![0].product![0].element!.absoluteString, "http://hl7.org/fhir/v2/element/SPM-7")
+		XCTAssertEqual(inst.element![8].target![0].product![0].system!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.element![8].target![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.element![9].code!, "ATTE")
-		XCTAssertEqual(inst.element![9].codeSystem!.absoluteString, "http://hl7.org/fhir/v2/0487")
-		XCTAssertEqual(inst.element![9].target![0].codeSystem!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.element![9].system!.absoluteString, "http://hl7.org/fhir/v2/0487")
 		XCTAssertEqual(inst.element![9].target![0].comments!, "TBD")
 		XCTAssertEqual(inst.element![9].target![0].equivalence!, "unmatched")
+		XCTAssertEqual(inst.element![9].target![0].system!.absoluteString, "http://snomed.info/sct")
 		XCTAssertFalse(inst.experimental!)
 		XCTAssertEqual(inst.id!, "102")
 		XCTAssertEqual(inst.name!, "Specimen mapping from v2 table 0487 to SNOMED CT")
@@ -118,10 +120,12 @@ class ConceptMapTests: XCTestCase
 	}
 	
 	func testConceptMap2() {
-		let instance = try? runConceptMap2()
-		XCTAssertNotNil(instance, "Must instantiate ConceptMap")
-		if let instance = instance {
-			try! runConceptMap2(instance.asJSON())
+		do {
+			let instance = try runConceptMap2()
+			try runConceptMap2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test ConceptMap successfully, but threw")
 		}
 	}
 	
@@ -135,31 +139,31 @@ class ConceptMapTests: XCTestCase
 		XCTAssertEqual(inst.date!.description, "2012-06-13")
 		XCTAssertEqual(inst.description_fhir!, "A mapping between the FHIR and HL7 v3 AddressUse Code systems")
 		XCTAssertEqual(inst.element![0].code!, "home")
-		XCTAssertEqual(inst.element![0].codeSystem!.absoluteString, "http://hl7.org/fhir/address-use")
+		XCTAssertEqual(inst.element![0].system!.absoluteString, "http://hl7.org/fhir/address-use")
 		XCTAssertEqual(inst.element![0].target![0].code!, "H")
-		XCTAssertEqual(inst.element![0].target![0].codeSystem!.absoluteString, "http://hl7.org/fhir/v3/AddressUse")
 		XCTAssertEqual(inst.element![0].target![0].equivalence!, "equivalent")
+		XCTAssertEqual(inst.element![0].target![0].system!.absoluteString, "http://hl7.org/fhir/v3/AddressUse")
 		XCTAssertEqual(inst.element![1].code!, "home")
-		XCTAssertEqual(inst.element![1].codeSystem!.absoluteString, "http://hl7.org/fhir/address-use")
+		XCTAssertEqual(inst.element![1].system!.absoluteString, "http://hl7.org/fhir/address-use")
 		XCTAssertEqual(inst.element![1].target![0].code!, "H")
-		XCTAssertEqual(inst.element![1].target![0].codeSystem!.absoluteString, "http://hl7.org/fhir/v3/AddressUse")
 		XCTAssertEqual(inst.element![1].target![0].equivalence!, "equivalent")
+		XCTAssertEqual(inst.element![1].target![0].system!.absoluteString, "http://hl7.org/fhir/v3/AddressUse")
 		XCTAssertEqual(inst.element![2].code!, "work")
-		XCTAssertEqual(inst.element![2].codeSystem!.absoluteString, "http://hl7.org/fhir/address-use")
+		XCTAssertEqual(inst.element![2].system!.absoluteString, "http://hl7.org/fhir/address-use")
 		XCTAssertEqual(inst.element![2].target![0].code!, "WP")
-		XCTAssertEqual(inst.element![2].target![0].codeSystem!.absoluteString, "http://hl7.org/fhir/v3/AddressUse")
 		XCTAssertEqual(inst.element![2].target![0].equivalence!, "equivalent")
+		XCTAssertEqual(inst.element![2].target![0].system!.absoluteString, "http://hl7.org/fhir/v3/AddressUse")
 		XCTAssertEqual(inst.element![3].code!, "temp")
-		XCTAssertEqual(inst.element![3].codeSystem!.absoluteString, "http://hl7.org/fhir/address-use")
+		XCTAssertEqual(inst.element![3].system!.absoluteString, "http://hl7.org/fhir/address-use")
 		XCTAssertEqual(inst.element![3].target![0].code!, "TMP")
-		XCTAssertEqual(inst.element![3].target![0].codeSystem!.absoluteString, "http://hl7.org/fhir/v3/AddressUse")
 		XCTAssertEqual(inst.element![3].target![0].equivalence!, "equivalent")
+		XCTAssertEqual(inst.element![3].target![0].system!.absoluteString, "http://hl7.org/fhir/v3/AddressUse")
 		XCTAssertEqual(inst.element![4].code!, "old")
-		XCTAssertEqual(inst.element![4].codeSystem!.absoluteString, "http://hl7.org/fhir/address-use")
+		XCTAssertEqual(inst.element![4].system!.absoluteString, "http://hl7.org/fhir/address-use")
 		XCTAssertEqual(inst.element![4].target![0].code!, "BAD")
-		XCTAssertEqual(inst.element![4].target![0].codeSystem!.absoluteString, "http://hl7.org/fhir/v3/AddressUse")
 		XCTAssertEqual(inst.element![4].target![0].comments!, "In the HL7 v3 AD, old is handled by the usablePeriod element, but you have to provide a time, there's no simple equivalent of flagging an address as old")
 		XCTAssertEqual(inst.element![4].target![0].equivalence!, "disjoint")
+		XCTAssertEqual(inst.element![4].target![0].system!.absoluteString, "http://hl7.org/fhir/v3/AddressUse")
 		XCTAssertTrue(inst.experimental!)
 		XCTAssertEqual(inst.id!, "101")
 		XCTAssertEqual(inst.identifier!.system!.absoluteString, "urn:ietf:rfc:3986")
@@ -167,9 +171,9 @@ class ConceptMapTests: XCTestCase
 		XCTAssertEqual(inst.name!, "FHIR/v3 Address Use Mapping")
 		XCTAssertEqual(inst.publisher!, "HL7, Inc")
 		XCTAssertEqual(inst.requirements!, "To help implementers map from HL7 v3/CDA to FHIR")
-		XCTAssertEqual(inst.sourceReference!.reference!, "http://hl7.org/fhir/address-use")
+		XCTAssertEqual(inst.sourceReference!.reference!, "http://hl7.org/fhir/ValueSet/address-use")
 		XCTAssertEqual(inst.status!, "draft")
-		XCTAssertEqual(inst.targetReference!.reference!, "http://hl7.org/fhir/v3/AddressUse")
+		XCTAssertEqual(inst.targetReference!.reference!, "http://hl7.org/fhir/ValueSet/v3-AddressUse")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		XCTAssertEqual(inst.url!.absoluteString, "http://hl7.org/fhir/ConceptMap/101")
 		XCTAssertEqual(inst.useContext![0].text!, "for CDA Usage")

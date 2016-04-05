@@ -2,16 +2,16 @@
 //  PatientTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class PatientTests: XCTestCase
-{
+class PatientTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Patient {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class PatientTests: XCTestCase
 	}
 	
 	func testPatient1() {
-		let instance = try? runPatient1()
-		XCTAssertNotNil(instance, "Must instantiate Patient")
-		if let instance = instance {
-			try! runPatient1(instance.asJSON())
+		do {
+			let instance = try runPatient1()
+			try runPatient1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
 		}
 	}
 	
@@ -59,10 +61,12 @@ class PatientTests: XCTestCase
 	}
 	
 	func testPatient2() {
-		let instance = try? runPatient2()
-		XCTAssertNotNil(instance, "Must instantiate Patient")
-		if let instance = instance {
-			try! runPatient2(instance.asJSON())
+		do {
+			let instance = try runPatient2()
+			try runPatient2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
 		}
 	}
 	
@@ -106,10 +110,12 @@ class PatientTests: XCTestCase
 	}
 	
 	func testPatient3() {
-		let instance = try? runPatient3()
-		XCTAssertNotNil(instance, "Must instantiate Patient")
-		if let instance = instance {
-			try! runPatient3(instance.asJSON())
+		do {
+			let instance = try runPatient3()
+			try runPatient3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
 		}
 	}
 	
@@ -139,10 +145,12 @@ class PatientTests: XCTestCase
 	}
 	
 	func testPatient4() {
-		let instance = try? runPatient4()
-		XCTAssertNotNil(instance, "Must instantiate Patient")
-		if let instance = instance {
-			try! runPatient4(instance.asJSON())
+		do {
+			let instance = try runPatient4()
+			try runPatient4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
 		}
 	}
 	
@@ -170,10 +178,12 @@ class PatientTests: XCTestCase
 	}
 	
 	func testPatient5() {
-		let instance = try? runPatient5()
-		XCTAssertNotNil(instance, "Must instantiate Patient")
-		if let instance = instance {
-			try! runPatient5(instance.asJSON())
+		do {
+			let instance = try runPatient5()
+			try runPatient5(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
 		}
 	}
 	
@@ -201,10 +211,12 @@ class PatientTests: XCTestCase
 	}
 	
 	func testPatient6() {
-		let instance = try? runPatient6()
-		XCTAssertNotNil(instance, "Must instantiate Patient")
-		if let instance = instance {
-			try! runPatient6(instance.asJSON())
+		do {
+			let instance = try runPatient6()
+			try runPatient6(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
 		}
 	}
 	
@@ -233,10 +245,12 @@ class PatientTests: XCTestCase
 	}
 	
 	func testPatient7() {
-		let instance = try? runPatient7()
-		XCTAssertNotNil(instance, "Must instantiate Patient")
-		if let instance = instance {
-			try! runPatient7(instance.asJSON())
+		do {
+			let instance = try runPatient7()
+			try runPatient7(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
 		}
 	}
 	
@@ -294,10 +308,12 @@ class PatientTests: XCTestCase
 	}
 	
 	func testPatient8() {
-		let instance = try? runPatient8()
-		XCTAssertNotNil(instance, "Must instantiate Patient")
-		if let instance = instance {
-			try! runPatient8(instance.asJSON())
+		do {
+			let instance = try runPatient8()
+			try runPatient8(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
 		}
 	}
 	
@@ -364,10 +380,12 @@ class PatientTests: XCTestCase
 	}
 	
 	func testPatient9() {
-		let instance = try? runPatient9()
-		XCTAssertNotNil(instance, "Must instantiate Patient")
-		if let instance = instance {
-			try! runPatient9(instance.asJSON())
+		do {
+			let instance = try runPatient9()
+			try runPatient9(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
 		}
 	}
 	
@@ -387,10 +405,12 @@ class PatientTests: XCTestCase
 	}
 	
 	func testPatient10() {
-		let instance = try? runPatient10()
-		XCTAssertNotNil(instance, "Must instantiate Patient")
-		if let instance = instance {
-			try! runPatient10(instance.asJSON())
+		do {
+			let instance = try runPatient10()
+			try runPatient10(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
 		}
 	}
 	

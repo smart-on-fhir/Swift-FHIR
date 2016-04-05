@@ -2,16 +2,16 @@
 //  DetectedIssueTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class DetectedIssueTests: XCTestCase
-{
+class DetectedIssueTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> DetectedIssue {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class DetectedIssueTests: XCTestCase
 	}
 	
 	func testDetectedIssue1() {
-		let instance = try? runDetectedIssue1()
-		XCTAssertNotNil(instance, "Must instantiate DetectedIssue")
-		if let instance = instance {
-			try! runDetectedIssue1(instance.asJSON())
+		do {
+			let instance = try runDetectedIssue1()
+			try runDetectedIssue1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw")
 		}
 	}
 	
@@ -41,10 +43,12 @@ class DetectedIssueTests: XCTestCase
 	}
 	
 	func testDetectedIssue2() {
-		let instance = try? runDetectedIssue2()
-		XCTAssertNotNil(instance, "Must instantiate DetectedIssue")
-		if let instance = instance {
-			try! runDetectedIssue2(instance.asJSON())
+		do {
+			let instance = try runDetectedIssue2()
+			try runDetectedIssue2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw")
 		}
 	}
 	
@@ -68,10 +72,12 @@ class DetectedIssueTests: XCTestCase
 	}
 	
 	func testDetectedIssue3() {
-		let instance = try? runDetectedIssue3()
-		XCTAssertNotNil(instance, "Must instantiate DetectedIssue")
-		if let instance = instance {
-			try! runDetectedIssue3(instance.asJSON())
+		do {
+			let instance = try runDetectedIssue3()
+			try runDetectedIssue3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw")
 		}
 	}
 	
@@ -86,10 +92,12 @@ class DetectedIssueTests: XCTestCase
 	}
 	
 	func testDetectedIssue4() {
-		let instance = try? runDetectedIssue4()
-		XCTAssertNotNil(instance, "Must instantiate DetectedIssue")
-		if let instance = instance {
-			try! runDetectedIssue4(instance.asJSON())
+		do {
+			let instance = try runDetectedIssue4()
+			try runDetectedIssue4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw")
 		}
 	}
 	

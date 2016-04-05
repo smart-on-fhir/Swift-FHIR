@@ -2,16 +2,16 @@
 //  PractitionerTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class PractitionerTests: XCTestCase
-{
+class PractitionerTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Practitioner {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class PractitionerTests: XCTestCase
 	}
 	
 	func testPractitioner1() {
-		let instance = try? runPractitioner1()
-		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		if let instance = instance {
-			try! runPractitioner1(instance.asJSON())
+		do {
+			let instance = try runPractitioner1()
+			try runPractitioner1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 	}
 	
@@ -47,12 +49,12 @@ class PractitionerTests: XCTestCase
 		XCTAssertEqual(inst.identifier![1].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![1].use!, "usual")
 		XCTAssertEqual(inst.identifier![1].value!, "129IDH4OP733")
-		XCTAssertEqual(inst.name!.family![0], "van den broek")
-		XCTAssertEqual(inst.name!.given![0], "Eric")
-		XCTAssertEqual(inst.name!.suffix![0], "MD")
-		XCTAssertEqual(inst.name!.use!, "official")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.display!, "BMC")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.reference!, "Organization/f001")
+		XCTAssertEqual(inst.name![0].family![0], "van den broek")
+		XCTAssertEqual(inst.name![0].given![0], "Eric")
+		XCTAssertEqual(inst.name![0].suffix![0], "MD")
+		XCTAssertEqual(inst.name![0].use!, "official")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.display!, "BMC")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].code!, "01.000")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].display!, "Arts")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
@@ -76,10 +78,12 @@ class PractitionerTests: XCTestCase
 	}
 	
 	func testPractitioner2() {
-		let instance = try? runPractitioner2()
-		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		if let instance = instance {
-			try! runPractitioner2(instance.asJSON())
+		do {
+			let instance = try runPractitioner2()
+			try runPractitioner2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 	}
 	
@@ -100,12 +104,12 @@ class PractitionerTests: XCTestCase
 		XCTAssertEqual(inst.identifier![1].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![1].use!, "usual")
 		XCTAssertEqual(inst.identifier![1].value!, "174BIP3JH438")
-		XCTAssertEqual(inst.name!.family![0], "Voigt")
-		XCTAssertEqual(inst.name!.given![0], "Pieter")
-		XCTAssertEqual(inst.name!.suffix![0], "MD")
-		XCTAssertEqual(inst.name!.use!, "official")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.display!, "BMC")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.reference!, "Organization/f001")
+		XCTAssertEqual(inst.name![0].family![0], "Voigt")
+		XCTAssertEqual(inst.name![0].given![0], "Pieter")
+		XCTAssertEqual(inst.name![0].suffix![0], "MD")
+		XCTAssertEqual(inst.name![0].use!, "official")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.display!, "BMC")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].code!, "01.000")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].display!, "Arts")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
@@ -129,10 +133,12 @@ class PractitionerTests: XCTestCase
 	}
 	
 	func testPractitioner3() {
-		let instance = try? runPractitioner3()
-		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		if let instance = instance {
-			try! runPractitioner3(instance.asJSON())
+		do {
+			let instance = try runPractitioner3()
+			try runPractitioner3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 	}
 	
@@ -156,12 +162,12 @@ class PractitionerTests: XCTestCase
 		XCTAssertEqual(inst.identifier![1].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![1].use!, "usual")
 		XCTAssertEqual(inst.identifier![1].value!, "243HID3RT938")
-		XCTAssertEqual(inst.name!.family![0], "Versteegh")
-		XCTAssertEqual(inst.name!.given![0], "Marc")
-		XCTAssertEqual(inst.name!.suffix![0], "MD")
-		XCTAssertEqual(inst.name!.use!, "official")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.display!, "BMC")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.reference!, "Organization/f001")
+		XCTAssertEqual(inst.name![0].family![0], "Versteegh")
+		XCTAssertEqual(inst.name![0].given![0], "Marc")
+		XCTAssertEqual(inst.name![0].suffix![0], "MD")
+		XCTAssertEqual(inst.name![0].use!, "official")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.display!, "BMC")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].code!, "01.000")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].display!, "Arts")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
@@ -185,10 +191,12 @@ class PractitionerTests: XCTestCase
 	}
 	
 	func testPractitioner4() {
-		let instance = try? runPractitioner4()
-		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		if let instance = instance {
-			try! runPractitioner4(instance.asJSON())
+		do {
+			let instance = try runPractitioner4()
+			try runPractitioner4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 	}
 	
@@ -213,12 +221,12 @@ class PractitionerTests: XCTestCase
 		XCTAssertEqual(inst.identifier![1].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![1].use!, "usual")
 		XCTAssertEqual(inst.identifier![1].value!, "523ASA1LK927")
-		XCTAssertEqual(inst.name!.family![0], "Briet")
-		XCTAssertEqual(inst.name!.given![0], "Ronald")
-		XCTAssertEqual(inst.name!.suffix![0], "MD")
-		XCTAssertEqual(inst.name!.use!, "official")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.display!, "BMC")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.reference!, "Organization/f001")
+		XCTAssertEqual(inst.name![0].family![0], "Briet")
+		XCTAssertEqual(inst.name![0].given![0], "Ronald")
+		XCTAssertEqual(inst.name![0].suffix![0], "MD")
+		XCTAssertEqual(inst.name![0].use!, "official")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.display!, "BMC")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].code!, "01.000")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].display!, "Arts")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
@@ -242,10 +250,12 @@ class PractitionerTests: XCTestCase
 	}
 	
 	func testPractitioner5() {
-		let instance = try? runPractitioner5()
-		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		if let instance = instance {
-			try! runPractitioner5(instance.asJSON())
+		do {
+			let instance = try runPractitioner5()
+			try runPractitioner5(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 	}
 	
@@ -269,13 +279,13 @@ class PractitionerTests: XCTestCase
 		XCTAssertEqual(inst.identifier![1].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![1].use!, "usual")
 		XCTAssertEqual(inst.identifier![1].value!, "191REW8WE916")
-		XCTAssertEqual(inst.name!.family![0], "Anne")
-		XCTAssertEqual(inst.name!.given![0], "Langeveld")
-		XCTAssertEqual(inst.name!.suffix![0], "MD")
-		XCTAssertEqual(inst.name!.use!, "official")
+		XCTAssertEqual(inst.name![0].family![0], "Anne")
+		XCTAssertEqual(inst.name![0].given![0], "Langeveld")
+		XCTAssertEqual(inst.name![0].suffix![0], "MD")
+		XCTAssertEqual(inst.name![0].use!, "official")
 		XCTAssertEqual(inst.photo![0].contentType!, "image/jpeg")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.display!, "BMC")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.reference!, "Organization/f001")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.display!, "BMC")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].code!, "01.000")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].display!, "Arts")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
@@ -299,10 +309,12 @@ class PractitionerTests: XCTestCase
 	}
 	
 	func testPractitioner6() {
-		let instance = try? runPractitioner6()
-		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		if let instance = instance {
-			try! runPractitioner6(instance.asJSON())
+		do {
+			let instance = try runPractitioner6()
+			try runPractitioner6(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 	}
 	
@@ -323,12 +335,12 @@ class PractitionerTests: XCTestCase
 		XCTAssertEqual(inst.identifier![1].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![1].use!, "usual")
 		XCTAssertEqual(inst.identifier![1].value!, "134IDY41W988")
-		XCTAssertEqual(inst.name!.family![0], "van den Berk")
-		XCTAssertEqual(inst.name!.given![0], "Rob")
-		XCTAssertEqual(inst.name!.suffix![0], "MD")
-		XCTAssertEqual(inst.name!.use!, "official")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.display!, "BMC")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.reference!, "Organization/f001")
+		XCTAssertEqual(inst.name![0].family![0], "van den Berk")
+		XCTAssertEqual(inst.name![0].given![0], "Rob")
+		XCTAssertEqual(inst.name![0].suffix![0], "MD")
+		XCTAssertEqual(inst.name![0].use!, "official")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.display!, "BMC")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].code!, "01.000")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].display!, "Arts")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
@@ -352,10 +364,12 @@ class PractitionerTests: XCTestCase
 	}
 	
 	func testPractitioner7() {
-		let instance = try? runPractitioner7()
-		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		if let instance = instance {
-			try! runPractitioner7(instance.asJSON())
+		do {
+			let instance = try runPractitioner7()
+			try runPractitioner7(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 	}
 	
@@ -376,12 +390,12 @@ class PractitionerTests: XCTestCase
 		XCTAssertEqual(inst.identifier![1].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier![1].use!, "usual")
 		XCTAssertEqual(inst.identifier![1].value!, "567IUI51C154")
-		XCTAssertEqual(inst.name!.family![0], "Heps")
-		XCTAssertEqual(inst.name!.given![0], "Simone")
-		XCTAssertEqual(inst.name!.suffix![0], "MD")
-		XCTAssertEqual(inst.name!.use!, "official")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.display!, "BMC")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.reference!, "Organization/f001")
+		XCTAssertEqual(inst.name![0].family![0], "Heps")
+		XCTAssertEqual(inst.name![0].given![0], "Simone")
+		XCTAssertEqual(inst.name![0].suffix![0], "MD")
+		XCTAssertEqual(inst.name![0].use!, "official")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.display!, "BMC")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.reference!, "Organization/f001")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].code!, "01.000")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].display!, "Arts")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
@@ -405,10 +419,12 @@ class PractitionerTests: XCTestCase
 	}
 	
 	func testPractitioner8() {
-		let instance = try? runPractitioner8()
-		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		if let instance = instance {
-			try! runPractitioner8(instance.asJSON())
+		do {
+			let instance = try runPractitioner8()
+			try runPractitioner8(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 	}
 	
@@ -429,13 +445,13 @@ class PractitionerTests: XCTestCase
 		XCTAssertEqual(inst.identifier![0].type!.text!, "UZI-nummer")
 		XCTAssertEqual(inst.identifier![0].use!, "official")
 		XCTAssertEqual(inst.identifier![0].value!, "12345678901")
-		XCTAssertEqual(inst.name!.family![0], "Bronsig")
-		XCTAssertEqual(inst.name!.given![0], "Arend")
-		XCTAssertEqual(inst.name!.prefix![0], "Dr.")
-		XCTAssertEqual(inst.name!.text!, "Dokter Bronsig")
-		XCTAssertEqual(inst.name!.use!, "official")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.display!, "AUMC")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.reference!, "Organization/f201")
+		XCTAssertEqual(inst.name![0].family![0], "Bronsig")
+		XCTAssertEqual(inst.name![0].given![0], "Arend")
+		XCTAssertEqual(inst.name![0].prefix![0], "Dr.")
+		XCTAssertEqual(inst.name![0].text!, "Dokter Bronsig")
+		XCTAssertEqual(inst.name![0].use!, "official")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.display!, "AUMC")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.reference!, "Organization/f201")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].code!, "225304007")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].display!, "Implementation of planned interventions")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString, "http://snomed.info/sct")
@@ -454,10 +470,12 @@ class PractitionerTests: XCTestCase
 	}
 	
 	func testPractitioner9() {
-		let instance = try? runPractitioner9()
-		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		if let instance = instance {
-			try! runPractitioner9(instance.asJSON())
+		do {
+			let instance = try runPractitioner9()
+			try runPractitioner9(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 	}
 	
@@ -482,13 +500,13 @@ class PractitionerTests: XCTestCase
 		XCTAssertEqual(inst.identifier![1].type!.text!, "BIG-nummer")
 		XCTAssertEqual(inst.identifier![1].use!, "official")
 		XCTAssertEqual(inst.identifier![1].value!, "12345678902")
-		XCTAssertEqual(inst.name!.family![0], "Maas")
-		XCTAssertEqual(inst.name!.given![0], "Luigi")
-		XCTAssertEqual(inst.name!.prefix![0], "Dr.")
-		XCTAssertEqual(inst.name!.text!, "Luigi Maas")
-		XCTAssertEqual(inst.name!.use!, "official")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.display!, "AUMC")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.reference!, "Organization/f201")
+		XCTAssertEqual(inst.name![0].family![0], "Maas")
+		XCTAssertEqual(inst.name![0].given![0], "Luigi")
+		XCTAssertEqual(inst.name![0].prefix![0], "Dr.")
+		XCTAssertEqual(inst.name![0].text!, "Luigi Maas")
+		XCTAssertEqual(inst.name![0].use!, "official")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.display!, "AUMC")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.reference!, "Organization/f201")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].code!, "33526004")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].display!, "Electronic laboratory reporting")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString, "http://snomed.info/sct")
@@ -504,10 +522,12 @@ class PractitionerTests: XCTestCase
 	}
 	
 	func testPractitioner10() {
-		let instance = try? runPractitioner10()
-		XCTAssertNotNil(instance, "Must instantiate Practitioner")
-		if let instance = instance {
-			try! runPractitioner10(instance.asJSON())
+		do {
+			let instance = try runPractitioner10()
+			try runPractitioner10(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 	}
 	
@@ -531,10 +551,10 @@ class PractitionerTests: XCTestCase
 		XCTAssertEqual(inst.identifier![1].type!.text!, "BIG-nummer")
 		XCTAssertEqual(inst.identifier![1].use!, "official")
 		XCTAssertEqual(inst.identifier![1].value!, "12345678903")
-		XCTAssertEqual(inst.name!.text!, "Juri van Gelder")
-		XCTAssertEqual(inst.name!.use!, "official")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.display!, "AUMC")
-		XCTAssertEqual(inst.practitionerRole![0].managingOrganization!.reference!, "Organization/f201")
+		XCTAssertEqual(inst.name![0].text!, "Juri van Gelder")
+		XCTAssertEqual(inst.name![0].use!, "official")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.display!, "AUMC")
+		XCTAssertEqual(inst.practitionerRole![0].organization!.reference!, "Organization/f201")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].code!, "36682004")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].display!, "Physical therapist")
 		XCTAssertEqual(inst.practitionerRole![0].role!.coding![0].system!.absoluteString, "http://snomed.info/sct")

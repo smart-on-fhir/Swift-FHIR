@@ -2,16 +2,16 @@
 //  NamingSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class NamingSystemTests: XCTestCase
-{
+class NamingSystemTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> NamingSystem {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class NamingSystemTests: XCTestCase
 	}
 	
 	func testNamingSystem1() {
-		let instance = try? runNamingSystem1()
-		XCTAssertNotNil(instance, "Must instantiate NamingSystem")
-		if let instance = instance {
-			try! runNamingSystem1(instance.asJSON())
+		do {
+			let instance = try runNamingSystem1()
+			try runNamingSystem1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw")
 		}
 	}
 	
@@ -63,10 +65,12 @@ class NamingSystemTests: XCTestCase
 	}
 	
 	func testNamingSystem2() {
-		let instance = try? runNamingSystem2()
-		XCTAssertNotNil(instance, "Must instantiate NamingSystem")
-		if let instance = instance {
-			try! runNamingSystem2(instance.asJSON())
+		do {
+			let instance = try runNamingSystem2()
+			try runNamingSystem2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw")
 		}
 	}
 	
@@ -89,10 +93,12 @@ class NamingSystemTests: XCTestCase
 	}
 	
 	func testNamingSystem3() {
-		let instance = try? runNamingSystem3()
-		XCTAssertNotNil(instance, "Must instantiate NamingSystem")
-		if let instance = instance {
-			try! runNamingSystem3(instance.asJSON())
+		do {
+			let instance = try runNamingSystem3()
+			try runNamingSystem3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw")
 		}
 	}
 	

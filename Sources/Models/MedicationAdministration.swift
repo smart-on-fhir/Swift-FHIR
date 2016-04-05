@@ -2,8 +2,8 @@
 //  MedicationAdministration.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import Foundation
@@ -46,7 +46,7 @@ public class MedicationAdministration: DomainResource {
 	public var medicationReference: Reference?
 	
 	/// Information about the administration.
-	public var note: String?
+	public var note: [Annotation]?
 	
 	/// Who received medication.
 	public var patient: Reference?
@@ -163,11 +163,11 @@ public class MedicationAdministration: DomainResource {
 			}
 			if let exist: AnyObject = js["note"] {
 				presentKeys.insert("note")
-				if let val = exist as? String {
-					self.note = val
+				if let val = exist as? [FHIRJSON] {
+					self.note = Annotation.from(val, owner: self) as? [Annotation]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "note", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["patient"] {
@@ -279,7 +279,7 @@ public class MedicationAdministration: DomainResource {
 			json["medicationReference"] = medicationReference.asJSON()
 		}
 		if let note = self.note {
-			json["note"] = note.asJSON()
+			json["note"] = Annotation.asJSONArray(note)
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
@@ -339,7 +339,7 @@ public class MedicationAdministrationDosage: BackboneElement {
 	/// Body site administered to.
 	public var siteReference: Reference?
 	
-	/// Dosage Instructions.
+	/// Free text dosage instructions e.g. SIG.
 	public var text: String?
 	
 	

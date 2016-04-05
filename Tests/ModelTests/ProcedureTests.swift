@@ -2,16 +2,16 @@
 //  ProcedureTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class ProcedureTests: XCTestCase
-{
+class ProcedureTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Procedure {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class ProcedureTests: XCTestCase
 	}
 	
 	func testProcedure1() {
-		let instance = try? runProcedure1()
-		XCTAssertNotNil(instance, "Must instantiate Procedure")
-		if let instance = instance {
-			try! runProcedure1(instance.asJSON())
+		do {
+			let instance = try runProcedure1()
+			try runProcedure1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
 		}
 	}
 	
@@ -57,10 +59,12 @@ class ProcedureTests: XCTestCase
 	}
 	
 	func testProcedure2() {
-		let instance = try? runProcedure2()
-		XCTAssertNotNil(instance, "Must instantiate Procedure")
-		if let instance = instance {
-			try! runProcedure2(instance.asJSON())
+		do {
+			let instance = try runProcedure2()
+			try runProcedure2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
 		}
 	}
 	
@@ -97,10 +101,12 @@ class ProcedureTests: XCTestCase
 	}
 	
 	func testProcedure3() {
-		let instance = try? runProcedure3()
-		XCTAssertNotNil(instance, "Must instantiate Procedure")
-		if let instance = instance {
-			try! runProcedure3(instance.asJSON())
+		do {
+			let instance = try runProcedure3()
+			try runProcedure3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
 		}
 	}
 	
@@ -137,10 +143,12 @@ class ProcedureTests: XCTestCase
 	}
 	
 	func testProcedure4() {
-		let instance = try? runProcedure4()
-		XCTAssertNotNil(instance, "Must instantiate Procedure")
-		if let instance = instance {
-			try! runProcedure4(instance.asJSON())
+		do {
+			let instance = try runProcedure4()
+			try runProcedure4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
 		}
 	}
 	
@@ -177,10 +185,12 @@ class ProcedureTests: XCTestCase
 	}
 	
 	func testProcedure5() {
-		let instance = try? runProcedure5()
-		XCTAssertNotNil(instance, "Must instantiate Procedure")
-		if let instance = instance {
-			try! runProcedure5(instance.asJSON())
+		do {
+			let instance = try runProcedure5()
+			try runProcedure5(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
 		}
 	}
 	
@@ -217,10 +227,12 @@ class ProcedureTests: XCTestCase
 	}
 	
 	func testProcedure6() {
-		let instance = try? runProcedure6()
-		XCTAssertNotNil(instance, "Must instantiate Procedure")
-		if let instance = instance {
-			try! runProcedure6(instance.asJSON())
+		do {
+			let instance = try runProcedure6()
+			try runProcedure6(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
 		}
 	}
 	
@@ -254,10 +266,12 @@ class ProcedureTests: XCTestCase
 	}
 	
 	func testProcedure7() {
-		let instance = try? runProcedure7()
-		XCTAssertNotNil(instance, "Must instantiate Procedure")
-		if let instance = instance {
-			try! runProcedure7(instance.asJSON())
+		do {
+			let instance = try runProcedure7()
+			try runProcedure7(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
 		}
 	}
 	
@@ -286,10 +300,12 @@ class ProcedureTests: XCTestCase
 	}
 	
 	func testProcedure8() {
-		let instance = try? runProcedure8()
-		XCTAssertNotNil(instance, "Must instantiate Procedure")
-		if let instance = instance {
-			try! runProcedure8(instance.asJSON())
+		do {
+			let instance = try runProcedure8()
+			try runProcedure8(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
 		}
 	}
 	

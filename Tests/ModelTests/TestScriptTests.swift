@@ -2,16 +2,16 @@
 //  TestScriptTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class TestScriptTests: XCTestCase
-{
+class TestScriptTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> TestScript {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class TestScriptTests: XCTestCase
 	}
 	
 	func testTestScript1() {
-		let instance = try? runTestScript1()
-		XCTAssertNotNil(instance, "Must instantiate TestScript")
-		if let instance = instance {
-			try! runTestScript1(instance.asJSON())
+		do {
+			let instance = try runTestScript1()
+			try runTestScript1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw")
 		}
 	}
 	
@@ -34,19 +36,26 @@ class TestScriptTests: XCTestCase
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example-multiserver.json")
 		
 		XCTAssertEqual(inst.description_fhir!, "Multiserver Test Script")
+		XCTAssertEqual(inst.destination![0].index!, 1)
+		XCTAssertEqual(inst.destination![0].profile!.code!, "FHIR-Server")
 		XCTAssertEqual(inst.fixture![0].id!, "F1")
 		XCTAssertEqual(inst.fixture![0].resource!.reference!, "Patient/example")
 		XCTAssertEqual(inst.id!, "multiserver")
-		XCTAssertTrue(inst.multiserver!)
 		XCTAssertEqual(inst.name!, "Multiserver Test Script")
+		XCTAssertEqual(inst.origin![0].index!, 1)
+		XCTAssertEqual(inst.origin![0].profile!.code!, "FHIR-Client")
 		XCTAssertEqual(inst.setup!.action![0].operation!.contentType!, "xml")
 		XCTAssertEqual(inst.setup!.action![0].operation!.destination!, 0)
+		XCTAssertEqual(inst.setup!.action![0].operation!.origin!, 0)
 		XCTAssertEqual(inst.setup!.action![0].operation!.sourceId!, "F1")
 		XCTAssertEqual(inst.setup!.action![0].operation!.type!.code!, "create")
 		XCTAssertEqual(inst.setup!.metadata!.capability![0].conformance!.reference!, "Conformance/example")
 		XCTAssertEqual(inst.setup!.metadata!.capability![0].description_fhir!, "Patient Create Operation")
+		XCTAssertEqual(inst.setup!.metadata!.capability![0].destination!, 1)
 		XCTAssertEqual(inst.setup!.metadata!.capability![0].link![0].absoluteString, "http://hl7.org/implement/standards/FHIR-Develop/http.html#create")
+		XCTAssertEqual(inst.setup!.metadata!.capability![0].origin![0], 1)
 		XCTAssertTrue(inst.setup!.metadata!.capability![0].required!)
+		XCTAssertTrue(inst.setup!.metadata!.capability![0].validated!)
 		XCTAssertEqual(inst.setup!.metadata!.link![0].description_fhir!, "FHIR Patient")
 		XCTAssertEqual(inst.setup!.metadata!.link![0].url!.absoluteString, "http://hl7.org/implement/standards/FHIR-Develop/patient.html")
 		XCTAssertEqual(inst.status!, "draft")
@@ -69,7 +78,10 @@ class TestScriptTests: XCTestCase
 		XCTAssertEqual(inst.test![0].id!, "READ01")
 		XCTAssertEqual(inst.test![0].metadata!.capability![0].conformance!.reference!, "Conformance/example")
 		XCTAssertEqual(inst.test![0].metadata!.capability![0].description_fhir!, "Patient Read Operation")
+		XCTAssertEqual(inst.test![0].metadata!.capability![0].destination!, 1)
 		XCTAssertEqual(inst.test![0].metadata!.capability![0].link![0].absoluteString, "http://hl7.org/implement/standards/FHIR-Develop/http.html#read")
+		XCTAssertEqual(inst.test![0].metadata!.capability![0].origin![0], 1)
+		XCTAssertTrue(inst.test![0].metadata!.capability![0].required!)
 		XCTAssertTrue(inst.test![0].metadata!.capability![0].validated!)
 		XCTAssertEqual(inst.test![0].name!, "Read Patient")
 		XCTAssertEqual(inst.test![1].action![0].operation!.destination!, 1)
@@ -127,14 +139,124 @@ class TestScriptTests: XCTestCase
 	}
 	
 	func testTestScript2() {
-		let instance = try? runTestScript2()
-		XCTAssertNotNil(instance, "Must instantiate TestScript")
-		if let instance = instance {
-			try! runTestScript2(instance.asJSON())
+		do {
+			let instance = try runTestScript2()
+			try runTestScript2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw")
 		}
 	}
 	
 	func runTestScript2(json: FHIRJSON? = nil) throws -> TestScript {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example-rule.json")
+		
+		XCTAssertEqual(inst.contact![0].name!, "Support")
+		XCTAssertEqual(inst.contact![0].telecom![0].system!, "email")
+		XCTAssertEqual(inst.contact![0].telecom![0].use!, "temp")
+		XCTAssertEqual(inst.contact![0].telecom![0].value!, "support@gmail.com")
+		XCTAssertEqual(inst.copyright!, "© HL7.org 2011+")
+		XCTAssertEqual(inst.date!.description, "2015-08-31")
+		XCTAssertEqual(inst.description_fhir!, "Example Test Script")
+		XCTAssertTrue(inst.experimental!)
+		XCTAssertFalse(inst.fixture![0].autocreate!)
+		XCTAssertFalse(inst.fixture![0].autodelete!)
+		XCTAssertEqual(inst.fixture![0].id!, "F1")
+		XCTAssertEqual(inst.fixture![0].resource!.display!, "Patient resource")
+		XCTAssertEqual(inst.fixture![0].resource!.reference!, "Patient/example")
+		XCTAssertEqual(inst.id!, "example-rule")
+		XCTAssertEqual(inst.identifier!.system!.absoluteString, "urn:ietf:rfc:3986")
+		XCTAssertEqual(inst.identifier!.value!, "urn:oid:1.3.6.1.4.1.21367.2005.3.7.9876")
+		XCTAssertEqual(inst.metadata!.capability![0].conformance!.reference!, "Conformance/example")
+		XCTAssertEqual(inst.metadata!.capability![0].description_fhir!, "Patient Create, Read, and Update Operations")
+		XCTAssertEqual(inst.metadata!.capability![0].destination!, 1)
+		XCTAssertEqual(inst.metadata!.capability![0].link![0].absoluteString, "http://hl7.org/implement/standards/FHIR-Develop/http.html#create")
+		XCTAssertEqual(inst.metadata!.capability![0].link![1].absoluteString, "http://hl7.org/implement/standards/FHIR-Develop/http.html#read")
+		XCTAssertEqual(inst.metadata!.capability![0].link![2].absoluteString, "http://hl7.org/implement/standards/FHIR-Develop/http.html#update")
+		XCTAssertTrue(inst.metadata!.capability![0].required!)
+		XCTAssertEqual(inst.name!, "Test Script 1")
+		XCTAssertEqual(inst.profile![0].id!, "patient-profile")
+		XCTAssertEqual(inst.profile![0].reference!, "http://hl7.org/fhir/StructureDefinition/Patient")
+		XCTAssertEqual(inst.publisher!, "HL7")
+		XCTAssertEqual(inst.requirements!, "Patient Create, Read, and Update Operations")
+		XCTAssertEqual(inst.rule![0].id!, "ruleResponseOkay")
+		XCTAssertEqual(inst.rule![0].param![0].name!, "expectedStatusCode")
+		XCTAssertEqual(inst.rule![0].param![0].value!, "200")
+		XCTAssertEqual(inst.rule![0].resource!.reference!, "TestScript/example")
+		XCTAssertEqual(inst.ruleset![0].id!, "ruleset-responseResourcePatient")
+		XCTAssertEqual(inst.ruleset![0].resource!.reference!, "TestScript/example")
+		XCTAssertEqual(inst.ruleset![0].rule![0].id!, "RuleResponseContentType")
+		XCTAssertEqual(inst.ruleset![0].rule![0].param![0].name!, "expectedContentType")
+		XCTAssertEqual(inst.ruleset![0].rule![0].param![0].value!, "JSON")
+		XCTAssertEqual(inst.ruleset![0].rule![1].id!, "RuleResponseStatusCode")
+		XCTAssertEqual(inst.ruleset![0].rule![1].param![0].name!, "expectedStatusCode")
+		XCTAssertEqual(inst.ruleset![0].rule![1].param![0].value!, "200")
+		XCTAssertEqual(inst.setup!.action![0].operation!.accept!, "json")
+		XCTAssertEqual(inst.setup!.action![0].operation!.description_fhir!, "Create patient resource on test server")
+		XCTAssertEqual(inst.setup!.action![0].operation!.label!, "SetupPatient")
+		XCTAssertEqual(inst.setup!.action![0].operation!.responseId!, "create-response")
+		XCTAssertEqual(inst.setup!.action![0].operation!.sourceId!, "F1")
+		XCTAssertEqual(inst.setup!.action![0].operation!.type!.code!, "create")
+		XCTAssertEqual(inst.setup!.action![1].assert!.direction!, "request")
+		XCTAssertEqual(inst.setup!.action![1].assert!.responseCode!, "201")
+		XCTAssertEqual(inst.status!, "draft")
+		XCTAssertFalse(inst.test![0].action![0].operation!.encodeRequestUrl!)
+		XCTAssertEqual(inst.test![0].action![0].operation!.responseId!, "F1-read")
+		XCTAssertEqual(inst.test![0].action![0].operation!.targetId!, "F1")
+		XCTAssertEqual(inst.test![0].action![0].operation!.type!.code!, "read")
+		XCTAssertEqual(inst.test![0].action![1].assert!.label!, "RuleReadOK")
+		XCTAssertEqual(inst.test![0].action![1].assert!.rule!.id!, "ruleResponseOkay")
+		XCTAssertEqual(inst.test![0].action![1].assert!.rule!.param![0].name!, "expectedStatusCode")
+		XCTAssertEqual(inst.test![0].action![1].assert!.rule!.param![0].value!, "200")
+		XCTAssertEqual(inst.test![0].action![2].assert!.label!, "RuleContentTypeResponse")
+		XCTAssertEqual(inst.test![0].action![2].assert!.ruleset!.id!, "ruleset-responseResourcePatient")
+		XCTAssertEqual(inst.test![0].action![2].assert!.ruleset!.rule![0].id!, "RuleResponseContentType")
+		XCTAssertEqual(inst.test![0].action![2].assert!.ruleset!.rule![0].param![0].name!, "expectedContentType")
+		XCTAssertEqual(inst.test![0].action![2].assert!.ruleset!.rule![0].param![0].value!, "XML")
+		XCTAssertEqual(inst.test![0].action![3].assert!.headerField!, "Last-Modified")
+		XCTAssertEqual(inst.test![0].action![3].assert!.operator_fhir!, "notEmpty")
+		XCTAssertTrue(inst.test![0].action![3].assert!.warningOnly!)
+		XCTAssertEqual(inst.test![0].action![4].assert!.resource!, "Patient")
+		XCTAssertEqual(inst.test![0].action![5].assert!.validateProfileId!, "patient-profile")
+		XCTAssertEqual(inst.test![0].action![6].assert!.operator_fhir!, "equals")
+		XCTAssertEqual(inst.test![0].action![6].assert!.path!, "fhir:Patient/fhir:name/fhir:family/@value")
+		XCTAssertEqual(inst.test![0].action![6].assert!.value!, "Chalmers")
+		XCTAssertEqual(inst.test![0].action![7].assert!.operator_fhir!, "equals")
+		XCTAssertEqual(inst.test![0].action![7].assert!.path!, "fhir:Patient/fhir:name/fhir:family/@value")
+		XCTAssertEqual(inst.test![0].action![7].assert!.sourceId!, "F1")
+		XCTAssertEqual(inst.test![0].action![7].assert!.value!, "Chalmers")
+		XCTAssertEqual(inst.test![0].action![8].assert!.compareToSourceId!, "F1-read")
+		XCTAssertEqual(inst.test![0].action![8].assert!.compareToSourcePath!, "fhir:Patient/fhir:name/fhir:family/@value")
+		XCTAssertEqual(inst.test![0].action![8].assert!.operator_fhir!, "equals")
+		XCTAssertEqual(inst.test![0].action![8].assert!.path!, "fhir:Patient/fhir:name/fhir:family/@value")
+		XCTAssertEqual(inst.test![0].action![9].assert!.compareToSourceId!, "F1-read")
+		XCTAssertEqual(inst.test![0].action![9].assert!.compareToSourcePath!, "fhir:Patient/fhir:name/fhir:family/@value")
+		XCTAssertEqual(inst.test![0].action![9].assert!.path!, "fhir:Patient/fhir:name/fhir:family/@value")
+		XCTAssertEqual(inst.test![0].action![9].assert!.sourceId!, "F1")
+		XCTAssertEqual(inst.test![0].description_fhir!, "Read a patient and validate response.")
+		XCTAssertEqual(inst.test![0].id!, "READ01")
+		XCTAssertEqual(inst.test![0].name!, "Read Patient")
+		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.url!.absoluteString, "http://hl7.org/fhir/TestScript/example-rule")
+		XCTAssertEqual(inst.useContext![0].coding![0].code!, "US")
+		XCTAssertEqual(inst.useContext![0].coding![0].display!, "United States of America (the)")
+		XCTAssertEqual(inst.useContext![0].coding![0].system!.absoluteString, "urn:iso:std:iso:3166")
+		XCTAssertEqual(inst.version!, "1.0")
+		
+		return inst
+	}
+	
+	func testTestScript3() {
+		do {
+			let instance = try runTestScript3()
+			try runTestScript3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw")
+		}
+	}
+	
+	func runTestScript3(json: FHIRJSON? = nil) throws -> TestScript {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example.json")
 		
 		XCTAssertEqual(inst.contact![0].name!, "Support")

@@ -2,16 +2,16 @@
 //  MedicationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class MedicationTests: XCTestCase
-{
+class MedicationTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Medication {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class MedicationTests: XCTestCase
 	}
 	
 	func testMedication1() {
-		let instance = try? runMedication1()
-		XCTAssertNotNil(instance, "Must instantiate Medication")
-		if let instance = instance {
-			try! runMedication1(instance.asJSON())
+		do {
+			let instance = try runMedication1()
+			try runMedication1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw")
 		}
 	}
 	
@@ -46,18 +48,20 @@ class MedicationTests: XCTestCase
 		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.system!.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.unit!, "ml")
 		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.value!, NSDecimalNumber(string: "100"))
-		XCTAssertEqual(inst.product!.ingredient![0].item!.display!, "Combivent")
-		XCTAssertEqual(inst.product!.ingredient![0].item!.reference!, "Medication/f001")
+		XCTAssertEqual(inst.product!.ingredient![0].itemReference!.display!, "Combivent")
+		XCTAssertEqual(inst.product!.ingredient![0].itemReference!.reference!, "Medication/f001")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
 	
 	func testMedication2() {
-		let instance = try? runMedication2()
-		XCTAssertNotNil(instance, "Must instantiate Medication")
-		if let instance = instance {
-			try! runMedication2(instance.asJSON())
+		do {
+			let instance = try runMedication2()
+			try runMedication2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw")
 		}
 	}
 	
@@ -78,10 +82,12 @@ class MedicationTests: XCTestCase
 	}
 	
 	func testMedication3() {
-		let instance = try? runMedication3()
-		XCTAssertNotNil(instance, "Must instantiate Medication")
-		if let instance = instance {
-			try! runMedication3(instance.asJSON())
+		do {
+			let instance = try runMedication3()
+			try runMedication3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw")
 		}
 	}
 	
@@ -102,10 +108,12 @@ class MedicationTests: XCTestCase
 	}
 	
 	func testMedication4() {
-		let instance = try? runMedication4()
-		XCTAssertNotNil(instance, "Must instantiate Medication")
-		if let instance = instance {
-			try! runMedication4(instance.asJSON())
+		do {
+			let instance = try runMedication4()
+			try runMedication4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw")
 		}
 	}
 	
@@ -126,10 +134,12 @@ class MedicationTests: XCTestCase
 	}
 	
 	func testMedication5() {
-		let instance = try? runMedication5()
-		XCTAssertNotNil(instance, "Must instantiate Medication")
-		if let instance = instance {
-			try! runMedication5(instance.asJSON())
+		do {
+			let instance = try runMedication5()
+			try runMedication5(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw")
 		}
 	}
 	
@@ -150,10 +160,12 @@ class MedicationTests: XCTestCase
 	}
 	
 	func testMedication6() {
-		let instance = try? runMedication6()
-		XCTAssertNotNil(instance, "Must instantiate Medication")
-		if let instance = instance {
-			try! runMedication6(instance.asJSON())
+		do {
+			let instance = try runMedication6()
+			try runMedication6(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw")
 		}
 	}
 	
@@ -174,24 +186,26 @@ class MedicationTests: XCTestCase
 		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.code!, "ug")
 		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.system!.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.product!.ingredient![0].amount!.numerator!.value!, NSDecimalNumber(string: "25"))
-		XCTAssertEqual(inst.product!.ingredient![0].item!.display!, "flutacisone")
+		XCTAssertEqual(inst.product!.ingredient![0].itemCodeableConcept!.text!, "flutacisone")
 		XCTAssertEqual(inst.product!.ingredient![1].amount!.denominator!.code!, "PUFF")
 		XCTAssertEqual(inst.product!.ingredient![1].amount!.denominator!.system!.absoluteString, "http://hl7.org/fhir/v3/orderableDrugForm")
 		XCTAssertEqual(inst.product!.ingredient![1].amount!.denominator!.value!, NSDecimalNumber(string: "1"))
 		XCTAssertEqual(inst.product!.ingredient![1].amount!.numerator!.code!, "ug")
 		XCTAssertEqual(inst.product!.ingredient![1].amount!.numerator!.system!.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.product!.ingredient![1].amount!.numerator!.value!, NSDecimalNumber(string: "250"))
-		XCTAssertEqual(inst.product!.ingredient![1].item!.display!, "salmeterol")
+		XCTAssertEqual(inst.product!.ingredient![1].itemCodeableConcept!.text!, "salmeterol")
 		XCTAssertEqual(inst.text!.status!, "generated")
 		
 		return inst
 	}
 	
 	func testMedication7() {
-		let instance = try? runMedication7()
-		XCTAssertNotNil(instance, "Must instantiate Medication")
-		if let instance = instance {
-			try! runMedication7(instance.asJSON())
+		do {
+			let instance = try runMedication7()
+			try runMedication7(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw")
 		}
 	}
 	
@@ -212,10 +226,12 @@ class MedicationTests: XCTestCase
 	}
 	
 	func testMedication8() {
-		let instance = try? runMedication8()
-		XCTAssertNotNil(instance, "Must instantiate Medication")
-		if let instance = instance {
-			try! runMedication8(instance.asJSON())
+		do {
+			let instance = try runMedication8()
+			try runMedication8(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw")
 		}
 	}
 	

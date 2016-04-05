@@ -2,16 +2,16 @@
 //  SearchParameterTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-11-24.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class SearchParameterTests: XCTestCase
-{
+class SearchParameterTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> SearchParameter {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class SearchParameterTests: XCTestCase
 	}
 	
 	func testSearchParameter1() {
-		let instance = try? runSearchParameter1()
-		XCTAssertNotNil(instance, "Must instantiate SearchParameter")
-		if let instance = instance {
-			try! runSearchParameter1(instance.asJSON())
+		do {
+			let instance = try runSearchParameter1()
+			try runSearchParameter1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test SearchParameter successfully, but threw")
 		}
 	}
 	
@@ -52,10 +54,12 @@ class SearchParameterTests: XCTestCase
 	}
 	
 	func testSearchParameter2() {
-		let instance = try? runSearchParameter2()
-		XCTAssertNotNil(instance, "Must instantiate SearchParameter")
-		if let instance = instance {
-			try! runSearchParameter2(instance.asJSON())
+		do {
+			let instance = try runSearchParameter2()
+			try runSearchParameter2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test SearchParameter successfully, but threw")
 		}
 	}
 	

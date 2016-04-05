@@ -2,8 +2,8 @@
 //  Signature.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Signature) on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Signature) on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import Foundation
@@ -46,10 +46,8 @@ public class Signature: Element {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(blob: Base64Binary, contentType: String, type: [Coding], when: Instant, whoReference: Reference, whoUri: NSURL) {
+	public convenience init(type: [Coding], when: Instant, whoReference: Reference, whoUri: NSURL) {
 		self.init(json: nil)
-		self.blob = blob
-		self.contentType = contentType
 		self.type = type
 		self.when = when
 		self.whoReference = whoReference
@@ -68,9 +66,6 @@ public class Signature: Element {
 					errors.append(FHIRJSONError(key: "blob", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			else {
-				errors.append(FHIRJSONError(key: "blob"))
-			}
 			if let exist: AnyObject = js["contentType"] {
 				presentKeys.insert("contentType")
 				if let val = exist as? String {
@@ -79,9 +74,6 @@ public class Signature: Element {
 				else {
 					errors.append(FHIRJSONError(key: "contentType", wants: String.self, has: exist.dynamicType))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "contentType"))
 			}
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")

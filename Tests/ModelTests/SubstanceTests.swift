@@ -2,16 +2,16 @@
 //  SubstanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2015-12-11.
-//  2015, SMART Health IT.
+//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  2016, SMART Health IT.
 //
 
 import XCTest
 import SwiftFHIR
 
 
-class SubstanceTests: XCTestCase
-{
+class SubstanceTests: XCTestCase {
+	
 	func instantiateFrom(filename filename: String) throws -> Substance {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
@@ -23,10 +23,12 @@ class SubstanceTests: XCTestCase
 	}
 	
 	func testSubstance1() {
-		let instance = try? runSubstance1()
-		XCTAssertNotNil(instance, "Must instantiate Substance")
-		if let instance = instance {
-			try! runSubstance1(instance.asJSON())
+		do {
+			let instance = try runSubstance1()
+			try runSubstance1(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
 		}
 	}
 	
@@ -67,10 +69,12 @@ class SubstanceTests: XCTestCase
 	}
 	
 	func testSubstance2() {
-		let instance = try? runSubstance2()
-		XCTAssertNotNil(instance, "Must instantiate Substance")
-		if let instance = instance {
-			try! runSubstance2(instance.asJSON())
+		do {
+			let instance = try runSubstance2()
+			try runSubstance2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
 		}
 	}
 	
@@ -87,10 +91,12 @@ class SubstanceTests: XCTestCase
 	}
 	
 	func testSubstance3() {
-		let instance = try? runSubstance3()
-		XCTAssertNotNil(instance, "Must instantiate Substance")
-		if let instance = instance {
-			try! runSubstance3(instance.asJSON())
+		do {
+			let instance = try runSubstance3()
+			try runSubstance3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
 		}
 	}
 	
@@ -107,10 +113,12 @@ class SubstanceTests: XCTestCase
 	}
 	
 	func testSubstance4() {
-		let instance = try? runSubstance4()
-		XCTAssertNotNil(instance, "Must instantiate Substance")
-		if let instance = instance {
-			try! runSubstance4(instance.asJSON())
+		do {
+			let instance = try runSubstance4()
+			try runSubstance4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
 		}
 	}
 	
@@ -132,10 +140,12 @@ class SubstanceTests: XCTestCase
 	}
 	
 	func testSubstance5() {
-		let instance = try? runSubstance5()
-		XCTAssertNotNil(instance, "Must instantiate Substance")
-		if let instance = instance {
-			try! runSubstance5(instance.asJSON())
+		do {
+			let instance = try runSubstance5()
+			try runSubstance5(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
 		}
 	}
 	
@@ -165,10 +175,12 @@ class SubstanceTests: XCTestCase
 	}
 	
 	func testSubstance6() {
-		let instance = try? runSubstance6()
-		XCTAssertNotNil(instance, "Must instantiate Substance")
-		if let instance = instance {
-			try! runSubstance6(instance.asJSON())
+		do {
+			let instance = try runSubstance6()
+			try runSubstance6(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
 		}
 	}
 	

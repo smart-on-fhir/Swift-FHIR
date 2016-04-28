@@ -808,7 +808,7 @@
 				EEF20E151A5D4FFE009A6EDA /* README.md */,
 				EE1310DC1C1B7E3700D9DAE7 /* Package.swift */,
 				EE684C2019A789BA00B5A2C0 /* SwiftFHIR */,
-				EE684C2A19A789BA00B5A2C0 /* SwiftFHIRTests */,
+				EE684C2A19A789BA00B5A2C0 /* Tests */,
 				EEEE31291BB2829A008866E2 /* Metadata */,
 				EE684C1F19A789BA00B5A2C0 /* Products */,
 			);
@@ -835,7 +835,7 @@
 			name = SwiftFHIR;
 			sourceTree = "<group>";
 		};
-		EE684C2A19A789BA00B5A2C0 /* SwiftFHIRTests */ = {
+		EE684C2A19A789BA00B5A2C0 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				EE684C2C19A789BA00B5A2C0 /* Info.plist */,
@@ -847,7 +847,6 @@
 				EEEB096E19AD248700C324FC /* ModelTests */,
 				EEEE31191BB278E3008866E2 /* AppKit.framework */,
 			);
-			name = SwiftFHIRTests;
 			path = Tests;
 			sourceTree = "<group>";
 		};

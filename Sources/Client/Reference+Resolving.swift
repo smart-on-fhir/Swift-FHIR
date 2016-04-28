@@ -18,11 +18,14 @@ import Models
 extension Reference {
 	
 	/**
-	Determines if a reference has already been resolved or if it is a contained resource which can be returned
-	immediately.
+	Determines if a reference has already been resolved, if it is a contained or a bundled resource which can be returned immediately.
+	
+	If this method returns nil, it's possible that the referenced resource must be fetched from a server. Use the `resolve(type:callback:)`
+	method to achive that feat. That method will initially call this method and hence may return immediately if a reference has already been
+	resolved (or is contained/bundled).
 	
 	- parameter type: The resource type that should be dereferenced
-	- returns: An instance of the desired type, or nil if it hasn't been resolved yet OR is of a different type
+	- returns: An instance of the desired type, nil if it cannot immediately be resolved OR if it is of a different type
 	*/
 	public func resolved<T: Resource>(type: T.Type) -> T? {
 		guard let refid = processedReferenceIdentifier() else {
@@ -38,15 +41,46 @@ extension Reference {
 		}
 		
 		// not yet resolved, let's look at contained resources
-		if let contained = owningResource()?.containedResource(refid) as? T {
-			return contained
+		if let contained = owningResource()?.containedResource(refid) {
+			if let contained = contained as? T {
+				return contained
+			}
+			fhir_warn("reference “\(refid)” was contained as «\(resolved)», which is not of the expected type “\(T.self)”")
+			return nil
 		}
+		
+		// not contained, are we in a bundle and the resource is bundled?
+		let refIsRelative = !refid.containsString("://") && !refid.hasPrefix("urn:")
+		var bundle = owningBundle()
+		while nil != bundle {
+			if let entries = bundle?.entry {
+				var refUrl = refid
+				if refIsRelative {
+					let base = bundle?._server?.baseURL.absoluteString ?? ""
+					refUrl = base + refid
+				}
+				
+				for entry in entries {
+					if let entryUrl = entry.fullUrl?.absoluteString where entryUrl == refUrl {
+						if let found = entry.resource as? T {
+							return found
+						}
+						fhir_warn("reference “\(refid)” was bundled as «\(entry.resource)», which is not of the expected type “\(T.self)”")
+						return nil
+					}
+				}
+			}
+			bundle = bundle?.owningBundle()
+		}
+		
 		return nil
 	}
 	
 	/**
-	Checks if a reference can be resolved immediately by calling `resolved()` first, if not proceeds to request the referenced resource from
-	the respective location.
+	Resolves the reference, automatically determining how to resolve it from either contained, bundled or fetching from a server.
+	
+	Checks if a reference can be resolved immediately by calling `resolved(type:)` first, if not proceeds to request the referenced resource
+	from the respective location.
 	
 	- parameter type: The type of the resource to expect
 	- parameter callback: The callback to call upon success or failure, with the resolved resource or nil

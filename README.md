@@ -42,8 +42,8 @@ Here's a rough list of what still needs to be done.
 
 ```
 [ ] Add convenience methods to working with resources in code
+[ ] Create enums for `code` type properties
 [ ] Nice support for simple PATCH operations
-[?] Serialization validator
 [ ] Handle resource versions nicely
 [ ] Create a default behavior when a modifierExtension is detected
 [ ] Search: report search parameters that the server ignored
@@ -60,7 +60,7 @@ Working, at least to some extent:
 - Use a FHIR server protocol for REST interactions with a server
 - Deserialize from JSON
 - Serialize to JSON
-- Resolve contained/relative/absolute resource references
+- Resolve contained/bundled/relative/absolute resource references
 - Contain resources
 - Construct searches with NoSQL-like statements (cf. [fhir.js](https://github.com/FHIR/fhir.js))
 - Perform operations

@@ -163,9 +163,47 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse {
 		return nil
 	}
 	
+	/**
+	The JSON response inspects response headers ("Location" for now) and updates id and meta accordingly. If the body carries resource data
+	it updates the resource by calling `resource.populateFromJSON()`.
+	
+	This method must not be called if the response has a non-nil error.
+	
+	- parameter resource: The resource to apply response data to
+	*/
 	public override func applyToResource(resource: Resource) {
-		if let json = json {
-			resource.populateFromJSON(json)
+		
+		// inspect Location header to update `id` and `meta`. It has the form "Location: [base]/[type]/[id]/_history/[vid]"
+		if let location = headers["Location"] {
+			if let base = resource._server?.baseURL.absoluteString {    // we are able to rely on the fact that the base URL ends with "/"
+				if location.hasPrefix(base) {
+					let path = location.stringByReplacingOccurrencesOfString(base, withString: "")
+					let components = path.componentsSeparatedByString("/")
+					if components.count > 1 && resource.dynamicType.resourceName == components[0] {
+						resource.id = components[1]
+						if components.count > 3 && "_history" == components[2] {
+							resource.meta = resource.meta ?? Meta(json: nil)
+							resource.meta!.versionId = components[3]
+						}
+					}
+					else {
+						fhir_warn("Unable to apply “Location” header components \(components) because of resourceType mismatch")
+					}
+				}
+				else {
+					fhir_warn("Location “\(location)” does not appear to live on server \(base), not updating the resource")
+				}
+			}
+			else {
+				fhir_warn("Resource «\(resource)» does not have a server associated, will not try to parse “Location” header")
+			}
+		}
+		
+		// if there's JSON data, update the full resource
+		if let json = json, let errors = resource.populateFromJSON(json) {
+			for error in errors {
+				fhir_warn("\(error)")
+			}
 		}
 	}
 }

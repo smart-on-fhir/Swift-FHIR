@@ -136,7 +136,7 @@ public class FHIRSearch
 		}
 		
 		busy = true
-		server.performRequestOfType(.GET, path: queryPath, resource: nil) { response in
+		server.performRequestOfType(.GET, path: queryPath, resource: nil, additionalHeaders: nil) { response in
 			self.busy = false
 			
 			if let error = response.error {

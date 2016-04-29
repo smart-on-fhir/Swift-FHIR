@@ -56,6 +56,19 @@ public class FHIROpenServer: FHIRServer {
 	}
 	
 	
+	// MARK: - FHIRServer
+	
+	public func performRequestOfType(type: FHIRRequestType, path: String, resource: Resource?, additionalHeaders: FHIRRequestHeaders? = nil, callback: ((response: FHIRServerResponse) -> Void)) {
+		if let handler = handlerForRequestOfType(type, resource: resource, headers: additionalHeaders) {
+			performRequestAgainst(path, handler: handler, callback: callback)
+		}
+		else {
+			let res = FHIRServerRequestHandler.noneAvailableForType(type)
+			callback(response: res)
+		}
+	}
+	
+	
 	// MARK: - Requests
 	
 	/**
@@ -67,8 +80,12 @@ public class FHIROpenServer: FHIRServer {
 	- parameter resource: The resource to be involved in the request, if any
 	- returns: An appropriate `FHIRServerRequestHandler`, for example a _FHIRServerJSONRequestHandler_ if sending and receiving JSON
 	*/
-	public func handlerForRequestOfType(type: FHIRRequestType, resource: Resource?) -> FHIRServerRequestHandler? {
-		return FHIRServerJSONRequestHandler(type, resource: resource)
+	public func handlerForRequestOfType(type: FHIRRequestType, resource: Resource?, headers: FHIRRequestHeaders? = nil) -> FHIRServerRequestHandler? {
+		let handler = FHIRServerJSONRequestHandler(type, resource: resource)
+		if let headers = headers {
+			handler.addHeaders(headers: headers)
+		}
+		return handler
 	}
 	
 	/**
@@ -147,19 +164,6 @@ public class FHIROpenServer: FHIRServer {
 		
 		fhir_logIfDebug("Performing \(handler.type.rawValue) request against \(request.URL!)")
 		task.resume()
-	}
-	
-	
-	// MARK: - FHIRServer
-	
-	public func performRequestOfType(type: FHIRRequestType, path: String, resource: Resource?, callback: ((response: FHIRServerResponse) -> Void)) {
-		if let handler = handlerForRequestOfType(type, resource: resource) {
-			performRequestAgainst(path, handler: handler, callback: callback)
-		}
-		else {
-			let res = FHIRServerRequestHandler.noneAvailableForType(type)
-			callback(response: res)
-		}
 	}
 	
 	

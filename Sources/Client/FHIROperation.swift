@@ -153,7 +153,7 @@ public class FHIROperation: CustomStringConvertible {
 	*/
 	public func perform(server: FHIRServer, callback: ((response: FHIRServerResponse) -> Void)) throws {
 		let path = try serverPath()
-		server.performRequestOfType(.GET, path: path, resource: nil, callback: callback)
+		server.performRequestOfType(.GET, path: path, resource: nil, additionalHeaders: nil, callback: callback)
 	}
 	
 	

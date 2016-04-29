@@ -104,7 +104,7 @@ public extension Resource {
 	- parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	*/
 	public class func readFrom(path: String, server: FHIRServer, callback: FHIRResourceErrorCallback) {
-		server.performRequestOfType(.GET, path: path, resource: nil) { response in
+		server.performRequestOfType(.GET, path: path, resource: nil, additionalHeaders: nil) { response in
 			if let error = response.error {
 				callback(resource: nil, error: error)
 			}
@@ -134,7 +134,7 @@ public extension Resource {
 			return
 		}
 		
-		server.performRequestOfType(.POST, path: relativeURLBase(), resource: self) { response in
+		server.performRequestOfType(.POST, path: relativeURLBase(), resource: self, additionalHeaders: nil) { response in
 			if nil == response.error {
 				response.applyToResource(self)
 				self._server = server
@@ -156,7 +156,7 @@ public extension Resource {
 		if let server = _server {
 			do {
 				let path = try relativeURLPath()
-				server.performRequestOfType(.PUT, path: path, resource: self) { response in
+				server.performRequestOfType(.PUT, path: path, resource: self, additionalHeaders: nil) { response in
 					// TODO: should we do some header inspection (response.headers)?
 					callback(error: response.error)
 				}
@@ -196,7 +196,7 @@ public extension Resource {
 	This implementation issues a DELETE call against the given path on the given server.
 	*/
 	public class func delete(path: String, server: FHIRServer, callback: FHIRErrorCallback) {
-		server.performRequestOfType(.DELETE, path: path, resource: nil) { response in
+		server.performRequestOfType(.DELETE, path: path, resource: nil, additionalHeaders: nil) { response in
 			// TODO: should we do some header inspection (response.headers)?
 			callback(error: response.error)
 		}

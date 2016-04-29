@@ -13,14 +13,21 @@ import Models
 
 
 /**
-    Base for different request/response handlers.
+Base for different request/response handlers.
 
-    Would love to make this a protocol but since it has an associated type it cannot be used nicely, hence a class.
- */
+Would love to make this a protocol but since it has an associated type it cannot be used nicely, hence a class.
+*/
 public class FHIRServerRequestHandler {
+	
+	public class var defaultHeaders: FHIRRequestHeaders {
+		return FHIRRequestHeaders()
+	}
 	
 	/// The HTTP type of the request.
 	public let type: FHIRRequestType
+	
+	/// Headers to be used on the request.
+	public var headers: FHIRRequestHeaders
 	
 	/// The data to be used in the request body.
 	public var data: NSData?
@@ -30,9 +37,28 @@ public class FHIRServerRequestHandler {
 	
 	public init(_ type: FHIRRequestType, resource: Resource? = nil) {
 		self.type = type
+		self.headers = self.dynamicType.defaultHeaders
 		self.resource = resource
 	}
 	
+	
+	// MARK: - Preparation
+	
+	/**
+	Add the given headers to the request, overwriting existing headers.
+	
+	- parameter headers: The headers to add to the receiver
+	*/
+	public func addHeaders(headers inHeaders: FHIRRequestHeaders) {
+		var hdrs = headers
+		inHeaders.headers.forEach() { hdrs[$0] = $1 }
+		headers = hdrs
+		
+	}
+	
+	/**
+	Prepare body data for the request.
+	*/
 	public func prepareData() throws {
 		if nil == resource {
 			return
@@ -41,22 +67,26 @@ public class FHIRServerRequestHandler {
 	}
 	
 	/**
-	    Give the request type a chance to prepare/alter the URL request.
+	Give the request type a chance to prepare/alter the URL request.
 	
-	    Typically the FHIRRequestType instance sets the correct HTTPMethod as well as correct FHIR headers.
-	 */
+	Typically the FHIRRequestType instance sets the correct HTTPMethod as well as correct FHIR headers.
+	*/
 	public func prepareRequest(req: NSMutableURLRequest) throws {
 		try prepareData()
 		type.prepareRequest(req, body: data)
+		headers.prepareRequest(req)
 	}
 	
 	public class var ResponseType: FHIRServerResponse.Type {
 		return FHIRServerDataResponse.self
 	}
 	
+	
+	// MARK: - Response
+	
 	/**
-	    Instantiate an object of ResponseType-type based on the response and data that we get.
-	 */
+	Instantiate an object of ResponseType-type based on the response and data that we get.
+	*/
 	public func response(response response: NSURLResponse?, data inData: NSData? = nil, error: NSError? = nil) -> FHIRServerResponse {
 		if let res = response {
 			return self.dynamicType.ResponseType.init(response: res, data: inData, urlError: error)
@@ -84,17 +114,22 @@ public class FHIRServerRequestHandler {
 
 
 /**
-    Prepare and handle a request returning JSON data.
+Prepare and handle a request returning JSON data.
 
-    JSON body data can be greated from the resource, if the receiver holds on to one.
- */
+JSON body data can be greated from the resource, if the receiver holds on to one. The header's content type for PUT and POST will be set to
+"application/json+fhir; charset=utf-8" no matter what.
+*/
 public class FHIRServerJSONRequestHandler: FHIRServerRequestHandler {
+	
+	override public class var defaultHeaders: FHIRRequestHeaders {
+		return FHIRRequestHeaders([.Accept: "application/json+fhir"])
+	}
 	
 	public var json: FHIRJSON?
 	
 	
 	override public func prepareData() throws {
-		if nil != data {
+		guard nil == data else {
 			return
 		}
 		if nil == json {
@@ -106,16 +141,15 @@ public class FHIRServerJSONRequestHandler: FHIRServerRequestHandler {
 	}
 	
 	public override func prepareRequest(req: NSMutableURLRequest) throws {
-		try super.prepareRequest(req)
-		req.setValue("application/json+fhir", forHTTPHeaderField: "Accept")
 		switch type {
 		case .PUT:
-			req.setValue("application/json+fhir; charset=utf-8", forHTTPHeaderField: "Content-Type")
+			headers[.ContentType] = "application/json+fhir; charset=utf-8"
 		case .POST:
-			req.setValue("application/json+fhir; charset=utf-8", forHTTPHeaderField: "Content-Type")
+			headers[.ContentType] = "application/json+fhir; charset=utf-8"
 		default:
 			break
 		}
+		try super.prepareRequest(req)
 	}
 	
 	public override class var ResponseType: FHIRServerResponse.Type {
@@ -125,9 +159,10 @@ public class FHIRServerJSONRequestHandler: FHIRServerRequestHandler {
 
 
 /**
-    PRELIMINARY! Prepare and handle a request returning some type of data.
+PRELIMINARY! Prepare and handle a request returning some type of data.
 
-    If you use this as PUT/POST, you are responsible for setting the `data` property to an appropriate NSData representation.
+If you use this as PUT/POST, you are responsible for setting the `data` property to an appropriate NSData representation. The "Accept" and
+"Content-Type" headers will be set to the `contentType` property
 */
 public class FHIRServerDataRequestHandler: FHIRServerRequestHandler {
 	
@@ -142,18 +177,18 @@ public class FHIRServerDataRequestHandler: FHIRServerRequestHandler {
 	}
 	
 	public override func prepareRequest(req: NSMutableURLRequest) throws {
-		try super.prepareRequest(req)
 		switch type {
 		case .GET:
-			req.setValue(contentType, forHTTPHeaderField: "Accept")
+			headers[.Accept] = contentType
 		case .PUT:
 			// TODO: make useful for PUT/POST (by setting correct "Accept" headers) and implement error handling (i.e. OperationOutcome) for GET requests
-			req.setValue(contentType, forHTTPHeaderField: "Content-Type")
+			headers[.ContentType] = contentType
 		case .POST:
-			req.setValue(contentType, forHTTPHeaderField: "Content-Type")
+			headers[.ContentType] = contentType
 		default:
 			break
 		}
+		try super.prepareRequest(req)
 	}
 	
 	public override class var ResponseType: FHIRServerResponse.Type {

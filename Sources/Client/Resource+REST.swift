@@ -110,6 +110,12 @@ public extension Resource {
 			}
 			else if let resource = response.responseResource(Resource.self) {
 				resource._server = server
+				do {
+					try response.applyResponseHeadersToResource(resource)
+				}
+				catch let error {
+					fhir_warn("Error applying response headers after `read` call: \(error)")
+				}
 				callback(resource: resource, error: nil)
 			}
 			else {
@@ -122,25 +128,90 @@ public extension Resource {
 	Create the receiver on the given server.
 	
 	This method issues a POST, with the receiver serialized to JSON as the request's body data, to the FHIR server. If the call succeeds
-	(i.e. does not return an error), the receiver repopulates its properties with the server's response (if the server is returning the
-	resource, which some servers may not) and the `_server` property is assigned.
+	(i.e. does not return an error), the receiver updates its `meta` properties from the response "Location", if available, and the
+	`_server` property is assigned.
 	
-	- parameter server: The server on which to create the resource
+	This method will set the "Prefer" header to "return=minimal", meaning the server may not return the actual resource content created.
+	Use `createAndReturn(server:callback:)` if you want to make sure that you're getting the resource back.
+	
+	- parameter server:   The server on which to create the resource
 	- parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	*/
 	public func create(server: FHIRServer, callback: FHIRErrorCallback) {
-		if nil != id {
+		guard nil == id else {
 			callback(error: FHIRError.ResourceAlreadyHasId)
 			return
 		}
 		
-		server.performRequestOfType(.POST, path: relativeURLBase(), resource: self, additionalHeaders: nil) { response in
+		let headers = FHIRRequestHeaders([.Prefer: "return=minimal"])
+		server.performRequestOfType(.POST, path: relativeURLBase(), resource: self, additionalHeaders: headers) { response in
 			if nil == response.error {
-				response.applyToResource(self)
 				self._server = server
+				do {
+					try response.applyResponseHeadersToResource(self)
+				}
+				catch let error {
+					fhir_warn("Error applying response headers after `create` call: \(error)")
+				}
 			}
-			
-			// TODO: should we do some header inspection (response.headers)?
+			callback(error: response.error)
+		}
+	}
+	
+	/**
+	Create the receiver on the given server, ensuring that the created resource is returned.
+	
+	This method issues a POST, with the receiver serialized to JSON as the request's body data, to the FHIR server. If the call succeeds
+	(i.e. does not return an error), the receiver updates its properties from the full resource response, and the `_server` property is
+	assigned.
+	
+	This method will set the "Prefer" header to "return=representation", meaning the server should return the actual resource created. If it
+	does not do so, a `read` call will be issued to ensure the most recent representation is in memory, and then the callback is called.
+	Use `create(server:callback:)` if you do not need the actual resource back.
+	
+	- parameter server:   The server on which to create the resource
+	- parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
+	*/
+	func createAndReturn(server: FHIRServer, callback: FHIRErrorCallback) {
+		guard nil == id else {
+			callback(error: FHIRError.ResourceAlreadyHasId)
+			return
+		}
+		
+		let headers = FHIRRequestHeaders([.Prefer: "return=representation"])
+		server.performRequestOfType(.POST, path: relativeURLBase(), resource: self, additionalHeaders: headers) { response in
+			if nil == response.error {
+				self._server = server
+				do {
+					try response.applyResponseHeadersToResource(self)
+					try response.applyResponseBodyToResource(self)
+				}
+					
+				// no resource, but hopefully the id was detected in the Location header, so go and read the resource
+				catch FHIRError.ResponseNoResourceReceived {
+					if let id = self.id {
+						self.dynamicType.read(id, server: server) { resource, error in
+							if let resource = resource {
+								self.populateFromJSON(resource.asJSON())
+							}
+							callback(error: error)
+						}
+					}
+					else {
+						callback(error: FHIRError.ResourceWithoutId)
+					}
+					return
+				}
+				catch let error {
+					fhir_warn("Error applying resource header or data after `createAndReturn` call: \(error)")
+					
+					// if we didn't manage to get the id one way or the other, we have a problem
+					if nil == self.id {
+						callback(error: FHIRError.ResourceWithoutId)
+						return
+					}
+				}
+			}
 			callback(error: response.error)
 		}
 	}
@@ -157,7 +228,12 @@ public extension Resource {
 			do {
 				let path = try relativeURLPath()
 				server.performRequestOfType(.PUT, path: path, resource: self, additionalHeaders: nil) { response in
-					// TODO: should we do some header inspection (response.headers)?
+					do {
+						try response.applyResponseHeadersToResource(self)
+					}
+					catch let error {
+						fhir_warn("Error applying response headers after `update` call: \(error)")
+					}
 					callback(error: response.error)
 				}
 			}

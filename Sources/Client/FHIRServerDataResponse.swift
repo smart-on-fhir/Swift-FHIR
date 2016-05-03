@@ -12,10 +12,71 @@ import Models
 #endif
 
 
+extension FHIRServerResponse {
+	
+	/**
+	The base implementation inspects response headers ("Location", "Last-Modified" and "ETag") and updates the resource's `id` and `meta`
+	accordingly.
+	
+	This method must not be called if the response has a non-nil error.
+	
+	- parameter resource: The resource to apply response data to
+	*/
+	public func applyResponseHeadersToResource(resource: Resource) throws {
+		
+		// inspect Location header to update `id` and `meta`. It has the form "Location: [base]/[type]/[id]/_history/[vid]"
+		if let location = headers["Location"] {
+			if let base = resource._server?.baseURL.absoluteString {    // we are able to rely on the fact that the base URL ends with "/"
+				if location.hasPrefix(base) {
+					let path = location.stringByReplacingOccurrencesOfString(base, withString: "")
+					let components = path.componentsSeparatedByString("/")
+					guard components.count > 1 && resource.dynamicType.resourceName == components[0] else {
+						throw FHIRError.ResponseLocationHeaderResourceTypeMismatch(location, resource.dynamicType.resourceName)
+					}
+					
+					resource.id = components[1]
+					if components.count > 3 && "_history" == components[2] {
+						resource.meta = resource.meta ?? Meta(json: nil)
+						resource.meta!.versionId = components[3]
+					}
+				}
+				else {
+					fhir_warn("Location “\(location)” does not appear to live on server \(base), not updating the resource")
+				}
+			}
+			else {
+				fhir_warn("Resource «\(resource)» does not have a server associated, will not try to parse “Location” header")
+			}
+		}
+		
+		// inspect Last-Modified header
+		if let modified = headers["Last-Modified"] {
+			resource.meta = resource.meta ?? Meta(json: nil)
+			resource.meta!.lastUpdated = Instant.fromHttpDate(modified)
+		}
+		
+		// inspect ETag header
+		if var etag = headers["ETag"] {
+			if etag.hasPrefix("W/") {
+				etag = etag[etag.startIndex.advancedBy(2)..<etag.endIndex]
+			}
+			if etag.hasPrefix("\"") {
+				etag = etag[etag.startIndex.advancedBy(1)..<etag.endIndex]
+			}
+			if etag.hasSuffix("\"") {
+				etag = etag[etag.startIndex..<etag.endIndex.advancedBy(-1)]
+			}
+			resource.meta = resource.meta ?? Meta(json: nil)
+			resource.meta!.versionId = etag
+		}
+	}
+}
+
+
 /**
-    Encapsulates a server response, which can also indicate that there was no response or not even a request, in which case the `error`
-    property carries the only useful information.
- */
+Encapsulates a server response, which can also indicate that there was no response or not even a request, in which case the `error`
+property carries the only useful information.
+*/
 public class FHIRServerDataResponse: FHIRServerResponse {
 	
 	/// The HTTP status code.
@@ -46,10 +107,10 @@ public class FHIRServerDataResponse: FHIRServerResponse {
 			for (key, val) in http.allHeaderFields {
 				if let keystr = key as? String {
 					if let valstr = val as? String {
-						headers[keystr] = valstr
+						headers[("Etag" == keystr) ? "ETag" : keystr] = valstr		// NSHTTPURLResponse returns "Etag"
 					}
 					else {
-						fhir_logIfDebug("Not a string in headers: \(val) (for \(keystr))")
+						fhir_warn("Not a string in headers: \(val) (for \(keystr))")
 					}
 				}
 			}
@@ -89,12 +150,21 @@ public class FHIRServerDataResponse: FHIRServerResponse {
 		return nil
 	}
 	
-	public func applyToResource(resource: Resource) {
-	}
-	
 	/** Initializes with a no-response error. */
 	public class func noneReceived() -> Self {
 		return self.init(error: FHIRError.NoResponseReceived)
+	}
+	
+	/**
+	The base method does not actually know how to handle the data to update a resource, but it will still throw
+	`FHIRError.ResponseNoResourceReceived` if body is nil.
+	
+	- parameter resource: The resource to apply the response data to
+	*/
+	public func applyResponseBodyToResource(resource: Resource) throws {
+		guard nil != body else {
+			throw FHIRError.ResponseNoResourceReceived
+		}
 	}
 }
 
@@ -120,7 +190,7 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse {
 				self.json = json
 				self.outcome = responseResource(OperationOutcome)
 				
-				// check for OperationOutcome if there was an error
+				// inspect OperationOutcome if there was an error
 				if status >= 400 {
 					if let erritem = self.outcome?.issue?.first {
 						let errstr = "[\(erritem.severity ?? "unknown")] \(erritem.diagnostics ?? "unknown")"
@@ -164,43 +234,22 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse {
 	}
 	
 	/**
-	The JSON response inspects response headers ("Location" for now) and updates id and meta accordingly. If the body carries resource data
-	it updates the resource by calling `resource.populateFromJSON()`.
+	The response's body data is used to update the resource by calling `resource.populateFromJSON()`. Will throw
+	`FHIRError.ResponseNoResourceReceived` if body is nil.
 	
 	This method must not be called if the response has a non-nil error.
 	
-	- parameter resource: The resource to apply response data to
+	- parameter resource: The resource to apply the response data to
 	*/
-	public override func applyToResource(resource: Resource) {
-		
-		// inspect Location header to update `id` and `meta`. It has the form "Location: [base]/[type]/[id]/_history/[vid]"
-		if let location = headers["Location"] {
-			if let base = resource._server?.baseURL.absoluteString {    // we are able to rely on the fact that the base URL ends with "/"
-				if location.hasPrefix(base) {
-					let path = location.stringByReplacingOccurrencesOfString(base, withString: "")
-					let components = path.componentsSeparatedByString("/")
-					if components.count > 1 && resource.dynamicType.resourceName == components[0] {
-						resource.id = components[1]
-						if components.count > 3 && "_history" == components[2] {
-							resource.meta = resource.meta ?? Meta(json: nil)
-							resource.meta!.versionId = components[3]
-						}
-					}
-					else {
-						fhir_warn("Unable to apply “Location” header components \(components) because of resourceType mismatch")
-					}
-				}
-				else {
-					fhir_warn("Location “\(location)” does not appear to live on server \(base), not updating the resource")
-				}
-			}
-			else {
-				fhir_warn("Resource «\(resource)» does not have a server associated, will not try to parse “Location” header")
-			}
+	public override func applyResponseBodyToResource(resource: Resource) throws {
+		guard let json = json else {
+			throw FHIRError.ResponseNoResourceReceived
 		}
 		
-		// if there's JSON data, update the full resource
-		if let json = json, let errors = resource.populateFromJSON(json) {
+		if let resourceType = json["resourceType"] as? String where resourceType != resource.dynamicType.resourceName {
+			throw FHIRError.ResponseResourceTypeMismatch(resourceType, resource.dynamicType.resourceName)
+		}
+		if let errors = resource.populateFromJSON(json) {
 			for error in errors {
 				fhir_warn("\(error)")
 			}
@@ -209,10 +258,11 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse {
 }
 
 
+// MARK: -
 
 /**
-    Return a human-readable, localized string for error codes of the NSURLErrorDomain.
- */
+Return a human-readable, localized string for error codes of the NSURLErrorDomain.
+*/
 func NSURLErrorHumanize(error: NSError) -> String {
 	assert(NSURLErrorDomain == error.domain, "Can only use this function with errors in the NSURLErrorDomain")
 	switch error.code {

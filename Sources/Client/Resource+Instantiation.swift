@@ -42,7 +42,7 @@ public extension NSBundle {
 			if let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? FHIRJSON {
 				return Resource.instantiateFrom(json, owner: nil) as? Resource
 			}
-			throw FHIRError.ResourceFailedToInstantiate("Failed to deserialize JSON of bundled resource as FHIRJSON")
+			throw FHIRError.ResourceFailedToInstantiate(url.absoluteString)
 		}
 		throw FHIRError.ResourceFailedToInstantiate("Not bundled as «\(name)»")
 	}

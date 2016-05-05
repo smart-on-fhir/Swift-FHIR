@@ -70,6 +70,16 @@ extension FHIRServerResponse {
 			resource.meta!.versionId = etag
 		}
 	}
+	
+	/// Nicely format status code, response headers and response body (if any).
+	public var debugDescription: String {
+		var msg = "HTTP 1.1 \(status)"
+		headers.forEach() { msg += "\n\($0): \($1)" }
+		if let body = body where body.length > 0 {
+			msg += "\n\n\(NSString(data: body, encoding: NSUTF8StringEncoding) ?? "")"
+		}
+		return msg
+	}
 }
 
 
@@ -170,8 +180,8 @@ public class FHIRServerDataResponse: FHIRServerResponse {
 
 
 /**
-    Encapsulates a server response with JSON response body, if any.
- */
+Encapsulates a server response with JSON response body, if any.
+*/
 public class FHIRServerJSONResponse: FHIRServerDataResponse {
 	
 	/// The response body, decoded into a FHIRJSON

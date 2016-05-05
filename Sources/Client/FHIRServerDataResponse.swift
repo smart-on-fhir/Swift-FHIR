@@ -13,9 +13,9 @@ import Models
 
 
 /**
-    Encapsulates a server response, which can also indicate that there was no response or not even a request, in which case the `error`
-    property carries the only useful information.
- */
+Encapsulates a server response, which can also indicate that there was no response or not even a request, in which case the `error`
+property carries the only useful information.
+*/
 public class FHIRServerDataResponse: FHIRServerResponse {
 	
 	/// The HTTP status code.
@@ -100,8 +100,8 @@ public class FHIRServerDataResponse: FHIRServerResponse {
 
 
 /**
-    Encapsulates a server response with JSON response body, if any.
- */
+Encapsulates a server response with JSON response body, if any.
+*/
 public class FHIRServerJSONResponse: FHIRServerDataResponse {
 	
 	/// The response body, decoded into a FHIRJSON
@@ -171,10 +171,24 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse {
 }
 
 
+// MARK: -
+
+extension FHIRServerResponse {
+	
+	/// Nicely format status code, response headers and response body (if any).
+	public var debugDescription: String {
+		var msg = "HTTP 1.1 \(status)"
+		headers.forEach() { msg += "\n\($0): \($1)" }
+		if let body = body where body.length > 0 {
+			msg += "\n\n\(NSString(data: body, encoding: NSUTF8StringEncoding) ?? "")"
+		}
+		return msg
+	}
+}
 
 /**
-    Return a human-readable, localized string for error codes of the NSURLErrorDomain.
- */
+Return a human-readable, localized string for error codes of the NSURLErrorDomain.
+*/
 func NSURLErrorHumanize(error: NSError) -> String {
 	assert(NSURLErrorDomain == error.domain, "Can only use this function with errors in the NSURLErrorDomain")
 	switch error.code {

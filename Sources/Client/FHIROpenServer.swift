@@ -156,13 +156,8 @@ public class FHIROpenServer: FHIRServer {
 	public func performPreparedRequest<R: FHIRServerRequestHandler>(request: NSMutableURLRequest, withSession session: NSURLSession, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
 		let task = session.dataTaskWithRequest(request) { data, response, error in
 			let res = handler.response(response: response, data: data, error: error)
-			fhir_logIfDebug("Server responded with status \(res.status)")
-			//let str = NSString(data: data!, encoding: NSUTF8StringEncoding)
-			//logIfDebug("\(str)")
 			callback(response: res)
 		}
-		
-		fhir_logIfDebug("Performing \(handler.type.rawValue) request against \(request.URL!)")
 		task.resume()
 	}
 	

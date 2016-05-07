@@ -45,7 +45,7 @@ extension Reference {
 			if let contained = contained as? T {
 				return contained
 			}
-			fhir_warn("reference “\(refid)” was contained as «\(resolved)», which is not of the expected type “\(T.self)”")
+			fhir_warn("reference “\(refid)” was contained as «\(contained)», which is not of the expected type “\(T.self)”")
 			return nil
 		}
 		
@@ -95,9 +95,13 @@ extension Reference {
 			
 			// absolute URL
 			if let _ = ref.rangeOfString("://") {
-				path = (ref as NSString).lastPathComponent
-				let base = NSURL(string: (ref as NSString).stringByDeletingLastPathComponent)!
-				server = FHIRBaseServer(baseURL: base, auth: nil)		// TODO: what if it's protected?
+				if let url = NSURL(string: ref), let base = url.URLByDeletingLastPathComponent?.URLByDeletingLastPathComponent {
+					path = url.absoluteString.stringByReplacingOccurrencesOfString(base.absoluteString, withString: "")
+					server = FHIRBaseServer(baseURL: base, auth: nil)		// TODO: what if it's protected?
+				}
+				else {
+					fhir_warn("Unable to construct NSURL from absolute reference «\(ref)»")
+				}
 			}
 			
 			// relative URL

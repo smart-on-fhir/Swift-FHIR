@@ -13,8 +13,8 @@ import Models
 
 
 /**
- *  An extension to Reference. This allows reference resolving while keeping the superclass'es attributes in place.
- */
+An extension to Reference. This allows reference resolving while keeping the superclass'es attributes in place.
+*/
 extension Reference {
 	
 	/**
@@ -113,7 +113,7 @@ extension Reference {
 				T.readFrom(path, server: server) { resource, error in
 					if let res = resource {
 						self.owningResource()?.didResolveReference(ref, resolved: res)
-						callback(res as? T)		// `readFrom()` will always instantiate its own type, so this should never fail
+						callback(res as? T)		// `readFrom()` will always instantiate its own type, so this should never turn into nil
 					}
 					else {
 						if let err = error {

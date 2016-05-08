@@ -261,7 +261,7 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse {
 		}
 		if let errors = resource.populateFromJSON(json) {
 			for error in errors {
-				fhir_warn("\(error)")
+				fhir_warn("\(resource) \(error)")
 			}
 		}
 	}

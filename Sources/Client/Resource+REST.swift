@@ -20,8 +20,8 @@ public typealias FHIRResourceErrorCallback = ((resource: Resource?, error: FHIRE
 
 
 /**
-    Extension to `Resource` to support REST interactions and operations.
- */
+Extension to `Resource` to support REST interactions and operations.
+*/
 public extension Resource {
 	/**
 	Creates a `Reference` instance containing a relative reference to the receiver.
@@ -50,6 +50,7 @@ public extension Resource {
 	
 	/**
 	Returns the relative URL path to the receiver's type of resource. This usually is the same as the resource's name.
+	
 	- returns: A string indicating the relative URL base, e.g. "MedicationPrescription"
 	*/
 	public func relativeURLBase() -> String {
@@ -115,6 +116,9 @@ public extension Resource {
 				}
 				catch let error {
 					fhir_warn("Error applying response headers after `read` call: \(error)")
+				}
+				if nil == resource.id {
+					resource.id = (path as NSString).lastPathComponent
 				}
 				callback(resource: resource, error: nil)
 			}

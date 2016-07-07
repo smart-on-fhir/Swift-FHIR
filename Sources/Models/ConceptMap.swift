@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -54,7 +54,7 @@ public class ConceptMap: DomainResource {
 	public var sourceReference: Reference?
 	
 	/// Identifies the source of the concepts which are being mapped.
-	public var sourceUri: NSURL?
+	public var sourceUri: URL?
 	
 	/// draft | active | retired.
 	public var status: String?
@@ -63,10 +63,10 @@ public class ConceptMap: DomainResource {
 	public var targetReference: Reference?
 	
 	/// Provides context to the mappings.
-	public var targetUri: NSURL?
+	public var targetUri: URL?
 	
 	/// Globally unique logical id for concept map.
-	public var url: NSURL?
+	public var url: URL?
 	
 	/// Content intends to support these contexts.
 	public var useContext: [CodeableConcept]?
@@ -81,7 +81,7 @@ public class ConceptMap: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(sourceReference: Reference, sourceUri: NSURL, status: String, targetReference: Reference, targetUri: NSURL) {
+	public convenience init(sourceReference: Reference, sourceUri: URL, status: String, targetReference: Reference, targetUri: URL) {
 		self.init(json: nil)
 		self.sourceReference = sourceReference
 		self.sourceUri = sourceUri
@@ -90,13 +90,13 @@ public class ConceptMap: DomainResource {
 		self.targetUri = targetUri
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = ConceptMapContact.from(val, owner: self) as? [ConceptMapContact]
+					self.contact = ConceptMapContact.instantiate(fromArray: val, owner: self) as? [ConceptMapContact]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -132,7 +132,7 @@ public class ConceptMap: DomainResource {
 			if let exist: AnyObject = js["element"] {
 				presentKeys.insert("element")
 				if let val = exist as? [FHIRJSON] {
-					self.element = ConceptMapElement.from(val, owner: self) as? [ConceptMapElement]
+					self.element = ConceptMapElement.instantiate(fromArray: val, owner: self) as? [ConceptMapElement]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "element", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -195,7 +195,7 @@ public class ConceptMap: DomainResource {
 			if let exist: AnyObject = js["sourceUri"] {
 				presentKeys.insert("sourceUri")
 				if let val = exist as? String {
-					self.sourceUri = NSURL(string: val)
+					self.sourceUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sourceUri", wants: String.self, has: exist.dynamicType))
@@ -225,7 +225,7 @@ public class ConceptMap: DomainResource {
 			if let exist: AnyObject = js["targetUri"] {
 				presentKeys.insert("targetUri")
 				if let val = exist as? String {
-					self.targetUri = NSURL(string: val)
+					self.targetUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "targetUri", wants: String.self, has: exist.dynamicType))
@@ -234,7 +234,7 @@ public class ConceptMap: DomainResource {
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
@@ -243,7 +243,7 @@ public class ConceptMap: DomainResource {
 			if let exist: AnyObject = js["useContext"] {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
-					self.useContext = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -355,8 +355,8 @@ public class ConceptMapContact: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["name"] {
 				presentKeys.insert("name")
@@ -370,7 +370,7 @@ public class ConceptMapContact: BackboneElement {
 			if let exist: AnyObject = js["telecom"] {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -409,7 +409,7 @@ public class ConceptMapElement: BackboneElement {
 	public var code: String?
 	
 	/// Code System (if value set crosses code systems).
-	public var system: NSURL?
+	public var system: URL?
 	
 	/// Concept in target system for element.
 	public var target: [ConceptMapElementTarget]?
@@ -423,8 +423,8 @@ public class ConceptMapElement: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")
@@ -438,7 +438,7 @@ public class ConceptMapElement: BackboneElement {
 			if let exist: AnyObject = js["system"] {
 				presentKeys.insert("system")
 				if let val = exist as? String {
-					self.system = NSURL(string: val)
+					self.system = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "system", wants: String.self, has: exist.dynamicType))
@@ -447,7 +447,7 @@ public class ConceptMapElement: BackboneElement {
 			if let exist: AnyObject = js["target"] {
 				presentKeys.insert("target")
 				if let val = exist as? [FHIRJSON] {
-					self.target = ConceptMapElementTarget.from(val, owner: self) as? [ConceptMapElementTarget]
+					self.target = ConceptMapElementTarget.instantiate(fromArray: val, owner: self) as? [ConceptMapElementTarget]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "target", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -513,7 +513,7 @@ public class ConceptMapElementTarget: BackboneElement {
 	public var product: [ConceptMapElementTargetDependsOn]?
 	
 	/// System of the target (if necessary).
-	public var system: NSURL?
+	public var system: URL?
 	
 	/// Specific version of the  code system.
 	public var version: String?
@@ -530,8 +530,8 @@ public class ConceptMapElementTarget: BackboneElement {
 		self.equivalence = equivalence
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")
@@ -554,7 +554,7 @@ public class ConceptMapElementTarget: BackboneElement {
 			if let exist: AnyObject = js["dependsOn"] {
 				presentKeys.insert("dependsOn")
 				if let val = exist as? [FHIRJSON] {
-					self.dependsOn = ConceptMapElementTargetDependsOn.from(val, owner: self) as? [ConceptMapElementTargetDependsOn]
+					self.dependsOn = ConceptMapElementTargetDependsOn.instantiate(fromArray: val, owner: self) as? [ConceptMapElementTargetDependsOn]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dependsOn", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -575,7 +575,7 @@ public class ConceptMapElementTarget: BackboneElement {
 			if let exist: AnyObject = js["product"] {
 				presentKeys.insert("product")
 				if let val = exist as? [FHIRJSON] {
-					self.product = ConceptMapElementTargetDependsOn.from(val, owner: self) as? [ConceptMapElementTargetDependsOn]
+					self.product = ConceptMapElementTargetDependsOn.instantiate(fromArray: val, owner: self) as? [ConceptMapElementTargetDependsOn]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "product", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -584,7 +584,7 @@ public class ConceptMapElementTarget: BackboneElement {
 			if let exist: AnyObject = js["system"] {
 				presentKeys.insert("system")
 				if let val = exist as? String {
-					self.system = NSURL(string: val)
+					self.system = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "system", wants: String.self, has: exist.dynamicType))
@@ -648,10 +648,10 @@ public class ConceptMapElementTargetDependsOn: BackboneElement {
 	public var code: String?
 	
 	/// Reference to element/field/ValueSet mapping depends on.
-	public var element: NSURL?
+	public var element: URL?
 	
 	/// Code System (if necessary).
-	public var system: NSURL?
+	public var system: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -660,15 +660,15 @@ public class ConceptMapElementTargetDependsOn: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String, element: NSURL, system: NSURL) {
+	public convenience init(code: String, element: URL, system: URL) {
 		self.init(json: nil)
 		self.code = code
 		self.element = element
 		self.system = system
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")
@@ -685,7 +685,7 @@ public class ConceptMapElementTargetDependsOn: BackboneElement {
 			if let exist: AnyObject = js["element"] {
 				presentKeys.insert("element")
 				if let val = exist as? String {
-					self.element = NSURL(string: val)
+					self.element = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "element", wants: String.self, has: exist.dynamicType))
@@ -697,7 +697,7 @@ public class ConceptMapElementTargetDependsOn: BackboneElement {
 			if let exist: AnyObject = js["system"] {
 				presentKeys.insert("system")
 				if let val = exist as? String {
-					self.system = NSURL(string: val)
+					self.system = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "system", wants: String.self, has: exist.dynamicType))

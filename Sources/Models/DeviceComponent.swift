@@ -2,7 +2,7 @@
 //  DeviceComponent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -64,8 +64,8 @@ public class DeviceComponent: DomainResource {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
@@ -112,7 +112,7 @@ public class DeviceComponent: DomainResource {
 			if let exist: AnyObject = js["operationalStatus"] {
 				presentKeys.insert("operationalStatus")
 				if let val = exist as? [FHIRJSON] {
-					self.operationalStatus = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.operationalStatus = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "operationalStatus", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -139,7 +139,7 @@ public class DeviceComponent: DomainResource {
 			if let exist: AnyObject = js["productionSpecification"] {
 				presentKeys.insert("productionSpecification")
 				if let val = exist as? [FHIRJSON] {
-					self.productionSpecification = DeviceComponentProductionSpecification.from(val, owner: self) as? [DeviceComponentProductionSpecification]
+					self.productionSpecification = DeviceComponentProductionSpecification.instantiate(fromArray: val, owner: self) as? [DeviceComponentProductionSpecification]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "productionSpecification", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -234,8 +234,8 @@ public class DeviceComponentProductionSpecification: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["componentId"] {
 				presentKeys.insert("componentId")

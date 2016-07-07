@@ -2,7 +2,7 @@
 //  Appointment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -79,8 +79,8 @@ public class Appointment: DomainResource {
 		self.status = status
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["appointmentType"] {
 				presentKeys.insert("appointmentType")
@@ -130,7 +130,7 @@ public class Appointment: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -148,7 +148,7 @@ public class Appointment: DomainResource {
 			if let exist: AnyObject = js["participant"] {
 				presentKeys.insert("participant")
 				if let val = exist as? [FHIRJSON] {
-					self.participant = AppointmentParticipant.from(val, owner: self) as? [AppointmentParticipant]
+					self.participant = AppointmentParticipant.instantiate(fromArray: val, owner: self) as? [AppointmentParticipant]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "participant", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -187,7 +187,7 @@ public class Appointment: DomainResource {
 			if let exist: AnyObject = js["serviceType"] {
 				presentKeys.insert("serviceType")
 				if let val = exist as? [FHIRJSON] {
-					self.serviceType = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.serviceType = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "serviceType", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -196,7 +196,7 @@ public class Appointment: DomainResource {
 			if let exist: AnyObject = js["slot"] {
 				presentKeys.insert("slot")
 				if let val = exist as? [FHIRJSON] {
-					self.slot = Reference.from(val, owner: self) as? [Reference]
+					self.slot = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "slot", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -205,7 +205,7 @@ public class Appointment: DomainResource {
 			if let exist: AnyObject = js["specialty"] {
 				presentKeys.insert("specialty")
 				if let val = exist as? [FHIRJSON] {
-					self.specialty = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.specialty = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "specialty", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -327,8 +327,8 @@ public class AppointmentParticipant: BackboneElement {
 		self.status = status
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["actor"] {
 				presentKeys.insert("actor")
@@ -363,7 +363,7 @@ public class AppointmentParticipant: BackboneElement {
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? [FHIRJSON] {
-					self.type = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.type = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: Array<FHIRJSON>.self, has: exist.dynamicType))

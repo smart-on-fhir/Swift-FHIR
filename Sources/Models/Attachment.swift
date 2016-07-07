@@ -2,7 +2,7 @@
 //  Attachment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -41,7 +41,7 @@ public class Attachment: Element {
 	public var title: String?
 	
 	/// Uri where the data can be found.
-	public var url: NSURL?
+	public var url: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -49,8 +49,8 @@ public class Attachment: Element {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["contentType"] {
 				presentKeys.insert("contentType")
@@ -118,7 +118,7 @@ public class Attachment: Element {
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))

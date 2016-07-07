@@ -2,7 +2,7 @@
 //  AccountTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -12,12 +12,12 @@ import SwiftFHIR
 
 class AccountTests: XCTestCase {
 	
-	func instantiateFrom(filename filename: String) throws -> Account {
+	func instantiateFrom(filename: String) throws -> SwiftFHIR.Account {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json json: FHIRJSON) -> Account {
-		let instance = Account(json: json)
+	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Account {
+		let instance = SwiftFHIR.Account(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
@@ -32,12 +32,13 @@ class AccountTests: XCTestCase {
 		}
 	}
 	
-	func runAccount1(json: FHIRJSON? = nil) throws -> Account {
+	@discardableResult
+	func runAccount1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Account {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "account-example.json")
 		
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.text!.div!, "<div>[Put rendering here]</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
+		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
 	}

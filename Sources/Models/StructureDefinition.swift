@@ -2,7 +2,7 @@
 //  StructureDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -24,7 +24,7 @@ public class StructureDefinition: DomainResource {
 	public var abstract: Bool?
 	
 	/// Definition that this type is constrained/specialized from.
-	public var baseDefinition: NSURL?
+	public var baseDefinition: URL?
 	
 	/// Any datatype or resource, including abstract ones.
 	public var baseType: String?
@@ -90,7 +90,7 @@ public class StructureDefinition: DomainResource {
 	public var status: String?
 	
 	/// Absolute URL used to reference this StructureDefinition.
-	public var url: NSURL?
+	public var url: URL?
 	
 	/// Content intends to support these contexts.
 	public var useContext: [CodeableConcept]?
@@ -105,7 +105,7 @@ public class StructureDefinition: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(abstract: Bool, kind: String, name: String, status: String, url: NSURL) {
+	public convenience init(abstract: Bool, kind: String, name: String, status: String, url: URL) {
 		self.init(json: nil)
 		self.abstract = abstract
 		self.kind = kind
@@ -114,8 +114,8 @@ public class StructureDefinition: DomainResource {
 		self.url = url
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["abstract"] {
 				presentKeys.insert("abstract")
@@ -132,7 +132,7 @@ public class StructureDefinition: DomainResource {
 			if let exist: AnyObject = js["baseDefinition"] {
 				presentKeys.insert("baseDefinition")
 				if let val = exist as? String {
-					self.baseDefinition = NSURL(string: val)
+					self.baseDefinition = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "baseDefinition", wants: String.self, has: exist.dynamicType))
@@ -150,7 +150,7 @@ public class StructureDefinition: DomainResource {
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? [FHIRJSON] {
-					self.code = Coding.from(val, owner: self) as? [Coding]
+					self.code = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -159,7 +159,7 @@ public class StructureDefinition: DomainResource {
 			if let exist: AnyObject = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = StructureDefinitionContact.from(val, owner: self) as? [StructureDefinitionContact]
+					self.contact = StructureDefinitionContact.instantiate(fromArray: val, owner: self) as? [StructureDefinitionContact]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -258,7 +258,7 @@ public class StructureDefinition: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -279,7 +279,7 @@ public class StructureDefinition: DomainResource {
 			if let exist: AnyObject = js["mapping"] {
 				presentKeys.insert("mapping")
 				if let val = exist as? [FHIRJSON] {
-					self.mapping = StructureDefinitionMapping.from(val, owner: self) as? [StructureDefinitionMapping]
+					self.mapping = StructureDefinitionMapping.instantiate(fromArray: val, owner: self) as? [StructureDefinitionMapping]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "mapping", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -339,7 +339,7 @@ public class StructureDefinition: DomainResource {
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
@@ -351,7 +351,7 @@ public class StructureDefinition: DomainResource {
 			if let exist: AnyObject = js["useContext"] {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
-					self.useContext = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -483,8 +483,8 @@ public class StructureDefinitionContact: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["name"] {
 				presentKeys.insert("name")
@@ -498,7 +498,7 @@ public class StructureDefinitionContact: BackboneElement {
 			if let exist: AnyObject = js["telecom"] {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -549,13 +549,13 @@ public class StructureDefinitionDifferential: BackboneElement {
 		self.element = element
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["element"] {
 				presentKeys.insert("element")
 				if let val = exist as? [FHIRJSON] {
-					self.element = ElementDefinition.from(val, owner: self) as? [ElementDefinition]
+					self.element = ElementDefinition.instantiate(fromArray: val, owner: self) as? [ElementDefinition]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "element", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -600,7 +600,7 @@ public class StructureDefinitionMapping: BackboneElement {
 	public var name: String?
 	
 	/// Identifies what this mapping refers to.
-	public var uri: NSURL?
+	public var uri: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -614,8 +614,8 @@ public class StructureDefinitionMapping: BackboneElement {
 		self.identity = identity
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["comments"] {
 				presentKeys.insert("comments")
@@ -650,7 +650,7 @@ public class StructureDefinitionMapping: BackboneElement {
 			if let exist: AnyObject = js["uri"] {
 				presentKeys.insert("uri")
 				if let val = exist as? String {
-					self.uri = NSURL(string: val)
+					self.uri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "uri", wants: String.self, has: exist.dynamicType))
@@ -707,13 +707,13 @@ public class StructureDefinitionSnapshot: BackboneElement {
 		self.element = element
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["element"] {
 				presentKeys.insert("element")
 				if let val = exist as? [FHIRJSON] {
-					self.element = ElementDefinition.from(val, owner: self) as? [ElementDefinition]
+					self.element = ElementDefinition.instantiate(fromArray: val, owner: self) as? [ElementDefinition]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "element", wants: Array<FHIRJSON>.self, has: exist.dynamicType))

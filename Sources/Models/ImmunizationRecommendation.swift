@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -42,13 +42,13 @@ public class ImmunizationRecommendation: DomainResource {
 		self.recommendation = recommendation
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -69,7 +69,7 @@ public class ImmunizationRecommendation: DomainResource {
 			if let exist: AnyObject = js["recommendation"] {
 				presentKeys.insert("recommendation")
 				if let val = exist as? [FHIRJSON] {
-					self.recommendation = ImmunizationRecommendationRecommendation.from(val, owner: self) as? [ImmunizationRecommendationRecommendation]
+					self.recommendation = ImmunizationRecommendationRecommendation.instantiate(fromArray: val, owner: self) as? [ImmunizationRecommendationRecommendation]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "recommendation", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -146,8 +146,8 @@ public class ImmunizationRecommendationRecommendation: BackboneElement {
 		self.vaccineCode = vaccineCode
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["date"] {
 				presentKeys.insert("date")
@@ -164,7 +164,7 @@ public class ImmunizationRecommendationRecommendation: BackboneElement {
 			if let exist: AnyObject = js["dateCriterion"] {
 				presentKeys.insert("dateCriterion")
 				if let val = exist as? [FHIRJSON] {
-					self.dateCriterion = ImmunizationRecommendationRecommendationDateCriterion.from(val, owner: self) as? [ImmunizationRecommendationRecommendationDateCriterion]
+					self.dateCriterion = ImmunizationRecommendationRecommendationDateCriterion.instantiate(fromArray: val, owner: self) as? [ImmunizationRecommendationRecommendationDateCriterion]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dateCriterion", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -203,7 +203,7 @@ public class ImmunizationRecommendationRecommendation: BackboneElement {
 			if let exist: AnyObject = js["supportingImmunization"] {
 				presentKeys.insert("supportingImmunization")
 				if let val = exist as? [FHIRJSON] {
-					self.supportingImmunization = Reference.from(val, owner: self) as? [Reference]
+					self.supportingImmunization = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "supportingImmunization", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -212,7 +212,7 @@ public class ImmunizationRecommendationRecommendation: BackboneElement {
 			if let exist: AnyObject = js["supportingPatientInformation"] {
 				presentKeys.insert("supportingPatientInformation")
 				if let val = exist as? [FHIRJSON] {
-					self.supportingPatientInformation = Reference.from(val, owner: self) as? [Reference]
+					self.supportingPatientInformation = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "supportingPatientInformation", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -296,8 +296,8 @@ public class ImmunizationRecommendationRecommendationDateCriterion: BackboneElem
 		self.value = value
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")
@@ -370,8 +370,8 @@ public class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["authority"] {
 				presentKeys.insert("authority")

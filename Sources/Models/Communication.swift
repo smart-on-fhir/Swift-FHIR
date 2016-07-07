@@ -2,7 +2,7 @@
 //  Communication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Communication) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Communication) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -65,8 +65,8 @@ public class Communication: DomainResource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["category"] {
 				presentKeys.insert("category")
@@ -89,7 +89,7 @@ public class Communication: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -98,7 +98,7 @@ public class Communication: DomainResource {
 			if let exist: AnyObject = js["medium"] {
 				presentKeys.insert("medium")
 				if let val = exist as? [FHIRJSON] {
-					self.medium = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.medium = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "medium", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -107,7 +107,7 @@ public class Communication: DomainResource {
 			if let exist: AnyObject = js["payload"] {
 				presentKeys.insert("payload")
 				if let val = exist as? [FHIRJSON] {
-					self.payload = CommunicationPayload.from(val, owner: self) as? [CommunicationPayload]
+					self.payload = CommunicationPayload.instantiate(fromArray: val, owner: self) as? [CommunicationPayload]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "payload", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -116,7 +116,7 @@ public class Communication: DomainResource {
 			if let exist: AnyObject = js["reason"] {
 				presentKeys.insert("reason")
 				if let val = exist as? [FHIRJSON] {
-					self.reason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.reason = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reason", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -134,7 +134,7 @@ public class Communication: DomainResource {
 			if let exist: AnyObject = js["recipient"] {
 				presentKeys.insert("recipient")
 				if let val = exist as? [FHIRJSON] {
-					self.recipient = Reference.from(val, owner: self) as? [Reference]
+					self.recipient = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "recipient", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -270,8 +270,8 @@ public class CommunicationPayload: BackboneElement {
 		self.contentString = contentString
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["contentAttachment"] {
 				presentKeys.insert("contentAttachment")

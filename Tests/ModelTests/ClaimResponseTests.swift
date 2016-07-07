@@ -2,7 +2,7 @@
 //  ClaimResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -12,12 +12,12 @@ import SwiftFHIR
 
 class ClaimResponseTests: XCTestCase {
 	
-	func instantiateFrom(filename filename: String) throws -> ClaimResponse {
+	func instantiateFrom(filename: String) throws -> SwiftFHIR.ClaimResponse {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json json: FHIRJSON) -> ClaimResponse {
-		let instance = ClaimResponse(json: json)
+	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.ClaimResponse {
+		let instance = SwiftFHIR.ClaimResponse(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
@@ -32,49 +32,50 @@ class ClaimResponseTests: XCTestCase {
 		}
 	}
 	
-	func runClaimResponse1(json: FHIRJSON? = nil) throws -> ClaimResponse {
+	@discardableResult
+	func runClaimResponse1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ClaimResponse {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claimresponse-example.json")
 		
-		XCTAssertEqual(inst.created!.description, "2014-08-16")
-		XCTAssertEqual(inst.disposition!, "Claim settled as per contract.")
-		XCTAssertEqual(inst.id!, "R3500")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://www.BenefitsInc.com/fhir/remittance")
-		XCTAssertEqual(inst.identifier![0].value!, "R3500")
-		XCTAssertEqual(inst.item![0].adjudication![0].amount!.code!, "USD")
-		XCTAssertEqual(inst.item![0].adjudication![0].amount!.system!.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.item![0].adjudication![0].amount!.value!, NSDecimalNumber(string: "135.57"))
-		XCTAssertEqual(inst.item![0].adjudication![0].category!.code!, "eligible")
-		XCTAssertEqual(inst.item![0].adjudication![1].amount!.code!, "USD")
-		XCTAssertEqual(inst.item![0].adjudication![1].amount!.system!.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.item![0].adjudication![1].amount!.value!, NSDecimalNumber(string: "10.0"))
-		XCTAssertEqual(inst.item![0].adjudication![1].category!.code!, "copay")
-		XCTAssertEqual(inst.item![0].adjudication![2].category!.code!, "eligpercent")
-		XCTAssertEqual(inst.item![0].adjudication![2].value!, NSDecimalNumber(string: "80.0"))
-		XCTAssertEqual(inst.item![0].adjudication![3].amount!.code!, "USD")
-		XCTAssertEqual(inst.item![0].adjudication![3].amount!.system!.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.item![0].adjudication![3].amount!.value!, NSDecimalNumber(string: "100.47"))
-		XCTAssertEqual(inst.item![0].adjudication![3].category!.code!, "benefit")
-		XCTAssertEqual(inst.item![0].sequenceLinkId!, UInt(1))
-		XCTAssertEqual(inst.organizationIdentifier!.system!.absoluteString, "http://www.jurisdiction.org/insurers")
-		XCTAssertEqual(inst.organizationIdentifier!.value!, "555123")
-		XCTAssertEqual(inst.outcome!, "complete")
-		XCTAssertEqual(inst.payeeType!.code!, "provider")
-		XCTAssertEqual(inst.payeeType!.system!.absoluteString, "http://hl7.org/fhir/payeetype")
-		XCTAssertEqual(inst.paymentAmount!.code!, "USD")
-		XCTAssertEqual(inst.paymentAmount!.system!.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.paymentAmount!.value!, NSDecimalNumber(string: "100.47"))
-		XCTAssertEqual(inst.paymentDate!.description, "2014-08-31")
-		XCTAssertEqual(inst.paymentRef!.system!.absoluteString, "http://www.BenefitsInc.com/fhir/paymentRef")
-		XCTAssertEqual(inst.paymentRef!.value!, "201408-2-1569478")
-		XCTAssertEqual(inst.requestReference!.reference!, "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402")
-		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the ClaimResponse</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.totalBenefit!.code!, "USD")
-		XCTAssertEqual(inst.totalBenefit!.system!.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.totalBenefit!.value!, NSDecimalNumber(string: "100.47"))
-		XCTAssertEqual(inst.totalCost!.code!, "USD")
-		XCTAssertEqual(inst.totalCost!.system!.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.totalCost!.value!, NSDecimalNumber(string: "135.57"))
+		XCTAssertEqual(inst.created?.description, "2014-08-16")
+		XCTAssertEqual(inst.disposition, "Claim settled as per contract.")
+		XCTAssertEqual(inst.id, "R3500")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.BenefitsInc.com/fhir/remittance")
+		XCTAssertEqual(inst.identifier?[0].value, "R3500")
+		XCTAssertEqual(inst.item?[0].adjudication?[0].amount?.code, "USD")
+		XCTAssertEqual(inst.item?[0].adjudication?[0].amount?.system?.absoluteString, "urn:iso:std:iso:4217")
+		XCTAssertEqual(inst.item?[0].adjudication?[0].amount?.value, NSDecimalNumber(string: "135.57"))
+		XCTAssertEqual(inst.item?[0].adjudication?[0].category?.code, "eligible")
+		XCTAssertEqual(inst.item?[0].adjudication?[1].amount?.code, "USD")
+		XCTAssertEqual(inst.item?[0].adjudication?[1].amount?.system?.absoluteString, "urn:iso:std:iso:4217")
+		XCTAssertEqual(inst.item?[0].adjudication?[1].amount?.value, NSDecimalNumber(string: "10.0"))
+		XCTAssertEqual(inst.item?[0].adjudication?[1].category?.code, "copay")
+		XCTAssertEqual(inst.item?[0].adjudication?[2].category?.code, "eligpercent")
+		XCTAssertEqual(inst.item?[0].adjudication?[2].value, NSDecimalNumber(string: "80.0"))
+		XCTAssertEqual(inst.item?[0].adjudication?[3].amount?.code, "USD")
+		XCTAssertEqual(inst.item?[0].adjudication?[3].amount?.system?.absoluteString, "urn:iso:std:iso:4217")
+		XCTAssertEqual(inst.item?[0].adjudication?[3].amount?.value, NSDecimalNumber(string: "100.47"))
+		XCTAssertEqual(inst.item?[0].adjudication?[3].category?.code, "benefit")
+		XCTAssertEqual(inst.item?[0].sequenceLinkId, UInt(1))
+		XCTAssertEqual(inst.organizationIdentifier?.system?.absoluteString, "http://www.jurisdiction.org/insurers")
+		XCTAssertEqual(inst.organizationIdentifier?.value, "555123")
+		XCTAssertEqual(inst.outcome, "complete")
+		XCTAssertEqual(inst.payeeType?.code, "provider")
+		XCTAssertEqual(inst.payeeType?.system?.absoluteString, "http://hl7.org/fhir/payeetype")
+		XCTAssertEqual(inst.paymentAmount?.code, "USD")
+		XCTAssertEqual(inst.paymentAmount?.system?.absoluteString, "urn:iso:std:iso:4217")
+		XCTAssertEqual(inst.paymentAmount?.value, NSDecimalNumber(string: "100.47"))
+		XCTAssertEqual(inst.paymentDate?.description, "2014-08-31")
+		XCTAssertEqual(inst.paymentRef?.system?.absoluteString, "http://www.BenefitsInc.com/fhir/paymentRef")
+		XCTAssertEqual(inst.paymentRef?.value, "201408-2-1569478")
+		XCTAssertEqual(inst.requestReference?.reference, "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402")
+		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the ClaimResponse</div>")
+		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.totalBenefit?.code, "USD")
+		XCTAssertEqual(inst.totalBenefit?.system?.absoluteString, "urn:iso:std:iso:4217")
+		XCTAssertEqual(inst.totalBenefit?.value, NSDecimalNumber(string: "100.47"))
+		XCTAssertEqual(inst.totalCost?.code, "USD")
+		XCTAssertEqual(inst.totalCost?.system?.absoluteString, "urn:iso:std:iso:4217")
+		XCTAssertEqual(inst.totalCost?.value, NSDecimalNumber(string: "135.57"))
 		
 		return inst
 	}

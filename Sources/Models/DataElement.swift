@@ -2,7 +2,7 @@
 //  DataElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -53,7 +53,7 @@ public class DataElement: DomainResource {
 	public var stringency: String?
 	
 	/// Globally unique logical id for data element.
-	public var url: NSURL?
+	public var url: URL?
 	
 	/// Content intends to support these contexts.
 	public var useContext: [CodeableConcept]?
@@ -74,13 +74,13 @@ public class DataElement: DomainResource {
 		self.status = status
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = DataElementContact.from(val, owner: self) as? [DataElementContact]
+					self.contact = DataElementContact.instantiate(fromArray: val, owner: self) as? [DataElementContact]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -107,7 +107,7 @@ public class DataElement: DomainResource {
 			if let exist: AnyObject = js["element"] {
 				presentKeys.insert("element")
 				if let val = exist as? [FHIRJSON] {
-					self.element = ElementDefinition.from(val, owner: self) as? [ElementDefinition]
+					self.element = ElementDefinition.instantiate(fromArray: val, owner: self) as? [ElementDefinition]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "element", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -128,7 +128,7 @@ public class DataElement: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -137,7 +137,7 @@ public class DataElement: DomainResource {
 			if let exist: AnyObject = js["mapping"] {
 				presentKeys.insert("mapping")
 				if let val = exist as? [FHIRJSON] {
-					self.mapping = DataElementMapping.from(val, owner: self) as? [DataElementMapping]
+					self.mapping = DataElementMapping.instantiate(fromArray: val, owner: self) as? [DataElementMapping]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "mapping", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -185,7 +185,7 @@ public class DataElement: DomainResource {
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
@@ -194,7 +194,7 @@ public class DataElement: DomainResource {
 			if let exist: AnyObject = js["useContext"] {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
-					self.useContext = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -286,8 +286,8 @@ public class DataElementContact: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["name"] {
 				presentKeys.insert("name")
@@ -301,7 +301,7 @@ public class DataElementContact: BackboneElement {
 			if let exist: AnyObject = js["telecom"] {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -347,7 +347,7 @@ public class DataElementMapping: BackboneElement {
 	public var name: String?
 	
 	/// Identifies what this mapping refers to.
-	public var uri: NSURL?
+	public var uri: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -361,8 +361,8 @@ public class DataElementMapping: BackboneElement {
 		self.identity = identity
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["comment"] {
 				presentKeys.insert("comment")
@@ -397,7 +397,7 @@ public class DataElementMapping: BackboneElement {
 			if let exist: AnyObject = js["uri"] {
 				presentKeys.insert("uri")
 				if let val = exist as? String {
-					self.uri = NSURL(string: val)
+					self.uri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "uri", wants: String.self, has: exist.dynamicType))

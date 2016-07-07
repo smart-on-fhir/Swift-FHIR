@@ -2,7 +2,7 @@
 //  Signature.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Signature) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Signature) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -37,7 +37,7 @@ public class Signature: Element {
 	public var whoReference: Reference?
 	
 	/// Who signed the signature.
-	public var whoUri: NSURL?
+	public var whoUri: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -46,7 +46,7 @@ public class Signature: Element {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: [Coding], when: Instant, whoReference: Reference, whoUri: NSURL) {
+	public convenience init(type: [Coding], when: Instant, whoReference: Reference, whoUri: URL) {
 		self.init(json: nil)
 		self.type = type
 		self.when = when
@@ -54,8 +54,8 @@ public class Signature: Element {
 		self.whoUri = whoUri
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["blob"] {
 				presentKeys.insert("blob")
@@ -78,7 +78,7 @@ public class Signature: Element {
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? [FHIRJSON] {
-					self.type = Coding.from(val, owner: self) as? [Coding]
+					self.type = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -111,7 +111,7 @@ public class Signature: Element {
 			if let exist: AnyObject = js["whoUri"] {
 				presentKeys.insert("whoUri")
 				if let val = exist as? String {
-					self.whoUri = NSURL(string: val)
+					self.whoUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "whoUri", wants: String.self, has: exist.dynamicType))

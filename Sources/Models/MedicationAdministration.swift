@@ -2,7 +2,7 @@
 //  MedicationAdministration.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -86,13 +86,13 @@ public class MedicationAdministration: DomainResource {
 		self.status = status
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["device"] {
 				presentKeys.insert("device")
 				if let val = exist as? [FHIRJSON] {
-					self.device = Reference.from(val, owner: self) as? [Reference]
+					self.device = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "device", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -137,7 +137,7 @@ public class MedicationAdministration: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -164,7 +164,7 @@ public class MedicationAdministration: DomainResource {
 			if let exist: AnyObject = js["note"] {
 				presentKeys.insert("note")
 				if let val = exist as? [FHIRJSON] {
-					self.note = Annotation.from(val, owner: self) as? [Annotation]
+					self.note = Annotation.instantiate(fromArray: val, owner: self) as? [Annotation]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -203,7 +203,7 @@ public class MedicationAdministration: DomainResource {
 			if let exist: AnyObject = js["reasonGiven"] {
 				presentKeys.insert("reasonGiven")
 				if let val = exist as? [FHIRJSON] {
-					self.reasonGiven = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.reasonGiven = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reasonGiven", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -212,7 +212,7 @@ public class MedicationAdministration: DomainResource {
 			if let exist: AnyObject = js["reasonNotGiven"] {
 				presentKeys.insert("reasonNotGiven")
 				if let val = exist as? [FHIRJSON] {
-					self.reasonNotGiven = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.reasonNotGiven = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reasonNotGiven", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -348,8 +348,8 @@ public class MedicationAdministrationDosage: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["method"] {
 				presentKeys.insert("method")

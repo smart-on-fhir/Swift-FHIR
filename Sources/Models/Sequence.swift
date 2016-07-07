@@ -2,7 +2,7 @@
 //  Sequence.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -85,8 +85,8 @@ public class Sequence: DomainResource {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["allelicFrequency"] {
 				presentKeys.insert("allelicFrequency")
@@ -154,7 +154,7 @@ public class Sequence: DomainResource {
 			if let exist: AnyObject = js["pointer"] {
 				presentKeys.insert("pointer")
 				if let val = exist as? [FHIRJSON] {
-					self.pointer = Reference.from(val, owner: self) as? [Reference]
+					self.pointer = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "pointer", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -163,7 +163,7 @@ public class Sequence: DomainResource {
 			if let exist: AnyObject = js["quality"] {
 				presentKeys.insert("quality")
 				if let val = exist as? [FHIRJSON] {
-					self.quality = SequenceQuality.from(val, owner: self) as? [SequenceQuality]
+					self.quality = SequenceQuality.instantiate(fromArray: val, owner: self) as? [SequenceQuality]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "quality", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -190,7 +190,7 @@ public class Sequence: DomainResource {
 			if let exist: AnyObject = js["referenceSeq"] {
 				presentKeys.insert("referenceSeq")
 				if let val = exist as? [FHIRJSON] {
-					self.referenceSeq = SequenceReferenceSeq.from(val, owner: self) as? [SequenceReferenceSeq]
+					self.referenceSeq = SequenceReferenceSeq.instantiate(fromArray: val, owner: self) as? [SequenceReferenceSeq]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "referenceSeq", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -199,7 +199,7 @@ public class Sequence: DomainResource {
 			if let exist: AnyObject = js["repository"] {
 				presentKeys.insert("repository")
 				if let val = exist as? [FHIRJSON] {
-					self.repository = SequenceRepository.from(val, owner: self) as? [SequenceRepository]
+					self.repository = SequenceRepository.instantiate(fromArray: val, owner: self) as? [SequenceRepository]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "repository", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -348,8 +348,8 @@ public class SequenceQuality: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["end"] {
 				presentKeys.insert("end")
@@ -460,8 +460,8 @@ public class SequenceReferenceSeq: BackboneElement {
 		self.windowStart = windowStart
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["chromosome"] {
 				presentKeys.insert("chromosome")
@@ -586,7 +586,7 @@ public class SequenceRepository: BackboneElement {
 	public var readId: String?
 	
 	/// URI of the repository.
-	public var url: NSURL?
+	public var url: URL?
 	
 	/// Id of the variant.
 	public var variantId: String?
@@ -597,8 +597,8 @@ public class SequenceRepository: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["name"] {
 				presentKeys.insert("name")
@@ -621,7 +621,7 @@ public class SequenceRepository: BackboneElement {
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
@@ -692,8 +692,8 @@ public class SequenceStructureVariation: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["inner"] {
 				presentKeys.insert("inner")
@@ -790,8 +790,8 @@ public class SequenceStructureVariationInner: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["end"] {
 				presentKeys.insert("end")
@@ -852,8 +852,8 @@ public class SequenceStructureVariationOuter: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["end"] {
 				presentKeys.insert("end")
@@ -921,8 +921,8 @@ public class SequenceVariation: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["cigar"] {
 				presentKeys.insert("cigar")

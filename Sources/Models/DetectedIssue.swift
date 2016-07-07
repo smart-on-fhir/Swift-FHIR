@@ -2,7 +2,7 @@
 //  DetectedIssue.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -45,7 +45,7 @@ public class DetectedIssue: DomainResource {
 	public var patient: Reference?
 	
 	/// Authority for issue.
-	public var reference: NSURL?
+	public var reference: URL?
 	
 	/// high | moderate | low.
 	public var severity: String?
@@ -56,8 +56,8 @@ public class DetectedIssue: DomainResource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["author"] {
 				presentKeys.insert("author")
@@ -107,7 +107,7 @@ public class DetectedIssue: DomainResource {
 			if let exist: AnyObject = js["implicated"] {
 				presentKeys.insert("implicated")
 				if let val = exist as? [FHIRJSON] {
-					self.implicated = Reference.from(val, owner: self) as? [Reference]
+					self.implicated = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "implicated", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -116,7 +116,7 @@ public class DetectedIssue: DomainResource {
 			if let exist: AnyObject = js["mitigation"] {
 				presentKeys.insert("mitigation")
 				if let val = exist as? [FHIRJSON] {
-					self.mitigation = DetectedIssueMitigation.from(val, owner: self) as? [DetectedIssueMitigation]
+					self.mitigation = DetectedIssueMitigation.instantiate(fromArray: val, owner: self) as? [DetectedIssueMitigation]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "mitigation", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -134,7 +134,7 @@ public class DetectedIssue: DomainResource {
 			if let exist: AnyObject = js["reference"] {
 				presentKeys.insert("reference")
 				if let val = exist as? String {
-					self.reference = NSURL(string: val)
+					self.reference = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reference", wants: String.self, has: exist.dynamicType))
@@ -225,8 +225,8 @@ public class DetectedIssueMitigation: BackboneElement {
 		self.action = action
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["action"] {
 				presentKeys.insert("action")

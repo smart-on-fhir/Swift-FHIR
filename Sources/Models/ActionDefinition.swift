@@ -2,7 +2,7 @@
 //  ActionDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ActionDefinition) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ActionDefinition) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -71,13 +71,13 @@ public class ActionDefinition: Element {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["action"] {
 				presentKeys.insert("action")
 				if let val = exist as? [FHIRJSON] {
-					self.action = ActionDefinition.from(val, owner: self) as? [ActionDefinition]
+					self.action = ActionDefinition.instantiate(fromArray: val, owner: self) as? [ActionDefinition]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "action", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -95,7 +95,7 @@ public class ActionDefinition: Element {
 			if let exist: AnyObject = js["behavior"] {
 				presentKeys.insert("behavior")
 				if let val = exist as? [FHIRJSON] {
-					self.behavior = ActionDefinitionBehavior.from(val, owner: self) as? [ActionDefinitionBehavior]
+					self.behavior = ActionDefinitionBehavior.instantiate(fromArray: val, owner: self) as? [ActionDefinitionBehavior]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "behavior", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -104,7 +104,7 @@ public class ActionDefinition: Element {
 			if let exist: AnyObject = js["concept"] {
 				presentKeys.insert("concept")
 				if let val = exist as? [FHIRJSON] {
-					self.concept = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.concept = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "concept", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -113,7 +113,7 @@ public class ActionDefinition: Element {
 			if let exist: AnyObject = js["customization"] {
 				presentKeys.insert("customization")
 				if let val = exist as? [FHIRJSON] {
-					self.customization = ActionDefinitionCustomization.from(val, owner: self) as? [ActionDefinitionCustomization]
+					self.customization = ActionDefinitionCustomization.instantiate(fromArray: val, owner: self) as? [ActionDefinitionCustomization]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "customization", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -131,7 +131,7 @@ public class ActionDefinition: Element {
 			if let exist: AnyObject = js["documentation"] {
 				presentKeys.insert("documentation")
 				if let val = exist as? [FHIRJSON] {
-					self.documentation = Attachment.from(val, owner: self) as? [Attachment]
+					self.documentation = Attachment.instantiate(fromArray: val, owner: self) as? [Attachment]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "documentation", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -176,7 +176,7 @@ public class ActionDefinition: Element {
 			if let exist: AnyObject = js["supportingEvidence"] {
 				presentKeys.insert("supportingEvidence")
 				if let val = exist as? [FHIRJSON] {
-					self.supportingEvidence = Attachment.from(val, owner: self) as? [Attachment]
+					self.supportingEvidence = Attachment.instantiate(fromArray: val, owner: self) as? [Attachment]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "supportingEvidence", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -301,8 +301,8 @@ public class ActionDefinitionBehavior: Element {
 		self.value = value
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")
@@ -378,8 +378,8 @@ public class ActionDefinitionCustomization: Element {
 		self.path = path
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["expression"] {
 				presentKeys.insert("expression")
@@ -462,8 +462,8 @@ public class ActionDefinitionRelatedAction: Element {
 		self.relationship = relationship
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["actionIdentifier"] {
 				presentKeys.insert("actionIdentifier")

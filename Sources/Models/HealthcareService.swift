@@ -2,7 +2,7 @@
 //  HealthcareService.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -92,8 +92,8 @@ public class HealthcareService: DomainResource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["appointmentRequired"] {
 				presentKeys.insert("appointmentRequired")
@@ -116,7 +116,7 @@ public class HealthcareService: DomainResource {
 			if let exist: AnyObject = js["availableTime"] {
 				presentKeys.insert("availableTime")
 				if let val = exist as? [FHIRJSON] {
-					self.availableTime = HealthcareServiceAvailableTime.from(val, owner: self) as? [HealthcareServiceAvailableTime]
+					self.availableTime = HealthcareServiceAvailableTime.instantiate(fromArray: val, owner: self) as? [HealthcareServiceAvailableTime]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "availableTime", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -125,7 +125,7 @@ public class HealthcareService: DomainResource {
 			if let exist: AnyObject = js["characteristic"] {
 				presentKeys.insert("characteristic")
 				if let val = exist as? [FHIRJSON] {
-					self.characteristic = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.characteristic = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "characteristic", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -143,7 +143,7 @@ public class HealthcareService: DomainResource {
 			if let exist: AnyObject = js["coverageArea"] {
 				presentKeys.insert("coverageArea")
 				if let val = exist as? [FHIRJSON] {
-					self.coverageArea = Reference.from(val, owner: self) as? [Reference]
+					self.coverageArea = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "coverageArea", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -179,7 +179,7 @@ public class HealthcareService: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -188,7 +188,7 @@ public class HealthcareService: DomainResource {
 			if let exist: AnyObject = js["location"] {
 				presentKeys.insert("location")
 				if let val = exist as? [FHIRJSON] {
-					self.location = Reference.from(val, owner: self) as? [Reference]
+					self.location = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "location", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -197,7 +197,7 @@ public class HealthcareService: DomainResource {
 			if let exist: AnyObject = js["notAvailable"] {
 				presentKeys.insert("notAvailable")
 				if let val = exist as? [FHIRJSON] {
-					self.notAvailable = HealthcareServiceNotAvailable.from(val, owner: self) as? [HealthcareServiceNotAvailable]
+					self.notAvailable = HealthcareServiceNotAvailable.instantiate(fromArray: val, owner: self) as? [HealthcareServiceNotAvailable]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "notAvailable", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -242,7 +242,7 @@ public class HealthcareService: DomainResource {
 			if let exist: AnyObject = js["referralMethod"] {
 				presentKeys.insert("referralMethod")
 				if let val = exist as? [FHIRJSON] {
-					self.referralMethod = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.referralMethod = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "referralMethod", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -269,7 +269,7 @@ public class HealthcareService: DomainResource {
 			if let exist: AnyObject = js["serviceProvisionCode"] {
 				presentKeys.insert("serviceProvisionCode")
 				if let val = exist as? [FHIRJSON] {
-					self.serviceProvisionCode = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.serviceProvisionCode = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "serviceProvisionCode", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -278,7 +278,7 @@ public class HealthcareService: DomainResource {
 			if let exist: AnyObject = js["serviceType"] {
 				presentKeys.insert("serviceType")
 				if let val = exist as? [FHIRJSON] {
-					self.serviceType = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.serviceType = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "serviceType", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -287,7 +287,7 @@ public class HealthcareService: DomainResource {
 			if let exist: AnyObject = js["specialty"] {
 				presentKeys.insert("specialty")
 				if let val = exist as? [FHIRJSON] {
-					self.specialty = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.specialty = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "specialty", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -296,7 +296,7 @@ public class HealthcareService: DomainResource {
 			if let exist: AnyObject = js["telecom"] {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -416,8 +416,8 @@ public class HealthcareServiceAvailableTime: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["allDay"] {
 				presentKeys.insert("allDay")
@@ -512,8 +512,8 @@ public class HealthcareServiceNotAvailable: BackboneElement {
 		self.description_fhir = description_fhir
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["description"] {
 				presentKeys.insert("description")

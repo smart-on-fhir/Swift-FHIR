@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -41,7 +41,7 @@ public class ElementDefinition: Element {
 	public var constraint: [ElementDefinitionConstraint]?
 	
 	/// Reference to definition of content for the element.
-	public var contentReference: NSURL?
+	public var contentReference: URL?
 	
 	/// Specified value if missing from instance.
 	public var defaultValueAddress: Address?
@@ -140,7 +140,7 @@ public class ElementDefinition: Element {
 	public var defaultValueUnsignedInt: UInt?
 	
 	/// Specified value if missing from instance.
-	public var defaultValueUri: NSURL?
+	public var defaultValueUri: URL?
 	
 	/// Full formal definition as narrative text.
 	public var definition: String?
@@ -242,7 +242,7 @@ public class ElementDefinition: Element {
 	public var exampleUnsignedInt: UInt?
 	
 	/// Example value (as defined for type).
-	public var exampleUri: NSURL?
+	public var exampleUri: URL?
 	
 	/// Value must be exactly this.
 	public var fixedAddress: Address?
@@ -341,7 +341,7 @@ public class ElementDefinition: Element {
 	public var fixedUnsignedInt: UInt?
 	
 	/// Value must be exactly this.
-	public var fixedUri: NSURL?
+	public var fixedUri: URL?
 	
 	/// If this modifies the meaning of other elements.
 	public var isModifier: Bool?
@@ -458,7 +458,7 @@ public class ElementDefinition: Element {
 	public var maxValueUnsignedInt: UInt?
 	
 	/// Maximum Allowed Value (for some types).
-	public var maxValueUri: NSURL?
+	public var maxValueUri: URL?
 	
 	/// Implicit meaning when this element is missing.
 	public var meaningWhenMissing: String?
@@ -563,7 +563,7 @@ public class ElementDefinition: Element {
 	public var minValueUnsignedInt: UInt?
 	
 	/// Minimum Allowed Value (for some types).
-	public var minValueUri: NSURL?
+	public var minValueUri: URL?
 	
 	/// If the element must supported.
 	public var mustSupport: Bool?
@@ -671,7 +671,7 @@ public class ElementDefinition: Element {
 	public var patternUnsignedInt: UInt?
 	
 	/// Value must have at least these property values.
-	public var patternUri: NSURL?
+	public var patternUri: URL?
 	
 	/// xmlAttr | xmlText | typeAttr | cdaText.
 	public var representation: [String]?
@@ -700,8 +700,8 @@ public class ElementDefinition: Element {
 		self.path = path
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["alias"] {
 				presentKeys.insert("alias")
@@ -733,7 +733,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? [FHIRJSON] {
-					self.code = Coding.from(val, owner: self) as? [Coding]
+					self.code = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -760,7 +760,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["constraint"] {
 				presentKeys.insert("constraint")
 				if let val = exist as? [FHIRJSON] {
-					self.constraint = ElementDefinitionConstraint.from(val, owner: self) as? [ElementDefinitionConstraint]
+					self.constraint = ElementDefinitionConstraint.instantiate(fromArray: val, owner: self) as? [ElementDefinitionConstraint]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "constraint", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -769,7 +769,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["contentReference"] {
 				presentKeys.insert("contentReference")
 				if let val = exist as? String {
-					self.contentReference = NSURL(string: val)
+					self.contentReference = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentReference", wants: String.self, has: exist.dynamicType))
@@ -1066,7 +1066,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["defaultValueUri"] {
 				presentKeys.insert("defaultValueUri")
 				if let val = exist as? String {
-					self.defaultValueUri = NSURL(string: val)
+					self.defaultValueUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "defaultValueUri", wants: String.self, has: exist.dynamicType))
@@ -1372,7 +1372,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["exampleUri"] {
 				presentKeys.insert("exampleUri")
 				if let val = exist as? String {
-					self.exampleUri = NSURL(string: val)
+					self.exampleUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exampleUri", wants: String.self, has: exist.dynamicType))
@@ -1669,7 +1669,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["fixedUri"] {
 				presentKeys.insert("fixedUri")
 				if let val = exist as? String {
-					self.fixedUri = NSURL(string: val)
+					self.fixedUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fixedUri", wants: String.self, has: exist.dynamicType))
@@ -1705,7 +1705,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["mapping"] {
 				presentKeys.insert("mapping")
 				if let val = exist as? [FHIRJSON] {
-					self.mapping = ElementDefinitionMapping.from(val, owner: self) as? [ElementDefinitionMapping]
+					self.mapping = ElementDefinitionMapping.instantiate(fromArray: val, owner: self) as? [ElementDefinitionMapping]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "mapping", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -2020,7 +2020,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["maxValueUri"] {
 				presentKeys.insert("maxValueUri")
 				if let val = exist as? String {
-					self.maxValueUri = NSURL(string: val)
+					self.maxValueUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxValueUri", wants: String.self, has: exist.dynamicType))
@@ -2335,7 +2335,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["minValueUri"] {
 				presentKeys.insert("minValueUri")
 				if let val = exist as? String {
-					self.minValueUri = NSURL(string: val)
+					self.minValueUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "minValueUri", wants: String.self, has: exist.dynamicType))
@@ -2662,7 +2662,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["patternUri"] {
 				presentKeys.insert("patternUri")
 				if let val = exist as? String {
-					self.patternUri = NSURL(string: val)
+					self.patternUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patternUri", wants: String.self, has: exist.dynamicType))
@@ -2707,7 +2707,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? [FHIRJSON] {
-					self.type = ElementDefinitionType.from(val, owner: self) as? [ElementDefinitionType]
+					self.type = ElementDefinitionType.instantiate(fromArray: val, owner: self) as? [ElementDefinitionType]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -3443,8 +3443,8 @@ public class ElementDefinitionBase: Element {
 		self.path = path
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["max"] {
 				presentKeys.insert("max")
@@ -3524,7 +3524,7 @@ public class ElementDefinitionBinding: Element {
 	public var valueSetReference: Reference?
 	
 	/// Source of value set.
-	public var valueSetUri: NSURL?
+	public var valueSetUri: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -3538,8 +3538,8 @@ public class ElementDefinitionBinding: Element {
 		self.strength = strength
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["description"] {
 				presentKeys.insert("description")
@@ -3574,7 +3574,7 @@ public class ElementDefinitionBinding: Element {
 			if let exist: AnyObject = js["valueSetUri"] {
 				presentKeys.insert("valueSetUri")
 				if let val = exist as? String {
-					self.valueSetUri = NSURL(string: val)
+					self.valueSetUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueSetUri", wants: String.self, has: exist.dynamicType))
@@ -3649,8 +3649,8 @@ public class ElementDefinitionConstraint: Element {
 		self.xpath = xpath
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["expression"] {
 				presentKeys.insert("expression")
@@ -3781,8 +3781,8 @@ public class ElementDefinitionMapping: Element {
 		self.map = map
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["identity"] {
 				presentKeys.insert("identity")
@@ -3877,8 +3877,8 @@ public class ElementDefinitionSlicing: Element {
 		self.rules = rules
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["description"] {
 				presentKeys.insert("description")
@@ -3965,7 +3965,7 @@ public class ElementDefinitionType: Element {
 	public var code: String?
 	
 	/// Profile (StructureDefinition) to apply (or IG).
-	public var profile: [NSURL]?
+	public var profile: [URL]?
 	
 	/// either | independent | specific.
 	public var versioning: String?
@@ -3982,8 +3982,8 @@ public class ElementDefinitionType: Element {
 		self.code = code
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["aggregation"] {
 				presentKeys.insert("aggregation")
@@ -4009,7 +4009,7 @@ public class ElementDefinitionType: Element {
 			if let exist: AnyObject = js["profile"] {
 				presentKeys.insert("profile")
 				if let val = exist as? [String] {
-					self.profile = NSURL.from(val)
+					self.profile = URL.instantiate(fromArray: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "profile", wants: Array<String>.self, has: exist.dynamicType))

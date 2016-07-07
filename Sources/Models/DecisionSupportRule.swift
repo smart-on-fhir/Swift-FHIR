@@ -2,7 +2,7 @@
 //  DecisionSupportRule.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DecisionSupportRule) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DecisionSupportRule) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -42,13 +42,13 @@ public class DecisionSupportRule: DomainResource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["action"] {
 				presentKeys.insert("action")
 				if let val = exist as? [FHIRJSON] {
-					self.action = ActionDefinition.from(val, owner: self) as? [ActionDefinition]
+					self.action = ActionDefinition.instantiate(fromArray: val, owner: self) as? [ActionDefinition]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "action", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -66,7 +66,7 @@ public class DecisionSupportRule: DomainResource {
 			if let exist: AnyObject = js["library"] {
 				presentKeys.insert("library")
 				if let val = exist as? [FHIRJSON] {
-					self.library = Reference.from(val, owner: self) as? [Reference]
+					self.library = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "library", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -84,7 +84,7 @@ public class DecisionSupportRule: DomainResource {
 			if let exist: AnyObject = js["trigger"] {
 				presentKeys.insert("trigger")
 				if let val = exist as? [FHIRJSON] {
-					self.trigger = TriggerDefinition.from(val, owner: self) as? [TriggerDefinition]
+					self.trigger = TriggerDefinition.instantiate(fromArray: val, owner: self) as? [TriggerDefinition]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "trigger", wants: Array<FHIRJSON>.self, has: exist.dynamicType))

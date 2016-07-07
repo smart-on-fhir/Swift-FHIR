@@ -2,7 +2,7 @@
 //  Extension.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Extension) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Extension) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -20,7 +20,7 @@ public class Extension: Element {
 	}
 	
 	/// identifies the meaning of the extension.
-	public var url: NSURL?
+	public var url: URL?
 	
 	/// Value of extension.
 	public var valueAddress: Address?
@@ -119,7 +119,7 @@ public class Extension: Element {
 	public var valueUnsignedInt: UInt?
 	
 	/// Value of extension.
-	public var valueUri: NSURL?
+	public var valueUri: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -128,18 +128,18 @@ public class Extension: Element {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(url: NSURL) {
+	public convenience init(url: URL) {
 		self.init(json: nil)
 		self.url = url
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
@@ -439,7 +439,7 @@ public class Extension: Element {
 			if let exist: AnyObject = js["valueUri"] {
 				presentKeys.insert("valueUri")
 				if let val = exist as? String {
-					self.valueUri = NSURL(string: val)
+					self.valueUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueUri", wants: String.self, has: exist.dynamicType))

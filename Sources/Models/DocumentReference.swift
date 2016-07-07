@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -85,8 +85,8 @@ public class DocumentReference: DomainResource {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["authenticator"] {
 				presentKeys.insert("authenticator")
@@ -100,7 +100,7 @@ public class DocumentReference: DomainResource {
 			if let exist: AnyObject = js["author"] {
 				presentKeys.insert("author")
 				if let val = exist as? [FHIRJSON] {
-					self.author = Reference.from(val, owner: self) as? [Reference]
+					self.author = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "author", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -118,7 +118,7 @@ public class DocumentReference: DomainResource {
 			if let exist: AnyObject = js["content"] {
 				presentKeys.insert("content")
 				if let val = exist as? [FHIRJSON] {
-					self.content = DocumentReferenceContent.from(val, owner: self) as? [DocumentReferenceContent]
+					self.content = DocumentReferenceContent.instantiate(fromArray: val, owner: self) as? [DocumentReferenceContent]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "content", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -175,7 +175,7 @@ public class DocumentReference: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -205,7 +205,7 @@ public class DocumentReference: DomainResource {
 			if let exist: AnyObject = js["relatesTo"] {
 				presentKeys.insert("relatesTo")
 				if let val = exist as? [FHIRJSON] {
-					self.relatesTo = DocumentReferenceRelatesTo.from(val, owner: self) as? [DocumentReferenceRelatesTo]
+					self.relatesTo = DocumentReferenceRelatesTo.instantiate(fromArray: val, owner: self) as? [DocumentReferenceRelatesTo]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "relatesTo", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -214,7 +214,7 @@ public class DocumentReference: DomainResource {
 			if let exist: AnyObject = js["securityLabel"] {
 				presentKeys.insert("securityLabel")
 				if let val = exist as? [FHIRJSON] {
-					self.securityLabel = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.securityLabel = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "securityLabel", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -345,8 +345,8 @@ public class DocumentReferenceContent: BackboneElement {
 		self.attachment = attachment
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["attachment"] {
 				presentKeys.insert("attachment")
@@ -363,7 +363,7 @@ public class DocumentReferenceContent: BackboneElement {
 			if let exist: AnyObject = js["format"] {
 				presentKeys.insert("format")
 				if let val = exist as? [FHIRJSON] {
-					self.format = Coding.from(val, owner: self) as? [Coding]
+					self.format = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "format", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -425,8 +425,8 @@ public class DocumentReferenceContext: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["encounter"] {
 				presentKeys.insert("encounter")
@@ -440,7 +440,7 @@ public class DocumentReferenceContext: BackboneElement {
 			if let exist: AnyObject = js["event"] {
 				presentKeys.insert("event")
 				if let val = exist as? [FHIRJSON] {
-					self.event = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.event = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "event", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -476,7 +476,7 @@ public class DocumentReferenceContext: BackboneElement {
 			if let exist: AnyObject = js["related"] {
 				presentKeys.insert("related")
 				if let val = exist as? [FHIRJSON] {
-					self.related = DocumentReferenceContextRelated.from(val, owner: self) as? [DocumentReferenceContextRelated]
+					self.related = DocumentReferenceContextRelated.instantiate(fromArray: val, owner: self) as? [DocumentReferenceContextRelated]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "related", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -547,8 +547,8 @@ public class DocumentReferenceContextRelated: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
@@ -616,8 +616,8 @@ public class DocumentReferenceRelatesTo: BackboneElement {
 		self.target = target
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")

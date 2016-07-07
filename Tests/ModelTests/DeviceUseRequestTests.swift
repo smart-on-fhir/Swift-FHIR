@@ -2,7 +2,7 @@
 //  DeviceUseRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -12,12 +12,12 @@ import SwiftFHIR
 
 class DeviceUseRequestTests: XCTestCase {
 	
-	func instantiateFrom(filename filename: String) throws -> DeviceUseRequest {
+	func instantiateFrom(filename: String) throws -> SwiftFHIR.DeviceUseRequest {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json json: FHIRJSON) -> DeviceUseRequest {
-		let instance = DeviceUseRequest(json: json)
+	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.DeviceUseRequest {
+		let instance = SwiftFHIR.DeviceUseRequest(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
@@ -32,14 +32,15 @@ class DeviceUseRequestTests: XCTestCase {
 		}
 	}
 	
-	func runDeviceUseRequest1(json: FHIRJSON? = nil) throws -> DeviceUseRequest {
+	@discardableResult
+	func runDeviceUseRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DeviceUseRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "deviceuserequest-example.json")
 		
-		XCTAssertEqual(inst.device!.reference!, "Device/example")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
-		XCTAssertEqual(inst.text!.div!, "<div>To be filled out at a later time</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.device?.reference, "Device/example")
+		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.subject?.reference, "Patient/example")
+		XCTAssertEqual(inst.text?.div, "<div>To be filled out at a later time</div>")
+		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
 	}

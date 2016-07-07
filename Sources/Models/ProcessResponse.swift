@@ -2,7 +2,7 @@
 //  ProcessResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -76,8 +76,8 @@ public class ProcessResponse: DomainResource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["created"] {
 				presentKeys.insert("created")
@@ -100,7 +100,7 @@ public class ProcessResponse: DomainResource {
 			if let exist: AnyObject = js["error"] {
 				presentKeys.insert("error")
 				if let val = exist as? [FHIRJSON] {
-					self.error = Coding.from(val, owner: self) as? [Coding]
+					self.error = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "error", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -118,7 +118,7 @@ public class ProcessResponse: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -127,7 +127,7 @@ public class ProcessResponse: DomainResource {
 			if let exist: AnyObject = js["notes"] {
 				presentKeys.insert("notes")
 				if let val = exist as? [FHIRJSON] {
-					self.notes = ProcessResponseNotes.from(val, owner: self) as? [ProcessResponseNotes]
+					self.notes = ProcessResponseNotes.instantiate(fromArray: val, owner: self) as? [ProcessResponseNotes]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "notes", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -318,8 +318,8 @@ public class ProcessResponseNotes: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["text"] {
 				presentKeys.insert("text")

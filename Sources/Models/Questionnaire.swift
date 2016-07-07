@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -48,7 +48,7 @@ public class Questionnaire: DomainResource {
 	public var title: String?
 	
 	/// Globally unique logical identifier for  questionnaire.
-	public var url: NSURL?
+	public var url: URL?
 	
 	/// Questionnaire intends to support these contexts.
 	public var useContext: [CodeableConcept]?
@@ -68,13 +68,13 @@ public class Questionnaire: DomainResource {
 		self.status = status
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["concept"] {
 				presentKeys.insert("concept")
 				if let val = exist as? [FHIRJSON] {
-					self.concept = Coding.from(val, owner: self) as? [Coding]
+					self.concept = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "concept", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -92,7 +92,7 @@ public class Questionnaire: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -101,7 +101,7 @@ public class Questionnaire: DomainResource {
 			if let exist: AnyObject = js["item"] {
 				presentKeys.insert("item")
 				if let val = exist as? [FHIRJSON] {
-					self.item = QuestionnaireItem.from(val, owner: self) as? [QuestionnaireItem]
+					self.item = QuestionnaireItem.instantiate(fromArray: val, owner: self) as? [QuestionnaireItem]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -140,7 +140,7 @@ public class Questionnaire: DomainResource {
 			if let exist: AnyObject = js["telecom"] {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -158,7 +158,7 @@ public class Questionnaire: DomainResource {
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
@@ -167,7 +167,7 @@ public class Questionnaire: DomainResource {
 			if let exist: AnyObject = js["useContext"] {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
-					self.useContext = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -288,7 +288,7 @@ public class QuestionnaireItem: BackboneElement {
 	public var initialTime: Time?
 	
 	/// Initial presumed answer for question.
-	public var initialUri: NSURL?
+	public var initialUri: URL?
 	
 	/// Nested questionnaire items.
 	public var item: [QuestionnaireItem]?
@@ -335,13 +335,13 @@ public class QuestionnaireItem: BackboneElement {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["concept"] {
 				presentKeys.insert("concept")
 				if let val = exist as? [FHIRJSON] {
-					self.concept = Coding.from(val, owner: self) as? [Coding]
+					self.concept = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "concept", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -350,7 +350,7 @@ public class QuestionnaireItem: BackboneElement {
 			if let exist: AnyObject = js["enableWhen"] {
 				presentKeys.insert("enableWhen")
 				if let val = exist as? [FHIRJSON] {
-					self.enableWhen = QuestionnaireItemEnableWhen.from(val, owner: self) as? [QuestionnaireItemEnableWhen]
+					self.enableWhen = QuestionnaireItemEnableWhen.instantiate(fromArray: val, owner: self) as? [QuestionnaireItemEnableWhen]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "enableWhen", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -467,7 +467,7 @@ public class QuestionnaireItem: BackboneElement {
 			if let exist: AnyObject = js["initialUri"] {
 				presentKeys.insert("initialUri")
 				if let val = exist as? String {
-					self.initialUri = NSURL(string: val)
+					self.initialUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "initialUri", wants: String.self, has: exist.dynamicType))
@@ -476,7 +476,7 @@ public class QuestionnaireItem: BackboneElement {
 			if let exist: AnyObject = js["item"] {
 				presentKeys.insert("item")
 				if let val = exist as? [FHIRJSON] {
-					self.item = QuestionnaireItem.from(val, owner: self) as? [QuestionnaireItem]
+					self.item = QuestionnaireItem.instantiate(fromArray: val, owner: self) as? [QuestionnaireItem]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -503,7 +503,7 @@ public class QuestionnaireItem: BackboneElement {
 			if let exist: AnyObject = js["option"] {
 				presentKeys.insert("option")
 				if let val = exist as? [FHIRJSON] {
-					self.option = QuestionnaireItemOption.from(val, owner: self) as? [QuestionnaireItemOption]
+					self.option = QuestionnaireItemOption.instantiate(fromArray: val, owner: self) as? [QuestionnaireItemOption]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "option", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -714,7 +714,7 @@ public class QuestionnaireItemEnableWhen: BackboneElement {
 	public var answerTime: Time?
 	
 	/// Value question must have.
-	public var answerUri: NSURL?
+	public var answerUri: URL?
 	
 	/// Enable when answered or not.
 	public var answered: Bool?
@@ -734,8 +734,8 @@ public class QuestionnaireItemEnableWhen: BackboneElement {
 		self.question = question
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["answerAttachment"] {
 				presentKeys.insert("answerAttachment")
@@ -848,7 +848,7 @@ public class QuestionnaireItemEnableWhen: BackboneElement {
 			if let exist: AnyObject = js["answerUri"] {
 				presentKeys.insert("answerUri")
 				if let val = exist as? String {
-					self.answerUri = NSURL(string: val)
+					self.answerUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "answerUri", wants: String.self, has: exist.dynamicType))
@@ -974,8 +974,8 @@ public class QuestionnaireItemOption: BackboneElement {
 		self.valueTime = valueTime
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["valueCoding"] {
 				presentKeys.insert("valueCoding")

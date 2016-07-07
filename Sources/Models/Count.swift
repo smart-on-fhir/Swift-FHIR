@@ -2,7 +2,7 @@
 //  Count.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Count) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Count) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 

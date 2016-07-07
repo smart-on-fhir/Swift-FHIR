@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -61,8 +61,8 @@ public class Subscription: DomainResource {
 		self.status = status
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["channel"] {
 				presentKeys.insert("channel")
@@ -79,7 +79,7 @@ public class Subscription: DomainResource {
 			if let exist: AnyObject = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = ContactPoint.from(val, owner: self) as? [ContactPoint]
+					self.contact = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -142,7 +142,7 @@ public class Subscription: DomainResource {
 			if let exist: AnyObject = js["tag"] {
 				presentKeys.insert("tag")
 				if let val = exist as? [FHIRJSON] {
-					self.tag = Coding.from(val, owner: self) as? [Coding]
+					self.tag = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "tag", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -196,7 +196,7 @@ public class SubscriptionChannel: BackboneElement {
 	}
 	
 	/// Where the channel points to.
-	public var endpoint: NSURL?
+	public var endpoint: URL?
 	
 	/// Usage depends on the channel type.
 	public var header: String?
@@ -220,13 +220,13 @@ public class SubscriptionChannel: BackboneElement {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["endpoint"] {
 				presentKeys.insert("endpoint")
 				if let val = exist as? String {
-					self.endpoint = NSURL(string: val)
+					self.endpoint = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "endpoint", wants: String.self, has: exist.dynamicType))

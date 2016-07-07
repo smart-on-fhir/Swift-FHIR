@@ -23,42 +23,42 @@ class FHIRSearchTests: XCTestCase
 		
 		srch = Patient.search(["name": "Alex", "birthdate": "1982-10-15"])
 		var url = base + srch.construct()
-		var pairs = NSURL(string: url)!.queryPairs()
+		var pairs = URL(string: url)!.queryPairs()
 		XCTAssertTrue(pairs.contains("name=Alex"))
 		XCTAssertTrue(pairs.contains("birthdate=1982-10-15"))
 		
 		srch = Patient.search(["name": "Alex", "birthdate": ["$null": false]])
 		url = base + srch.construct()
-		pairs = NSURL(string: url)!.queryPairs()
+		pairs = URL(string: url)!.queryPairs()
 		XCTAssertTrue(pairs.contains("name=Alex"), "The query should contain \"name=Alex\" but doesn't: \(pairs)")
 		XCTAssertTrue(pairs.contains("birthdate:missing=false"), "The query should contain \"birthdate:missing=false\" but doesn't: \(pairs)")
 		
 		srch = Patient.search(["name": "Alex", "birthdate": ["$missing": false]])
 		url = base + srch.construct()
-		pairs = NSURL(string: url)!.queryPairs()
+		pairs = URL(string: url)!.queryPairs()
 		XCTAssertTrue(pairs.contains("name=Alex"), "The query should contain \"name=Alex\" but doesn't: \(pairs)")
 		XCTAssertTrue(pairs.contains("birthdate:missing=false"), "The query should contain \"birthdate:missing=false\" but doesn't: \(pairs)")
 		
 		srch = Patient.search(["name": "Alex", "birthdate": ["$missing": false], "gender": ["$text": "male"]])
 		url = base + srch.construct()
-		pairs = NSURL(string: url)!.queryPairs()
+		pairs = URL(string: url)!.queryPairs()
 		XCTAssertTrue(pairs.contains("name=Alex"), "The query should contain \"name=Alex\" but doesn't: \(pairs)")
 		XCTAssertTrue(pairs.contains("birthdate:missing=false"), "The query should contain \"birthdate:missing=false\" but doesn't: \(pairs)")
 		XCTAssertTrue(pairs.contains("gender:text=male"), "The query should contain \"gender:text=male\" but doesn't: \(pairs)")
 		
 		srch = FHIRSearch(query: ["subject": ["$type": "Patient", "name": "maud", "birthDate": ["$gt": "1970"]]])
 		url = base + srch.construct()
-		pairs = NSURL(string: url)!.queryPairs()
+		pairs = URL(string: url)!.queryPairs()
 		XCTAssertTrue(pairs.contains("subject:Patient.name=maud"), "The query should contain \"subject:Patient.name=maud\" but doesn't: \(pairs)")
 		XCTAssertTrue(pairs.contains("subject:Patient.birthDate=>1970"), "The query should contain \"subject:Patient.birthDate=>1970\" but doesn't: \(pairs)")
     }
 }
 
 
-extension NSURL
+extension URL
 {
 	func queryPairs() -> [String] {
-		if let comp = NSURLComponents(URL: self, resolvingAgainstBaseURL: false) {
+		if let comp = URLComponents(url: self, resolvingAgainstBaseURL: false) {
 			if let qry = comp.query {
 				return qry.characters.split() {$0 == "&"}.map { String($0) }
 			}

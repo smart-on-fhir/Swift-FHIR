@@ -20,15 +20,15 @@ public extension Resource {
 	- parameter path: The local path to read the JSON file from
 	- returns: An instance of the receiving class
 	*/
-	public class func instantiateFromPath(path: String) throws -> Self {
-		let data = try NSData(contentsOfFile: path, options: [])
-		let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? FHIRJSON
+	public class func instantiate(fromPath path: String) throws -> Self {
+		let data = try Data(contentsOf: URL(fileURLWithPath: path), options: [])
+		let json = try JSONSerialization.jsonObject(with: data, options: []) as? FHIRJSON
 		return self.init(json: json)
 	}
 }
 
 
-public extension NSBundle {
+public extension Foundation.Bundle {
 	
 	/**
 	Attempt to read a JSON file with the given name (.json) from the bundle, parse the JSON and instantiate a FHIR resource corresponding
@@ -38,17 +38,17 @@ public extension NSBundle {
 	- parameter type: The type the resource is expected to be; must be a subclass of `Resource`
 	- returns: A Resource subclass corresponding to the "resourceType" entry, as specified under `type`
 	*/
-	public func fhir_bundledResource<T: Resource>(name: String, type: T.Type) throws -> T {
-		if let url = URLForResource(name, withExtension: "json"), let data = NSData(contentsOfURL: url) {
-			if let json = try NSJSONSerialization.JSONObjectWithData(data, options: []) as? FHIRJSON {
-				if let resource = Resource.instantiateFrom(json, owner: nil) as? T {
+	public func fhir_bundledResource<T: Resource>(_ name: String, type: T.Type) throws -> T {
+		if let url = urlForResource(name, withExtension: "json"), let data = try? Data(contentsOf: url) {
+			if let json = try JSONSerialization.jsonObject(with: data, options: []) as? FHIRJSON {
+				if let resource = Resource.instantiate(fromJSON: json, owner: nil) as? T {
 					return resource
 				}
-				throw FHIRError.ResponseResourceTypeMismatch(json["resourceType"] as? String ?? "Unknown", "\(T.self)")
+				throw FHIRError.responseResourceTypeMismatch(json["resourceType"] as? String ?? "Unknown", "\(T.self)")
 			}
-			throw FHIRError.ResourceFailedToInstantiate(url.absoluteString)
+			throw FHIRError.resourceFailedToInstantiate(url.description)
 		}
-		throw FHIRError.ResourceFailedToInstantiate(name)
+		throw FHIRError.resourceFailedToInstantiate(name)
 	}
 }
 

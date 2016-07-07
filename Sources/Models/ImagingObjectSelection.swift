@@ -2,7 +2,7 @@
 //  ImagingObjectSelection.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -61,8 +61,8 @@ public class ImagingObjectSelection: DomainResource {
 		self.uid = uid
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["author"] {
 				presentKeys.insert("author")
@@ -106,7 +106,7 @@ public class ImagingObjectSelection: DomainResource {
 			if let exist: AnyObject = js["study"] {
 				presentKeys.insert("study")
 				if let val = exist as? [FHIRJSON] {
-					self.study = ImagingObjectSelectionStudy.from(val, owner: self) as? [ImagingObjectSelectionStudy]
+					self.study = ImagingObjectSelectionStudy.instantiate(fromArray: val, owner: self) as? [ImagingObjectSelectionStudy]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "study", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -193,7 +193,7 @@ public class ImagingObjectSelectionStudy: BackboneElement {
 	public var uid: String?
 	
 	/// Retrieve study URL.
-	public var url: NSURL?
+	public var url: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -208,8 +208,8 @@ public class ImagingObjectSelectionStudy: BackboneElement {
 		self.uid = uid
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["imagingStudy"] {
 				presentKeys.insert("imagingStudy")
@@ -223,7 +223,7 @@ public class ImagingObjectSelectionStudy: BackboneElement {
 			if let exist: AnyObject = js["series"] {
 				presentKeys.insert("series")
 				if let val = exist as? [FHIRJSON] {
-					self.series = ImagingObjectSelectionStudySeries.from(val, owner: self) as? [ImagingObjectSelectionStudySeries]
+					self.series = ImagingObjectSelectionStudySeries.instantiate(fromArray: val, owner: self) as? [ImagingObjectSelectionStudySeries]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "series", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -247,7 +247,7 @@ public class ImagingObjectSelectionStudy: BackboneElement {
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
@@ -295,7 +295,7 @@ public class ImagingObjectSelectionStudySeries: BackboneElement {
 	public var uid: String?
 	
 	/// Retrieve series URL.
-	public var url: NSURL?
+	public var url: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -310,13 +310,13 @@ public class ImagingObjectSelectionStudySeries: BackboneElement {
 		self.uid = uid
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["instance"] {
 				presentKeys.insert("instance")
 				if let val = exist as? [FHIRJSON] {
-					self.instance = ImagingObjectSelectionStudySeriesInstance.from(val, owner: self) as? [ImagingObjectSelectionStudySeriesInstance]
+					self.instance = ImagingObjectSelectionStudySeriesInstance.instantiate(fromArray: val, owner: self) as? [ImagingObjectSelectionStudySeriesInstance]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "instance", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -340,7 +340,7 @@ public class ImagingObjectSelectionStudySeries: BackboneElement {
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
@@ -388,7 +388,7 @@ public class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
 	public var uid: String?
 	
 	/// Retrieve instance URL.
-	public var url: NSURL?
+	public var url: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -397,20 +397,20 @@ public class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(sopClass: String, uid: String, url: NSURL) {
+	public convenience init(sopClass: String, uid: String, url: URL) {
 		self.init(json: nil)
 		self.sopClass = sopClass
 		self.uid = uid
 		self.url = url
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["frame"] {
 				presentKeys.insert("frame")
 				if let val = exist as? [FHIRJSON] {
-					self.frame = ImagingObjectSelectionStudySeriesInstanceFrame.from(val, owner: self) as? [ImagingObjectSelectionStudySeriesInstanceFrame]
+					self.frame = ImagingObjectSelectionStudySeriesInstanceFrame.instantiate(fromArray: val, owner: self) as? [ImagingObjectSelectionStudySeriesInstanceFrame]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "frame", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -443,7 +443,7 @@ public class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
@@ -491,7 +491,7 @@ public class ImagingObjectSelectionStudySeriesInstanceFrame: BackboneElement {
 	public var number: [UInt]?
 	
 	/// Retrieve frame URL.
-	public var url: NSURL?
+	public var url: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -500,14 +500,14 @@ public class ImagingObjectSelectionStudySeriesInstanceFrame: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(number: [UInt], url: NSURL) {
+	public convenience init(number: [UInt], url: URL) {
 		self.init(json: nil)
 		self.number = number
 		self.url = url
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["number"] {
 				presentKeys.insert("number")
@@ -524,7 +524,7 @@ public class ImagingObjectSelectionStudySeriesInstanceFrame: BackboneElement {
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))

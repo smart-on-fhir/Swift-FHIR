@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -51,8 +51,8 @@ public class OrderResponse: DomainResource {
 		self.request = request
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["date"] {
 				presentKeys.insert("date")
@@ -75,7 +75,7 @@ public class OrderResponse: DomainResource {
 			if let exist: AnyObject = js["fulfillment"] {
 				presentKeys.insert("fulfillment")
 				if let val = exist as? [FHIRJSON] {
-					self.fulfillment = Reference.from(val, owner: self) as? [Reference]
+					self.fulfillment = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fulfillment", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -84,7 +84,7 @@ public class OrderResponse: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))

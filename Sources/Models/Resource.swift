@@ -2,7 +2,7 @@
 //  Resource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Resource) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Resource) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -23,7 +23,7 @@ public class Resource: FHIRAbstractResource {
 	public var id: String?
 	
 	/// A set of rules under which this content was created.
-	public var implicitRules: NSURL?
+	public var implicitRules: URL?
 	
 	/// Language of the resource content.
 	public var language: String?
@@ -37,8 +37,8 @@ public class Resource: FHIRAbstractResource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["id"] {
 				presentKeys.insert("id")
@@ -52,7 +52,7 @@ public class Resource: FHIRAbstractResource {
 			if let exist: AnyObject = js["implicitRules"] {
 				presentKeys.insert("implicitRules")
 				if let val = exist as? String {
-					self.implicitRules = NSURL(string: val)
+					self.implicitRules = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "implicitRules", wants: String.self, has: exist.dynamicType))

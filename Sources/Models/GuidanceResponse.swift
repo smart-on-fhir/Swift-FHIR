@@ -2,7 +2,7 @@
 //  GuidanceResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -54,13 +54,13 @@ public class GuidanceResponse: DomainResource {
 		self.status = status
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["action"] {
 				presentKeys.insert("action")
 				if let val = exist as? [FHIRJSON] {
-					self.action = GuidanceResponseAction.from(val, owner: self) as? [GuidanceResponseAction]
+					self.action = GuidanceResponseAction.instantiate(fromArray: val, owner: self) as? [GuidanceResponseAction]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "action", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -69,7 +69,7 @@ public class GuidanceResponse: DomainResource {
 			if let exist: AnyObject = js["dataRequirement"] {
 				presentKeys.insert("dataRequirement")
 				if let val = exist as? [FHIRJSON] {
-					self.dataRequirement = DataRequirement.from(val, owner: self) as? [DataRequirement]
+					self.dataRequirement = DataRequirement.instantiate(fromArray: val, owner: self) as? [DataRequirement]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dataRequirement", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -78,7 +78,7 @@ public class GuidanceResponse: DomainResource {
 			if let exist: AnyObject = js["evaluationMessage"] {
 				presentKeys.insert("evaluationMessage")
 				if let val = exist as? [FHIRJSON] {
-					self.evaluationMessage = Reference.from(val, owner: self) as? [Reference]
+					self.evaluationMessage = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "evaluationMessage", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -218,13 +218,13 @@ public class GuidanceResponseAction: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["action"] {
 				presentKeys.insert("action")
 				if let val = exist as? [FHIRJSON] {
-					self.action = GuidanceResponseAction.from(val, owner: self) as? [GuidanceResponseAction]
+					self.action = GuidanceResponseAction.instantiate(fromArray: val, owner: self) as? [GuidanceResponseAction]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "action", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -242,7 +242,7 @@ public class GuidanceResponseAction: BackboneElement {
 			if let exist: AnyObject = js["behavior"] {
 				presentKeys.insert("behavior")
 				if let val = exist as? [FHIRJSON] {
-					self.behavior = GuidanceResponseActionBehavior.from(val, owner: self) as? [GuidanceResponseActionBehavior]
+					self.behavior = GuidanceResponseActionBehavior.instantiate(fromArray: val, owner: self) as? [GuidanceResponseActionBehavior]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "behavior", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -251,7 +251,7 @@ public class GuidanceResponseAction: BackboneElement {
 			if let exist: AnyObject = js["concept"] {
 				presentKeys.insert("concept")
 				if let val = exist as? [FHIRJSON] {
-					self.concept = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.concept = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "concept", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -269,7 +269,7 @@ public class GuidanceResponseAction: BackboneElement {
 			if let exist: AnyObject = js["documentation"] {
 				presentKeys.insert("documentation")
 				if let val = exist as? [FHIRJSON] {
-					self.documentation = Attachment.from(val, owner: self) as? [Attachment]
+					self.documentation = Attachment.instantiate(fromArray: val, owner: self) as? [Attachment]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "documentation", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -287,7 +287,7 @@ public class GuidanceResponseAction: BackboneElement {
 			if let exist: AnyObject = js["participant"] {
 				presentKeys.insert("participant")
 				if let val = exist as? [FHIRJSON] {
-					self.participant = Reference.from(val, owner: self) as? [Reference]
+					self.participant = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "participant", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -314,7 +314,7 @@ public class GuidanceResponseAction: BackboneElement {
 			if let exist: AnyObject = js["supportingEvidence"] {
 				presentKeys.insert("supportingEvidence")
 				if let val = exist as? [FHIRJSON] {
-					self.supportingEvidence = Attachment.from(val, owner: self) as? [Attachment]
+					self.supportingEvidence = Attachment.instantiate(fromArray: val, owner: self) as? [Attachment]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "supportingEvidence", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -432,8 +432,8 @@ public class GuidanceResponseActionBehavior: BackboneElement {
 		self.value = value
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")
@@ -516,8 +516,8 @@ public class GuidanceResponseActionRelatedAction: BackboneElement {
 		self.relationship = relationship
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["actionIdentifier"] {
 				presentKeys.insert("actionIdentifier")

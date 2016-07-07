@@ -2,7 +2,7 @@
 //  Linkage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Linkage) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Linkage) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -37,8 +37,8 @@ public class Linkage: DomainResource {
 		self.item = item
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["author"] {
 				presentKeys.insert("author")
@@ -52,7 +52,7 @@ public class Linkage: DomainResource {
 			if let exist: AnyObject = js["item"] {
 				presentKeys.insert("item")
 				if let val = exist as? [FHIRJSON] {
-					self.item = LinkageItem.from(val, owner: self) as? [LinkageItem]
+					self.item = LinkageItem.instantiate(fromArray: val, owner: self) as? [LinkageItem]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -110,8 +110,8 @@ public class LinkageItem: BackboneElement {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["resource"] {
 				presentKeys.insert("resource")

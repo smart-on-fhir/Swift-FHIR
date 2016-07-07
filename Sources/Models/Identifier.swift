@@ -2,7 +2,7 @@
 //  Identifier.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -26,7 +26,7 @@ public class Identifier: Element {
 	public var period: Period?
 	
 	/// The namespace for the identifier.
-	public var system: NSURL?
+	public var system: URL?
 	
 	/// Description of identifier.
 	public var type: CodeableConcept?
@@ -43,8 +43,8 @@ public class Identifier: Element {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["assigner"] {
 				presentKeys.insert("assigner")
@@ -67,7 +67,7 @@ public class Identifier: Element {
 			if let exist: AnyObject = js["system"] {
 				presentKeys.insert("system")
 				if let val = exist as? String {
-					self.system = NSURL(string: val)
+					self.system = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "system", wants: String.self, has: exist.dynamicType))

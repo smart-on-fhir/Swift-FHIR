@@ -2,7 +2,7 @@
 //  Task.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Task) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Task) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -24,7 +24,7 @@ public class Task: DomainResource {
 	public var creator: Reference?
 	
 	/// Task Definition.
-	public var definition: NSURL?
+	public var definition: URL?
 	
 	/// Task Description.
 	public var description_fhir: String?
@@ -83,8 +83,8 @@ public class Task: DomainResource {
 		self.status = status
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["created"] {
 				presentKeys.insert("created")
@@ -113,7 +113,7 @@ public class Task: DomainResource {
 			if let exist: AnyObject = js["definition"] {
 				presentKeys.insert("definition")
 				if let val = exist as? String {
-					self.definition = NSURL(string: val)
+					self.definition = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "definition", wants: String.self, has: exist.dynamicType))
@@ -158,7 +158,7 @@ public class Task: DomainResource {
 			if let exist: AnyObject = js["input"] {
 				presentKeys.insert("input")
 				if let val = exist as? [FHIRJSON] {
-					self.input = TaskInput.from(val, owner: self) as? [TaskInput]
+					self.input = TaskInput.instantiate(fromArray: val, owner: self) as? [TaskInput]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "input", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -179,7 +179,7 @@ public class Task: DomainResource {
 			if let exist: AnyObject = js["output"] {
 				presentKeys.insert("output")
 				if let val = exist as? [FHIRJSON] {
-					self.output = TaskOutput.from(val, owner: self) as? [TaskOutput]
+					self.output = TaskOutput.instantiate(fromArray: val, owner: self) as? [TaskOutput]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "output", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -206,7 +206,7 @@ public class Task: DomainResource {
 			if let exist: AnyObject = js["performerType"] {
 				presentKeys.insert("performerType")
 				if let val = exist as? [FHIRJSON] {
-					self.performerType = Coding.from(val, owner: self) as? [Coding]
+					self.performerType = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "performerType", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -425,7 +425,7 @@ public class TaskInput: BackboneElement {
 	public var valueUnsignedInt: UInt?
 	
 	/// Input Value.
-	public var valueUri: NSURL?
+	public var valueUri: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -434,7 +434,7 @@ public class TaskInput: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, valueAddress: Address, valueAnnotation: Annotation, valueAttachment: Attachment, valueBase64Binary: Base64Binary, valueBoolean: Bool, valueCode: String, valueCodeableConcept: CodeableConcept, valueCoding: Coding, valueContactPoint: ContactPoint, valueDate: Date, valueDateTime: DateTime, valueDecimal: NSDecimalNumber, valueHumanName: HumanName, valueId: String, valueIdentifier: Identifier, valueInstant: Instant, valueInteger: Int, valueMarkdown: String, valueMeta: Meta, valueOid: String, valuePeriod: Period, valuePositiveInt: UInt, valueQuantity: Quantity, valueRange: Range, valueRatio: Ratio, valueReference: Reference, valueSampledData: SampledData, valueSignature: Signature, valueString: String, valueTime: Time, valueTiming: Timing, valueUnsignedInt: UInt, valueUri: NSURL) {
+	public convenience init(name: String, valueAddress: Address, valueAnnotation: Annotation, valueAttachment: Attachment, valueBase64Binary: Base64Binary, valueBoolean: Bool, valueCode: String, valueCodeableConcept: CodeableConcept, valueCoding: Coding, valueContactPoint: ContactPoint, valueDate: Date, valueDateTime: DateTime, valueDecimal: NSDecimalNumber, valueHumanName: HumanName, valueId: String, valueIdentifier: Identifier, valueInstant: Instant, valueInteger: Int, valueMarkdown: String, valueMeta: Meta, valueOid: String, valuePeriod: Period, valuePositiveInt: UInt, valueQuantity: Quantity, valueRange: Range, valueRatio: Ratio, valueReference: Reference, valueSampledData: SampledData, valueSignature: Signature, valueString: String, valueTime: Time, valueTiming: Timing, valueUnsignedInt: UInt, valueUri: URL) {
 		self.init(json: nil)
 		self.name = name
 		self.valueAddress = valueAddress
@@ -472,8 +472,8 @@ public class TaskInput: BackboneElement {
 		self.valueUri = valueUri
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["name"] {
 				presentKeys.insert("name")
@@ -778,7 +778,7 @@ public class TaskInput: BackboneElement {
 			if let exist: AnyObject = js["valueUri"] {
 				presentKeys.insert("valueUri")
 				if let val = exist as? String {
-					self.valueUri = NSURL(string: val)
+					self.valueUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueUri", wants: String.self, has: exist.dynamicType))
@@ -1014,7 +1014,7 @@ public class TaskOutput: BackboneElement {
 	public var valueUnsignedInt: UInt?
 	
 	/// Output Value.
-	public var valueUri: NSURL?
+	public var valueUri: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -1023,7 +1023,7 @@ public class TaskOutput: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, valueAddress: Address, valueAnnotation: Annotation, valueAttachment: Attachment, valueBase64Binary: Base64Binary, valueBoolean: Bool, valueCode: String, valueCodeableConcept: CodeableConcept, valueCoding: Coding, valueContactPoint: ContactPoint, valueDate: Date, valueDateTime: DateTime, valueDecimal: NSDecimalNumber, valueHumanName: HumanName, valueId: String, valueIdentifier: Identifier, valueInstant: Instant, valueInteger: Int, valueMarkdown: String, valueMeta: Meta, valueOid: String, valuePeriod: Period, valuePositiveInt: UInt, valueQuantity: Quantity, valueRange: Range, valueRatio: Ratio, valueReference: Reference, valueSampledData: SampledData, valueSignature: Signature, valueString: String, valueTime: Time, valueTiming: Timing, valueUnsignedInt: UInt, valueUri: NSURL) {
+	public convenience init(name: String, valueAddress: Address, valueAnnotation: Annotation, valueAttachment: Attachment, valueBase64Binary: Base64Binary, valueBoolean: Bool, valueCode: String, valueCodeableConcept: CodeableConcept, valueCoding: Coding, valueContactPoint: ContactPoint, valueDate: Date, valueDateTime: DateTime, valueDecimal: NSDecimalNumber, valueHumanName: HumanName, valueId: String, valueIdentifier: Identifier, valueInstant: Instant, valueInteger: Int, valueMarkdown: String, valueMeta: Meta, valueOid: String, valuePeriod: Period, valuePositiveInt: UInt, valueQuantity: Quantity, valueRange: Range, valueRatio: Ratio, valueReference: Reference, valueSampledData: SampledData, valueSignature: Signature, valueString: String, valueTime: Time, valueTiming: Timing, valueUnsignedInt: UInt, valueUri: URL) {
 		self.init(json: nil)
 		self.name = name
 		self.valueAddress = valueAddress
@@ -1061,8 +1061,8 @@ public class TaskOutput: BackboneElement {
 		self.valueUri = valueUri
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["name"] {
 				presentKeys.insert("name")
@@ -1367,7 +1367,7 @@ public class TaskOutput: BackboneElement {
 			if let exist: AnyObject = js["valueUri"] {
 				presentKeys.insert("valueUri")
 				if let val = exist as? String {
-					self.valueUri = NSURL(string: val)
+					self.valueUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueUri", wants: String.self, has: exist.dynamicType))

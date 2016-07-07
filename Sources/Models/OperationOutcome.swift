@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -34,13 +34,13 @@ public class OperationOutcome: DomainResource {
 		self.issue = issue
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["issue"] {
 				presentKeys.insert("issue")
 				if let val = exist as? [FHIRJSON] {
-					self.issue = OperationOutcomeIssue.from(val, owner: self) as? [OperationOutcomeIssue]
+					self.issue = OperationOutcomeIssue.instantiate(fromArray: val, owner: self) as? [OperationOutcomeIssue]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "issue", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -106,8 +106,8 @@ public class OperationOutcomeIssue: BackboneElement {
 		self.severity = severity
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")

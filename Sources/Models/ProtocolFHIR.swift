@@ -1,8 +1,8 @@
 //
-//  Protocol.swift
+//  ProtocolFHIR.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Protocol) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Protocol) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  A definition of behaviors to be taken in particular circumstances, often including conditions, options and other
  *  decision points.
  */
-public class Protocol: DomainResource {
+public class ProtocolFHIR: DomainResource {
 	override public class var resourceName: String {
 		get { return "Protocol" }
 	}
@@ -36,7 +36,7 @@ public class Protocol: DomainResource {
 	public var status: String?
 	
 	/// What's done as part of protocol.
-	public var step: [ProtocolStep]?
+	public var step: [ProtocolFHIRStep]?
 	
 	/// What does protocol deal with?.
 	public var subject: Reference?
@@ -61,8 +61,8 @@ public class Protocol: DomainResource {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["author"] {
 				presentKeys.insert("author")
@@ -85,7 +85,7 @@ public class Protocol: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -118,7 +118,7 @@ public class Protocol: DomainResource {
 			if let exist: AnyObject = js["step"] {
 				presentKeys.insert("step")
 				if let val = exist as? [FHIRJSON] {
-					self.step = ProtocolStep.from(val, owner: self) as? [ProtocolStep]
+					self.step = ProtocolFHIRStep.instantiate(fromArray: val, owner: self) as? [ProtocolFHIRStep]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "step", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -177,7 +177,7 @@ public class Protocol: DomainResource {
 			json["status"] = status.asJSON()
 		}
 		if let step = self.step {
-			json["step"] = ProtocolStep.asJSONArray(step)
+			json["step"] = ProtocolFHIRStep.asJSONArray(step)
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON()
@@ -197,13 +197,13 @@ public class Protocol: DomainResource {
 /**
  *  What's done as part of protocol.
  */
-public class ProtocolStep: BackboneElement {
+public class ProtocolFHIRStep: BackboneElement {
 	override public class var resourceName: String {
-		get { return "ProtocolStep" }
+		get { return "ProtocolFHIRStep" }
 	}
 	
 	/// Activities that occur within timepoint.
-	public var activity: [ProtocolStepActivity]?
+	public var activity: [ProtocolFHIRStepActivity]?
 	
 	/// Human description of activity.
 	public var description_fhir: String?
@@ -212,19 +212,19 @@ public class ProtocolStep: BackboneElement {
 	public var duration: Quantity?
 	
 	/// Rules prior to completion.
-	public var exit: ProtocolStepPrecondition?
+	public var exit: ProtocolFHIRStepPrecondition?
 	
 	/// First activity within timepoint.
-	public var firstActivity: NSURL?
+	public var firstActivity: URL?
 	
 	/// Label for step.
 	public var name: String?
 	
 	/// What happens next?.
-	public var next: [ProtocolStepNext]?
+	public var next: [ProtocolFHIRStepNext]?
 	
 	/// Rules prior to execution.
-	public var precondition: ProtocolStepPrecondition?
+	public var precondition: ProtocolFHIRStepPrecondition?
 	
 	
 	/** Initialize with a JSON object. */
@@ -232,13 +232,13 @@ public class ProtocolStep: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["activity"] {
 				presentKeys.insert("activity")
 				if let val = exist as? [FHIRJSON] {
-					self.activity = ProtocolStepActivity.from(val, owner: self) as? [ProtocolStepActivity]
+					self.activity = ProtocolFHIRStepActivity.instantiate(fromArray: val, owner: self) as? [ProtocolFHIRStepActivity]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "activity", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -265,7 +265,7 @@ public class ProtocolStep: BackboneElement {
 			if let exist: AnyObject = js["exit"] {
 				presentKeys.insert("exit")
 				if let val = exist as? FHIRJSON {
-					self.exit = ProtocolStepPrecondition(json: val, owner: self)
+					self.exit = ProtocolFHIRStepPrecondition(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exit", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -274,7 +274,7 @@ public class ProtocolStep: BackboneElement {
 			if let exist: AnyObject = js["firstActivity"] {
 				presentKeys.insert("firstActivity")
 				if let val = exist as? String {
-					self.firstActivity = NSURL(string: val)
+					self.firstActivity = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "firstActivity", wants: String.self, has: exist.dynamicType))
@@ -292,7 +292,7 @@ public class ProtocolStep: BackboneElement {
 			if let exist: AnyObject = js["next"] {
 				presentKeys.insert("next")
 				if let val = exist as? [FHIRJSON] {
-					self.next = ProtocolStepNext.from(val, owner: self) as? [ProtocolStepNext]
+					self.next = ProtocolFHIRStepNext.instantiate(fromArray: val, owner: self) as? [ProtocolFHIRStepNext]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "next", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -301,7 +301,7 @@ public class ProtocolStep: BackboneElement {
 			if let exist: AnyObject = js["precondition"] {
 				presentKeys.insert("precondition")
 				if let val = exist as? FHIRJSON {
-					self.precondition = ProtocolStepPrecondition(json: val, owner: self)
+					self.precondition = ProtocolFHIRStepPrecondition(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "precondition", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -315,7 +315,7 @@ public class ProtocolStep: BackboneElement {
 		var json = super.asJSON()
 		
 		if let activity = self.activity {
-			json["activity"] = ProtocolStepActivity.asJSONArray(activity)
+			json["activity"] = ProtocolFHIRStepActivity.asJSONArray(activity)
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
@@ -333,7 +333,7 @@ public class ProtocolStep: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let next = self.next {
-			json["next"] = ProtocolStepNext.asJSONArray(next)
+			json["next"] = ProtocolFHIRStepNext.asJSONArray(next)
 		}
 		if let precondition = self.precondition {
 			json["precondition"] = precondition.asJSON()
@@ -347,22 +347,22 @@ public class ProtocolStep: BackboneElement {
 /**
  *  Activities that occur within timepoint.
  */
-public class ProtocolStepActivity: BackboneElement {
+public class ProtocolFHIRStepActivity: BackboneElement {
 	override public class var resourceName: String {
-		get { return "ProtocolStepActivity" }
+		get { return "ProtocolFHIRStepActivity" }
 	}
 	
 	/// What can be done instead?.
-	public var alternative: [NSURL]?
+	public var alternative: [URL]?
 	
 	/// Activities that are part of this activity.
-	public var component: [ProtocolStepActivityComponent]?
+	public var component: [ProtocolFHIRStepActivityComponent]?
 	
 	/// Details of activity.
-	public var detail: ProtocolStepActivityDetail?
+	public var detail: ProtocolFHIRStepActivityDetail?
 	
 	/// What happens next.
-	public var following: [NSURL]?
+	public var following: [URL]?
 	
 	/// Pause before start.
 	public var wait: Quantity?
@@ -374,18 +374,18 @@ public class ProtocolStepActivity: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(detail: ProtocolStepActivityDetail) {
+	public convenience init(detail: ProtocolFHIRStepActivityDetail) {
 		self.init(json: nil)
 		self.detail = detail
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["alternative"] {
 				presentKeys.insert("alternative")
 				if let val = exist as? [String] {
-					self.alternative = NSURL.from(val)
+					self.alternative = URL.instantiate(fromArray: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "alternative", wants: Array<String>.self, has: exist.dynamicType))
@@ -394,7 +394,7 @@ public class ProtocolStepActivity: BackboneElement {
 			if let exist: AnyObject = js["component"] {
 				presentKeys.insert("component")
 				if let val = exist as? [FHIRJSON] {
-					self.component = ProtocolStepActivityComponent.from(val, owner: self) as? [ProtocolStepActivityComponent]
+					self.component = ProtocolFHIRStepActivityComponent.instantiate(fromArray: val, owner: self) as? [ProtocolFHIRStepActivityComponent]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "component", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -403,7 +403,7 @@ public class ProtocolStepActivity: BackboneElement {
 			if let exist: AnyObject = js["detail"] {
 				presentKeys.insert("detail")
 				if let val = exist as? FHIRJSON {
-					self.detail = ProtocolStepActivityDetail(json: val, owner: self)
+					self.detail = ProtocolFHIRStepActivityDetail(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "detail", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -415,7 +415,7 @@ public class ProtocolStepActivity: BackboneElement {
 			if let exist: AnyObject = js["following"] {
 				presentKeys.insert("following")
 				if let val = exist as? [String] {
-					self.following = NSURL.from(val)
+					self.following = URL.instantiate(fromArray: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "following", wants: Array<String>.self, has: exist.dynamicType))
@@ -445,7 +445,7 @@ public class ProtocolStepActivity: BackboneElement {
 			json["alternative"] = arr
 		}
 		if let component = self.component {
-			json["component"] = ProtocolStepActivityComponent.asJSONArray(component)
+			json["component"] = ProtocolFHIRStepActivityComponent.asJSONArray(component)
 		}
 		if let detail = self.detail {
 			json["detail"] = detail.asJSON()
@@ -469,13 +469,13 @@ public class ProtocolStepActivity: BackboneElement {
 /**
  *  Activities that are part of this activity.
  */
-public class ProtocolStepActivityComponent: BackboneElement {
+public class ProtocolFHIRStepActivityComponent: BackboneElement {
 	override public class var resourceName: String {
-		get { return "ProtocolStepActivityComponent" }
+		get { return "ProtocolFHIRStepActivityComponent" }
 	}
 	
 	/// Component activity.
-	public var activity: NSURL?
+	public var activity: URL?
 	
 	/// Order of occurrence.
 	public var sequence: Int?
@@ -487,18 +487,18 @@ public class ProtocolStepActivityComponent: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(activity: NSURL) {
+	public convenience init(activity: URL) {
 		self.init(json: nil)
 		self.activity = activity
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["activity"] {
 				presentKeys.insert("activity")
 				if let val = exist as? String {
-					self.activity = NSURL(string: val)
+					self.activity = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "activity", wants: String.self, has: exist.dynamicType))
@@ -540,9 +540,9 @@ public class ProtocolStepActivityComponent: BackboneElement {
  *
  *  Information about the nature of the activity, including type, timing and other qualifiers.
  */
-public class ProtocolStepActivityDetail: BackboneElement {
+public class ProtocolFHIRStepActivityDetail: BackboneElement {
 	override public class var resourceName: String {
-		get { return "ProtocolStepActivityDetail" }
+		get { return "ProtocolFHIRStepActivityDetail" }
 	}
 	
 	/// diet | drug | encounter | observation +.
@@ -578,8 +578,8 @@ public class ProtocolStepActivityDetail: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["category"] {
 				presentKeys.insert("category")
@@ -620,7 +620,7 @@ public class ProtocolStepActivityDetail: BackboneElement {
 			if let exist: AnyObject = js["performer"] {
 				presentKeys.insert("performer")
 				if let val = exist as? [FHIRJSON] {
-					self.performer = Reference.from(val, owner: self) as? [Reference]
+					self.performer = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "performer", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -707,19 +707,19 @@ public class ProtocolStepActivityDetail: BackboneElement {
  *
  *  What happens next?
  */
-public class ProtocolStepNext: BackboneElement {
+public class ProtocolFHIRStepNext: BackboneElement {
 	override public class var resourceName: String {
-		get { return "ProtocolStepNext" }
+		get { return "ProtocolFHIRStepNext" }
 	}
 	
 	/// Condition in which next step is executed.
-	public var condition: ProtocolStepPrecondition?
+	public var condition: ProtocolFHIRStepPrecondition?
 	
 	/// Description of what happens next.
 	public var description_fhir: String?
 	
 	/// Id of following step.
-	public var reference: NSURL?
+	public var reference: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -727,13 +727,13 @@ public class ProtocolStepNext: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["condition"] {
 				presentKeys.insert("condition")
 				if let val = exist as? FHIRJSON {
-					self.condition = ProtocolStepPrecondition(json: val, owner: self)
+					self.condition = ProtocolFHIRStepPrecondition(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "condition", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -751,7 +751,7 @@ public class ProtocolStepNext: BackboneElement {
 			if let exist: AnyObject = js["reference"] {
 				presentKeys.insert("reference")
 				if let val = exist as? String {
-					self.reference = NSURL(string: val)
+					self.reference = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reference", wants: String.self, has: exist.dynamicType))
@@ -782,25 +782,25 @@ public class ProtocolStepNext: BackboneElement {
 /**
  *  Rules prior to execution.
  */
-public class ProtocolStepPrecondition: BackboneElement {
+public class ProtocolFHIRStepPrecondition: BackboneElement {
 	override public class var resourceName: String {
-		get { return "ProtocolStepPrecondition" }
+		get { return "ProtocolFHIRStepPrecondition" }
 	}
 	
 	/// Condition evaluated.
-	public var condition: ProtocolStepPreconditionCondition?
+	public var condition: ProtocolFHIRStepPreconditionCondition?
 	
 	/// Description of condition.
 	public var description_fhir: String?
 	
 	/// Not conditions.
-	public var exclude: [ProtocolStepPrecondition]?
+	public var exclude: [ProtocolFHIRStepPrecondition]?
 	
 	/// And conditions.
-	public var intersection: [ProtocolStepPrecondition]?
+	public var intersection: [ProtocolFHIRStepPrecondition]?
 	
 	/// Or conditions.
-	public var union: [ProtocolStepPrecondition]?
+	public var union: [ProtocolFHIRStepPrecondition]?
 	
 	
 	/** Initialize with a JSON object. */
@@ -808,13 +808,13 @@ public class ProtocolStepPrecondition: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["condition"] {
 				presentKeys.insert("condition")
 				if let val = exist as? FHIRJSON {
-					self.condition = ProtocolStepPreconditionCondition(json: val, owner: self)
+					self.condition = ProtocolFHIRStepPreconditionCondition(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "condition", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -832,7 +832,7 @@ public class ProtocolStepPrecondition: BackboneElement {
 			if let exist: AnyObject = js["exclude"] {
 				presentKeys.insert("exclude")
 				if let val = exist as? [FHIRJSON] {
-					self.exclude = ProtocolStepPrecondition.from(val, owner: self) as? [ProtocolStepPrecondition]
+					self.exclude = ProtocolFHIRStepPrecondition.instantiate(fromArray: val, owner: self) as? [ProtocolFHIRStepPrecondition]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exclude", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -841,7 +841,7 @@ public class ProtocolStepPrecondition: BackboneElement {
 			if let exist: AnyObject = js["intersection"] {
 				presentKeys.insert("intersection")
 				if let val = exist as? [FHIRJSON] {
-					self.intersection = ProtocolStepPrecondition.from(val, owner: self) as? [ProtocolStepPrecondition]
+					self.intersection = ProtocolFHIRStepPrecondition.instantiate(fromArray: val, owner: self) as? [ProtocolFHIRStepPrecondition]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "intersection", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -850,7 +850,7 @@ public class ProtocolStepPrecondition: BackboneElement {
 			if let exist: AnyObject = js["union"] {
 				presentKeys.insert("union")
 				if let val = exist as? [FHIRJSON] {
-					self.union = ProtocolStepPrecondition.from(val, owner: self) as? [ProtocolStepPrecondition]
+					self.union = ProtocolFHIRStepPrecondition.instantiate(fromArray: val, owner: self) as? [ProtocolFHIRStepPrecondition]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "union", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -870,13 +870,13 @@ public class ProtocolStepPrecondition: BackboneElement {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let exclude = self.exclude {
-			json["exclude"] = ProtocolStepPrecondition.asJSONArray(exclude)
+			json["exclude"] = ProtocolFHIRStepPrecondition.asJSONArray(exclude)
 		}
 		if let intersection = self.intersection {
-			json["intersection"] = ProtocolStepPrecondition.asJSONArray(intersection)
+			json["intersection"] = ProtocolFHIRStepPrecondition.asJSONArray(intersection)
 		}
 		if let union = self.union {
-			json["union"] = ProtocolStepPrecondition.asJSONArray(union)
+			json["union"] = ProtocolFHIRStepPrecondition.asJSONArray(union)
 		}
 		
 		return json
@@ -889,9 +889,9 @@ public class ProtocolStepPrecondition: BackboneElement {
  *
  *  Defines the name/value pair that must hold for the condition to be met.
  */
-public class ProtocolStepPreconditionCondition: BackboneElement {
+public class ProtocolFHIRStepPreconditionCondition: BackboneElement {
 	override public class var resourceName: String {
-		get { return "ProtocolStepPreconditionCondition" }
+		get { return "ProtocolFHIRStepPreconditionCondition" }
 	}
 	
 	/// Observation / test / assertion.
@@ -925,8 +925,8 @@ public class ProtocolStepPreconditionCondition: BackboneElement {
 		self.valueRange = valueRange
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")

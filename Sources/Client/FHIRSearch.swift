@@ -38,7 +38,7 @@ public class FHIRSearch
 	public var pageCount: Int?
 	
 	/// The URL to retrieve the next page of results from; nil if there are no more results.
-	var nextPageURL: NSURL?
+	var nextPageURL: URL?
 	
 	var busy = false
 	
@@ -103,9 +103,9 @@ public class FHIRSearch
 		- parameter server: The FHIRServer instance on which to perform the search
 		- parameter callback: The callback, receives the response Bundle or an NSError message describing what went wrong
 	 */
-	public func perform(server: FHIRServer, callback: ((bundle: Bundle?, error: FHIRError?) -> Void)) {
+	public func perform(_ server: FHIRServer, callback: ((bundle: Bundle?, error: FHIRError?) -> Void)) {
 		if nil == profileType {
-			callback(bundle: nil, error: FHIRError.SearchResourceTypeNotDefined)
+			callback(bundle: nil, error: FHIRError.searchResourceTypeNotDefined)
 			return
 		}
 		
@@ -120,7 +120,7 @@ public class FHIRSearch
 		- parameter server: The FHIRServer instance on which to perform the search
 		- parameter callback: The callback, receives the response Bundle or an NSError message describing what went wrong
 	 */
-	public func nextPage(server: FHIRServer, callback: ((bundle: Bundle?, error: FHIRError?) -> Void)) {
+	public func nextPage(_ server: FHIRServer, callback: ((bundle: Bundle?, error: FHIRError?) -> Void)) {
 		if let next = nextPageURL?.absoluteString {
 			performSearch(server, queryPath: next, callback: callback)
 		}
@@ -129,14 +129,14 @@ public class FHIRSearch
 		}
 	}
 	
-	func performSearch(server: FHIRServer, queryPath: String, callback: ((bundle: Bundle?, error: FHIRError?) -> Void)) {
+	func performSearch(_ server: FHIRServer, queryPath: String, callback: ((bundle: Bundle?, error: FHIRError?) -> Void)) {
 		if busy {
 			callback(bundle: nil, error: nil)
 			return
 		}
 		
 		busy = true
-		server.performRequestOfType(.GET, path: queryPath, resource: nil, additionalHeaders: nil) { response in
+		server.performRequest(ofType: .GET, path: queryPath, resource: nil, additionalHeaders: nil) { response in
 			self.busy = false
 			
 			if let error = response.error {
@@ -221,7 +221,7 @@ class FHIRSearchParam: CustomStringConvertible
 	}
 	
 	/** Instantiate from any object, delegating to FHIRSearchConstruct to figure out what the object means. */
-	class func from(any: AnyObject, parent: FHIRSearchParam?) -> [FHIRSearchParam] {
+	class func from(_ any: AnyObject, parent: FHIRSearchParam?) -> [FHIRSearchParam] {
 		if let str = any as? String {
 			return [FHIRSearchParam(value: str, parent: parent)]
 		}
@@ -257,7 +257,7 @@ class FHIRSearchParam: CustomStringConvertible
 		if let chldren = children {
 			var arr = [FHIRURLParam]()
 			for child in chldren {
-				arr.appendContentsOf(child.expand())
+				arr.append(contentsOf: child.expand())
 			}
 			return arr
 		}
@@ -279,7 +279,7 @@ struct FHIRSearchConstruct
 		FHIRSearchConstructTypeHandler(),
 	]
 	
-	static func handlerFor(key: String) -> FHIRSearchConstructHandler? {
+	static func handlerFor(_ key: String) -> FHIRSearchConstructHandler? {
 		for handler in self.handlers {
 			if handler.handles(key) {
 				return handler
@@ -295,7 +295,7 @@ struct FHIRSearchConstruct
 		self.construct = construct
 	}
 	
-	func expand(extraArguments: [FHIRURLParam]? = nil) -> String {
+	func expand(_ extraArguments: [FHIRURLParam]? = nil) -> String {
 		var arr = [String]()
 		for params in self.prepare(nil) {
 			for param in params.expand() {
@@ -308,15 +308,15 @@ struct FHIRSearchConstruct
 			}
 		}
 		
-		return arr.joinWithSeparator("&")
+		return arr.joined(separator: "&")
 	}
 	
-	func prepare(parent: FHIRSearchParam?) -> [FHIRSearchParam] {
+	func prepare(_ parent: FHIRSearchParam?) -> [FHIRSearchParam] {
 		var arr = [FHIRSearchParam]()
 		if let myarr = construct as? [AnyObject] {
 			for any in myarr {
 				let sub = FHIRSearchConstruct(construct: any)
-				arr.appendContentsOf(sub.prepare(nil))
+				arr.append(contentsOf: sub.prepare(nil))
 			}
 			return arr
 		}
@@ -359,27 +359,27 @@ struct FHIRSearchConstruct
 
 protocol FHIRSearchConstructHandler
 {
-	func handles(key: String) -> Bool
-	func handle(param: FHIRSearchParam, value: AnyObject)
+	func handles(_ key: String) -> Bool
+	func handle(_ param: FHIRSearchParam, value: AnyObject)
 }
 
 
 struct FHIRSearchConstructAndHandler: FHIRSearchConstructHandler
 {
-	func handles(key: String) -> Bool {
+	func handles(_ key: String) -> Bool {
 		return ("$and" == key)
 	}
 	
-	func handle(param: FHIRSearchParam, value: AnyObject) {
+	func handle(_ param: FHIRSearchParam, value: AnyObject) {
 		if let arr = value as? [AnyObject] {
 			param.name = nil
 			var ret = [FHIRSearchParam]()
 			for obj in arr {
-				ret.appendContentsOf(FHIRSearchParam.from(obj, parent: param.parent))
+				ret.append(contentsOf: FHIRSearchParam.from(obj, parent: param.parent))
 			}
 			
 			if nil != param.children {
-				param.children!.appendContentsOf(ret)
+				param.children!.append(contentsOf: ret)
 			}
 			else {
 				param.children = ret
@@ -394,11 +394,11 @@ struct FHIRSearchConstructAndHandler: FHIRSearchConstructHandler
 
 struct FHIRSearchConstructOrHandler: FHIRSearchConstructHandler
 {
-	func handles(key: String) -> Bool {
+	func handles(_ key: String) -> Bool {
 		return ("$or" == key)
 	}
 	
-	func handle(param: FHIRSearchParam, value: AnyObject) {
+	func handle(_ param: FHIRSearchParam, value: AnyObject) {
 		if let arr = value as? [AnyObject] {
 			var strs = [String]()
 			for obj in arr {
@@ -410,7 +410,7 @@ struct FHIRSearchConstructOrHandler: FHIRSearchConstructHandler
 				}
 			}
 			param.name = nil
-			param.value = strs.joinWithSeparator(",")
+			param.value = strs.joined(separator: ",")
 		}
 		else {
 			fhir_warn("must supply an array of objects to an $or modifier")
@@ -430,11 +430,11 @@ struct FHIRSearchConstructModifierHandler: FHIRSearchConstructHandler
 		"$text": ":text",
 	]
 	
-	func handles(key: String) -> Bool {
+	func handles(_ key: String) -> Bool {
 		return FHIRSearchConstructModifierHandler.map.keys.contains(key)
 	}
 	
-	func handle(param: FHIRSearchParam, value: AnyObject) {
+	func handle(_ param: FHIRSearchParam, value: AnyObject) {
 		if let modifier = FHIRSearchConstructModifierHandler.map[param.name ?? ""] {
 			param.name = modifier
 			param.isModifier = true
@@ -456,11 +456,11 @@ struct FHIRSearchConstructOperatorHandler: FHIRSearchConstructHandler
 		"$gte": "%3E%3D",
 	]
 	
-	func handles(key: String) -> Bool {
+	func handles(_ key: String) -> Bool {
 		return FHIRSearchConstructOperatorHandler.map.keys.contains(key)
 	}
 	
-	func handle(param: FHIRSearchParam, value: AnyObject) {
+	func handle(_ param: FHIRSearchParam, value: AnyObject) {
 		if let modifier = FHIRSearchConstructOperatorHandler.map[param.name!] {
 			if let str = value as? String {
 				param.name = nil
@@ -476,11 +476,11 @@ struct FHIRSearchConstructOperatorHandler: FHIRSearchConstructHandler
 
 struct FHIRSearchConstructTypeHandler: FHIRSearchConstructHandler
 {
-	func handles(key: String) -> Bool {
+	func handles(_ key: String) -> Bool {
 		return ("$type" == key)
 	}
 	
-	func handle(param: FHIRSearchParam, value: AnyObject) {
+	func handle(_ param: FHIRSearchParam, value: AnyObject) {
 		if let type = value as? String {
 			if let parent = param.parent {
 				parent.name = (parent.name ?? "") + ":\(type)"

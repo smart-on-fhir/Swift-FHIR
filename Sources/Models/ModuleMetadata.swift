@@ -2,7 +2,7 @@
 //  ModuleMetadata.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ModuleMetadata) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ModuleMetadata) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -76,7 +76,7 @@ public class ModuleMetadata: Element {
 	public var type: String?
 	
 	/// Logical URL to reference this module.
-	public var url: NSURL?
+	public var url: URL?
 	
 	/// Describes the clinical usage of the module.
 	public var usage: String?
@@ -97,13 +97,13 @@ public class ModuleMetadata: Element {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = ModuleMetadataContact.from(val, owner: self) as? [ModuleMetadataContact]
+					self.contact = ModuleMetadataContact.instantiate(fromArray: val, owner: self) as? [ModuleMetadataContact]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -112,7 +112,7 @@ public class ModuleMetadata: Element {
 			if let exist: AnyObject = js["contributor"] {
 				presentKeys.insert("contributor")
 				if let val = exist as? [FHIRJSON] {
-					self.contributor = ModuleMetadataContributor.from(val, owner: self) as? [ModuleMetadataContributor]
+					self.contributor = ModuleMetadataContributor.instantiate(fromArray: val, owner: self) as? [ModuleMetadataContributor]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contributor", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -130,7 +130,7 @@ public class ModuleMetadata: Element {
 			if let exist: AnyObject = js["coverage"] {
 				presentKeys.insert("coverage")
 				if let val = exist as? [FHIRJSON] {
-					self.coverage = ModuleMetadataCoverage.from(val, owner: self) as? [ModuleMetadataCoverage]
+					self.coverage = ModuleMetadataCoverage.instantiate(fromArray: val, owner: self) as? [ModuleMetadataCoverage]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "coverage", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -166,7 +166,7 @@ public class ModuleMetadata: Element {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -220,7 +220,7 @@ public class ModuleMetadata: Element {
 			if let exist: AnyObject = js["relatedResource"] {
 				presentKeys.insert("relatedResource")
 				if let val = exist as? [FHIRJSON] {
-					self.relatedResource = ModuleMetadataRelatedResource.from(val, owner: self) as? [ModuleMetadataRelatedResource]
+					self.relatedResource = ModuleMetadataRelatedResource.instantiate(fromArray: val, owner: self) as? [ModuleMetadataRelatedResource]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "relatedResource", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -250,7 +250,7 @@ public class ModuleMetadata: Element {
 			if let exist: AnyObject = js["topic"] {
 				presentKeys.insert("topic")
 				if let val = exist as? [FHIRJSON] {
-					self.topic = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.topic = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "topic", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -271,7 +271,7 @@ public class ModuleMetadata: Element {
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
@@ -393,8 +393,8 @@ public class ModuleMetadataContact: Element {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["name"] {
 				presentKeys.insert("name")
@@ -408,7 +408,7 @@ public class ModuleMetadataContact: Element {
 			if let exist: AnyObject = js["telecom"] {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -465,13 +465,13 @@ public class ModuleMetadataContributor: Element {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = ModuleMetadataContributorContact.from(val, owner: self) as? [ModuleMetadataContributorContact]
+					self.contact = ModuleMetadataContributorContact.instantiate(fromArray: val, owner: self) as? [ModuleMetadataContributorContact]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -545,8 +545,8 @@ public class ModuleMetadataContributorContact: Element {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["name"] {
 				presentKeys.insert("name")
@@ -560,7 +560,7 @@ public class ModuleMetadataContributorContact: Element {
 			if let exist: AnyObject = js["telecom"] {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -615,8 +615,8 @@ public class ModuleMetadataCoverage: Element {
 		self.value = value
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["focus"] {
 				presentKeys.insert("focus")
@@ -692,8 +692,8 @@ public class ModuleMetadataRelatedResource: Element {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["document"] {
 				presentKeys.insert("document")

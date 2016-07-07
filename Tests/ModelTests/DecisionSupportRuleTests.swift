@@ -2,7 +2,7 @@
 //  DecisionSupportRuleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -12,12 +12,12 @@ import SwiftFHIR
 
 class DecisionSupportRuleTests: XCTestCase {
 	
-	func instantiateFrom(filename filename: String) throws -> DecisionSupportRule {
+	func instantiateFrom(filename: String) throws -> SwiftFHIR.DecisionSupportRule {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json json: FHIRJSON) -> DecisionSupportRule {
-		let instance = DecisionSupportRule(json: json)
+	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.DecisionSupportRule {
+		let instance = SwiftFHIR.DecisionSupportRule(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
@@ -32,26 +32,27 @@ class DecisionSupportRuleTests: XCTestCase {
 		}
 	}
 	
-	func runDecisionSupportRule1(json: FHIRJSON? = nil) throws -> DecisionSupportRule {
+	@discardableResult
+	func runDecisionSupportRule1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DecisionSupportRule {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "decisionsupportrule-example.json")
 		
-		XCTAssertEqual(inst.action![0].customization![0].expression!, "ChlamydiaScreeningRequest")
-		XCTAssertEqual(inst.action![0].customization![0].path!, "~")
-		XCTAssertEqual(inst.action![0].title!, "Patient has not had chlamydia screening within the recommended timeframe...")
-		XCTAssertEqual(inst.condition!, "NoScreening")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.library![0].reference!, "Library/ChlamydiaScreening_CDS_UsingCommon")
-		XCTAssertEqual(inst.moduleMetadata!.description_fhir!, "Chlamydia Screening CDS Example Using Common")
-		XCTAssertEqual(inst.moduleMetadata!.identifier![0].use!, "official")
-		XCTAssertEqual(inst.moduleMetadata!.identifier![0].value!, "ChlamydiaScreening_CDS_UsingCommon")
-		XCTAssertEqual(inst.moduleMetadata!.publicationDate!.description, "2015-07-22")
-		XCTAssertEqual(inst.moduleMetadata!.status!, "draft")
-		XCTAssertEqual(inst.moduleMetadata!.title!, "Chalmydia Screening CDS Example Using Common")
-		XCTAssertEqual(inst.moduleMetadata!.topic![0].text!, "Chlamydia Screeening")
-		XCTAssertEqual(inst.moduleMetadata!.type!, "module")
-		XCTAssertEqual(inst.moduleMetadata!.version!, "2.0.0")
-		XCTAssertEqual(inst.text!.div!, "<div>Chalmydia Screening CDS Example Using Common</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.action?[0].customization?[0].expression, "ChlamydiaScreeningRequest")
+		XCTAssertEqual(inst.action?[0].customization?[0].path, "~")
+		XCTAssertEqual(inst.action?[0].title, "Patient has not had chlamydia screening within the recommended timeframe...")
+		XCTAssertEqual(inst.condition, "NoScreening")
+		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.library?[0].reference, "Library/ChlamydiaScreening_CDS_UsingCommon")
+		XCTAssertEqual(inst.moduleMetadata?.description_fhir, "Chlamydia Screening CDS Example Using Common")
+		XCTAssertEqual(inst.moduleMetadata?.identifier?[0].use, "official")
+		XCTAssertEqual(inst.moduleMetadata?.identifier?[0].value, "ChlamydiaScreening_CDS_UsingCommon")
+		XCTAssertEqual(inst.moduleMetadata?.publicationDate?.description, "2015-07-22")
+		XCTAssertEqual(inst.moduleMetadata?.status, "draft")
+		XCTAssertEqual(inst.moduleMetadata?.title, "Chalmydia Screening CDS Example Using Common")
+		XCTAssertEqual(inst.moduleMetadata?.topic?[0].text, "Chlamydia Screeening")
+		XCTAssertEqual(inst.moduleMetadata?.type, "module")
+		XCTAssertEqual(inst.moduleMetadata?.version, "2.0.0")
+		XCTAssertEqual(inst.text?.div, "<div>Chalmydia Screening CDS Example Using Common</div>")
+		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
 	}

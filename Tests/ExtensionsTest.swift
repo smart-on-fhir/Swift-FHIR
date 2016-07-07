@@ -12,14 +12,14 @@ import SwiftFHIR
 
 class ExtensionsTest: XCTestCase
 {
-	func testNSURL() {
-		let url1: NSURL? = NSURL(string: "http://api.io")
-		let url2: NSURL? = NSURL(json: "http://api.io")
+	func testURL() {
+		let url1 = URL(string: "http://api.io")
+		let url2 = URL(json: "http://api.io")
 		XCTAssertNotNil(url1)
 		XCTAssertNotNil(url2)
 		XCTAssertEqual(url1!, url2!)
 		
-		let url = NSURL.from([
+		let url = URL.instantiate(fromArray: [
 			"http://api.io",
 			"https://smartplatforms.org",
 			"not a URL",

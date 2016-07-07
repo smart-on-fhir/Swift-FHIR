@@ -2,7 +2,7 @@
 //  DomainResource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -37,13 +37,13 @@ public class DomainResource: Resource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["contained"] {
 				presentKeys.insert("contained")
 				if let val = exist as? [FHIRJSON] {
-					self.contained = Resource.from(val, owner: self) as? [Resource]
+					self.contained = Resource.instantiate(fromArray: val, owner: self) as? [Resource]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contained", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -52,7 +52,7 @@ public class DomainResource: Resource {
 			if let exist: AnyObject = js["extension"] {
 				presentKeys.insert("extension")
 				if let val = exist as? [FHIRJSON] {
-					self.extension_fhir = Extension.from(val, owner: self) as? [Extension]
+					self.extension_fhir = Extension.instantiate(fromArray: val, owner: self) as? [Extension]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "extension", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -61,7 +61,7 @@ public class DomainResource: Resource {
 			if let exist: AnyObject = js["modifierExtension"] {
 				presentKeys.insert("modifierExtension")
 				if let val = exist as? [FHIRJSON] {
-					self.modifierExtension = Extension.from(val, owner: self) as? [Extension]
+					self.modifierExtension = Extension.instantiate(fromArray: val, owner: self) as? [Extension]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "modifierExtension", wants: Array<FHIRJSON>.self, has: exist.dynamicType))

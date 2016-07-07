@@ -2,7 +2,7 @@
 //  Parameters.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -29,13 +29,13 @@ public class Parameters: Resource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["parameter"] {
 				presentKeys.insert("parameter")
 				if let val = exist as? [FHIRJSON] {
-					self.parameter = ParametersParameter.from(val, owner: self) as? [ParametersParameter]
+					self.parameter = ParametersParameter.instantiate(fromArray: val, owner: self) as? [ParametersParameter]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "parameter", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -173,7 +173,7 @@ public class ParametersParameter: BackboneElement {
 	public var valueUnsignedInt: UInt?
 	
 	/// If parameter is a data type.
-	public var valueUri: NSURL?
+	public var valueUri: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -187,8 +187,8 @@ public class ParametersParameter: BackboneElement {
 		self.name = name
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["name"] {
 				presentKeys.insert("name")
@@ -205,7 +205,7 @@ public class ParametersParameter: BackboneElement {
 			if let exist: AnyObject = js["part"] {
 				presentKeys.insert("part")
 				if let val = exist as? [FHIRJSON] {
-					self.part = ParametersParameter.from(val, owner: self) as? [ParametersParameter]
+					self.part = ParametersParameter.instantiate(fromArray: val, owner: self) as? [ParametersParameter]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "part", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -214,7 +214,7 @@ public class ParametersParameter: BackboneElement {
 			if let exist: AnyObject = js["resource"] {
 				presentKeys.insert("resource")
 				if let val = exist as? FHIRJSON {
-					self.resource = Resource.instantiateFrom(val, owner: self) as? Resource
+					self.resource = Resource.instantiate(fromJSON: val, owner: self) as? Resource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "resource", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -511,7 +511,7 @@ public class ParametersParameter: BackboneElement {
 			if let exist: AnyObject = js["valueUri"] {
 				presentKeys.insert("valueUri")
 				if let val = exist as? String {
-					self.valueUri = NSURL(string: val)
+					self.valueUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueUri", wants: String.self, has: exist.dynamicType))

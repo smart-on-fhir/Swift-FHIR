@@ -30,7 +30,7 @@ public class FHIRServerRequestHandler {
 	public var headers: FHIRRequestHeaders
 	
 	/// The data to be used in the request body.
-	public var data: NSData?
+	public var data: Data?
 	
 	/// The receiver may hold on to a resource that supplies the request's body data.
 	public var resource: Resource?
@@ -49,7 +49,7 @@ public class FHIRServerRequestHandler {
 	
 	- parameter headers: The headers to add to the receiver
 	*/
-	public func addHeaders(headers inHeaders: FHIRRequestHeaders) {
+	public func add(headers inHeaders: FHIRRequestHeaders) {
 		var hdrs = headers
 		inHeaders.headers.forEach() { hdrs[$0] = $1 }
 		headers = hdrs
@@ -63,7 +63,7 @@ public class FHIRServerRequestHandler {
 		if nil == resource {
 			return
 		}
-		throw FHIRError.RequestCannotPrepareBody
+		throw FHIRError.requestCannotPrepareBody
 	}
 	
 	/**
@@ -71,10 +71,10 @@ public class FHIRServerRequestHandler {
 	
 	Typically the FHIRRequestType instance sets the correct HTTPMethod as well as correct FHIR headers.
 	*/
-	public func prepareRequest(req: NSMutableURLRequest) throws {
+	public func prepare(request: inout URLRequest) throws {
 		try prepareData()
-		type.prepareRequest(req, body: data)
-		headers.prepareRequest(req)
+		type.prepare(request: &request, body: data)
+		headers.prepare(request: &request)
 	}
 	
 	public class var ResponseType: FHIRServerResponse.Type {
@@ -87,7 +87,7 @@ public class FHIRServerRequestHandler {
 	/**
 	Instantiate an object of ResponseType-type based on the response and data that we get.
 	*/
-	public func response(response response: NSURLResponse?, data inData: NSData? = nil, error: NSError? = nil) -> FHIRServerResponse {
+	public func response(response: URLResponse?, data inData: Data? = nil, error: NSError? = nil) -> FHIRServerResponse {
 		if let res = response {
 			return self.dynamicType.ResponseType.init(response: res, data: inData, urlError: error)
 		}
@@ -100,15 +100,17 @@ public class FHIRServerRequestHandler {
 	/**
 	Convenience method to indicate a request that has not actually been sent.
 	*/
-	public func notSent(reason: String) -> FHIRServerResponse {
-		return self.dynamicType.ResponseType.init(error: FHIRError.RequestNotSent(reason))
+	public func notSent(_ reason: String) -> FHIRServerResponse {
+		return self.dynamicType.ResponseType.init(error: FHIRError.requestNotSent(reason))
 	}
 	
 	/**
 	Convenience method to indicate that no request handler for the given type is available.
+	
+	- parameter forType: The request type
 	*/
-	public class func noneAvailableForType(type: FHIRRequestType) -> FHIRServerResponse {
-		return ResponseType.init(error: FHIRError.NoRequestHandlerAvailable(type.rawValue))
+	public class func noneAvailable(forType type: FHIRRequestType) -> FHIRServerResponse {
+		return ResponseType.init(error: FHIRError.noRequestHandlerAvailable(type.rawValue))
 	}
 }
 
@@ -136,11 +138,11 @@ public class FHIRServerJSONRequestHandler: FHIRServerRequestHandler {
 			json = resource?.asJSON()
 		}
 		if let json = json {
-			data = try NSJSONSerialization.dataWithJSONObject(json, options: [])
+			data = try JSONSerialization.data(withJSONObject: json, options: [])
 		}			// for GET requests we don't have data, which is fine too
 	}
 	
-	public override func prepareRequest(req: NSMutableURLRequest) throws {
+	public override func prepare(request: inout URLRequest) throws {
 		switch type {
 		case .PUT:
 			headers[.ContentType] = "application/json+fhir; charset=utf-8"
@@ -149,7 +151,7 @@ public class FHIRServerJSONRequestHandler: FHIRServerRequestHandler {
 		default:
 			break
 		}
-		try super.prepareRequest(req)
+		try super.prepare(request: &request)
 	}
 	
 	public override class var ResponseType: FHIRServerResponse.Type {
@@ -176,7 +178,7 @@ public class FHIRServerDataRequestHandler: FHIRServerRequestHandler {
 	override public func prepareData() throws {
 	}
 	
-	public override func prepareRequest(req: NSMutableURLRequest) throws {
+	public override func prepare(request: inout URLRequest) throws {
 		switch type {
 		case .GET:
 			headers[.Accept] = contentType
@@ -188,7 +190,7 @@ public class FHIRServerDataRequestHandler: FHIRServerRequestHandler {
 		default:
 			break
 		}
-		try super.prepareRequest(req)
+		try super.prepare(request: &request)
 	}
 	
 	public override class var ResponseType: FHIRServerResponse.Type {

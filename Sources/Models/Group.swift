@@ -2,7 +2,7 @@
 //  Group.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Group) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Group) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -61,8 +61,8 @@ public class Group: DomainResource {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["active"] {
 				presentKeys.insert("active")
@@ -88,7 +88,7 @@ public class Group: DomainResource {
 			if let exist: AnyObject = js["characteristic"] {
 				presentKeys.insert("characteristic")
 				if let val = exist as? [FHIRJSON] {
-					self.characteristic = GroupCharacteristic.from(val, owner: self) as? [GroupCharacteristic]
+					self.characteristic = GroupCharacteristic.instantiate(fromArray: val, owner: self) as? [GroupCharacteristic]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "characteristic", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -106,7 +106,7 @@ public class Group: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -115,7 +115,7 @@ public class Group: DomainResource {
 			if let exist: AnyObject = js["member"] {
 				presentKeys.insert("member")
 				if let val = exist as? [FHIRJSON] {
-					self.member = GroupMember.from(val, owner: self) as? [GroupMember]
+					self.member = GroupMember.instantiate(fromArray: val, owner: self) as? [GroupMember]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "member", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -239,8 +239,8 @@ public class GroupCharacteristic: BackboneElement {
 		self.valueRange = valueRange
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")
@@ -381,8 +381,8 @@ public class GroupMember: BackboneElement {
 		self.entity = entity
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["entity"] {
 				presentKeys.insert("entity")

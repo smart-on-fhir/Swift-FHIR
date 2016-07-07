@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -42,7 +42,7 @@ public class DocumentManifest: DomainResource {
 	public var related: [DocumentManifestRelated]?
 	
 	/// The source system/application/software.
-	public var source: NSURL?
+	public var source: URL?
 	
 	/// current | superseded | entered-in-error.
 	public var status: String?
@@ -66,13 +66,13 @@ public class DocumentManifest: DomainResource {
 		self.status = status
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["author"] {
 				presentKeys.insert("author")
 				if let val = exist as? [FHIRJSON] {
-					self.author = Reference.from(val, owner: self) as? [Reference]
+					self.author = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "author", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -81,7 +81,7 @@ public class DocumentManifest: DomainResource {
 			if let exist: AnyObject = js["content"] {
 				presentKeys.insert("content")
 				if let val = exist as? [FHIRJSON] {
-					self.content = DocumentManifestContent.from(val, owner: self) as? [DocumentManifestContent]
+					self.content = DocumentManifestContent.instantiate(fromArray: val, owner: self) as? [DocumentManifestContent]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "content", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -111,7 +111,7 @@ public class DocumentManifest: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -129,7 +129,7 @@ public class DocumentManifest: DomainResource {
 			if let exist: AnyObject = js["recipient"] {
 				presentKeys.insert("recipient")
 				if let val = exist as? [FHIRJSON] {
-					self.recipient = Reference.from(val, owner: self) as? [Reference]
+					self.recipient = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "recipient", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -138,7 +138,7 @@ public class DocumentManifest: DomainResource {
 			if let exist: AnyObject = js["related"] {
 				presentKeys.insert("related")
 				if let val = exist as? [FHIRJSON] {
-					self.related = DocumentManifestRelated.from(val, owner: self) as? [DocumentManifestRelated]
+					self.related = DocumentManifestRelated.instantiate(fromArray: val, owner: self) as? [DocumentManifestRelated]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "related", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -147,7 +147,7 @@ public class DocumentManifest: DomainResource {
 			if let exist: AnyObject = js["source"] {
 				presentKeys.insert("source")
 				if let val = exist as? String {
-					self.source = NSURL(string: val)
+					self.source = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "source", wants: String.self, has: exist.dynamicType))
@@ -261,8 +261,8 @@ public class DocumentManifestContent: BackboneElement {
 		self.pReference = pReference
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["pAttachment"] {
 				presentKeys.insert("pAttachment")
@@ -328,8 +328,8 @@ public class DocumentManifestRelated: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")

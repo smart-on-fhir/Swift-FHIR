@@ -41,6 +41,7 @@ Progress
 Here's a rough list of what still needs to be done.
 
 ```
+[ ] Update/modernize FHIRSearch
 [ ] Add convenience methods to working with resources in code
 [ ] Create enums for `code` type properties
 [ ] Nice support for simple PATCH operations

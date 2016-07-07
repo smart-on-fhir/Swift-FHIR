@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -78,7 +78,7 @@ public class Conformance: DomainResource {
 	public var status: String?
 	
 	/// Logical uri to reference this statement.
-	public var url: NSURL?
+	public var url: URL?
 	
 	/// Content intends to support these contexts.
 	public var useContext: [CodeableConcept]?
@@ -103,8 +103,8 @@ public class Conformance: DomainResource {
 		self.status = status
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["acceptUnknown"] {
 				presentKeys.insert("acceptUnknown")
@@ -121,7 +121,7 @@ public class Conformance: DomainResource {
 			if let exist: AnyObject = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = ConformanceContact.from(val, owner: self) as? [ConformanceContact]
+					self.contact = ConformanceContact.instantiate(fromArray: val, owner: self) as? [ConformanceContact]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -160,7 +160,7 @@ public class Conformance: DomainResource {
 			if let exist: AnyObject = js["document"] {
 				presentKeys.insert("document")
 				if let val = exist as? [FHIRJSON] {
-					self.document = ConformanceDocument.from(val, owner: self) as? [ConformanceDocument]
+					self.document = ConformanceDocument.instantiate(fromArray: val, owner: self) as? [ConformanceDocument]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "document", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -223,7 +223,7 @@ public class Conformance: DomainResource {
 			if let exist: AnyObject = js["messaging"] {
 				presentKeys.insert("messaging")
 				if let val = exist as? [FHIRJSON] {
-					self.messaging = ConformanceMessaging.from(val, owner: self) as? [ConformanceMessaging]
+					self.messaging = ConformanceMessaging.instantiate(fromArray: val, owner: self) as? [ConformanceMessaging]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "messaging", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -241,7 +241,7 @@ public class Conformance: DomainResource {
 			if let exist: AnyObject = js["profile"] {
 				presentKeys.insert("profile")
 				if let val = exist as? [FHIRJSON] {
-					self.profile = Reference.from(val, owner: self) as? [Reference]
+					self.profile = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "profile", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -268,7 +268,7 @@ public class Conformance: DomainResource {
 			if let exist: AnyObject = js["rest"] {
 				presentKeys.insert("rest")
 				if let val = exist as? [FHIRJSON] {
-					self.rest = ConformanceRest.from(val, owner: self) as? [ConformanceRest]
+					self.rest = ConformanceRest.instantiate(fromArray: val, owner: self) as? [ConformanceRest]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "rest", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -298,7 +298,7 @@ public class Conformance: DomainResource {
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
@@ -307,7 +307,7 @@ public class Conformance: DomainResource {
 			if let exist: AnyObject = js["useContext"] {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
-					self.useContext = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -427,8 +427,8 @@ public class ConformanceContact: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["name"] {
 				presentKeys.insert("name")
@@ -442,7 +442,7 @@ public class ConformanceContact: BackboneElement {
 			if let exist: AnyObject = js["telecom"] {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -499,8 +499,8 @@ public class ConformanceDocument: BackboneElement {
 		self.profile = profile
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["documentation"] {
 				presentKeys.insert("documentation")
@@ -572,7 +572,7 @@ public class ConformanceImplementation: BackboneElement {
 	public var description_fhir: String?
 	
 	/// Base URL for the installation.
-	public var url: NSURL?
+	public var url: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -586,8 +586,8 @@ public class ConformanceImplementation: BackboneElement {
 		self.description_fhir = description_fhir
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["description"] {
 				presentKeys.insert("description")
@@ -604,7 +604,7 @@ public class ConformanceImplementation: BackboneElement {
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
@@ -663,8 +663,8 @@ public class ConformanceMessaging: BackboneElement {
 		self.event = event
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["documentation"] {
 				presentKeys.insert("documentation")
@@ -678,7 +678,7 @@ public class ConformanceMessaging: BackboneElement {
 			if let exist: AnyObject = js["endpoint"] {
 				presentKeys.insert("endpoint")
 				if let val = exist as? [FHIRJSON] {
-					self.endpoint = ConformanceMessagingEndpoint.from(val, owner: self) as? [ConformanceMessagingEndpoint]
+					self.endpoint = ConformanceMessagingEndpoint.instantiate(fromArray: val, owner: self) as? [ConformanceMessagingEndpoint]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "endpoint", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -687,7 +687,7 @@ public class ConformanceMessaging: BackboneElement {
 			if let exist: AnyObject = js["event"] {
 				presentKeys.insert("event")
 				if let val = exist as? [FHIRJSON] {
-					self.event = ConformanceMessagingEvent.from(val, owner: self) as? [ConformanceMessagingEvent]
+					self.event = ConformanceMessagingEvent.instantiate(fromArray: val, owner: self) as? [ConformanceMessagingEvent]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "event", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -741,7 +741,7 @@ public class ConformanceMessagingEndpoint: BackboneElement {
 	}
 	
 	/// Address of end-point.
-	public var address: NSURL?
+	public var address: URL?
 	
 	/// http | ftp | mllp +.
 	public var protocol_fhir: Coding?
@@ -753,19 +753,19 @@ public class ConformanceMessagingEndpoint: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(address: NSURL, protocol_fhir: Coding) {
+	public convenience init(address: URL, protocol_fhir: Coding) {
 		self.init(json: nil)
 		self.address = address
 		self.protocol_fhir = protocol_fhir
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["address"] {
 				presentKeys.insert("address")
 				if let val = exist as? String {
-					self.address = NSURL(string: val)
+					self.address = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "address", wants: String.self, has: exist.dynamicType))
@@ -852,8 +852,8 @@ public class ConformanceMessagingEvent: BackboneElement {
 		self.response = response
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["category"] {
 				presentKeys.insert("category")
@@ -978,7 +978,7 @@ public class ConformanceRest: BackboneElement {
 	}
 	
 	/// Compartments served/used by system.
-	public var compartment: [NSURL]?
+	public var compartment: [URL]?
 	
 	/// General description of implementation.
 	public var documentation: String?
@@ -1016,13 +1016,13 @@ public class ConformanceRest: BackboneElement {
 		self.mode = mode
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["compartment"] {
 				presentKeys.insert("compartment")
 				if let val = exist as? [String] {
-					self.compartment = NSURL.from(val)
+					self.compartment = URL.instantiate(fromArray: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "compartment", wants: Array<String>.self, has: exist.dynamicType))
@@ -1040,7 +1040,7 @@ public class ConformanceRest: BackboneElement {
 			if let exist: AnyObject = js["interaction"] {
 				presentKeys.insert("interaction")
 				if let val = exist as? [FHIRJSON] {
-					self.interaction = ConformanceRestInteraction.from(val, owner: self) as? [ConformanceRestInteraction]
+					self.interaction = ConformanceRestInteraction.instantiate(fromArray: val, owner: self) as? [ConformanceRestInteraction]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "interaction", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -1061,7 +1061,7 @@ public class ConformanceRest: BackboneElement {
 			if let exist: AnyObject = js["operation"] {
 				presentKeys.insert("operation")
 				if let val = exist as? [FHIRJSON] {
-					self.operation = ConformanceRestOperation.from(val, owner: self) as? [ConformanceRestOperation]
+					self.operation = ConformanceRestOperation.instantiate(fromArray: val, owner: self) as? [ConformanceRestOperation]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "operation", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -1070,7 +1070,7 @@ public class ConformanceRest: BackboneElement {
 			if let exist: AnyObject = js["resource"] {
 				presentKeys.insert("resource")
 				if let val = exist as? [FHIRJSON] {
-					self.resource = ConformanceRestResource.from(val, owner: self) as? [ConformanceRestResource]
+					self.resource = ConformanceRestResource.instantiate(fromArray: val, owner: self) as? [ConformanceRestResource]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "resource", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -1079,7 +1079,7 @@ public class ConformanceRest: BackboneElement {
 			if let exist: AnyObject = js["searchParam"] {
 				presentKeys.insert("searchParam")
 				if let val = exist as? [FHIRJSON] {
-					self.searchParam = ConformanceRestResourceSearchParam.from(val, owner: self) as? [ConformanceRestResourceSearchParam]
+					self.searchParam = ConformanceRestResourceSearchParam.instantiate(fromArray: val, owner: self) as? [ConformanceRestResourceSearchParam]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "searchParam", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -1175,8 +1175,8 @@ public class ConformanceRestInteraction: BackboneElement {
 		self.code = code
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")
@@ -1247,8 +1247,8 @@ public class ConformanceRestOperation: BackboneElement {
 		self.name = name
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["definition"] {
 				presentKeys.insert("definition")
@@ -1352,8 +1352,8 @@ public class ConformanceRestResource: BackboneElement {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["conditionalCreate"] {
 				presentKeys.insert("conditionalCreate")
@@ -1385,7 +1385,7 @@ public class ConformanceRestResource: BackboneElement {
 			if let exist: AnyObject = js["interaction"] {
 				presentKeys.insert("interaction")
 				if let val = exist as? [FHIRJSON] {
-					self.interaction = ConformanceRestResourceInteraction.from(val, owner: self) as? [ConformanceRestResourceInteraction]
+					self.interaction = ConformanceRestResourceInteraction.instantiate(fromArray: val, owner: self) as? [ConformanceRestResourceInteraction]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "interaction", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -1424,7 +1424,7 @@ public class ConformanceRestResource: BackboneElement {
 			if let exist: AnyObject = js["searchParam"] {
 				presentKeys.insert("searchParam")
 				if let val = exist as? [FHIRJSON] {
-					self.searchParam = ConformanceRestResourceSearchParam.from(val, owner: self) as? [ConformanceRestResourceSearchParam]
+					self.searchParam = ConformanceRestResourceSearchParam.instantiate(fromArray: val, owner: self) as? [ConformanceRestResourceSearchParam]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "searchParam", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -1554,8 +1554,8 @@ public class ConformanceRestResourceInteraction: BackboneElement {
 		self.code = code
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")
@@ -1612,7 +1612,7 @@ public class ConformanceRestResourceSearchParam: BackboneElement {
 	public var chain: [String]?
 	
 	/// Source of definition for parameter.
-	public var definition: NSURL?
+	public var definition: URL?
 	
 	/// Server-specific usage.
 	public var documentation: String?
@@ -1642,8 +1642,8 @@ public class ConformanceRestResourceSearchParam: BackboneElement {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["chain"] {
 				presentKeys.insert("chain")
@@ -1657,7 +1657,7 @@ public class ConformanceRestResourceSearchParam: BackboneElement {
 			if let exist: AnyObject = js["definition"] {
 				presentKeys.insert("definition")
 				if let val = exist as? String {
-					self.definition = NSURL(string: val)
+					self.definition = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "definition", wants: String.self, has: exist.dynamicType))
@@ -1788,13 +1788,13 @@ public class ConformanceRestSecurity: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["certificate"] {
 				presentKeys.insert("certificate")
 				if let val = exist as? [FHIRJSON] {
-					self.certificate = ConformanceRestSecurityCertificate.from(val, owner: self) as? [ConformanceRestSecurityCertificate]
+					self.certificate = ConformanceRestSecurityCertificate.instantiate(fromArray: val, owner: self) as? [ConformanceRestSecurityCertificate]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "certificate", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -1821,7 +1821,7 @@ public class ConformanceRestSecurity: BackboneElement {
 			if let exist: AnyObject = js["service"] {
 				presentKeys.insert("service")
 				if let val = exist as? [FHIRJSON] {
-					self.service = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.service = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "service", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -1872,8 +1872,8 @@ public class ConformanceRestSecurityCertificate: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["blob"] {
 				presentKeys.insert("blob")
@@ -1944,8 +1944,8 @@ public class ConformanceSoftware: BackboneElement {
 		self.name = name
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["name"] {
 				presentKeys.insert("name")

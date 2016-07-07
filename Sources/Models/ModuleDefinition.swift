@@ -2,7 +2,7 @@
 //  ModuleDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ModuleDefinition) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ModuleDefinition) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -49,13 +49,13 @@ public class ModuleDefinition: DomainResource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["codeSystem"] {
 				presentKeys.insert("codeSystem")
 				if let val = exist as? [FHIRJSON] {
-					self.codeSystem = ModuleDefinitionCodeSystem.from(val, owner: self) as? [ModuleDefinitionCodeSystem]
+					self.codeSystem = ModuleDefinitionCodeSystem.instantiate(fromArray: val, owner: self) as? [ModuleDefinitionCodeSystem]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "codeSystem", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -64,7 +64,7 @@ public class ModuleDefinition: DomainResource {
 			if let exist: AnyObject = js["data"] {
 				presentKeys.insert("data")
 				if let val = exist as? [FHIRJSON] {
-					self.data = ModuleDefinitionData.from(val, owner: self) as? [ModuleDefinitionData]
+					self.data = ModuleDefinitionData.instantiate(fromArray: val, owner: self) as? [ModuleDefinitionData]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "data", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -73,7 +73,7 @@ public class ModuleDefinition: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -82,7 +82,7 @@ public class ModuleDefinition: DomainResource {
 			if let exist: AnyObject = js["library"] {
 				presentKeys.insert("library")
 				if let val = exist as? [FHIRJSON] {
-					self.library = ModuleDefinitionLibrary.from(val, owner: self) as? [ModuleDefinitionLibrary]
+					self.library = ModuleDefinitionLibrary.instantiate(fromArray: val, owner: self) as? [ModuleDefinitionLibrary]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "library", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -91,7 +91,7 @@ public class ModuleDefinition: DomainResource {
 			if let exist: AnyObject = js["model"] {
 				presentKeys.insert("model")
 				if let val = exist as? [FHIRJSON] {
-					self.model = ModuleDefinitionModel.from(val, owner: self) as? [ModuleDefinitionModel]
+					self.model = ModuleDefinitionModel.instantiate(fromArray: val, owner: self) as? [ModuleDefinitionModel]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "model", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -100,7 +100,7 @@ public class ModuleDefinition: DomainResource {
 			if let exist: AnyObject = js["parameter"] {
 				presentKeys.insert("parameter")
 				if let val = exist as? [FHIRJSON] {
-					self.parameter = ModuleDefinitionParameter.from(val, owner: self) as? [ModuleDefinitionParameter]
+					self.parameter = ModuleDefinitionParameter.instantiate(fromArray: val, owner: self) as? [ModuleDefinitionParameter]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "parameter", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -109,7 +109,7 @@ public class ModuleDefinition: DomainResource {
 			if let exist: AnyObject = js["valueSet"] {
 				presentKeys.insert("valueSet")
 				if let val = exist as? [FHIRJSON] {
-					self.valueSet = ModuleDefinitionValueSet.from(val, owner: self) as? [ModuleDefinitionValueSet]
+					self.valueSet = ModuleDefinitionValueSet.instantiate(fromArray: val, owner: self) as? [ModuleDefinitionValueSet]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueSet", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -193,8 +193,8 @@ public class ModuleDefinitionCodeSystem: BackboneElement {
 		self.name = name
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
@@ -289,13 +289,13 @@ public class ModuleDefinitionData: BackboneElement {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["codeFilter"] {
 				presentKeys.insert("codeFilter")
 				if let val = exist as? [FHIRJSON] {
-					self.codeFilter = ModuleDefinitionDataCodeFilter.from(val, owner: self) as? [ModuleDefinitionDataCodeFilter]
+					self.codeFilter = ModuleDefinitionDataCodeFilter.instantiate(fromArray: val, owner: self) as? [ModuleDefinitionDataCodeFilter]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "codeFilter", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -304,7 +304,7 @@ public class ModuleDefinitionData: BackboneElement {
 			if let exist: AnyObject = js["dateFilter"] {
 				presentKeys.insert("dateFilter")
 				if let val = exist as? [FHIRJSON] {
-					self.dateFilter = ModuleDefinitionDataDateFilter.from(val, owner: self) as? [ModuleDefinitionDataDateFilter]
+					self.dateFilter = ModuleDefinitionDataDateFilter.instantiate(fromArray: val, owner: self) as? [ModuleDefinitionDataDateFilter]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dateFilter", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -406,13 +406,13 @@ public class ModuleDefinitionDataCodeFilter: BackboneElement {
 		self.path = path
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["codeableConcept"] {
 				presentKeys.insert("codeableConcept")
 				if let val = exist as? [FHIRJSON] {
-					self.codeableConcept = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.codeableConcept = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "codeableConcept", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -504,8 +504,8 @@ public class ModuleDefinitionDataDateFilter: BackboneElement {
 		self.path = path
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["path"] {
 				presentKeys.insert("path")
@@ -590,8 +590,8 @@ public class ModuleDefinitionLibrary: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["documentAttachment"] {
 				presentKeys.insert("documentAttachment")
@@ -697,8 +697,8 @@ public class ModuleDefinitionModel: BackboneElement {
 		self.identifier = identifier
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
@@ -791,8 +791,8 @@ public class ModuleDefinitionParameter: BackboneElement {
 		self.use = use
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["documentation"] {
 				presentKeys.insert("documentation")
@@ -911,8 +911,8 @@ public class ModuleDefinitionValueSet: BackboneElement {
 		self.name = name
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["codeSystem"] {
 				presentKeys.insert("codeSystem")

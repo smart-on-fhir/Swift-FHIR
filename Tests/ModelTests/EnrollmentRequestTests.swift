@@ -2,7 +2,7 @@
 //  EnrollmentRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -12,12 +12,12 @@ import SwiftFHIR
 
 class EnrollmentRequestTests: XCTestCase {
 	
-	func instantiateFrom(filename filename: String) throws -> EnrollmentRequest {
+	func instantiateFrom(filename: String) throws -> SwiftFHIR.EnrollmentRequest {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json json: FHIRJSON) -> EnrollmentRequest {
-		let instance = EnrollmentRequest(json: json)
+	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.EnrollmentRequest {
+		let instance = SwiftFHIR.EnrollmentRequest(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
@@ -32,19 +32,20 @@ class EnrollmentRequestTests: XCTestCase {
 		}
 	}
 	
-	func runEnrollmentRequest1(json: FHIRJSON? = nil) throws -> EnrollmentRequest {
+	@discardableResult
+	func runEnrollmentRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.EnrollmentRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "enrollmentrequest-example.json")
 		
-		XCTAssertEqual(inst.coverage!.reference!, "Coverage/9876B1")
-		XCTAssertEqual(inst.created!.description, "2014-08-16")
-		XCTAssertEqual(inst.id!, "22345")
-		XCTAssertEqual(inst.identifier![0].system!.absoluteString, "http://happyvalley.com/enrollmentrequest")
-		XCTAssertEqual(inst.identifier![0].value!, "EN22345")
-		XCTAssertEqual(inst.organization!.reference!, "Organization/1")
-		XCTAssertEqual(inst.relationship!.code!, "spouse")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/1")
-		XCTAssertEqual(inst.text!.div!, "<div>A human-readable rendering of the EnrollmentRequest.</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.coverage?.reference, "Coverage/9876B1")
+		XCTAssertEqual(inst.created?.description, "2014-08-16")
+		XCTAssertEqual(inst.id, "22345")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/enrollmentrequest")
+		XCTAssertEqual(inst.identifier?[0].value, "EN22345")
+		XCTAssertEqual(inst.organization?.reference, "Organization/1")
+		XCTAssertEqual(inst.relationship?.code, "spouse")
+		XCTAssertEqual(inst.subject?.reference, "Patient/1")
+		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the EnrollmentRequest.</div>")
+		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
 	}

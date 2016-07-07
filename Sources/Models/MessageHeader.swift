@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -68,8 +68,8 @@ public class MessageHeader: DomainResource {
 		self.timestamp = timestamp
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["author"] {
 				presentKeys.insert("author")
@@ -83,7 +83,7 @@ public class MessageHeader: DomainResource {
 			if let exist: AnyObject = js["data"] {
 				presentKeys.insert("data")
 				if let val = exist as? [FHIRJSON] {
-					self.data = Reference.from(val, owner: self) as? [Reference]
+					self.data = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "data", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -92,7 +92,7 @@ public class MessageHeader: DomainResource {
 			if let exist: AnyObject = js["destination"] {
 				presentKeys.insert("destination")
 				if let val = exist as? [FHIRJSON] {
-					self.destination = MessageHeaderDestination.from(val, owner: self) as? [MessageHeaderDestination]
+					self.destination = MessageHeaderDestination.instantiate(fromArray: val, owner: self) as? [MessageHeaderDestination]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "destination", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -236,7 +236,7 @@ public class MessageHeaderDestination: BackboneElement {
 	}
 	
 	/// Actual destination address or id.
-	public var endpoint: NSURL?
+	public var endpoint: URL?
 	
 	/// Name of system.
 	public var name: String?
@@ -251,18 +251,18 @@ public class MessageHeaderDestination: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(endpoint: NSURL) {
+	public convenience init(endpoint: URL) {
 		self.init(json: nil)
 		self.endpoint = endpoint
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["endpoint"] {
 				presentKeys.insert("endpoint")
 				if let val = exist as? String {
-					self.endpoint = NSURL(string: val)
+					self.endpoint = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "endpoint", wants: String.self, has: exist.dynamicType))
@@ -343,8 +343,8 @@ public class MessageHeaderResponse: BackboneElement {
 		self.identifier = identifier
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")
@@ -415,7 +415,7 @@ public class MessageHeaderSource: BackboneElement {
 	public var contact: ContactPoint?
 	
 	/// Actual message source address or id.
-	public var endpoint: NSURL?
+	public var endpoint: URL?
 	
 	/// Name of system.
 	public var name: String?
@@ -433,13 +433,13 @@ public class MessageHeaderSource: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(endpoint: NSURL) {
+	public convenience init(endpoint: URL) {
 		self.init(json: nil)
 		self.endpoint = endpoint
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["contact"] {
 				presentKeys.insert("contact")
@@ -453,7 +453,7 @@ public class MessageHeaderSource: BackboneElement {
 			if let exist: AnyObject = js["endpoint"] {
 				presentKeys.insert("endpoint")
 				if let val = exist as? String {
-					self.endpoint = NSURL(string: val)
+					self.endpoint = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "endpoint", wants: String.self, has: exist.dynamicType))

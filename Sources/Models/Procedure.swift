@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -103,13 +103,13 @@ public class Procedure: DomainResource {
 		self.subject = subject
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["bodySite"] {
 				presentKeys.insert("bodySite")
 				if let val = exist as? [FHIRJSON] {
-					self.bodySite = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.bodySite = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bodySite", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -139,7 +139,7 @@ public class Procedure: DomainResource {
 			if let exist: AnyObject = js["complication"] {
 				presentKeys.insert("complication")
 				if let val = exist as? [FHIRJSON] {
-					self.complication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.complication = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "complication", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -157,7 +157,7 @@ public class Procedure: DomainResource {
 			if let exist: AnyObject = js["focalDevice"] {
 				presentKeys.insert("focalDevice")
 				if let val = exist as? [FHIRJSON] {
-					self.focalDevice = ProcedureFocalDevice.from(val, owner: self) as? [ProcedureFocalDevice]
+					self.focalDevice = ProcedureFocalDevice.instantiate(fromArray: val, owner: self) as? [ProcedureFocalDevice]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "focalDevice", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -166,7 +166,7 @@ public class Procedure: DomainResource {
 			if let exist: AnyObject = js["followUp"] {
 				presentKeys.insert("followUp")
 				if let val = exist as? [FHIRJSON] {
-					self.followUp = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.followUp = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "followUp", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -175,7 +175,7 @@ public class Procedure: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -202,7 +202,7 @@ public class Procedure: DomainResource {
 			if let exist: AnyObject = js["notes"] {
 				presentKeys.insert("notes")
 				if let val = exist as? [FHIRJSON] {
-					self.notes = Annotation.from(val, owner: self) as? [Annotation]
+					self.notes = Annotation.instantiate(fromArray: val, owner: self) as? [Annotation]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "notes", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -238,7 +238,7 @@ public class Procedure: DomainResource {
 			if let exist: AnyObject = js["performer"] {
 				presentKeys.insert("performer")
 				if let val = exist as? [FHIRJSON] {
-					self.performer = ProcedurePerformer.from(val, owner: self) as? [ProcedurePerformer]
+					self.performer = ProcedurePerformer.instantiate(fromArray: val, owner: self) as? [ProcedurePerformer]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "performer", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -256,7 +256,7 @@ public class Procedure: DomainResource {
 			if let exist: AnyObject = js["reasonNotPerformed"] {
 				presentKeys.insert("reasonNotPerformed")
 				if let val = exist as? [FHIRJSON] {
-					self.reasonNotPerformed = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.reasonNotPerformed = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reasonNotPerformed", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -274,7 +274,7 @@ public class Procedure: DomainResource {
 			if let exist: AnyObject = js["report"] {
 				presentKeys.insert("report")
 				if let val = exist as? [FHIRJSON] {
-					self.report = Reference.from(val, owner: self) as? [Reference]
+					self.report = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "report", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -316,7 +316,7 @@ public class Procedure: DomainResource {
 			if let exist: AnyObject = js["used"] {
 				presentKeys.insert("used")
 				if let val = exist as? [FHIRJSON] {
-					self.used = Reference.from(val, owner: self) as? [Reference]
+					self.used = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "used", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -433,8 +433,8 @@ public class ProcedureFocalDevice: BackboneElement {
 		self.manipulated = manipulated
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["action"] {
 				presentKeys.insert("action")
@@ -498,8 +498,8 @@ public class ProcedurePerformer: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["actor"] {
 				presentKeys.insert("actor")

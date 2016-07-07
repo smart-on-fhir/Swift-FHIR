@@ -2,7 +2,7 @@
 //  ReferralRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -87,8 +87,8 @@ public class ReferralRequest: DomainResource {
 		self.status = status
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["authored"] {
 				presentKeys.insert("authored")
@@ -102,7 +102,7 @@ public class ReferralRequest: DomainResource {
 			if let exist: AnyObject = js["basedOn"] {
 				presentKeys.insert("basedOn")
 				if let val = exist as? [FHIRJSON] {
-					self.basedOn = Reference.from(val, owner: self) as? [Reference]
+					self.basedOn = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "basedOn", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -150,7 +150,7 @@ public class ReferralRequest: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -195,7 +195,7 @@ public class ReferralRequest: DomainResource {
 			if let exist: AnyObject = js["recipient"] {
 				presentKeys.insert("recipient")
 				if let val = exist as? [FHIRJSON] {
-					self.recipient = Reference.from(val, owner: self) as? [Reference]
+					self.recipient = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "recipient", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -213,7 +213,7 @@ public class ReferralRequest: DomainResource {
 			if let exist: AnyObject = js["serviceRequested"] {
 				presentKeys.insert("serviceRequested")
 				if let val = exist as? [FHIRJSON] {
-					self.serviceRequested = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.serviceRequested = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "serviceRequested", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -243,7 +243,7 @@ public class ReferralRequest: DomainResource {
 			if let exist: AnyObject = js["supportingInformation"] {
 				presentKeys.insert("supportingInformation")
 				if let val = exist as? [FHIRJSON] {
-					self.supportingInformation = Reference.from(val, owner: self) as? [Reference]
+					self.supportingInformation = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "supportingInformation", wants: Array<FHIRJSON>.self, has: exist.dynamicType))

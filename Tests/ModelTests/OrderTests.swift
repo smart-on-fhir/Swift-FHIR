@@ -2,7 +2,7 @@
 //  OrderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -12,12 +12,12 @@ import SwiftFHIR
 
 class OrderTests: XCTestCase {
 	
-	func instantiateFrom(filename filename: String) throws -> Order {
+	func instantiateFrom(filename: String) throws -> SwiftFHIR.Order {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json json: FHIRJSON) -> Order {
-		let instance = Order(json: json)
+	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Order {
+		let instance = SwiftFHIR.Order(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
@@ -32,22 +32,23 @@ class OrderTests: XCTestCase {
 		}
 	}
 	
-	func runOrder1(json: FHIRJSON? = nil) throws -> Order {
+	@discardableResult
+	func runOrder1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Order {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "order-example-f201-physiotherapy.json")
 		
-		XCTAssertEqual(inst.date!.description, "2013-03-05T12:00:00+01:00")
-		XCTAssertEqual(inst.detail![0].display!, "Consultation, not yet developed")
-		XCTAssertEqual(inst.id!, "f201")
-		XCTAssertEqual(inst.reasonCodeableConcept!.text!, "It concerns a one-off order for consultation in order to evaluate the stairs walking ability of Roel.")
-		XCTAssertEqual(inst.source!.reference!, "Practitioner/f201")
-		XCTAssertEqual(inst.subject!.display!, "Roel")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/f201")
-		XCTAssertEqual(inst.target!.display!, "Juri van Gelder")
-		XCTAssertEqual(inst.target!.reference!, "Practitioner/f203")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.when!.code!.coding![0].code!, "394848005")
-		XCTAssertEqual(inst.when!.code!.coding![0].display!, "Normal priority")
-		XCTAssertEqual(inst.when!.code!.coding![0].system!.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.date?.description, "2013-03-05T12:00:00+01:00")
+		XCTAssertEqual(inst.detail?[0].display, "Consultation, not yet developed")
+		XCTAssertEqual(inst.id, "f201")
+		XCTAssertEqual(inst.reasonCodeableConcept?.text, "It concerns a one-off order for consultation in order to evaluate the stairs walking ability of Roel.")
+		XCTAssertEqual(inst.source?.reference, "Practitioner/f201")
+		XCTAssertEqual(inst.subject?.display, "Roel")
+		XCTAssertEqual(inst.subject?.reference, "Patient/f201")
+		XCTAssertEqual(inst.target?.display, "Juri van Gelder")
+		XCTAssertEqual(inst.target?.reference, "Practitioner/f203")
+		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.when?.code?.coding?[0].code, "394848005")
+		XCTAssertEqual(inst.when?.code?.coding?[0].display, "Normal priority")
+		XCTAssertEqual(inst.when?.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		
 		return inst
 	}
@@ -62,19 +63,20 @@ class OrderTests: XCTestCase {
 		}
 	}
 	
-	func runOrder2(json: FHIRJSON? = nil) throws -> Order {
+	@discardableResult
+	func runOrder2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Order {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "order-example.json")
 		
-		XCTAssertEqual(inst.date!.description, "2012-12-28T09:03:04+11:00")
-		XCTAssertEqual(inst.detail![0].reference!, "MedicationOrder/example")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.reasonCodeableConcept!.text!, "Standard admission testing")
-		XCTAssertEqual(inst.source!.reference!, "Practitioner/example")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/pat2")
-		XCTAssertEqual(inst.text!.div!, "<div>Request for Prescription (on patient Donald DUCK @ Acme Healthcare, Inc. MR = 654321)</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
-		XCTAssertEqual(inst.when!.code!.coding![0].code!, "today")
-		XCTAssertEqual(inst.when!.code!.coding![0].system!.absoluteString, "http://acme.com/codes/request-priority")
+		XCTAssertEqual(inst.date?.description, "2012-12-28T09:03:04+11:00")
+		XCTAssertEqual(inst.detail?[0].reference, "MedicationOrder/example")
+		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.reasonCodeableConcept?.text, "Standard admission testing")
+		XCTAssertEqual(inst.source?.reference, "Practitioner/example")
+		XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
+		XCTAssertEqual(inst.text?.div, "<div>Request for Prescription (on patient Donald DUCK @ Acme Healthcare, Inc. MR = 654321)</div>")
+		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.when?.code?.coding?[0].code, "today")
+		XCTAssertEqual(inst.when?.code?.coding?[0].system?.absoluteString, "http://acme.com/codes/request-priority")
 		
 		return inst
 	}

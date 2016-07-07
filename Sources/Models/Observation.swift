@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Observation) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Observation) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -122,8 +122,8 @@ public class Observation: DomainResource {
 		self.status = status
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["bodySite"] {
 				presentKeys.insert("bodySite")
@@ -167,7 +167,7 @@ public class Observation: DomainResource {
 			if let exist: AnyObject = js["component"] {
 				presentKeys.insert("component")
 				if let val = exist as? [FHIRJSON] {
-					self.component = ObservationComponent.from(val, owner: self) as? [ObservationComponent]
+					self.component = ObservationComponent.instantiate(fromArray: val, owner: self) as? [ObservationComponent]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "component", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -221,7 +221,7 @@ public class Observation: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -257,7 +257,7 @@ public class Observation: DomainResource {
 			if let exist: AnyObject = js["performer"] {
 				presentKeys.insert("performer")
 				if let val = exist as? [FHIRJSON] {
-					self.performer = Reference.from(val, owner: self) as? [Reference]
+					self.performer = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "performer", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -266,7 +266,7 @@ public class Observation: DomainResource {
 			if let exist: AnyObject = js["referenceRange"] {
 				presentKeys.insert("referenceRange")
 				if let val = exist as? [FHIRJSON] {
-					self.referenceRange = ObservationReferenceRange.from(val, owner: self) as? [ObservationReferenceRange]
+					self.referenceRange = ObservationReferenceRange.instantiate(fromArray: val, owner: self) as? [ObservationReferenceRange]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "referenceRange", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -275,7 +275,7 @@ public class Observation: DomainResource {
 			if let exist: AnyObject = js["related"] {
 				presentKeys.insert("related")
 				if let val = exist as? [FHIRJSON] {
-					self.related = ObservationRelated.from(val, owner: self) as? [ObservationRelated]
+					self.related = ObservationRelated.instantiate(fromArray: val, owner: self) as? [ObservationRelated]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "related", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -567,8 +567,8 @@ public class ObservationComponent: BackboneElement {
 		self.code = code
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")
@@ -594,7 +594,7 @@ public class ObservationComponent: BackboneElement {
 			if let exist: AnyObject = js["referenceRange"] {
 				presentKeys.insert("referenceRange")
 				if let val = exist as? [FHIRJSON] {
-					self.referenceRange = ObservationReferenceRange.from(val, owner: self) as? [ObservationReferenceRange]
+					self.referenceRange = ObservationReferenceRange.instantiate(fromArray: val, owner: self) as? [ObservationReferenceRange]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "referenceRange", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -773,8 +773,8 @@ public class ObservationReferenceRange: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["age"] {
 				presentKeys.insert("age")
@@ -878,8 +878,8 @@ public class ObservationRelated: BackboneElement {
 		self.target = target
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["target"] {
 				presentKeys.insert("target")

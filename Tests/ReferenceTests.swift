@@ -16,25 +16,25 @@ Test reference resolving.
 class ReferenceTests: XCTestCase {
 	
 	func testContainedReference() {
-		if let path = NSBundle(forClass: self.dynamicType).pathForResource("ReferenceContained1", ofType: "json", inDirectory: "TestResources") {
-			let order1 = try! MedicationOrder.instantiateFromPath(path)
+		if let path = Bundle(for: self.dynamicType).pathForResource("ReferenceContained1", ofType: "json", inDirectory: "TestResources") {
+			let order1 = try! MedicationOrder.instantiate(fromPath: path)
 			XCTAssertEqual("order-ref-contained", order1.id)
 			XCTAssertNotNil(order1.medicationReference)
-			XCTAssertEqual("Red Pill", order1.medicationReference?.resolved(Medication)?.code?.text ?? "missing")
-			XCTAssertEqual("Red Pill", order1.medicationReference?.resolved(Medication)?.code?.text ?? "missing")		// second time, reading from `_resolved`
-			XCTAssertEqual("Morpheus Co.", order1.medicationReference?.resolved(Medication)?.manufacturer?.resolved(Organization)?.name)
+			XCTAssertEqual("Red Pill", order1.medicationReference?.resolved(Medication.self)?.code?.text ?? "missing")
+			XCTAssertEqual("Red Pill", order1.medicationReference?.resolved(Medication.self)?.code?.text ?? "missing")		// second time, reading from `_resolved`
+			XCTAssertEqual("Morpheus Co.", order1.medicationReference?.resolved(Medication.self)?.manufacturer?.resolved(Organization.self)?.name)
 		}
 		else {
 			XCTAssertTrue(false, "Test resource not bundled")
 		}
 		
-		if let path = NSBundle(forClass: self.dynamicType).pathForResource("ReferenceContained2", ofType: "json", inDirectory: "TestResources") {
-			let order1 = try! MedicationOrder.instantiateFromPath(path)
+		if let path = Bundle(for: self.dynamicType).pathForResource("ReferenceContained2", ofType: "json", inDirectory: "TestResources") {
+			let order1 = try! MedicationOrder.instantiate(fromPath: path)
 			XCTAssertEqual("order-ref-contained-wrong", order1.id)
 			XCTAssertNotNil(order1.medicationReference)
-			XCTAssertNil(order1.medicationReference?.resolved(Medication), "Must not resolve contained resource with wrong type")
-			XCTAssertNil(order1.medicationReference?.resolved(Medication), "Must still not resolve contained resource with wrong type")		// second time, reading from `_resolved`
-			XCTAssertEqual("Morpheus Co.", order1.medicationReference?.resolved(Organization)?.name)
+			XCTAssertNil(order1.medicationReference?.resolved(Medication.self), "Must not resolve contained resource with wrong type")
+			XCTAssertNil(order1.medicationReference?.resolved(Medication.self), "Must still not resolve contained resource with wrong type")		// second time, reading from `_resolved`
+			XCTAssertEqual("Morpheus Co.", order1.medicationReference?.resolved(Organization.self)?.name)
 		}
 		else {
 			XCTAssertTrue(false, "Test resource not bundled")
@@ -42,8 +42,8 @@ class ReferenceTests: XCTestCase {
 	}
 	
 	func testBundledReference() {
-		if let path = NSBundle(forClass: self.dynamicType).pathForResource("ReferenceBundled", ofType: "json", inDirectory: "TestResources") {
-			let bundle = try! Bundle.instantiateFromPath(path)
+		if let path = Bundle(for: self.dynamicType).pathForResource("ReferenceBundled", ofType: "json", inDirectory: "TestResources") {
+			let bundle = try! Bundle.instantiate(fromPath: path)
 			XCTAssertEqual("Bundle", bundle.dynamicType.resourceName)
 			
 			// get resources
@@ -64,7 +64,7 @@ class ReferenceTests: XCTestCase {
 			XCTAssertEqual("34", obs34?.id)
 			
 			// test resolving
-			bundle._server = FHIROpenServer(baseURL: NSURL(string: "https://fhir.smarthealthit.org")!)
+			bundle._server = FHIROpenServer(baseURL: URL(string: "https://fhir.smarthealthit.org")!)
 			let res1 = obs123!.subject!.resolved(Patient.self)      // relative reference, bundled
 			XCTAssertTrue(res1 === pat23)
 			let res2 = obs123!.subject!.resolved(Medication.self)
@@ -73,12 +73,12 @@ class ReferenceTests: XCTestCase {
 			let res3 = obs56!.subject!.resolved(Patient.self)       // bundled, URN-referenced
 			XCTAssertTrue(res3 === patURN)
 			
-			let readyExpectation = expectationWithDescription("absolute")
+			let readyExpectation = expectation(withDescription: "absolute")
 			obs34!.subject!.resolve(Patient.self) { pat in          // absolute reference, on same server but different endpoint
 				XCTAssertNil(pat, "Must not resolve Patient on same server but different endpoint")
 				readyExpectation.fulfill()
 			}
-			waitForExpectationsWithTimeout(1) { error in
+			waitForExpectations(withTimeout: 1) { error in
 				XCTAssertNil(error, "Should return immediately")
 			}
 		}
@@ -88,18 +88,18 @@ class ReferenceTests: XCTestCase {
 	}
 	
 	func testRelativeReference() {
-		if let path = NSBundle(forClass: self.dynamicType).pathForResource("ReferenceRelative", ofType: "json", inDirectory: "TestResources") {
-			let order1 = try! MedicationOrder.instantiateFromPath(path)
+		if let path = Bundle(for: self.dynamicType).pathForResource("ReferenceRelative", ofType: "json", inDirectory: "TestResources") {
+			let order1 = try! MedicationOrder.instantiate(fromPath: path)
 			XCTAssertEqual("order-ref-relative", order1.id)
 			XCTAssertEqual("Medication/med-1234", order1.medicationReference?.reference)
-			XCTAssertNil(order1.medicationReference?.resolved(Medication), "Cannot already be resolved")
+			XCTAssertNil(order1.medicationReference?.resolved(Medication.self), "Cannot already be resolved")
 			
-			let readyExpectation = expectationWithDescription("reference")
+			let readyExpectation = expectation(withDescription: "reference")
 			order1.medicationReference?.resolve(Medication.self) { medication in
 				XCTAssertNil(medication, "Resolving must be impossible without server instance")
 				readyExpectation.fulfill()
 			}
-			waitForExpectationsWithTimeout(1) { error in
+			waitForExpectations(withTimeout: 1) { error in
 				XCTAssertNil(error, "Should return immediately")
 			}
 		}
@@ -109,18 +109,18 @@ class ReferenceTests: XCTestCase {
 	}
 	
 	func testAbsoluteReference() {
-		if let path = NSBundle(forClass: self.dynamicType).pathForResource("ReferenceAbsolute", ofType: "json", inDirectory: "TestResources") {
-			let order1 = try! MedicationOrder.instantiateFromPath(path)
+		if let path = Bundle(for: self.dynamicType).pathForResource("ReferenceAbsolute", ofType: "json", inDirectory: "TestResources") {
+			let order1 = try! MedicationOrder.instantiate(fromPath: path)
 			XCTAssertEqual("order-ref-absolute", order1.id)
 			XCTAssertEqual("https://fhir-open-api-dstu2.smarthealthit.org/Medication/1", order1.medicationReference?.reference)
-			XCTAssertNil(order1.medicationReference?.resolved(Medication), "Cannot already be resolved")
+			XCTAssertNil(order1.medicationReference?.resolved(Medication.self), "Cannot already be resolved")
 			
-			let readyExpectation = expectationWithDescription("reference")
+			let readyExpectation = expectation(withDescription: "reference")
 			order1.medicationReference?.resolve(Medication.self) { medication in
 				XCTAssertNil(medication, "Unfortunately, don't currently have Medication/1 on the SMART server")
 				readyExpectation.fulfill()
 			}
-			waitForExpectationsWithTimeout(5) { error in
+			waitForExpectations(withTimeout: 5) { error in
 				XCTAssertNil(error, "Error resolving reference")
 			}
 		}

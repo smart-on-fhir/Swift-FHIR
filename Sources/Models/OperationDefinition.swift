@@ -2,7 +2,7 @@
 //  OperationDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -72,7 +72,7 @@ public class OperationDefinition: DomainResource {
 	public var type: [String]?
 	
 	/// Logical URL to reference this operation definition.
-	public var url: NSURL?
+	public var url: URL?
 	
 	/// Content intends to support these contexts.
 	public var useContext: [CodeableConcept]?
@@ -97,8 +97,8 @@ public class OperationDefinition: DomainResource {
 		self.system = system
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["base"] {
 				presentKeys.insert("base")
@@ -133,7 +133,7 @@ public class OperationDefinition: DomainResource {
 			if let exist: AnyObject = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = OperationDefinitionContact.from(val, owner: self) as? [OperationDefinitionContact]
+					self.contact = OperationDefinitionContact.instantiate(fromArray: val, owner: self) as? [OperationDefinitionContact]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -214,7 +214,7 @@ public class OperationDefinition: DomainResource {
 			if let exist: AnyObject = js["parameter"] {
 				presentKeys.insert("parameter")
 				if let val = exist as? [FHIRJSON] {
-					self.parameter = OperationDefinitionParameter.from(val, owner: self) as? [OperationDefinitionParameter]
+					self.parameter = OperationDefinitionParameter.instantiate(fromArray: val, owner: self) as? [OperationDefinitionParameter]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "parameter", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -274,7 +274,7 @@ public class OperationDefinition: DomainResource {
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
@@ -283,7 +283,7 @@ public class OperationDefinition: DomainResource {
 			if let exist: AnyObject = js["useContext"] {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
-					self.useContext = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -397,8 +397,8 @@ public class OperationDefinitionContact: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["name"] {
 				presentKeys.insert("name")
@@ -412,7 +412,7 @@ public class OperationDefinitionContact: BackboneElement {
 			if let exist: AnyObject = js["telecom"] {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -492,8 +492,8 @@ public class OperationDefinitionParameter: BackboneElement {
 		self.use = use
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["binding"] {
 				presentKeys.insert("binding")
@@ -552,7 +552,7 @@ public class OperationDefinitionParameter: BackboneElement {
 			if let exist: AnyObject = js["part"] {
 				presentKeys.insert("part")
 				if let val = exist as? [FHIRJSON] {
-					self.part = OperationDefinitionParameter.from(val, owner: self) as? [OperationDefinitionParameter]
+					self.part = OperationDefinitionParameter.instantiate(fromArray: val, owner: self) as? [OperationDefinitionParameter]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "part", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -657,7 +657,7 @@ public class OperationDefinitionParameterBinding: BackboneElement {
 	public var valueSetReference: Reference?
 	
 	/// Source of value set.
-	public var valueSetUri: NSURL?
+	public var valueSetUri: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -666,15 +666,15 @@ public class OperationDefinitionParameterBinding: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(strength: String, valueSetReference: Reference, valueSetUri: NSURL) {
+	public convenience init(strength: String, valueSetReference: Reference, valueSetUri: URL) {
 		self.init(json: nil)
 		self.strength = strength
 		self.valueSetReference = valueSetReference
 		self.valueSetUri = valueSetUri
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["strength"] {
 				presentKeys.insert("strength")
@@ -700,7 +700,7 @@ public class OperationDefinitionParameterBinding: BackboneElement {
 			if let exist: AnyObject = js["valueSetUri"] {
 				presentKeys.insert("valueSetUri")
 				if let val = exist as? String {
-					self.valueSetUri = NSURL(string: val)
+					self.valueSetUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueSetUri", wants: String.self, has: exist.dynamicType))

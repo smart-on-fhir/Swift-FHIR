@@ -2,7 +2,7 @@
 //  DeviceMetric.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -63,13 +63,13 @@ public class DeviceMetric: DomainResource {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["calibration"] {
 				presentKeys.insert("calibration")
 				if let val = exist as? [FHIRJSON] {
-					self.calibration = DeviceMetricCalibration.from(val, owner: self) as? [DeviceMetricCalibration]
+					self.calibration = DeviceMetricCalibration.instantiate(fromArray: val, owner: self) as? [DeviceMetricCalibration]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "calibration", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -231,8 +231,8 @@ public class DeviceMetricCalibration: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["state"] {
 				presentKeys.insert("state")

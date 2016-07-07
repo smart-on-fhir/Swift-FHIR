@@ -2,7 +2,7 @@
 //  Meta.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Meta) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Meta) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -24,7 +24,7 @@ public class Meta: Element {
 	public var lastUpdated: Instant?
 	
 	/// Profiles this resource claims to conform to.
-	public var profile: [NSURL]?
+	public var profile: [URL]?
 	
 	/// Security Labels applied to this resource.
 	public var security: [Coding]?
@@ -41,8 +41,8 @@ public class Meta: Element {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["lastUpdated"] {
 				presentKeys.insert("lastUpdated")
@@ -56,7 +56,7 @@ public class Meta: Element {
 			if let exist: AnyObject = js["profile"] {
 				presentKeys.insert("profile")
 				if let val = exist as? [String] {
-					self.profile = NSURL.from(val)
+					self.profile = URL.instantiate(fromArray: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "profile", wants: Array<String>.self, has: exist.dynamicType))
@@ -65,7 +65,7 @@ public class Meta: Element {
 			if let exist: AnyObject = js["security"] {
 				presentKeys.insert("security")
 				if let val = exist as? [FHIRJSON] {
-					self.security = Coding.from(val, owner: self) as? [Coding]
+					self.security = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "security", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -74,7 +74,7 @@ public class Meta: Element {
 			if let exist: AnyObject = js["tag"] {
 				presentKeys.insert("tag")
 				if let val = exist as? [FHIRJSON] {
-					self.tag = Coding.from(val, owner: self) as? [Coding]
+					self.tag = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "tag", wants: Array<FHIRJSON>.self, has: exist.dynamicType))

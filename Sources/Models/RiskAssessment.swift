@@ -2,7 +2,7 @@
 //  RiskAssessment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -55,13 +55,13 @@ public class RiskAssessment: DomainResource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["basis"] {
 				presentKeys.insert("basis")
 				if let val = exist as? [FHIRJSON] {
-					self.basis = Reference.from(val, owner: self) as? [Reference]
+					self.basis = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "basis", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -133,7 +133,7 @@ public class RiskAssessment: DomainResource {
 			if let exist: AnyObject = js["prediction"] {
 				presentKeys.insert("prediction")
 				if let val = exist as? [FHIRJSON] {
-					self.prediction = RiskAssessmentPrediction.from(val, owner: self) as? [RiskAssessmentPrediction]
+					self.prediction = RiskAssessmentPrediction.instantiate(fromArray: val, owner: self) as? [RiskAssessmentPrediction]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "prediction", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -237,8 +237,8 @@ public class RiskAssessmentPrediction: BackboneElement {
 		self.outcome = outcome
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["outcome"] {
 				presentKeys.insert("outcome")

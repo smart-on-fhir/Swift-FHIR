@@ -2,7 +2,7 @@
 //  Coverage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -97,8 +97,8 @@ public class Coverage: DomainResource {
 		self.relationship = relationship
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["beneficiaryIdentifier"] {
 				presentKeys.insert("beneficiaryIdentifier")
@@ -130,7 +130,7 @@ public class Coverage: DomainResource {
 			if let exist: AnyObject = js["contract"] {
 				presentKeys.insert("contract")
 				if let val = exist as? [FHIRJSON] {
-					self.contract = Reference.from(val, owner: self) as? [Reference]
+					self.contract = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contract", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -148,7 +148,7 @@ public class Coverage: DomainResource {
 			if let exist: AnyObject = js["exception"] {
 				presentKeys.insert("exception")
 				if let val = exist as? [FHIRJSON] {
-					self.exception = Coding.from(val, owner: self) as? [Coding]
+					self.exception = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exception", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -166,7 +166,7 @@ public class Coverage: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))

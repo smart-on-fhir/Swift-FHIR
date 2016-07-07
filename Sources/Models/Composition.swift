@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Composition) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Composition) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -82,13 +82,13 @@ public class Composition: DomainResource {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["attester"] {
 				presentKeys.insert("attester")
 				if let val = exist as? [FHIRJSON] {
-					self.attester = CompositionAttester.from(val, owner: self) as? [CompositionAttester]
+					self.attester = CompositionAttester.instantiate(fromArray: val, owner: self) as? [CompositionAttester]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "attester", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -97,7 +97,7 @@ public class Composition: DomainResource {
 			if let exist: AnyObject = js["author"] {
 				presentKeys.insert("author")
 				if let val = exist as? [FHIRJSON] {
-					self.author = Reference.from(val, owner: self) as? [Reference]
+					self.author = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "author", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -157,7 +157,7 @@ public class Composition: DomainResource {
 			if let exist: AnyObject = js["event"] {
 				presentKeys.insert("event")
 				if let val = exist as? [FHIRJSON] {
-					self.event = CompositionEvent.from(val, owner: self) as? [CompositionEvent]
+					self.event = CompositionEvent.instantiate(fromArray: val, owner: self) as? [CompositionEvent]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "event", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -175,7 +175,7 @@ public class Composition: DomainResource {
 			if let exist: AnyObject = js["section"] {
 				presentKeys.insert("section")
 				if let val = exist as? [FHIRJSON] {
-					self.section = CompositionSection.from(val, owner: self) as? [CompositionSection]
+					self.section = CompositionSection.instantiate(fromArray: val, owner: self) as? [CompositionSection]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "section", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -315,8 +315,8 @@ public class CompositionAttester: BackboneElement {
 		self.mode = mode
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["mode"] {
 				presentKeys.insert("mode")
@@ -399,13 +399,13 @@ public class CompositionEvent: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? [FHIRJSON] {
-					self.code = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.code = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -414,7 +414,7 @@ public class CompositionEvent: BackboneElement {
 			if let exist: AnyObject = js["detail"] {
 				presentKeys.insert("detail")
 				if let val = exist as? [FHIRJSON] {
-					self.detail = Reference.from(val, owner: self) as? [Reference]
+					self.detail = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "detail", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -491,8 +491,8 @@ public class CompositionSection: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["code"] {
 				presentKeys.insert("code")
@@ -515,7 +515,7 @@ public class CompositionSection: BackboneElement {
 			if let exist: AnyObject = js["entry"] {
 				presentKeys.insert("entry")
 				if let val = exist as? [FHIRJSON] {
-					self.entry = Reference.from(val, owner: self) as? [Reference]
+					self.entry = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "entry", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -542,7 +542,7 @@ public class CompositionSection: BackboneElement {
 			if let exist: AnyObject = js["section"] {
 				presentKeys.insert("section")
 				if let val = exist as? [FHIRJSON] {
-					self.section = CompositionSection.from(val, owner: self) as? [CompositionSection]
+					self.section = CompositionSection.instantiate(fromArray: val, owner: self) as? [CompositionSection]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "section", wants: Array<FHIRJSON>.self, has: exist.dynamicType))

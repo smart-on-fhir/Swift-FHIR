@@ -2,7 +2,7 @@
 //  FHIRAbstractBase+Factory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -12,7 +12,7 @@
  */
 extension FHIRAbstractBase {
 	
-	public class func factory(className: String, json: FHIRJSON, owner: FHIRAbstractBase?) -> FHIRAbstractBase {
+	public class func factory(_ className: String, json: FHIRJSON, owner: FHIRAbstractBase?) -> FHIRAbstractBase {
 		switch className {
 			case "Account":
 				return Account(json: json, owner: owner)
@@ -777,21 +777,21 @@ extension FHIRAbstractBase {
 			case "ProcessResponseNotes":
 				return ProcessResponseNotes(json: json, owner: owner)
 			case "Protocol":
-				return Protocol(json: json, owner: owner)
-			case "ProtocolStep":
-				return ProtocolStep(json: json, owner: owner)
-			case "ProtocolStepActivity":
-				return ProtocolStepActivity(json: json, owner: owner)
-			case "ProtocolStepActivityComponent":
-				return ProtocolStepActivityComponent(json: json, owner: owner)
-			case "ProtocolStepActivityDetail":
-				return ProtocolStepActivityDetail(json: json, owner: owner)
-			case "ProtocolStepNext":
-				return ProtocolStepNext(json: json, owner: owner)
-			case "ProtocolStepPrecondition":
-				return ProtocolStepPrecondition(json: json, owner: owner)
-			case "ProtocolStepPreconditionCondition":
-				return ProtocolStepPreconditionCondition(json: json, owner: owner)
+				return ProtocolFHIR(json: json, owner: owner)
+			case "ProtocolFHIRStep":
+				return ProtocolFHIRStep(json: json, owner: owner)
+			case "ProtocolFHIRStepActivity":
+				return ProtocolFHIRStepActivity(json: json, owner: owner)
+			case "ProtocolFHIRStepActivityComponent":
+				return ProtocolFHIRStepActivityComponent(json: json, owner: owner)
+			case "ProtocolFHIRStepActivityDetail":
+				return ProtocolFHIRStepActivityDetail(json: json, owner: owner)
+			case "ProtocolFHIRStepNext":
+				return ProtocolFHIRStepNext(json: json, owner: owner)
+			case "ProtocolFHIRStepPrecondition":
+				return ProtocolFHIRStepPrecondition(json: json, owner: owner)
+			case "ProtocolFHIRStepPreconditionCondition":
+				return ProtocolFHIRStepPreconditionCondition(json: json, owner: owner)
 			case "Provenance":
 				return Provenance(json: json, owner: owner)
 			case "ProvenanceAgent":

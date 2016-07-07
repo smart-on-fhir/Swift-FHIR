@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -41,7 +41,7 @@ public class Provenance: DomainResource {
 	public var period: Period?
 	
 	/// Policy or plan the activity was defined by.
-	public var policy: [NSURL]?
+	public var policy: [URL]?
 	
 	/// Reason the activity is occurring.
 	public var reason: [Coding]?
@@ -69,8 +69,8 @@ public class Provenance: DomainResource {
 		self.target = target
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["activity"] {
 				presentKeys.insert("activity")
@@ -84,7 +84,7 @@ public class Provenance: DomainResource {
 			if let exist: AnyObject = js["agent"] {
 				presentKeys.insert("agent")
 				if let val = exist as? [FHIRJSON] {
-					self.agent = ProvenanceAgent.from(val, owner: self) as? [ProvenanceAgent]
+					self.agent = ProvenanceAgent.instantiate(fromArray: val, owner: self) as? [ProvenanceAgent]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "agent", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -96,7 +96,7 @@ public class Provenance: DomainResource {
 			if let exist: AnyObject = js["entity"] {
 				presentKeys.insert("entity")
 				if let val = exist as? [FHIRJSON] {
-					self.entity = ProvenanceEntity.from(val, owner: self) as? [ProvenanceEntity]
+					self.entity = ProvenanceEntity.instantiate(fromArray: val, owner: self) as? [ProvenanceEntity]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "entity", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -123,7 +123,7 @@ public class Provenance: DomainResource {
 			if let exist: AnyObject = js["policy"] {
 				presentKeys.insert("policy")
 				if let val = exist as? [String] {
-					self.policy = NSURL.from(val)
+					self.policy = URL.instantiate(fromArray: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "policy", wants: Array<String>.self, has: exist.dynamicType))
@@ -132,7 +132,7 @@ public class Provenance: DomainResource {
 			if let exist: AnyObject = js["reason"] {
 				presentKeys.insert("reason")
 				if let val = exist as? [FHIRJSON] {
-					self.reason = Coding.from(val, owner: self) as? [Coding]
+					self.reason = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reason", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -153,7 +153,7 @@ public class Provenance: DomainResource {
 			if let exist: AnyObject = js["signature"] {
 				presentKeys.insert("signature")
 				if let val = exist as? [FHIRJSON] {
-					self.signature = Signature.from(val, owner: self) as? [Signature]
+					self.signature = Signature.instantiate(fromArray: val, owner: self) as? [Signature]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "signature", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -162,7 +162,7 @@ public class Provenance: DomainResource {
 			if let exist: AnyObject = js["target"] {
 				presentKeys.insert("target")
 				if let val = exist as? [FHIRJSON] {
-					self.target = Reference.from(val, owner: self) as? [Reference]
+					self.target = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "target", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -253,8 +253,8 @@ public class ProvenanceAgent: BackboneElement {
 		self.role = role
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["actor"] {
 				presentKeys.insert("actor")
@@ -268,7 +268,7 @@ public class ProvenanceAgent: BackboneElement {
 			if let exist: AnyObject = js["relatedAgent"] {
 				presentKeys.insert("relatedAgent")
 				if let val = exist as? [FHIRJSON] {
-					self.relatedAgent = ProvenanceAgentRelatedAgent.from(val, owner: self) as? [ProvenanceAgentRelatedAgent]
+					self.relatedAgent = ProvenanceAgentRelatedAgent.instantiate(fromArray: val, owner: self) as? [ProvenanceAgentRelatedAgent]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "relatedAgent", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -333,7 +333,7 @@ public class ProvenanceAgentRelatedAgent: BackboneElement {
 	}
 	
 	/// Reference to other agent in this resource by identifier.
-	public var target: NSURL?
+	public var target: URL?
 	
 	/// Type of relationship between agents.
 	public var type: CodeableConcept?
@@ -345,19 +345,19 @@ public class ProvenanceAgentRelatedAgent: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(target: NSURL, type: CodeableConcept) {
+	public convenience init(target: URL, type: CodeableConcept) {
 		self.init(json: nil)
 		self.target = target
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["target"] {
 				presentKeys.insert("target")
 				if let val = exist as? String {
-					self.target = NSURL(string: val)
+					self.target = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "target", wants: String.self, has: exist.dynamicType))
@@ -412,7 +412,7 @@ public class ProvenanceEntity: BackboneElement {
 	public var display: String?
 	
 	/// Identity of entity.
-	public var reference: NSURL?
+	public var reference: URL?
 	
 	/// derivation | revision | quotation | source | removal.
 	public var role: String?
@@ -427,15 +427,15 @@ public class ProvenanceEntity: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(reference: NSURL, role: String, type: Coding) {
+	public convenience init(reference: URL, role: String, type: Coding) {
 		self.init(json: nil)
 		self.reference = reference
 		self.role = role
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["agent"] {
 				presentKeys.insert("agent")
@@ -458,7 +458,7 @@ public class ProvenanceEntity: BackboneElement {
 			if let exist: AnyObject = js["reference"] {
 				presentKeys.insert("reference")
 				if let val = exist as? String {
-					self.reference = NSURL(string: val)
+					self.reference = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reference", wants: String.self, has: exist.dynamicType))

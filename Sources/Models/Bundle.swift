@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -46,13 +46,13 @@ public class Bundle: Resource {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["entry"] {
 				presentKeys.insert("entry")
 				if let val = exist as? [FHIRJSON] {
-					self.entry = BundleEntry.from(val, owner: self) as? [BundleEntry]
+					self.entry = BundleEntry.instantiate(fromArray: val, owner: self) as? [BundleEntry]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "entry", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -61,7 +61,7 @@ public class Bundle: Resource {
 			if let exist: AnyObject = js["link"] {
 				presentKeys.insert("link")
 				if let val = exist as? [FHIRJSON] {
-					self.link = BundleLink.from(val, owner: self) as? [BundleLink]
+					self.link = BundleLink.instantiate(fromArray: val, owner: self) as? [BundleLink]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "link", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -137,7 +137,7 @@ public class BundleEntry: BackboneElement {
 	}
 	
 	/// Absolute URL for resource (server address, or UUID/OID).
-	public var fullUrl: NSURL?
+	public var fullUrl: URL?
 	
 	/// Links related to this entry.
 	public var link: [BundleLink]?
@@ -160,13 +160,13 @@ public class BundleEntry: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["fullUrl"] {
 				presentKeys.insert("fullUrl")
 				if let val = exist as? String {
-					self.fullUrl = NSURL(string: val)
+					self.fullUrl = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fullUrl", wants: String.self, has: exist.dynamicType))
@@ -175,7 +175,7 @@ public class BundleEntry: BackboneElement {
 			if let exist: AnyObject = js["link"] {
 				presentKeys.insert("link")
 				if let val = exist as? [FHIRJSON] {
-					self.link = BundleLink.from(val, owner: self) as? [BundleLink]
+					self.link = BundleLink.instantiate(fromArray: val, owner: self) as? [BundleLink]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "link", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -193,7 +193,7 @@ public class BundleEntry: BackboneElement {
 			if let exist: AnyObject = js["resource"] {
 				presentKeys.insert("resource")
 				if let val = exist as? FHIRJSON {
-					self.resource = Resource.instantiateFrom(val, owner: self) as? Resource
+					self.resource = Resource.instantiate(fromJSON: val, owner: self) as? Resource
 				}
 				else {
 					errors.append(FHIRJSONError(key: "resource", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -274,7 +274,7 @@ public class BundleEntryRequest: BackboneElement {
 	public var method: String?
 	
 	/// URL for HTTP equivalent of this entry.
-	public var url: NSURL?
+	public var url: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -283,14 +283,14 @@ public class BundleEntryRequest: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(method: String, url: NSURL) {
+	public convenience init(method: String, url: URL) {
 		self.init(json: nil)
 		self.method = method
 		self.url = url
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["ifMatch"] {
 				presentKeys.insert("ifMatch")
@@ -343,7 +343,7 @@ public class BundleEntryRequest: BackboneElement {
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
@@ -400,7 +400,7 @@ public class BundleEntryResponse: BackboneElement {
 	public var lastModified: Instant?
 	
 	/// The location, if the operation returns a location.
-	public var location: NSURL?
+	public var location: URL?
 	
 	/// Status response code (text optional).
 	public var status: String?
@@ -417,8 +417,8 @@ public class BundleEntryResponse: BackboneElement {
 		self.status = status
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["etag"] {
 				presentKeys.insert("etag")
@@ -441,7 +441,7 @@ public class BundleEntryResponse: BackboneElement {
 			if let exist: AnyObject = js["location"] {
 				presentKeys.insert("location")
 				if let val = exist as? String {
-					self.location = NSURL(string: val)
+					self.location = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "location", wants: String.self, has: exist.dynamicType))
@@ -506,8 +506,8 @@ public class BundleEntrySearch: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["mode"] {
 				presentKeys.insert("mode")
@@ -560,7 +560,7 @@ public class BundleLink: BackboneElement {
 	public var relation: String?
 	
 	/// Reference details for the link.
-	public var url: NSURL?
+	public var url: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -569,14 +569,14 @@ public class BundleLink: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(relation: String, url: NSURL) {
+	public convenience init(relation: String, url: URL) {
 		self.init(json: nil)
 		self.relation = relation
 		self.url = url
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["relation"] {
 				presentKeys.insert("relation")
@@ -593,7 +593,7 @@ public class BundleLink: BackboneElement {
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))

@@ -66,7 +66,7 @@ public extension Resource {
 		if let myID = id {
 			return "\(relativeURLBase())/\(myID)"
 		}
-		throw FHIRError.ResourceWithoutId
+		throw FHIRError.resourceWithoutId
 	}
 	
 	/**
@@ -74,12 +74,12 @@ public extension Resource {
 	
 	- returns: The resource's absolute URL, e.g. "https://fhir.smarthealthit.org/MedicationPrescription/1234"
 	*/
-	public func absoluteURL() throws -> NSURL {
+	public func absoluteURL() throws -> URL {
 		let relative = try relativeURLPath()
 		if let server = _server {
-			return server.baseURL.URLByAppendingPathComponent(relative)
+			return try! server.baseURL.appendingPathComponent(relative)
 		}
-		throw FHIRError.ResourceWithoutServer
+		throw FHIRError.resourceWithoutServer
 	}
 	
 	
@@ -90,7 +90,7 @@ public extension Resource {
 	
 	Forwards to class method `readFrom` with the resource's relative URL, created from the supplied id and the resource's base.
 	*/
-	public class func read(id: String, server: FHIRServer, callback: FHIRResourceErrorCallback) {
+	public class func read(_ id: String, server: FHIRServer, callback: FHIRResourceErrorCallback) {
 		let path = "\(resourceName)/\(id)"
 		readFrom(path, server: server, callback: callback)
 	}
@@ -104,15 +104,15 @@ public extension Resource {
 	- parameter server: The server to use
 	- parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	*/
-	public class func readFrom(path: String, server: FHIRServer, callback: FHIRResourceErrorCallback) {
-		server.performRequestOfType(.GET, path: path, resource: nil, additionalHeaders: nil) { response in
+	public class func readFrom(_ path: String, server: FHIRServer, callback: FHIRResourceErrorCallback) {
+		server.performRequest(ofType: .GET, path: path, resource: nil, additionalHeaders: nil) { response in
 			if let error = response.error {
 				callback(resource: nil, error: error)
 			}
 			else if let resource = response.responseResource(Resource.self) {
 				resource._server = server
 				do {
-					try response.applyResponseHeadersToResource(resource)
+					try response.applyHeadersTo(resource: resource)
 				}
 				catch let error {
 					fhir_warn("Error applying response headers after `read` call: \(error)")
@@ -123,7 +123,7 @@ public extension Resource {
 				callback(resource: resource, error: nil)
 			}
 			else {
-				callback(resource: nil, error: FHIRError.ResourceFailedToInstantiate(path))
+				callback(resource: nil, error: FHIRError.resourceFailedToInstantiate(path))
 			}
 		}
 	}
@@ -141,18 +141,18 @@ public extension Resource {
 	- parameter server:   The server on which to create the resource
 	- parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	*/
-	public func create(server: FHIRServer, callback: FHIRErrorCallback) {
+	public func create(_ server: FHIRServer, callback: FHIRErrorCallback) {
 		guard nil == id else {
-			callback(error: FHIRError.ResourceAlreadyHasId)
+			callback(error: FHIRError.resourceAlreadyHasId)
 			return
 		}
 		
 		let headers = FHIRRequestHeaders([.Prefer: "return=minimal"])
-		server.performRequestOfType(.POST, path: relativeURLBase(), resource: self, additionalHeaders: headers) { response in
+		server.performRequest(ofType: .POST, path: relativeURLBase(), resource: self, additionalHeaders: headers) { response in
 			if nil == response.error {
 				self._server = server
 				do {
-					try response.applyResponseHeadersToResource(self)
+					try response.applyHeadersTo(resource: self)
 				}
 				catch let error {
 					fhir_warn("Error applying response headers after `create` call: \(error)")
@@ -176,33 +176,33 @@ public extension Resource {
 	- parameter server:   The server on which to create the resource
 	- parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	*/
-	func createAndReturn(server: FHIRServer, callback: FHIRErrorCallback) {
+	func createAndReturn(_ server: FHIRServer, callback: FHIRErrorCallback) {
 		guard nil == id else {
-			callback(error: FHIRError.ResourceAlreadyHasId)
+			callback(error: FHIRError.resourceAlreadyHasId)
 			return
 		}
 		
 		let headers = FHIRRequestHeaders([.Prefer: "return=representation"])
-		server.performRequestOfType(.POST, path: relativeURLBase(), resource: self, additionalHeaders: headers) { response in
+		server.performRequest(ofType: .POST, path: relativeURLBase(), resource: self, additionalHeaders: headers) { response in
 			if nil == response.error {
 				self._server = server
 				do {
-					try response.applyResponseHeadersToResource(self)
-					try response.applyResponseBodyToResource(self)
+					try response.applyHeadersTo(resource: self)
+					try response.applyBodyTo(resource: self)
 				}
 					
 				// no resource, but hopefully the id was detected in the Location header, so go and read the resource
-				catch FHIRError.ResponseNoResourceReceived {
+				catch FHIRError.responseNoResourceReceived {
 					if let id = self.id {
 						self.dynamicType.read(id, server: server) { resource, error in
 							if let resource = resource {
-								self.populateFromJSON(resource.asJSON())
+								_ = self.populate(fromJSON: resource.asJSON())
 							}
 							callback(error: error)
 						}
 					}
 					else {
-						callback(error: FHIRError.ResourceWithoutId)
+						callback(error: FHIRError.resourceWithoutId)
 					}
 					return
 				}
@@ -211,7 +211,7 @@ public extension Resource {
 					
 					// if we didn't manage to get the id one way or the other, we have a problem
 					if nil == self.id {
-						callback(error: FHIRError.ResourceWithoutId)
+						callback(error: FHIRError.resourceWithoutId)
 						return
 					}
 				}
@@ -231,9 +231,9 @@ public extension Resource {
 		if let server = _server {
 			do {
 				let path = try relativeURLPath()
-				server.performRequestOfType(.PUT, path: path, resource: self, additionalHeaders: nil) { response in
+				server.performRequest(ofType: .PUT, path: path, resource: self, additionalHeaders: nil) { response in
 					do {
-						try response.applyResponseHeadersToResource(self)
+						try response.applyHeadersTo(resource: self)
 					}
 					catch let error {
 						fhir_warn("Error applying response headers after `update` call: \(error)")
@@ -246,7 +246,7 @@ public extension Resource {
 			}
 		}
 		else {
-			callback(error: FHIRError.ResourceWithoutServer)
+			callback(error: FHIRError.resourceWithoutServer)
 		}
 	}
 	
@@ -266,7 +266,7 @@ public extension Resource {
 			}
 		}
 		else {
-			callback(error: FHIRError.ResourceWithoutServer)
+			callback(error: FHIRError.resourceWithoutServer)
 		}
 	}
 	
@@ -275,8 +275,8 @@ public extension Resource {
 	
 	This implementation issues a DELETE call against the given path on the given server.
 	*/
-	public class func delete(path: String, server: FHIRServer, callback: FHIRErrorCallback) {
-		server.performRequestOfType(.DELETE, path: path, resource: nil, additionalHeaders: nil) { response in
+	public class func delete(_ path: String, server: FHIRServer, callback: FHIRErrorCallback) {
+		server.performRequest(ofType: .DELETE, path: path, resource: nil, additionalHeaders: nil) { response in
 			// TODO: should we do some header inspection (response.headers)?
 			callback(error: response.error)
 		}
@@ -290,7 +290,7 @@ public extension Resource {
 	
 	UNFINISHED.
 	*/
-	public func search(query: AnyObject) -> FHIRSearch {
+	public func search(_ query: AnyObject) -> FHIRSearch {
 		if let _ = self.id {
 			NSLog("UNFINISHED, must add '_id' reference to search expression")
 			//return FHIRSearch(subject: "_id", reference: myID, type: self.dynamicType)
@@ -301,7 +301,7 @@ public extension Resource {
 	/**
 	Perform a search, wich the given query construct, against the receiver's compartment.
 	*/
-	public class func search(query: AnyObject) -> FHIRSearch {
+	public class func search(_ query: AnyObject) -> FHIRSearch {
 		return FHIRSearch(type: self, query: query)
 	}
 	
@@ -311,18 +311,18 @@ public extension Resource {
 	/**
 	Perform a given operation on the receiver.
 	*/
-	public func performOperation(operation: FHIROperation, callback: FHIRResourceErrorCallback) {
+	public func perform(operation: FHIROperation, callback: FHIRResourceErrorCallback) {
 		if let server = _server {
 			if let server = server as? FHIROpenServer {
 				operation.instance = self
-				self.dynamicType._performOperation(operation, server: server, callback: callback)
+				self.dynamicType._perform(operation: operation, server: server, callback: callback)
 			}
 			else {
-				callback(resource: nil, error: FHIRError.Error("Must be living on a FHIROpenServer or subclass"))
+				callback(resource: nil, error: FHIRError.error("Must be living on a FHIROpenServer or subclass"))
 			}
 		}
 		else {
-			callback(resource: nil, error: FHIRError.ResourceWithoutServer)
+			callback(resource: nil, error: FHIRError.resourceWithoutServer)
 		}
 	}
 	
@@ -331,11 +331,11 @@ public extension Resource {
 	*/
 	public class func perform(operation: FHIROperation, server: FHIROpenServer, callback: FHIRResourceErrorCallback) {
 		operation.type = self
-		_performOperation(operation, server: server, callback: callback)
+		_perform(operation: operation, server: server, callback: callback)
 	}
 	
-	class func _performOperation(operation: FHIROperation, server: FHIROpenServer, callback: FHIRResourceErrorCallback) {
-		server.performOperation(operation) { response in
+	class func _perform(operation: FHIROperation, server: FHIROpenServer, callback: FHIRResourceErrorCallback) {
+		server.perform(operation: operation) { response in
 			if let error = response.error {
 				callback(resource: nil, error: error)
 			}

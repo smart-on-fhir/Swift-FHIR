@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -61,8 +61,8 @@ public class Specimen: DomainResource {
 		self.subject = subject
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["accessionIdentifier"] {
 				presentKeys.insert("accessionIdentifier")
@@ -85,7 +85,7 @@ public class Specimen: DomainResource {
 			if let exist: AnyObject = js["container"] {
 				presentKeys.insert("container")
 				if let val = exist as? [FHIRJSON] {
-					self.container = SpecimenContainer.from(val, owner: self) as? [SpecimenContainer]
+					self.container = SpecimenContainer.instantiate(fromArray: val, owner: self) as? [SpecimenContainer]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "container", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -94,7 +94,7 @@ public class Specimen: DomainResource {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -103,7 +103,7 @@ public class Specimen: DomainResource {
 			if let exist: AnyObject = js["parent"] {
 				presentKeys.insert("parent")
 				if let val = exist as? [FHIRJSON] {
-					self.parent = Reference.from(val, owner: self) as? [Reference]
+					self.parent = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "parent", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -142,7 +142,7 @@ public class Specimen: DomainResource {
 			if let exist: AnyObject = js["treatment"] {
 				presentKeys.insert("treatment")
 				if let val = exist as? [FHIRJSON] {
-					self.treatment = SpecimenTreatment.from(val, owner: self) as? [SpecimenTreatment]
+					self.treatment = SpecimenTreatment.instantiate(fromArray: val, owner: self) as? [SpecimenTreatment]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "treatment", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -237,8 +237,8 @@ public class SpecimenCollection: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["bodySite"] {
 				presentKeys.insert("bodySite")
@@ -375,8 +375,8 @@ public class SpecimenContainer: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["additiveCodeableConcept"] {
 				presentKeys.insert("additiveCodeableConcept")
@@ -417,7 +417,7 @@ public class SpecimenContainer: BackboneElement {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -500,13 +500,13 @@ public class SpecimenTreatment: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["additive"] {
 				presentKeys.insert("additive")
 				if let val = exist as? [FHIRJSON] {
-					self.additive = Reference.from(val, owner: self) as? [Reference]
+					self.additive = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "additive", wants: Array<FHIRJSON>.self, has: exist.dynamicType))

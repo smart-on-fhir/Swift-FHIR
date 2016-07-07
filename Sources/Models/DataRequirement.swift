@@ -2,7 +2,7 @@
 //  DataRequirement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DataRequirement) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DataRequirement) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -47,13 +47,13 @@ public class DataRequirement: Element {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["codeFilter"] {
 				presentKeys.insert("codeFilter")
 				if let val = exist as? [FHIRJSON] {
-					self.codeFilter = DataRequirementCodeFilter.from(val, owner: self) as? [DataRequirementCodeFilter]
+					self.codeFilter = DataRequirementCodeFilter.instantiate(fromArray: val, owner: self) as? [DataRequirementCodeFilter]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "codeFilter", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -62,7 +62,7 @@ public class DataRequirement: Element {
 			if let exist: AnyObject = js["dateFilter"] {
 				presentKeys.insert("dateFilter")
 				if let val = exist as? [FHIRJSON] {
-					self.dateFilter = DataRequirementDateFilter.from(val, owner: self) as? [DataRequirementDateFilter]
+					self.dateFilter = DataRequirementDateFilter.instantiate(fromArray: val, owner: self) as? [DataRequirementDateFilter]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dateFilter", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -171,8 +171,8 @@ public class DataRequirementCodeFilter: Element {
 		self.path = path
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["path"] {
 				presentKeys.insert("path")
@@ -198,7 +198,7 @@ public class DataRequirementCodeFilter: Element {
 			if let exist: AnyObject = js["valueCodeableConcept"] {
 				presentKeys.insert("valueCodeableConcept")
 				if let val = exist as? [FHIRJSON] {
-					self.valueCodeableConcept = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.valueCodeableConcept = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueCodeableConcept", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -207,7 +207,7 @@ public class DataRequirementCodeFilter: Element {
 			if let exist: AnyObject = js["valueCoding"] {
 				presentKeys.insert("valueCoding")
 				if let val = exist as? [FHIRJSON] {
-					self.valueCoding = Coding.from(val, owner: self) as? [Coding]
+					self.valueCoding = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueCoding", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -297,8 +297,8 @@ public class DataRequirementDateFilter: Element {
 		self.path = path
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["path"] {
 				presentKeys.insert("path")

@@ -2,7 +2,7 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -59,8 +59,8 @@ public class QuestionnaireResponse: DomainResource {
 		self.status = status
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["author"] {
 				presentKeys.insert("author")
@@ -101,7 +101,7 @@ public class QuestionnaireResponse: DomainResource {
 			if let exist: AnyObject = js["item"] {
 				presentKeys.insert("item")
 				if let val = exist as? [FHIRJSON] {
-					self.item = QuestionnaireResponseItem.from(val, owner: self) as? [QuestionnaireResponseItem]
+					self.item = QuestionnaireResponseItem.instantiate(fromArray: val, owner: self) as? [QuestionnaireResponseItem]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -217,13 +217,13 @@ public class QuestionnaireResponseItem: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["answer"] {
 				presentKeys.insert("answer")
 				if let val = exist as? [FHIRJSON] {
-					self.answer = QuestionnaireResponseItemAnswer.from(val, owner: self) as? [QuestionnaireResponseItemAnswer]
+					self.answer = QuestionnaireResponseItemAnswer.instantiate(fromArray: val, owner: self) as? [QuestionnaireResponseItemAnswer]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "answer", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -232,7 +232,7 @@ public class QuestionnaireResponseItem: BackboneElement {
 			if let exist: AnyObject = js["item"] {
 				presentKeys.insert("item")
 				if let val = exist as? [FHIRJSON] {
-					self.item = QuestionnaireResponseItem.from(val, owner: self) as? [QuestionnaireResponseItem]
+					self.item = QuestionnaireResponseItem.instantiate(fromArray: val, owner: self) as? [QuestionnaireResponseItem]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -343,7 +343,7 @@ public class QuestionnaireResponseItemAnswer: BackboneElement {
 	public var valueTime: Time?
 	
 	/// Single-valued answer to the question.
-	public var valueUri: NSURL?
+	public var valueUri: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -351,13 +351,13 @@ public class QuestionnaireResponseItemAnswer: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["item"] {
 				presentKeys.insert("item")
 				if let val = exist as? [FHIRJSON] {
-					self.item = QuestionnaireResponseItem.from(val, owner: self) as? [QuestionnaireResponseItem]
+					self.item = QuestionnaireResponseItem.instantiate(fromArray: val, owner: self) as? [QuestionnaireResponseItem]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -474,7 +474,7 @@ public class QuestionnaireResponseItemAnswer: BackboneElement {
 			if let exist: AnyObject = js["valueUri"] {
 				presentKeys.insert("valueUri")
 				if let val = exist as? String {
-					self.valueUri = NSURL(string: val)
+					self.valueUri = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueUri", wants: String.self, has: exist.dynamicType))

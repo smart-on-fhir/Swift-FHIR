@@ -2,7 +2,7 @@
 //  Library.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Library) on 2016-04-05.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Library) on 2016-07-07.
 //  2016, SMART Health IT.
 //
 
@@ -56,13 +56,13 @@ public class Library: DomainResource {
 		self.document = document
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["codeSystem"] {
 				presentKeys.insert("codeSystem")
 				if let val = exist as? [FHIRJSON] {
-					self.codeSystem = LibraryCodeSystem.from(val, owner: self) as? [LibraryCodeSystem]
+					self.codeSystem = LibraryCodeSystem.instantiate(fromArray: val, owner: self) as? [LibraryCodeSystem]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "codeSystem", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -71,7 +71,7 @@ public class Library: DomainResource {
 			if let exist: AnyObject = js["dataRequirement"] {
 				presentKeys.insert("dataRequirement")
 				if let val = exist as? [FHIRJSON] {
-					self.dataRequirement = DataRequirement.from(val, owner: self) as? [DataRequirement]
+					self.dataRequirement = DataRequirement.instantiate(fromArray: val, owner: self) as? [DataRequirement]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dataRequirement", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -92,7 +92,7 @@ public class Library: DomainResource {
 			if let exist: AnyObject = js["library"] {
 				presentKeys.insert("library")
 				if let val = exist as? [FHIRJSON] {
-					self.library = LibraryLibrary.from(val, owner: self) as? [LibraryLibrary]
+					self.library = LibraryLibrary.instantiate(fromArray: val, owner: self) as? [LibraryLibrary]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "library", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -101,7 +101,7 @@ public class Library: DomainResource {
 			if let exist: AnyObject = js["model"] {
 				presentKeys.insert("model")
 				if let val = exist as? [FHIRJSON] {
-					self.model = LibraryModel.from(val, owner: self) as? [LibraryModel]
+					self.model = LibraryModel.instantiate(fromArray: val, owner: self) as? [LibraryModel]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "model", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -119,7 +119,7 @@ public class Library: DomainResource {
 			if let exist: AnyObject = js["parameter"] {
 				presentKeys.insert("parameter")
 				if let val = exist as? [FHIRJSON] {
-					self.parameter = ParameterDefinition.from(val, owner: self) as? [ParameterDefinition]
+					self.parameter = ParameterDefinition.instantiate(fromArray: val, owner: self) as? [ParameterDefinition]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "parameter", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -128,7 +128,7 @@ public class Library: DomainResource {
 			if let exist: AnyObject = js["valueSet"] {
 				presentKeys.insert("valueSet")
 				if let val = exist as? [FHIRJSON] {
-					self.valueSet = LibraryValueSet.from(val, owner: self) as? [LibraryValueSet]
+					self.valueSet = LibraryValueSet.instantiate(fromArray: val, owner: self) as? [LibraryValueSet]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueSet", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -202,8 +202,8 @@ public class LibraryCodeSystem: BackboneElement {
 		self.identifier = identifier
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
@@ -294,8 +294,8 @@ public class LibraryLibrary: BackboneElement {
 		self.identifier = identifier
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["documentAttachment"] {
 				presentKeys.insert("documentAttachment")
@@ -404,8 +404,8 @@ public class LibraryModel: BackboneElement {
 		self.identifier = identifier
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
@@ -493,8 +493,8 @@ public class LibraryValueSet: BackboneElement {
 		self.identifier = identifier
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
 			if let exist: AnyObject = js["codeSystem"] {
 				presentKeys.insert("codeSystem")

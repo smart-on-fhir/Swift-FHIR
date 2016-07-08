@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -50,7 +50,7 @@ public class ValueSet: DomainResource {
 	public var immutable: Bool?
 	
 	/// Fixed date for all referenced code systems and value sets.
-	public var lockedDate: Date?
+	public var lockedDate: FHIRDate?
 	
 	/// Informal name for this value set.
 	public var name: String?
@@ -181,7 +181,7 @@ public class ValueSet: DomainResource {
 			if let exist: AnyObject = js["lockedDate"] {
 				presentKeys.insert("lockedDate")
 				if let val = exist as? String {
-					self.lockedDate = Date(string: val)
+					self.lockedDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "lockedDate", wants: String.self, has: exist.dynamicType))

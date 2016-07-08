@@ -2,7 +2,7 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -316,7 +316,7 @@ public class QuestionnaireResponseItemAnswer: BackboneElement {
 	public var valueCoding: Coding?
 	
 	/// Single-valued answer to the question.
-	public var valueDate: Date?
+	public var valueDate: FHIRDate?
 	
 	/// Single-valued answer to the question.
 	public var valueDateTime: DateTime?
@@ -340,7 +340,7 @@ public class QuestionnaireResponseItemAnswer: BackboneElement {
 	public var valueString: String?
 	
 	/// Single-valued answer to the question.
-	public var valueTime: Time?
+	public var valueTime: FHIRTime?
 	
 	/// Single-valued answer to the question.
 	public var valueUri: URL?
@@ -393,7 +393,7 @@ public class QuestionnaireResponseItemAnswer: BackboneElement {
 			if let exist: AnyObject = js["valueDate"] {
 				presentKeys.insert("valueDate")
 				if let val = exist as? String {
-					self.valueDate = Date(string: val)
+					self.valueDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueDate", wants: String.self, has: exist.dynamicType))
@@ -465,7 +465,7 @@ public class QuestionnaireResponseItemAnswer: BackboneElement {
 			if let exist: AnyObject = js["valueTime"] {
 				presentKeys.insert("valueTime")
 				if let val = exist as? String {
-					self.valueTime = Time(string: val)
+					self.valueTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueTime", wants: String.self, has: exist.dynamicType))

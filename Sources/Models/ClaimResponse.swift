@@ -2,7 +2,7 @@
 //  ClaimResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -71,7 +71,7 @@ public class ClaimResponse: DomainResource {
 	public var paymentAmount: Quantity?
 	
 	/// Expected data of Payment.
-	public var paymentDate: Date?
+	public var paymentDate: FHIRDate?
 	
 	/// Payment identifier.
 	public var paymentRef: Identifier?
@@ -274,7 +274,7 @@ public class ClaimResponse: DomainResource {
 			if let exist: AnyObject = js["paymentDate"] {
 				presentKeys.insert("paymentDate")
 				if let val = exist as? String {
-					self.paymentDate = Date(string: val)
+					self.paymentDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "paymentDate", wants: String.self, has: exist.dynamicType))

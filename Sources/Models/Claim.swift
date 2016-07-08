@@ -2,7 +2,7 @@
 //  Claim.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Claim) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Claim) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -21,7 +21,7 @@ public class Claim: DomainResource {
 	}
 	
 	/// When the accident occurred.
-	public var accidentDate: Date?
+	public var accidentDate: FHIRDate?
 	
 	/// Accident Place.
 	public var accidentLocationAddress: Address?
@@ -187,7 +187,7 @@ public class Claim: DomainResource {
 			if let exist: AnyObject = js["accidentDate"] {
 				presentKeys.insert("accidentDate")
 				if let val = exist as? String {
-					self.accidentDate = Date(string: val)
+					self.accidentDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "accidentDate", wants: String.self, has: exist.dynamicType))
@@ -1106,7 +1106,7 @@ public class ClaimItem: BackboneElement {
 	public var serviceModifier: [Coding]?
 	
 	/// Date or dates of Service.
-	public var servicedDate: Date?
+	public var servicedDate: FHIRDate?
 	
 	/// Date or dates of Service.
 	public var servicedPeriod: Period?
@@ -1308,7 +1308,7 @@ public class ClaimItem: BackboneElement {
 			if let exist: AnyObject = js["servicedDate"] {
 				presentKeys.insert("servicedDate")
 				if let val = exist as? String {
-					self.servicedDate = Date(string: val)
+					self.servicedDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "servicedDate", wants: String.self, has: exist.dynamicType))
@@ -1899,7 +1899,7 @@ public class ClaimItemProsthesis: BackboneElement {
 	public var initial: Bool?
 	
 	/// Initial service Date.
-	public var priorDate: Date?
+	public var priorDate: FHIRDate?
 	
 	/// Prosthetic Material.
 	public var priorMaterial: Coding?
@@ -1925,7 +1925,7 @@ public class ClaimItemProsthesis: BackboneElement {
 			if let exist: AnyObject = js["priorDate"] {
 				presentKeys.insert("priorDate")
 				if let val = exist as? String {
-					self.priorDate = Date(string: val)
+					self.priorDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "priorDate", wants: String.self, has: exist.dynamicType))
@@ -1974,7 +1974,7 @@ public class ClaimMissingTeeth: BackboneElement {
 	}
 	
 	/// Date tooth was extracted if known.
-	public var extractionDate: Date?
+	public var extractionDate: FHIRDate?
 	
 	/// Indicates whether it was extracted or other reason.
 	public var reason: Coding?
@@ -2000,7 +2000,7 @@ public class ClaimMissingTeeth: BackboneElement {
 			if let exist: AnyObject = js["extractionDate"] {
 				presentKeys.insert("extractionDate")
 				if let val = exist as? String {
-					self.extractionDate = Date(string: val)
+					self.extractionDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "extractionDate", wants: String.self, has: exist.dynamicType))
@@ -2060,7 +2060,7 @@ public class ClaimOnset: BackboneElement {
 	}
 	
 	/// Illness, injury or treatable condition date.
-	public var timeDate: Date?
+	public var timeDate: FHIRDate?
 	
 	/// Illness, injury or treatable condition date.
 	public var timePeriod: Period?
@@ -2080,7 +2080,7 @@ public class ClaimOnset: BackboneElement {
 			if let exist: AnyObject = js["timeDate"] {
 				presentKeys.insert("timeDate")
 				if let val = exist as? String {
-					self.timeDate = Date(string: val)
+					self.timeDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "timeDate", wants: String.self, has: exist.dynamicType))

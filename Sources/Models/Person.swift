@@ -2,7 +2,7 @@
 //  Person.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Person) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Person) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -26,7 +26,7 @@ public class Person: DomainResource {
 	public var address: [Address]?
 	
 	/// The date on which the person was born.
-	public var birthDate: Date?
+	public var birthDate: FHIRDate?
 	
 	/// male | female | other | unknown.
 	public var gender: String?
@@ -79,7 +79,7 @@ public class Person: DomainResource {
 			if let exist: AnyObject = js["birthDate"] {
 				presentKeys.insert("birthDate")
 				if let val = exist as? String {
-					self.birthDate = Date(string: val)
+					self.birthDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "birthDate", wants: String.self, has: exist.dynamicType))

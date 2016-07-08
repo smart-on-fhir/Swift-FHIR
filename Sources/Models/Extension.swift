@@ -2,7 +2,7 @@
 //  Extension.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Extension) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Extension) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -50,7 +50,7 @@ public class Extension: Element {
 	public var valueContactPoint: ContactPoint?
 	
 	/// Value of extension.
-	public var valueDate: Date?
+	public var valueDate: FHIRDate?
 	
 	/// Value of extension.
 	public var valueDateTime: DateTime?
@@ -110,7 +110,7 @@ public class Extension: Element {
 	public var valueString: String?
 	
 	/// Value of extension.
-	public var valueTime: Time?
+	public var valueTime: FHIRTime?
 	
 	/// Value of extension.
 	public var valueTiming: Timing?
@@ -232,7 +232,7 @@ public class Extension: Element {
 			if let exist: AnyObject = js["valueDate"] {
 				presentKeys.insert("valueDate")
 				if let val = exist as? String {
-					self.valueDate = Date(string: val)
+					self.valueDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueDate", wants: String.self, has: exist.dynamicType))
@@ -412,7 +412,7 @@ public class Extension: Element {
 			if let exist: AnyObject = js["valueTime"] {
 				presentKeys.insert("valueTime")
 				if let val = exist as? String {
-					self.valueTime = Time(string: val)
+					self.valueTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueTime", wants: String.self, has: exist.dynamicType))

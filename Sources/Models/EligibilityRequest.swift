@@ -2,7 +2,7 @@
 //  EligibilityRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -81,7 +81,7 @@ public class EligibilityRequest: DomainResource {
 	public var ruleset: Coding?
 	
 	/// Estimated date or dates of Service.
-	public var servicedDate: Date?
+	public var servicedDate: FHIRDate?
 	
 	/// Estimated date or dates of Service.
 	public var servicedPeriod: Period?
@@ -284,7 +284,7 @@ public class EligibilityRequest: DomainResource {
 			if let exist: AnyObject = js["servicedDate"] {
 				presentKeys.insert("servicedDate")
 				if let val = exist as? String {
-					self.servicedDate = Date(string: val)
+					self.servicedDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "servicedDate", wants: String.self, has: exist.dynamicType))

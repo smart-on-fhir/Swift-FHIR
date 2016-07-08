@@ -2,7 +2,7 @@
 //  ModuleMetadata.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ModuleMetadata) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ModuleMetadata) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -46,13 +46,13 @@ public class ModuleMetadata: Element {
 	public var identifier: [Identifier]?
 	
 	/// Last review date for the module.
-	public var lastReviewDate: Date?
+	public var lastReviewDate: FHIRDate?
 	
 	/// A machine-friendly name for the module.
 	public var name: String?
 	
 	/// Publication date for this version of the module.
-	public var publicationDate: Date?
+	public var publicationDate: FHIRDate?
 	
 	/// Name of the publisher (Organization or individual).
 	public var publisher: String?
@@ -175,7 +175,7 @@ public class ModuleMetadata: Element {
 			if let exist: AnyObject = js["lastReviewDate"] {
 				presentKeys.insert("lastReviewDate")
 				if let val = exist as? String {
-					self.lastReviewDate = Date(string: val)
+					self.lastReviewDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "lastReviewDate", wants: String.self, has: exist.dynamicType))
@@ -193,7 +193,7 @@ public class ModuleMetadata: Element {
 			if let exist: AnyObject = js["publicationDate"] {
 				presentKeys.insert("publicationDate")
 				if let val = exist as? String {
-					self.publicationDate = Date(string: val)
+					self.publicationDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "publicationDate", wants: String.self, has: exist.dynamicType))

@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -261,7 +261,7 @@ public class QuestionnaireItem: BackboneElement {
 	public var initialCoding: Coding?
 	
 	/// Initial presumed answer for question.
-	public var initialDate: Date?
+	public var initialDate: FHIRDate?
 	
 	/// Initial presumed answer for question.
 	public var initialDateTime: DateTime?
@@ -285,7 +285,7 @@ public class QuestionnaireItem: BackboneElement {
 	public var initialString: String?
 	
 	/// Initial presumed answer for question.
-	public var initialTime: Time?
+	public var initialTime: FHIRTime?
 	
 	/// Initial presumed answer for question.
 	public var initialUri: URL?
@@ -386,7 +386,7 @@ public class QuestionnaireItem: BackboneElement {
 			if let exist: AnyObject = js["initialDate"] {
 				presentKeys.insert("initialDate")
 				if let val = exist as? String {
-					self.initialDate = Date(string: val)
+					self.initialDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "initialDate", wants: String.self, has: exist.dynamicType))
@@ -458,7 +458,7 @@ public class QuestionnaireItem: BackboneElement {
 			if let exist: AnyObject = js["initialTime"] {
 				presentKeys.insert("initialTime")
 				if let val = exist as? String {
-					self.initialTime = Time(string: val)
+					self.initialTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "initialTime", wants: String.self, has: exist.dynamicType))
@@ -687,7 +687,7 @@ public class QuestionnaireItemEnableWhen: BackboneElement {
 	public var answerCoding: Coding?
 	
 	/// Value question must have.
-	public var answerDate: Date?
+	public var answerDate: FHIRDate?
 	
 	/// Value question must have.
 	public var answerDateTime: DateTime?
@@ -711,7 +711,7 @@ public class QuestionnaireItemEnableWhen: BackboneElement {
 	public var answerString: String?
 	
 	/// Value question must have.
-	public var answerTime: Time?
+	public var answerTime: FHIRTime?
 	
 	/// Value question must have.
 	public var answerUri: URL?
@@ -767,7 +767,7 @@ public class QuestionnaireItemEnableWhen: BackboneElement {
 			if let exist: AnyObject = js["answerDate"] {
 				presentKeys.insert("answerDate")
 				if let val = exist as? String {
-					self.answerDate = Date(string: val)
+					self.answerDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "answerDate", wants: String.self, has: exist.dynamicType))
@@ -839,7 +839,7 @@ public class QuestionnaireItemEnableWhen: BackboneElement {
 			if let exist: AnyObject = js["answerTime"] {
 				presentKeys.insert("answerTime")
 				if let val = exist as? String {
-					self.answerTime = Time(string: val)
+					self.answerTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "answerTime", wants: String.self, has: exist.dynamicType))
@@ -947,7 +947,7 @@ public class QuestionnaireItemOption: BackboneElement {
 	public var valueCoding: Coding?
 	
 	/// Answer value.
-	public var valueDate: Date?
+	public var valueDate: FHIRDate?
 	
 	/// Answer value.
 	public var valueInteger: Int?
@@ -956,7 +956,7 @@ public class QuestionnaireItemOption: BackboneElement {
 	public var valueString: String?
 	
 	/// Answer value.
-	public var valueTime: Time?
+	public var valueTime: FHIRTime?
 	
 	
 	/** Initialize with a JSON object. */
@@ -965,7 +965,7 @@ public class QuestionnaireItemOption: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(valueCoding: Coding, valueDate: Date, valueInteger: Int, valueString: String, valueTime: Time) {
+	public convenience init(valueCoding: Coding, valueDate: FHIRDate, valueInteger: Int, valueString: String, valueTime: FHIRTime) {
 		self.init(json: nil)
 		self.valueCoding = valueCoding
 		self.valueDate = valueDate
@@ -989,7 +989,7 @@ public class QuestionnaireItemOption: BackboneElement {
 			if let exist: AnyObject = js["valueDate"] {
 				presentKeys.insert("valueDate")
 				if let val = exist as? String {
-					self.valueDate = Date(string: val)
+					self.valueDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueDate", wants: String.self, has: exist.dynamicType))
@@ -1016,7 +1016,7 @@ public class QuestionnaireItemOption: BackboneElement {
 			if let exist: AnyObject = js["valueTime"] {
 				presentKeys.insert("valueTime")
 				if let val = exist as? String {
-					self.valueTime = Time(string: val)
+					self.valueTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueTime", wants: String.self, has: exist.dynamicType))

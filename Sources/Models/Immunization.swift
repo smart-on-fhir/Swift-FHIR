@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -31,7 +31,7 @@ public class Immunization: DomainResource {
 	public var encounter: Reference?
 	
 	/// Vaccine expiration date.
-	public var expirationDate: Date?
+	public var expirationDate: FHIRDate?
 	
 	/// Administration/non-administration reasons.
 	public var explanation: ImmunizationExplanation?
@@ -133,7 +133,7 @@ public class Immunization: DomainResource {
 			if let exist: AnyObject = js["expirationDate"] {
 				presentKeys.insert("expirationDate")
 				if let val = exist as? String {
-					self.expirationDate = Date(string: val)
+					self.expirationDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "expirationDate", wants: String.self, has: exist.dynamicType))

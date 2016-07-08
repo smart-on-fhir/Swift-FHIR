@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -71,7 +71,7 @@ public class ElementDefinition: Element {
 	public var defaultValueContactPoint: ContactPoint?
 	
 	/// Specified value if missing from instance.
-	public var defaultValueDate: Date?
+	public var defaultValueDate: FHIRDate?
 	
 	/// Specified value if missing from instance.
 	public var defaultValueDateTime: DateTime?
@@ -131,7 +131,7 @@ public class ElementDefinition: Element {
 	public var defaultValueString: String?
 	
 	/// Specified value if missing from instance.
-	public var defaultValueTime: Time?
+	public var defaultValueTime: FHIRTime?
 	
 	/// Specified value if missing from instance.
 	public var defaultValueTiming: Timing?
@@ -173,7 +173,7 @@ public class ElementDefinition: Element {
 	public var exampleContactPoint: ContactPoint?
 	
 	/// Example value (as defined for type).
-	public var exampleDate: Date?
+	public var exampleDate: FHIRDate?
 	
 	/// Example value (as defined for type).
 	public var exampleDateTime: DateTime?
@@ -233,7 +233,7 @@ public class ElementDefinition: Element {
 	public var exampleString: String?
 	
 	/// Example value (as defined for type).
-	public var exampleTime: Time?
+	public var exampleTime: FHIRTime?
 	
 	/// Example value (as defined for type).
 	public var exampleTiming: Timing?
@@ -272,7 +272,7 @@ public class ElementDefinition: Element {
 	public var fixedContactPoint: ContactPoint?
 	
 	/// Value must be exactly this.
-	public var fixedDate: Date?
+	public var fixedDate: FHIRDate?
 	
 	/// Value must be exactly this.
 	public var fixedDateTime: DateTime?
@@ -332,7 +332,7 @@ public class ElementDefinition: Element {
 	public var fixedString: String?
 	
 	/// Value must be exactly this.
-	public var fixedTime: Time?
+	public var fixedTime: FHIRTime?
 	
 	/// Value must be exactly this.
 	public var fixedTiming: Timing?
@@ -389,7 +389,7 @@ public class ElementDefinition: Element {
 	public var maxValueContactPoint: ContactPoint?
 	
 	/// Maximum Allowed Value (for some types).
-	public var maxValueDate: Date?
+	public var maxValueDate: FHIRDate?
 	
 	/// Maximum Allowed Value (for some types).
 	public var maxValueDateTime: DateTime?
@@ -449,7 +449,7 @@ public class ElementDefinition: Element {
 	public var maxValueString: String?
 	
 	/// Maximum Allowed Value (for some types).
-	public var maxValueTime: Time?
+	public var maxValueTime: FHIRTime?
 	
 	/// Maximum Allowed Value (for some types).
 	public var maxValueTiming: Timing?
@@ -494,7 +494,7 @@ public class ElementDefinition: Element {
 	public var minValueContactPoint: ContactPoint?
 	
 	/// Minimum Allowed Value (for some types).
-	public var minValueDate: Date?
+	public var minValueDate: FHIRDate?
 	
 	/// Minimum Allowed Value (for some types).
 	public var minValueDateTime: DateTime?
@@ -554,7 +554,7 @@ public class ElementDefinition: Element {
 	public var minValueString: String?
 	
 	/// Minimum Allowed Value (for some types).
-	public var minValueTime: Time?
+	public var minValueTime: FHIRTime?
 	
 	/// Minimum Allowed Value (for some types).
 	public var minValueTiming: Timing?
@@ -602,7 +602,7 @@ public class ElementDefinition: Element {
 	public var patternContactPoint: ContactPoint?
 	
 	/// Value must have at least these property values.
-	public var patternDate: Date?
+	public var patternDate: FHIRDate?
 	
 	/// Value must have at least these property values.
 	public var patternDateTime: DateTime?
@@ -662,7 +662,7 @@ public class ElementDefinition: Element {
 	public var patternString: String?
 	
 	/// Value must have at least these property values.
-	public var patternTime: Time?
+	public var patternTime: FHIRTime?
 	
 	/// Value must have at least these property values.
 	public var patternTiming: Timing?
@@ -859,7 +859,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["defaultValueDate"] {
 				presentKeys.insert("defaultValueDate")
 				if let val = exist as? String {
-					self.defaultValueDate = Date(string: val)
+					self.defaultValueDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "defaultValueDate", wants: String.self, has: exist.dynamicType))
@@ -1039,7 +1039,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["defaultValueTime"] {
 				presentKeys.insert("defaultValueTime")
 				if let val = exist as? String {
-					self.defaultValueTime = Time(string: val)
+					self.defaultValueTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "defaultValueTime", wants: String.self, has: exist.dynamicType))
@@ -1165,7 +1165,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["exampleDate"] {
 				presentKeys.insert("exampleDate")
 				if let val = exist as? String {
-					self.exampleDate = Date(string: val)
+					self.exampleDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exampleDate", wants: String.self, has: exist.dynamicType))
@@ -1345,7 +1345,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["exampleTime"] {
 				presentKeys.insert("exampleTime")
 				if let val = exist as? String {
-					self.exampleTime = Time(string: val)
+					self.exampleTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exampleTime", wants: String.self, has: exist.dynamicType))
@@ -1462,7 +1462,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["fixedDate"] {
 				presentKeys.insert("fixedDate")
 				if let val = exist as? String {
-					self.fixedDate = Date(string: val)
+					self.fixedDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fixedDate", wants: String.self, has: exist.dynamicType))
@@ -1642,7 +1642,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["fixedTime"] {
 				presentKeys.insert("fixedTime")
 				if let val = exist as? String {
-					self.fixedTime = Time(string: val)
+					self.fixedTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fixedTime", wants: String.self, has: exist.dynamicType))
@@ -1813,7 +1813,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["maxValueDate"] {
 				presentKeys.insert("maxValueDate")
 				if let val = exist as? String {
-					self.maxValueDate = Date(string: val)
+					self.maxValueDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxValueDate", wants: String.self, has: exist.dynamicType))
@@ -1993,7 +1993,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["maxValueTime"] {
 				presentKeys.insert("maxValueTime")
 				if let val = exist as? String {
-					self.maxValueTime = Time(string: val)
+					self.maxValueTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxValueTime", wants: String.self, has: exist.dynamicType))
@@ -2128,7 +2128,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["minValueDate"] {
 				presentKeys.insert("minValueDate")
 				if let val = exist as? String {
-					self.minValueDate = Date(string: val)
+					self.minValueDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "minValueDate", wants: String.self, has: exist.dynamicType))
@@ -2308,7 +2308,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["minValueTime"] {
 				presentKeys.insert("minValueTime")
 				if let val = exist as? String {
-					self.minValueTime = Time(string: val)
+					self.minValueTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "minValueTime", wants: String.self, has: exist.dynamicType))
@@ -2455,7 +2455,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["patternDate"] {
 				presentKeys.insert("patternDate")
 				if let val = exist as? String {
-					self.patternDate = Date(string: val)
+					self.patternDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patternDate", wants: String.self, has: exist.dynamicType))
@@ -2635,7 +2635,7 @@ public class ElementDefinition: Element {
 			if let exist: AnyObject = js["patternTime"] {
 				presentKeys.insert("patternTime")
 				if let val = exist as? String {
-					self.patternTime = Time(string: val)
+					self.patternTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patternTime", wants: String.self, has: exist.dynamicType))

@@ -2,7 +2,7 @@
 //  Parameters.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -104,7 +104,7 @@ public class ParametersParameter: BackboneElement {
 	public var valueContactPoint: ContactPoint?
 	
 	/// If parameter is a data type.
-	public var valueDate: Date?
+	public var valueDate: FHIRDate?
 	
 	/// If parameter is a data type.
 	public var valueDateTime: DateTime?
@@ -164,7 +164,7 @@ public class ParametersParameter: BackboneElement {
 	public var valueString: String?
 	
 	/// If parameter is a data type.
-	public var valueTime: Time?
+	public var valueTime: FHIRTime?
 	
 	/// If parameter is a data type.
 	public var valueTiming: Timing?
@@ -304,7 +304,7 @@ public class ParametersParameter: BackboneElement {
 			if let exist: AnyObject = js["valueDate"] {
 				presentKeys.insert("valueDate")
 				if let val = exist as? String {
-					self.valueDate = Date(string: val)
+					self.valueDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueDate", wants: String.self, has: exist.dynamicType))
@@ -484,7 +484,7 @@ public class ParametersParameter: BackboneElement {
 			if let exist: AnyObject = js["valueTime"] {
 				presentKeys.insert("valueTime")
 				if let val = exist as? String {
-					self.valueTime = Time(string: val)
+					self.valueTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueTime", wants: String.self, has: exist.dynamicType))

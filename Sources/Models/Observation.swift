@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Observation) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Observation) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -107,7 +107,7 @@ public class Observation: DomainResource {
 	public var valueString: String?
 	
 	/// Actual result.
-	public var valueTime: Time?
+	public var valueTime: FHIRTime?
 	
 	
 	/** Initialize with a JSON object. */
@@ -395,7 +395,7 @@ public class Observation: DomainResource {
 			if let exist: AnyObject = js["valueTime"] {
 				presentKeys.insert("valueTime")
 				if let val = exist as? String {
-					self.valueTime = Time(string: val)
+					self.valueTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueTime", wants: String.self, has: exist.dynamicType))
@@ -553,7 +553,7 @@ public class ObservationComponent: BackboneElement {
 	public var valueString: String?
 	
 	/// Actual component result.
-	public var valueTime: Time?
+	public var valueTime: FHIRTime?
 	
 	
 	/** Initialize with a JSON object. */
@@ -684,7 +684,7 @@ public class ObservationComponent: BackboneElement {
 			if let exist: AnyObject = js["valueTime"] {
 				presentKeys.insert("valueTime")
 				if let val = exist as? String {
-					self.valueTime = Time(string: val)
+					self.valueTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueTime", wants: String.self, has: exist.dynamicType))

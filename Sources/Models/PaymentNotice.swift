@@ -2,7 +2,7 @@
 //  PaymentNotice.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -60,7 +60,7 @@ public class PaymentNotice: DomainResource {
 	public var ruleset: Coding?
 	
 	/// Payment or clearing date.
-	public var statusDate: Date?
+	public var statusDate: FHIRDate?
 	
 	/// Insurer or Regulatory body.
 	public var targetIdentifier: Identifier?
@@ -206,7 +206,7 @@ public class PaymentNotice: DomainResource {
 			if let exist: AnyObject = js["statusDate"] {
 				presentKeys.insert("statusDate")
 				if let val = exist as? String {
-					self.statusDate = Date(string: val)
+					self.statusDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "statusDate", wants: String.self, has: exist.dynamicType))

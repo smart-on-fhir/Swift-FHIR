@@ -2,7 +2,7 @@
 //  Goal.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Goal) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Goal) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -48,13 +48,13 @@ public class Goal: DomainResource {
 	public var startCodeableConcept: CodeableConcept?
 	
 	/// When goal pursuit begins.
-	public var startDate: Date?
+	public var startDate: FHIRDate?
 	
 	/// proposed | planned | accepted | rejected | in-progress | achieved | sustaining | on-hold | cancelled.
 	public var status: String?
 	
 	/// When goal status took effect.
-	public var statusDate: Date?
+	public var statusDate: FHIRDate?
 	
 	/// Reason for current status.
 	public var statusReason: CodeableConcept?
@@ -63,7 +63,7 @@ public class Goal: DomainResource {
 	public var subject: Reference?
 	
 	/// Reach goal on or before.
-	public var targetDate: Date?
+	public var targetDate: FHIRDate?
 	
 	/// Reach goal on or before.
 	public var targetQuantity: Quantity?
@@ -171,7 +171,7 @@ public class Goal: DomainResource {
 			if let exist: AnyObject = js["startDate"] {
 				presentKeys.insert("startDate")
 				if let val = exist as? String {
-					self.startDate = Date(string: val)
+					self.startDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "startDate", wants: String.self, has: exist.dynamicType))
@@ -192,7 +192,7 @@ public class Goal: DomainResource {
 			if let exist: AnyObject = js["statusDate"] {
 				presentKeys.insert("statusDate")
 				if let val = exist as? String {
-					self.statusDate = Date(string: val)
+					self.statusDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "statusDate", wants: String.self, has: exist.dynamicType))
@@ -219,7 +219,7 @@ public class Goal: DomainResource {
 			if let exist: AnyObject = js["targetDate"] {
 				presentKeys.insert("targetDate")
 				if let val = exist as? String {
-					self.targetDate = Date(string: val)
+					self.targetDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "targetDate", wants: String.self, has: exist.dynamicType))

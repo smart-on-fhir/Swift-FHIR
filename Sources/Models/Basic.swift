@@ -2,7 +2,7 @@
 //  Basic.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Basic) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Basic) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -27,7 +27,7 @@ public class Basic: DomainResource {
 	public var code: CodeableConcept?
 	
 	/// When created.
-	public var created: Date?
+	public var created: FHIRDate?
 	
 	/// Business identifier.
 	public var identifier: [Identifier]?
@@ -74,7 +74,7 @@ public class Basic: DomainResource {
 			if let exist: AnyObject = js["created"] {
 				presentKeys.insert("created")
 				if let val = exist as? String {
-					self.created = Date(string: val)
+					self.created = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "created", wants: String.self, has: exist.dynamicType))

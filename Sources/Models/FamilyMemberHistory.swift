@@ -2,7 +2,7 @@
 //  FamilyMemberHistory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -30,7 +30,7 @@ public class FamilyMemberHistory: DomainResource {
 	public var ageString: String?
 	
 	/// (approximate) date of birth.
-	public var bornDate: Date?
+	public var bornDate: FHIRDate?
 	
 	/// (approximate) date of birth.
 	public var bornPeriod: Period?
@@ -48,7 +48,7 @@ public class FamilyMemberHistory: DomainResource {
 	public var deceasedBoolean: Bool?
 	
 	/// Dead? How old/when?.
-	public var deceasedDate: Date?
+	public var deceasedDate: FHIRDate?
 	
 	/// Dead? How old/when?.
 	public var deceasedQuantity: Quantity?
@@ -127,7 +127,7 @@ public class FamilyMemberHistory: DomainResource {
 			if let exist: AnyObject = js["bornDate"] {
 				presentKeys.insert("bornDate")
 				if let val = exist as? String {
-					self.bornDate = Date(string: val)
+					self.bornDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bornDate", wants: String.self, has: exist.dynamicType))
@@ -181,7 +181,7 @@ public class FamilyMemberHistory: DomainResource {
 			if let exist: AnyObject = js["deceasedDate"] {
 				presentKeys.insert("deceasedDate")
 				if let val = exist as? String {
-					self.deceasedDate = Date(string: val)
+					self.deceasedDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "deceasedDate", wants: String.self, has: exist.dynamicType))

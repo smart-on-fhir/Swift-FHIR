@@ -2,7 +2,7 @@
 //  Task.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Task) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Task) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -356,7 +356,7 @@ public class TaskInput: BackboneElement {
 	public var valueContactPoint: ContactPoint?
 	
 	/// Input Value.
-	public var valueDate: Date?
+	public var valueDate: FHIRDate?
 	
 	/// Input Value.
 	public var valueDateTime: DateTime?
@@ -416,7 +416,7 @@ public class TaskInput: BackboneElement {
 	public var valueString: String?
 	
 	/// Input Value.
-	public var valueTime: Time?
+	public var valueTime: FHIRTime?
 	
 	/// Input Value.
 	public var valueTiming: Timing?
@@ -434,7 +434,7 @@ public class TaskInput: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, valueAddress: Address, valueAnnotation: Annotation, valueAttachment: Attachment, valueBase64Binary: Base64Binary, valueBoolean: Bool, valueCode: String, valueCodeableConcept: CodeableConcept, valueCoding: Coding, valueContactPoint: ContactPoint, valueDate: Date, valueDateTime: DateTime, valueDecimal: NSDecimalNumber, valueHumanName: HumanName, valueId: String, valueIdentifier: Identifier, valueInstant: Instant, valueInteger: Int, valueMarkdown: String, valueMeta: Meta, valueOid: String, valuePeriod: Period, valuePositiveInt: UInt, valueQuantity: Quantity, valueRange: Range, valueRatio: Ratio, valueReference: Reference, valueSampledData: SampledData, valueSignature: Signature, valueString: String, valueTime: Time, valueTiming: Timing, valueUnsignedInt: UInt, valueUri: URL) {
+	public convenience init(name: String, valueAddress: Address, valueAnnotation: Annotation, valueAttachment: Attachment, valueBase64Binary: Base64Binary, valueBoolean: Bool, valueCode: String, valueCodeableConcept: CodeableConcept, valueCoding: Coding, valueContactPoint: ContactPoint, valueDate: FHIRDate, valueDateTime: DateTime, valueDecimal: NSDecimalNumber, valueHumanName: HumanName, valueId: String, valueIdentifier: Identifier, valueInstant: Instant, valueInteger: Int, valueMarkdown: String, valueMeta: Meta, valueOid: String, valuePeriod: Period, valuePositiveInt: UInt, valueQuantity: Quantity, valueRange: Range, valueRatio: Ratio, valueReference: Reference, valueSampledData: SampledData, valueSignature: Signature, valueString: String, valueTime: FHIRTime, valueTiming: Timing, valueUnsignedInt: UInt, valueUri: URL) {
 		self.init(json: nil)
 		self.name = name
 		self.valueAddress = valueAddress
@@ -571,7 +571,7 @@ public class TaskInput: BackboneElement {
 			if let exist: AnyObject = js["valueDate"] {
 				presentKeys.insert("valueDate")
 				if let val = exist as? String {
-					self.valueDate = Date(string: val)
+					self.valueDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueDate", wants: String.self, has: exist.dynamicType))
@@ -751,7 +751,7 @@ public class TaskInput: BackboneElement {
 			if let exist: AnyObject = js["valueTime"] {
 				presentKeys.insert("valueTime")
 				if let val = exist as? String {
-					self.valueTime = Time(string: val)
+					self.valueTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueTime", wants: String.self, has: exist.dynamicType))
@@ -945,7 +945,7 @@ public class TaskOutput: BackboneElement {
 	public var valueContactPoint: ContactPoint?
 	
 	/// Output Value.
-	public var valueDate: Date?
+	public var valueDate: FHIRDate?
 	
 	/// Output Value.
 	public var valueDateTime: DateTime?
@@ -1005,7 +1005,7 @@ public class TaskOutput: BackboneElement {
 	public var valueString: String?
 	
 	/// Output Value.
-	public var valueTime: Time?
+	public var valueTime: FHIRTime?
 	
 	/// Output Value.
 	public var valueTiming: Timing?
@@ -1023,7 +1023,7 @@ public class TaskOutput: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, valueAddress: Address, valueAnnotation: Annotation, valueAttachment: Attachment, valueBase64Binary: Base64Binary, valueBoolean: Bool, valueCode: String, valueCodeableConcept: CodeableConcept, valueCoding: Coding, valueContactPoint: ContactPoint, valueDate: Date, valueDateTime: DateTime, valueDecimal: NSDecimalNumber, valueHumanName: HumanName, valueId: String, valueIdentifier: Identifier, valueInstant: Instant, valueInteger: Int, valueMarkdown: String, valueMeta: Meta, valueOid: String, valuePeriod: Period, valuePositiveInt: UInt, valueQuantity: Quantity, valueRange: Range, valueRatio: Ratio, valueReference: Reference, valueSampledData: SampledData, valueSignature: Signature, valueString: String, valueTime: Time, valueTiming: Timing, valueUnsignedInt: UInt, valueUri: URL) {
+	public convenience init(name: String, valueAddress: Address, valueAnnotation: Annotation, valueAttachment: Attachment, valueBase64Binary: Base64Binary, valueBoolean: Bool, valueCode: String, valueCodeableConcept: CodeableConcept, valueCoding: Coding, valueContactPoint: ContactPoint, valueDate: FHIRDate, valueDateTime: DateTime, valueDecimal: NSDecimalNumber, valueHumanName: HumanName, valueId: String, valueIdentifier: Identifier, valueInstant: Instant, valueInteger: Int, valueMarkdown: String, valueMeta: Meta, valueOid: String, valuePeriod: Period, valuePositiveInt: UInt, valueQuantity: Quantity, valueRange: Range, valueRatio: Ratio, valueReference: Reference, valueSampledData: SampledData, valueSignature: Signature, valueString: String, valueTime: FHIRTime, valueTiming: Timing, valueUnsignedInt: UInt, valueUri: URL) {
 		self.init(json: nil)
 		self.name = name
 		self.valueAddress = valueAddress
@@ -1160,7 +1160,7 @@ public class TaskOutput: BackboneElement {
 			if let exist: AnyObject = js["valueDate"] {
 				presentKeys.insert("valueDate")
 				if let val = exist as? String {
-					self.valueDate = Date(string: val)
+					self.valueDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueDate", wants: String.self, has: exist.dynamicType))
@@ -1340,7 +1340,7 @@ public class TaskOutput: BackboneElement {
 			if let exist: AnyObject = js["valueTime"] {
 				presentKeys.insert("valueTime")
 				if let val = exist as? String {
-					self.valueTime = Time(string: val)
+					self.valueTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueTime", wants: String.self, has: exist.dynamicType))

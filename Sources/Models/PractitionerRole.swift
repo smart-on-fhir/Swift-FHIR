@@ -2,7 +2,7 @@
 //  PractitionerRole.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/PractitionerRole) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/PractitionerRole) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -251,10 +251,10 @@ public class PractitionerRoleAvailableTime: BackboneElement {
 	public var allDay: Bool?
 	
 	/// Closing time of day (ignored if allDay = true).
-	public var availableEndTime: Time?
+	public var availableEndTime: FHIRTime?
 	
 	/// Opening time of day (ignored if allDay = true).
-	public var availableStartTime: Time?
+	public var availableStartTime: FHIRTime?
 	
 	/// mon | tue | wed | thu | fri | sat | sun.
 	public var daysOfWeek: [String]?
@@ -280,7 +280,7 @@ public class PractitionerRoleAvailableTime: BackboneElement {
 			if let exist: AnyObject = js["availableEndTime"] {
 				presentKeys.insert("availableEndTime")
 				if let val = exist as? String {
-					self.availableEndTime = Time(string: val)
+					self.availableEndTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "availableEndTime", wants: String.self, has: exist.dynamicType))
@@ -289,7 +289,7 @@ public class PractitionerRoleAvailableTime: BackboneElement {
 			if let exist: AnyObject = js["availableStartTime"] {
 				presentKeys.insert("availableStartTime")
 				if let val = exist as? String {
-					self.availableStartTime = Time(string: val)
+					self.availableStartTime = FHIRTime(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "availableStartTime", wants: String.self, has: exist.dynamicType))

@@ -2,7 +2,7 @@
 //  TriggerDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/TriggerDefinition) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/TriggerDefinition) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -26,7 +26,7 @@ public class TriggerDefinition: Element {
 	public var eventName: String?
 	
 	/// Timing of the event.
-	public var eventTimingDate: Date?
+	public var eventTimingDate: FHIRDate?
 	
 	/// Timing of the event.
 	public var eventTimingDateTime: DateTime?
@@ -76,7 +76,7 @@ public class TriggerDefinition: Element {
 			if let exist: AnyObject = js["eventTimingDate"] {
 				presentKeys.insert("eventTimingDate")
 				if let val = exist as? String {
-					self.eventTimingDate = Date(string: val)
+					self.eventTimingDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "eventTimingDate", wants: String.self, has: exist.dynamicType))

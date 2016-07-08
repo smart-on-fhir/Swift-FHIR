@@ -2,7 +2,7 @@
 //  Practitioner.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2016-07-08.
 //  2016, SMART Health IT.
 //
 
@@ -26,7 +26,7 @@ public class Practitioner: DomainResource {
 	public var address: [Address]?
 	
 	/// The date  on which the practitioner was born.
-	public var birthDate: Date?
+	public var birthDate: FHIRDate?
 	
 	/// A language the practitioner is able to use in patient communication.
 	public var communication: [CodeableConcept]?
@@ -82,7 +82,7 @@ public class Practitioner: DomainResource {
 			if let exist: AnyObject = js["birthDate"] {
 				presentKeys.insert("birthDate")
 				if let val = exist as? String {
-					self.birthDate = Date(string: val)
+					self.birthDate = FHIRDate(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "birthDate", wants: String.self, has: exist.dynamicType))

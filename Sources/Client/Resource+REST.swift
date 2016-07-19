@@ -147,7 +147,7 @@ public extension Resource {
 			return
 		}
 		
-		let headers = FHIRRequestHeaders([.Prefer: "return=minimal"])
+		let headers = FHIRRequestHeaders([.prefer: "return=minimal"])
 		server.performRequest(ofType: .POST, path: relativeURLBase(), resource: self, additionalHeaders: headers) { response in
 			if nil == response.error {
 				self._server = server
@@ -182,7 +182,7 @@ public extension Resource {
 			return
 		}
 		
-		let headers = FHIRRequestHeaders([.Prefer: "return=representation"])
+		let headers = FHIRRequestHeaders([.prefer: "return=representation"])
 		server.performRequest(ofType: .POST, path: relativeURLBase(), resource: self, additionalHeaders: headers) { response in
 			if nil == response.error {
 				self._server = server

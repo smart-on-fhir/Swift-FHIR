@@ -124,7 +124,7 @@ JSON body data can be greated from the resource, if the receiver holds on to one
 public class FHIRServerJSONRequestHandler: FHIRServerRequestHandler {
 	
 	override public class var defaultHeaders: FHIRRequestHeaders {
-		return FHIRRequestHeaders([.Accept: "application/json+fhir"])
+		return FHIRRequestHeaders([.accept: "application/json+fhir"])
 	}
 	
 	public var json: FHIRJSON?
@@ -145,9 +145,9 @@ public class FHIRServerJSONRequestHandler: FHIRServerRequestHandler {
 	public override func prepare(request: inout URLRequest) throws {
 		switch type {
 		case .PUT:
-			headers[.ContentType] = "application/json+fhir; charset=utf-8"
+			headers[.contentType] = "application/json+fhir; charset=utf-8"
 		case .POST:
-			headers[.ContentType] = "application/json+fhir; charset=utf-8"
+			headers[.contentType] = "application/json+fhir; charset=utf-8"
 		default:
 			break
 		}
@@ -181,12 +181,12 @@ public class FHIRServerDataRequestHandler: FHIRServerRequestHandler {
 	public override func prepare(request: inout URLRequest) throws {
 		switch type {
 		case .GET:
-			headers[.Accept] = contentType
+			headers[.accept] = contentType
 		case .PUT:
 			// TODO: make useful for PUT/POST (by setting correct "Accept" headers) and implement error handling (i.e. OperationOutcome) for GET requests
-			headers[.ContentType] = contentType
+			headers[.contentType] = contentType
 		case .POST:
-			headers[.ContentType] = contentType
+			headers[.contentType] = contentType
 		default:
 			break
 		}

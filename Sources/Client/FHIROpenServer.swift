@@ -35,8 +35,8 @@ public class FHIROpenServer: FHIRServer {
 	Main initializer. Makes sure the base URL ends with a "/" to facilitate URL generation later on.
 	*/
 	public required init(baseURL base: NSURL, auth: [String: AnyObject]? = nil) {
-		if let last = base.absoluteString.characters.last where last != "/" {
-			baseURL = base.URLByAppendingPathComponent("/")
+		if let last = base.absoluteString?.characters.last where last != "/" {
+			baseURL = base.URLByAppendingPathComponent("/")!
 		}
 		else {
 			baseURL = base

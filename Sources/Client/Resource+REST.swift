@@ -76,7 +76,10 @@ public extension Resource {
 	public func absoluteURL() throws -> NSURL {
 		let relative = try relativeURLPath()
 		if let server = _server {
-			return server.baseURL.URLByAppendingPathComponent(relative)
+			if let absolute = server.baseURL.URLByAppendingPathComponent(relative) {
+				return absolute
+			}
+			throw FHIRError.ResourceLocationUnknown
 		}
 		throw FHIRError.ResourceWithoutServer
 	}

@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+## 2.3
+
+- Update to Swift 2.3
+
+
 ## 2.2.3
 
 - Address deprecation warnings appearing with Swift 2.2

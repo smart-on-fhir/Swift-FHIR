@@ -95,12 +95,12 @@ class ReferenceTests: XCTestCase {
 			XCTAssertEqual("Medication/med-1234", order1.medicationReference?.reference)
 			XCTAssertNil(order1.medicationReference?.resolved(Medication.self), "Cannot already be resolved")
 			
-			let readyExpectation = expectation(withDescription: "reference")
+			let readyExpectation = expectation(description: "reference")
 			order1.medicationReference?.resolve(Medication.self) { medication in
 				XCTAssertNil(medication, "Resolving must be impossible without server instance")
 				readyExpectation.fulfill()
 			}
-			waitForExpectations(withTimeout: 1) { error in
+			waitForExpectations(timeout: 1) { error in
 				XCTAssertNil(error, "Should return immediately")
 			}
 		}
@@ -116,12 +116,12 @@ class ReferenceTests: XCTestCase {
 			XCTAssertEqual("https://fhir-open-api-dstu2.smarthealthit.org/Medication/1", order1.medicationReference?.reference)
 			XCTAssertNil(order1.medicationReference?.resolved(Medication.self), "Cannot already be resolved")
 			
-			let readyExpectation = expectation(withDescription: "reference")
+			let readyExpectation = expectation(description: "reference")
 			order1.medicationReference?.resolve(Medication.self) { medication in
 				XCTAssertNil(medication, "Unfortunately, don't currently have Medication/1 on the SMART server")
 				readyExpectation.fulfill()
 			}
-			waitForExpectations(withTimeout: 5) { error in
+			waitForExpectations(timeout: 5) { error in
 				XCTAssertNil(error, "Error resolving reference")
 			}
 		}

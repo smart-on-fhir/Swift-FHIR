@@ -61,7 +61,7 @@ extension Reference {
 				}
 				
 				for entry in entries {
-					if let entryUrl = entry.fullUrl?.absoluteString where entryUrl == refUrl {
+					if let entryUrl = entry.fullUrl?.absoluteString, entryUrl == refUrl {
 						if let found = entry.resource as? T {
 							return found
 						}
@@ -95,8 +95,9 @@ extension Reference {
 			
 			// absolute URL
 			if let _ = ref.range(of: "://") {
-				if let url = URL(string: ref), let base = try! (url as NSURL).deletingLastPathComponent?.deletingLastPathComponent() {
-					path = (url.absoluteString?.replacingOccurrences(of: base.absoluteString!, with: ""))!
+				if let url = URL(string: ref) {
+					let base = url.deletingLastPathComponent().deletingLastPathComponent()
+					path = (url.absoluteString.replacingOccurrences(of: base.absoluteString, with: ""))
 					server = FHIRBaseServer(baseURL: base, auth: nil)		// TODO: what if it's protected?
 				}
 				else {

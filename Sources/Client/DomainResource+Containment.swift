@@ -22,7 +22,7 @@ extension DomainResource {
 	func containedResource(_ refid: String) -> Resource? {
 		if let contained = contained {
 			for cont in contained {
-				if let id = cont.id where id == refid {
+				if let id = cont.id, id == refid {
 					return cont
 				}
 			}
@@ -49,7 +49,7 @@ extension DomainResource {
 		guard resource !== self else {
 			throw FHIRError.resourceCannotContainItself
 		}
-		guard let refid = resource.id where !refid.isEmpty else {
+		guard let refid = resource.id, !refid.isEmpty else {
 			throw FHIRError.resourceWithoutId
 		}
 		

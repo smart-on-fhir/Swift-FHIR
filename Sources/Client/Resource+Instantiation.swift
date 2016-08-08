@@ -39,7 +39,7 @@ public extension Foundation.Bundle {
 	- returns: A Resource subclass corresponding to the "resourceType" entry, as specified under `type`
 	*/
 	public func fhir_bundledResource<T: Resource>(_ name: String, type: T.Type) throws -> T {
-		if let url = urlForResource(name, withExtension: "json"), let data = try? Data(contentsOf: url) {
+		if let url = url(forResource: name, withExtension: "json"), let data = try? Data(contentsOf: url) {
 			if let json = try JSONSerialization.jsonObject(with: data, options: []) as? FHIRJSON {
 				if let resource = Resource.instantiate(fromJSON: json, owner: nil) as? T {
 					return resource

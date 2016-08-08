@@ -16,7 +16,7 @@ Test reference resolving.
 class ReferenceTests: XCTestCase {
 	
 	func testContainedReference() {
-		if let path = Bundle(for: self.dynamicType).pathForResource("ReferenceContained1", ofType: "json", inDirectory: "TestResources") {
+		if let path = Bundle(for: self.dynamicType).path(forResource: "ReferenceContained1", ofType: "json", inDirectory: "TestResources") {
 			let order1 = try! MedicationOrder.instantiate(fromPath: path)
 			XCTAssertEqual("order-ref-contained", order1.id)
 			XCTAssertNotNil(order1.medicationReference)
@@ -28,7 +28,7 @@ class ReferenceTests: XCTestCase {
 			XCTAssertTrue(false, "Test resource not bundled")
 		}
 		
-		if let path = Bundle(for: self.dynamicType).pathForResource("ReferenceContained2", ofType: "json", inDirectory: "TestResources") {
+		if let path = Bundle(for: self.dynamicType).path(forResource: "ReferenceContained2", ofType: "json", inDirectory: "TestResources") {
 			let order1 = try! MedicationOrder.instantiate(fromPath: path)
 			XCTAssertEqual("order-ref-contained-wrong", order1.id)
 			XCTAssertNotNil(order1.medicationReference)
@@ -42,7 +42,7 @@ class ReferenceTests: XCTestCase {
 	}
 	
 	func testBundledReference() {
-		if let path = Bundle(for: self.dynamicType).pathForResource("ReferenceBundled", ofType: "json", inDirectory: "TestResources") {
+		if let path = Bundle(for: self.dynamicType).path(forResource: "ReferenceBundled", ofType: "json", inDirectory: "TestResources") {
 			let bundle = try! Bundle.instantiate(fromPath: path)
 			XCTAssertEqual("Bundle", bundle.dynamicType.resourceName)
 			
@@ -89,7 +89,7 @@ class ReferenceTests: XCTestCase {
 	}
 	
 	func testRelativeReference() {
-		if let path = Bundle(for: self.dynamicType).pathForResource("ReferenceRelative", ofType: "json", inDirectory: "TestResources") {
+		if let path = Bundle(for: self.dynamicType).path(forResource: "ReferenceRelative", ofType: "json", inDirectory: "TestResources") {
 			let order1 = try! MedicationOrder.instantiate(fromPath: path)
 			XCTAssertEqual("order-ref-relative", order1.id)
 			XCTAssertEqual("Medication/med-1234", order1.medicationReference?.reference)
@@ -110,7 +110,7 @@ class ReferenceTests: XCTestCase {
 	}
 	
 	func testAbsoluteReference() {
-		if let path = Bundle(for: self.dynamicType).pathForResource("ReferenceAbsolute", ofType: "json", inDirectory: "TestResources") {
+		if let path = Bundle(for: self.dynamicType).path(forResource: "ReferenceAbsolute", ofType: "json", inDirectory: "TestResources") {
 			let order1 = try! MedicationOrder.instantiate(fromPath: path)
 			XCTAssertEqual("order-ref-absolute", order1.id)
 			XCTAssertEqual("https://fhir-open-api-dstu2.smarthealthit.org/Medication/1", order1.medicationReference?.reference)

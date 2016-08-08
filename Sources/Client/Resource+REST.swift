@@ -77,7 +77,7 @@ public extension Resource {
 	public func absoluteURL() throws -> URL {
 		let relative = try relativeURLPath()
 		if let server = _server {
-			return try! server.baseURL.appendingPathComponent(relative)
+			return server.baseURL.appendingPathComponent(relative)
 		}
 		throw FHIRError.resourceWithoutServer
 	}

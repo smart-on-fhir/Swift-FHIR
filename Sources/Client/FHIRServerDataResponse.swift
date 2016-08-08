@@ -75,7 +75,7 @@ extension FHIRServerResponse {
 	public var debugDescription: String {
 		var msg = "HTTP 1.1 \(status)"
 		headers.forEach() { msg += "\n\($0): \($1)" }
-		if let body = body where body.count > 0 {
+		if let body = body, body.count > 0 {
 			msg += "\n\n\(NSString(data: body as Data, encoding: String.Encoding.utf8.rawValue) ?? "")"
 		}
 		return msg
@@ -127,7 +127,7 @@ public class FHIRServerDataResponse: FHIRServerResponse {
 		}
 		
 		// was there an error?
-		if let error = urlError where NSURLErrorDomain == error.domain {
+		if let error = urlError, NSURLErrorDomain == error.domain {
 			self.error = FHIRError.requestError(status, NSURLErrorHumanize(error))
 		}
 		else if let error = urlError {
@@ -139,7 +139,7 @@ public class FHIRServerDataResponse: FHIRServerResponse {
 		self.body = data
 	}
 	
-	public required init(error: ErrorProtocol) {
+	public required init(error: Error) {
 		self.status = 0
 		self.headers = [String: String]()
 		if NSURLErrorDomain == (error as NSError).domain {
@@ -194,7 +194,7 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse {
 		super.init(response: response, data: inData, urlError: urlError)
 		
 		// parse data as JSON
-		if let data = inData where data.count > 0 {
+		if let data = inData, data.count > 0 {
 			do {
 				let json = try JSONSerialization.jsonObject(with: data, options: []) as? FHIRJSON
 				self.json = json
@@ -227,7 +227,7 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse {
 		}
 	}
 	
-	public required init(error: ErrorProtocol) {
+	public required init(error: Error) {
 		super.init(error: error)
 	}
 	
@@ -256,7 +256,7 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse {
 			throw FHIRError.responseNoResourceReceived
 		}
 		
-		if let resourceType = json["resourceType"] as? String where resourceType != resource.dynamicType.resourceName {
+		if let resourceType = json["resourceType"] as? String, resourceType != resource.dynamicType.resourceName {
 			throw FHIRError.responseResourceTypeMismatch(resourceType, resource.dynamicType.resourceName)
 		}
 		if let errors = resource.populate(fromJSON: json) {

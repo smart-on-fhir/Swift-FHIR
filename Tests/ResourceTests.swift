@@ -180,7 +180,7 @@ class LocalPatientServer: FHIROpenServer {
 	var lastPostedResource: Resource?
 	
 	override func performPreparedRequest<R : FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
-		guard let path = request.url?.path where "/Patient" == path || path.hasPrefix("/Patient/") else {
+		guard let path = request.url?.path, "/Patient" == path || path.hasPrefix("/Patient/") else {
 			let res = handler.notSent("Only supports Patient resources, trying to access «\(request.url?.path ?? "nil")»")
 			callback(response: res)
 			return

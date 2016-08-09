@@ -2,7 +2,7 @@
 //  ConformanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -176,7 +176,6 @@ class ConformanceTests: XCTestCase {
 		XCTAssertEqual(inst.rest?[0].resource?[3].type, "DiagnosticReport")
 		XCTAssertEqual(inst.rest?[0].security?.service?[0].text, "OAuth")
 		XCTAssertEqual(inst.software?.name, "ACME PHR Server")
-		XCTAssertEqual(inst.status, "draft")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

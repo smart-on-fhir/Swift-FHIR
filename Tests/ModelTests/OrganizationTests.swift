@@ -2,7 +2,7 @@
 //  OrganizationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -90,7 +90,7 @@ class OrganizationTests: XCTestCase {
 	func runOrganization2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-f002-burgers-card.json")
 		
-		XCTAssertFalse(inst.active ?? true)
+		XCTAssertTrue(inst.active ?? false)
 		XCTAssertEqual(inst.address?[0].line?[0], "South Wing, floor 2")
 		XCTAssertEqual(inst.contact?[0].address?.line?[0], "South Wing, floor 2")
 		XCTAssertEqual(inst.contact?[0].name?.text, "mevr. D. de Haan")
@@ -129,7 +129,7 @@ class OrganizationTests: XCTestCase {
 	func runOrganization3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-f003-burgers-ENT.json")
 		
-		XCTAssertFalse(inst.active ?? true)
+		XCTAssertTrue(inst.active ?? false)
 		XCTAssertEqual(inst.address?[0].line?[0], "West Wing, floor 5")
 		XCTAssertEqual(inst.contact?[0].address?.line?[0], "West Wing, floor 5")
 		XCTAssertEqual(inst.contact?[0].name?.text, "mr. F. de Hond")

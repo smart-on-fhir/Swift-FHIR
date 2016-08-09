@@ -2,7 +2,7 @@
 //  FHIRAbstractBase+Factory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -16,14 +16,6 @@ extension FHIRAbstractBase {
 		switch className {
 			case "Account":
 				return Account(json: json, owner: owner)
-			case "ActionDefinition":
-				return ActionDefinition(json: json, owner: owner)
-			case "ActionDefinitionBehavior":
-				return ActionDefinitionBehavior(json: json, owner: owner)
-			case "ActionDefinitionCustomization":
-				return ActionDefinitionCustomization(json: json, owner: owner)
-			case "ActionDefinitionRelatedAction":
-				return ActionDefinitionRelatedAction(json: json, owner: owner)
 			case "Address":
 				return Address(json: json, owner: owner)
 			case "Age":
@@ -44,14 +36,16 @@ extension FHIRAbstractBase {
 				return Attachment(json: json, owner: owner)
 			case "AuditEvent":
 				return AuditEvent(json: json, owner: owner)
-			case "AuditEventAgent":
-				return AuditEventAgent(json: json, owner: owner)
-			case "AuditEventAgentNetwork":
-				return AuditEventAgentNetwork(json: json, owner: owner)
-			case "AuditEventEntity":
-				return AuditEventEntity(json: json, owner: owner)
-			case "AuditEventEntityDetail":
-				return AuditEventEntityDetail(json: json, owner: owner)
+			case "AuditEventEvent":
+				return AuditEventEvent(json: json, owner: owner)
+			case "AuditEventObject":
+				return AuditEventObject(json: json, owner: owner)
+			case "AuditEventObjectDetail":
+				return AuditEventObjectDetail(json: json, owner: owner)
+			case "AuditEventParticipant":
+				return AuditEventParticipant(json: json, owner: owner)
+			case "AuditEventParticipantNetwork":
+				return AuditEventParticipantNetwork(json: json, owner: owner)
 			case "AuditEventSource":
 				return AuditEventSource(json: json, owner: owner)
 			case "BackboneElement":
@@ -84,10 +78,6 @@ extension FHIRAbstractBase {
 				return CarePlanParticipant(json: json, owner: owner)
 			case "CarePlanRelatedPlan":
 				return CarePlanRelatedPlan(json: json, owner: owner)
-			case "CareTeam":
-				return CareTeam(json: json, owner: owner)
-			case "CareTeamParticipant":
-				return CareTeamParticipant(json: json, owner: owner)
 			case "Claim":
 				return Claim(json: json, owner: owner)
 			case "ClaimCoverage":
@@ -104,14 +94,8 @@ extension FHIRAbstractBase {
 				return ClaimItemProsthesis(json: json, owner: owner)
 			case "ClaimMissingTeeth":
 				return ClaimMissingTeeth(json: json, owner: owner)
-			case "ClaimOnset":
-				return ClaimOnset(json: json, owner: owner)
 			case "ClaimPayee":
 				return ClaimPayee(json: json, owner: owner)
-			case "ClaimProcedure":
-				return ClaimProcedure(json: json, owner: owner)
-			case "ClaimRelated":
-				return ClaimRelated(json: json, owner: owner)
 			case "ClaimResponse":
 				return ClaimResponse(json: json, owner: owner)
 			case "ClaimResponseAddItem":
@@ -148,20 +132,6 @@ extension FHIRAbstractBase {
 				return ClinicalImpressionInvestigations(json: json, owner: owner)
 			case "ClinicalImpressionRuledOut":
 				return ClinicalImpressionRuledOut(json: json, owner: owner)
-			case "CodeSystem":
-				return CodeSystem(json: json, owner: owner)
-			case "CodeSystemConcept":
-				return CodeSystemConcept(json: json, owner: owner)
-			case "CodeSystemConceptDesignation":
-				return CodeSystemConceptDesignation(json: json, owner: owner)
-			case "CodeSystemConceptProperty":
-				return CodeSystemConceptProperty(json: json, owner: owner)
-			case "CodeSystemContact":
-				return CodeSystemContact(json: json, owner: owner)
-			case "CodeSystemFilter":
-				return CodeSystemFilter(json: json, owner: owner)
-			case "CodeSystemProperty":
-				return CodeSystemProperty(json: json, owner: owner)
 			case "CodeableConcept":
 				return CodeableConcept(json: json, owner: owner)
 			case "Coding":
@@ -174,12 +144,6 @@ extension FHIRAbstractBase {
 				return CommunicationRequest(json: json, owner: owner)
 			case "CommunicationRequestPayload":
 				return CommunicationRequestPayload(json: json, owner: owner)
-			case "CompartmentDefinition":
-				return CompartmentDefinition(json: json, owner: owner)
-			case "CompartmentDefinitionContact":
-				return CompartmentDefinitionContact(json: json, owner: owner)
-			case "CompartmentDefinitionResource":
-				return CompartmentDefinitionResource(json: json, owner: owner)
 			case "Composition":
 				return Composition(json: json, owner: owner)
 			case "CompositionAttester":
@@ -240,8 +204,8 @@ extension FHIRAbstractBase {
 				return ContactPoint(json: json, owner: owner)
 			case "Contract":
 				return Contract(json: json, owner: owner)
-			case "ContractAgent":
-				return ContractAgent(json: json, owner: owner)
+			case "ContractActor":
+				return ContractActor(json: json, owner: owner)
 			case "ContractFriendly":
 				return ContractFriendly(json: json, owner: owner)
 			case "ContractLegal":
@@ -252,8 +216,8 @@ extension FHIRAbstractBase {
 				return ContractSigner(json: json, owner: owner)
 			case "ContractTerm":
 				return ContractTerm(json: json, owner: owner)
-			case "ContractTermAgent":
-				return ContractTermAgent(json: json, owner: owner)
+			case "ContractTermActor":
+				return ContractTermActor(json: json, owner: owner)
 			case "ContractTermValuedItem":
 				return ContractTermValuedItem(json: json, owner: owner)
 			case "ContractValuedItem":
@@ -268,16 +232,6 @@ extension FHIRAbstractBase {
 				return DataElementContact(json: json, owner: owner)
 			case "DataElementMapping":
 				return DataElementMapping(json: json, owner: owner)
-			case "DataRequirement":
-				return DataRequirement(json: json, owner: owner)
-			case "DataRequirementCodeFilter":
-				return DataRequirementCodeFilter(json: json, owner: owner)
-			case "DataRequirementDateFilter":
-				return DataRequirementDateFilter(json: json, owner: owner)
-			case "DecisionSupportRule":
-				return DecisionSupportRule(json: json, owner: owner)
-			case "DecisionSupportServiceModule":
-				return DecisionSupportServiceModule(json: json, owner: owner)
 			case "DetectedIssue":
 				return DetectedIssue(json: json, owner: owner)
 			case "DetectedIssueMitigation":
@@ -348,12 +302,6 @@ extension FHIRAbstractBase {
 				return EligibilityRequest(json: json, owner: owner)
 			case "EligibilityResponse":
 				return EligibilityResponse(json: json, owner: owner)
-			case "EligibilityResponseBenefitBalance":
-				return EligibilityResponseBenefitBalance(json: json, owner: owner)
-			case "EligibilityResponseBenefitBalanceFinancial":
-				return EligibilityResponseBenefitBalanceFinancial(json: json, owner: owner)
-			case "EligibilityResponseError":
-				return EligibilityResponseError(json: json, owner: owner)
 			case "Encounter":
 				return Encounter(json: json, owner: owner)
 			case "EncounterHospitalization":
@@ -370,76 +318,12 @@ extension FHIRAbstractBase {
 				return EnrollmentResponse(json: json, owner: owner)
 			case "EpisodeOfCare":
 				return EpisodeOfCare(json: json, owner: owner)
+			case "EpisodeOfCareCareTeam":
+				return EpisodeOfCareCareTeam(json: json, owner: owner)
 			case "EpisodeOfCareStatusHistory":
 				return EpisodeOfCareStatusHistory(json: json, owner: owner)
-			case "ExpansionProfile":
-				return ExpansionProfile(json: json, owner: owner)
-			case "ExpansionProfileCodeSystem":
-				return ExpansionProfileCodeSystem(json: json, owner: owner)
-			case "ExpansionProfileCodeSystemExclude":
-				return ExpansionProfileCodeSystemExclude(json: json, owner: owner)
-			case "ExpansionProfileCodeSystemExcludeCodeSystem":
-				return ExpansionProfileCodeSystemExcludeCodeSystem(json: json, owner: owner)
-			case "ExpansionProfileCodeSystemInclude":
-				return ExpansionProfileCodeSystemInclude(json: json, owner: owner)
-			case "ExpansionProfileCodeSystemIncludeCodeSystem":
-				return ExpansionProfileCodeSystemIncludeCodeSystem(json: json, owner: owner)
-			case "ExpansionProfileContact":
-				return ExpansionProfileContact(json: json, owner: owner)
-			case "ExpansionProfileDesignation":
-				return ExpansionProfileDesignation(json: json, owner: owner)
-			case "ExpansionProfileDesignationExclude":
-				return ExpansionProfileDesignationExclude(json: json, owner: owner)
-			case "ExpansionProfileDesignationExcludeDesignation":
-				return ExpansionProfileDesignationExcludeDesignation(json: json, owner: owner)
-			case "ExpansionProfileDesignationInclude":
-				return ExpansionProfileDesignationInclude(json: json, owner: owner)
-			case "ExpansionProfileDesignationIncludeDesignation":
-				return ExpansionProfileDesignationIncludeDesignation(json: json, owner: owner)
 			case "ExplanationOfBenefit":
 				return ExplanationOfBenefit(json: json, owner: owner)
-			case "ExplanationOfBenefitAddItem":
-				return ExplanationOfBenefitAddItem(json: json, owner: owner)
-			case "ExplanationOfBenefitAddItemAdjudication":
-				return ExplanationOfBenefitAddItemAdjudication(json: json, owner: owner)
-			case "ExplanationOfBenefitAddItemDetail":
-				return ExplanationOfBenefitAddItemDetail(json: json, owner: owner)
-			case "ExplanationOfBenefitAddItemDetailAdjudication":
-				return ExplanationOfBenefitAddItemDetailAdjudication(json: json, owner: owner)
-			case "ExplanationOfBenefitBenefitBalance":
-				return ExplanationOfBenefitBenefitBalance(json: json, owner: owner)
-			case "ExplanationOfBenefitBenefitBalanceFinancial":
-				return ExplanationOfBenefitBenefitBalanceFinancial(json: json, owner: owner)
-			case "ExplanationOfBenefitCoverage":
-				return ExplanationOfBenefitCoverage(json: json, owner: owner)
-			case "ExplanationOfBenefitDiagnosis":
-				return ExplanationOfBenefitDiagnosis(json: json, owner: owner)
-			case "ExplanationOfBenefitItem":
-				return ExplanationOfBenefitItem(json: json, owner: owner)
-			case "ExplanationOfBenefitItemAdjudication":
-				return ExplanationOfBenefitItemAdjudication(json: json, owner: owner)
-			case "ExplanationOfBenefitItemDetail":
-				return ExplanationOfBenefitItemDetail(json: json, owner: owner)
-			case "ExplanationOfBenefitItemDetailAdjudication":
-				return ExplanationOfBenefitItemDetailAdjudication(json: json, owner: owner)
-			case "ExplanationOfBenefitItemDetailSubDetail":
-				return ExplanationOfBenefitItemDetailSubDetail(json: json, owner: owner)
-			case "ExplanationOfBenefitItemDetailSubDetailAdjudication":
-				return ExplanationOfBenefitItemDetailSubDetailAdjudication(json: json, owner: owner)
-			case "ExplanationOfBenefitItemProsthesis":
-				return ExplanationOfBenefitItemProsthesis(json: json, owner: owner)
-			case "ExplanationOfBenefitMissingTeeth":
-				return ExplanationOfBenefitMissingTeeth(json: json, owner: owner)
-			case "ExplanationOfBenefitNote":
-				return ExplanationOfBenefitNote(json: json, owner: owner)
-			case "ExplanationOfBenefitOnset":
-				return ExplanationOfBenefitOnset(json: json, owner: owner)
-			case "ExplanationOfBenefitPayee":
-				return ExplanationOfBenefitPayee(json: json, owner: owner)
-			case "ExplanationOfBenefitProcedure":
-				return ExplanationOfBenefitProcedure(json: json, owner: owner)
-			case "ExplanationOfBenefitRelated":
-				return ExplanationOfBenefitRelated(json: json, owner: owner)
 			case "Extension":
 				return Extension(json: json, owner: owner)
 			case "FamilyMemberHistory":
@@ -458,40 +342,18 @@ extension FHIRAbstractBase {
 				return GroupCharacteristic(json: json, owner: owner)
 			case "GroupMember":
 				return GroupMember(json: json, owner: owner)
-			case "GuidanceResponse":
-				return GuidanceResponse(json: json, owner: owner)
-			case "GuidanceResponseAction":
-				return GuidanceResponseAction(json: json, owner: owner)
-			case "GuidanceResponseActionBehavior":
-				return GuidanceResponseActionBehavior(json: json, owner: owner)
-			case "GuidanceResponseActionRelatedAction":
-				return GuidanceResponseActionRelatedAction(json: json, owner: owner)
 			case "HealthcareService":
 				return HealthcareService(json: json, owner: owner)
 			case "HealthcareServiceAvailableTime":
 				return HealthcareServiceAvailableTime(json: json, owner: owner)
 			case "HealthcareServiceNotAvailable":
 				return HealthcareServiceNotAvailable(json: json, owner: owner)
+			case "HealthcareServiceServiceType":
+				return HealthcareServiceServiceType(json: json, owner: owner)
 			case "HumanName":
 				return HumanName(json: json, owner: owner)
 			case "Identifier":
 				return Identifier(json: json, owner: owner)
-			case "ImagingExcerpt":
-				return ImagingExcerpt(json: json, owner: owner)
-			case "ImagingExcerptStudy":
-				return ImagingExcerptStudy(json: json, owner: owner)
-			case "ImagingExcerptStudyDicom":
-				return ImagingExcerptStudyDicom(json: json, owner: owner)
-			case "ImagingExcerptStudySeries":
-				return ImagingExcerptStudySeries(json: json, owner: owner)
-			case "ImagingExcerptStudySeriesDicom":
-				return ImagingExcerptStudySeriesDicom(json: json, owner: owner)
-			case "ImagingExcerptStudySeriesInstance":
-				return ImagingExcerptStudySeriesInstance(json: json, owner: owner)
-			case "ImagingExcerptStudySeriesInstanceDicom":
-				return ImagingExcerptStudySeriesInstanceDicom(json: json, owner: owner)
-			case "ImagingExcerptStudyViewable":
-				return ImagingExcerptStudyViewable(json: json, owner: owner)
 			case "ImagingObjectSelection":
 				return ImagingObjectSelection(json: json, owner: owner)
 			case "ImagingObjectSelectionStudy":
@@ -500,8 +362,8 @@ extension FHIRAbstractBase {
 				return ImagingObjectSelectionStudySeries(json: json, owner: owner)
 			case "ImagingObjectSelectionStudySeriesInstance":
 				return ImagingObjectSelectionStudySeriesInstance(json: json, owner: owner)
-			case "ImagingObjectSelectionStudySeriesInstanceFrame":
-				return ImagingObjectSelectionStudySeriesInstanceFrame(json: json, owner: owner)
+			case "ImagingObjectSelectionStudySeriesInstanceFrames":
+				return ImagingObjectSelectionStudySeriesInstanceFrames(json: json, owner: owner)
 			case "ImagingStudy":
 				return ImagingStudy(json: json, owner: owner)
 			case "ImagingStudySeries":
@@ -538,20 +400,6 @@ extension FHIRAbstractBase {
 				return ImplementationGuidePackageResource(json: json, owner: owner)
 			case "ImplementationGuidePage":
 				return ImplementationGuidePage(json: json, owner: owner)
-			case "Library":
-				return Library(json: json, owner: owner)
-			case "LibraryCodeSystem":
-				return LibraryCodeSystem(json: json, owner: owner)
-			case "LibraryLibrary":
-				return LibraryLibrary(json: json, owner: owner)
-			case "LibraryModel":
-				return LibraryModel(json: json, owner: owner)
-			case "LibraryValueSet":
-				return LibraryValueSet(json: json, owner: owner)
-			case "Linkage":
-				return Linkage(json: json, owner: owner)
-			case "LinkageItem":
-				return LinkageItem(json: json, owner: owner)
 			case "List":
 				return List(json: json, owner: owner)
 			case "ListEntry":
@@ -560,32 +408,6 @@ extension FHIRAbstractBase {
 				return Location(json: json, owner: owner)
 			case "LocationPosition":
 				return LocationPosition(json: json, owner: owner)
-			case "Measure":
-				return Measure(json: json, owner: owner)
-			case "MeasureGroup":
-				return MeasureGroup(json: json, owner: owner)
-			case "MeasureGroupPopulation":
-				return MeasureGroupPopulation(json: json, owner: owner)
-			case "MeasureGroupStratifier":
-				return MeasureGroupStratifier(json: json, owner: owner)
-			case "MeasureReport":
-				return MeasureReport(json: json, owner: owner)
-			case "MeasureReportGroup":
-				return MeasureReportGroup(json: json, owner: owner)
-			case "MeasureReportGroupPopulation":
-				return MeasureReportGroupPopulation(json: json, owner: owner)
-			case "MeasureReportGroupStratifier":
-				return MeasureReportGroupStratifier(json: json, owner: owner)
-			case "MeasureReportGroupStratifierGroup":
-				return MeasureReportGroupStratifierGroup(json: json, owner: owner)
-			case "MeasureReportGroupStratifierGroupPopulation":
-				return MeasureReportGroupStratifierGroupPopulation(json: json, owner: owner)
-			case "MeasureReportGroupSupplementalData":
-				return MeasureReportGroupSupplementalData(json: json, owner: owner)
-			case "MeasureReportGroupSupplementalDataGroup":
-				return MeasureReportGroupSupplementalDataGroup(json: json, owner: owner)
-			case "MeasureSupplementalData":
-				return MeasureSupplementalData(json: json, owner: owner)
 			case "Media":
 				return Media(json: json, owner: owner)
 			case "Medication":
@@ -632,36 +454,6 @@ extension FHIRAbstractBase {
 				return MessageHeaderSource(json: json, owner: owner)
 			case "Meta":
 				return Meta(json: json, owner: owner)
-			case "ModuleDefinition":
-				return ModuleDefinition(json: json, owner: owner)
-			case "ModuleDefinitionCodeSystem":
-				return ModuleDefinitionCodeSystem(json: json, owner: owner)
-			case "ModuleDefinitionData":
-				return ModuleDefinitionData(json: json, owner: owner)
-			case "ModuleDefinitionDataCodeFilter":
-				return ModuleDefinitionDataCodeFilter(json: json, owner: owner)
-			case "ModuleDefinitionDataDateFilter":
-				return ModuleDefinitionDataDateFilter(json: json, owner: owner)
-			case "ModuleDefinitionLibrary":
-				return ModuleDefinitionLibrary(json: json, owner: owner)
-			case "ModuleDefinitionModel":
-				return ModuleDefinitionModel(json: json, owner: owner)
-			case "ModuleDefinitionParameter":
-				return ModuleDefinitionParameter(json: json, owner: owner)
-			case "ModuleDefinitionValueSet":
-				return ModuleDefinitionValueSet(json: json, owner: owner)
-			case "ModuleMetadata":
-				return ModuleMetadata(json: json, owner: owner)
-			case "ModuleMetadataContact":
-				return ModuleMetadataContact(json: json, owner: owner)
-			case "ModuleMetadataContributor":
-				return ModuleMetadataContributor(json: json, owner: owner)
-			case "ModuleMetadataContributorContact":
-				return ModuleMetadataContributorContact(json: json, owner: owner)
-			case "ModuleMetadataCoverage":
-				return ModuleMetadataCoverage(json: json, owner: owner)
-			case "ModuleMetadataRelatedResource":
-				return ModuleMetadataRelatedResource(json: json, owner: owner)
 			case "Money":
 				return Money(json: json, owner: owner)
 			case "NamingSystem":
@@ -710,16 +502,12 @@ extension FHIRAbstractBase {
 				return Order(json: json, owner: owner)
 			case "OrderResponse":
 				return OrderResponse(json: json, owner: owner)
-			case "OrderSet":
-				return OrderSet(json: json, owner: owner)
 			case "OrderWhen":
 				return OrderWhen(json: json, owner: owner)
 			case "Organization":
 				return Organization(json: json, owner: owner)
 			case "OrganizationContact":
 				return OrganizationContact(json: json, owner: owner)
-			case "ParameterDefinition":
-				return ParameterDefinition(json: json, owner: owner)
 			case "Parameters":
 				return Parameters(json: json, owner: owner)
 			case "ParametersParameter":
@@ -754,12 +542,6 @@ extension FHIRAbstractBase {
 				return PractitionerPractitionerRole(json: json, owner: owner)
 			case "PractitionerQualification":
 				return PractitionerQualification(json: json, owner: owner)
-			case "PractitionerRole":
-				return PractitionerRole(json: json, owner: owner)
-			case "PractitionerRoleAvailableTime":
-				return PractitionerRoleAvailableTime(json: json, owner: owner)
-			case "PractitionerRoleNotAvailable":
-				return PractitionerRoleNotAvailable(json: json, owner: owner)
 			case "Procedure":
 				return Procedure(json: json, owner: owner)
 			case "ProcedureFocalDevice":
@@ -776,22 +558,6 @@ extension FHIRAbstractBase {
 				return ProcessResponse(json: json, owner: owner)
 			case "ProcessResponseNotes":
 				return ProcessResponseNotes(json: json, owner: owner)
-			case "Protocol":
-				return ProtocolFHIR(json: json, owner: owner)
-			case "ProtocolFHIRStep":
-				return ProtocolFHIRStep(json: json, owner: owner)
-			case "ProtocolFHIRStepActivity":
-				return ProtocolFHIRStepActivity(json: json, owner: owner)
-			case "ProtocolFHIRStepActivityComponent":
-				return ProtocolFHIRStepActivityComponent(json: json, owner: owner)
-			case "ProtocolFHIRStepActivityDetail":
-				return ProtocolFHIRStepActivityDetail(json: json, owner: owner)
-			case "ProtocolFHIRStepNext":
-				return ProtocolFHIRStepNext(json: json, owner: owner)
-			case "ProtocolFHIRStepPrecondition":
-				return ProtocolFHIRStepPrecondition(json: json, owner: owner)
-			case "ProtocolFHIRStepPreconditionCondition":
-				return ProtocolFHIRStepPreconditionCondition(json: json, owner: owner)
 			case "Provenance":
 				return Provenance(json: json, owner: owner)
 			case "ProvenanceAgent":
@@ -804,18 +570,18 @@ extension FHIRAbstractBase {
 				return Quantity(json: json, owner: owner)
 			case "Questionnaire":
 				return Questionnaire(json: json, owner: owner)
-			case "QuestionnaireItem":
-				return QuestionnaireItem(json: json, owner: owner)
-			case "QuestionnaireItemEnableWhen":
-				return QuestionnaireItemEnableWhen(json: json, owner: owner)
-			case "QuestionnaireItemOption":
-				return QuestionnaireItemOption(json: json, owner: owner)
+			case "QuestionnaireGroup":
+				return QuestionnaireGroup(json: json, owner: owner)
+			case "QuestionnaireGroupQuestion":
+				return QuestionnaireGroupQuestion(json: json, owner: owner)
 			case "QuestionnaireResponse":
 				return QuestionnaireResponse(json: json, owner: owner)
-			case "QuestionnaireResponseItem":
-				return QuestionnaireResponseItem(json: json, owner: owner)
-			case "QuestionnaireResponseItemAnswer":
-				return QuestionnaireResponseItemAnswer(json: json, owner: owner)
+			case "QuestionnaireResponseGroup":
+				return QuestionnaireResponseGroup(json: json, owner: owner)
+			case "QuestionnaireResponseGroupQuestion":
+				return QuestionnaireResponseGroupQuestion(json: json, owner: owner)
+			case "QuestionnaireResponseGroupQuestionAnswer":
+				return QuestionnaireResponseGroupQuestionAnswer(json: json, owner: owner)
 			case "Range":
 				return Range(json: json, owner: owner)
 			case "Ratio":
@@ -840,22 +606,6 @@ extension FHIRAbstractBase {
 				return SearchParameter(json: json, owner: owner)
 			case "SearchParameterContact":
 				return SearchParameterContact(json: json, owner: owner)
-			case "Sequence":
-				return Sequence(json: json, owner: owner)
-			case "SequenceQuality":
-				return SequenceQuality(json: json, owner: owner)
-			case "SequenceReferenceSeq":
-				return SequenceReferenceSeq(json: json, owner: owner)
-			case "SequenceRepository":
-				return SequenceRepository(json: json, owner: owner)
-			case "SequenceStructureVariation":
-				return SequenceStructureVariation(json: json, owner: owner)
-			case "SequenceStructureVariationInner":
-				return SequenceStructureVariationInner(json: json, owner: owner)
-			case "SequenceStructureVariationOuter":
-				return SequenceStructureVariationOuter(json: json, owner: owner)
-			case "SequenceVariation":
-				return SequenceVariation(json: json, owner: owner)
 			case "Signature":
 				return Signature(json: json, owner: owner)
 			case "Slot":
@@ -878,26 +628,6 @@ extension FHIRAbstractBase {
 				return StructureDefinitionMapping(json: json, owner: owner)
 			case "StructureDefinitionSnapshot":
 				return StructureDefinitionSnapshot(json: json, owner: owner)
-			case "StructureMap":
-				return StructureMap(json: json, owner: owner)
-			case "StructureMapContact":
-				return StructureMapContact(json: json, owner: owner)
-			case "StructureMapGroup":
-				return StructureMapGroup(json: json, owner: owner)
-			case "StructureMapGroupInput":
-				return StructureMapGroupInput(json: json, owner: owner)
-			case "StructureMapGroupRule":
-				return StructureMapGroupRule(json: json, owner: owner)
-			case "StructureMapGroupRuleDependent":
-				return StructureMapGroupRuleDependent(json: json, owner: owner)
-			case "StructureMapGroupRuleSource":
-				return StructureMapGroupRuleSource(json: json, owner: owner)
-			case "StructureMapGroupRuleTarget":
-				return StructureMapGroupRuleTarget(json: json, owner: owner)
-			case "StructureMapGroupRuleTargetParameter":
-				return StructureMapGroupRuleTargetParameter(json: json, owner: owner)
-			case "StructureMapStructure":
-				return StructureMapStructure(json: json, owner: owner)
 			case "Subscription":
 				return Subscription(json: json, owner: owner)
 			case "SubscriptionChannel":
@@ -914,18 +644,10 @@ extension FHIRAbstractBase {
 				return SupplyRequest(json: json, owner: owner)
 			case "SupplyRequestWhen":
 				return SupplyRequestWhen(json: json, owner: owner)
-			case "Task":
-				return Task(json: json, owner: owner)
-			case "TaskInput":
-				return TaskInput(json: json, owner: owner)
-			case "TaskOutput":
-				return TaskOutput(json: json, owner: owner)
 			case "TestScript":
 				return TestScript(json: json, owner: owner)
 			case "TestScriptContact":
 				return TestScriptContact(json: json, owner: owner)
-			case "TestScriptDestination":
-				return TestScriptDestination(json: json, owner: owner)
 			case "TestScriptFixture":
 				return TestScriptFixture(json: json, owner: owner)
 			case "TestScriptMetadata":
@@ -934,34 +656,12 @@ extension FHIRAbstractBase {
 				return TestScriptMetadataCapability(json: json, owner: owner)
 			case "TestScriptMetadataLink":
 				return TestScriptMetadataLink(json: json, owner: owner)
-			case "TestScriptOrigin":
-				return TestScriptOrigin(json: json, owner: owner)
-			case "TestScriptRule":
-				return TestScriptRule(json: json, owner: owner)
-			case "TestScriptRuleParam":
-				return TestScriptRuleParam(json: json, owner: owner)
-			case "TestScriptRuleset":
-				return TestScriptRuleset(json: json, owner: owner)
-			case "TestScriptRulesetRule":
-				return TestScriptRulesetRule(json: json, owner: owner)
-			case "TestScriptRulesetRuleParam":
-				return TestScriptRulesetRuleParam(json: json, owner: owner)
 			case "TestScriptSetup":
 				return TestScriptSetup(json: json, owner: owner)
 			case "TestScriptSetupAction":
 				return TestScriptSetupAction(json: json, owner: owner)
 			case "TestScriptSetupActionAssert":
 				return TestScriptSetupActionAssert(json: json, owner: owner)
-			case "TestScriptSetupActionAssertRule":
-				return TestScriptSetupActionAssertRule(json: json, owner: owner)
-			case "TestScriptSetupActionAssertRuleParam":
-				return TestScriptSetupActionAssertRuleParam(json: json, owner: owner)
-			case "TestScriptSetupActionAssertRuleset":
-				return TestScriptSetupActionAssertRuleset(json: json, owner: owner)
-			case "TestScriptSetupActionAssertRulesetRule":
-				return TestScriptSetupActionAssertRulesetRule(json: json, owner: owner)
-			case "TestScriptSetupActionAssertRulesetRuleParam":
-				return TestScriptSetupActionAssertRulesetRuleParam(json: json, owner: owner)
 			case "TestScriptSetupActionOperation":
 				return TestScriptSetupActionOperation(json: json, owner: owner)
 			case "TestScriptSetupActionOperationRequestHeader":
@@ -980,18 +680,20 @@ extension FHIRAbstractBase {
 				return Timing(json: json, owner: owner)
 			case "TimingRepeat":
 				return TimingRepeat(json: json, owner: owner)
-			case "TriggerDefinition":
-				return TriggerDefinition(json: json, owner: owner)
 			case "ValueSet":
 				return ValueSet(json: json, owner: owner)
+			case "ValueSetCodeSystem":
+				return ValueSetCodeSystem(json: json, owner: owner)
+			case "ValueSetCodeSystemConcept":
+				return ValueSetCodeSystemConcept(json: json, owner: owner)
+			case "ValueSetCodeSystemConceptDesignation":
+				return ValueSetCodeSystemConceptDesignation(json: json, owner: owner)
 			case "ValueSetCompose":
 				return ValueSetCompose(json: json, owner: owner)
 			case "ValueSetComposeInclude":
 				return ValueSetComposeInclude(json: json, owner: owner)
 			case "ValueSetComposeIncludeConcept":
 				return ValueSetComposeIncludeConcept(json: json, owner: owner)
-			case "ValueSetComposeIncludeConceptDesignation":
-				return ValueSetComposeIncludeConceptDesignation(json: json, owner: owner)
 			case "ValueSetComposeIncludeFilter":
 				return ValueSetComposeIncludeFilter(json: json, owner: owner)
 			case "ValueSetContact":

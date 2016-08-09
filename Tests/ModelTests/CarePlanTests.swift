@@ -2,7 +2,7 @@
 //  CarePlanTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -633,7 +633,7 @@ class CarePlanTests: XCTestCase {
 		XCTAssertFalse(inst.activity?[0].detail?.prohibited ?? true)
 		XCTAssertEqual(inst.activity?[0].detail?.scheduledTiming?.repeat_fhir?.frequency, 1)
 		XCTAssertEqual(inst.activity?[0].detail?.scheduledTiming?.repeat_fhir?.period, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.activity?[0].detail?.scheduledTiming?.repeat_fhir?.periodUnit, "d")
+		XCTAssertEqual(inst.activity?[0].detail?.scheduledTiming?.repeat_fhir?.periodUnits, "d")
 		XCTAssertEqual(inst.addresses?[0].display, "obesity")
 		XCTAssertEqual(inst.addresses?[0].reference, "#p1")
 		XCTAssertEqual(inst.contained?[0].id, "p1")

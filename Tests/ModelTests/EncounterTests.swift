@@ -2,7 +2,7 @@
 //  EncounterTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -171,7 +171,7 @@ class EncounterTests: XCTestCase {
 		XCTAssertEqual(inst.reason?[0].coding?[0].display, "Retropharyngeal abscess")
 		XCTAssertEqual(inst.reason?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.reason?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/encounter-primaryDiagnosis")
-		XCTAssertEqual(inst.reason?[0].extension_fhir?[0].valuePositiveInt, UInt(1))
+		XCTAssertEqual(inst.reason?[0].extension_fhir?[0].valueInteger, 1)
 		XCTAssertEqual(inst.serviceProvider?.reference, "Organization/f001")
 		XCTAssertEqual(inst.status, "finished")
 		XCTAssertEqual(inst.text?.status, "generated")
@@ -237,7 +237,7 @@ class EncounterTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "Encounter_Roel_20130128")
 		XCTAssertEqual(inst.indication?[0].display, "Roel's TPF chemotherapy on January 28th, 2013")
 		XCTAssertEqual(inst.indication?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/encounter-primaryDiagnosis")
-		XCTAssertEqual(inst.indication?[0].extension_fhir?[0].valuePositiveInt, UInt(1))
+		XCTAssertEqual(inst.indication?[0].extension_fhir?[0].valueInteger, 1)
 		XCTAssertEqual(inst.indication?[0].reference, "Procedure/f201")
 		XCTAssertEqual(inst.length?.code, "258701004")
 		XCTAssertEqual(inst.length?.system?.absoluteString, "http://snomed.info/sct")
@@ -250,7 +250,7 @@ class EncounterTests: XCTestCase {
 		XCTAssertEqual(inst.priority?.coding?[0].display, "Urgent")
 		XCTAssertEqual(inst.priority?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.reason?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/encounter-primaryDiagnosis")
-		XCTAssertEqual(inst.reason?[0].extension_fhir?[0].valuePositiveInt, UInt(2))
+		XCTAssertEqual(inst.reason?[0].extension_fhir?[0].valueInteger, 2)
 		XCTAssertEqual(inst.reason?[0].text, "The patient is treated for a tumor.")
 		XCTAssertEqual(inst.serviceProvider?.reference, "Organization/f201")
 		XCTAssertEqual(inst.status, "finished")

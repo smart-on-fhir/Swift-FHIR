@@ -2,7 +2,7 @@
 //  ImplementationGuideTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -57,9 +57,9 @@ class ImplementationGuideTests: XCTestCase {
 		XCTAssertEqual(inst.package?[0].name, "test")
 		XCTAssertEqual(inst.package?[0].resource?[0].acronym, "daf-tst")
 		XCTAssertEqual(inst.package?[0].resource?[0].description_fhir, "A test example to show how a package works")
-		XCTAssertTrue(inst.package?[0].resource?[0].example ?? false)
 		XCTAssertEqual(inst.package?[0].resource?[0].exampleFor?.reference, "StructureDefinition/daf-patient")
 		XCTAssertEqual(inst.package?[0].resource?[0].name, "Test Example")
+		XCTAssertEqual(inst.package?[0].resource?[0].purpose, "example")
 		XCTAssertEqual(inst.package?[0].resource?[0].sourceUri?.absoluteString, "test.html")
 		XCTAssertEqual(inst.page?.kind, "page")
 		XCTAssertEqual(inst.page?.name, "Example Patient Page")

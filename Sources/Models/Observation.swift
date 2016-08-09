@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Observation) on 2016-07-08.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Observation) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -29,7 +29,7 @@ public class Observation: DomainResource {
 	public var code: CodeableConcept?
 	
 	/// Comments about result.
-	public var comment: String?
+	public var comments: String?
 	
 	/// Component results.
 	public var component: [ObservationComponent]?
@@ -155,13 +155,13 @@ public class Observation: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "code"))
 			}
-			if let exist: AnyObject = js["comment"] {
-				presentKeys.insert("comment")
+			if let exist: AnyObject = js["comments"] {
+				presentKeys.insert("comments")
 				if let val = exist as? String {
-					self.comment = val
+					self.comments = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "comments", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["component"] {
@@ -417,8 +417,8 @@ public class Observation: DomainResource {
 		if let code = self.code {
 			json["code"] = code.asJSON()
 		}
-		if let comment = self.comment {
-			json["comment"] = comment.asJSON()
+		if let comments = self.comments {
+			json["comments"] = comments.asJSON()
 		}
 		if let component = self.component {
 			json["component"] = ObservationComponent.asJSONArray(component)

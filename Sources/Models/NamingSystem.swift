@@ -2,7 +2,7 @@
 //  NamingSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -272,7 +272,7 @@ public class NamingSystemContact: BackboneElement {
 		get { return "NamingSystemContact" }
 	}
 	
-	/// Name of an individual to contact.
+	/// Name of a individual to contact.
 	public var name: String?
 	
 	/// Contact details for individual or publisher.

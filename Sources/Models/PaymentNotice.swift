@@ -2,7 +2,7 @@
 //  PaymentNotice.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2016-07-08.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -27,10 +27,7 @@ public class PaymentNotice: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// Responsible organization.
-	public var organizationIdentifier: Identifier?
-	
-	/// Responsible organization.
-	public var organizationReference: Reference?
+	public var organization: Reference?
 	
 	/// Original version.
 	public var originalRuleset: Coding?
@@ -39,34 +36,19 @@ public class PaymentNotice: DomainResource {
 	public var paymentStatus: Coding?
 	
 	/// Responsible practitioner.
-	public var providerIdentifier: Identifier?
-	
-	/// Responsible practitioner.
-	public var providerReference: Reference?
+	public var provider: Reference?
 	
 	/// Request reference.
-	public var requestIdentifier: Identifier?
-	
-	/// Request reference.
-	public var requestReference: Reference?
+	public var request: Reference?
 	
 	/// Response reference.
-	public var responseIdentifier: Identifier?
-	
-	/// Response reference.
-	public var responseReference: Reference?
+	public var response: Reference?
 	
 	/// Resource version.
 	public var ruleset: Coding?
 	
-	/// Payment or clearing date.
-	public var statusDate: FHIRDate?
-	
 	/// Insurer or Regulatory body.
-	public var targetIdentifier: Identifier?
-	
-	/// Insurer or Regulatory body.
-	public var targetReference: Reference?
+	public var target: Reference?
 	
 	
 	/** Initialize with a JSON object. */
@@ -101,22 +83,13 @@ public class PaymentNotice: DomainResource {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["organizationIdentifier"] {
-				presentKeys.insert("organizationIdentifier")
+			if let exist: AnyObject = js["organization"] {
+				presentKeys.insert("organization")
 				if let val = exist as? FHIRJSON {
-					self.organizationIdentifier = Identifier(json: val, owner: self)
+					self.organization = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "organizationIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["organizationReference"] {
-				presentKeys.insert("organizationReference")
-				if let val = exist as? FHIRJSON {
-					self.organizationReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "organizationReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "organization", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["originalRuleset"] {
@@ -140,58 +113,31 @@ public class PaymentNotice: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "paymentStatus"))
 			}
-			if let exist: AnyObject = js["providerIdentifier"] {
-				presentKeys.insert("providerIdentifier")
+			if let exist: AnyObject = js["provider"] {
+				presentKeys.insert("provider")
 				if let val = exist as? FHIRJSON {
-					self.providerIdentifier = Identifier(json: val, owner: self)
+					self.provider = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "providerIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "provider", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["providerReference"] {
-				presentKeys.insert("providerReference")
+			if let exist: AnyObject = js["request"] {
+				presentKeys.insert("request")
 				if let val = exist as? FHIRJSON {
-					self.providerReference = Reference(json: val, owner: self)
+					self.request = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "providerReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["requestIdentifier"] {
-				presentKeys.insert("requestIdentifier")
+			if let exist: AnyObject = js["response"] {
+				presentKeys.insert("response")
 				if let val = exist as? FHIRJSON {
-					self.requestIdentifier = Identifier(json: val, owner: self)
+					self.response = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requestIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["requestReference"] {
-				presentKeys.insert("requestReference")
-				if let val = exist as? FHIRJSON {
-					self.requestReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "requestReference", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["responseIdentifier"] {
-				presentKeys.insert("responseIdentifier")
-				if let val = exist as? FHIRJSON {
-					self.responseIdentifier = Identifier(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "responseIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["responseReference"] {
-				presentKeys.insert("responseReference")
-				if let val = exist as? FHIRJSON {
-					self.responseReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "responseReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "response", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["ruleset"] {
@@ -203,31 +149,13 @@ public class PaymentNotice: DomainResource {
 					errors.append(FHIRJSONError(key: "ruleset", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["statusDate"] {
-				presentKeys.insert("statusDate")
-				if let val = exist as? String {
-					self.statusDate = FHIRDate(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "statusDate", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["targetIdentifier"] {
-				presentKeys.insert("targetIdentifier")
+			if let exist: AnyObject = js["target"] {
+				presentKeys.insert("target")
 				if let val = exist as? FHIRJSON {
-					self.targetIdentifier = Identifier(json: val, owner: self)
+					self.target = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "targetIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["targetReference"] {
-				presentKeys.insert("targetReference")
-				if let val = exist as? FHIRJSON {
-					self.targetReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "targetReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "target", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -243,11 +171,8 @@ public class PaymentNotice: DomainResource {
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
-		if let organizationIdentifier = self.organizationIdentifier {
-			json["organizationIdentifier"] = organizationIdentifier.asJSON()
-		}
-		if let organizationReference = self.organizationReference {
-			json["organizationReference"] = organizationReference.asJSON()
+		if let organization = self.organization {
+			json["organization"] = organization.asJSON()
 		}
 		if let originalRuleset = self.originalRuleset {
 			json["originalRuleset"] = originalRuleset.asJSON()
@@ -255,35 +180,20 @@ public class PaymentNotice: DomainResource {
 		if let paymentStatus = self.paymentStatus {
 			json["paymentStatus"] = paymentStatus.asJSON()
 		}
-		if let providerIdentifier = self.providerIdentifier {
-			json["providerIdentifier"] = providerIdentifier.asJSON()
+		if let provider = self.provider {
+			json["provider"] = provider.asJSON()
 		}
-		if let providerReference = self.providerReference {
-			json["providerReference"] = providerReference.asJSON()
+		if let request = self.request {
+			json["request"] = request.asJSON()
 		}
-		if let requestIdentifier = self.requestIdentifier {
-			json["requestIdentifier"] = requestIdentifier.asJSON()
-		}
-		if let requestReference = self.requestReference {
-			json["requestReference"] = requestReference.asJSON()
-		}
-		if let responseIdentifier = self.responseIdentifier {
-			json["responseIdentifier"] = responseIdentifier.asJSON()
-		}
-		if let responseReference = self.responseReference {
-			json["responseReference"] = responseReference.asJSON()
+		if let response = self.response {
+			json["response"] = response.asJSON()
 		}
 		if let ruleset = self.ruleset {
 			json["ruleset"] = ruleset.asJSON()
 		}
-		if let statusDate = self.statusDate {
-			json["statusDate"] = statusDate.asJSON()
-		}
-		if let targetIdentifier = self.targetIdentifier {
-			json["targetIdentifier"] = targetIdentifier.asJSON()
-		}
-		if let targetReference = self.targetReference {
-			json["targetReference"] = targetReference.asJSON()
+		if let target = self.target {
+			json["target"] = target.asJSON()
 		}
 		
 		return json

@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -223,7 +223,7 @@ public class SpecimenCollection: BackboneElement {
 	public var collector: Reference?
 	
 	/// Collector comments.
-	public var comment: String?
+	public var comment: [String]?
 	
 	/// Technique used to perform collection.
 	public var method: CodeableConcept?
@@ -278,11 +278,11 @@ public class SpecimenCollection: BackboneElement {
 			}
 			if let exist: AnyObject = js["comment"] {
 				presentKeys.insert("comment")
-				if let val = exist as? String {
+				if let val = exist as? [String] {
 					self.comment = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "comment", wants: Array<String>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["method"] {
@@ -323,7 +323,11 @@ public class SpecimenCollection: BackboneElement {
 			json["collector"] = collector.asJSON()
 		}
 		if let comment = self.comment {
-			json["comment"] = comment.asJSON()
+			var arr = [AnyObject]()
+			for val in comment {
+				arr.append(val.asJSON())
+			}
+			json["comment"] = arr
 		}
 		if let method = self.method {
 			json["method"] = method.asJSON()

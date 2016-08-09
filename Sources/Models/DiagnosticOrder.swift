@@ -2,7 +2,7 @@
 //  DiagnosticOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -46,7 +46,7 @@ public class DiagnosticOrder: DomainResource {
 	/// If the whole order relates to specific specimens.
 	public var specimen: [Reference]?
 	
-	/// proposed | draft | planned | requested | received | accepted | in-progress | review | completed | cancelled | suspended | rejected | failed | entered-in-error.
+	/// proposed | draft | planned | requested | received | accepted | in-progress | review | completed | cancelled | suspended | rejected | failed.
 	public var status: String?
 	
 	/// Who and/or what test is about.
@@ -250,7 +250,7 @@ public class DiagnosticOrderEvent: BackboneElement {
 	/// More information about the event and its context.
 	public var description_fhir: CodeableConcept?
 	
-	/// proposed | draft | planned | requested | received | accepted | in-progress | review | completed | cancelled | suspended | rejected | failed | entered-in-error.
+	/// proposed | draft | planned | requested | received | accepted | in-progress | review | completed | cancelled | suspended | rejected | failed.
 	public var status: String?
 	
 	
@@ -359,7 +359,7 @@ public class DiagnosticOrderItem: BackboneElement {
 	/// If this item relates to specific specimens.
 	public var specimen: [Reference]?
 	
-	/// proposed | draft | planned | requested | received | accepted | in-progress | review | completed | cancelled | suspended | rejected | failed | entered-in-error.
+	/// proposed | draft | planned | requested | received | accepted | in-progress | review | completed | cancelled | suspended | rejected | failed.
 	public var status: String?
 	
 	

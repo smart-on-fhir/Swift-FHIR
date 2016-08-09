@@ -2,7 +2,7 @@
 //  DataElementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -37,9 +37,8 @@ class DataElementTests: XCTestCase {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "dataelement-example.json")
 		
 		XCTAssertEqual(inst.contained?[0].id, "2179414")
-		XCTAssertEqual(inst.contained?[1].id, "2179414-permitted-cs")
-		XCTAssertEqual(inst.contained?[2].id, "2179414-permitted")
-		XCTAssertEqual(inst.contained?[3].id, "2179414-cm")
+		XCTAssertEqual(inst.contained?[1].id, "2179414-permitted")
+		XCTAssertEqual(inst.contained?[2].id, "2179414-cm")
 		XCTAssertEqual(inst.element?[0].binding?.strength, "required")
 		XCTAssertEqual(inst.element?[0].binding?.valueSetReference?.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-valueset")
 		XCTAssertEqual(inst.element?[0].binding?.valueSetReference?.extension_fhir?[0].valueReference?.reference, "#2179414-permitted")
@@ -121,7 +120,7 @@ class DataElementTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.CenturyHospital/Laboratory/DirectoryofServices")
 		XCTAssertEqual(inst.identifier?[0].type?.text, "Prothrombin Time, PT")
 		XCTAssertEqual(inst.identifier?[0].value, "11")
-		XCTAssertEqual(inst.mapping?[0].comment, "Version 2.48 or later")
+		XCTAssertEqual(inst.mapping?[0].comments, "Version 2.48 or later")
 		XCTAssertEqual(inst.mapping?[0].identity, "loinc")
 		XCTAssertEqual(inst.mapping?[0].name, "LOINC")
 		XCTAssertEqual(inst.mapping?[0].uri?.absoluteString, "http://loinc.org/")

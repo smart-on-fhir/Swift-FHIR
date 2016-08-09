@@ -2,7 +2,7 @@
 //  Contract.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Contract) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Contract) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -25,8 +25,8 @@ public class Contract: DomainResource {
 	/// Contract Action Reason.
 	public var actionReason: [CodeableConcept]?
 	
-	/// Contract Agent.
-	public var agent: [ContractAgent]?
+	/// Contract Actor.
+	public var actor: [ContractActor]?
 	
 	/// Effective time.
 	public var applies: Period?
@@ -64,16 +64,13 @@ public class Contract: DomainResource {
 	/// Contract Subtype.
 	public var subType: [CodeableConcept]?
 	
-	/// Contract Target Entity.
+	/// Subject of this Contract.
 	public var subject: [Reference]?
 	
 	/// Contract Term List.
 	public var term: [ContractTerm]?
 	
-	/// Context of the Contract.
-	public var topic: [Reference]?
-	
-	/// Contract Type.
+	/// Contract Tyoe.
 	public var type: CodeableConcept?
 	
 	/// Contract Valued Item.
@@ -106,13 +103,13 @@ public class Contract: DomainResource {
 					errors.append(FHIRJSONError(key: "actionReason", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["agent"] {
-				presentKeys.insert("agent")
+			if let exist: AnyObject = js["actor"] {
+				presentKeys.insert("actor")
 				if let val = exist as? [FHIRJSON] {
-					self.agent = ContractAgent.instantiate(fromArray: val, owner: self) as? [ContractAgent]
+					self.actor = ContractActor.instantiate(fromArray: val, owner: self) as? [ContractActor]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "agent", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "actor", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["applies"] {
@@ -241,15 +238,6 @@ public class Contract: DomainResource {
 					errors.append(FHIRJSONError(key: "term", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["topic"] {
-				presentKeys.insert("topic")
-				if let val = exist as? [FHIRJSON] {
-					self.topic = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "topic", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
@@ -281,8 +269,8 @@ public class Contract: DomainResource {
 		if let actionReason = self.actionReason {
 			json["actionReason"] = CodeableConcept.asJSONArray(actionReason)
 		}
-		if let agent = self.agent {
-			json["agent"] = ContractAgent.asJSONArray(agent)
+		if let actor = self.actor {
+			json["actor"] = ContractActor.asJSONArray(actor)
 		}
 		if let applies = self.applies {
 			json["applies"] = applies.asJSON()
@@ -326,9 +314,6 @@ public class Contract: DomainResource {
 		if let term = self.term {
 			json["term"] = ContractTerm.asJSONArray(term)
 		}
-		if let topic = self.topic {
-			json["topic"] = Reference.asJSONArray(topic)
-		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
 		}
@@ -342,20 +327,19 @@ public class Contract: DomainResource {
 
 
 /**
- *  Contract Agent.
+ *  Contract Actor.
  *
- *  An actor taking a role in an activity for which it can be assigned some degree of responsibility for the activity
- *  taking place.
+ *  List of Contract actors.
  */
-public class ContractAgent: BackboneElement {
+public class ContractActor: BackboneElement {
 	override public class var resourceName: String {
-		get { return "ContractAgent" }
+		get { return "ContractActor" }
 	}
 	
-	/// Contract Agent Type.
-	public var actor: Reference?
+	/// Contract Actor Type.
+	public var entity: Reference?
 	
-	/// Contract  Agent Role.
+	/// Contract  Actor Role.
 	public var role: [CodeableConcept]?
 	
 	
@@ -365,25 +349,25 @@ public class ContractAgent: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(actor: Reference) {
+	public convenience init(entity: Reference) {
 		self.init(json: nil)
-		self.actor = actor
+		self.entity = entity
 	}
 	
 	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["actor"] {
-				presentKeys.insert("actor")
+			if let exist: AnyObject = js["entity"] {
+				presentKeys.insert("entity")
 				if let val = exist as? FHIRJSON {
-					self.actor = Reference(json: val, owner: self)
+					self.entity = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "actor", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "entity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "actor"))
+				errors.append(FHIRJSONError(key: "entity"))
 			}
 			if let exist: AnyObject = js["role"] {
 				presentKeys.insert("role")
@@ -401,8 +385,8 @@ public class ContractAgent: BackboneElement {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let actor = self.actor {
-			json["actor"] = actor.asJSON()
+		if let entity = self.entity {
+			json["entity"] = entity.asJSON()
 		}
 		if let role = self.role {
 			json["role"] = CodeableConcept.asJSONArray(role)
@@ -641,9 +625,7 @@ public class ContractRule: BackboneElement {
 /**
  *  Contract Signer.
  *
- *  Parties with legal standing in the Contract, including the principal parties, the grantor(s) and grantee(s), which
- *  are any person or organization bound by the contract, and any ancillary parties, which facilitate the execution of
- *  the contract such as a notary or witness.
+ *  Party signing this Contract.
  */
 public class ContractSigner: BackboneElement {
 	override public class var resourceName: String {
@@ -654,7 +636,7 @@ public class ContractSigner: BackboneElement {
 	public var party: Reference?
 	
 	/// Contract Documentation Signature.
-	public var signature: [Signature]?
+	public var signature: String?
 	
 	/// Contract Signer Type.
 	public var type: Coding?
@@ -666,7 +648,7 @@ public class ContractSigner: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(party: Reference, signature: [Signature], type: Coding) {
+	public convenience init(party: Reference, signature: String, type: Coding) {
 		self.init(json: nil)
 		self.party = party
 		self.signature = signature
@@ -690,11 +672,11 @@ public class ContractSigner: BackboneElement {
 			}
 			if let exist: AnyObject = js["signature"] {
 				presentKeys.insert("signature")
-				if let val = exist as? [FHIRJSON] {
-					self.signature = Signature.instantiate(fromArray: val, owner: self) as? [Signature]
+				if let val = exist as? String {
+					self.signature = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "signature", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "signature", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			else {
@@ -723,7 +705,7 @@ public class ContractSigner: BackboneElement {
 			json["party"] = party.asJSON()
 		}
 		if let signature = self.signature {
-			json["signature"] = Signature.asJSONArray(signature)
+			json["signature"] = signature.asJSON()
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -750,8 +732,8 @@ public class ContractTerm: BackboneElement {
 	/// Contract Term Action Reason.
 	public var actionReason: [CodeableConcept]?
 	
-	/// Contract Term Agent List.
-	public var agent: [ContractTermAgent]?
+	/// Contract Term Actor List.
+	public var actor: [ContractTermActor]?
 	
 	/// Contract Term Effective Time.
 	public var applies: Period?
@@ -768,11 +750,11 @@ public class ContractTerm: BackboneElement {
 	/// Contract Term Subtype.
 	public var subType: CodeableConcept?
 	
+	/// Subject of this Contract Term.
+	public var subject: Reference?
+	
 	/// Human readable Contract term text.
 	public var text: String?
-	
-	/// Context of the Contract term.
-	public var topic: [Reference]?
 	
 	/// Contract Term Type.
 	public var type: CodeableConcept?
@@ -807,13 +789,13 @@ public class ContractTerm: BackboneElement {
 					errors.append(FHIRJSONError(key: "actionReason", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["agent"] {
-				presentKeys.insert("agent")
+			if let exist: AnyObject = js["actor"] {
+				presentKeys.insert("actor")
 				if let val = exist as? [FHIRJSON] {
-					self.agent = ContractTermAgent.instantiate(fromArray: val, owner: self) as? [ContractTermAgent]
+					self.actor = ContractTermActor.instantiate(fromArray: val, owner: self) as? [ContractTermActor]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "agent", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "actor", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["applies"] {
@@ -861,6 +843,15 @@ public class ContractTerm: BackboneElement {
 					errors.append(FHIRJSONError(key: "subType", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["subject"] {
+				presentKeys.insert("subject")
+				if let val = exist as? FHIRJSON {
+					self.subject = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["text"] {
 				presentKeys.insert("text")
 				if let val = exist as? String {
@@ -868,15 +859,6 @@ public class ContractTerm: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["topic"] {
-				presentKeys.insert("topic")
-				if let val = exist as? [FHIRJSON] {
-					self.topic = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "topic", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["type"] {
@@ -910,8 +892,8 @@ public class ContractTerm: BackboneElement {
 		if let actionReason = self.actionReason {
 			json["actionReason"] = CodeableConcept.asJSONArray(actionReason)
 		}
-		if let agent = self.agent {
-			json["agent"] = ContractTermAgent.asJSONArray(agent)
+		if let actor = self.actor {
+			json["actor"] = ContractTermActor.asJSONArray(actor)
 		}
 		if let applies = self.applies {
 			json["applies"] = applies.asJSON()
@@ -928,11 +910,11 @@ public class ContractTerm: BackboneElement {
 		if let subType = self.subType {
 			json["subType"] = subType.asJSON()
 		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
+		}
 		if let text = self.text {
 			json["text"] = text.asJSON()
-		}
-		if let topic = self.topic {
-			json["topic"] = Reference.asJSONArray(topic)
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -947,20 +929,19 @@ public class ContractTerm: BackboneElement {
 
 
 /**
- *  Contract Term Agent List.
+ *  Contract Term Actor List.
  *
- *  An actor taking a role in an activity for which it can be assigned some degree of responsibility for the activity
- *  taking place.
+ *  List of actors participating in this Contract Provision.
  */
-public class ContractTermAgent: BackboneElement {
+public class ContractTermActor: BackboneElement {
 	override public class var resourceName: String {
-		get { return "ContractTermAgent" }
+		get { return "ContractTermActor" }
 	}
 	
-	/// Contract Term Agent List.
-	public var actor: Reference?
+	/// Contract Term Actor.
+	public var entity: Reference?
 	
-	/// Contract Term Agent Role.
+	/// Contract Term Actor Role.
 	public var role: [CodeableConcept]?
 	
 	
@@ -970,25 +951,25 @@ public class ContractTermAgent: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(actor: Reference) {
+	public convenience init(entity: Reference) {
 		self.init(json: nil)
-		self.actor = actor
+		self.entity = entity
 	}
 	
 	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["actor"] {
-				presentKeys.insert("actor")
+			if let exist: AnyObject = js["entity"] {
+				presentKeys.insert("entity")
 				if let val = exist as? FHIRJSON {
-					self.actor = Reference(json: val, owner: self)
+					self.entity = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "actor", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "entity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "actor"))
+				errors.append(FHIRJSONError(key: "entity"))
 			}
 			if let exist: AnyObject = js["role"] {
 				presentKeys.insert("role")
@@ -1006,8 +987,8 @@ public class ContractTermAgent: BackboneElement {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let actor = self.actor {
-			json["actor"] = actor.asJSON()
+		if let entity = self.entity {
+			json["entity"] = entity.asJSON()
 		}
 		if let role = self.role {
 			json["role"] = CodeableConcept.asJSONArray(role)

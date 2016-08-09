@@ -2,7 +2,7 @@
 //  OperationDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -38,7 +38,6 @@ class OperationDefinitionTests: XCTestCase {
 		
 		XCTAssertEqual(inst.base?.reference, "OperationDefinition/Questionnaire-populate")
 		XCTAssertEqual(inst.code, "populate")
-		XCTAssertEqual(inst.comment, "Only implemented for Labs and Medications so far")
 		XCTAssertEqual(inst.contact?[0].name, "System Administrator")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, "email")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "beep@coyote.acme.com")
@@ -48,6 +47,7 @@ class OperationDefinitionTests: XCTestCase {
 		XCTAssertTrue(inst.instance ?? false)
 		XCTAssertEqual(inst.kind, "operation")
 		XCTAssertEqual(inst.name, "Populate Questionnaire")
+		XCTAssertEqual(inst.notes, "Only implemented for Labs and Medications so far")
 		XCTAssertEqual(inst.parameter?[0].max, "1")
 		XCTAssertEqual(inst.parameter?[0].min, 1)
 		XCTAssertEqual(inst.parameter?[0].name, "subject")

@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2016-07-08.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -40,208 +40,205 @@ public class ElementDefinition: Element {
 	/// Condition that must evaluate to true.
 	public var constraint: [ElementDefinitionConstraint]?
 	
-	/// Reference to definition of content for the element.
-	public var contentReference: URL?
-	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueAddress: Address?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueAnnotation: Annotation?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueAttachment: Attachment?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueBase64Binary: Base64Binary?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueBoolean: Bool?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueCode: String?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueCodeableConcept: CodeableConcept?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueCoding: Coding?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueContactPoint: ContactPoint?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueDate: FHIRDate?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueDateTime: DateTime?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueDecimal: NSDecimalNumber?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueHumanName: HumanName?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueId: String?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueIdentifier: Identifier?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueInstant: Instant?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueInteger: Int?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueMarkdown: String?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueMeta: Meta?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueOid: String?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValuePeriod: Period?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValuePositiveInt: UInt?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueQuantity: Quantity?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueRange: Range?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueRatio: Ratio?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueReference: Reference?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueSampledData: SampledData?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueSignature: Signature?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueString: String?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueTime: FHIRTime?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueTiming: Timing?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueUnsignedInt: UInt?
 	
-	/// Specified value if missing from instance.
+	/// Specified value it missing from instance.
 	public var defaultValueUri: URL?
 	
 	/// Full formal definition as narrative text.
 	public var definition: String?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleAddress: Address?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleAnnotation: Annotation?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleAttachment: Attachment?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleBase64Binary: Base64Binary?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleBoolean: Bool?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleCode: String?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleCodeableConcept: CodeableConcept?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleCoding: Coding?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleContactPoint: ContactPoint?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleDate: FHIRDate?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleDateTime: DateTime?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleDecimal: NSDecimalNumber?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleHumanName: HumanName?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleId: String?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleIdentifier: Identifier?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleInstant: Instant?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleInteger: Int?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleMarkdown: String?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleMeta: Meta?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleOid: String?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var examplePeriod: Period?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var examplePositiveInt: UInt?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleQuantity: Quantity?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleRange: Range?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleRatio: Ratio?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleReference: Reference?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleSampledData: SampledData?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleSignature: Signature?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleString: String?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleTime: FHIRTime?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleTiming: Timing?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleUnsignedInt: UInt?
 	
-	/// Example value (as defined for type).
+	/// Example value: [as defined for type].
 	public var exampleUri: URL?
 	
 	/// Value must be exactly this.
@@ -571,6 +568,9 @@ public class ElementDefinition: Element {
 	/// Name for this particular element definition (reference target).
 	public var name: String?
 	
+	/// To another element constraint (by element.name).
+	public var nameReference: String?
+	
 	/// The path of the element (see the Detailed Descriptions).
 	public var path: String?
 	
@@ -673,10 +673,10 @@ public class ElementDefinition: Element {
 	/// Value must have at least these property values.
 	public var patternUri: URL?
 	
-	/// xmlAttr | xmlText | typeAttr | cdaText.
+	/// How this element is represented in instances.
 	public var representation: [String]?
 	
-	/// Why this resource has been created.
+	/// Why is this needed?.
 	public var requirements: String?
 	
 	/// Concise definition for xml presentation.
@@ -764,15 +764,6 @@ public class ElementDefinition: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "constraint", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["contentReference"] {
-				presentKeys.insert("contentReference")
-				if let val = exist as? String {
-					self.contentReference = URL(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "contentReference", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["defaultValueAddress"] {
@@ -2359,6 +2350,15 @@ public class ElementDefinition: Element {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["nameReference"] {
+				presentKeys.insert("nameReference")
+				if let val = exist as? String {
+					self.nameReference = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "nameReference", wants: String.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["path"] {
 				presentKeys.insert("path")
 				if let val = exist as? String {
@@ -2748,9 +2748,6 @@ public class ElementDefinition: Element {
 		}
 		if let constraint = self.constraint {
 			json["constraint"] = ElementDefinitionConstraint.asJSONArray(constraint)
-		}
-		if let contentReference = self.contentReference {
-			json["contentReference"] = contentReference.asJSON()
 		}
 		if let defaultValueAddress = self.defaultValueAddress {
 			json["defaultValueAddress"] = defaultValueAddress.asJSON()
@@ -3280,6 +3277,9 @@ public class ElementDefinition: Element {
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
+		if let nameReference = self.nameReference {
+			json["nameReference"] = nameReference.asJSON()
+		}
 		if let path = self.path {
 			json["path"] = path.asJSON()
 		}
@@ -3410,7 +3410,7 @@ public class ElementDefinition: Element {
 /**
  *  Base definition information for tools.
  *
- *  Information about the base definition of the element, provided to make it unnecessary for tools to trace the
+ *  Information about the base definition of the element, provided to make it unncessary for tools to trace the
  *  deviation of the element through the derived and related profiles. This information is only provided where the
  *  element definition represents a constraint on another element definition, and must be present if there is a base
  *  element definition.
@@ -3616,16 +3616,13 @@ public class ElementDefinitionConstraint: Element {
 		get { return "ElementDefinitionConstraint" }
 	}
 	
-	/// FluentPath expression of constraint.
-	public var expression: String?
-	
 	/// Human description of constraint.
 	public var human: String?
 	
 	/// Target of 'condition' reference above.
 	public var key: String?
 	
-	/// Why this constraint is necessary or appropriate.
+	/// Why this constraint necessary or appropriate.
 	public var requirements: String?
 	
 	/// error | warning.
@@ -3652,15 +3649,6 @@ public class ElementDefinitionConstraint: Element {
 	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["expression"] {
-				presentKeys.insert("expression")
-				if let val = exist as? String {
-					self.expression = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "expression", wants: String.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["human"] {
 				presentKeys.insert("human")
 				if let val = exist as? String {
@@ -3725,9 +3713,6 @@ public class ElementDefinitionConstraint: Element {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let expression = self.expression {
-			json["expression"] = expression.asJSON()
-		}
 		if let human = self.human {
 			json["human"] = human.asJSON()
 		}
@@ -3856,7 +3841,7 @@ public class ElementDefinitionSlicing: Element {
 	/// Text description of how slicing works (or not).
 	public var description_fhir: String?
 	
-	/// Element values that are used to distinguish the slices.
+	/// Element values that used to distinguish the slices.
 	public var discriminator: [String]?
 	
 	/// If elements must be in same order as slices.
@@ -3967,9 +3952,6 @@ public class ElementDefinitionType: Element {
 	/// Profile (StructureDefinition) to apply (or IG).
 	public var profile: [URL]?
 	
-	/// either | independent | specific.
-	public var versioning: String?
-	
 	
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
@@ -4015,15 +3997,6 @@ public class ElementDefinitionType: Element {
 					errors.append(FHIRJSONError(key: "profile", wants: Array<String>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["versioning"] {
-				presentKeys.insert("versioning")
-				if let val = exist as? String {
-					self.versioning = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "versioning", wants: String.self, has: exist.dynamicType))
-				}
-			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -4047,9 +4020,6 @@ public class ElementDefinitionType: Element {
 				arr.append(val.asJSON())
 			}
 			json["profile"] = arr
-		}
-		if let versioning = self.versioning {
-			json["versioning"] = versioning.asJSON()
 		}
 		
 		return json

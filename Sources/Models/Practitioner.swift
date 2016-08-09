@@ -2,7 +2,7 @@
 //  Practitioner.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2016-07-08.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -22,7 +22,7 @@ public class Practitioner: DomainResource {
 	/// Whether this practitioner's record is in active use.
 	public var active: Bool?
 	
-	/// Address(es) of the practitioner that are not role specific (typically home address).
+	/// Where practitioner can be found/visited.
 	public var address: [Address]?
 	
 	/// The date  on which the practitioner was born.
@@ -37,8 +37,8 @@ public class Practitioner: DomainResource {
 	/// A identifier for the person as this agent.
 	public var identifier: [Identifier]?
 	
-	/// The name(s) associated with the practitioner.
-	public var name: [HumanName]?
+	/// A name associated with the person.
+	public var name: HumanName?
 	
 	/// Image of the person.
 	public var photo: [Attachment]?
@@ -49,7 +49,7 @@ public class Practitioner: DomainResource {
 	/// Qualifications obtained by training and certification.
 	public var qualification: [PractitionerQualification]?
 	
-	/// A contact detail for the practitioner (that apply to all roles).
+	/// A contact detail for the practitioner.
 	public var telecom: [ContactPoint]?
 	
 	
@@ -117,11 +117,11 @@ public class Practitioner: DomainResource {
 			}
 			if let exist: AnyObject = js["name"] {
 				presentKeys.insert("name")
-				if let val = exist as? [FHIRJSON] {
-					self.name = HumanName.instantiate(fromArray: val, owner: self) as? [HumanName]
+				if let val = exist as? FHIRJSON {
+					self.name = HumanName(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "name", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["photo"] {
@@ -186,7 +186,7 @@ public class Practitioner: DomainResource {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
 		if let name = self.name {
-			json["name"] = HumanName.asJSONArray(name)
+			json["name"] = name.asJSON()
 		}
 		if let photo = self.photo {
 			json["photo"] = Attachment.asJSONArray(photo)
@@ -219,14 +219,11 @@ public class PractitionerPractitionerRole: BackboneElement {
 	/// The list of healthcare services that this worker provides for this role's Organization/Location(s).
 	public var healthcareService: [Reference]?
 	
-	/// Business Identifiers that are specific to a role/location.
-	public var identifier: [Identifier]?
-	
 	/// The location(s) at which this practitioner provides care.
 	public var location: [Reference]?
 	
 	/// Organization where the roles are performed.
-	public var organization: Reference?
+	public var managingOrganization: Reference?
 	
 	/// The period during which the practitioner is authorized to perform in these role(s).
 	public var period: Period?
@@ -236,9 +233,6 @@ public class PractitionerPractitionerRole: BackboneElement {
 	
 	/// Specific specialty of the practitioner.
 	public var specialty: [CodeableConcept]?
-	
-	/// Contact details that are specific to the role/location/service.
-	public var telecom: [ContactPoint]?
 	
 	
 	/** Initialize with a JSON object. */
@@ -258,15 +252,6 @@ public class PractitionerPractitionerRole: BackboneElement {
 					errors.append(FHIRJSONError(key: "healthcareService", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["location"] {
 				presentKeys.insert("location")
 				if let val = exist as? [FHIRJSON] {
@@ -276,13 +261,13 @@ public class PractitionerPractitionerRole: BackboneElement {
 					errors.append(FHIRJSONError(key: "location", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["organization"] {
-				presentKeys.insert("organization")
+			if let exist: AnyObject = js["managingOrganization"] {
+				presentKeys.insert("managingOrganization")
 				if let val = exist as? FHIRJSON {
-					self.organization = Reference(json: val, owner: self)
+					self.managingOrganization = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "organization", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "managingOrganization", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["period"] {
@@ -312,15 +297,6 @@ public class PractitionerPractitionerRole: BackboneElement {
 					errors.append(FHIRJSONError(key: "specialty", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["telecom"] {
-				presentKeys.insert("telecom")
-				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -331,14 +307,11 @@ public class PractitionerPractitionerRole: BackboneElement {
 		if let healthcareService = self.healthcareService {
 			json["healthcareService"] = Reference.asJSONArray(healthcareService)
 		}
-		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
-		}
 		if let location = self.location {
 			json["location"] = Reference.asJSONArray(location)
 		}
-		if let organization = self.organization {
-			json["organization"] = organization.asJSON()
+		if let managingOrganization = self.managingOrganization {
+			json["managingOrganization"] = managingOrganization.asJSON()
 		}
 		if let period = self.period {
 			json["period"] = period.asJSON()
@@ -348,9 +321,6 @@ public class PractitionerPractitionerRole: BackboneElement {
 		}
 		if let specialty = self.specialty {
 			json["specialty"] = CodeableConcept.asJSONArray(specialty)
-		}
-		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
 		}
 		
 		return json

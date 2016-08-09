@@ -2,7 +2,7 @@
 //  ProcedureRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -36,8 +36,8 @@ class ProcedureRequestTests: XCTestCase {
 	func runProcedureRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcedureRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedurerequest-example.json")
 		
-		XCTAssertEqual(inst.code?.coding?[0].code, "303653007")
-		XCTAssertEqual(inst.code?.coding?[0].display, "Computed tomography of head")
+		XCTAssertEqual(inst.code?.coding?[0].code, "323418000")
+		XCTAssertEqual(inst.code?.coding?[0].display, "Fix me up")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")

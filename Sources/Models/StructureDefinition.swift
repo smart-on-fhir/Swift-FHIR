@@ -2,7 +2,7 @@
 //  StructureDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -23,14 +23,14 @@ public class StructureDefinition: DomainResource {
 	/// Whether the structure is abstract.
 	public var abstract: Bool?
 	
-	/// Definition that this type is constrained/specialized from.
-	public var baseDefinition: URL?
-	
-	/// Any datatype or resource, including abstract ones.
-	public var baseType: String?
+	/// Structure that this set of constraints applies to.
+	public var base: URL?
 	
 	/// Assist with indexing and finding.
 	public var code: [Coding]?
+	
+	/// Any datatype or resource, including abstract ones.
+	public var constrainedType: String?
 	
 	/// Contact details of the publisher.
 	public var contact: [StructureDefinitionContact]?
@@ -38,7 +38,7 @@ public class StructureDefinition: DomainResource {
 	/// Where the extension can be used in instances.
 	public var context: [String]?
 	
-	/// resource | datatype | extension.
+	/// resource | datatype | mapping | extension.
 	public var contextType: String?
 	
 	/// Use and/or publishing restrictions.
@@ -46,9 +46,6 @@ public class StructureDefinition: DomainResource {
 	
 	/// Date for this version of the StructureDefinition.
 	public var date: DateTime?
-	
-	/// specialization | constraint - How relates to base definition.
-	public var derivation: String?
 	
 	/// Natural language description of the StructureDefinition.
 	public var description_fhir: String?
@@ -129,22 +126,13 @@ public class StructureDefinition: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "abstract"))
 			}
-			if let exist: AnyObject = js["baseDefinition"] {
-				presentKeys.insert("baseDefinition")
+			if let exist: AnyObject = js["base"] {
+				presentKeys.insert("base")
 				if let val = exist as? String {
-					self.baseDefinition = URL(string: val)
+					self.base = URL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "baseDefinition", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["baseType"] {
-				presentKeys.insert("baseType")
-				if let val = exist as? String {
-					self.baseType = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "baseType", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "base", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["code"] {
@@ -154,6 +142,15 @@ public class StructureDefinition: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["constrainedType"] {
+				presentKeys.insert("constrainedType")
+				if let val = exist as? String {
+					self.constrainedType = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "constrainedType", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["contact"] {
@@ -199,15 +196,6 @@ public class StructureDefinition: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "date", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["derivation"] {
-				presentKeys.insert("derivation")
-				if let val = exist as? String {
-					self.derivation = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "derivation", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["description"] {
@@ -376,14 +364,14 @@ public class StructureDefinition: DomainResource {
 		if let abstract = self.abstract {
 			json["abstract"] = abstract.asJSON()
 		}
-		if let baseDefinition = self.baseDefinition {
-			json["baseDefinition"] = baseDefinition.asJSON()
-		}
-		if let baseType = self.baseType {
-			json["baseType"] = baseType.asJSON()
+		if let base = self.base {
+			json["base"] = base.asJSON()
 		}
 		if let code = self.code {
 			json["code"] = Coding.asJSONArray(code)
+		}
+		if let constrainedType = self.constrainedType {
+			json["constrainedType"] = constrainedType.asJSON()
 		}
 		if let contact = self.contact {
 			json["contact"] = StructureDefinitionContact.asJSONArray(contact)
@@ -403,9 +391,6 @@ public class StructureDefinition: DomainResource {
 		}
 		if let date = self.date {
 			json["date"] = date.asJSON()
-		}
-		if let derivation = self.derivation {
-			json["derivation"] = derivation.asJSON()
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
@@ -471,7 +456,7 @@ public class StructureDefinitionContact: BackboneElement {
 		get { return "StructureDefinitionContact" }
 	}
 	
-	/// Name of an individual to contact.
+	/// Name of a individual to contact.
 	public var name: String?
 	
 	/// Contact details for individual or publisher.

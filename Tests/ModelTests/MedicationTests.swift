@@ -2,7 +2,7 @@
 //  MedicationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -49,8 +49,8 @@ class MedicationTests: XCTestCase {
 		XCTAssertEqual(inst.product?.ingredient?[0].amount?.numerator?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.product?.ingredient?[0].amount?.numerator?.unit, "ml")
 		XCTAssertEqual(inst.product?.ingredient?[0].amount?.numerator?.value, NSDecimalNumber(string: "100"))
-		XCTAssertEqual(inst.product?.ingredient?[0].itemReference?.display, "Combivent")
-		XCTAssertEqual(inst.product?.ingredient?[0].itemReference?.reference, "Medication/f001")
+		XCTAssertEqual(inst.product?.ingredient?[0].item?.display, "Combivent")
+		XCTAssertEqual(inst.product?.ingredient?[0].item?.reference, "Medication/f001")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
@@ -192,14 +192,14 @@ class MedicationTests: XCTestCase {
 		XCTAssertEqual(inst.product?.ingredient?[0].amount?.numerator?.code, "ug")
 		XCTAssertEqual(inst.product?.ingredient?[0].amount?.numerator?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.product?.ingredient?[0].amount?.numerator?.value, NSDecimalNumber(string: "25"))
-		XCTAssertEqual(inst.product?.ingredient?[0].itemCodeableConcept?.text, "flutacisone")
+		XCTAssertEqual(inst.product?.ingredient?[0].item?.display, "flutacisone")
 		XCTAssertEqual(inst.product?.ingredient?[1].amount?.denominator?.code, "PUFF")
 		XCTAssertEqual(inst.product?.ingredient?[1].amount?.denominator?.system?.absoluteString, "http://hl7.org/fhir/v3/orderableDrugForm")
 		XCTAssertEqual(inst.product?.ingredient?[1].amount?.denominator?.value, NSDecimalNumber(string: "1"))
 		XCTAssertEqual(inst.product?.ingredient?[1].amount?.numerator?.code, "ug")
 		XCTAssertEqual(inst.product?.ingredient?[1].amount?.numerator?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.product?.ingredient?[1].amount?.numerator?.value, NSDecimalNumber(string: "250"))
-		XCTAssertEqual(inst.product?.ingredient?[1].itemCodeableConcept?.text, "salmeterol")
+		XCTAssertEqual(inst.product?.ingredient?[1].item?.display, "salmeterol")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

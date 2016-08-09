@@ -2,7 +2,7 @@
 //  MedicationStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -47,7 +47,7 @@ public class MedicationStatement: DomainResource {
 	/// External identifier.
 	public var identifier: [Identifier]?
 	
-	/// Person who provided the information about the taking of this medication.
+	/// None.
 	public var informationSource: Reference?
 	
 	/// What medication was taken.
@@ -57,7 +57,7 @@ public class MedicationStatement: DomainResource {
 	public var medicationReference: Reference?
 	
 	/// Further information about the statement.
-	public var note: [Annotation]?
+	public var note: String?
 	
 	/// Who is/was taking  the medication.
 	public var patient: Reference?
@@ -172,11 +172,11 @@ public class MedicationStatement: DomainResource {
 			}
 			if let exist: AnyObject = js["note"] {
 				presentKeys.insert("note")
-				if let val = exist as? [FHIRJSON] {
-					self.note = Annotation.instantiate(fromArray: val, owner: self) as? [Annotation]
+				if let val = exist as? String {
+					self.note = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "note", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["patient"] {
@@ -285,7 +285,7 @@ public class MedicationStatement: DomainResource {
 			json["medicationReference"] = medicationReference.asJSON()
 		}
 		if let note = self.note {
-			json["note"] = Annotation.asJSONArray(note)
+			json["note"] = note.asJSON()
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
@@ -357,7 +357,7 @@ public class MedicationStatementDosage: BackboneElement {
 	/// Where (on body) medication is/was administered.
 	public var siteReference: Reference?
 	
-	/// Free text dosage instructions as reported by the information source.
+	/// Reported dosage information.
 	public var text: String?
 	
 	/// When/how often was medication taken.

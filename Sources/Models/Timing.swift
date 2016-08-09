@@ -2,7 +2,7 @@
 //  Timing.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Timing) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Timing) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -114,9 +114,6 @@ public class TimingRepeat: Element {
 	/// Number of times to repeat.
 	public var count: Int?
 	
-	/// Maximum number of times to repeat.
-	public var countMax: Int?
-	
 	/// How long when it happens.
 	public var duration: NSDecimalNumber?
 	
@@ -124,16 +121,13 @@ public class TimingRepeat: Element {
 	public var durationMax: NSDecimalNumber?
 	
 	/// s | min | h | d | wk | mo | a - unit of time (UCUM).
-	public var durationUnit: String?
+	public var durationUnits: String?
 	
 	/// Event occurs frequency times per period.
 	public var frequency: Int?
 	
 	/// Event occurs up to frequencyMax times per period.
 	public var frequencyMax: Int?
-	
-	/// Minutes from event (before or after).
-	public var offset: UInt?
 	
 	/// Event occurs frequency times per period.
 	public var period: NSDecimalNumber?
@@ -142,7 +136,7 @@ public class TimingRepeat: Element {
 	public var periodMax: NSDecimalNumber?
 	
 	/// s | min | h | d | wk | mo | a - unit of time (UCUM).
-	public var periodUnit: String?
+	public var periodUnits: String?
 	
 	/// Regular life events the event is tied to.
 	public var when: String?
@@ -192,15 +186,6 @@ public class TimingRepeat: Element {
 					errors.append(FHIRJSONError(key: "count", wants: Int.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["countMax"] {
-				presentKeys.insert("countMax")
-				if let val = exist as? Int {
-					self.countMax = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "countMax", wants: Int.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["duration"] {
 				presentKeys.insert("duration")
 				if let val = exist as? NSNumber {
@@ -219,13 +204,13 @@ public class TimingRepeat: Element {
 					errors.append(FHIRJSONError(key: "durationMax", wants: NSNumber.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["durationUnit"] {
-				presentKeys.insert("durationUnit")
+			if let exist: AnyObject = js["durationUnits"] {
+				presentKeys.insert("durationUnits")
 				if let val = exist as? String {
-					self.durationUnit = val
+					self.durationUnits = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "durationUnit", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "durationUnits", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["frequency"] {
@@ -246,15 +231,6 @@ public class TimingRepeat: Element {
 					errors.append(FHIRJSONError(key: "frequencyMax", wants: Int.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["offset"] {
-				presentKeys.insert("offset")
-				if let val = exist as? UInt {
-					self.offset = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "offset", wants: UInt.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? NSNumber {
@@ -273,13 +249,13 @@ public class TimingRepeat: Element {
 					errors.append(FHIRJSONError(key: "periodMax", wants: NSNumber.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["periodUnit"] {
-				presentKeys.insert("periodUnit")
+			if let exist: AnyObject = js["periodUnits"] {
+				presentKeys.insert("periodUnits")
 				if let val = exist as? String {
-					self.periodUnit = val
+					self.periodUnits = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "periodUnit", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "periodUnits", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["when"] {
@@ -310,17 +286,14 @@ public class TimingRepeat: Element {
 		if let count = self.count {
 			json["count"] = count.asJSON()
 		}
-		if let countMax = self.countMax {
-			json["countMax"] = countMax.asJSON()
-		}
 		if let duration = self.duration {
 			json["duration"] = duration.asJSON()
 		}
 		if let durationMax = self.durationMax {
 			json["durationMax"] = durationMax.asJSON()
 		}
-		if let durationUnit = self.durationUnit {
-			json["durationUnit"] = durationUnit.asJSON()
+		if let durationUnits = self.durationUnits {
+			json["durationUnits"] = durationUnits.asJSON()
 		}
 		if let frequency = self.frequency {
 			json["frequency"] = frequency.asJSON()
@@ -328,17 +301,14 @@ public class TimingRepeat: Element {
 		if let frequencyMax = self.frequencyMax {
 			json["frequencyMax"] = frequencyMax.asJSON()
 		}
-		if let offset = self.offset {
-			json["offset"] = offset.asJSON()
-		}
 		if let period = self.period {
 			json["period"] = period.asJSON()
 		}
 		if let periodMax = self.periodMax {
 			json["periodMax"] = periodMax.asJSON()
 		}
-		if let periodUnit = self.periodUnit {
-			json["periodUnit"] = periodUnit.asJSON()
+		if let periodUnits = self.periodUnits {
+			json["periodUnits"] = periodUnits.asJSON()
 		}
 		if let when = self.when {
 			json["when"] = when.asJSON()

@@ -2,7 +2,7 @@
 //  List.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/List) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/List) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -41,7 +41,7 @@ public class List: DomainResource {
 	public var mode: String?
 	
 	/// Comments about the list.
-	public var note: [Annotation]?
+	public var note: String?
 	
 	/// What order the list has.
 	public var orderedBy: CodeableConcept?
@@ -142,11 +142,11 @@ public class List: DomainResource {
 			}
 			if let exist: AnyObject = js["note"] {
 				presentKeys.insert("note")
-				if let val = exist as? [FHIRJSON] {
-					self.note = Annotation.instantiate(fromArray: val, owner: self) as? [Annotation]
+				if let val = exist as? String {
+					self.note = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "note", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["orderedBy"] {
@@ -226,7 +226,7 @@ public class List: DomainResource {
 			json["mode"] = mode.asJSON()
 		}
 		if let note = self.note {
-			json["note"] = Annotation.asJSONArray(note)
+			json["note"] = note.asJSON()
 		}
 		if let orderedBy = self.orderedBy {
 			json["orderedBy"] = orderedBy.asJSON()

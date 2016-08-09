@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -321,7 +321,7 @@ public class ImagingStudySeries: BackboneElement {
 	/// Body part examined.
 	public var bodySite: Coding?
 	
-	/// A short human readable summary of the series.
+	/// A description of the series.
 	public var description_fhir: String?
 	
 	/// A single SOP instance from the series.
@@ -529,7 +529,7 @@ public class ImagingStudySeriesInstance: BackboneElement {
 		get { return "ImagingStudySeriesInstance" }
 	}
 	
-	/// The instance payload, such as the image binary data or URL to it.
+	/// Content of the instance.
 	public var content: [Attachment]?
 	
 	/// The number of this instance in the series.

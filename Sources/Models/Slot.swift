@@ -2,7 +2,7 @@
 //  Slot.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Slot) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Slot) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -17,14 +17,14 @@ public class Slot: DomainResource {
 		get { return "Slot" }
 	}
 	
-	/// The style of appointment or patient that has been booked in the slot (not service type).
-	public var appointmentType: CodeableConcept?
-	
 	/// Comments on the slot to describe any extended information. Such as custom constraints on the slot.
 	public var comment: String?
 	
 	/// Date/Time that the slot is to conclude.
 	public var end: Instant?
+	
+	/// busy | free | busy-unavailable | busy-tentative.
+	public var freeBusyType: String?
 	
 	/// External Ids for this item.
 	public var identifier: [Identifier]?
@@ -35,20 +35,11 @@ public class Slot: DomainResource {
 	/// The schedule resource that this slot defines an interval of status information.
 	public var schedule: Reference?
 	
-	/// A broad categorisation of the service that is to be performed during this appointment.
-	public var serviceCategory: CodeableConcept?
-	
-	/// The type of appointments that can be booked into this slot (ideally this would be an identifiable service - which is at a location, rather than the location itself). If provided then this overrides the value provided on the availability resource.
-	public var serviceType: [CodeableConcept]?
-	
-	/// The specialty of a practitioner that would be required to perform the service requested in this appointment.
-	public var specialty: [CodeableConcept]?
-	
 	/// Date/Time that the slot is to begin.
 	public var start: Instant?
 	
-	/// busy | free | busy-unavailable | busy-tentative.
-	public var status: String?
+	/// The type of appointments that can be booked into this slot (ideally this would be an identifiable service - which is at a location, rather than the location itself). If provided then this overrides the value provided on the availability resource.
+	public var type: CodeableConcept?
 	
 	
 	/** Initialize with a JSON object. */
@@ -57,26 +48,17 @@ public class Slot: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(end: Instant, schedule: Reference, start: Instant, status: String) {
+	public convenience init(end: Instant, freeBusyType: String, schedule: Reference, start: Instant) {
 		self.init(json: nil)
 		self.end = end
+		self.freeBusyType = freeBusyType
 		self.schedule = schedule
 		self.start = start
-		self.status = status
 	}
 	
 	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["appointmentType"] {
-				presentKeys.insert("appointmentType")
-				if let val = exist as? FHIRJSON {
-					self.appointmentType = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "appointmentType", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["comment"] {
 				presentKeys.insert("comment")
 				if let val = exist as? String {
@@ -97,6 +79,18 @@ public class Slot: DomainResource {
 			}
 			else {
 				errors.append(FHIRJSONError(key: "end"))
+			}
+			if let exist: AnyObject = js["freeBusyType"] {
+				presentKeys.insert("freeBusyType")
+				if let val = exist as? String {
+					self.freeBusyType = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "freeBusyType", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "freeBusyType"))
 			}
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
@@ -128,33 +122,6 @@ public class Slot: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "schedule"))
 			}
-			if let exist: AnyObject = js["serviceCategory"] {
-				presentKeys.insert("serviceCategory")
-				if let val = exist as? FHIRJSON {
-					self.serviceCategory = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "serviceCategory", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["serviceType"] {
-				presentKeys.insert("serviceType")
-				if let val = exist as? [FHIRJSON] {
-					self.serviceType = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "serviceType", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["specialty"] {
-				presentKeys.insert("specialty")
-				if let val = exist as? [FHIRJSON] {
-					self.specialty = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "specialty", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["start"] {
 				presentKeys.insert("start")
 				if let val = exist as? String {
@@ -167,17 +134,14 @@ public class Slot: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "start"))
 			}
-			if let exist: AnyObject = js["status"] {
-				presentKeys.insert("status")
-				if let val = exist as? String {
-					self.status = val
+			if let exist: AnyObject = js["type"] {
+				presentKeys.insert("type")
+				if let val = exist as? FHIRJSON {
+					self.type = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "status"))
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -186,14 +150,14 @@ public class Slot: DomainResource {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let appointmentType = self.appointmentType {
-			json["appointmentType"] = appointmentType.asJSON()
-		}
 		if let comment = self.comment {
 			json["comment"] = comment.asJSON()
 		}
 		if let end = self.end {
 			json["end"] = end.asJSON()
+		}
+		if let freeBusyType = self.freeBusyType {
+			json["freeBusyType"] = freeBusyType.asJSON()
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
@@ -204,20 +168,11 @@ public class Slot: DomainResource {
 		if let schedule = self.schedule {
 			json["schedule"] = schedule.asJSON()
 		}
-		if let serviceCategory = self.serviceCategory {
-			json["serviceCategory"] = serviceCategory.asJSON()
-		}
-		if let serviceType = self.serviceType {
-			json["serviceType"] = CodeableConcept.asJSONArray(serviceType)
-		}
-		if let specialty = self.specialty {
-			json["specialty"] = CodeableConcept.asJSONArray(specialty)
-		}
 		if let start = self.start {
 			json["start"] = start.asJSON()
 		}
-		if let status = self.status {
-			json["status"] = status.asJSON()
+		if let type = self.type {
+			json["type"] = type.asJSON()
 		}
 		
 		return json

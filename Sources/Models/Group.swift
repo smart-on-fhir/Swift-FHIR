@@ -2,7 +2,7 @@
 //  Group.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Group) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Group) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -20,9 +20,6 @@ public class Group: DomainResource {
 	override public class var resourceName: String {
 		get { return "Group" }
 	}
-	
-	/// Whether this group's record is in active use.
-	public var active: Bool?
 	
 	/// Descriptive or actual.
 	public var actual: Bool?
@@ -64,15 +61,6 @@ public class Group: DomainResource {
 	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["active"] {
-				presentKeys.insert("active")
-				if let val = exist as? Bool {
-					self.active = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "active", wants: Bool.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["actual"] {
 				presentKeys.insert("actual")
 				if let val = exist as? Bool {
@@ -158,9 +146,6 @@ public class Group: DomainResource {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let active = self.active {
-			json["active"] = active.asJSON()
-		}
 		if let actual = self.actual {
 			json["actual"] = actual.asJSON()
 		}

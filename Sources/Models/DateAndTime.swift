@@ -668,6 +668,9 @@ class DateAndTimeParser {
 			if scanner.scanInt(&hour) && hour >= 0 && hour < 24 && scanner.scanString(":", into: nil)
 				&& scanner.scanInt(&minute) && minute >= 0 && minute < 60 {
 				
+				/* this crashes in Xcode 8b2, see https://bugs.swift.org/browse/SR-1782
+				var decimalSet = CharacterSet.decimalDigits
+				*/
 				let digitSet = CharacterSet.decimalDigits
 				var decimalSet = NSMutableCharacterSet.decimalDigits
 				decimalSet.insert(".")

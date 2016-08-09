@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -402,7 +402,7 @@ public class BundleEntryResponse: BackboneElement {
 	/// The location, if the operation returns a location.
 	public var location: URL?
 	
-	/// Status response code (text optional).
+	/// Status return code for entry.
 	public var status: String?
 	
 	

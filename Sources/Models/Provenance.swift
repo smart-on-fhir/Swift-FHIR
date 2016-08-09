@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -26,9 +26,9 @@ public class Provenance: DomainResource {
 	}
 	
 	/// Activity that occurred.
-	public var activity: Coding?
+	public var activity: CodeableConcept?
 	
-	/// Actor involved.
+	/// Agents involved in creating resource.
 	public var agent: [ProvenanceAgent]?
 	
 	/// An entity used in this activity.
@@ -44,7 +44,7 @@ public class Provenance: DomainResource {
 	public var policy: [URL]?
 	
 	/// Reason the activity is occurring.
-	public var reason: [Coding]?
+	public var reason: [CodeableConcept]?
 	
 	/// When the activity was recorded / updated.
 	public var recorded: Instant?
@@ -62,9 +62,8 @@ public class Provenance: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(agent: [ProvenanceAgent], recorded: Instant, target: [Reference]) {
+	public convenience init(recorded: Instant, target: [Reference]) {
 		self.init(json: nil)
-		self.agent = agent
 		self.recorded = recorded
 		self.target = target
 	}
@@ -75,7 +74,7 @@ public class Provenance: DomainResource {
 			if let exist: AnyObject = js["activity"] {
 				presentKeys.insert("activity")
 				if let val = exist as? FHIRJSON {
-					self.activity = Coding(json: val, owner: self)
+					self.activity = CodeableConcept(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "activity", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -89,9 +88,6 @@ public class Provenance: DomainResource {
 				else {
 					errors.append(FHIRJSONError(key: "agent", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "agent"))
 			}
 			if let exist: AnyObject = js["entity"] {
 				presentKeys.insert("entity")
@@ -132,7 +128,7 @@ public class Provenance: DomainResource {
 			if let exist: AnyObject = js["reason"] {
 				presentKeys.insert("reason")
 				if let val = exist as? [FHIRJSON] {
-					self.reason = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
+					self.reason = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reason", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -201,7 +197,7 @@ public class Provenance: DomainResource {
 			json["policy"] = arr
 		}
 		if let reason = self.reason {
-			json["reason"] = Coding.asJSONArray(reason)
+			json["reason"] = CodeableConcept.asJSONArray(reason)
 		}
 		if let recorded = self.recorded {
 			json["recorded"] = recorded.asJSON()
@@ -219,10 +215,11 @@ public class Provenance: DomainResource {
 
 
 /**
- *  Actor involved.
+ *  Agents involved in creating resource.
  *
- *  An actor taking a role in an activity  for which it can be assigned some degree of responsibility for the activity
- *  taking place.
+ *  An agent takes a role in an activity such that the agent can be assigned some degree of responsibility for the
+ *  activity taking place. An agent can be a person, an organization, software, or other entities that may be ascribed
+ *  responsibility.
  */
 public class ProvenanceAgent: BackboneElement {
 	override public class var resourceName: String {
@@ -414,7 +411,7 @@ public class ProvenanceEntity: BackboneElement {
 	/// Identity of entity.
 	public var reference: URL?
 	
-	/// derivation | revision | quotation | source | removal.
+	/// derivation | revision | quotation | source.
 	public var role: String?
 	
 	/// The type of resource in this entity.

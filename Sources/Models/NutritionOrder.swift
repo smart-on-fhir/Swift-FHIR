@@ -2,7 +2,7 @@
 //  NutritionOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -49,7 +49,7 @@ public class NutritionOrder: DomainResource {
 	/// The person who requires the diet, formula or nutritional supplement.
 	public var patient: Reference?
 	
-	/// proposed | draft | planned | requested | active | on-hold | completed | cancelled | entered-in-error.
+	/// proposed | draft | planned | requested | active | on-hold | completed | cancelled.
 	public var status: String?
 	
 	/// Supplement components.

@@ -2,7 +2,7 @@
 //  NutritionOrderTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -127,7 +127,7 @@ class NutritionOrderTests: XCTestCase {
 		XCTAssertEqual(inst.oralDiet?.schedule?[0].repeat_fhir?.boundsPeriod?.start?.description, "2015-02-10")
 		XCTAssertEqual(inst.oralDiet?.schedule?[0].repeat_fhir?.frequency, 3)
 		XCTAssertEqual(inst.oralDiet?.schedule?[0].repeat_fhir?.period, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.oralDiet?.schedule?[0].repeat_fhir?.periodUnit, "d")
+		XCTAssertEqual(inst.oralDiet?.schedule?[0].repeat_fhir?.periodUnits, "d")
 		XCTAssertEqual(inst.oralDiet?.type?[0].coding?[0].code, "160670007")
 		XCTAssertEqual(inst.oralDiet?.type?[0].coding?[0].display, "Diabetic diet")
 		XCTAssertEqual(inst.oralDiet?.type?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -184,9 +184,9 @@ class NutritionOrderTests: XCTestCase {
 		XCTAssertEqual(inst.supplement?[0].schedule?[0].repeat_fhir?.boundsPeriod?.start?.description, "2015-02-10T15:00:00Z")
 		XCTAssertEqual(inst.supplement?[0].schedule?[0].repeat_fhir?.frequency, 1)
 		XCTAssertEqual(inst.supplement?[0].schedule?[0].repeat_fhir?.period, NSDecimalNumber(string: "24"))
-		XCTAssertEqual(inst.supplement?[0].schedule?[0].repeat_fhir?.periodUnit, "h")
+		XCTAssertEqual(inst.supplement?[0].schedule?[0].repeat_fhir?.periodUnits, "h")
 		XCTAssertEqual(inst.supplement?[0].schedule?[1].repeat_fhir?.duration, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.supplement?[0].schedule?[1].repeat_fhir?.durationUnit, "h")
+		XCTAssertEqual(inst.supplement?[0].schedule?[1].repeat_fhir?.durationUnits, "h")
 		XCTAssertEqual(inst.supplement?[0].schedule?[1].repeat_fhir?.when, "HS")
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[0].code, "443051000124104")
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[0].display, "Adult diabetes specialty formula")
@@ -239,7 +239,7 @@ class NutritionOrderTests: XCTestCase {
 		XCTAssertEqual(inst.supplement?[0].schedule?[0].repeat_fhir?.boundsPeriod?.start?.description, "2015-02-10")
 		XCTAssertEqual(inst.supplement?[0].schedule?[0].repeat_fhir?.frequency, 3)
 		XCTAssertEqual(inst.supplement?[0].schedule?[0].repeat_fhir?.period, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.supplement?[0].schedule?[0].repeat_fhir?.periodUnit, "d")
+		XCTAssertEqual(inst.supplement?[0].schedule?[0].repeat_fhir?.periodUnits, "d")
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[0].code, "442971000124100")
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[0].display, "Adult high energy formula")
 		XCTAssertEqual(inst.supplement?[0].type?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -282,7 +282,7 @@ class NutritionOrderTests: XCTestCase {
 		XCTAssertEqual(inst.enteralFormula?.administration?[0].schedule?.repeat_fhir?.boundsPeriod?.start?.description, "2014-09-17T16:00:00Z")
 		XCTAssertEqual(inst.enteralFormula?.administration?[0].schedule?.repeat_fhir?.frequency, 1)
 		XCTAssertEqual(inst.enteralFormula?.administration?[0].schedule?.repeat_fhir?.period, NSDecimalNumber(string: "4"))
-		XCTAssertEqual(inst.enteralFormula?.administration?[0].schedule?.repeat_fhir?.periodUnit, "h")
+		XCTAssertEqual(inst.enteralFormula?.administration?[0].schedule?.repeat_fhir?.periodUnits, "h")
 		XCTAssertEqual(inst.enteralFormula?.administrationInstruction, "240 mls every 4hrs ")
 		XCTAssertEqual(inst.enteralFormula?.baseFormulaProductName, "Acme High Protein Formula")
 		XCTAssertEqual(inst.enteralFormula?.baseFormulaType?.coding?[0].code, "659311000124118")
@@ -417,7 +417,7 @@ class NutritionOrderTests: XCTestCase {
 		XCTAssertEqual(inst.oralDiet?.schedule?[0].repeat_fhir?.boundsPeriod?.start?.description, "2015-02-10")
 		XCTAssertEqual(inst.oralDiet?.schedule?[0].repeat_fhir?.frequency, 3)
 		XCTAssertEqual(inst.oralDiet?.schedule?[0].repeat_fhir?.period, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.oralDiet?.schedule?[0].repeat_fhir?.periodUnit, "d")
+		XCTAssertEqual(inst.oralDiet?.schedule?[0].repeat_fhir?.periodUnits, "d")
 		XCTAssertEqual(inst.oralDiet?.type?[0].coding?[0].code, "15108003")
 		XCTAssertEqual(inst.oralDiet?.type?[0].coding?[0].display, "Restricted fiber diet")
 		XCTAssertEqual(inst.oralDiet?.type?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -470,7 +470,7 @@ class NutritionOrderTests: XCTestCase {
 		XCTAssertEqual(inst.enteralFormula?.administration?[0].schedule?.repeat_fhir?.boundsPeriod?.start?.description, "2014-09-17")
 		XCTAssertEqual(inst.enteralFormula?.administration?[0].schedule?.repeat_fhir?.frequency, 1)
 		XCTAssertEqual(inst.enteralFormula?.administration?[0].schedule?.repeat_fhir?.period, NSDecimalNumber(string: "3"))
-		XCTAssertEqual(inst.enteralFormula?.administration?[0].schedule?.repeat_fhir?.periodUnit, "h")
+		XCTAssertEqual(inst.enteralFormula?.administration?[0].schedule?.repeat_fhir?.periodUnits, "h")
 		XCTAssertEqual(inst.enteralFormula?.administrationInstruction, "Add high calorie high carbohydrate additive to increase cal/oz from 24 cal/oz to 27 cal/oz.")
 		XCTAssertEqual(inst.enteralFormula?.baseFormulaProductName, "Acme Infant Formula + Iron")
 		XCTAssertEqual(inst.enteralFormula?.baseFormulaType?.coding?[0].code, "412414007")
@@ -571,7 +571,7 @@ class NutritionOrderTests: XCTestCase {
 		XCTAssertEqual(inst.oralDiet?.schedule?[0].repeat_fhir?.boundsPeriod?.start?.description, "2015-02-10")
 		XCTAssertEqual(inst.oralDiet?.schedule?[0].repeat_fhir?.frequency, 3)
 		XCTAssertEqual(inst.oralDiet?.schedule?[0].repeat_fhir?.period, NSDecimalNumber(string: "1"))
-		XCTAssertEqual(inst.oralDiet?.schedule?[0].repeat_fhir?.periodUnit, "d")
+		XCTAssertEqual(inst.oralDiet?.schedule?[0].repeat_fhir?.periodUnits, "d")
 		XCTAssertEqual(inst.oralDiet?.texture?[0].modifier?.coding?[0].code, "228055009")
 		XCTAssertEqual(inst.oralDiet?.texture?[0].modifier?.coding?[0].display, "Liquidized food")
 		XCTAssertEqual(inst.oralDiet?.texture?[0].modifier?.coding?[0].system?.absoluteString, "http://snomed.info/sct")

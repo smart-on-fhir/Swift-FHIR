@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -84,9 +84,6 @@ public class OperationOutcomeIssue: BackboneElement {
 	/// Additional diagnostic information about the issue.
 	public var diagnostics: String?
 	
-	/// FluentPath of element(s) related to issue.
-	public var expression: [String]?
-	
 	/// XPath of element(s) related to issue.
 	public var location: [String]?
 	
@@ -139,15 +136,6 @@ public class OperationOutcomeIssue: BackboneElement {
 					errors.append(FHIRJSONError(key: "diagnostics", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["expression"] {
-				presentKeys.insert("expression")
-				if let val = exist as? [String] {
-					self.expression = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "expression", wants: Array<String>.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["location"] {
 				presentKeys.insert("location")
 				if let val = exist as? [String] {
@@ -184,13 +172,6 @@ public class OperationOutcomeIssue: BackboneElement {
 		}
 		if let diagnostics = self.diagnostics {
 			json["diagnostics"] = diagnostics.asJSON()
-		}
-		if let expression = self.expression {
-			var arr = [AnyObject]()
-			for val in expression {
-				arr.append(val.asJSON())
-			}
-			json["expression"] = arr
 		}
 		if let location = self.location {
 			var arr = [AnyObject]()

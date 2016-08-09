@@ -2,7 +2,7 @@
 //  Device.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Device) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Device) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -10,13 +10,13 @@ import Foundation
 
 
 /**
- *  Item used in healthcare.
+ *  An instance of a manufactured te that is used in the provision of healthcare.
  *
- *  This resource identifies an instance or a type of a manufactured item that is used in the provision of healthcare
- *  without being substantially changed through that activity. The device may be a medical or non-medical device.
- *  Medical devices includes durable (reusable) medical equipment, implantable devices, as well as disposable equipment
- *  used for diagnostic, treatment, and research for healthcare and public health.  Non-medical devices may include
- *  items such as a machine, cellphone, computer, application, etc.
+ *  This resource identifies an instance of a manufactured item that is used in the provision of healthcare without
+ *  being substantially changed through that activity. The device may be a medical or non-medical device.  Medical
+ *  devices includes durable (reusable) medical equipment, implantable devices, as well as disposable equipment used for
+ *  diagnostic, treatment, and research for healthcare and public health.  Non-medical devices may include items such as
+ *  a machine, cellphone, computer, application, etc.
  */
 public class Device: DomainResource {
 	override public class var resourceName: String {
@@ -27,9 +27,9 @@ public class Device: DomainResource {
 	public var contact: [ContactPoint]?
 	
 	/// Date and time of expiry of this device (if applicable).
-	public var expirationDate: DateTime?
+	public var expiry: DateTime?
 	
-	/// Instance identifier.
+	/// Instance id from manufacturer, owner, and others.
 	public var identifier: [Identifier]?
 	
 	/// Where the resource is found.
@@ -38,7 +38,7 @@ public class Device: DomainResource {
 	/// Lot number of manufacture.
 	public var lotNumber: String?
 	
-	/// Date when the device was made.
+	/// Manufacture date.
 	public var manufactureDate: DateTime?
 	
 	/// Name of device manufacturer.
@@ -53,7 +53,7 @@ public class Device: DomainResource {
 	/// Organization responsible for device.
 	public var owner: Reference?
 	
-	/// Patient to whom Device is affixed.
+	/// If the resource is affixed to a person.
 	public var patient: Reference?
 	
 	/// available | not-available | entered-in-error.
@@ -62,8 +62,8 @@ public class Device: DomainResource {
 	/// What kind of device this is.
 	public var type: CodeableConcept?
 	
-	/// Unique Device Identifier (UDI) Barcode string.
-	public var udiCarrier: Identifier?
+	/// FDA mandated Unique Device Identifier.
+	public var udi: String?
 	
 	/// Network address to contact device.
 	public var url: URL?
@@ -95,13 +95,13 @@ public class Device: DomainResource {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["expirationDate"] {
-				presentKeys.insert("expirationDate")
+			if let exist: AnyObject = js["expiry"] {
+				presentKeys.insert("expiry")
 				if let val = exist as? String {
-					self.expirationDate = DateTime(string: val)
+					self.expiry = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "expirationDate", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "expiry", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["identifier"] {
@@ -206,13 +206,13 @@ public class Device: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "type"))
 			}
-			if let exist: AnyObject = js["udiCarrier"] {
-				presentKeys.insert("udiCarrier")
-				if let val = exist as? FHIRJSON {
-					self.udiCarrier = Identifier(json: val, owner: self)
+			if let exist: AnyObject = js["udi"] {
+				presentKeys.insert("udi")
+				if let val = exist as? String {
+					self.udi = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "udiCarrier", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "udi", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["url"] {
@@ -243,8 +243,8 @@ public class Device: DomainResource {
 		if let contact = self.contact {
 			json["contact"] = ContactPoint.asJSONArray(contact)
 		}
-		if let expirationDate = self.expirationDate {
-			json["expirationDate"] = expirationDate.asJSON()
+		if let expiry = self.expiry {
+			json["expiry"] = expiry.asJSON()
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
@@ -279,8 +279,8 @@ public class Device: DomainResource {
 		if let type = self.type {
 			json["type"] = type.asJSON()
 		}
-		if let udiCarrier = self.udiCarrier {
-			json["udiCarrier"] = udiCarrier.asJSON()
+		if let udi = self.udi {
+			json["udi"] = udi.asJSON()
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()

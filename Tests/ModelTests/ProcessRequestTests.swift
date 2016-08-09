@@ -2,7 +2,7 @@
 //  ProcessRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -69,7 +69,7 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.id, "1113")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "113")
-		XCTAssertEqual(inst.organizationReference?.reference, "Organization/1")
+		XCTAssertEqual(inst.organization?.reference, "Organization/1")
 		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
@@ -96,7 +96,7 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "112")
 		XCTAssertEqual(inst.include?[0], "Reconciliation")
-		XCTAssertEqual(inst.organizationReference?.reference, "Organization/1")
+		XCTAssertEqual(inst.organization?.reference, "Organization/1")
 		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
@@ -123,7 +123,7 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "114")
 		XCTAssertEqual(inst.include?[0], "Reconciliation")
-		XCTAssertEqual(inst.organizationReference?.reference, "Organization/1")
+		XCTAssertEqual(inst.organization?.reference, "Organization/1")
 		XCTAssertEqual(inst.period?.end?.description, "2014-08-20")
 		XCTAssertEqual(inst.period?.start?.description, "2014-08-10")
 		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the Poll ProcessRequest</div>")
@@ -151,8 +151,8 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.id, "1111")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "111")
-		XCTAssertEqual(inst.organizationReference?.reference, "Organization/1")
-		XCTAssertEqual(inst.requestReference?.reference, "http://benefitco.com/oralhealthclaim/12345")
+		XCTAssertEqual(inst.organization?.reference, "Organization/1")
+		XCTAssertEqual(inst.request?.reference, "http://benefitco.com/oralhealthclaim/12345")
 		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
@@ -179,9 +179,9 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "44543")
 		XCTAssertEqual(inst.item?[0].sequenceLinkId, 1)
-		XCTAssertEqual(inst.organizationReference?.reference, "Organization/1")
+		XCTAssertEqual(inst.organization?.reference, "Organization/1")
 		XCTAssertEqual(inst.reference, "ABC12345G")
-		XCTAssertEqual(inst.requestReference?.reference, "http://BenefitsInc.com/fhir/oralhealthclaim/12345")
+		XCTAssertEqual(inst.request?.reference, "http://BenefitsInc.com/fhir/oralhealthclaim/12345")
 		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the ReProcess ProcessRequest resource.</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
@@ -208,8 +208,8 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "76543")
 		XCTAssertFalse(inst.nullify ?? true)
-		XCTAssertEqual(inst.organizationReference?.reference, "Organization/1")
-		XCTAssertEqual(inst.requestReference?.reference, "http://BenefitsInc.com/fhir/oralhealthclaim/12345")
+		XCTAssertEqual(inst.organization?.reference, "Organization/1")
+		XCTAssertEqual(inst.request?.reference, "http://BenefitsInc.com/fhir/oralhealthclaim/12345")
 		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the Reversal ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
@@ -235,9 +235,9 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.id, "87655")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "1776543")
-		XCTAssertEqual(inst.organizationReference?.reference, "Organization/1")
-		XCTAssertEqual(inst.requestReference?.reference, "http://BenefitsInc.com/oralhealthclaim/12345")
-		XCTAssertEqual(inst.responseReference?.reference, "http://BenefitsInc.com/fhir/claimresponse/3500")
+		XCTAssertEqual(inst.organization?.reference, "Organization/1")
+		XCTAssertEqual(inst.request?.reference, "http://BenefitsInc.com/oralhealthclaim/12345")
+		XCTAssertEqual(inst.response?.reference, "http://BenefitsInc.com/fhir/claimresponse/3500")
 		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the Status ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
@@ -263,7 +263,7 @@ class ProcessRequestTests: XCTestCase {
 		XCTAssertEqual(inst.id, "1110")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://happyvalley.com/processrequest")
 		XCTAssertEqual(inst.identifier?[0].value, "110")
-		XCTAssertEqual(inst.organizationReference?.reference, "Organization/1")
+		XCTAssertEqual(inst.organization?.reference, "Organization/1")
 		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the Poll ProcessRequest</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		

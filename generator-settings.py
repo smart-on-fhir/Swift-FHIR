@@ -1,9 +1,9 @@
 # These are settings for the FHIR class generator
 
-from Swift.mappings import *
-from Swift.settings import *
+from Swift3.mappings import *
+from Swift3.settings import *
 
-specification_url = 'http://hl7.org/fhir/2016May/'
+specification_url = 'http://hl7.org/fhir/dstu2/'
 
 write_resources = True
 write_searchparams = False

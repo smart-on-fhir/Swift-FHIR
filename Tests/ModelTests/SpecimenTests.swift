@@ -2,7 +2,7 @@
 //  SpecimenTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -112,7 +112,7 @@ class SpecimenTests: XCTestCase {
 		XCTAssertEqual(inst.accessionIdentifier?.value, "X352356")
 		XCTAssertEqual(inst.collection?.collectedDateTime?.description, "2011-05-30T06:15:00Z")
 		XCTAssertEqual(inst.collection?.collector?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.collection?.comment, "Specimen is grossly lipemic")
+		XCTAssertEqual(inst.collection?.comment?[0], "Specimen is grossly lipemic")
 		XCTAssertEqual(inst.collection?.method?.coding?[0].code, "LNV")
 		XCTAssertEqual(inst.collection?.method?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0488")
 		XCTAssertEqual(inst.collection?.quantity?.unit, "mL")

@@ -2,7 +2,7 @@
 //  ImagingObjectSelection.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -28,7 +28,7 @@ public class ImagingObjectSelection: DomainResource {
 	/// Author (human or machine).
 	public var author: Reference?
 	
-	/// Time when the imaging object selection was created.
+	/// Authoring time of the selection.
 	public var authoringTime: DateTime?
 	
 	/// Description text.
@@ -304,10 +304,9 @@ public class ImagingObjectSelectionStudySeries: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(instance: [ImagingObjectSelectionStudySeriesInstance], uid: String) {
+	public convenience init(instance: [ImagingObjectSelectionStudySeriesInstance]) {
 		self.init(json: nil)
 		self.instance = instance
-		self.uid = uid
 	}
 	
 	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -333,9 +332,6 @@ public class ImagingObjectSelectionStudySeries: BackboneElement {
 				else {
 					errors.append(FHIRJSONError(key: "uid", wants: String.self, has: exist.dynamicType))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "uid"))
 			}
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
@@ -379,7 +375,7 @@ public class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
 	}
 	
 	/// The frame set.
-	public var frame: [ImagingObjectSelectionStudySeriesInstanceFrame]?
+	public var frames: [ImagingObjectSelectionStudySeriesInstanceFrames]?
 	
 	/// SOP class UID of instance.
 	public var sopClass: String?
@@ -407,13 +403,13 @@ public class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
 	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["frame"] {
-				presentKeys.insert("frame")
+			if let exist: AnyObject = js["frames"] {
+				presentKeys.insert("frames")
 				if let val = exist as? [FHIRJSON] {
-					self.frame = ImagingObjectSelectionStudySeriesInstanceFrame.instantiate(fromArray: val, owner: self) as? [ImagingObjectSelectionStudySeriesInstanceFrame]
+					self.frames = ImagingObjectSelectionStudySeriesInstanceFrames.instantiate(fromArray: val, owner: self) as? [ImagingObjectSelectionStudySeriesInstanceFrames]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "frame", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "frames", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["sopClass"] {
@@ -459,8 +455,8 @@ public class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let frame = self.frame {
-			json["frame"] = ImagingObjectSelectionStudySeriesInstanceFrame.asJSONArray(frame)
+		if let frames = self.frames {
+			json["frames"] = ImagingObjectSelectionStudySeriesInstanceFrames.asJSONArray(frames)
 		}
 		if let sopClass = self.sopClass {
 			json["sopClass"] = sopClass.asJSON()
@@ -482,13 +478,13 @@ public class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
  *
  *  Identity and location information of the frames in the selected instance.
  */
-public class ImagingObjectSelectionStudySeriesInstanceFrame: BackboneElement {
+public class ImagingObjectSelectionStudySeriesInstanceFrames: BackboneElement {
 	override public class var resourceName: String {
-		get { return "ImagingObjectSelectionStudySeriesInstanceFrame" }
+		get { return "ImagingObjectSelectionStudySeriesInstanceFrames" }
 	}
 	
-	/// Frame reference number.
-	public var number: [UInt]?
+	/// Frame numbers.
+	public var frameNumbers: [UInt]?
 	
 	/// Retrieve frame URL.
 	public var url: URL?
@@ -500,26 +496,26 @@ public class ImagingObjectSelectionStudySeriesInstanceFrame: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(number: [UInt], url: URL) {
+	public convenience init(frameNumbers: [UInt], url: URL) {
 		self.init(json: nil)
-		self.number = number
+		self.frameNumbers = frameNumbers
 		self.url = url
 	}
 	
 	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["number"] {
-				presentKeys.insert("number")
+			if let exist: AnyObject = js["frameNumbers"] {
+				presentKeys.insert("frameNumbers")
 				if let val = exist as? [UInt] {
-					self.number = val
+					self.frameNumbers = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "number", wants: Array<UInt>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "frameNumbers", wants: Array<UInt>.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "number"))
+				errors.append(FHIRJSONError(key: "frameNumbers"))
 			}
 			if let exist: AnyObject = js["url"] {
 				presentKeys.insert("url")
@@ -540,12 +536,12 @@ public class ImagingObjectSelectionStudySeriesInstanceFrame: BackboneElement {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let number = self.number {
+		if let frameNumbers = self.frameNumbers {
 			var arr = [AnyObject]()
-			for val in number {
+			for val in frameNumbers {
 				arr.append(val.asJSON())
 			}
-			json["number"] = arr
+			json["frameNumbers"] = arr
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()

@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -23,7 +23,7 @@ public class AllergyIntolerance: DomainResource {
 	/// food | medication | environment | other - Category of Substance.
 	public var category: String?
 	
-	/// low | high | unable-to-assess.
+	/// CRITL | CRITH | CRITU.
 	public var criticality: String?
 	
 	/// External ids for this item.
@@ -33,7 +33,7 @@ public class AllergyIntolerance: DomainResource {
 	public var lastOccurence: DateTime?
 	
 	/// Additional text not captured in other fields.
-	public var note: [Annotation]?
+	public var note: Annotation?
 	
 	/// Date(/time) when manifestations showed.
 	public var onset: DateTime?
@@ -116,11 +116,11 @@ public class AllergyIntolerance: DomainResource {
 			}
 			if let exist: AnyObject = js["note"] {
 				presentKeys.insert("note")
-				if let val = exist as? [FHIRJSON] {
-					self.note = Annotation.instantiate(fromArray: val, owner: self) as? [Annotation]
+				if let val = exist as? FHIRJSON {
+					self.note = Annotation(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "note", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["onset"] {
@@ -230,7 +230,7 @@ public class AllergyIntolerance: DomainResource {
 			json["lastOccurence"] = lastOccurence.asJSON()
 		}
 		if let note = self.note {
-			json["note"] = Annotation.asJSONArray(note)
+			json["note"] = note.asJSON()
 		}
 		if let onset = self.onset {
 			json["onset"] = onset.asJSON()
@@ -288,7 +288,7 @@ public class AllergyIntoleranceReaction: BackboneElement {
 	public var manifestation: [CodeableConcept]?
 	
 	/// Text about event not captured in other fields.
-	public var note: [Annotation]?
+	public var note: Annotation?
 	
 	/// Date(/time) when manifestations showed.
 	public var onset: DateTime?
@@ -355,11 +355,11 @@ public class AllergyIntoleranceReaction: BackboneElement {
 			}
 			if let exist: AnyObject = js["note"] {
 				presentKeys.insert("note")
-				if let val = exist as? [FHIRJSON] {
-					self.note = Annotation.instantiate(fromArray: val, owner: self) as? [Annotation]
+				if let val = exist as? FHIRJSON {
+					self.note = Annotation(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "note", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["onset"] {
@@ -409,7 +409,7 @@ public class AllergyIntoleranceReaction: BackboneElement {
 			json["manifestation"] = CodeableConcept.asJSONArray(manifestation)
 		}
 		if let note = self.note {
-			json["note"] = Annotation.asJSONArray(note)
+			json["note"] = note.asJSON()
 		}
 		if let onset = self.onset {
 			json["onset"] = onset.asJSON()

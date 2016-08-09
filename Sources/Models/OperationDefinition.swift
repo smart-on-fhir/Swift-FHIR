@@ -2,7 +2,7 @@
 //  OperationDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -26,9 +26,6 @@ public class OperationDefinition: DomainResource {
 	/// Name used to invoke the operation.
 	public var code: String?
 	
-	/// Additional information about use.
-	public var comment: String?
-	
 	/// Contact details of the publisher.
 	public var contact: [OperationDefinitionContact]?
 	
@@ -41,7 +38,7 @@ public class OperationDefinition: DomainResource {
 	/// If for testing purposes, not real usage.
 	public var experimental: Bool?
 	
-	/// Whether content is unchanged by the operation.
+	/// Whether content is unchanged by operation.
 	public var idempotent: Bool?
 	
 	/// Invoke on an instance?.
@@ -53,13 +50,16 @@ public class OperationDefinition: DomainResource {
 	/// Informal name for this operation.
 	public var name: String?
 	
+	/// Additional information about use.
+	public var notes: String?
+	
 	/// Parameters for the operation/query.
 	public var parameter: [OperationDefinitionParameter]?
 	
 	/// Name of the publisher (Organization or individual).
 	public var publisher: String?
 	
-	/// Why this resource has been created.
+	/// Why is this needed?.
 	public var requirements: String?
 	
 	/// draft | active | retired.
@@ -73,9 +73,6 @@ public class OperationDefinition: DomainResource {
 	
 	/// Logical URL to reference this operation definition.
 	public var url: URL?
-	
-	/// Content intends to support these contexts.
-	public var useContext: [CodeableConcept]?
 	
 	/// Logical id for this version of the operation definition.
 	public var version: String?
@@ -120,15 +117,6 @@ public class OperationDefinition: DomainResource {
 			}
 			else {
 				errors.append(FHIRJSONError(key: "code"))
-			}
-			if let exist: AnyObject = js["comment"] {
-				presentKeys.insert("comment")
-				if let val = exist as? String {
-					self.comment = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: exist.dynamicType))
-				}
 			}
 			if let exist: AnyObject = js["contact"] {
 				presentKeys.insert("contact")
@@ -211,6 +199,15 @@ public class OperationDefinition: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "name"))
 			}
+			if let exist: AnyObject = js["notes"] {
+				presentKeys.insert("notes")
+				if let val = exist as? String {
+					self.notes = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "notes", wants: String.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["parameter"] {
 				presentKeys.insert("parameter")
 				if let val = exist as? [FHIRJSON] {
@@ -280,15 +277,6 @@ public class OperationDefinition: DomainResource {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["useContext"] {
-				presentKeys.insert("useContext")
-				if let val = exist as? [FHIRJSON] {
-					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["version"] {
 				presentKeys.insert("version")
 				if let val = exist as? String {
@@ -310,9 +298,6 @@ public class OperationDefinition: DomainResource {
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON()
-		}
-		if let comment = self.comment {
-			json["comment"] = comment.asJSON()
 		}
 		if let contact = self.contact {
 			json["contact"] = OperationDefinitionContact.asJSONArray(contact)
@@ -337,6 +322,9 @@ public class OperationDefinition: DomainResource {
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
+		}
+		if let notes = self.notes {
+			json["notes"] = notes.asJSON()
 		}
 		if let parameter = self.parameter {
 			json["parameter"] = OperationDefinitionParameter.asJSONArray(parameter)
@@ -363,9 +351,6 @@ public class OperationDefinition: DomainResource {
 		if let url = self.url {
 			json["url"] = url.asJSON()
 		}
-		if let useContext = self.useContext {
-			json["useContext"] = CodeableConcept.asJSONArray(useContext)
-		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
 		}
@@ -385,7 +370,7 @@ public class OperationDefinitionContact: BackboneElement {
 		get { return "OperationDefinitionContact" }
 	}
 	
-	/// Name of an individual to contact.
+	/// Name of a individual to contact.
 	public var name: String?
 	
 	/// Contact details for individual or publisher.
@@ -467,9 +452,6 @@ public class OperationDefinitionParameter: BackboneElement {
 	
 	/// Profile on the type.
 	public var profile: Reference?
-	
-	/// number | date | string | token | reference | composite | quantity | uri.
-	public var searchType: String?
 	
 	/// What type this parameter has.
 	public var type: String?
@@ -567,15 +549,6 @@ public class OperationDefinitionParameter: BackboneElement {
 					errors.append(FHIRJSONError(key: "profile", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["searchType"] {
-				presentKeys.insert("searchType")
-				if let val = exist as? String {
-					self.searchType = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "searchType", wants: String.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? String {
@@ -624,9 +597,6 @@ public class OperationDefinitionParameter: BackboneElement {
 		}
 		if let profile = self.profile {
 			json["profile"] = profile.asJSON()
-		}
-		if let searchType = self.searchType {
-			json["searchType"] = searchType.asJSON()
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()

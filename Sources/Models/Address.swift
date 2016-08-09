@@ -2,7 +2,7 @@
 //  Address.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Address) on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Address) on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -10,11 +10,10 @@ import Foundation
 
 
 /**
- *  An address expressed using postal conventions (as opposed to GPS or other location definition formats).
+ *  A postal address.
  *
- *  An address expressed using postal conventions (as opposed to GPS or other location definition formats).  This data
- *  type may be used to convey addresses for use in delivering mail as well as for visiting locations and which might
- *  not be valid for mail delivery.  There are a variety of postal address formats defined around the world.
+ *  There is a variety of postal address formats defined around the world. This format defines a superset that is the
+ *  basis for all addresses around the world.
  */
 public class Address: Element {
 	override public class var resourceName: String {

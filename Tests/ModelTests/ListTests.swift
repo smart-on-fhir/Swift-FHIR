@@ -2,7 +2,7 @@
 //  ListTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
+//  Generated from FHIR 1.0.2.7202 on 2016-08-09.
 //  2016, SMART Health IT.
 //
 
@@ -110,7 +110,7 @@ class ListTests: XCTestCase {
 		XCTAssertEqual(inst.entry?[1].item?.reference, "#fmh-2")
 		XCTAssertEqual(inst.id, "f201")
 		XCTAssertEqual(inst.mode, "snapshot")
-		XCTAssertEqual(inst.note?[0].text, "Both parents, both brothers and both children (twin) are still alive.")
+		XCTAssertEqual(inst.note, "Both parents, both brothers and both children (twin) are still alive.")
 		XCTAssertEqual(inst.status, "current")
 		XCTAssertEqual(inst.subject?.display, "Roel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f201")

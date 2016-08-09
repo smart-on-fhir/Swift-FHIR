@@ -2,7 +2,7 @@ FHIR Swift Classes
 ==================
 
 These are [Swift](https://developer.apple.com/swift/) classes representing data models of [🔥 FHIR](http://www.hl7.org/fhir) resource profiles, compatible with **iOS 7** and **OS X 10.9** and later.
-Building _Swift 2_ frameworks requires Xcode 7 or later, using frameworks on iOS requires **iOS 8**.
+Building _Swift 3_ frameworks requires Xcode 8 or later, using frameworks on iOS requires **iOS 8**.
 
 This work is [Apache licensed](LICENSE.txt).
 
@@ -15,6 +15,8 @@ See the `develop` branch or specific `feature/x` branches for new Swift or FHIR 
 
  Version |   Swift   |      FHIR     | &nbsp;
 ---------|-----------|---------------|-----------------------------
+ **2.9** |       3.0 |  `1.4.0.8139` | STU 3 Montreal, May 2016
+ **2.8** |       3.0 |  `1.0.2.7202` | DSTU 2 (_+ technical errata_)
 **2.2.3**|       2.2 |  `1.0.2.7202` | DSTU 2 (_+ technical errata_)
  **2.2** |   2.0-2.2 |  `1.0.2.7202` | DSTU 2 (_+ technical errata_)
  **2.1** |   2.0-2.2 |  `1.0.1.7108` | DSTU 2

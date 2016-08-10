@@ -109,10 +109,10 @@ public extension Resource {
 			if let error = response.error {
 				callback(resource: nil, error: error)
 			}
-			else if let resource = response.responseResource(Resource.self) {
+			else if let resource = response.responseResource(ofType: Resource.self) {
 				resource._server = server
 				do {
-					try response.applyHeadersTo(resource: resource)
+					try response.applyHeaders(to: resource)
 				}
 				catch let error {
 					fhir_warn("Error applying response headers after `read` call: \(error)")
@@ -152,7 +152,7 @@ public extension Resource {
 			if nil == response.error {
 				self._server = server
 				do {
-					try response.applyHeadersTo(resource: self)
+					try response.applyHeaders(to: self)
 				}
 				catch let error {
 					fhir_warn("Error applying response headers after `create` call: \(error)")
@@ -187,8 +187,8 @@ public extension Resource {
 			if nil == response.error {
 				self._server = server
 				do {
-					try response.applyHeadersTo(resource: self)
-					try response.applyBodyTo(resource: self)
+					try response.applyHeaders(to: self)
+					try response.applyBody(to: self)
 				}
 					
 				// no resource, but hopefully the id was detected in the Location header, so go and read the resource
@@ -233,7 +233,7 @@ public extension Resource {
 				let path = try relativeURLPath()
 				server.performRequest(ofType: .PUT, path: path, resource: self, additionalHeaders: nil) { response in
 					do {
-						try response.applyHeadersTo(resource: self)
+						try response.applyHeaders(to: self)
 					}
 					catch let error {
 						fhir_warn("Error applying response headers after `update` call: \(error)")
@@ -340,7 +340,7 @@ public extension Resource {
 				callback(resource: nil, error: error)
 			}
 			else {
-				let resource = response.responseResource(Resource.self)
+				let resource = response.responseResource(ofType: Resource.self)
 				resource?._server = server
 				callback(resource: resource, error: nil)
 			}

@@ -20,9 +20,9 @@ extension FHIRServerResponse {
 	
 	This method must not be called if the response has a non-nil error.
 	
-	- parameter resource: The resource to apply response data to
+	- parameter to: The resource to apply response data to
 	*/
-	public func applyHeadersTo(resource: Resource) throws {
+	public func applyHeaders(to resource: Resource) throws {
 		
 		// inspect Location header to update `id` and `meta`. It has the form "Location: [base]/[type]/[id]/_history/[vid]"
 		if let location = headers["Location"] {
@@ -156,7 +156,7 @@ public class FHIRServerDataResponse: FHIRServerResponse {
 	
 	// MARK: - Responses
 	
-	public func responseResource<T: Resource>(_ expectType: T.Type) -> T? {
+	public func responseResource<T: Resource>(ofType: T.Type) -> T? {
 		return nil
 	}
 	
@@ -169,9 +169,9 @@ public class FHIRServerDataResponse: FHIRServerResponse {
 	The base method does not actually know how to handle the data to update a resource, but it will still throw
 	`FHIRError.ResponseNoResourceReceived` if body is nil.
 	
-	- parameter resource: The resource to apply the response data to
+	- parameter to: The resource to apply the response data to
 	*/
-	public func applyBodyTo(resource: Resource) throws {
+	public func applyBody(to: Resource) throws {
 		guard nil != body else {
 			throw FHIRError.responseNoResourceReceived
 		}
@@ -198,7 +198,7 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse {
 			do {
 				let json = try JSONSerialization.jsonObject(with: data, options: []) as? FHIRJSON
 				self.json = json
-				self.outcome = responseResource(OperationOutcome.self)
+				self.outcome = responseResource(ofType: OperationOutcome.self)
 				
 				// inspect OperationOutcome if there was an error
 				if status >= 400 {
@@ -235,7 +235,7 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse {
 	Uses FHIRElement's factory method to instantiate a resource from the response JSON, if any, and returns that resource if it is indeed of
 	the expected type.
 	*/
-	public override func responseResource<T: Resource>(_ expectType: T.Type) -> T? {
+	public override func responseResource<T: Resource>(ofType: T.Type) -> T? {
 		if let json = json {
 			let resource = Resource.instantiate(fromJSON: json, owner: nil)
 			return resource as? T
@@ -251,7 +251,7 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse {
 	
 	- parameter resource: The resource to apply the response data to
 	*/
-	public override func applyBodyTo(resource: Resource) throws {
+	public override func applyBody(to resource: Resource) throws {
 		guard let json = json else {
 			throw FHIRError.responseNoResourceReceived
 		}

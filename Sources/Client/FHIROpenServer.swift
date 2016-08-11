@@ -50,8 +50,10 @@ public class FHIROpenServer: FHIRServer {
 	This method simply creates an absolute URL from the receiver's `baseURL` and the given path.
 	
 	A chance for subclasses to mess with URL generation if needed.
+	
+	- parameter for: The path in the absolute URL
 	*/
-	public func absoluteURLForPath(_ path: String, handler: FHIRServerRequestHandler) -> URL? {
+	public func absoluteURL(for path: String, handler: FHIRServerRequestHandler) -> URL? {
 		return URL(string: path, relativeTo: baseURL)
 	}
 	
@@ -109,7 +111,7 @@ public class FHIROpenServer: FHIRServer {
 	- parameter callback:    The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
 	public func performRequest<R: FHIRServerRequestHandler>(againstPath path: String, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
-		guard let url = absoluteURLForPath(path, handler: handler) else {
+		guard let url = absoluteURL(for: path, handler: handler) else {
 			let res = handler.notSent("Failed to parse path «\(path)» relative to server base URL")
 			callback(response: res)
 			return

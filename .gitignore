@@ -17,4 +17,5 @@ generate/downloads/site
 xcuserdata
 build
 docs
+*.sublime-*
 

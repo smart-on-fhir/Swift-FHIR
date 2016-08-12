@@ -9,6 +9,9 @@
 import Foundation
 #if !NO_MODEL_IMPORT
 import Models
+public typealias FHIRSearchBundleErrorCallback = ((bundle: Models.Bundle?, error: FHIRError?) -> Void)
+#else
+public typealias FHIRSearchBundleErrorCallback = ((bundle: Bundle?, error: FHIRError?) -> Void)
 #endif
 
 
@@ -103,7 +106,7 @@ public class FHIRSearch
 		- parameter server: The FHIRServer instance on which to perform the search
 		- parameter callback: The callback, receives the response Bundle or an NSError message describing what went wrong
 	 */
-	public func perform(_ server: FHIRServer, callback: ((bundle: Bundle?, error: FHIRError?) -> Void)) {
+	public func perform(_ server: FHIRServer, callback: FHIRSearchBundleErrorCallback) {
 		if nil == profileType {
 			callback(bundle: nil, error: FHIRError.searchResourceTypeNotDefined)
 			return
@@ -120,7 +123,7 @@ public class FHIRSearch
 		- parameter server: The FHIRServer instance on which to perform the search
 		- parameter callback: The callback, receives the response Bundle or an NSError message describing what went wrong
 	 */
-	public func nextPage(_ server: FHIRServer, callback: ((bundle: Bundle?, error: FHIRError?) -> Void)) {
+	public func nextPage(_ server: FHIRServer, callback: FHIRSearchBundleErrorCallback) {
 		if let next = nextPageURL?.absoluteString {
 			performSearch(server, queryPath: next, callback: callback)
 		}
@@ -129,7 +132,7 @@ public class FHIRSearch
 		}
 	}
 	
-	func performSearch(_ server: FHIRServer, queryPath: String, callback: ((bundle: Bundle?, error: FHIRError?) -> Void)) {
+	func performSearch(_ server: FHIRServer, queryPath: String, callback: FHIRSearchBundleErrorCallback) {
 		if busy {
 			callback(bundle: nil, error: nil)
 			return

@@ -2,9 +2,14 @@ Changelog
 =========
 
 
-## x.x
+## 2.4
 
-- Update to FHIR `1.4.0.8139`
+- Update to FHIR `1.6.0.9663`
+
+
+## 2.3
+
+- Update to Swift 2.3
 
 
 ## 2.2.3

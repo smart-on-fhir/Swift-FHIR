@@ -2,7 +2,7 @@
 //  EnrollmentRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/EnrollmentRequest) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/EnrollmentRequest) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -28,26 +28,38 @@ public class EnrollmentRequest: DomainResource {
 	/// Business Identifier.
 	public var identifier: [Identifier]?
 	
+	/// Target.
+	public var insurerIdentifier: Identifier?
+	
+	/// Target.
+	public var insurerReference: Reference?
+	
 	/// Responsible organization.
-	public var organization: Reference?
+	public var organizationIdentifier: Identifier?
+	
+	/// Responsible organization.
+	public var organizationReference: Reference?
 	
 	/// Original version.
 	public var originalRuleset: Coding?
 	
 	/// Responsible practitioner.
-	public var provider: Reference?
+	public var providerIdentifier: Identifier?
 	
-	/// Patient relationship to subscriber.
-	public var relationship: Coding?
+	/// Responsible practitioner.
+	public var providerReference: Reference?
 	
 	/// Resource version.
 	public var ruleset: Coding?
 	
-	/// The subject of the Products and Services.
-	public var subject: Reference?
+	/// active | cancelled | draft | entered-in-error.
+	public var status: String?
 	
-	/// Insurer.
-	public var target: Reference?
+	/// The subject of the Products and Services.
+	public var subjectIdentifier: Identifier?
+	
+	/// The subject of the Products and Services.
+	public var subjectReference: Reference?
 	
 	
 	/** Initialize with a JSON object. */
@@ -56,11 +68,12 @@ public class EnrollmentRequest: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(coverage: Reference, relationship: Coding, subject: Reference) {
+	public convenience init(coverage: Reference, status: String, subjectIdentifier: Identifier, subjectReference: Reference) {
 		self.init(json: nil)
 		self.coverage = coverage
-		self.relationship = relationship
-		self.subject = subject
+		self.status = status
+		self.subjectIdentifier = subjectIdentifier
+		self.subjectReference = subjectReference
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -96,13 +109,40 @@ public class EnrollmentRequest: DomainResource {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["organization"] {
-				presentKeys.insert("organization")
+			if let exist: AnyObject = js["insurerIdentifier"] {
+				presentKeys.insert("insurerIdentifier")
 				if let val = exist as? FHIRJSON {
-					self.organization = Reference(json: val, owner: self)
+					self.insurerIdentifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "organization", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "insurerIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["insurerReference"] {
+				presentKeys.insert("insurerReference")
+				if let val = exist as? FHIRJSON {
+					self.insurerReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "insurerReference", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["organizationIdentifier"] {
+				presentKeys.insert("organizationIdentifier")
+				if let val = exist as? FHIRJSON {
+					self.organizationIdentifier = Identifier(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "organizationIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["organizationReference"] {
+				presentKeys.insert("organizationReference")
+				if let val = exist as? FHIRJSON {
+					self.organizationReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "organizationReference", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["originalRuleset"] {
@@ -114,26 +154,23 @@ public class EnrollmentRequest: DomainResource {
 					errors.append(FHIRJSONError(key: "originalRuleset", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["provider"] {
-				presentKeys.insert("provider")
+			if let exist: AnyObject = js["providerIdentifier"] {
+				presentKeys.insert("providerIdentifier")
 				if let val = exist as? FHIRJSON {
-					self.provider = Reference(json: val, owner: self)
+					self.providerIdentifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "provider", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "providerIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["relationship"] {
-				presentKeys.insert("relationship")
+			if let exist: AnyObject = js["providerReference"] {
+				presentKeys.insert("providerReference")
 				if let val = exist as? FHIRJSON {
-					self.relationship = Coding(json: val, owner: self)
+					self.providerReference = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "relationship", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "providerReference", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "relationship"))
 			}
 			if let exist: AnyObject = js["ruleset"] {
 				presentKeys.insert("ruleset")
@@ -144,26 +181,40 @@ public class EnrollmentRequest: DomainResource {
 					errors.append(FHIRJSONError(key: "ruleset", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["subject"] {
-				presentKeys.insert("subject")
-				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+			if let exist: AnyObject = js["status"] {
+				presentKeys.insert("status")
+				if let val = exist as? String {
+					self.status = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "subject"))
+				errors.append(FHIRJSONError(key: "status"))
 			}
-			if let exist: AnyObject = js["target"] {
-				presentKeys.insert("target")
+			if let exist: AnyObject = js["subjectIdentifier"] {
+				presentKeys.insert("subjectIdentifier")
 				if let val = exist as? FHIRJSON {
-					self.target = Reference(json: val, owner: self)
+					self.subjectIdentifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "target", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "subjectIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
+			}
+			if let exist: AnyObject = js["subjectReference"] {
+				presentKeys.insert("subjectReference")
+				if let val = exist as? FHIRJSON {
+					self.subjectReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "subjectReference", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			
+			// check if nonoptional expanded properties are present
+			if nil == self.subjectIdentifier && nil == self.subjectReference {
+				errors.append(FHIRJSONError(key: "subject*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -181,26 +232,38 @@ public class EnrollmentRequest: DomainResource {
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
-		if let organization = self.organization {
-			json["organization"] = organization.asJSON()
+		if let insurerIdentifier = self.insurerIdentifier {
+			json["insurerIdentifier"] = insurerIdentifier.asJSON()
+		}
+		if let insurerReference = self.insurerReference {
+			json["insurerReference"] = insurerReference.asJSON()
+		}
+		if let organizationIdentifier = self.organizationIdentifier {
+			json["organizationIdentifier"] = organizationIdentifier.asJSON()
+		}
+		if let organizationReference = self.organizationReference {
+			json["organizationReference"] = organizationReference.asJSON()
 		}
 		if let originalRuleset = self.originalRuleset {
 			json["originalRuleset"] = originalRuleset.asJSON()
 		}
-		if let provider = self.provider {
-			json["provider"] = provider.asJSON()
+		if let providerIdentifier = self.providerIdentifier {
+			json["providerIdentifier"] = providerIdentifier.asJSON()
 		}
-		if let relationship = self.relationship {
-			json["relationship"] = relationship.asJSON()
+		if let providerReference = self.providerReference {
+			json["providerReference"] = providerReference.asJSON()
 		}
 		if let ruleset = self.ruleset {
 			json["ruleset"] = ruleset.asJSON()
 		}
-		if let subject = self.subject {
-			json["subject"] = subject.asJSON()
+		if let status = self.status {
+			json["status"] = status.asJSON()
 		}
-		if let target = self.target {
-			json["target"] = target.asJSON()
+		if let subjectIdentifier = self.subjectIdentifier {
+			json["subjectIdentifier"] = subjectIdentifier.asJSON()
+		}
+		if let subjectReference = self.subjectReference {
+			json["subjectReference"] = subjectReference.asJSON()
 		}
 		
 		return json

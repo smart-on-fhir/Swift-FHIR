@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -44,7 +44,7 @@ public class ValueSet: DomainResource {
 	public var extensible: Bool?
 	
 	/// Additional identifier for the value set (e.g. HL7 v2 / CDA).
-	public var identifier: Identifier?
+	public var identifier: [Identifier]?
 	
 	/// Indicates whether or not any change to the content logical definition may occur.
 	public var immutable: Bool?
@@ -162,11 +162,11 @@ public class ValueSet: DomainResource {
 			}
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
-				if let val = exist as? FHIRJSON {
-					self.identifier = Identifier(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["immutable"] {
@@ -285,7 +285,7 @@ public class ValueSet: DomainResource {
 			json["extensible"] = extensible.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
+			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
 		if let immutable = self.immutable {
 			json["immutable"] = immutable.asJSON()
@@ -517,7 +517,7 @@ public class ValueSetComposeIncludeConcept: BackboneElement {
 	/// Additional representations for this valueset.
 	public var designation: [ValueSetComposeIncludeConceptDesignation]?
 	
-	/// Test to display for this code for this value set.
+	/// Text to display for this code for this value set.
 	public var display: String?
 	
 	
@@ -685,7 +685,7 @@ public class ValueSetComposeIncludeFilter: BackboneElement {
 		get { return "ValueSetComposeIncludeFilter" }
 	}
 	
-	/// = | is-a | is-not-a | regex | in | not-in.
+	/// = | is-a | is-not-a | regex | in | not-in | generalizes.
 	public var op: String?
 	
 	/// A property defined by the code system.

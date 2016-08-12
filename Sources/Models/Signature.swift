@@ -2,7 +2,7 @@
 //  Signature.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Signature) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Signature) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -27,16 +27,22 @@ public class Signature: Element {
 	/// The technical format of the signature.
 	public var contentType: String?
 	
+	/// The party represented.
+	public var onBehalfOfReference: Reference?
+	
+	/// The party represented.
+	public var onBehalfOfUri: NSURL?
+	
 	/// Indication of the reason the entity signed the object(s).
 	public var type: [Coding]?
 	
 	/// When the signature was created.
 	public var when: Instant?
 	
-	/// Who signed the signature.
+	/// Who signed.
 	public var whoReference: Reference?
 	
-	/// Who signed the signature.
+	/// Who signed.
 	public var whoUri: NSURL?
 	
 	
@@ -73,6 +79,24 @@ public class Signature: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentType", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["onBehalfOfReference"] {
+				presentKeys.insert("onBehalfOfReference")
+				if let val = exist as? FHIRJSON {
+					self.onBehalfOfReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "onBehalfOfReference", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["onBehalfOfUri"] {
+				presentKeys.insert("onBehalfOfUri")
+				if let val = exist as? String {
+					self.onBehalfOfUri = NSURL(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "onBehalfOfUri", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["type"] {
@@ -134,6 +158,12 @@ public class Signature: Element {
 		}
 		if let contentType = self.contentType {
 			json["contentType"] = contentType.asJSON()
+		}
+		if let onBehalfOfReference = self.onBehalfOfReference {
+			json["onBehalfOfReference"] = onBehalfOfReference.asJSON()
+		}
+		if let onBehalfOfUri = self.onBehalfOfUri {
+			json["onBehalfOfUri"] = onBehalfOfUri.asJSON()
 		}
 		if let type = self.type {
 			json["type"] = Coding.asJSONArray(type)

@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -44,11 +44,14 @@ public class Conformance: DomainResource {
 	/// FHIR Version the system uses.
 	public var fhirVersion: String?
 	
-	/// formats supported (xml | json | mime type).
+	/// formats supported (xml | json | ttl | mime type).
 	public var format: [String]?
 	
 	/// If this describes a specific instance.
 	public var implementation: ConformanceImplementation?
+	
+	/// Canonical URL of service implemented/used by software.
+	public var instantiates: [NSURL]?
 	
 	/// instance | capability | requirements.
 	public var kind: String?
@@ -208,6 +211,15 @@ public class Conformance: DomainResource {
 					errors.append(FHIRJSONError(key: "implementation", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["instantiates"] {
+				presentKeys.insert("instantiates")
+				if let val = exist as? [String] {
+					self.instantiates = NSURL.from(val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "instantiates", wants: Array<String>.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["kind"] {
 				presentKeys.insert("kind")
 				if let val = exist as? String {
@@ -362,6 +374,13 @@ public class Conformance: DomainResource {
 		}
 		if let implementation = self.implementation {
 			json["implementation"] = implementation.asJSON()
+		}
+		if let instantiates = self.instantiates {
+			var arr = [AnyObject]()
+			for val in instantiates {
+				arr.append(val.asJSON())
+			}
+			json["instantiates"] = arr
 		}
 		if let kind = self.kind {
 			json["kind"] = kind.asJSON()
@@ -1001,9 +1020,6 @@ public class ConformanceRest: BackboneElement {
 	/// Information about security of implementation.
 	public var security: ConformanceRestSecurity?
 	
-	/// not-supported | batch | transaction | both.
-	public var transactionMode: String?
-	
 	
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
@@ -1094,15 +1110,6 @@ public class ConformanceRest: BackboneElement {
 					errors.append(FHIRJSONError(key: "security", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["transactionMode"] {
-				presentKeys.insert("transactionMode")
-				if let val = exist as? String {
-					self.transactionMode = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "transactionMode", wants: String.self, has: exist.dynamicType))
-				}
-			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -1138,9 +1145,6 @@ public class ConformanceRest: BackboneElement {
 		if let security = self.security {
 			json["security"] = security.asJSON()
 		}
-		if let transactionMode = self.transactionMode {
-			json["transactionMode"] = transactionMode.asJSON()
-		}
 		
 		return json
 	}
@@ -1157,7 +1161,7 @@ public class ConformanceRestInteraction: BackboneElement {
 		get { return "ConformanceRestInteraction" }
 	}
 	
-	/// transaction | search-system | history-system.
+	/// transaction | batch | search-system | history-system.
 	public var code: String?
 	
 	/// Anything special about operation behavior.
@@ -1309,8 +1313,14 @@ public class ConformanceRestResource: BackboneElement {
 	/// not-supported | single | multiple - how conditional delete is supported.
 	public var conditionalDelete: String?
 	
+	/// not-supported | modified-since | not-match | full-support.
+	public var conditionalRead: String?
+	
 	/// If allows/uses conditional update.
 	public var conditionalUpdate: Bool?
+	
+	/// Additional information about the use of the resource type.
+	public var documentation: String?
 	
 	/// What operations are supported?.
 	public var interaction: [ConformanceRestResourceInteraction]?
@@ -1373,6 +1383,15 @@ public class ConformanceRestResource: BackboneElement {
 					errors.append(FHIRJSONError(key: "conditionalDelete", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["conditionalRead"] {
+				presentKeys.insert("conditionalRead")
+				if let val = exist as? String {
+					self.conditionalRead = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "conditionalRead", wants: String.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["conditionalUpdate"] {
 				presentKeys.insert("conditionalUpdate")
 				if let val = exist as? Bool {
@@ -1380,6 +1399,15 @@ public class ConformanceRestResource: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "conditionalUpdate", wants: Bool.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["documentation"] {
+				presentKeys.insert("documentation")
+				if let val = exist as? String {
+					self.documentation = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "documentation", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["interaction"] {
@@ -1482,8 +1510,14 @@ public class ConformanceRestResource: BackboneElement {
 		if let conditionalDelete = self.conditionalDelete {
 			json["conditionalDelete"] = conditionalDelete.asJSON()
 		}
+		if let conditionalRead = self.conditionalRead {
+			json["conditionalRead"] = conditionalRead.asJSON()
+		}
 		if let conditionalUpdate = self.conditionalUpdate {
 			json["conditionalUpdate"] = conditionalUpdate.asJSON()
+		}
+		if let documentation = self.documentation {
+			json["documentation"] = documentation.asJSON()
 		}
 		if let interaction = self.interaction {
 			json["interaction"] = ConformanceRestResourceInteraction.asJSONArray(interaction)

@@ -2,7 +2,7 @@
 //  Goal.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Goal) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Goal) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -23,14 +23,14 @@ public class Goal: DomainResource {
 	/// Issues addressed by this goal.
 	public var addresses: [Reference]?
 	
-	/// Who's responsible for creating Goal?.
-	public var author: Reference?
-	
 	/// E.g. Treatment, dietary, behavioral, etc..
 	public var category: [CodeableConcept]?
 	
-	/// What's the desired outcome?.
-	public var description_fhir: String?
+	/// Code or text describing goal.
+	public var description_fhir: CodeableConcept?
+	
+	/// Who's responsible for creating Goal?.
+	public var expressedBy: Reference?
 	
 	/// External Ids for this goal.
 	public var identifier: [Identifier]?
@@ -50,14 +50,14 @@ public class Goal: DomainResource {
 	/// When goal pursuit begins.
 	public var startDate: Date?
 	
-	/// proposed | planned | accepted | rejected | in-progress | achieved | sustaining | on-hold | cancelled.
+	/// proposed | planned | accepted | rejected | in-progress | achieved | sustaining | on-hold | cancelled | on-target | ahead-of-target | behind-target.
 	public var status: String?
 	
 	/// When goal status took effect.
 	public var statusDate: Date?
 	
 	/// Reason for current status.
-	public var statusReason: CodeableConcept?
+	public var statusReason: [CodeableConcept]?
 	
 	/// Who this goal is intended for.
 	public var subject: Reference?
@@ -66,7 +66,7 @@ public class Goal: DomainResource {
 	public var targetDate: Date?
 	
 	/// Reach goal on or before.
-	public var targetQuantity: Quantity?
+	public var targetDuration: Duration?
 	
 	
 	/** Initialize with a JSON object. */
@@ -75,7 +75,7 @@ public class Goal: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(description_fhir: String, status: String) {
+	public convenience init(description_fhir: CodeableConcept, status: String) {
 		self.init(json: nil)
 		self.description_fhir = description_fhir
 		self.status = status
@@ -93,15 +93,6 @@ public class Goal: DomainResource {
 					errors.append(FHIRJSONError(key: "addresses", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["author"] {
-				presentKeys.insert("author")
-				if let val = exist as? FHIRJSON {
-					self.author = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? [FHIRJSON] {
@@ -113,15 +104,24 @@ public class Goal: DomainResource {
 			}
 			if let exist: AnyObject = js["description"] {
 				presentKeys.insert("description")
-				if let val = exist as? String {
-					self.description_fhir = val
+				if let val = exist as? FHIRJSON {
+					self.description_fhir = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "description", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "description", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "description"))
+			}
+			if let exist: AnyObject = js["expressedBy"] {
+				presentKeys.insert("expressedBy")
+				if let val = exist as? FHIRJSON {
+					self.expressedBy = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "expressedBy", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
 			}
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
@@ -200,11 +200,11 @@ public class Goal: DomainResource {
 			}
 			if let exist: AnyObject = js["statusReason"] {
 				presentKeys.insert("statusReason")
-				if let val = exist as? FHIRJSON {
-					self.statusReason = CodeableConcept(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.statusReason = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "statusReason", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "statusReason", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["subject"] {
@@ -225,13 +225,13 @@ public class Goal: DomainResource {
 					errors.append(FHIRJSONError(key: "targetDate", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["targetQuantity"] {
-				presentKeys.insert("targetQuantity")
+			if let exist: AnyObject = js["targetDuration"] {
+				presentKeys.insert("targetDuration")
 				if let val = exist as? FHIRJSON {
-					self.targetQuantity = Quantity(json: val, owner: self)
+					self.targetDuration = Duration(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "targetQuantity", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "targetDuration", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -244,14 +244,14 @@ public class Goal: DomainResource {
 		if let addresses = self.addresses {
 			json["addresses"] = Reference.asJSONArray(addresses)
 		}
-		if let author = self.author {
-			json["author"] = author.asJSON()
-		}
 		if let category = self.category {
 			json["category"] = CodeableConcept.asJSONArray(category)
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
+		}
+		if let expressedBy = self.expressedBy {
+			json["expressedBy"] = expressedBy.asJSON()
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
@@ -278,7 +278,7 @@ public class Goal: DomainResource {
 			json["statusDate"] = statusDate.asJSON()
 		}
 		if let statusReason = self.statusReason {
-			json["statusReason"] = statusReason.asJSON()
+			json["statusReason"] = CodeableConcept.asJSONArray(statusReason)
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON()
@@ -286,8 +286,8 @@ public class Goal: DomainResource {
 		if let targetDate = self.targetDate {
 			json["targetDate"] = targetDate.asJSON()
 		}
-		if let targetQuantity = self.targetQuantity {
-			json["targetQuantity"] = targetQuantity.asJSON()
+		if let targetDuration = self.targetDuration {
+			json["targetDuration"] = targetDuration.asJSON()
 		}
 		
 		return json
@@ -298,7 +298,7 @@ public class Goal: DomainResource {
 /**
  *  What was end result of goal?.
  *
- *  Identifies the change (or lack of change) at the point where the goal was deepmed to be cancelled or achieved.
+ *  Identifies the change (or lack of change) at the point where the goal was deemed to be cancelled or achieved.
  */
 public class GoalOutcome: BackboneElement {
 	override public class var resourceName: String {

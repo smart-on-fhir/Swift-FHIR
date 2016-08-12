@@ -2,7 +2,7 @@
 //  Communication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Communication) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Communication) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -20,17 +20,26 @@ public class Communication: DomainResource {
 		get { return "Communication" }
 	}
 	
+	/// Request fulfilled by this communication.
+	public var basedOn: [Reference]?
+	
 	/// Message category.
 	public var category: CodeableConcept?
 	
-	/// Encounter leading to message.
-	public var encounter: Reference?
+	/// Encounter or episode leading to message.
+	public var context: Reference?
 	
 	/// Unique identifier.
 	public var identifier: [Identifier]?
 	
 	/// A channel of communication.
 	public var medium: [CodeableConcept]?
+	
+	/// Comments made about the communication.
+	public var note: [Annotation]?
+	
+	/// Part of this action.
+	public var parent: [Reference]?
 	
 	/// Message payload.
 	public var payload: [CommunicationPayload]?
@@ -44,9 +53,6 @@ public class Communication: DomainResource {
 	/// Message recipient.
 	public var recipient: [Reference]?
 	
-	/// CommunicationRequest producing this message.
-	public var requestDetail: Reference?
-	
 	/// Message sender.
 	public var sender: Reference?
 	
@@ -59,6 +65,9 @@ public class Communication: DomainResource {
 	/// Focus of message.
 	public var subject: Reference?
 	
+	/// Focal resources.
+	public var topic: [Reference]?
+	
 	
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
@@ -68,6 +77,15 @@ public class Communication: DomainResource {
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["basedOn"] {
+				presentKeys.insert("basedOn")
+				if let val = exist as? [FHIRJSON] {
+					self.basedOn = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "basedOn", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
@@ -77,13 +95,13 @@ public class Communication: DomainResource {
 					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["encounter"] {
-				presentKeys.insert("encounter")
+			if let exist: AnyObject = js["context"] {
+				presentKeys.insert("context")
 				if let val = exist as? FHIRJSON {
-					self.encounter = Reference(json: val, owner: self)
+					self.context = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "context", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["identifier"] {
@@ -102,6 +120,24 @@ public class Communication: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "medium", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["note"] {
+				presentKeys.insert("note")
+				if let val = exist as? [FHIRJSON] {
+					self.note = Annotation.from(val, owner: self) as? [Annotation]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["parent"] {
+				presentKeys.insert("parent")
+				if let val = exist as? [FHIRJSON] {
+					self.parent = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "parent", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["payload"] {
@@ -140,15 +176,6 @@ public class Communication: DomainResource {
 					errors.append(FHIRJSONError(key: "recipient", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["requestDetail"] {
-				presentKeys.insert("requestDetail")
-				if let val = exist as? FHIRJSON {
-					self.requestDetail = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "requestDetail", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["sender"] {
 				presentKeys.insert("sender")
 				if let val = exist as? FHIRJSON {
@@ -185,6 +212,15 @@ public class Communication: DomainResource {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["topic"] {
+				presentKeys.insert("topic")
+				if let val = exist as? [FHIRJSON] {
+					self.topic = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "topic", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -192,17 +228,26 @@ public class Communication: DomainResource {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let basedOn = self.basedOn {
+			json["basedOn"] = Reference.asJSONArray(basedOn)
+		}
 		if let category = self.category {
 			json["category"] = category.asJSON()
 		}
-		if let encounter = self.encounter {
-			json["encounter"] = encounter.asJSON()
+		if let context = self.context {
+			json["context"] = context.asJSON()
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
 		if let medium = self.medium {
 			json["medium"] = CodeableConcept.asJSONArray(medium)
+		}
+		if let note = self.note {
+			json["note"] = Annotation.asJSONArray(note)
+		}
+		if let parent = self.parent {
+			json["parent"] = Reference.asJSONArray(parent)
 		}
 		if let payload = self.payload {
 			json["payload"] = CommunicationPayload.asJSONArray(payload)
@@ -216,9 +261,6 @@ public class Communication: DomainResource {
 		if let recipient = self.recipient {
 			json["recipient"] = Reference.asJSONArray(recipient)
 		}
-		if let requestDetail = self.requestDetail {
-			json["requestDetail"] = requestDetail.asJSON()
-		}
 		if let sender = self.sender {
 			json["sender"] = sender.asJSON()
 		}
@@ -230,6 +272,9 @@ public class Communication: DomainResource {
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON()
+		}
+		if let topic = self.topic {
+			json["topic"] = Reference.asJSONArray(topic)
 		}
 		
 		return json

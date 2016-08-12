@@ -2,7 +2,7 @@
 //  GuidanceResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -23,23 +23,47 @@ public class GuidanceResponse: DomainResource {
 	/// Proposed actions, if any.
 	public var action: [GuidanceResponseAction]?
 	
+	/// Encounter or Episode during which the response was returned.
+	public var context: Reference?
+	
 	/// Additional required data.
 	public var dataRequirement: [DataRequirement]?
 	
 	/// Messages resulting from the evaluation of the artifact or artifacts.
 	public var evaluationMessage: [Reference]?
 	
+	/// Business identifier.
+	public var identifier: Identifier?
+	
 	/// A reference to a knowledge module.
 	public var module: Reference?
 	
+	/// Additional notes about the response.
+	public var note: [Annotation]?
+	
+	/// When the guidance response was processed.
+	public var occurrenceDateTime: DateTime?
+	
 	/// The output parameters of the evaluation, if any.
 	public var outputParameters: Reference?
+	
+	/// Device returning the guidance.
+	public var performer: Reference?
+	
+	/// Reason for the response.
+	public var reasonCodeableConcept: CodeableConcept?
+	
+	/// Reason for the response.
+	public var reasonReference: Reference?
 	
 	/// The id of the request associated with this response, if any.
 	public var requestId: String?
 	
 	/// success | data-requested | data-required | in-progress | failure.
 	public var status: String?
+	
+	/// Patient the request was performed for.
+	public var subject: Reference?
 	
 	
 	/** Initialize with a JSON object. */
@@ -66,6 +90,15 @@ public class GuidanceResponse: DomainResource {
 					errors.append(FHIRJSONError(key: "action", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["context"] {
+				presentKeys.insert("context")
+				if let val = exist as? FHIRJSON {
+					self.context = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "context", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["dataRequirement"] {
 				presentKeys.insert("dataRequirement")
 				if let val = exist as? [FHIRJSON] {
@@ -84,6 +117,15 @@ public class GuidanceResponse: DomainResource {
 					errors.append(FHIRJSONError(key: "evaluationMessage", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["identifier"] {
+				presentKeys.insert("identifier")
+				if let val = exist as? FHIRJSON {
+					self.identifier = Identifier(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["module"] {
 				presentKeys.insert("module")
 				if let val = exist as? FHIRJSON {
@@ -96,6 +138,24 @@ public class GuidanceResponse: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "module"))
 			}
+			if let exist: AnyObject = js["note"] {
+				presentKeys.insert("note")
+				if let val = exist as? [FHIRJSON] {
+					self.note = Annotation.from(val, owner: self) as? [Annotation]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["occurrenceDateTime"] {
+				presentKeys.insert("occurrenceDateTime")
+				if let val = exist as? String {
+					self.occurrenceDateTime = DateTime(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "occurrenceDateTime", wants: String.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["outputParameters"] {
 				presentKeys.insert("outputParameters")
 				if let val = exist as? FHIRJSON {
@@ -103,6 +163,33 @@ public class GuidanceResponse: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "outputParameters", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["performer"] {
+				presentKeys.insert("performer")
+				if let val = exist as? FHIRJSON {
+					self.performer = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "performer", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["reasonCodeableConcept"] {
+				presentKeys.insert("reasonCodeableConcept")
+				if let val = exist as? FHIRJSON {
+					self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reasonCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["reasonReference"] {
+				presentKeys.insert("reasonReference")
+				if let val = exist as? FHIRJSON {
+					self.reasonReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reasonReference", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["requestId"] {
@@ -126,6 +213,15 @@ public class GuidanceResponse: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "status"))
 			}
+			if let exist: AnyObject = js["subject"] {
+				presentKeys.insert("subject")
+				if let val = exist as? FHIRJSON {
+					self.subject = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -136,23 +232,47 @@ public class GuidanceResponse: DomainResource {
 		if let action = self.action {
 			json["action"] = GuidanceResponseAction.asJSONArray(action)
 		}
+		if let context = self.context {
+			json["context"] = context.asJSON()
+		}
 		if let dataRequirement = self.dataRequirement {
 			json["dataRequirement"] = DataRequirement.asJSONArray(dataRequirement)
 		}
 		if let evaluationMessage = self.evaluationMessage {
 			json["evaluationMessage"] = Reference.asJSONArray(evaluationMessage)
 		}
+		if let identifier = self.identifier {
+			json["identifier"] = identifier.asJSON()
+		}
 		if let module = self.module {
 			json["module"] = module.asJSON()
 		}
+		if let note = self.note {
+			json["note"] = Annotation.asJSONArray(note)
+		}
+		if let occurrenceDateTime = self.occurrenceDateTime {
+			json["occurrenceDateTime"] = occurrenceDateTime.asJSON()
+		}
 		if let outputParameters = self.outputParameters {
 			json["outputParameters"] = outputParameters.asJSON()
+		}
+		if let performer = self.performer {
+			json["performer"] = performer.asJSON()
+		}
+		if let reasonCodeableConcept = self.reasonCodeableConcept {
+			json["reasonCodeableConcept"] = reasonCodeableConcept.asJSON()
+		}
+		if let reasonReference = self.reasonReference {
+			json["reasonReference"] = reasonReference.asJSON()
 		}
 		if let requestId = self.requestId {
 			json["requestId"] = requestId.asJSON()
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
 		}
 		
 		return json
@@ -176,8 +296,8 @@ public class GuidanceResponseAction: BackboneElement {
 	/// Unique identifier.
 	public var actionIdentifier: Identifier?
 	
-	/// Defines behaviors such as selection and grouping.
-	public var behavior: [GuidanceResponseActionBehavior]?
+	/// single | multiple.
+	public var cardinalityBehavior: String?
 	
 	/// The meaning of the action or its sub-actions.
 	public var concept: [CodeableConcept]?
@@ -186,7 +306,10 @@ public class GuidanceResponseAction: BackboneElement {
 	public var description_fhir: String?
 	
 	/// Supporting documentation for the intended performer of the action.
-	public var documentation: [Attachment]?
+	public var documentation: [RelatedResource]?
+	
+	/// visual-group | logical-group | sentence-group.
+	public var groupingBehavior: String?
 	
 	/// User-visible label for the action (e.g. 1. or A.).
 	public var label: String?
@@ -194,23 +317,41 @@ public class GuidanceResponseAction: BackboneElement {
 	/// Participant.
 	public var participant: [Reference]?
 	
+	/// yes | no.
+	public var precheckBehavior: String?
+	
 	/// Relationship to another action.
 	public var relatedAction: GuidanceResponseActionRelatedAction?
+	
+	/// must | could | must-unless-documented.
+	public var requiredBehavior: String?
 	
 	/// The target of the action.
 	public var resource: Reference?
 	
-	/// Evidence that supports taking the action.
-	public var supportingEvidence: [Attachment]?
+	/// any | all | all-or-none | exactly-one | at-most-one | one-or-more.
+	public var selectionBehavior: String?
 	
 	/// Static text equivalent of the action, used if the dynamic aspects cannot be interpreted by the receiving system.
 	public var textEquivalent: String?
+	
+	/// When the action should take place.
+	public var timingDateTime: DateTime?
+	
+	/// When the action should take place.
+	public var timingDuration: Duration?
+	
+	/// When the action should take place.
+	public var timingPeriod: Period?
+	
+	/// When the action should take place.
+	public var timingRange: Range?
 	
 	/// User-visible title.
 	public var title: String?
 	
 	/// create | update | remove | fire-event.
-	public var type: String?
+	public var type: Coding?
 	
 	
 	/** Initialize with a JSON object. */
@@ -239,13 +380,13 @@ public class GuidanceResponseAction: BackboneElement {
 					errors.append(FHIRJSONError(key: "actionIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["behavior"] {
-				presentKeys.insert("behavior")
-				if let val = exist as? [FHIRJSON] {
-					self.behavior = GuidanceResponseActionBehavior.from(val, owner: self) as? [GuidanceResponseActionBehavior]
+			if let exist: AnyObject = js["cardinalityBehavior"] {
+				presentKeys.insert("cardinalityBehavior")
+				if let val = exist as? String {
+					self.cardinalityBehavior = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "behavior", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "cardinalityBehavior", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["concept"] {
@@ -269,10 +410,19 @@ public class GuidanceResponseAction: BackboneElement {
 			if let exist: AnyObject = js["documentation"] {
 				presentKeys.insert("documentation")
 				if let val = exist as? [FHIRJSON] {
-					self.documentation = Attachment.from(val, owner: self) as? [Attachment]
+					self.documentation = RelatedResource.from(val, owner: self) as? [RelatedResource]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "documentation", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["groupingBehavior"] {
+				presentKeys.insert("groupingBehavior")
+				if let val = exist as? String {
+					self.groupingBehavior = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "groupingBehavior", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["label"] {
@@ -293,6 +443,15 @@ public class GuidanceResponseAction: BackboneElement {
 					errors.append(FHIRJSONError(key: "participant", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["precheckBehavior"] {
+				presentKeys.insert("precheckBehavior")
+				if let val = exist as? String {
+					self.precheckBehavior = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "precheckBehavior", wants: String.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["relatedAction"] {
 				presentKeys.insert("relatedAction")
 				if let val = exist as? FHIRJSON {
@@ -300,6 +459,15 @@ public class GuidanceResponseAction: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "relatedAction", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["requiredBehavior"] {
+				presentKeys.insert("requiredBehavior")
+				if let val = exist as? String {
+					self.requiredBehavior = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "requiredBehavior", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["resource"] {
@@ -311,13 +479,13 @@ public class GuidanceResponseAction: BackboneElement {
 					errors.append(FHIRJSONError(key: "resource", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["supportingEvidence"] {
-				presentKeys.insert("supportingEvidence")
-				if let val = exist as? [FHIRJSON] {
-					self.supportingEvidence = Attachment.from(val, owner: self) as? [Attachment]
+			if let exist: AnyObject = js["selectionBehavior"] {
+				presentKeys.insert("selectionBehavior")
+				if let val = exist as? String {
+					self.selectionBehavior = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "supportingEvidence", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "selectionBehavior", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["textEquivalent"] {
@@ -327,6 +495,42 @@ public class GuidanceResponseAction: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "textEquivalent", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["timingDateTime"] {
+				presentKeys.insert("timingDateTime")
+				if let val = exist as? String {
+					self.timingDateTime = DateTime(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "timingDateTime", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["timingDuration"] {
+				presentKeys.insert("timingDuration")
+				if let val = exist as? FHIRJSON {
+					self.timingDuration = Duration(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "timingDuration", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["timingPeriod"] {
+				presentKeys.insert("timingPeriod")
+				if let val = exist as? FHIRJSON {
+					self.timingPeriod = Period(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "timingPeriod", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["timingRange"] {
+				presentKeys.insert("timingRange")
+				if let val = exist as? FHIRJSON {
+					self.timingRange = Range(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "timingRange", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["title"] {
@@ -340,11 +544,11 @@ public class GuidanceResponseAction: BackboneElement {
 			}
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")
-				if let val = exist as? String {
-					self.type = val
+				if let val = exist as? FHIRJSON {
+					self.type = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -360,8 +564,8 @@ public class GuidanceResponseAction: BackboneElement {
 		if let actionIdentifier = self.actionIdentifier {
 			json["actionIdentifier"] = actionIdentifier.asJSON()
 		}
-		if let behavior = self.behavior {
-			json["behavior"] = GuidanceResponseActionBehavior.asJSONArray(behavior)
+		if let cardinalityBehavior = self.cardinalityBehavior {
+			json["cardinalityBehavior"] = cardinalityBehavior.asJSON()
 		}
 		if let concept = self.concept {
 			json["concept"] = CodeableConcept.asJSONArray(concept)
@@ -370,7 +574,10 @@ public class GuidanceResponseAction: BackboneElement {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let documentation = self.documentation {
-			json["documentation"] = Attachment.asJSONArray(documentation)
+			json["documentation"] = RelatedResource.asJSONArray(documentation)
+		}
+		if let groupingBehavior = self.groupingBehavior {
+			json["groupingBehavior"] = groupingBehavior.asJSON()
 		}
 		if let label = self.label {
 			json["label"] = label.asJSON()
@@ -378,99 +585,41 @@ public class GuidanceResponseAction: BackboneElement {
 		if let participant = self.participant {
 			json["participant"] = Reference.asJSONArray(participant)
 		}
+		if let precheckBehavior = self.precheckBehavior {
+			json["precheckBehavior"] = precheckBehavior.asJSON()
+		}
 		if let relatedAction = self.relatedAction {
 			json["relatedAction"] = relatedAction.asJSON()
+		}
+		if let requiredBehavior = self.requiredBehavior {
+			json["requiredBehavior"] = requiredBehavior.asJSON()
 		}
 		if let resource = self.resource {
 			json["resource"] = resource.asJSON()
 		}
-		if let supportingEvidence = self.supportingEvidence {
-			json["supportingEvidence"] = Attachment.asJSONArray(supportingEvidence)
+		if let selectionBehavior = self.selectionBehavior {
+			json["selectionBehavior"] = selectionBehavior.asJSON()
 		}
 		if let textEquivalent = self.textEquivalent {
 			json["textEquivalent"] = textEquivalent.asJSON()
+		}
+		if let timingDateTime = self.timingDateTime {
+			json["timingDateTime"] = timingDateTime.asJSON()
+		}
+		if let timingDuration = self.timingDuration {
+			json["timingDuration"] = timingDuration.asJSON()
+		}
+		if let timingPeriod = self.timingPeriod {
+			json["timingPeriod"] = timingPeriod.asJSON()
+		}
+		if let timingRange = self.timingRange {
+			json["timingRange"] = timingRange.asJSON()
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Defines behaviors such as selection and grouping.
- *
- *  A behavior associated with the action. Behaviors define how the action is to be presented and/or executed within the
- *  receiving environment.
- */
-public class GuidanceResponseActionBehavior: BackboneElement {
-	override public class var resourceName: String {
-		get { return "GuidanceResponseActionBehavior" }
-	}
-	
-	/// The type of behavior (grouping, precheck, selection, cardinality, etc).
-	public var type: Coding?
-	
-	/// Specific behavior (e.g. required, at-most-one, single, etc).
-	public var value: Coding?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: Coding, value: Coding) {
-		self.init(json: nil)
-		self.type = type
-		self.value = value
-	}
-	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist: AnyObject = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? FHIRJSON {
-					self.type = Coding(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "type"))
-			}
-			if let exist: AnyObject = js["value"] {
-				presentKeys.insert("value")
-				if let val = exist as? FHIRJSON {
-					self.value = Coding(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "value", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "value"))
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override public func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let type = self.type {
-			json["type"] = type.asJSON()
-		}
-		if let value = self.value {
-			json["value"] = value.asJSON()
 		}
 		
 		return json
@@ -495,7 +644,7 @@ public class GuidanceResponseActionRelatedAction: BackboneElement {
 	public var anchor: String?
 	
 	/// Time offset for the relationship.
-	public var offsetQuantity: Quantity?
+	public var offsetDuration: Duration?
 	
 	/// Time offset for the relationship.
 	public var offsetRange: Range?
@@ -540,13 +689,13 @@ public class GuidanceResponseActionRelatedAction: BackboneElement {
 					errors.append(FHIRJSONError(key: "anchor", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["offsetQuantity"] {
-				presentKeys.insert("offsetQuantity")
+			if let exist: AnyObject = js["offsetDuration"] {
+				presentKeys.insert("offsetDuration")
 				if let val = exist as? FHIRJSON {
-					self.offsetQuantity = Quantity(json: val, owner: self)
+					self.offsetDuration = Duration(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "offsetQuantity", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "offsetDuration", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["offsetRange"] {
@@ -583,8 +732,8 @@ public class GuidanceResponseActionRelatedAction: BackboneElement {
 		if let anchor = self.anchor {
 			json["anchor"] = anchor.asJSON()
 		}
-		if let offsetQuantity = self.offsetQuantity {
-			json["offsetQuantity"] = offsetQuantity.asJSON()
+		if let offsetDuration = self.offsetDuration {
+			json["offsetDuration"] = offsetDuration.asJSON()
 		}
 		if let offsetRange = self.offsetRange {
 			json["offsetRange"] = offsetRange.asJSON()

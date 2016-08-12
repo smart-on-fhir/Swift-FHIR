@@ -2,7 +2,7 @@
 //  DataRequirement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DataRequirement) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/DataRequirement) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -30,7 +30,7 @@ public class DataRequirement: Element {
 	public var mustSupport: [String]?
 	
 	/// The profile of the required data.
-	public var profile: Reference?
+	public var profile: [Reference]?
 	
 	/// The type of the required data.
 	public var type: String?
@@ -79,11 +79,11 @@ public class DataRequirement: Element {
 			}
 			if let exist: AnyObject = js["profile"] {
 				presentKeys.insert("profile")
-				if let val = exist as? FHIRJSON {
-					self.profile = Reference(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.profile = Reference.from(val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "profile", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "profile", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["type"] {
@@ -119,7 +119,7 @@ public class DataRequirement: Element {
 			json["mustSupport"] = arr
 		}
 		if let profile = self.profile {
-			json["profile"] = profile.asJSON()
+			json["profile"] = Reference.asJSONArray(profile)
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -279,10 +279,13 @@ public class DataRequirementDateFilter: Element {
 	/// The date-valued attribute of the filter.
 	public var path: String?
 	
-	/// The value of the filter, as a Period or dateTime value.
+	/// The value of the filter, as a Period, DateTime, or Duration value.
 	public var valueDateTime: DateTime?
 	
-	/// The value of the filter, as a Period or dateTime value.
+	/// The value of the filter, as a Period, DateTime, or Duration value.
+	public var valueDuration: Duration?
+	
+	/// The value of the filter, as a Period, DateTime, or Duration value.
 	public var valuePeriod: Period?
 	
 	
@@ -321,6 +324,15 @@ public class DataRequirementDateFilter: Element {
 					errors.append(FHIRJSONError(key: "valueDateTime", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["valueDuration"] {
+				presentKeys.insert("valueDuration")
+				if let val = exist as? FHIRJSON {
+					self.valueDuration = Duration(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueDuration", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["valuePeriod"] {
 				presentKeys.insert("valuePeriod")
 				if let val = exist as? FHIRJSON {
@@ -342,6 +354,9 @@ public class DataRequirementDateFilter: Element {
 		}
 		if let valueDateTime = self.valueDateTime {
 			json["valueDateTime"] = valueDateTime.asJSON()
+		}
+		if let valueDuration = self.valueDuration {
+			json["valueDuration"] = valueDuration.asJSON()
 		}
 		if let valuePeriod = self.valuePeriod {
 			json["valuePeriod"] = valuePeriod.asJSON()

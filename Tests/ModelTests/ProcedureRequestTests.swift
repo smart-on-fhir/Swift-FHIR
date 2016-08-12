@@ -2,7 +2,7 @@
 //  ProcedureRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -35,13 +35,13 @@ class ProcedureRequestTests: XCTestCase {
 	func runProcedureRequest1(json: FHIRJSON? = nil) throws -> ProcedureRequest {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedurerequest-example.json")
 		
-		XCTAssertEqual(inst.code!.coding![0].code!, "303653007")
-		XCTAssertEqual(inst.code!.coding![0].display!, "Computed tomography of head")
-		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
-		XCTAssertEqual(inst.text!.div!, "<div>To be added</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.code!.coding![0].code, "303653007")
+		XCTAssertEqual(inst.code!.coding![0].display, "Computed tomography of head")
+		XCTAssertEqual(inst.code!.coding![0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.subject!.reference, "Patient/example")
+		XCTAssertEqual(inst.text!.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">To be added</div>")
+		XCTAssertEqual(inst.text!.status, "generated")
 		
 		return inst
 	}

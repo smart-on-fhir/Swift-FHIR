@@ -2,7 +2,7 @@
 //  Count.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Count) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Count) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  A count of a discrete element (no unit).
+ *  A measured or measurable amount.
  *
- *  There SHALL be a code with a value of "1" if there is a value and it SHALL be an expression of length.  If system is
- *  present, it SHALL be UCUM.  If present, the value SHALL a whole number.
+ *  A measured amount (or an amount that can potentially be measured). Note that measured amounts include amounts that
+ *  are not precisely quantified, including amounts involving arbitrary units and floating currencies.
  */
 public class Count: Quantity {
 	override public class var resourceName: String {

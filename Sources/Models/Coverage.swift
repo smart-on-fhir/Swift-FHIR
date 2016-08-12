@@ -2,7 +2,7 @@
 //  Coverage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- *  Insurance or medical plan.
+ *  Insurance or medical plan or a payment agreement.
  *
  *  Financial instrument which may be used to pay for or reimburse health care products and services.
  */
@@ -28,14 +28,14 @@ public class Coverage: DomainResource {
 	/// BIN Number.
 	public var bin: String?
 	
+	/// An identifier for the class.
+	public var class_fhir: String?
+	
 	/// Contract details.
 	public var contract: [Reference]?
 	
 	/// Dependent number.
 	public var dependent: UInt?
-	
-	/// Eligibility exceptions.
-	public var exception: [Coding]?
 	
 	/// An identifier for the group.
 	public var group: String?
@@ -43,10 +43,13 @@ public class Coverage: DomainResource {
 	/// The primary coverage ID.
 	public var identifier: [Identifier]?
 	
-	/// Identifier for the plan issuer.
+	/// Is a Payment Agreement.
+	public var isAgreement: Bool?
+	
+	/// Identifier for the plan or agreement issuer.
 	public var issuerIdentifier: Identifier?
 	
-	/// Identifier for the plan issuer.
+	/// Identifier for the plan or agreement issuer.
 	public var issuerReference: Reference?
 	
 	/// Insurer network.
@@ -64,14 +67,17 @@ public class Coverage: DomainResource {
 	/// Plan holder.
 	public var planholderReference: Reference?
 	
-	/// Patient relationship to planholder.
+	/// Beneficiary relationship to Planholder.
 	public var relationship: Coding?
-	
-	/// Name of School.
-	public var school: String?
 	
 	/// The plan instance or sequence counter.
 	public var sequence: UInt?
+	
+	/// active | cancelled | draft | entered-in-error.
+	public var status: String?
+	
+	/// An identifier for the subsection of the group.
+	public var subGroup: String?
 	
 	/// An identifier for the subsection of the plan.
 	public var subPlan: String?
@@ -86,7 +92,7 @@ public class Coverage: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(beneficiaryIdentifier: Identifier, beneficiaryReference: Reference, issuerIdentifier: Identifier, issuerReference: Reference, planholderIdentifier: Identifier, planholderReference: Reference, relationship: Coding) {
+	public convenience init(beneficiaryIdentifier: Identifier, beneficiaryReference: Reference, issuerIdentifier: Identifier, issuerReference: Reference, planholderIdentifier: Identifier, planholderReference: Reference, relationship: Coding, status: String) {
 		self.init(json: nil)
 		self.beneficiaryIdentifier = beneficiaryIdentifier
 		self.beneficiaryReference = beneficiaryReference
@@ -95,6 +101,7 @@ public class Coverage: DomainResource {
 		self.planholderIdentifier = planholderIdentifier
 		self.planholderReference = planholderReference
 		self.relationship = relationship
+		self.status = status
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -127,6 +134,15 @@ public class Coverage: DomainResource {
 					errors.append(FHIRJSONError(key: "bin", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["class"] {
+				presentKeys.insert("class")
+				if let val = exist as? String {
+					self.class_fhir = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "class", wants: String.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["contract"] {
 				presentKeys.insert("contract")
 				if let val = exist as? [FHIRJSON] {
@@ -145,15 +161,6 @@ public class Coverage: DomainResource {
 					errors.append(FHIRJSONError(key: "dependent", wants: UInt.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["exception"] {
-				presentKeys.insert("exception")
-				if let val = exist as? [FHIRJSON] {
-					self.exception = Coding.from(val, owner: self) as? [Coding]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "exception", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["group"] {
 				presentKeys.insert("group")
 				if let val = exist as? String {
@@ -170,6 +177,15 @@ public class Coverage: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["isAgreement"] {
+				presentKeys.insert("isAgreement")
+				if let val = exist as? Bool {
+					self.isAgreement = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "isAgreement", wants: Bool.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["issuerIdentifier"] {
@@ -247,15 +263,6 @@ public class Coverage: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "relationship"))
 			}
-			if let exist: AnyObject = js["school"] {
-				presentKeys.insert("school")
-				if let val = exist as? String {
-					self.school = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "school", wants: String.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["sequence"] {
 				presentKeys.insert("sequence")
 				if let val = exist as? UInt {
@@ -263,6 +270,27 @@ public class Coverage: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sequence", wants: UInt.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["status"] {
+				presentKeys.insert("status")
+				if let val = exist as? String {
+					self.status = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "status"))
+			}
+			if let exist: AnyObject = js["subGroup"] {
+				presentKeys.insert("subGroup")
+				if let val = exist as? String {
+					self.subGroup = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "subGroup", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["subPlan"] {
@@ -310,20 +338,23 @@ public class Coverage: DomainResource {
 		if let bin = self.bin {
 			json["bin"] = bin.asJSON()
 		}
+		if let class_fhir = self.class_fhir {
+			json["class"] = class_fhir.asJSON()
+		}
 		if let contract = self.contract {
 			json["contract"] = Reference.asJSONArray(contract)
 		}
 		if let dependent = self.dependent {
 			json["dependent"] = dependent.asJSON()
 		}
-		if let exception = self.exception {
-			json["exception"] = Coding.asJSONArray(exception)
-		}
 		if let group = self.group {
 			json["group"] = group.asJSON()
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
+		}
+		if let isAgreement = self.isAgreement {
+			json["isAgreement"] = isAgreement.asJSON()
 		}
 		if let issuerIdentifier = self.issuerIdentifier {
 			json["issuerIdentifier"] = issuerIdentifier.asJSON()
@@ -349,11 +380,14 @@ public class Coverage: DomainResource {
 		if let relationship = self.relationship {
 			json["relationship"] = relationship.asJSON()
 		}
-		if let school = self.school {
-			json["school"] = school.asJSON()
-		}
 		if let sequence = self.sequence {
 			json["sequence"] = sequence.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
+		}
+		if let subGroup = self.subGroup {
+			json["subGroup"] = subGroup.asJSON()
 		}
 		if let subPlan = self.subPlan {
 			json["subPlan"] = subPlan.asJSON()

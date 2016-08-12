@@ -2,7 +2,7 @@
 //  Flag.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Flag) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Flag) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -25,7 +25,7 @@ public class Flag: DomainResource {
 	/// Clinical, administrative, etc..
 	public var category: CodeableConcept?
 	
-	/// Partially deaf, Requires easy open caps, No permanent address, etc..
+	/// Message to display to user.
 	public var code: CodeableConcept?
 	
 	/// Alert relevant during encounter.

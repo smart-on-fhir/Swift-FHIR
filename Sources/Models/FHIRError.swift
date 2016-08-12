@@ -29,8 +29,6 @@ public enum FHIRError: ErrorType, CustomStringConvertible {
 	case NoResponseReceived
 	case ResponseLocationHeaderResourceTypeMismatch(String, String)
 	case ResponseNoResourceReceived
-	
-	/// The resource type received (1st String) does not match the expected type (2nd String).
 	case ResponseResourceTypeMismatch(String, String)
 	
 	case OperationConfigurationError(String)

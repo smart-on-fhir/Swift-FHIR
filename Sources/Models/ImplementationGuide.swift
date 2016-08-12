@@ -2,7 +2,7 @@
 //  ImplementationGuide.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -78,11 +78,9 @@ public class ImplementationGuide: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, package: [ImplementationGuidePackage], page: ImplementationGuidePage, status: String, url: NSURL) {
+	public convenience init(name: String, status: String, url: NSURL) {
 		self.init(json: nil)
 		self.name = name
-		self.package = package
-		self.page = page
 		self.status = status
 		self.url = url
 	}
@@ -192,9 +190,6 @@ public class ImplementationGuide: DomainResource {
 					errors.append(FHIRJSONError(key: "package", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			else {
-				errors.append(FHIRJSONError(key: "package"))
-			}
 			if let exist: AnyObject = js["page"] {
 				presentKeys.insert("page")
 				if let val = exist as? FHIRJSON {
@@ -203,9 +198,6 @@ public class ImplementationGuide: DomainResource {
 				else {
 					errors.append(FHIRJSONError(key: "page", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "page"))
 			}
 			if let exist: AnyObject = js["publisher"] {
 				presentKeys.insert("publisher")
@@ -800,9 +792,6 @@ public class ImplementationGuidePage: BackboneElement {
 	/// page | example | list | include | directory | dictionary | toc | resource.
 	public var kind: String?
 	
-	/// Short name shown for navigational assistance.
-	public var name: String?
-	
 	/// Name of package to include.
 	public var package: [String]?
 	
@@ -811,6 +800,9 @@ public class ImplementationGuidePage: BackboneElement {
 	
 	/// Where to find that page.
 	public var source: NSURL?
+	
+	/// Short title shown for navigational assistance.
+	public var title: String?
 	
 	/// Kind of resource to include in the list.
 	public var type: [String]?
@@ -822,11 +814,11 @@ public class ImplementationGuidePage: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(kind: String, name: String, source: NSURL) {
+	public convenience init(kind: String, source: NSURL, title: String) {
 		self.init(json: nil)
 		self.kind = kind
-		self.name = name
 		self.source = source
+		self.title = title
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -852,18 +844,6 @@ public class ImplementationGuidePage: BackboneElement {
 			}
 			else {
 				errors.append(FHIRJSONError(key: "kind"))
-			}
-			if let exist: AnyObject = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "name"))
 			}
 			if let exist: AnyObject = js["package"] {
 				presentKeys.insert("package")
@@ -895,6 +875,18 @@ public class ImplementationGuidePage: BackboneElement {
 			else {
 				errors.append(FHIRJSONError(key: "source"))
 			}
+			if let exist: AnyObject = js["title"] {
+				presentKeys.insert("title")
+				if let val = exist as? String {
+					self.title = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "title", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "title"))
+			}
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? [String] {
@@ -917,9 +909,6 @@ public class ImplementationGuidePage: BackboneElement {
 		if let kind = self.kind {
 			json["kind"] = kind.asJSON()
 		}
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
 		if let package = self.package {
 			var arr = [AnyObject]()
 			for val in package {
@@ -932,6 +921,9 @@ public class ImplementationGuidePage: BackboneElement {
 		}
 		if let source = self.source {
 			json["source"] = source.asJSON()
+		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
 		}
 		if let type = self.type {
 			var arr = [AnyObject]()

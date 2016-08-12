@@ -2,7 +2,7 @@
 //  ProcessRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -77,6 +77,9 @@ public class ProcessRequest: DomainResource {
 	/// Resource version.
 	public var ruleset: Coding?
 	
+	/// active | cancelled | draft | entered-in-error.
+	public var status: String?
+	
 	/// Target of the request.
 	public var targetIdentifier: Identifier?
 	
@@ -90,9 +93,10 @@ public class ProcessRequest: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(action: String) {
+	public convenience init(action: String, status: String) {
 		self.init(json: nil)
 		self.action = action
+		self.status = status
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -272,6 +276,18 @@ public class ProcessRequest: DomainResource {
 					errors.append(FHIRJSONError(key: "ruleset", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["status"] {
+				presentKeys.insert("status")
+				if let val = exist as? String {
+					self.status = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "status"))
+			}
 			if let exist: AnyObject = js["targetIdentifier"] {
 				presentKeys.insert("targetIdentifier")
 				if let val = exist as? FHIRJSON {
@@ -361,6 +377,9 @@ public class ProcessRequest: DomainResource {
 		}
 		if let ruleset = self.ruleset {
 			json["ruleset"] = ruleset.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
 		}
 		if let targetIdentifier = self.targetIdentifier {
 			json["targetIdentifier"] = targetIdentifier.asJSON()

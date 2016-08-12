@@ -2,7 +2,7 @@
 //  Sequence.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -10,31 +10,25 @@ import Foundation
 
 
 /**
- *  A Sequence.
+ *  Information about a biological sequence.
  *
- *  Variation and Sequence data.
+ *  Raw data describing a biological sequence.
  */
 public class Sequence: DomainResource {
 	override public class var resourceName: String {
 		get { return "Sequence" }
 	}
 	
-	/// Allele frequencies.
-	public var allelicFrequency: NSDecimalNumber?
-	
-	/// The level of occurrence of a single DNA Sequence Variation within a set of chromosomes: Heteroplasmic / Homoplasmic / Homozygous / Heterozygous / Hemizygous.
-	public var allelicState: CodeableConcept?
-	
-	/// Copy Number Event: Values: amplificaiton / deletion / LOH.
-	public var copyNumberEvent: CodeableConcept?
+	/// Numbering used for sequence (0-based or 1-based).
+	public var coordinateSystem: Int?
 	
 	/// The method for sequencing.
 	public var device: Reference?
 	
-	/// Observation-genetics.
-	public var observation: Reference?
+	/// Unique ID for this particular sequence.
+	public var identifier: [Identifier]?
 	
-	/// Observed Sequence.
+	/// Observed sequence.
 	public var observedSeq: String?
 	
 	/// Who and/or what this is about.
@@ -43,7 +37,7 @@ public class Sequence: DomainResource {
 	/// Pointer to next atomic sequence.
 	public var pointer: [Reference]?
 	
-	/// Sequence Quality.
+	/// Sequence quality.
 	public var quality: [SequenceQuality]?
 	
 	/// Quantity of the sequence.
@@ -53,25 +47,22 @@ public class Sequence: DomainResource {
 	public var readCoverage: Int?
 	
 	/// Reference sequence.
-	public var referenceSeq: [SequenceReferenceSeq]?
+	public var referenceSeq: SequenceReferenceSeq?
 	
 	/// External repository.
 	public var repository: [SequenceRepository]?
-	
-	/// Supporting tests of human, viruses, and bacteria.
-	public var species: CodeableConcept?
 	
 	/// Specimen used for sequencing.
 	public var specimen: Reference?
 	
 	/// None.
-	public var structureVariation: SequenceStructureVariation?
+	public var structureVariant: [SequenceStructureVariant]?
 	
 	/// AA | DNA | RNA.
 	public var type: String?
 	
-	/// Variation info in this sequence.
-	public var variation: SequenceVariation?
+	/// Sequence variant.
+	public var variant: [SequenceVariant]?
 	
 	
 	/** Initialize with a JSON object. */
@@ -80,40 +71,26 @@ public class Sequence: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String) {
+	public convenience init(coordinateSystem: Int, type: String) {
 		self.init(json: nil)
+		self.coordinateSystem = coordinateSystem
 		self.type = type
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["allelicFrequency"] {
-				presentKeys.insert("allelicFrequency")
-				if let val = exist as? NSNumber {
-					self.allelicFrequency = NSDecimalNumber(json: val)
+			if let exist: AnyObject = js["coordinateSystem"] {
+				presentKeys.insert("coordinateSystem")
+				if let val = exist as? Int {
+					self.coordinateSystem = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "allelicFrequency", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "coordinateSystem", wants: Int.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["allelicState"] {
-				presentKeys.insert("allelicState")
-				if let val = exist as? FHIRJSON {
-					self.allelicState = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "allelicState", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["copyNumberEvent"] {
-				presentKeys.insert("copyNumberEvent")
-				if let val = exist as? FHIRJSON {
-					self.copyNumberEvent = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "copyNumberEvent", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
+			else {
+				errors.append(FHIRJSONError(key: "coordinateSystem"))
 			}
 			if let exist: AnyObject = js["device"] {
 				presentKeys.insert("device")
@@ -124,13 +101,13 @@ public class Sequence: DomainResource {
 					errors.append(FHIRJSONError(key: "device", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["observation"] {
-				presentKeys.insert("observation")
-				if let val = exist as? FHIRJSON {
-					self.observation = Reference(json: val, owner: self)
+			if let exist: AnyObject = js["identifier"] {
+				presentKeys.insert("identifier")
+				if let val = exist as? [FHIRJSON] {
+					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "observation", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["observedSeq"] {
@@ -189,11 +166,11 @@ public class Sequence: DomainResource {
 			}
 			if let exist: AnyObject = js["referenceSeq"] {
 				presentKeys.insert("referenceSeq")
-				if let val = exist as? [FHIRJSON] {
-					self.referenceSeq = SequenceReferenceSeq.from(val, owner: self) as? [SequenceReferenceSeq]
+				if let val = exist as? FHIRJSON {
+					self.referenceSeq = SequenceReferenceSeq(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "referenceSeq", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "referenceSeq", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["repository"] {
@@ -205,15 +182,6 @@ public class Sequence: DomainResource {
 					errors.append(FHIRJSONError(key: "repository", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["species"] {
-				presentKeys.insert("species")
-				if let val = exist as? FHIRJSON {
-					self.species = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "species", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["specimen"] {
 				presentKeys.insert("specimen")
 				if let val = exist as? FHIRJSON {
@@ -223,13 +191,13 @@ public class Sequence: DomainResource {
 					errors.append(FHIRJSONError(key: "specimen", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["structureVariation"] {
-				presentKeys.insert("structureVariation")
-				if let val = exist as? FHIRJSON {
-					self.structureVariation = SequenceStructureVariation(json: val, owner: self)
+			if let exist: AnyObject = js["structureVariant"] {
+				presentKeys.insert("structureVariant")
+				if let val = exist as? [FHIRJSON] {
+					self.structureVariant = SequenceStructureVariant.from(val, owner: self) as? [SequenceStructureVariant]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "structureVariation", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "structureVariant", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["type"] {
@@ -244,13 +212,13 @@ public class Sequence: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "type"))
 			}
-			if let exist: AnyObject = js["variation"] {
-				presentKeys.insert("variation")
-				if let val = exist as? FHIRJSON {
-					self.variation = SequenceVariation(json: val, owner: self)
+			if let exist: AnyObject = js["variant"] {
+				presentKeys.insert("variant")
+				if let val = exist as? [FHIRJSON] {
+					self.variant = SequenceVariant.from(val, owner: self) as? [SequenceVariant]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "variation", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "variant", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -260,20 +228,14 @@ public class Sequence: DomainResource {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let allelicFrequency = self.allelicFrequency {
-			json["allelicFrequency"] = allelicFrequency.asJSON()
-		}
-		if let allelicState = self.allelicState {
-			json["allelicState"] = allelicState.asJSON()
-		}
-		if let copyNumberEvent = self.copyNumberEvent {
-			json["copyNumberEvent"] = copyNumberEvent.asJSON()
+		if let coordinateSystem = self.coordinateSystem {
+			json["coordinateSystem"] = coordinateSystem.asJSON()
 		}
 		if let device = self.device {
 			json["device"] = device.asJSON()
 		}
-		if let observation = self.observation {
-			json["observation"] = observation.asJSON()
+		if let identifier = self.identifier {
+			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
 		if let observedSeq = self.observedSeq {
 			json["observedSeq"] = observedSeq.asJSON()
@@ -294,25 +256,22 @@ public class Sequence: DomainResource {
 			json["readCoverage"] = readCoverage.asJSON()
 		}
 		if let referenceSeq = self.referenceSeq {
-			json["referenceSeq"] = SequenceReferenceSeq.asJSONArray(referenceSeq)
+			json["referenceSeq"] = referenceSeq.asJSON()
 		}
 		if let repository = self.repository {
 			json["repository"] = SequenceRepository.asJSONArray(repository)
 		}
-		if let species = self.species {
-			json["species"] = species.asJSON()
-		}
 		if let specimen = self.specimen {
 			json["specimen"] = specimen.asJSON()
 		}
-		if let structureVariation = self.structureVariation {
-			json["structureVariation"] = structureVariation.asJSON()
+		if let structureVariant = self.structureVariant {
+			json["structureVariant"] = SequenceStructureVariant.asJSONArray(structureVariant)
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
 		}
-		if let variation = self.variation {
-			json["variation"] = variation.asJSON()
+		if let variant = self.variant {
+			json["variant"] = SequenceVariant.asJSONArray(variant)
 		}
 		
 		return json
@@ -321,26 +280,54 @@ public class Sequence: DomainResource {
 
 
 /**
- *  Sequence Quality.
+ *  Sequence quality.
  *
- *  Quality for sequence quality vary by platform reflecting differences in sequencing chemistry and digital processing.
+ *  An experimental feature attribute that defines the quality of the feature in a quantitative way, such as a phred
+ *  quality score ([SO:0001686](http://www.sequenceontology.org/browser/current_svn/term/SO:0001686)).
  */
 public class SequenceQuality: BackboneElement {
 	override public class var resourceName: String {
 		get { return "SequenceQuality" }
 	}
 	
-	/// 0-based end position (exclusive) of the sequence.
+	/// End position (exclusive) of the sequence.
 	public var end: Int?
 	
+	/// F-score.
+	public var fScore: NSDecimalNumber?
+	
+	/// False positives where the non-REF alleles in the Truth and Query Call Sets match.
+	public var gtFP: NSDecimalNumber?
+	
 	/// Method for quality.
-	public var method: String?
+	public var method: CodeableConcept?
+	
+	/// Precision.
+	public var precision: NSDecimalNumber?
+	
+	/// False positives.
+	public var queryFP: NSDecimalNumber?
+	
+	/// True positives from the perspective of the query data.
+	public var queryTP: NSDecimalNumber?
+	
+	/// Recall.
+	public var recall: NSDecimalNumber?
 	
 	/// Quality score.
 	public var score: Quantity?
 	
-	/// 0-based start position (inclusive) of the sequence.
+	/// Standard sequence for comparison.
+	public var standardSequence: CodeableConcept?
+	
+	/// Start position (inclusive) of the sequence.
 	public var start: Int?
+	
+	/// False negatives.
+	public var truthFN: NSDecimalNumber?
+	
+	/// True positives from the perspective of the truth data.
+	public var truthTP: NSDecimalNumber?
 	
 	
 	/** Initialize with a JSON object. */
@@ -360,13 +347,67 @@ public class SequenceQuality: BackboneElement {
 					errors.append(FHIRJSONError(key: "end", wants: Int.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["method"] {
-				presentKeys.insert("method")
-				if let val = exist as? String {
-					self.method = val
+			if let exist: AnyObject = js["fScore"] {
+				presentKeys.insert("fScore")
+				if let val = exist as? NSNumber {
+					self.fScore = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "method", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "fScore", wants: NSNumber.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["gtFP"] {
+				presentKeys.insert("gtFP")
+				if let val = exist as? NSNumber {
+					self.gtFP = NSDecimalNumber(json: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "gtFP", wants: NSNumber.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["method"] {
+				presentKeys.insert("method")
+				if let val = exist as? FHIRJSON {
+					self.method = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "method", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["precision"] {
+				presentKeys.insert("precision")
+				if let val = exist as? NSNumber {
+					self.precision = NSDecimalNumber(json: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "precision", wants: NSNumber.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["queryFP"] {
+				presentKeys.insert("queryFP")
+				if let val = exist as? NSNumber {
+					self.queryFP = NSDecimalNumber(json: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "queryFP", wants: NSNumber.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["queryTP"] {
+				presentKeys.insert("queryTP")
+				if let val = exist as? NSNumber {
+					self.queryTP = NSDecimalNumber(json: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "queryTP", wants: NSNumber.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["recall"] {
+				presentKeys.insert("recall")
+				if let val = exist as? NSNumber {
+					self.recall = NSDecimalNumber(json: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "recall", wants: NSNumber.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["score"] {
@@ -378,6 +419,15 @@ public class SequenceQuality: BackboneElement {
 					errors.append(FHIRJSONError(key: "score", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["standardSequence"] {
+				presentKeys.insert("standardSequence")
+				if let val = exist as? FHIRJSON {
+					self.standardSequence = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "standardSequence", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["start"] {
 				presentKeys.insert("start")
 				if let val = exist as? Int {
@@ -385,6 +435,24 @@ public class SequenceQuality: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "start", wants: Int.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["truthFN"] {
+				presentKeys.insert("truthFN")
+				if let val = exist as? NSNumber {
+					self.truthFN = NSDecimalNumber(json: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "truthFN", wants: NSNumber.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["truthTP"] {
+				presentKeys.insert("truthTP")
+				if let val = exist as? NSNumber {
+					self.truthTP = NSDecimalNumber(json: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "truthTP", wants: NSNumber.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -397,14 +465,41 @@ public class SequenceQuality: BackboneElement {
 		if let end = self.end {
 			json["end"] = end.asJSON()
 		}
+		if let fScore = self.fScore {
+			json["fScore"] = fScore.asJSON()
+		}
+		if let gtFP = self.gtFP {
+			json["gtFP"] = gtFP.asJSON()
+		}
 		if let method = self.method {
 			json["method"] = method.asJSON()
+		}
+		if let precision = self.precision {
+			json["precision"] = precision.asJSON()
+		}
+		if let queryFP = self.queryFP {
+			json["queryFP"] = queryFP.asJSON()
+		}
+		if let queryTP = self.queryTP {
+			json["queryTP"] = queryTP.asJSON()
+		}
+		if let recall = self.recall {
+			json["recall"] = recall.asJSON()
 		}
 		if let score = self.score {
 			json["score"] = score.asJSON()
 		}
+		if let standardSequence = self.standardSequence {
+			json["standardSequence"] = standardSequence.asJSON()
+		}
 		if let start = self.start {
 			json["start"] = start.asJSON()
+		}
+		if let truthFN = self.truthFN {
+			json["truthFN"] = truthFN.asJSON()
+		}
+		if let truthTP = self.truthTP {
+			json["truthTP"] = truthTP.asJSON()
 		}
 		
 		return json
@@ -415,17 +510,14 @@ public class SequenceQuality: BackboneElement {
 /**
  *  Reference sequence.
  *
- *  Reference Sequence. It can be described in two ways. One is provide the unique identifier of reference sequence
- *  submitted to NCBI. The start and end position of window on reference sequence should be defined.  The other way is
- *  using  genome build, chromosome number,and also the start, end position of window (this method is specifically for
- *  DNA reference sequence) .
+ *  A reference sequence is a sequence that is used to represent an allele or variant.
  */
 public class SequenceReferenceSeq: BackboneElement {
 	override public class var resourceName: String {
 		get { return "SequenceReferenceSeq" }
 	}
 	
-	/// The chromosome containing the genetic finding.
+	/// Chromosome containing genetic finding.
 	public var chromosome: CodeableConcept?
 	
 	/// The Genome Build used for reference, following GRCh build versions e.g. 'GRCh 37'.
@@ -440,10 +532,13 @@ public class SequenceReferenceSeq: BackboneElement {
 	/// A Reference Sequence string.
 	public var referenceSeqString: String?
 	
-	/// 0-based end position (exclusive) of the window on the reference sequence.
+	/// Strand of DNA.
+	public var strand: Int?
+	
+	/// End position (exclusive) of the window on the reference sequence.
 	public var windowEnd: Int?
 	
-	/// 0-based start position (inclusive) of the window on the  reference sequence.
+	/// Start position (inclusive) of the window on the  reference sequence.
 	public var windowStart: Int?
 	
 	
@@ -453,9 +548,10 @@ public class SequenceReferenceSeq: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(referenceSeqId: CodeableConcept, windowEnd: Int, windowStart: Int) {
+	public convenience init(referenceSeqId: CodeableConcept, strand: Int, windowEnd: Int, windowStart: Int) {
 		self.init(json: nil)
 		self.referenceSeqId = referenceSeqId
+		self.strand = strand
 		self.windowEnd = windowEnd
 		self.windowStart = windowStart
 	}
@@ -511,6 +607,18 @@ public class SequenceReferenceSeq: BackboneElement {
 					errors.append(FHIRJSONError(key: "referenceSeqString", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["strand"] {
+				presentKeys.insert("strand")
+				if let val = exist as? Int {
+					self.strand = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "strand", wants: Int.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "strand"))
+			}
 			if let exist: AnyObject = js["windowEnd"] {
 				presentKeys.insert("windowEnd")
 				if let val = exist as? Int {
@@ -556,6 +664,9 @@ public class SequenceReferenceSeq: BackboneElement {
 		}
 		if let referenceSeqString = self.referenceSeqString {
 			json["referenceSeqString"] = referenceSeqString.asJSON()
+		}
+		if let strand = self.strand {
+			json["strand"] = strand.asJSON()
 		}
 		if let windowEnd = self.windowEnd {
 			json["windowEnd"] = windowEnd.asJSON()
@@ -666,19 +777,19 @@ public class SequenceRepository: BackboneElement {
  *
  *  Structural variant.
  */
-public class SequenceStructureVariation: BackboneElement {
+public class SequenceStructureVariant: BackboneElement {
 	override public class var resourceName: String {
-		get { return "SequenceStructureVariation" }
+		get { return "SequenceStructureVariant" }
 	}
 	
 	/// None.
-	public var inner: SequenceStructureVariationInner?
+	public var inner: SequenceStructureVariantInner?
 	
 	/// Structural Variant Length.
 	public var length: Int?
 	
 	/// None.
-	public var outer: SequenceStructureVariationOuter?
+	public var outer: SequenceStructureVariantOuter?
 	
 	/// Precision of boundaries.
 	public var precisionOfBoundaries: String?
@@ -698,7 +809,7 @@ public class SequenceStructureVariation: BackboneElement {
 			if let exist: AnyObject = js["inner"] {
 				presentKeys.insert("inner")
 				if let val = exist as? FHIRJSON {
-					self.inner = SequenceStructureVariationInner(json: val, owner: self)
+					self.inner = SequenceStructureVariantInner(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "inner", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -716,7 +827,7 @@ public class SequenceStructureVariation: BackboneElement {
 			if let exist: AnyObject = js["outer"] {
 				presentKeys.insert("outer")
 				if let val = exist as? FHIRJSON {
-					self.outer = SequenceStructureVariationOuter(json: val, owner: self)
+					self.outer = SequenceStructureVariantOuter(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "outer", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -773,9 +884,9 @@ public class SequenceStructureVariation: BackboneElement {
  *
  *  Structural variant inner.
  */
-public class SequenceStructureVariationInner: BackboneElement {
+public class SequenceStructureVariantInner: BackboneElement {
 	override public class var resourceName: String {
-		get { return "SequenceStructureVariationInner" }
+		get { return "SequenceStructureVariantInner" }
 	}
 	
 	/// Structural Variant Inner Start-End.
@@ -835,9 +946,9 @@ public class SequenceStructureVariationInner: BackboneElement {
  *
  *  Structural variant outer.
  */
-public class SequenceStructureVariationOuter: BackboneElement {
+public class SequenceStructureVariantOuter: BackboneElement {
 	override public class var resourceName: String {
-		get { return "SequenceStructureVariationOuter" }
+		get { return "SequenceStructureVariantOuter" }
 	}
 	
 	/// Structural Variant Outer Start-End.
@@ -893,27 +1004,34 @@ public class SequenceStructureVariationOuter: BackboneElement {
 
 
 /**
- *  Variation info in this sequence.
+ *  Sequence variant.
+ *
+ *  A' is a variant (mutation) of A = definition every instance of A' is either an immediate mutation of some instance
+ *  of A, or there is a chain of immediate mutation processes linking A' to some instance of A
+ *  ([variant_of](http://www.sequenceontology.org/browser/current_svn/term/variant_of)).
  */
-public class SequenceVariation: BackboneElement {
+public class SequenceVariant: BackboneElement {
 	override public class var resourceName: String {
-		get { return "SequenceVariation" }
+		get { return "SequenceVariant" }
 	}
 	
 	/// Extended CIGAR string for aligning the sequence with reference bases.
 	public var cigar: String?
 	
-	/// 0-based end position (exclusive) of the variation on the reference sequence.
+	/// End position (exclusive) of the variant on the reference sequence.
 	public var end: Int?
 	
-	/// Nucleotide(s)/amino acids from start position to stop position of observed variation.
+	/// Allele that was observed.
 	public var observedAllele: String?
 	
-	/// Nucleotide(s)/amino acids from start position to stop position of reference variation.
+	/// Allele of reference sequence.
 	public var referenceAllele: String?
 	
-	/// 0-based start position (inclusive) of the variation on the  reference sequence.
+	/// Start position (inclusive) of the variant on the  reference sequence.
 	public var start: Int?
+	
+	/// Pointer to observed variant information.
+	public var variantPointer: Reference?
 	
 	
 	/** Initialize with a JSON object. */
@@ -969,6 +1087,15 @@ public class SequenceVariation: BackboneElement {
 					errors.append(FHIRJSONError(key: "start", wants: Int.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["variantPointer"] {
+				presentKeys.insert("variantPointer")
+				if let val = exist as? FHIRJSON {
+					self.variantPointer = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "variantPointer", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -990,6 +1117,9 @@ public class SequenceVariation: BackboneElement {
 		}
 		if let start = self.start {
 			json["start"] = start.asJSON()
+		}
+		if let variantPointer = self.variantPointer {
+			json["variantPointer"] = variantPointer.asJSON()
 		}
 		
 		return json

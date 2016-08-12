@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Patient) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Patient) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -32,9 +32,6 @@ public class Patient: DomainResource {
 	/// The date of birth for the individual.
 	public var birthDate: Date?
 	
-	/// Patient's nominated primary care provider.
-	public var careProvider: [Reference]?
-	
 	/// A list of Languages which may be used to communicate with the patient about his or her health.
 	public var communication: [PatientCommunication]?
 	
@@ -49,6 +46,9 @@ public class Patient: DomainResource {
 	
 	/// male | female | other | unknown.
 	public var gender: String?
+	
+	/// Patient's nominated primary care provider.
+	public var generalPractitioner: [Reference]?
 	
 	/// An identifier for this patient.
 	public var identifier: [Identifier]?
@@ -122,15 +122,6 @@ public class Patient: DomainResource {
 					errors.append(FHIRJSONError(key: "birthDate", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["careProvider"] {
-				presentKeys.insert("careProvider")
-				if let val = exist as? [FHIRJSON] {
-					self.careProvider = Reference.from(val, owner: self) as? [Reference]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "careProvider", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["communication"] {
 				presentKeys.insert("communication")
 				if let val = exist as? [FHIRJSON] {
@@ -174,6 +165,15 @@ public class Patient: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "gender", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["generalPractitioner"] {
+				presentKeys.insert("generalPractitioner")
+				if let val = exist as? [FHIRJSON] {
+					self.generalPractitioner = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "generalPractitioner", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["identifier"] {
@@ -276,9 +276,6 @@ public class Patient: DomainResource {
 		if let birthDate = self.birthDate {
 			json["birthDate"] = birthDate.asJSON()
 		}
-		if let careProvider = self.careProvider {
-			json["careProvider"] = Reference.asJSONArray(careProvider)
-		}
 		if let communication = self.communication {
 			json["communication"] = PatientCommunication.asJSONArray(communication)
 		}
@@ -293,6 +290,9 @@ public class Patient: DomainResource {
 		}
 		if let gender = self.gender {
 			json["gender"] = gender.asJSON()
+		}
+		if let generalPractitioner = self.generalPractitioner {
+			json["generalPractitioner"] = Reference.asJSONArray(generalPractitioner)
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
@@ -629,7 +629,7 @@ public class PatientLink: BackboneElement {
 		get { return "PatientLink" }
 	}
 	
-	/// The other patient resource that the link refers to.
+	/// The other patient or related person resource that the link refers to.
 	public var other: Reference?
 	
 	/// replace | refer | seealso - type of link.

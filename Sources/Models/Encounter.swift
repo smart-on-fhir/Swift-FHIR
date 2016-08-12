@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -20,11 +20,14 @@ public class Encounter: DomainResource {
 		get { return "Encounter" }
 	}
 	
+	/// The set of accounts that may be used for billing for this Encounter.
+	public var account: [Reference]?
+	
 	/// The appointment that scheduled this encounter.
 	public var appointment: Reference?
 	
 	/// inpatient | outpatient | ambulatory | emergency +.
-	public var class_fhir: String?
+	public var class_fhir: Coding?
 	
 	/// Episode(s) of care that this encounter should be recorded against.
 	public var episodeOfCare: [Reference]?
@@ -42,7 +45,7 @@ public class Encounter: DomainResource {
 	public var indication: [Reference]?
 	
 	/// Quantity of time the encounter lasted (less time absent).
-	public var length: Quantity?
+	public var length: Duration?
 	
 	/// List of locations where the patient has been.
 	public var location: [EncounterLocation]?
@@ -68,7 +71,7 @@ public class Encounter: DomainResource {
 	/// The custodian organization of this Encounter record.
 	public var serviceProvider: Reference?
 	
-	/// planned | arrived | in-progress | onleave | finished | cancelled.
+	/// planned | arrived | in-progress | onleave | finished | cancelled | entered-in-error.
 	public var status: String?
 	
 	/// List of past encounter statuses.
@@ -92,6 +95,15 @@ public class Encounter: DomainResource {
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["account"] {
+				presentKeys.insert("account")
+				if let val = exist as? [FHIRJSON] {
+					self.account = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "account", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["appointment"] {
 				presentKeys.insert("appointment")
 				if let val = exist as? FHIRJSON {
@@ -103,11 +115,11 @@ public class Encounter: DomainResource {
 			}
 			if let exist: AnyObject = js["class"] {
 				presentKeys.insert("class")
-				if let val = exist as? String {
-					self.class_fhir = val
+				if let val = exist as? FHIRJSON {
+					self.class_fhir = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "class", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "class", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["episodeOfCare"] {
@@ -158,7 +170,7 @@ public class Encounter: DomainResource {
 			if let exist: AnyObject = js["length"] {
 				presentKeys.insert("length")
 				if let val = exist as? FHIRJSON {
-					self.length = Quantity(json: val, owner: self)
+					self.length = Duration(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "length", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -273,6 +285,9 @@ public class Encounter: DomainResource {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let account = self.account {
+			json["account"] = Reference.asJSONArray(account)
+		}
 		if let appointment = self.appointment {
 			json["appointment"] = appointment.asJSON()
 		}
@@ -708,7 +723,7 @@ public class EncounterStatusHistory: BackboneElement {
 	/// The time that the episode was in the specified status.
 	public var period: Period?
 	
-	/// planned | arrived | in-progress | onleave | finished | cancelled.
+	/// planned | arrived | in-progress | onleave | finished | cancelled | entered-in-error.
 	public var status: String?
 	
 	

@@ -2,7 +2,7 @@
 //  PaymentNotice.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -59,6 +59,9 @@ public class PaymentNotice: DomainResource {
 	/// Resource version.
 	public var ruleset: Coding?
 	
+	/// active | cancelled | draft | entered-in-error.
+	public var status: String?
+	
 	/// Payment or clearing date.
 	public var statusDate: Date?
 	
@@ -75,9 +78,10 @@ public class PaymentNotice: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(paymentStatus: Coding) {
+	public convenience init(paymentStatus: Coding, status: String) {
 		self.init(json: nil)
 		self.paymentStatus = paymentStatus
+		self.status = status
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -203,6 +207,18 @@ public class PaymentNotice: DomainResource {
 					errors.append(FHIRJSONError(key: "ruleset", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["status"] {
+				presentKeys.insert("status")
+				if let val = exist as? String {
+					self.status = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "status"))
+			}
 			if let exist: AnyObject = js["statusDate"] {
 				presentKeys.insert("statusDate")
 				if let val = exist as? String {
@@ -275,6 +291,9 @@ public class PaymentNotice: DomainResource {
 		}
 		if let ruleset = self.ruleset {
 			json["ruleset"] = ruleset.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
 		}
 		if let statusDate = self.statusDate {
 			json["statusDate"] = statusDate.asJSON()

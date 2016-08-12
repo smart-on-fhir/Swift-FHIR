@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -31,11 +31,17 @@ public class Specimen: DomainResource {
 	/// External Identifier.
 	public var identifier: [Identifier]?
 	
+	/// Comments.
+	public var note: [Annotation]?
+	
 	/// Specimen from which this specimen originated.
 	public var parent: [Reference]?
 	
 	/// The time when specimen was received for processing.
 	public var receivedTime: DateTime?
+	
+	/// Why the specimen was collected.
+	public var request: [Reference]?
 	
 	/// available | unavailable | unsatisfactory | entered-in-error.
 	public var status: String?
@@ -100,6 +106,15 @@ public class Specimen: DomainResource {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["note"] {
+				presentKeys.insert("note")
+				if let val = exist as? [FHIRJSON] {
+					self.note = Annotation.from(val, owner: self) as? [Annotation]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["parent"] {
 				presentKeys.insert("parent")
 				if let val = exist as? [FHIRJSON] {
@@ -116,6 +131,15 @@ public class Specimen: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "receivedTime", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["request"] {
+				presentKeys.insert("request")
+				if let val = exist as? [FHIRJSON] {
+					self.request = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "request", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["status"] {
@@ -176,11 +200,17 @@ public class Specimen: DomainResource {
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
+		if let note = self.note {
+			json["note"] = Annotation.asJSONArray(note)
+		}
 		if let parent = self.parent {
 			json["parent"] = Reference.asJSONArray(parent)
 		}
 		if let receivedTime = self.receivedTime {
 			json["receivedTime"] = receivedTime.asJSON()
+		}
+		if let request = self.request {
+			json["request"] = Reference.asJSONArray(request)
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
@@ -221,9 +251,6 @@ public class SpecimenCollection: BackboneElement {
 	
 	/// Who collected the specimen.
 	public var collector: Reference?
-	
-	/// Collector comments.
-	public var comment: String?
 	
 	/// Technique used to perform collection.
 	public var method: CodeableConcept?
@@ -276,15 +303,6 @@ public class SpecimenCollection: BackboneElement {
 					errors.append(FHIRJSONError(key: "collector", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["comment"] {
-				presentKeys.insert("comment")
-				if let val = exist as? String {
-					self.comment = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["method"] {
 				presentKeys.insert("method")
 				if let val = exist as? FHIRJSON {
@@ -321,9 +339,6 @@ public class SpecimenCollection: BackboneElement {
 		}
 		if let collector = self.collector {
 			json["collector"] = collector.asJSON()
-		}
-		if let comment = self.comment {
-			json["comment"] = comment.asJSON()
 		}
 		if let method = self.method {
 			json["method"] = method.asJSON()
@@ -494,6 +509,12 @@ public class SpecimenTreatment: BackboneElement {
 	/// Indicates the treatment or processing step  applied to the specimen.
 	public var procedure: CodeableConcept?
 	
+	/// Date and time of specimen treatment.
+	public var timeDateTime: DateTime?
+	
+	/// Date and time of specimen treatment.
+	public var timePeriod: Period?
+	
 	
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
@@ -530,6 +551,24 @@ public class SpecimenTreatment: BackboneElement {
 					errors.append(FHIRJSONError(key: "procedure", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["timeDateTime"] {
+				presentKeys.insert("timeDateTime")
+				if let val = exist as? String {
+					self.timeDateTime = DateTime(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "timeDateTime", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["timePeriod"] {
+				presentKeys.insert("timePeriod")
+				if let val = exist as? FHIRJSON {
+					self.timePeriod = Period(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "timePeriod", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -545,6 +584,12 @@ public class SpecimenTreatment: BackboneElement {
 		}
 		if let procedure = self.procedure {
 			json["procedure"] = procedure.asJSON()
+		}
+		if let timeDateTime = self.timeDateTime {
+			json["timeDateTime"] = timeDateTime.asJSON()
+		}
+		if let timePeriod = self.timePeriod {
+			json["timePeriod"] = timePeriod.asJSON()
 		}
 		
 		return json

@@ -2,7 +2,7 @@
 //  LinkageTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -35,14 +35,14 @@ class LinkageTests: XCTestCase {
 	func runLinkage1(json: FHIRJSON? = nil) throws -> Linkage {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "linkage-example.json")
 		
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.item![0].resource!.display!, "Severe burn of left ear (Date: 24-May 2012)")
-		XCTAssertEqual(inst.item![0].resource!.reference!, "Condition/example")
-		XCTAssertEqual(inst.item![0].type!, "source")
-		XCTAssertEqual(inst.item![1].resource!.display!, "Severe burn of left ear (Date: 24-May 2012)")
-		XCTAssertEqual(inst.item![1].resource!.reference!, "Condition/condition-example")
-		XCTAssertEqual(inst.item![1].type!, "alternate")
-		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.item![0].resource!.display, "Severe burn of left ear (Date: 24-May 2012)")
+		XCTAssertEqual(inst.item![0].resource!.reference, "Condition/example")
+		XCTAssertEqual(inst.item![0].type, "source")
+		XCTAssertEqual(inst.item![1].resource!.display, "Severe burn of left ear (Date: 24-May 2012)")
+		XCTAssertEqual(inst.item![1].resource!.reference, "Condition/condition-example")
+		XCTAssertEqual(inst.item![1].type, "alternate")
+		XCTAssertEqual(inst.text!.status, "generated")
 		
 		return inst
 	}

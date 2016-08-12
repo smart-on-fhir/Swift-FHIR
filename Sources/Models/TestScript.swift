@@ -2,7 +2,7 @@
 //  TestScript.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -1160,7 +1160,7 @@ public class TestScriptRuleset: BackboneElement {
 	/// Assert ruleset resource reference.
 	public var resource: Reference?
 	
-	/// Id of referenced rule within the ruleset.
+	/// The referenced rule within the ruleset.
 	public var rule: [TestScriptRulesetRule]?
 	
 	
@@ -1223,9 +1223,9 @@ public class TestScriptRuleset: BackboneElement {
 
 
 /**
- *  Id of referenced rule within the ruleset.
+ *  The referenced rule within the ruleset.
  *
- *  Id of the referenced rule within the external ruleset template.
+ *  The referenced rule within the external ruleset template.
  */
 public class TestScriptRulesetRule: BackboneElement {
 	override public class var resourceName: String {
@@ -1235,10 +1235,19 @@ public class TestScriptRulesetRule: BackboneElement {
 	/// Ruleset rule parameter template.
 	public var param: [TestScriptRulesetRuleParam]?
 	
+	/// Id of referenced rule within the ruleset.
+	public var ruleId: String?
+	
 	
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
 		super.init(json: json, owner: owner)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(ruleId: String) {
+		self.init(json: nil)
+		self.ruleId = ruleId
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1253,6 +1262,18 @@ public class TestScriptRulesetRule: BackboneElement {
 					errors.append(FHIRJSONError(key: "param", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["ruleId"] {
+				presentKeys.insert("ruleId")
+				if let val = exist as? String {
+					self.ruleId = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "ruleId", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "ruleId"))
+			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -1262,6 +1283,9 @@ public class TestScriptRulesetRule: BackboneElement {
 		
 		if let param = self.param {
 			json["param"] = TestScriptRulesetRuleParam.asJSONArray(param)
+		}
+		if let ruleId = self.ruleId {
+			json["ruleId"] = ruleId.asJSON()
 		}
 		
 		return json
@@ -1351,9 +1375,6 @@ public class TestScriptSetup: BackboneElement {
 	/// A setup operation or assert to perform.
 	public var action: [TestScriptSetupAction]?
 	
-	/// Capabilities  that are assumed to function correctly on the FHIR server being tested.
-	public var metadata: TestScriptMetadata?
-	
 	
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
@@ -1381,15 +1402,6 @@ public class TestScriptSetup: BackboneElement {
 			else {
 				errors.append(FHIRJSONError(key: "action"))
 			}
-			if let exist: AnyObject = js["metadata"] {
-				presentKeys.insert("metadata")
-				if let val = exist as? FHIRJSON {
-					self.metadata = TestScriptMetadata(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "metadata", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -1399,9 +1411,6 @@ public class TestScriptSetup: BackboneElement {
 		
 		if let action = self.action {
 			json["action"] = TestScriptSetupAction.asJSONArray(action)
-		}
-		if let metadata = self.metadata {
-			json["metadata"] = metadata.asJSON()
 		}
 		
 		return json
@@ -1487,7 +1496,7 @@ public class TestScriptSetupActionAssert: BackboneElement {
 	/// XPath or JSONPath expression against fixture used to compare the "sourceId/path" evaluations to.
 	public var compareToSourcePath: String?
 	
-	/// xml | json.
+	/// xml | json | ttl | none.
 	public var contentType: String?
 	
 	/// Tracking/reporting assertion description.
@@ -1514,6 +1523,9 @@ public class TestScriptSetupActionAssert: BackboneElement {
 	/// XPath or JSONPath expression.
 	public var path: String?
 	
+	/// Request URL comparison value.
+	public var requestURL: String?
+	
 	/// Resource type.
 	public var resource: String?
 	
@@ -1523,10 +1535,10 @@ public class TestScriptSetupActionAssert: BackboneElement {
 	/// HTTP response code to test.
 	public var responseCode: String?
 	
-	/// Id of the TestScript.rule.
+	/// The reference to a TestScript.rule.
 	public var rule: TestScriptSetupActionAssertRule?
 	
-	/// Id of the TestScript.ruleset.
+	/// The reference to a TestScript.ruleset.
 	public var ruleset: TestScriptSetupActionAssertRuleset?
 	
 	/// Fixture Id of source expression or headerField.
@@ -1647,6 +1659,15 @@ public class TestScriptSetupActionAssert: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "path", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["requestURL"] {
+				presentKeys.insert("requestURL")
+				if let val = exist as? String {
+					self.requestURL = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "requestURL", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["resource"] {
@@ -1770,6 +1791,9 @@ public class TestScriptSetupActionAssert: BackboneElement {
 		if let path = self.path {
 			json["path"] = path.asJSON()
 		}
+		if let requestURL = self.requestURL {
+			json["requestURL"] = requestURL.asJSON()
+		}
 		if let resource = self.resource {
 			json["resource"] = resource.asJSON()
 		}
@@ -1804,9 +1828,9 @@ public class TestScriptSetupActionAssert: BackboneElement {
 
 
 /**
- *  Id of the TestScript.rule.
+ *  The reference to a TestScript.rule.
  *
- *  The TestScript.rule id value this assert will evaluate.
+ *  The TestScript.rule this assert will evaluate.
  */
 public class TestScriptSetupActionAssertRule: BackboneElement {
 	override public class var resourceName: String {
@@ -1816,10 +1840,19 @@ public class TestScriptSetupActionAssertRule: BackboneElement {
 	/// Rule parameter template.
 	public var param: [TestScriptSetupActionAssertRuleParam]?
 	
+	/// Id of the TestScript.rule.
+	public var ruleId: String?
+	
 	
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
 		super.init(json: json, owner: owner)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(ruleId: String) {
+		self.init(json: nil)
+		self.ruleId = ruleId
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1834,6 +1867,18 @@ public class TestScriptSetupActionAssertRule: BackboneElement {
 					errors.append(FHIRJSONError(key: "param", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["ruleId"] {
+				presentKeys.insert("ruleId")
+				if let val = exist as? String {
+					self.ruleId = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "ruleId", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "ruleId"))
+			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -1843,6 +1888,9 @@ public class TestScriptSetupActionAssertRule: BackboneElement {
 		
 		if let param = self.param {
 			json["param"] = TestScriptSetupActionAssertRuleParam.asJSONArray(param)
+		}
+		if let ruleId = self.ruleId {
+			json["ruleId"] = ruleId.asJSON()
 		}
 		
 		return json
@@ -1926,17 +1974,20 @@ public class TestScriptSetupActionAssertRuleParam: BackboneElement {
 
 
 /**
- *  Id of the TestScript.ruleset.
+ *  The reference to a TestScript.ruleset.
  *
- *  The TestScript.ruleset id value this assert will evaluate.
+ *  The TestScript.ruleset this assert will evaluate.
  */
 public class TestScriptSetupActionAssertRuleset: BackboneElement {
 	override public class var resourceName: String {
 		get { return "TestScriptSetupActionAssertRuleset" }
 	}
 	
-	/// Id of referenced rule within the ruleset.
+	/// The referenced rule within the ruleset.
 	public var rule: [TestScriptSetupActionAssertRulesetRule]?
+	
+	/// Id of the TestScript.ruleset.
+	public var rulesetId: String?
 	
 	
 	/** Initialize with a JSON object. */
@@ -1945,9 +1996,9 @@ public class TestScriptSetupActionAssertRuleset: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(rule: [TestScriptSetupActionAssertRulesetRule]) {
+	public convenience init(rulesetId: String) {
 		self.init(json: nil)
-		self.rule = rule
+		self.rulesetId = rulesetId
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -1962,8 +2013,17 @@ public class TestScriptSetupActionAssertRuleset: BackboneElement {
 					errors.append(FHIRJSONError(key: "rule", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["rulesetId"] {
+				presentKeys.insert("rulesetId")
+				if let val = exist as? String {
+					self.rulesetId = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "rulesetId", wants: String.self, has: exist.dynamicType))
+				}
+			}
 			else {
-				errors.append(FHIRJSONError(key: "rule"))
+				errors.append(FHIRJSONError(key: "rulesetId"))
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -1975,6 +2035,9 @@ public class TestScriptSetupActionAssertRuleset: BackboneElement {
 		if let rule = self.rule {
 			json["rule"] = TestScriptSetupActionAssertRulesetRule.asJSONArray(rule)
 		}
+		if let rulesetId = self.rulesetId {
+			json["rulesetId"] = rulesetId.asJSON()
+		}
 		
 		return json
 	}
@@ -1982,9 +2045,9 @@ public class TestScriptSetupActionAssertRuleset: BackboneElement {
 
 
 /**
- *  Id of referenced rule within the ruleset.
+ *  The referenced rule within the ruleset.
  *
- *  Id of the referenced rule within the external ruleset template.
+ *  The referenced rule within the external ruleset template.
  */
 public class TestScriptSetupActionAssertRulesetRule: BackboneElement {
 	override public class var resourceName: String {
@@ -1994,10 +2057,19 @@ public class TestScriptSetupActionAssertRulesetRule: BackboneElement {
 	/// Rule parameter template.
 	public var param: [TestScriptSetupActionAssertRulesetRuleParam]?
 	
+	/// Id of referenced rule within the ruleset.
+	public var ruleId: String?
+	
 	
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
 		super.init(json: json, owner: owner)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(ruleId: String) {
+		self.init(json: nil)
+		self.ruleId = ruleId
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -2012,6 +2084,18 @@ public class TestScriptSetupActionAssertRulesetRule: BackboneElement {
 					errors.append(FHIRJSONError(key: "param", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["ruleId"] {
+				presentKeys.insert("ruleId")
+				if let val = exist as? String {
+					self.ruleId = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "ruleId", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "ruleId"))
+			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -2021,6 +2105,9 @@ public class TestScriptSetupActionAssertRulesetRule: BackboneElement {
 		
 		if let param = self.param {
 			json["param"] = TestScriptSetupActionAssertRulesetRuleParam.asJSONArray(param)
+		}
+		if let ruleId = self.ruleId {
+			json["ruleId"] = ruleId.asJSON()
 		}
 		
 		return json
@@ -2113,10 +2200,10 @@ public class TestScriptSetupActionOperation: BackboneElement {
 		get { return "TestScriptSetupActionOperation" }
 	}
 	
-	/// xml | json.
+	/// xml | json | ttl | none.
 	public var accept: String?
 	
-	/// xml | json.
+	/// xml | json | ttl | none.
 	public var contentType: String?
 	
 	/// Tracking/reporting operation description.
@@ -2552,9 +2639,6 @@ public class TestScriptTest: BackboneElement {
 	/// Tracking/reporting short description of the test.
 	public var description_fhir: String?
 	
-	/// Capabilities  that are expected to function correctly on the FHIR server being tested.
-	public var metadata: TestScriptMetadata?
-	
 	/// Tracking/logging name of this test.
 	public var name: String?
 	
@@ -2594,15 +2678,6 @@ public class TestScriptTest: BackboneElement {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["metadata"] {
-				presentKeys.insert("metadata")
-				if let val = exist as? FHIRJSON {
-					self.metadata = TestScriptMetadata(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "metadata", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
@@ -2624,9 +2699,6 @@ public class TestScriptTest: BackboneElement {
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
-		}
-		if let metadata = self.metadata {
-			json["metadata"] = metadata.asJSON()
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()

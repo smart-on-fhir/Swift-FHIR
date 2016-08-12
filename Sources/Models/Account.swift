@@ -2,7 +2,7 @@
 //  Account.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Account) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Account) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -20,11 +20,14 @@ public class Account: DomainResource {
 		get { return "Account" }
 	}
 	
-	/// Valid from..to.
-	public var activePeriod: Period?
+	/// Time window that transactions may be posted to this account.
+	public var active: Period?
 	
 	/// How much is in account?.
-	public var balance: Quantity?
+	public var balance: Money?
+	
+	/// The party(s) that are responsible for covering the payment of this account.
+	public var coverage: [Reference]?
 	
 	/// Transaction window.
 	public var coveragePeriod: Period?
@@ -44,7 +47,7 @@ public class Account: DomainResource {
 	/// Who is responsible?.
 	public var owner: Reference?
 	
-	/// active | inactive.
+	/// active | inactive | entered-in-error.
 	public var status: String?
 	
 	/// What is account tied to?.
@@ -62,22 +65,31 @@ public class Account: DomainResource {
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["activePeriod"] {
-				presentKeys.insert("activePeriod")
+			if let exist: AnyObject = js["active"] {
+				presentKeys.insert("active")
 				if let val = exist as? FHIRJSON {
-					self.activePeriod = Period(json: val, owner: self)
+					self.active = Period(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "activePeriod", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "active", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["balance"] {
 				presentKeys.insert("balance")
 				if let val = exist as? FHIRJSON {
-					self.balance = Quantity(json: val, owner: self)
+					self.balance = Money(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "balance", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["coverage"] {
+				presentKeys.insert("coverage")
+				if let val = exist as? [FHIRJSON] {
+					self.coverage = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "coverage", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["coveragePeriod"] {
@@ -168,11 +180,14 @@ public class Account: DomainResource {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let activePeriod = self.activePeriod {
-			json["activePeriod"] = activePeriod.asJSON()
+		if let active = self.active {
+			json["active"] = active.asJSON()
 		}
 		if let balance = self.balance {
 			json["balance"] = balance.asJSON()
+		}
+		if let coverage = self.coverage {
+			json["coverage"] = Reference.asJSONArray(coverage)
 		}
 		if let coveragePeriod = self.coveragePeriod {
 			json["coveragePeriod"] = coveragePeriod.asJSON()

@@ -3,6 +3,8 @@
 from Swift.mappings import *
 from Swift.settings import *
 
+specification_url = 'http://hl7.org/fhir/2016Sep/'
+
 write_resources = True
 write_searchparams = False
 write_unittests = True

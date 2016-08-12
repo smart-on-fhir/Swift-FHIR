@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -320,7 +320,7 @@ public class QuestionnaireItem: BackboneElement {
 	/// Primary text for the item.
 	public var text: String?
 	
-	/// group | display | boolean | decimal | integer | date | dateTime +.
+	/// group | display | question | boolean | decimal | integer | date | dateTime +.
 	public var type: String?
 	
 	
@@ -717,7 +717,7 @@ public class QuestionnaireItemEnableWhen: BackboneElement {
 	public var answerUri: NSURL?
 	
 	/// Enable when answered or not.
-	public var answered: Bool?
+	public var hasAnswer: Bool?
 	
 	/// Question that determines whether item is enabled.
 	public var question: String?
@@ -854,13 +854,13 @@ public class QuestionnaireItemEnableWhen: BackboneElement {
 					errors.append(FHIRJSONError(key: "answerUri", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["answered"] {
-				presentKeys.insert("answered")
+			if let exist: AnyObject = js["hasAnswer"] {
+				presentKeys.insert("hasAnswer")
 				if let val = exist as? Bool {
-					self.answered = val
+					self.hasAnswer = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "answered", wants: Bool.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "hasAnswer", wants: Bool.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["question"] {
@@ -921,8 +921,8 @@ public class QuestionnaireItemEnableWhen: BackboneElement {
 		if let answerUri = self.answerUri {
 			json["answerUri"] = answerUri.asJSON()
 		}
-		if let answered = self.answered {
-			json["answered"] = answered.asJSON()
+		if let hasAnswer = self.hasAnswer {
+			json["hasAnswer"] = hasAnswer.asJSON()
 		}
 		if let question = self.question {
 			json["question"] = question.asJSON()

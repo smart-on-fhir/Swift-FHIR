@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Substance) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Substance) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -152,7 +152,10 @@ public class SubstanceIngredient: BackboneElement {
 	public var quantity: Ratio?
 	
 	/// A component of the substance.
-	public var substance: Reference?
+	public var substanceCodeableConcept: CodeableConcept?
+	
+	/// A component of the substance.
+	public var substanceReference: Reference?
 	
 	
 	/** Initialize with a JSON object. */
@@ -161,9 +164,10 @@ public class SubstanceIngredient: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(substance: Reference) {
+	public convenience init(substanceCodeableConcept: CodeableConcept, substanceReference: Reference) {
 		self.init(json: nil)
-		self.substance = substance
+		self.substanceCodeableConcept = substanceCodeableConcept
+		self.substanceReference = substanceReference
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -178,17 +182,28 @@ public class SubstanceIngredient: BackboneElement {
 					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["substance"] {
-				presentKeys.insert("substance")
+			if let exist: AnyObject = js["substanceCodeableConcept"] {
+				presentKeys.insert("substanceCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.substance = Reference(json: val, owner: self)
+					self.substanceCodeableConcept = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "substance", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "substanceCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			else {
-				errors.append(FHIRJSONError(key: "substance"))
+			if let exist: AnyObject = js["substanceReference"] {
+				presentKeys.insert("substanceReference")
+				if let val = exist as? FHIRJSON {
+					self.substanceReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "substanceReference", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			
+			// check if nonoptional expanded properties are present
+			if nil == self.substanceCodeableConcept && nil == self.substanceReference {
+				errors.append(FHIRJSONError(key: "substance*"))
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -200,8 +215,11 @@ public class SubstanceIngredient: BackboneElement {
 		if let quantity = self.quantity {
 			json["quantity"] = quantity.asJSON()
 		}
-		if let substance = self.substance {
-			json["substance"] = substance.asJSON()
+		if let substanceCodeableConcept = self.substanceCodeableConcept {
+			json["substanceCodeableConcept"] = substanceCodeableConcept.asJSON()
+		}
+		if let substanceReference = self.substanceReference {
+			json["substanceReference"] = substanceReference.asJSON()
 		}
 		
 		return json

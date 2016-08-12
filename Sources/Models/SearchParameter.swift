@@ -2,7 +2,7 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -24,6 +24,9 @@ public class SearchParameter: DomainResource {
 	
 	/// Code used in URL.
 	public var code: String?
+	
+	/// For Composite resources to define the parts.
+	public var component: [Reference]?
 	
 	/// Contact details of the publisher.
 	public var contact: [SearchParameterContact]?
@@ -113,6 +116,15 @@ public class SearchParameter: DomainResource {
 			}
 			else {
 				errors.append(FHIRJSONError(key: "code"))
+			}
+			if let exist: AnyObject = js["component"] {
+				presentKeys.insert("component")
+				if let val = exist as? [FHIRJSON] {
+					self.component = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "component", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
 			}
 			if let exist: AnyObject = js["contact"] {
 				presentKeys.insert("contact")
@@ -273,6 +285,9 @@ public class SearchParameter: DomainResource {
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON()
+		}
+		if let component = self.component {
+			json["component"] = Reference.asJSONArray(component)
 		}
 		if let contact = self.contact {
 			json["contact"] = SearchParameterContact.asJSONArray(contact)

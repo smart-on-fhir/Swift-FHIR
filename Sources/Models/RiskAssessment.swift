@@ -2,7 +2,7 @@
 //  RiskAssessment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -19,17 +19,20 @@ public class RiskAssessment: DomainResource {
 		get { return "RiskAssessment" }
 	}
 	
+	/// Request fulfilled by this assessment.
+	public var basedOn: Reference?
+	
 	/// Information used in assessment.
 	public var basis: [Reference]?
+	
+	/// Type of assessment.
+	public var code: CodeableConcept?
 	
 	/// Condition assessed.
 	public var condition: Reference?
 	
-	/// When was assessment made?.
-	public var date: DateTime?
-	
 	/// Where was assessment performed?.
-	public var encounter: Reference?
+	public var context: Reference?
 	
 	/// Unique identifier for the assessment.
 	public var identifier: Identifier?
@@ -40,11 +43,32 @@ public class RiskAssessment: DomainResource {
 	/// How to reduce risk.
 	public var mitigation: String?
 	
+	/// Comments on the risk assessment.
+	public var note: Annotation?
+	
+	/// When was assessment made?.
+	public var occurrenceDateTime: DateTime?
+	
+	/// When was assessment made?.
+	public var occurrencePeriod: Period?
+	
+	/// Part of this occurrence.
+	public var parent: Reference?
+	
 	/// Who did assessment?.
 	public var performer: Reference?
 	
 	/// Outcome predicted.
 	public var prediction: [RiskAssessmentPrediction]?
+	
+	/// Why the assessment was necessary?.
+	public var reasonCodeableConcept: CodeableConcept?
+	
+	/// Why the assessment was necessary?.
+	public var reasonReference: Reference?
+	
+	/// registered | preliminary | final | amended +.
+	public var status: String?
 	
 	/// Who/what does assessment apply to?.
 	public var subject: Reference?
@@ -55,9 +79,24 @@ public class RiskAssessment: DomainResource {
 		super.init(json: json, owner: owner)
 	}
 	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(status: String) {
+		self.init(json: nil)
+		self.status = status
+	}
+	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["basedOn"] {
+				presentKeys.insert("basedOn")
+				if let val = exist as? FHIRJSON {
+					self.basedOn = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "basedOn", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["basis"] {
 				presentKeys.insert("basis")
 				if let val = exist as? [FHIRJSON] {
@@ -65,6 +104,15 @@ public class RiskAssessment: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "basis", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["code"] {
+				presentKeys.insert("code")
+				if let val = exist as? FHIRJSON {
+					self.code = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["condition"] {
@@ -76,22 +124,13 @@ public class RiskAssessment: DomainResource {
 					errors.append(FHIRJSONError(key: "condition", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["date"] {
-				presentKeys.insert("date")
-				if let val = exist as? String {
-					self.date = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "date", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["encounter"] {
-				presentKeys.insert("encounter")
+			if let exist: AnyObject = js["context"] {
+				presentKeys.insert("context")
 				if let val = exist as? FHIRJSON {
-					self.encounter = Reference(json: val, owner: self)
+					self.context = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "context", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["identifier"] {
@@ -121,6 +160,42 @@ public class RiskAssessment: DomainResource {
 					errors.append(FHIRJSONError(key: "mitigation", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["note"] {
+				presentKeys.insert("note")
+				if let val = exist as? FHIRJSON {
+					self.note = Annotation(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "note", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["occurrenceDateTime"] {
+				presentKeys.insert("occurrenceDateTime")
+				if let val = exist as? String {
+					self.occurrenceDateTime = DateTime(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "occurrenceDateTime", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["occurrencePeriod"] {
+				presentKeys.insert("occurrencePeriod")
+				if let val = exist as? FHIRJSON {
+					self.occurrencePeriod = Period(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "occurrencePeriod", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["parent"] {
+				presentKeys.insert("parent")
+				if let val = exist as? FHIRJSON {
+					self.parent = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "parent", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["performer"] {
 				presentKeys.insert("performer")
 				if let val = exist as? FHIRJSON {
@@ -139,6 +214,36 @@ public class RiskAssessment: DomainResource {
 					errors.append(FHIRJSONError(key: "prediction", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["reasonCodeableConcept"] {
+				presentKeys.insert("reasonCodeableConcept")
+				if let val = exist as? FHIRJSON {
+					self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reasonCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["reasonReference"] {
+				presentKeys.insert("reasonReference")
+				if let val = exist as? FHIRJSON {
+					self.reasonReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reasonReference", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["status"] {
+				presentKeys.insert("status")
+				if let val = exist as? String {
+					self.status = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "status"))
+			}
 			if let exist: AnyObject = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
@@ -155,17 +260,20 @@ public class RiskAssessment: DomainResource {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let basedOn = self.basedOn {
+			json["basedOn"] = basedOn.asJSON()
+		}
 		if let basis = self.basis {
 			json["basis"] = Reference.asJSONArray(basis)
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
 		}
 		if let condition = self.condition {
 			json["condition"] = condition.asJSON()
 		}
-		if let date = self.date {
-			json["date"] = date.asJSON()
-		}
-		if let encounter = self.encounter {
-			json["encounter"] = encounter.asJSON()
+		if let context = self.context {
+			json["context"] = context.asJSON()
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
@@ -176,11 +284,32 @@ public class RiskAssessment: DomainResource {
 		if let mitigation = self.mitigation {
 			json["mitigation"] = mitigation.asJSON()
 		}
+		if let note = self.note {
+			json["note"] = note.asJSON()
+		}
+		if let occurrenceDateTime = self.occurrenceDateTime {
+			json["occurrenceDateTime"] = occurrenceDateTime.asJSON()
+		}
+		if let occurrencePeriod = self.occurrencePeriod {
+			json["occurrencePeriod"] = occurrencePeriod.asJSON()
+		}
+		if let parent = self.parent {
+			json["parent"] = parent.asJSON()
+		}
 		if let performer = self.performer {
 			json["performer"] = performer.asJSON()
 		}
 		if let prediction = self.prediction {
 			json["prediction"] = RiskAssessmentPrediction.asJSONArray(prediction)
+		}
+		if let reasonCodeableConcept = self.reasonCodeableConcept {
+			json["reasonCodeableConcept"] = reasonCodeableConcept.asJSON()
+		}
+		if let reasonReference = self.reasonReference {
+			json["reasonReference"] = reasonReference.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON()

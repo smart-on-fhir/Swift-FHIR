@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Organization) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Organization) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -27,8 +27,14 @@ public class Organization: DomainResource {
 	/// An address for the organization.
 	public var address: [Address]?
 	
+	/// A list of alternate names that the organization is known as, or was known as in the past.
+	public var alias: [String]?
+	
 	/// Contact for the organization for a certain purpose.
 	public var contact: [OrganizationContact]?
+	
+	/// Technical endpoints providing access to services operated for the organization.
+	public var endpoint: [Reference]?
 	
 	/// Identifies this organization  across multiple systems.
 	public var identifier: [Identifier]?
@@ -72,6 +78,15 @@ public class Organization: DomainResource {
 					errors.append(FHIRJSONError(key: "address", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["alias"] {
+				presentKeys.insert("alias")
+				if let val = exist as? [String] {
+					self.alias = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "alias", wants: Array<String>.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
@@ -79,6 +94,15 @@ public class Organization: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["endpoint"] {
+				presentKeys.insert("endpoint")
+				if let val = exist as? [FHIRJSON] {
+					self.endpoint = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "endpoint", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["identifier"] {
@@ -139,8 +163,18 @@ public class Organization: DomainResource {
 		if let address = self.address {
 			json["address"] = Address.asJSONArray(address)
 		}
+		if let alias = self.alias {
+			var arr = [AnyObject]()
+			for val in alias {
+				arr.append(val.asJSON())
+			}
+			json["alias"] = arr
+		}
 		if let contact = self.contact {
 			json["contact"] = OrganizationContact.asJSONArray(contact)
+		}
+		if let endpoint = self.endpoint {
+			json["endpoint"] = Reference.asJSONArray(endpoint)
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)

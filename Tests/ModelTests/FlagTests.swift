@@ -2,7 +2,7 @@
 //  FlagTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -35,19 +35,19 @@ class FlagTests: XCTestCase {
 	func runFlag1(json: FHIRJSON? = nil) throws -> Flag {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "flag-example-encounter.json")
 		
-		XCTAssertEqual(inst.category!.coding![0].code!, "infection")
-		XCTAssertEqual(inst.category!.coding![0].display!, "Infection Control Level")
-		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString, "http://example.org/local")
-		XCTAssertEqual(inst.code!.coding![0].code!, "l3")
-		XCTAssertEqual(inst.code!.coding![0].display!, "Follow Level 3 Protocol")
-		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString, "http://example.org/local/if1")
-		XCTAssertEqual(inst.encounter!.reference!, "Encounter/example")
-		XCTAssertEqual(inst.id!, "example-encounter")
-		XCTAssertEqual(inst.status!, "active")
-		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
-		XCTAssertEqual(inst.text!.div!, "<div>Follow Infection Control Level 3 Protocol</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.category!.coding![0].code, "infection")
+		XCTAssertEqual(inst.category!.coding![0].display, "Infection Control Level")
+		XCTAssertEqual(inst.category!.coding![0].system?.absoluteString, "http://example.org/local")
+		XCTAssertEqual(inst.code!.coding![0].code, "l3")
+		XCTAssertEqual(inst.code!.coding![0].display, "Follow Level 3 Protocol")
+		XCTAssertEqual(inst.code!.coding![0].system?.absoluteString, "http://example.org/local/if1")
+		XCTAssertEqual(inst.encounter!.reference, "Encounter/example")
+		XCTAssertEqual(inst.id, "example-encounter")
+		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.subject!.display, "Peter Patient")
+		XCTAssertEqual(inst.subject!.reference, "Patient/example")
+		XCTAssertEqual(inst.text!.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Follow Infection Control Level 3 Protocol</div>")
+		XCTAssertEqual(inst.text!.status, "generated")
 		
 		return inst
 	}
@@ -65,22 +65,22 @@ class FlagTests: XCTestCase {
 	func runFlag2(json: FHIRJSON? = nil) throws -> Flag {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "flag-example.json")
 		
-		XCTAssertEqual(inst.author!.display!, "Nancy Nurse")
-		XCTAssertEqual(inst.author!.reference!, "Practitioner/example")
-		XCTAssertEqual(inst.category!.coding![0].code!, "admin")
-		XCTAssertEqual(inst.category!.coding![0].display!, "Admin")
-		XCTAssertEqual(inst.category!.coding![0].system!.absoluteString, "http://example.org/local")
-		XCTAssertEqual(inst.category!.text!, "admin")
-		XCTAssertEqual(inst.code!.coding![0].code!, "bigdog")
-		XCTAssertEqual(inst.code!.coding![0].display!, "Big dog")
-		XCTAssertEqual(inst.code!.coding![0].system!.absoluteString, "http://example.org/local")
-		XCTAssertEqual(inst.code!.text!, "Patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.status!, "active")
-		XCTAssertEqual(inst.subject!.display!, "Peter Patient")
-		XCTAssertEqual(inst.subject!.reference!, "Patient/example")
-		XCTAssertEqual(inst.text!.div!, "<div>Large Dog warning for Peter Patient</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.author!.display, "Nancy Nurse")
+		XCTAssertEqual(inst.author!.reference, "Practitioner/example")
+		XCTAssertEqual(inst.category!.coding![0].code, "admin")
+		XCTAssertEqual(inst.category!.coding![0].display, "Admin")
+		XCTAssertEqual(inst.category!.coding![0].system?.absoluteString, "http://example.org/local")
+		XCTAssertEqual(inst.category!.text, "admin")
+		XCTAssertEqual(inst.code!.coding![0].code, "bigdog")
+		XCTAssertEqual(inst.code!.coding![0].display, "Big dog")
+		XCTAssertEqual(inst.code!.coding![0].system?.absoluteString, "http://example.org/local")
+		XCTAssertEqual(inst.code!.text, "Patient has a big dog at his home. Always always wear a suit of armor or take other active counter-measures")
+		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.subject!.display, "Peter Patient")
+		XCTAssertEqual(inst.subject!.reference, "Patient/example")
+		XCTAssertEqual(inst.text!.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Large Dog warning for Peter Patient</div>")
+		XCTAssertEqual(inst.text!.status, "generated")
 		
 		return inst
 	}

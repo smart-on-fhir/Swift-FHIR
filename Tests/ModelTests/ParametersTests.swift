@@ -2,7 +2,7 @@
 //  ParametersTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -35,10 +35,10 @@ class ParametersTests: XCTestCase {
 	func runParameters1(json: FHIRJSON? = nil) throws -> Parameters {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "parameters-example.json")
 		
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.parameter![0].name!, "start")
-		XCTAssertEqual(inst.parameter![0].valueDate!.description, "2010-01-01")
-		XCTAssertEqual(inst.parameter![1].name!, "end")
+		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.parameter![0].name, "start")
+		XCTAssertEqual(inst.parameter![0].valueDate?.description, "2010-01-01")
+		XCTAssertEqual(inst.parameter![1].name, "end")
 		
 		return inst
 	}

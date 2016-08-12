@@ -2,7 +2,7 @@
 //  MedicationAdministration.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -36,6 +36,9 @@ public class MedicationAdministration: DomainResource {
 	/// Encounter administered as part of.
 	public var encounter: Reference?
 	
+	/// A list of events of interest in the lifecycle.
+	public var eventHistory: [MedicationAdministrationEventHistory]?
+	
 	/// External identifier.
 	public var identifier: [Identifier]?
 	
@@ -52,7 +55,7 @@ public class MedicationAdministration: DomainResource {
 	public var patient: Reference?
 	
 	/// Who administered substance.
-	public var practitioner: Reference?
+	public var performer: Reference?
 	
 	/// Order administration performed against.
 	public var prescription: Reference?
@@ -134,6 +137,15 @@ public class MedicationAdministration: DomainResource {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["eventHistory"] {
+				presentKeys.insert("eventHistory")
+				if let val = exist as? [FHIRJSON] {
+					self.eventHistory = MedicationAdministrationEventHistory.from(val, owner: self) as? [MedicationAdministrationEventHistory]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "eventHistory", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
@@ -182,13 +194,13 @@ public class MedicationAdministration: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "patient"))
 			}
-			if let exist: AnyObject = js["practitioner"] {
-				presentKeys.insert("practitioner")
+			if let exist: AnyObject = js["performer"] {
+				presentKeys.insert("performer")
 				if let val = exist as? FHIRJSON {
-					self.practitioner = Reference(json: val, owner: self)
+					self.performer = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "practitioner", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "performer", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["prescription"] {
@@ -269,6 +281,9 @@ public class MedicationAdministration: DomainResource {
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()
 		}
+		if let eventHistory = self.eventHistory {
+			json["eventHistory"] = MedicationAdministrationEventHistory.asJSONArray(eventHistory)
+		}
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
@@ -284,8 +299,8 @@ public class MedicationAdministration: DomainResource {
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
 		}
-		if let practitioner = self.practitioner {
-			json["practitioner"] = practitioner.asJSON()
+		if let performer = self.performer {
+			json["performer"] = performer.asJSON()
 		}
 		if let prescription = self.prescription {
 			json["prescription"] = prescription.asJSON()
@@ -318,14 +333,14 @@ public class MedicationAdministrationDosage: BackboneElement {
 		get { return "MedicationAdministrationDosage" }
 	}
 	
+	/// Amount of medication per dose.
+	public var dose: Quantity?
+	
 	/// How drug was administered.
 	public var method: CodeableConcept?
 	
-	/// Amount administered in one dose.
-	public var quantity: Quantity?
-	
 	/// Dose quantity per unit of time.
-	public var rateRange: Range?
+	public var rateQuantity: Quantity?
 	
 	/// Dose quantity per unit of time.
 	public var rateRatio: Ratio?
@@ -351,6 +366,15 @@ public class MedicationAdministrationDosage: BackboneElement {
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["dose"] {
+				presentKeys.insert("dose")
+				if let val = exist as? FHIRJSON {
+					self.dose = Quantity(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "dose", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["method"] {
 				presentKeys.insert("method")
 				if let val = exist as? FHIRJSON {
@@ -360,22 +384,13 @@ public class MedicationAdministrationDosage: BackboneElement {
 					errors.append(FHIRJSONError(key: "method", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["quantity"] {
-				presentKeys.insert("quantity")
+			if let exist: AnyObject = js["rateQuantity"] {
+				presentKeys.insert("rateQuantity")
 				if let val = exist as? FHIRJSON {
-					self.quantity = Quantity(json: val, owner: self)
+					self.rateQuantity = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["rateRange"] {
-				presentKeys.insert("rateRange")
-				if let val = exist as? FHIRJSON {
-					self.rateRange = Range(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "rateRange", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "rateQuantity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["rateRatio"] {
@@ -430,14 +445,14 @@ public class MedicationAdministrationDosage: BackboneElement {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let dose = self.dose {
+			json["dose"] = dose.asJSON()
+		}
 		if let method = self.method {
 			json["method"] = method.asJSON()
 		}
-		if let quantity = self.quantity {
-			json["quantity"] = quantity.asJSON()
-		}
-		if let rateRange = self.rateRange {
-			json["rateRange"] = rateRange.asJSON()
+		if let rateQuantity = self.rateQuantity {
+			json["rateQuantity"] = rateQuantity.asJSON()
 		}
 		if let rateRatio = self.rateRatio {
 			json["rateRatio"] = rateRatio.asJSON()
@@ -453,6 +468,126 @@ public class MedicationAdministrationDosage: BackboneElement {
 		}
 		if let text = self.text {
 			json["text"] = text.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  A list of events of interest in the lifecycle.
+ *
+ *  A summary of the events of interest that have occurred, such as when the administration was verified.
+ */
+public class MedicationAdministrationEventHistory: BackboneElement {
+	override public class var resourceName: String {
+		get { return "MedicationAdministrationEventHistory" }
+	}
+	
+	/// Action taken (e.g. verify).
+	public var action: CodeableConcept?
+	
+	/// Who took the action.
+	public var actor: Reference?
+	
+	/// The date at which the event happened.
+	public var dateTime: DateTime?
+	
+	/// Reason the action was taken.
+	public var reason: CodeableConcept?
+	
+	/// in-progress | on-hold | completed | entered-in-error | stopped.
+	public var status: String?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
+		super.init(json: json, owner: owner)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(dateTime: DateTime, status: String) {
+		self.init(json: nil)
+		self.dateTime = dateTime
+		self.status = status
+	}
+	
+	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist: AnyObject = js["action"] {
+				presentKeys.insert("action")
+				if let val = exist as? FHIRJSON {
+					self.action = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "action", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["actor"] {
+				presentKeys.insert("actor")
+				if let val = exist as? FHIRJSON {
+					self.actor = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "actor", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["dateTime"] {
+				presentKeys.insert("dateTime")
+				if let val = exist as? String {
+					self.dateTime = DateTime(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "dateTime", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "dateTime"))
+			}
+			if let exist: AnyObject = js["reason"] {
+				presentKeys.insert("reason")
+				if let val = exist as? FHIRJSON {
+					self.reason = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["status"] {
+				presentKeys.insert("status")
+				if let val = exist as? String {
+					self.status = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "status"))
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let action = self.action {
+			json["action"] = action.asJSON()
+		}
+		if let actor = self.actor {
+			json["actor"] = actor.asJSON()
+		}
+		if let dateTime = self.dateTime {
+			json["dateTime"] = dateTime.asJSON()
+		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
 		}
 		
 		return json

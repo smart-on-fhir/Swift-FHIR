@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -57,7 +57,7 @@ public class DiagnosticReport: DomainResource {
 	public var issued: Instant?
 	
 	/// Responsible Diagnostic Service.
-	public var performer: Reference?
+	public var performer: [Reference]?
 	
 	/// Entire report as issued.
 	public var presentedForm: [Attachment]?
@@ -84,7 +84,7 @@ public class DiagnosticReport: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept, effectiveDateTime: DateTime, effectivePeriod: Period, issued: Instant, performer: Reference, status: String, subject: Reference) {
+	public convenience init(code: CodeableConcept, effectiveDateTime: DateTime, effectivePeriod: Period, issued: Instant, performer: [Reference], status: String, subject: Reference) {
 		self.init(json: nil)
 		self.code = code
 		self.effectiveDateTime = effectiveDateTime
@@ -205,11 +205,11 @@ public class DiagnosticReport: DomainResource {
 			}
 			if let exist: AnyObject = js["performer"] {
 				presentKeys.insert("performer")
-				if let val = exist as? FHIRJSON {
-					self.performer = Reference(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.performer = Reference.from(val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "performer", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "performer", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			else {
@@ -321,7 +321,7 @@ public class DiagnosticReport: DomainResource {
 			json["issued"] = issued.asJSON()
 		}
 		if let performer = self.performer {
-			json["performer"] = performer.asJSON()
+			json["performer"] = Reference.asJSONArray(performer)
 		}
 		if let presentedForm = self.presentedForm {
 			json["presentedForm"] = Attachment.asJSONArray(presentedForm)

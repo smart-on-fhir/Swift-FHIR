@@ -2,7 +2,7 @@
 //  EligibilityRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -53,6 +53,12 @@ public class EligibilityRequest: DomainResource {
 	/// Business Identifier.
 	public var identifier: [Identifier]?
 	
+	/// Target.
+	public var insurerIdentifier: Identifier?
+	
+	/// Target.
+	public var insurerReference: Reference?
+	
 	/// Responsible organization.
 	public var organizationIdentifier: Identifier?
 	
@@ -86,16 +92,19 @@ public class EligibilityRequest: DomainResource {
 	/// Estimated date or dates of Service.
 	public var servicedPeriod: Period?
 	
-	/// Insurer.
-	public var targetIdentifier: Identifier?
-	
-	/// Insurer.
-	public var targetReference: Reference?
+	/// active | cancelled | draft | entered-in-error.
+	public var status: String?
 	
 	
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
 		super.init(json: json, owner: owner)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(status: String) {
+		self.init(json: nil)
+		self.status = status
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -200,6 +209,24 @@ public class EligibilityRequest: DomainResource {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["insurerIdentifier"] {
+				presentKeys.insert("insurerIdentifier")
+				if let val = exist as? FHIRJSON {
+					self.insurerIdentifier = Identifier(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "insurerIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["insurerReference"] {
+				presentKeys.insert("insurerReference")
+				if let val = exist as? FHIRJSON {
+					self.insurerReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "insurerReference", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["organizationIdentifier"] {
 				presentKeys.insert("organizationIdentifier")
 				if let val = exist as? FHIRJSON {
@@ -299,23 +326,17 @@ public class EligibilityRequest: DomainResource {
 					errors.append(FHIRJSONError(key: "servicedPeriod", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["targetIdentifier"] {
-				presentKeys.insert("targetIdentifier")
-				if let val = exist as? FHIRJSON {
-					self.targetIdentifier = Identifier(json: val, owner: self)
+			if let exist: AnyObject = js["status"] {
+				presentKeys.insert("status")
+				if let val = exist as? String {
+					self.status = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "targetIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["targetReference"] {
-				presentKeys.insert("targetReference")
-				if let val = exist as? FHIRJSON {
-					self.targetReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "targetReference", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
+			else {
+				errors.append(FHIRJSONError(key: "status"))
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -357,6 +378,12 @@ public class EligibilityRequest: DomainResource {
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
+		if let insurerIdentifier = self.insurerIdentifier {
+			json["insurerIdentifier"] = insurerIdentifier.asJSON()
+		}
+		if let insurerReference = self.insurerReference {
+			json["insurerReference"] = insurerReference.asJSON()
+		}
 		if let organizationIdentifier = self.organizationIdentifier {
 			json["organizationIdentifier"] = organizationIdentifier.asJSON()
 		}
@@ -390,11 +417,8 @@ public class EligibilityRequest: DomainResource {
 		if let servicedPeriod = self.servicedPeriod {
 			json["servicedPeriod"] = servicedPeriod.asJSON()
 		}
-		if let targetIdentifier = self.targetIdentifier {
-			json["targetIdentifier"] = targetIdentifier.asJSON()
-		}
-		if let targetReference = self.targetReference {
-			json["targetReference"] = targetReference.asJSON()
+		if let status = self.status {
+			json["status"] = status.asJSON()
 		}
 		
 		return json

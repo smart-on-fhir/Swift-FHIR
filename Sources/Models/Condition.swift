@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Condition) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Condition) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -22,6 +22,9 @@ public class Condition: DomainResource {
 	}
 	
 	/// If/when in resolution/remission.
+	public var abatementAge: Age?
+	
+	/// If/when in resolution/remission.
 	public var abatementBoolean: Bool?
 	
 	/// If/when in resolution/remission.
@@ -29,9 +32,6 @@ public class Condition: DomainResource {
 	
 	/// If/when in resolution/remission.
 	public var abatementPeriod: Period?
-	
-	/// If/when in resolution/remission.
-	public var abatementQuantity: Quantity?
 	
 	/// If/when in resolution/remission.
 	public var abatementRange: Range?
@@ -54,11 +54,11 @@ public class Condition: DomainResource {
 	/// Identification of the condition, problem or diagnosis.
 	public var code: CodeableConcept?
 	
+	/// Encounter when condition first asserted.
+	public var context: Reference?
+	
 	/// When first entered.
 	public var dateRecorded: Date?
-	
-	/// Encounter when condition first asserted.
-	public var encounter: Reference?
 	
 	/// Supporting evidence.
 	public var evidence: [ConditionEvidence]?
@@ -67,7 +67,10 @@ public class Condition: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// Additional information about the Condition.
-	public var notes: String?
+	public var note: [Annotation]?
+	
+	/// Estimated or actual date,  date-time, or age.
+	public var onsetAge: Age?
 	
 	/// Estimated or actual date,  date-time, or age.
 	public var onsetDateTime: DateTime?
@@ -76,22 +79,19 @@ public class Condition: DomainResource {
 	public var onsetPeriod: Period?
 	
 	/// Estimated or actual date,  date-time, or age.
-	public var onsetQuantity: Quantity?
-	
-	/// Estimated or actual date,  date-time, or age.
 	public var onsetRange: Range?
 	
 	/// Estimated or actual date,  date-time, or age.
 	public var onsetString: String?
-	
-	/// Who has the condition?.
-	public var patient: Reference?
 	
 	/// Subjective severity of condition.
 	public var severity: CodeableConcept?
 	
 	/// Stage/grade, usually assessed formally.
 	public var stage: ConditionStage?
+	
+	/// Who has the condition?.
+	public var subject: Reference?
 	
 	/// provisional | differential | confirmed | refuted | entered-in-error | unknown.
 	public var verificationStatus: String?
@@ -103,16 +103,25 @@ public class Condition: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept, patient: Reference, verificationStatus: String) {
+	public convenience init(code: CodeableConcept, subject: Reference, verificationStatus: String) {
 		self.init(json: nil)
 		self.code = code
-		self.patient = patient
+		self.subject = subject
 		self.verificationStatus = verificationStatus
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["abatementAge"] {
+				presentKeys.insert("abatementAge")
+				if let val = exist as? FHIRJSON {
+					self.abatementAge = Age(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "abatementAge", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["abatementBoolean"] {
 				presentKeys.insert("abatementBoolean")
 				if let val = exist as? Bool {
@@ -138,15 +147,6 @@ public class Condition: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "abatementPeriod", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["abatementQuantity"] {
-				presentKeys.insert("abatementQuantity")
-				if let val = exist as? FHIRJSON {
-					self.abatementQuantity = Quantity(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "abatementQuantity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["abatementRange"] {
@@ -215,6 +215,15 @@ public class Condition: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "code"))
 			}
+			if let exist: AnyObject = js["context"] {
+				presentKeys.insert("context")
+				if let val = exist as? FHIRJSON {
+					self.context = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "context", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["dateRecorded"] {
 				presentKeys.insert("dateRecorded")
 				if let val = exist as? String {
@@ -222,15 +231,6 @@ public class Condition: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dateRecorded", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["encounter"] {
-				presentKeys.insert("encounter")
-				if let val = exist as? FHIRJSON {
-					self.encounter = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["evidence"] {
@@ -251,13 +251,22 @@ public class Condition: DomainResource {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["notes"] {
-				presentKeys.insert("notes")
-				if let val = exist as? String {
-					self.notes = val
+			if let exist: AnyObject = js["note"] {
+				presentKeys.insert("note")
+				if let val = exist as? [FHIRJSON] {
+					self.note = Annotation.from(val, owner: self) as? [Annotation]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "notes", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["onsetAge"] {
+				presentKeys.insert("onsetAge")
+				if let val = exist as? FHIRJSON {
+					self.onsetAge = Age(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "onsetAge", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["onsetDateTime"] {
@@ -278,15 +287,6 @@ public class Condition: DomainResource {
 					errors.append(FHIRJSONError(key: "onsetPeriod", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["onsetQuantity"] {
-				presentKeys.insert("onsetQuantity")
-				if let val = exist as? FHIRJSON {
-					self.onsetQuantity = Quantity(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "onsetQuantity", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["onsetRange"] {
 				presentKeys.insert("onsetRange")
 				if let val = exist as? FHIRJSON {
@@ -305,18 +305,6 @@ public class Condition: DomainResource {
 					errors.append(FHIRJSONError(key: "onsetString", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["patient"] {
-				presentKeys.insert("patient")
-				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "patient"))
-			}
 			if let exist: AnyObject = js["severity"] {
 				presentKeys.insert("severity")
 				if let val = exist as? FHIRJSON {
@@ -334,6 +322,18 @@ public class Condition: DomainResource {
 				else {
 					errors.append(FHIRJSONError(key: "stage", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
+			}
+			if let exist: AnyObject = js["subject"] {
+				presentKeys.insert("subject")
+				if let val = exist as? FHIRJSON {
+					self.subject = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "subject"))
 			}
 			if let exist: AnyObject = js["verificationStatus"] {
 				presentKeys.insert("verificationStatus")
@@ -354,6 +354,9 @@ public class Condition: DomainResource {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let abatementAge = self.abatementAge {
+			json["abatementAge"] = abatementAge.asJSON()
+		}
 		if let abatementBoolean = self.abatementBoolean {
 			json["abatementBoolean"] = abatementBoolean.asJSON()
 		}
@@ -362,9 +365,6 @@ public class Condition: DomainResource {
 		}
 		if let abatementPeriod = self.abatementPeriod {
 			json["abatementPeriod"] = abatementPeriod.asJSON()
-		}
-		if let abatementQuantity = self.abatementQuantity {
-			json["abatementQuantity"] = abatementQuantity.asJSON()
 		}
 		if let abatementRange = self.abatementRange {
 			json["abatementRange"] = abatementRange.asJSON()
@@ -387,11 +387,11 @@ public class Condition: DomainResource {
 		if let code = self.code {
 			json["code"] = code.asJSON()
 		}
+		if let context = self.context {
+			json["context"] = context.asJSON()
+		}
 		if let dateRecorded = self.dateRecorded {
 			json["dateRecorded"] = dateRecorded.asJSON()
-		}
-		if let encounter = self.encounter {
-			json["encounter"] = encounter.asJSON()
 		}
 		if let evidence = self.evidence {
 			json["evidence"] = ConditionEvidence.asJSONArray(evidence)
@@ -399,8 +399,11 @@ public class Condition: DomainResource {
 		if let identifier = self.identifier {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
-		if let notes = self.notes {
-			json["notes"] = notes.asJSON()
+		if let note = self.note {
+			json["note"] = Annotation.asJSONArray(note)
+		}
+		if let onsetAge = self.onsetAge {
+			json["onsetAge"] = onsetAge.asJSON()
 		}
 		if let onsetDateTime = self.onsetDateTime {
 			json["onsetDateTime"] = onsetDateTime.asJSON()
@@ -408,23 +411,20 @@ public class Condition: DomainResource {
 		if let onsetPeriod = self.onsetPeriod {
 			json["onsetPeriod"] = onsetPeriod.asJSON()
 		}
-		if let onsetQuantity = self.onsetQuantity {
-			json["onsetQuantity"] = onsetQuantity.asJSON()
-		}
 		if let onsetRange = self.onsetRange {
 			json["onsetRange"] = onsetRange.asJSON()
 		}
 		if let onsetString = self.onsetString {
 			json["onsetString"] = onsetString.asJSON()
 		}
-		if let patient = self.patient {
-			json["patient"] = patient.asJSON()
-		}
 		if let severity = self.severity {
 			json["severity"] = severity.asJSON()
 		}
 		if let stage = self.stage {
 			json["stage"] = stage.asJSON()
+		}
+		if let subject = self.subject {
+			json["subject"] = subject.asJSON()
 		}
 		if let verificationStatus = self.verificationStatus {
 			json["verificationStatus"] = verificationStatus.asJSON()

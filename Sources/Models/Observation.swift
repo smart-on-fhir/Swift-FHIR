@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Observation) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Observation) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -23,7 +23,7 @@ public class Observation: DomainResource {
 	public var bodySite: CodeableConcept?
 	
 	/// Classification of  type of observation.
-	public var category: CodeableConcept?
+	public var category: [CodeableConcept]?
 	
 	/// Type of observation (code / type).
 	public var code: CodeableConcept?
@@ -136,11 +136,11 @@ public class Observation: DomainResource {
 			}
 			if let exist: AnyObject = js["category"] {
 				presentKeys.insert("category")
-				if let val = exist as? FHIRJSON {
-					self.category = CodeableConcept(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.category = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "category", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["code"] {
@@ -412,7 +412,7 @@ public class Observation: DomainResource {
 			json["bodySite"] = bodySite.asJSON()
 		}
 		if let category = self.category {
-			json["category"] = category.asJSON()
+			json["category"] = CodeableConcept.asJSONArray(category)
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON()
@@ -522,6 +522,9 @@ public class ObservationComponent: BackboneElement {
 	/// Why the component result is missing.
 	public var dataAbsentReason: CodeableConcept?
 	
+	/// High, low, normal, etc..
+	public var interpretation: CodeableConcept?
+	
 	/// Provides guide for interpretation of component result.
 	public var referenceRange: [ObservationReferenceRange]?
 	
@@ -589,6 +592,15 @@ public class ObservationComponent: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dataAbsentReason", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["interpretation"] {
+				presentKeys.insert("interpretation")
+				if let val = exist as? FHIRJSON {
+					self.interpretation = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "interpretation", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["referenceRange"] {
@@ -703,6 +715,9 @@ public class ObservationComponent: BackboneElement {
 		if let dataAbsentReason = self.dataAbsentReason {
 			json["dataAbsentReason"] = dataAbsentReason.asJSON()
 		}
+		if let interpretation = self.interpretation {
+			json["interpretation"] = interpretation.asJSON()
+		}
 		if let referenceRange = self.referenceRange {
 			json["referenceRange"] = ObservationReferenceRange.asJSONArray(referenceRange)
 		}
@@ -761,8 +776,8 @@ public class ObservationReferenceRange: BackboneElement {
 	/// Low Range, if relevant.
 	public var low: Quantity?
 	
-	/// Indicates the meaning/use of this range of this range.
-	public var meaning: CodeableConcept?
+	/// Reference range qualifier.
+	public var meaning: [CodeableConcept]?
 	
 	/// Text based reference range in an observation.
 	public var text: String?
@@ -805,11 +820,11 @@ public class ObservationReferenceRange: BackboneElement {
 			}
 			if let exist: AnyObject = js["meaning"] {
 				presentKeys.insert("meaning")
-				if let val = exist as? FHIRJSON {
-					self.meaning = CodeableConcept(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.meaning = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "meaning", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "meaning", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["text"] {
@@ -838,7 +853,7 @@ public class ObservationReferenceRange: BackboneElement {
 			json["low"] = low.asJSON()
 		}
 		if let meaning = self.meaning {
-			json["meaning"] = meaning.asJSON()
+			json["meaning"] = CodeableConcept.asJSONArray(meaning)
 		}
 		if let text = self.text {
 			json["text"] = text.asJSON()
@@ -852,8 +867,8 @@ public class ObservationReferenceRange: BackboneElement {
 /**
  *  Resource related to this observation.
  *
- *  A  reference to another resource (usually another Observation but could  also be a QuestionnaireAnswer) whose
- *  relationship is defined by the relationship type code.
+ *  A  reference to another resource (usually another Observation) whose relationship is defined by the relationship
+ *  type code.
  */
 public class ObservationRelated: BackboneElement {
 	override public class var resourceName: String {

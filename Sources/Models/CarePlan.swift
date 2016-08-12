@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -29,6 +29,9 @@ public class CarePlan: DomainResource {
 	/// Who is responsible for contents of the plan.
 	public var author: [Reference]?
 	
+	/// Who's involved in plan?.
+	public var careTeam: [Reference]?
+	
 	/// Type of plan.
 	public var category: [CodeableConcept]?
 	
@@ -49,9 +52,6 @@ public class CarePlan: DomainResource {
 	
 	/// Comments about the plan.
 	public var note: Annotation?
-	
-	/// Who's involved in plan?.
-	public var participant: [CarePlanParticipant]?
 	
 	/// Time period plan covers.
 	public var period: Period?
@@ -108,6 +108,15 @@ public class CarePlan: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "author", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["careTeam"] {
+				presentKeys.insert("careTeam")
+				if let val = exist as? [FHIRJSON] {
+					self.careTeam = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "careTeam", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["category"] {
@@ -171,15 +180,6 @@ public class CarePlan: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "note", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["participant"] {
-				presentKeys.insert("participant")
-				if let val = exist as? [FHIRJSON] {
-					self.participant = CarePlanParticipant.from(val, owner: self) as? [CarePlanParticipant]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "participant", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["period"] {
@@ -246,6 +246,9 @@ public class CarePlan: DomainResource {
 		if let author = self.author {
 			json["author"] = Reference.asJSONArray(author)
 		}
+		if let careTeam = self.careTeam {
+			json["careTeam"] = Reference.asJSONArray(careTeam)
+		}
 		if let category = self.category {
 			json["category"] = CodeableConcept.asJSONArray(category)
 		}
@@ -266,9 +269,6 @@ public class CarePlan: DomainResource {
 		}
 		if let note = self.note {
 			json["note"] = note.asJSON()
-		}
-		if let participant = self.participant {
-			json["participant"] = CarePlanParticipant.asJSONArray(participant)
 		}
 		if let period = self.period {
 			json["period"] = period.asJSON()
@@ -308,6 +308,9 @@ public class CarePlanActivity: BackboneElement {
 	/// In-line definition of activity.
 	public var detail: CarePlanActivityDetail?
 	
+	/// Results of the activity.
+	public var outcome: CodeableConcept?
+	
 	/// Comments about the activity status/progress.
 	public var progress: [Annotation]?
 	
@@ -341,6 +344,15 @@ public class CarePlanActivity: BackboneElement {
 					errors.append(FHIRJSONError(key: "detail", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["outcome"] {
+				presentKeys.insert("outcome")
+				if let val = exist as? FHIRJSON {
+					self.outcome = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "outcome", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["progress"] {
 				presentKeys.insert("progress")
 				if let val = exist as? [FHIRJSON] {
@@ -371,6 +383,9 @@ public class CarePlanActivity: BackboneElement {
 		}
 		if let detail = self.detail {
 			json["detail"] = detail.asJSON()
+		}
+		if let outcome = self.outcome {
+			json["outcome"] = outcome.asJSON()
 		}
 		if let progress = self.progress {
 			json["progress"] = Annotation.asJSONArray(progress)
@@ -403,6 +418,9 @@ public class CarePlanActivityDetail: BackboneElement {
 	
 	/// How to consume/day?.
 	public var dailyAmount: Quantity?
+	
+	/// Protocol or definition.
+	public var definition: Reference?
 	
 	/// Extra info describing activity to perform.
 	public var description_fhir: String?
@@ -489,6 +507,15 @@ public class CarePlanActivityDetail: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dailyAmount", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["definition"] {
+				presentKeys.insert("definition")
+				if let val = exist as? FHIRJSON {
+					self.definition = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "definition", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["description"] {
@@ -645,6 +672,9 @@ public class CarePlanActivityDetail: BackboneElement {
 		if let dailyAmount = self.dailyAmount {
 			json["dailyAmount"] = dailyAmount.asJSON()
 		}
+		if let definition = self.definition {
+			json["definition"] = definition.asJSON()
+		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
@@ -689,68 +719,6 @@ public class CarePlanActivityDetail: BackboneElement {
 		}
 		if let statusReason = self.statusReason {
 			json["statusReason"] = statusReason.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Who's involved in plan?.
- *
- *  Identifies all people and organizations who are expected to be involved in the care envisioned by this plan.
- */
-public class CarePlanParticipant: BackboneElement {
-	override public class var resourceName: String {
-		get { return "CarePlanParticipant" }
-	}
-	
-	/// Who is involved.
-	public var member: Reference?
-	
-	/// Type of involvement.
-	public var role: CodeableConcept?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist: AnyObject = js["member"] {
-				presentKeys.insert("member")
-				if let val = exist as? FHIRJSON {
-					self.member = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "member", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["role"] {
-				presentKeys.insert("role")
-				if let val = exist as? FHIRJSON {
-					self.role = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "role", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override public func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let member = self.member {
-			json["member"] = member.asJSON()
-		}
-		if let role = self.role {
-			json["role"] = role.asJSON()
 		}
 		
 		return json

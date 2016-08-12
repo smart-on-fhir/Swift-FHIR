@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -31,6 +31,9 @@ public class Procedure: DomainResource {
 	
 	/// Complication following the procedure.
 	public var complication: [CodeableConcept]?
+	
+	/// Events related to the procedure.
+	public var component: [Reference]?
 	
 	/// The encounter associated with the procedure.
 	public var encounter: Reference?
@@ -65,14 +68,14 @@ public class Procedure: DomainResource {
 	/// The people who performed the procedure.
 	public var performer: [ProcedurePerformer]?
 	
-	/// Reason procedure performed.
-	public var reasonCodeableConcept: CodeableConcept?
+	/// Coded reason procedure performed.
+	public var reasonCode: [CodeableConcept]?
 	
 	/// Reason procedure was not performed.
 	public var reasonNotPerformed: [CodeableConcept]?
 	
-	/// Reason procedure performed.
-	public var reasonReference: Reference?
+	/// Condition that is the reason the procedure performed.
+	public var reasonReference: [Reference]?
 	
 	/// Any report resulting from the procedure.
 	public var report: [Reference]?
@@ -86,8 +89,11 @@ public class Procedure: DomainResource {
 	/// Who the procedure was performed on.
 	public var subject: Reference?
 	
+	/// Coded items used during the procedure.
+	public var usedCode: [CodeableConcept]?
+	
 	/// Items used during procedure.
-	public var used: [Reference]?
+	public var usedReference: [Reference]?
 	
 	
 	/** Initialize with a JSON object. */
@@ -143,6 +149,15 @@ public class Procedure: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "complication", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["component"] {
+				presentKeys.insert("component")
+				if let val = exist as? [FHIRJSON] {
+					self.component = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "component", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["encounter"] {
@@ -244,13 +259,13 @@ public class Procedure: DomainResource {
 					errors.append(FHIRJSONError(key: "performer", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["reasonCodeableConcept"] {
-				presentKeys.insert("reasonCodeableConcept")
-				if let val = exist as? FHIRJSON {
-					self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
+			if let exist: AnyObject = js["reasonCode"] {
+				presentKeys.insert("reasonCode")
+				if let val = exist as? [FHIRJSON] {
+					self.reasonCode = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reasonCodeableConcept", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reasonCode", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["reasonNotPerformed"] {
@@ -264,11 +279,11 @@ public class Procedure: DomainResource {
 			}
 			if let exist: AnyObject = js["reasonReference"] {
 				presentKeys.insert("reasonReference")
-				if let val = exist as? FHIRJSON {
-					self.reasonReference = Reference(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.reasonReference = Reference.from(val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reasonReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reasonReference", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["report"] {
@@ -313,13 +328,22 @@ public class Procedure: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "subject"))
 			}
-			if let exist: AnyObject = js["used"] {
-				presentKeys.insert("used")
+			if let exist: AnyObject = js["usedCode"] {
+				presentKeys.insert("usedCode")
 				if let val = exist as? [FHIRJSON] {
-					self.used = Reference.from(val, owner: self) as? [Reference]
+					self.usedCode = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "used", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "usedCode", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["usedReference"] {
+				presentKeys.insert("usedReference")
+				if let val = exist as? [FHIRJSON] {
+					self.usedReference = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "usedReference", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -340,6 +364,9 @@ public class Procedure: DomainResource {
 		}
 		if let complication = self.complication {
 			json["complication"] = CodeableConcept.asJSONArray(complication)
+		}
+		if let component = self.component {
+			json["component"] = Reference.asJSONArray(component)
 		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()
@@ -374,14 +401,14 @@ public class Procedure: DomainResource {
 		if let performer = self.performer {
 			json["performer"] = ProcedurePerformer.asJSONArray(performer)
 		}
-		if let reasonCodeableConcept = self.reasonCodeableConcept {
-			json["reasonCodeableConcept"] = reasonCodeableConcept.asJSON()
+		if let reasonCode = self.reasonCode {
+			json["reasonCode"] = CodeableConcept.asJSONArray(reasonCode)
 		}
 		if let reasonNotPerformed = self.reasonNotPerformed {
 			json["reasonNotPerformed"] = CodeableConcept.asJSONArray(reasonNotPerformed)
 		}
 		if let reasonReference = self.reasonReference {
-			json["reasonReference"] = reasonReference.asJSON()
+			json["reasonReference"] = Reference.asJSONArray(reasonReference)
 		}
 		if let report = self.report {
 			json["report"] = Reference.asJSONArray(report)
@@ -395,8 +422,11 @@ public class Procedure: DomainResource {
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON()
 		}
-		if let used = self.used {
-			json["used"] = Reference.asJSONArray(used)
+		if let usedCode = self.usedCode {
+			json["usedCode"] = CodeableConcept.asJSONArray(usedCode)
+		}
+		if let usedReference = self.usedReference {
+			json["usedReference"] = Reference.asJSONArray(usedReference)
 		}
 		
 		return json

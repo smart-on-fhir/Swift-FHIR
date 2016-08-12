@@ -2,7 +2,7 @@
 //  Task.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Task) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Task) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -17,32 +17,47 @@ public class Task: DomainResource {
 		get { return "Task" }
 	}
 	
+	/// Request fulfilled by this task.
+	public var basedOn: [Reference]?
+	
+	/// E.g. "Specimen collected", "IV prepped".
+	public var businessStatus: CodeableConcept?
+	
+	/// Task Type.
+	public var code: CodeableConcept?
+	
+	/// Healthcare event during which this task originated.
+	public var context: Reference?
+	
 	/// Task Creation Date.
 	public var created: DateTime?
-	
-	/// Task Creator.
-	public var creator: Reference?
 	
 	/// Task Definition.
 	public var definition: NSURL?
 	
-	/// Task Description.
+	/// Human-readable explanation of task.
 	public var description_fhir: String?
 	
-	/// Task Failure Reason.
-	public var failureReason: CodeableConcept?
+	/// What task is acting on.
+	public var focus: Reference?
 	
 	/// Beneficiary of the Task.
 	public var for_fhir: Reference?
 	
+	/// Constraints on fulfillment tasks.
+	public var fulfillment: TaskFulfillment?
+	
 	/// Task Instance Identifier.
 	public var identifier: Identifier?
 	
-	/// Task Input.
+	/// Supporting information.
 	public var input: [TaskInput]?
 	
 	/// Task Last Modified Date.
 	public var lastModified: DateTime?
+	
+	/// Comments made about the task.
+	public var note: [Annotation]?
 	
 	/// Task Output.
 	public var output: [TaskOutput]?
@@ -51,22 +66,31 @@ public class Task: DomainResource {
 	public var owner: Reference?
 	
 	/// Composite task.
-	public var parent: Reference?
+	public var parent: [Reference]?
 	
 	/// requester | dispatcher | scheduler | performer | monitor | manager | acquirer | reviewer.
-	public var performerType: [Coding]?
+	public var performerType: [CodeableConcept]?
 	
 	/// low | normal | high.
 	public var priority: String?
 	
+	/// Why task is needed.
+	public var reason: CodeableConcept?
+	
+	/// Task Creator.
+	public var requester: Reference?
+	
+	/// Requisition or grouper id.
+	public var requisition: Identifier?
+	
+	/// proposed | planned | actionable +.
+	public var stage: CodeableConcept?
+	
 	/// draft | requested | received | accepted | +.
 	public var status: String?
 	
-	/// Task Subject.
-	public var subject: Reference?
-	
-	/// Task Type.
-	public var type: CodeableConcept?
+	/// Reason for current status.
+	public var statusReason: CodeableConcept?
 	
 	
 	/** Initialize with a JSON object. */
@@ -75,17 +99,54 @@ public class Task: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(created: DateTime, creator: Reference, lastModified: DateTime, status: String) {
+	public convenience init(created: DateTime, lastModified: DateTime, requester: Reference, stage: CodeableConcept, status: String) {
 		self.init(json: nil)
 		self.created = created
-		self.creator = creator
 		self.lastModified = lastModified
+		self.requester = requester
+		self.stage = stage
 		self.status = status
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["basedOn"] {
+				presentKeys.insert("basedOn")
+				if let val = exist as? [FHIRJSON] {
+					self.basedOn = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "basedOn", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["businessStatus"] {
+				presentKeys.insert("businessStatus")
+				if let val = exist as? FHIRJSON {
+					self.businessStatus = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "businessStatus", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["code"] {
+				presentKeys.insert("code")
+				if let val = exist as? FHIRJSON {
+					self.code = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["context"] {
+				presentKeys.insert("context")
+				if let val = exist as? FHIRJSON {
+					self.context = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "context", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["created"] {
 				presentKeys.insert("created")
 				if let val = exist as? String {
@@ -97,18 +158,6 @@ public class Task: DomainResource {
 			}
 			else {
 				errors.append(FHIRJSONError(key: "created"))
-			}
-			if let exist: AnyObject = js["creator"] {
-				presentKeys.insert("creator")
-				if let val = exist as? FHIRJSON {
-					self.creator = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "creator", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "creator"))
 			}
 			if let exist: AnyObject = js["definition"] {
 				presentKeys.insert("definition")
@@ -128,13 +177,13 @@ public class Task: DomainResource {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["failureReason"] {
-				presentKeys.insert("failureReason")
+			if let exist: AnyObject = js["focus"] {
+				presentKeys.insert("focus")
 				if let val = exist as? FHIRJSON {
-					self.failureReason = CodeableConcept(json: val, owner: self)
+					self.focus = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "failureReason", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "focus", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["for"] {
@@ -144,6 +193,15 @@ public class Task: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "for", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["fulfillment"] {
+				presentKeys.insert("fulfillment")
+				if let val = exist as? FHIRJSON {
+					self.fulfillment = TaskFulfillment(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "fulfillment", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["identifier"] {
@@ -176,6 +234,15 @@ public class Task: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "lastModified"))
 			}
+			if let exist: AnyObject = js["note"] {
+				presentKeys.insert("note")
+				if let val = exist as? [FHIRJSON] {
+					self.note = Annotation.from(val, owner: self) as? [Annotation]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["output"] {
 				presentKeys.insert("output")
 				if let val = exist as? [FHIRJSON] {
@@ -196,17 +263,17 @@ public class Task: DomainResource {
 			}
 			if let exist: AnyObject = js["parent"] {
 				presentKeys.insert("parent")
-				if let val = exist as? FHIRJSON {
-					self.parent = Reference(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.parent = Reference.from(val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "parent", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "parent", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["performerType"] {
 				presentKeys.insert("performerType")
 				if let val = exist as? [FHIRJSON] {
-					self.performerType = Coding.from(val, owner: self) as? [Coding]
+					self.performerType = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "performerType", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -221,6 +288,48 @@ public class Task: DomainResource {
 					errors.append(FHIRJSONError(key: "priority", wants: String.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["reason"] {
+				presentKeys.insert("reason")
+				if let val = exist as? FHIRJSON {
+					self.reason = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["requester"] {
+				presentKeys.insert("requester")
+				if let val = exist as? FHIRJSON {
+					self.requester = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "requester", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "requester"))
+			}
+			if let exist: AnyObject = js["requisition"] {
+				presentKeys.insert("requisition")
+				if let val = exist as? FHIRJSON {
+					self.requisition = Identifier(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "requisition", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["stage"] {
+				presentKeys.insert("stage")
+				if let val = exist as? FHIRJSON {
+					self.stage = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "stage", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "stage"))
+			}
 			if let exist: AnyObject = js["status"] {
 				presentKeys.insert("status")
 				if let val = exist as? String {
@@ -233,22 +342,13 @@ public class Task: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "status"))
 			}
-			if let exist: AnyObject = js["subject"] {
-				presentKeys.insert("subject")
+			if let exist: AnyObject = js["statusReason"] {
+				presentKeys.insert("statusReason")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					self.statusReason = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "statusReason", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -258,11 +358,20 @@ public class Task: DomainResource {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let basedOn = self.basedOn {
+			json["basedOn"] = Reference.asJSONArray(basedOn)
+		}
+		if let businessStatus = self.businessStatus {
+			json["businessStatus"] = businessStatus.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
+		}
+		if let context = self.context {
+			json["context"] = context.asJSON()
+		}
 		if let created = self.created {
 			json["created"] = created.asJSON()
-		}
-		if let creator = self.creator {
-			json["creator"] = creator.asJSON()
 		}
 		if let definition = self.definition {
 			json["definition"] = definition.asJSON()
@@ -270,11 +379,14 @@ public class Task: DomainResource {
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
-		if let failureReason = self.failureReason {
-			json["failureReason"] = failureReason.asJSON()
+		if let focus = self.focus {
+			json["focus"] = focus.asJSON()
 		}
 		if let for_fhir = self.for_fhir {
 			json["for"] = for_fhir.asJSON()
+		}
+		if let fulfillment = self.fulfillment {
+			json["fulfillment"] = fulfillment.asJSON()
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
@@ -285,6 +397,9 @@ public class Task: DomainResource {
 		if let lastModified = self.lastModified {
 			json["lastModified"] = lastModified.asJSON()
 		}
+		if let note = self.note {
+			json["note"] = Annotation.asJSONArray(note)
+		}
 		if let output = self.output {
 			json["output"] = TaskOutput.asJSONArray(output)
 		}
@@ -292,22 +407,31 @@ public class Task: DomainResource {
 			json["owner"] = owner.asJSON()
 		}
 		if let parent = self.parent {
-			json["parent"] = parent.asJSON()
+			json["parent"] = Reference.asJSONArray(parent)
 		}
 		if let performerType = self.performerType {
-			json["performerType"] = Coding.asJSONArray(performerType)
+			json["performerType"] = CodeableConcept.asJSONArray(performerType)
 		}
 		if let priority = self.priority {
 			json["priority"] = priority.asJSON()
 		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
+		}
+		if let requester = self.requester {
+			json["requester"] = requester.asJSON()
+		}
+		if let requisition = self.requisition {
+			json["requisition"] = requisition.asJSON()
+		}
+		if let stage = self.stage {
+			json["stage"] = stage.asJSON()
+		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
 		}
-		if let subject = self.subject {
-			json["subject"] = subject.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
+		if let statusReason = self.statusReason {
+			json["statusReason"] = statusReason.asJSON()
 		}
 		
 		return json
@@ -316,20 +440,100 @@ public class Task: DomainResource {
 
 
 /**
- *  Task Input.
+ *  Constraints on fulfillment tasks.
  *
- *  Inputs to the task.
+ *  Identifies any limitations on what part of a referenced task subject request should be actioned.
+ */
+public class TaskFulfillment: BackboneElement {
+	override public class var resourceName: String {
+		get { return "TaskFulfillment" }
+	}
+	
+	/// Over what time-period is fulfillment sought.
+	public var period: Period?
+	
+	/// For whom is fulfillment sought?.
+	public var recipients: [Reference]?
+	
+	/// How many times to repeat.
+	public var repetitions: UInt?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
+		super.init(json: json, owner: owner)
+	}
+	
+	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist: AnyObject = js["period"] {
+				presentKeys.insert("period")
+				if let val = exist as? FHIRJSON {
+					self.period = Period(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["recipients"] {
+				presentKeys.insert("recipients")
+				if let val = exist as? [FHIRJSON] {
+					self.recipients = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "recipients", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["repetitions"] {
+				presentKeys.insert("repetitions")
+				if let val = exist as? UInt {
+					self.repetitions = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "repetitions", wants: UInt.self, has: exist.dynamicType))
+				}
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let period = self.period {
+			json["period"] = period.asJSON()
+		}
+		if let recipients = self.recipients {
+			json["recipients"] = Reference.asJSONArray(recipients)
+		}
+		if let repetitions = self.repetitions {
+			json["repetitions"] = repetitions.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Supporting information.
+ *
+ *  Additional information that may be needed in the execution of the task.
  */
 public class TaskInput: BackboneElement {
 	override public class var resourceName: String {
 		get { return "TaskInput" }
 	}
 	
-	/// Input Name.
-	public var name: String?
+	/// Label for the input.
+	public var type: CodeableConcept?
 	
 	/// Input Value.
 	public var valueAddress: Address?
+	
+	/// Input Value.
+	public var valueAge: Age?
 	
 	/// Input Value.
 	public var valueAnnotation: Annotation?
@@ -356,6 +560,9 @@ public class TaskInput: BackboneElement {
 	public var valueContactPoint: ContactPoint?
 	
 	/// Input Value.
+	public var valueCount: Count?
+	
+	/// Input Value.
 	public var valueDate: Date?
 	
 	/// Input Value.
@@ -363,6 +570,12 @@ public class TaskInput: BackboneElement {
 	
 	/// Input Value.
 	public var valueDecimal: NSDecimalNumber?
+	
+	/// Input Value.
+	public var valueDistance: Distance?
+	
+	/// Input Value.
+	public var valueDuration: Duration?
 	
 	/// Input Value.
 	public var valueHumanName: HumanName?
@@ -384,6 +597,9 @@ public class TaskInput: BackboneElement {
 	
 	/// Input Value.
 	public var valueMeta: Meta?
+	
+	/// Input Value.
+	public var valueMoney: Money?
 	
 	/// Input Value.
 	public var valueOid: String?
@@ -434,10 +650,11 @@ public class TaskInput: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, valueAddress: Address, valueAnnotation: Annotation, valueAttachment: Attachment, valueBase64Binary: Base64Binary, valueBoolean: Bool, valueCode: String, valueCodeableConcept: CodeableConcept, valueCoding: Coding, valueContactPoint: ContactPoint, valueDate: Date, valueDateTime: DateTime, valueDecimal: NSDecimalNumber, valueHumanName: HumanName, valueId: String, valueIdentifier: Identifier, valueInstant: Instant, valueInteger: Int, valueMarkdown: String, valueMeta: Meta, valueOid: String, valuePeriod: Period, valuePositiveInt: UInt, valueQuantity: Quantity, valueRange: Range, valueRatio: Ratio, valueReference: Reference, valueSampledData: SampledData, valueSignature: Signature, valueString: String, valueTime: Time, valueTiming: Timing, valueUnsignedInt: UInt, valueUri: NSURL) {
+	public convenience init(type: CodeableConcept, valueAddress: Address, valueAge: Age, valueAnnotation: Annotation, valueAttachment: Attachment, valueBase64Binary: Base64Binary, valueBoolean: Bool, valueCode: String, valueCodeableConcept: CodeableConcept, valueCoding: Coding, valueContactPoint: ContactPoint, valueCount: Count, valueDate: Date, valueDateTime: DateTime, valueDecimal: NSDecimalNumber, valueDistance: Distance, valueDuration: Duration, valueHumanName: HumanName, valueId: String, valueIdentifier: Identifier, valueInstant: Instant, valueInteger: Int, valueMarkdown: String, valueMeta: Meta, valueMoney: Money, valueOid: String, valuePeriod: Period, valuePositiveInt: UInt, valueQuantity: Quantity, valueRange: Range, valueRatio: Ratio, valueReference: Reference, valueSampledData: SampledData, valueSignature: Signature, valueString: String, valueTime: Time, valueTiming: Timing, valueUnsignedInt: UInt, valueUri: NSURL) {
 		self.init(json: nil)
-		self.name = name
+		self.type = type
 		self.valueAddress = valueAddress
+		self.valueAge = valueAge
 		self.valueAnnotation = valueAnnotation
 		self.valueAttachment = valueAttachment
 		self.valueBase64Binary = valueBase64Binary
@@ -446,9 +663,12 @@ public class TaskInput: BackboneElement {
 		self.valueCodeableConcept = valueCodeableConcept
 		self.valueCoding = valueCoding
 		self.valueContactPoint = valueContactPoint
+		self.valueCount = valueCount
 		self.valueDate = valueDate
 		self.valueDateTime = valueDateTime
 		self.valueDecimal = valueDecimal
+		self.valueDistance = valueDistance
+		self.valueDuration = valueDuration
 		self.valueHumanName = valueHumanName
 		self.valueId = valueId
 		self.valueIdentifier = valueIdentifier
@@ -456,6 +676,7 @@ public class TaskInput: BackboneElement {
 		self.valueInteger = valueInteger
 		self.valueMarkdown = valueMarkdown
 		self.valueMeta = valueMeta
+		self.valueMoney = valueMoney
 		self.valueOid = valueOid
 		self.valuePeriod = valuePeriod
 		self.valuePositiveInt = valuePositiveInt
@@ -475,17 +696,17 @@ public class TaskInput: BackboneElement {
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
+			if let exist: AnyObject = js["type"] {
+				presentKeys.insert("type")
+				if let val = exist as? FHIRJSON {
+					self.type = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "name"))
+				errors.append(FHIRJSONError(key: "type"))
 			}
 			if let exist: AnyObject = js["valueAddress"] {
 				presentKeys.insert("valueAddress")
@@ -494,6 +715,15 @@ public class TaskInput: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueAddress", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueAge"] {
+				presentKeys.insert("valueAge")
+				if let val = exist as? FHIRJSON {
+					self.valueAge = Age(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueAge", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["valueAnnotation"] {
@@ -568,6 +798,15 @@ public class TaskInput: BackboneElement {
 					errors.append(FHIRJSONError(key: "valueContactPoint", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["valueCount"] {
+				presentKeys.insert("valueCount")
+				if let val = exist as? FHIRJSON {
+					self.valueCount = Count(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueCount", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["valueDate"] {
 				presentKeys.insert("valueDate")
 				if let val = exist as? String {
@@ -593,6 +832,24 @@ public class TaskInput: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueDecimal", wants: NSNumber.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueDistance"] {
+				presentKeys.insert("valueDistance")
+				if let val = exist as? FHIRJSON {
+					self.valueDistance = Distance(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueDistance", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueDuration"] {
+				presentKeys.insert("valueDuration")
+				if let val = exist as? FHIRJSON {
+					self.valueDuration = Duration(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueDuration", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["valueHumanName"] {
@@ -656,6 +913,15 @@ public class TaskInput: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueMeta", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueMoney"] {
+				presentKeys.insert("valueMoney")
+				if let val = exist as? FHIRJSON {
+					self.valueMoney = Money(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueMoney", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["valueOid"] {
@@ -786,7 +1052,7 @@ public class TaskInput: BackboneElement {
 			}
 			
 			// check if nonoptional expanded properties are present
-			if nil == self.valueBoolean && nil == self.valueInteger && nil == self.valueDecimal && nil == self.valueBase64Binary && nil == self.valueInstant && nil == self.valueString && nil == self.valueUri && nil == self.valueDate && nil == self.valueDateTime && nil == self.valueTime && nil == self.valueCode && nil == self.valueOid && nil == self.valueId && nil == self.valueUnsignedInt && nil == self.valuePositiveInt && nil == self.valueMarkdown && nil == self.valueAnnotation && nil == self.valueAttachment && nil == self.valueIdentifier && nil == self.valueCodeableConcept && nil == self.valueCoding && nil == self.valueQuantity && nil == self.valueRange && nil == self.valuePeriod && nil == self.valueRatio && nil == self.valueSampledData && nil == self.valueSignature && nil == self.valueHumanName && nil == self.valueAddress && nil == self.valueContactPoint && nil == self.valueTiming && nil == self.valueReference && nil == self.valueMeta {
+			if nil == self.valueBase64Binary && nil == self.valueBoolean && nil == self.valueCode && nil == self.valueDate && nil == self.valueDateTime && nil == self.valueDecimal && nil == self.valueId && nil == self.valueInstant && nil == self.valueInteger && nil == self.valueMarkdown && nil == self.valueOid && nil == self.valuePositiveInt && nil == self.valueString && nil == self.valueTime && nil == self.valueUnsignedInt && nil == self.valueUri && nil == self.valueAddress && nil == self.valueAge && nil == self.valueAnnotation && nil == self.valueAttachment && nil == self.valueCodeableConcept && nil == self.valueCoding && nil == self.valueContactPoint && nil == self.valueCount && nil == self.valueDistance && nil == self.valueDuration && nil == self.valueHumanName && nil == self.valueIdentifier && nil == self.valueMoney && nil == self.valuePeriod && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueRatio && nil == self.valueReference && nil == self.valueSampledData && nil == self.valueSignature && nil == self.valueTiming && nil == self.valueMeta {
 				errors.append(FHIRJSONError(key: "value*"))
 			}
 		}
@@ -796,11 +1062,14 @@ public class TaskInput: BackboneElement {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let name = self.name {
-			json["name"] = name.asJSON()
+		if let type = self.type {
+			json["type"] = type.asJSON()
 		}
 		if let valueAddress = self.valueAddress {
 			json["valueAddress"] = valueAddress.asJSON()
+		}
+		if let valueAge = self.valueAge {
+			json["valueAge"] = valueAge.asJSON()
 		}
 		if let valueAnnotation = self.valueAnnotation {
 			json["valueAnnotation"] = valueAnnotation.asJSON()
@@ -826,6 +1095,9 @@ public class TaskInput: BackboneElement {
 		if let valueContactPoint = self.valueContactPoint {
 			json["valueContactPoint"] = valueContactPoint.asJSON()
 		}
+		if let valueCount = self.valueCount {
+			json["valueCount"] = valueCount.asJSON()
+		}
 		if let valueDate = self.valueDate {
 			json["valueDate"] = valueDate.asJSON()
 		}
@@ -834,6 +1106,12 @@ public class TaskInput: BackboneElement {
 		}
 		if let valueDecimal = self.valueDecimal {
 			json["valueDecimal"] = valueDecimal.asJSON()
+		}
+		if let valueDistance = self.valueDistance {
+			json["valueDistance"] = valueDistance.asJSON()
+		}
+		if let valueDuration = self.valueDuration {
+			json["valueDuration"] = valueDuration.asJSON()
 		}
 		if let valueHumanName = self.valueHumanName {
 			json["valueHumanName"] = valueHumanName.asJSON()
@@ -855,6 +1133,9 @@ public class TaskInput: BackboneElement {
 		}
 		if let valueMeta = self.valueMeta {
 			json["valueMeta"] = valueMeta.asJSON()
+		}
+		if let valueMoney = self.valueMoney {
+			json["valueMoney"] = valueMoney.asJSON()
 		}
 		if let valueOid = self.valueOid {
 			json["valueOid"] = valueOid.asJSON()
@@ -915,10 +1196,13 @@ public class TaskOutput: BackboneElement {
 	}
 	
 	/// Output Name.
-	public var name: String?
+	public var type: CodeableConcept?
 	
 	/// Output Value.
 	public var valueAddress: Address?
+	
+	/// Output Value.
+	public var valueAge: Age?
 	
 	/// Output Value.
 	public var valueAnnotation: Annotation?
@@ -945,6 +1229,9 @@ public class TaskOutput: BackboneElement {
 	public var valueContactPoint: ContactPoint?
 	
 	/// Output Value.
+	public var valueCount: Count?
+	
+	/// Output Value.
 	public var valueDate: Date?
 	
 	/// Output Value.
@@ -952,6 +1239,12 @@ public class TaskOutput: BackboneElement {
 	
 	/// Output Value.
 	public var valueDecimal: NSDecimalNumber?
+	
+	/// Output Value.
+	public var valueDistance: Distance?
+	
+	/// Output Value.
+	public var valueDuration: Duration?
 	
 	/// Output Value.
 	public var valueHumanName: HumanName?
@@ -973,6 +1266,9 @@ public class TaskOutput: BackboneElement {
 	
 	/// Output Value.
 	public var valueMeta: Meta?
+	
+	/// Output Value.
+	public var valueMoney: Money?
 	
 	/// Output Value.
 	public var valueOid: String?
@@ -1023,10 +1319,11 @@ public class TaskOutput: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, valueAddress: Address, valueAnnotation: Annotation, valueAttachment: Attachment, valueBase64Binary: Base64Binary, valueBoolean: Bool, valueCode: String, valueCodeableConcept: CodeableConcept, valueCoding: Coding, valueContactPoint: ContactPoint, valueDate: Date, valueDateTime: DateTime, valueDecimal: NSDecimalNumber, valueHumanName: HumanName, valueId: String, valueIdentifier: Identifier, valueInstant: Instant, valueInteger: Int, valueMarkdown: String, valueMeta: Meta, valueOid: String, valuePeriod: Period, valuePositiveInt: UInt, valueQuantity: Quantity, valueRange: Range, valueRatio: Ratio, valueReference: Reference, valueSampledData: SampledData, valueSignature: Signature, valueString: String, valueTime: Time, valueTiming: Timing, valueUnsignedInt: UInt, valueUri: NSURL) {
+	public convenience init(type: CodeableConcept, valueAddress: Address, valueAge: Age, valueAnnotation: Annotation, valueAttachment: Attachment, valueBase64Binary: Base64Binary, valueBoolean: Bool, valueCode: String, valueCodeableConcept: CodeableConcept, valueCoding: Coding, valueContactPoint: ContactPoint, valueCount: Count, valueDate: Date, valueDateTime: DateTime, valueDecimal: NSDecimalNumber, valueDistance: Distance, valueDuration: Duration, valueHumanName: HumanName, valueId: String, valueIdentifier: Identifier, valueInstant: Instant, valueInteger: Int, valueMarkdown: String, valueMeta: Meta, valueMoney: Money, valueOid: String, valuePeriod: Period, valuePositiveInt: UInt, valueQuantity: Quantity, valueRange: Range, valueRatio: Ratio, valueReference: Reference, valueSampledData: SampledData, valueSignature: Signature, valueString: String, valueTime: Time, valueTiming: Timing, valueUnsignedInt: UInt, valueUri: NSURL) {
 		self.init(json: nil)
-		self.name = name
+		self.type = type
 		self.valueAddress = valueAddress
+		self.valueAge = valueAge
 		self.valueAnnotation = valueAnnotation
 		self.valueAttachment = valueAttachment
 		self.valueBase64Binary = valueBase64Binary
@@ -1035,9 +1332,12 @@ public class TaskOutput: BackboneElement {
 		self.valueCodeableConcept = valueCodeableConcept
 		self.valueCoding = valueCoding
 		self.valueContactPoint = valueContactPoint
+		self.valueCount = valueCount
 		self.valueDate = valueDate
 		self.valueDateTime = valueDateTime
 		self.valueDecimal = valueDecimal
+		self.valueDistance = valueDistance
+		self.valueDuration = valueDuration
 		self.valueHumanName = valueHumanName
 		self.valueId = valueId
 		self.valueIdentifier = valueIdentifier
@@ -1045,6 +1345,7 @@ public class TaskOutput: BackboneElement {
 		self.valueInteger = valueInteger
 		self.valueMarkdown = valueMarkdown
 		self.valueMeta = valueMeta
+		self.valueMoney = valueMoney
 		self.valueOid = valueOid
 		self.valuePeriod = valuePeriod
 		self.valuePositiveInt = valuePositiveInt
@@ -1064,17 +1365,17 @@ public class TaskOutput: BackboneElement {
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
+			if let exist: AnyObject = js["type"] {
+				presentKeys.insert("type")
+				if let val = exist as? FHIRJSON {
+					self.type = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "name"))
+				errors.append(FHIRJSONError(key: "type"))
 			}
 			if let exist: AnyObject = js["valueAddress"] {
 				presentKeys.insert("valueAddress")
@@ -1083,6 +1384,15 @@ public class TaskOutput: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueAddress", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueAge"] {
+				presentKeys.insert("valueAge")
+				if let val = exist as? FHIRJSON {
+					self.valueAge = Age(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueAge", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["valueAnnotation"] {
@@ -1157,6 +1467,15 @@ public class TaskOutput: BackboneElement {
 					errors.append(FHIRJSONError(key: "valueContactPoint", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["valueCount"] {
+				presentKeys.insert("valueCount")
+				if let val = exist as? FHIRJSON {
+					self.valueCount = Count(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueCount", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["valueDate"] {
 				presentKeys.insert("valueDate")
 				if let val = exist as? String {
@@ -1182,6 +1501,24 @@ public class TaskOutput: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueDecimal", wants: NSNumber.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueDistance"] {
+				presentKeys.insert("valueDistance")
+				if let val = exist as? FHIRJSON {
+					self.valueDistance = Distance(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueDistance", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueDuration"] {
+				presentKeys.insert("valueDuration")
+				if let val = exist as? FHIRJSON {
+					self.valueDuration = Duration(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueDuration", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["valueHumanName"] {
@@ -1245,6 +1582,15 @@ public class TaskOutput: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueMeta", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["valueMoney"] {
+				presentKeys.insert("valueMoney")
+				if let val = exist as? FHIRJSON {
+					self.valueMoney = Money(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueMoney", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["valueOid"] {
@@ -1375,7 +1721,7 @@ public class TaskOutput: BackboneElement {
 			}
 			
 			// check if nonoptional expanded properties are present
-			if nil == self.valueBoolean && nil == self.valueInteger && nil == self.valueDecimal && nil == self.valueBase64Binary && nil == self.valueInstant && nil == self.valueString && nil == self.valueUri && nil == self.valueDate && nil == self.valueDateTime && nil == self.valueTime && nil == self.valueCode && nil == self.valueOid && nil == self.valueId && nil == self.valueUnsignedInt && nil == self.valuePositiveInt && nil == self.valueMarkdown && nil == self.valueAnnotation && nil == self.valueAttachment && nil == self.valueIdentifier && nil == self.valueCodeableConcept && nil == self.valueCoding && nil == self.valueQuantity && nil == self.valueRange && nil == self.valuePeriod && nil == self.valueRatio && nil == self.valueSampledData && nil == self.valueSignature && nil == self.valueHumanName && nil == self.valueAddress && nil == self.valueContactPoint && nil == self.valueTiming && nil == self.valueReference && nil == self.valueMeta {
+			if nil == self.valueBase64Binary && nil == self.valueBoolean && nil == self.valueCode && nil == self.valueDate && nil == self.valueDateTime && nil == self.valueDecimal && nil == self.valueId && nil == self.valueInstant && nil == self.valueInteger && nil == self.valueMarkdown && nil == self.valueOid && nil == self.valuePositiveInt && nil == self.valueString && nil == self.valueTime && nil == self.valueUnsignedInt && nil == self.valueUri && nil == self.valueAddress && nil == self.valueAge && nil == self.valueAnnotation && nil == self.valueAttachment && nil == self.valueCodeableConcept && nil == self.valueCoding && nil == self.valueContactPoint && nil == self.valueCount && nil == self.valueDistance && nil == self.valueDuration && nil == self.valueHumanName && nil == self.valueIdentifier && nil == self.valueMoney && nil == self.valuePeriod && nil == self.valueQuantity && nil == self.valueRange && nil == self.valueRatio && nil == self.valueReference && nil == self.valueSampledData && nil == self.valueSignature && nil == self.valueTiming && nil == self.valueMeta {
 				errors.append(FHIRJSONError(key: "value*"))
 			}
 		}
@@ -1385,11 +1731,14 @@ public class TaskOutput: BackboneElement {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let name = self.name {
-			json["name"] = name.asJSON()
+		if let type = self.type {
+			json["type"] = type.asJSON()
 		}
 		if let valueAddress = self.valueAddress {
 			json["valueAddress"] = valueAddress.asJSON()
+		}
+		if let valueAge = self.valueAge {
+			json["valueAge"] = valueAge.asJSON()
 		}
 		if let valueAnnotation = self.valueAnnotation {
 			json["valueAnnotation"] = valueAnnotation.asJSON()
@@ -1415,6 +1764,9 @@ public class TaskOutput: BackboneElement {
 		if let valueContactPoint = self.valueContactPoint {
 			json["valueContactPoint"] = valueContactPoint.asJSON()
 		}
+		if let valueCount = self.valueCount {
+			json["valueCount"] = valueCount.asJSON()
+		}
 		if let valueDate = self.valueDate {
 			json["valueDate"] = valueDate.asJSON()
 		}
@@ -1423,6 +1775,12 @@ public class TaskOutput: BackboneElement {
 		}
 		if let valueDecimal = self.valueDecimal {
 			json["valueDecimal"] = valueDecimal.asJSON()
+		}
+		if let valueDistance = self.valueDistance {
+			json["valueDistance"] = valueDistance.asJSON()
+		}
+		if let valueDuration = self.valueDuration {
+			json["valueDuration"] = valueDuration.asJSON()
 		}
 		if let valueHumanName = self.valueHumanName {
 			json["valueHumanName"] = valueHumanName.asJSON()
@@ -1444,6 +1802,9 @@ public class TaskOutput: BackboneElement {
 		}
 		if let valueMeta = self.valueMeta {
 			json["valueMeta"] = valueMeta.asJSON()
+		}
+		if let valueMoney = self.valueMoney {
+			json["valueMoney"] = valueMoney.asJSON()
 		}
 		if let valueOid = self.valueOid {
 			json["valueOid"] = valueOid.asJSON()

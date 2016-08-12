@@ -14,7 +14,8 @@ The `master` branch should always compile and is on (point releases of) these ma
 See the `develop` branch or specific `feature/x` branches for new Swift or FHIR versions, and check the [tags](https://github.com/smart-on-fhir/Swift-FHIR/releases).
 
  Version |   Swift   |      FHIR     | &nbsp;
----------|-----------|---------------|-----------------------------
+---------|-----------|---------------|------------------------------
+ **2.5** |       2.2 |  `1.6.0.9663` | STU 3 Ballot, Sept 2016
 **2.2.3**|       2.2 |  `1.0.2.7202` | DSTU 2 (_+ technical errata_)
  **2.2** |   2.0-2.2 |  `1.0.2.7202` | DSTU 2 (_+ technical errata_)
  **2.1** |   2.0-2.2 |  `1.0.1.7108` | DSTU 2

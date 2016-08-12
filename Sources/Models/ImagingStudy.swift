@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -25,8 +25,17 @@ public class ImagingStudy: DomainResource {
 	/// Related workflow identifier ("Accession Number").
 	public var accession: Identifier?
 	
-	/// ONLINE | OFFLINE | NEARLINE | UNAVAILABLE (0008,0056).
+	/// ONLINE | OFFLINE | NEARLINE | UNAVAILABLE.
 	public var availability: String?
+	
+	/// Study access service endpoint.
+	public var baseLocation: [ImagingStudyBaseLocation]?
+	
+	/// Request fulfilled.
+	public var basedOn: [Reference]?
+	
+	/// Originating context.
+	public var context: Reference?
 	
 	/// Institution-generated description.
 	public var description_fhir: String?
@@ -46,16 +55,16 @@ public class ImagingStudy: DomainResource {
 	/// Number of Study Related Series.
 	public var numberOfSeries: UInt?
 	
-	/// Order(s) that caused this study to be performed.
-	public var order: [Reference]?
-	
 	/// Who the images are of.
 	public var patient: Reference?
 	
 	/// Type of procedure performed.
 	public var procedure: [Reference]?
 	
-	/// Referring physician (0008,0090).
+	/// Reason for study.
+	public var reason: CodeableConcept?
+	
+	/// Referring physician.
 	public var referrer: Reference?
 	
 	/// Each study has one or more series of instances.
@@ -64,11 +73,8 @@ public class ImagingStudy: DomainResource {
 	/// When the study was started.
 	public var started: DateTime?
 	
-	/// Formal identifier for the study.
+	/// Formal DICOM identifier for the study.
 	public var uid: String?
-	
-	/// Retrieve URI.
-	public var url: NSURL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -104,6 +110,33 @@ public class ImagingStudy: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "availability", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["baseLocation"] {
+				presentKeys.insert("baseLocation")
+				if let val = exist as? [FHIRJSON] {
+					self.baseLocation = ImagingStudyBaseLocation.from(val, owner: self) as? [ImagingStudyBaseLocation]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "baseLocation", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["basedOn"] {
+				presentKeys.insert("basedOn")
+				if let val = exist as? [FHIRJSON] {
+					self.basedOn = Reference.from(val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "basedOn", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["context"] {
+				presentKeys.insert("context")
+				if let val = exist as? FHIRJSON {
+					self.context = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "context", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["description"] {
@@ -166,15 +199,6 @@ public class ImagingStudy: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "numberOfSeries"))
 			}
-			if let exist: AnyObject = js["order"] {
-				presentKeys.insert("order")
-				if let val = exist as? [FHIRJSON] {
-					self.order = Reference.from(val, owner: self) as? [Reference]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "order", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
@@ -194,6 +218,15 @@ public class ImagingStudy: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "procedure", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["reason"] {
+				presentKeys.insert("reason")
+				if let val = exist as? FHIRJSON {
+					self.reason = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["referrer"] {
@@ -235,15 +268,6 @@ public class ImagingStudy: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "uid"))
 			}
-			if let exist: AnyObject = js["url"] {
-				presentKeys.insert("url")
-				if let val = exist as? String {
-					self.url = NSURL(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
-				}
-			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -256,6 +280,15 @@ public class ImagingStudy: DomainResource {
 		}
 		if let availability = self.availability {
 			json["availability"] = availability.asJSON()
+		}
+		if let baseLocation = self.baseLocation {
+			json["baseLocation"] = ImagingStudyBaseLocation.asJSONArray(baseLocation)
+		}
+		if let basedOn = self.basedOn {
+			json["basedOn"] = Reference.asJSONArray(basedOn)
+		}
+		if let context = self.context {
+			json["context"] = context.asJSON()
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
@@ -275,14 +308,14 @@ public class ImagingStudy: DomainResource {
 		if let numberOfSeries = self.numberOfSeries {
 			json["numberOfSeries"] = numberOfSeries.asJSON()
 		}
-		if let order = self.order {
-			json["order"] = Reference.asJSONArray(order)
-		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
 		}
 		if let procedure = self.procedure {
 			json["procedure"] = Reference.asJSONArray(procedure)
+		}
+		if let reason = self.reason {
+			json["reason"] = reason.asJSON()
 		}
 		if let referrer = self.referrer {
 			json["referrer"] = referrer.asJSON()
@@ -295,6 +328,78 @@ public class ImagingStudy: DomainResource {
 		}
 		if let uid = self.uid {
 			json["uid"] = uid.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Study access service endpoint.
+ *
+ *  Methods of accessing  (e.g., retrieving, viewing) the study.
+ */
+public class ImagingStudyBaseLocation: BackboneElement {
+	override public class var resourceName: String {
+		get { return "ImagingStudyBaseLocation" }
+	}
+	
+	/// WADO-RS | WADO-URI | IID.
+	public var type: Coding?
+	
+	/// Study access URL.
+	public var url: NSURL?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
+		super.init(json: json, owner: owner)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(type: Coding, url: NSURL) {
+		self.init(json: nil)
+		self.type = type
+		self.url = url
+	}
+	
+	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist: AnyObject = js["type"] {
+				presentKeys.insert("type")
+				if let val = exist as? FHIRJSON {
+					self.type = Coding(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "type"))
+			}
+			if let exist: AnyObject = js["url"] {
+				presentKeys.insert("url")
+				if let val = exist as? String {
+					self.url = NSURL(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "url"))
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let type = self.type {
+			json["type"] = type.asJSON()
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
@@ -317,6 +422,9 @@ public class ImagingStudySeries: BackboneElement {
 	
 	/// ONLINE | OFFLINE | NEARLINE | UNAVAILABLE.
 	public var availability: String?
+	
+	/// Series access endpoint.
+	public var baseLocation: [ImagingStudySeriesBaseLocation]?
 	
 	/// Body part examined.
 	public var bodySite: Coding?
@@ -342,11 +450,8 @@ public class ImagingStudySeries: BackboneElement {
 	/// When the series started.
 	public var started: DateTime?
 	
-	/// Formal identifier for this series.
+	/// Formal DICOM identifier for this series.
 	public var uid: String?
-	
-	/// Location of the referenced instance(s).
-	public var url: NSURL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -372,6 +477,15 @@ public class ImagingStudySeries: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "availability", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["baseLocation"] {
+				presentKeys.insert("baseLocation")
+				if let val = exist as? [FHIRJSON] {
+					self.baseLocation = ImagingStudySeriesBaseLocation.from(val, owner: self) as? [ImagingStudySeriesBaseLocation]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "baseLocation", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["bodySite"] {
@@ -464,15 +578,6 @@ public class ImagingStudySeries: BackboneElement {
 			else {
 				errors.append(FHIRJSONError(key: "uid"))
 			}
-			if let exist: AnyObject = js["url"] {
-				presentKeys.insert("url")
-				if let val = exist as? String {
-					self.url = NSURL(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
-				}
-			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -482,6 +587,9 @@ public class ImagingStudySeries: BackboneElement {
 		
 		if let availability = self.availability {
 			json["availability"] = availability.asJSON()
+		}
+		if let baseLocation = self.baseLocation {
+			json["baseLocation"] = ImagingStudySeriesBaseLocation.asJSONArray(baseLocation)
 		}
 		if let bodySite = self.bodySite {
 			json["bodySite"] = bodySite.asJSON()
@@ -510,6 +618,78 @@ public class ImagingStudySeries: BackboneElement {
 		if let uid = self.uid {
 			json["uid"] = uid.asJSON()
 		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Series access endpoint.
+ *
+ *  Methods of accessing (e.g. retrieving) the series.
+ */
+public class ImagingStudySeriesBaseLocation: BackboneElement {
+	override public class var resourceName: String {
+		get { return "ImagingStudySeriesBaseLocation" }
+	}
+	
+	/// WADO-RS | WADO-URI | IID.
+	public var type: Coding?
+	
+	/// Series access URL.
+	public var url: NSURL?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
+		super.init(json: json, owner: owner)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(type: Coding, url: NSURL) {
+		self.init(json: nil)
+		self.type = type
+		self.url = url
+	}
+	
+	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist: AnyObject = js["type"] {
+				presentKeys.insert("type")
+				if let val = exist as? FHIRJSON {
+					self.type = Coding(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "type"))
+			}
+			if let exist: AnyObject = js["url"] {
+				presentKeys.insert("url")
+				if let val = exist as? String {
+					self.url = NSURL(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "url"))
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let type = self.type {
+			json["type"] = type.asJSON()
+		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
 		}
@@ -529,9 +709,6 @@ public class ImagingStudySeriesInstance: BackboneElement {
 		get { return "ImagingStudySeriesInstance" }
 	}
 	
-	/// The instance payload, such as the image binary data or URL to it.
-	public var content: [Attachment]?
-	
 	/// The number of this instance in the series.
 	public var number: UInt?
 	
@@ -541,10 +718,7 @@ public class ImagingStudySeriesInstance: BackboneElement {
 	/// Description of instance.
 	public var title: String?
 	
-	/// Type of instance (image etc.).
-	public var type: String?
-	
-	/// Formal identifier for this instance.
+	/// Formal DICOM identifier for this instance.
 	public var uid: String?
 	
 	
@@ -563,15 +737,6 @@ public class ImagingStudySeriesInstance: BackboneElement {
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["content"] {
-				presentKeys.insert("content")
-				if let val = exist as? [FHIRJSON] {
-					self.content = Attachment.from(val, owner: self) as? [Attachment]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "content", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["number"] {
 				presentKeys.insert("number")
 				if let val = exist as? UInt {
@@ -602,15 +767,6 @@ public class ImagingStudySeriesInstance: BackboneElement {
 					errors.append(FHIRJSONError(key: "title", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? String {
-					self.type = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["uid"] {
 				presentKeys.insert("uid")
 				if let val = exist as? String {
@@ -630,9 +786,6 @@ public class ImagingStudySeriesInstance: BackboneElement {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let content = self.content {
-			json["content"] = Attachment.asJSONArray(content)
-		}
 		if let number = self.number {
 			json["number"] = number.asJSON()
 		}
@@ -641,9 +794,6 @@ public class ImagingStudySeriesInstance: BackboneElement {
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
 		}
 		if let uid = self.uid {
 			json["uid"] = uid.asJSON()

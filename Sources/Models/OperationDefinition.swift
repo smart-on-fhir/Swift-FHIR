@@ -2,7 +2,7 @@
 //  OperationDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -462,7 +462,7 @@ public class OperationDefinitionParameter: BackboneElement {
 	/// Name in Parameters.parameter.name or in URL.
 	public var name: String?
 	
-	/// Parts of a Tuple Parameter.
+	/// Parts of a nested Parameter.
 	public var part: [OperationDefinitionParameter]?
 	
 	/// Profile on the type.

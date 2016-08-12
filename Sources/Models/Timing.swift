@@ -2,7 +2,7 @@
 //  Timing.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Timing) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Timing) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -21,7 +21,7 @@ public class Timing: Element {
 		get { return "Timing" }
 	}
 	
-	/// QD | QOD | Q4H | Q6H | BID | TID | QID | AM | PM +.
+	/// BID | TID | QID | AM | PM | QD | QOD | Q4H | Q6H +.
 	public var code: CodeableConcept?
 	
 	/// When the event occurs.
@@ -103,10 +103,10 @@ public class TimingRepeat: Element {
 	}
 	
 	/// Length/Range of lengths, or (Start and/or end) limits.
-	public var boundsPeriod: Period?
+	public var boundsDuration: Duration?
 	
 	/// Length/Range of lengths, or (Start and/or end) limits.
-	public var boundsQuantity: Quantity?
+	public var boundsPeriod: Period?
 	
 	/// Length/Range of lengths, or (Start and/or end) limits.
 	public var boundsRange: Range?
@@ -156,6 +156,15 @@ public class TimingRepeat: Element {
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["boundsDuration"] {
+				presentKeys.insert("boundsDuration")
+				if let val = exist as? FHIRJSON {
+					self.boundsDuration = Duration(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "boundsDuration", wants: FHIRJSON.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["boundsPeriod"] {
 				presentKeys.insert("boundsPeriod")
 				if let val = exist as? FHIRJSON {
@@ -163,15 +172,6 @@ public class TimingRepeat: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "boundsPeriod", wants: FHIRJSON.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["boundsQuantity"] {
-				presentKeys.insert("boundsQuantity")
-				if let val = exist as? FHIRJSON {
-					self.boundsQuantity = Quantity(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "boundsQuantity", wants: FHIRJSON.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["boundsRange"] {
@@ -298,11 +298,11 @@ public class TimingRepeat: Element {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let boundsDuration = self.boundsDuration {
+			json["boundsDuration"] = boundsDuration.asJSON()
+		}
 		if let boundsPeriod = self.boundsPeriod {
 			json["boundsPeriod"] = boundsPeriod.asJSON()
-		}
-		if let boundsQuantity = self.boundsQuantity {
-			json["boundsQuantity"] = boundsQuantity.asJSON()
 		}
 		if let boundsRange = self.boundsRange {
 			json["boundsRange"] = boundsRange.asJSON()

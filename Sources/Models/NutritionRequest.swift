@@ -1,8 +1,8 @@
 //
-//  NutritionOrder.swift
+//  NutritionRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/NutritionRequest) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -10,13 +10,13 @@ import Foundation
 
 
 /**
- *  A request for a diet, formula or nutritional supplement.
+ *  Diet, formula or nutritional supplement request.
  *
  *  A request to supply a diet, formula feeding (enteral) or oral nutritional supplement to a patient/resident.
  */
-public class NutritionOrder: DomainResource {
+public class NutritionRequest: DomainResource {
 	override public class var resourceName: String {
-		get { return "NutritionOrder" }
+		get { return "NutritionRequest" }
 	}
 	
 	/// List of the patient's food and nutrition-related allergies and intolerances.
@@ -29,7 +29,7 @@ public class NutritionOrder: DomainResource {
 	public var encounter: Reference?
 	
 	/// Enteral formula components.
-	public var enteralFormula: NutritionOrderEnteralFormula?
+	public var enteralFormula: NutritionRequestEnteralFormula?
 	
 	/// Order-specific modifier about the type of food that should not be given.
 	public var excludeFoodModifier: [CodeableConcept]?
@@ -41,7 +41,7 @@ public class NutritionOrder: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// Oral diet components.
-	public var oralDiet: NutritionOrderOralDiet?
+	public var oralDiet: NutritionRequestOralDiet?
 	
 	/// Who ordered the diet, formula or nutritional supplement.
 	public var orderer: Reference?
@@ -53,7 +53,7 @@ public class NutritionOrder: DomainResource {
 	public var status: String?
 	
 	/// Supplement components.
-	public var supplement: [NutritionOrderSupplement]?
+	public var supplement: [NutritionRequestSupplement]?
 	
 	
 	/** Initialize with a JSON object. */
@@ -104,7 +104,7 @@ public class NutritionOrder: DomainResource {
 			if let exist: AnyObject = js["enteralFormula"] {
 				presentKeys.insert("enteralFormula")
 				if let val = exist as? FHIRJSON {
-					self.enteralFormula = NutritionOrderEnteralFormula(json: val, owner: self)
+					self.enteralFormula = NutritionRequestEnteralFormula(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "enteralFormula", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -140,7 +140,7 @@ public class NutritionOrder: DomainResource {
 			if let exist: AnyObject = js["oralDiet"] {
 				presentKeys.insert("oralDiet")
 				if let val = exist as? FHIRJSON {
-					self.oralDiet = NutritionOrderOralDiet(json: val, owner: self)
+					self.oralDiet = NutritionRequestOralDiet(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "oralDiet", wants: FHIRJSON.self, has: exist.dynamicType))
@@ -179,7 +179,7 @@ public class NutritionOrder: DomainResource {
 			if let exist: AnyObject = js["supplement"] {
 				presentKeys.insert("supplement")
 				if let val = exist as? [FHIRJSON] {
-					self.supplement = NutritionOrderSupplement.from(val, owner: self) as? [NutritionOrderSupplement]
+					self.supplement = NutritionRequestSupplement.from(val, owner: self) as? [NutritionRequestSupplement]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "supplement", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -226,7 +226,7 @@ public class NutritionOrder: DomainResource {
 			json["status"] = status.asJSON()
 		}
 		if let supplement = self.supplement {
-			json["supplement"] = NutritionOrderSupplement.asJSONArray(supplement)
+			json["supplement"] = NutritionRequestSupplement.asJSONArray(supplement)
 		}
 		
 		return json
@@ -240,9 +240,9 @@ public class NutritionOrder: DomainResource {
  *  Feeding provided through the gastrointestinal tract via a tube, catheter, or stoma that delivers nutrition distal to
  *  the oral cavity.
  */
-public class NutritionOrderEnteralFormula: BackboneElement {
+public class NutritionRequestEnteralFormula: BackboneElement {
 	override public class var resourceName: String {
-		get { return "NutritionOrderEnteralFormula" }
+		get { return "NutritionRequestEnteralFormula" }
 	}
 	
 	/// Product or brand name of the modular additive.
@@ -252,7 +252,7 @@ public class NutritionOrderEnteralFormula: BackboneElement {
 	public var additiveType: CodeableConcept?
 	
 	/// Formula feeding instruction as structured data.
-	public var administration: [NutritionOrderEnteralFormulaAdministration]?
+	public var administration: [NutritionRequestEnteralFormulaAdministration]?
 	
 	/// Formula feeding instructions expressed as text.
 	public var administrationInstruction: String?
@@ -302,7 +302,7 @@ public class NutritionOrderEnteralFormula: BackboneElement {
 			if let exist: AnyObject = js["administration"] {
 				presentKeys.insert("administration")
 				if let val = exist as? [FHIRJSON] {
-					self.administration = NutritionOrderEnteralFormulaAdministration.from(val, owner: self) as? [NutritionOrderEnteralFormulaAdministration]
+					self.administration = NutritionRequestEnteralFormulaAdministration.from(val, owner: self) as? [NutritionRequestEnteralFormulaAdministration]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "administration", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -376,7 +376,7 @@ public class NutritionOrderEnteralFormula: BackboneElement {
 			json["additiveType"] = additiveType.asJSON()
 		}
 		if let administration = self.administration {
-			json["administration"] = NutritionOrderEnteralFormulaAdministration.asJSONArray(administration)
+			json["administration"] = NutritionRequestEnteralFormulaAdministration.asJSONArray(administration)
 		}
 		if let administrationInstruction = self.administrationInstruction {
 			json["administrationInstruction"] = administrationInstruction.asJSON()
@@ -409,9 +409,9 @@ public class NutritionOrderEnteralFormula: BackboneElement {
  *  administration rate or volume over time for both bolus and continuous feeding.  An example of this would be an
  *  instruction to increase the rate of continuous feeding every 2 hours.
  */
-public class NutritionOrderEnteralFormulaAdministration: BackboneElement {
+public class NutritionRequestEnteralFormulaAdministration: BackboneElement {
 	override public class var resourceName: String {
-		get { return "NutritionOrderEnteralFormulaAdministration" }
+		get { return "NutritionRequestEnteralFormulaAdministration" }
 	}
 	
 	/// The volume of formula to provide.
@@ -501,9 +501,9 @@ public class NutritionOrderEnteralFormulaAdministration: BackboneElement {
  *
  *  Diet given orally in contrast to enteral (tube) feeding.
  */
-public class NutritionOrderOralDiet: BackboneElement {
+public class NutritionRequestOralDiet: BackboneElement {
 	override public class var resourceName: String {
-		get { return "NutritionOrderOralDiet" }
+		get { return "NutritionRequestOralDiet" }
 	}
 	
 	/// The required consistency of fluids and liquids provided to the patient.
@@ -513,13 +513,13 @@ public class NutritionOrderOralDiet: BackboneElement {
 	public var instruction: String?
 	
 	/// Required  nutrient modifications.
-	public var nutrient: [NutritionOrderOralDietNutrient]?
+	public var nutrient: [NutritionRequestOralDietNutrient]?
 	
 	/// Scheduled frequency of diet.
 	public var schedule: [Timing]?
 	
 	/// Required  texture modifications.
-	public var texture: [NutritionOrderOralDietTexture]?
+	public var texture: [NutritionRequestOralDietTexture]?
 	
 	/// Type of oral diet or diet restrictions that describe what can be consumed orally.
 	public var type: [CodeableConcept]?
@@ -554,7 +554,7 @@ public class NutritionOrderOralDiet: BackboneElement {
 			if let exist: AnyObject = js["nutrient"] {
 				presentKeys.insert("nutrient")
 				if let val = exist as? [FHIRJSON] {
-					self.nutrient = NutritionOrderOralDietNutrient.from(val, owner: self) as? [NutritionOrderOralDietNutrient]
+					self.nutrient = NutritionRequestOralDietNutrient.from(val, owner: self) as? [NutritionRequestOralDietNutrient]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "nutrient", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -572,7 +572,7 @@ public class NutritionOrderOralDiet: BackboneElement {
 			if let exist: AnyObject = js["texture"] {
 				presentKeys.insert("texture")
 				if let val = exist as? [FHIRJSON] {
-					self.texture = NutritionOrderOralDietTexture.from(val, owner: self) as? [NutritionOrderOralDietTexture]
+					self.texture = NutritionRequestOralDietTexture.from(val, owner: self) as? [NutritionRequestOralDietTexture]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "texture", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -601,13 +601,13 @@ public class NutritionOrderOralDiet: BackboneElement {
 			json["instruction"] = instruction.asJSON()
 		}
 		if let nutrient = self.nutrient {
-			json["nutrient"] = NutritionOrderOralDietNutrient.asJSONArray(nutrient)
+			json["nutrient"] = NutritionRequestOralDietNutrient.asJSONArray(nutrient)
 		}
 		if let schedule = self.schedule {
 			json["schedule"] = Timing.asJSONArray(schedule)
 		}
 		if let texture = self.texture {
-			json["texture"] = NutritionOrderOralDietTexture.asJSONArray(texture)
+			json["texture"] = NutritionRequestOralDietTexture.asJSONArray(texture)
 		}
 		if let type = self.type {
 			json["type"] = CodeableConcept.asJSONArray(type)
@@ -621,11 +621,12 @@ public class NutritionOrderOralDiet: BackboneElement {
 /**
  *  Required  nutrient modifications.
  *
- *  Class that defines the quantity and type of nutrient modifications required for the oral diet.
+ *  Class that defines the quantity and type of nutrient modifications (for example carbohydrate, fiber or sodium)
+ *  required for the oral diet.
  */
-public class NutritionOrderOralDietNutrient: BackboneElement {
+public class NutritionRequestOralDietNutrient: BackboneElement {
 	override public class var resourceName: String {
-		get { return "NutritionOrderOralDietNutrient" }
+		get { return "NutritionRequestOralDietNutrient" }
 	}
 	
 	/// Quantity of the specified nutrient.
@@ -686,9 +687,9 @@ public class NutritionOrderOralDietNutrient: BackboneElement {
  *  Class that describes any texture modifications required for the patient to safely consume various types of solid
  *  foods.
  */
-public class NutritionOrderOralDietTexture: BackboneElement {
+public class NutritionRequestOralDietTexture: BackboneElement {
 	override public class var resourceName: String {
-		get { return "NutritionOrderOralDietTexture" }
+		get { return "NutritionRequestOralDietTexture" }
 	}
 	
 	/// Concepts that are used to identify an entity that is ingested for nutritional purposes.
@@ -748,9 +749,9 @@ public class NutritionOrderOralDietTexture: BackboneElement {
  *
  *  Oral nutritional products given in order to add further nutritional value to the patient's diet.
  */
-public class NutritionOrderSupplement: BackboneElement {
+public class NutritionRequestSupplement: BackboneElement {
 	override public class var resourceName: String {
-		get { return "NutritionOrderSupplement" }
+		get { return "NutritionRequestSupplement" }
 	}
 	
 	/// Instructions or additional information about the oral supplement.

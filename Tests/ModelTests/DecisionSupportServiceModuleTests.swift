@@ -2,7 +2,7 @@
 //  DecisionSupportServiceModuleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -35,35 +35,34 @@ class DecisionSupportServiceModuleTests: XCTestCase {
 	func runDecisionSupportServiceModule1(json: FHIRJSON? = nil) throws -> DecisionSupportServiceModule {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "decisionsupportservicemodule-example.json")
 		
-		XCTAssertEqual(inst.id!, "example")
-		XCTAssertEqual(inst.moduleMetadata!.description_fhir!, "Guideline appropriate ordering is used to assess appropriateness of an order given a patient, a proposed order, and a set of clinical indications.")
-		XCTAssertEqual(inst.moduleMetadata!.identifier![0].use!, "official")
-		XCTAssertEqual(inst.moduleMetadata!.identifier![0].value!, "guildeline-appropriate-ordering")
-		XCTAssertEqual(inst.moduleMetadata!.publicationDate!.description, "2015-07-22")
-		XCTAssertEqual(inst.moduleMetadata!.status!, "draft")
-		XCTAssertEqual(inst.moduleMetadata!.title!, "Guideline Appropriate Ordering Module")
-		XCTAssertEqual(inst.moduleMetadata!.topic![0].text!, "Guideline Appropriate Ordering")
-		XCTAssertEqual(inst.moduleMetadata!.topic![1].text!, "Appropriate Use Criteria")
-		XCTAssertEqual(inst.moduleMetadata!.type!, "module")
-		XCTAssertEqual(inst.moduleMetadata!.version!, "1.0.0")
-		XCTAssertEqual(inst.parameter![0].name!, "patient")
-		XCTAssertEqual(inst.parameter![0].profile!.reference!, "http://hl7.org/fhir/StructureDefinition/gao-patient")
-		XCTAssertEqual(inst.parameter![0].type!, "Patient")
-		XCTAssertEqual(inst.parameter![0].use!, "in")
-		XCTAssertEqual(inst.parameter![1].name!, "order")
-		XCTAssertEqual(inst.parameter![1].profile!.reference!, "http://hl7.org/fhir/StructureDefinition/gao-order")
-		XCTAssertEqual(inst.parameter![1].type!, "Order")
-		XCTAssertEqual(inst.parameter![1].use!, "in")
-		XCTAssertEqual(inst.parameter![2].name!, "order")
-		XCTAssertEqual(inst.parameter![2].profile!.reference!, "http://hl7.org/fhir/StructureDefinition/gao-order")
-		XCTAssertEqual(inst.parameter![2].type!, "Order")
-		XCTAssertEqual(inst.parameter![2].use!, "out")
-		XCTAssertEqual(inst.parameter![3].name!, "result")
-		XCTAssertEqual(inst.parameter![3].profile!.reference!, "http://hl7.org/fhir/StructureDefinition/gao-result")
-		XCTAssertEqual(inst.parameter![3].type!, "Basic")
-		XCTAssertEqual(inst.parameter![3].use!, "out")
-		XCTAssertEqual(inst.text!.div!, "<div>Guideline Appropriate Ordering Module</div>")
-		XCTAssertEqual(inst.text!.status!, "generated")
+		XCTAssertEqual(inst.description_fhir, "Guideline appropriate ordering is used to assess appropriateness of an order given a patient, a proposed order, and a set of clinical indications.")
+		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.identifier![0].use, "official")
+		XCTAssertEqual(inst.identifier![0].value, "guildeline-appropriate-ordering")
+		XCTAssertEqual(inst.parameter![0].name, "patient")
+		XCTAssertEqual(inst.parameter![0].profile!.reference, "http://hl7.org/fhir/StructureDefinition/gao-patient")
+		XCTAssertEqual(inst.parameter![0].type, "Patient")
+		XCTAssertEqual(inst.parameter![0].use, "in")
+		XCTAssertEqual(inst.parameter![1].name, "order")
+		XCTAssertEqual(inst.parameter![1].profile!.reference, "http://hl7.org/fhir/StructureDefinition/gao-task")
+		XCTAssertEqual(inst.parameter![1].type, "Task")
+		XCTAssertEqual(inst.parameter![1].use, "in")
+		XCTAssertEqual(inst.parameter![2].name, "order")
+		XCTAssertEqual(inst.parameter![2].profile!.reference, "http://hl7.org/fhir/StructureDefinition/gao-task")
+		XCTAssertEqual(inst.parameter![2].type, "Task")
+		XCTAssertEqual(inst.parameter![2].use, "out")
+		XCTAssertEqual(inst.parameter![3].name, "result")
+		XCTAssertEqual(inst.parameter![3].profile!.reference, "http://hl7.org/fhir/StructureDefinition/gao-result")
+		XCTAssertEqual(inst.parameter![3].type, "Basic")
+		XCTAssertEqual(inst.parameter![3].use, "out")
+		XCTAssertEqual(inst.publicationDate?.description, "2015-07-22")
+		XCTAssertEqual(inst.status, "draft")
+		XCTAssertEqual(inst.text!.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Guideline Appropriate Ordering Module</div>")
+		XCTAssertEqual(inst.text!.status, "generated")
+		XCTAssertEqual(inst.title, "Guideline Appropriate Ordering Module")
+		XCTAssertEqual(inst.topic![0].text, "Guideline Appropriate Ordering")
+		XCTAssertEqual(inst.topic![1].text, "Appropriate Use Criteria")
+		XCTAssertEqual(inst.version, "1.0.0")
 		
 		return inst
 	}

@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -16,6 +16,9 @@ public class Schedule: DomainResource {
 	override public class var resourceName: String {
 		get { return "Schedule" }
 	}
+	
+	/// Whether this schedule is in active use.
+	public var active: Bool?
 	
 	/// The resource this Schedule resource is providing availability information for. These are expected to usually be one of HealthcareService, Location, Practitioner, Device, Patient or RelatedPerson.
 	public var actor: Reference?
@@ -53,6 +56,15 @@ public class Schedule: DomainResource {
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist: AnyObject = js["active"] {
+				presentKeys.insert("active")
+				if let val = exist as? Bool {
+					self.active = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "active", wants: Bool.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["actor"] {
 				presentKeys.insert("actor")
 				if let val = exist as? FHIRJSON {
@@ -126,6 +138,9 @@ public class Schedule: DomainResource {
 	override public func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let active = self.active {
+			json["active"] = active.asJSON()
+		}
 		if let actor = self.actor {
 			json["actor"] = actor.asJSON()
 		}

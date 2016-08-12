@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -32,11 +32,11 @@ public class ConceptMap: DomainResource {
 	/// Human language description of the concept map.
 	public var description_fhir: String?
 	
-	/// Mappings for a concept from the source set.
-	public var element: [ConceptMapElement]?
-	
 	/// If for testing purposes, not real usage.
 	public var experimental: Bool?
+	
+	/// Same source and target systems.
+	public var group: [ConceptMapGroup]?
 	
 	/// Additional identifier for the concept map.
 	public var identifier: Identifier?
@@ -129,15 +129,6 @@ public class ConceptMap: DomainResource {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["element"] {
-				presentKeys.insert("element")
-				if let val = exist as? [FHIRJSON] {
-					self.element = ConceptMapElement.from(val, owner: self) as? [ConceptMapElement]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "element", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["experimental"] {
 				presentKeys.insert("experimental")
 				if let val = exist as? Bool {
@@ -145,6 +136,15 @@ public class ConceptMap: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["group"] {
+				presentKeys.insert("group")
+				if let val = exist as? [FHIRJSON] {
+					self.group = ConceptMapGroup.from(val, owner: self) as? [ConceptMapGroup]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "group", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
 			if let exist: AnyObject = js["identifier"] {
@@ -285,11 +285,11 @@ public class ConceptMap: DomainResource {
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
-		if let element = self.element {
-			json["element"] = ConceptMapElement.asJSONArray(element)
-		}
 		if let experimental = self.experimental {
 			json["experimental"] = experimental.asJSON()
+		}
+		if let group = self.group {
+			json["group"] = ConceptMapGroup.asJSONArray(group)
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
@@ -396,26 +396,140 @@ public class ConceptMapContact: BackboneElement {
 
 
 /**
+ *  Same source and target systems.
+ *
+ *  A group of mappings that all have the same source and target system.
+ */
+public class ConceptMapGroup: BackboneElement {
+	override public class var resourceName: String {
+		get { return "ConceptMapGroup" }
+	}
+	
+	/// Mappings for a concept from the source set.
+	public var element: [ConceptMapGroupElement]?
+	
+	/// Code System (if value set crosses code systems).
+	public var source: NSURL?
+	
+	/// Specific version of the  code system.
+	public var sourceVersion: String?
+	
+	/// System of the target (if necessary).
+	public var target: NSURL?
+	
+	/// Specific version of the  code system.
+	public var targetVersion: String?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
+		super.init(json: json, owner: owner)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(element: [ConceptMapGroupElement], source: NSURL) {
+		self.init(json: nil)
+		self.element = element
+		self.source = source
+	}
+	
+	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist: AnyObject = js["element"] {
+				presentKeys.insert("element")
+				if let val = exist as? [FHIRJSON] {
+					self.element = ConceptMapGroupElement.from(val, owner: self) as? [ConceptMapGroupElement]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "element", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "element"))
+			}
+			if let exist: AnyObject = js["source"] {
+				presentKeys.insert("source")
+				if let val = exist as? String {
+					self.source = NSURL(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "source", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "source"))
+			}
+			if let exist: AnyObject = js["sourceVersion"] {
+				presentKeys.insert("sourceVersion")
+				if let val = exist as? String {
+					self.sourceVersion = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "sourceVersion", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["target"] {
+				presentKeys.insert("target")
+				if let val = exist as? String {
+					self.target = NSURL(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "target", wants: String.self, has: exist.dynamicType))
+				}
+			}
+			if let exist: AnyObject = js["targetVersion"] {
+				presentKeys.insert("targetVersion")
+				if let val = exist as? String {
+					self.targetVersion = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "targetVersion", wants: String.self, has: exist.dynamicType))
+				}
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override public func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let element = self.element {
+			json["element"] = ConceptMapGroupElement.asJSONArray(element)
+		}
+		if let source = self.source {
+			json["source"] = source.asJSON()
+		}
+		if let sourceVersion = self.sourceVersion {
+			json["sourceVersion"] = sourceVersion.asJSON()
+		}
+		if let target = self.target {
+			json["target"] = target.asJSON()
+		}
+		if let targetVersion = self.targetVersion {
+			json["targetVersion"] = targetVersion.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
  *  Mappings for a concept from the source set.
  *
  *  Mappings for an individual concept in the source to one or more concepts in the target.
  */
-public class ConceptMapElement: BackboneElement {
+public class ConceptMapGroupElement: BackboneElement {
 	override public class var resourceName: String {
-		get { return "ConceptMapElement" }
+		get { return "ConceptMapGroupElement" }
 	}
 	
 	/// Identifies element being mapped.
 	public var code: String?
 	
-	/// Code System (if value set crosses code systems).
-	public var system: NSURL?
-	
 	/// Concept in target system for element.
-	public var target: [ConceptMapElementTarget]?
-	
-	/// Specific version of the  code system.
-	public var version: String?
+	public var target: [ConceptMapGroupElementTarget]?
 	
 	
 	/** Initialize with a JSON object. */
@@ -435,31 +549,13 @@ public class ConceptMapElement: BackboneElement {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			if let exist: AnyObject = js["system"] {
-				presentKeys.insert("system")
-				if let val = exist as? String {
-					self.system = NSURL(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "system", wants: String.self, has: exist.dynamicType))
-				}
-			}
 			if let exist: AnyObject = js["target"] {
 				presentKeys.insert("target")
 				if let val = exist as? [FHIRJSON] {
-					self.target = ConceptMapElementTarget.from(val, owner: self) as? [ConceptMapElementTarget]
+					self.target = ConceptMapGroupElementTarget.from(val, owner: self) as? [ConceptMapGroupElementTarget]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "target", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["version"] {
-				presentKeys.insert("version")
-				if let val = exist as? String {
-					self.version = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "version", wants: String.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -472,14 +568,8 @@ public class ConceptMapElement: BackboneElement {
 		if let code = self.code {
 			json["code"] = code.asJSON()
 		}
-		if let system = self.system {
-			json["system"] = system.asJSON()
-		}
 		if let target = self.target {
-			json["target"] = ConceptMapElementTarget.asJSONArray(target)
-		}
-		if let version = self.version {
-			json["version"] = version.asJSON()
+			json["target"] = ConceptMapGroupElementTarget.asJSONArray(target)
 		}
 		
 		return json
@@ -492,9 +582,9 @@ public class ConceptMapElement: BackboneElement {
  *
  *  A concept from the target value set that this concept maps to.
  */
-public class ConceptMapElementTarget: BackboneElement {
+public class ConceptMapGroupElementTarget: BackboneElement {
 	override public class var resourceName: String {
-		get { return "ConceptMapElementTarget" }
+		get { return "ConceptMapGroupElementTarget" }
 	}
 	
 	/// Code that identifies the target element.
@@ -504,30 +594,18 @@ public class ConceptMapElementTarget: BackboneElement {
 	public var comments: String?
 	
 	/// Other elements required for this mapping (from context).
-	public var dependsOn: [ConceptMapElementTargetDependsOn]?
+	public var dependsOn: [ConceptMapGroupElementTargetDependsOn]?
 	
 	/// equivalent | equal | wider | subsumes | narrower | specializes | inexact | unmatched | disjoint.
 	public var equivalence: String?
 	
 	/// Other concepts that this mapping also produces.
-	public var product: [ConceptMapElementTargetDependsOn]?
-	
-	/// System of the target (if necessary).
-	public var system: NSURL?
-	
-	/// Specific version of the  code system.
-	public var version: String?
+	public var product: [ConceptMapGroupElementTargetDependsOn]?
 	
 	
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
 		super.init(json: json, owner: owner)
-	}
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(equivalence: String) {
-		self.init(json: nil)
-		self.equivalence = equivalence
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -554,7 +632,7 @@ public class ConceptMapElementTarget: BackboneElement {
 			if let exist: AnyObject = js["dependsOn"] {
 				presentKeys.insert("dependsOn")
 				if let val = exist as? [FHIRJSON] {
-					self.dependsOn = ConceptMapElementTargetDependsOn.from(val, owner: self) as? [ConceptMapElementTargetDependsOn]
+					self.dependsOn = ConceptMapGroupElementTargetDependsOn.from(val, owner: self) as? [ConceptMapGroupElementTargetDependsOn]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dependsOn", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
@@ -569,34 +647,13 @@ public class ConceptMapElementTarget: BackboneElement {
 					errors.append(FHIRJSONError(key: "equivalence", wants: String.self, has: exist.dynamicType))
 				}
 			}
-			else {
-				errors.append(FHIRJSONError(key: "equivalence"))
-			}
 			if let exist: AnyObject = js["product"] {
 				presentKeys.insert("product")
 				if let val = exist as? [FHIRJSON] {
-					self.product = ConceptMapElementTargetDependsOn.from(val, owner: self) as? [ConceptMapElementTargetDependsOn]
+					self.product = ConceptMapGroupElementTargetDependsOn.from(val, owner: self) as? [ConceptMapGroupElementTargetDependsOn]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "product", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["system"] {
-				presentKeys.insert("system")
-				if let val = exist as? String {
-					self.system = NSURL(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "system", wants: String.self, has: exist.dynamicType))
-				}
-			}
-			if let exist: AnyObject = js["version"] {
-				presentKeys.insert("version")
-				if let val = exist as? String {
-					self.version = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "version", wants: String.self, has: exist.dynamicType))
 				}
 			}
 		}
@@ -613,19 +670,13 @@ public class ConceptMapElementTarget: BackboneElement {
 			json["comments"] = comments.asJSON()
 		}
 		if let dependsOn = self.dependsOn {
-			json["dependsOn"] = ConceptMapElementTargetDependsOn.asJSONArray(dependsOn)
+			json["dependsOn"] = ConceptMapGroupElementTargetDependsOn.asJSONArray(dependsOn)
 		}
 		if let equivalence = self.equivalence {
 			json["equivalence"] = equivalence.asJSON()
 		}
 		if let product = self.product {
-			json["product"] = ConceptMapElementTargetDependsOn.asJSONArray(product)
-		}
-		if let system = self.system {
-			json["system"] = system.asJSON()
-		}
-		if let version = self.version {
-			json["version"] = version.asJSON()
+			json["product"] = ConceptMapGroupElementTargetDependsOn.asJSONArray(product)
 		}
 		
 		return json
@@ -639,16 +690,16 @@ public class ConceptMapElementTarget: BackboneElement {
  *  A set of additional dependencies for this mapping to hold. This mapping is only applicable if the specified element
  *  can be resolved, and it has the specified value.
  */
-public class ConceptMapElementTargetDependsOn: BackboneElement {
+public class ConceptMapGroupElementTargetDependsOn: BackboneElement {
 	override public class var resourceName: String {
-		get { return "ConceptMapElementTargetDependsOn" }
+		get { return "ConceptMapGroupElementTargetDependsOn" }
 	}
 	
 	/// Value of the referenced element.
 	public var code: String?
 	
-	/// Reference to element/field/ValueSet mapping depends on.
-	public var element: NSURL?
+	/// Reference to property mapping depends on.
+	public var property: NSURL?
 	
 	/// Code System (if necessary).
 	public var system: NSURL?
@@ -660,11 +711,10 @@ public class ConceptMapElementTargetDependsOn: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String, element: NSURL, system: NSURL) {
+	public convenience init(code: String, property: NSURL) {
 		self.init(json: nil)
 		self.code = code
-		self.element = element
-		self.system = system
+		self.property = property
 	}
 	
 	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
@@ -682,17 +732,17 @@ public class ConceptMapElementTargetDependsOn: BackboneElement {
 			else {
 				errors.append(FHIRJSONError(key: "code"))
 			}
-			if let exist: AnyObject = js["element"] {
-				presentKeys.insert("element")
+			if let exist: AnyObject = js["property"] {
+				presentKeys.insert("property")
 				if let val = exist as? String {
-					self.element = NSURL(string: val)
+					self.property = NSURL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "element", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "property", wants: String.self, has: exist.dynamicType))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "element"))
+				errors.append(FHIRJSONError(key: "property"))
 			}
 			if let exist: AnyObject = js["system"] {
 				presentKeys.insert("system")
@@ -702,9 +752,6 @@ public class ConceptMapElementTargetDependsOn: BackboneElement {
 				else {
 					errors.append(FHIRJSONError(key: "system", wants: String.self, has: exist.dynamicType))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "system"))
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -716,8 +763,8 @@ public class ConceptMapElementTargetDependsOn: BackboneElement {
 		if let code = self.code {
 			json["code"] = code.asJSON()
 		}
-		if let element = self.element {
-			json["element"] = element.asJSON()
+		if let property = self.property {
+			json["property"] = property.asJSON()
 		}
 		if let system = self.system {
 			json["system"] = system.asJSON()

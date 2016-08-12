@@ -2,7 +2,7 @@
 //  CodeSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/CodeSystem) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/CodeSystem) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -51,6 +51,9 @@ public class CodeSystem: DomainResource {
 	
 	/// Filter that can be used in a value set.
 	public var filter: [CodeSystemFilter]?
+	
+	/// grouped-by | subsumes | part-of | classified-with.
+	public var hierarchyMeaning: String?
 	
 	/// Additional identifier for the code system (e.g. HL7 v2 / CDA).
 	public var identifier: Identifier?
@@ -203,6 +206,15 @@ public class CodeSystem: DomainResource {
 					errors.append(FHIRJSONError(key: "filter", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
 				}
 			}
+			if let exist: AnyObject = js["hierarchyMeaning"] {
+				presentKeys.insert("hierarchyMeaning")
+				if let val = exist as? String {
+					self.hierarchyMeaning = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "hierarchyMeaning", wants: String.self, has: exist.dynamicType))
+				}
+			}
 			if let exist: AnyObject = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
@@ -344,6 +356,9 @@ public class CodeSystem: DomainResource {
 		}
 		if let filter = self.filter {
 			json["filter"] = CodeSystemFilter.asJSONArray(filter)
+		}
+		if let hierarchyMeaning = self.hierarchyMeaning {
+			json["hierarchyMeaning"] = hierarchyMeaning.asJSON()
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
@@ -945,7 +960,7 @@ public class CodeSystemProperty: BackboneElement {
 		get { return "CodeSystemProperty" }
 	}
 	
-	/// Identifies the property, both internally and externally.
+	/// Identifies the property on the concepts, and when referred to in operations.
 	public var code: String?
 	
 	/// Why the property is defined, and/or what it conveys.
@@ -953,6 +968,9 @@ public class CodeSystemProperty: BackboneElement {
 	
 	/// code | Coding | string | integer | boolean | dateTime.
 	public var type: String?
+	
+	/// Formal identifier for the property.
+	public var uri: NSURL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -1003,6 +1021,15 @@ public class CodeSystemProperty: BackboneElement {
 			else {
 				errors.append(FHIRJSONError(key: "type"))
 			}
+			if let exist: AnyObject = js["uri"] {
+				presentKeys.insert("uri")
+				if let val = exist as? String {
+					self.uri = NSURL(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "uri", wants: String.self, has: exist.dynamicType))
+				}
+			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -1018,6 +1045,9 @@ public class CodeSystemProperty: BackboneElement {
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
+		}
+		if let uri = self.uri {
+			json["uri"] = uri.asJSON()
 		}
 		
 		return json

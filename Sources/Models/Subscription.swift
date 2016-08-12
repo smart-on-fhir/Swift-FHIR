@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2016-04-05.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2016-08-12.
 //  2016, SMART Health IT.
 //
 
@@ -201,7 +201,7 @@ public class SubscriptionChannel: BackboneElement {
 	/// Usage depends on the channel type.
 	public var header: String?
 	
-	/// Mimetype to send, or blank for no payload.
+	/// Mimetype to send, or omit for no payload.
 	public var payload: String?
 	
 	/// rest-hook | websocket | email | sms | message.
@@ -214,9 +214,8 @@ public class SubscriptionChannel: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(payload: String, type: String) {
+	public convenience init(type: String) {
 		self.init(json: nil)
-		self.payload = payload
 		self.type = type
 	}
 	
@@ -249,9 +248,6 @@ public class SubscriptionChannel: BackboneElement {
 				else {
 					errors.append(FHIRJSONError(key: "payload", wants: String.self, has: exist.dynamicType))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "payload"))
 			}
 			if let exist: AnyObject = js["type"] {
 				presentKeys.insert("type")

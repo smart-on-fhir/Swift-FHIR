@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -563,9 +563,8 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(doseSequence: UInt, doseStatus: CodeableConcept, targetDisease: [CodeableConcept]) {
+	public convenience init(doseStatus: CodeableConcept, targetDisease: [CodeableConcept]) {
 		self.init(json: nil)
-		self.doseSequence = doseSequence
 		self.doseStatus = doseStatus
 		self.targetDisease = targetDisease
 	}
@@ -599,9 +598,6 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 				else {
 					errors.append(FHIRJSONError(key: "doseSequence", wants: UInt.self, has: type(of: exist)))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "doseSequence"))
 			}
 			if let exist = js["doseStatus"] {
 				presentKeys.insert("doseStatus")

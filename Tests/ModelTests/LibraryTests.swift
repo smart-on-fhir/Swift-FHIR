@@ -2,7 +2,7 @@
 //  LibraryTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -36,6 +36,8 @@ class LibraryTests: XCTestCase {
 	func runLibrary1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Library {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "library-cms146-example.json")
 		
+		XCTAssertEqual(inst.content?.contentType, "text/cql")
+		XCTAssertEqual(inst.content?.url?.absoluteString, "http://cqlrepository.org/CMS146.cql")
 		XCTAssertEqual(inst.dataRequirement?[0].codeFilter?[0].path, "code")
 		XCTAssertEqual(inst.dataRequirement?[0].codeFilter?[0].valueSetString, "Other Female Reproductive Conditions")
 		XCTAssertEqual(inst.dataRequirement?[0].type, "Condition")
@@ -77,22 +79,19 @@ class LibraryTests: XCTestCase {
 		XCTAssertEqual(inst.dataRequirement?[8].codeFilter?[1].path, "medication.code")
 		XCTAssertEqual(inst.dataRequirement?[8].codeFilter?[1].valueSetString, "2.16.840.1.113883.3.464.1003.196.12.1001")
 		XCTAssertEqual(inst.dataRequirement?[8].type, "MedicationStatement")
-		XCTAssertEqual(inst.document?.contentType, "application/cql+text")
-		XCTAssertEqual(inst.document?.url?.absoluteString, "http://cqlrepository.org/CMS146.cql")
+		XCTAssertEqual(inst.description_fhir, "Logic for CMS 146: Appropriate Testing for Children with Pharyngitis")
 		XCTAssertEqual(inst.id, "library-cms146-example")
-		XCTAssertEqual(inst.model?[0].identifier, "QUICK")
-		XCTAssertEqual(inst.moduleMetadata?.description_fhir, "Logic for CMS 146: Appropriate Testing for Children with Pharyngitis")
-		XCTAssertEqual(inst.moduleMetadata?.identifier?[0].use, "official")
-		XCTAssertEqual(inst.moduleMetadata?.identifier?[0].value, "CMS146")
-		XCTAssertEqual(inst.moduleMetadata?.publicationDate?.description, "2015-07-22")
-		XCTAssertEqual(inst.moduleMetadata?.status, "draft")
-		XCTAssertEqual(inst.moduleMetadata?.title, "Appropriate Testing for Children with Pharyngitis")
-		XCTAssertEqual(inst.moduleMetadata?.type, "library")
-		XCTAssertEqual(inst.moduleMetadata?.version, "2.0.0")
-		XCTAssertEqual(inst.text?.div, "<div>CMS 146 Logic</div>")
+		XCTAssertEqual(inst.identifier?[0].use, "official")
+		XCTAssertEqual(inst.identifier?[0].value, "CMS146")
+		XCTAssertEqual(inst.publicationDate?.description, "2015-07-22")
+		XCTAssertEqual(inst.relatedResource?[0].resource?.reference, "Library/library-quick-model-definition")
+		XCTAssertEqual(inst.relatedResource?[0].type, "depends-on")
+		XCTAssertEqual(inst.status, "draft")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">CMS 146 Logic</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.valueSet?[0].identifier, "2.16.840.1.113883.3.560.100.2")
-		XCTAssertEqual(inst.valueSet?[0].name, "Female Administrative Sex")
+		XCTAssertEqual(inst.title, "Appropriate Testing for Children with Pharyngitis")
+		XCTAssertEqual(inst.type?.coding?[0].code, "logic-library")
+		XCTAssertEqual(inst.version, "2.0.0")
 		
 		return inst
 	}
@@ -111,26 +110,25 @@ class LibraryTests: XCTestCase {
 	func runLibrary2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Library {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "library-example.json")
 		
+		XCTAssertEqual(inst.content?.contentType, "text/cql")
+		XCTAssertEqual(inst.content?.url?.absoluteString, "http://cqlrepository.org/ChlamydiaScreening_Common.cql")
 		XCTAssertEqual(inst.dataRequirement?[0].codeFilter?[0].path, "code")
 		XCTAssertEqual(inst.dataRequirement?[0].codeFilter?[0].valueSetString, "Other Female Reproductive Conditions")
 		XCTAssertEqual(inst.dataRequirement?[0].type, "Condition")
-		XCTAssertEqual(inst.document?.contentType, "application/cql+text")
-		XCTAssertEqual(inst.document?.url?.absoluteString, "http://cqlrepository.org/ChlamydiaScreening_Common.cql")
+		XCTAssertEqual(inst.description_fhir, "Common Logic for adherence to Chlamydia Screening guidelines")
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.model?[0].identifier, "QUICK")
-		XCTAssertEqual(inst.moduleMetadata?.description_fhir, "Common Logic for adherence to Chlamydia Screening guidelines")
-		XCTAssertEqual(inst.moduleMetadata?.identifier?[0].use, "official")
-		XCTAssertEqual(inst.moduleMetadata?.identifier?[0].value, "ChalmydiaScreening_Common")
-		XCTAssertEqual(inst.moduleMetadata?.publicationDate?.description, "2015-07-22")
-		XCTAssertEqual(inst.moduleMetadata?.status, "draft")
-		XCTAssertEqual(inst.moduleMetadata?.title, "Chlamydia Screening Common Library")
-		XCTAssertEqual(inst.moduleMetadata?.topic?[0].text, "Chlamydia Screening")
-		XCTAssertEqual(inst.moduleMetadata?.type, "library")
-		XCTAssertEqual(inst.moduleMetadata?.version, "2.0.0")
-		XCTAssertEqual(inst.text?.div, "<div>Chlamydia Screening Common Library</div>")
+		XCTAssertEqual(inst.identifier?[0].use, "official")
+		XCTAssertEqual(inst.identifier?[0].value, "ChalmydiaScreening_Common")
+		XCTAssertEqual(inst.publicationDate?.description, "2015-07-22")
+		XCTAssertEqual(inst.relatedResource?[0].resource?.reference, "Library/library-quick-model-definition")
+		XCTAssertEqual(inst.relatedResource?[0].type, "depends-on")
+		XCTAssertEqual(inst.status, "draft")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Chlamydia Screening Common Library</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.valueSet?[0].identifier, "2.16.840.1.113883.3.560.100.2")
-		XCTAssertEqual(inst.valueSet?[0].name, "Female Administrative Sex")
+		XCTAssertEqual(inst.title, "Chlamydia Screening Common Library")
+		XCTAssertEqual(inst.topic?[0].text, "Chlamydia Screening")
+		XCTAssertEqual(inst.type?.coding?[0].code, "logic-library")
+		XCTAssertEqual(inst.version, "2.0.0")
 		
 		return inst
 	}

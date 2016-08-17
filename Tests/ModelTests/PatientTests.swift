@@ -2,7 +2,7 @@
 //  PatientTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -407,7 +407,7 @@ class PatientTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "AB60001")
 		XCTAssertEqual(inst.name?[0].family?[0], "BROOKS")
 		XCTAssertEqual(inst.name?[0].given?[0], "ALBERT")
-		XCTAssertEqual(inst.text?.div, "<div>Albert Brooks, Id: AB60001</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Albert Brooks, Id: AB60001</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

@@ -2,7 +2,7 @@
 //  BundleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -118,57 +118,6 @@ class BundleTests: XCTestCase {
 	
 	@discardableResult
 	func runBundle3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Bundle {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-examples-lab-text.json")
-		
-		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "http://hl7.org/fhir/DiagnosticReport/103")
-		XCTAssertEqual(inst.entry?[0].resource?.id, "103")
-		XCTAssertEqual(inst.entry?[0].resource?.meta?.lastUpdated?.description, "2012-04-14T10:35:23Z")
-		XCTAssertEqual(inst.entry?[1].fullUrl?.absoluteString, "http://hl7.org/fhir/DiagnosticReport/104")
-		XCTAssertEqual(inst.entry?[1].resource?.id, "104")
-		XCTAssertEqual(inst.entry?[1].resource?.meta?.lastUpdated?.description, "2012-04-14T10:35:23Z")
-		XCTAssertEqual(inst.entry?[2].fullUrl?.absoluteString, "http://hl7.org/fhir/DiagnosticReport/105")
-		XCTAssertEqual(inst.entry?[2].resource?.id, "105")
-		XCTAssertEqual(inst.entry?[2].resource?.meta?.lastUpdated?.description, "2012-04-14T10:35:23Z")
-		XCTAssertEqual(inst.entry?[3].fullUrl?.absoluteString, "http://hl7.org/fhir/DiagnosticReport/106")
-		XCTAssertEqual(inst.entry?[3].resource?.id, "106")
-		XCTAssertEqual(inst.entry?[3].resource?.meta?.lastUpdated?.description, "2012-04-14T10:35:23Z")
-		XCTAssertEqual(inst.entry?[4].fullUrl?.absoluteString, "http://hl7.org/fhir/DiagnosticReport/107")
-		XCTAssertEqual(inst.entry?[4].resource?.id, "107")
-		XCTAssertEqual(inst.entry?[4].resource?.meta?.lastUpdated?.description, "2012-04-14T10:35:23Z")
-		XCTAssertEqual(inst.entry?[5].fullUrl?.absoluteString, "http://hl7.org/fhir/DiagnosticReport/108")
-		XCTAssertEqual(inst.entry?[5].resource?.id, "108")
-		XCTAssertEqual(inst.entry?[5].resource?.meta?.lastUpdated?.description, "2012-04-14T10:35:23Z")
-		XCTAssertEqual(inst.entry?[6].fullUrl?.absoluteString, "http://hl7.org/fhir/DiagnosticReport/109")
-		XCTAssertEqual(inst.entry?[6].resource?.id, "109")
-		XCTAssertEqual(inst.entry?[6].resource?.meta?.lastUpdated?.description, "2012-04-14T10:35:23Z")
-		XCTAssertEqual(inst.entry?[7].fullUrl?.absoluteString, "http://hl7.org/fhir/DiagnosticReport/110")
-		XCTAssertEqual(inst.entry?[7].resource?.id, "110")
-		XCTAssertEqual(inst.entry?[7].resource?.meta?.lastUpdated?.description, "2012-04-14T10:35:23Z")
-		XCTAssertEqual(inst.entry?[8].fullUrl?.absoluteString, "http://hl7.org/fhir/DiagnosticReport/111")
-		XCTAssertEqual(inst.entry?[8].resource?.id, "111")
-		XCTAssertEqual(inst.entry?[8].resource?.meta?.lastUpdated?.description, "2012-04-14T10:35:23Z")
-		XCTAssertEqual(inst.entry?[9].fullUrl?.absoluteString, "http://hl7.org/fhir/DiagnosticReport/112")
-		XCTAssertEqual(inst.entry?[9].resource?.id, "112")
-		XCTAssertEqual(inst.entry?[9].resource?.meta?.lastUpdated?.description, "2012-04-14T10:35:23Z")
-		XCTAssertEqual(inst.id, "2763c3ea-6bce-4f15-bdc9-4b41aaceee03")
-		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2012-04-14T10:35:23Z")
-		XCTAssertEqual(inst.type, "collection")
-		
-		return inst
-	}
-	
-	func testBundle4() {
-		do {
-			let instance = try runBundle4()
-			try runBundle4(instance.asJSON())
-		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
-		}
-	}
-	
-	@discardableResult
-	func runBundle4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Bundle {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "document-example-dischargesummary.json")
 		
 		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "http://fhir.healthintersections.com.au/open/Composition/180f219f-97a8-486d-99d9-ed631fe4fc57")
@@ -198,6 +147,47 @@ class BundleTests: XCTestCase {
 		XCTAssertEqual(inst.signature?.when?.description, "2015-08-31T07:42:33+10:00")
 		XCTAssertEqual(inst.signature?.whoReference?.reference, "Device/software")
 		XCTAssertEqual(inst.type, "document")
+		
+		return inst
+	}
+	
+	func testBundle4() {
+		do {
+			let instance = try runBundle4()
+			try runBundle4(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
+		}
+	}
+	
+	@discardableResult
+	func runBundle4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Bundle {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "endpoint-examples-general-template.json")
+		
+		XCTAssertEqual(inst.entry?[0].fullUrl?.absoluteString, "http://hl7.org/fhir/Endpoint/71")
+		XCTAssertEqual(inst.entry?[0].resource?.id, "71")
+		XCTAssertEqual(inst.entry?[1].fullUrl?.absoluteString, "http://hl7.org/fhir/Endpoint/72")
+		XCTAssertEqual(inst.entry?[1].resource?.id, "72")
+		XCTAssertEqual(inst.entry?[2].fullUrl?.absoluteString, "http://hl7.org/fhir/Endpoint/73")
+		XCTAssertEqual(inst.entry?[2].resource?.id, "73")
+		XCTAssertEqual(inst.entry?[3].fullUrl?.absoluteString, "http://hl7.org/fhir/Endpoint/74")
+		XCTAssertEqual(inst.entry?[3].resource?.id, "74")
+		XCTAssertEqual(inst.entry?[4].fullUrl?.absoluteString, "http://hl7.org/fhir/Endpoint/75")
+		XCTAssertEqual(inst.entry?[4].resource?.id, "75")
+		XCTAssertEqual(inst.entry?[5].fullUrl?.absoluteString, "http://hl7.org/fhir/Endpoint/76")
+		XCTAssertEqual(inst.entry?[5].resource?.id, "76")
+		XCTAssertEqual(inst.entry?[6].fullUrl?.absoluteString, "http://hl7.org/fhir/Endpoint/77")
+		XCTAssertEqual(inst.entry?[6].resource?.id, "77")
+		XCTAssertEqual(inst.entry?[7].fullUrl?.absoluteString, "http://hl7.org/fhir/Endpoint/78")
+		XCTAssertEqual(inst.entry?[7].resource?.id, "78")
+		XCTAssertEqual(inst.entry?[8].fullUrl?.absoluteString, "http://hl7.org/fhir/Endpoint/79")
+		XCTAssertEqual(inst.entry?[8].resource?.id, "79")
+		XCTAssertEqual(inst.entry?[9].fullUrl?.absoluteString, "http://hl7.org/fhir/Endpoint/80")
+		XCTAssertEqual(inst.entry?[9].resource?.id, "80")
+		XCTAssertEqual(inst.id, "b0a5e4277-83c4-4adb-87e2-e3efe3369b6f")
+		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2012-05-29T23:45:32Z")
+		XCTAssertEqual(inst.type, "collection")
 		
 		return inst
 	}

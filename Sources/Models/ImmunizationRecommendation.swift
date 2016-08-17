@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -359,7 +359,7 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 	public var description_fhir: String?
 	
 	/// Dose number within sequence.
-	public var doseSequence: Int?
+	public var doseSequence: UInt?
 	
 	/// Name of vaccination series.
 	public var series: String?
@@ -393,11 +393,11 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 			}
 			if let exist = js["doseSequence"] {
 				presentKeys.insert("doseSequence")
-				if let val = exist as? Int {
+				if let val = exist as? UInt {
 					self.doseSequence = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "doseSequence", wants: Int.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "doseSequence", wants: UInt.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["series"] {

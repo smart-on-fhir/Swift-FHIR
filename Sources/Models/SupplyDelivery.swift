@@ -2,7 +2,7 @@
 //  SupplyDelivery.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -38,7 +38,10 @@ open class SupplyDelivery: DomainResource {
 	public var status: String?
 	
 	/// Medication, Substance, or Device supplied.
-	public var suppliedItem: Reference?
+	public var suppliedItemCodeableConcept: CodeableConcept?
+	
+	/// Medication, Substance, or Device supplied.
+	public var suppliedItemReference: Reference?
 	
 	/// Dispenser.
 	public var supplier: Reference?
@@ -115,13 +118,22 @@ open class SupplyDelivery: DomainResource {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["suppliedItem"] {
-				presentKeys.insert("suppliedItem")
+			if let exist = js["suppliedItemCodeableConcept"] {
+				presentKeys.insert("suppliedItemCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.suppliedItem = Reference(json: val, owner: self)
+					self.suppliedItemCodeableConcept = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "suppliedItem", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "suppliedItemCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["suppliedItemReference"] {
+				presentKeys.insert("suppliedItemReference")
+				if let val = exist as? FHIRJSON {
+					self.suppliedItemReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "suppliedItemReference", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["supplier"] {
@@ -185,8 +197,11 @@ open class SupplyDelivery: DomainResource {
 		if let status = self.status {
 			json["status"] = status.asJSON()
 		}
-		if let suppliedItem = self.suppliedItem {
-			json["suppliedItem"] = suppliedItem.asJSON()
+		if let suppliedItemCodeableConcept = self.suppliedItemCodeableConcept {
+			json["suppliedItemCodeableConcept"] = suppliedItemCodeableConcept.asJSON()
+		}
+		if let suppliedItemReference = self.suppliedItemReference {
+			json["suppliedItemReference"] = suppliedItemReference.asJSON()
 		}
 		if let supplier = self.supplier {
 			json["supplier"] = supplier.asJSON()

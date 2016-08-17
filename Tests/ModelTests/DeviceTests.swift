@@ -2,7 +2,7 @@
 //  DeviceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -173,6 +173,7 @@ class DeviceTests: XCTestCase {
 		XCTAssertEqual(inst.type?.coding?[1].code, "468063009")
 		XCTAssertEqual(inst.type?.coding?[1].display, "Coated femoral stem prosthesis, modular")
 		XCTAssertEqual(inst.type?.coding?[1].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.type?.text, "Coated femoral stem prosthesis, modular")
 		XCTAssertEqual(inst.udiCarrier?.system?.absoluteString, "http://hl7.org/fhir/NamingSystem/fda-udi")
 		XCTAssertEqual(inst.udiCarrier?.type?.coding?[0].code, "UDI")
 		XCTAssertEqual(inst.udiCarrier?.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/identifier-type")
@@ -193,6 +194,110 @@ class DeviceTests: XCTestCase {
 	
 	@discardableResult
 	func runDevice6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Device {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example-udi2.json")
+		
+		XCTAssertEqual(inst.expirationDate?.description, "2014-02-01")
+		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/device-din")
+		XCTAssertEqual(inst.extension_fhir?[0].valueIdentifier?.system?.absoluteString, "http://hl7.org/fhir/NamingSystem/iccbba-din")
+		XCTAssertEqual(inst.extension_fhir?[0].valueIdentifier?.value, "A99971312345600")
+		XCTAssertEqual(inst.id, "example-udi2")
+		XCTAssertEqual(inst.manufactureDate?.description, "2013-02-01")
+		XCTAssertEqual(inst.manufacturer, "Acme Devices, Inc")
+		XCTAssertEqual(inst.model, "Bone,Putty Demineralized")
+		XCTAssertEqual(inst.patient?.reference, "Patient/example")
+		XCTAssertEqual(inst.status, "not-available")
+		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.type?.coding?[0].code, "A9999XYZ100T0474")
+		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/NamingSystem/iccbba-other-di")
+		XCTAssertEqual(inst.type?.text, "DI = A9999XYZ100T0474")
+		XCTAssertEqual(inst.udiCarrier?.system?.absoluteString, "http://hl7.org/fhir/NamingSystem/fda-udi")
+		XCTAssertEqual(inst.udiCarrier?.type?.coding?[0].code, "UDI")
+		XCTAssertEqual(inst.udiCarrier?.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/identifier-type")
+		XCTAssertEqual(inst.udiCarrier?.value, "=+05037=/A9999XYZ100T0474=,000025=A99971312345600=>014032=}013032")
+		
+		return inst
+	}
+	
+	func testDevice7() {
+		do {
+			let instance = try runDevice7()
+			try runDevice7(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
+		}
+	}
+	
+	@discardableResult
+	func runDevice7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Device {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example-udi3.json")
+		
+		XCTAssertEqual(inst.expirationDate?.description, "2020-02-02")
+		XCTAssertEqual(inst.id, "example-udi3")
+		XCTAssertEqual(inst.identifier?[0].type?.coding?[0].code, "SNO")
+		XCTAssertEqual(inst.identifier?[0].type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/identifier-type")
+		XCTAssertEqual(inst.identifier?[0].value, "XYZ4567890123 45678")
+		XCTAssertEqual(inst.lotNumber, "LOT123456789012345")
+		XCTAssertEqual(inst.manufactureDate?.description, "2013-02-02")
+		XCTAssertEqual(inst.manufacturer, "GlobalMed, Inc")
+		XCTAssertEqual(inst.model, "Ultra Implantable")
+		XCTAssertEqual(inst.patient?.reference, "Patient/example")
+		XCTAssertEqual(inst.status, "not-available")
+		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.type?.coding?[0].code, "H123PARTNO1234567890120")
+		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/NamingSystem/hibcc-di")
+		XCTAssertEqual(inst.type?.text, "DI =H123PARTNO1234567890120")
+		XCTAssertEqual(inst.udiCarrier?.system?.absoluteString, "http://hl7.org/fhir/NamingSystem/fda-udi")
+		XCTAssertEqual(inst.udiCarrier?.type?.coding?[0].code, "UDI")
+		XCTAssertEqual(inst.udiCarrier?.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/identifier-type")
+		XCTAssertEqual(inst.udiCarrier?.value, "+H123PARTNO1234567890120/$$420020216LOT123456789012345/SXYZ4567890123 45678/16D20130202C")
+		
+		return inst
+	}
+	
+	func testDevice8() {
+		do {
+			let instance = try runDevice8()
+			try runDevice8(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
+		}
+	}
+	
+	@discardableResult
+	func runDevice8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Device {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example-udi4.json")
+		
+		XCTAssertEqual(inst.id, "example-udi4")
+		XCTAssertEqual(inst.lotNumber, "RZ12345678")
+		XCTAssertEqual(inst.manufacturer, "GlobalMed, Inc")
+		XCTAssertEqual(inst.patient?.reference, "Patient/example")
+		XCTAssertEqual(inst.status, "not-available")
+		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.type?.coding?[0].code, "1TE123456A")
+		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/NamingSystem/iccbba-blood-di")
+		XCTAssertEqual(inst.type?.text, "DI = 1TE123456A")
+		XCTAssertEqual(inst.udiCarrier?.system?.absoluteString, "http://hl7.org/fhir/NamingSystem/fda-udi")
+		XCTAssertEqual(inst.udiCarrier?.type?.coding?[0].code, "UDI")
+		XCTAssertEqual(inst.udiCarrier?.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/identifier-type")
+		XCTAssertEqual(inst.udiCarrier?.value, "=)1TE123456A&)RZ12345678")
+		
+		return inst
+	}
+	
+	func testDevice9() {
+		do {
+			let instance = try runDevice9()
+			try runDevice9(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
+		}
+	}
+	
+	@discardableResult
+	func runDevice9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Device {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "device-example.json")
 		
 		XCTAssertEqual(inst.contact?[0].system, "phone")

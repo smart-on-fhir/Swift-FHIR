@@ -2,7 +2,7 @@
 //  EpisodeOfCare.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -20,6 +20,9 @@ open class EpisodeOfCare: DomainResource {
 	override open class var resourceType: String {
 		get { return "EpisodeOfCare" }
 	}
+	
+	/// The set of accounts that may be used for billing for this EpisodeOfCare.
+	public var account: [Reference]?
 	
 	/// Care manager/care co-ordinator for the patient.
 	public var careManager: Reference?
@@ -42,7 +45,7 @@ open class EpisodeOfCare: DomainResource {
 	/// Originating Referral Request(s).
 	public var referralRequest: [Reference]?
 	
-	/// planned | waitlist | active | onhold | finished | cancelled.
+	/// planned | waitlist | active | onhold | finished | cancelled | entered-in-error.
 	public var status: String?
 	
 	/// Past list of status codes.
@@ -70,6 +73,15 @@ open class EpisodeOfCare: DomainResource {
 	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist = js["account"] {
+				presentKeys.insert("account")
+				if let val = exist as? [FHIRJSON] {
+					self.account = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "account", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["careManager"] {
 				presentKeys.insert("careManager")
 				if let val = exist as? FHIRJSON {
@@ -182,6 +194,9 @@ open class EpisodeOfCare: DomainResource {
 	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let account = self.account {
+			json["account"] = account.map() { $0.asJSON() }
+		}
 		if let careManager = self.careManager {
 			json["careManager"] = careManager.asJSON()
 		}
@@ -235,7 +250,7 @@ open class EpisodeOfCareStatusHistory: BackboneElement {
 	/// Period for the status.
 	public var period: Period?
 	
-	/// planned | waitlist | active | onhold | finished | cancelled.
+	/// planned | waitlist | active | onhold | finished | cancelled | entered-in-error.
 	public var status: String?
 	
 	

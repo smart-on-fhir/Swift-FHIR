@@ -2,7 +2,7 @@
 //  DataElementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -37,9 +37,8 @@ class DataElementTests: XCTestCase {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "dataelement-example.json")
 		
 		XCTAssertEqual(inst.contained?[0].id, "2179414")
-		XCTAssertEqual(inst.contained?[1].id, "2179414-permitted-cs")
-		XCTAssertEqual(inst.contained?[2].id, "2179414-permitted")
-		XCTAssertEqual(inst.contained?[3].id, "2179414-cm")
+		XCTAssertEqual(inst.contained?[1].id, "2179414-permitted")
+		XCTAssertEqual(inst.contained?[2].id, "2179414-cm")
 		XCTAssertEqual(inst.element?[0].binding?.strength, "required")
 		XCTAssertEqual(inst.element?[0].binding?.valueSetReference?.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/11179-permitted-value-valueset")
 		XCTAssertEqual(inst.element?[0].binding?.valueSetReference?.extension_fhir?[0].valueReference?.reference, "#2179414-permitted")

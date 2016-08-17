@@ -2,7 +2,7 @@
 //  AppointmentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -70,7 +70,7 @@ class AppointmentTests: XCTestCase {
 		XCTAssertEqual(inst.specialty?[0].coding?[0].display, "General Practice")
 		XCTAssertEqual(inst.specialty?[0].coding?[0].system?.absoluteString, "http://example.org/specialty")
 		XCTAssertEqual(inst.status, "proposed")
-		XCTAssertEqual(inst.text?.div, "<div>Brian MRI results discussion</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Brian MRI results discussion</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
@@ -123,7 +123,7 @@ class AppointmentTests: XCTestCase {
 		XCTAssertEqual(inst.specialty?[0].coding?[0].system?.absoluteString, "http://example.org/specialty")
 		XCTAssertEqual(inst.start?.description, "2013-12-10T09:00:00Z")
 		XCTAssertEqual(inst.status, "booked")
-		XCTAssertEqual(inst.text?.div, "<div>Brian MRI results discussion</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Brian MRI results discussion</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
@@ -176,7 +176,7 @@ class AppointmentTests: XCTestCase {
 		XCTAssertEqual(inst.specialty?[0].coding?[0].system?.absoluteString, "http://example.org/specialty")
 		XCTAssertEqual(inst.start?.description, "2013-12-09T09:00:00Z")
 		XCTAssertEqual(inst.status, "booked")
-		XCTAssertEqual(inst.text?.div, "<div>Brian MRI results discussion</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Brian MRI results discussion</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

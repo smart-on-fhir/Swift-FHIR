@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- *  Allergy or Intolerance (generally: Risk Of Adverse reaction to a substance).
+ *  Allergy or Intolerance (generally: Risk of adverse reaction to a substance).
  *
  *  Risk of harmful or undesirable, physiological response which is unique to an individual and associated with exposure
  *  to a substance.
@@ -20,8 +20,14 @@ open class AllergyIntolerance: DomainResource {
 		get { return "AllergyIntolerance" }
 	}
 	
-	/// food | medication | environment | other - Category of Substance.
+	/// Date record was believed accurate.
+	public var attestedDate: DateTime?
+	
+	/// food | medication | biologic | environment.
 	public var category: String?
+	
+	/// Allergy or intolerance code.
+	public var code: CodeableConcept?
 	
 	/// low | high | unable-to-assess.
 	public var criticality: String?
@@ -30,7 +36,7 @@ open class AllergyIntolerance: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// Date(/time) of last known occurrence of a reaction.
-	public var lastOccurence: DateTime?
+	public var lastOccurrence: DateTime?
 	
 	/// Additional text not captured in other fields.
 	public var note: [Annotation]?
@@ -44,20 +50,14 @@ open class AllergyIntolerance: DomainResource {
 	/// Adverse Reaction Events linked to exposure to substance.
 	public var reaction: [AllergyIntoleranceReaction]?
 	
-	/// When recorded.
-	public var recordedDate: DateTime?
-	
 	/// Who recorded the sensitivity.
 	public var recorder: Reference?
 	
 	/// Source of the information about the allergy.
 	public var reporter: Reference?
 	
-	/// active | unconfirmed | confirmed | inactive | resolved | refuted | entered-in-error.
+	/// active | active-confirmed | inactive | resolved | refuted | entered-in-error.
 	public var status: String?
-	
-	/// Substance, (or class) considered to be responsible for risk.
-	public var substance: CodeableConcept?
 	
 	/// allergy | intolerance - Underlying mechanism (if known).
 	public var type: String?
@@ -69,15 +69,23 @@ open class AllergyIntolerance: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, substance: CodeableConcept) {
+	public convenience init(patient: Reference) {
 		self.init(json: nil)
 		self.patient = patient
-		self.substance = substance
 	}
 	
 	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist = js["attestedDate"] {
+				presentKeys.insert("attestedDate")
+				if let val = exist as? String {
+					self.attestedDate = DateTime(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "attestedDate", wants: String.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? String {
@@ -85,6 +93,15 @@ open class AllergyIntolerance: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "category", wants: String.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["code"] {
+				presentKeys.insert("code")
+				if let val = exist as? FHIRJSON {
+					self.code = CodeableConcept(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["criticality"] {
@@ -105,13 +122,13 @@ open class AllergyIntolerance: DomainResource {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["lastOccurence"] {
-				presentKeys.insert("lastOccurence")
+			if let exist = js["lastOccurrence"] {
+				presentKeys.insert("lastOccurrence")
 				if let val = exist as? String {
-					self.lastOccurence = DateTime(string: val)
+					self.lastOccurrence = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "lastOccurence", wants: String.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "lastOccurrence", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["note"] {
@@ -153,15 +170,6 @@ open class AllergyIntolerance: DomainResource {
 					errors.append(FHIRJSONError(key: "reaction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["recordedDate"] {
-				presentKeys.insert("recordedDate")
-				if let val = exist as? String {
-					self.recordedDate = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "recordedDate", wants: String.self, has: type(of: exist)))
-				}
-			}
 			if let exist = js["recorder"] {
 				presentKeys.insert("recorder")
 				if let val = exist as? FHIRJSON {
@@ -189,18 +197,6 @@ open class AllergyIntolerance: DomainResource {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["substance"] {
-				presentKeys.insert("substance")
-				if let val = exist as? FHIRJSON {
-					self.substance = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "substance", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "substance"))
-			}
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? String {
@@ -217,8 +213,14 @@ open class AllergyIntolerance: DomainResource {
 	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let attestedDate = self.attestedDate {
+			json["attestedDate"] = attestedDate.asJSON()
+		}
 		if let category = self.category {
 			json["category"] = category.asJSON()
+		}
+		if let code = self.code {
+			json["code"] = code.asJSON()
 		}
 		if let criticality = self.criticality {
 			json["criticality"] = criticality.asJSON()
@@ -226,8 +228,8 @@ open class AllergyIntolerance: DomainResource {
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
-		if let lastOccurence = self.lastOccurence {
-			json["lastOccurence"] = lastOccurence.asJSON()
+		if let lastOccurrence = self.lastOccurrence {
+			json["lastOccurrence"] = lastOccurrence.asJSON()
 		}
 		if let note = self.note {
 			json["note"] = note.map() { $0.asJSON() }
@@ -241,9 +243,6 @@ open class AllergyIntolerance: DomainResource {
 		if let reaction = self.reaction {
 			json["reaction"] = reaction.map() { $0.asJSON() }
 		}
-		if let recordedDate = self.recordedDate {
-			json["recordedDate"] = recordedDate.asJSON()
-		}
 		if let recorder = self.recorder {
 			json["recorder"] = recorder.asJSON()
 		}
@@ -252,9 +251,6 @@ open class AllergyIntolerance: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
-		}
-		if let substance = self.substance {
-			json["substance"] = substance.asJSON()
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -268,7 +264,7 @@ open class AllergyIntolerance: DomainResource {
 /**
  *  Adverse Reaction Events linked to exposure to substance.
  *
- *  Details about each adverse reaction event linked to exposure to the identified Substance.
+ *  Details about each adverse reaction event linked to exposure to the identified substance.
  */
 open class AllergyIntoleranceReaction: BackboneElement {
 	override open class var resourceType: String {
@@ -296,7 +292,7 @@ open class AllergyIntoleranceReaction: BackboneElement {
 	/// mild | moderate | severe (of event as a whole).
 	public var severity: String?
 	
-	/// Specific substance considered to be responsible for event.
+	/// Specific substance or pharmaceutical product considered to be responsible for event.
 	public var substance: CodeableConcept?
 	
 	

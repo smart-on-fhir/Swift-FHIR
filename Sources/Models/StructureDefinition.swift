@@ -2,7 +2,7 @@
 //  StructureDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -25,9 +25,6 @@ open class StructureDefinition: DomainResource {
 	
 	/// Definition that this type is constrained/specialized from.
 	public var baseDefinition: URL?
-	
-	/// Any datatype or resource, including abstract ones.
-	public var baseType: String?
 	
 	/// Assist with indexing and finding.
 	public var code: [Coding]?
@@ -68,7 +65,7 @@ open class StructureDefinition: DomainResource {
 	/// Other identifiers for the StructureDefinition.
 	public var identifier: [Identifier]?
 	
-	/// datatype | resource | logical.
+	/// primitive-type | complex-type | resource | logical.
 	public var kind: String?
 	
 	/// External specification that the content is mapped to.
@@ -89,6 +86,9 @@ open class StructureDefinition: DomainResource {
 	/// draft | active | retired.
 	public var status: String?
 	
+	/// Type defined or constrained by this structure.
+	public var type: String?
+	
 	/// Absolute URL used to reference this StructureDefinition.
 	public var url: URL?
 	
@@ -105,12 +105,13 @@ open class StructureDefinition: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(abstract: Bool, kind: String, name: String, status: String, url: URL) {
+	public convenience init(abstract: Bool, kind: String, name: String, status: String, type: String, url: URL) {
 		self.init(json: nil)
 		self.abstract = abstract
 		self.kind = kind
 		self.name = name
 		self.status = status
+		self.type = type
 		self.url = url
 	}
 	
@@ -136,15 +137,6 @@ open class StructureDefinition: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "baseDefinition", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["baseType"] {
-				presentKeys.insert("baseType")
-				if let val = exist as? String {
-					self.baseType = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "baseType", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["code"] {
@@ -336,6 +328,18 @@ open class StructureDefinition: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "status"))
 			}
+			if let exist = js["type"] {
+				presentKeys.insert("type")
+				if let val = exist as? String {
+					self.type = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "type"))
+			}
 			if let exist = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
@@ -378,9 +382,6 @@ open class StructureDefinition: DomainResource {
 		}
 		if let baseDefinition = self.baseDefinition {
 			json["baseDefinition"] = baseDefinition.asJSON()
-		}
-		if let baseType = self.baseType {
-			json["baseType"] = baseType.asJSON()
 		}
 		if let code = self.code {
 			json["code"] = code.map() { $0.asJSON() }
@@ -445,6 +446,9 @@ open class StructureDefinition: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
+		}
+		if let type = self.type {
+			json["type"] = type.asJSON()
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()

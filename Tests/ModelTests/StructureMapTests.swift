@@ -2,7 +2,7 @@
 //  StructureMapTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -48,7 +48,7 @@ class StructureMapTests: XCTestCase {
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.name, "Example Map")
 		XCTAssertEqual(inst.status, "draft")
-		XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/StructureMap/example")
 		

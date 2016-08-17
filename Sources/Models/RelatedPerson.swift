@@ -2,7 +2,7 @@
 //  RelatedPerson.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -20,6 +20,9 @@ open class RelatedPerson: DomainResource {
 		get { return "RelatedPerson" }
 	}
 	
+	/// Whether this related person's record is in active use.
+	public var active: Bool?
+	
 	/// Address where the related person can be contacted or visited.
 	public var address: [Address]?
 	
@@ -33,7 +36,7 @@ open class RelatedPerson: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// A name associated with the person.
-	public var name: HumanName?
+	public var name: [HumanName]?
 	
 	/// The patient this person is related to.
 	public var patient: Reference?
@@ -65,6 +68,15 @@ open class RelatedPerson: DomainResource {
 	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist = js["active"] {
+				presentKeys.insert("active")
+				if let val = exist as? Bool {
+					self.active = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "active", wants: Bool.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["address"] {
 				presentKeys.insert("address")
 				if let val = exist as? [FHIRJSON] {
@@ -103,11 +115,11 @@ open class RelatedPerson: DomainResource {
 			}
 			if let exist = js["name"] {
 				presentKeys.insert("name")
-				if let val = exist as? FHIRJSON {
-					self.name = HumanName(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.name = HumanName.instantiate(fromArray: val, owner: self) as? [HumanName]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "name", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["patient"] {
@@ -165,6 +177,9 @@ open class RelatedPerson: DomainResource {
 	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let active = self.active {
+			json["active"] = active.asJSON()
+		}
 		if let address = self.address {
 			json["address"] = address.map() { $0.asJSON() }
 		}
@@ -178,7 +193,7 @@ open class RelatedPerson: DomainResource {
 			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let name = self.name {
-			json["name"] = name.asJSON()
+			json["name"] = name.map() { $0.asJSON() }
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()

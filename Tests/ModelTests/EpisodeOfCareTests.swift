@@ -2,7 +2,7 @@
 //  EpisodeOfCareTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -36,6 +36,8 @@ class EpisodeOfCareTests: XCTestCase {
 	func runEpisodeOfCare1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.EpisodeOfCare {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "episodeofcare-example.json")
 		
+		XCTAssertEqual(inst.account?[0].display, "example account")
+		XCTAssertEqual(inst.account?[0].reference, "Account/example")
 		XCTAssertEqual(inst.careManager?.display, "Amanda Assigned")
 		XCTAssertEqual(inst.careManager?.reference, "Practitioner/14")
 		XCTAssertEqual(inst.condition?[0].display, "Severe burn of left ear")
@@ -59,6 +61,8 @@ class EpisodeOfCareTests: XCTestCase {
 		XCTAssertEqual(inst.statusHistory?[2].status, "onhold")
 		XCTAssertEqual(inst.statusHistory?[3].period?.start?.description, "2014-09-25")
 		XCTAssertEqual(inst.statusHistory?[3].status, "active")
+		XCTAssertEqual(inst.team?[0].display, "example care team")
+		XCTAssertEqual(inst.team?[0].reference, "CareTeam/example")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.type?[0].coding?[0].code, "HACC")
 		XCTAssertEqual(inst.type?[0].coding?[0].display, "Home and Community Care Package")

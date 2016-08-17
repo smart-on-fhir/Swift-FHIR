@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 

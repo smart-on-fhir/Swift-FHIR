@@ -2,7 +2,7 @@
 //  SupplyRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -29,7 +29,10 @@ open class SupplyRequest: DomainResource {
 	public var kind: CodeableConcept?
 	
 	/// Medication, Substance, or Device requested to be supplied.
-	public var orderedItem: Reference?
+	public var orderedItemCodeableConcept: CodeableConcept?
+	
+	/// Medication, Substance, or Device requested to be supplied.
+	public var orderedItemReference: Reference?
 	
 	/// Patient for whom the item is supplied.
 	public var patient: Reference?
@@ -88,13 +91,22 @@ open class SupplyRequest: DomainResource {
 					errors.append(FHIRJSONError(key: "kind", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["orderedItem"] {
-				presentKeys.insert("orderedItem")
+			if let exist = js["orderedItemCodeableConcept"] {
+				presentKeys.insert("orderedItemCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.orderedItem = Reference(json: val, owner: self)
+					self.orderedItemCodeableConcept = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "orderedItem", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "orderedItemCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["orderedItemReference"] {
+				presentKeys.insert("orderedItemReference")
+				if let val = exist as? FHIRJSON {
+					self.orderedItemReference = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "orderedItemReference", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["patient"] {
@@ -176,8 +188,11 @@ open class SupplyRequest: DomainResource {
 		if let kind = self.kind {
 			json["kind"] = kind.asJSON()
 		}
-		if let orderedItem = self.orderedItem {
-			json["orderedItem"] = orderedItem.asJSON()
+		if let orderedItemCodeableConcept = self.orderedItemCodeableConcept {
+			json["orderedItemCodeableConcept"] = orderedItemCodeableConcept.asJSON()
+		}
+		if let orderedItemReference = self.orderedItemReference {
+			json["orderedItemReference"] = orderedItemReference.asJSON()
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()

@@ -2,7 +2,7 @@
 //  CommunicationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -34,6 +34,94 @@ class CommunicationTests: XCTestCase {
 	
 	@discardableResult
 	func runCommunication1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Communication {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example-fm-attachment.json")
+		
+		XCTAssertEqual(inst.category?.coding?[0].code, "SolicitedAttachment")
+		XCTAssertEqual(inst.category?.coding?[0].system?.absoluteString, "http://acme.org/messagetypes")
+		XCTAssertEqual(inst.contained?[0].id, "provider")
+		XCTAssertEqual(inst.contained?[1].id, "payor")
+		XCTAssertEqual(inst.contained?[2].id, "claim")
+		XCTAssertEqual(inst.contained?[3].id, "claimresponse")
+		XCTAssertEqual(inst.id, "fm-attachment")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.providerco.com/communication")
+		XCTAssertEqual(inst.identifier?[0].value, "12345")
+		XCTAssertEqual(inst.payload?[0].contentAttachment?.contentType, "application/pdf")
+		XCTAssertEqual(inst.payload?[0].contentAttachment?.creation?.description, "2010-02-01T11:50:23-05:00")
+		XCTAssertEqual(inst.payload?[0].contentAttachment?.data, Base64Binary(value: "SGVsbG8="))
+		XCTAssertEqual(inst.payload?[0].contentAttachment?.title, "accident notes 20100201.pdf")
+		XCTAssertEqual(inst.payload?[1].contentAttachment?.contentType, "application/pdf")
+		XCTAssertEqual(inst.payload?[1].contentAttachment?.creation?.description, "2010-02-01T10:57:34+01:00")
+		XCTAssertEqual(inst.payload?[1].contentAttachment?.hash, Base64Binary(value: "SGVsbG8gdGhlcmU="))
+		XCTAssertEqual(inst.payload?[1].contentAttachment?.size, UInt(104274))
+		XCTAssertEqual(inst.payload?[1].contentAttachment?.url?.absoluteString, "http://happyvalley.com/docs/AB12345")
+		XCTAssertEqual(inst.recipient?[0].reference, "#payor")
+		XCTAssertEqual(inst.sender?.reference, "#provider")
+		XCTAssertEqual(inst.sent?.description, "2016-06-12T18:01:10-08:00")
+		XCTAssertEqual(inst.status, "completed")
+		XCTAssertEqual(inst.subject?.reference, "Patient/1")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Attachment which is unsolicited</div>")
+		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.topic?[0].reference, "#claim")
+		XCTAssertEqual(inst.topic?[1].reference, "#claimresponse")
+		
+		return inst
+	}
+	
+	func testCommunication2() {
+		do {
+			let instance = try runCommunication2()
+			try runCommunication2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Communication successfully, but threw")
+		}
+	}
+	
+	@discardableResult
+	func runCommunication2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Communication {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example-fm-solicited-attachment.json")
+		
+		XCTAssertEqual(inst.basedOn?[0].reference, "#request")
+		XCTAssertEqual(inst.category?.coding?[0].code, "SolicitedAttachment")
+		XCTAssertEqual(inst.category?.coding?[0].system?.absoluteString, "http://acme.org/messagetypes")
+		XCTAssertEqual(inst.contained?[0].id, "provider")
+		XCTAssertEqual(inst.contained?[1].id, "payor")
+		XCTAssertEqual(inst.contained?[2].id, "request")
+		XCTAssertEqual(inst.id, "fm-solicited")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.providerco.com/communication")
+		XCTAssertEqual(inst.identifier?[0].value, "12345")
+		XCTAssertEqual(inst.payload?[0].contentAttachment?.contentType, "application/pdf")
+		XCTAssertEqual(inst.payload?[0].contentAttachment?.creation?.description, "2010-02-01T11:50:23-05:00")
+		XCTAssertEqual(inst.payload?[0].contentAttachment?.data, Base64Binary(value: "SGVsbG8="))
+		XCTAssertEqual(inst.payload?[0].contentAttachment?.title, "accident notes 20100201.pdf")
+		XCTAssertEqual(inst.payload?[1].contentAttachment?.contentType, "application/pdf")
+		XCTAssertEqual(inst.payload?[1].contentAttachment?.creation?.description, "2010-02-01T10:57:34+01:00")
+		XCTAssertEqual(inst.payload?[1].contentAttachment?.hash, Base64Binary(value: "SGVsbG8gdGhlcmU="))
+		XCTAssertEqual(inst.payload?[1].contentAttachment?.size, UInt(104274))
+		XCTAssertEqual(inst.payload?[1].contentAttachment?.url?.absoluteString, "http://happyvalley.com/docs/AB12345")
+		XCTAssertEqual(inst.recipient?[0].reference, "#payor")
+		XCTAssertEqual(inst.sender?.reference, "#provider")
+		XCTAssertEqual(inst.sent?.description, "2016-06-12T18:01:10-08:00")
+		XCTAssertEqual(inst.status, "completed")
+		XCTAssertEqual(inst.subject?.reference, "Patient/1")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Attachment in response to a Request</div>")
+		XCTAssertEqual(inst.text?.status, "generated")
+		
+		return inst
+	}
+	
+	func testCommunication3() {
+		do {
+			let instance = try runCommunication3()
+			try runCommunication3(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test Communication successfully, but threw")
+		}
+	}
+	
+	@discardableResult
+	func runCommunication3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Communication {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example.json")
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "Alert")
@@ -50,7 +138,7 @@ class CommunicationTests: XCTestCase {
 		XCTAssertEqual(inst.sent?.description, "2014-12-12T18:01:10-08:00")
 		XCTAssertEqual(inst.status, "completed")
 		XCTAssertEqual(inst.subject?.reference, "Patient/1")
-		XCTAssertEqual(inst.text?.div, "<div>Patient has very high serum potassium</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Patient has very high serum potassium</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

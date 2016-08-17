@@ -2,7 +2,7 @@
 //  ProcessResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -70,10 +70,19 @@ open class ProcessResponse: DomainResource {
 	/// Resource version.
 	public var ruleset: Coding?
 	
+	/// active | cancelled | draft | entered-in-error.
+	public var status: String?
+	
 	
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
 		super.init(json: json, owner: owner)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(status: String) {
+		self.init(json: nil)
+		self.status = status
 	}
 	
 	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -232,6 +241,18 @@ open class ProcessResponse: DomainResource {
 					errors.append(FHIRJSONError(key: "ruleset", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["status"] {
+				presentKeys.insert("status")
+				if let val = exist as? String {
+					self.status = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "status"))
+			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -289,6 +310,9 @@ open class ProcessResponse: DomainResource {
 		}
 		if let ruleset = self.ruleset {
 			json["ruleset"] = ruleset.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
 		}
 		
 		return json

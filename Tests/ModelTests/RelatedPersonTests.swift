@@ -2,7 +2,7 @@
 //  RelatedPersonTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -41,9 +41,9 @@ class RelatedPersonTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.6.3")
 		XCTAssertEqual(inst.identifier?[0].type?.text, "BSN")
 		XCTAssertEqual(inst.identifier?[0].use, "official")
-		XCTAssertEqual(inst.name?.family?[0], "Abels")
-		XCTAssertEqual(inst.name?.given?[0], "Sarah")
-		XCTAssertEqual(inst.name?.use, "usual")
+		XCTAssertEqual(inst.name?[0].family?[0], "Abels")
+		XCTAssertEqual(inst.name?[0].given?[0], "Sarah")
+		XCTAssertEqual(inst.name?[0].use, "usual")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f001")
 		XCTAssertEqual(inst.relationship?.coding?[0].code, "SIGOTHR")
 		XCTAssertEqual(inst.relationship?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/RoleCode")
@@ -75,8 +75,8 @@ class RelatedPersonTests: XCTestCase {
 		XCTAssertEqual(inst.birthDate?.description, "1963")
 		XCTAssertEqual(inst.gender, "female")
 		XCTAssertEqual(inst.id, "f002")
-		XCTAssertEqual(inst.name?.text, "Ariadne Bor-Jansma")
-		XCTAssertEqual(inst.name?.use, "usual")
+		XCTAssertEqual(inst.name?[0].text, "Ariadne Bor-Jansma")
+		XCTAssertEqual(inst.name?[0].use, "usual")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f201")
 		XCTAssertEqual(inst.period?.start?.description, "1975")
 		XCTAssertEqual(inst.photo?[0].contentType, "image/jpeg")
@@ -111,10 +111,10 @@ class RelatedPersonTests: XCTestCase {
 		XCTAssertEqual(inst.address?[0].use, "home")
 		XCTAssertEqual(inst.gender, "male")
 		XCTAssertEqual(inst.id, "peter")
-		XCTAssertEqual(inst.name?.family?[0], "Chalmers")
-		XCTAssertEqual(inst.name?.given?[0], "Peter")
-		XCTAssertEqual(inst.name?.given?[1], "James")
-		XCTAssertEqual(inst.name?.use, "official")
+		XCTAssertEqual(inst.name?[0].family?[0], "Chalmers")
+		XCTAssertEqual(inst.name?[0].given?[0], "Peter")
+		XCTAssertEqual(inst.name?[0].given?[1], "James")
+		XCTAssertEqual(inst.name?[0].use, "official")
 		XCTAssertEqual(inst.patient?.reference, "Patient/animal")
 		XCTAssertEqual(inst.period?.start?.description, "2012-03-11")
 		XCTAssertEqual(inst.photo?[0].contentType, "image/jpeg")
@@ -143,6 +143,7 @@ class RelatedPersonTests: XCTestCase {
 	func runRelatedPerson4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.RelatedPerson {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example.json")
 		
+		XCTAssertTrue(inst.active ?? false)
 		XCTAssertEqual(inst.address?[0].city, "Paris")
 		XCTAssertEqual(inst.address?[0].country, "FRA")
 		XCTAssertEqual(inst.address?[0].line?[0], "43, Place du Marché Sainte Catherine")
@@ -153,9 +154,9 @@ class RelatedPersonTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].type?.text, "INSEE")
 		XCTAssertEqual(inst.identifier?[0].use, "usual")
 		XCTAssertEqual(inst.identifier?[0].value, "272117510400399")
-		XCTAssertEqual(inst.name?.family?[0], "du")
-		XCTAssertEqual(inst.name?.family?[1], "Marché")
-		XCTAssertEqual(inst.name?.given?[0], "Bénédicte")
+		XCTAssertEqual(inst.name?[0].family?[0], "du")
+		XCTAssertEqual(inst.name?[0].family?[1], "Marché")
+		XCTAssertEqual(inst.name?[0].given?[0], "Bénédicte")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.photo?[0].contentType, "image/jpeg")
 		XCTAssertEqual(inst.photo?[0].url?.absoluteString, "Binary/f016")

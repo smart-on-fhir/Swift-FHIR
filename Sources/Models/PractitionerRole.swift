@@ -2,7 +2,7 @@
 //  PractitionerRole.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/PractitionerRole) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/PractitionerRole) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -29,6 +29,12 @@ open class PractitionerRole: DomainResource {
 	/// Times the Service Site is available.
 	public var availableTime: [PractitionerRoleAvailableTime]?
 	
+	/// Roles which this practitioner may perform.
+	public var code: [CodeableConcept]?
+	
+	/// Technical endpoints providing access to services operated for the practitioner with this role.
+	public var endpoint: [Reference]?
+	
 	/// The list of healthcare services that this worker provides for this role's Organization/Location(s).
 	public var healthcareService: [Reference]?
 	
@@ -49,9 +55,6 @@ open class PractitionerRole: DomainResource {
 	
 	/// Practitioner that is able to provide the defined services for the organation.
 	public var practitioner: Reference?
-	
-	/// Roles which this practitioner may perform.
-	public var role: [CodeableConcept]?
 	
 	/// Specific specialty of the practitioner.
 	public var specialty: [CodeableConcept]?
@@ -93,6 +96,24 @@ open class PractitionerRole: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "availableTime", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["code"] {
+				presentKeys.insert("code")
+				if let val = exist as? [FHIRJSON] {
+					self.code = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "code", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["endpoint"] {
+				presentKeys.insert("endpoint")
+				if let val = exist as? [FHIRJSON] {
+					self.endpoint = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "endpoint", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["healthcareService"] {
@@ -158,15 +179,6 @@ open class PractitionerRole: DomainResource {
 					errors.append(FHIRJSONError(key: "practitioner", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["role"] {
-				presentKeys.insert("role")
-				if let val = exist as? [FHIRJSON] {
-					self.role = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "role", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
 			if let exist = js["specialty"] {
 				presentKeys.insert("specialty")
 				if let val = exist as? [FHIRJSON] {
@@ -201,6 +213,12 @@ open class PractitionerRole: DomainResource {
 		if let availableTime = self.availableTime {
 			json["availableTime"] = availableTime.map() { $0.asJSON() }
 		}
+		if let code = self.code {
+			json["code"] = code.map() { $0.asJSON() }
+		}
+		if let endpoint = self.endpoint {
+			json["endpoint"] = endpoint.map() { $0.asJSON() }
+		}
 		if let healthcareService = self.healthcareService {
 			json["healthcareService"] = healthcareService.map() { $0.asJSON() }
 		}
@@ -221,9 +239,6 @@ open class PractitionerRole: DomainResource {
 		}
 		if let practitioner = self.practitioner {
 			json["practitioner"] = practitioner.asJSON()
-		}
-		if let role = self.role {
-			json["role"] = role.map() { $0.asJSON() }
 		}
 		if let specialty = self.specialty {
 			json["specialty"] = specialty.map() { $0.asJSON() }

@@ -2,7 +2,7 @@
 //  SubstanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -54,7 +54,7 @@ class SubstanceTests: XCTestCase {
 		XCTAssertEqual(inst.ingredient?[0].quantity?.numerator?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.ingredient?[0].quantity?.numerator?.unit, "mg")
 		XCTAssertEqual(inst.ingredient?[0].quantity?.numerator?.value, NSDecimalNumber(string: "875"))
-		XCTAssertEqual(inst.ingredient?[0].substance?.reference, "#ingr1")
+		XCTAssertEqual(inst.ingredient?[0].substanceReference?.reference, "#ingr1")
 		XCTAssertEqual(inst.ingredient?[1].quantity?.denominator?.code, "mg")
 		XCTAssertEqual(inst.ingredient?[1].quantity?.denominator?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.ingredient?[1].quantity?.denominator?.unit, "mg")
@@ -63,7 +63,7 @@ class SubstanceTests: XCTestCase {
 		XCTAssertEqual(inst.ingredient?[1].quantity?.numerator?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.ingredient?[1].quantity?.numerator?.unit, "mg")
 		XCTAssertEqual(inst.ingredient?[1].quantity?.numerator?.value, NSDecimalNumber(string: "125"))
-		XCTAssertEqual(inst.ingredient?[1].substance?.reference, "#ingr2")
+		XCTAssertEqual(inst.ingredient?[1].substanceReference?.reference, "#ingr2")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
@@ -136,7 +136,7 @@ class SubstanceTests: XCTestCase {
 		XCTAssertEqual(inst.code?.coding?[0].display, "Potassium")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.id, "f203")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.org/indentifiers/substances")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.org/identifiers/substances")
 		XCTAssertEqual(inst.identifier?[0].value, "1234")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
@@ -165,10 +165,10 @@ class SubstanceTests: XCTestCase {
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.description_fhir, "Solution for silver nitrate stain")
 		XCTAssertEqual(inst.id, "f204")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.org/indentifiers/substances")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.org/identifiers/substances")
 		XCTAssertEqual(inst.identifier?[0].value, "15970")
 		XCTAssertEqual(inst.instance?[0].expiry?.description, "2018-01-01")
-		XCTAssertEqual(inst.instance?[0].identifier?.system?.absoluteString, "http://acme.org/indentifiers/substances/lot")
+		XCTAssertEqual(inst.instance?[0].identifier?.system?.absoluteString, "http://acme.org/identifiers/substances/lot")
 		XCTAssertEqual(inst.instance?[0].identifier?.value, "AB94687")
 		XCTAssertEqual(inst.instance?[0].quantity?.code, "mL")
 		XCTAssertEqual(inst.instance?[0].quantity?.system?.absoluteString, "http://unitsofmeasure.org")
@@ -198,7 +198,7 @@ class SubstanceTests: XCTestCase {
 		XCTAssertEqual(inst.category?[0].coding?[0].system?.absoluteString, "http://hl7.org.fhir/substance-category")
 		XCTAssertEqual(inst.code?.text, "apitoxin (Honey Bee Venom)")
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.org/indentifiers/substances")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.org/identifiers/substances")
 		XCTAssertEqual(inst.identifier?[0].value, "1463")
 		XCTAssertEqual(inst.text?.status, "generated")
 		

@@ -2,7 +2,7 @@
 //  AppointmentResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -32,7 +32,7 @@ open class AppointmentResponse: DomainResource {
 	/// External Ids for this item.
 	public var identifier: [Identifier]?
 	
-	/// accepted | declined | tentative | in-process | completed | needs-action.
+	/// accepted | declined | tentative | in-process | completed | needs-action | entered-in-error.
 	public var participantStatus: String?
 	
 	/// Role of participant in the appointment.

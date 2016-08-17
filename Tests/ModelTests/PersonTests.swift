@@ -2,7 +2,7 @@
 //  PersonTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -97,6 +97,9 @@ class PersonTests: XCTestCase {
 		XCTAssertEqual(inst.telecom?[1].system, "phone")
 		XCTAssertEqual(inst.telecom?[1].use, "work")
 		XCTAssertEqual(inst.telecom?[1].value, "(03) 5555 6473")
+		XCTAssertEqual(inst.telecom?[2].system, "email")
+		XCTAssertEqual(inst.telecom?[2].use, "home")
+		XCTAssertEqual(inst.telecom?[2].value, "Jim@example.org")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

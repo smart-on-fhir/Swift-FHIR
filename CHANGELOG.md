@@ -2,6 +2,11 @@ Changelog
 =========
 
 
+## 2.9
+
+- Update to FHIR `1.6.0.9663`
+
+
 ## 2.8
 
 - Update to FHIR `1.4.0.8139`
@@ -10,6 +15,17 @@ Changelog
 ## 2.7
 
 - Update to Swift 3.0
+- Downgrade to FHIR `1.0.2.7202`
+
+
+## 2.4
+
+- Update to FHIR `1.6.0.9663`
+
+
+## 2.3
+
+- Update to Swift 2.3
 
 
 ## 2.2.3

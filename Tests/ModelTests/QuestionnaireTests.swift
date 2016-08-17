@@ -2,7 +2,7 @@
 //  QuestionnaireTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -53,6 +53,8 @@ class QuestionnaireTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].item?[1].item?[1].linkId, "birthLength")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[1].text, "Birth length (cm)")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[1].type, "decimal")
+		XCTAssertTrue(inst.item?[0].item?[1].item?[2].item?[0].enableWhen?[0].hasAnswer ?? false)
+		XCTAssertEqual(inst.item?[0].item?[1].item?[2].item?[0].enableWhen?[0].question, "vitaminKgiven")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[2].item?[0].item?[0].linkId, "vitaminiKDose1")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[2].item?[0].item?[0].text, "1st dose")
 		XCTAssertEqual(inst.item?[0].item?[1].item?[2].item?[0].item?[0].type, "dateTime")
@@ -87,6 +89,7 @@ class QuestionnaireTests: XCTestCase {
 		XCTAssertEqual(inst.subjectType?[0], "Patient")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.title, "NSW Government My Personal Health Record")
+		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/Questionnaire/bb")
 		
 		return inst
 	}
@@ -140,6 +143,7 @@ class QuestionnaireTests: XCTestCase {
 		XCTAssertEqual(inst.status, "published")
 		XCTAssertEqual(inst.subjectType?[0], "Patient")
 		XCTAssertEqual(inst.text?.status, "generated")
+		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/Questionnaire/f201")
 		
 		return inst
 	}
@@ -185,6 +189,7 @@ class QuestionnaireTests: XCTestCase {
 		XCTAssertEqual(inst.subjectType?[0], "Patient")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.title, "Glasgow Coma Score")
+		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/Questionnaire/gcs")
 		
 		return inst
 	}
@@ -255,6 +260,7 @@ class QuestionnaireTests: XCTestCase {
 		XCTAssertEqual(inst.subjectType?[0], "Patient")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.title, "Cancer Quality Forum Questionnaire 2012")
+		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/Questionnaire/3141")
 		
 		return inst
 	}

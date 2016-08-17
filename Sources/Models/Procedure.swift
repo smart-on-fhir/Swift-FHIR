@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -31,6 +31,9 @@ open class Procedure: DomainResource {
 	
 	/// Complication following the procedure.
 	public var complication: [CodeableConcept]?
+	
+	/// Events related to the procedure.
+	public var component: [Reference]?
 	
 	/// The encounter associated with the procedure.
 	public var encounter: Reference?
@@ -65,14 +68,14 @@ open class Procedure: DomainResource {
 	/// The people who performed the procedure.
 	public var performer: [ProcedurePerformer]?
 	
-	/// Reason procedure performed.
-	public var reasonCodeableConcept: CodeableConcept?
+	/// Coded reason procedure performed.
+	public var reasonCode: [CodeableConcept]?
 	
 	/// Reason procedure was not performed.
 	public var reasonNotPerformed: [CodeableConcept]?
 	
-	/// Reason procedure performed.
-	public var reasonReference: Reference?
+	/// Condition that is the reason the procedure performed.
+	public var reasonReference: [Reference]?
 	
 	/// Any report resulting from the procedure.
 	public var report: [Reference]?
@@ -86,8 +89,11 @@ open class Procedure: DomainResource {
 	/// Who the procedure was performed on.
 	public var subject: Reference?
 	
+	/// Coded items used during the procedure.
+	public var usedCode: [CodeableConcept]?
+	
 	/// Items used during procedure.
-	public var used: [Reference]?
+	public var usedReference: [Reference]?
 	
 	
 	/** Initialize with a JSON object. */
@@ -143,6 +149,15 @@ open class Procedure: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "complication", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["component"] {
+				presentKeys.insert("component")
+				if let val = exist as? [FHIRJSON] {
+					self.component = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "component", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["encounter"] {
@@ -244,13 +259,13 @@ open class Procedure: DomainResource {
 					errors.append(FHIRJSONError(key: "performer", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["reasonCodeableConcept"] {
-				presentKeys.insert("reasonCodeableConcept")
-				if let val = exist as? FHIRJSON {
-					self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
+			if let exist = js["reasonCode"] {
+				presentKeys.insert("reasonCode")
+				if let val = exist as? [FHIRJSON] {
+					self.reasonCode = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reasonCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "reasonCode", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["reasonNotPerformed"] {
@@ -264,11 +279,11 @@ open class Procedure: DomainResource {
 			}
 			if let exist = js["reasonReference"] {
 				presentKeys.insert("reasonReference")
-				if let val = exist as? FHIRJSON {
-					self.reasonReference = Reference(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.reasonReference = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reasonReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "reasonReference", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["report"] {
@@ -313,13 +328,22 @@ open class Procedure: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "subject"))
 			}
-			if let exist = js["used"] {
-				presentKeys.insert("used")
+			if let exist = js["usedCode"] {
+				presentKeys.insert("usedCode")
 				if let val = exist as? [FHIRJSON] {
-					self.used = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
+					self.usedCode = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "used", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "usedCode", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["usedReference"] {
+				presentKeys.insert("usedReference")
+				if let val = exist as? [FHIRJSON] {
+					self.usedReference = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "usedReference", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 		}
@@ -340,6 +364,9 @@ open class Procedure: DomainResource {
 		}
 		if let complication = self.complication {
 			json["complication"] = complication.map() { $0.asJSON() }
+		}
+		if let component = self.component {
+			json["component"] = component.map() { $0.asJSON() }
 		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()
@@ -374,14 +401,14 @@ open class Procedure: DomainResource {
 		if let performer = self.performer {
 			json["performer"] = performer.map() { $0.asJSON() }
 		}
-		if let reasonCodeableConcept = self.reasonCodeableConcept {
-			json["reasonCodeableConcept"] = reasonCodeableConcept.asJSON()
+		if let reasonCode = self.reasonCode {
+			json["reasonCode"] = reasonCode.map() { $0.asJSON() }
 		}
 		if let reasonNotPerformed = self.reasonNotPerformed {
 			json["reasonNotPerformed"] = reasonNotPerformed.map() { $0.asJSON() }
 		}
 		if let reasonReference = self.reasonReference {
-			json["reasonReference"] = reasonReference.asJSON()
+			json["reasonReference"] = reasonReference.map() { $0.asJSON() }
 		}
 		if let report = self.report {
 			json["report"] = report.map() { $0.asJSON() }
@@ -395,8 +422,11 @@ open class Procedure: DomainResource {
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON()
 		}
-		if let used = self.used {
-			json["used"] = used.map() { $0.asJSON() }
+		if let usedCode = self.usedCode {
+			json["usedCode"] = usedCode.map() { $0.asJSON() }
+		}
+		if let usedReference = self.usedReference {
+			json["usedReference"] = usedReference.map() { $0.asJSON() }
 		}
 		
 		return json

@@ -2,7 +2,7 @@
 //  ListTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -146,16 +146,16 @@ class ListTests: XCTestCase {
 		XCTAssertEqual(inst.contained?[7].id, "8")
 		XCTAssertEqual(inst.contained?[8].id, "9")
 		XCTAssertEqual(inst.contained?[9].id, "10")
-		XCTAssertEqual(inst.entry?[0].item?.reference, "#2")
-		XCTAssertEqual(inst.entry?[1].item?.reference, "#3")
-		XCTAssertEqual(inst.entry?[2].item?.reference, "#4")
-		XCTAssertEqual(inst.entry?[3].item?.reference, "#5")
-		XCTAssertEqual(inst.entry?[4].item?.reference, "#6")
-		XCTAssertEqual(inst.entry?[5].item?.reference, "#7")
-		XCTAssertEqual(inst.entry?[6].item?.reference, "#8")
-		XCTAssertEqual(inst.entry?[7].item?.reference, "#9")
-		XCTAssertEqual(inst.entry?[8].item?.reference, "#10")
-		XCTAssertEqual(inst.entry?[9].item?.reference, "#11")
+		XCTAssertEqual(inst.entry?[0].item?.reference, "#image")
+		XCTAssertEqual(inst.entry?[1].item?.reference, "#2")
+		XCTAssertEqual(inst.entry?[2].item?.reference, "#3")
+		XCTAssertEqual(inst.entry?[3].item?.reference, "#4")
+		XCTAssertEqual(inst.entry?[4].item?.reference, "#5")
+		XCTAssertEqual(inst.entry?[5].item?.reference, "#6")
+		XCTAssertEqual(inst.entry?[6].item?.reference, "#7")
+		XCTAssertEqual(inst.entry?[7].item?.reference, "#8")
+		XCTAssertEqual(inst.entry?[8].item?.reference, "#9")
+		XCTAssertEqual(inst.entry?[9].item?.reference, "#10")
 		XCTAssertEqual(inst.id, "prognosis")
 		XCTAssertEqual(inst.mode, "snapshot")
 		XCTAssertEqual(inst.status, "current")
@@ -204,7 +204,7 @@ class ListTests: XCTestCase {
 		XCTAssertEqual(inst.status, "current")
 		XCTAssertEqual(inst.subject?.display, "Peter Patient")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.div, "<div>To do</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">To do</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
@@ -259,6 +259,32 @@ class ListTests: XCTestCase {
 	
 	@discardableResult
 	func runList7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.List {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example-simple-empty.json")
+		
+		XCTAssertEqual(inst.code?.coding?[0].code, "346638")
+		XCTAssertEqual(inst.code?.coding?[0].display, "Patient Admission List")
+		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://acme.com/list-codes")
+		XCTAssertEqual(inst.date?.description, "2016-07-14T11:54:05+10:00")
+		XCTAssertEqual(inst.id, "example-simple-empty")
+		XCTAssertEqual(inst.mode, "snapshot")
+		XCTAssertEqual(inst.status, "current")
+		XCTAssertEqual(inst.text?.status, "generated")
+		
+		return inst
+	}
+	
+	func testList8() {
+		do {
+			let instance = try runList8()
+			try runList8(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		}
+	}
+	
+	@discardableResult
+	func runList8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.List {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "list-example.json")
 		
 		XCTAssertEqual(inst.date?.description, "2012-11-25T22:17:00+11:00")

@@ -2,7 +2,7 @@
 //  EncounterTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -36,7 +36,9 @@ class EncounterTests: XCTestCase {
 	func runEncounter1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f001-heart.json")
 		
-		XCTAssertEqual(inst.class_fhir, "outpatient")
+		XCTAssertEqual(inst.class_fhir?.code, "AMB")
+		XCTAssertEqual(inst.class_fhir?.display, "ambulatory")
+		XCTAssertEqual(inst.class_fhir?.system?.absoluteString, "http://hl7.org/fhir/v3/ActCode")
 		XCTAssertEqual(inst.hospitalization?.admitSource?.coding?[0].code, "305956004")
 		XCTAssertEqual(inst.hospitalization?.admitSource?.coding?[0].display, "Referral by physician")
 		XCTAssertEqual(inst.hospitalization?.admitSource?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -89,7 +91,9 @@ class EncounterTests: XCTestCase {
 	func runEncounter2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f002-lung.json")
 		
-		XCTAssertEqual(inst.class_fhir, "outpatient")
+		XCTAssertEqual(inst.class_fhir?.code, "AMB")
+		XCTAssertEqual(inst.class_fhir?.display, "ambulatory")
+		XCTAssertEqual(inst.class_fhir?.system?.absoluteString, "http://hl7.org/fhir/v3/ActCode")
 		XCTAssertEqual(inst.hospitalization?.admitSource?.coding?[0].code, "305997006")
 		XCTAssertEqual(inst.hospitalization?.admitSource?.coding?[0].display, "Referral by radiologist")
 		XCTAssertEqual(inst.hospitalization?.admitSource?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -142,7 +146,9 @@ class EncounterTests: XCTestCase {
 	func runEncounter3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f003-abscess.json")
 		
-		XCTAssertEqual(inst.class_fhir, "outpatient")
+		XCTAssertEqual(inst.class_fhir?.code, "AMB")
+		XCTAssertEqual(inst.class_fhir?.display, "ambulatory")
+		XCTAssertEqual(inst.class_fhir?.system?.absoluteString, "http://hl7.org/fhir/v3/ActCode")
 		XCTAssertEqual(inst.hospitalization?.admitSource?.coding?[0].code, "305956004")
 		XCTAssertEqual(inst.hospitalization?.admitSource?.coding?[0].display, "Referral by physician")
 		XCTAssertEqual(inst.hospitalization?.admitSource?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
@@ -196,7 +202,9 @@ class EncounterTests: XCTestCase {
 	func runEncounter4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f201-20130404.json")
 		
-		XCTAssertEqual(inst.class_fhir, "outpatient")
+		XCTAssertEqual(inst.class_fhir?.code, "AMB")
+		XCTAssertEqual(inst.class_fhir?.display, "ambulatory")
+		XCTAssertEqual(inst.class_fhir?.system?.absoluteString, "http://hl7.org/fhir/v3/ActCode")
 		XCTAssertEqual(inst.id, "f201")
 		XCTAssertEqual(inst.identifier?[0].use, "temp")
 		XCTAssertEqual(inst.identifier?[0].value, "Encounter_Roel_20130404")
@@ -231,7 +239,9 @@ class EncounterTests: XCTestCase {
 	func runEncounter5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f202-20130128.json")
 		
-		XCTAssertEqual(inst.class_fhir, "outpatient")
+		XCTAssertEqual(inst.class_fhir?.code, "AMB")
+		XCTAssertEqual(inst.class_fhir?.display, "ambulatory")
+		XCTAssertEqual(inst.class_fhir?.system?.absoluteString, "http://hl7.org/fhir/v3/ActCode")
 		XCTAssertEqual(inst.id, "f202")
 		XCTAssertEqual(inst.identifier?[0].use, "temp")
 		XCTAssertEqual(inst.identifier?[0].value, "Encounter_Roel_20130128")
@@ -239,8 +249,8 @@ class EncounterTests: XCTestCase {
 		XCTAssertEqual(inst.indication?[0].extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/encounter-primaryDiagnosis")
 		XCTAssertEqual(inst.indication?[0].extension_fhir?[0].valuePositiveInt, UInt(1))
 		XCTAssertEqual(inst.indication?[0].reference, "Procedure/f201")
-		XCTAssertEqual(inst.length?.code, "258701004")
-		XCTAssertEqual(inst.length?.system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.length?.code, "min")
+		XCTAssertEqual(inst.length?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.length?.unit, "minutes")
 		XCTAssertEqual(inst.length?.value, NSDecimalNumber(string: "56"))
 		XCTAssertEqual(inst.participant?[0].individual?.reference, "Practitioner/f201")
@@ -276,18 +286,37 @@ class EncounterTests: XCTestCase {
 	func runEncounter6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f203-20130311.json")
 		
-		XCTAssertEqual(inst.class_fhir, "inpatient")
+		XCTAssertEqual(inst.account?[0].reference, "Account/example")
+		XCTAssertEqual(inst.appointment?.reference, "Appointment/example")
+		XCTAssertEqual(inst.class_fhir?.code, "IMP")
+		XCTAssertEqual(inst.class_fhir?.display, "inpatient encounter")
+		XCTAssertEqual(inst.class_fhir?.system?.absoluteString, "http://hl7.org/fhir/v3/ActCode")
+		XCTAssertEqual(inst.episodeOfCare?[0].reference, "EpisodeOfCare/example")
 		XCTAssertEqual(inst.hospitalization?.admitSource?.coding?[0].code, "309902002")
 		XCTAssertEqual(inst.hospitalization?.admitSource?.coding?[0].display, "Clinical Oncology Department")
 		XCTAssertEqual(inst.hospitalization?.admitSource?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.hospitalization?.admittingDiagnosis?[0].reference, "Condition/stroke")
+		XCTAssertEqual(inst.hospitalization?.destination?.reference, "Location/2")
 		XCTAssertEqual(inst.hospitalization?.dietPreference?[0].coding?[0].code, "276026009")
 		XCTAssertEqual(inst.hospitalization?.dietPreference?[0].coding?[0].display, "Fluid balance regulation")
 		XCTAssertEqual(inst.hospitalization?.dietPreference?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")
+		XCTAssertEqual(inst.hospitalization?.dischargeDiagnosis?[0].reference, "Condition/f201")
+		XCTAssertEqual(inst.hospitalization?.origin?.reference, "Location/2")
 		XCTAssertEqual(inst.hospitalization?.reAdmission?.coding?[0].display, "readmitted")
+		XCTAssertEqual(inst.hospitalization?.specialArrangement?[0].coding?[0].code, "wheel")
+		XCTAssertEqual(inst.hospitalization?.specialArrangement?[0].coding?[0].display, "Wheelchair")
+		XCTAssertEqual(inst.hospitalization?.specialArrangement?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/encounter-special-arrangements")
+		XCTAssertEqual(inst.hospitalization?.specialCourtesy?[0].coding?[0].code, "NRM")
+		XCTAssertEqual(inst.hospitalization?.specialCourtesy?[0].coding?[0].display, "normal courtesy")
+		XCTAssertEqual(inst.hospitalization?.specialCourtesy?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/EncounterSpecialCourtesy")
 		XCTAssertEqual(inst.id, "f203")
 		XCTAssertEqual(inst.identifier?[0].use, "temp")
 		XCTAssertEqual(inst.identifier?[0].value, "Encounter_Roel_20130311")
+		XCTAssertEqual(inst.incomingReferral?[0].reference, "ReferralRequest/example")
+		XCTAssertEqual(inst.partOf?.reference, "Encounter/f203")
 		XCTAssertEqual(inst.participant?[0].individual?.reference, "Practitioner/f201")
+		XCTAssertEqual(inst.participant?[0].type?[0].coding?[0].code, "PART")
+		XCTAssertEqual(inst.participant?[0].type?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.patient?.display, "Roel")
 		XCTAssertEqual(inst.patient?.reference, "Patient/f201")
 		XCTAssertEqual(inst.period?.end?.description, "2013-03-20")
@@ -296,8 +325,10 @@ class EncounterTests: XCTestCase {
 		XCTAssertEqual(inst.priority?.coding?[0].display, "High priority")
 		XCTAssertEqual(inst.priority?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.reason?[0].text, "The patient seems to suffer from bilateral pneumonia and renal insufficiency, most likely due to chemotherapy.")
-		XCTAssertEqual(inst.serviceProvider?.reference, "Organization/f201")
+		XCTAssertEqual(inst.serviceProvider?.reference, "Organization/2")
 		XCTAssertEqual(inst.status, "finished")
+		XCTAssertEqual(inst.statusHistory?[0].period?.start?.description, "2013-03-08")
+		XCTAssertEqual(inst.statusHistory?[0].status, "arrived")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.type?[0].coding?[0].code, "183807002")
 		XCTAssertEqual(inst.type?[0].coding?[0].display, "Inpatient stay for nine days")
@@ -320,7 +351,9 @@ class EncounterTests: XCTestCase {
 	func runEncounter7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-home.json")
 		
-		XCTAssertEqual(inst.class_fhir, "virtual")
+		XCTAssertEqual(inst.class_fhir?.code, "HH")
+		XCTAssertEqual(inst.class_fhir?.display, "home health")
+		XCTAssertEqual(inst.class_fhir?.system?.absoluteString, "http://hl7.org/fhir/v3/ActCode")
 		XCTAssertEqual(inst.contained?[0].id, "home")
 		XCTAssertEqual(inst.id, "home")
 		XCTAssertEqual(inst.location?[0].location?.display, "Client's home")
@@ -336,7 +369,7 @@ class EncounterTests: XCTestCase {
 		XCTAssertEqual(inst.period?.end?.description, "2015-01-17T16:30:00+10:00")
 		XCTAssertEqual(inst.period?.start?.description, "2015-01-17T16:00:00+10:00")
 		XCTAssertEqual(inst.status, "finished")
-		XCTAssertEqual(inst.text?.div, "<div>Encounter with patient @example who is at home</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Encounter with patient @example who is at home</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
@@ -356,7 +389,9 @@ class EncounterTests: XCTestCase {
 	func runEncounter8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-xcda.json")
 		
-		XCTAssertEqual(inst.class_fhir, "outpatient")
+		XCTAssertEqual(inst.class_fhir?.code, "AMB")
+		XCTAssertEqual(inst.class_fhir?.display, "ambulatory")
+		XCTAssertEqual(inst.class_fhir?.system?.absoluteString, "http://hl7.org/fhir/v3/ActCode")
 		XCTAssertEqual(inst.id, "xcda")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://healthcare.example.org/identifiers/enocunter")
 		XCTAssertEqual(inst.identifier?[0].use, "official")
@@ -386,11 +421,13 @@ class EncounterTests: XCTestCase {
 	func runEncounter9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example.json")
 		
-		XCTAssertEqual(inst.class_fhir, "inpatient")
+		XCTAssertEqual(inst.class_fhir?.code, "IMP")
+		XCTAssertEqual(inst.class_fhir?.display, "inpatient encounter")
+		XCTAssertEqual(inst.class_fhir?.system?.absoluteString, "http://hl7.org/fhir/v3/ActCode")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.status, "in-progress")
-		XCTAssertEqual(inst.text?.div, "<div>Encounter with patient @example</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Encounter with patient @example</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

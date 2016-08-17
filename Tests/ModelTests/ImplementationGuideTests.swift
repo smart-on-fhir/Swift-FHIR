@@ -2,7 +2,7 @@
 //  ImplementationGuideTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -62,14 +62,14 @@ class ImplementationGuideTests: XCTestCase {
 		XCTAssertEqual(inst.package?[0].resource?[0].name, "Test Example")
 		XCTAssertEqual(inst.package?[0].resource?[0].sourceUri?.absoluteString, "test.html")
 		XCTAssertEqual(inst.page?.kind, "page")
-		XCTAssertEqual(inst.page?.name, "Example Patient Page")
 		XCTAssertEqual(inst.page?.page?[0].format, "text/html")
 		XCTAssertEqual(inst.page?.page?[0].kind, "list")
-		XCTAssertEqual(inst.page?.page?[0].name, "Value Set Page")
 		XCTAssertEqual(inst.page?.page?[0].package?[0], "test")
 		XCTAssertEqual(inst.page?.page?[0].source?.absoluteString, "list.html")
+		XCTAssertEqual(inst.page?.page?[0].title, "Value Set Page")
 		XCTAssertEqual(inst.page?.page?[0].type?[0], "ValueSet")
 		XCTAssertEqual(inst.page?.source?.absoluteString, "patient-example.html")
+		XCTAssertEqual(inst.page?.title, "Example Patient Page")
 		XCTAssertEqual(inst.publisher, "ONC / HL7 Joint project")
 		XCTAssertEqual(inst.status, "draft")
 		XCTAssertEqual(inst.text?.status, "generated")

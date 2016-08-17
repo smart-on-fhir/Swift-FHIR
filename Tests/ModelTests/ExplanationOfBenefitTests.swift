@@ -2,7 +2,7 @@
 //  ExplanationOfBenefitTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -53,21 +53,23 @@ class ExplanationOfBenefitTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].adjudication?[2].amount?.system?.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.item?[0].adjudication?[2].amount?.value, NSDecimalNumber(string: "96.0"))
 		XCTAssertEqual(inst.item?[0].adjudication?[2].category?.code, "benefit")
+		XCTAssertEqual(inst.item?[0].careTeam?[0].providerReference?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.item?[0].net?.code, "USD")
 		XCTAssertEqual(inst.item?[0].net?.system?.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.item?[0].net?.value, NSDecimalNumber(string: "135.57"))
-		XCTAssertEqual(inst.item?[0].providerReference?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.item?[0].sequence, UInt(1))
 		XCTAssertEqual(inst.item?[0].service?.code, "1200")
 		XCTAssertEqual(inst.item?[0].service?.system?.absoluteString, "http://hl7.org/fhir/service-uscls")
 		XCTAssertEqual(inst.item?[0].servicedDate?.description, "2014-08-16")
-		XCTAssertEqual(inst.item?[0].type?.code, "service")
 		XCTAssertEqual(inst.item?[0].unitPrice?.code, "USD")
 		XCTAssertEqual(inst.item?[0].unitPrice?.system?.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.item?[0].unitPrice?.value, NSDecimalNumber(string: "135.57"))
 		XCTAssertEqual(inst.organizationReference?.reference, "Organization/2")
+		XCTAssertEqual(inst.outcome?.code, "complete")
+		XCTAssertEqual(inst.outcome?.system?.absoluteString, "http://hl7.org/fhir/remittance-outcome")
 		XCTAssertEqual(inst.patientReference?.reference, "Patient/pat1")
-		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the ExplanationOfBenefit</div>")
+		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the ExplanationOfBenefit</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.totalBenefit?.code, "USD")
 		XCTAssertEqual(inst.totalBenefit?.system?.absoluteString, "urn:iso:std:iso:4217")
@@ -75,6 +77,8 @@ class ExplanationOfBenefitTests: XCTestCase {
 		XCTAssertEqual(inst.totalCost?.code, "USD")
 		XCTAssertEqual(inst.totalCost?.system?.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.totalCost?.value, NSDecimalNumber(string: "135.57"))
+		XCTAssertEqual(inst.type?.code, "oral")
+		XCTAssertEqual(inst.type?.system?.absoluteString, "http://hl7.org/fhir/ex-claimtype")
 		
 		return inst
 	}

@@ -2,7 +2,7 @@
 //  CoverageTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -47,8 +47,9 @@ class CoverageTests: XCTestCase {
 		XCTAssertEqual(inst.plan, "11024")
 		XCTAssertEqual(inst.planholderReference?.reference, "Patient/5")
 		XCTAssertEqual(inst.relationship?.code, "self")
+		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.subPlan, "D15C9")
-		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the coverage</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the coverage</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.type?.code, "EHCPOL")
 		XCTAssertEqual(inst.type?.display, "extended healthcare")
@@ -83,8 +84,9 @@ class CoverageTests: XCTestCase {
 		XCTAssertEqual(inst.planholderReference?.reference, "Patient/4")
 		XCTAssertEqual(inst.relationship?.code, "self")
 		XCTAssertEqual(inst.sequence, UInt(1))
+		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.subPlan, "123")
-		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the coverage</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the coverage</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.type?.code, "EHCPOL")
 		XCTAssertEqual(inst.type?.display, "extended healthcare")

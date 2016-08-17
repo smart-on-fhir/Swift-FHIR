@@ -2,7 +2,7 @@
 //  ExpansionProfileTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -40,7 +40,7 @@ class ExpansionProfileTests: XCTestCase {
 		XCTAssertTrue(inst.experimental ?? false)
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.status, "draft")
-		XCTAssertEqual(inst.text?.div, "<div>[ Provide Rendering ]</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[ Provide Rendering ]</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

@@ -2,7 +2,7 @@
 //  Distance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Distance) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Distance) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,7 @@ import Foundation
 
 
 /**
- *  A measure of distance.
- *
- *  There SHALL be a code if there is a value and it SHALL be an expression of length.  If system is present, it SHALL
- *  be UCUM.
+ *  A length - a value with a unit that is a physical distance.
  */
 open class Distance: Quantity {
 	override open class var resourceType: String {

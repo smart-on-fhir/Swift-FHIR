@@ -2,7 +2,7 @@
 //  ImmunizationRecommendationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -57,14 +57,14 @@ class ImmunizationRecommendationTests: XCTestCase {
 		XCTAssertEqual(inst.recommendation?[0].forecastStatus?.text, "Not Complete")
 		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.authority?.reference, "Organization/hl7")
 		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.description_fhir, "First sequence in protocol")
-		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.doseSequence, 1)
+		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.doseSequence, UInt(1))
 		XCTAssertEqual(inst.recommendation?[0].protocol_fhir?.series, "Vaccination Series 1")
 		XCTAssertEqual(inst.recommendation?[0].supportingImmunization?[0].reference, "Immunization/example")
 		XCTAssertEqual(inst.recommendation?[0].supportingPatientInformation?[0].reference, "Observation/example")
 		XCTAssertEqual(inst.recommendation?[0].vaccineCode?.coding?[0].code, "14745005")
 		XCTAssertEqual(inst.recommendation?[0].vaccineCode?.coding?[0].display, "Hepatitis A vaccine")
 		XCTAssertEqual(inst.recommendation?[0].vaccineCode?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.text?.div, "<div>Authored by Joginder Madra</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Authored by Joginder Madra</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

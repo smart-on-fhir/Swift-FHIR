@@ -2,7 +2,7 @@
 //  AppointmentResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -49,7 +49,7 @@ class AppointmentResponseTests: XCTestCase {
 		XCTAssertEqual(inst.participantType?[0].coding?[0].code, "ATND")
 		XCTAssertEqual(inst.participantType?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ParticipationType")
 		XCTAssertEqual(inst.start?.description, "2013-12-25T13:15:00Z")
-		XCTAssertEqual(inst.text?.div, "<div>Accept Brian MRI results discussion</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Accept Brian MRI results discussion</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
@@ -75,7 +75,7 @@ class AppointmentResponseTests: XCTestCase {
 		XCTAssertEqual(inst.appointment?.reference, "Appointment/example")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.participantStatus, "accepted")
-		XCTAssertEqual(inst.text?.div, "<div>Accept Brian MRI results discussion</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Accept Brian MRI results discussion</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

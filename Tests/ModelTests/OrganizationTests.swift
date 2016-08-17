@@ -2,7 +2,7 @@
 //  OrganizationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -90,7 +90,7 @@ class OrganizationTests: XCTestCase {
 	func runOrganization2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-f002-burgers-card.json")
 		
-		XCTAssertFalse(inst.active ?? true)
+		XCTAssertTrue(inst.active ?? false)
 		XCTAssertEqual(inst.address?[0].line?[0], "South Wing, floor 2")
 		XCTAssertEqual(inst.contact?[0].address?.line?[0], "South Wing, floor 2")
 		XCTAssertEqual(inst.contact?[0].name?.text, "mevr. D. de Haan")
@@ -129,7 +129,7 @@ class OrganizationTests: XCTestCase {
 	func runOrganization3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-f003-burgers-ENT.json")
 		
-		XCTAssertFalse(inst.active ?? true)
+		XCTAssertTrue(inst.active ?? false)
 		XCTAssertEqual(inst.address?[0].line?[0], "West Wing, floor 5")
 		XCTAssertEqual(inst.contact?[0].address?.line?[0], "West Wing, floor 5")
 		XCTAssertEqual(inst.contact?[0].name?.text, "mr. F. de Hond")
@@ -316,6 +316,7 @@ class OrganizationTests: XCTestCase {
 	func runOrganization8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Organization {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-insurer.json")
 		
+		XCTAssertEqual(inst.alias?[0], "ABC Insurance")
 		XCTAssertEqual(inst.id, "2")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:oid:2.16.840.1.113883.3.19.2.3")
 		XCTAssertEqual(inst.identifier?[0].value, "666666")
@@ -366,23 +367,12 @@ class OrganizationTests: XCTestCase {
 	
 	@discardableResult
 	func runOrganization10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Organization {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example.json")
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "organization-example-mmanu.json")
 		
-		XCTAssertEqual(inst.address?[0].city, "Ann Arbor")
-		XCTAssertEqual(inst.address?[0].country, "USA")
-		XCTAssertEqual(inst.address?[0].line?[0], "3300 Washtenaw Avenue, Suite 227")
-		XCTAssertEqual(inst.address?[0].postalCode, "48104")
-		XCTAssertEqual(inst.address?[0].state, "MI")
-		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/organization-alias")
-		XCTAssertEqual(inst.extension_fhir?[0].valueString, "HL7 International")
-		XCTAssertEqual(inst.id, "hl7")
-		XCTAssertEqual(inst.name, "Health Level Seven International")
-		XCTAssertEqual(inst.telecom?[0].system, "phone")
-		XCTAssertEqual(inst.telecom?[0].value, "(+1) 734-677-7777")
-		XCTAssertEqual(inst.telecom?[1].system, "fax")
-		XCTAssertEqual(inst.telecom?[1].value, "(+1) 734-677-6622")
-		XCTAssertEqual(inst.telecom?[2].system, "email")
-		XCTAssertEqual(inst.telecom?[2].value, "hq@HL7.org")
+		XCTAssertTrue(inst.active ?? false)
+		XCTAssertEqual(inst.address?[0].country, "Swizterland")
+		XCTAssertEqual(inst.id, "mmanu")
+		XCTAssertEqual(inst.name, "Acme Corporation")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

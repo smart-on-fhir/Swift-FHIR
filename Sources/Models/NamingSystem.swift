@@ -2,7 +2,7 @@
 //  NamingSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -334,6 +334,9 @@ open class NamingSystemUniqueId: BackboneElement {
 		get { return "NamingSystemUniqueId" }
 	}
 	
+	/// Notes about identifier usage.
+	public var comment: String?
+	
 	/// When is identifier valid?.
 	public var period: Period?
 	
@@ -362,6 +365,15 @@ open class NamingSystemUniqueId: BackboneElement {
 	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist = js["comment"] {
+				presentKeys.insert("comment")
+				if let val = exist as? String {
+					self.comment = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
@@ -411,6 +423,9 @@ open class NamingSystemUniqueId: BackboneElement {
 	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let comment = self.comment {
+			json["comment"] = comment.asJSON()
+		}
 		if let period = self.period {
 			json["period"] = period.asJSON()
 		}

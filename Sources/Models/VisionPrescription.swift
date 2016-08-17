@@ -2,7 +2,7 @@
 //  VisionPrescription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -183,10 +183,10 @@ open class VisionPrescriptionDispense: BackboneElement {
 	/// up | down | in | out.
 	public var base: String?
 	
-	/// Lens add.
+	/// Brand required.
 	public var brand: String?
 	
-	/// Lens add.
+	/// Color required.
 	public var color: String?
 	
 	/// Lens cylinder.

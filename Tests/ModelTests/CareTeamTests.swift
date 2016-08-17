@@ -2,7 +2,7 @@
 //  CareTeamTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -47,7 +47,7 @@ class CareTeamTests: XCTestCase {
 		XCTAssertEqual(inst.period?.end?.description, "2013-01-01")
 		XCTAssertEqual(inst.subject?.display, "Peter James Chalmers")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.div, "<div>Care Team</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Care Team</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

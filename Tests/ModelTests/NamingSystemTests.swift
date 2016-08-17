@@ -2,7 +2,7 @@
 //  NamingSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -52,6 +52,7 @@ class NamingSystemTests: XCTestCase {
 		XCTAssertEqual(inst.type?.coding?[0].display, "National unique individual identifier")
 		XCTAssertEqual(inst.type?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v2/0203")
 		XCTAssertEqual(inst.type?.text, "IHI")
+		XCTAssertEqual(inst.uniqueId?[0].comment, "This value is used in Australian CDA documents")
 		XCTAssertEqual(inst.uniqueId?[0].type, "oid")
 		XCTAssertEqual(inst.uniqueId?[0].value, "1.2.36.1.2001.1003.0")
 		XCTAssertEqual(inst.uniqueId?[1].period?.start?.description, "2015-08-21")

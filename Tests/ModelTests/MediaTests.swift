@@ -2,7 +2,7 @@
 //  MediaTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -89,7 +89,7 @@ class MediaTests: XCTestCase {
 		XCTAssertEqual(inst.id, "sound")
 		XCTAssertEqual(inst.operator_fhir?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.subject?.reference, "Patient/xcda")
-		XCTAssertEqual(inst.text?.div, "<div>Sound recording of speech example for Patient Henry Levin (MRN 12345):<br/><img alt=\"diagram\" src=\"#11\"/></div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Sound recording of speech example for Patient Henry Levin (MRN 12345):<br/><img src=\"#11\" alt=\"diagram\"/></div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.type, "video")
 		
@@ -121,7 +121,7 @@ class MediaTests: XCTestCase {
 		XCTAssertEqual(inst.subject?.reference, "Patient/xcda")
 		XCTAssertEqual(inst.subtype?.coding?[0].code, "diagram")
 		XCTAssertEqual(inst.subtype?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/media-method")
-		XCTAssertEqual(inst.text?.div, "<div>Diagram for Patient Henry Levin (MRN 12345):<br/><img alt=\"diagram\" src=\"#11\"/></div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Diagram for Patient Henry Levin (MRN 12345):<br/><img src=\"#11\" alt=\"diagram\"/></div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.type, "photo")
 		XCTAssertEqual(inst.width, UInt(126))

@@ -2,7 +2,7 @@
 //  CodeSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -123,18 +123,18 @@ class CodeSystemTests: XCTestCase {
 		XCTAssertEqual(inst.content, "complete")
 		XCTAssertEqual(inst.description_fhir, "Example use codes for the List resource - typical kinds of use.")
 		XCTAssertTrue(inst.experimental ?? false)
-		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-oid")
-		XCTAssertEqual(inst.extension_fhir?[0].valueUri?.absoluteString, "urn:oid:2.16.840.1.113883.4.642.1.173")
 		XCTAssertEqual(inst.id, "list-example-codes")
-		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2016-03-31T08:01:25.570+11:00")
-		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
+		XCTAssertEqual(inst.identifier?.system?.absoluteString, "urn:ietf:rfc:3986")
+		XCTAssertEqual(inst.identifier?.value, "urn:oid:2.16.840.1.113883.4.642.1.173")
+		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2016-08-15T16:12:42.052+10:00")
+		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/codesystem-shareable-definition")
 		XCTAssertEqual(inst.name, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher, "FHIR Project")
 		XCTAssertEqual(inst.status, "draft")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/list-example-use-codes")
 		XCTAssertEqual(inst.valueSet?.absoluteString, "http://hl7.org/fhir/ValueSet/list-example-codes")
-		XCTAssertEqual(inst.version, "1.4.0")
+		XCTAssertEqual(inst.version, "1.6.0")
 		
 		return inst
 	}

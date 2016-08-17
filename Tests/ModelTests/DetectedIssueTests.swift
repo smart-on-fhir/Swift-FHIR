@@ -2,7 +2,7 @@
 //  DetectedIssueTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -37,7 +37,7 @@ class DetectedIssueTests: XCTestCase {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example-allergy.json")
 		
 		XCTAssertEqual(inst.id, "allergy")
-		XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
@@ -65,7 +65,7 @@ class DetectedIssueTests: XCTestCase {
 		XCTAssertEqual(inst.detail, "Similar test was performed within the past 14 days")
 		XCTAssertEqual(inst.id, "duplicate")
 		XCTAssertEqual(inst.implicated?[0].display, "Chest CT - ordered May 8, 2013 by Dr. Adam Careful")
-		XCTAssertEqual(inst.implicated?[0].reference, "DiagnosticOrder/di")
+		XCTAssertEqual(inst.implicated?[0].reference, "DiagnosticRequest/di")
 		XCTAssertEqual(inst.implicated?[1].display, "Image 1 from Series 3: CT Images on Patient MINT (MINT1234) taken at 1-Jan 2011 01:20 AM")
 		XCTAssertEqual(inst.implicated?[1].reference, "ImagingStudy/example")
 		XCTAssertEqual(inst.text?.status, "generated")
@@ -88,7 +88,7 @@ class DetectedIssueTests: XCTestCase {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example-lab.json")
 		
 		XCTAssertEqual(inst.id, "lab")
-		XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

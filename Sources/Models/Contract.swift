@@ -2,7 +2,7 @@
 //  Contract.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Contract) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Contract) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -1044,7 +1044,7 @@ open class ContractTermValuedItem: BackboneElement {
 	public var identifier: Identifier?
 	
 	/// Total Contract Term Valued Item Value.
-	public var net: Quantity?
+	public var net: Money?
 	
 	/// Contract Term Valued Item Difficulty Scaling Factor.
 	public var points: NSDecimalNumber?
@@ -1053,7 +1053,7 @@ open class ContractTermValuedItem: BackboneElement {
 	public var quantity: Quantity?
 	
 	/// Contract Term Valued Item fee, charge, or cost.
-	public var unitPrice: Quantity?
+	public var unitPrice: Money?
 	
 	
 	/** Initialize with a JSON object. */
@@ -1112,7 +1112,7 @@ open class ContractTermValuedItem: BackboneElement {
 			if let exist = js["net"] {
 				presentKeys.insert("net")
 				if let val = exist as? FHIRJSON {
-					self.net = Quantity(json: val, owner: self)
+					self.net = Money(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "net", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1139,7 +1139,7 @@ open class ContractTermValuedItem: BackboneElement {
 			if let exist = js["unitPrice"] {
 				presentKeys.insert("unitPrice")
 				if let val = exist as? FHIRJSON {
-					self.unitPrice = Quantity(json: val, owner: self)
+					self.unitPrice = Money(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "unitPrice", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1211,7 +1211,7 @@ open class ContractValuedItem: BackboneElement {
 	public var identifier: Identifier?
 	
 	/// Total Contract Valued Item Value.
-	public var net: Quantity?
+	public var net: Money?
 	
 	/// Contract Valued Item Difficulty Scaling Factor.
 	public var points: NSDecimalNumber?
@@ -1220,7 +1220,7 @@ open class ContractValuedItem: BackboneElement {
 	public var quantity: Quantity?
 	
 	/// Contract Valued Item fee, charge, or cost.
-	public var unitPrice: Quantity?
+	public var unitPrice: Money?
 	
 	
 	/** Initialize with a JSON object. */
@@ -1279,7 +1279,7 @@ open class ContractValuedItem: BackboneElement {
 			if let exist = js["net"] {
 				presentKeys.insert("net")
 				if let val = exist as? FHIRJSON {
-					self.net = Quantity(json: val, owner: self)
+					self.net = Money(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "net", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1306,7 +1306,7 @@ open class ContractValuedItem: BackboneElement {
 			if let exist = js["unitPrice"] {
 				presentKeys.insert("unitPrice")
 				if let val = exist as? FHIRJSON {
-					self.unitPrice = Quantity(json: val, owner: self)
+					self.unitPrice = Money(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "unitPrice", wants: FHIRJSON.self, has: type(of: exist)))

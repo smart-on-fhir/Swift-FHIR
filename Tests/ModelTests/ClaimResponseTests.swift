@@ -2,7 +2,7 @@
 //  ClaimResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -58,17 +58,21 @@ class ClaimResponseTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].sequenceLinkId, UInt(1))
 		XCTAssertEqual(inst.organizationIdentifier?.system?.absoluteString, "http://www.jurisdiction.org/insurers")
 		XCTAssertEqual(inst.organizationIdentifier?.value, "555123")
-		XCTAssertEqual(inst.outcome, "complete")
+		XCTAssertEqual(inst.outcome?.code, "complete")
+		XCTAssertEqual(inst.outcome?.system?.absoluteString, "http://hl7.org/fhir/remittance-outcome")
 		XCTAssertEqual(inst.payeeType?.code, "provider")
 		XCTAssertEqual(inst.payeeType?.system?.absoluteString, "http://hl7.org/fhir/payeetype")
-		XCTAssertEqual(inst.paymentAmount?.code, "USD")
-		XCTAssertEqual(inst.paymentAmount?.system?.absoluteString, "urn:iso:std:iso:4217")
-		XCTAssertEqual(inst.paymentAmount?.value, NSDecimalNumber(string: "100.47"))
-		XCTAssertEqual(inst.paymentDate?.description, "2014-08-31")
-		XCTAssertEqual(inst.paymentRef?.system?.absoluteString, "http://www.BenefitsInc.com/fhir/paymentRef")
-		XCTAssertEqual(inst.paymentRef?.value, "201408-2-1569478")
+		XCTAssertEqual(inst.payment?.amount?.code, "USD")
+		XCTAssertEqual(inst.payment?.amount?.system?.absoluteString, "urn:iso:std:iso:4217")
+		XCTAssertEqual(inst.payment?.amount?.value, NSDecimalNumber(string: "100.47"))
+		XCTAssertEqual(inst.payment?.date?.description, "2014-08-31")
+		XCTAssertEqual(inst.payment?.identifier?.system?.absoluteString, "http://www.BenefitsInc.com/fhir/paymentidentifier")
+		XCTAssertEqual(inst.payment?.identifier?.value, "201408-2-1569478")
+		XCTAssertEqual(inst.payment?.type?.code, "complete")
+		XCTAssertEqual(inst.payment?.type?.system?.absoluteString, "http://hl7.org/fhir/ValueSet/ex-paymenttype")
 		XCTAssertEqual(inst.requestReference?.reference, "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402")
-		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the ClaimResponse</div>")
+		XCTAssertEqual(inst.status, "active")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the ClaimResponse</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.totalBenefit?.code, "USD")
 		XCTAssertEqual(inst.totalBenefit?.system?.absoluteString, "urn:iso:std:iso:4217")

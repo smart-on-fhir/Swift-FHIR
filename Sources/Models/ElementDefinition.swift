@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -47,6 +47,9 @@ open class ElementDefinition: Element {
 	public var defaultValueAddress: Address?
 	
 	/// Specified value if missing from instance.
+	public var defaultValueAge: Age?
+	
+	/// Specified value if missing from instance.
 	public var defaultValueAnnotation: Annotation?
 	
 	/// Specified value if missing from instance.
@@ -71,6 +74,9 @@ open class ElementDefinition: Element {
 	public var defaultValueContactPoint: ContactPoint?
 	
 	/// Specified value if missing from instance.
+	public var defaultValueCount: Count?
+	
+	/// Specified value if missing from instance.
 	public var defaultValueDate: FHIRDate?
 	
 	/// Specified value if missing from instance.
@@ -78,6 +84,12 @@ open class ElementDefinition: Element {
 	
 	/// Specified value if missing from instance.
 	public var defaultValueDecimal: NSDecimalNumber?
+	
+	/// Specified value if missing from instance.
+	public var defaultValueDistance: Distance?
+	
+	/// Specified value if missing from instance.
+	public var defaultValueDuration: Duration?
 	
 	/// Specified value if missing from instance.
 	public var defaultValueHumanName: HumanName?
@@ -99,6 +111,9 @@ open class ElementDefinition: Element {
 	
 	/// Specified value if missing from instance.
 	public var defaultValueMeta: Meta?
+	
+	/// Specified value if missing from instance.
+	public var defaultValueMoney: Money?
 	
 	/// Specified value if missing from instance.
 	public var defaultValueOid: String?
@@ -149,6 +164,9 @@ open class ElementDefinition: Element {
 	public var exampleAddress: Address?
 	
 	/// Example value (as defined for type).
+	public var exampleAge: Age?
+	
+	/// Example value (as defined for type).
 	public var exampleAnnotation: Annotation?
 	
 	/// Example value (as defined for type).
@@ -173,6 +191,9 @@ open class ElementDefinition: Element {
 	public var exampleContactPoint: ContactPoint?
 	
 	/// Example value (as defined for type).
+	public var exampleCount: Count?
+	
+	/// Example value (as defined for type).
 	public var exampleDate: FHIRDate?
 	
 	/// Example value (as defined for type).
@@ -180,6 +201,12 @@ open class ElementDefinition: Element {
 	
 	/// Example value (as defined for type).
 	public var exampleDecimal: NSDecimalNumber?
+	
+	/// Example value (as defined for type).
+	public var exampleDistance: Distance?
+	
+	/// Example value (as defined for type).
+	public var exampleDuration: Duration?
 	
 	/// Example value (as defined for type).
 	public var exampleHumanName: HumanName?
@@ -201,6 +228,9 @@ open class ElementDefinition: Element {
 	
 	/// Example value (as defined for type).
 	public var exampleMeta: Meta?
+	
+	/// Example value (as defined for type).
+	public var exampleMoney: Money?
 	
 	/// Example value (as defined for type).
 	public var exampleOid: String?
@@ -248,6 +278,9 @@ open class ElementDefinition: Element {
 	public var fixedAddress: Address?
 	
 	/// Value must be exactly this.
+	public var fixedAge: Age?
+	
+	/// Value must be exactly this.
 	public var fixedAnnotation: Annotation?
 	
 	/// Value must be exactly this.
@@ -272,6 +305,9 @@ open class ElementDefinition: Element {
 	public var fixedContactPoint: ContactPoint?
 	
 	/// Value must be exactly this.
+	public var fixedCount: Count?
+	
+	/// Value must be exactly this.
 	public var fixedDate: FHIRDate?
 	
 	/// Value must be exactly this.
@@ -279,6 +315,12 @@ open class ElementDefinition: Element {
 	
 	/// Value must be exactly this.
 	public var fixedDecimal: NSDecimalNumber?
+	
+	/// Value must be exactly this.
+	public var fixedDistance: Distance?
+	
+	/// Value must be exactly this.
+	public var fixedDuration: Duration?
 	
 	/// Value must be exactly this.
 	public var fixedHumanName: HumanName?
@@ -300,6 +342,9 @@ open class ElementDefinition: Element {
 	
 	/// Value must be exactly this.
 	public var fixedMeta: Meta?
+	
+	/// Value must be exactly this.
+	public var fixedMoney: Money?
 	
 	/// Value must be exactly this.
 	public var fixedOid: String?
@@ -362,33 +407,6 @@ open class ElementDefinition: Element {
 	public var maxLength: Int?
 	
 	/// Maximum Allowed Value (for some types).
-	public var maxValueAddress: Address?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueAnnotation: Annotation?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueAttachment: Attachment?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueBase64Binary: Base64Binary?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueBoolean: Bool?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueCode: String?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueCodeableConcept: CodeableConcept?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueCoding: Coding?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueContactPoint: ContactPoint?
-	
-	/// Maximum Allowed Value (for some types).
 	public var maxValueDate: FHIRDate?
 	
 	/// Maximum Allowed Value (for some types).
@@ -398,31 +416,10 @@ open class ElementDefinition: Element {
 	public var maxValueDecimal: NSDecimalNumber?
 	
 	/// Maximum Allowed Value (for some types).
-	public var maxValueHumanName: HumanName?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueId: String?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueIdentifier: Identifier?
-	
-	/// Maximum Allowed Value (for some types).
 	public var maxValueInstant: Instant?
 	
 	/// Maximum Allowed Value (for some types).
 	public var maxValueInteger: Int?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueMarkdown: String?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueMeta: Meta?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueOid: String?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValuePeriod: Period?
 	
 	/// Maximum Allowed Value (for some types).
 	public var maxValuePositiveInt: UInt?
@@ -431,67 +428,16 @@ open class ElementDefinition: Element {
 	public var maxValueQuantity: Quantity?
 	
 	/// Maximum Allowed Value (for some types).
-	public var maxValueRange: Range?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueRatio: Ratio?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueReference: Reference?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueSampledData: SampledData?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueSignature: Signature?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueString: String?
-	
-	/// Maximum Allowed Value (for some types).
 	public var maxValueTime: FHIRTime?
 	
 	/// Maximum Allowed Value (for some types).
-	public var maxValueTiming: Timing?
-	
-	/// Maximum Allowed Value (for some types).
 	public var maxValueUnsignedInt: UInt?
-	
-	/// Maximum Allowed Value (for some types).
-	public var maxValueUri: URL?
 	
 	/// Implicit meaning when this element is missing.
 	public var meaningWhenMissing: String?
 	
 	/// Minimum Cardinality.
 	public var min: Int?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueAddress: Address?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueAnnotation: Annotation?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueAttachment: Attachment?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueBase64Binary: Base64Binary?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueBoolean: Bool?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueCode: String?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueCodeableConcept: CodeableConcept?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueCoding: Coding?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueContactPoint: ContactPoint?
 	
 	/// Minimum Allowed Value (for some types).
 	public var minValueDate: FHIRDate?
@@ -503,31 +449,10 @@ open class ElementDefinition: Element {
 	public var minValueDecimal: NSDecimalNumber?
 	
 	/// Minimum Allowed Value (for some types).
-	public var minValueHumanName: HumanName?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueId: String?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueIdentifier: Identifier?
-	
-	/// Minimum Allowed Value (for some types).
 	public var minValueInstant: Instant?
 	
 	/// Minimum Allowed Value (for some types).
 	public var minValueInteger: Int?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueMarkdown: String?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueMeta: Meta?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueOid: String?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValuePeriod: Period?
 	
 	/// Minimum Allowed Value (for some types).
 	public var minValuePositiveInt: UInt?
@@ -536,34 +461,10 @@ open class ElementDefinition: Element {
 	public var minValueQuantity: Quantity?
 	
 	/// Minimum Allowed Value (for some types).
-	public var minValueRange: Range?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueRatio: Ratio?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueReference: Reference?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueSampledData: SampledData?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueSignature: Signature?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueString: String?
-	
-	/// Minimum Allowed Value (for some types).
 	public var minValueTime: FHIRTime?
 	
 	/// Minimum Allowed Value (for some types).
-	public var minValueTiming: Timing?
-	
-	/// Minimum Allowed Value (for some types).
 	public var minValueUnsignedInt: UInt?
-	
-	/// Minimum Allowed Value (for some types).
-	public var minValueUri: URL?
 	
 	/// If the element must supported.
 	public var mustSupport: Bool?
@@ -571,11 +472,14 @@ open class ElementDefinition: Element {
 	/// Name for this particular element definition (reference target).
 	public var name: String?
 	
-	/// The path of the element (see the Detailed Descriptions).
+	/// Path of the element in the heirarchy of elements.
 	public var path: String?
 	
 	/// Value must have at least these property values.
 	public var patternAddress: Address?
+	
+	/// Value must have at least these property values.
+	public var patternAge: Age?
 	
 	/// Value must have at least these property values.
 	public var patternAnnotation: Annotation?
@@ -602,6 +506,9 @@ open class ElementDefinition: Element {
 	public var patternContactPoint: ContactPoint?
 	
 	/// Value must have at least these property values.
+	public var patternCount: Count?
+	
+	/// Value must have at least these property values.
 	public var patternDate: FHIRDate?
 	
 	/// Value must have at least these property values.
@@ -609,6 +516,12 @@ open class ElementDefinition: Element {
 	
 	/// Value must have at least these property values.
 	public var patternDecimal: NSDecimalNumber?
+	
+	/// Value must have at least these property values.
+	public var patternDistance: Distance?
+	
+	/// Value must have at least these property values.
+	public var patternDuration: Duration?
 	
 	/// Value must have at least these property values.
 	public var patternHumanName: HumanName?
@@ -630,6 +543,9 @@ open class ElementDefinition: Element {
 	
 	/// Value must have at least these property values.
 	public var patternMeta: Meta?
+	
+	/// Value must have at least these property values.
+	public var patternMoney: Money?
 	
 	/// Value must have at least these property values.
 	public var patternOid: String?
@@ -673,7 +589,7 @@ open class ElementDefinition: Element {
 	/// Value must have at least these property values.
 	public var patternUri: URL?
 	
-	/// xmlAttr | xmlText | typeAttr | cdaText.
+	/// xmlAttr | xmlText | typeAttr | cdaText | xhtml.
 	public var representation: [String]?
 	
 	/// Why this resource has been created.
@@ -784,6 +700,15 @@ open class ElementDefinition: Element {
 					errors.append(FHIRJSONError(key: "defaultValueAddress", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["defaultValueAge"] {
+				presentKeys.insert("defaultValueAge")
+				if let val = exist as? FHIRJSON {
+					self.defaultValueAge = Age(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "defaultValueAge", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["defaultValueAnnotation"] {
 				presentKeys.insert("defaultValueAnnotation")
 				if let val = exist as? FHIRJSON {
@@ -856,6 +781,15 @@ open class ElementDefinition: Element {
 					errors.append(FHIRJSONError(key: "defaultValueContactPoint", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["defaultValueCount"] {
+				presentKeys.insert("defaultValueCount")
+				if let val = exist as? FHIRJSON {
+					self.defaultValueCount = Count(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "defaultValueCount", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["defaultValueDate"] {
 				presentKeys.insert("defaultValueDate")
 				if let val = exist as? String {
@@ -881,6 +815,24 @@ open class ElementDefinition: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "defaultValueDecimal", wants: NSNumber.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["defaultValueDistance"] {
+				presentKeys.insert("defaultValueDistance")
+				if let val = exist as? FHIRJSON {
+					self.defaultValueDistance = Distance(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "defaultValueDistance", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["defaultValueDuration"] {
+				presentKeys.insert("defaultValueDuration")
+				if let val = exist as? FHIRJSON {
+					self.defaultValueDuration = Duration(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "defaultValueDuration", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["defaultValueHumanName"] {
@@ -944,6 +896,15 @@ open class ElementDefinition: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "defaultValueMeta", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["defaultValueMoney"] {
+				presentKeys.insert("defaultValueMoney")
+				if let val = exist as? FHIRJSON {
+					self.defaultValueMoney = Money(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "defaultValueMoney", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["defaultValueOid"] {
@@ -1090,6 +1051,15 @@ open class ElementDefinition: Element {
 					errors.append(FHIRJSONError(key: "exampleAddress", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["exampleAge"] {
+				presentKeys.insert("exampleAge")
+				if let val = exist as? FHIRJSON {
+					self.exampleAge = Age(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "exampleAge", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["exampleAnnotation"] {
 				presentKeys.insert("exampleAnnotation")
 				if let val = exist as? FHIRJSON {
@@ -1162,6 +1132,15 @@ open class ElementDefinition: Element {
 					errors.append(FHIRJSONError(key: "exampleContactPoint", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["exampleCount"] {
+				presentKeys.insert("exampleCount")
+				if let val = exist as? FHIRJSON {
+					self.exampleCount = Count(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "exampleCount", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["exampleDate"] {
 				presentKeys.insert("exampleDate")
 				if let val = exist as? String {
@@ -1187,6 +1166,24 @@ open class ElementDefinition: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exampleDecimal", wants: NSNumber.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["exampleDistance"] {
+				presentKeys.insert("exampleDistance")
+				if let val = exist as? FHIRJSON {
+					self.exampleDistance = Distance(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "exampleDistance", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["exampleDuration"] {
+				presentKeys.insert("exampleDuration")
+				if let val = exist as? FHIRJSON {
+					self.exampleDuration = Duration(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "exampleDuration", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["exampleHumanName"] {
@@ -1250,6 +1247,15 @@ open class ElementDefinition: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exampleMeta", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["exampleMoney"] {
+				presentKeys.insert("exampleMoney")
+				if let val = exist as? FHIRJSON {
+					self.exampleMoney = Money(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "exampleMoney", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["exampleOid"] {
@@ -1387,6 +1393,15 @@ open class ElementDefinition: Element {
 					errors.append(FHIRJSONError(key: "fixedAddress", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["fixedAge"] {
+				presentKeys.insert("fixedAge")
+				if let val = exist as? FHIRJSON {
+					self.fixedAge = Age(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "fixedAge", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["fixedAnnotation"] {
 				presentKeys.insert("fixedAnnotation")
 				if let val = exist as? FHIRJSON {
@@ -1459,6 +1474,15 @@ open class ElementDefinition: Element {
 					errors.append(FHIRJSONError(key: "fixedContactPoint", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["fixedCount"] {
+				presentKeys.insert("fixedCount")
+				if let val = exist as? FHIRJSON {
+					self.fixedCount = Count(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "fixedCount", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["fixedDate"] {
 				presentKeys.insert("fixedDate")
 				if let val = exist as? String {
@@ -1484,6 +1508,24 @@ open class ElementDefinition: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fixedDecimal", wants: NSNumber.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["fixedDistance"] {
+				presentKeys.insert("fixedDistance")
+				if let val = exist as? FHIRJSON {
+					self.fixedDistance = Distance(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "fixedDistance", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["fixedDuration"] {
+				presentKeys.insert("fixedDuration")
+				if let val = exist as? FHIRJSON {
+					self.fixedDuration = Duration(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "fixedDuration", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["fixedHumanName"] {
@@ -1547,6 +1589,15 @@ open class ElementDefinition: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fixedMeta", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["fixedMoney"] {
+				presentKeys.insert("fixedMoney")
+				if let val = exist as? FHIRJSON {
+					self.fixedMoney = Money(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "fixedMoney", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["fixedOid"] {
@@ -1729,87 +1780,6 @@ open class ElementDefinition: Element {
 					errors.append(FHIRJSONError(key: "maxLength", wants: Int.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["maxValueAddress"] {
-				presentKeys.insert("maxValueAddress")
-				if let val = exist as? FHIRJSON {
-					self.maxValueAddress = Address(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueAddress", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueAnnotation"] {
-				presentKeys.insert("maxValueAnnotation")
-				if let val = exist as? FHIRJSON {
-					self.maxValueAnnotation = Annotation(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueAnnotation", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueAttachment"] {
-				presentKeys.insert("maxValueAttachment")
-				if let val = exist as? FHIRJSON {
-					self.maxValueAttachment = Attachment(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueAttachment", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueBase64Binary"] {
-				presentKeys.insert("maxValueBase64Binary")
-				if let val = exist as? String {
-					self.maxValueBase64Binary = Base64Binary(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueBase64Binary", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueBoolean"] {
-				presentKeys.insert("maxValueBoolean")
-				if let val = exist as? Bool {
-					self.maxValueBoolean = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueBoolean", wants: Bool.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueCode"] {
-				presentKeys.insert("maxValueCode")
-				if let val = exist as? String {
-					self.maxValueCode = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueCode", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueCodeableConcept"] {
-				presentKeys.insert("maxValueCodeableConcept")
-				if let val = exist as? FHIRJSON {
-					self.maxValueCodeableConcept = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueCoding"] {
-				presentKeys.insert("maxValueCoding")
-				if let val = exist as? FHIRJSON {
-					self.maxValueCoding = Coding(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueCoding", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueContactPoint"] {
-				presentKeys.insert("maxValueContactPoint")
-				if let val = exist as? FHIRJSON {
-					self.maxValueContactPoint = ContactPoint(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueContactPoint", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
 			if let exist = js["maxValueDate"] {
 				presentKeys.insert("maxValueDate")
 				if let val = exist as? String {
@@ -1837,33 +1807,6 @@ open class ElementDefinition: Element {
 					errors.append(FHIRJSONError(key: "maxValueDecimal", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["maxValueHumanName"] {
-				presentKeys.insert("maxValueHumanName")
-				if let val = exist as? FHIRJSON {
-					self.maxValueHumanName = HumanName(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueHumanName", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueId"] {
-				presentKeys.insert("maxValueId")
-				if let val = exist as? String {
-					self.maxValueId = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueId", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueIdentifier"] {
-				presentKeys.insert("maxValueIdentifier")
-				if let val = exist as? FHIRJSON {
-					self.maxValueIdentifier = Identifier(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
 			if let exist = js["maxValueInstant"] {
 				presentKeys.insert("maxValueInstant")
 				if let val = exist as? String {
@@ -1880,42 +1823,6 @@ open class ElementDefinition: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxValueInteger", wants: Int.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueMarkdown"] {
-				presentKeys.insert("maxValueMarkdown")
-				if let val = exist as? String {
-					self.maxValueMarkdown = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueMarkdown", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueMeta"] {
-				presentKeys.insert("maxValueMeta")
-				if let val = exist as? FHIRJSON {
-					self.maxValueMeta = Meta(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueMeta", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueOid"] {
-				presentKeys.insert("maxValueOid")
-				if let val = exist as? String {
-					self.maxValueOid = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueOid", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValuePeriod"] {
-				presentKeys.insert("maxValuePeriod")
-				if let val = exist as? FHIRJSON {
-					self.maxValuePeriod = Period(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValuePeriod", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["maxValuePositiveInt"] {
@@ -1936,60 +1843,6 @@ open class ElementDefinition: Element {
 					errors.append(FHIRJSONError(key: "maxValueQuantity", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["maxValueRange"] {
-				presentKeys.insert("maxValueRange")
-				if let val = exist as? FHIRJSON {
-					self.maxValueRange = Range(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueRange", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueRatio"] {
-				presentKeys.insert("maxValueRatio")
-				if let val = exist as? FHIRJSON {
-					self.maxValueRatio = Ratio(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueRatio", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueReference"] {
-				presentKeys.insert("maxValueReference")
-				if let val = exist as? FHIRJSON {
-					self.maxValueReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueSampledData"] {
-				presentKeys.insert("maxValueSampledData")
-				if let val = exist as? FHIRJSON {
-					self.maxValueSampledData = SampledData(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueSampledData", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueSignature"] {
-				presentKeys.insert("maxValueSignature")
-				if let val = exist as? FHIRJSON {
-					self.maxValueSignature = Signature(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueSignature", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueString"] {
-				presentKeys.insert("maxValueString")
-				if let val = exist as? String {
-					self.maxValueString = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueString", wants: String.self, has: type(of: exist)))
-				}
-			}
 			if let exist = js["maxValueTime"] {
 				presentKeys.insert("maxValueTime")
 				if let val = exist as? String {
@@ -1999,15 +1852,6 @@ open class ElementDefinition: Element {
 					errors.append(FHIRJSONError(key: "maxValueTime", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["maxValueTiming"] {
-				presentKeys.insert("maxValueTiming")
-				if let val = exist as? FHIRJSON {
-					self.maxValueTiming = Timing(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueTiming", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
 			if let exist = js["maxValueUnsignedInt"] {
 				presentKeys.insert("maxValueUnsignedInt")
 				if let val = exist as? UInt {
@@ -2015,15 +1859,6 @@ open class ElementDefinition: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxValueUnsignedInt", wants: UInt.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["maxValueUri"] {
-				presentKeys.insert("maxValueUri")
-				if let val = exist as? String {
-					self.maxValueUri = URL(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "maxValueUri", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["meaningWhenMissing"] {
@@ -2042,87 +1877,6 @@ open class ElementDefinition: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "min", wants: Int.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueAddress"] {
-				presentKeys.insert("minValueAddress")
-				if let val = exist as? FHIRJSON {
-					self.minValueAddress = Address(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueAddress", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueAnnotation"] {
-				presentKeys.insert("minValueAnnotation")
-				if let val = exist as? FHIRJSON {
-					self.minValueAnnotation = Annotation(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueAnnotation", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueAttachment"] {
-				presentKeys.insert("minValueAttachment")
-				if let val = exist as? FHIRJSON {
-					self.minValueAttachment = Attachment(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueAttachment", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueBase64Binary"] {
-				presentKeys.insert("minValueBase64Binary")
-				if let val = exist as? String {
-					self.minValueBase64Binary = Base64Binary(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueBase64Binary", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueBoolean"] {
-				presentKeys.insert("minValueBoolean")
-				if let val = exist as? Bool {
-					self.minValueBoolean = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueBoolean", wants: Bool.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueCode"] {
-				presentKeys.insert("minValueCode")
-				if let val = exist as? String {
-					self.minValueCode = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueCode", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueCodeableConcept"] {
-				presentKeys.insert("minValueCodeableConcept")
-				if let val = exist as? FHIRJSON {
-					self.minValueCodeableConcept = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueCoding"] {
-				presentKeys.insert("minValueCoding")
-				if let val = exist as? FHIRJSON {
-					self.minValueCoding = Coding(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueCoding", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueContactPoint"] {
-				presentKeys.insert("minValueContactPoint")
-				if let val = exist as? FHIRJSON {
-					self.minValueContactPoint = ContactPoint(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueContactPoint", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["minValueDate"] {
@@ -2152,33 +1906,6 @@ open class ElementDefinition: Element {
 					errors.append(FHIRJSONError(key: "minValueDecimal", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["minValueHumanName"] {
-				presentKeys.insert("minValueHumanName")
-				if let val = exist as? FHIRJSON {
-					self.minValueHumanName = HumanName(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueHumanName", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueId"] {
-				presentKeys.insert("minValueId")
-				if let val = exist as? String {
-					self.minValueId = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueId", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueIdentifier"] {
-				presentKeys.insert("minValueIdentifier")
-				if let val = exist as? FHIRJSON {
-					self.minValueIdentifier = Identifier(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
 			if let exist = js["minValueInstant"] {
 				presentKeys.insert("minValueInstant")
 				if let val = exist as? String {
@@ -2195,42 +1922,6 @@ open class ElementDefinition: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "minValueInteger", wants: Int.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueMarkdown"] {
-				presentKeys.insert("minValueMarkdown")
-				if let val = exist as? String {
-					self.minValueMarkdown = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueMarkdown", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueMeta"] {
-				presentKeys.insert("minValueMeta")
-				if let val = exist as? FHIRJSON {
-					self.minValueMeta = Meta(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueMeta", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueOid"] {
-				presentKeys.insert("minValueOid")
-				if let val = exist as? String {
-					self.minValueOid = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueOid", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValuePeriod"] {
-				presentKeys.insert("minValuePeriod")
-				if let val = exist as? FHIRJSON {
-					self.minValuePeriod = Period(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValuePeriod", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["minValuePositiveInt"] {
@@ -2251,60 +1942,6 @@ open class ElementDefinition: Element {
 					errors.append(FHIRJSONError(key: "minValueQuantity", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["minValueRange"] {
-				presentKeys.insert("minValueRange")
-				if let val = exist as? FHIRJSON {
-					self.minValueRange = Range(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueRange", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueRatio"] {
-				presentKeys.insert("minValueRatio")
-				if let val = exist as? FHIRJSON {
-					self.minValueRatio = Ratio(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueRatio", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueReference"] {
-				presentKeys.insert("minValueReference")
-				if let val = exist as? FHIRJSON {
-					self.minValueReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueSampledData"] {
-				presentKeys.insert("minValueSampledData")
-				if let val = exist as? FHIRJSON {
-					self.minValueSampledData = SampledData(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueSampledData", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueSignature"] {
-				presentKeys.insert("minValueSignature")
-				if let val = exist as? FHIRJSON {
-					self.minValueSignature = Signature(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueSignature", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueString"] {
-				presentKeys.insert("minValueString")
-				if let val = exist as? String {
-					self.minValueString = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueString", wants: String.self, has: type(of: exist)))
-				}
-			}
 			if let exist = js["minValueTime"] {
 				presentKeys.insert("minValueTime")
 				if let val = exist as? String {
@@ -2314,15 +1951,6 @@ open class ElementDefinition: Element {
 					errors.append(FHIRJSONError(key: "minValueTime", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["minValueTiming"] {
-				presentKeys.insert("minValueTiming")
-				if let val = exist as? FHIRJSON {
-					self.minValueTiming = Timing(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueTiming", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
 			if let exist = js["minValueUnsignedInt"] {
 				presentKeys.insert("minValueUnsignedInt")
 				if let val = exist as? UInt {
@@ -2330,15 +1958,6 @@ open class ElementDefinition: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "minValueUnsignedInt", wants: UInt.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["minValueUri"] {
-				presentKeys.insert("minValueUri")
-				if let val = exist as? String {
-					self.minValueUri = URL(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "minValueUri", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["mustSupport"] {
@@ -2378,6 +1997,15 @@ open class ElementDefinition: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patternAddress", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["patternAge"] {
+				presentKeys.insert("patternAge")
+				if let val = exist as? FHIRJSON {
+					self.patternAge = Age(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "patternAge", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["patternAnnotation"] {
@@ -2452,6 +2080,15 @@ open class ElementDefinition: Element {
 					errors.append(FHIRJSONError(key: "patternContactPoint", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["patternCount"] {
+				presentKeys.insert("patternCount")
+				if let val = exist as? FHIRJSON {
+					self.patternCount = Count(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "patternCount", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["patternDate"] {
 				presentKeys.insert("patternDate")
 				if let val = exist as? String {
@@ -2477,6 +2114,24 @@ open class ElementDefinition: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patternDecimal", wants: NSNumber.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["patternDistance"] {
+				presentKeys.insert("patternDistance")
+				if let val = exist as? FHIRJSON {
+					self.patternDistance = Distance(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "patternDistance", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["patternDuration"] {
+				presentKeys.insert("patternDuration")
+				if let val = exist as? FHIRJSON {
+					self.patternDuration = Duration(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "patternDuration", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["patternHumanName"] {
@@ -2540,6 +2195,15 @@ open class ElementDefinition: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patternMeta", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["patternMoney"] {
+				presentKeys.insert("patternMoney")
+				if let val = exist as? FHIRJSON {
+					self.patternMoney = Money(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "patternMoney", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["patternOid"] {
@@ -2755,6 +2419,9 @@ open class ElementDefinition: Element {
 		if let defaultValueAddress = self.defaultValueAddress {
 			json["defaultValueAddress"] = defaultValueAddress.asJSON()
 		}
+		if let defaultValueAge = self.defaultValueAge {
+			json["defaultValueAge"] = defaultValueAge.asJSON()
+		}
 		if let defaultValueAnnotation = self.defaultValueAnnotation {
 			json["defaultValueAnnotation"] = defaultValueAnnotation.asJSON()
 		}
@@ -2779,6 +2446,9 @@ open class ElementDefinition: Element {
 		if let defaultValueContactPoint = self.defaultValueContactPoint {
 			json["defaultValueContactPoint"] = defaultValueContactPoint.asJSON()
 		}
+		if let defaultValueCount = self.defaultValueCount {
+			json["defaultValueCount"] = defaultValueCount.asJSON()
+		}
 		if let defaultValueDate = self.defaultValueDate {
 			json["defaultValueDate"] = defaultValueDate.asJSON()
 		}
@@ -2787,6 +2457,12 @@ open class ElementDefinition: Element {
 		}
 		if let defaultValueDecimal = self.defaultValueDecimal {
 			json["defaultValueDecimal"] = defaultValueDecimal.asJSON()
+		}
+		if let defaultValueDistance = self.defaultValueDistance {
+			json["defaultValueDistance"] = defaultValueDistance.asJSON()
+		}
+		if let defaultValueDuration = self.defaultValueDuration {
+			json["defaultValueDuration"] = defaultValueDuration.asJSON()
 		}
 		if let defaultValueHumanName = self.defaultValueHumanName {
 			json["defaultValueHumanName"] = defaultValueHumanName.asJSON()
@@ -2808,6 +2484,9 @@ open class ElementDefinition: Element {
 		}
 		if let defaultValueMeta = self.defaultValueMeta {
 			json["defaultValueMeta"] = defaultValueMeta.asJSON()
+		}
+		if let defaultValueMoney = self.defaultValueMoney {
+			json["defaultValueMoney"] = defaultValueMoney.asJSON()
 		}
 		if let defaultValueOid = self.defaultValueOid {
 			json["defaultValueOid"] = defaultValueOid.asJSON()
@@ -2857,6 +2536,9 @@ open class ElementDefinition: Element {
 		if let exampleAddress = self.exampleAddress {
 			json["exampleAddress"] = exampleAddress.asJSON()
 		}
+		if let exampleAge = self.exampleAge {
+			json["exampleAge"] = exampleAge.asJSON()
+		}
 		if let exampleAnnotation = self.exampleAnnotation {
 			json["exampleAnnotation"] = exampleAnnotation.asJSON()
 		}
@@ -2881,6 +2563,9 @@ open class ElementDefinition: Element {
 		if let exampleContactPoint = self.exampleContactPoint {
 			json["exampleContactPoint"] = exampleContactPoint.asJSON()
 		}
+		if let exampleCount = self.exampleCount {
+			json["exampleCount"] = exampleCount.asJSON()
+		}
 		if let exampleDate = self.exampleDate {
 			json["exampleDate"] = exampleDate.asJSON()
 		}
@@ -2889,6 +2574,12 @@ open class ElementDefinition: Element {
 		}
 		if let exampleDecimal = self.exampleDecimal {
 			json["exampleDecimal"] = exampleDecimal.asJSON()
+		}
+		if let exampleDistance = self.exampleDistance {
+			json["exampleDistance"] = exampleDistance.asJSON()
+		}
+		if let exampleDuration = self.exampleDuration {
+			json["exampleDuration"] = exampleDuration.asJSON()
 		}
 		if let exampleHumanName = self.exampleHumanName {
 			json["exampleHumanName"] = exampleHumanName.asJSON()
@@ -2910,6 +2601,9 @@ open class ElementDefinition: Element {
 		}
 		if let exampleMeta = self.exampleMeta {
 			json["exampleMeta"] = exampleMeta.asJSON()
+		}
+		if let exampleMoney = self.exampleMoney {
+			json["exampleMoney"] = exampleMoney.asJSON()
 		}
 		if let exampleOid = self.exampleOid {
 			json["exampleOid"] = exampleOid.asJSON()
@@ -2956,6 +2650,9 @@ open class ElementDefinition: Element {
 		if let fixedAddress = self.fixedAddress {
 			json["fixedAddress"] = fixedAddress.asJSON()
 		}
+		if let fixedAge = self.fixedAge {
+			json["fixedAge"] = fixedAge.asJSON()
+		}
 		if let fixedAnnotation = self.fixedAnnotation {
 			json["fixedAnnotation"] = fixedAnnotation.asJSON()
 		}
@@ -2980,6 +2677,9 @@ open class ElementDefinition: Element {
 		if let fixedContactPoint = self.fixedContactPoint {
 			json["fixedContactPoint"] = fixedContactPoint.asJSON()
 		}
+		if let fixedCount = self.fixedCount {
+			json["fixedCount"] = fixedCount.asJSON()
+		}
 		if let fixedDate = self.fixedDate {
 			json["fixedDate"] = fixedDate.asJSON()
 		}
@@ -2988,6 +2688,12 @@ open class ElementDefinition: Element {
 		}
 		if let fixedDecimal = self.fixedDecimal {
 			json["fixedDecimal"] = fixedDecimal.asJSON()
+		}
+		if let fixedDistance = self.fixedDistance {
+			json["fixedDistance"] = fixedDistance.asJSON()
+		}
+		if let fixedDuration = self.fixedDuration {
+			json["fixedDuration"] = fixedDuration.asJSON()
 		}
 		if let fixedHumanName = self.fixedHumanName {
 			json["fixedHumanName"] = fixedHumanName.asJSON()
@@ -3009,6 +2715,9 @@ open class ElementDefinition: Element {
 		}
 		if let fixedMeta = self.fixedMeta {
 			json["fixedMeta"] = fixedMeta.asJSON()
+		}
+		if let fixedMoney = self.fixedMoney {
+			json["fixedMoney"] = fixedMoney.asJSON()
 		}
 		if let fixedOid = self.fixedOid {
 			json["fixedOid"] = fixedOid.asJSON()
@@ -3070,33 +2779,6 @@ open class ElementDefinition: Element {
 		if let maxLength = self.maxLength {
 			json["maxLength"] = maxLength.asJSON()
 		}
-		if let maxValueAddress = self.maxValueAddress {
-			json["maxValueAddress"] = maxValueAddress.asJSON()
-		}
-		if let maxValueAnnotation = self.maxValueAnnotation {
-			json["maxValueAnnotation"] = maxValueAnnotation.asJSON()
-		}
-		if let maxValueAttachment = self.maxValueAttachment {
-			json["maxValueAttachment"] = maxValueAttachment.asJSON()
-		}
-		if let maxValueBase64Binary = self.maxValueBase64Binary {
-			json["maxValueBase64Binary"] = maxValueBase64Binary.asJSON()
-		}
-		if let maxValueBoolean = self.maxValueBoolean {
-			json["maxValueBoolean"] = maxValueBoolean.asJSON()
-		}
-		if let maxValueCode = self.maxValueCode {
-			json["maxValueCode"] = maxValueCode.asJSON()
-		}
-		if let maxValueCodeableConcept = self.maxValueCodeableConcept {
-			json["maxValueCodeableConcept"] = maxValueCodeableConcept.asJSON()
-		}
-		if let maxValueCoding = self.maxValueCoding {
-			json["maxValueCoding"] = maxValueCoding.asJSON()
-		}
-		if let maxValueContactPoint = self.maxValueContactPoint {
-			json["maxValueContactPoint"] = maxValueContactPoint.asJSON()
-		}
 		if let maxValueDate = self.maxValueDate {
 			json["maxValueDate"] = maxValueDate.asJSON()
 		}
@@ -3106,32 +2788,11 @@ open class ElementDefinition: Element {
 		if let maxValueDecimal = self.maxValueDecimal {
 			json["maxValueDecimal"] = maxValueDecimal.asJSON()
 		}
-		if let maxValueHumanName = self.maxValueHumanName {
-			json["maxValueHumanName"] = maxValueHumanName.asJSON()
-		}
-		if let maxValueId = self.maxValueId {
-			json["maxValueId"] = maxValueId.asJSON()
-		}
-		if let maxValueIdentifier = self.maxValueIdentifier {
-			json["maxValueIdentifier"] = maxValueIdentifier.asJSON()
-		}
 		if let maxValueInstant = self.maxValueInstant {
 			json["maxValueInstant"] = maxValueInstant.asJSON()
 		}
 		if let maxValueInteger = self.maxValueInteger {
 			json["maxValueInteger"] = maxValueInteger.asJSON()
-		}
-		if let maxValueMarkdown = self.maxValueMarkdown {
-			json["maxValueMarkdown"] = maxValueMarkdown.asJSON()
-		}
-		if let maxValueMeta = self.maxValueMeta {
-			json["maxValueMeta"] = maxValueMeta.asJSON()
-		}
-		if let maxValueOid = self.maxValueOid {
-			json["maxValueOid"] = maxValueOid.asJSON()
-		}
-		if let maxValuePeriod = self.maxValuePeriod {
-			json["maxValuePeriod"] = maxValuePeriod.asJSON()
 		}
 		if let maxValuePositiveInt = self.maxValuePositiveInt {
 			json["maxValuePositiveInt"] = maxValuePositiveInt.asJSON()
@@ -3139,68 +2800,17 @@ open class ElementDefinition: Element {
 		if let maxValueQuantity = self.maxValueQuantity {
 			json["maxValueQuantity"] = maxValueQuantity.asJSON()
 		}
-		if let maxValueRange = self.maxValueRange {
-			json["maxValueRange"] = maxValueRange.asJSON()
-		}
-		if let maxValueRatio = self.maxValueRatio {
-			json["maxValueRatio"] = maxValueRatio.asJSON()
-		}
-		if let maxValueReference = self.maxValueReference {
-			json["maxValueReference"] = maxValueReference.asJSON()
-		}
-		if let maxValueSampledData = self.maxValueSampledData {
-			json["maxValueSampledData"] = maxValueSampledData.asJSON()
-		}
-		if let maxValueSignature = self.maxValueSignature {
-			json["maxValueSignature"] = maxValueSignature.asJSON()
-		}
-		if let maxValueString = self.maxValueString {
-			json["maxValueString"] = maxValueString.asJSON()
-		}
 		if let maxValueTime = self.maxValueTime {
 			json["maxValueTime"] = maxValueTime.asJSON()
 		}
-		if let maxValueTiming = self.maxValueTiming {
-			json["maxValueTiming"] = maxValueTiming.asJSON()
-		}
 		if let maxValueUnsignedInt = self.maxValueUnsignedInt {
 			json["maxValueUnsignedInt"] = maxValueUnsignedInt.asJSON()
-		}
-		if let maxValueUri = self.maxValueUri {
-			json["maxValueUri"] = maxValueUri.asJSON()
 		}
 		if let meaningWhenMissing = self.meaningWhenMissing {
 			json["meaningWhenMissing"] = meaningWhenMissing.asJSON()
 		}
 		if let min = self.min {
 			json["min"] = min.asJSON()
-		}
-		if let minValueAddress = self.minValueAddress {
-			json["minValueAddress"] = minValueAddress.asJSON()
-		}
-		if let minValueAnnotation = self.minValueAnnotation {
-			json["minValueAnnotation"] = minValueAnnotation.asJSON()
-		}
-		if let minValueAttachment = self.minValueAttachment {
-			json["minValueAttachment"] = minValueAttachment.asJSON()
-		}
-		if let minValueBase64Binary = self.minValueBase64Binary {
-			json["minValueBase64Binary"] = minValueBase64Binary.asJSON()
-		}
-		if let minValueBoolean = self.minValueBoolean {
-			json["minValueBoolean"] = minValueBoolean.asJSON()
-		}
-		if let minValueCode = self.minValueCode {
-			json["minValueCode"] = minValueCode.asJSON()
-		}
-		if let minValueCodeableConcept = self.minValueCodeableConcept {
-			json["minValueCodeableConcept"] = minValueCodeableConcept.asJSON()
-		}
-		if let minValueCoding = self.minValueCoding {
-			json["minValueCoding"] = minValueCoding.asJSON()
-		}
-		if let minValueContactPoint = self.minValueContactPoint {
-			json["minValueContactPoint"] = minValueContactPoint.asJSON()
 		}
 		if let minValueDate = self.minValueDate {
 			json["minValueDate"] = minValueDate.asJSON()
@@ -3211,32 +2821,11 @@ open class ElementDefinition: Element {
 		if let minValueDecimal = self.minValueDecimal {
 			json["minValueDecimal"] = minValueDecimal.asJSON()
 		}
-		if let minValueHumanName = self.minValueHumanName {
-			json["minValueHumanName"] = minValueHumanName.asJSON()
-		}
-		if let minValueId = self.minValueId {
-			json["minValueId"] = minValueId.asJSON()
-		}
-		if let minValueIdentifier = self.minValueIdentifier {
-			json["minValueIdentifier"] = minValueIdentifier.asJSON()
-		}
 		if let minValueInstant = self.minValueInstant {
 			json["minValueInstant"] = minValueInstant.asJSON()
 		}
 		if let minValueInteger = self.minValueInteger {
 			json["minValueInteger"] = minValueInteger.asJSON()
-		}
-		if let minValueMarkdown = self.minValueMarkdown {
-			json["minValueMarkdown"] = minValueMarkdown.asJSON()
-		}
-		if let minValueMeta = self.minValueMeta {
-			json["minValueMeta"] = minValueMeta.asJSON()
-		}
-		if let minValueOid = self.minValueOid {
-			json["minValueOid"] = minValueOid.asJSON()
-		}
-		if let minValuePeriod = self.minValuePeriod {
-			json["minValuePeriod"] = minValuePeriod.asJSON()
 		}
 		if let minValuePositiveInt = self.minValuePositiveInt {
 			json["minValuePositiveInt"] = minValuePositiveInt.asJSON()
@@ -3244,35 +2833,11 @@ open class ElementDefinition: Element {
 		if let minValueQuantity = self.minValueQuantity {
 			json["minValueQuantity"] = minValueQuantity.asJSON()
 		}
-		if let minValueRange = self.minValueRange {
-			json["minValueRange"] = minValueRange.asJSON()
-		}
-		if let minValueRatio = self.minValueRatio {
-			json["minValueRatio"] = minValueRatio.asJSON()
-		}
-		if let minValueReference = self.minValueReference {
-			json["minValueReference"] = minValueReference.asJSON()
-		}
-		if let minValueSampledData = self.minValueSampledData {
-			json["minValueSampledData"] = minValueSampledData.asJSON()
-		}
-		if let minValueSignature = self.minValueSignature {
-			json["minValueSignature"] = minValueSignature.asJSON()
-		}
-		if let minValueString = self.minValueString {
-			json["minValueString"] = minValueString.asJSON()
-		}
 		if let minValueTime = self.minValueTime {
 			json["minValueTime"] = minValueTime.asJSON()
 		}
-		if let minValueTiming = self.minValueTiming {
-			json["minValueTiming"] = minValueTiming.asJSON()
-		}
 		if let minValueUnsignedInt = self.minValueUnsignedInt {
 			json["minValueUnsignedInt"] = minValueUnsignedInt.asJSON()
-		}
-		if let minValueUri = self.minValueUri {
-			json["minValueUri"] = minValueUri.asJSON()
 		}
 		if let mustSupport = self.mustSupport {
 			json["mustSupport"] = mustSupport.asJSON()
@@ -3285,6 +2850,9 @@ open class ElementDefinition: Element {
 		}
 		if let patternAddress = self.patternAddress {
 			json["patternAddress"] = patternAddress.asJSON()
+		}
+		if let patternAge = self.patternAge {
+			json["patternAge"] = patternAge.asJSON()
 		}
 		if let patternAnnotation = self.patternAnnotation {
 			json["patternAnnotation"] = patternAnnotation.asJSON()
@@ -3310,6 +2878,9 @@ open class ElementDefinition: Element {
 		if let patternContactPoint = self.patternContactPoint {
 			json["patternContactPoint"] = patternContactPoint.asJSON()
 		}
+		if let patternCount = self.patternCount {
+			json["patternCount"] = patternCount.asJSON()
+		}
 		if let patternDate = self.patternDate {
 			json["patternDate"] = patternDate.asJSON()
 		}
@@ -3318,6 +2889,12 @@ open class ElementDefinition: Element {
 		}
 		if let patternDecimal = self.patternDecimal {
 			json["patternDecimal"] = patternDecimal.asJSON()
+		}
+		if let patternDistance = self.patternDistance {
+			json["patternDistance"] = patternDistance.asJSON()
+		}
+		if let patternDuration = self.patternDuration {
+			json["patternDuration"] = patternDuration.asJSON()
 		}
 		if let patternHumanName = self.patternHumanName {
 			json["patternHumanName"] = patternHumanName.asJSON()
@@ -3339,6 +2916,9 @@ open class ElementDefinition: Element {
 		}
 		if let patternMeta = self.patternMeta {
 			json["patternMeta"] = patternMeta.asJSON()
+		}
+		if let patternMoney = self.patternMoney {
+			json["patternMoney"] = patternMoney.asJSON()
 		}
 		if let patternOid = self.patternOid {
 			json["patternOid"] = patternOid.asJSON()
@@ -3411,9 +2991,9 @@ open class ElementDefinition: Element {
  *  Base definition information for tools.
  *
  *  Information about the base definition of the element, provided to make it unnecessary for tools to trace the
- *  deviation of the element through the derived and related profiles. This information is only provided where the
- *  element definition represents a constraint on another element definition, and must be present if there is a base
- *  element definition.
+ *  deviation of the element through the derived and related profiles. This information is provided when the element
+ *  definition is not the original definition of an element - i.g. either in a constraint on another type, or for
+ *  elements from a super type in a snap shot.
  */
 open class ElementDefinitionBase: Element {
 	override open class var resourceType: String {
@@ -3965,7 +3545,10 @@ open class ElementDefinitionType: Element {
 	public var code: String?
 	
 	/// Profile (StructureDefinition) to apply (or IG).
-	public var profile: [URL]?
+	public var profile: URL?
+	
+	/// Profile (StructureDefinition) to apply to reference target (or IG).
+	public var targetProfile: URL?
 	
 	/// either | independent | specific.
 	public var versioning: String?
@@ -4008,11 +3591,20 @@ open class ElementDefinitionType: Element {
 			}
 			if let exist = js["profile"] {
 				presentKeys.insert("profile")
-				if let val = exist as? [String] {
-					self.profile = URL.instantiate(fromArray: val)
+				if let val = exist as? String {
+					self.profile = URL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "profile", wants: Array<String>.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "profile", wants: String.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["targetProfile"] {
+				presentKeys.insert("targetProfile")
+				if let val = exist as? String {
+					self.targetProfile = URL(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "targetProfile", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["versioning"] {
@@ -4042,11 +3634,10 @@ open class ElementDefinitionType: Element {
 			json["code"] = code.asJSON()
 		}
 		if let profile = self.profile {
-			var arr = [Any]()
-			for val in profile {
-				arr.append(val.asJSON())
-			}
-			json["profile"] = arr
+			json["profile"] = profile.asJSON()
+		}
+		if let targetProfile = self.targetProfile {
+			json["targetProfile"] = targetProfile.asJSON()
 		}
 		if let versioning = self.versioning {
 			json["versioning"] = versioning.asJSON()

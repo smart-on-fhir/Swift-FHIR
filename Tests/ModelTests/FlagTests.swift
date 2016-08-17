@@ -2,7 +2,7 @@
 //  FlagTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -47,7 +47,7 @@ class FlagTests: XCTestCase {
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.subject?.display, "Peter Patient")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.div, "<div>Follow Infection Control Level 3 Protocol</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Follow Infection Control Level 3 Protocol</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
@@ -81,7 +81,7 @@ class FlagTests: XCTestCase {
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.subject?.display, "Peter Patient")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.div, "<div>Large Dog warning for Peter Patient</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Large Dog warning for Peter Patient</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

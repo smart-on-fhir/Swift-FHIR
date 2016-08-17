@@ -2,7 +2,7 @@
 //  Appointment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -63,7 +63,7 @@ open class Appointment: DomainResource {
 	/// When appointment is to take place.
 	public var start: Instant?
 	
-	/// proposed | pending | booked | arrived | fulfilled | cancelled | noshow.
+	/// proposed | pending | booked | arrived | fulfilled | cancelled | noshow | entered-in-error.
 	public var status: String?
 	
 	

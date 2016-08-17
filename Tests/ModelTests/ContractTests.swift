@@ -2,7 +2,7 @@
 //  ContractTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -37,7 +37,7 @@ class ContractTests: XCTestCase {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "contract-example.json")
 		
 		XCTAssertEqual(inst.id, "C-123")
-		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the contract</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the contract</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

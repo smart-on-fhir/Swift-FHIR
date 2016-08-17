@@ -16,10 +16,10 @@ Test resource containment and `create` calls.
 class ResourceTests: XCTestCase {
 	
 	func testContaining() {
-		let order = Order(json: ["id": "order", "date": "2016-01-27"])
 		let patient = Patient(json: ["id": "subject"])
+		let org = Organization(json: ["id": "org", "active": true])
 		do {
-			order.subject = try order.contain(resource: patient)
+			patient.managingOrganization = try patient.contain(resource: org)
 		}
 		catch let error {
 			XCTAssertTrue(false, "Should not raise exception \(error) when containing perfectly fine patient into order")
@@ -27,10 +27,10 @@ class ResourceTests: XCTestCase {
 	}
 	
 	func testContainingNoId() {
-		let order = Order(json: ["id": "order", "date": "2016-01-27"])
-		let patient = Patient(json: ["active": true])
+		let patient = Patient(json: ["id": "subject"])
+		let org = Organization(json: ["active": true])
 		do {
-			order.subject = try order.contain(resource: patient)
+			patient.managingOrganization = try patient.contain(resource: org)
 			XCTAssertTrue(false, "Should have raised exception when attempting to contain resource without id")
 		}
 		catch {
@@ -38,9 +38,9 @@ class ResourceTests: XCTestCase {
 	}
 	
 	func testContainingItself() {
-		let order = Order(json: ["id": "order"])
+		let patient = Patient(json: ["id": "subject"])
 		do {
-			order.subject = try order.contain(resource: order)
+			patient.managingOrganization = try patient.contain(resource: patient)
 			XCTAssertTrue(false, "Should have raised exception when attempting to contain itself")
 		}
 		catch {

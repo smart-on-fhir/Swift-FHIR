@@ -2,7 +2,7 @@
 //  Slot.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Slot) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Slot) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -47,7 +47,7 @@ open class Slot: DomainResource {
 	/// Date/Time that the slot is to begin.
 	public var start: Instant?
 	
-	/// busy | free | busy-unavailable | busy-tentative.
+	/// busy | free | busy-unavailable | busy-tentative | entered-in-error.
 	public var status: String?
 	
 	

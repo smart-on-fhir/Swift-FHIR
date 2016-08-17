@@ -2,7 +2,7 @@
 //  SupplyRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -37,7 +37,7 @@ class SupplyRequestTests: XCTestCase {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "supplyrequest-example.json")
 		
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

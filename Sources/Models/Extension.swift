@@ -2,7 +2,7 @@
 //  Extension.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Extension) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Extension) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -24,6 +24,9 @@ open class Extension: Element {
 	
 	/// Value of extension.
 	public var valueAddress: Address?
+	
+	/// Value of extension.
+	public var valueAge: Age?
 	
 	/// Value of extension.
 	public var valueAnnotation: Annotation?
@@ -50,6 +53,9 @@ open class Extension: Element {
 	public var valueContactPoint: ContactPoint?
 	
 	/// Value of extension.
+	public var valueCount: Count?
+	
+	/// Value of extension.
 	public var valueDate: FHIRDate?
 	
 	/// Value of extension.
@@ -57,6 +63,12 @@ open class Extension: Element {
 	
 	/// Value of extension.
 	public var valueDecimal: NSDecimalNumber?
+	
+	/// Value of extension.
+	public var valueDistance: Distance?
+	
+	/// Value of extension.
+	public var valueDuration: Duration?
 	
 	/// Value of extension.
 	public var valueHumanName: HumanName?
@@ -78,6 +90,9 @@ open class Extension: Element {
 	
 	/// Value of extension.
 	public var valueMeta: Meta?
+	
+	/// Value of extension.
+	public var valueMoney: Money?
 	
 	/// Value of extension.
 	public var valueOid: String?
@@ -157,6 +172,15 @@ open class Extension: Element {
 					errors.append(FHIRJSONError(key: "valueAddress", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["valueAge"] {
+				presentKeys.insert("valueAge")
+				if let val = exist as? FHIRJSON {
+					self.valueAge = Age(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueAge", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["valueAnnotation"] {
 				presentKeys.insert("valueAnnotation")
 				if let val = exist as? FHIRJSON {
@@ -229,6 +253,15 @@ open class Extension: Element {
 					errors.append(FHIRJSONError(key: "valueContactPoint", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["valueCount"] {
+				presentKeys.insert("valueCount")
+				if let val = exist as? FHIRJSON {
+					self.valueCount = Count(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueCount", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["valueDate"] {
 				presentKeys.insert("valueDate")
 				if let val = exist as? String {
@@ -254,6 +287,24 @@ open class Extension: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueDecimal", wants: NSNumber.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["valueDistance"] {
+				presentKeys.insert("valueDistance")
+				if let val = exist as? FHIRJSON {
+					self.valueDistance = Distance(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueDistance", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["valueDuration"] {
+				presentKeys.insert("valueDuration")
+				if let val = exist as? FHIRJSON {
+					self.valueDuration = Duration(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueDuration", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["valueHumanName"] {
@@ -317,6 +368,15 @@ open class Extension: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueMeta", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["valueMoney"] {
+				presentKeys.insert("valueMoney")
+				if let val = exist as? FHIRJSON {
+					self.valueMoney = Money(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueMoney", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["valueOid"] {
@@ -458,6 +518,9 @@ open class Extension: Element {
 		if let valueAddress = self.valueAddress {
 			json["valueAddress"] = valueAddress.asJSON()
 		}
+		if let valueAge = self.valueAge {
+			json["valueAge"] = valueAge.asJSON()
+		}
 		if let valueAnnotation = self.valueAnnotation {
 			json["valueAnnotation"] = valueAnnotation.asJSON()
 		}
@@ -482,6 +545,9 @@ open class Extension: Element {
 		if let valueContactPoint = self.valueContactPoint {
 			json["valueContactPoint"] = valueContactPoint.asJSON()
 		}
+		if let valueCount = self.valueCount {
+			json["valueCount"] = valueCount.asJSON()
+		}
 		if let valueDate = self.valueDate {
 			json["valueDate"] = valueDate.asJSON()
 		}
@@ -490,6 +556,12 @@ open class Extension: Element {
 		}
 		if let valueDecimal = self.valueDecimal {
 			json["valueDecimal"] = valueDecimal.asJSON()
+		}
+		if let valueDistance = self.valueDistance {
+			json["valueDistance"] = valueDistance.asJSON()
+		}
+		if let valueDuration = self.valueDuration {
+			json["valueDuration"] = valueDuration.asJSON()
 		}
 		if let valueHumanName = self.valueHumanName {
 			json["valueHumanName"] = valueHumanName.asJSON()
@@ -511,6 +583,9 @@ open class Extension: Element {
 		}
 		if let valueMeta = self.valueMeta {
 			json["valueMeta"] = valueMeta.asJSON()
+		}
+		if let valueMoney = self.valueMoney {
+			json["valueMoney"] = valueMoney.asJSON()
 		}
 		if let valueOid = self.valueOid {
 			json["valueOid"] = valueOid.asJSON()

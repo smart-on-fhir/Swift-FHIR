@@ -2,7 +2,7 @@
 //  HealthcareServiceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -36,6 +36,7 @@ class HealthcareServiceTests: XCTestCase {
 	func runHealthcareService1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.HealthcareService {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "healthcareservice-example.json")
 		
+		XCTAssertTrue(inst.active ?? false)
 		XCTAssertFalse(inst.appointmentRequired ?? true)
 		XCTAssertEqual(inst.availabilityExceptions, "Reduced capacity is available during the Christmas period")
 		XCTAssertEqual(inst.availableTime?[0].availableEndTime?.description, "05:30:00")

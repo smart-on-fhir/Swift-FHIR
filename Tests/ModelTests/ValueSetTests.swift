@@ -2,7 +2,7 @@
 //  ValueSetTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -131,8 +131,8 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.description_fhir, "This is an example value set that includes all the LOINC codes for serum/plasma cholesterol from v2.36.")
 		XCTAssertTrue(inst.experimental ?? false)
 		XCTAssertEqual(inst.id, "example-intensional")
-		XCTAssertEqual(inst.identifier?.system?.absoluteString, "http://acme.com/identifiers/valuesets")
-		XCTAssertEqual(inst.identifier?.value, "loinc-cholesterol-ext")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.com/identifiers/valuesets")
+		XCTAssertEqual(inst.identifier?[0].value, "loinc-cholesterol-ext")
 		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
 		XCTAssertEqual(inst.name, "LOINC Codes for Cholesterol in Serum/Plasma")
 		XCTAssertEqual(inst.publisher, "HL7 International")
@@ -215,8 +215,8 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.description_fhir, "This is an example value set that includes all the LOINC codes for serum/plasma cholesterol from v2.36.")
 		XCTAssertTrue(inst.experimental ?? false)
 		XCTAssertEqual(inst.id, "example-extensional")
-		XCTAssertEqual(inst.identifier?.system?.absoluteString, "http://acme.com/identifiers/valuesets")
-		XCTAssertEqual(inst.identifier?.value, "loinc-cholesterol-int")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.com/identifiers/valuesets")
+		XCTAssertEqual(inst.identifier?[0].value, "loinc-cholesterol-int")
 		XCTAssertEqual(inst.lockedDate?.description, "2012-06-13")
 		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
 		XCTAssertEqual(inst.name, "LOINC Codes for Cholesterol in Serum/Plasma")
@@ -246,20 +246,20 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.compose?.include?[0].system?.absoluteString, "http://hl7.org/fhir/list-example-use-codes")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, "other")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.date?.description, "2016-03-31T08:01:25+11:00")
+		XCTAssertEqual(inst.date?.description, "2016-08-15T16:12:42+10:00")
 		XCTAssertEqual(inst.description_fhir, "Example use codes for the List resource - typical kinds of use.")
 		XCTAssertTrue(inst.experimental ?? false)
-		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-oid")
-		XCTAssertEqual(inst.extension_fhir?[0].valueUri?.absoluteString, "urn:oid:2.16.840.1.113883.4.642.2.173")
 		XCTAssertEqual(inst.id, "list-example-codes")
-		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2016-03-31T08:01:25.570+11:00")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
+		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:2.16.840.1.113883.4.642.2.173")
+		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2016-08-15T16:12:42.052+10:00")
 		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
 		XCTAssertEqual(inst.name, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher, "FHIR Project")
 		XCTAssertEqual(inst.status, "draft")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ValueSet/list-example-codes")
-		XCTAssertEqual(inst.version, "1.4.0")
+		XCTAssertEqual(inst.version, "1.6.0")
 		
 		return inst
 	}

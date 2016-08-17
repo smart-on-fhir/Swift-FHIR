@@ -2,7 +2,7 @@
 //  ProcedureTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -50,10 +50,10 @@ class ProcedureTests: XCTestCase {
 		XCTAssertEqual(inst.performedDateTime?.description, "2014-02-03")
 		XCTAssertEqual(inst.performer?[0].actor?.display, "Dr Bert Biopser")
 		XCTAssertEqual(inst.performer?[0].actor?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.reasonCodeableConcept?.text, "Dark lesion l) forearm. getting darker last 3 months.")
+		XCTAssertEqual(inst.reasonCode?[0].text, "Dark lesion l) forearm. getting darker last 3 months.")
 		XCTAssertEqual(inst.status, "completed")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.div, "<div>Biopsy of suspected melanoma L) arm</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Biopsy of suspected melanoma L) arm</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
@@ -91,7 +91,7 @@ class ProcedureTests: XCTestCase {
 		XCTAssertEqual(inst.performer?[0].role?.coding?[0].display, "Arts")
 		XCTAssertEqual(inst.performer?[0].role?.coding?[0].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.performer?[0].role?.text, "Care role")
-		XCTAssertEqual(inst.reasonCodeableConcept?.text, "Heart valve disorder")
+		XCTAssertEqual(inst.reasonCode?[0].text, "Heart valve disorder")
 		XCTAssertEqual(inst.report?[0].display, "Lab results blood test")
 		XCTAssertEqual(inst.report?[0].reference, "DiagnosticReport/f001")
 		XCTAssertEqual(inst.status, "completed")
@@ -134,7 +134,7 @@ class ProcedureTests: XCTestCase {
 		XCTAssertEqual(inst.performer?[0].role?.coding?[0].display, "Arts")
 		XCTAssertEqual(inst.performer?[0].role?.coding?[0].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.performer?[0].role?.text, "Care role")
-		XCTAssertEqual(inst.reasonCodeableConcept?.text, "Malignant tumor of lung")
+		XCTAssertEqual(inst.reasonCode?[0].text, "Malignant tumor of lung")
 		XCTAssertEqual(inst.report?[0].display, "Lab results blood test")
 		XCTAssertEqual(inst.report?[0].reference, "DiagnosticReport/f001")
 		XCTAssertEqual(inst.status, "completed")
@@ -177,7 +177,7 @@ class ProcedureTests: XCTestCase {
 		XCTAssertEqual(inst.performer?[0].role?.coding?[0].display, "Arts")
 		XCTAssertEqual(inst.performer?[0].role?.coding?[0].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.performer?[0].role?.text, "Care role")
-		XCTAssertEqual(inst.reasonCodeableConcept?.text, "abcess in retropharyngeal area")
+		XCTAssertEqual(inst.reasonCode?[0].text, "abcess in retropharyngeal area")
 		XCTAssertEqual(inst.report?[0].display, "Lab results blood test")
 		XCTAssertEqual(inst.report?[0].reference, "DiagnosticReport/f001")
 		XCTAssertEqual(inst.status, "completed")
@@ -220,7 +220,7 @@ class ProcedureTests: XCTestCase {
 		XCTAssertEqual(inst.performer?[0].role?.coding?[0].display, "Arts")
 		XCTAssertEqual(inst.performer?[0].role?.coding?[0].system?.absoluteString, "urn:oid:2.16.840.1.113883.2.4.15.111")
 		XCTAssertEqual(inst.performer?[0].role?.text, "Care role")
-		XCTAssertEqual(inst.reasonCodeableConcept?.text, "ensure breathing during surgery")
+		XCTAssertEqual(inst.reasonCode?[0].text, "ensure breathing during surgery")
 		XCTAssertEqual(inst.report?[0].display, "???????????")
 		XCTAssertEqual(inst.report?[0].reference, "DiagnosticReport/f001")
 		XCTAssertEqual(inst.status, "completed")
@@ -262,7 +262,7 @@ class ProcedureTests: XCTestCase {
 		XCTAssertEqual(inst.performer?[0].role?.coding?[0].code, "310512001")
 		XCTAssertEqual(inst.performer?[0].role?.coding?[0].display, "Medical oncologist")
 		XCTAssertEqual(inst.performer?[0].role?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
-		XCTAssertEqual(inst.reasonCodeableConcept?.text, "DiagnosticReport/f201")
+		XCTAssertEqual(inst.reasonCode?[0].text, "DiagnosticReport/f201")
 		XCTAssertEqual(inst.status, "completed")
 		XCTAssertEqual(inst.subject?.display, "Roel")
 		XCTAssertEqual(inst.subject?.reference, "Patient/f201")
@@ -298,7 +298,7 @@ class ProcedureTests: XCTestCase {
 		XCTAssertEqual(inst.performedDateTime?.description, "2015-04-05")
 		XCTAssertEqual(inst.performer?[0].actor?.display, "Dr Cecil Surgeon")
 		XCTAssertEqual(inst.performer?[0].actor?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.reasonCodeableConcept?.text, "Bradycardia")
+		XCTAssertEqual(inst.reasonCode?[0].text, "Bradycardia")
 		XCTAssertEqual(inst.status, "completed")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
 		XCTAssertEqual(inst.text?.status, "generated")
@@ -330,10 +330,10 @@ class ProcedureTests: XCTestCase {
 		XCTAssertEqual(inst.performedDateTime?.description, "2013-04-05")
 		XCTAssertEqual(inst.performer?[0].actor?.display, "Dr Cecil Surgeon")
 		XCTAssertEqual(inst.performer?[0].actor?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.reasonCodeableConcept?.text, "Generalized abdominal pain 24 hours. Localized in RIF with rebound and guarding")
+		XCTAssertEqual(inst.reasonCode?[0].text, "Generalized abdominal pain 24 hours. Localized in RIF with rebound and guarding")
 		XCTAssertEqual(inst.status, "completed")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.div, "<div>Routine Appendectomy</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Routine Appendectomy</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

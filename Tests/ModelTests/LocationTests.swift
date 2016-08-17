@@ -2,7 +2,7 @@
 //  LocationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -48,7 +48,7 @@ class LocationTests: XCTestCase {
 		XCTAssertEqual(inst.telecom?[0].system, "phone")
 		XCTAssertEqual(inst.telecom?[0].use, "mobile")
 		XCTAssertEqual(inst.telecom?[0].value, "2329")
-		XCTAssertEqual(inst.text?.div, "<div>Mobile Clinic</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Mobile Clinic</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.type?.coding?[0].code, "AMB")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Ambulance")
@@ -123,7 +123,7 @@ class LocationTests: XCTestCase {
 		XCTAssertEqual(inst.physicalType?.coding?[0].display, "House")
 		XCTAssertEqual(inst.physicalType?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/location-physical-type")
 		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.text?.div, "<div>Patient's Home</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Patient's Home</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.type?.coding?[0].code, "PTRES")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Patient's Residence")
@@ -146,6 +146,8 @@ class LocationTests: XCTestCase {
 	func runLocation4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Location {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-room.json")
 		
+		XCTAssertEqual(inst.alias?[0], "South Wing OR 5")
+		XCTAssertEqual(inst.alias?[1], "Main Wing OR 2")
 		XCTAssertEqual(inst.description_fhir, "Old South Wing, Neuro Radiology Operation Room 1 on second floor")
 		XCTAssertEqual(inst.id, "2")
 		XCTAssertEqual(inst.identifier?[0].value, "B1-S.F2.1.00")
@@ -159,7 +161,7 @@ class LocationTests: XCTestCase {
 		XCTAssertEqual(inst.status, "suspended")
 		XCTAssertEqual(inst.telecom?[0].system, "phone")
 		XCTAssertEqual(inst.telecom?[0].value, "2329")
-		XCTAssertEqual(inst.text?.div, "<div>Burgers UMC, South Wing, second floor, Neuro Radiology Operation Room 1</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Burgers UMC, South Wing, second floor, Neuro Radiology Operation Room 1</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.type?.coding?[0].code, "RNEU")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Neuroradiology unit")
@@ -190,7 +192,7 @@ class LocationTests: XCTestCase {
 		XCTAssertEqual(inst.physicalType?.coding?[0].display, "Jurisdiction")
 		XCTAssertEqual(inst.physicalType?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/location-physical-type")
 		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.text?.div, "<div>UK Pharmacies</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">UK Pharmacies</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.type?.coding?[0].code, "PHARM")
 		XCTAssertEqual(inst.type?.coding?[0].display, "Pharmacy")
@@ -219,6 +221,7 @@ class LocationTests: XCTestCase {
 		XCTAssertEqual(inst.address?.postalCode, "9105 PZ")
 		XCTAssertEqual(inst.address?.use, "work")
 		XCTAssertEqual(inst.description_fhir, "Second floor of the Old South Wing, formerly in use by Psychiatry")
+		XCTAssertEqual(inst.endpoint?[0].reference, "Endpoint/example")
 		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/location-alias")
 		XCTAssertEqual(inst.extension_fhir?[0].valueString, "Burgers University Medical Center, South Wing, second floor")
 		XCTAssertEqual(inst.extension_fhir?[1].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/location-alias")
@@ -246,7 +249,7 @@ class LocationTests: XCTestCase {
 		XCTAssertEqual(inst.telecom?[3].system, "other")
 		XCTAssertEqual(inst.telecom?[3].use, "work")
 		XCTAssertEqual(inst.telecom?[3].value, "http://sampleorg.com/southwing")
-		XCTAssertEqual(inst.text?.div, "<div>Burgers UMC, South Wing, second floor</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Burgers UMC, South Wing, second floor</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

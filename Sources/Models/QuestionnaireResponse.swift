@@ -2,7 +2,7 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -26,14 +26,20 @@ open class QuestionnaireResponse: DomainResource {
 	/// Date this version was authored.
 	public var authored: DateTime?
 	
-	/// Primary encounter during which the answers were collected.
-	public var encounter: Reference?
+	/// Request fulfilled by this Questionnaire.
+	public var basedOn: [Reference]?
+	
+	/// Encounter or Episode during which questionnaire was completed.
+	public var context: Reference?
 	
 	/// Unique id for this set of answers.
 	public var identifier: Identifier?
 	
 	/// Groups and questions.
 	public var item: [QuestionnaireResponseItem]?
+	
+	/// Part of this action.
+	public var parent: [Reference]?
 	
 	/// Form being answered.
 	public var questionnaire: Reference?
@@ -80,13 +86,22 @@ open class QuestionnaireResponse: DomainResource {
 					errors.append(FHIRJSONError(key: "authored", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["encounter"] {
-				presentKeys.insert("encounter")
-				if let val = exist as? FHIRJSON {
-					self.encounter = Reference(json: val, owner: self)
+			if let exist = js["basedOn"] {
+				presentKeys.insert("basedOn")
+				if let val = exist as? [FHIRJSON] {
+					self.basedOn = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "basedOn", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["context"] {
+				presentKeys.insert("context")
+				if let val = exist as? FHIRJSON {
+					self.context = Reference(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "context", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["identifier"] {
@@ -105,6 +120,15 @@ open class QuestionnaireResponse: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["parent"] {
+				presentKeys.insert("parent")
+				if let val = exist as? [FHIRJSON] {
+					self.parent = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "parent", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["questionnaire"] {
@@ -159,14 +183,20 @@ open class QuestionnaireResponse: DomainResource {
 		if let authored = self.authored {
 			json["authored"] = authored.asJSON()
 		}
-		if let encounter = self.encounter {
-			json["encounter"] = encounter.asJSON()
+		if let basedOn = self.basedOn {
+			json["basedOn"] = basedOn.map() { $0.asJSON() }
+		}
+		if let context = self.context {
+			json["context"] = context.asJSON()
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
 		}
 		if let item = self.item {
 			json["item"] = item.map() { $0.asJSON() }
+		}
+		if let parent = self.parent {
+			json["parent"] = parent.map() { $0.asJSON() }
 		}
 		if let questionnaire = self.questionnaire {
 			json["questionnaire"] = questionnaire.asJSON()

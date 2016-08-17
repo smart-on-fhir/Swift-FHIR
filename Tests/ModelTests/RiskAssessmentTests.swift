@@ -2,7 +2,7 @@
 //  RiskAssessmentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -39,8 +39,8 @@ class RiskAssessmentTests: XCTestCase {
 		XCTAssertEqual(inst.basis?[0].reference, "Patient/example")
 		XCTAssertEqual(inst.basis?[1].reference, "DiagnosticReport/lipids")
 		XCTAssertEqual(inst.basis?[2].reference, "Observation/blood-pressure")
-		XCTAssertEqual(inst.date?.description, "2014-07-19T16:04:00Z")
 		XCTAssertEqual(inst.id, "cardiac")
+		XCTAssertEqual(inst.occurrenceDateTime?.description, "2014-07-19T16:04:00Z")
 		XCTAssertEqual(inst.performer?.display, "http://cvdrisk.nhlbi.nih.gov/#cholesterol")
 		XCTAssertEqual(inst.prediction?[0].outcome?.text, "Heart Attack")
 		XCTAssertEqual(inst.prediction?[0].probabilityDecimal, NSDecimalNumber(string: "0.02"))
@@ -52,6 +52,7 @@ class RiskAssessmentTests: XCTestCase {
 		XCTAssertEqual(inst.prediction?[0].whenRange?.low?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.prediction?[0].whenRange?.low?.unit, "years")
 		XCTAssertEqual(inst.prediction?[0].whenRange?.low?.value, NSDecimalNumber(string: "39"))
+		XCTAssertEqual(inst.status, "final")
 		XCTAssertEqual(inst.text?.status, "additional")
 		
 		return inst
@@ -72,6 +73,7 @@ class RiskAssessmentTests: XCTestCase {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example-population.json")
 		
 		XCTAssertEqual(inst.id, "population")
+		XCTAssertEqual(inst.status, "final")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
@@ -93,14 +95,15 @@ class RiskAssessmentTests: XCTestCase {
 		
 		XCTAssertEqual(inst.condition?.display, "Ischemic Stroke")
 		XCTAssertEqual(inst.condition?.reference, "Condition/stroke")
-		XCTAssertEqual(inst.date?.description, "2010-11-22")
 		XCTAssertEqual(inst.id, "prognosis")
+		XCTAssertEqual(inst.occurrenceDateTime?.description, "2010-11-22")
 		XCTAssertEqual(inst.prediction?[0].outcome?.coding?[0].code, "249943000:363698007=72098002,260868000=6934004")
 		XCTAssertEqual(inst.prediction?[0].outcome?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.prediction?[0].outcome?.text, "permanent weakness of the left arm")
 		XCTAssertEqual(inst.prediction?[0].probabilityCodeableConcept?.coding?[0].code, "moderate")
 		XCTAssertEqual(inst.prediction?[0].probabilityCodeableConcept?.coding?[0].display, "moderate likelihood")
 		XCTAssertEqual(inst.prediction?[0].probabilityCodeableConcept?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/risk-probability")
+		XCTAssertEqual(inst.status, "final")
 		XCTAssertEqual(inst.text?.status, "additional")
 		
 		return inst
@@ -121,9 +124,9 @@ class RiskAssessmentTests: XCTestCase {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example.json")
 		
 		XCTAssertEqual(inst.basis?[0].reference, "List/prognosis")
-		XCTAssertEqual(inst.date?.description, "2006-01-13T23:01:00Z")
 		XCTAssertEqual(inst.id, "genetic")
 		XCTAssertEqual(inst.method?.coding?[0].code, "BRCAPRO")
+		XCTAssertEqual(inst.occurrenceDateTime?.description, "2006-01-13T23:01:00Z")
 		XCTAssertEqual(inst.prediction?[0].outcome?.text, "Breast Cancer")
 		XCTAssertEqual(inst.prediction?[0].probabilityDecimal, NSDecimalNumber(string: "0.000168"))
 		XCTAssertEqual(inst.prediction?[0].whenRange?.high?.code, "a")
@@ -200,6 +203,7 @@ class RiskAssessmentTests: XCTestCase {
 		XCTAssertEqual(inst.prediction?[7].whenRange?.low?.system?.absoluteString, "http://unitsofmeasure.org")
 		XCTAssertEqual(inst.prediction?[7].whenRange?.low?.unit, "years")
 		XCTAssertEqual(inst.prediction?[7].whenRange?.low?.value, NSDecimalNumber(string: "83"))
+		XCTAssertEqual(inst.status, "final")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

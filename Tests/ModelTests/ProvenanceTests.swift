@@ -2,7 +2,7 @@
 //  ProvenanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -57,7 +57,7 @@ class ProvenanceTests: XCTestCase {
 		XCTAssertEqual(inst.signature?[0].when?.description, "2015-08-27T08:39:24+10:00")
 		XCTAssertEqual(inst.signature?[0].whoReference?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.target?[0].reference, "DocumentReference/example")
-		XCTAssertEqual(inst.text?.div, "<div>procedure record authored on 27-June 2015 by Harold Hippocrates, MD Content extracted from Referral received 26-June</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">procedure record authored on 27-June 2015 by Harold Hippocrates, MD Content extracted from Referral received 26-June</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
@@ -103,7 +103,7 @@ class ProvenanceTests: XCTestCase {
 		XCTAssertEqual(inst.reason?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.recorded?.description, "2015-06-27T08:39:24+10:00")
 		XCTAssertEqual(inst.target?[0].reference, "Procedure/example/_history/1")
-		XCTAssertEqual(inst.text?.div, "<div>procedure record authored on 27-June 2015 by Harold Hippocrates, MD Content extracted from Referral received 26-June</div>")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">procedure record authored on 27-June 2015 by Harold Hippocrates, MD Content extracted from Referral received 26-June</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

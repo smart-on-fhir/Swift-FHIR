@@ -2,7 +2,7 @@
 //  QuestionnaireResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -195,7 +195,6 @@ class QuestionnaireResponseTests: XCTestCase {
 		XCTAssertEqual(inst.authored?.description, "2013-02-19T14:15:00-05:00")
 		XCTAssertEqual(inst.contained?[0].id, "patsub")
 		XCTAssertEqual(inst.contained?[1].id, "questauth")
-		XCTAssertEqual(inst.contained?[2].id, "obs.pt-category")
 		XCTAssertEqual(inst.id, "3141")
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].item?[0].item?[0].answer?[0].valueCoding?.code, "1")
 		XCTAssertEqual(inst.item?[0].item?[0].answer?[0].item?[0].item?[0].answer?[0].valueCoding?.system?.absoluteString, "http://cancer.questionnaire.org/system/code/yesno")

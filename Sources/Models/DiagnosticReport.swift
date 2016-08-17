@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -57,7 +57,7 @@ open class DiagnosticReport: DomainResource {
 	public var issued: Instant?
 	
 	/// Responsible Diagnostic Service.
-	public var performer: Reference?
+	public var performer: [Reference]?
 	
 	/// Entire report as issued.
 	public var presentedForm: [Attachment]?
@@ -84,7 +84,7 @@ open class DiagnosticReport: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept, effectiveDateTime: DateTime, effectivePeriod: Period, issued: Instant, performer: Reference, status: String, subject: Reference) {
+	public convenience init(code: CodeableConcept, effectiveDateTime: DateTime, effectivePeriod: Period, issued: Instant, performer: [Reference], status: String, subject: Reference) {
 		self.init(json: nil)
 		self.code = code
 		self.effectiveDateTime = effectiveDateTime
@@ -205,11 +205,11 @@ open class DiagnosticReport: DomainResource {
 			}
 			if let exist = js["performer"] {
 				presentKeys.insert("performer")
-				if let val = exist as? FHIRJSON {
-					self.performer = Reference(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.performer = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "performer", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "performer", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -321,7 +321,7 @@ open class DiagnosticReport: DomainResource {
 			json["issued"] = issued.asJSON()
 		}
 		if let performer = self.performer {
-			json["performer"] = performer.asJSON()
+			json["performer"] = performer.map() { $0.asJSON() }
 		}
 		if let presentedForm = self.presentedForm {
 			json["presentedForm"] = presentedForm.map() { $0.asJSON() }

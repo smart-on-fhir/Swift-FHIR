@@ -2,7 +2,7 @@
 //  AuditEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -26,7 +26,7 @@ open class AuditEvent: DomainResource {
 	/// Actor involved in the event.
 	public var agent: [AuditEventAgent]?
 	
-	/// Specific instances of data or objects that have been accessed.
+	/// Data or objects used.
 	public var entity: [AuditEventEntity]?
 	
 	/// Whether the event succeeded or failed.
@@ -41,7 +41,7 @@ open class AuditEvent: DomainResource {
 	/// Time when the event occurred on source.
 	public var recorded: Instant?
 	
-	/// Application systems and processes.
+	/// Audit Event Reporter.
 	public var source: AuditEventSource?
 	
 	/// More specific type/id for the event.
@@ -486,6 +486,8 @@ open class AuditEventAgentNetwork: BackboneElement {
 
 
 /**
+ *  Data or objects used.
+ *
  *  Specific instances of data or objects that have been accessed.
  */
 open class AuditEventEntity: BackboneElement {
@@ -499,10 +501,10 @@ open class AuditEventEntity: BackboneElement {
 	/// Additional Information about the entity.
 	public var detail: [AuditEventEntityDetail]?
 	
-	/// Specific instance of object (e.g. versioned).
+	/// Specific instance of object.
 	public var identifier: Identifier?
 	
-	/// Life-cycle stage for the object.
+	/// Life-cycle stage for the entity.
 	public var lifecycle: Coding?
 	
 	/// Descriptor for entity.
@@ -511,16 +513,16 @@ open class AuditEventEntity: BackboneElement {
 	/// Query parameters.
 	public var query: Base64Binary?
 	
-	/// Specific instance of resource (e.g. versioned).
+	/// Specific instance of resource.
 	public var reference: Reference?
 	
 	/// What role the entity played.
 	public var role: Coding?
 	
-	/// Security labels applied to the object.
+	/// Security labels on the entity.
 	public var securityLabel: [Coding]?
 	
-	/// Type of object involved.
+	/// Type of entity involved.
 	public var type: Coding?
 	
 	
@@ -739,7 +741,9 @@ open class AuditEventEntityDetail: BackboneElement {
 
 
 /**
- *  Application systems and processes.
+ *  Audit Event Reporter.
+ *
+ *  The system that is reporting the event.
  */
 open class AuditEventSource: BackboneElement {
 	override open class var resourceType: String {

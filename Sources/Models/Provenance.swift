@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -406,7 +406,7 @@ open class ProvenanceEntity: BackboneElement {
 	}
 	
 	/// Entity is attributed to this agent.
-	public var agent: ProvenanceAgent?
+	public var agent: [ProvenanceAgent]?
 	
 	/// Human description of entity.
 	public var display: String?
@@ -439,11 +439,11 @@ open class ProvenanceEntity: BackboneElement {
 		if let js = json {
 			if let exist = js["agent"] {
 				presentKeys.insert("agent")
-				if let val = exist as? FHIRJSON {
-					self.agent = ProvenanceAgent(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.agent = ProvenanceAgent.instantiate(fromArray: val, owner: self) as? [ProvenanceAgent]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "agent", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "agent", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["display"] {
@@ -499,7 +499,7 @@ open class ProvenanceEntity: BackboneElement {
 		var json = super.asJSON()
 		
 		if let agent = self.agent {
-			json["agent"] = agent.asJSON()
+			json["agent"] = agent.map() { $0.asJSON() }
 		}
 		if let display = self.display {
 			json["display"] = display.asJSON()

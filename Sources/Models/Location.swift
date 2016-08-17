@@ -2,7 +2,7 @@
 //  Location.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Location) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Location) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -23,8 +23,14 @@ open class Location: DomainResource {
 	/// Physical location.
 	public var address: Address?
 	
+	/// A list of alternate names that the location is known as, or was known as in the past.
+	public var alias: [String]?
+	
 	/// Additional details about the location that could be displayed as further information to identify the location beyond its name.
 	public var description_fhir: String?
+	
+	/// Technical endpoints providing access to services operated for the location.
+	public var endpoint: [Reference]?
 	
 	/// Unique code or number identifying the location to its users.
 	public var identifier: [Identifier]?
@@ -74,6 +80,15 @@ open class Location: DomainResource {
 					errors.append(FHIRJSONError(key: "address", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["alias"] {
+				presentKeys.insert("alias")
+				if let val = exist as? [String] {
+					self.alias = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "alias", wants: Array<String>.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["description"] {
 				presentKeys.insert("description")
 				if let val = exist as? String {
@@ -81,6 +96,15 @@ open class Location: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["endpoint"] {
+				presentKeys.insert("endpoint")
+				if let val = exist as? [FHIRJSON] {
+					self.endpoint = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "endpoint", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["identifier"] {
@@ -183,8 +207,18 @@ open class Location: DomainResource {
 		if let address = self.address {
 			json["address"] = address.asJSON()
 		}
+		if let alias = self.alias {
+			var arr = [Any]()
+			for val in alias {
+				arr.append(val.asJSON())
+			}
+			json["alias"] = arr
+		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
+		}
+		if let endpoint = self.endpoint {
+			json["endpoint"] = endpoint.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON() }

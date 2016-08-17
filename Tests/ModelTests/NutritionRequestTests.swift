@@ -1,8 +1,8 @@
 //
-//  NutritionOrderTests.swift
+//  NutritionRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -10,31 +10,31 @@ import XCTest
 import SwiftFHIR
 
 
-class NutritionOrderTests: XCTestCase {
+class NutritionRequestTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.NutritionOrder {
+	func instantiateFrom(filename: String) throws -> SwiftFHIR.NutritionRequest {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.NutritionOrder {
-		let instance = SwiftFHIR.NutritionOrder(json: json)
+	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.NutritionRequest {
+		let instance = SwiftFHIR.NutritionRequest(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testNutritionOrder1() {
+	func testNutritionRequest1() {
 		do {
-			let instance = try runNutritionOrder1()
-			try runNutritionOrder1(instance.asJSON())
+			let instance = try runNutritionRequest1()
+			try runNutritionRequest1(instance.asJSON())
 		}
 		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
 		}
 	}
 	
 	@discardableResult
-	func runNutritionOrder1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-cardiacdiet.json")
+	func runNutritionRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionRequest {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionrequest-example-cardiacdiet.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance?[0].display, "Cashew Nuts")
 		XCTAssertEqual(inst.allergyIntolerance?[0].reference, "AllergyIntolerance/example")
@@ -48,7 +48,7 @@ class NutritionOrderTests: XCTestCase {
 		XCTAssertEqual(inst.foodPreferenceModifier?[0].coding?[0].code, "dairy-free")
 		XCTAssertEqual(inst.foodPreferenceModifier?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/diet")
 		XCTAssertEqual(inst.id, "cardiacdiet")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealthhospital.org/nutrition-orders")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealthhospital.org/nutrition-requests")
 		XCTAssertEqual(inst.identifier?[0].value, "123")
 		XCTAssertEqual(inst.oralDiet?.instruction, "Starting on 2/10 breakfast, maximum 400 ml fluids per meal")
 		XCTAssertEqual(inst.oralDiet?.nutrient?[0].amount?.code, "g")
@@ -89,19 +89,19 @@ class NutritionOrderTests: XCTestCase {
 		return inst
 	}
 	
-	func testNutritionOrder2() {
+	func testNutritionRequest2() {
 		do {
-			let instance = try runNutritionOrder2()
-			try runNutritionOrder2(instance.asJSON())
+			let instance = try runNutritionRequest2()
+			try runNutritionRequest2(instance.asJSON())
 		}
 		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
 		}
 	}
 	
 	@discardableResult
-	func runNutritionOrder2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-diabeticdiet.json")
+	func runNutritionRequest2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionRequest {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionrequest-example-diabeticdiet.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance?[0].display, "Cashew Nuts")
 		XCTAssertEqual(inst.allergyIntolerance?[0].reference, "AllergyIntolerance/example")
@@ -115,7 +115,7 @@ class NutritionOrderTests: XCTestCase {
 		XCTAssertEqual(inst.foodPreferenceModifier?[0].coding?[0].code, "dairy-free")
 		XCTAssertEqual(inst.foodPreferenceModifier?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/diet")
 		XCTAssertEqual(inst.id, "diabeticdiet")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealthhospital.org/nutrition-orders")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealthhospital.org/nutrition-requests")
 		XCTAssertEqual(inst.identifier?[0].value, "123")
 		XCTAssertEqual(inst.oralDiet?.nutrient?[0].amount?.code, "g")
 		XCTAssertEqual(inst.oralDiet?.nutrient?[0].amount?.system?.absoluteString, "http://unitsofmeasure.org")
@@ -145,19 +145,19 @@ class NutritionOrderTests: XCTestCase {
 		return inst
 	}
 	
-	func testNutritionOrder3() {
+	func testNutritionRequest3() {
 		do {
-			let instance = try runNutritionOrder3()
-			try runNutritionOrder3(instance.asJSON())
+			let instance = try runNutritionRequest3()
+			try runNutritionRequest3(instance.asJSON())
 		}
 		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
 		}
 	}
 	
 	@discardableResult
-	func runNutritionOrder3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-diabeticsupplement.json")
+	func runNutritionRequest3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionRequest {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionrequest-example-diabeticsupplement.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance?[0].display, "Cashew Nuts")
 		XCTAssertEqual(inst.allergyIntolerance?[0].reference, "AllergyIntolerance/example")
@@ -171,7 +171,7 @@ class NutritionOrderTests: XCTestCase {
 		XCTAssertEqual(inst.foodPreferenceModifier?[0].coding?[0].code, "kosher")
 		XCTAssertEqual(inst.foodPreferenceModifier?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/diet")
 		XCTAssertEqual(inst.id, "diabeticsupplement")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealthhospital.org/nutrition-orders")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealthhospital.org/nutrition-requests")
 		XCTAssertEqual(inst.identifier?[0].value, "123")
 		XCTAssertEqual(inst.orderer?.display, "Dr Adam Careful")
 		XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
@@ -200,19 +200,19 @@ class NutritionOrderTests: XCTestCase {
 		return inst
 	}
 	
-	func testNutritionOrder4() {
+	func testNutritionRequest4() {
 		do {
-			let instance = try runNutritionOrder4()
-			try runNutritionOrder4(instance.asJSON())
+			let instance = try runNutritionRequest4()
+			try runNutritionRequest4(instance.asJSON())
 		}
 		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
 		}
 	}
 	
 	@discardableResult
-	func runNutritionOrder4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-energysupplement.json")
+	func runNutritionRequest4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionRequest {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionrequest-example-energysupplement.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance?[0].display, "Cashew Nuts")
 		XCTAssertEqual(inst.allergyIntolerance?[0].reference, "AllergyIntolerance/example")
@@ -226,7 +226,7 @@ class NutritionOrderTests: XCTestCase {
 		XCTAssertEqual(inst.foodPreferenceModifier?[0].coding?[0].code, "kosher")
 		XCTAssertEqual(inst.foodPreferenceModifier?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/diet")
 		XCTAssertEqual(inst.id, "energysupplement")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealthhospital.org/nutrition-orders")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealthhospital.org/nutrition-requests")
 		XCTAssertEqual(inst.identifier?[0].value, "123")
 		XCTAssertEqual(inst.orderer?.display, "Dr Adam Careful")
 		XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
@@ -252,19 +252,19 @@ class NutritionOrderTests: XCTestCase {
 		return inst
 	}
 	
-	func testNutritionOrder5() {
+	func testNutritionRequest5() {
 		do {
-			let instance = try runNutritionOrder5()
-			try runNutritionOrder5(instance.asJSON())
+			let instance = try runNutritionRequest5()
+			try runNutritionRequest5(instance.asJSON())
 		}
 		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
 		}
 	}
 	
 	@discardableResult
-	func runNutritionOrder5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-enteralbolus.json")
+	func runNutritionRequest5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionRequest {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionrequest-example-enteralbolus.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance?[0].display, "Cashew Nuts")
 		XCTAssertEqual(inst.allergyIntolerance?[0].reference, "AllergyIntolerance/example")
@@ -318,19 +318,19 @@ class NutritionOrderTests: XCTestCase {
 		return inst
 	}
 	
-	func testNutritionOrder6() {
+	func testNutritionRequest6() {
 		do {
-			let instance = try runNutritionOrder6()
-			try runNutritionOrder6(instance.asJSON())
+			let instance = try runNutritionRequest6()
+			try runNutritionRequest6(instance.asJSON())
 		}
 		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
 		}
 	}
 	
 	@discardableResult
-	func runNutritionOrder6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-enteralcontinuous.json")
+	func runNutritionRequest6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionRequest {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionrequest-example-enteralcontinuous.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2014-09-17")
 		XCTAssertEqual(inst.encounter?.display, "Inpatient")
@@ -379,19 +379,19 @@ class NutritionOrderTests: XCTestCase {
 		return inst
 	}
 	
-	func testNutritionOrder7() {
+	func testNutritionRequest7() {
 		do {
-			let instance = try runNutritionOrder7()
-			try runNutritionOrder7(instance.asJSON())
+			let instance = try runNutritionRequest7()
+			try runNutritionRequest7(instance.asJSON())
 		}
 		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
 		}
 	}
 	
 	@discardableResult
-	func runNutritionOrder7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-fiberrestricteddiet.json")
+	func runNutritionRequest7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionRequest {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionrequest-example-fiberrestricteddiet.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance?[0].display, "Cashew Nuts")
 		XCTAssertEqual(inst.allergyIntolerance?[0].reference, "AllergyIntolerance/example")
@@ -405,7 +405,7 @@ class NutritionOrderTests: XCTestCase {
 		XCTAssertEqual(inst.foodPreferenceModifier?[0].coding?[0].code, "dairy-free")
 		XCTAssertEqual(inst.foodPreferenceModifier?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/diet")
 		XCTAssertEqual(inst.id, "fiberrestricteddiet")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealthhospital.org/nutrition-orders")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealthhospital.org/nutrition-requests")
 		XCTAssertEqual(inst.identifier?[0].value, "123")
 		XCTAssertEqual(inst.oralDiet?.nutrient?[0].amount?.code, "g")
 		XCTAssertEqual(inst.oralDiet?.nutrient?[0].amount?.system?.absoluteString, "http://unitsofmeasure.org")
@@ -442,19 +442,19 @@ class NutritionOrderTests: XCTestCase {
 		return inst
 	}
 	
-	func testNutritionOrder8() {
+	func testNutritionRequest8() {
 		do {
-			let instance = try runNutritionOrder8()
-			try runNutritionOrder8(instance.asJSON())
+			let instance = try runNutritionRequest8()
+			try runNutritionRequest8(instance.asJSON())
 		}
 		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
 		}
 	}
 	
 	@discardableResult
-	func runNutritionOrder8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-infantenteral.json")
+	func runNutritionRequest8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionRequest {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionrequest-example-infantenteral.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2014-09-17")
 		XCTAssertEqual(inst.encounter?.display, "Inpatient")
@@ -501,25 +501,25 @@ class NutritionOrderTests: XCTestCase {
 		return inst
 	}
 	
-	func testNutritionOrder9() {
+	func testNutritionRequest9() {
 		do {
-			let instance = try runNutritionOrder9()
-			try runNutritionOrder9(instance.asJSON())
+			let instance = try runNutritionRequest9()
+			try runNutritionRequest9(instance.asJSON())
 		}
 		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
 		}
 	}
 	
 	@discardableResult
-	func runNutritionOrder9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-proteinsupplement.json")
+	func runNutritionRequest9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionRequest {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionrequest-example-proteinsupplement.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2014-09-17")
 		XCTAssertEqual(inst.encounter?.display, "Inpatient")
 		XCTAssertEqual(inst.encounter?.reference, "Encounter/example")
 		XCTAssertEqual(inst.id, "proteinsupplement")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealthhospital.org/nutrition-orders")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealthhospital.org/nutrition-requests")
 		XCTAssertEqual(inst.identifier?[0].value, "123")
 		XCTAssertEqual(inst.orderer?.display, "Dr Adam Careful")
 		XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
@@ -546,23 +546,23 @@ class NutritionOrderTests: XCTestCase {
 		return inst
 	}
 	
-	func testNutritionOrder10() {
+	func testNutritionRequest10() {
 		do {
-			let instance = try runNutritionOrder10()
-			try runNutritionOrder10(instance.asJSON())
+			let instance = try runNutritionRequest10()
+			try runNutritionRequest10(instance.asJSON())
 		}
 		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+			XCTAssertTrue(false, "Must instantiate and test NutritionRequest successfully, but threw")
 		}
 	}
 	
 	@discardableResult
-	func runNutritionOrder10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-pureeddiet-simple.json")
+	func runNutritionRequest10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.NutritionRequest {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionrequest-example-pureeddiet-simple.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2014-09-17")
 		XCTAssertEqual(inst.id, "pureeddiet-simple")
-		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealthhospital.org/nutrition-orders")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealthhospital.org/nutrition-requests")
 		XCTAssertEqual(inst.identifier?[0].value, "123")
 		XCTAssertEqual(inst.oralDiet?.fluidConsistencyType?[0].coding?[0].code, "439021000124105")
 		XCTAssertEqual(inst.oralDiet?.fluidConsistencyType?[0].coding?[0].display, "Dietary liquid consistency - nectar thick liquid")

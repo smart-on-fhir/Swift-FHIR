@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -402,6 +402,9 @@ open class BundleEntryResponse: BackboneElement {
 	/// The location, if the operation returns a location.
 	public var location: URL?
 	
+	/// OperationOutcome with hints and warnings (for batch/transaction).
+	public var outcome: Resource?
+	
 	/// Status response code (text optional).
 	public var status: String?
 	
@@ -447,6 +450,15 @@ open class BundleEntryResponse: BackboneElement {
 					errors.append(FHIRJSONError(key: "location", wants: String.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["outcome"] {
+				presentKeys.insert("outcome")
+				if let val = exist as? FHIRJSON {
+					self.outcome = Resource.instantiate(fromJSON: val, owner: self) as? Resource
+				}
+				else {
+					errors.append(FHIRJSONError(key: "outcome", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["status"] {
 				presentKeys.insert("status")
 				if let val = exist as? String {
@@ -474,6 +486,9 @@ open class BundleEntryResponse: BackboneElement {
 		}
 		if let location = self.location {
 			json["location"] = location.asJSON()
+		}
+		if let outcome = self.outcome {
+			json["outcome"] = outcome.asJSON()
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()

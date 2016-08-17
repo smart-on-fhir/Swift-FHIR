@@ -2,7 +2,7 @@
 //  AppointmentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 

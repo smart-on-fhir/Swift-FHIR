@@ -2,7 +2,7 @@
 //  Linkage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Linkage) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Linkage) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -14,8 +14,8 @@ import Foundation
  *
  *  Identifies two or more records (resource instances) that are referring to the same real-world "occurrence".
  */
-public class Linkage: DomainResource {
-	override public class var resourceName: String {
+open class Linkage: DomainResource {
+	override open class var resourceType: String {
 		get { return "Linkage" }
 	}
 	
@@ -37,25 +37,25 @@ public class Linkage: DomainResource {
 		self.item = item
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["author"] {
+			if let exist = js["author"] {
 				presentKeys.insert("author")
 				if let val = exist as? FHIRJSON {
 					self.author = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["item"] {
+			if let exist = js["item"] {
 				presentKeys.insert("item")
 				if let val = exist as? [FHIRJSON] {
 					self.item = LinkageItem.instantiate(fromArray: val, owner: self) as? [LinkageItem]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -65,14 +65,14 @@ public class Linkage: DomainResource {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let author = self.author {
 			json["author"] = author.asJSON()
 		}
 		if let item = self.item {
-			json["item"] = LinkageItem.asJSONArray(item)
+			json["item"] = item.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -86,8 +86,8 @@ public class Linkage: DomainResource {
  *  Identifies one of the records that is considered to refer to the same real-world occurrence as well as how the items
  *  hould be evaluated within the collection of linked items.
  */
-public class LinkageItem: BackboneElement {
-	override public class var resourceName: String {
+open class LinkageItem: BackboneElement {
+	override open class var resourceType: String {
 		get { return "LinkageItem" }
 	}
 	
@@ -110,28 +110,28 @@ public class LinkageItem: BackboneElement {
 		self.type = type
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["resource"] {
+			if let exist = js["resource"] {
 				presentKeys.insert("resource")
 				if let val = exist as? FHIRJSON {
 					self.resource = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "resource", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "resource", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "resource"))
 			}
-			if let exist: AnyObject = js["type"] {
+			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -141,7 +141,7 @@ public class LinkageItem: BackboneElement {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let resource = self.resource {

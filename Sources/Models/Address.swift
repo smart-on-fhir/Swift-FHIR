@@ -2,7 +2,7 @@
 //  Address.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Address) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Address) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -16,8 +16,8 @@ import Foundation
  *  type may be used to convey addresses for use in delivering mail as well as for visiting locations and which might
  *  not be valid for mail delivery.  There are a variety of postal address formats defined around the world.
  */
-public class Address: Element {
-	override public class var resourceName: String {
+open class Address: Element {
+	override open class var resourceType: String {
 		get { return "Address" }
 	}
 	
@@ -57,104 +57,104 @@ public class Address: Element {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["city"] {
+			if let exist = js["city"] {
 				presentKeys.insert("city")
 				if let val = exist as? String {
 					self.city = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "city", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "city", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["country"] {
+			if let exist = js["country"] {
 				presentKeys.insert("country")
 				if let val = exist as? String {
 					self.country = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "country", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "country", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["district"] {
+			if let exist = js["district"] {
 				presentKeys.insert("district")
 				if let val = exist as? String {
 					self.district = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "district", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "district", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["line"] {
+			if let exist = js["line"] {
 				presentKeys.insert("line")
 				if let val = exist as? [String] {
 					self.line = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "line", wants: Array<String>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "line", wants: Array<String>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["period"] {
+			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
 					self.period = Period(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["postalCode"] {
+			if let exist = js["postalCode"] {
 				presentKeys.insert("postalCode")
 				if let val = exist as? String {
 					self.postalCode = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "postalCode", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "postalCode", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["state"] {
+			if let exist = js["state"] {
 				presentKeys.insert("state")
 				if let val = exist as? String {
 					self.state = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "state", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "state", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["text"] {
+			if let exist = js["text"] {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "text", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["type"] {
+			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["use"] {
+			if let exist = js["use"] {
 				presentKeys.insert("use")
 				if let val = exist as? String {
 					self.use = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "use", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "use", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let city = self.city {
@@ -167,7 +167,7 @@ public class Address: Element {
 			json["district"] = district.asJSON()
 		}
 		if let line = self.line {
-			var arr = [AnyObject]()
+			var arr = [Any]()
 			for val in line {
 				arr.append(val.asJSON())
 			}

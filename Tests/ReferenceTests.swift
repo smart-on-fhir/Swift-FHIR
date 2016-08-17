@@ -16,7 +16,7 @@ Test reference resolving.
 class ReferenceTests: XCTestCase {
 	
 	func testContainedReference() {
-		if let path = Bundle(for: self.dynamicType).path(forResource: "ReferenceContained1", ofType: "json", inDirectory: "TestResources") {
+		if let path = Bundle(for: type(of: self)).path(forResource: "ReferenceContained1", ofType: "json", inDirectory: "TestResources") {
 			let order1 = try! MedicationOrder.instantiate(fromPath: path)
 			XCTAssertEqual("order-ref-contained", order1.id)
 			XCTAssertNotNil(order1.medicationReference)
@@ -28,7 +28,7 @@ class ReferenceTests: XCTestCase {
 			XCTAssertTrue(false, "Test resource not bundled")
 		}
 		
-		if let path = Bundle(for: self.dynamicType).path(forResource: "ReferenceContained2", ofType: "json", inDirectory: "TestResources") {
+		if let path = Bundle(for: type(of: self)).path(forResource: "ReferenceContained2", ofType: "json", inDirectory: "TestResources") {
 			let order1 = try! MedicationOrder.instantiate(fromPath: path)
 			XCTAssertEqual("order-ref-contained-wrong", order1.id)
 			XCTAssertNotNil(order1.medicationReference)
@@ -42,35 +42,35 @@ class ReferenceTests: XCTestCase {
 	}
 	
 	func testBundledReference() {
-		if let path = Bundle(for: self.dynamicType).path(forResource: "ReferenceBundled", ofType: "json", inDirectory: "TestResources") {
+		if let path = Bundle(for: type(of: self)).path(forResource: "ReferenceBundled", ofType: "json", inDirectory: "TestResources") {
 			let bundle = try! Bundle.instantiate(fromPath: path)
-			XCTAssertEqual("Bundle", bundle.dynamicType.resourceName)
+			XCTAssertEqual("Bundle", type(of: bundle).resourceType)
 			
 			// get resources
-			let pat23 = bundle.entry?[0].resource as? Patient
-			XCTAssertEqual("Patient", pat23?.dynamicType.resourceName)
-			XCTAssertEqual("Darth", pat23?.name?[0].given?[0])
-			let patURN = bundle.entry?[1].resource as? Patient
-			XCTAssertEqual("Patient", patURN?.dynamicType.resourceName)
-			XCTAssertEqual("Ben", patURN?.name?[0].given?[0])
-			let obs123 = bundle.entry?[2].resource as? Observation
-			XCTAssertEqual("Observation", obs123?.dynamicType.resourceName)
-			XCTAssertEqual("123", obs123?.id)
-			let obs56 = bundle.entry?[3].resource as? Observation
-			XCTAssertEqual("Observation", obs56?.dynamicType.resourceName)
-			XCTAssertEqual("56", obs56?.id)
-			let obs34 = bundle.entry?[4].resource as? Observation
-			XCTAssertEqual("Observation", obs34?.dynamicType.resourceName)
-			XCTAssertEqual("34", obs34?.id)
+			let pat23 = bundle.entry?[0].resource as! Patient
+			XCTAssertEqual("Patient", type(of: pat23).resourceType)
+			XCTAssertEqual("Darth", pat23.name?[0].given?[0])
+			let patURN = bundle.entry?[1].resource as! Patient
+			XCTAssertEqual("Patient", type(of: patURN).resourceType)
+			XCTAssertEqual("Ben", patURN.name?[0].given?[0])
+			let obs123 = bundle.entry?[2].resource as! Observation
+			XCTAssertEqual("Observation", type(of: obs123).resourceType)
+			XCTAssertEqual("123", obs123.id)
+			let obs56 = bundle.entry?[3].resource as! Observation
+			XCTAssertEqual("Observation", type(of: obs56).resourceType)
+			XCTAssertEqual("56", obs56.id)
+			let obs34 = bundle.entry?[4].resource as! Observation
+			XCTAssertEqual("Observation", type(of: obs34).resourceType)
+			XCTAssertEqual("34", obs34.id)
 			
 			// test resolving
 			bundle._server = FHIROpenServer(baseURL: URL(string: "https://fhir.smarthealthit.org")!)
-			let res1 = obs123!.subject!.resolved(Patient.self)      // relative reference, bundled
+			let res1 = obs123.subject!.resolved(Patient.self)      // relative reference, bundled
 			XCTAssertTrue(res1 === pat23)
-			let res2 = obs123!.subject!.resolved(Medication.self)
+			let res2 = obs123.subject!.resolved(Medication.self)
 			XCTAssertNil(res2, "Must not resolve on type mismatch")
 			
-			let res3 = obs56!.subject!.resolved(Patient.self)       // bundled, URN-referenced
+			let res3 = obs56.subject!.resolved(Patient.self)       // bundled, URN-referenced
 			XCTAssertTrue(res3 === patURN)
 			
 			/* TODO: this does resolve now, update test
@@ -89,7 +89,7 @@ class ReferenceTests: XCTestCase {
 	}
 	
 	func testRelativeReference() {
-		if let path = Bundle(for: self.dynamicType).path(forResource: "ReferenceRelative", ofType: "json", inDirectory: "TestResources") {
+		if let path = Bundle(for: type(of: self)).path(forResource: "ReferenceRelative", ofType: "json", inDirectory: "TestResources") {
 			let order1 = try! MedicationOrder.instantiate(fromPath: path)
 			XCTAssertEqual("order-ref-relative", order1.id)
 			XCTAssertEqual("Medication/med-1234", order1.medicationReference?.reference)
@@ -110,7 +110,7 @@ class ReferenceTests: XCTestCase {
 	}
 	
 	func testAbsoluteReference() {
-		if let path = Bundle(for: self.dynamicType).path(forResource: "ReferenceAbsolute", ofType: "json", inDirectory: "TestResources") {
+		if let path = Bundle(for: type(of: self)).path(forResource: "ReferenceAbsolute", ofType: "json", inDirectory: "TestResources") {
 			let order1 = try! MedicationOrder.instantiate(fromPath: path)
 			XCTAssertEqual("order-ref-absolute", order1.id)
 			XCTAssertEqual("https://fhir-open-api-dstu2.smarthealthit.org/Medication/1", order1.medicationReference?.reference)

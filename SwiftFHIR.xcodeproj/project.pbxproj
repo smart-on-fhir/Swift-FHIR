@@ -1390,6 +1390,7 @@
 					EE684C1D19A789BA00B5A2C0 = {
 						CreatedOnToolsVersion = 6.0;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					EE684C2819A789BA00B5A2C0 = {
 						CreatedOnToolsVersion = 6.0;
@@ -2154,6 +2155,7 @@
 		EE684C3219A789BA00B5A2C0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2174,6 +2176,7 @@
 		EE684C3319A789BA00B5A2C0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;

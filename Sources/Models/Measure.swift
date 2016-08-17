@@ -2,7 +2,7 @@
 //  Measure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Measure) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Measure) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -14,8 +14,8 @@ import Foundation
  *
  *  The Measure resource provides the definition of a quality measure.
  */
-public class Measure: DomainResource {
-	override public class var resourceName: String {
+open class Measure: DomainResource {
+	override open class var resourceType: String {
 		get { return "Measure" }
 	}
 	
@@ -70,149 +70,149 @@ public class Measure: DomainResource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["clinicalRecommendationStatement"] {
+			if let exist = js["clinicalRecommendationStatement"] {
 				presentKeys.insert("clinicalRecommendationStatement")
 				if let val = exist as? String {
 					self.clinicalRecommendationStatement = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "clinicalRecommendationStatement", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "clinicalRecommendationStatement", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["definition"] {
+			if let exist = js["definition"] {
 				presentKeys.insert("definition")
 				if let val = exist as? String {
 					self.definition = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "definition", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "definition", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["disclaimer"] {
+			if let exist = js["disclaimer"] {
 				presentKeys.insert("disclaimer")
 				if let val = exist as? String {
 					self.disclaimer = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "disclaimer", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "disclaimer", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["group"] {
+			if let exist = js["group"] {
 				presentKeys.insert("group")
 				if let val = exist as? [FHIRJSON] {
 					self.group = MeasureGroup.instantiate(fromArray: val, owner: self) as? [MeasureGroup]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "group", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "group", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["guidance"] {
+			if let exist = js["guidance"] {
 				presentKeys.insert("guidance")
 				if let val = exist as? String {
 					self.guidance = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "guidance", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "guidance", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["improvementNotation"] {
+			if let exist = js["improvementNotation"] {
 				presentKeys.insert("improvementNotation")
 				if let val = exist as? String {
 					self.improvementNotation = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "improvementNotation", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "improvementNotation", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["library"] {
+			if let exist = js["library"] {
 				presentKeys.insert("library")
 				if let val = exist as? [FHIRJSON] {
 					self.library = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "library", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "library", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["moduleMetadata"] {
+			if let exist = js["moduleMetadata"] {
 				presentKeys.insert("moduleMetadata")
 				if let val = exist as? FHIRJSON {
 					self.moduleMetadata = ModuleMetadata(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "moduleMetadata", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "moduleMetadata", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["rateAggregation"] {
+			if let exist = js["rateAggregation"] {
 				presentKeys.insert("rateAggregation")
 				if let val = exist as? String {
 					self.rateAggregation = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "rateAggregation", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "rateAggregation", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["rationale"] {
+			if let exist = js["rationale"] {
 				presentKeys.insert("rationale")
 				if let val = exist as? String {
 					self.rationale = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "rationale", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "rationale", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["riskAdjustment"] {
+			if let exist = js["riskAdjustment"] {
 				presentKeys.insert("riskAdjustment")
 				if let val = exist as? String {
 					self.riskAdjustment = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "riskAdjustment", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "riskAdjustment", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["scoring"] {
+			if let exist = js["scoring"] {
 				presentKeys.insert("scoring")
 				if let val = exist as? String {
 					self.scoring = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "scoring", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "scoring", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["set"] {
+			if let exist = js["set"] {
 				presentKeys.insert("set")
 				if let val = exist as? String {
 					self.set = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "set", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "set", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["supplementalData"] {
+			if let exist = js["supplementalData"] {
 				presentKeys.insert("supplementalData")
 				if let val = exist as? [FHIRJSON] {
 					self.supplementalData = MeasureSupplementalData.instantiate(fromArray: val, owner: self) as? [MeasureSupplementalData]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "supplementalData", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "supplementalData", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["type"] {
+			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? [String] {
 					self.type = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: Array<String>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: Array<String>.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let clinicalRecommendationStatement = self.clinicalRecommendationStatement {
@@ -225,7 +225,7 @@ public class Measure: DomainResource {
 			json["disclaimer"] = disclaimer.asJSON()
 		}
 		if let group = self.group {
-			json["group"] = MeasureGroup.asJSONArray(group)
+			json["group"] = group.map() { $0.asJSON() }
 		}
 		if let guidance = self.guidance {
 			json["guidance"] = guidance.asJSON()
@@ -234,7 +234,7 @@ public class Measure: DomainResource {
 			json["improvementNotation"] = improvementNotation.asJSON()
 		}
 		if let library = self.library {
-			json["library"] = Reference.asJSONArray(library)
+			json["library"] = library.map() { $0.asJSON() }
 		}
 		if let moduleMetadata = self.moduleMetadata {
 			json["moduleMetadata"] = moduleMetadata.asJSON()
@@ -255,10 +255,10 @@ public class Measure: DomainResource {
 			json["set"] = set.asJSON()
 		}
 		if let supplementalData = self.supplementalData {
-			json["supplementalData"] = MeasureSupplementalData.asJSONArray(supplementalData)
+			json["supplementalData"] = supplementalData.map() { $0.asJSON() }
 		}
 		if let type = self.type {
-			var arr = [AnyObject]()
+			var arr = [Any]()
 			for val in type {
 				arr.append(val.asJSON())
 			}
@@ -275,8 +275,8 @@ public class Measure: DomainResource {
  *
  *  A group of population criteria for the measure.
  */
-public class MeasureGroup: BackboneElement {
-	override public class var resourceName: String {
+open class MeasureGroup: BackboneElement {
+	override open class var resourceType: String {
 		get { return "MeasureGroup" }
 	}
 	
@@ -307,62 +307,62 @@ public class MeasureGroup: BackboneElement {
 		self.identifier = identifier
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["description"] {
+			if let exist = js["description"] {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "description", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["identifier"] {
+			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
 					self.identifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "identifier"))
 			}
-			if let exist: AnyObject = js["name"] {
+			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["population"] {
+			if let exist = js["population"] {
 				presentKeys.insert("population")
 				if let val = exist as? [FHIRJSON] {
 					self.population = MeasureGroupPopulation.instantiate(fromArray: val, owner: self) as? [MeasureGroupPopulation]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "population", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "population", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["stratifier"] {
+			if let exist = js["stratifier"] {
 				presentKeys.insert("stratifier")
 				if let val = exist as? [FHIRJSON] {
 					self.stratifier = MeasureGroupStratifier.instantiate(fromArray: val, owner: self) as? [MeasureGroupStratifier]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "stratifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "stratifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let description_fhir = self.description_fhir {
@@ -375,10 +375,10 @@ public class MeasureGroup: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let population = self.population {
-			json["population"] = MeasureGroupPopulation.asJSONArray(population)
+			json["population"] = population.map() { $0.asJSON() }
 		}
 		if let stratifier = self.stratifier {
-			json["stratifier"] = MeasureGroupStratifier.asJSONArray(stratifier)
+			json["stratifier"] = stratifier.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -391,8 +391,8 @@ public class MeasureGroup: BackboneElement {
  *
  *  A population criteria for the measure.
  */
-public class MeasureGroupPopulation: BackboneElement {
-	override public class var resourceName: String {
+open class MeasureGroupPopulation: BackboneElement {
+	override open class var resourceType: String {
 		get { return "MeasureGroupPopulation" }
 	}
 	
@@ -425,58 +425,58 @@ public class MeasureGroupPopulation: BackboneElement {
 		self.type = type
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["criteria"] {
+			if let exist = js["criteria"] {
 				presentKeys.insert("criteria")
 				if let val = exist as? String {
 					self.criteria = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "criteria", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "criteria", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "criteria"))
 			}
-			if let exist: AnyObject = js["description"] {
+			if let exist = js["description"] {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "description", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["identifier"] {
+			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
 					self.identifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "identifier"))
 			}
-			if let exist: AnyObject = js["name"] {
+			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["type"] {
+			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -486,7 +486,7 @@ public class MeasureGroupPopulation: BackboneElement {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let criteria = self.criteria {
@@ -516,8 +516,8 @@ public class MeasureGroupPopulation: BackboneElement {
  *  The stratifier criteria for the measure report, specified as either the name of a valid CQL expression defined
  *  within a referenced library, or a valid FHIR Resource Path.
  */
-public class MeasureGroupStratifier: BackboneElement {
-	override public class var resourceName: String {
+open class MeasureGroupStratifier: BackboneElement {
+	override open class var resourceType: String {
 		get { return "MeasureGroupStratifier" }
 	}
 	
@@ -542,44 +542,44 @@ public class MeasureGroupStratifier: BackboneElement {
 		self.identifier = identifier
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["criteria"] {
+			if let exist = js["criteria"] {
 				presentKeys.insert("criteria")
 				if let val = exist as? String {
 					self.criteria = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "criteria", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "criteria", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["identifier"] {
+			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
 					self.identifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "identifier"))
 			}
-			if let exist: AnyObject = js["path"] {
+			if let exist = js["path"] {
 				presentKeys.insert("path")
 				if let val = exist as? String {
 					self.path = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "path", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "path", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let criteria = self.criteria {
@@ -603,8 +603,8 @@ public class MeasureGroupStratifier: BackboneElement {
  *  The supplemental data criteria for the measure report, specified as either the name of a valid CQL expression within
  *  a referenced library, or a valid FHIR Resource Path.
  */
-public class MeasureSupplementalData: BackboneElement {
-	override public class var resourceName: String {
+open class MeasureSupplementalData: BackboneElement {
+	override open class var resourceType: String {
 		get { return "MeasureSupplementalData" }
 	}
 	
@@ -632,53 +632,53 @@ public class MeasureSupplementalData: BackboneElement {
 		self.identifier = identifier
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["criteria"] {
+			if let exist = js["criteria"] {
 				presentKeys.insert("criteria")
 				if let val = exist as? String {
 					self.criteria = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "criteria", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "criteria", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["identifier"] {
+			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
 					self.identifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "identifier"))
 			}
-			if let exist: AnyObject = js["path"] {
+			if let exist = js["path"] {
 				presentKeys.insert("path")
 				if let val = exist as? String {
 					self.path = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "path", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "path", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["usage"] {
+			if let exist = js["usage"] {
 				presentKeys.insert("usage")
 				if let val = exist as? [String] {
 					self.usage = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "usage", wants: Array<String>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "usage", wants: Array<String>.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let criteria = self.criteria {
@@ -691,7 +691,7 @@ public class MeasureSupplementalData: BackboneElement {
 			json["path"] = path.asJSON()
 		}
 		if let usage = self.usage {
-			var arr = [AnyObject]()
+			var arr = [Any]()
 			for val in usage {
 				arr.append(val.asJSON())
 			}

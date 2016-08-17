@@ -2,7 +2,7 @@
 //  Resource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Resource) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Resource) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -14,8 +14,8 @@ import Foundation
  *
  *  This is the base resource type for everything.
  */
-public class Resource: FHIRAbstractResource {
-	override public class var resourceName: String {
+open class Resource: FHIRAbstractResource {
+	override open class var resourceType: String {
 		get { return "Resource" }
 	}
 	
@@ -37,50 +37,50 @@ public class Resource: FHIRAbstractResource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["id"] {
+			if let exist = js["id"] {
 				presentKeys.insert("id")
 				if let val = exist as? String {
 					self.id = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "id", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "id", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["implicitRules"] {
+			if let exist = js["implicitRules"] {
 				presentKeys.insert("implicitRules")
 				if let val = exist as? String {
 					self.implicitRules = URL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "implicitRules", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "implicitRules", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["language"] {
+			if let exist = js["language"] {
 				presentKeys.insert("language")
 				if let val = exist as? String {
 					self.language = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "language", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "language", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["meta"] {
+			if let exist = js["meta"] {
 				presentKeys.insert("meta")
 				if let val = exist as? FHIRJSON {
 					self.meta = Meta(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "meta", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "meta", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let id = self.id {

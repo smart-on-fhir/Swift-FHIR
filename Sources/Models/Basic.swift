@@ -2,7 +2,7 @@
 //  Basic.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Basic) on 2016-07-08.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Basic) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -15,8 +15,8 @@ import Foundation
  *  Basic is used for handling concepts not yet defined in FHIR, narrative-only resources that don't map to an existing
  *  resource, and custom resources not appropriate for inclusion in the FHIR specification.
  */
-public class Basic: DomainResource {
-	override public class var resourceName: String {
+open class Basic: DomainResource {
+	override open class var resourceType: String {
 		get { return "Basic" }
 	}
 	
@@ -47,62 +47,62 @@ public class Basic: DomainResource {
 		self.code = code
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["author"] {
+			if let exist = js["author"] {
 				presentKeys.insert("author")
 				if let val = exist as? FHIRJSON {
 					self.author = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["code"] {
+			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
 					self.code = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "code"))
 			}
-			if let exist: AnyObject = js["created"] {
+			if let exist = js["created"] {
 				presentKeys.insert("created")
 				if let val = exist as? String {
 					self.created = FHIRDate(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "created", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "created", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["identifier"] {
+			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["subject"] {
+			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
 					self.subject = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let author = self.author {
@@ -115,7 +115,7 @@ public class Basic: DomainResource {
 			json["created"] = created.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON()

@@ -2,7 +2,7 @@
 //  Location.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Location) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Location) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -15,8 +15,8 @@ import Foundation
  *  Details and position information for a physical place where services are provided  and resources and participants
  *  may be stored, found, contained or accommodated.
  */
-public class Location: DomainResource {
-	override public class var resourceName: String {
+open class Location: DomainResource {
+	override open class var resourceType: String {
 		get { return "Location" }
 	}
 	
@@ -62,122 +62,122 @@ public class Location: DomainResource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["address"] {
+			if let exist = js["address"] {
 				presentKeys.insert("address")
 				if let val = exist as? FHIRJSON {
 					self.address = Address(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "address", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "address", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["description"] {
+			if let exist = js["description"] {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "description", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["identifier"] {
+			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["managingOrganization"] {
+			if let exist = js["managingOrganization"] {
 				presentKeys.insert("managingOrganization")
 				if let val = exist as? FHIRJSON {
 					self.managingOrganization = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "managingOrganization", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "managingOrganization", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["mode"] {
+			if let exist = js["mode"] {
 				presentKeys.insert("mode")
 				if let val = exist as? String {
 					self.mode = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["name"] {
+			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["partOf"] {
+			if let exist = js["partOf"] {
 				presentKeys.insert("partOf")
 				if let val = exist as? FHIRJSON {
 					self.partOf = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "partOf", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "partOf", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["physicalType"] {
+			if let exist = js["physicalType"] {
 				presentKeys.insert("physicalType")
 				if let val = exist as? FHIRJSON {
 					self.physicalType = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "physicalType", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "physicalType", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["position"] {
+			if let exist = js["position"] {
 				presentKeys.insert("position")
 				if let val = exist as? FHIRJSON {
 					self.position = LocationPosition(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "position", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "position", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["status"] {
+			if let exist = js["status"] {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["telecom"] {
+			if let exist = js["telecom"] {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
 					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["type"] {
+			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
 					self.type = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let address = self.address {
@@ -187,7 +187,7 @@ public class Location: DomainResource {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let managingOrganization = self.managingOrganization {
 			json["managingOrganization"] = managingOrganization.asJSON()
@@ -211,7 +211,7 @@ public class Location: DomainResource {
 			json["status"] = status.asJSON()
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -228,8 +228,8 @@ public class Location: DomainResource {
  *  The absolute geographic location of the Location, expressed using the WGS84 datum (This is the same co-ordinate
  *  system used in KML).
  */
-public class LocationPosition: BackboneElement {
-	override public class var resourceName: String {
+open class LocationPosition: BackboneElement {
+	override open class var resourceType: String {
 		get { return "LocationPosition" }
 	}
 	
@@ -255,37 +255,37 @@ public class LocationPosition: BackboneElement {
 		self.longitude = longitude
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["altitude"] {
+			if let exist = js["altitude"] {
 				presentKeys.insert("altitude")
 				if let val = exist as? NSNumber {
 					self.altitude = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "altitude", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "altitude", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["latitude"] {
+			if let exist = js["latitude"] {
 				presentKeys.insert("latitude")
 				if let val = exist as? NSNumber {
 					self.latitude = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "latitude", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "latitude", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "latitude"))
 			}
-			if let exist: AnyObject = js["longitude"] {
+			if let exist = js["longitude"] {
 				presentKeys.insert("longitude")
 				if let val = exist as? NSNumber {
 					self.longitude = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "longitude", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "longitude", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -295,7 +295,7 @@ public class LocationPosition: BackboneElement {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let altitude = self.altitude {

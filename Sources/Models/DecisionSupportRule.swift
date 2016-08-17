@@ -2,7 +2,7 @@
 //  DecisionSupportRule.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DecisionSupportRule) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DecisionSupportRule) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -16,8 +16,8 @@ import Foundation
  *  a shareable, computable definition of a actions that should be taken whenever some condition is met in response to a
  *  particular event or events.
  */
-public class DecisionSupportRule: DomainResource {
-	override public class var resourceName: String {
+open class DecisionSupportRule: DomainResource {
+	override open class var resourceType: String {
 		get { return "DecisionSupportRule" }
 	}
 	
@@ -42,75 +42,75 @@ public class DecisionSupportRule: DomainResource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["action"] {
+			if let exist = js["action"] {
 				presentKeys.insert("action")
 				if let val = exist as? [FHIRJSON] {
 					self.action = ActionDefinition.instantiate(fromArray: val, owner: self) as? [ActionDefinition]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "action", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "action", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["condition"] {
+			if let exist = js["condition"] {
 				presentKeys.insert("condition")
 				if let val = exist as? String {
 					self.condition = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "condition", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "condition", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["library"] {
+			if let exist = js["library"] {
 				presentKeys.insert("library")
 				if let val = exist as? [FHIRJSON] {
 					self.library = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "library", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "library", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["moduleMetadata"] {
+			if let exist = js["moduleMetadata"] {
 				presentKeys.insert("moduleMetadata")
 				if let val = exist as? FHIRJSON {
 					self.moduleMetadata = ModuleMetadata(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "moduleMetadata", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "moduleMetadata", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["trigger"] {
+			if let exist = js["trigger"] {
 				presentKeys.insert("trigger")
 				if let val = exist as? [FHIRJSON] {
 					self.trigger = TriggerDefinition.instantiate(fromArray: val, owner: self) as? [TriggerDefinition]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "trigger", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "trigger", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let action = self.action {
-			json["action"] = ActionDefinition.asJSONArray(action)
+			json["action"] = action.map() { $0.asJSON() }
 		}
 		if let condition = self.condition {
 			json["condition"] = condition.asJSON()
 		}
 		if let library = self.library {
-			json["library"] = Reference.asJSONArray(library)
+			json["library"] = library.map() { $0.asJSON() }
 		}
 		if let moduleMetadata = self.moduleMetadata {
 			json["moduleMetadata"] = moduleMetadata.asJSON()
 		}
 		if let trigger = self.trigger {
-			json["trigger"] = TriggerDefinition.asJSONArray(trigger)
+			json["trigger"] = trigger.map() { $0.asJSON() }
 		}
 		
 		return json

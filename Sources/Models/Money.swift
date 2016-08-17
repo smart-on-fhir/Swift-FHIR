@@ -2,7 +2,7 @@
 //  Money.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Money) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Money) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -15,8 +15,8 @@ import Foundation
  *  There SHALL be a code if there is a value and it SHALL be an expression of currency.  If system is present, it SHALL
  *  be ISO 4217 (system = "urn:iso:std:iso:4217" - currency).
  */
-public class Money: Quantity {
-	override public class var resourceName: String {
+open class Money: Quantity {
+	override open class var resourceType: String {
 		get { return "Money" }
 	}
 	

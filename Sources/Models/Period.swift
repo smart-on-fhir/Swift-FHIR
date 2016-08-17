@@ -2,7 +2,7 @@
 //  Period.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Period) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Period) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -14,8 +14,8 @@ import Foundation
  *
  *  A time period defined by a start and end date and optionally time.
  */
-public class Period: Element {
-	override public class var resourceName: String {
+open class Period: Element {
+	override open class var resourceType: String {
 		get { return "Period" }
 	}
 	
@@ -31,32 +31,32 @@ public class Period: Element {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["end"] {
+			if let exist = js["end"] {
 				presentKeys.insert("end")
 				if let val = exist as? String {
 					self.end = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "end", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "end", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["start"] {
+			if let exist = js["start"] {
 				presentKeys.insert("start")
 				if let val = exist as? String {
 					self.start = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "start", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "start", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let end = self.end {

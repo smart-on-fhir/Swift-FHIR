@@ -2,7 +2,7 @@
 //  Element.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Element) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Element) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -14,8 +14,8 @@ import Foundation
  *
  *  Base definition for all elements in a resource.
  */
-public class Element: FHIRAbstractBase {
-	override public class var resourceName: String {
+open class Element: FHIRAbstractBase {
+	override open class var resourceType: String {
 		get { return "Element" }
 	}
 	
@@ -31,36 +31,36 @@ public class Element: FHIRAbstractBase {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["extension"] {
+			if let exist = js["extension"] {
 				presentKeys.insert("extension")
 				if let val = exist as? [FHIRJSON] {
 					self.extension_fhir = Extension.instantiate(fromArray: val, owner: self) as? [Extension]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "extension", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "extension", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["id"] {
+			if let exist = js["id"] {
 				presentKeys.insert("id")
 				if let val = exist as? String {
 					self.id = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "id", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "id", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let extension_fhir = self.extension_fhir {
-			json["extension"] = Extension.asJSONArray(extension_fhir)
+			json["extension"] = extension_fhir.map() { $0.asJSON() }
 		}
 		if let id = self.id {
 			json["id"] = id.asJSON()

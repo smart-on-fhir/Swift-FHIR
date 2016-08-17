@@ -2,7 +2,7 @@
 //  Narrative.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Narrative) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Narrative) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -12,8 +12,8 @@ import Foundation
 /**
  *  A human-readable formatted text, including images.
  */
-public class Narrative: Element {
-	override public class var resourceName: String {
+open class Narrative: Element {
+	override open class var resourceType: String {
 		get { return "Narrative" }
 	}
 	
@@ -36,28 +36,28 @@ public class Narrative: Element {
 		self.status = status
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["div"] {
+			if let exist = js["div"] {
 				presentKeys.insert("div")
 				if let val = exist as? String {
 					self.div = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "div", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "div", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "div"))
 			}
-			if let exist: AnyObject = js["status"] {
+			if let exist = js["status"] {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -67,7 +67,7 @@ public class Narrative: Element {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let div = self.div {

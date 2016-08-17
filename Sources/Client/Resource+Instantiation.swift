@@ -36,10 +36,23 @@ public extension Foundation.Bundle {
 	
 	- parameter name: The filename, without ".json" extension, to read the resource from
 	- parameter type: The type the resource is expected to be; must be a subclass of `Resource`
-	- returns: A Resource subclass corresponding to the "resourceType" entry, as specified under `type`
+	- returns:        A Resource subclass corresponding to the "resourceType" entry, as specified under `type`
 	*/
 	public func fhir_bundledResource<T: Resource>(_ name: String, type: T.Type) throws -> T {
-		if let url = url(forResource: name, withExtension: "json"), let data = try? Data(contentsOf: url) {
+		return try fhir_bundledResource(name, subdirectory: nil, type: type)
+	}
+	
+	/**
+	Attempts to read a JSON file with the given name (without ".json") from the given directory. Parses the JSON and instantiates a FHIR
+	resource corresponding to "resourceType".
+	
+	- parameter name:         The filename, without ".json" extension, to read the resource from
+	- parameter subdirectory: The directory name to search for the resource; `nil` for top level
+	- parameter type:         The type the resource is expected to be; must be a subclass of `Resource`
+	- returns:                A Resource subclass corresponding to the "resourceType" entry, as specified under `type`
+	*/
+	public func fhir_bundledResource<T: Resource>(_ name: String, subdirectory: String?, type: T.Type) throws -> T {
+		if let url = url(forResource: name, withExtension: "json", subdirectory: subdirectory), let data = try? Data(contentsOf: url) {
 			if let json = try JSONSerialization.jsonObject(with: data, options: []) as? FHIRJSON {
 				if let resource = Resource.instantiate(fromJSON: json, owner: nil) as? T {
 					return resource
@@ -48,7 +61,7 @@ public extension Foundation.Bundle {
 			}
 			throw FHIRError.resourceFailedToInstantiate(url.description)
 		}
-		throw FHIRError.resourceFailedToInstantiate(name)
+		throw FHIRError.resourceFailedToInstantiate((nil == subdirectory) ? "\(name).json" : "\(subdirectory!)/\(name).json")
 	}
 }
 

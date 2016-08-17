@@ -2,7 +2,7 @@
 //  Sequence.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -14,8 +14,8 @@ import Foundation
  *
  *  Variation and Sequence data.
  */
-public class Sequence: DomainResource {
-	override public class var resourceName: String {
+open class Sequence: DomainResource {
+	override open class var resourceType: String {
 		get { return "Sequence" }
 	}
 	
@@ -85,179 +85,179 @@ public class Sequence: DomainResource {
 		self.type = type
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["allelicFrequency"] {
+			if let exist = js["allelicFrequency"] {
 				presentKeys.insert("allelicFrequency")
 				if let val = exist as? NSNumber {
 					self.allelicFrequency = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "allelicFrequency", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "allelicFrequency", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["allelicState"] {
+			if let exist = js["allelicState"] {
 				presentKeys.insert("allelicState")
 				if let val = exist as? FHIRJSON {
 					self.allelicState = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "allelicState", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "allelicState", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["copyNumberEvent"] {
+			if let exist = js["copyNumberEvent"] {
 				presentKeys.insert("copyNumberEvent")
 				if let val = exist as? FHIRJSON {
 					self.copyNumberEvent = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "copyNumberEvent", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "copyNumberEvent", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["device"] {
+			if let exist = js["device"] {
 				presentKeys.insert("device")
 				if let val = exist as? FHIRJSON {
 					self.device = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "device", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "device", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["observation"] {
+			if let exist = js["observation"] {
 				presentKeys.insert("observation")
 				if let val = exist as? FHIRJSON {
 					self.observation = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "observation", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "observation", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["observedSeq"] {
+			if let exist = js["observedSeq"] {
 				presentKeys.insert("observedSeq")
 				if let val = exist as? String {
 					self.observedSeq = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "observedSeq", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "observedSeq", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["patient"] {
+			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
 					self.patient = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["pointer"] {
+			if let exist = js["pointer"] {
 				presentKeys.insert("pointer")
 				if let val = exist as? [FHIRJSON] {
 					self.pointer = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "pointer", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "pointer", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["quality"] {
+			if let exist = js["quality"] {
 				presentKeys.insert("quality")
 				if let val = exist as? [FHIRJSON] {
 					self.quality = SequenceQuality.instantiate(fromArray: val, owner: self) as? [SequenceQuality]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "quality", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "quality", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["quantity"] {
+			if let exist = js["quantity"] {
 				presentKeys.insert("quantity")
 				if let val = exist as? FHIRJSON {
 					self.quantity = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["readCoverage"] {
+			if let exist = js["readCoverage"] {
 				presentKeys.insert("readCoverage")
 				if let val = exist as? Int {
 					self.readCoverage = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "readCoverage", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "readCoverage", wants: Int.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["referenceSeq"] {
+			if let exist = js["referenceSeq"] {
 				presentKeys.insert("referenceSeq")
 				if let val = exist as? [FHIRJSON] {
 					self.referenceSeq = SequenceReferenceSeq.instantiate(fromArray: val, owner: self) as? [SequenceReferenceSeq]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "referenceSeq", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "referenceSeq", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["repository"] {
+			if let exist = js["repository"] {
 				presentKeys.insert("repository")
 				if let val = exist as? [FHIRJSON] {
 					self.repository = SequenceRepository.instantiate(fromArray: val, owner: self) as? [SequenceRepository]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "repository", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "repository", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["species"] {
+			if let exist = js["species"] {
 				presentKeys.insert("species")
 				if let val = exist as? FHIRJSON {
 					self.species = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "species", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "species", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["specimen"] {
+			if let exist = js["specimen"] {
 				presentKeys.insert("specimen")
 				if let val = exist as? FHIRJSON {
 					self.specimen = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "specimen", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "specimen", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["structureVariation"] {
+			if let exist = js["structureVariation"] {
 				presentKeys.insert("structureVariation")
 				if let val = exist as? FHIRJSON {
 					self.structureVariation = SequenceStructureVariation(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "structureVariation", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "structureVariation", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["type"] {
+			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "type"))
 			}
-			if let exist: AnyObject = js["variation"] {
+			if let exist = js["variation"] {
 				presentKeys.insert("variation")
 				if let val = exist as? FHIRJSON {
 					self.variation = SequenceVariation(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "variation", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "variation", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let allelicFrequency = self.allelicFrequency {
@@ -282,10 +282,10 @@ public class Sequence: DomainResource {
 			json["patient"] = patient.asJSON()
 		}
 		if let pointer = self.pointer {
-			json["pointer"] = Reference.asJSONArray(pointer)
+			json["pointer"] = pointer.map() { $0.asJSON() }
 		}
 		if let quality = self.quality {
-			json["quality"] = SequenceQuality.asJSONArray(quality)
+			json["quality"] = quality.map() { $0.asJSON() }
 		}
 		if let quantity = self.quantity {
 			json["quantity"] = quantity.asJSON()
@@ -294,10 +294,10 @@ public class Sequence: DomainResource {
 			json["readCoverage"] = readCoverage.asJSON()
 		}
 		if let referenceSeq = self.referenceSeq {
-			json["referenceSeq"] = SequenceReferenceSeq.asJSONArray(referenceSeq)
+			json["referenceSeq"] = referenceSeq.map() { $0.asJSON() }
 		}
 		if let repository = self.repository {
-			json["repository"] = SequenceRepository.asJSONArray(repository)
+			json["repository"] = repository.map() { $0.asJSON() }
 		}
 		if let species = self.species {
 			json["species"] = species.asJSON()
@@ -325,8 +325,8 @@ public class Sequence: DomainResource {
  *
  *  Quality for sequence quality vary by platform reflecting differences in sequencing chemistry and digital processing.
  */
-public class SequenceQuality: BackboneElement {
-	override public class var resourceName: String {
+open class SequenceQuality: BackboneElement {
+	override open class var resourceType: String {
 		get { return "SequenceQuality" }
 	}
 	
@@ -348,50 +348,50 @@ public class SequenceQuality: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["end"] {
+			if let exist = js["end"] {
 				presentKeys.insert("end")
 				if let val = exist as? Int {
 					self.end = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "end", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "end", wants: Int.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["method"] {
+			if let exist = js["method"] {
 				presentKeys.insert("method")
 				if let val = exist as? String {
 					self.method = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "method", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "method", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["score"] {
+			if let exist = js["score"] {
 				presentKeys.insert("score")
 				if let val = exist as? FHIRJSON {
 					self.score = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "score", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "score", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["start"] {
+			if let exist = js["start"] {
 				presentKeys.insert("start")
 				if let val = exist as? Int {
 					self.start = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "start", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "start", wants: Int.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let end = self.end {
@@ -420,8 +420,8 @@ public class SequenceQuality: BackboneElement {
  *  using  genome build, chromosome number,and also the start, end position of window (this method is specifically for
  *  DNA reference sequence) .
  */
-public class SequenceReferenceSeq: BackboneElement {
-	override public class var resourceName: String {
+open class SequenceReferenceSeq: BackboneElement {
+	override open class var resourceType: String {
 		get { return "SequenceReferenceSeq" }
 	}
 	
@@ -460,76 +460,76 @@ public class SequenceReferenceSeq: BackboneElement {
 		self.windowStart = windowStart
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["chromosome"] {
+			if let exist = js["chromosome"] {
 				presentKeys.insert("chromosome")
 				if let val = exist as? FHIRJSON {
 					self.chromosome = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "chromosome", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "chromosome", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["genomeBuild"] {
+			if let exist = js["genomeBuild"] {
 				presentKeys.insert("genomeBuild")
 				if let val = exist as? String {
 					self.genomeBuild = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "genomeBuild", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "genomeBuild", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["referenceSeqId"] {
+			if let exist = js["referenceSeqId"] {
 				presentKeys.insert("referenceSeqId")
 				if let val = exist as? FHIRJSON {
 					self.referenceSeqId = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "referenceSeqId", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "referenceSeqId", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "referenceSeqId"))
 			}
-			if let exist: AnyObject = js["referenceSeqPointer"] {
+			if let exist = js["referenceSeqPointer"] {
 				presentKeys.insert("referenceSeqPointer")
 				if let val = exist as? FHIRJSON {
 					self.referenceSeqPointer = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "referenceSeqPointer", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "referenceSeqPointer", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["referenceSeqString"] {
+			if let exist = js["referenceSeqString"] {
 				presentKeys.insert("referenceSeqString")
 				if let val = exist as? String {
 					self.referenceSeqString = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "referenceSeqString", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "referenceSeqString", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["windowEnd"] {
+			if let exist = js["windowEnd"] {
 				presentKeys.insert("windowEnd")
 				if let val = exist as? Int {
 					self.windowEnd = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "windowEnd", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "windowEnd", wants: Int.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "windowEnd"))
 			}
-			if let exist: AnyObject = js["windowStart"] {
+			if let exist = js["windowStart"] {
 				presentKeys.insert("windowStart")
 				if let val = exist as? Int {
 					self.windowStart = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "windowStart", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "windowStart", wants: Int.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -539,7 +539,7 @@ public class SequenceReferenceSeq: BackboneElement {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let chromosome = self.chromosome {
@@ -574,8 +574,8 @@ public class SequenceReferenceSeq: BackboneElement {
  *
  *  Configurations of the external repository.
  */
-public class SequenceRepository: BackboneElement {
-	override public class var resourceName: String {
+open class SequenceRepository: BackboneElement {
+	override open class var resourceType: String {
 		get { return "SequenceRepository" }
 	}
 	
@@ -597,50 +597,50 @@ public class SequenceRepository: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["name"] {
+			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["readId"] {
+			if let exist = js["readId"] {
 				presentKeys.insert("readId")
 				if let val = exist as? String {
 					self.readId = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "readId", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "readId", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["url"] {
+			if let exist = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = URL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["variantId"] {
+			if let exist = js["variantId"] {
 				presentKeys.insert("variantId")
 				if let val = exist as? String {
 					self.variantId = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "variantId", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "variantId", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let name = self.name {
@@ -666,8 +666,8 @@ public class SequenceRepository: BackboneElement {
  *
  *  Structural variant.
  */
-public class SequenceStructureVariation: BackboneElement {
-	override public class var resourceName: String {
+open class SequenceStructureVariation: BackboneElement {
+	override open class var resourceType: String {
 		get { return "SequenceStructureVariation" }
 	}
 	
@@ -692,59 +692,59 @@ public class SequenceStructureVariation: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["inner"] {
+			if let exist = js["inner"] {
 				presentKeys.insert("inner")
 				if let val = exist as? FHIRJSON {
 					self.inner = SequenceStructureVariationInner(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "inner", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "inner", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["length"] {
+			if let exist = js["length"] {
 				presentKeys.insert("length")
 				if let val = exist as? Int {
 					self.length = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "length", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "length", wants: Int.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["outer"] {
+			if let exist = js["outer"] {
 				presentKeys.insert("outer")
 				if let val = exist as? FHIRJSON {
 					self.outer = SequenceStructureVariationOuter(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "outer", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "outer", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["precisionOfBoundaries"] {
+			if let exist = js["precisionOfBoundaries"] {
 				presentKeys.insert("precisionOfBoundaries")
 				if let val = exist as? String {
 					self.precisionOfBoundaries = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "precisionOfBoundaries", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "precisionOfBoundaries", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["reportedaCGHRatio"] {
+			if let exist = js["reportedaCGHRatio"] {
 				presentKeys.insert("reportedaCGHRatio")
 				if let val = exist as? NSNumber {
 					self.reportedaCGHRatio = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reportedaCGHRatio", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reportedaCGHRatio", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let inner = self.inner {
@@ -773,8 +773,8 @@ public class SequenceStructureVariation: BackboneElement {
  *
  *  Structural variant inner.
  */
-public class SequenceStructureVariationInner: BackboneElement {
-	override public class var resourceName: String {
+open class SequenceStructureVariationInner: BackboneElement {
+	override open class var resourceType: String {
 		get { return "SequenceStructureVariationInner" }
 	}
 	
@@ -790,32 +790,32 @@ public class SequenceStructureVariationInner: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["end"] {
+			if let exist = js["end"] {
 				presentKeys.insert("end")
 				if let val = exist as? Int {
 					self.end = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "end", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "end", wants: Int.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["start"] {
+			if let exist = js["start"] {
 				presentKeys.insert("start")
 				if let val = exist as? Int {
 					self.start = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "start", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "start", wants: Int.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let end = self.end {
@@ -835,8 +835,8 @@ public class SequenceStructureVariationInner: BackboneElement {
  *
  *  Structural variant outer.
  */
-public class SequenceStructureVariationOuter: BackboneElement {
-	override public class var resourceName: String {
+open class SequenceStructureVariationOuter: BackboneElement {
+	override open class var resourceType: String {
 		get { return "SequenceStructureVariationOuter" }
 	}
 	
@@ -852,32 +852,32 @@ public class SequenceStructureVariationOuter: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["end"] {
+			if let exist = js["end"] {
 				presentKeys.insert("end")
 				if let val = exist as? Int {
 					self.end = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "end", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "end", wants: Int.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["start"] {
+			if let exist = js["start"] {
 				presentKeys.insert("start")
 				if let val = exist as? Int {
 					self.start = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "start", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "start", wants: Int.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let end = self.end {
@@ -895,8 +895,8 @@ public class SequenceStructureVariationOuter: BackboneElement {
 /**
  *  Variation info in this sequence.
  */
-public class SequenceVariation: BackboneElement {
-	override public class var resourceName: String {
+open class SequenceVariation: BackboneElement {
+	override open class var resourceType: String {
 		get { return "SequenceVariation" }
 	}
 	
@@ -921,59 +921,59 @@ public class SequenceVariation: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["cigar"] {
+			if let exist = js["cigar"] {
 				presentKeys.insert("cigar")
 				if let val = exist as? String {
 					self.cigar = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "cigar", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "cigar", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["end"] {
+			if let exist = js["end"] {
 				presentKeys.insert("end")
 				if let val = exist as? Int {
 					self.end = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "end", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "end", wants: Int.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["observedAllele"] {
+			if let exist = js["observedAllele"] {
 				presentKeys.insert("observedAllele")
 				if let val = exist as? String {
 					self.observedAllele = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "observedAllele", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "observedAllele", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["referenceAllele"] {
+			if let exist = js["referenceAllele"] {
 				presentKeys.insert("referenceAllele")
 				if let val = exist as? String {
 					self.referenceAllele = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "referenceAllele", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "referenceAllele", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["start"] {
+			if let exist = js["start"] {
 				presentKeys.insert("start")
 				if let val = exist as? Int {
 					self.start = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "start", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "start", wants: Int.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let cigar = self.cigar {

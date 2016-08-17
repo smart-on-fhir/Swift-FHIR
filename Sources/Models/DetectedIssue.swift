@@ -2,7 +2,7 @@
 //  DetectedIssue.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -15,8 +15,8 @@ import Foundation
  *  Indicates an actual or potential clinical issue with or between one or more active or proposed clinical actions for
  *  a patient; e.g. Drug-drug interaction, Ineffective treatment frequency, Procedure-condition conflict, etc.
  */
-public class DetectedIssue: DomainResource {
-	override public class var resourceName: String {
+open class DetectedIssue: DomainResource {
+	override open class var resourceType: String {
 		get { return "DetectedIssue" }
 	}
 	
@@ -56,104 +56,104 @@ public class DetectedIssue: DomainResource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["author"] {
+			if let exist = js["author"] {
 				presentKeys.insert("author")
 				if let val = exist as? FHIRJSON {
 					self.author = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["category"] {
+			if let exist = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
 					self.category = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["date"] {
+			if let exist = js["date"] {
 				presentKeys.insert("date")
 				if let val = exist as? String {
 					self.date = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "date", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "date", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["detail"] {
+			if let exist = js["detail"] {
 				presentKeys.insert("detail")
 				if let val = exist as? String {
 					self.detail = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "detail", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "detail", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["identifier"] {
+			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
 					self.identifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["implicated"] {
+			if let exist = js["implicated"] {
 				presentKeys.insert("implicated")
 				if let val = exist as? [FHIRJSON] {
 					self.implicated = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "implicated", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "implicated", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["mitigation"] {
+			if let exist = js["mitigation"] {
 				presentKeys.insert("mitigation")
 				if let val = exist as? [FHIRJSON] {
 					self.mitigation = DetectedIssueMitigation.instantiate(fromArray: val, owner: self) as? [DetectedIssueMitigation]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "mitigation", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "mitigation", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["patient"] {
+			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
 					self.patient = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["reference"] {
+			if let exist = js["reference"] {
 				presentKeys.insert("reference")
 				if let val = exist as? String {
 					self.reference = URL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reference", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reference", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["severity"] {
+			if let exist = js["severity"] {
 				presentKeys.insert("severity")
 				if let val = exist as? String {
 					self.severity = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "severity", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "severity", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let author = self.author {
@@ -172,10 +172,10 @@ public class DetectedIssue: DomainResource {
 			json["identifier"] = identifier.asJSON()
 		}
 		if let implicated = self.implicated {
-			json["implicated"] = Reference.asJSONArray(implicated)
+			json["implicated"] = implicated.map() { $0.asJSON() }
 		}
 		if let mitigation = self.mitigation {
-			json["mitigation"] = DetectedIssueMitigation.asJSONArray(mitigation)
+			json["mitigation"] = mitigation.map() { $0.asJSON() }
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
@@ -199,8 +199,8 @@ public class DetectedIssue: DomainResource {
  *  identified by the detected issue from manifesting.  Can also reflect an observation of known mitigating factors that
  *  may reduce/eliminate the need for any action.
  */
-public class DetectedIssueMitigation: BackboneElement {
-	override public class var resourceName: String {
+open class DetectedIssueMitigation: BackboneElement {
+	override open class var resourceType: String {
 		get { return "DetectedIssueMitigation" }
 	}
 	
@@ -225,44 +225,44 @@ public class DetectedIssueMitigation: BackboneElement {
 		self.action = action
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["action"] {
+			if let exist = js["action"] {
 				presentKeys.insert("action")
 				if let val = exist as? FHIRJSON {
 					self.action = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "action", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "action", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "action"))
 			}
-			if let exist: AnyObject = js["author"] {
+			if let exist = js["author"] {
 				presentKeys.insert("author")
 				if let val = exist as? FHIRJSON {
 					self.author = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["date"] {
+			if let exist = js["date"] {
 				presentKeys.insert("date")
 				if let val = exist as? String {
 					self.date = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "date", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "date", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let action = self.action {

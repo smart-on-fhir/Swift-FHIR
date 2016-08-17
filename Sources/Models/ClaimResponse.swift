@@ -2,7 +2,7 @@
 //  ClaimResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2016-07-08.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -14,8 +14,8 @@ import Foundation
  *
  *  This resource provides the adjudication details from the processing of a Claim resource.
  */
-public class ClaimResponse: DomainResource {
-	override public class var resourceName: String {
+open class ClaimResponse: DomainResource {
+	override open class var resourceType: String {
 		get { return "ClaimResponse" }
 	}
 	
@@ -115,291 +115,291 @@ public class ClaimResponse: DomainResource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["addItem"] {
+			if let exist = js["addItem"] {
 				presentKeys.insert("addItem")
 				if let val = exist as? [FHIRJSON] {
 					self.addItem = ClaimResponseAddItem.instantiate(fromArray: val, owner: self) as? [ClaimResponseAddItem]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "addItem", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "addItem", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["coverage"] {
+			if let exist = js["coverage"] {
 				presentKeys.insert("coverage")
 				if let val = exist as? [FHIRJSON] {
 					self.coverage = ClaimResponseCoverage.instantiate(fromArray: val, owner: self) as? [ClaimResponseCoverage]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "coverage", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "coverage", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["created"] {
+			if let exist = js["created"] {
 				presentKeys.insert("created")
 				if let val = exist as? String {
 					self.created = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "created", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "created", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["disposition"] {
+			if let exist = js["disposition"] {
 				presentKeys.insert("disposition")
 				if let val = exist as? String {
 					self.disposition = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "disposition", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "disposition", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["error"] {
+			if let exist = js["error"] {
 				presentKeys.insert("error")
 				if let val = exist as? [FHIRJSON] {
 					self.error = ClaimResponseError.instantiate(fromArray: val, owner: self) as? [ClaimResponseError]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "error", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "error", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["form"] {
+			if let exist = js["form"] {
 				presentKeys.insert("form")
 				if let val = exist as? FHIRJSON {
 					self.form = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "form", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "form", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["identifier"] {
+			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["item"] {
+			if let exist = js["item"] {
 				presentKeys.insert("item")
 				if let val = exist as? [FHIRJSON] {
 					self.item = ClaimResponseItem.instantiate(fromArray: val, owner: self) as? [ClaimResponseItem]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["note"] {
+			if let exist = js["note"] {
 				presentKeys.insert("note")
 				if let val = exist as? [FHIRJSON] {
 					self.note = ClaimResponseNote.instantiate(fromArray: val, owner: self) as? [ClaimResponseNote]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["organizationIdentifier"] {
+			if let exist = js["organizationIdentifier"] {
 				presentKeys.insert("organizationIdentifier")
 				if let val = exist as? FHIRJSON {
 					self.organizationIdentifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "organizationIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "organizationIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["organizationReference"] {
+			if let exist = js["organizationReference"] {
 				presentKeys.insert("organizationReference")
 				if let val = exist as? FHIRJSON {
 					self.organizationReference = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "organizationReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "organizationReference", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["originalRuleset"] {
+			if let exist = js["originalRuleset"] {
 				presentKeys.insert("originalRuleset")
 				if let val = exist as? FHIRJSON {
 					self.originalRuleset = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "originalRuleset", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "originalRuleset", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["outcome"] {
+			if let exist = js["outcome"] {
 				presentKeys.insert("outcome")
 				if let val = exist as? String {
 					self.outcome = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "outcome", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "outcome", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["payeeType"] {
+			if let exist = js["payeeType"] {
 				presentKeys.insert("payeeType")
 				if let val = exist as? FHIRJSON {
 					self.payeeType = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "payeeType", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "payeeType", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["paymentAdjustment"] {
+			if let exist = js["paymentAdjustment"] {
 				presentKeys.insert("paymentAdjustment")
 				if let val = exist as? FHIRJSON {
 					self.paymentAdjustment = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "paymentAdjustment", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "paymentAdjustment", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["paymentAdjustmentReason"] {
+			if let exist = js["paymentAdjustmentReason"] {
 				presentKeys.insert("paymentAdjustmentReason")
 				if let val = exist as? FHIRJSON {
 					self.paymentAdjustmentReason = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "paymentAdjustmentReason", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "paymentAdjustmentReason", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["paymentAmount"] {
+			if let exist = js["paymentAmount"] {
 				presentKeys.insert("paymentAmount")
 				if let val = exist as? FHIRJSON {
 					self.paymentAmount = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "paymentAmount", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "paymentAmount", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["paymentDate"] {
+			if let exist = js["paymentDate"] {
 				presentKeys.insert("paymentDate")
 				if let val = exist as? String {
 					self.paymentDate = FHIRDate(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "paymentDate", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "paymentDate", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["paymentRef"] {
+			if let exist = js["paymentRef"] {
 				presentKeys.insert("paymentRef")
 				if let val = exist as? FHIRJSON {
 					self.paymentRef = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "paymentRef", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "paymentRef", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["requestIdentifier"] {
+			if let exist = js["requestIdentifier"] {
 				presentKeys.insert("requestIdentifier")
 				if let val = exist as? FHIRJSON {
 					self.requestIdentifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requestIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "requestIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["requestOrganizationIdentifier"] {
+			if let exist = js["requestOrganizationIdentifier"] {
 				presentKeys.insert("requestOrganizationIdentifier")
 				if let val = exist as? FHIRJSON {
 					self.requestOrganizationIdentifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requestOrganizationIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "requestOrganizationIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["requestOrganizationReference"] {
+			if let exist = js["requestOrganizationReference"] {
 				presentKeys.insert("requestOrganizationReference")
 				if let val = exist as? FHIRJSON {
 					self.requestOrganizationReference = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requestOrganizationReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "requestOrganizationReference", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["requestProviderIdentifier"] {
+			if let exist = js["requestProviderIdentifier"] {
 				presentKeys.insert("requestProviderIdentifier")
 				if let val = exist as? FHIRJSON {
 					self.requestProviderIdentifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requestProviderIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "requestProviderIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["requestProviderReference"] {
+			if let exist = js["requestProviderReference"] {
 				presentKeys.insert("requestProviderReference")
 				if let val = exist as? FHIRJSON {
 					self.requestProviderReference = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requestProviderReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "requestProviderReference", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["requestReference"] {
+			if let exist = js["requestReference"] {
 				presentKeys.insert("requestReference")
 				if let val = exist as? FHIRJSON {
 					self.requestReference = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requestReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "requestReference", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["reserved"] {
+			if let exist = js["reserved"] {
 				presentKeys.insert("reserved")
 				if let val = exist as? FHIRJSON {
 					self.reserved = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reserved", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reserved", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["ruleset"] {
+			if let exist = js["ruleset"] {
 				presentKeys.insert("ruleset")
 				if let val = exist as? FHIRJSON {
 					self.ruleset = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "ruleset", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "ruleset", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["totalBenefit"] {
+			if let exist = js["totalBenefit"] {
 				presentKeys.insert("totalBenefit")
 				if let val = exist as? FHIRJSON {
 					self.totalBenefit = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "totalBenefit", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "totalBenefit", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["totalCost"] {
+			if let exist = js["totalCost"] {
 				presentKeys.insert("totalCost")
 				if let val = exist as? FHIRJSON {
 					self.totalCost = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "totalCost", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "totalCost", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["unallocDeductable"] {
+			if let exist = js["unallocDeductable"] {
 				presentKeys.insert("unallocDeductable")
 				if let val = exist as? FHIRJSON {
 					self.unallocDeductable = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "unallocDeductable", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "unallocDeductable", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let addItem = self.addItem {
-			json["addItem"] = ClaimResponseAddItem.asJSONArray(addItem)
+			json["addItem"] = addItem.map() { $0.asJSON() }
 		}
 		if let coverage = self.coverage {
-			json["coverage"] = ClaimResponseCoverage.asJSONArray(coverage)
+			json["coverage"] = coverage.map() { $0.asJSON() }
 		}
 		if let created = self.created {
 			json["created"] = created.asJSON()
@@ -408,19 +408,19 @@ public class ClaimResponse: DomainResource {
 			json["disposition"] = disposition.asJSON()
 		}
 		if let error = self.error {
-			json["error"] = ClaimResponseError.asJSONArray(error)
+			json["error"] = error.map() { $0.asJSON() }
 		}
 		if let form = self.form {
 			json["form"] = form.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let item = self.item {
-			json["item"] = ClaimResponseItem.asJSONArray(item)
+			json["item"] = item.map() { $0.asJSON() }
 		}
 		if let note = self.note {
-			json["note"] = ClaimResponseNote.asJSONArray(note)
+			json["note"] = note.map() { $0.asJSON() }
 		}
 		if let organizationIdentifier = self.organizationIdentifier {
 			json["organizationIdentifier"] = organizationIdentifier.asJSON()
@@ -496,8 +496,8 @@ public class ClaimResponse: DomainResource {
  *
  *  The first tier service adjudications for payor added services.
  */
-public class ClaimResponseAddItem: BackboneElement {
-	override public class var resourceName: String {
+open class ClaimResponseAddItem: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ClaimResponseAddItem" }
 	}
 	
@@ -531,61 +531,61 @@ public class ClaimResponseAddItem: BackboneElement {
 		self.service = service
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["adjudication"] {
+			if let exist = js["adjudication"] {
 				presentKeys.insert("adjudication")
 				if let val = exist as? [FHIRJSON] {
 					self.adjudication = ClaimResponseAddItemAdjudication.instantiate(fromArray: val, owner: self) as? [ClaimResponseAddItemAdjudication]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "adjudication", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "adjudication", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["detail"] {
+			if let exist = js["detail"] {
 				presentKeys.insert("detail")
 				if let val = exist as? [FHIRJSON] {
 					self.detail = ClaimResponseAddItemDetail.instantiate(fromArray: val, owner: self) as? [ClaimResponseAddItemDetail]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "detail", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "detail", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["fee"] {
+			if let exist = js["fee"] {
 				presentKeys.insert("fee")
 				if let val = exist as? FHIRJSON {
 					self.fee = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "fee", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "fee", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["noteNumberLinkId"] {
+			if let exist = js["noteNumberLinkId"] {
 				presentKeys.insert("noteNumberLinkId")
 				if let val = exist as? [UInt] {
 					self.noteNumberLinkId = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "noteNumberLinkId", wants: Array<UInt>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "noteNumberLinkId", wants: Array<UInt>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["sequenceLinkId"] {
+			if let exist = js["sequenceLinkId"] {
 				presentKeys.insert("sequenceLinkId")
 				if let val = exist as? [UInt] {
 					self.sequenceLinkId = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "sequenceLinkId", wants: Array<UInt>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "sequenceLinkId", wants: Array<UInt>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["service"] {
+			if let exist = js["service"] {
 				presentKeys.insert("service")
 				if let val = exist as? FHIRJSON {
 					self.service = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "service", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "service", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -595,27 +595,27 @@ public class ClaimResponseAddItem: BackboneElement {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let adjudication = self.adjudication {
-			json["adjudication"] = ClaimResponseAddItemAdjudication.asJSONArray(adjudication)
+			json["adjudication"] = adjudication.map() { $0.asJSON() }
 		}
 		if let detail = self.detail {
-			json["detail"] = ClaimResponseAddItemDetail.asJSONArray(detail)
+			json["detail"] = detail.map() { $0.asJSON() }
 		}
 		if let fee = self.fee {
 			json["fee"] = fee.asJSON()
 		}
 		if let noteNumberLinkId = self.noteNumberLinkId {
-			var arr = [AnyObject]()
+			var arr = [Any]()
 			for val in noteNumberLinkId {
 				arr.append(val.asJSON())
 			}
 			json["noteNumberLinkId"] = arr
 		}
 		if let sequenceLinkId = self.sequenceLinkId {
-			var arr = [AnyObject]()
+			var arr = [Any]()
 			for val in sequenceLinkId {
 				arr.append(val.asJSON())
 			}
@@ -635,8 +635,8 @@ public class ClaimResponseAddItem: BackboneElement {
  *
  *  The adjudications results.
  */
-public class ClaimResponseAddItemAdjudication: BackboneElement {
-	override public class var resourceName: String {
+open class ClaimResponseAddItemAdjudication: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ClaimResponseAddItemAdjudication" }
 	}
 	
@@ -664,53 +664,53 @@ public class ClaimResponseAddItemAdjudication: BackboneElement {
 		self.category = category
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["amount"] {
+			if let exist = js["amount"] {
 				presentKeys.insert("amount")
 				if let val = exist as? FHIRJSON {
 					self.amount = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["category"] {
+			if let exist = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
 					self.category = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "category"))
 			}
-			if let exist: AnyObject = js["reason"] {
+			if let exist = js["reason"] {
 				presentKeys.insert("reason")
 				if let val = exist as? FHIRJSON {
 					self.reason = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["value"] {
+			if let exist = js["value"] {
 				presentKeys.insert("value")
 				if let val = exist as? NSNumber {
 					self.value = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "value", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "value", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let amount = self.amount {
@@ -736,8 +736,8 @@ public class ClaimResponseAddItemAdjudication: BackboneElement {
  *
  *  The second tier service adjudications for payor added services.
  */
-public class ClaimResponseAddItemDetail: BackboneElement {
-	override public class var resourceName: String {
+open class ClaimResponseAddItemDetail: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ClaimResponseAddItemDetail" }
 	}
 	
@@ -762,34 +762,34 @@ public class ClaimResponseAddItemDetail: BackboneElement {
 		self.service = service
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["adjudication"] {
+			if let exist = js["adjudication"] {
 				presentKeys.insert("adjudication")
 				if let val = exist as? [FHIRJSON] {
 					self.adjudication = ClaimResponseAddItemDetailAdjudication.instantiate(fromArray: val, owner: self) as? [ClaimResponseAddItemDetailAdjudication]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "adjudication", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "adjudication", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["fee"] {
+			if let exist = js["fee"] {
 				presentKeys.insert("fee")
 				if let val = exist as? FHIRJSON {
 					self.fee = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "fee", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "fee", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["service"] {
+			if let exist = js["service"] {
 				presentKeys.insert("service")
 				if let val = exist as? FHIRJSON {
 					self.service = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "service", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "service", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -799,11 +799,11 @@ public class ClaimResponseAddItemDetail: BackboneElement {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let adjudication = self.adjudication {
-			json["adjudication"] = ClaimResponseAddItemDetailAdjudication.asJSONArray(adjudication)
+			json["adjudication"] = adjudication.map() { $0.asJSON() }
 		}
 		if let fee = self.fee {
 			json["fee"] = fee.asJSON()
@@ -822,8 +822,8 @@ public class ClaimResponseAddItemDetail: BackboneElement {
  *
  *  The adjudications results.
  */
-public class ClaimResponseAddItemDetailAdjudication: BackboneElement {
-	override public class var resourceName: String {
+open class ClaimResponseAddItemDetailAdjudication: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ClaimResponseAddItemDetailAdjudication" }
 	}
 	
@@ -851,53 +851,53 @@ public class ClaimResponseAddItemDetailAdjudication: BackboneElement {
 		self.category = category
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["amount"] {
+			if let exist = js["amount"] {
 				presentKeys.insert("amount")
 				if let val = exist as? FHIRJSON {
 					self.amount = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["category"] {
+			if let exist = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
 					self.category = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "category"))
 			}
-			if let exist: AnyObject = js["reason"] {
+			if let exist = js["reason"] {
 				presentKeys.insert("reason")
 				if let val = exist as? FHIRJSON {
 					self.reason = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["value"] {
+			if let exist = js["value"] {
 				presentKeys.insert("value")
 				if let val = exist as? NSNumber {
 					self.value = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "value", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "value", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let amount = self.amount {
@@ -923,8 +923,8 @@ public class ClaimResponseAddItemDetailAdjudication: BackboneElement {
  *
  *  Financial instrument by which payment information for health care.
  */
-public class ClaimResponseCoverage: BackboneElement {
-	override public class var resourceName: String {
+open class ClaimResponseCoverage: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ClaimResponseCoverage" }
 	}
 	
@@ -964,73 +964,73 @@ public class ClaimResponseCoverage: BackboneElement {
 		self.sequence = sequence
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["businessArrangement"] {
+			if let exist = js["businessArrangement"] {
 				presentKeys.insert("businessArrangement")
 				if let val = exist as? String {
 					self.businessArrangement = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "businessArrangement", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "businessArrangement", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["claimResponse"] {
+			if let exist = js["claimResponse"] {
 				presentKeys.insert("claimResponse")
 				if let val = exist as? FHIRJSON {
 					self.claimResponse = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "claimResponse", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "claimResponse", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["coverageIdentifier"] {
+			if let exist = js["coverageIdentifier"] {
 				presentKeys.insert("coverageIdentifier")
 				if let val = exist as? FHIRJSON {
 					self.coverageIdentifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "coverageIdentifier", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "coverageIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["coverageReference"] {
+			if let exist = js["coverageReference"] {
 				presentKeys.insert("coverageReference")
 				if let val = exist as? FHIRJSON {
 					self.coverageReference = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "coverageReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "coverageReference", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["focal"] {
+			if let exist = js["focal"] {
 				presentKeys.insert("focal")
 				if let val = exist as? Bool {
 					self.focal = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "focal", wants: Bool.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "focal", wants: Bool.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "focal"))
 			}
-			if let exist: AnyObject = js["preAuthRef"] {
+			if let exist = js["preAuthRef"] {
 				presentKeys.insert("preAuthRef")
 				if let val = exist as? [String] {
 					self.preAuthRef = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "preAuthRef", wants: Array<String>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "preAuthRef", wants: Array<String>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["sequence"] {
+			if let exist = js["sequence"] {
 				presentKeys.insert("sequence")
 				if let val = exist as? UInt {
 					self.sequence = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "sequence", wants: UInt.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "sequence", wants: UInt.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -1045,7 +1045,7 @@ public class ClaimResponseCoverage: BackboneElement {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let businessArrangement = self.businessArrangement {
@@ -1064,7 +1064,7 @@ public class ClaimResponseCoverage: BackboneElement {
 			json["focal"] = focal.asJSON()
 		}
 		if let preAuthRef = self.preAuthRef {
-			var arr = [AnyObject]()
+			var arr = [Any]()
 			for val in preAuthRef {
 				arr.append(val.asJSON())
 			}
@@ -1084,8 +1084,8 @@ public class ClaimResponseCoverage: BackboneElement {
  *
  *  Mutually exclusive with Services Provided (Item).
  */
-public class ClaimResponseError: BackboneElement {
-	override public class var resourceName: String {
+open class ClaimResponseError: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ClaimResponseError" }
 	}
 	
@@ -1113,53 +1113,53 @@ public class ClaimResponseError: BackboneElement {
 		self.code = code
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["code"] {
+			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
 					self.code = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "code"))
 			}
-			if let exist: AnyObject = js["detailSequenceLinkId"] {
+			if let exist = js["detailSequenceLinkId"] {
 				presentKeys.insert("detailSequenceLinkId")
 				if let val = exist as? UInt {
 					self.detailSequenceLinkId = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "detailSequenceLinkId", wants: UInt.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "detailSequenceLinkId", wants: UInt.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["sequenceLinkId"] {
+			if let exist = js["sequenceLinkId"] {
 				presentKeys.insert("sequenceLinkId")
 				if let val = exist as? UInt {
 					self.sequenceLinkId = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "sequenceLinkId", wants: UInt.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "sequenceLinkId", wants: UInt.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["subdetailSequenceLinkId"] {
+			if let exist = js["subdetailSequenceLinkId"] {
 				presentKeys.insert("subdetailSequenceLinkId")
 				if let val = exist as? UInt {
 					self.subdetailSequenceLinkId = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "subdetailSequenceLinkId", wants: UInt.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "subdetailSequenceLinkId", wants: UInt.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {
@@ -1185,8 +1185,8 @@ public class ClaimResponseError: BackboneElement {
  *
  *  The first tier service adjudications for submitted services.
  */
-public class ClaimResponseItem: BackboneElement {
-	override public class var resourceName: String {
+open class ClaimResponseItem: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ClaimResponseItem" }
 	}
 	
@@ -1214,43 +1214,43 @@ public class ClaimResponseItem: BackboneElement {
 		self.sequenceLinkId = sequenceLinkId
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["adjudication"] {
+			if let exist = js["adjudication"] {
 				presentKeys.insert("adjudication")
 				if let val = exist as? [FHIRJSON] {
 					self.adjudication = ClaimResponseItemAdjudication.instantiate(fromArray: val, owner: self) as? [ClaimResponseItemAdjudication]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "adjudication", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "adjudication", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["detail"] {
+			if let exist = js["detail"] {
 				presentKeys.insert("detail")
 				if let val = exist as? [FHIRJSON] {
 					self.detail = ClaimResponseItemDetail.instantiate(fromArray: val, owner: self) as? [ClaimResponseItemDetail]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "detail", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "detail", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["noteNumber"] {
+			if let exist = js["noteNumber"] {
 				presentKeys.insert("noteNumber")
 				if let val = exist as? [UInt] {
 					self.noteNumber = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "noteNumber", wants: Array<UInt>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "noteNumber", wants: Array<UInt>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["sequenceLinkId"] {
+			if let exist = js["sequenceLinkId"] {
 				presentKeys.insert("sequenceLinkId")
 				if let val = exist as? UInt {
 					self.sequenceLinkId = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "sequenceLinkId", wants: UInt.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "sequenceLinkId", wants: UInt.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -1260,17 +1260,17 @@ public class ClaimResponseItem: BackboneElement {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let adjudication = self.adjudication {
-			json["adjudication"] = ClaimResponseItemAdjudication.asJSONArray(adjudication)
+			json["adjudication"] = adjudication.map() { $0.asJSON() }
 		}
 		if let detail = self.detail {
-			json["detail"] = ClaimResponseItemDetail.asJSONArray(detail)
+			json["detail"] = detail.map() { $0.asJSON() }
 		}
 		if let noteNumber = self.noteNumber {
-			var arr = [AnyObject]()
+			var arr = [Any]()
 			for val in noteNumber {
 				arr.append(val.asJSON())
 			}
@@ -1290,8 +1290,8 @@ public class ClaimResponseItem: BackboneElement {
  *
  *  The adjudications results.
  */
-public class ClaimResponseItemAdjudication: BackboneElement {
-	override public class var resourceName: String {
+open class ClaimResponseItemAdjudication: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ClaimResponseItemAdjudication" }
 	}
 	
@@ -1319,53 +1319,53 @@ public class ClaimResponseItemAdjudication: BackboneElement {
 		self.category = category
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["amount"] {
+			if let exist = js["amount"] {
 				presentKeys.insert("amount")
 				if let val = exist as? FHIRJSON {
 					self.amount = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["category"] {
+			if let exist = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
 					self.category = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "category"))
 			}
-			if let exist: AnyObject = js["reason"] {
+			if let exist = js["reason"] {
 				presentKeys.insert("reason")
 				if let val = exist as? FHIRJSON {
 					self.reason = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["value"] {
+			if let exist = js["value"] {
 				presentKeys.insert("value")
 				if let val = exist as? NSNumber {
 					self.value = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "value", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "value", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let amount = self.amount {
@@ -1391,8 +1391,8 @@ public class ClaimResponseItemAdjudication: BackboneElement {
  *
  *  The second tier service adjudications for submitted services.
  */
-public class ClaimResponseItemDetail: BackboneElement {
-	override public class var resourceName: String {
+open class ClaimResponseItemDetail: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ClaimResponseItemDetail" }
 	}
 	
@@ -1417,54 +1417,54 @@ public class ClaimResponseItemDetail: BackboneElement {
 		self.sequenceLinkId = sequenceLinkId
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["adjudication"] {
+			if let exist = js["adjudication"] {
 				presentKeys.insert("adjudication")
 				if let val = exist as? [FHIRJSON] {
 					self.adjudication = ClaimResponseItemDetailAdjudication.instantiate(fromArray: val, owner: self) as? [ClaimResponseItemDetailAdjudication]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "adjudication", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "adjudication", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["sequenceLinkId"] {
+			if let exist = js["sequenceLinkId"] {
 				presentKeys.insert("sequenceLinkId")
 				if let val = exist as? UInt {
 					self.sequenceLinkId = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "sequenceLinkId", wants: UInt.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "sequenceLinkId", wants: UInt.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "sequenceLinkId"))
 			}
-			if let exist: AnyObject = js["subDetail"] {
+			if let exist = js["subDetail"] {
 				presentKeys.insert("subDetail")
 				if let val = exist as? [FHIRJSON] {
 					self.subDetail = ClaimResponseItemDetailSubDetail.instantiate(fromArray: val, owner: self) as? [ClaimResponseItemDetailSubDetail]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "subDetail", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "subDetail", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let adjudication = self.adjudication {
-			json["adjudication"] = ClaimResponseItemDetailAdjudication.asJSONArray(adjudication)
+			json["adjudication"] = adjudication.map() { $0.asJSON() }
 		}
 		if let sequenceLinkId = self.sequenceLinkId {
 			json["sequenceLinkId"] = sequenceLinkId.asJSON()
 		}
 		if let subDetail = self.subDetail {
-			json["subDetail"] = ClaimResponseItemDetailSubDetail.asJSONArray(subDetail)
+			json["subDetail"] = subDetail.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -1477,8 +1477,8 @@ public class ClaimResponseItemDetail: BackboneElement {
  *
  *  The adjudications results.
  */
-public class ClaimResponseItemDetailAdjudication: BackboneElement {
-	override public class var resourceName: String {
+open class ClaimResponseItemDetailAdjudication: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ClaimResponseItemDetailAdjudication" }
 	}
 	
@@ -1506,53 +1506,53 @@ public class ClaimResponseItemDetailAdjudication: BackboneElement {
 		self.category = category
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["amount"] {
+			if let exist = js["amount"] {
 				presentKeys.insert("amount")
 				if let val = exist as? FHIRJSON {
 					self.amount = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["category"] {
+			if let exist = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
 					self.category = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "category"))
 			}
-			if let exist: AnyObject = js["reason"] {
+			if let exist = js["reason"] {
 				presentKeys.insert("reason")
 				if let val = exist as? FHIRJSON {
 					self.reason = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["value"] {
+			if let exist = js["value"] {
 				presentKeys.insert("value")
 				if let val = exist as? NSNumber {
 					self.value = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "value", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "value", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let amount = self.amount {
@@ -1578,8 +1578,8 @@ public class ClaimResponseItemDetailAdjudication: BackboneElement {
  *
  *  The third tier service adjudications for submitted services.
  */
-public class ClaimResponseItemDetailSubDetail: BackboneElement {
-	override public class var resourceName: String {
+open class ClaimResponseItemDetailSubDetail: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ClaimResponseItemDetailSubDetail" }
 	}
 	
@@ -1601,25 +1601,25 @@ public class ClaimResponseItemDetailSubDetail: BackboneElement {
 		self.sequenceLinkId = sequenceLinkId
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["adjudication"] {
+			if let exist = js["adjudication"] {
 				presentKeys.insert("adjudication")
 				if let val = exist as? [FHIRJSON] {
 					self.adjudication = ClaimResponseItemDetailSubDetailAdjudication.instantiate(fromArray: val, owner: self) as? [ClaimResponseItemDetailSubDetailAdjudication]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "adjudication", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "adjudication", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["sequenceLinkId"] {
+			if let exist = js["sequenceLinkId"] {
 				presentKeys.insert("sequenceLinkId")
 				if let val = exist as? UInt {
 					self.sequenceLinkId = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "sequenceLinkId", wants: UInt.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "sequenceLinkId", wants: UInt.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -1629,11 +1629,11 @@ public class ClaimResponseItemDetailSubDetail: BackboneElement {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let adjudication = self.adjudication {
-			json["adjudication"] = ClaimResponseItemDetailSubDetailAdjudication.asJSONArray(adjudication)
+			json["adjudication"] = adjudication.map() { $0.asJSON() }
 		}
 		if let sequenceLinkId = self.sequenceLinkId {
 			json["sequenceLinkId"] = sequenceLinkId.asJSON()
@@ -1649,8 +1649,8 @@ public class ClaimResponseItemDetailSubDetail: BackboneElement {
  *
  *  The adjudications results.
  */
-public class ClaimResponseItemDetailSubDetailAdjudication: BackboneElement {
-	override public class var resourceName: String {
+open class ClaimResponseItemDetailSubDetailAdjudication: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ClaimResponseItemDetailSubDetailAdjudication" }
 	}
 	
@@ -1678,53 +1678,53 @@ public class ClaimResponseItemDetailSubDetailAdjudication: BackboneElement {
 		self.category = category
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["amount"] {
+			if let exist = js["amount"] {
 				presentKeys.insert("amount")
 				if let val = exist as? FHIRJSON {
 					self.amount = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["category"] {
+			if let exist = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
 					self.category = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "category"))
 			}
-			if let exist: AnyObject = js["reason"] {
+			if let exist = js["reason"] {
 				presentKeys.insert("reason")
 				if let val = exist as? FHIRJSON {
 					self.reason = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["value"] {
+			if let exist = js["value"] {
 				presentKeys.insert("value")
 				if let val = exist as? NSNumber {
 					self.value = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "value", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "value", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let amount = self.amount {
@@ -1750,8 +1750,8 @@ public class ClaimResponseItemDetailSubDetailAdjudication: BackboneElement {
  *
  *  Note text.
  */
-public class ClaimResponseNote: BackboneElement {
-	override public class var resourceName: String {
+open class ClaimResponseNote: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ClaimResponseNote" }
 	}
 	
@@ -1770,41 +1770,41 @@ public class ClaimResponseNote: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["number"] {
+			if let exist = js["number"] {
 				presentKeys.insert("number")
 				if let val = exist as? UInt {
 					self.number = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "number", wants: UInt.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "number", wants: UInt.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["text"] {
+			if let exist = js["text"] {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "text", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["type"] {
+			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
 					self.type = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let number = self.number {

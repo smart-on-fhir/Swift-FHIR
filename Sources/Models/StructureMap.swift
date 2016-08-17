@@ -2,7 +2,7 @@
 //  StructureMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2016-07-07.
+//  Generated from FHIR 1.4.0.8139 (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -12,8 +12,8 @@ import Foundation
 /**
  *  A Map of relationships between 2 structures that can be used to transform data.
  */
-public class StructureMap: DomainResource {
-	override public class var resourceName: String {
+open class StructureMap: DomainResource {
+	override open class var resourceType: String {
 		get { return "StructureMap" }
 	}
 	
@@ -80,174 +80,174 @@ public class StructureMap: DomainResource {
 		self.url = url
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["contact"] {
+			if let exist = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
 					self.contact = StructureMapContact.instantiate(fromArray: val, owner: self) as? [StructureMapContact]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["copyright"] {
+			if let exist = js["copyright"] {
 				presentKeys.insert("copyright")
 				if let val = exist as? String {
 					self.copyright = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "copyright", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "copyright", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["date"] {
+			if let exist = js["date"] {
 				presentKeys.insert("date")
 				if let val = exist as? String {
 					self.date = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "date", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "date", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["description"] {
+			if let exist = js["description"] {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "description", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["experimental"] {
+			if let exist = js["experimental"] {
 				presentKeys.insert("experimental")
 				if let val = exist as? Bool {
 					self.experimental = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["group"] {
+			if let exist = js["group"] {
 				presentKeys.insert("group")
 				if let val = exist as? [FHIRJSON] {
 					self.group = StructureMapGroup.instantiate(fromArray: val, owner: self) as? [StructureMapGroup]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "group", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "group", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "group"))
 			}
-			if let exist: AnyObject = js["identifier"] {
+			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["import"] {
+			if let exist = js["import"] {
 				presentKeys.insert("import")
 				if let val = exist as? [String] {
 					self.import_fhir = URL.instantiate(fromArray: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "import", wants: Array<String>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "import", wants: Array<String>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["name"] {
+			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "name"))
 			}
-			if let exist: AnyObject = js["publisher"] {
+			if let exist = js["publisher"] {
 				presentKeys.insert("publisher")
 				if let val = exist as? String {
 					self.publisher = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["requirements"] {
+			if let exist = js["requirements"] {
 				presentKeys.insert("requirements")
 				if let val = exist as? String {
 					self.requirements = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["status"] {
+			if let exist = js["status"] {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "status"))
 			}
-			if let exist: AnyObject = js["structure"] {
+			if let exist = js["structure"] {
 				presentKeys.insert("structure")
 				if let val = exist as? [FHIRJSON] {
 					self.structure = StructureMapStructure.instantiate(fromArray: val, owner: self) as? [StructureMapStructure]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "structure", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "structure", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["url"] {
+			if let exist = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = URL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "url"))
 			}
-			if let exist: AnyObject = js["useContext"] {
+			if let exist = js["useContext"] {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
 					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["version"] {
+			if let exist = js["version"] {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "version", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let contact = self.contact {
-			json["contact"] = StructureMapContact.asJSONArray(contact)
+			json["contact"] = contact.map() { $0.asJSON() }
 		}
 		if let copyright = self.copyright {
 			json["copyright"] = copyright.asJSON()
@@ -262,13 +262,13 @@ public class StructureMap: DomainResource {
 			json["experimental"] = experimental.asJSON()
 		}
 		if let group = self.group {
-			json["group"] = StructureMapGroup.asJSONArray(group)
+			json["group"] = group.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let import_fhir = self.import_fhir {
-			var arr = [AnyObject]()
+			var arr = [Any]()
 			for val in import_fhir {
 				arr.append(val.asJSON())
 			}
@@ -287,13 +287,13 @@ public class StructureMap: DomainResource {
 			json["status"] = status.asJSON()
 		}
 		if let structure = self.structure {
-			json["structure"] = StructureMapStructure.asJSONArray(structure)
+			json["structure"] = structure.map() { $0.asJSON() }
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
 		}
 		if let useContext = self.useContext {
-			json["useContext"] = CodeableConcept.asJSONArray(useContext)
+			json["useContext"] = useContext.map() { $0.asJSON() }
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
@@ -309,8 +309,8 @@ public class StructureMap: DomainResource {
  *
  *  Contacts to assist a user in finding and communicating with the publisher.
  */
-public class StructureMapContact: BackboneElement {
-	override public class var resourceName: String {
+open class StructureMapContact: BackboneElement {
+	override open class var resourceType: String {
 		get { return "StructureMapContact" }
 	}
 	
@@ -326,39 +326,39 @@ public class StructureMapContact: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["name"] {
+			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["telecom"] {
+			if let exist = js["telecom"] {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
 					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -369,8 +369,8 @@ public class StructureMapContact: BackboneElement {
 /**
  *  Named sections for reader convenience.
  */
-public class StructureMapGroup: BackboneElement {
-	override public class var resourceName: String {
+open class StructureMapGroup: BackboneElement {
+	override open class var resourceType: String {
 		get { return "StructureMapGroup" }
 	}
 	
@@ -403,58 +403,58 @@ public class StructureMapGroup: BackboneElement {
 		self.rule = rule
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["documentation"] {
+			if let exist = js["documentation"] {
 				presentKeys.insert("documentation")
 				if let val = exist as? String {
 					self.documentation = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "documentation", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "documentation", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["extends"] {
+			if let exist = js["extends"] {
 				presentKeys.insert("extends")
 				if let val = exist as? String {
 					self.extends = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "extends", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "extends", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["input"] {
+			if let exist = js["input"] {
 				presentKeys.insert("input")
 				if let val = exist as? [FHIRJSON] {
 					self.input = StructureMapGroupInput.instantiate(fromArray: val, owner: self) as? [StructureMapGroupInput]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "input", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "input", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "input"))
 			}
-			if let exist: AnyObject = js["name"] {
+			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "name"))
 			}
-			if let exist: AnyObject = js["rule"] {
+			if let exist = js["rule"] {
 				presentKeys.insert("rule")
 				if let val = exist as? [FHIRJSON] {
 					self.rule = StructureMapGroupRule.instantiate(fromArray: val, owner: self) as? [StructureMapGroupRule]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "rule", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "rule", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -464,7 +464,7 @@ public class StructureMapGroup: BackboneElement {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let documentation = self.documentation {
@@ -474,13 +474,13 @@ public class StructureMapGroup: BackboneElement {
 			json["extends"] = extends.asJSON()
 		}
 		if let input = self.input {
-			json["input"] = StructureMapGroupInput.asJSONArray(input)
+			json["input"] = input.map() { $0.asJSON() }
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
 		if let rule = self.rule {
-			json["rule"] = StructureMapGroupRule.asJSONArray(rule)
+			json["rule"] = rule.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -493,8 +493,8 @@ public class StructureMapGroup: BackboneElement {
  *
  *  A name assigned to an instance of data. The instance must be provided when the mapping is invoked.
  */
-public class StructureMapGroupInput: BackboneElement {
-	override public class var resourceName: String {
+open class StructureMapGroupInput: BackboneElement {
+	override open class var resourceType: String {
 		get { return "StructureMapGroupInput" }
 	}
 	
@@ -523,56 +523,56 @@ public class StructureMapGroupInput: BackboneElement {
 		self.name = name
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["documentation"] {
+			if let exist = js["documentation"] {
 				presentKeys.insert("documentation")
 				if let val = exist as? String {
 					self.documentation = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "documentation", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "documentation", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["mode"] {
+			if let exist = js["mode"] {
 				presentKeys.insert("mode")
 				if let val = exist as? String {
 					self.mode = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "mode"))
 			}
-			if let exist: AnyObject = js["name"] {
+			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "name"))
 			}
-			if let exist: AnyObject = js["type"] {
+			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let documentation = self.documentation {
@@ -596,8 +596,8 @@ public class StructureMapGroupInput: BackboneElement {
 /**
  *  Transform Rule from source to target.
  */
-public class StructureMapGroupRule: BackboneElement {
-	override public class var resourceName: String {
+open class StructureMapGroupRule: BackboneElement {
+	override open class var resourceType: String {
 		get { return "StructureMapGroupRule" }
 	}
 	
@@ -632,78 +632,78 @@ public class StructureMapGroupRule: BackboneElement {
 		self.source = source
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["dependent"] {
+			if let exist = js["dependent"] {
 				presentKeys.insert("dependent")
 				if let val = exist as? [FHIRJSON] {
 					self.dependent = StructureMapGroupRuleDependent.instantiate(fromArray: val, owner: self) as? [StructureMapGroupRuleDependent]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "dependent", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "dependent", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["documentation"] {
+			if let exist = js["documentation"] {
 				presentKeys.insert("documentation")
 				if let val = exist as? String {
 					self.documentation = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "documentation", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "documentation", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["name"] {
+			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "name"))
 			}
-			if let exist: AnyObject = js["rule"] {
+			if let exist = js["rule"] {
 				presentKeys.insert("rule")
 				if let val = exist as? [FHIRJSON] {
 					self.rule = StructureMapGroupRule.instantiate(fromArray: val, owner: self) as? [StructureMapGroupRule]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "rule", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "rule", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["source"] {
+			if let exist = js["source"] {
 				presentKeys.insert("source")
 				if let val = exist as? [FHIRJSON] {
 					self.source = StructureMapGroupRuleSource.instantiate(fromArray: val, owner: self) as? [StructureMapGroupRuleSource]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "source", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "source", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "source"))
 			}
-			if let exist: AnyObject = js["target"] {
+			if let exist = js["target"] {
 				presentKeys.insert("target")
 				if let val = exist as? [FHIRJSON] {
 					self.target = StructureMapGroupRuleTarget.instantiate(fromArray: val, owner: self) as? [StructureMapGroupRuleTarget]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "target", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "target", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let dependent = self.dependent {
-			json["dependent"] = StructureMapGroupRuleDependent.asJSONArray(dependent)
+			json["dependent"] = dependent.map() { $0.asJSON() }
 		}
 		if let documentation = self.documentation {
 			json["documentation"] = documentation.asJSON()
@@ -712,13 +712,13 @@ public class StructureMapGroupRule: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let rule = self.rule {
-			json["rule"] = StructureMapGroupRule.asJSONArray(rule)
+			json["rule"] = rule.map() { $0.asJSON() }
 		}
 		if let source = self.source {
-			json["source"] = StructureMapGroupRuleSource.asJSONArray(source)
+			json["source"] = source.map() { $0.asJSON() }
 		}
 		if let target = self.target {
-			json["target"] = StructureMapGroupRuleTarget.asJSONArray(target)
+			json["target"] = target.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -729,8 +729,8 @@ public class StructureMapGroupRule: BackboneElement {
 /**
  *  Which other rules to apply in the context of this rule.
  */
-public class StructureMapGroupRuleDependent: BackboneElement {
-	override public class var resourceName: String {
+open class StructureMapGroupRuleDependent: BackboneElement {
+	override open class var resourceType: String {
 		get { return "StructureMapGroupRuleDependent" }
 	}
 	
@@ -753,28 +753,28 @@ public class StructureMapGroupRuleDependent: BackboneElement {
 		self.variable = variable
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["name"] {
+			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "name"))
 			}
-			if let exist: AnyObject = js["variable"] {
+			if let exist = js["variable"] {
 				presentKeys.insert("variable")
 				if let val = exist as? [String] {
 					self.variable = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "variable", wants: Array<String>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "variable", wants: Array<String>.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -784,14 +784,14 @@ public class StructureMapGroupRuleDependent: BackboneElement {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
 		if let variable = self.variable {
-			var arr = [AnyObject]()
+			var arr = [Any]()
 			for val in variable {
 				arr.append(val.asJSON())
 			}
@@ -806,8 +806,8 @@ public class StructureMapGroupRuleDependent: BackboneElement {
 /**
  *  Source inputs to the mapping.
  */
-public class StructureMapGroupRuleSource: BackboneElement {
-	override public class var resourceName: String {
+open class StructureMapGroupRuleSource: BackboneElement {
+	override open class var resourceType: String {
 		get { return "StructureMapGroupRuleSource" }
 	}
 	
@@ -849,95 +849,95 @@ public class StructureMapGroupRuleSource: BackboneElement {
 		self.required = required
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["check"] {
+			if let exist = js["check"] {
 				presentKeys.insert("check")
 				if let val = exist as? String {
 					self.check = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "check", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "check", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["condition"] {
+			if let exist = js["condition"] {
 				presentKeys.insert("condition")
 				if let val = exist as? String {
 					self.condition = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "condition", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "condition", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["context"] {
+			if let exist = js["context"] {
 				presentKeys.insert("context")
 				if let val = exist as? String {
 					self.context = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "context", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "context", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "context"))
 			}
-			if let exist: AnyObject = js["contextType"] {
+			if let exist = js["contextType"] {
 				presentKeys.insert("contextType")
 				if let val = exist as? String {
 					self.contextType = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "contextType", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "contextType", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "contextType"))
 			}
-			if let exist: AnyObject = js["element"] {
+			if let exist = js["element"] {
 				presentKeys.insert("element")
 				if let val = exist as? String {
 					self.element = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "element", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "element", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["listMode"] {
+			if let exist = js["listMode"] {
 				presentKeys.insert("listMode")
 				if let val = exist as? String {
 					self.listMode = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "listMode", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "listMode", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["required"] {
+			if let exist = js["required"] {
 				presentKeys.insert("required")
 				if let val = exist as? Bool {
 					self.required = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "required", wants: Bool.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "required", wants: Bool.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "required"))
 			}
-			if let exist: AnyObject = js["variable"] {
+			if let exist = js["variable"] {
 				presentKeys.insert("variable")
 				if let val = exist as? String {
 					self.variable = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "variable", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "variable", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let check = self.check {
@@ -973,8 +973,8 @@ public class StructureMapGroupRuleSource: BackboneElement {
 /**
  *  Content to create because of this mapping rule.
  */
-public class StructureMapGroupRuleTarget: BackboneElement {
-	override public class var resourceName: String {
+open class StructureMapGroupRuleTarget: BackboneElement {
+	override open class var resourceType: String {
 		get { return "StructureMapGroupRuleTarget" }
 	}
 	
@@ -1015,92 +1015,92 @@ public class StructureMapGroupRuleTarget: BackboneElement {
 		self.contextType = contextType
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["context"] {
+			if let exist = js["context"] {
 				presentKeys.insert("context")
 				if let val = exist as? String {
 					self.context = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "context", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "context", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "context"))
 			}
-			if let exist: AnyObject = js["contextType"] {
+			if let exist = js["contextType"] {
 				presentKeys.insert("contextType")
 				if let val = exist as? String {
 					self.contextType = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "contextType", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "contextType", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "contextType"))
 			}
-			if let exist: AnyObject = js["element"] {
+			if let exist = js["element"] {
 				presentKeys.insert("element")
 				if let val = exist as? String {
 					self.element = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "element", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "element", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["listMode"] {
+			if let exist = js["listMode"] {
 				presentKeys.insert("listMode")
 				if let val = exist as? [String] {
 					self.listMode = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "listMode", wants: Array<String>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "listMode", wants: Array<String>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["listRuleId"] {
+			if let exist = js["listRuleId"] {
 				presentKeys.insert("listRuleId")
 				if let val = exist as? String {
 					self.listRuleId = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "listRuleId", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "listRuleId", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["parameter"] {
+			if let exist = js["parameter"] {
 				presentKeys.insert("parameter")
 				if let val = exist as? [FHIRJSON] {
 					self.parameter = StructureMapGroupRuleTargetParameter.instantiate(fromArray: val, owner: self) as? [StructureMapGroupRuleTargetParameter]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "parameter", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "parameter", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["transform"] {
+			if let exist = js["transform"] {
 				presentKeys.insert("transform")
 				if let val = exist as? String {
 					self.transform = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "transform", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "transform", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["variable"] {
+			if let exist = js["variable"] {
 				presentKeys.insert("variable")
 				if let val = exist as? String {
 					self.variable = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "variable", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "variable", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let context = self.context {
@@ -1113,7 +1113,7 @@ public class StructureMapGroupRuleTarget: BackboneElement {
 			json["element"] = element.asJSON()
 		}
 		if let listMode = self.listMode {
-			var arr = [AnyObject]()
+			var arr = [Any]()
 			for val in listMode {
 				arr.append(val.asJSON())
 			}
@@ -1123,7 +1123,7 @@ public class StructureMapGroupRuleTarget: BackboneElement {
 			json["listRuleId"] = listRuleId.asJSON()
 		}
 		if let parameter = self.parameter {
-			json["parameter"] = StructureMapGroupRuleTargetParameter.asJSONArray(parameter)
+			json["parameter"] = parameter.map() { $0.asJSON() }
 		}
 		if let transform = self.transform {
 			json["transform"] = transform.asJSON()
@@ -1140,8 +1140,8 @@ public class StructureMapGroupRuleTarget: BackboneElement {
 /**
  *  Parameters to the transform.
  */
-public class StructureMapGroupRuleTargetParameter: BackboneElement {
-	override public class var resourceName: String {
+open class StructureMapGroupRuleTargetParameter: BackboneElement {
+	override open class var resourceType: String {
 		get { return "StructureMapGroupRuleTargetParameter" }
 	}
 	
@@ -1176,52 +1176,52 @@ public class StructureMapGroupRuleTargetParameter: BackboneElement {
 		self.valueString = valueString
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["valueBoolean"] {
+			if let exist = js["valueBoolean"] {
 				presentKeys.insert("valueBoolean")
 				if let val = exist as? Bool {
 					self.valueBoolean = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "valueBoolean", wants: Bool.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "valueBoolean", wants: Bool.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["valueDecimal"] {
+			if let exist = js["valueDecimal"] {
 				presentKeys.insert("valueDecimal")
 				if let val = exist as? NSNumber {
 					self.valueDecimal = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "valueDecimal", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "valueDecimal", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["valueId"] {
+			if let exist = js["valueId"] {
 				presentKeys.insert("valueId")
 				if let val = exist as? String {
 					self.valueId = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "valueId", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "valueId", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["valueInteger"] {
+			if let exist = js["valueInteger"] {
 				presentKeys.insert("valueInteger")
 				if let val = exist as? Int {
 					self.valueInteger = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "valueInteger", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "valueInteger", wants: Int.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["valueString"] {
+			if let exist = js["valueString"] {
 				presentKeys.insert("valueString")
 				if let val = exist as? String {
 					self.valueString = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "valueString", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "valueString", wants: String.self, has: type(of: exist)))
 				}
 			}
 			
@@ -1233,7 +1233,7 @@ public class StructureMapGroupRuleTargetParameter: BackboneElement {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let valueBoolean = self.valueBoolean {
@@ -1263,8 +1263,8 @@ public class StructureMapGroupRuleTargetParameter: BackboneElement {
  *  A structure definition used by this map. The structure definition may describe instances that are converted, or the
  *  instances that are produced.
  */
-public class StructureMapStructure: BackboneElement {
-	override public class var resourceName: String {
+open class StructureMapStructure: BackboneElement {
+	override open class var resourceType: String {
 		get { return "StructureMapStructure" }
 	}
 	
@@ -1290,37 +1290,37 @@ public class StructureMapStructure: BackboneElement {
 		self.url = url
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["documentation"] {
+			if let exist = js["documentation"] {
 				presentKeys.insert("documentation")
 				if let val = exist as? String {
 					self.documentation = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "documentation", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "documentation", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["mode"] {
+			if let exist = js["mode"] {
 				presentKeys.insert("mode")
 				if let val = exist as? String {
 					self.mode = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "mode"))
 			}
-			if let exist: AnyObject = js["url"] {
+			if let exist = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = URL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -1330,7 +1330,7 @@ public class StructureMapStructure: BackboneElement {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let documentation = self.documentation {

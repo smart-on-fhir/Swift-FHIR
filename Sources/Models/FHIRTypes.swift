@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
-A JSON dictionary, with `String` keys and `AnyObject` values.
+A JSON dictionary, with `String` keys and `Any` values.
 */
 public typealias FHIRJSON = [String: Any]
 

@@ -15,7 +15,8 @@ import Models
 /**
 Base for different request/response handlers.
 
-Would love to make this a protocol but since it has an associated type it cannot be used nicely, hence a class.
+Would love to make this a protocol but since it has an associated type which does cannot be used for initialization from subclasses -- the
+associated type of the class that implements the method is always used -- it cannot be used nicely. Hence a class.
 */
 open class FHIRServerRequestHandler {
 	
@@ -87,9 +88,9 @@ open class FHIRServerRequestHandler {
 	/**
 	Instantiate an object of ResponseType-type based on the response and data that we get.
 	*/
-	open func response(response: URLResponse?, data inData: Data? = nil, error: NSError? = nil) -> FHIRServerResponse {
+	open func response(response: URLResponse?, data inData: Data? = nil, error: Error? = nil) -> FHIRServerResponse {
 		if let res = response {
-			return type(of: self).ResponseType.init(response: res, data: inData, urlError: error)
+			return type(of: self).ResponseType.init(response: res, data: inData, error: error)
 		}
 		if let error = error {
 			return type(of: self).ResponseType.init(error: error)

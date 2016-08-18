@@ -71,6 +71,11 @@ extension FHIRServerResponse {
 		}
 	}
 	
+	/** Initializes with a no-response error. */
+	public static func noneReceived() -> Self {
+		return self.init(error: FHIRError.noResponseReceived)
+	}
+	
 	/// Nicely format status code, response headers and response body (if any).
 	public var debugDescription: String {
 		var msg = "HTTP 1.1 \(status)"
@@ -105,9 +110,9 @@ open class FHIRServerDataResponse: FHIRServerResponse {
 	open var error: FHIRError?
 	
 	/**
-	Instantiate a FHIRServerResponse from an NS(HTTP)URLResponse, NSData and an optional NSError.
+	Instantiate a FHIRServerResponse from a (HTTP)URLResponse, Data and an optional Error.
 	*/
-	public required init(response: URLResponse, data: Data?, urlError: NSError?) {
+	public required init(response: URLResponse, data: Data?, error: Error?) {
 		var status = 0
 		var headers = [String: String]()
 		
@@ -127,11 +132,14 @@ open class FHIRServerDataResponse: FHIRServerResponse {
 		}
 		
 		// was there an error?
-		if let error = urlError, NSURLErrorDomain == error.domain {
-			self.error = FHIRError.requestError(status, NSURLErrorHumanize(error))
+		if let error = error as? NSError, NSURLErrorDomain == error.domain {
+			self.error = FHIRError.requestError(status, error.humanized)
 		}
-		else if let error = urlError {
-			self.error = FHIRError.error(error.description)
+		else if let error = error as? FHIRError {
+			self.error = error
+		}
+		else if let error = error {
+			self.error = FHIRError.error(error.localizedDescription)
 		}
 		
 		self.status = status
@@ -143,7 +151,7 @@ open class FHIRServerDataResponse: FHIRServerResponse {
 		self.status = 0
 		self.headers = [String: String]()
 		if NSURLErrorDomain == (error as NSError).domain {
-			self.error = FHIRError.requestError(status, NSURLErrorHumanize(error as NSError))
+			self.error = FHIRError.requestError(status, (error as NSError).humanized)
 		}
 		else if let error = error as? FHIRError {
 			self.error = error
@@ -190,8 +198,8 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 	/**
 	If the status is >= 400, the response body is checked for an OperationOutcome and its first issue item is turned into an error message.
 	*/
-	public required init(response: URLResponse, data inData: Data?, urlError: NSError?) {
-		super.init(response: response, data: inData, urlError: urlError)
+	public required init(response: URLResponse, data inData: Data?, error: Error?) {
+		super.init(response: response, data: inData, error: error)
 		
 		// parse data as JSON
 		if let data = inData, data.count > 0 {
@@ -214,7 +222,7 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 			catch let error as NSError {
 				// Cocoa error 3840 is JSON parsing error; some error responses may not return JSON, don't report an error on those
 				if 3840 != error.code || NSCocoaErrorDomain != error.domain || status < 400 {
-					let raw = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String ?? ""
+					let raw = String(data: data, encoding: String.Encoding.utf8) ?? ""
 					self.error = FHIRError.jsonParsingError(error.localizedDescription, raw)
 				}
 			}
@@ -270,12 +278,14 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 
 // MARK: -
 
-/**
-Return a human-readable, localized string for error codes of the NSURLErrorDomain.
-*/
-func NSURLErrorHumanize(_ error: NSError) -> String {
-	assert(NSURLErrorDomain == error.domain, "Can only use this function with errors in the NSURLErrorDomain")
-	switch error.code {
+extension NSError {
+	
+	/**
+	Return a human-readable, localized string for error codes of the NSURLErrorDomain (!!).
+	*/
+	public var humanized: String {
+		assert(NSURLErrorDomain == domain, "Can only use this function with errors in the NSURLErrorDomain")
+		switch code {
 		case NSURLErrorBadURL:                return "The URL was malformed".fhir_localized
 		case NSURLErrorTimedOut:              return "The connection timed out".fhir_localized
 		case NSURLErrorUnsupportedURL:        return "The URL scheme is not supported".fhir_localized
@@ -284,7 +294,8 @@ func NSURLErrorHumanize(_ error: NSError) -> String {
 		case NSURLErrorNetworkConnectionLost: return "The network connection was lost".fhir_localized
 		case NSURLErrorDNSLookupFailed:       return "The connection failed because the DNS lookup failed".fhir_localized
 		case NSURLErrorHTTPTooManyRedirects:  return "The HTTP connection failed due to too many redirects".fhir_localized
-		default:                              return error.localizedDescription
+		default:                              return localizedDescription
+		}
 	}
 }
 

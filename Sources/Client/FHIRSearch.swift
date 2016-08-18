@@ -106,7 +106,7 @@ open class FHIRSearch
 		Calling this method will always restart search, not fetch subsequent pages.
 	
 		- parameter server: The FHIRServer instance on which to perform the search
-		- parameter callback: The callback, receives the response Bundle or an NSError message describing what went wrong
+		- parameter callback: The callback, receives the response Bundle or an Error message describing what went wrong
 	 */
 	open func perform(_ server: FHIRServer, callback: FHIRSearchBundleErrorCallback) {
 		if nil == profileType {
@@ -123,7 +123,7 @@ open class FHIRSearch
 		with no bundle and no error.
 	
 		- parameter server: The FHIRServer instance on which to perform the search
-		- parameter callback: The callback, receives the response Bundle or an NSError message describing what went wrong
+		- parameter callback: The callback, receives the response Bundle or an Error message describing what went wrong
 	 */
 	open func nextPage(_ server: FHIRServer, callback: FHIRSearchBundleErrorCallback) {
 		if let next = nextPageURL?.absoluteString {

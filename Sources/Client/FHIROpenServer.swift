@@ -20,7 +20,7 @@ It knows its base URL, can fetch and hold on to the conformance statement and pe
 These methods are of interest to you when you create a subclass:
 
 - `handlerForRequest(ofType:resource:)`: what kind of handler your server wants to use. Returns `FHIRServerJSONRequestHandler`.
-- `configurableRequest(forURL:)`: the SMART framework returns a request that already has an Authorization headers set, if needed.
+- `configurableRequest(for:)`: the SMART framework returns a request that already has an Authorization headers set, if needed.
 */
 open class FHIROpenServer: FHIRServer {
 	
@@ -62,9 +62,15 @@ open class FHIROpenServer: FHIRServer {
 	
 	/**
 	Perform a request of given type against the given path with the (optional) given resource and headers.
+	
+	- parameter ofType:            The HTTP method type of the request
+	- parameter path:              The relative path on the server to be interacting against
+	- parameter resource:          The resource to be involved in the request, if any
+	- parameter additonalHeaders:  The headers to set on the request
+	- parameter callback:          A callback, likely called asynchronously, returning a response instance
 	*/
-	open func performRequest(ofType type: FHIRRequestType, path: String, resource: Resource?, additionalHeaders: FHIRRequestHeaders? = nil, callback: ((_ response: FHIRServerResponse) -> Void)) {
-		if let handler = handlerForRequest(type, resource: resource, headers: additionalHeaders) {
+	open func performRequest(ofType type: FHIRRequestType, path: String, resource: Resource?, additionalHeaders: FHIRRequestHeaders? = nil, callback: ((FHIRServerResponse) -> Void)) {
+		if let handler = handlerForRequest(ofType: type, resource: resource, headers: additionalHeaders) {
 			performRequest(againstPath: path, handler: handler, callback: callback)
 		}
 		else {
@@ -81,12 +87,12 @@ open class FHIROpenServer: FHIRServer {
 	
 	Request handlers are responsible for constructing an URLRequest that correctly performs the desired REST interaction.
 	
-	- parameter ofType:   The type of the request (GET, PUT, POST or DELETE)
+	- parameter type:     The type of the request (GET, PUT, POST or DELETE)
 	- parameter resource: The resource to be involved in the request, if any
-	- returns: An appropriate `FHIRServerRequestHandler`, for example a _FHIRServerJSONRequestHandler_ if sending and receiving JSON
+	- returns:            An appropriate `FHIRServerRequestHandler`, for example a _FHIRServerJSONRequestHandler_ if sending and receiving JSON
 	*/
-	open func handlerForRequest(_ ofType: FHIRRequestType, resource: Resource?, headers: FHIRRequestHeaders? = nil) -> FHIRServerRequestHandler? {
-		let handler = FHIRServerJSONRequestHandler(ofType, resource: resource)
+	open func handlerForRequest(ofType type: FHIRRequestType, resource: Resource?, headers: FHIRRequestHeaders? = nil) -> FHIRServerRequestHandler? {
+		let handler = FHIRServerJSONRequestHandler(type, resource: resource)
 		if let headers = headers {
 			handler.add(headers: headers)
 		}
@@ -96,9 +102,9 @@ open class FHIROpenServer: FHIRServer {
 	/**
 	Pre-prepare a mutable URLRequest that the handler subsequently prepares and performs.
 	
-	- parameter forURL: The url to use for the request
+	- parameter url: The url to use for the request
 	*/
-	open func configurableRequest(forURL url: URL) -> URLRequest {
+	open func configurableRequest(for url: URL) -> URLRequest {
 		return URLRequest(url: url)
 	}
 	
@@ -110,7 +116,7 @@ open class FHIROpenServer: FHIRServer {
 	- parameter handler:     The RequestHandler that prepares the request and processes the response
 	- parameter callback:    The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
-	open func performRequest<R: FHIRServerRequestHandler>(againstPath path: String, handler: R, callback: ((_ response: FHIRServerResponse) -> Void)) {
+	open func performRequest<R: FHIRServerRequestHandler>(againstPath path: String, handler: R, callback: ((FHIRServerResponse) -> Void)) {
 		guard let url = absoluteURL(for: path, handler: handler) else {
 			let res = handler.notSent("Failed to parse path «\(path)» relative to server base URL")
 			callback(res)
@@ -126,8 +132,8 @@ open class FHIROpenServer: FHIRServer {
 	- parameter handler:  The RequestHandler that prepares the request and processes the response
 	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
-	open func performRequest<R: FHIRServerRequestHandler>(withURL url: URL, handler: R, callback: ((_ response: FHIRServerResponse) -> Void)) {
-		var request = configurableRequest(forURL: url)
+	open func performRequest<R: FHIRServerRequestHandler>(withURL url: URL, handler: R, callback: ((FHIRServerResponse) -> Void)) {
+		var request = configurableRequest(for: url)
 		do {
 			try handler.prepare(request: &request)
 			self.performPreparedRequest(request, handler: handler, callback: callback)
@@ -147,7 +153,7 @@ open class FHIROpenServer: FHIRServer {
 	- parameter handler: The RequestHandler that prepares the request and processes the response
 	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
-	open func performPreparedRequest<R: FHIRServerRequestHandler>(_ request: URLRequest, handler: R, callback: ((_ response: FHIRServerResponse) -> Void)) {
+	open func performPreparedRequest<R: FHIRServerRequestHandler>(_ request: URLRequest, handler: R, callback: ((FHIRServerResponse) -> Void)) {
 		performPreparedRequest(request, withSession: URLSession(), handler: handler, callback: callback)
 	}
 	
@@ -159,9 +165,9 @@ open class FHIROpenServer: FHIRServer {
 	- parameter handler: The RequestHandler that prepares the request and processes the response
 	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
 	*/
-	open func performPreparedRequest<R: FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: ((_ response: FHIRServerResponse) -> Void)) {
+	open func performPreparedRequest<R: FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: ((FHIRServerResponse) -> Void)) {
 		let task = session.dataTask(with: request) { data, response, error in
-			let res = handler.response(response: response, data: data, error: error as NSError?)
+			let res = handler.response(response: response, data: data, error: error)
 			callback(res)
 		}
 		task.resume()
@@ -295,7 +301,7 @@ open class FHIROpenServer: FHIRServer {
 	- parameter operation: The operation instance to perform
 	- parameter callback: The callback to call when the request ends (success or failure)
 	*/
-	open func perform(_ operation: FHIROperation, callback: ((_ response: FHIRServerResponse) -> Void)) {
+	open func perform(_ operation: FHIROperation, callback: ((FHIRServerResponse) -> Void)) {
 		self.operation(operation.name) { definition in
 			if let def = definition {
 				do {

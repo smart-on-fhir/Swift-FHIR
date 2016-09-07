@@ -85,7 +85,7 @@ extension Reference {
 	- parameter type: The type of the resource to expect
 	- parameter callback: The callback to call upon success or failure, with the resolved resource or nil
 	*/
-	public func resolve<T: Resource>(_ type: T.Type, callback: ((T?) -> Void)) {
+	public func resolve<T: Resource>(_ type: T.Type, callback: @escaping ((T?) -> Void)) {
 		if let resolved = resolved(T.self) {
 			callback(resolved)
 		}

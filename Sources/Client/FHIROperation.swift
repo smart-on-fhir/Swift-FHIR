@@ -163,7 +163,7 @@ open class FHIROperation: CustomStringConvertible {
 	
 	- parameter on Server: The server on which to perform the operation
 	*/
-	open func perform(onServer server: FHIRServer, callback: ((_ response: FHIRServerResponse) -> Void)) throws {
+	open func perform(onServer server: FHIRServer, callback: @escaping ((_ response: FHIRServerResponse) -> Void)) throws {
 		let path = try serverPath()
 		server.performRequest(ofType: .GET, path: path, resource: nil, additionalHeaders: nil, callback: callback)
 	}

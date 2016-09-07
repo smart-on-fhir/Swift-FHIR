@@ -90,7 +90,7 @@ public extension Resource {
 	
 	Forwards to class method `readFrom` with the resource's relative URL, created from the supplied id and the resource's base.
 	*/
-	public class func read(_ id: String, server: FHIRServer, callback: FHIRResourceErrorCallback) {
+	public class func read(_ id: String, server: FHIRServer, callback: @escaping FHIRResourceErrorCallback) {
 		let path = "\(resourceType)/\(id)"
 		readFrom(path, server: server, callback: callback)
 	}
@@ -104,7 +104,7 @@ public extension Resource {
 	- parameter server: The server to use
 	- parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	*/
-	public class func readFrom(_ path: String, server: FHIRServer, callback: FHIRResourceErrorCallback) {
+	public class func readFrom(_ path: String, server: FHIRServer, callback: @escaping FHIRResourceErrorCallback) {
 		server.performRequest(ofType: .GET, path: path, resource: nil, additionalHeaders: nil) { response in
 			if let error = response.error {
 				callback(nil, error)
@@ -141,7 +141,7 @@ public extension Resource {
 	- parameter server:   The server on which to create the resource
 	- parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	*/
-	public func create(_ server: FHIRServer, callback: FHIRErrorCallback) {
+	public func create(_ server: FHIRServer, callback: @escaping FHIRErrorCallback) {
 		guard nil == id else {
 			callback(FHIRError.resourceAlreadyHasId)
 			return
@@ -176,7 +176,7 @@ public extension Resource {
 	- parameter server:   The server on which to create the resource
 	- parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	*/
-	func createAndReturn(_ server: FHIRServer, callback: FHIRErrorCallback) {
+	func createAndReturn(_ server: FHIRServer, callback: @escaping FHIRErrorCallback) {
 		guard nil == id else {
 			callback(FHIRError.resourceAlreadyHasId)
 			return
@@ -227,7 +227,7 @@ public extension Resource {
 	
 	- parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	*/
-	public func update(callback: FHIRErrorCallback) {
+	public func update(callback: @escaping FHIRErrorCallback) {
 		if let server = _server {
 			do {
 				let path = try relativeURLPath()
@@ -255,7 +255,7 @@ public extension Resource {
 	
 	This method forwards to the `delete` class method, substituting the receiver's path and server.
 	*/
-	public func delete(callback: FHIRErrorCallback) {
+	public func delete(callback: @escaping FHIRErrorCallback) {
 		if let server = _server {
 			do {
 				let path = try relativeURLPath()
@@ -275,7 +275,7 @@ public extension Resource {
 	
 	This implementation issues a DELETE call against the given path on the given server.
 	*/
-	public class func delete(_ path: String, server: FHIRServer, callback: FHIRErrorCallback) {
+	public class func delete(_ path: String, server: FHIRServer, callback: @escaping FHIRErrorCallback) {
 		server.performRequest(ofType: .DELETE, path: path, resource: nil, additionalHeaders: nil) { response in
 			// TODO: should we do some header inspection (response.headers)?
 			callback(response.error)
@@ -311,7 +311,7 @@ public extension Resource {
 	/**
 	Perform a given operation on the receiver.
 	*/
-	public func perform(operation: FHIROperation, callback: FHIRResourceErrorCallback) {
+	public func perform(operation: FHIROperation, callback: @escaping FHIRResourceErrorCallback) {
 		if let server = _server {
 			if let server = server as? FHIROpenServer {
 				operation.instance = self
@@ -329,12 +329,12 @@ public extension Resource {
 	/**
 	Perform a given operation on the receiving type.
 	*/
-	public class func perform(operation: FHIROperation, server: FHIROpenServer, callback: FHIRResourceErrorCallback) {
+	public class func perform(operation: FHIROperation, server: FHIROpenServer, callback: @escaping FHIRResourceErrorCallback) {
 		operation.type = self
 		_perform(operation: operation, server: server, callback: callback)
 	}
 	
-	class func _perform(operation: FHIROperation, server: FHIROpenServer, callback: FHIRResourceErrorCallback) {
+	class func _perform(operation: FHIROperation, server: FHIROpenServer, callback: @escaping FHIRResourceErrorCallback) {
 		server.perform(operation) { response in
 			if let error = response.error {
 				callback(nil, error)

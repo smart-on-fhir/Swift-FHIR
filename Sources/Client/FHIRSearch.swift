@@ -108,7 +108,7 @@ open class FHIRSearch
 		- parameter server: The FHIRServer instance on which to perform the search
 		- parameter callback: The callback, receives the response Bundle or an Error message describing what went wrong
 	 */
-	open func perform(_ server: FHIRServer, callback: FHIRSearchBundleErrorCallback) {
+	open func perform(_ server: FHIRServer, callback: @escaping FHIRSearchBundleErrorCallback) {
 		if nil == profileType {
 			callback(nil, FHIRError.searchResourceTypeNotDefined)
 			return
@@ -125,7 +125,7 @@ open class FHIRSearch
 		- parameter server: The FHIRServer instance on which to perform the search
 		- parameter callback: The callback, receives the response Bundle or an Error message describing what went wrong
 	 */
-	open func nextPage(_ server: FHIRServer, callback: FHIRSearchBundleErrorCallback) {
+	open func nextPage(_ server: FHIRServer, callback: @escaping FHIRSearchBundleErrorCallback) {
 		if let next = nextPageURL?.absoluteString {
 			performSearch(server, queryPath: next, callback: callback)
 		}
@@ -134,7 +134,7 @@ open class FHIRSearch
 		}
 	}
 	
-	func performSearch(_ server: FHIRServer, queryPath: String, callback: FHIRSearchBundleErrorCallback) {
+	func performSearch(_ server: FHIRServer, queryPath: String, callback: @escaping FHIRSearchBundleErrorCallback) {
 		if busy {
 			callback(nil, nil)
 			return

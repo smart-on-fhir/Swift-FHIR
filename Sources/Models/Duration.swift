@@ -2,7 +2,7 @@
 //  Duration.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Duration) on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Duration) on 2016-09-15.
 //  2016, SMART Health IT.
 //
 

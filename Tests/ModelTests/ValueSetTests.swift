@@ -2,7 +2,7 @@
 //  ValueSetTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
+//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
 //  2016, SMART Health IT.
 //
 
@@ -246,13 +246,13 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.compose?.include?[0].system?.absoluteString, "http://hl7.org/fhir/list-example-use-codes")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, "other")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.date?.description, "2016-08-15T16:12:42+10:00")
+		XCTAssertEqual(inst.date?.description, "2016-08-11T17:02:54+10:00")
 		XCTAssertEqual(inst.description_fhir, "Example use codes for the List resource - typical kinds of use.")
 		XCTAssertTrue(inst.experimental ?? false)
 		XCTAssertEqual(inst.id, "list-example-codes")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:2.16.840.1.113883.4.642.2.173")
-		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2016-08-15T16:12:42.052+10:00")
+		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2016-08-11T17:02:54.322+10:00")
 		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
 		XCTAssertEqual(inst.name, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher, "FHIR Project")

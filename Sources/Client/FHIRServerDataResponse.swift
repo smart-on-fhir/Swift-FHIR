@@ -245,7 +245,7 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 	*/
 	override open func responseResource<T: Resource>(ofType: T.Type) -> T? {
 		if let json = json {
-			let resource = Resource.instantiate(fromJSON: json, owner: nil)
+			let resource = Resource.instantiate(from: json, owner: nil)
 			return resource as? T
 		}
 		return nil
@@ -267,7 +267,7 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 		if let resourceType = json["resourceType"] as? String, resourceType != type(of: resource).resourceType {
 			throw FHIRError.responseResourceTypeMismatch(resourceType, type(of: resource).resourceType)
 		}
-		if let errors = resource.populate(fromJSON: json) {
+		if let errors = resource.populate(from: json) {
 			for error in errors {
 				fhir_warn("\(resource) \(error)")
 			}

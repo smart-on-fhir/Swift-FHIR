@@ -32,10 +32,13 @@ public protocol FHIRServerResponse {
 	
 	
 	/**
-	Instantiate a FHIRServerResponse from a (HTTP)URLResponse, Data and an Error.
+	Instantiate a FHIRServerResponse from an URLResponse, Data and an Error.
 	*/
 	init(response: URLResponse, data: Data?, error: Error?)
 	
+	/**
+	Instantiate a response that only represents an error, possibly because it wasn't even sent.
+	*/
 	init(error: Error)
 	
 	
@@ -54,13 +57,13 @@ public protocol FHIRServerResponse {
 	func applyHeaders(to: Resource) throws
 	
 	/**
-	The response should apply response body data to the given resource. It should throw `FHIRError.responseNoResourceReceived` if there was
+	The response should apply response body data to the given resource. It should throw `FHIRError.ResponseNoResourceReceived` if there was
 	no response data.
 	
 	This method must not be called if the response has a non-nil error.
 	
 	- throws:       The method should throw if resource data was returned that doesn't match the given resource's type, but also if there
-	                was no response data at all (`FHIRError.responseNoResourceReceived` in that case)
+	                was no response data at all (`FHIRError.ResponseNoResourceReceived` in that case)
 	- parameter to: The resource to apply response data to
 	*/
 	func applyBody(to: Resource) throws

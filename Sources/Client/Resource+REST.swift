@@ -196,7 +196,7 @@ public extension Resource {
 					if let id = self.id {
 						type(of: self).read(id, server: server) { resource, error in
 							if let resource = resource {
-								_ = self.populate(fromJSON: resource.asJSON())
+								_ = self.populate(from: resource.asJSON())
 							}
 							callback(error)
 						}

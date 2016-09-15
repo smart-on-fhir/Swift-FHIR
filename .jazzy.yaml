@@ -1,0 +1,10 @@
+# Jazzy config
+module:      SwiftFHIR
+
+author:      SMART Health IT
+author_url:  http://www.smarthealthit.org
+github_url:  https://github.com/smart-on-fhir/Swift-FHIR
+root_url:    http://smart-on-fhir.github.io/Swift-FHIR
+
+theme:       fullwidth
+readme:      README.md

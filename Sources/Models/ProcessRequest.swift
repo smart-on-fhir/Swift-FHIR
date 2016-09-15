@@ -2,7 +2,7 @@
 //  ProcessRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2016-08-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2016-09-16.
 //  2016, SMART Health IT.
 //
 
@@ -16,7 +16,7 @@ import Foundation
  *  target on or about existing resources.
  */
 public class ProcessRequest: DomainResource {
-	override public class var resourceName: String {
+	override public class var resourceType: String {
 		get { return "ProcessRequest" }
 	}
 	
@@ -80,154 +80,154 @@ public class ProcessRequest: DomainResource {
 		self.action = action
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["action"] {
+			if let exist = js["action"] {
 				presentKeys.insert("action")
 				if let val = exist as? String {
 					self.action = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "action", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "action", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "action"))
 			}
-			if let exist: AnyObject = js["created"] {
+			if let exist = js["created"] {
 				presentKeys.insert("created")
 				if let val = exist as? String {
 					self.created = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "created", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "created", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["exclude"] {
+			if let exist = js["exclude"] {
 				presentKeys.insert("exclude")
 				if let val = exist as? [String] {
 					self.exclude = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "exclude", wants: Array<String>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "exclude", wants: Array<String>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["identifier"] {
+			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["include"] {
+			if let exist = js["include"] {
 				presentKeys.insert("include")
 				if let val = exist as? [String] {
 					self.include = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "include", wants: Array<String>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "include", wants: Array<String>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["item"] {
+			if let exist = js["item"] {
 				presentKeys.insert("item")
 				if let val = exist as? [FHIRJSON] {
 					self.item = ProcessRequestItem.instantiate(fromArray: val, owner: self) as? [ProcessRequestItem]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["nullify"] {
+			if let exist = js["nullify"] {
 				presentKeys.insert("nullify")
 				if let val = exist as? Bool {
 					self.nullify = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "nullify", wants: Bool.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "nullify", wants: Bool.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["organization"] {
+			if let exist = js["organization"] {
 				presentKeys.insert("organization")
 				if let val = exist as? FHIRJSON {
 					self.organization = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "organization", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["originalRuleset"] {
+			if let exist = js["originalRuleset"] {
 				presentKeys.insert("originalRuleset")
 				if let val = exist as? FHIRJSON {
 					self.originalRuleset = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "originalRuleset", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "originalRuleset", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["period"] {
+			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
 					self.period = Period(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["provider"] {
+			if let exist = js["provider"] {
 				presentKeys.insert("provider")
 				if let val = exist as? FHIRJSON {
 					self.provider = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "provider", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "provider", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["reference"] {
+			if let exist = js["reference"] {
 				presentKeys.insert("reference")
 				if let val = exist as? String {
 					self.reference = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reference", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reference", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["request"] {
+			if let exist = js["request"] {
 				presentKeys.insert("request")
 				if let val = exist as? FHIRJSON {
 					self.request = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["response"] {
+			if let exist = js["response"] {
 				presentKeys.insert("response")
 				if let val = exist as? FHIRJSON {
 					self.response = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "response", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "response", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["ruleset"] {
+			if let exist = js["ruleset"] {
 				presentKeys.insert("ruleset")
 				if let val = exist as? FHIRJSON {
 					self.ruleset = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "ruleset", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "ruleset", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["target"] {
+			if let exist = js["target"] {
 				presentKeys.insert("target")
 				if let val = exist as? FHIRJSON {
 					self.target = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "target", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "target", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 		}
@@ -244,7 +244,7 @@ public class ProcessRequest: DomainResource {
 			json["created"] = created.asJSON()
 		}
 		if let exclude = self.exclude {
-			var arr = [AnyObject]()
+			var arr = [Any]()
 			for val in exclude {
 				arr.append(val.asJSON())
 			}
@@ -254,7 +254,7 @@ public class ProcessRequest: DomainResource {
 			json["identifier"] = Identifier.asJSONArray(identifier)
 		}
 		if let include = self.include {
-			var arr = [AnyObject]()
+			var arr = [Any]()
 			for val in include {
 				arr.append(val.asJSON())
 			}
@@ -305,7 +305,7 @@ public class ProcessRequest: DomainResource {
  *  List of top level items to be re-adjudicated, if none specified then the entire submission is re-adjudicated.
  */
 public class ProcessRequestItem: BackboneElement {
-	override public class var resourceName: String {
+	override public class var resourceType: String {
 		get { return "ProcessRequestItem" }
 	}
 	
@@ -324,16 +324,16 @@ public class ProcessRequestItem: BackboneElement {
 		self.sequenceLinkId = sequenceLinkId
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["sequenceLinkId"] {
+			if let exist = js["sequenceLinkId"] {
 				presentKeys.insert("sequenceLinkId")
 				if let val = exist as? Int {
 					self.sequenceLinkId = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "sequenceLinkId", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "sequenceLinkId", wants: Int.self, has: type(of: exist)))
 				}
 			}
 			else {

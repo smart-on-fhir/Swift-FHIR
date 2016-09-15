@@ -2,7 +2,7 @@
 //  DomainResource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2016-08-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2016-09-16.
 //  2016, SMART Health IT.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  A resource that includes narrative, extensions, and contained resources.
  */
 public class DomainResource: Resource {
-	override public class var resourceName: String {
+	override public class var resourceType: String {
 		get { return "DomainResource" }
 	}
 	
@@ -37,43 +37,43 @@ public class DomainResource: Resource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["contained"] {
+			if let exist = js["contained"] {
 				presentKeys.insert("contained")
 				if let val = exist as? [FHIRJSON] {
 					self.contained = Resource.instantiate(fromArray: val, owner: self) as? [Resource]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "contained", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "contained", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["extension"] {
+			if let exist = js["extension"] {
 				presentKeys.insert("extension")
 				if let val = exist as? [FHIRJSON] {
 					self.extension_fhir = Extension.instantiate(fromArray: val, owner: self) as? [Extension]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "extension", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "extension", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["modifierExtension"] {
+			if let exist = js["modifierExtension"] {
 				presentKeys.insert("modifierExtension")
 				if let val = exist as? [FHIRJSON] {
 					self.modifierExtension = Extension.instantiate(fromArray: val, owner: self) as? [Extension]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "modifierExtension", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "modifierExtension", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["text"] {
+			if let exist = js["text"] {
 				presentKeys.insert("text")
 				if let val = exist as? FHIRJSON {
 					self.text = Narrative(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "text", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "text", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 		}

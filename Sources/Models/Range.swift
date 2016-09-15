@@ -2,7 +2,7 @@
 //  Range.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Range) on 2016-08-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Range) on 2016-09-16.
 //  2016, SMART Health IT.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  A set of ordered Quantities defined by a low and high limit.
  */
 public class Range: Element {
-	override public class var resourceName: String {
+	override public class var resourceType: String {
 		get { return "Range" }
 	}
 	
@@ -31,25 +31,25 @@ public class Range: Element {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["high"] {
+			if let exist = js["high"] {
 				presentKeys.insert("high")
 				if let val = exist as? FHIRJSON {
 					self.high = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "high", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "high", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["low"] {
+			if let exist = js["low"] {
 				presentKeys.insert("low")
 				if let val = exist as? FHIRJSON {
 					self.low = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "low", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "low", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 		}

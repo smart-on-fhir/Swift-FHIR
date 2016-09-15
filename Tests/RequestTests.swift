@@ -16,12 +16,12 @@ Test request generation.
 class RequestTests: XCTestCase {
 	
 	func testJSONGETRequest() {
-		let handler = FHIRServerJSONRequestHandler(.GET)
+		let handler = FHIRServerJSONRequestHandler(type: .GET)
 		XCTAssertEqual("application/json+fhir", handler.headers[.accept])
 	}
 	
 	func testJSONPUTRequest() {
-		let handler = FHIRServerJSONRequestHandler(.PUT)
+		let handler = FHIRServerJSONRequestHandler(type: .PUT)
 		var req = URLRequest(url: URL(string: "https://fhir.smarthealthit.org")!)
 		try! handler.prepare(request: &req)
 		XCTAssertEqual("application/json+fhir", handler.headers[.accept])
@@ -41,7 +41,7 @@ class RequestTests: XCTestCase {
 	}
 	
 	func testJSONPOSTRequest() {
-		let handler = FHIRServerJSONRequestHandler(.POST)
+		let handler = FHIRServerJSONRequestHandler(type: .POST)
 		var req = URLRequest(url: URL(string: "https://fhir.smarthealthit.org")!)
 		try! handler.prepare(request: &req)
 		XCTAssertEqual("application/json+fhir", handler.headers[.accept])

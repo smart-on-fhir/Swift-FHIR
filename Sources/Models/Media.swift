@@ -2,7 +2,7 @@
 //  Media.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Media) on 2016-08-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Media) on 2016-09-16.
 //  2016, SMART Health IT.
 //
 
@@ -14,7 +14,7 @@ import Foundation
  *  direct reference.
  */
 public class Media: DomainResource {
-	override public class var resourceName: String {
+	override public class var resourceType: String {
 		get { return "Media" }
 	}
 	
@@ -67,121 +67,121 @@ public class Media: DomainResource {
 		self.type = type
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["content"] {
+			if let exist = js["content"] {
 				presentKeys.insert("content")
 				if let val = exist as? FHIRJSON {
 					self.content = Attachment(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "content", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "content", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "content"))
 			}
-			if let exist: AnyObject = js["deviceName"] {
+			if let exist = js["deviceName"] {
 				presentKeys.insert("deviceName")
 				if let val = exist as? String {
 					self.deviceName = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "deviceName", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "deviceName", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["duration"] {
+			if let exist = js["duration"] {
 				presentKeys.insert("duration")
 				if let val = exist as? UInt {
 					self.duration = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "duration", wants: UInt.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "duration", wants: UInt.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["frames"] {
+			if let exist = js["frames"] {
 				presentKeys.insert("frames")
 				if let val = exist as? UInt {
 					self.frames = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "frames", wants: UInt.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "frames", wants: UInt.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["height"] {
+			if let exist = js["height"] {
 				presentKeys.insert("height")
 				if let val = exist as? UInt {
 					self.height = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "height", wants: UInt.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "height", wants: UInt.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["identifier"] {
+			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["operator"] {
+			if let exist = js["operator"] {
 				presentKeys.insert("operator")
 				if let val = exist as? FHIRJSON {
 					self.operator_fhir = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "operator", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "operator", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["subject"] {
+			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
 					self.subject = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["subtype"] {
+			if let exist = js["subtype"] {
 				presentKeys.insert("subtype")
 				if let val = exist as? FHIRJSON {
 					self.subtype = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "subtype", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "subtype", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["type"] {
+			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "type"))
 			}
-			if let exist: AnyObject = js["view"] {
+			if let exist = js["view"] {
 				presentKeys.insert("view")
 				if let val = exist as? FHIRJSON {
 					self.view = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "view", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "view", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["width"] {
+			if let exist = js["width"] {
 				presentKeys.insert("width")
 				if let val = exist as? UInt {
 					self.width = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "width", wants: UInt.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "width", wants: UInt.self, has: type(of: exist)))
 				}
 			}
 		}

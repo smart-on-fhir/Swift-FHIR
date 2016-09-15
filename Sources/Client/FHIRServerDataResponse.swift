@@ -22,7 +22,7 @@ extension FHIRServerResponse {
 	
 	- parameter resource: The resource to apply response data to
 	*/
-	public func applyHeadersTo(resource: Resource) throws {
+	public func applyHeaders(to resource: Resource) throws {
 		
 		// inspect Location header to update `id` and `meta`. It has the form "Location: [base]/[type]/[id]/_history/[vid]"
 		if let location = headers["Location"] {
@@ -30,8 +30,8 @@ extension FHIRServerResponse {
 				if location.hasPrefix(base) {
 					let path = location.replacingOccurrences(of: base, with: "")
 					let components = path.components(separatedBy: "/")
-					guard components.count > 1 && resource.dynamicType.resourceName == components[0] else {
-						throw FHIRError.responseLocationHeaderResourceTypeMismatch(location, resource.dynamicType.resourceName)
+					guard components.count > 1 && type(of: resource).resourceType == components[0] else {
+						throw FHIRError.responseLocationHeaderResourceTypeMismatch(location, type(of: resource).resourceType)
 					}
 					
 					resource.id = components[1]
@@ -87,27 +87,27 @@ extension FHIRServerResponse {
 Encapsulates a server response, which can also indicate that there was no response or not even a request, in which case the `error`
 property carries the only useful information.
 */
-public class FHIRServerDataResponse: FHIRServerResponse {
+open class FHIRServerDataResponse: FHIRServerResponse {
 	
 	/// The HTTP status code.
-	public let status: Int
+	open let status: Int
 	
 	/// Response headers.
-	public let headers: [String: String]
+	open let headers: [String: String]
 	
 	/// The response body data.
-	public var body: Data?
+	open var body: Data?
 	
 	/// The request's operation outcome, if any.
-	public internal(set) var outcome: OperationOutcome?
+	open internal(set) var outcome: OperationOutcome?
 	
 	/// The error encountered, if any.
-	public var error: FHIRError?
+	open var error: FHIRError?
 	
 	/**
 	Instantiate a FHIRServerResponse from an NS(HTTP)URLResponse, NSData and an optional NSError.
 	*/
-	public required init(response: URLResponse, data: Data?, urlError: NSError?) {
+	public required init(response: URLResponse, data: Data?, error: Error?) {
 		var status = 0
 		var headers = [String: String]()
 		
@@ -127,11 +127,11 @@ public class FHIRServerDataResponse: FHIRServerResponse {
 		}
 		
 		// was there an error?
-		if let error = urlError, NSURLErrorDomain == error.domain {
+		if let error = error as? NSError, NSURLErrorDomain == error.domain {
 			self.error = FHIRError.requestError(status, NSURLErrorHumanize(error))
 		}
-		else if let error = urlError {
-			self.error = FHIRError.error(error.description)
+		else if let error = error {
+			self.error = FHIRError.error("\(error)")
 		}
 		
 		self.status = status
@@ -156,12 +156,12 @@ public class FHIRServerDataResponse: FHIRServerResponse {
 	
 	// MARK: - Responses
 	
-	public func responseResource<T: Resource>(_ expectType: T.Type) -> T? {
+	open func responseResource<T: Resource>(_ expectType: T.Type) -> T? {
 		return nil
 	}
 	
 	/** Initializes with a no-response error. */
-	public class func noneReceived() -> Self {
+	open class func noneReceived() -> Self {
 		return self.init(error: FHIRError.noResponseReceived)
 	}
 	
@@ -171,7 +171,7 @@ public class FHIRServerDataResponse: FHIRServerResponse {
 	
 	- parameter resource: The resource to apply the response data to
 	*/
-	public func applyBodyTo(resource: Resource) throws {
+	open func applyBody(to resource: Resource) throws {
 		guard nil != body else {
 			throw FHIRError.responseNoResourceReceived
 		}
@@ -182,16 +182,16 @@ public class FHIRServerDataResponse: FHIRServerResponse {
 /**
 Encapsulates a server response with JSON response body, if any.
 */
-public class FHIRServerJSONResponse: FHIRServerDataResponse {
+open class FHIRServerJSONResponse: FHIRServerDataResponse {
 	
 	/// The response body, decoded into a FHIRJSON
-	public var json: FHIRJSON?
+	open var json: FHIRJSON?
 	
 	/**
 	If the status is >= 400, the response body is checked for an OperationOutcome and its first issue item is turned into an error message.
 	*/
-	public required init(response: URLResponse, data inData: Data?, urlError: NSError?) {
-		super.init(response: response, data: inData, urlError: urlError)
+	public required init(response: URLResponse, data inData: Data?, error: Error?) {
+		super.init(response: response, data: inData, error: error)
 		
 		// parse data as JSON
 		if let data = inData, data.count > 0 {
@@ -213,7 +213,7 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse {
 			}
 			catch let error as NSError {
 				// Cocoa error 3840 is JSON parsing error; some error responses may not return JSON, don't report an error on those
-				if 3840 != error.code || NSCocoaErrorDomain != (error.domain ?? "") || status < 400 {
+				if 3840 != error.code || NSCocoaErrorDomain != error.domain || status < 400 {
 					let raw = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String ?? ""
 					self.error = FHIRError.jsonParsingError(error.localizedDescription, raw)
 				}
@@ -235,9 +235,9 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse {
 	Uses FHIRElement's factory method to instantiate a resource from the response JSON, if any, and returns that resource if it is indeed of
 	the expected type.
 	*/
-	public override func responseResource<T: Resource>(_ expectType: T.Type) -> T? {
+	open override func responseResource<T: Resource>(_ expectType: T.Type) -> T? {
 		if let json = json {
-			let resource = Resource.instantiate(fromJSON: json, owner: nil)
+			let resource = Resource.instantiate(from: json, owner: nil)
 			return resource as? T
 		}
 		return nil
@@ -251,15 +251,15 @@ public class FHIRServerJSONResponse: FHIRServerDataResponse {
 	
 	- parameter resource: The resource to apply the response data to
 	*/
-	public override func applyBodyTo(resource: Resource) throws {
+	open override func applyBody(to resource: Resource) throws {
 		guard let json = json else {
 			throw FHIRError.responseNoResourceReceived
 		}
 		
-		if let resourceType = json["resourceType"] as? String, resourceType != resource.dynamicType.resourceName {
-			throw FHIRError.responseResourceTypeMismatch(resourceType, resource.dynamicType.resourceName)
+		if let resourceType = json["resourceType"] as? String, resourceType != type(of: resource).resourceType {
+			throw FHIRError.responseResourceTypeMismatch(resourceType, type(of: resource).resourceType)
 		}
-		if let errors = resource.populate(fromJSON: json) {
+		if let errors = resource.populate(from: json) {
 			for error in errors {
 				fhir_warn("\(resource) \(error)")
 			}

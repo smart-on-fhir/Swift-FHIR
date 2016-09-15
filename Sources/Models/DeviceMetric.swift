@@ -2,7 +2,7 @@
 //  DeviceMetric.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2016-08-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2016-09-16.
 //  2016, SMART Health IT.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  Describes a measurement, calculation or setting capability of a medical device.
  */
 public class DeviceMetric: DomainResource {
-	override public class var resourceName: String {
+	override public class var resourceType: String {
 		get { return "DeviceMetric" }
 	}
 	
@@ -63,106 +63,106 @@ public class DeviceMetric: DomainResource {
 		self.type = type
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["calibration"] {
+			if let exist = js["calibration"] {
 				presentKeys.insert("calibration")
 				if let val = exist as? [FHIRJSON] {
 					self.calibration = DeviceMetricCalibration.instantiate(fromArray: val, owner: self) as? [DeviceMetricCalibration]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "calibration", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "calibration", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["category"] {
+			if let exist = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? String {
 					self.category = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "category", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "category", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "category"))
 			}
-			if let exist: AnyObject = js["color"] {
+			if let exist = js["color"] {
 				presentKeys.insert("color")
 				if let val = exist as? String {
 					self.color = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "color", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "color", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["identifier"] {
+			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
 					self.identifier = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "identifier"))
 			}
-			if let exist: AnyObject = js["measurementPeriod"] {
+			if let exist = js["measurementPeriod"] {
 				presentKeys.insert("measurementPeriod")
 				if let val = exist as? FHIRJSON {
 					self.measurementPeriod = Timing(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "measurementPeriod", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "measurementPeriod", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["operationalStatus"] {
+			if let exist = js["operationalStatus"] {
 				presentKeys.insert("operationalStatus")
 				if let val = exist as? String {
 					self.operationalStatus = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "operationalStatus", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "operationalStatus", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["parent"] {
+			if let exist = js["parent"] {
 				presentKeys.insert("parent")
 				if let val = exist as? FHIRJSON {
 					self.parent = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "parent", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "parent", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["source"] {
+			if let exist = js["source"] {
 				presentKeys.insert("source")
 				if let val = exist as? FHIRJSON {
 					self.source = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "source", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "source", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["type"] {
+			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
 					self.type = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "type"))
 			}
-			if let exist: AnyObject = js["unit"] {
+			if let exist = js["unit"] {
 				presentKeys.insert("unit")
 				if let val = exist as? FHIRJSON {
 					self.unit = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "unit", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "unit", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 		}
@@ -212,7 +212,7 @@ public class DeviceMetric: DomainResource {
  *  Describes the calibrations that have been performed or that are required to be performed.
  */
 public class DeviceMetricCalibration: BackboneElement {
-	override public class var resourceName: String {
+	override public class var resourceType: String {
 		get { return "DeviceMetricCalibration" }
 	}
 	
@@ -231,34 +231,34 @@ public class DeviceMetricCalibration: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["state"] {
+			if let exist = js["state"] {
 				presentKeys.insert("state")
 				if let val = exist as? String {
 					self.state = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "state", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "state", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["time"] {
+			if let exist = js["time"] {
 				presentKeys.insert("time")
 				if let val = exist as? String {
 					self.time = Instant(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "time", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "time", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["type"] {
+			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}

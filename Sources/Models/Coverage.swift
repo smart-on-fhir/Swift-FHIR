@@ -2,7 +2,7 @@
 //  Coverage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2016-08-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2016-09-16.
 //  2016, SMART Health IT.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  Financial instrument which may be used to pay for or reimburse health care products and services.
  */
 public class Coverage: DomainResource {
-	override public class var resourceName: String {
+	override public class var resourceType: String {
 		get { return "Coverage" }
 	}
 	
@@ -67,133 +67,133 @@ public class Coverage: DomainResource {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["bin"] {
+			if let exist = js["bin"] {
 				presentKeys.insert("bin")
 				if let val = exist as? FHIRJSON {
 					self.bin = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "bin", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "bin", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["contract"] {
+			if let exist = js["contract"] {
 				presentKeys.insert("contract")
 				if let val = exist as? [FHIRJSON] {
 					self.contract = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "contract", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "contract", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["dependent"] {
+			if let exist = js["dependent"] {
 				presentKeys.insert("dependent")
 				if let val = exist as? UInt {
 					self.dependent = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "dependent", wants: UInt.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "dependent", wants: UInt.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["group"] {
+			if let exist = js["group"] {
 				presentKeys.insert("group")
 				if let val = exist as? String {
 					self.group = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "group", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "group", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["identifier"] {
+			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["issuer"] {
+			if let exist = js["issuer"] {
 				presentKeys.insert("issuer")
 				if let val = exist as? FHIRJSON {
 					self.issuer = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "issuer", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "issuer", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["network"] {
+			if let exist = js["network"] {
 				presentKeys.insert("network")
 				if let val = exist as? FHIRJSON {
 					self.network = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "network", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "network", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["period"] {
+			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
 					self.period = Period(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["plan"] {
+			if let exist = js["plan"] {
 				presentKeys.insert("plan")
 				if let val = exist as? String {
 					self.plan = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "plan", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "plan", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["sequence"] {
+			if let exist = js["sequence"] {
 				presentKeys.insert("sequence")
 				if let val = exist as? UInt {
 					self.sequence = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "sequence", wants: UInt.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "sequence", wants: UInt.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["subPlan"] {
+			if let exist = js["subPlan"] {
 				presentKeys.insert("subPlan")
 				if let val = exist as? String {
 					self.subPlan = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "subPlan", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "subPlan", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["subscriber"] {
+			if let exist = js["subscriber"] {
 				presentKeys.insert("subscriber")
 				if let val = exist as? FHIRJSON {
 					self.subscriber = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "subscriber", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "subscriber", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["subscriberId"] {
+			if let exist = js["subscriberId"] {
 				presentKeys.insert("subscriberId")
 				if let val = exist as? FHIRJSON {
 					self.subscriberId = Identifier(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "subscriberId", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "subscriberId", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["type"] {
+			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
 					self.type = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 		}

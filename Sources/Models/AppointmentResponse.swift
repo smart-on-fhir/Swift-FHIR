@@ -2,7 +2,7 @@
 //  AppointmentResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2016-08-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2016-09-16.
 //  2016, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import Foundation
  *  A reply to an appointment request for a patient and/or practitioner(s), such as a confirmation or rejection.
  */
 public class AppointmentResponse: DomainResource {
-	override public class var resourceName: String {
+	override public class var resourceType: String {
 		get { return "AppointmentResponse" }
 	}
 	
@@ -54,85 +54,85 @@ public class AppointmentResponse: DomainResource {
 		self.participantStatus = participantStatus
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["actor"] {
+			if let exist = js["actor"] {
 				presentKeys.insert("actor")
 				if let val = exist as? FHIRJSON {
 					self.actor = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "actor", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "actor", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["appointment"] {
+			if let exist = js["appointment"] {
 				presentKeys.insert("appointment")
 				if let val = exist as? FHIRJSON {
 					self.appointment = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "appointment", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "appointment", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "appointment"))
 			}
-			if let exist: AnyObject = js["comment"] {
+			if let exist = js["comment"] {
 				presentKeys.insert("comment")
 				if let val = exist as? String {
 					self.comment = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["end"] {
+			if let exist = js["end"] {
 				presentKeys.insert("end")
 				if let val = exist as? String {
 					self.end = Instant(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "end", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "end", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["identifier"] {
+			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["participantStatus"] {
+			if let exist = js["participantStatus"] {
 				presentKeys.insert("participantStatus")
 				if let val = exist as? String {
 					self.participantStatus = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "participantStatus", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "participantStatus", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "participantStatus"))
 			}
-			if let exist: AnyObject = js["participantType"] {
+			if let exist = js["participantType"] {
 				presentKeys.insert("participantType")
 				if let val = exist as? [FHIRJSON] {
 					self.participantType = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "participantType", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "participantType", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["start"] {
+			if let exist = js["start"] {
 				presentKeys.insert("start")
 				if let val = exist as? String {
 					self.start = Instant(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "start", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "start", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}

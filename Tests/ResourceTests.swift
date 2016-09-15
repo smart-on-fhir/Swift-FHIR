@@ -179,10 +179,10 @@ class LocalPatientServer: FHIROpenServer {
 	
 	var lastPostedResource: Resource?
 	
-	override func performPreparedRequest<R : FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
+	override func performPreparedRequest<R : FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: @escaping ((_ response: FHIRServerResponse) -> Void)) {
 		guard let path = request.url?.path, "/Patient" == path || path.hasPrefix("/Patient/") else {
 			let res = handler.notSent("Only supports Patient resources, trying to access «\(request.url?.path ?? "nil")»")
-			callback(response: res)
+			callback(res)
 			return
 		}
 		
@@ -190,7 +190,7 @@ class LocalPatientServer: FHIROpenServer {
 		
 		case "POST":
 			let version = Int(handler.resource?.meta?.versionId ?? "1336")!
-			let location = "\(self.baseURL.absoluteString ?? "")Patient/\(UUID().uuidString)/_history/\(version+1)"
+			let location = "\(self.baseURL.absoluteString)Patient/\(UUID().uuidString)/_history/\(version+1)"
 			let headers = ["Location": location, "Last-mODified": "Tue, 3 May 2016 14:45:31 GMT"]
 			let http = HTTPURLResponse(url: request.url!, statusCode: 201, httpVersion: "1.1", headerFields: headers)
 			
@@ -200,14 +200,14 @@ class LocalPatientServer: FHIROpenServer {
 				pat.meta?.versionId = "\(version+1)"
 				pat.name = [HumanName(json: ["family": ["POST"]])]
 				
-				let req = FHIRServerJSONRequestHandler(.POST)
+				let req = FHIRServerJSONRequestHandler(type: .POST)
 				req.resource = pat
 				try! req.prepareData()
 				
-				callback(response: req.response(response: http, data: req.data))
+				callback(req.response(http, data: req.data))
 			}
 			else {
-				callback(response: handler.response(response: http))
+				callback(handler.response(http))
 			}
 			lastPostedResource = handler.resource
 		
@@ -222,14 +222,14 @@ class LocalPatientServer: FHIROpenServer {
 				handler.resource = last
 				try! handler.prepareData()
 				
-				callback(response: handler.response(response: http, data: handler.data))
+				callback(handler.response(http, data: handler.data))
 			}
 			else {
-				callback(response: handler.notSent("\(request.httpMethod) without preceding “POST” is not supported"))
+				callback(handler.notSent("\(request.httpMethod) without preceding “POST” is not supported"))
 			}
 		
 		default:
-			callback(response: handler.notSent("\(request.httpMethod) is not yet supported"))
+			callback(handler.notSent("\(request.httpMethod) is not yet supported"))
 		}
 	}
 }

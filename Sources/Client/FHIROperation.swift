@@ -23,7 +23,7 @@ public enum FHIROperationContext {
 /**
     Named operations to be performed against a FHIR REST endpoint.
  */
-public class FHIROperation: CustomStringConvertible {
+open class FHIROperation: CustomStringConvertible {
 	
 	/// The name of the operation.
 	let name: String
@@ -47,7 +47,7 @@ public class FHIROperation: CustomStringConvertible {
 	var instance: Resource? {
 		didSet {
 			if let inst = instance {
-				type = inst.dynamicType
+				type = type(of: inst)
 				context = .instance
 			}
 		}
@@ -65,7 +65,7 @@ public class FHIROperation: CustomStringConvertible {
 	
 	- parameter with: The OperationDefinition with which to validate the operation
 	*/
-	public func validate(with definition: OperationDefinition) throws {
+	open func validate(with definition: OperationDefinition) throws {
 		try validateContext(with: definition)
 		try validateInParams(with: definition)
 	}
@@ -87,7 +87,7 @@ public class FHIROperation: CustomStringConvertible {
 			if nil == definition.type {
 				throw FHIRError.operationConfigurationError("Operation \(self) cannot be executed in type context")
 			}
-			else if nil == type || !(definition.type!).contains(type!.resourceName) {
+			else if nil == type || !(definition.type!).contains(type!.resourceType) {
 				throw FHIRError.operationConfigurationError("Operation \(self) cannot be executed against \(type ?? nil) type")
 			}
 		case .instance:
@@ -116,7 +116,7 @@ public class FHIROperation: CustomStringConvertible {
 				if "in" == param.use {
 					
 					// have the parameter, validate it
-					if let _: AnyObject = inParams?[param.name!] {
+					if let _ = inParams?[param.name!] {
 						leftover.removeValue(forKey: param.name!)
 						
 						// TODO: actually validate!
@@ -144,14 +144,14 @@ public class FHIROperation: CustomStringConvertible {
 	/**
 	Return the relative server URL the operation will call.
 	*/
-	public func serverPath() throws -> String {
+	open func serverPath() throws -> String {
 		switch context {
 		case .none:
 			throw FHIRError.operationConfigurationError("Operation \(self) has not been properly set up")
 		case .system:
 			return "$\(name)"
 		case .resourceType:
-			return "\(type!.resourceName)/$\(name)"
+			return "\(type!.resourceType)/$\(name)"
 		case .instance:
 			let path = try instance!.relativeURLPath()
 			return "\(path)/$\(name)"
@@ -163,7 +163,7 @@ public class FHIROperation: CustomStringConvertible {
 	
 	- parameter on Server: The server on which to perform the operation
 	*/
-	public func perform(onServer server: FHIRServer, callback: ((response: FHIRServerResponse) -> Void)) throws {
+	open func perform(onServer server: FHIRServer, callback: @escaping ((_ response: FHIRServerResponse) -> Void)) throws {
 		let path = try serverPath()
 		server.performRequest(ofType: .GET, path: path, resource: nil, additionalHeaders: nil, callback: callback)
 	}
@@ -171,7 +171,7 @@ public class FHIROperation: CustomStringConvertible {
 	
 	// MARK: - Printable
 	
-	public var description: String {
+	open var description: String {
 		return "<FHIROperation $\(name)>"
 	}
 }

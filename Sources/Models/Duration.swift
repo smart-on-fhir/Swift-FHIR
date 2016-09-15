@@ -2,7 +2,7 @@
 //  Duration.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Duration) on 2016-08-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Duration) on 2016-09-16.
 //  2016, SMART Health IT.
 //
 
@@ -16,7 +16,7 @@ import Foundation
  *  UCUM.
  */
 public class Duration: Quantity {
-	override public class var resourceName: String {
+	override public class var resourceType: String {
 		get { return "Duration" }
 	}
 	

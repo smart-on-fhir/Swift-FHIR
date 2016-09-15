@@ -2,7 +2,7 @@
 //  Annotation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2016-08-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2016-09-16.
 //  2016, SMART Health IT.
 //
 
@@ -15,7 +15,7 @@ import Foundation
  *  A  text note which also  contains information about who made the statement and when.
  */
 public class Annotation: Element {
-	override public class var resourceName: String {
+	override public class var resourceType: String {
 		get { return "Annotation" }
 	}
 	
@@ -43,46 +43,46 @@ public class Annotation: Element {
 		self.text = text
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["authorReference"] {
+			if let exist = js["authorReference"] {
 				presentKeys.insert("authorReference")
 				if let val = exist as? FHIRJSON {
 					self.authorReference = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "authorReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "authorReference", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["authorString"] {
+			if let exist = js["authorString"] {
 				presentKeys.insert("authorString")
 				if let val = exist as? String {
 					self.authorString = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "authorString", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "authorString", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["text"] {
+			if let exist = js["text"] {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "text", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "text"))
 			}
-			if let exist: AnyObject = js["time"] {
+			if let exist = js["time"] {
 				presentKeys.insert("time")
 				if let val = exist as? String {
 					self.time = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "time", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "time", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}

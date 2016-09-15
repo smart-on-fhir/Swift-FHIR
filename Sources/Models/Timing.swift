@@ -2,7 +2,7 @@
 //  Timing.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Timing) on 2016-08-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Timing) on 2016-09-16.
 //  2016, SMART Health IT.
 //
 
@@ -17,7 +17,7 @@ import Foundation
  *  planning care of various kinds.
  */
 public class Timing: Element {
-	override public class var resourceName: String {
+	override public class var resourceType: String {
 		get { return "Timing" }
 	}
 	
@@ -36,34 +36,34 @@ public class Timing: Element {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["code"] {
+			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
 					self.code = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["event"] {
+			if let exist = js["event"] {
 				presentKeys.insert("event")
 				if let val = exist as? [String] {
 					self.event = DateTime.instantiate(fromArray: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "event", wants: Array<String>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "event", wants: Array<String>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["repeat"] {
+			if let exist = js["repeat"] {
 				presentKeys.insert("repeat")
 				if let val = exist as? FHIRJSON {
 					self.repeat_fhir = TimingRepeat(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "repeat", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "repeat", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 		}
@@ -77,7 +77,7 @@ public class Timing: Element {
 			json["code"] = code.asJSON()
 		}
 		if let event = self.event {
-			var arr = [AnyObject]()
+			var arr = [Any]()
 			for val in event {
 				arr.append(val.asJSON())
 			}
@@ -98,7 +98,7 @@ public class Timing: Element {
  *  A set of rules that describe when the event should occur.
  */
 public class TimingRepeat: Element {
-	override public class var resourceName: String {
+	override public class var resourceType: String {
 		get { return "TimingRepeat" }
 	}
 	
@@ -147,124 +147,124 @@ public class TimingRepeat: Element {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["boundsPeriod"] {
+			if let exist = js["boundsPeriod"] {
 				presentKeys.insert("boundsPeriod")
 				if let val = exist as? FHIRJSON {
 					self.boundsPeriod = Period(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "boundsPeriod", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "boundsPeriod", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["boundsQuantity"] {
+			if let exist = js["boundsQuantity"] {
 				presentKeys.insert("boundsQuantity")
 				if let val = exist as? FHIRJSON {
 					self.boundsQuantity = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "boundsQuantity", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "boundsQuantity", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["boundsRange"] {
+			if let exist = js["boundsRange"] {
 				presentKeys.insert("boundsRange")
 				if let val = exist as? FHIRJSON {
 					self.boundsRange = Range(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "boundsRange", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "boundsRange", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["count"] {
+			if let exist = js["count"] {
 				presentKeys.insert("count")
 				if let val = exist as? Int {
 					self.count = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "count", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "count", wants: Int.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["duration"] {
+			if let exist = js["duration"] {
 				presentKeys.insert("duration")
 				if let val = exist as? NSNumber {
 					self.duration = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "duration", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "duration", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["durationMax"] {
+			if let exist = js["durationMax"] {
 				presentKeys.insert("durationMax")
 				if let val = exist as? NSNumber {
 					self.durationMax = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "durationMax", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "durationMax", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["durationUnits"] {
+			if let exist = js["durationUnits"] {
 				presentKeys.insert("durationUnits")
 				if let val = exist as? String {
 					self.durationUnits = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "durationUnits", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "durationUnits", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["frequency"] {
+			if let exist = js["frequency"] {
 				presentKeys.insert("frequency")
 				if let val = exist as? Int {
 					self.frequency = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "frequency", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "frequency", wants: Int.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["frequencyMax"] {
+			if let exist = js["frequencyMax"] {
 				presentKeys.insert("frequencyMax")
 				if let val = exist as? Int {
 					self.frequencyMax = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "frequencyMax", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "frequencyMax", wants: Int.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["period"] {
+			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? NSNumber {
 					self.period = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "period", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "period", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["periodMax"] {
+			if let exist = js["periodMax"] {
 				presentKeys.insert("periodMax")
 				if let val = exist as? NSNumber {
 					self.periodMax = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "periodMax", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "periodMax", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["periodUnits"] {
+			if let exist = js["periodUnits"] {
 				presentKeys.insert("periodUnits")
 				if let val = exist as? String {
 					self.periodUnits = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "periodUnits", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "periodUnits", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["when"] {
+			if let exist = js["when"] {
 				presentKeys.insert("when")
 				if let val = exist as? String {
 					self.when = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "when", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "when", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}

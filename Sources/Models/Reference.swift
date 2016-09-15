@@ -2,7 +2,7 @@
 //  Reference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Reference) on 2016-08-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Reference) on 2016-09-16.
 //  2016, SMART Health IT.
 //
 
@@ -13,7 +13,7 @@ import Foundation
  *  A reference from one resource to another.
  */
 public class Reference: Element {
-	override public class var resourceName: String {
+	override public class var resourceType: String {
 		get { return "Reference" }
 	}
 	
@@ -29,25 +29,25 @@ public class Reference: Element {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["display"] {
+			if let exist = js["display"] {
 				presentKeys.insert("display")
 				if let val = exist as? String {
 					self.display = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "display", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "display", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["reference"] {
+			if let exist = js["reference"] {
 				presentKeys.insert("reference")
 				if let val = exist as? String {
 					self.reference = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reference", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reference", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}

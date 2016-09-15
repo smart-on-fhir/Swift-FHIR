@@ -2,7 +2,7 @@
 //  SampledData.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2016-08-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2016-09-16.
 //  2016, SMART Health IT.
 //
 
@@ -16,7 +16,7 @@ import Foundation
  *  data.
  */
 public class SampledData: Element {
-	override public class var resourceName: String {
+	override public class var resourceType: String {
 		get { return "SampledData" }
 	}
 	
@@ -56,82 +56,82 @@ public class SampledData: Element {
 		self.period = period
 	}
 	
-	public override func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	public override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["data"] {
+			if let exist = js["data"] {
 				presentKeys.insert("data")
 				if let val = exist as? String {
 					self.data = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "data", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "data", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "data"))
 			}
-			if let exist: AnyObject = js["dimensions"] {
+			if let exist = js["dimensions"] {
 				presentKeys.insert("dimensions")
 				if let val = exist as? UInt {
 					self.dimensions = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "dimensions", wants: UInt.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "dimensions", wants: UInt.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "dimensions"))
 			}
-			if let exist: AnyObject = js["factor"] {
+			if let exist = js["factor"] {
 				presentKeys.insert("factor")
 				if let val = exist as? NSNumber {
 					self.factor = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "factor", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "factor", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["lowerLimit"] {
+			if let exist = js["lowerLimit"] {
 				presentKeys.insert("lowerLimit")
 				if let val = exist as? NSNumber {
 					self.lowerLimit = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "lowerLimit", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "lowerLimit", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["origin"] {
+			if let exist = js["origin"] {
 				presentKeys.insert("origin")
 				if let val = exist as? FHIRJSON {
 					self.origin = Quantity(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "origin", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "origin", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "origin"))
 			}
-			if let exist: AnyObject = js["period"] {
+			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? NSNumber {
 					self.period = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "period", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "period", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "period"))
 			}
-			if let exist: AnyObject = js["upperLimit"] {
+			if let exist = js["upperLimit"] {
 				presentKeys.insert("upperLimit")
 				if let val = exist as? NSNumber {
 					self.upperLimit = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "upperLimit", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "upperLimit", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
 		}

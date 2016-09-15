@@ -22,7 +22,7 @@ public protocol FHIRServerResponse {
 	var headers: [String: String] { get }
 	
 	/// The response body data.
-	var body: NSData? { get }
+	var body: Data? { get }
 	
 	/// The request's operation outcome, if any.
 	var outcome: OperationOutcome? { get }
@@ -32,38 +32,38 @@ public protocol FHIRServerResponse {
 	
 	
 	/**
-	Instantiate a FHIRServerResponse from an NS(HTTP)URLResponse, NSData and an NSError.
+	Instantiate a FHIRServerResponse from a (HTTP)URLResponse, Data and an Error.
 	*/
-	init(response: NSURLResponse, data: NSData?, urlError: NSError?)
+	init(response: URLResponse, data: Data?, error: Error?)
 	
-	init(error: ErrorType)
+	init(error: Error)
 	
 	
 	// MARK: - Responses
 	
-	func responseResource<T: Resource>(expectType: T.Type) -> T?
+	func responseResource<T: Resource>(ofType: T.Type) -> T?
 	
 	/**
 	The response should inspect response headers and update resource data like `id` and `meta` accordingly.
 	
 	This method must not be called if the response has a non-nil error.
 	
-	- throws: The method should only throw on severe cases, like if Location headers were returned that don't match the resource type
-	- parameter resource: The resource to apply response data to
+	- throws:       The method should only throw on severe cases, like if Location headers were returned that don't match the resource type
+	- parameter to: The resource to apply response data to
 	*/
-	func applyResponseHeadersToResource(resource: Resource) throws
+	func applyHeaders(to: Resource) throws
 	
 	/**
-	The response should apply response body data to the given resource. It should throw `FHIRError.ResponseNoResourceReceived` if there was
+	The response should apply response body data to the given resource. It should throw `FHIRError.responseNoResourceReceived` if there was
 	no response data.
 	
 	This method must not be called if the response has a non-nil error.
 	
-	- throws:   The method should throw if resource data was returned that doesn't match the given resource's type, but also if there was no
-	            response data at all (`FHIRError.ResponseNoResourceReceived` in that case)
-	- parameter resource: The resource to apply response data to
+	- throws:       The method should throw if resource data was returned that doesn't match the given resource's type, but also if there
+	                was no response data at all (`FHIRError.responseNoResourceReceived` in that case)
+	- parameter to: The resource to apply response data to
 	*/
-	func applyResponseBodyToResource(resource: Resource) throws
+	func applyBody(to: Resource) throws
 	
 	static func noneReceived() -> Self
 }

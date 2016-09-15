@@ -27,7 +27,7 @@ extension Reference {
 	- parameter type: The resource type that should be dereferenced
 	- returns: An instance of the desired type, nil if it cannot immediately be resolved OR if it is of a different type
 	*/
-	public func resolved<T: Resource>(type: T.Type) -> T? {
+	public func resolved<T: Resource>(_ type: T.Type) -> T? {
 		guard let refid = processedReferenceIdentifier() else {
 			fhir_warn("reference \(self) does not have a reference-id, cannot resolve")
 			return nil
@@ -41,7 +41,7 @@ extension Reference {
 		}
 		
 		// not yet resolved, let's look at contained resources
-		if let contained = owningResource()?.containedResource(refid) {
+		if let contained = owningResource?.containedResource(refid) {
 			if let contained = contained as? T {
 				return contained
 			}
@@ -50,8 +50,8 @@ extension Reference {
 		}
 		
 		// not contained, are we in a bundle and the resource is bundled?
-		let refIsRelative = !refid.containsString("://") && !refid.hasPrefix("urn:")
-		var bundle = owningBundle()
+		let refIsRelative = !refid.contains("://") && !refid.hasPrefix("urn:")
+		var bundle = owningBundle
 		while nil != bundle {
 			if let entries = bundle?.entry {
 				var refUrl = refid
@@ -61,7 +61,7 @@ extension Reference {
 				}
 				
 				for entry in entries {
-					if let entryUrl = entry.fullUrl?.absoluteString where entryUrl == refUrl {
+					if let entryUrl = entry.fullUrl?.absoluteString, entryUrl == refUrl {
 						if let found = entry.resource as? T {
 							return found
 						}
@@ -70,7 +70,7 @@ extension Reference {
 					}
 				}
 			}
-			bundle = bundle?.owningBundle()
+			bundle = bundle?.owningBundle
 		}
 		
 		return nil
@@ -85,8 +85,8 @@ extension Reference {
 	- parameter type: The type of the resource to expect
 	- parameter callback: The callback to call upon success or failure, with the resolved resource or nil
 	*/
-	public func resolve<T: Resource>(type: T.Type, callback: (T? -> Void)) {
-		if let resolved = resolved(T) {
+	public func resolve<T: Resource>(_ type: T.Type, callback: @escaping ((T?) -> Void)) {
+		if let resolved = resolved(T.self) {
 			callback(resolved)
 		}
 		else if let ref = reference {
@@ -94,9 +94,10 @@ extension Reference {
 			var path = ref
 			
 			// absolute URL
-			if let _ = ref.rangeOfString("://") {
-				if let url = NSURL(string: ref), let base = url.URLByDeletingLastPathComponent?.URLByDeletingLastPathComponent {
-					path = url.absoluteString.stringByReplacingOccurrencesOfString(base.absoluteString, withString: "")
+			if let _ = ref.range(of: "://") {
+				if let url = URL(string: ref) {
+					let base = url.deletingLastPathComponent().deletingLastPathComponent()
+					path = (url.absoluteString.replacingOccurrences(of: base.absoluteString, with: ""))
 					server = FHIRBaseServer(baseURL: base, auth: nil)		// TODO: what if it's protected?
 				}
 				else {
@@ -105,14 +106,14 @@ extension Reference {
 			}
 			
 			// relative URL
-			else if let srv = owningResource()?._server {
+			else if let srv = owningResource?._server {
 				server = srv
 			}
 			
 			if let server = server {
 				T.readFrom(path, server: server) { resource, error in
 					if let res = resource {
-						self.owningResource()?.didResolveReference(ref, resolved: res)
+						self.owningResource?.didResolveReference(ref, resolved: res)
 						callback(res as? T)		// `readFrom()` will always instantiate its own type, so this should never turn into nil
 					}
 					else {
@@ -136,7 +137,7 @@ extension Reference {
 	/** Strips the leading hash "#" symbol, if it's there, in order to perform a contained resource lookup. */
 	func processedReferenceIdentifier() -> String? {
 		if nil != reference && "#" == reference![reference!.startIndex] {
-			return reference![reference!.startIndex.advancedBy(1)..<reference!.endIndex]
+			return reference![reference!.index(reference!.startIndex, offsetBy: 1)..<reference!.endIndex]
 		}
 		return reference
 	}

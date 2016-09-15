@@ -2,7 +2,7 @@
 //  ParameterDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ParameterDefinition) on 2016-08-12.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ParameterDefinition) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -15,8 +15,8 @@ import Foundation
  *  The parameters to the module. This collection specifies both the input and output parameters. Input parameters are
  *  provided by the caller as part of the $evaluate operation. Output parameters are included in the GuidanceResponse.
  */
-public class ParameterDefinition: Element {
-	override public class var resourceName: String {
+open class ParameterDefinition: Element {
+	override open class var resourceType: String {
 		get { return "ParameterDefinition" }
 	}
 	
@@ -54,73 +54,73 @@ public class ParameterDefinition: Element {
 		self.use = use
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["documentation"] {
+			if let exist = js["documentation"] {
 				presentKeys.insert("documentation")
 				if let val = exist as? String {
 					self.documentation = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "documentation", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "documentation", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["max"] {
+			if let exist = js["max"] {
 				presentKeys.insert("max")
 				if let val = exist as? String {
 					self.max = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "max", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "max", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["min"] {
+			if let exist = js["min"] {
 				presentKeys.insert("min")
 				if let val = exist as? Int {
 					self.min = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "min", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "min", wants: Int.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["name"] {
+			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["profile"] {
+			if let exist = js["profile"] {
 				presentKeys.insert("profile")
 				if let val = exist as? FHIRJSON {
 					self.profile = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "profile", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "profile", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["type"] {
+			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "type"))
 			}
-			if let exist: AnyObject = js["use"] {
+			if let exist = js["use"] {
 				presentKeys.insert("use")
 				if let val = exist as? String {
 					self.use = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "use", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "use", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -130,7 +130,7 @@ public class ParameterDefinition: Element {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let documentation = self.documentation {

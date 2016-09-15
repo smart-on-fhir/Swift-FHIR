@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2016-08-12.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -14,8 +14,8 @@ import Foundation
  *
  *  A collection of error, warning or information messages that result from a system action.
  */
-public class OperationOutcome: DomainResource {
-	override public class var resourceName: String {
+open class OperationOutcome: DomainResource {
+	override open class var resourceType: String {
 		get { return "OperationOutcome" }
 	}
 	
@@ -34,16 +34,16 @@ public class OperationOutcome: DomainResource {
 		self.issue = issue
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["issue"] {
+			if let exist = js["issue"] {
 				presentKeys.insert("issue")
 				if let val = exist as? [FHIRJSON] {
-					self.issue = OperationOutcomeIssue.from(val, owner: self) as? [OperationOutcomeIssue]
+					self.issue = OperationOutcomeIssue.instantiate(fromArray: val, owner: self) as? [OperationOutcomeIssue]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "issue", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "issue", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -53,11 +53,11 @@ public class OperationOutcome: DomainResource {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let issue = self.issue {
-			json["issue"] = OperationOutcomeIssue.asJSONArray(issue)
+			json["issue"] = issue.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -70,8 +70,8 @@ public class OperationOutcome: DomainResource {
  *
  *  An error, warning or information message that results from a system action.
  */
-public class OperationOutcomeIssue: BackboneElement {
-	override public class var resourceName: String {
+open class OperationOutcomeIssue: BackboneElement {
+	override open class var resourceType: String {
 		get { return "OperationOutcomeIssue" }
 	}
 	
@@ -106,64 +106,64 @@ public class OperationOutcomeIssue: BackboneElement {
 		self.severity = severity
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["code"] {
+			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "code", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "code"))
 			}
-			if let exist: AnyObject = js["details"] {
+			if let exist = js["details"] {
 				presentKeys.insert("details")
 				if let val = exist as? FHIRJSON {
 					self.details = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "details", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "details", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["diagnostics"] {
+			if let exist = js["diagnostics"] {
 				presentKeys.insert("diagnostics")
 				if let val = exist as? String {
 					self.diagnostics = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "diagnostics", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "diagnostics", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["expression"] {
+			if let exist = js["expression"] {
 				presentKeys.insert("expression")
 				if let val = exist as? [String] {
 					self.expression = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "expression", wants: Array<String>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "expression", wants: Array<String>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["location"] {
+			if let exist = js["location"] {
 				presentKeys.insert("location")
 				if let val = exist as? [String] {
 					self.location = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "location", wants: Array<String>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "location", wants: Array<String>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["severity"] {
+			if let exist = js["severity"] {
 				presentKeys.insert("severity")
 				if let val = exist as? String {
 					self.severity = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "severity", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "severity", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -173,7 +173,7 @@ public class OperationOutcomeIssue: BackboneElement {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {
@@ -186,14 +186,14 @@ public class OperationOutcomeIssue: BackboneElement {
 			json["diagnostics"] = diagnostics.asJSON()
 		}
 		if let expression = self.expression {
-			var arr = [AnyObject]()
+			var arr = [Any]()
 			for val in expression {
 				arr.append(val.asJSON())
 			}
 			json["expression"] = arr
 		}
 		if let location = self.location {
-			var arr = [AnyObject]()
+			var arr = [Any]()
 			for val in location {
 				arr.append(val.asJSON())
 			}

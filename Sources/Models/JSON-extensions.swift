@@ -9,44 +9,40 @@
 import Foundation
 
 
-extension String
-{
+extension String {
 	public func asJSON() -> String {
 		return self
 	}
 }
 
-extension Bool
-{
+extension Bool {
 	public func asJSON() -> Bool {
 		return self
 	}
 }
 
-extension Int
-{
+extension Int {
 	public func asJSON() -> Int {
 		return self
 	}
 }
 
-extension UInt
-{
+extension UInt {
 	public func asJSON() -> UInt {
 		return self
 	}
 }
 
-extension NSURL
-{
-	public convenience init?(json: String) {
+extension URL {
+	
+	public init?(json: String) {
 		self.init(string: json)
 	}
 	
-	public class func from(json: [String]) -> [NSURL] {
-		var arr: [NSURL] = []
+	public static func instantiate(fromArray json: [String]) -> [URL] {
+		var arr: [URL] = []
 		for string in json {
-			if let url = NSURL(string: string) {
+			if let url = URL(string: string) {
 				arr.append(url)
 			}
 		}
@@ -58,8 +54,7 @@ extension NSURL
 	}
 }
 
-extension NSDecimalNumber
-{
+extension NSDecimalNumber {
 	/*
 		Takes an NSNumber, usually decoded from JSON, and creates an NSDecimalNumber instance
 	
@@ -70,7 +65,7 @@ extension NSDecimalNumber
 		TODO: improve to avoid double precision issues
 	 */
 	public convenience init(json: NSNumber) {
-		if let _ = json.stringValue.characters.indexOf(".") {
+		if let _ = json.stringValue.characters.index(of: ".") {
 			self.init(string: NSString(format: "%.15g", json.doubleValue) as String)
 		}
 		else {
@@ -83,8 +78,7 @@ extension NSDecimalNumber
 	}
 }
 
-extension Base64Binary
-{
+extension Base64Binary {
 	public init(string: String) {
 		self.init(value: string)
 	}
@@ -94,12 +88,11 @@ extension Base64Binary
 	}
 }
 
-extension Date
-{
-	public static func from(json: [String]) -> [Date] {
-		var arr: [Date] = []
+extension FHIRDate {
+	public static func instantiate(fromArray json: [String]) -> [FHIRDate] {
+		var arr: [FHIRDate] = []
 		for string in json {
-			if let obj = Date(string: string) {
+			if let obj = FHIRDate(string: string) {
 				arr.append(obj)
 			}
 		}
@@ -111,12 +104,11 @@ extension Date
 	}
 }
 
-extension Time
-{
-	public static func from(json: [String]) -> [Time] {
-		var arr: [Time] = []
+extension FHIRTime {
+	public static func instantiate(fromArray json: [String]) -> [FHIRTime] {
+		var arr: [FHIRTime] = []
 		for string in json {
-			if let obj = Time(string: string) {
+			if let obj = FHIRTime(string: string) {
 				arr.append(obj)
 			}
 		}
@@ -128,9 +120,8 @@ extension Time
 	}
 }
 
-extension DateTime
-{
-	public static func from(json: [String]) -> [DateTime] {
+extension DateTime {
+	public static func instantiate(fromArray json: [String]) -> [DateTime] {
 		var arr: [DateTime] = []
 		for string in json {
 			if let obj = DateTime(string: string) {
@@ -145,9 +136,8 @@ extension DateTime
 	}
 }
 
-extension Instant
-{
-	public static func from(json: [String]) -> [Instant] {
+extension Instant {
+	public static func instantiate(fromArray json: [String]) -> [Instant] {
 		var arr: [Instant] = []
 		for string in json {
 			if let obj = Instant(string: string) {

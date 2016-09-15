@@ -23,18 +23,18 @@ public enum FHIRRequestType: String {
 	/**
 	Prepare a given mutable URL request with the respective method and body values.
 	*/
-	public func prepareRequest(req: NSMutableURLRequest, body: NSData? = nil) {
-		req.HTTPMethod = rawValue
+	public func prepare(request: inout URLRequest, body: Data? = nil) {
+		request.httpMethod = rawValue
 		
 		switch self {
 		case .GET:
 			break
 		case .PUT:
-			req.HTTPBody = body
+			request.httpBody = body
 		case .POST:
-			req.HTTPBody = body
+			request.httpBody = body
 		case .PATCH:
-			req.HTTPBody = body
+			request.httpBody = body
 		case .DELETE:
 			break
 		case .OPTIONS:
@@ -53,7 +53,7 @@ public struct FHIRRequestHeaders {
 	public var headers: [FHIRRequestHeaderField: String]
 	
 	public init(_ headers: [FHIRRequestHeaderField: String]? = nil) {
-		var hdrs = [FHIRRequestHeaderField.AcceptCharset: "utf-8"]
+		var hdrs = [FHIRRequestHeaderField.acceptCharset: "utf-8"]
 		headers?.forEach() { hdrs[$0] = $1 }
 		self.headers = hdrs
 	}
@@ -67,9 +67,9 @@ public struct FHIRRequestHeaders {
 	/**
 	Prepare a given mutable URL request with the receiver's values.
 	*/
-	public func prepareRequest(req: NSMutableURLRequest) {
+	public func prepare(request: inout URLRequest) {
 		headers.forEach {
-			req.setValue($1, forHTTPHeaderField: $0.rawValue)
+			request.setValue($1, forHTTPHeaderField: $0.rawValue)
 		}
 	}
 }
@@ -81,15 +81,15 @@ Describe valid (and supported) FHIR request headers.
 The "Authorization" header is not used in the basic library, it is provided for convenience's sake.
 */
 public enum FHIRRequestHeaderField: String {
-	case Accept          = "Accept"
-	case AcceptCharset   = "Accept-Charset"
-	case Authorization   = "Authorization"
-	case ContentType     = "Content-Type"
-	case Prefer          = "Prefer"
-	case IfMatch         = "If-Match"
-	case IfNoneMatch     = "If-None-Match"
-	case IfModifiedSince = "If-Modified-Since"
-	case IfNoneExist     = "If-None-Exist"
+	case accept          = "Accept"
+	case acceptCharset   = "Accept-Charset"
+	case authorization   = "Authorization"
+	case contentType     = "Content-Type"
+	case prefer          = "Prefer"
+	case ifMatch         = "If-Match"
+	case ifNoneMatch     = "If-None-Match"
+	case ifModifiedSince = "If-Modified-Since"
+	case ifNoneExist     = "If-None-Exist"
 }
 
 
@@ -99,12 +99,12 @@ Protocol for server objects to be used by `FHIRResource` and subclasses.
 public protocol FHIRServer {
 	
 	/** A server object must always have a base URL. */
-	var baseURL: NSURL { get }
+	var baseURL: URL { get }
 	
 	/**
 	Designated initializer. Should make sure that the base URL ends with a "/"!
 	*/
-	init(baseURL base: NSURL, auth: [String: AnyObject]?)
+	init(baseURL base: URL, auth: [String: Any]?)
 	
 	
 	// MARK: - HTTP Request
@@ -112,12 +112,12 @@ public protocol FHIRServer {
 	/*
 	Execute a request of given type against the given path, which is relative to the receiver's `baseURL`, with the given resource (if any).
 	
-	- parameter type:              The type of the request (GET, PUT, POST or DELETE)
+	- parameter ofType:            The HTTP method type of the request
 	- parameter path:              The relative path on the server to be interacting against
 	- parameter resource:          The resource to be involved in the request, if any
 	- parameter additonalHeaders:  The headers to set on the request
 	- parameter callback:          A callback, likely called asynchronously, returning a response instance
 	*/
-	func performRequestOfType(type: FHIRRequestType, path: String, resource: Resource?, additionalHeaders: FHIRRequestHeaders?, callback: ((response: FHIRServerResponse) -> Void))
+	func performRequest(ofType: FHIRRequestType, path: String, resource: Resource?, additionalHeaders: FHIRRequestHeaders?, callback: @escaping ((FHIRServerResponse) -> Void))
 }
 

@@ -2,7 +2,7 @@
 //  LinkageTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-08-12.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -12,12 +12,12 @@ import SwiftFHIR
 
 class LinkageTests: XCTestCase {
 	
-	func instantiateFrom(filename filename: String) throws -> Linkage {
+	func instantiateFrom(filename: String) throws -> SwiftFHIR.Linkage {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json json: FHIRJSON) -> Linkage {
-		let instance = Linkage(json: json)
+	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Linkage {
+		let instance = SwiftFHIR.Linkage(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
@@ -32,17 +32,18 @@ class LinkageTests: XCTestCase {
 		}
 	}
 	
-	func runLinkage1(json: FHIRJSON? = nil) throws -> Linkage {
+	@discardableResult
+	func runLinkage1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Linkage {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "linkage-example.json")
 		
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.item![0].resource!.display, "Severe burn of left ear (Date: 24-May 2012)")
-		XCTAssertEqual(inst.item![0].resource!.reference, "Condition/example")
-		XCTAssertEqual(inst.item![0].type, "source")
-		XCTAssertEqual(inst.item![1].resource!.display, "Severe burn of left ear (Date: 24-May 2012)")
-		XCTAssertEqual(inst.item![1].resource!.reference, "Condition/condition-example")
-		XCTAssertEqual(inst.item![1].type, "alternate")
-		XCTAssertEqual(inst.text!.status, "generated")
+		XCTAssertEqual(inst.item?[0].resource?.display, "Severe burn of left ear (Date: 24-May 2012)")
+		XCTAssertEqual(inst.item?[0].resource?.reference, "Condition/example")
+		XCTAssertEqual(inst.item?[0].type, "source")
+		XCTAssertEqual(inst.item?[1].resource?.display, "Severe burn of left ear (Date: 24-May 2012)")
+		XCTAssertEqual(inst.item?[1].resource?.reference, "Condition/condition-example")
+		XCTAssertEqual(inst.item?[1].type, "alternate")
+		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
 	}

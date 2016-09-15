@@ -2,7 +2,7 @@
 //  Count.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Count) on 2016-08-12.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Count) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -15,8 +15,8 @@ import Foundation
  *  A measured amount (or an amount that can potentially be measured). Note that measured amounts include amounts that
  *  are not precisely quantified, including amounts involving arbitrary units and floating currencies.
  */
-public class Count: Quantity {
-	override public class var resourceName: String {
+open class Count: Quantity {
+	override open class var resourceType: String {
 		get { return "Count" }
 	}
 	

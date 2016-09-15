@@ -2,7 +2,7 @@
 //  TaskTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-08-12.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -12,12 +12,12 @@ import SwiftFHIR
 
 class TaskTests: XCTestCase {
 	
-	func instantiateFrom(filename filename: String) throws -> Task {
+	func instantiateFrom(filename: String) throws -> SwiftFHIR.Task {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json json: FHIRJSON) -> Task {
-		let instance = Task(json: json)
+	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Task {
+		let instance = SwiftFHIR.Task(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
@@ -32,21 +32,22 @@ class TaskTests: XCTestCase {
 		}
 	}
 	
-	func runTask1(json: FHIRJSON? = nil) throws -> Task {
+	@discardableResult
+	func runTask1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Task {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "task-example.json")
 		
-		XCTAssertEqual(inst.code!.text, "Refill Request")
+		XCTAssertEqual(inst.code?.text, "Refill Request")
 		XCTAssertEqual(inst.created?.description, "2016-03-10T22:39:32-04:00")
-		XCTAssertEqual(inst.focus!.reference, "MedicationOrder/medrx001")
-		XCTAssertEqual(inst.for_fhir!.reference, "Patient/f001")
+		XCTAssertEqual(inst.focus?.reference, "MedicationOrder/medrx001")
+		XCTAssertEqual(inst.for_fhir?.reference, "Patient/f001")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.lastModified?.description, "2016-03-10T22:39:32-04:00")
-		XCTAssertEqual(inst.owner!.reference, "Practitioner/MyDoc")
-		XCTAssertEqual(inst.requester!.reference, "Patient/Keith")
-		XCTAssertEqual(inst.stage!.coding![0].code, "actionable")
-		XCTAssertEqual(inst.stage!.coding![0].system?.absoluteString, "http://hl7.org/fhir/task-stage")
+		XCTAssertEqual(inst.owner?.reference, "Practitioner/MyDoc")
+		XCTAssertEqual(inst.requester?.reference, "Patient/Keith")
+		XCTAssertEqual(inst.stage?.coding?[0].code, "actionable")
+		XCTAssertEqual(inst.stage?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/task-stage")
 		XCTAssertEqual(inst.status, "draft")
-		XCTAssertEqual(inst.text!.status, "generated")
+		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
 	}

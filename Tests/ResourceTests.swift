@@ -19,7 +19,7 @@ class ResourceTests: XCTestCase {
 		let patient = Patient(json: ["id": "subject"])
 		let org = Organization(json: ["id": "org", "active": true])
 		do {
-			patient.managingOrganization = try patient.containResource(org)
+			patient.managingOrganization = try patient.contain(resource: org)
 		}
 		catch let error {
 			XCTAssertTrue(false, "Should not raise exception \(error) when containing perfectly fine patient into order")
@@ -30,7 +30,7 @@ class ResourceTests: XCTestCase {
 		let patient = Patient(json: ["id": "subject"])
 		let org = Organization(json: ["active": true])
 		do {
-			patient.managingOrganization = try patient.containResource(org)
+			patient.managingOrganization = try patient.contain(resource: org)
 			XCTAssertTrue(false, "Should have raised exception when attempting to contain resource without id")
 		}
 		catch {
@@ -40,7 +40,7 @@ class ResourceTests: XCTestCase {
 	func testContainingItself() {
 		let patient = Patient(json: ["id": "subject"])
 		do {
-			patient.managingOrganization = try patient.containResource(patient)
+			patient.managingOrganization = try patient.contain(resource: patient)
 			XCTAssertTrue(false, "Should have raised exception when attempting to contain itself")
 		}
 		catch {
@@ -51,7 +51,7 @@ class ResourceTests: XCTestCase {
 	// MARK: - Testing `create`
 	
 	func testCreate() {
-		let base = NSURL(string: "https://api.io")!
+		let base = URL(string: "https://api.io")!
 		let server = LocalPatientServer(baseURL: base)
 		
 		// normal `create`
@@ -68,14 +68,14 @@ class ResourceTests: XCTestCase {
 		patient.create(server) { error in
 			if let error = error {
 				switch error {
-				case FHIRError.ResourceAlreadyHasId:
+				case FHIRError.resourceAlreadyHasId:
 					break
 				default:
-					XCTAssertTrue(false, "Expecting `FHIRError.ResourceAlreadyHasId` but got \(error)")
+					XCTAssertTrue(false, "Expecting `FHIRError.resourceAlreadyHasId` but got \(error)")
 				}
 			}
 			else {
-				XCTAssertTrue(false, "Expecting `FHIRError.ResourceAlreadyHasId` but got nothing")
+				XCTAssertTrue(false, "Expecting `FHIRError.resourceAlreadyHasId` but got nothing")
 			}
 		}
 		
@@ -105,7 +105,7 @@ class ResourceTests: XCTestCase {
 	}
 	
 	func testCreateAndReturn() {
-		let base = NSURL(string: "https://api.io")!
+		let base = URL(string: "https://api.io")!
 		let server = LocalPatientServer(baseURL: base)
 		
 		// normal `createAndReturn`
@@ -123,14 +123,14 @@ class ResourceTests: XCTestCase {
 		patient.createAndReturn(server) { error in
 			if let error = error {
 				switch error {
-				case FHIRError.ResourceAlreadyHasId:
+				case FHIRError.resourceAlreadyHasId:
 					break
 				default:
-					XCTAssertTrue(false, "Expecting `FHIRError.ResourceAlreadyHasId` but got \(error)")
+					XCTAssertTrue(false, "Expecting `FHIRError.resourceAlreadyHasId` but got \(error)")
 				}
 			}
 			else {
-				XCTAssertTrue(false, "Expecting `FHIRError.ResourceAlreadyHasId` but got nothing")
+				XCTAssertTrue(false, "Expecting `FHIRError.resourceAlreadyHasId` but got nothing")
 			}
 		}
 		
@@ -179,20 +179,20 @@ class LocalPatientServer: FHIROpenServer {
 	
 	var lastPostedResource: Resource?
 	
-	override func performPreparedRequest<R : FHIRServerRequestHandler>(request: NSMutableURLRequest, withSession session: NSURLSession, handler: R, callback: ((response: FHIRServerResponse) -> Void)) {
-		guard let path = request.URL?.path where "/Patient" == path || path.hasPrefix("/Patient/") else {
-			let res = handler.notSent("Only supports Patient resources, trying to access «\(request.URL?.path ?? "nil")»")
-			callback(response: res)
+	override func performPreparedRequest<R : FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: @escaping ((FHIRServerResponse) -> Void)) {
+		guard let path = request.url?.path, "/Patient" == path || path.hasPrefix("/Patient/") else {
+			let res = handler.notSent("Only supports Patient resources, trying to access «\(request.url?.path ?? "nil")»")
+			callback(res)
 			return
 		}
 		
-		switch request.HTTPMethod {
+		switch request.httpMethod ?? "GET" {
 		
 		case "POST":
 			let version = Int(handler.resource?.meta?.versionId ?? "1336")!
-			let location = "\(self.baseURL.absoluteString)Patient/\(NSUUID().UUIDString)/_history/\(version+1)"
+			let location = "\(self.baseURL.absoluteString)Patient/\(UUID().uuidString)/_history/\(version+1)"
 			let headers = ["Location": location, "Last-mODified": "Tue, 3 May 2016 14:45:31 GMT"]
-			let http = NSHTTPURLResponse(URL: request.URL!, statusCode: 201, HTTPVersion: "1.1", headerFields: headers)
+			let http = HTTPURLResponse(url: request.url!, statusCode: 201, httpVersion: "1.1", headerFields: headers)
 			
 			let prefer = request.allHTTPHeaderFields?["Prefer"] ?? "minimal"
 			if prefer.hasSuffix("representation") != negatePreferHeader {
@@ -204,10 +204,10 @@ class LocalPatientServer: FHIROpenServer {
 				req.resource = pat
 				try! req.prepareData()
 				
-				callback(response: req.response(response: http, data: req.data))
+				callback(handler.response(response: http, data: req.data, error: nil))
 			}
 			else {
-				callback(response: handler.response(response: http))
+				callback(handler.response(response: http, data: nil, error: nil))
 			}
 			lastPostedResource = handler.resource
 		
@@ -215,21 +215,21 @@ class LocalPatientServer: FHIROpenServer {
 			if let last = lastPostedResource as? Patient {
 				let version = last.meta?.versionId ?? "1339"
 				let headers = ["ETag": "W/\"\(version)\"", "Last-Modified": "Friday, 06-May-15 17:49:37 GMT"]
-				let http = NSHTTPURLResponse(URL: request.URL!, statusCode: 200, HTTPVersion: "1.1", headerFields: headers)
+				let http = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "1.1", headerFields: headers)
 				
 				last.name = [HumanName(json: ["family": ["GET"]])]
 				last.meta = nil
 				handler.resource = last
 				try! handler.prepareData()
 				
-				callback(response: handler.response(response: http, data: handler.data))
+				callback(handler.response(response: http, data: handler.data, error: nil))
 			}
 			else {
-				callback(response: handler.notSent("\(request.HTTPMethod) without preceding “POST” is not supported"))
+				callback(handler.notSent("\(request.httpMethod) without preceding “POST” is not supported"))
 			}
 		
 		default:
-			callback(response: handler.notSent("\(request.HTTPMethod) is not yet supported"))
+			callback(handler.notSent("\(request.httpMethod) is not yet supported"))
 		}
 	}
 }

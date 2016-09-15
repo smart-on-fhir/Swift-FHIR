@@ -2,7 +2,7 @@
 //  BackboneElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2016-08-12.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -14,8 +14,8 @@ import Foundation
  *
  *  Base definition for all elements that are defined inside a resource - but not those in a data type.
  */
-public class BackboneElement: Element {
-	override public class var resourceName: String {
+open class BackboneElement: Element {
+	override open class var resourceType: String {
 		get { return "BackboneElement" }
 	}
 	
@@ -28,27 +28,27 @@ public class BackboneElement: Element {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["modifierExtension"] {
+			if let exist = js["modifierExtension"] {
 				presentKeys.insert("modifierExtension")
 				if let val = exist as? [FHIRJSON] {
-					self.modifierExtension = Extension.from(val, owner: self) as? [Extension]
+					self.modifierExtension = Extension.instantiate(fromArray: val, owner: self) as? [Extension]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "modifierExtension", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "modifierExtension", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let modifierExtension = self.modifierExtension {
-			json["modifierExtension"] = Extension.asJSONArray(modifierExtension)
+			json["modifierExtension"] = modifierExtension.map() { $0.asJSON() }
 		}
 		
 		return json

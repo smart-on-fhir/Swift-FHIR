@@ -19,15 +19,15 @@ extension DomainResource {
 	- parameter refid: The reference id the resource carries
 	- returns: The resource, if contained
 	*/
-	func containedResource(refid: String) -> Resource? {
+	func containedResource(_ refid: String) -> Resource? {
 		if let contained = contained {
 			for cont in contained {
-				if let id = cont.id where id == refid {
+				if let id = cont.id, id == refid {
 					return cont
 				}
 			}
 		}
-		return owningResource()?.containedResource(refid)
+		return owningResource?.containedResource(refid)
 	}
 	
 	/**
@@ -45,12 +45,12 @@ extension DomainResource {
 	- parameter display:  The string that will become the reference's `display`
 	- returns:            A `Reference` instance pointing to the contained resource (as "#id")
 	*/
-	public func containResource(resource: Resource, withDisplay display: String? = nil) throws -> Reference {
+	open func contain(resource: Resource, withDisplay display: String? = nil) throws -> Reference {
 		guard resource !== self else {
-			throw FHIRError.ResourceCannotContainItself
+			throw FHIRError.resourceCannotContainItself
 		}
-		guard let refid = resource.id where !refid.isEmpty else {
-			throw FHIRError.ResourceWithoutId
+		guard let refid = resource.id, !refid.isEmpty else {
+			throw FHIRError.resourceWithoutId
 		}
 		
 		// contain
@@ -98,20 +98,20 @@ extension DomainResource {
 	- parameter display:  The string that will become the reference's `display`
 	- returns:            A `Reference`, ready for use
 	*/
-	public func referenceResource(resource: Resource, withDisplay display: String? = nil) throws -> Reference {
+	open func reference(resource: Resource, withDisplay display: String? = nil) throws -> Reference {
 		let ref = Reference(json: nil, owner: self)
 		ref.display = display
 		
 		// determine whether reference is absolute (resources not on same server)
-		let absolute = (nil == _server || nil == resource._server || !_server!.baseURL.isEqual(resource._server!.baseURL))
+		let absolute = (nil == _server || nil == resource._server || (_server!.baseURL != resource._server!.baseURL))
 		if absolute {
 			ref.reference = try resource.absoluteURL().absoluteString
 		}
 		else if let id = resource.id {
-			ref.reference = resource.relativeURLBase().stringByAppendingString("/\(id)")
+			ref.reference = resource.relativeURLBase() + "/\(id)"
 		}
 		else {
-			throw FHIRError.ResourceWithoutId
+			throw FHIRError.resourceWithoutId
 		}
 		return ref
 	}

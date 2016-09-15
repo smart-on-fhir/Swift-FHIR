@@ -2,7 +2,7 @@
 //  ContractTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-08-12.
+//  Generated from FHIR 1.6.0.9663 on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -12,12 +12,12 @@ import SwiftFHIR
 
 class ContractTests: XCTestCase {
 	
-	func instantiateFrom(filename filename: String) throws -> Contract {
+	func instantiateFrom(filename: String) throws -> SwiftFHIR.Contract {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json json: FHIRJSON) -> Contract {
-		let instance = Contract(json: json)
+	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Contract {
+		let instance = SwiftFHIR.Contract(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
@@ -32,12 +32,13 @@ class ContractTests: XCTestCase {
 		}
 	}
 	
-	func runContract1(json: FHIRJSON? = nil) throws -> Contract {
+	@discardableResult
+	func runContract1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Contract {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "contract-example.json")
 		
 		XCTAssertEqual(inst.id, "C-123")
-		XCTAssertEqual(inst.text!.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the contract</div>")
-		XCTAssertEqual(inst.text!.status, "generated")
+		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the contract</div>")
+		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst
 	}

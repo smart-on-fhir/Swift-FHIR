@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2016-08-12.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -15,8 +15,8 @@ import Foundation
  *  An action that is or was performed on a patient. This can be a physical intervention like an operation, or less
  *  invasive like counseling or hypnotherapy.
  */
-public class Procedure: DomainResource {
-	override public class var resourceName: String {
+open class Procedure: DomainResource {
+	override open class var resourceType: String {
 		get { return "Procedure" }
 	}
 	
@@ -109,252 +109,252 @@ public class Procedure: DomainResource {
 		self.subject = subject
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["bodySite"] {
+			if let exist = js["bodySite"] {
 				presentKeys.insert("bodySite")
 				if let val = exist as? [FHIRJSON] {
-					self.bodySite = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.bodySite = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "bodySite", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "bodySite", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["category"] {
+			if let exist = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
 					self.category = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["code"] {
+			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
 					self.code = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "code"))
 			}
-			if let exist: AnyObject = js["complication"] {
+			if let exist = js["complication"] {
 				presentKeys.insert("complication")
 				if let val = exist as? [FHIRJSON] {
-					self.complication = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.complication = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "complication", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "complication", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["component"] {
+			if let exist = js["component"] {
 				presentKeys.insert("component")
 				if let val = exist as? [FHIRJSON] {
-					self.component = Reference.from(val, owner: self) as? [Reference]
+					self.component = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "component", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "component", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["encounter"] {
+			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
 					self.encounter = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["focalDevice"] {
+			if let exist = js["focalDevice"] {
 				presentKeys.insert("focalDevice")
 				if let val = exist as? [FHIRJSON] {
-					self.focalDevice = ProcedureFocalDevice.from(val, owner: self) as? [ProcedureFocalDevice]
+					self.focalDevice = ProcedureFocalDevice.instantiate(fromArray: val, owner: self) as? [ProcedureFocalDevice]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "focalDevice", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "focalDevice", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["followUp"] {
+			if let exist = js["followUp"] {
 				presentKeys.insert("followUp")
 				if let val = exist as? [FHIRJSON] {
-					self.followUp = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.followUp = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "followUp", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "followUp", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["identifier"] {
+			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["location"] {
+			if let exist = js["location"] {
 				presentKeys.insert("location")
 				if let val = exist as? FHIRJSON {
 					self.location = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "location", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "location", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["notPerformed"] {
+			if let exist = js["notPerformed"] {
 				presentKeys.insert("notPerformed")
 				if let val = exist as? Bool {
 					self.notPerformed = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "notPerformed", wants: Bool.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "notPerformed", wants: Bool.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["notes"] {
+			if let exist = js["notes"] {
 				presentKeys.insert("notes")
 				if let val = exist as? [FHIRJSON] {
-					self.notes = Annotation.from(val, owner: self) as? [Annotation]
+					self.notes = Annotation.instantiate(fromArray: val, owner: self) as? [Annotation]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "notes", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "notes", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["outcome"] {
+			if let exist = js["outcome"] {
 				presentKeys.insert("outcome")
 				if let val = exist as? FHIRJSON {
 					self.outcome = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "outcome", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "outcome", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["performedDateTime"] {
+			if let exist = js["performedDateTime"] {
 				presentKeys.insert("performedDateTime")
 				if let val = exist as? String {
 					self.performedDateTime = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "performedDateTime", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "performedDateTime", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["performedPeriod"] {
+			if let exist = js["performedPeriod"] {
 				presentKeys.insert("performedPeriod")
 				if let val = exist as? FHIRJSON {
 					self.performedPeriod = Period(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "performedPeriod", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "performedPeriod", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["performer"] {
+			if let exist = js["performer"] {
 				presentKeys.insert("performer")
 				if let val = exist as? [FHIRJSON] {
-					self.performer = ProcedurePerformer.from(val, owner: self) as? [ProcedurePerformer]
+					self.performer = ProcedurePerformer.instantiate(fromArray: val, owner: self) as? [ProcedurePerformer]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "performer", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "performer", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["reasonCode"] {
+			if let exist = js["reasonCode"] {
 				presentKeys.insert("reasonCode")
 				if let val = exist as? [FHIRJSON] {
-					self.reasonCode = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.reasonCode = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reasonCode", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reasonCode", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["reasonNotPerformed"] {
+			if let exist = js["reasonNotPerformed"] {
 				presentKeys.insert("reasonNotPerformed")
 				if let val = exist as? [FHIRJSON] {
-					self.reasonNotPerformed = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.reasonNotPerformed = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reasonNotPerformed", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reasonNotPerformed", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["reasonReference"] {
+			if let exist = js["reasonReference"] {
 				presentKeys.insert("reasonReference")
 				if let val = exist as? [FHIRJSON] {
-					self.reasonReference = Reference.from(val, owner: self) as? [Reference]
+					self.reasonReference = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "reasonReference", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "reasonReference", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["report"] {
+			if let exist = js["report"] {
 				presentKeys.insert("report")
 				if let val = exist as? [FHIRJSON] {
-					self.report = Reference.from(val, owner: self) as? [Reference]
+					self.report = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "report", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "report", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["request"] {
+			if let exist = js["request"] {
 				presentKeys.insert("request")
 				if let val = exist as? FHIRJSON {
 					self.request = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["status"] {
+			if let exist = js["status"] {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "status"))
 			}
-			if let exist: AnyObject = js["subject"] {
+			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
 					self.subject = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "subject"))
 			}
-			if let exist: AnyObject = js["usedCode"] {
+			if let exist = js["usedCode"] {
 				presentKeys.insert("usedCode")
 				if let val = exist as? [FHIRJSON] {
-					self.usedCode = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.usedCode = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "usedCode", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "usedCode", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["usedReference"] {
+			if let exist = js["usedReference"] {
 				presentKeys.insert("usedReference")
 				if let val = exist as? [FHIRJSON] {
-					self.usedReference = Reference.from(val, owner: self) as? [Reference]
+					self.usedReference = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "usedReference", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "usedReference", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let bodySite = self.bodySite {
-			json["bodySite"] = CodeableConcept.asJSONArray(bodySite)
+			json["bodySite"] = bodySite.map() { $0.asJSON() }
 		}
 		if let category = self.category {
 			json["category"] = category.asJSON()
@@ -363,22 +363,22 @@ public class Procedure: DomainResource {
 			json["code"] = code.asJSON()
 		}
 		if let complication = self.complication {
-			json["complication"] = CodeableConcept.asJSONArray(complication)
+			json["complication"] = complication.map() { $0.asJSON() }
 		}
 		if let component = self.component {
-			json["component"] = Reference.asJSONArray(component)
+			json["component"] = component.map() { $0.asJSON() }
 		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()
 		}
 		if let focalDevice = self.focalDevice {
-			json["focalDevice"] = ProcedureFocalDevice.asJSONArray(focalDevice)
+			json["focalDevice"] = focalDevice.map() { $0.asJSON() }
 		}
 		if let followUp = self.followUp {
-			json["followUp"] = CodeableConcept.asJSONArray(followUp)
+			json["followUp"] = followUp.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let location = self.location {
 			json["location"] = location.asJSON()
@@ -387,7 +387,7 @@ public class Procedure: DomainResource {
 			json["notPerformed"] = notPerformed.asJSON()
 		}
 		if let notes = self.notes {
-			json["notes"] = Annotation.asJSONArray(notes)
+			json["notes"] = notes.map() { $0.asJSON() }
 		}
 		if let outcome = self.outcome {
 			json["outcome"] = outcome.asJSON()
@@ -399,19 +399,19 @@ public class Procedure: DomainResource {
 			json["performedPeriod"] = performedPeriod.asJSON()
 		}
 		if let performer = self.performer {
-			json["performer"] = ProcedurePerformer.asJSONArray(performer)
+			json["performer"] = performer.map() { $0.asJSON() }
 		}
 		if let reasonCode = self.reasonCode {
-			json["reasonCode"] = CodeableConcept.asJSONArray(reasonCode)
+			json["reasonCode"] = reasonCode.map() { $0.asJSON() }
 		}
 		if let reasonNotPerformed = self.reasonNotPerformed {
-			json["reasonNotPerformed"] = CodeableConcept.asJSONArray(reasonNotPerformed)
+			json["reasonNotPerformed"] = reasonNotPerformed.map() { $0.asJSON() }
 		}
 		if let reasonReference = self.reasonReference {
-			json["reasonReference"] = Reference.asJSONArray(reasonReference)
+			json["reasonReference"] = reasonReference.map() { $0.asJSON() }
 		}
 		if let report = self.report {
-			json["report"] = Reference.asJSONArray(report)
+			json["report"] = report.map() { $0.asJSON() }
 		}
 		if let request = self.request {
 			json["request"] = request.asJSON()
@@ -423,10 +423,10 @@ public class Procedure: DomainResource {
 			json["subject"] = subject.asJSON()
 		}
 		if let usedCode = self.usedCode {
-			json["usedCode"] = CodeableConcept.asJSONArray(usedCode)
+			json["usedCode"] = usedCode.map() { $0.asJSON() }
 		}
 		if let usedReference = self.usedReference {
-			json["usedReference"] = Reference.asJSONArray(usedReference)
+			json["usedReference"] = usedReference.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -440,8 +440,8 @@ public class Procedure: DomainResource {
  *  A device that is implanted, removed or otherwise manipulated (calibration, battery replacement, fitting a
  *  prosthesis, attaching a wound-vac, etc.) as a focal portion of the Procedure.
  */
-public class ProcedureFocalDevice: BackboneElement {
-	override public class var resourceName: String {
+open class ProcedureFocalDevice: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ProcedureFocalDevice" }
 	}
 	
@@ -463,25 +463,25 @@ public class ProcedureFocalDevice: BackboneElement {
 		self.manipulated = manipulated
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["action"] {
+			if let exist = js["action"] {
 				presentKeys.insert("action")
 				if let val = exist as? FHIRJSON {
 					self.action = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "action", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "action", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["manipulated"] {
+			if let exist = js["manipulated"] {
 				presentKeys.insert("manipulated")
 				if let val = exist as? FHIRJSON {
 					self.manipulated = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "manipulated", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "manipulated", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -491,7 +491,7 @@ public class ProcedureFocalDevice: BackboneElement {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let action = self.action {
@@ -511,8 +511,8 @@ public class ProcedureFocalDevice: BackboneElement {
  *
  *  Limited to 'real' people rather than equipment.
  */
-public class ProcedurePerformer: BackboneElement {
-	override public class var resourceName: String {
+open class ProcedurePerformer: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ProcedurePerformer" }
 	}
 	
@@ -528,32 +528,32 @@ public class ProcedurePerformer: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["actor"] {
+			if let exist = js["actor"] {
 				presentKeys.insert("actor")
 				if let val = exist as? FHIRJSON {
 					self.actor = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "actor", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "actor", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["role"] {
+			if let exist = js["role"] {
 				presentKeys.insert("role")
 				if let val = exist as? FHIRJSON {
 					self.role = CodeableConcept(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "role", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "role", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let actor = self.actor {

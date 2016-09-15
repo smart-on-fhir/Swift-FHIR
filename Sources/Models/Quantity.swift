@@ -2,7 +2,7 @@
 //  Quantity.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Quantity) on 2016-08-12.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Quantity) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -15,8 +15,8 @@ import Foundation
  *  A measured amount (or an amount that can potentially be measured). Note that measured amounts include amounts that
  *  are not precisely quantified, including amounts involving arbitrary units and floating currencies.
  */
-public class Quantity: Element {
-	override public class var resourceName: String {
+open class Quantity: Element {
+	override open class var resourceType: String {
 		get { return "Quantity" }
 	}
 	
@@ -27,7 +27,7 @@ public class Quantity: Element {
 	public var comparator: String?
 	
 	/// System that defines coded unit form.
-	public var system: NSURL?
+	public var system: URL?
 	
 	/// Unit representation.
 	public var unit: String?
@@ -41,59 +41,59 @@ public class Quantity: Element {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["code"] {
+			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "code", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["comparator"] {
+			if let exist = js["comparator"] {
 				presentKeys.insert("comparator")
 				if let val = exist as? String {
 					self.comparator = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "comparator", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "comparator", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["system"] {
+			if let exist = js["system"] {
 				presentKeys.insert("system")
 				if let val = exist as? String {
-					self.system = NSURL(string: val)
+					self.system = URL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "system", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "system", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["unit"] {
+			if let exist = js["unit"] {
 				presentKeys.insert("unit")
 				if let val = exist as? String {
 					self.unit = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "unit", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "unit", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["value"] {
+			if let exist = js["value"] {
 				presentKeys.insert("value")
 				if let val = exist as? NSNumber {
 					self.value = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "value", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "value", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {

@@ -2,7 +2,7 @@
 //  RelatedResource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/RelatedResource) on 2016-08-12.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/RelatedResource) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -14,8 +14,8 @@ import Foundation
  *
  *  Related resources such as additional documentation, justification, or bibliographic references.
  */
-public class RelatedResource: Element {
-	override public class var resourceName: String {
+open class RelatedResource: Element {
+	override open class var resourceType: String {
 		get { return "RelatedResource" }
 	}
 	
@@ -35,7 +35,7 @@ public class RelatedResource: Element {
 	public var type: String?
 	
 	/// Url for the related resource.
-	public var url: NSURL?
+	public var url: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -49,71 +49,71 @@ public class RelatedResource: Element {
 		self.type = type
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["citation"] {
+			if let exist = js["citation"] {
 				presentKeys.insert("citation")
 				if let val = exist as? String {
 					self.citation = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "citation", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "citation", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["display"] {
+			if let exist = js["display"] {
 				presentKeys.insert("display")
 				if let val = exist as? String {
 					self.display = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "display", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "display", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["document"] {
+			if let exist = js["document"] {
 				presentKeys.insert("document")
 				if let val = exist as? FHIRJSON {
 					self.document = Attachment(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "document", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "document", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["resource"] {
+			if let exist = js["resource"] {
 				presentKeys.insert("resource")
 				if let val = exist as? FHIRJSON {
 					self.resource = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "resource", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "resource", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["type"] {
+			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "type"))
 			}
-			if let exist: AnyObject = js["url"] {
+			if let exist = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let citation = self.citation {

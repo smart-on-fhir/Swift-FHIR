@@ -13,23 +13,23 @@ import Models
 
 
 /**
-    The context an operation is to be performed against.
- */
+The context an operation is to be performed against.
+*/
 public enum FHIROperationContext {
-	case None, System, ResourceType, Instance
+	case none, system, resourceType, instance
 }
 
 
 /**
-    Named operations to be performed against a FHIR REST endpoint.
- */
-public class FHIROperation: CustomStringConvertible {
+Named operations to be performed against a FHIR REST endpoint.
+*/
+open class FHIROperation: CustomStringConvertible {
 	
 	/// The name of the operation.
 	let name: String
 	
 	/// The context against which this operation is run.
-	var context = FHIROperationContext.None
+	var context = FHIROperationContext.none
 	
 	/// Input parameters.
 	var inParams: FHIRJSON?
@@ -38,7 +38,7 @@ public class FHIROperation: CustomStringConvertible {
 	var type: Resource.Type? {
 		didSet {
 			if nil != type {
-				context = .ResourceType
+				context = .resourceType
 			}
 		}
 	}
@@ -47,8 +47,8 @@ public class FHIROperation: CustomStringConvertible {
 	var instance: Resource? {
 		didSet {
 			if let inst = instance {
-				type = inst.dynamicType
-				context = .Instance
+				type = type(of: inst)
+				context = .instance
 			}
 		}
 	}
@@ -61,39 +61,49 @@ public class FHIROperation: CustomStringConvertible {
 	// MARK: - Validation
 	
 	/**
-	    Validate the receiver against its operation definition.
-	 */
-	public func validateWith(definition: OperationDefinition) throws {
-		try validateContextWith(definition)
-		try validateInParamsWith(definition)
+	Validate the receiver against its operation definition.
+	
+	- parameter with: The OperationDefinition with which to validate the operation
+	*/
+	open func validate(with definition: OperationDefinition) throws {
+		try validateContext(with: definition)
+		try validateInParams(with: definition)
 	}
 	
-	/** Check if the receiver's context is permissible. */
-	func validateContextWith(definition: OperationDefinition) throws {
+	/**
+	Check if the receiver's context is permissible.
+	
+	- parameter with: The OperationDefinition with which to validate the operation
+	*/
+	func validateContext(with definition: OperationDefinition) throws {
 		switch context {
-		case .None:
-			throw FHIRError.OperationConfigurationError("Operation \(self) has not been properly set up")
-		case .System:
+		case .none:
+			throw FHIRError.operationConfigurationError("Operation \(self) has not been properly set up")
+		case .system:
 			if nil == definition.system || !definition.system! {
-				throw FHIRError.OperationConfigurationError("Operation \(self) cannot be executed in system context")
+				throw FHIRError.operationConfigurationError("Operation \(self) cannot be executed in system context")
 			}
-		case .ResourceType:
+		case .resourceType:
 			if nil == definition.type {
-				throw FHIRError.OperationConfigurationError("Operation \(self) cannot be executed in type context")
+				throw FHIRError.operationConfigurationError("Operation \(self) cannot be executed in type context")
 			}
-			else if nil == type || !(definition.type!).contains(type!.resourceName) {
-				throw FHIRError.OperationConfigurationError("Operation \(self) cannot be executed against \(type ?? nil) type")
+			else if nil == type || !(definition.type!).contains(type!.resourceType) {
+				throw FHIRError.operationConfigurationError("Operation \(self) cannot be executed against \(type ?? nil) type")
 			}
-		case .Instance:
+		case .instance:
 			if nil == definition.instance || !definition.instance! {
-				throw FHIRError.OperationConfigurationError("Operation \(self) cannot be executed in instance context")
+				throw FHIRError.operationConfigurationError("Operation \(self) cannot be executed in instance context")
 			}
-			try instance?.relativeURLPath()
+			_ = try instance?.relativeURLPath()
 		}
 	}
 	
-	/** Check if the receiver's "in" params adhere to the definition. */
-	func validateInParamsWith(definition: OperationDefinition) throws {
+	/**
+	Check if the receiver's "in" params adhere to the definition.
+	
+	- parameter with: The OperationDefinition with which to validate the operation
+	*/
+	func validateInParams(with definition: OperationDefinition) throws {
 		var leftover = inParams ?? FHIRJSON()
 		
 		// do we have all mandatory ones and are the ones that we have valid?
@@ -106,8 +116,8 @@ public class FHIROperation: CustomStringConvertible {
 				if "in" == param.use {
 					
 					// have the parameter, validate it
-					if let _: AnyObject = inParams?[param.name!] {
-						leftover.removeValueForKey(param.name!)
+					if nil != inParams?[param.name!] {
+						leftover.removeValue(forKey: param.name!)
 						
 						// TODO: actually validate!
 					}
@@ -115,7 +125,7 @@ public class FHIROperation: CustomStringConvertible {
 					// check if mandatory parameter is missing
 					else if let min = param.min {
 						if min > 0 {
-							throw FHIRError.OperationInputParameterMissing(param.name ?? "unknown")
+							throw FHIRError.operationInputParameterMissing(param.name ?? "unknown")
 						}
 					}
 				}
@@ -134,15 +144,15 @@ public class FHIROperation: CustomStringConvertible {
 	/**
 	Return the relative server URL the operation will call.
 	*/
-	public func serverPath() throws -> String {
+	open func serverPath() throws -> String {
 		switch context {
-		case .None:
-			throw FHIRError.OperationConfigurationError("Operation \(self) has not been properly set up")
-		case .System:
+		case .none:
+			throw FHIRError.operationConfigurationError("Operation \(self) has not been properly set up")
+		case .system:
 			return "$\(name)"
-		case .ResourceType:
-			return "\(type!.resourceName)/$\(name)"
-		case .Instance:
+		case .resourceType:
+			return "\(type!.resourceType)/$\(name)"
+		case .instance:
 			let path = try instance!.relativeURLPath()
 			return "\(path)/$\(name)"
 		}
@@ -150,16 +160,18 @@ public class FHIROperation: CustomStringConvertible {
 	
 	/**
 	Perform the operation on the given server. You probably want to call `validateWith()` first.
+	
+	- parameter on Server: The server on which to perform the operation
 	*/
-	public func perform(server: FHIRServer, callback: ((response: FHIRServerResponse) -> Void)) throws {
+	open func perform(onServer server: FHIRServer, callback: @escaping ((_ response: FHIRServerResponse) -> Void)) throws {
 		let path = try serverPath()
-		server.performRequestOfType(.GET, path: path, resource: nil, additionalHeaders: nil, callback: callback)
+		server.performRequest(ofType: .GET, path: path, resource: nil, additionalHeaders: nil, callback: callback)
 	}
 	
 	
 	// MARK: - Printable
 	
-	public var description: String {
+	open var description: String {
 		return "<FHIROperation $\(name)>"
 	}
 }

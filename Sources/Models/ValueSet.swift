@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2016-08-12.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -14,8 +14,8 @@ import Foundation
  *
  *  A value set specifies a set of codes drawn from one or more code systems.
  */
-public class ValueSet: DomainResource {
-	override public class var resourceName: String {
+open class ValueSet: DomainResource {
+	override open class var resourceType: String {
 		get { return "ValueSet" }
 	}
 	
@@ -50,7 +50,7 @@ public class ValueSet: DomainResource {
 	public var immutable: Bool?
 	
 	/// Fixed date for all referenced code systems and value sets.
-	public var lockedDate: Date?
+	public var lockedDate: FHIRDate?
 	
 	/// Informal name for this value set.
 	public var name: String?
@@ -65,7 +65,7 @@ public class ValueSet: DomainResource {
 	public var status: String?
 	
 	/// Globally unique logical identifier for  value set.
-	public var url: NSURL?
+	public var url: URL?
 	
 	/// Content intends to support these contexts.
 	public var useContext: [CodeableConcept]?
@@ -85,186 +85,186 @@ public class ValueSet: DomainResource {
 		self.status = status
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["compose"] {
+			if let exist = js["compose"] {
 				presentKeys.insert("compose")
 				if let val = exist as? FHIRJSON {
 					self.compose = ValueSetCompose(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "compose", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "compose", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["contact"] {
+			if let exist = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = ValueSetContact.from(val, owner: self) as? [ValueSetContact]
+					self.contact = ValueSetContact.instantiate(fromArray: val, owner: self) as? [ValueSetContact]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["copyright"] {
+			if let exist = js["copyright"] {
 				presentKeys.insert("copyright")
 				if let val = exist as? String {
 					self.copyright = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "copyright", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "copyright", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["date"] {
+			if let exist = js["date"] {
 				presentKeys.insert("date")
 				if let val = exist as? String {
 					self.date = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "date", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "date", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["description"] {
+			if let exist = js["description"] {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "description", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["expansion"] {
+			if let exist = js["expansion"] {
 				presentKeys.insert("expansion")
 				if let val = exist as? FHIRJSON {
 					self.expansion = ValueSetExpansion(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "expansion", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "expansion", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["experimental"] {
+			if let exist = js["experimental"] {
 				presentKeys.insert("experimental")
 				if let val = exist as? Bool {
 					self.experimental = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["extensible"] {
+			if let exist = js["extensible"] {
 				presentKeys.insert("extensible")
 				if let val = exist as? Bool {
 					self.extensible = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "extensible", wants: Bool.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "extensible", wants: Bool.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["identifier"] {
+			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.from(val, owner: self) as? [Identifier]
+					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["immutable"] {
+			if let exist = js["immutable"] {
 				presentKeys.insert("immutable")
 				if let val = exist as? Bool {
 					self.immutable = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "immutable", wants: Bool.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "immutable", wants: Bool.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["lockedDate"] {
+			if let exist = js["lockedDate"] {
 				presentKeys.insert("lockedDate")
 				if let val = exist as? String {
-					self.lockedDate = Date(string: val)
+					self.lockedDate = FHIRDate(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "lockedDate", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "lockedDate", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["name"] {
+			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["publisher"] {
+			if let exist = js["publisher"] {
 				presentKeys.insert("publisher")
 				if let val = exist as? String {
 					self.publisher = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["requirements"] {
+			if let exist = js["requirements"] {
 				presentKeys.insert("requirements")
 				if let val = exist as? String {
 					self.requirements = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["status"] {
+			if let exist = js["status"] {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "status", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "status"))
 			}
-			if let exist: AnyObject = js["url"] {
+			if let exist = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
-					self.url = NSURL(string: val)
+					self.url = URL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["useContext"] {
+			if let exist = js["useContext"] {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
-					self.useContext = CodeableConcept.from(val, owner: self) as? [CodeableConcept]
+					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["version"] {
+			if let exist = js["version"] {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "version", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let compose = self.compose {
 			json["compose"] = compose.asJSON()
 		}
 		if let contact = self.contact {
-			json["contact"] = ValueSetContact.asJSONArray(contact)
+			json["contact"] = contact.map() { $0.asJSON() }
 		}
 		if let copyright = self.copyright {
 			json["copyright"] = copyright.asJSON()
@@ -285,7 +285,7 @@ public class ValueSet: DomainResource {
 			json["extensible"] = extensible.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let immutable = self.immutable {
 			json["immutable"] = immutable.asJSON()
@@ -309,7 +309,7 @@ public class ValueSet: DomainResource {
 			json["url"] = url.asJSON()
 		}
 		if let useContext = self.useContext {
-			json["useContext"] = CodeableConcept.asJSONArray(useContext)
+			json["useContext"] = useContext.map() { $0.asJSON() }
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
@@ -326,8 +326,8 @@ public class ValueSet: DomainResource {
  *  A set of criteria that provide the content logical definition of the value set by including or excluding codes from
  *  outside this value set.
  */
-public class ValueSetCompose: BackboneElement {
-	override public class var resourceName: String {
+open class ValueSetCompose: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ValueSetCompose" }
 	}
 	
@@ -335,7 +335,7 @@ public class ValueSetCompose: BackboneElement {
 	public var exclude: [ValueSetComposeInclude]?
 	
 	/// Import the contents of another value set.
-	public var import_fhir: [NSURL]?
+	public var import_fhir: [URL]?
 	
 	/// Include one or more codes from a code system.
 	public var include: [ValueSetComposeInclude]?
@@ -346,55 +346,55 @@ public class ValueSetCompose: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["exclude"] {
+			if let exist = js["exclude"] {
 				presentKeys.insert("exclude")
 				if let val = exist as? [FHIRJSON] {
-					self.exclude = ValueSetComposeInclude.from(val, owner: self) as? [ValueSetComposeInclude]
+					self.exclude = ValueSetComposeInclude.instantiate(fromArray: val, owner: self) as? [ValueSetComposeInclude]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "exclude", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "exclude", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["import"] {
+			if let exist = js["import"] {
 				presentKeys.insert("import")
 				if let val = exist as? [String] {
-					self.import_fhir = NSURL.from(val)
+					self.import_fhir = URL.instantiate(fromArray: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "import", wants: Array<String>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "import", wants: Array<String>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["include"] {
+			if let exist = js["include"] {
 				presentKeys.insert("include")
 				if let val = exist as? [FHIRJSON] {
-					self.include = ValueSetComposeInclude.from(val, owner: self) as? [ValueSetComposeInclude]
+					self.include = ValueSetComposeInclude.instantiate(fromArray: val, owner: self) as? [ValueSetComposeInclude]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "include", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "include", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let exclude = self.exclude {
-			json["exclude"] = ValueSetComposeInclude.asJSONArray(exclude)
+			json["exclude"] = exclude.map() { $0.asJSON() }
 		}
 		if let import_fhir = self.import_fhir {
-			var arr = [AnyObject]()
+			var arr = [Any]()
 			for val in import_fhir {
 				arr.append(val.asJSON())
 			}
 			json["import"] = arr
 		}
 		if let include = self.include {
-			json["include"] = ValueSetComposeInclude.asJSONArray(include)
+			json["include"] = include.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -405,8 +405,8 @@ public class ValueSetCompose: BackboneElement {
 /**
  *  Include one or more codes from a code system.
  */
-public class ValueSetComposeInclude: BackboneElement {
-	override public class var resourceName: String {
+open class ValueSetComposeInclude: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ValueSetComposeInclude" }
 	}
 	
@@ -417,7 +417,7 @@ public class ValueSetComposeInclude: BackboneElement {
 	public var filter: [ValueSetComposeIncludeFilter]?
 	
 	/// The system the codes come from.
-	public var system: NSURL?
+	public var system: URL?
 	
 	/// Specific version of the code system referred to.
 	public var version: String?
@@ -429,65 +429,65 @@ public class ValueSetComposeInclude: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(system: NSURL) {
+	public convenience init(system: URL) {
 		self.init(json: nil)
 		self.system = system
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["concept"] {
+			if let exist = js["concept"] {
 				presentKeys.insert("concept")
 				if let val = exist as? [FHIRJSON] {
-					self.concept = ValueSetComposeIncludeConcept.from(val, owner: self) as? [ValueSetComposeIncludeConcept]
+					self.concept = ValueSetComposeIncludeConcept.instantiate(fromArray: val, owner: self) as? [ValueSetComposeIncludeConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "concept", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "concept", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["filter"] {
+			if let exist = js["filter"] {
 				presentKeys.insert("filter")
 				if let val = exist as? [FHIRJSON] {
-					self.filter = ValueSetComposeIncludeFilter.from(val, owner: self) as? [ValueSetComposeIncludeFilter]
+					self.filter = ValueSetComposeIncludeFilter.instantiate(fromArray: val, owner: self) as? [ValueSetComposeIncludeFilter]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "filter", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "filter", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["system"] {
+			if let exist = js["system"] {
 				presentKeys.insert("system")
 				if let val = exist as? String {
-					self.system = NSURL(string: val)
+					self.system = URL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "system", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "system", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "system"))
 			}
-			if let exist: AnyObject = js["version"] {
+			if let exist = js["version"] {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "version", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let concept = self.concept {
-			json["concept"] = ValueSetComposeIncludeConcept.asJSONArray(concept)
+			json["concept"] = concept.map() { $0.asJSON() }
 		}
 		if let filter = self.filter {
-			json["filter"] = ValueSetComposeIncludeFilter.asJSONArray(filter)
+			json["filter"] = filter.map() { $0.asJSON() }
 		}
 		if let system = self.system {
 			json["system"] = system.asJSON()
@@ -506,8 +506,8 @@ public class ValueSetComposeInclude: BackboneElement {
  *
  *  Specifies a concept to be included or excluded.
  */
-public class ValueSetComposeIncludeConcept: BackboneElement {
-	override public class var resourceName: String {
+open class ValueSetComposeIncludeConcept: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ValueSetComposeIncludeConcept" }
 	}
 	
@@ -532,51 +532,51 @@ public class ValueSetComposeIncludeConcept: BackboneElement {
 		self.code = code
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["code"] {
+			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "code", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "code"))
 			}
-			if let exist: AnyObject = js["designation"] {
+			if let exist = js["designation"] {
 				presentKeys.insert("designation")
 				if let val = exist as? [FHIRJSON] {
-					self.designation = ValueSetComposeIncludeConceptDesignation.from(val, owner: self) as? [ValueSetComposeIncludeConceptDesignation]
+					self.designation = ValueSetComposeIncludeConceptDesignation.instantiate(fromArray: val, owner: self) as? [ValueSetComposeIncludeConceptDesignation]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "designation", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "designation", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["display"] {
+			if let exist = js["display"] {
 				presentKeys.insert("display")
 				if let val = exist as? String {
 					self.display = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "display", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "display", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let code = self.code {
 			json["code"] = code.asJSON()
 		}
 		if let designation = self.designation {
-			json["designation"] = ValueSetComposeIncludeConceptDesignation.asJSONArray(designation)
+			json["designation"] = designation.map() { $0.asJSON() }
 		}
 		if let display = self.display {
 			json["display"] = display.asJSON()
@@ -593,8 +593,8 @@ public class ValueSetComposeIncludeConcept: BackboneElement {
  *  Additional representations for this concept when used in this value set - other languages, aliases, specialized
  *  purposes, used for particular purposes, etc.
  */
-public class ValueSetComposeIncludeConceptDesignation: BackboneElement {
-	override public class var resourceName: String {
+open class ValueSetComposeIncludeConceptDesignation: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ValueSetComposeIncludeConceptDesignation" }
 	}
 	
@@ -619,34 +619,34 @@ public class ValueSetComposeIncludeConceptDesignation: BackboneElement {
 		self.value = value
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["language"] {
+			if let exist = js["language"] {
 				presentKeys.insert("language")
 				if let val = exist as? String {
 					self.language = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "language", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "language", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["use"] {
+			if let exist = js["use"] {
 				presentKeys.insert("use")
 				if let val = exist as? FHIRJSON {
 					self.use = Coding(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "use", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "use", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["value"] {
+			if let exist = js["value"] {
 				presentKeys.insert("value")
 				if let val = exist as? String {
 					self.value = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "value", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "value", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -656,7 +656,7 @@ public class ValueSetComposeIncludeConceptDesignation: BackboneElement {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let language = self.language {
@@ -680,8 +680,8 @@ public class ValueSetComposeIncludeConceptDesignation: BackboneElement {
  *  Select concepts by specify a matching criteria based on the properties (including relationships) defined by the
  *  system. If multiple filters are specified, they SHALL all be true.
  */
-public class ValueSetComposeIncludeFilter: BackboneElement {
-	override public class var resourceName: String {
+open class ValueSetComposeIncludeFilter: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ValueSetComposeIncludeFilter" }
 	}
 	
@@ -708,40 +708,40 @@ public class ValueSetComposeIncludeFilter: BackboneElement {
 		self.value = value
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["op"] {
+			if let exist = js["op"] {
 				presentKeys.insert("op")
 				if let val = exist as? String {
 					self.op = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "op", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "op", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "op"))
 			}
-			if let exist: AnyObject = js["property"] {
+			if let exist = js["property"] {
 				presentKeys.insert("property")
 				if let val = exist as? String {
 					self.property = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "property", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "property", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "property"))
 			}
-			if let exist: AnyObject = js["value"] {
+			if let exist = js["value"] {
 				presentKeys.insert("value")
 				if let val = exist as? String {
 					self.value = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "value", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "value", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
@@ -751,7 +751,7 @@ public class ValueSetComposeIncludeFilter: BackboneElement {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let op = self.op {
@@ -774,8 +774,8 @@ public class ValueSetComposeIncludeFilter: BackboneElement {
  *
  *  Contacts to assist a user in finding and communicating with the publisher.
  */
-public class ValueSetContact: BackboneElement {
-	override public class var resourceName: String {
+open class ValueSetContact: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ValueSetContact" }
 	}
 	
@@ -791,39 +791,39 @@ public class ValueSetContact: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["name"] {
+			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["telecom"] {
+			if let exist = js["telecom"] {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.from(val, owner: self) as? [ContactPoint]
+					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -837,8 +837,8 @@ public class ValueSetContact: BackboneElement {
  *  A value set can also be "expanded", where the value set is turned into a simple collection of enumerated codes. This
  *  element holds the expansion, if it has been performed.
  */
-public class ValueSetExpansion: BackboneElement {
-	override public class var resourceName: String {
+open class ValueSetExpansion: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ValueSetExpansion" }
 	}
 	
@@ -846,7 +846,7 @@ public class ValueSetExpansion: BackboneElement {
 	public var contains: [ValueSetExpansionContains]?
 	
 	/// Uniquely identifies this expansion.
-	public var identifier: NSURL?
+	public var identifier: URL?
 	
 	/// Offset at which this resource starts.
 	public var offset: Int?
@@ -867,84 +867,84 @@ public class ValueSetExpansion: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identifier: NSURL, timestamp: DateTime) {
+	public convenience init(identifier: URL, timestamp: DateTime) {
 		self.init(json: nil)
 		self.identifier = identifier
 		self.timestamp = timestamp
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["contains"] {
+			if let exist = js["contains"] {
 				presentKeys.insert("contains")
 				if let val = exist as? [FHIRJSON] {
-					self.contains = ValueSetExpansionContains.from(val, owner: self) as? [ValueSetExpansionContains]
+					self.contains = ValueSetExpansionContains.instantiate(fromArray: val, owner: self) as? [ValueSetExpansionContains]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "contains", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "contains", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["identifier"] {
+			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? String {
-					self.identifier = NSURL(string: val)
+					self.identifier = URL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "identifier", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "identifier"))
 			}
-			if let exist: AnyObject = js["offset"] {
+			if let exist = js["offset"] {
 				presentKeys.insert("offset")
 				if let val = exist as? Int {
 					self.offset = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "offset", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "offset", wants: Int.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["parameter"] {
+			if let exist = js["parameter"] {
 				presentKeys.insert("parameter")
 				if let val = exist as? [FHIRJSON] {
-					self.parameter = ValueSetExpansionParameter.from(val, owner: self) as? [ValueSetExpansionParameter]
+					self.parameter = ValueSetExpansionParameter.instantiate(fromArray: val, owner: self) as? [ValueSetExpansionParameter]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "parameter", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "parameter", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["timestamp"] {
+			if let exist = js["timestamp"] {
 				presentKeys.insert("timestamp")
 				if let val = exist as? String {
 					self.timestamp = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "timestamp", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "timestamp", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "timestamp"))
 			}
-			if let exist: AnyObject = js["total"] {
+			if let exist = js["total"] {
 				presentKeys.insert("total")
 				if let val = exist as? Int {
 					self.total = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "total", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "total", wants: Int.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let contains = self.contains {
-			json["contains"] = ValueSetExpansionContains.asJSONArray(contains)
+			json["contains"] = contains.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
@@ -953,7 +953,7 @@ public class ValueSetExpansion: BackboneElement {
 			json["offset"] = offset.asJSON()
 		}
 		if let parameter = self.parameter {
-			json["parameter"] = ValueSetExpansionParameter.asJSONArray(parameter)
+			json["parameter"] = parameter.map() { $0.asJSON() }
 		}
 		if let timestamp = self.timestamp {
 			json["timestamp"] = timestamp.asJSON()
@@ -972,8 +972,8 @@ public class ValueSetExpansion: BackboneElement {
  *
  *  The codes that are contained in the value set expansion.
  */
-public class ValueSetExpansionContains: BackboneElement {
-	override public class var resourceName: String {
+open class ValueSetExpansionContains: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ValueSetExpansionContains" }
 	}
 	
@@ -990,7 +990,7 @@ public class ValueSetExpansionContains: BackboneElement {
 	public var display: String?
 	
 	/// System value for the code.
-	public var system: NSURL?
+	public var system: URL?
 	
 	/// Version in which this code/display is defined.
 	public var version: String?
@@ -1001,68 +1001,68 @@ public class ValueSetExpansionContains: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["abstract"] {
+			if let exist = js["abstract"] {
 				presentKeys.insert("abstract")
 				if let val = exist as? Bool {
 					self.abstract = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "abstract", wants: Bool.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "abstract", wants: Bool.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["code"] {
+			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "code", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["contains"] {
+			if let exist = js["contains"] {
 				presentKeys.insert("contains")
 				if let val = exist as? [FHIRJSON] {
-					self.contains = ValueSetExpansionContains.from(val, owner: self) as? [ValueSetExpansionContains]
+					self.contains = ValueSetExpansionContains.instantiate(fromArray: val, owner: self) as? [ValueSetExpansionContains]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "contains", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "contains", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["display"] {
+			if let exist = js["display"] {
 				presentKeys.insert("display")
 				if let val = exist as? String {
 					self.display = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "display", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "display", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["system"] {
+			if let exist = js["system"] {
 				presentKeys.insert("system")
 				if let val = exist as? String {
-					self.system = NSURL(string: val)
+					self.system = URL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "system", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "system", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["version"] {
+			if let exist = js["version"] {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "version", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let abstract = self.abstract {
@@ -1072,7 +1072,7 @@ public class ValueSetExpansionContains: BackboneElement {
 			json["code"] = code.asJSON()
 		}
 		if let contains = self.contains {
-			json["contains"] = ValueSetExpansionContains.asJSONArray(contains)
+			json["contains"] = contains.map() { $0.asJSON() }
 		}
 		if let display = self.display {
 			json["display"] = display.asJSON()
@@ -1095,8 +1095,8 @@ public class ValueSetExpansionContains: BackboneElement {
  *  A parameter that controlled the expansion process. These parameters may be used by users of expanded value sets to
  *  check whether the expansion is suitable for a particular purpose, or to pick the correct expansion.
  */
-public class ValueSetExpansionParameter: BackboneElement {
-	override public class var resourceName: String {
+open class ValueSetExpansionParameter: BackboneElement {
+	override open class var resourceType: String {
 		get { return "ValueSetExpansionParameter" }
 	}
 	
@@ -1119,7 +1119,7 @@ public class ValueSetExpansionParameter: BackboneElement {
 	public var valueString: String?
 	
 	/// Value of the named parameter.
-	public var valueUri: NSURL?
+	public var valueUri: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -1133,80 +1133,80 @@ public class ValueSetExpansionParameter: BackboneElement {
 		self.name = name
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["name"] {
+			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "name"))
 			}
-			if let exist: AnyObject = js["valueBoolean"] {
+			if let exist = js["valueBoolean"] {
 				presentKeys.insert("valueBoolean")
 				if let val = exist as? Bool {
 					self.valueBoolean = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "valueBoolean", wants: Bool.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "valueBoolean", wants: Bool.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["valueCode"] {
+			if let exist = js["valueCode"] {
 				presentKeys.insert("valueCode")
 				if let val = exist as? String {
 					self.valueCode = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "valueCode", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "valueCode", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["valueDecimal"] {
+			if let exist = js["valueDecimal"] {
 				presentKeys.insert("valueDecimal")
 				if let val = exist as? NSNumber {
 					self.valueDecimal = NSDecimalNumber(json: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "valueDecimal", wants: NSNumber.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "valueDecimal", wants: NSNumber.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["valueInteger"] {
+			if let exist = js["valueInteger"] {
 				presentKeys.insert("valueInteger")
 				if let val = exist as? Int {
 					self.valueInteger = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "valueInteger", wants: Int.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "valueInteger", wants: Int.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["valueString"] {
+			if let exist = js["valueString"] {
 				presentKeys.insert("valueString")
 				if let val = exist as? String {
 					self.valueString = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "valueString", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "valueString", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["valueUri"] {
+			if let exist = js["valueUri"] {
 				presentKeys.insert("valueUri")
 				if let val = exist as? String {
-					self.valueUri = NSURL(string: val)
+					self.valueUri = URL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "valueUri", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "valueUri", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let name = self.name {

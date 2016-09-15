@@ -2,7 +2,7 @@
 //  Signature.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Signature) on 2016-08-12.
+//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Signature) on 2016-08-17.
 //  2016, SMART Health IT.
 //
 
@@ -16,8 +16,8 @@ import Foundation
  *  graphical image representing a hand-written signature, or a signature process. Different Signature approaches have
  *  different utilities.
  */
-public class Signature: Element {
-	override public class var resourceName: String {
+open class Signature: Element {
+	override open class var resourceType: String {
 		get { return "Signature" }
 	}
 	
@@ -31,7 +31,7 @@ public class Signature: Element {
 	public var onBehalfOfReference: Reference?
 	
 	/// The party represented.
-	public var onBehalfOfUri: NSURL?
+	public var onBehalfOfUri: URL?
 	
 	/// Indication of the reason the entity signed the object(s).
 	public var type: [Coding]?
@@ -43,7 +43,7 @@ public class Signature: Element {
 	public var whoReference: Reference?
 	
 	/// Who signed.
-	public var whoUri: NSURL?
+	public var whoUri: URL?
 	
 	
 	/** Initialize with a JSON object. */
@@ -52,7 +52,7 @@ public class Signature: Element {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: [Coding], when: Instant, whoReference: Reference, whoUri: NSURL) {
+	public convenience init(type: [Coding], when: Instant, whoReference: Reference, whoUri: URL) {
 		self.init(json: nil)
 		self.type = type
 		self.when = when
@@ -60,85 +60,85 @@ public class Signature: Element {
 		self.whoUri = whoUri
 	}
 	
-	public override func populateFromJSON(json: FHIRJSON?, inout presentKeys: Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populateFromJSON(json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+	override open func populate(fromJSON json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(fromJSON: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist: AnyObject = js["blob"] {
+			if let exist = js["blob"] {
 				presentKeys.insert("blob")
 				if let val = exist as? String {
 					self.blob = Base64Binary(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "blob", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "blob", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["contentType"] {
+			if let exist = js["contentType"] {
 				presentKeys.insert("contentType")
 				if let val = exist as? String {
 					self.contentType = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "contentType", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "contentType", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["onBehalfOfReference"] {
+			if let exist = js["onBehalfOfReference"] {
 				presentKeys.insert("onBehalfOfReference")
 				if let val = exist as? FHIRJSON {
 					self.onBehalfOfReference = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "onBehalfOfReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "onBehalfOfReference", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["onBehalfOfUri"] {
+			if let exist = js["onBehalfOfUri"] {
 				presentKeys.insert("onBehalfOfUri")
 				if let val = exist as? String {
-					self.onBehalfOfUri = NSURL(string: val)
+					self.onBehalfOfUri = URL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "onBehalfOfUri", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "onBehalfOfUri", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["type"] {
+			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? [FHIRJSON] {
-					self.type = Coding.from(val, owner: self) as? [Coding]
+					self.type = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "type", wants: Array<FHIRJSON>.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "type", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "type"))
 			}
-			if let exist: AnyObject = js["when"] {
+			if let exist = js["when"] {
 				presentKeys.insert("when")
 				if let val = exist as? String {
 					self.when = Instant(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "when", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "when", wants: String.self, has: type(of: exist)))
 				}
 			}
 			else {
 				errors.append(FHIRJSONError(key: "when"))
 			}
-			if let exist: AnyObject = js["whoReference"] {
+			if let exist = js["whoReference"] {
 				presentKeys.insert("whoReference")
 				if let val = exist as? FHIRJSON {
 					self.whoReference = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "whoReference", wants: FHIRJSON.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "whoReference", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist: AnyObject = js["whoUri"] {
+			if let exist = js["whoUri"] {
 				presentKeys.insert("whoUri")
 				if let val = exist as? String {
-					self.whoUri = NSURL(string: val)
+					self.whoUri = URL(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "whoUri", wants: String.self, has: exist.dynamicType))
+					errors.append(FHIRJSONError(key: "whoUri", wants: String.self, has: type(of: exist)))
 				}
 			}
 			
@@ -150,7 +150,7 @@ public class Signature: Element {
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override public func asJSON() -> FHIRJSON {
+	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
 		if let blob = self.blob {
@@ -166,7 +166,7 @@ public class Signature: Element {
 			json["onBehalfOfUri"] = onBehalfOfUri.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = Coding.asJSONArray(type)
+			json["type"] = type.map() { $0.asJSON() }
 		}
 		if let when = self.when {
 			json["when"] = when.asJSON()

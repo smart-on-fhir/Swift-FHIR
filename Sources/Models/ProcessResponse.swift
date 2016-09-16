@@ -198,16 +198,16 @@ public class ProcessResponse: DomainResource {
 			json["disposition"] = disposition.asJSON()
 		}
 		if let error = self.error {
-			json["error"] = Coding.asJSONArray(error)
+			json["error"] = error.map() { $0.asJSON() }
 		}
 		if let form = self.form {
 			json["form"] = form.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let notes = self.notes {
-			json["notes"] = ProcessResponseNotes.asJSONArray(notes)
+			json["notes"] = notes.map() { $0.asJSON() }
 		}
 		if let organization = self.organization {
 			json["organization"] = organization.asJSON()

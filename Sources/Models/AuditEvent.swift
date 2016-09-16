@@ -105,10 +105,10 @@ public class AuditEvent: DomainResource {
 			json["event"] = event.asJSON()
 		}
 		if let object = self.object {
-			json["object"] = AuditEventObject.asJSONArray(object)
+			json["object"] = object.map() { $0.asJSON() }
 		}
 		if let participant = self.participant {
-			json["participant"] = AuditEventParticipant.asJSONArray(participant)
+			json["participant"] = participant.map() { $0.asJSON() }
 		}
 		if let source = self.source {
 			json["source"] = source.asJSON()
@@ -255,10 +255,10 @@ public class AuditEventEvent: BackboneElement {
 			json["outcomeDesc"] = outcomeDesc.asJSON()
 		}
 		if let purposeOfEvent = self.purposeOfEvent {
-			json["purposeOfEvent"] = Coding.asJSONArray(purposeOfEvent)
+			json["purposeOfEvent"] = purposeOfEvent.map() { $0.asJSON() }
 		}
 		if let subtype = self.subtype {
-			json["subtype"] = Coding.asJSONArray(subtype)
+			json["subtype"] = subtype.map() { $0.asJSON() }
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -417,7 +417,7 @@ public class AuditEventObject: BackboneElement {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let detail = self.detail {
-			json["detail"] = AuditEventObjectDetail.asJSONArray(detail)
+			json["detail"] = detail.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
@@ -438,7 +438,7 @@ public class AuditEventObject: BackboneElement {
 			json["role"] = role.asJSON()
 		}
 		if let securityLabel = self.securityLabel {
-			json["securityLabel"] = Coding.asJSONArray(securityLabel)
+			json["securityLabel"] = securityLabel.map() { $0.asJSON() }
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -710,7 +710,7 @@ public class AuditEventParticipant: BackboneElement {
 			json["policy"] = arr
 		}
 		if let purposeOfUse = self.purposeOfUse {
-			json["purposeOfUse"] = Coding.asJSONArray(purposeOfUse)
+			json["purposeOfUse"] = purposeOfUse.map() { $0.asJSON() }
 		}
 		if let reference = self.reference {
 			json["reference"] = reference.asJSON()
@@ -719,7 +719,7 @@ public class AuditEventParticipant: BackboneElement {
 			json["requestor"] = requestor.asJSON()
 		}
 		if let role = self.role {
-			json["role"] = CodeableConcept.asJSONArray(role)
+			json["role"] = role.map() { $0.asJSON() }
 		}
 		if let userId = self.userId {
 			json["userId"] = userId.asJSON()
@@ -868,7 +868,7 @@ public class AuditEventSource: BackboneElement {
 			json["site"] = site.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = Coding.asJSONArray(type)
+			json["type"] = type.map() { $0.asJSON() }
 		}
 		
 		return json

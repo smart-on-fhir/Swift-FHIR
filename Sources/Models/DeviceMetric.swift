@@ -173,7 +173,7 @@ public class DeviceMetric: DomainResource {
 		var json = super.asJSON()
 		
 		if let calibration = self.calibration {
-			json["calibration"] = DeviceMetricCalibration.asJSONArray(calibration)
+			json["calibration"] = calibration.map() { $0.asJSON() }
 		}
 		if let category = self.category {
 			json["category"] = category.asJSON()

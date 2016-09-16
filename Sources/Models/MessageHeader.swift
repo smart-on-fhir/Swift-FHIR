@@ -190,10 +190,10 @@ public class MessageHeader: DomainResource {
 			json["author"] = author.asJSON()
 		}
 		if let data = self.data {
-			json["data"] = Reference.asJSONArray(data)
+			json["data"] = data.map() { $0.asJSON() }
 		}
 		if let destination = self.destination {
-			json["destination"] = MessageHeaderDestination.asJSONArray(destination)
+			json["destination"] = destination.map() { $0.asJSON() }
 		}
 		if let enterer = self.enterer {
 			json["enterer"] = enterer.asJSON()

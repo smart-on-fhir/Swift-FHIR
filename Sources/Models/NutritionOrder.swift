@@ -193,7 +193,7 @@ public class NutritionOrder: DomainResource {
 		var json = super.asJSON()
 		
 		if let allergyIntolerance = self.allergyIntolerance {
-			json["allergyIntolerance"] = Reference.asJSONArray(allergyIntolerance)
+			json["allergyIntolerance"] = allergyIntolerance.map() { $0.asJSON() }
 		}
 		if let dateTime = self.dateTime {
 			json["dateTime"] = dateTime.asJSON()
@@ -205,13 +205,13 @@ public class NutritionOrder: DomainResource {
 			json["enteralFormula"] = enteralFormula.asJSON()
 		}
 		if let excludeFoodModifier = self.excludeFoodModifier {
-			json["excludeFoodModifier"] = CodeableConcept.asJSONArray(excludeFoodModifier)
+			json["excludeFoodModifier"] = excludeFoodModifier.map() { $0.asJSON() }
 		}
 		if let foodPreferenceModifier = self.foodPreferenceModifier {
-			json["foodPreferenceModifier"] = CodeableConcept.asJSONArray(foodPreferenceModifier)
+			json["foodPreferenceModifier"] = foodPreferenceModifier.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let oralDiet = self.oralDiet {
 			json["oralDiet"] = oralDiet.asJSON()
@@ -226,7 +226,7 @@ public class NutritionOrder: DomainResource {
 			json["status"] = status.asJSON()
 		}
 		if let supplement = self.supplement {
-			json["supplement"] = NutritionOrderSupplement.asJSONArray(supplement)
+			json["supplement"] = supplement.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -376,7 +376,7 @@ public class NutritionOrderEnteralFormula: BackboneElement {
 			json["additiveType"] = additiveType.asJSON()
 		}
 		if let administration = self.administration {
-			json["administration"] = NutritionOrderEnteralFormulaAdministration.asJSONArray(administration)
+			json["administration"] = administration.map() { $0.asJSON() }
 		}
 		if let administrationInstruction = self.administrationInstruction {
 			json["administrationInstruction"] = administrationInstruction.asJSON()
@@ -595,22 +595,22 @@ public class NutritionOrderOralDiet: BackboneElement {
 		var json = super.asJSON()
 		
 		if let fluidConsistencyType = self.fluidConsistencyType {
-			json["fluidConsistencyType"] = CodeableConcept.asJSONArray(fluidConsistencyType)
+			json["fluidConsistencyType"] = fluidConsistencyType.map() { $0.asJSON() }
 		}
 		if let instruction = self.instruction {
 			json["instruction"] = instruction.asJSON()
 		}
 		if let nutrient = self.nutrient {
-			json["nutrient"] = NutritionOrderOralDietNutrient.asJSONArray(nutrient)
+			json["nutrient"] = nutrient.map() { $0.asJSON() }
 		}
 		if let schedule = self.schedule {
-			json["schedule"] = Timing.asJSONArray(schedule)
+			json["schedule"] = schedule.map() { $0.asJSON() }
 		}
 		if let texture = self.texture {
-			json["texture"] = NutritionOrderOralDietTexture.asJSONArray(texture)
+			json["texture"] = texture.map() { $0.asJSON() }
 		}
 		if let type = self.type {
-			json["type"] = CodeableConcept.asJSONArray(type)
+			json["type"] = type.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -839,7 +839,7 @@ public class NutritionOrderSupplement: BackboneElement {
 			json["quantity"] = quantity.asJSON()
 		}
 		if let schedule = self.schedule {
-			json["schedule"] = Timing.asJSONArray(schedule)
+			json["schedule"] = schedule.map() { $0.asJSON() }
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()

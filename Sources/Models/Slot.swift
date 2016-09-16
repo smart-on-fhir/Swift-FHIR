@@ -160,7 +160,7 @@ public class Slot: DomainResource {
 			json["freeBusyType"] = freeBusyType.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let overbooked = self.overbooked {
 			json["overbooked"] = overbooked.asJSON()

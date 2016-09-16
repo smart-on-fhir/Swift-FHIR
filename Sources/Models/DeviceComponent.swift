@@ -186,7 +186,7 @@ public class DeviceComponent: DomainResource {
 			json["measurementPrinciple"] = measurementPrinciple.asJSON()
 		}
 		if let operationalStatus = self.operationalStatus {
-			json["operationalStatus"] = CodeableConcept.asJSONArray(operationalStatus)
+			json["operationalStatus"] = operationalStatus.map() { $0.asJSON() }
 		}
 		if let parameterGroup = self.parameterGroup {
 			json["parameterGroup"] = parameterGroup.asJSON()
@@ -195,7 +195,7 @@ public class DeviceComponent: DomainResource {
 			json["parent"] = parent.asJSON()
 		}
 		if let productionSpecification = self.productionSpecification {
-			json["productionSpecification"] = DeviceComponentProductionSpecification.asJSONArray(productionSpecification)
+			json["productionSpecification"] = productionSpecification.map() { $0.asJSON() }
 		}
 		if let source = self.source {
 			json["source"] = source.asJSON()

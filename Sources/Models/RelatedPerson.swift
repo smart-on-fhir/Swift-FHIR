@@ -166,7 +166,7 @@ public class RelatedPerson: DomainResource {
 		var json = super.asJSON()
 		
 		if let address = self.address {
-			json["address"] = Address.asJSONArray(address)
+			json["address"] = address.map() { $0.asJSON() }
 		}
 		if let birthDate = self.birthDate {
 			json["birthDate"] = birthDate.asJSON()
@@ -175,7 +175,7 @@ public class RelatedPerson: DomainResource {
 			json["gender"] = gender.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -187,13 +187,13 @@ public class RelatedPerson: DomainResource {
 			json["period"] = period.asJSON()
 		}
 		if let photo = self.photo {
-			json["photo"] = Attachment.asJSONArray(photo)
+			json["photo"] = photo.map() { $0.asJSON() }
 		}
 		if let relationship = self.relationship {
 			json["relationship"] = relationship.asJSON()
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json

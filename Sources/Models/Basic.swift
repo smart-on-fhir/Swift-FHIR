@@ -115,7 +115,7 @@ public class Basic: DomainResource {
 			json["created"] = created.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON()

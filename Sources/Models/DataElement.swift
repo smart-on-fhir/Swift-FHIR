@@ -217,7 +217,7 @@ public class DataElement: DomainResource {
 		var json = super.asJSON()
 		
 		if let contact = self.contact {
-			json["contact"] = DataElementContact.asJSONArray(contact)
+			json["contact"] = contact.map() { $0.asJSON() }
 		}
 		if let copyright = self.copyright {
 			json["copyright"] = copyright.asJSON()
@@ -226,16 +226,16 @@ public class DataElement: DomainResource {
 			json["date"] = date.asJSON()
 		}
 		if let element = self.element {
-			json["element"] = ElementDefinition.asJSONArray(element)
+			json["element"] = element.map() { $0.asJSON() }
 		}
 		if let experimental = self.experimental {
 			json["experimental"] = experimental.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let mapping = self.mapping {
-			json["mapping"] = DataElementMapping.asJSONArray(mapping)
+			json["mapping"] = mapping.map() { $0.asJSON() }
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -253,7 +253,7 @@ public class DataElement: DomainResource {
 			json["url"] = url.asJSON()
 		}
 		if let useContext = self.useContext {
-			json["useContext"] = CodeableConcept.asJSONArray(useContext)
+			json["useContext"] = useContext.map() { $0.asJSON() }
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
@@ -318,7 +318,7 @@ public class DataElementContact: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json

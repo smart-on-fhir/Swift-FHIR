@@ -137,13 +137,13 @@ public class Organization: DomainResource {
 			json["active"] = active.asJSON()
 		}
 		if let address = self.address {
-			json["address"] = Address.asJSONArray(address)
+			json["address"] = address.map() { $0.asJSON() }
 		}
 		if let contact = self.contact {
-			json["contact"] = OrganizationContact.asJSONArray(contact)
+			json["contact"] = contact.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -152,7 +152,7 @@ public class Organization: DomainResource {
 			json["partOf"] = partOf.asJSON()
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -245,7 +245,7 @@ public class OrganizationContact: BackboneElement {
 			json["purpose"] = purpose.asJSON()
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json

@@ -254,10 +254,10 @@ public class DeviceUseRequest: DomainResource {
 			json["encounter"] = encounter.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let indication = self.indication {
-			json["indication"] = CodeableConcept.asJSONArray(indication)
+			json["indication"] = indication.map() { $0.asJSON() }
 		}
 		if let notes = self.notes {
 			var arr = [Any]()
@@ -273,7 +273,7 @@ public class DeviceUseRequest: DomainResource {
 			json["priority"] = priority.asJSON()
 		}
 		if let prnReason = self.prnReason {
-			json["prnReason"] = CodeableConcept.asJSONArray(prnReason)
+			json["prnReason"] = prnReason.map() { $0.asJSON() }
 		}
 		if let recordedOn = self.recordedOn {
 			json["recordedOn"] = recordedOn.asJSON()

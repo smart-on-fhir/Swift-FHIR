@@ -313,16 +313,16 @@ public class HealthcareService: DomainResource {
 			json["availabilityExceptions"] = availabilityExceptions.asJSON()
 		}
 		if let availableTime = self.availableTime {
-			json["availableTime"] = HealthcareServiceAvailableTime.asJSONArray(availableTime)
+			json["availableTime"] = availableTime.map() { $0.asJSON() }
 		}
 		if let characteristic = self.characteristic {
-			json["characteristic"] = CodeableConcept.asJSONArray(characteristic)
+			json["characteristic"] = characteristic.map() { $0.asJSON() }
 		}
 		if let comment = self.comment {
 			json["comment"] = comment.asJSON()
 		}
 		if let coverageArea = self.coverageArea {
-			json["coverageArea"] = Reference.asJSONArray(coverageArea)
+			json["coverageArea"] = coverageArea.map() { $0.asJSON() }
 		}
 		if let eligibility = self.eligibility {
 			json["eligibility"] = eligibility.asJSON()
@@ -334,13 +334,13 @@ public class HealthcareService: DomainResource {
 			json["extraDetails"] = extraDetails.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let location = self.location {
 			json["location"] = location.asJSON()
 		}
 		if let notAvailable = self.notAvailable {
-			json["notAvailable"] = HealthcareServiceNotAvailable.asJSONArray(notAvailable)
+			json["notAvailable"] = notAvailable.map() { $0.asJSON() }
 		}
 		if let photo = self.photo {
 			json["photo"] = photo.asJSON()
@@ -359,7 +359,7 @@ public class HealthcareService: DomainResource {
 			json["publicKey"] = publicKey.asJSON()
 		}
 		if let referralMethod = self.referralMethod {
-			json["referralMethod"] = CodeableConcept.asJSONArray(referralMethod)
+			json["referralMethod"] = referralMethod.map() { $0.asJSON() }
 		}
 		if let serviceCategory = self.serviceCategory {
 			json["serviceCategory"] = serviceCategory.asJSON()
@@ -368,13 +368,13 @@ public class HealthcareService: DomainResource {
 			json["serviceName"] = serviceName.asJSON()
 		}
 		if let serviceProvisionCode = self.serviceProvisionCode {
-			json["serviceProvisionCode"] = CodeableConcept.asJSONArray(serviceProvisionCode)
+			json["serviceProvisionCode"] = serviceProvisionCode.map() { $0.asJSON() }
 		}
 		if let serviceType = self.serviceType {
-			json["serviceType"] = HealthcareServiceServiceType.asJSONArray(serviceType)
+			json["serviceType"] = serviceType.map() { $0.asJSON() }
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -609,7 +609,7 @@ public class HealthcareServiceServiceType: BackboneElement {
 		var json = super.asJSON()
 		
 		if let specialty = self.specialty {
-			json["specialty"] = CodeableConcept.asJSONArray(specialty)
+			json["specialty"] = specialty.map() { $0.asJSON() }
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()

@@ -207,7 +207,7 @@ public class Coverage: DomainResource {
 			json["bin"] = bin.asJSON()
 		}
 		if let contract = self.contract {
-			json["contract"] = Reference.asJSONArray(contract)
+			json["contract"] = contract.map() { $0.asJSON() }
 		}
 		if let dependent = self.dependent {
 			json["dependent"] = dependent.asJSON()
@@ -216,7 +216,7 @@ public class Coverage: DomainResource {
 			json["group"] = group.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let issuer = self.issuer {
 			json["issuer"] = issuer.asJSON()

@@ -203,10 +203,10 @@ public class DeviceUseStatement: DomainResource {
 			json["device"] = device.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let indication = self.indication {
-			json["indication"] = CodeableConcept.asJSONArray(indication)
+			json["indication"] = indication.map() { $0.asJSON() }
 		}
 		if let notes = self.notes {
 			var arr = [Any]()

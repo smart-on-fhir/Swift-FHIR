@@ -376,7 +376,7 @@ public class Condition: DomainResource {
 			json["asserter"] = asserter.asJSON()
 		}
 		if let bodySite = self.bodySite {
-			json["bodySite"] = CodeableConcept.asJSONArray(bodySite)
+			json["bodySite"] = bodySite.map() { $0.asJSON() }
 		}
 		if let category = self.category {
 			json["category"] = category.asJSON()
@@ -394,10 +394,10 @@ public class Condition: DomainResource {
 			json["encounter"] = encounter.asJSON()
 		}
 		if let evidence = self.evidence {
-			json["evidence"] = ConditionEvidence.asJSONArray(evidence)
+			json["evidence"] = evidence.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let notes = self.notes {
 			json["notes"] = notes.asJSON()
@@ -489,7 +489,7 @@ public class ConditionEvidence: BackboneElement {
 			json["code"] = code.asJSON()
 		}
 		if let detail = self.detail {
-			json["detail"] = Reference.asJSONArray(detail)
+			json["detail"] = detail.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -548,7 +548,7 @@ public class ConditionStage: BackboneElement {
 		var json = super.asJSON()
 		
 		if let assessment = self.assessment {
-			json["assessment"] = Reference.asJSONArray(assessment)
+			json["assessment"] = assessment.map() { $0.asJSON() }
 		}
 		if let summary = self.summary {
 			json["summary"] = summary.asJSON()

@@ -171,34 +171,34 @@ public class Practitioner: DomainResource {
 			json["active"] = active.asJSON()
 		}
 		if let address = self.address {
-			json["address"] = Address.asJSONArray(address)
+			json["address"] = address.map() { $0.asJSON() }
 		}
 		if let birthDate = self.birthDate {
 			json["birthDate"] = birthDate.asJSON()
 		}
 		if let communication = self.communication {
-			json["communication"] = CodeableConcept.asJSONArray(communication)
+			json["communication"] = communication.map() { $0.asJSON() }
 		}
 		if let gender = self.gender {
 			json["gender"] = gender.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
 		if let photo = self.photo {
-			json["photo"] = Attachment.asJSONArray(photo)
+			json["photo"] = photo.map() { $0.asJSON() }
 		}
 		if let practitionerRole = self.practitionerRole {
-			json["practitionerRole"] = PractitionerPractitionerRole.asJSONArray(practitionerRole)
+			json["practitionerRole"] = practitionerRole.map() { $0.asJSON() }
 		}
 		if let qualification = self.qualification {
-			json["qualification"] = PractitionerQualification.asJSONArray(qualification)
+			json["qualification"] = qualification.map() { $0.asJSON() }
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -305,10 +305,10 @@ public class PractitionerPractitionerRole: BackboneElement {
 		var json = super.asJSON()
 		
 		if let healthcareService = self.healthcareService {
-			json["healthcareService"] = Reference.asJSONArray(healthcareService)
+			json["healthcareService"] = healthcareService.map() { $0.asJSON() }
 		}
 		if let location = self.location {
-			json["location"] = Reference.asJSONArray(location)
+			json["location"] = location.map() { $0.asJSON() }
 		}
 		if let managingOrganization = self.managingOrganization {
 			json["managingOrganization"] = managingOrganization.asJSON()
@@ -320,7 +320,7 @@ public class PractitionerPractitionerRole: BackboneElement {
 			json["role"] = role.asJSON()
 		}
 		if let specialty = self.specialty {
-			json["specialty"] = CodeableConcept.asJSONArray(specialty)
+			json["specialty"] = specialty.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -413,7 +413,7 @@ public class PractitionerQualification: BackboneElement {
 			json["code"] = code.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let issuer = self.issuer {
 			json["issuer"] = issuer.asJSON()

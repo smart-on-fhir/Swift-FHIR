@@ -191,10 +191,10 @@ public class DocumentManifest: DomainResource {
 		var json = super.asJSON()
 		
 		if let author = self.author {
-			json["author"] = Reference.asJSONArray(author)
+			json["author"] = author.map() { $0.asJSON() }
 		}
 		if let content = self.content {
-			json["content"] = DocumentManifestContent.asJSONArray(content)
+			json["content"] = content.map() { $0.asJSON() }
 		}
 		if let created = self.created {
 			json["created"] = created.asJSON()
@@ -203,16 +203,16 @@ public class DocumentManifest: DomainResource {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let masterIdentifier = self.masterIdentifier {
 			json["masterIdentifier"] = masterIdentifier.asJSON()
 		}
 		if let recipient = self.recipient {
-			json["recipient"] = Reference.asJSONArray(recipient)
+			json["recipient"] = recipient.map() { $0.asJSON() }
 		}
 		if let related = self.related {
-			json["related"] = DocumentManifestRelated.asJSONArray(related)
+			json["related"] = related.map() { $0.asJSON() }
 		}
 		if let source = self.source {
 			json["source"] = source.asJSON()

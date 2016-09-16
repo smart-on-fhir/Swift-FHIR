@@ -49,7 +49,7 @@ public class Parameters: Resource {
 		var json = super.asJSON()
 		
 		if let parameter = self.parameter {
-			json["parameter"] = ParametersParameter.asJSONArray(parameter)
+			json["parameter"] = parameter.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -528,7 +528,7 @@ public class ParametersParameter: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let part = self.part {
-			json["part"] = ParametersParameter.asJSONArray(part)
+			json["part"] = part.map() { $0.asJSON() }
 		}
 		if let resource = self.resource {
 			json["resource"] = resource.asJSON()

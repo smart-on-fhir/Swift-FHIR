@@ -280,31 +280,31 @@ public class Encounter: DomainResource {
 			json["class"] = class_fhir.asJSON()
 		}
 		if let episodeOfCare = self.episodeOfCare {
-			json["episodeOfCare"] = Reference.asJSONArray(episodeOfCare)
+			json["episodeOfCare"] = episodeOfCare.map() { $0.asJSON() }
 		}
 		if let hospitalization = self.hospitalization {
 			json["hospitalization"] = hospitalization.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let incomingReferral = self.incomingReferral {
-			json["incomingReferral"] = Reference.asJSONArray(incomingReferral)
+			json["incomingReferral"] = incomingReferral.map() { $0.asJSON() }
 		}
 		if let indication = self.indication {
-			json["indication"] = Reference.asJSONArray(indication)
+			json["indication"] = indication.map() { $0.asJSON() }
 		}
 		if let length = self.length {
 			json["length"] = length.asJSON()
 		}
 		if let location = self.location {
-			json["location"] = EncounterLocation.asJSONArray(location)
+			json["location"] = location.map() { $0.asJSON() }
 		}
 		if let partOf = self.partOf {
 			json["partOf"] = partOf.asJSON()
 		}
 		if let participant = self.participant {
-			json["participant"] = EncounterParticipant.asJSONArray(participant)
+			json["participant"] = participant.map() { $0.asJSON() }
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
@@ -316,7 +316,7 @@ public class Encounter: DomainResource {
 			json["priority"] = priority.asJSON()
 		}
 		if let reason = self.reason {
-			json["reason"] = CodeableConcept.asJSONArray(reason)
+			json["reason"] = reason.map() { $0.asJSON() }
 		}
 		if let serviceProvider = self.serviceProvider {
 			json["serviceProvider"] = serviceProvider.asJSON()
@@ -325,10 +325,10 @@ public class Encounter: DomainResource {
 			json["status"] = status.asJSON()
 		}
 		if let statusHistory = self.statusHistory {
-			json["statusHistory"] = EncounterStatusHistory.asJSONArray(statusHistory)
+			json["statusHistory"] = statusHistory.map() { $0.asJSON() }
 		}
 		if let type = self.type {
-			json["type"] = CodeableConcept.asJSONArray(type)
+			json["type"] = type.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -496,16 +496,16 @@ public class EncounterHospitalization: BackboneElement {
 			json["admitSource"] = admitSource.asJSON()
 		}
 		if let admittingDiagnosis = self.admittingDiagnosis {
-			json["admittingDiagnosis"] = Reference.asJSONArray(admittingDiagnosis)
+			json["admittingDiagnosis"] = admittingDiagnosis.map() { $0.asJSON() }
 		}
 		if let destination = self.destination {
 			json["destination"] = destination.asJSON()
 		}
 		if let dietPreference = self.dietPreference {
-			json["dietPreference"] = CodeableConcept.asJSONArray(dietPreference)
+			json["dietPreference"] = dietPreference.map() { $0.asJSON() }
 		}
 		if let dischargeDiagnosis = self.dischargeDiagnosis {
-			json["dischargeDiagnosis"] = Reference.asJSONArray(dischargeDiagnosis)
+			json["dischargeDiagnosis"] = dischargeDiagnosis.map() { $0.asJSON() }
 		}
 		if let dischargeDisposition = self.dischargeDisposition {
 			json["dischargeDisposition"] = dischargeDisposition.asJSON()
@@ -520,10 +520,10 @@ public class EncounterHospitalization: BackboneElement {
 			json["reAdmission"] = reAdmission.asJSON()
 		}
 		if let specialArrangement = self.specialArrangement {
-			json["specialArrangement"] = CodeableConcept.asJSONArray(specialArrangement)
+			json["specialArrangement"] = specialArrangement.map() { $0.asJSON() }
 		}
 		if let specialCourtesy = self.specialCourtesy {
-			json["specialCourtesy"] = CodeableConcept.asJSONArray(specialCourtesy)
+			json["specialCourtesy"] = specialCourtesy.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -686,7 +686,7 @@ public class EncounterParticipant: BackboneElement {
 			json["period"] = period.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = CodeableConcept.asJSONArray(type)
+			json["type"] = type.map() { $0.asJSON() }
 		}
 		
 		return json

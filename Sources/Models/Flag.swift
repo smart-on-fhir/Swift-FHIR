@@ -161,7 +161,7 @@ public class Flag: DomainResource {
 			json["encounter"] = encounter.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let period = self.period {
 			json["period"] = period.asJSON()

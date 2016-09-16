@@ -180,7 +180,7 @@ public class SupplyDelivery: DomainResource {
 			json["quantity"] = quantity.asJSON()
 		}
 		if let receiver = self.receiver {
-			json["receiver"] = Reference.asJSONArray(receiver)
+			json["receiver"] = receiver.map() { $0.asJSON() }
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()

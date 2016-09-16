@@ -237,10 +237,10 @@ public class Composition: DomainResource {
 		var json = super.asJSON()
 		
 		if let attester = self.attester {
-			json["attester"] = CompositionAttester.asJSONArray(attester)
+			json["attester"] = attester.map() { $0.asJSON() }
 		}
 		if let author = self.author {
-			json["author"] = Reference.asJSONArray(author)
+			json["author"] = author.map() { $0.asJSON() }
 		}
 		if let class_fhir = self.class_fhir {
 			json["class"] = class_fhir.asJSON()
@@ -258,13 +258,13 @@ public class Composition: DomainResource {
 			json["encounter"] = encounter.asJSON()
 		}
 		if let event = self.event {
-			json["event"] = CompositionEvent.asJSONArray(event)
+			json["event"] = event.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
 		}
 		if let section = self.section {
-			json["section"] = CompositionSection.asJSONArray(section)
+			json["section"] = section.map() { $0.asJSON() }
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
@@ -437,10 +437,10 @@ public class CompositionEvent: BackboneElement {
 		var json = super.asJSON()
 		
 		if let code = self.code {
-			json["code"] = CodeableConcept.asJSONArray(code)
+			json["code"] = code.map() { $0.asJSON() }
 		}
 		if let detail = self.detail {
-			json["detail"] = Reference.asJSONArray(detail)
+			json["detail"] = detail.map() { $0.asJSON() }
 		}
 		if let period = self.period {
 			json["period"] = period.asJSON()
@@ -580,7 +580,7 @@ public class CompositionSection: BackboneElement {
 			json["emptyReason"] = emptyReason.asJSON()
 		}
 		if let entry = self.entry {
-			json["entry"] = Reference.asJSONArray(entry)
+			json["entry"] = entry.map() { $0.asJSON() }
 		}
 		if let mode = self.mode {
 			json["mode"] = mode.asJSON()
@@ -589,7 +589,7 @@ public class CompositionSection: BackboneElement {
 			json["orderedBy"] = orderedBy.asJSON()
 		}
 		if let section = self.section {
-			json["section"] = CompositionSection.asJSONArray(section)
+			json["section"] = section.map() { $0.asJSON() }
 		}
 		if let text = self.text {
 			json["text"] = text.asJSON()

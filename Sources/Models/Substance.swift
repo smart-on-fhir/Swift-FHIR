@@ -115,7 +115,7 @@ public class Substance: DomainResource {
 		var json = super.asJSON()
 		
 		if let category = self.category {
-			json["category"] = CodeableConcept.asJSONArray(category)
+			json["category"] = category.map() { $0.asJSON() }
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON()
@@ -124,13 +124,13 @@ public class Substance: DomainResource {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let ingredient = self.ingredient {
-			json["ingredient"] = SubstanceIngredient.asJSONArray(ingredient)
+			json["ingredient"] = ingredient.map() { $0.asJSON() }
 		}
 		if let instance = self.instance {
-			json["instance"] = SubstanceInstance.asJSONArray(instance)
+			json["instance"] = instance.map() { $0.asJSON() }
 		}
 		
 		return json

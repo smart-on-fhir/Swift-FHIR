@@ -13,16 +13,16 @@ import Models
 
 
 /**
-    The context an operation is to be performed against.
- */
+The context an operation is to be performed against.
+*/
 public enum FHIROperationContext {
 	case none, system, resourceType, instance
 }
 
 
 /**
-    Named operations to be performed against a FHIR REST endpoint.
- */
+Named operations to be performed against a FHIR REST endpoint.
+*/
 open class FHIROperation: CustomStringConvertible {
 	
 	/// The name of the operation.
@@ -116,7 +116,7 @@ open class FHIROperation: CustomStringConvertible {
 				if "in" == param.use {
 					
 					// have the parameter, validate it
-					if let _ = inParams?[param.name!] {
+					if nil != inParams?[param.name!] {
 						leftover.removeValue(forKey: param.name!)
 						
 						// TODO: actually validate!
@@ -165,7 +165,7 @@ open class FHIROperation: CustomStringConvertible {
 	*/
 	open func perform(onServer server: FHIRServer, callback: @escaping ((_ response: FHIRServerResponse) -> Void)) throws {
 		let path = try serverPath()
-		server.performRequest(ofType: .GET, path: path, resource: nil, additionalHeaders: nil, callback: callback)
+		server.performRequest(.GET, path: path, resource: nil, additionalHeaders: nil, callback: callback)
 	}
 	
 	

@@ -144,7 +144,7 @@ public class Signature: Element {
 			json["contentType"] = contentType.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = Coding.asJSONArray(type)
+			json["type"] = type.map() { $0.asJSON() }
 		}
 		if let when = self.when {
 			json["when"] = when.asJSON()

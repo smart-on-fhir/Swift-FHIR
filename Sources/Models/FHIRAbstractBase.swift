@@ -8,11 +8,11 @@
 
 
 /**
- *  Abstract superclass for all FHIR data elements.
- */
+Abstract superclass for all FHIR data elements.
+*/
 open class FHIRAbstractBase: CustomStringConvertible {
 	
-	/// The name of the resource or element.
+	/// The type of the resource or element.
 	open class var resourceType: String {
 		get { return "FHIRAbstractBase" }
 	}
@@ -85,16 +85,6 @@ open class FHIRAbstractBase: CustomStringConvertible {
 		return FHIRJSON()
 	}
 	
-	/**
-	Calls `asJSON()` on all elements in the array and returns the resulting array full of FHIRJSON dictionaries.
-	
-	- parameter array: The array of elements to map to FHIRJSON
-	- returns:         An array of FHIRJSON elements representing the given resources
-	*/
-	open class func asJSONArray(_ array: [FHIRAbstractBase]) -> [FHIRJSON] {
-		return array.map() { $0.asJSON() }
-	}
-	
 	
 	// MARK: - Factories
 	
@@ -130,7 +120,7 @@ open class FHIRAbstractBase: CustomStringConvertible {
 	// MARK: - Resolving References
 	
 	/** Returns the resolved reference with the given id, if it has been resolved already. */
-	open func resolvedReference(_ refid: String) -> Resource? {
+	public func resolvedReference(_ refid: String) -> Resource? {
 		if let resolved = _resolved?[refid] {
 			return resolved
 		}
@@ -146,7 +136,7 @@ open class FHIRAbstractBase: CustomStringConvertible {
 	- parameter refid: The reference identifier as String
 	- parameter resolved: The resource that was resolved
 	*/
-	open func didResolveReference(_ refid: String, resolved: Resource) {
+	public func didResolveReference(_ refid: String, resolved: Resource) {
 		if nil != _resolved {
 			_resolved![refid] = resolved
 		}
@@ -188,7 +178,7 @@ open class FHIRAbstractBase: CustomStringConvertible {
 	}
 	
 	
-	// MARK: - Printable
+	// MARK: - CustomStringConvertible
 	
 	open var description: String {
 		return "<\(type(of: self).resourceType)>"

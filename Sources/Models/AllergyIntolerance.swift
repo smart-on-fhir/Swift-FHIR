@@ -224,7 +224,7 @@ public class AllergyIntolerance: DomainResource {
 			json["criticality"] = criticality.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let lastOccurence = self.lastOccurence {
 			json["lastOccurence"] = lastOccurence.asJSON()
@@ -239,7 +239,7 @@ public class AllergyIntolerance: DomainResource {
 			json["patient"] = patient.asJSON()
 		}
 		if let reaction = self.reaction {
-			json["reaction"] = AllergyIntoleranceReaction.asJSONArray(reaction)
+			json["reaction"] = reaction.map() { $0.asJSON() }
 		}
 		if let recordedDate = self.recordedDate {
 			json["recordedDate"] = recordedDate.asJSON()
@@ -406,7 +406,7 @@ public class AllergyIntoleranceReaction: BackboneElement {
 			json["exposureRoute"] = exposureRoute.asJSON()
 		}
 		if let manifestation = self.manifestation {
-			json["manifestation"] = CodeableConcept.asJSONArray(manifestation)
+			json["manifestation"] = manifestation.map() { $0.asJSON() }
 		}
 		if let note = self.note {
 			json["note"] = note.asJSON()

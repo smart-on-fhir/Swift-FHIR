@@ -285,13 +285,13 @@ public class QuestionnaireResponseGroup: BackboneElement {
 		var json = super.asJSON()
 		
 		if let group = self.group {
-			json["group"] = QuestionnaireResponseGroup.asJSONArray(group)
+			json["group"] = group.map() { $0.asJSON() }
 		}
 		if let linkId = self.linkId {
 			json["linkId"] = linkId.asJSON()
 		}
 		if let question = self.question {
-			json["question"] = QuestionnaireResponseGroupQuestion.asJSONArray(question)
+			json["question"] = question.map() { $0.asJSON() }
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON()
@@ -371,7 +371,7 @@ public class QuestionnaireResponseGroupQuestion: BackboneElement {
 		var json = super.asJSON()
 		
 		if let answer = self.answer {
-			json["answer"] = QuestionnaireResponseGroupQuestionAnswer.asJSONArray(answer)
+			json["answer"] = answer.map() { $0.asJSON() }
 		}
 		if let linkId = self.linkId {
 			json["linkId"] = linkId.asJSON()
@@ -580,7 +580,7 @@ public class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 		var json = super.asJSON()
 		
 		if let group = self.group {
-			json["group"] = QuestionnaireResponseGroup.asJSONArray(group)
+			json["group"] = group.map() { $0.asJSON() }
 		}
 		if let valueAttachment = self.valueAttachment {
 			json["valueAttachment"] = valueAttachment.asJSON()

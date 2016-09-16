@@ -17,7 +17,9 @@ import Foundation
  *  future.  The source of this information can be the patient, significant other (such as a family member or spouse),
  *  or a clinician.  A common scenario where this information is captured is during the history taking process during a
  *  patient visit or stay.   The medication information may come from e.g. the patient's memory, from a prescription
- *  bottle,  or from a list of medications the patient, clinician or other party maintains The primary difference
+ *  bottle,  or from a list of medications the patient, clinician or other party maintains 
+
+The primary difference
  *  between a medication statement and a medication administration is that the medication administration has complete
  *  administration information and is based on actual administration information from the person who administered the
  *  medication.  A medication statement is often, if not always, less specific.  There is no required date/time when the
@@ -264,7 +266,7 @@ public class MedicationStatement: DomainResource {
 			json["dateAsserted"] = dateAsserted.asJSON()
 		}
 		if let dosage = self.dosage {
-			json["dosage"] = MedicationStatementDosage.asJSONArray(dosage)
+			json["dosage"] = dosage.map() { $0.asJSON() }
 		}
 		if let effectiveDateTime = self.effectiveDateTime {
 			json["effectiveDateTime"] = effectiveDateTime.asJSON()
@@ -273,7 +275,7 @@ public class MedicationStatement: DomainResource {
 			json["effectivePeriod"] = effectivePeriod.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let informationSource = self.informationSource {
 			json["informationSource"] = informationSource.asJSON()
@@ -297,13 +299,13 @@ public class MedicationStatement: DomainResource {
 			json["reasonForUseReference"] = reasonForUseReference.asJSON()
 		}
 		if let reasonNotTaken = self.reasonNotTaken {
-			json["reasonNotTaken"] = CodeableConcept.asJSONArray(reasonNotTaken)
+			json["reasonNotTaken"] = reasonNotTaken.map() { $0.asJSON() }
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
 		}
 		if let supportingInformation = self.supportingInformation {
-			json["supportingInformation"] = Reference.asJSONArray(supportingInformation)
+			json["supportingInformation"] = supportingInformation.map() { $0.asJSON() }
 		}
 		if let wasNotTaken = self.wasNotTaken {
 			json["wasNotTaken"] = wasNotTaken.asJSON()

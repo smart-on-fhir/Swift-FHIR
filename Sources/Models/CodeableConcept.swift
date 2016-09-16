@@ -60,7 +60,7 @@ public class CodeableConcept: Element {
 		var json = super.asJSON()
 		
 		if let coding = self.coding {
-			json["coding"] = Coding.asJSONArray(coding)
+			json["coding"] = coding.map() { $0.asJSON() }
 		}
 		if let text = self.text {
 			json["text"] = text.asJSON()

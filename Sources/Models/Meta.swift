@@ -107,10 +107,10 @@ public class Meta: Element {
 			json["profile"] = arr
 		}
 		if let security = self.security {
-			json["security"] = Coding.asJSONArray(security)
+			json["security"] = security.map() { $0.asJSON() }
 		}
 		if let tag = self.tag {
-			json["tag"] = Coding.asJSONArray(tag)
+			json["tag"] = tag.map() { $0.asJSON() }
 		}
 		if let versionId = self.versionId {
 			json["versionId"] = versionId.asJSON()

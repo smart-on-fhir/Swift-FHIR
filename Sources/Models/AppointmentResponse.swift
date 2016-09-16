@@ -155,13 +155,13 @@ public class AppointmentResponse: DomainResource {
 			json["end"] = end.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let participantStatus = self.participantStatus {
 			json["participantStatus"] = participantStatus.asJSON()
 		}
 		if let participantType = self.participantType {
-			json["participantType"] = CodeableConcept.asJSONArray(participantType)
+			json["participantType"] = participantType.map() { $0.asJSON() }
 		}
 		if let start = self.start {
 			json["start"] = start.asJSON()

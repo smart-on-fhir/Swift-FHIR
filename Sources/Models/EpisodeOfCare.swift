@@ -186,13 +186,13 @@ public class EpisodeOfCare: DomainResource {
 			json["careManager"] = careManager.asJSON()
 		}
 		if let careTeam = self.careTeam {
-			json["careTeam"] = EpisodeOfCareCareTeam.asJSONArray(careTeam)
+			json["careTeam"] = careTeam.map() { $0.asJSON() }
 		}
 		if let condition = self.condition {
-			json["condition"] = Reference.asJSONArray(condition)
+			json["condition"] = condition.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let managingOrganization = self.managingOrganization {
 			json["managingOrganization"] = managingOrganization.asJSON()
@@ -204,16 +204,16 @@ public class EpisodeOfCare: DomainResource {
 			json["period"] = period.asJSON()
 		}
 		if let referralRequest = self.referralRequest {
-			json["referralRequest"] = Reference.asJSONArray(referralRequest)
+			json["referralRequest"] = referralRequest.map() { $0.asJSON() }
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
 		}
 		if let statusHistory = self.statusHistory {
-			json["statusHistory"] = EpisodeOfCareStatusHistory.asJSONArray(statusHistory)
+			json["statusHistory"] = statusHistory.map() { $0.asJSON() }
 		}
 		if let type = self.type {
-			json["type"] = CodeableConcept.asJSONArray(type)
+			json["type"] = type.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -290,7 +290,7 @@ public class EpisodeOfCareCareTeam: BackboneElement {
 			json["period"] = period.asJSON()
 		}
 		if let role = self.role {
-			json["role"] = CodeableConcept.asJSONArray(role)
+			json["role"] = role.map() { $0.asJSON() }
 		}
 		
 		return json

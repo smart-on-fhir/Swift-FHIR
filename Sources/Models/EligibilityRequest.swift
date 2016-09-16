@@ -124,7 +124,7 @@ public class EligibilityRequest: DomainResource {
 			json["created"] = created.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let organization = self.organization {
 			json["organization"] = organization.asJSON()

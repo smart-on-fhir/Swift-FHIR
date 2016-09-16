@@ -84,13 +84,13 @@ public class DomainResource: Resource {
 		var json = super.asJSON()
 		
 		if let contained = self.contained {
-			json["contained"] = Resource.asJSONArray(contained)
+			json["contained"] = contained.map() { $0.asJSON() }
 		}
 		if let extension_fhir = self.extension_fhir {
-			json["extension"] = Extension.asJSONArray(extension_fhir)
+			json["extension"] = extension_fhir.map() { $0.asJSON() }
 		}
 		if let modifierExtension = self.modifierExtension {
-			json["modifierExtension"] = Extension.asJSONArray(modifierExtension)
+			json["modifierExtension"] = modifierExtension.map() { $0.asJSON() }
 		}
 		if let text = self.text {
 			json["text"] = text.asJSON()

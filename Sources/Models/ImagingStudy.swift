@@ -261,13 +261,13 @@ public class ImagingStudy: DomainResource {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let interpreter = self.interpreter {
 			json["interpreter"] = interpreter.asJSON()
 		}
 		if let modalityList = self.modalityList {
-			json["modalityList"] = Coding.asJSONArray(modalityList)
+			json["modalityList"] = modalityList.map() { $0.asJSON() }
 		}
 		if let numberOfInstances = self.numberOfInstances {
 			json["numberOfInstances"] = numberOfInstances.asJSON()
@@ -276,19 +276,19 @@ public class ImagingStudy: DomainResource {
 			json["numberOfSeries"] = numberOfSeries.asJSON()
 		}
 		if let order = self.order {
-			json["order"] = Reference.asJSONArray(order)
+			json["order"] = order.map() { $0.asJSON() }
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
 		}
 		if let procedure = self.procedure {
-			json["procedure"] = Reference.asJSONArray(procedure)
+			json["procedure"] = procedure.map() { $0.asJSON() }
 		}
 		if let referrer = self.referrer {
 			json["referrer"] = referrer.asJSON()
 		}
 		if let series = self.series {
-			json["series"] = ImagingStudySeries.asJSONArray(series)
+			json["series"] = series.map() { $0.asJSON() }
 		}
 		if let started = self.started {
 			json["started"] = started.asJSON()
@@ -490,7 +490,7 @@ public class ImagingStudySeries: BackboneElement {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let instance = self.instance {
-			json["instance"] = ImagingStudySeriesInstance.asJSONArray(instance)
+			json["instance"] = instance.map() { $0.asJSON() }
 		}
 		if let laterality = self.laterality {
 			json["laterality"] = laterality.asJSON()
@@ -631,7 +631,7 @@ public class ImagingStudySeriesInstance: BackboneElement {
 		var json = super.asJSON()
 		
 		if let content = self.content {
-			json["content"] = Attachment.asJSONArray(content)
+			json["content"] = content.map() { $0.asJSON() }
 		}
 		if let number = self.number {
 			json["number"] = number.asJSON()

@@ -228,7 +228,7 @@ public class PaymentReconciliation: DomainResource {
 			json["created"] = created.asJSON()
 		}
 		if let detail = self.detail {
-			json["detail"] = PaymentReconciliationDetail.asJSONArray(detail)
+			json["detail"] = detail.map() { $0.asJSON() }
 		}
 		if let disposition = self.disposition {
 			json["disposition"] = disposition.asJSON()
@@ -237,10 +237,10 @@ public class PaymentReconciliation: DomainResource {
 			json["form"] = form.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let note = self.note {
-			json["note"] = PaymentReconciliationNote.asJSONArray(note)
+			json["note"] = note.map() { $0.asJSON() }
 		}
 		if let organization = self.organization {
 			json["organization"] = organization.asJSON()

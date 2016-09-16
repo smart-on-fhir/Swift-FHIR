@@ -105,10 +105,10 @@ public class Bundle: Resource {
 		var json = super.asJSON()
 		
 		if let entry = self.entry {
-			json["entry"] = BundleEntry.asJSONArray(entry)
+			json["entry"] = entry.map() { $0.asJSON() }
 		}
 		if let link = self.link {
-			json["link"] = BundleLink.asJSONArray(link)
+			json["link"] = link.map() { $0.asJSON() }
 		}
 		if let signature = self.signature {
 			json["signature"] = signature.asJSON()
@@ -228,7 +228,7 @@ public class BundleEntry: BackboneElement {
 			json["fullUrl"] = fullUrl.asJSON()
 		}
 		if let link = self.link {
-			json["link"] = BundleLink.asJSONArray(link)
+			json["link"] = link.map() { $0.asJSON() }
 		}
 		if let request = self.request {
 			json["request"] = request.asJSON()

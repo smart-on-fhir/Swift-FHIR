@@ -238,16 +238,16 @@ public class CarePlan: DomainResource {
 		var json = super.asJSON()
 		
 		if let activity = self.activity {
-			json["activity"] = CarePlanActivity.asJSONArray(activity)
+			json["activity"] = activity.map() { $0.asJSON() }
 		}
 		if let addresses = self.addresses {
-			json["addresses"] = Reference.asJSONArray(addresses)
+			json["addresses"] = addresses.map() { $0.asJSON() }
 		}
 		if let author = self.author {
-			json["author"] = Reference.asJSONArray(author)
+			json["author"] = author.map() { $0.asJSON() }
 		}
 		if let category = self.category {
-			json["category"] = CodeableConcept.asJSONArray(category)
+			json["category"] = category.map() { $0.asJSON() }
 		}
 		if let context = self.context {
 			json["context"] = context.asJSON()
@@ -256,10 +256,10 @@ public class CarePlan: DomainResource {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let goal = self.goal {
-			json["goal"] = Reference.asJSONArray(goal)
+			json["goal"] = goal.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let modified = self.modified {
 			json["modified"] = modified.asJSON()
@@ -268,13 +268,13 @@ public class CarePlan: DomainResource {
 			json["note"] = note.asJSON()
 		}
 		if let participant = self.participant {
-			json["participant"] = CarePlanParticipant.asJSONArray(participant)
+			json["participant"] = participant.map() { $0.asJSON() }
 		}
 		if let period = self.period {
 			json["period"] = period.asJSON()
 		}
 		if let relatedPlan = self.relatedPlan {
-			json["relatedPlan"] = CarePlanRelatedPlan.asJSONArray(relatedPlan)
+			json["relatedPlan"] = relatedPlan.map() { $0.asJSON() }
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
@@ -283,7 +283,7 @@ public class CarePlan: DomainResource {
 			json["subject"] = subject.asJSON()
 		}
 		if let support = self.support {
-			json["support"] = Reference.asJSONArray(support)
+			json["support"] = support.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -367,13 +367,13 @@ public class CarePlanActivity: BackboneElement {
 		var json = super.asJSON()
 		
 		if let actionResulting = self.actionResulting {
-			json["actionResulting"] = Reference.asJSONArray(actionResulting)
+			json["actionResulting"] = actionResulting.map() { $0.asJSON() }
 		}
 		if let detail = self.detail {
 			json["detail"] = detail.asJSON()
 		}
 		if let progress = self.progress {
-			json["progress"] = Annotation.asJSONArray(progress)
+			json["progress"] = progress.map() { $0.asJSON() }
 		}
 		if let reference = self.reference {
 			json["reference"] = reference.asJSON()
@@ -649,13 +649,13 @@ public class CarePlanActivityDetail: BackboneElement {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let goal = self.goal {
-			json["goal"] = Reference.asJSONArray(goal)
+			json["goal"] = goal.map() { $0.asJSON() }
 		}
 		if let location = self.location {
 			json["location"] = location.asJSON()
 		}
 		if let performer = self.performer {
-			json["performer"] = Reference.asJSONArray(performer)
+			json["performer"] = performer.map() { $0.asJSON() }
 		}
 		if let productCodeableConcept = self.productCodeableConcept {
 			json["productCodeableConcept"] = productCodeableConcept.asJSON()
@@ -670,10 +670,10 @@ public class CarePlanActivityDetail: BackboneElement {
 			json["quantity"] = quantity.asJSON()
 		}
 		if let reasonCode = self.reasonCode {
-			json["reasonCode"] = CodeableConcept.asJSONArray(reasonCode)
+			json["reasonCode"] = reasonCode.map() { $0.asJSON() }
 		}
 		if let reasonReference = self.reasonReference {
-			json["reasonReference"] = Reference.asJSONArray(reasonReference)
+			json["reasonReference"] = reasonReference.map() { $0.asJSON() }
 		}
 		if let scheduledPeriod = self.scheduledPeriod {
 			json["scheduledPeriod"] = scheduledPeriod.asJSON()

@@ -312,7 +312,7 @@ public class FamilyMemberHistory: DomainResource {
 			json["bornString"] = bornString.asJSON()
 		}
 		if let condition = self.condition {
-			json["condition"] = FamilyMemberHistoryCondition.asJSONArray(condition)
+			json["condition"] = condition.map() { $0.asJSON() }
 		}
 		if let date = self.date {
 			json["date"] = date.asJSON()
@@ -336,7 +336,7 @@ public class FamilyMemberHistory: DomainResource {
 			json["gender"] = gender.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()

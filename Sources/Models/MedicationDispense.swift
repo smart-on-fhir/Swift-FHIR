@@ -254,7 +254,7 @@ public class MedicationDispense: DomainResource {
 		var json = super.asJSON()
 		
 		if let authorizingPrescription = self.authorizingPrescription {
-			json["authorizingPrescription"] = Reference.asJSONArray(authorizingPrescription)
+			json["authorizingPrescription"] = authorizingPrescription.map() { $0.asJSON() }
 		}
 		if let daysSupply = self.daysSupply {
 			json["daysSupply"] = daysSupply.asJSON()
@@ -266,7 +266,7 @@ public class MedicationDispense: DomainResource {
 			json["dispenser"] = dispenser.asJSON()
 		}
 		if let dosageInstruction = self.dosageInstruction {
-			json["dosageInstruction"] = MedicationDispenseDosageInstruction.asJSONArray(dosageInstruction)
+			json["dosageInstruction"] = dosageInstruction.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
@@ -287,7 +287,7 @@ public class MedicationDispense: DomainResource {
 			json["quantity"] = quantity.asJSON()
 		}
 		if let receiver = self.receiver {
-			json["receiver"] = Reference.asJSONArray(receiver)
+			json["receiver"] = receiver.map() { $0.asJSON() }
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
@@ -626,10 +626,10 @@ public class MedicationDispenseSubstitution: BackboneElement {
 		var json = super.asJSON()
 		
 		if let reason = self.reason {
-			json["reason"] = CodeableConcept.asJSONArray(reason)
+			json["reason"] = reason.map() { $0.asJSON() }
 		}
 		if let responsibleParty = self.responsibleParty {
-			json["responsibleParty"] = Reference.asJSONArray(responsibleParty)
+			json["responsibleParty"] = responsibleParty.map() { $0.asJSON() }
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()

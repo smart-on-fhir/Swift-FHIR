@@ -109,13 +109,13 @@ public class Schedule: DomainResource {
 			json["comment"] = comment.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let planningHorizon = self.planningHorizon {
 			json["planningHorizon"] = planningHorizon.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = CodeableConcept.asJSONArray(type)
+			json["type"] = type.map() { $0.asJSON() }
 		}
 		
 		return json

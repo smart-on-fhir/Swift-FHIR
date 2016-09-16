@@ -201,13 +201,13 @@ public class Appointment: DomainResource {
 			json["end"] = end.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let minutesDuration = self.minutesDuration {
 			json["minutesDuration"] = minutesDuration.asJSON()
 		}
 		if let participant = self.participant {
-			json["participant"] = AppointmentParticipant.asJSONArray(participant)
+			json["participant"] = participant.map() { $0.asJSON() }
 		}
 		if let priority = self.priority {
 			json["priority"] = priority.asJSON()
@@ -216,7 +216,7 @@ public class Appointment: DomainResource {
 			json["reason"] = reason.asJSON()
 		}
 		if let slot = self.slot {
-			json["slot"] = Reference.asJSONArray(slot)
+			json["slot"] = slot.map() { $0.asJSON() }
 		}
 		if let start = self.start {
 			json["start"] = start.asJSON()
@@ -326,7 +326,7 @@ public class AppointmentParticipant: BackboneElement {
 			json["status"] = status.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = CodeableConcept.asJSONArray(type)
+			json["type"] = type.map() { $0.asJSON() }
 		}
 		
 		return json

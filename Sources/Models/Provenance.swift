@@ -178,10 +178,10 @@ public class Provenance: DomainResource {
 			json["activity"] = activity.asJSON()
 		}
 		if let agent = self.agent {
-			json["agent"] = ProvenanceAgent.asJSONArray(agent)
+			json["agent"] = agent.map() { $0.asJSON() }
 		}
 		if let entity = self.entity {
-			json["entity"] = ProvenanceEntity.asJSONArray(entity)
+			json["entity"] = entity.map() { $0.asJSON() }
 		}
 		if let location = self.location {
 			json["location"] = location.asJSON()
@@ -197,16 +197,16 @@ public class Provenance: DomainResource {
 			json["policy"] = arr
 		}
 		if let reason = self.reason {
-			json["reason"] = CodeableConcept.asJSONArray(reason)
+			json["reason"] = reason.map() { $0.asJSON() }
 		}
 		if let recorded = self.recorded {
 			json["recorded"] = recorded.asJSON()
 		}
 		if let signature = self.signature {
-			json["signature"] = Signature.asJSONArray(signature)
+			json["signature"] = signature.map() { $0.asJSON() }
 		}
 		if let target = self.target {
-			json["target"] = Reference.asJSONArray(target)
+			json["target"] = target.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -303,7 +303,7 @@ public class ProvenanceAgent: BackboneElement {
 			json["actor"] = actor.asJSON()
 		}
 		if let relatedAgent = self.relatedAgent {
-			json["relatedAgent"] = ProvenanceAgentRelatedAgent.asJSONArray(relatedAgent)
+			json["relatedAgent"] = relatedAgent.map() { $0.asJSON() }
 		}
 		if let role = self.role {
 			json["role"] = role.asJSON()

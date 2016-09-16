@@ -218,7 +218,7 @@ public class NamingSystem: DomainResource {
 		var json = super.asJSON()
 		
 		if let contact = self.contact {
-			json["contact"] = NamingSystemContact.asJSONArray(contact)
+			json["contact"] = contact.map() { $0.asJSON() }
 		}
 		if let date = self.date {
 			json["date"] = date.asJSON()
@@ -248,13 +248,13 @@ public class NamingSystem: DomainResource {
 			json["type"] = type.asJSON()
 		}
 		if let uniqueId = self.uniqueId {
-			json["uniqueId"] = NamingSystemUniqueId.asJSONArray(uniqueId)
+			json["uniqueId"] = uniqueId.map() { $0.asJSON() }
 		}
 		if let usage = self.usage {
 			json["usage"] = usage.asJSON()
 		}
 		if let useContext = self.useContext {
-			json["useContext"] = CodeableConcept.asJSONArray(useContext)
+			json["useContext"] = useContext.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -316,7 +316,7 @@ public class NamingSystemContact: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json

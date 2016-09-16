@@ -192,16 +192,16 @@ public class DiagnosticOrder: DomainResource {
 			json["encounter"] = encounter.asJSON()
 		}
 		if let event = self.event {
-			json["event"] = DiagnosticOrderEvent.asJSONArray(event)
+			json["event"] = event.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let item = self.item {
-			json["item"] = DiagnosticOrderItem.asJSONArray(item)
+			json["item"] = item.map() { $0.asJSON() }
 		}
 		if let note = self.note {
-			json["note"] = Annotation.asJSONArray(note)
+			json["note"] = note.map() { $0.asJSON() }
 		}
 		if let orderer = self.orderer {
 			json["orderer"] = orderer.asJSON()
@@ -210,10 +210,10 @@ public class DiagnosticOrder: DomainResource {
 			json["priority"] = priority.asJSON()
 		}
 		if let reason = self.reason {
-			json["reason"] = CodeableConcept.asJSONArray(reason)
+			json["reason"] = reason.map() { $0.asJSON() }
 		}
 		if let specimen = self.specimen {
-			json["specimen"] = Reference.asJSONArray(specimen)
+			json["specimen"] = specimen.map() { $0.asJSON() }
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
@@ -222,7 +222,7 @@ public class DiagnosticOrder: DomainResource {
 			json["subject"] = subject.asJSON()
 		}
 		if let supportingInformation = self.supportingInformation {
-			json["supportingInformation"] = Reference.asJSONArray(supportingInformation)
+			json["supportingInformation"] = supportingInformation.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -439,10 +439,10 @@ public class DiagnosticOrderItem: BackboneElement {
 			json["code"] = code.asJSON()
 		}
 		if let event = self.event {
-			json["event"] = DiagnosticOrderEvent.asJSONArray(event)
+			json["event"] = event.map() { $0.asJSON() }
 		}
 		if let specimen = self.specimen {
-			json["specimen"] = Reference.asJSONArray(specimen)
+			json["specimen"] = specimen.map() { $0.asJSON() }
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()

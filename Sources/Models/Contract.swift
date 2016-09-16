@@ -264,19 +264,19 @@ public class Contract: DomainResource {
 		var json = super.asJSON()
 		
 		if let action = self.action {
-			json["action"] = CodeableConcept.asJSONArray(action)
+			json["action"] = action.map() { $0.asJSON() }
 		}
 		if let actionReason = self.actionReason {
-			json["actionReason"] = CodeableConcept.asJSONArray(actionReason)
+			json["actionReason"] = actionReason.map() { $0.asJSON() }
 		}
 		if let actor = self.actor {
-			json["actor"] = ContractActor.asJSONArray(actor)
+			json["actor"] = actor.map() { $0.asJSON() }
 		}
 		if let applies = self.applies {
 			json["applies"] = applies.asJSON()
 		}
 		if let authority = self.authority {
-			json["authority"] = Reference.asJSONArray(authority)
+			json["authority"] = authority.map() { $0.asJSON() }
 		}
 		if let bindingAttachment = self.bindingAttachment {
 			json["bindingAttachment"] = bindingAttachment.asJSON()
@@ -285,10 +285,10 @@ public class Contract: DomainResource {
 			json["bindingReference"] = bindingReference.asJSON()
 		}
 		if let domain = self.domain {
-			json["domain"] = Reference.asJSONArray(domain)
+			json["domain"] = domain.map() { $0.asJSON() }
 		}
 		if let friendly = self.friendly {
-			json["friendly"] = ContractFriendly.asJSONArray(friendly)
+			json["friendly"] = friendly.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
@@ -297,28 +297,28 @@ public class Contract: DomainResource {
 			json["issued"] = issued.asJSON()
 		}
 		if let legal = self.legal {
-			json["legal"] = ContractLegal.asJSONArray(legal)
+			json["legal"] = legal.map() { $0.asJSON() }
 		}
 		if let rule = self.rule {
-			json["rule"] = ContractRule.asJSONArray(rule)
+			json["rule"] = rule.map() { $0.asJSON() }
 		}
 		if let signer = self.signer {
-			json["signer"] = ContractSigner.asJSONArray(signer)
+			json["signer"] = signer.map() { $0.asJSON() }
 		}
 		if let subType = self.subType {
-			json["subType"] = CodeableConcept.asJSONArray(subType)
+			json["subType"] = subType.map() { $0.asJSON() }
 		}
 		if let subject = self.subject {
-			json["subject"] = Reference.asJSONArray(subject)
+			json["subject"] = subject.map() { $0.asJSON() }
 		}
 		if let term = self.term {
-			json["term"] = ContractTerm.asJSONArray(term)
+			json["term"] = term.map() { $0.asJSON() }
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
 		}
 		if let valuedItem = self.valuedItem {
-			json["valuedItem"] = ContractValuedItem.asJSONArray(valuedItem)
+			json["valuedItem"] = valuedItem.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -389,7 +389,7 @@ public class ContractActor: BackboneElement {
 			json["entity"] = entity.asJSON()
 		}
 		if let role = self.role {
-			json["role"] = CodeableConcept.asJSONArray(role)
+			json["role"] = role.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -887,19 +887,19 @@ public class ContractTerm: BackboneElement {
 		var json = super.asJSON()
 		
 		if let action = self.action {
-			json["action"] = CodeableConcept.asJSONArray(action)
+			json["action"] = action.map() { $0.asJSON() }
 		}
 		if let actionReason = self.actionReason {
-			json["actionReason"] = CodeableConcept.asJSONArray(actionReason)
+			json["actionReason"] = actionReason.map() { $0.asJSON() }
 		}
 		if let actor = self.actor {
-			json["actor"] = ContractTermActor.asJSONArray(actor)
+			json["actor"] = actor.map() { $0.asJSON() }
 		}
 		if let applies = self.applies {
 			json["applies"] = applies.asJSON()
 		}
 		if let group = self.group {
-			json["group"] = ContractTerm.asJSONArray(group)
+			json["group"] = group.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
@@ -920,7 +920,7 @@ public class ContractTerm: BackboneElement {
 			json["type"] = type.asJSON()
 		}
 		if let valuedItem = self.valuedItem {
-			json["valuedItem"] = ContractTermValuedItem.asJSONArray(valuedItem)
+			json["valuedItem"] = valuedItem.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -991,7 +991,7 @@ public class ContractTermActor: BackboneElement {
 			json["entity"] = entity.asJSON()
 		}
 		if let role = self.role {
-			json["role"] = CodeableConcept.asJSONArray(role)
+			json["role"] = role.map() { $0.asJSON() }
 		}
 		
 		return json

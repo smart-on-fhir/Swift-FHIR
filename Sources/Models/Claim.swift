@@ -404,25 +404,25 @@ public class Claim: DomainResource {
 			json["accidentType"] = accidentType.asJSON()
 		}
 		if let additionalMaterials = self.additionalMaterials {
-			json["additionalMaterials"] = Coding.asJSONArray(additionalMaterials)
+			json["additionalMaterials"] = additionalMaterials.map() { $0.asJSON() }
 		}
 		if let condition = self.condition {
-			json["condition"] = Coding.asJSONArray(condition)
+			json["condition"] = condition.map() { $0.asJSON() }
 		}
 		if let coverage = self.coverage {
-			json["coverage"] = ClaimCoverage.asJSONArray(coverage)
+			json["coverage"] = coverage.map() { $0.asJSON() }
 		}
 		if let created = self.created {
 			json["created"] = created.asJSON()
 		}
 		if let diagnosis = self.diagnosis {
-			json["diagnosis"] = ClaimDiagnosis.asJSONArray(diagnosis)
+			json["diagnosis"] = diagnosis.map() { $0.asJSON() }
 		}
 		if let enterer = self.enterer {
 			json["enterer"] = enterer.asJSON()
 		}
 		if let exception = self.exception {
-			json["exception"] = Coding.asJSONArray(exception)
+			json["exception"] = exception.map() { $0.asJSON() }
 		}
 		if let facility = self.facility {
 			json["facility"] = facility.asJSON()
@@ -431,16 +431,16 @@ public class Claim: DomainResource {
 			json["fundsReserve"] = fundsReserve.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let interventionException = self.interventionException {
-			json["interventionException"] = Coding.asJSONArray(interventionException)
+			json["interventionException"] = interventionException.map() { $0.asJSON() }
 		}
 		if let item = self.item {
-			json["item"] = ClaimItem.asJSONArray(item)
+			json["item"] = item.map() { $0.asJSON() }
 		}
 		if let missingTeeth = self.missingTeeth {
-			json["missingTeeth"] = ClaimMissingTeeth.asJSONArray(missingTeeth)
+			json["missingTeeth"] = missingTeeth.map() { $0.asJSON() }
 		}
 		if let organization = self.organization {
 			json["organization"] = organization.asJSON()
@@ -993,7 +993,7 @@ public class ClaimItem: BackboneElement {
 			json["bodySite"] = bodySite.asJSON()
 		}
 		if let detail = self.detail {
-			json["detail"] = ClaimItemDetail.asJSONArray(detail)
+			json["detail"] = detail.map() { $0.asJSON() }
 		}
 		if let diagnosisLinkId = self.diagnosisLinkId {
 			var arr = [Any]()
@@ -1006,7 +1006,7 @@ public class ClaimItem: BackboneElement {
 			json["factor"] = factor.asJSON()
 		}
 		if let modifier = self.modifier {
-			json["modifier"] = Coding.asJSONArray(modifier)
+			json["modifier"] = modifier.map() { $0.asJSON() }
 		}
 		if let net = self.net {
 			json["net"] = net.asJSON()
@@ -1033,7 +1033,7 @@ public class ClaimItem: BackboneElement {
 			json["serviceDate"] = serviceDate.asJSON()
 		}
 		if let subSite = self.subSite {
-			json["subSite"] = Coding.asJSONArray(subSite)
+			json["subSite"] = subSite.map() { $0.asJSON() }
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -1232,7 +1232,7 @@ public class ClaimItemDetail: BackboneElement {
 			json["service"] = service.asJSON()
 		}
 		if let subDetail = self.subDetail {
-			json["subDetail"] = ClaimItemDetailSubDetail.asJSONArray(subDetail)
+			json["subDetail"] = subDetail.map() { $0.asJSON() }
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()

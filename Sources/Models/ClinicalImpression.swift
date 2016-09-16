@@ -269,7 +269,7 @@ public class ClinicalImpression: DomainResource {
 		var json = super.asJSON()
 		
 		if let action = self.action {
-			json["action"] = Reference.asJSONArray(action)
+			json["action"] = action.map() { $0.asJSON() }
 		}
 		if let assessor = self.assessor {
 			json["assessor"] = assessor.asJSON()
@@ -281,22 +281,22 @@ public class ClinicalImpression: DomainResource {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let finding = self.finding {
-			json["finding"] = ClinicalImpressionFinding.asJSONArray(finding)
+			json["finding"] = finding.map() { $0.asJSON() }
 		}
 		if let investigations = self.investigations {
-			json["investigations"] = ClinicalImpressionInvestigations.asJSONArray(investigations)
+			json["investigations"] = investigations.map() { $0.asJSON() }
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
 		}
 		if let plan = self.plan {
-			json["plan"] = Reference.asJSONArray(plan)
+			json["plan"] = plan.map() { $0.asJSON() }
 		}
 		if let previous = self.previous {
 			json["previous"] = previous.asJSON()
 		}
 		if let problem = self.problem {
-			json["problem"] = Reference.asJSONArray(problem)
+			json["problem"] = problem.map() { $0.asJSON() }
 		}
 		if let prognosis = self.prognosis {
 			json["prognosis"] = prognosis.asJSON()
@@ -305,10 +305,10 @@ public class ClinicalImpression: DomainResource {
 			json["protocol"] = protocol_fhir.asJSON()
 		}
 		if let resolved = self.resolved {
-			json["resolved"] = CodeableConcept.asJSONArray(resolved)
+			json["resolved"] = resolved.map() { $0.asJSON() }
 		}
 		if let ruledOut = self.ruledOut {
-			json["ruledOut"] = ClinicalImpressionRuledOut.asJSONArray(ruledOut)
+			json["ruledOut"] = ruledOut.map() { $0.asJSON() }
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
@@ -464,7 +464,7 @@ public class ClinicalImpressionInvestigations: BackboneElement {
 			json["code"] = code.asJSON()
 		}
 		if let item = self.item {
-			json["item"] = Reference.asJSONArray(item)
+			json["item"] = item.map() { $0.asJSON() }
 		}
 		
 		return json

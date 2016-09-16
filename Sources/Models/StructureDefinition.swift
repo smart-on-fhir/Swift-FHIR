@@ -368,13 +368,13 @@ public class StructureDefinition: DomainResource {
 			json["base"] = base.asJSON()
 		}
 		if let code = self.code {
-			json["code"] = Coding.asJSONArray(code)
+			json["code"] = code.map() { $0.asJSON() }
 		}
 		if let constrainedType = self.constrainedType {
 			json["constrainedType"] = constrainedType.asJSON()
 		}
 		if let contact = self.contact {
-			json["contact"] = StructureDefinitionContact.asJSONArray(contact)
+			json["contact"] = contact.map() { $0.asJSON() }
 		}
 		if let context = self.context {
 			var arr = [Any]()
@@ -408,13 +408,13 @@ public class StructureDefinition: DomainResource {
 			json["fhirVersion"] = fhirVersion.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let kind = self.kind {
 			json["kind"] = kind.asJSON()
 		}
 		if let mapping = self.mapping {
-			json["mapping"] = StructureDefinitionMapping.asJSONArray(mapping)
+			json["mapping"] = mapping.map() { $0.asJSON() }
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -435,7 +435,7 @@ public class StructureDefinition: DomainResource {
 			json["url"] = url.asJSON()
 		}
 		if let useContext = self.useContext {
-			json["useContext"] = CodeableConcept.asJSONArray(useContext)
+			json["useContext"] = useContext.map() { $0.asJSON() }
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
@@ -500,7 +500,7 @@ public class StructureDefinitionContact: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -557,7 +557,7 @@ public class StructureDefinitionDifferential: BackboneElement {
 		var json = super.asJSON()
 		
 		if let element = self.element {
-			json["element"] = ElementDefinition.asJSONArray(element)
+			json["element"] = element.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -715,7 +715,7 @@ public class StructureDefinitionSnapshot: BackboneElement {
 		var json = super.asJSON()
 		
 		if let element = self.element {
-			json["element"] = ElementDefinition.asJSONArray(element)
+			json["element"] = element.map() { $0.asJSON() }
 		}
 		
 		return json

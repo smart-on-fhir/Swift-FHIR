@@ -124,13 +124,13 @@ public class BodySite: DomainResource {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let image = self.image {
-			json["image"] = Attachment.asJSONArray(image)
+			json["image"] = image.map() { $0.asJSON() }
 		}
 		if let modifier = self.modifier {
-			json["modifier"] = CodeableConcept.asJSONArray(modifier)
+			json["modifier"] = modifier.map() { $0.asJSON() }
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()

@@ -217,10 +217,10 @@ public class List: DomainResource {
 			json["encounter"] = encounter.asJSON()
 		}
 		if let entry = self.entry {
-			json["entry"] = ListEntry.asJSONArray(entry)
+			json["entry"] = entry.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let mode = self.mode {
 			json["mode"] = mode.asJSON()

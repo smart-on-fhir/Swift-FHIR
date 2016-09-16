@@ -159,7 +159,7 @@ public class Person: DomainResource {
 			json["active"] = active.asJSON()
 		}
 		if let address = self.address {
-			json["address"] = Address.asJSONArray(address)
+			json["address"] = address.map() { $0.asJSON() }
 		}
 		if let birthDate = self.birthDate {
 			json["birthDate"] = birthDate.asJSON()
@@ -168,22 +168,22 @@ public class Person: DomainResource {
 			json["gender"] = gender.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let link = self.link {
-			json["link"] = PersonLink.asJSONArray(link)
+			json["link"] = link.map() { $0.asJSON() }
 		}
 		if let managingOrganization = self.managingOrganization {
 			json["managingOrganization"] = managingOrganization.asJSON()
 		}
 		if let name = self.name {
-			json["name"] = HumanName.asJSONArray(name)
+			json["name"] = name.map() { $0.asJSON() }
 		}
 		if let photo = self.photo {
 			json["photo"] = photo.asJSON()
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json

@@ -271,7 +271,7 @@ public class ProcedureRequest: DomainResource {
 			json["asNeededCodeableConcept"] = asNeededCodeableConcept.asJSON()
 		}
 		if let bodySite = self.bodySite {
-			json["bodySite"] = CodeableConcept.asJSONArray(bodySite)
+			json["bodySite"] = bodySite.map() { $0.asJSON() }
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON()
@@ -280,10 +280,10 @@ public class ProcedureRequest: DomainResource {
 			json["encounter"] = encounter.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let notes = self.notes {
-			json["notes"] = Annotation.asJSONArray(notes)
+			json["notes"] = notes.map() { $0.asJSON() }
 		}
 		if let orderedOn = self.orderedOn {
 			json["orderedOn"] = orderedOn.asJSON()

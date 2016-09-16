@@ -223,22 +223,22 @@ public class CommunicationRequest: DomainResource {
 			json["encounter"] = encounter.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let medium = self.medium {
-			json["medium"] = CodeableConcept.asJSONArray(medium)
+			json["medium"] = medium.map() { $0.asJSON() }
 		}
 		if let payload = self.payload {
-			json["payload"] = CommunicationRequestPayload.asJSONArray(payload)
+			json["payload"] = payload.map() { $0.asJSON() }
 		}
 		if let priority = self.priority {
 			json["priority"] = priority.asJSON()
 		}
 		if let reason = self.reason {
-			json["reason"] = CodeableConcept.asJSONArray(reason)
+			json["reason"] = reason.map() { $0.asJSON() }
 		}
 		if let recipient = self.recipient {
-			json["recipient"] = Reference.asJSONArray(recipient)
+			json["recipient"] = recipient.map() { $0.asJSON() }
 		}
 		if let requestedOn = self.requestedOn {
 			json["requestedOn"] = requestedOn.asJSON()

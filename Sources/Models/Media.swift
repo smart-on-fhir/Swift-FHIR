@@ -207,7 +207,7 @@ public class Media: DomainResource {
 			json["height"] = height.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let operator_fhir = self.operator_fhir {
 			json["operator"] = operator_fhir.asJSON()

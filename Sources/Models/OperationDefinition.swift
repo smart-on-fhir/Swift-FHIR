@@ -300,7 +300,7 @@ public class OperationDefinition: DomainResource {
 			json["code"] = code.asJSON()
 		}
 		if let contact = self.contact {
-			json["contact"] = OperationDefinitionContact.asJSONArray(contact)
+			json["contact"] = contact.map() { $0.asJSON() }
 		}
 		if let date = self.date {
 			json["date"] = date.asJSON()
@@ -327,7 +327,7 @@ public class OperationDefinition: DomainResource {
 			json["notes"] = notes.asJSON()
 		}
 		if let parameter = self.parameter {
-			json["parameter"] = OperationDefinitionParameter.asJSONArray(parameter)
+			json["parameter"] = parameter.map() { $0.asJSON() }
 		}
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
@@ -414,7 +414,7 @@ public class OperationDefinitionContact: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -593,7 +593,7 @@ public class OperationDefinitionParameter: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let part = self.part {
-			json["part"] = OperationDefinitionParameter.asJSONArray(part)
+			json["part"] = part.map() { $0.asJSON() }
 		}
 		if let profile = self.profile {
 			json["profile"] = profile.asJSON()

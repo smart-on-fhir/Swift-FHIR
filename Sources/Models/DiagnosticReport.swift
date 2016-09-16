@@ -294,7 +294,7 @@ public class DiagnosticReport: DomainResource {
 			json["code"] = code.asJSON()
 		}
 		if let codedDiagnosis = self.codedDiagnosis {
-			json["codedDiagnosis"] = CodeableConcept.asJSONArray(codedDiagnosis)
+			json["codedDiagnosis"] = codedDiagnosis.map() { $0.asJSON() }
 		}
 		if let conclusion = self.conclusion {
 			json["conclusion"] = conclusion.asJSON()
@@ -309,13 +309,13 @@ public class DiagnosticReport: DomainResource {
 			json["encounter"] = encounter.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let image = self.image {
-			json["image"] = DiagnosticReportImage.asJSONArray(image)
+			json["image"] = image.map() { $0.asJSON() }
 		}
 		if let imagingStudy = self.imagingStudy {
-			json["imagingStudy"] = Reference.asJSONArray(imagingStudy)
+			json["imagingStudy"] = imagingStudy.map() { $0.asJSON() }
 		}
 		if let issued = self.issued {
 			json["issued"] = issued.asJSON()
@@ -324,16 +324,16 @@ public class DiagnosticReport: DomainResource {
 			json["performer"] = performer.asJSON()
 		}
 		if let presentedForm = self.presentedForm {
-			json["presentedForm"] = Attachment.asJSONArray(presentedForm)
+			json["presentedForm"] = presentedForm.map() { $0.asJSON() }
 		}
 		if let request = self.request {
-			json["request"] = Reference.asJSONArray(request)
+			json["request"] = request.map() { $0.asJSON() }
 		}
 		if let result = self.result {
-			json["result"] = Reference.asJSONArray(result)
+			json["result"] = result.map() { $0.asJSON() }
 		}
 		if let specimen = self.specimen {
-			json["specimen"] = Reference.asJSONArray(specimen)
+			json["specimen"] = specimen.map() { $0.asJSON() }
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()

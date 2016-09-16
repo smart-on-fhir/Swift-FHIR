@@ -273,7 +273,7 @@ public class ImplementationGuide: DomainResource {
 			json["binary"] = arr
 		}
 		if let contact = self.contact {
-			json["contact"] = ImplementationGuideContact.asJSONArray(contact)
+			json["contact"] = contact.map() { $0.asJSON() }
 		}
 		if let copyright = self.copyright {
 			json["copyright"] = copyright.asJSON()
@@ -282,7 +282,7 @@ public class ImplementationGuide: DomainResource {
 			json["date"] = date.asJSON()
 		}
 		if let dependency = self.dependency {
-			json["dependency"] = ImplementationGuideDependency.asJSONArray(dependency)
+			json["dependency"] = dependency.map() { $0.asJSON() }
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
@@ -294,13 +294,13 @@ public class ImplementationGuide: DomainResource {
 			json["fhirVersion"] = fhirVersion.asJSON()
 		}
 		if let global = self.global {
-			json["global"] = ImplementationGuideGlobal.asJSONArray(global)
+			json["global"] = global.map() { $0.asJSON() }
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
 		if let package = self.package {
-			json["package"] = ImplementationGuidePackage.asJSONArray(package)
+			json["package"] = package.map() { $0.asJSON() }
 		}
 		if let page = self.page {
 			json["page"] = page.asJSON()
@@ -315,7 +315,7 @@ public class ImplementationGuide: DomainResource {
 			json["url"] = url.asJSON()
 		}
 		if let useContext = self.useContext {
-			json["useContext"] = CodeableConcept.asJSONArray(useContext)
+			json["useContext"] = useContext.map() { $0.asJSON() }
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
@@ -380,7 +380,7 @@ public class ImplementationGuideContact: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -621,7 +621,7 @@ public class ImplementationGuidePackage: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let resource = self.resource {
-			json["resource"] = ImplementationGuidePackageResource.asJSONArray(resource)
+			json["resource"] = resource.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -928,7 +928,7 @@ public class ImplementationGuidePage: BackboneElement {
 			json["package"] = arr
 		}
 		if let page = self.page {
-			json["page"] = ImplementationGuidePage.asJSONArray(page)
+			json["page"] = page.map() { $0.asJSON() }
 		}
 		if let source = self.source {
 			json["source"] = source.asJSON()

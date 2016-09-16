@@ -263,13 +263,13 @@ public class MedicationOrder: DomainResource {
 			json["dispenseRequest"] = dispenseRequest.asJSON()
 		}
 		if let dosageInstruction = self.dosageInstruction {
-			json["dosageInstruction"] = MedicationOrderDosageInstruction.asJSONArray(dosageInstruction)
+			json["dosageInstruction"] = dosageInstruction.map() { $0.asJSON() }
 		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let medicationCodeableConcept = self.medicationCodeableConcept {
 			json["medicationCodeableConcept"] = medicationCodeableConcept.asJSON()

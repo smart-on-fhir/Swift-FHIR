@@ -10,15 +10,15 @@ import Foundation
 
 
 /**
- *  Abstract superclass for all FHIR resource models.
- */
+Abstract superclass for all FHIR resource models.
+*/
 open class FHIRAbstractResource: FHIRAbstractBase {
 	
 	/// A specific version id, if the instance was created using `vread`.
-	open var _versionId: String?
+	public var _versionId: String?
 	
 	/// If this instance lives on a server, this property represents that server.
-	open var _server: FHIRServer? {
+	public var _server: FHIRServer? {
 		get { return __server ?? owningResource?._server }
 		set { __server = newValue }
 	}
@@ -33,7 +33,7 @@ open class FHIRAbstractResource: FHIRAbstractBase {
 	The Resource, in contrast to the base element, definitely wants "resourceType" to be present. Will return an error complaining about it
 	missing if it's not present.
 	*/
-	open override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		guard let json = json else {
 			return nil
 		}
@@ -56,7 +56,7 @@ open class FHIRAbstractResource: FHIRAbstractBase {
 	}
 	
 	
-	// MARK: - Printable
+	// MARK: - CustomStringConvertible
 	
 	override open var description: String {
 		return "<\(type(of: self).resourceType)> \(__server?.baseURL.absoluteString ?? "nil")"

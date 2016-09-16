@@ -172,10 +172,10 @@ public class DetectedIssue: DomainResource {
 			json["identifier"] = identifier.asJSON()
 		}
 		if let implicated = self.implicated {
-			json["implicated"] = Reference.asJSONArray(implicated)
+			json["implicated"] = implicated.map() { $0.asJSON() }
 		}
 		if let mitigation = self.mitigation {
-			json["mitigation"] = DetectedIssueMitigation.asJSONArray(mitigation)
+			json["mitigation"] = mitigation.map() { $0.asJSON() }
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()

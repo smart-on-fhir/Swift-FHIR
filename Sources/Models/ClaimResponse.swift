@@ -348,10 +348,10 @@ public class ClaimResponse: DomainResource {
 		var json = super.asJSON()
 		
 		if let addItem = self.addItem {
-			json["addItem"] = ClaimResponseAddItem.asJSONArray(addItem)
+			json["addItem"] = addItem.map() { $0.asJSON() }
 		}
 		if let coverage = self.coverage {
-			json["coverage"] = ClaimResponseCoverage.asJSONArray(coverage)
+			json["coverage"] = coverage.map() { $0.asJSON() }
 		}
 		if let created = self.created {
 			json["created"] = created.asJSON()
@@ -360,19 +360,19 @@ public class ClaimResponse: DomainResource {
 			json["disposition"] = disposition.asJSON()
 		}
 		if let error = self.error {
-			json["error"] = ClaimResponseError.asJSONArray(error)
+			json["error"] = error.map() { $0.asJSON() }
 		}
 		if let form = self.form {
 			json["form"] = form.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let item = self.item {
-			json["item"] = ClaimResponseItem.asJSONArray(item)
+			json["item"] = item.map() { $0.asJSON() }
 		}
 		if let note = self.note {
-			json["note"] = ClaimResponseNote.asJSONArray(note)
+			json["note"] = note.map() { $0.asJSON() }
 		}
 		if let organization = self.organization {
 			json["organization"] = organization.asJSON()
@@ -539,10 +539,10 @@ public class ClaimResponseAddItem: BackboneElement {
 		var json = super.asJSON()
 		
 		if let adjudication = self.adjudication {
-			json["adjudication"] = ClaimResponseAddItemAdjudication.asJSONArray(adjudication)
+			json["adjudication"] = adjudication.map() { $0.asJSON() }
 		}
 		if let detail = self.detail {
-			json["detail"] = ClaimResponseAddItemDetail.asJSONArray(detail)
+			json["detail"] = detail.map() { $0.asJSON() }
 		}
 		if let fee = self.fee {
 			json["fee"] = fee.asJSON()
@@ -728,7 +728,7 @@ public class ClaimResponseAddItemDetail: BackboneElement {
 		var json = super.asJSON()
 		
 		if let adjudication = self.adjudication {
-			json["adjudication"] = ClaimResponseAddItemDetailAdjudication.asJSONArray(adjudication)
+			json["adjudication"] = adjudication.map() { $0.asJSON() }
 		}
 		if let fee = self.fee {
 			json["fee"] = fee.asJSON()
@@ -1190,10 +1190,10 @@ public class ClaimResponseItem: BackboneElement {
 		var json = super.asJSON()
 		
 		if let adjudication = self.adjudication {
-			json["adjudication"] = ClaimResponseItemAdjudication.asJSONArray(adjudication)
+			json["adjudication"] = adjudication.map() { $0.asJSON() }
 		}
 		if let detail = self.detail {
-			json["detail"] = ClaimResponseItemDetail.asJSONArray(detail)
+			json["detail"] = detail.map() { $0.asJSON() }
 		}
 		if let noteNumber = self.noteNumber {
 			var arr = [Any]()
@@ -1369,13 +1369,13 @@ public class ClaimResponseItemDetail: BackboneElement {
 		var json = super.asJSON()
 		
 		if let adjudication = self.adjudication {
-			json["adjudication"] = ClaimResponseItemDetailAdjudication.asJSONArray(adjudication)
+			json["adjudication"] = adjudication.map() { $0.asJSON() }
 		}
 		if let sequenceLinkId = self.sequenceLinkId {
 			json["sequenceLinkId"] = sequenceLinkId.asJSON()
 		}
 		if let subDetail = self.subDetail {
-			json["subDetail"] = ClaimResponseItemDetailSubDetail.asJSONArray(subDetail)
+			json["subDetail"] = subDetail.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -1529,7 +1529,7 @@ public class ClaimResponseItemDetailSubDetail: BackboneElement {
 		var json = super.asJSON()
 		
 		if let adjudication = self.adjudication {
-			json["adjudication"] = ClaimResponseItemDetailSubDetailAdjudication.asJSONArray(adjudication)
+			json["adjudication"] = adjudication.map() { $0.asJSON() }
 		}
 		if let sequenceLinkId = self.sequenceLinkId {
 			json["sequenceLinkId"] = sequenceLinkId.asJSON()

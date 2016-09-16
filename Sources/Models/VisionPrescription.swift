@@ -135,13 +135,13 @@ public class VisionPrescription: DomainResource {
 			json["dateWritten"] = dateWritten.asJSON()
 		}
 		if let dispense = self.dispense {
-			json["dispense"] = VisionPrescriptionDispense.asJSONArray(dispense)
+			json["dispense"] = dispense.map() { $0.asJSON() }
 		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()

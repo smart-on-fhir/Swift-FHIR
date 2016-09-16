@@ -152,7 +152,7 @@ public class Questionnaire: DomainResource {
 			json["group"] = group.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
@@ -168,7 +168,7 @@ public class Questionnaire: DomainResource {
 			json["subjectType"] = arr
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
@@ -302,16 +302,16 @@ public class QuestionnaireGroup: BackboneElement {
 		var json = super.asJSON()
 		
 		if let concept = self.concept {
-			json["concept"] = Coding.asJSONArray(concept)
+			json["concept"] = concept.map() { $0.asJSON() }
 		}
 		if let group = self.group {
-			json["group"] = QuestionnaireGroup.asJSONArray(group)
+			json["group"] = group.map() { $0.asJSON() }
 		}
 		if let linkId = self.linkId {
 			json["linkId"] = linkId.asJSON()
 		}
 		if let question = self.question {
-			json["question"] = QuestionnaireGroupQuestion.asJSONArray(question)
+			json["question"] = question.map() { $0.asJSON() }
 		}
 		if let repeats = self.repeats {
 			json["repeats"] = repeats.asJSON()
@@ -466,16 +466,16 @@ public class QuestionnaireGroupQuestion: BackboneElement {
 		var json = super.asJSON()
 		
 		if let concept = self.concept {
-			json["concept"] = Coding.asJSONArray(concept)
+			json["concept"] = concept.map() { $0.asJSON() }
 		}
 		if let group = self.group {
-			json["group"] = QuestionnaireGroup.asJSONArray(group)
+			json["group"] = group.map() { $0.asJSON() }
 		}
 		if let linkId = self.linkId {
 			json["linkId"] = linkId.asJSON()
 		}
 		if let option = self.option {
-			json["option"] = Coding.asJSONArray(option)
+			json["option"] = option.map() { $0.asJSON() }
 		}
 		if let options = self.options {
 			json["options"] = options.asJSON()

@@ -86,13 +86,13 @@ public class ImmunizationRecommendation: DomainResource {
 		var json = super.asJSON()
 		
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
 		}
 		if let recommendation = self.recommendation {
-			json["recommendation"] = ImmunizationRecommendationRecommendation.asJSONArray(recommendation)
+			json["recommendation"] = recommendation.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -241,7 +241,7 @@ public class ImmunizationRecommendationRecommendation: BackboneElement {
 			json["date"] = date.asJSON()
 		}
 		if let dateCriterion = self.dateCriterion {
-			json["dateCriterion"] = ImmunizationRecommendationRecommendationDateCriterion.asJSONArray(dateCriterion)
+			json["dateCriterion"] = dateCriterion.map() { $0.asJSON() }
 		}
 		if let doseNumber = self.doseNumber {
 			json["doseNumber"] = doseNumber.asJSON()
@@ -253,10 +253,10 @@ public class ImmunizationRecommendationRecommendation: BackboneElement {
 			json["protocol"] = protocol_fhir.asJSON()
 		}
 		if let supportingImmunization = self.supportingImmunization {
-			json["supportingImmunization"] = Reference.asJSONArray(supportingImmunization)
+			json["supportingImmunization"] = supportingImmunization.map() { $0.asJSON() }
 		}
 		if let supportingPatientInformation = self.supportingPatientInformation {
-			json["supportingPatientInformation"] = Reference.asJSONArray(supportingPatientInformation)
+			json["supportingPatientInformation"] = supportingPatientInformation.map() { $0.asJSON() }
 		}
 		if let vaccineCode = self.vaccineCode {
 			json["vaccineCode"] = vaccineCode.asJSON()

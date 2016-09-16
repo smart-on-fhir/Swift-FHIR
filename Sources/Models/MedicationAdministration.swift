@@ -255,7 +255,7 @@ public class MedicationAdministration: DomainResource {
 		var json = super.asJSON()
 		
 		if let device = self.device {
-			json["device"] = Reference.asJSONArray(device)
+			json["device"] = device.map() { $0.asJSON() }
 		}
 		if let dosage = self.dosage {
 			json["dosage"] = dosage.asJSON()
@@ -270,7 +270,7 @@ public class MedicationAdministration: DomainResource {
 			json["encounter"] = encounter.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let medicationCodeableConcept = self.medicationCodeableConcept {
 			json["medicationCodeableConcept"] = medicationCodeableConcept.asJSON()
@@ -291,10 +291,10 @@ public class MedicationAdministration: DomainResource {
 			json["prescription"] = prescription.asJSON()
 		}
 		if let reasonGiven = self.reasonGiven {
-			json["reasonGiven"] = CodeableConcept.asJSONArray(reasonGiven)
+			json["reasonGiven"] = reasonGiven.map() { $0.asJSON() }
 		}
 		if let reasonNotGiven = self.reasonNotGiven {
-			json["reasonNotGiven"] = CodeableConcept.asJSONArray(reasonNotGiven)
+			json["reasonNotGiven"] = reasonNotGiven.map() { $0.asJSON() }
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()

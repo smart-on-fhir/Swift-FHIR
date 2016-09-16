@@ -253,7 +253,7 @@ public class ReferralRequest: DomainResource {
 			json["fulfillmentTime"] = fulfillmentTime.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
@@ -265,13 +265,13 @@ public class ReferralRequest: DomainResource {
 			json["reason"] = reason.asJSON()
 		}
 		if let recipient = self.recipient {
-			json["recipient"] = Reference.asJSONArray(recipient)
+			json["recipient"] = recipient.map() { $0.asJSON() }
 		}
 		if let requester = self.requester {
 			json["requester"] = requester.asJSON()
 		}
 		if let serviceRequested = self.serviceRequested {
-			json["serviceRequested"] = CodeableConcept.asJSONArray(serviceRequested)
+			json["serviceRequested"] = serviceRequested.map() { $0.asJSON() }
 		}
 		if let specialty = self.specialty {
 			json["specialty"] = specialty.asJSON()
@@ -280,7 +280,7 @@ public class ReferralRequest: DomainResource {
 			json["status"] = status.asJSON()
 		}
 		if let supportingInformation = self.supportingInformation {
-			json["supportingInformation"] = Reference.asJSONArray(supportingInformation)
+			json["supportingInformation"] = supportingInformation.map() { $0.asJSON() }
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()

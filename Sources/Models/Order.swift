@@ -154,10 +154,10 @@ public class Order: DomainResource {
 			json["date"] = date.asJSON()
 		}
 		if let detail = self.detail {
-			json["detail"] = Reference.asJSONArray(detail)
+			json["detail"] = detail.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let reasonCodeableConcept = self.reasonCodeableConcept {
 			json["reasonCodeableConcept"] = reasonCodeableConcept.asJSON()

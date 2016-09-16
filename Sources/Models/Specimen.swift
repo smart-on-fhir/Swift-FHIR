@@ -171,13 +171,13 @@ public class Specimen: DomainResource {
 			json["collection"] = collection.asJSON()
 		}
 		if let container = self.container {
-			json["container"] = SpecimenContainer.asJSONArray(container)
+			json["container"] = container.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let parent = self.parent {
-			json["parent"] = Reference.asJSONArray(parent)
+			json["parent"] = parent.map() { $0.asJSON() }
 		}
 		if let receivedTime = self.receivedTime {
 			json["receivedTime"] = receivedTime.asJSON()
@@ -189,7 +189,7 @@ public class Specimen: DomainResource {
 			json["subject"] = subject.asJSON()
 		}
 		if let treatment = self.treatment {
-			json["treatment"] = SpecimenTreatment.asJSONArray(treatment)
+			json["treatment"] = treatment.map() { $0.asJSON() }
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -465,7 +465,7 @@ public class SpecimenContainer: BackboneElement {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let specimenQuantity = self.specimenQuantity {
 			json["specimenQuantity"] = specimenQuantity.asJSON()
@@ -542,7 +542,7 @@ public class SpecimenTreatment: BackboneElement {
 		var json = super.asJSON()
 		
 		if let additive = self.additive {
-			json["additive"] = Reference.asJSONArray(additive)
+			json["additive"] = additive.map() { $0.asJSON() }
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()

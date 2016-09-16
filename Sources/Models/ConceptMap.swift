@@ -274,7 +274,7 @@ public class ConceptMap: DomainResource {
 		var json = super.asJSON()
 		
 		if let contact = self.contact {
-			json["contact"] = ConceptMapContact.asJSONArray(contact)
+			json["contact"] = contact.map() { $0.asJSON() }
 		}
 		if let copyright = self.copyright {
 			json["copyright"] = copyright.asJSON()
@@ -286,7 +286,7 @@ public class ConceptMap: DomainResource {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let element = self.element {
-			json["element"] = ConceptMapElement.asJSONArray(element)
+			json["element"] = element.map() { $0.asJSON() }
 		}
 		if let experimental = self.experimental {
 			json["experimental"] = experimental.asJSON()
@@ -322,7 +322,7 @@ public class ConceptMap: DomainResource {
 			json["url"] = url.asJSON()
 		}
 		if let useContext = self.useContext {
-			json["useContext"] = CodeableConcept.asJSONArray(useContext)
+			json["useContext"] = useContext.map() { $0.asJSON() }
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
@@ -387,7 +387,7 @@ public class ConceptMapContact: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -464,7 +464,7 @@ public class ConceptMapElement: BackboneElement {
 			json["codeSystem"] = codeSystem.asJSON()
 		}
 		if let target = self.target {
-			json["target"] = ConceptMapElementTarget.asJSONArray(target)
+			json["target"] = target.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -589,13 +589,13 @@ public class ConceptMapElementTarget: BackboneElement {
 			json["comments"] = comments.asJSON()
 		}
 		if let dependsOn = self.dependsOn {
-			json["dependsOn"] = ConceptMapElementTargetDependsOn.asJSONArray(dependsOn)
+			json["dependsOn"] = dependsOn.map() { $0.asJSON() }
 		}
 		if let equivalence = self.equivalence {
 			json["equivalence"] = equivalence.asJSON()
 		}
 		if let product = self.product {
-			json["product"] = ConceptMapElementTargetDependsOn.asJSONArray(product)
+			json["product"] = product.map() { $0.asJSON() }
 		}
 		
 		return json

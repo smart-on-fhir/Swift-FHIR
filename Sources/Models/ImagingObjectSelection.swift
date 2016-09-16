@@ -159,7 +159,7 @@ public class ImagingObjectSelection: DomainResource {
 			json["patient"] = patient.asJSON()
 		}
 		if let study = self.study {
-			json["study"] = ImagingObjectSelectionStudy.asJSONArray(study)
+			json["study"] = study.map() { $0.asJSON() }
 		}
 		if let title = self.title {
 			json["title"] = title.asJSON()
@@ -264,7 +264,7 @@ public class ImagingObjectSelectionStudy: BackboneElement {
 			json["imagingStudy"] = imagingStudy.asJSON()
 		}
 		if let series = self.series {
-			json["series"] = ImagingObjectSelectionStudySeries.asJSONArray(series)
+			json["series"] = series.map() { $0.asJSON() }
 		}
 		if let uid = self.uid {
 			json["uid"] = uid.asJSON()
@@ -350,7 +350,7 @@ public class ImagingObjectSelectionStudySeries: BackboneElement {
 		var json = super.asJSON()
 		
 		if let instance = self.instance {
-			json["instance"] = ImagingObjectSelectionStudySeriesInstance.asJSONArray(instance)
+			json["instance"] = instance.map() { $0.asJSON() }
 		}
 		if let uid = self.uid {
 			json["uid"] = uid.asJSON()
@@ -456,7 +456,7 @@ public class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
 		var json = super.asJSON()
 		
 		if let frames = self.frames {
-			json["frames"] = ImagingObjectSelectionStudySeriesInstanceFrames.asJSONArray(frames)
+			json["frames"] = frames.map() { $0.asJSON() }
 		}
 		if let sopClass = self.sopClass {
 			json["sopClass"] = sopClass.asJSON()

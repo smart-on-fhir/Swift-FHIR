@@ -60,7 +60,7 @@ public class Element: FHIRAbstractBase {
 		var json = super.asJSON()
 		
 		if let extension_fhir = self.extension_fhir {
-			json["extension"] = Extension.asJSONArray(extension_fhir)
+			json["extension"] = extension_fhir.map() { $0.asJSON() }
 		}
 		if let id = self.id {
 			json["id"] = id.asJSON()

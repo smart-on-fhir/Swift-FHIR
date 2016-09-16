@@ -279,7 +279,7 @@ public class ValueSet: DomainResource {
 			json["compose"] = compose.asJSON()
 		}
 		if let contact = self.contact {
-			json["contact"] = ValueSetContact.asJSONArray(contact)
+			json["contact"] = contact.map() { $0.asJSON() }
 		}
 		if let copyright = self.copyright {
 			json["copyright"] = copyright.asJSON()
@@ -324,7 +324,7 @@ public class ValueSet: DomainResource {
 			json["url"] = url.asJSON()
 		}
 		if let useContext = self.useContext {
-			json["useContext"] = CodeableConcept.asJSONArray(useContext)
+			json["useContext"] = useContext.map() { $0.asJSON() }
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
@@ -427,7 +427,7 @@ public class ValueSetCodeSystem: BackboneElement {
 			json["caseSensitive"] = caseSensitive.asJSON()
 		}
 		if let concept = self.concept {
-			json["concept"] = ValueSetCodeSystemConcept.asJSONArray(concept)
+			json["concept"] = concept.map() { $0.asJSON() }
 		}
 		if let system = self.system {
 			json["system"] = system.asJSON()
@@ -556,13 +556,13 @@ public class ValueSetCodeSystemConcept: BackboneElement {
 			json["code"] = code.asJSON()
 		}
 		if let concept = self.concept {
-			json["concept"] = ValueSetCodeSystemConcept.asJSONArray(concept)
+			json["concept"] = concept.map() { $0.asJSON() }
 		}
 		if let definition = self.definition {
 			json["definition"] = definition.asJSON()
 		}
 		if let designation = self.designation {
-			json["designation"] = ValueSetCodeSystemConceptDesignation.asJSONArray(designation)
+			json["designation"] = designation.map() { $0.asJSON() }
 		}
 		if let display = self.display {
 			json["display"] = display.asJSON()
@@ -724,7 +724,7 @@ public class ValueSetCompose: BackboneElement {
 		var json = super.asJSON()
 		
 		if let exclude = self.exclude {
-			json["exclude"] = ValueSetComposeInclude.asJSONArray(exclude)
+			json["exclude"] = exclude.map() { $0.asJSON() }
 		}
 		if let import_fhir = self.import_fhir {
 			var arr = [Any]()
@@ -734,7 +734,7 @@ public class ValueSetCompose: BackboneElement {
 			json["import"] = arr
 		}
 		if let include = self.include {
-			json["include"] = ValueSetComposeInclude.asJSONArray(include)
+			json["include"] = include.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -824,10 +824,10 @@ public class ValueSetComposeInclude: BackboneElement {
 		var json = super.asJSON()
 		
 		if let concept = self.concept {
-			json["concept"] = ValueSetComposeIncludeConcept.asJSONArray(concept)
+			json["concept"] = concept.map() { $0.asJSON() }
 		}
 		if let filter = self.filter {
-			json["filter"] = ValueSetComposeIncludeFilter.asJSONArray(filter)
+			json["filter"] = filter.map() { $0.asJSON() }
 		}
 		if let system = self.system {
 			json["system"] = system.asJSON()
@@ -916,7 +916,7 @@ public class ValueSetComposeIncludeConcept: BackboneElement {
 			json["code"] = code.asJSON()
 		}
 		if let designation = self.designation {
-			json["designation"] = ValueSetCodeSystemConceptDesignation.asJSONArray(designation)
+			json["designation"] = designation.map() { $0.asJSON() }
 		}
 		if let display = self.display {
 			json["display"] = display.asJSON()
@@ -1076,7 +1076,7 @@ public class ValueSetContact: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -1197,7 +1197,7 @@ public class ValueSetExpansion: BackboneElement {
 		var json = super.asJSON()
 		
 		if let contains = self.contains {
-			json["contains"] = ValueSetExpansionContains.asJSONArray(contains)
+			json["contains"] = contains.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
@@ -1206,7 +1206,7 @@ public class ValueSetExpansion: BackboneElement {
 			json["offset"] = offset.asJSON()
 		}
 		if let parameter = self.parameter {
-			json["parameter"] = ValueSetExpansionParameter.asJSONArray(parameter)
+			json["parameter"] = parameter.map() { $0.asJSON() }
 		}
 		if let timestamp = self.timestamp {
 			json["timestamp"] = timestamp.asJSON()
@@ -1325,7 +1325,7 @@ public class ValueSetExpansionContains: BackboneElement {
 			json["code"] = code.asJSON()
 		}
 		if let contains = self.contains {
-			json["contains"] = ValueSetExpansionContains.asJSONArray(contains)
+			json["contains"] = contains.map() { $0.asJSON() }
 		}
 		if let display = self.display {
 			json["display"] = display.asJSON()

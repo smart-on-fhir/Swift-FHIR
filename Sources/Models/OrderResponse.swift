@@ -137,10 +137,10 @@ public class OrderResponse: DomainResource {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let fulfillment = self.fulfillment {
-			json["fulfillment"] = Reference.asJSONArray(fulfillment)
+			json["fulfillment"] = fulfillment.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let orderStatus = self.orderStatus {
 			json["orderStatus"] = orderStatus.asJSON()

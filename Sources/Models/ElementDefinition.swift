@@ -2734,7 +2734,7 @@ public class ElementDefinition: Element {
 			json["binding"] = binding.asJSON()
 		}
 		if let code = self.code {
-			json["code"] = Coding.asJSONArray(code)
+			json["code"] = code.map() { $0.asJSON() }
 		}
 		if let comments = self.comments {
 			json["comments"] = comments.asJSON()
@@ -2747,7 +2747,7 @@ public class ElementDefinition: Element {
 			json["condition"] = arr
 		}
 		if let constraint = self.constraint {
-			json["constraint"] = ElementDefinitionConstraint.asJSONArray(constraint)
+			json["constraint"] = constraint.map() { $0.asJSON() }
 		}
 		if let defaultValueAddress = self.defaultValueAddress {
 			json["defaultValueAddress"] = defaultValueAddress.asJSON()
@@ -3059,7 +3059,7 @@ public class ElementDefinition: Element {
 			json["label"] = label.asJSON()
 		}
 		if let mapping = self.mapping {
-			json["mapping"] = ElementDefinitionMapping.asJSONArray(mapping)
+			json["mapping"] = mapping.map() { $0.asJSON() }
 		}
 		if let max = self.max {
 			json["max"] = max.asJSON()
@@ -3399,7 +3399,7 @@ public class ElementDefinition: Element {
 			json["slicing"] = slicing.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = ElementDefinitionType.asJSONArray(type)
+			json["type"] = type.map() { $0.asJSON() }
 		}
 		
 		return json

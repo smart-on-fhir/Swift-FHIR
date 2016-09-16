@@ -57,7 +57,7 @@ public class OperationOutcome: DomainResource {
 		var json = super.asJSON()
 		
 		if let issue = self.issue {
-			json["issue"] = OperationOutcomeIssue.asJSONArray(issue)
+			json["issue"] = issue.map() { $0.asJSON() }
 		}
 		
 		return json

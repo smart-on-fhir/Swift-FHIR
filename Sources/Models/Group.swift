@@ -150,16 +150,16 @@ public class Group: DomainResource {
 			json["actual"] = actual.asJSON()
 		}
 		if let characteristic = self.characteristic {
-			json["characteristic"] = GroupCharacteristic.asJSONArray(characteristic)
+			json["characteristic"] = characteristic.map() { $0.asJSON() }
 		}
 		if let code = self.code {
 			json["code"] = code.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let member = self.member {
-			json["member"] = GroupMember.asJSONArray(member)
+			json["member"] = member.map() { $0.asJSON() }
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()

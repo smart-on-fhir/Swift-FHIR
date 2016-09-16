@@ -48,7 +48,7 @@ public class BackboneElement: Element {
 		var json = super.asJSON()
 		
 		if let modifierExtension = self.modifierExtension {
-			json["modifierExtension"] = Extension.asJSONArray(modifierExtension)
+			json["modifierExtension"] = modifierExtension.map() { $0.asJSON() }
 		}
 		
 		return json

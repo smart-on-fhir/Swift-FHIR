@@ -421,7 +421,7 @@ public class Observation: DomainResource {
 			json["comments"] = comments.asJSON()
 		}
 		if let component = self.component {
-			json["component"] = ObservationComponent.asJSONArray(component)
+			json["component"] = component.map() { $0.asJSON() }
 		}
 		if let dataAbsentReason = self.dataAbsentReason {
 			json["dataAbsentReason"] = dataAbsentReason.asJSON()
@@ -439,7 +439,7 @@ public class Observation: DomainResource {
 			json["encounter"] = encounter.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let interpretation = self.interpretation {
 			json["interpretation"] = interpretation.asJSON()
@@ -451,13 +451,13 @@ public class Observation: DomainResource {
 			json["method"] = method.asJSON()
 		}
 		if let performer = self.performer {
-			json["performer"] = Reference.asJSONArray(performer)
+			json["performer"] = performer.map() { $0.asJSON() }
 		}
 		if let referenceRange = self.referenceRange {
-			json["referenceRange"] = ObservationReferenceRange.asJSONArray(referenceRange)
+			json["referenceRange"] = referenceRange.map() { $0.asJSON() }
 		}
 		if let related = self.related {
-			json["related"] = ObservationRelated.asJSONArray(related)
+			json["related"] = related.map() { $0.asJSON() }
 		}
 		if let specimen = self.specimen {
 			json["specimen"] = specimen.asJSON()
@@ -704,7 +704,7 @@ public class ObservationComponent: BackboneElement {
 			json["dataAbsentReason"] = dataAbsentReason.asJSON()
 		}
 		if let referenceRange = self.referenceRange {
-			json["referenceRange"] = ObservationReferenceRange.asJSONArray(referenceRange)
+			json["referenceRange"] = referenceRange.map() { $0.asJSON() }
 		}
 		if let valueAttachment = self.valueAttachment {
 			json["valueAttachment"] = valueAttachment.asJSON()

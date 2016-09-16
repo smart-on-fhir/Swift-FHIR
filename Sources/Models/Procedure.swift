@@ -330,7 +330,7 @@ public class Procedure: DomainResource {
 		var json = super.asJSON()
 		
 		if let bodySite = self.bodySite {
-			json["bodySite"] = CodeableConcept.asJSONArray(bodySite)
+			json["bodySite"] = bodySite.map() { $0.asJSON() }
 		}
 		if let category = self.category {
 			json["category"] = category.asJSON()
@@ -339,19 +339,19 @@ public class Procedure: DomainResource {
 			json["code"] = code.asJSON()
 		}
 		if let complication = self.complication {
-			json["complication"] = CodeableConcept.asJSONArray(complication)
+			json["complication"] = complication.map() { $0.asJSON() }
 		}
 		if let encounter = self.encounter {
 			json["encounter"] = encounter.asJSON()
 		}
 		if let focalDevice = self.focalDevice {
-			json["focalDevice"] = ProcedureFocalDevice.asJSONArray(focalDevice)
+			json["focalDevice"] = focalDevice.map() { $0.asJSON() }
 		}
 		if let followUp = self.followUp {
-			json["followUp"] = CodeableConcept.asJSONArray(followUp)
+			json["followUp"] = followUp.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let location = self.location {
 			json["location"] = location.asJSON()
@@ -360,7 +360,7 @@ public class Procedure: DomainResource {
 			json["notPerformed"] = notPerformed.asJSON()
 		}
 		if let notes = self.notes {
-			json["notes"] = Annotation.asJSONArray(notes)
+			json["notes"] = notes.map() { $0.asJSON() }
 		}
 		if let outcome = self.outcome {
 			json["outcome"] = outcome.asJSON()
@@ -372,19 +372,19 @@ public class Procedure: DomainResource {
 			json["performedPeriod"] = performedPeriod.asJSON()
 		}
 		if let performer = self.performer {
-			json["performer"] = ProcedurePerformer.asJSONArray(performer)
+			json["performer"] = performer.map() { $0.asJSON() }
 		}
 		if let reasonCodeableConcept = self.reasonCodeableConcept {
 			json["reasonCodeableConcept"] = reasonCodeableConcept.asJSON()
 		}
 		if let reasonNotPerformed = self.reasonNotPerformed {
-			json["reasonNotPerformed"] = CodeableConcept.asJSONArray(reasonNotPerformed)
+			json["reasonNotPerformed"] = reasonNotPerformed.map() { $0.asJSON() }
 		}
 		if let reasonReference = self.reasonReference {
 			json["reasonReference"] = reasonReference.asJSON()
 		}
 		if let report = self.report {
-			json["report"] = Reference.asJSONArray(report)
+			json["report"] = report.map() { $0.asJSON() }
 		}
 		if let request = self.request {
 			json["request"] = request.asJSON()
@@ -396,7 +396,7 @@ public class Procedure: DomainResource {
 			json["subject"] = subject.asJSON()
 		}
 		if let used = self.used {
-			json["used"] = Reference.asJSONArray(used)
+			json["used"] = used.map() { $0.asJSON() }
 		}
 		
 		return json

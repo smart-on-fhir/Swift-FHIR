@@ -241,13 +241,13 @@ public class Device: DomainResource {
 		var json = super.asJSON()
 		
 		if let contact = self.contact {
-			json["contact"] = ContactPoint.asJSONArray(contact)
+			json["contact"] = contact.map() { $0.asJSON() }
 		}
 		if let expiry = self.expiry {
 			json["expiry"] = expiry.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let location = self.location {
 			json["location"] = location.asJSON()
@@ -265,7 +265,7 @@ public class Device: DomainResource {
 			json["model"] = model.asJSON()
 		}
 		if let note = self.note {
-			json["note"] = Annotation.asJSONArray(note)
+			json["note"] = note.map() { $0.asJSON() }
 		}
 		if let owner = self.owner {
 			json["owner"] = owner.asJSON()

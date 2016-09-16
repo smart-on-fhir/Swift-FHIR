@@ -171,7 +171,7 @@ public class MedicationPackage: BackboneElement {
 			json["container"] = container.asJSON()
 		}
 		if let content = self.content {
-			json["content"] = MedicationPackageContent.asJSONArray(content)
+			json["content"] = content.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -313,13 +313,13 @@ public class MedicationProduct: BackboneElement {
 		var json = super.asJSON()
 		
 		if let batch = self.batch {
-			json["batch"] = MedicationProductBatch.asJSONArray(batch)
+			json["batch"] = batch.map() { $0.asJSON() }
 		}
 		if let form = self.form {
 			json["form"] = form.asJSON()
 		}
 		if let ingredient = self.ingredient {
-			json["ingredient"] = MedicationProductIngredient.asJSONArray(ingredient)
+			json["ingredient"] = ingredient.map() { $0.asJSON() }
 		}
 		
 		return json

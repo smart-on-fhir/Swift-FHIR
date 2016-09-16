@@ -204,10 +204,10 @@ class LocalPatientServer: FHIROpenServer {
 				req.resource = pat
 				try! req.prepareData()
 				
-				callback(req.response(http, data: req.data))
+				callback(req.response(with: http, data: req.data))
 			}
 			else {
-				callback(handler.response(http))
+				callback(handler.response(with: http))
 			}
 			lastPostedResource = handler.resource
 		
@@ -222,7 +222,7 @@ class LocalPatientServer: FHIROpenServer {
 				handler.resource = last
 				try! handler.prepareData()
 				
-				callback(handler.response(http, data: handler.data))
+				callback(handler.response(with: http, data: handler.data))
 			}
 			else {
 				callback(handler.notSent("\(request.httpMethod) without preceding “POST” is not supported"))

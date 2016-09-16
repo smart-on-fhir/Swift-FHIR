@@ -268,7 +268,7 @@ public class Patient: DomainResource {
 			json["active"] = active.asJSON()
 		}
 		if let address = self.address {
-			json["address"] = Address.asJSONArray(address)
+			json["address"] = address.map() { $0.asJSON() }
 		}
 		if let animal = self.animal {
 			json["animal"] = animal.asJSON()
@@ -277,13 +277,13 @@ public class Patient: DomainResource {
 			json["birthDate"] = birthDate.asJSON()
 		}
 		if let careProvider = self.careProvider {
-			json["careProvider"] = Reference.asJSONArray(careProvider)
+			json["careProvider"] = careProvider.map() { $0.asJSON() }
 		}
 		if let communication = self.communication {
-			json["communication"] = PatientCommunication.asJSONArray(communication)
+			json["communication"] = communication.map() { $0.asJSON() }
 		}
 		if let contact = self.contact {
-			json["contact"] = PatientContact.asJSONArray(contact)
+			json["contact"] = contact.map() { $0.asJSON() }
 		}
 		if let deceasedBoolean = self.deceasedBoolean {
 			json["deceasedBoolean"] = deceasedBoolean.asJSON()
@@ -295,10 +295,10 @@ public class Patient: DomainResource {
 			json["gender"] = gender.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let link = self.link {
-			json["link"] = PatientLink.asJSONArray(link)
+			json["link"] = link.map() { $0.asJSON() }
 		}
 		if let managingOrganization = self.managingOrganization {
 			json["managingOrganization"] = managingOrganization.asJSON()
@@ -313,13 +313,13 @@ public class Patient: DomainResource {
 			json["multipleBirthInteger"] = multipleBirthInteger.asJSON()
 		}
 		if let name = self.name {
-			json["name"] = HumanName.asJSONArray(name)
+			json["name"] = name.map() { $0.asJSON() }
 		}
 		if let photo = self.photo {
-			json["photo"] = Attachment.asJSONArray(photo)
+			json["photo"] = photo.map() { $0.asJSON() }
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -608,10 +608,10 @@ public class PatientContact: BackboneElement {
 			json["period"] = period.asJSON()
 		}
 		if let relationship = self.relationship {
-			json["relationship"] = CodeableConcept.asJSONArray(relationship)
+			json["relationship"] = relationship.map() { $0.asJSON() }
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json

@@ -195,7 +195,7 @@ public class SupplyRequest: DomainResource {
 			json["status"] = status.asJSON()
 		}
 		if let supplier = self.supplier {
-			json["supplier"] = Reference.asJSONArray(supplier)
+			json["supplier"] = supplier.map() { $0.asJSON() }
 		}
 		if let when = self.when {
 			json["when"] = when.asJSON()

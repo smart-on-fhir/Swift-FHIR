@@ -9,11 +9,16 @@
 import Foundation
 #if !NO_MODEL_IMPORT
 import Models
+public typealias FHIRSearchBundleErrorCallback = ((Models.Bundle?, FHIRError?) -> Void)
+#else
+public typealias FHIRSearchBundleErrorCallback = ((Bundle?, FHIRError?) -> Void)
 #endif
 
 
 /**
 	Instances of this class can perform searches on a server.
+
+	TODO: needs a refresh!!
 
 	Searches are instantiated from MongoDB-like query constructs, like:
 
@@ -101,9 +106,9 @@ open class FHIRSearch
 		Calling this method will always restart search, not fetch subsequent pages.
 	
 		- parameter server: The FHIRServer instance on which to perform the search
-		- parameter callback: The callback, receives the response Bundle or an NSError message describing what went wrong
+		- parameter callback: The callback, receives the response Bundle or an Error message describing what went wrong
 	 */
-	open func perform(_ server: FHIRServer, callback: @escaping ((_ bundle: Bundle?, _ error: FHIRError?) -> Void)) {
+	open func perform(_ server: FHIRServer, callback: @escaping FHIRSearchBundleErrorCallback) {
 		if nil == profileType {
 			callback(nil, FHIRError.searchResourceTypeNotDefined)
 			return
@@ -118,9 +123,9 @@ open class FHIRSearch
 		with no bundle and no error.
 	
 		- parameter server: The FHIRServer instance on which to perform the search
-		- parameter callback: The callback, receives the response Bundle or an NSError message describing what went wrong
+		- parameter callback: The callback, receives the response Bundle or an Error message describing what went wrong
 	 */
-	open func nextPage(_ server: FHIRServer, callback: @escaping ((_ bundle: Bundle?, _ error: FHIRError?) -> Void)) {
+	open func nextPage(_ server: FHIRServer, callback: @escaping FHIRSearchBundleErrorCallback) {
 		if let next = nextPageURL?.absoluteString {
 			performSearch(server, queryPath: next, callback: callback)
 		}
@@ -129,14 +134,14 @@ open class FHIRSearch
 		}
 	}
 	
-	func performSearch(_ server: FHIRServer, queryPath: String, callback: @escaping ((_ bundle: Bundle?, _ error: FHIRError?) -> Void)) {
+	func performSearch(_ server: FHIRServer, queryPath: String, callback: @escaping FHIRSearchBundleErrorCallback) {
 		if busy {
 			callback(nil, nil)
 			return
 		}
 		
 		busy = true
-		server.performRequest(ofType: .GET, path: queryPath, resource: nil, additionalHeaders: nil) { response in
+		server.performRequest(.GET, path: queryPath, resource: nil, additionalHeaders: nil) { response in
 			self.busy = false
 			
 			if let error = response.error {

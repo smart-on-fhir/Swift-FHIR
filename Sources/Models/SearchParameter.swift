@@ -251,7 +251,7 @@ public class SearchParameter: DomainResource {
 			json["code"] = code.asJSON()
 		}
 		if let contact = self.contact {
-			json["contact"] = SearchParameterContact.asJSONArray(contact)
+			json["contact"] = contact.map() { $0.asJSON() }
 		}
 		if let date = self.date {
 			json["date"] = date.asJSON()
@@ -353,7 +353,7 @@ public class SearchParameterContact: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json

@@ -242,25 +242,25 @@ public class Goal: DomainResource {
 		var json = super.asJSON()
 		
 		if let addresses = self.addresses {
-			json["addresses"] = Reference.asJSONArray(addresses)
+			json["addresses"] = addresses.map() { $0.asJSON() }
 		}
 		if let author = self.author {
 			json["author"] = author.asJSON()
 		}
 		if let category = self.category {
-			json["category"] = CodeableConcept.asJSONArray(category)
+			json["category"] = category.map() { $0.asJSON() }
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let note = self.note {
-			json["note"] = Annotation.asJSONArray(note)
+			json["note"] = note.map() { $0.asJSON() }
 		}
 		if let outcome = self.outcome {
-			json["outcome"] = GoalOutcome.asJSONArray(outcome)
+			json["outcome"] = outcome.map() { $0.asJSON() }
 		}
 		if let priority = self.priority {
 			json["priority"] = priority.asJSON()

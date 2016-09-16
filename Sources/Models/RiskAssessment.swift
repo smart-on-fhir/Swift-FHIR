@@ -156,7 +156,7 @@ public class RiskAssessment: DomainResource {
 		var json = super.asJSON()
 		
 		if let basis = self.basis {
-			json["basis"] = Reference.asJSONArray(basis)
+			json["basis"] = basis.map() { $0.asJSON() }
 		}
 		if let condition = self.condition {
 			json["condition"] = condition.asJSON()
@@ -180,7 +180,7 @@ public class RiskAssessment: DomainResource {
 			json["performer"] = performer.asJSON()
 		}
 		if let prediction = self.prediction {
-			json["prediction"] = RiskAssessmentPrediction.asJSONArray(prediction)
+			json["prediction"] = prediction.map() { $0.asJSON() }
 		}
 		if let subject = self.subject {
 			json["subject"] = subject.asJSON()

@@ -264,13 +264,13 @@ public class DocumentReference: DomainResource {
 			json["authenticator"] = authenticator.asJSON()
 		}
 		if let author = self.author {
-			json["author"] = Reference.asJSONArray(author)
+			json["author"] = author.map() { $0.asJSON() }
 		}
 		if let class_fhir = self.class_fhir {
 			json["class"] = class_fhir.asJSON()
 		}
 		if let content = self.content {
-			json["content"] = DocumentReferenceContent.asJSONArray(content)
+			json["content"] = content.map() { $0.asJSON() }
 		}
 		if let context = self.context {
 			json["context"] = context.asJSON()
@@ -288,7 +288,7 @@ public class DocumentReference: DomainResource {
 			json["docStatus"] = docStatus.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let indexed = self.indexed {
 			json["indexed"] = indexed.asJSON()
@@ -297,10 +297,10 @@ public class DocumentReference: DomainResource {
 			json["masterIdentifier"] = masterIdentifier.asJSON()
 		}
 		if let relatesTo = self.relatesTo {
-			json["relatesTo"] = DocumentReferenceRelatesTo.asJSONArray(relatesTo)
+			json["relatesTo"] = relatesTo.map() { $0.asJSON() }
 		}
 		if let securityLabel = self.securityLabel {
-			json["securityLabel"] = CodeableConcept.asJSONArray(securityLabel)
+			json["securityLabel"] = securityLabel.map() { $0.asJSON() }
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
@@ -380,7 +380,7 @@ public class DocumentReferenceContent: BackboneElement {
 			json["attachment"] = attachment.asJSON()
 		}
 		if let format = self.format {
-			json["format"] = Coding.asJSONArray(format)
+			json["format"] = format.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -502,7 +502,7 @@ public class DocumentReferenceContext: BackboneElement {
 			json["encounter"] = encounter.asJSON()
 		}
 		if let event = self.event {
-			json["event"] = CodeableConcept.asJSONArray(event)
+			json["event"] = event.map() { $0.asJSON() }
 		}
 		if let facilityType = self.facilityType {
 			json["facilityType"] = facilityType.asJSON()
@@ -514,7 +514,7 @@ public class DocumentReferenceContext: BackboneElement {
 			json["practiceSetting"] = practiceSetting.asJSON()
 		}
 		if let related = self.related {
-			json["related"] = DocumentReferenceContextRelated.asJSONArray(related)
+			json["related"] = related.map() { $0.asJSON() }
 		}
 		if let sourcePatientInfo = self.sourcePatientInfo {
 			json["sourcePatientInfo"] = sourcePatientInfo.asJSON()

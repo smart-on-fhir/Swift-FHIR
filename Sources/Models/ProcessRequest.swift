@@ -251,7 +251,7 @@ public class ProcessRequest: DomainResource {
 			json["exclude"] = arr
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let include = self.include {
 			var arr = [Any]()
@@ -261,7 +261,7 @@ public class ProcessRequest: DomainResource {
 			json["include"] = arr
 		}
 		if let item = self.item {
-			json["item"] = ProcessRequestItem.asJSONArray(item)
+			json["item"] = item.map() { $0.asJSON() }
 		}
 		if let nullify = self.nullify {
 			json["nullify"] = nullify.asJSON()

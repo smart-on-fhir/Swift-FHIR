@@ -306,7 +306,7 @@ public class TestScript: DomainResource {
 		var json = super.asJSON()
 		
 		if let contact = self.contact {
-			json["contact"] = TestScriptContact.asJSONArray(contact)
+			json["contact"] = contact.map() { $0.asJSON() }
 		}
 		if let copyright = self.copyright {
 			json["copyright"] = copyright.asJSON()
@@ -321,7 +321,7 @@ public class TestScript: DomainResource {
 			json["experimental"] = experimental.asJSON()
 		}
 		if let fixture = self.fixture {
-			json["fixture"] = TestScriptFixture.asJSONArray(fixture)
+			json["fixture"] = fixture.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
@@ -336,7 +336,7 @@ public class TestScript: DomainResource {
 			json["name"] = name.asJSON()
 		}
 		if let profile = self.profile {
-			json["profile"] = Reference.asJSONArray(profile)
+			json["profile"] = profile.map() { $0.asJSON() }
 		}
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
@@ -354,16 +354,16 @@ public class TestScript: DomainResource {
 			json["teardown"] = teardown.asJSON()
 		}
 		if let test = self.test {
-			json["test"] = TestScriptTest.asJSONArray(test)
+			json["test"] = test.map() { $0.asJSON() }
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
 		}
 		if let useContext = self.useContext {
-			json["useContext"] = CodeableConcept.asJSONArray(useContext)
+			json["useContext"] = useContext.map() { $0.asJSON() }
 		}
 		if let variable = self.variable {
-			json["variable"] = TestScriptVariable.asJSONArray(variable)
+			json["variable"] = variable.map() { $0.asJSON() }
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
@@ -428,7 +428,7 @@ public class TestScriptContact: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -573,10 +573,10 @@ public class TestScriptMetadata: BackboneElement {
 		var json = super.asJSON()
 		
 		if let capability = self.capability {
-			json["capability"] = TestScriptMetadataCapability.asJSONArray(capability)
+			json["capability"] = capability.map() { $0.asJSON() }
 		}
 		if let link = self.link {
-			json["link"] = TestScriptMetadataLink.asJSONArray(link)
+			json["link"] = link.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -848,7 +848,7 @@ public class TestScriptSetup: BackboneElement {
 		var json = super.asJSON()
 		
 		if let action = self.action {
-			json["action"] = TestScriptSetupAction.asJSONArray(action)
+			json["action"] = action.map() { $0.asJSON() }
 		}
 		if let metadata = self.metadata {
 			json["metadata"] = metadata.asJSON()
@@ -1439,7 +1439,7 @@ public class TestScriptSetupActionOperation: BackboneElement {
 			json["params"] = params.asJSON()
 		}
 		if let requestHeader = self.requestHeader {
-			json["requestHeader"] = TestScriptSetupActionOperationRequestHeader.asJSONArray(requestHeader)
+			json["requestHeader"] = requestHeader.map() { $0.asJSON() }
 		}
 		if let resource = self.resource {
 			json["resource"] = resource.asJSON()
@@ -1588,7 +1588,7 @@ public class TestScriptTeardown: BackboneElement {
 		var json = super.asJSON()
 		
 		if let action = self.action {
-			json["action"] = TestScriptTeardownAction.asJSONArray(action)
+			json["action"] = action.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -1725,7 +1725,7 @@ public class TestScriptTest: BackboneElement {
 		var json = super.asJSON()
 		
 		if let action = self.action {
-			json["action"] = TestScriptTestAction.asJSONArray(action)
+			json["action"] = action.map() { $0.asJSON() }
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()

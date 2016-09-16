@@ -159,7 +159,7 @@ public class Subscription: DomainResource {
 			json["channel"] = channel.asJSON()
 		}
 		if let contact = self.contact {
-			json["contact"] = ContactPoint.asJSONArray(contact)
+			json["contact"] = contact.map() { $0.asJSON() }
 		}
 		if let criteria = self.criteria {
 			json["criteria"] = criteria.asJSON()
@@ -177,7 +177,7 @@ public class Subscription: DomainResource {
 			json["status"] = status.asJSON()
 		}
 		if let tag = self.tag {
-			json["tag"] = Coding.asJSONArray(tag)
+			json["tag"] = tag.map() { $0.asJSON() }
 		}
 		
 		return json

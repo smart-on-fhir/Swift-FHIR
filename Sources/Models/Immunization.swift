@@ -330,7 +330,7 @@ public class Immunization: DomainResource {
 			json["explanation"] = explanation.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = Identifier.asJSONArray(identifier)
+			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let location = self.location {
 			json["location"] = location.asJSON()
@@ -342,7 +342,7 @@ public class Immunization: DomainResource {
 			json["manufacturer"] = manufacturer.asJSON()
 		}
 		if let note = self.note {
-			json["note"] = Annotation.asJSONArray(note)
+			json["note"] = note.map() { $0.asJSON() }
 		}
 		if let patient = self.patient {
 			json["patient"] = patient.asJSON()
@@ -351,7 +351,7 @@ public class Immunization: DomainResource {
 			json["performer"] = performer.asJSON()
 		}
 		if let reaction = self.reaction {
-			json["reaction"] = ImmunizationReaction.asJSONArray(reaction)
+			json["reaction"] = reaction.map() { $0.asJSON() }
 		}
 		if let reported = self.reported {
 			json["reported"] = reported.asJSON()
@@ -369,7 +369,7 @@ public class Immunization: DomainResource {
 			json["status"] = status.asJSON()
 		}
 		if let vaccinationProtocol = self.vaccinationProtocol {
-			json["vaccinationProtocol"] = ImmunizationVaccinationProtocol.asJSONArray(vaccinationProtocol)
+			json["vaccinationProtocol"] = vaccinationProtocol.map() { $0.asJSON() }
 		}
 		if let vaccineCode = self.vaccineCode {
 			json["vaccineCode"] = vaccineCode.asJSON()
@@ -434,10 +434,10 @@ public class ImmunizationExplanation: BackboneElement {
 		var json = super.asJSON()
 		
 		if let reason = self.reason {
-			json["reason"] = CodeableConcept.asJSONArray(reason)
+			json["reason"] = reason.map() { $0.asJSON() }
 		}
 		if let reasonNotGiven = self.reasonNotGiven {
-			json["reasonNotGiven"] = CodeableConcept.asJSONArray(reasonNotGiven)
+			json["reasonNotGiven"] = reasonNotGiven.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -683,7 +683,7 @@ public class ImmunizationVaccinationProtocol: BackboneElement {
 			json["seriesDoses"] = seriesDoses.asJSON()
 		}
 		if let targetDisease = self.targetDisease {
-			json["targetDisease"] = CodeableConcept.asJSONArray(targetDisease)
+			json["targetDisease"] = targetDisease.map() { $0.asJSON() }
 		}
 		
 		return json

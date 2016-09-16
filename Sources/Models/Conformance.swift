@@ -317,7 +317,7 @@ public class Conformance: DomainResource {
 			json["acceptUnknown"] = acceptUnknown.asJSON()
 		}
 		if let contact = self.contact {
-			json["contact"] = ConformanceContact.asJSONArray(contact)
+			json["contact"] = contact.map() { $0.asJSON() }
 		}
 		if let copyright = self.copyright {
 			json["copyright"] = copyright.asJSON()
@@ -329,7 +329,7 @@ public class Conformance: DomainResource {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let document = self.document {
-			json["document"] = ConformanceDocument.asJSONArray(document)
+			json["document"] = document.map() { $0.asJSON() }
 		}
 		if let experimental = self.experimental {
 			json["experimental"] = experimental.asJSON()
@@ -351,13 +351,13 @@ public class Conformance: DomainResource {
 			json["kind"] = kind.asJSON()
 		}
 		if let messaging = self.messaging {
-			json["messaging"] = ConformanceMessaging.asJSONArray(messaging)
+			json["messaging"] = messaging.map() { $0.asJSON() }
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
 		if let profile = self.profile {
-			json["profile"] = Reference.asJSONArray(profile)
+			json["profile"] = profile.map() { $0.asJSON() }
 		}
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
@@ -366,7 +366,7 @@ public class Conformance: DomainResource {
 			json["requirements"] = requirements.asJSON()
 		}
 		if let rest = self.rest {
-			json["rest"] = ConformanceRest.asJSONArray(rest)
+			json["rest"] = rest.map() { $0.asJSON() }
 		}
 		if let software = self.software {
 			json["software"] = software.asJSON()
@@ -440,7 +440,7 @@ public class ConformanceContact: BackboneElement {
 			json["name"] = name.asJSON()
 		}
 		if let telecom = self.telecom {
-			json["telecom"] = ContactPoint.asJSONArray(telecom)
+			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -697,10 +697,10 @@ public class ConformanceMessaging: BackboneElement {
 			json["documentation"] = documentation.asJSON()
 		}
 		if let endpoint = self.endpoint {
-			json["endpoint"] = ConformanceMessagingEndpoint.asJSONArray(endpoint)
+			json["endpoint"] = endpoint.map() { $0.asJSON() }
 		}
 		if let event = self.event {
-			json["event"] = ConformanceMessagingEvent.asJSONArray(event)
+			json["event"] = event.map() { $0.asJSON() }
 		}
 		if let reliableCache = self.reliableCache {
 			json["reliableCache"] = reliableCache.asJSON()
@@ -1106,19 +1106,19 @@ public class ConformanceRest: BackboneElement {
 			json["documentation"] = documentation.asJSON()
 		}
 		if let interaction = self.interaction {
-			json["interaction"] = ConformanceRestInteraction.asJSONArray(interaction)
+			json["interaction"] = interaction.map() { $0.asJSON() }
 		}
 		if let mode = self.mode {
 			json["mode"] = mode.asJSON()
 		}
 		if let operation = self.operation {
-			json["operation"] = ConformanceRestOperation.asJSONArray(operation)
+			json["operation"] = operation.map() { $0.asJSON() }
 		}
 		if let resource = self.resource {
-			json["resource"] = ConformanceRestResource.asJSONArray(resource)
+			json["resource"] = resource.map() { $0.asJSON() }
 		}
 		if let searchParam = self.searchParam {
-			json["searchParam"] = ConformanceRestResourceSearchParam.asJSONArray(searchParam)
+			json["searchParam"] = searchParam.map() { $0.asJSON() }
 		}
 		if let security = self.security {
 			json["security"] = security.asJSON()
@@ -1471,7 +1471,7 @@ public class ConformanceRestResource: BackboneElement {
 			json["conditionalUpdate"] = conditionalUpdate.asJSON()
 		}
 		if let interaction = self.interaction {
-			json["interaction"] = ConformanceRestResourceInteraction.asJSONArray(interaction)
+			json["interaction"] = interaction.map() { $0.asJSON() }
 		}
 		if let profile = self.profile {
 			json["profile"] = profile.asJSON()
@@ -1487,7 +1487,7 @@ public class ConformanceRestResource: BackboneElement {
 			json["searchInclude"] = arr
 		}
 		if let searchParam = self.searchParam {
-			json["searchParam"] = ConformanceRestResourceSearchParam.asJSONArray(searchParam)
+			json["searchParam"] = searchParam.map() { $0.asJSON() }
 		}
 		if let searchRevInclude = self.searchRevInclude {
 			var arr = [Any]()
@@ -1820,7 +1820,7 @@ public class ConformanceRestSecurity: BackboneElement {
 		var json = super.asJSON()
 		
 		if let certificate = self.certificate {
-			json["certificate"] = ConformanceRestSecurityCertificate.asJSONArray(certificate)
+			json["certificate"] = certificate.map() { $0.asJSON() }
 		}
 		if let cors = self.cors {
 			json["cors"] = cors.asJSON()
@@ -1829,7 +1829,7 @@ public class ConformanceRestSecurity: BackboneElement {
 			json["description"] = description_fhir.asJSON()
 		}
 		if let service = self.service {
-			json["service"] = CodeableConcept.asJSONArray(service)
+			json["service"] = service.map() { $0.asJSON() }
 		}
 		
 		return json

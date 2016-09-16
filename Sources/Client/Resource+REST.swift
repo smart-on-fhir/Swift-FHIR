@@ -105,7 +105,7 @@ public extension Resource {
 	- parameter callback: The callback to execute once done. The callback is NOT guaranteed to be executed on the main thread!
 	*/
 	public class func readFrom(_ path: String, server: FHIRServer, callback: @escaping FHIRResourceErrorCallback) {
-		server.performRequest(ofType: .GET, path: path, resource: nil, additionalHeaders: nil) { response in
+		server.performRequest(.GET, path: path, resource: nil, additionalHeaders: nil) { response in
 			if let error = response.error {
 				callback(nil, error)
 			}
@@ -148,7 +148,7 @@ public extension Resource {
 		}
 		
 		let headers = FHIRRequestHeaders([.prefer: "return=minimal"])
-		server.performRequest(ofType: .POST, path: relativeURLBase(), resource: self, additionalHeaders: headers) { response in
+		server.performRequest(.POST, path: relativeURLBase(), resource: self, additionalHeaders: headers) { response in
 			if nil == response.error {
 				self._server = server
 				do {
@@ -183,7 +183,7 @@ public extension Resource {
 		}
 		
 		let headers = FHIRRequestHeaders([.prefer: "return=representation"])
-		server.performRequest(ofType: .POST, path: relativeURLBase(), resource: self, additionalHeaders: headers) { response in
+		server.performRequest(.POST, path: relativeURLBase(), resource: self, additionalHeaders: headers) { response in
 			if nil == response.error {
 				self._server = server
 				do {
@@ -231,7 +231,7 @@ public extension Resource {
 		if let server = _server {
 			do {
 				let path = try relativeURLPath()
-				server.performRequest(ofType: .PUT, path: path, resource: self, additionalHeaders: nil) { response in
+				server.performRequest(.PUT, path: path, resource: self, additionalHeaders: nil) { response in
 					do {
 						try response.applyHeaders(to: self)
 					}
@@ -276,7 +276,7 @@ public extension Resource {
 	This implementation issues a DELETE call against the given path on the given server.
 	*/
 	public class func delete(_ path: String, server: FHIRServer, callback: @escaping FHIRErrorCallback) {
-		server.performRequest(ofType: .DELETE, path: path, resource: nil, additionalHeaders: nil) { response in
+		server.performRequest(.DELETE, path: path, resource: nil, additionalHeaders: nil) { response in
 			// TODO: should we do some header inspection (response.headers)?
 			callback(response.error)
 		}

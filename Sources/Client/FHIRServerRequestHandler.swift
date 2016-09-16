@@ -24,8 +24,8 @@ open class FHIRServerRequestHandler {
 		return FHIRRequestHeaders()
 	}
 	
-	/// The HTTP type of the request.
-	open let type: FHIRRequestType
+	/// The HTTP method of the request.
+	open let method: FHIRRequestMethod
 	
 	/// Headers to be used on the request.
 	open var headers: FHIRRequestHeaders
@@ -36,8 +36,8 @@ open class FHIRServerRequestHandler {
 	/// The receiver may hold on to a resource that supplies the request's body data.
 	open var resource: Resource?
 	
-	public init(_ type: FHIRRequestType, resource: Resource? = nil) {
-		self.type = type
+	public init(_ method: FHIRRequestMethod, resource: Resource? = nil) {
+		self.method = method
 		self.headers = type(of: self).defaultHeaders
 		self.resource = resource
 	}
@@ -70,11 +70,11 @@ open class FHIRServerRequestHandler {
 	/**
 	Give the request type a chance to prepare/alter the URL request.
 	
-	Typically the FHIRRequestType instance sets the correct HTTPMethod as well as correct FHIR headers.
+	Typically the FHIRRequestMethod instance sets the correct HTTPMethod as well as correct FHIR headers.
 	*/
 	open func prepare(request: inout URLRequest) throws {
 		try prepareData()
-		type.prepare(request: &request, body: data)
+		method.prepare(request: &request, body: data)
 		headers.prepare(request: &request)
 	}
 	
@@ -108,10 +108,10 @@ open class FHIRServerRequestHandler {
 	/**
 	Convenience method to indicate that no request handler for the given type is available.
 	
-	- parameter forType: The request type
+	- parameter method: The request type
 	*/
-	open class func noneAvailable(forType type: FHIRRequestType) -> FHIRServerResponse {
-		return ResponseType.init(error: FHIRError.noRequestHandlerAvailable(type.rawValue))
+	open class func noneAvailable(for method: FHIRRequestMethod) -> FHIRServerResponse {
+		return ResponseType.init(error: FHIRError.noRequestHandlerAvailable(method.rawValue))
 	}
 }
 
@@ -144,7 +144,7 @@ open class FHIRServerJSONRequestHandler: FHIRServerRequestHandler {
 	}
 	
 	override open func prepare(request: inout URLRequest) throws {
-		switch type {
+		switch method {
 		case .PUT:
 			headers[.contentType] = "application/fhir+json; charset=utf-8"
 		case .POST:
@@ -171,7 +171,7 @@ open class FHIRServerDataRequestHandler: FHIRServerRequestHandler {
 	
 	open let contentType: String
 	
-	init(_ type: FHIRRequestType, contentType: String) {
+	init(_ type: FHIRRequestMethod, contentType: String) {
 		self.contentType = contentType
 		super.init(type, resource: nil)
 	}
@@ -180,7 +180,7 @@ open class FHIRServerDataRequestHandler: FHIRServerRequestHandler {
 	}
 	
 	override open func prepare(request: inout URLRequest) throws {
-		switch type {
+		switch method {
 		case .GET:
 			headers[.accept] = contentType
 		case .PUT:

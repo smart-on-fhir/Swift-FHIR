@@ -20,7 +20,7 @@ extension FHIRServerResponse {
 	
 	This method must not be called if the response has a non-nil error.
 	
-	- parameter to: The resource to apply response data to
+	- parameter resource: The resource to apply response data to
 	*/
 	public func applyHeaders(to resource: Resource) throws {
 		

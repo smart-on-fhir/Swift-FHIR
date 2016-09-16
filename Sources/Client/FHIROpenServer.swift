@@ -19,7 +19,7 @@ It knows its base URL, can fetch and hold on to the conformance statement and pe
 
 These methods are of interest to you when you create a subclass:
 
-- `handlerForRequest(ofType:resource:)`: what kind of handler your server wants to use. Returns `FHIRServerJSONRequestHandler`.
+- `handlerForRequest(withMethod:resource:)`: what kind of handler your server wants to use. Returns `FHIRServerJSONRequestHandler`.
 - `configurableRequest(for:)`: the SMART framework returns a request that already has an Authorization headers set, if needed.
 */
 open class FHIROpenServer: FHIRServer {
@@ -63,18 +63,18 @@ open class FHIROpenServer: FHIRServer {
 	/**
 	Perform a request of given type against the given path with the (optional) given resource and headers.
 	
-	- parameter ofType:            The HTTP method type of the request
+	- parameter method:            The HTTP method type of the request
 	- parameter path:              The relative path on the server to be interacting against
 	- parameter resource:          The resource to be involved in the request, if any
 	- parameter additonalHeaders:  The headers to set on the request
 	- parameter callback:          A callback, likely called asynchronously, returning a response instance
 	*/
-	open func performRequest(ofType type: FHIRRequestType, path: String, resource: Resource?, additionalHeaders: FHIRRequestHeaders? = nil, callback: @escaping ((FHIRServerResponse) -> Void)) {
-		if let handler = handlerForRequest(ofType: type, resource: resource, headers: additionalHeaders) {
+	open func performRequest(_ method: FHIRRequestMethod, path: String, resource: Resource?, additionalHeaders: FHIRRequestHeaders? = nil, callback: @escaping ((FHIRServerResponse) -> Void)) {
+		if let handler = handlerForRequest(withMethod: method, resource: resource, headers: additionalHeaders) {
 			performRequest(against: path, handler: handler, callback: callback)
 		}
 		else {
-			let res = FHIRServerRequestHandler.noneAvailable(forType: type)
+			let res = FHIRServerRequestHandler.noneAvailable(for: method)
 			callback(res)
 		}
 	}
@@ -87,12 +87,12 @@ open class FHIROpenServer: FHIRServer {
 	
 	Request handlers are responsible for constructing an URLRequest that correctly performs the desired REST interaction.
 	
-	- parameter type:     The type of the request (GET, PUT, POST or DELETE)
+	- parameter method:   The request method (GET, PUT, POST or DELETE)
 	- parameter resource: The resource to be involved in the request, if any
 	- returns:            An appropriate `FHIRServerRequestHandler`, for example a _FHIRServerJSONRequestHandler_ if sending and receiving JSON
 	*/
-	open func handlerForRequest(ofType type: FHIRRequestType, resource: Resource?, headers: FHIRRequestHeaders? = nil) -> FHIRServerRequestHandler? {
-		let handler = FHIRServerJSONRequestHandler(type, resource: resource)
+	open func handlerForRequest(withMethod method: FHIRRequestMethod, resource: Resource?, headers: FHIRRequestHeaders? = nil) -> FHIRServerRequestHandler? {
+		let handler = FHIRServerJSONRequestHandler(method, resource: resource)
 		if let headers = headers {
 			handler.add(headers: headers)
 		}

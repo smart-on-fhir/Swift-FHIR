@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EE684C1D19A789BA00B5A2C0"
                BuildableName = "SwiftFHIR.framework"
-               BlueprintName = "SwiftFHIR-OSX"
+               BlueprintName = "SwiftFHIR-macOS"
                ReferencedContainer = "container:SwiftFHIR.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EE684C2819A789BA00B5A2C0"
-               BuildableName = "SwiftFHIRTests.xctest"
-               BlueprintName = "SwiftFHIRTests"
+               BuildableName = "SwiftFHIR-macOSTests.xctest"
+               BlueprintName = "SwiftFHIR-macOSTests"
                ReferencedContainer = "container:SwiftFHIR.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,8 +47,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EE684C2819A789BA00B5A2C0"
-               BuildableName = "SwiftFHIRTests.xctest"
-               BlueprintName = "SwiftFHIRTests"
+               BuildableName = "SwiftFHIR-macOSTests.xctest"
+               BlueprintName = "SwiftFHIR-macOSTests"
                ReferencedContainer = "container:SwiftFHIR.xcodeproj">
             </BuildableReference>
             <LocationScenarioReference
@@ -62,7 +62,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EE684C1D19A789BA00B5A2C0"
             BuildableName = "SwiftFHIR.framework"
-            BlueprintName = "SwiftFHIR-OSX"
+            BlueprintName = "SwiftFHIR-macOS"
             ReferencedContainer = "container:SwiftFHIR.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -84,7 +84,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EE684C1D19A789BA00B5A2C0"
             BuildableName = "SwiftFHIR.framework"
-            BlueprintName = "SwiftFHIR-OSX"
+            BlueprintName = "SwiftFHIR-macOS"
             ReferencedContainer = "container:SwiftFHIR.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -102,7 +102,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EE684C1D19A789BA00B5A2C0"
             BuildableName = "SwiftFHIR.framework"
-            BlueprintName = "SwiftFHIR-OSX"
+            BlueprintName = "SwiftFHIR-macOS"
             ReferencedContainer = "container:SwiftFHIR.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

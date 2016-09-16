@@ -808,8 +808,7 @@
 		EE31DC691D64AC6200B04BEA /* UsageContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsageContext.swift; sourceTree = "<group>"; };
 		EE39069E1CD3E4F6008FECEA /* RequestTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestTests.swift; sourceTree = "<group>"; };
 		EE684C1E19A789BA00B5A2C0 /* SwiftFHIR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftFHIR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE684C2219A789BA00B5A2C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EE684C2919A789BA00B5A2C0 /* SwiftFHIRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftFHIRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE684C2919A789BA00B5A2C0 /* SwiftFHIR-macOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftFHIR-macOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE684C2C19A789BA00B5A2C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EE684CCE19A7CEF000B5A2C0 /* ExtensionsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionsTest.swift; sourceTree = "<group>"; };
 		EE6C88B21CB39A6A00ADFF94 /* CareTeam.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CareTeam.swift; sourceTree = "<group>"; };
@@ -842,7 +841,7 @@
 		EE6C88F01CB39D0900ADFF94 /* StructureMapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StructureMapTests.swift; sourceTree = "<group>"; };
 		EE6C88F11CB39D0900ADFF94 /* TaskTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTests.swift; sourceTree = "<group>"; };
 		EE6DA8571A5D4B1000E00708 /* SwiftFHIR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftFHIR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EE6DA85D1A5D4B3A00E00708 /* SwiftFHIRiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftFHIRiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE6DA85D1A5D4B3A00E00708 /* SwiftFHIR-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftFHIR-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EE8901221B7E07D700F1EDBF /* Element+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Element+Extensions.swift"; sourceTree = "<group>"; };
 		EE9ABA2A1D803D8400BA8B54 /* Patient+SMART.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Patient+SMART.swift"; sourceTree = "<group>"; };
 		EE9B31F31ACAD93400980AA9 /* Resource+REST.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Resource+REST.swift"; sourceTree = "<group>"; };
@@ -925,9 +924,9 @@
 			isa = PBXGroup;
 			children = (
 				EE684C1E19A789BA00B5A2C0 /* SwiftFHIR.framework */,
-				EE684C2919A789BA00B5A2C0 /* SwiftFHIRTests.xctest */,
+				EE684C2919A789BA00B5A2C0 /* SwiftFHIR-macOSTests.xctest */,
 				EE6DA8571A5D4B1000E00708 /* SwiftFHIR.framework */,
-				EE6DA85D1A5D4B3A00E00708 /* SwiftFHIRiOSTests.xctest */,
+				EE6DA85D1A5D4B3A00E00708 /* SwiftFHIR-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -935,7 +934,6 @@
 		EE684C2019A789BA00B5A2C0 /* SwiftFHIR */ = {
 			isa = PBXGroup;
 			children = (
-				EE684C2219A789BA00B5A2C0 /* Info.plist */,
 				EE9B31F61ACAD94800980AA9 /* Client */,
 				EE684C4219A78AEE00B5A2C0 /* Models */,
 			);
@@ -1284,9 +1282,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		EE684C1D19A789BA00B5A2C0 /* SwiftFHIR-OSX */ = {
+		EE684C1D19A789BA00B5A2C0 /* SwiftFHIR-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EE684C3119A789BA00B5A2C0 /* Build configuration list for PBXNativeTarget "SwiftFHIR-OSX" */;
+			buildConfigurationList = EE684C3119A789BA00B5A2C0 /* Build configuration list for PBXNativeTarget "SwiftFHIR-macOS" */;
 			buildPhases = (
 				EE684C1919A789BA00B5A2C0 /* Sources */,
 				EE684C1A19A789BA00B5A2C0 /* Frameworks */,
@@ -1297,14 +1295,14 @@
 			);
 			dependencies = (
 			);
-			name = "SwiftFHIR-OSX";
+			name = "SwiftFHIR-macOS";
 			productName = SwiftFHIR;
 			productReference = EE684C1E19A789BA00B5A2C0 /* SwiftFHIR.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EE684C2819A789BA00B5A2C0 /* SwiftFHIRTests */ = {
+		EE684C2819A789BA00B5A2C0 /* SwiftFHIR-macOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EE684C3419A789BA00B5A2C0 /* Build configuration list for PBXNativeTarget "SwiftFHIRTests" */;
+			buildConfigurationList = EE684C3419A789BA00B5A2C0 /* Build configuration list for PBXNativeTarget "SwiftFHIR-macOSTests" */;
 			buildPhases = (
 				EE684C2519A789BA00B5A2C0 /* Sources */,
 				EE684C2619A789BA00B5A2C0 /* Frameworks */,
@@ -1315,9 +1313,9 @@
 			dependencies = (
 				EE545F3A1A66805100E17B0C /* PBXTargetDependency */,
 			);
-			name = SwiftFHIRTests;
+			name = "SwiftFHIR-macOSTests";
 			productName = SwiftFHIRTests;
-			productReference = EE684C2919A789BA00B5A2C0 /* SwiftFHIRTests.xctest */;
+			productReference = EE684C2919A789BA00B5A2C0 /* SwiftFHIR-macOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		EE6DA7CD1A5D4B1000E00708 /* SwiftFHIR-iOS */ = {
@@ -1338,9 +1336,9 @@
 			productReference = EE6DA8571A5D4B1000E00708 /* SwiftFHIR.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EE6DA85C1A5D4B3A00E00708 /* SwiftFHIRiOSTests */ = {
+		EE6DA85C1A5D4B3A00E00708 /* SwiftFHIR-iOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EE6DA8661A5D4B3A00E00708 /* Build configuration list for PBXNativeTarget "SwiftFHIRiOSTests" */;
+			buildConfigurationList = EE6DA8661A5D4B3A00E00708 /* Build configuration list for PBXNativeTarget "SwiftFHIR-iOSTests" */;
 			buildPhases = (
 				EE6DA8591A5D4B3A00E00708 /* Sources */,
 				EE6DA85A1A5D4B3A00E00708 /* Frameworks */,
@@ -1351,9 +1349,9 @@
 			dependencies = (
 				EE6DA8651A5D4B3A00E00708 /* PBXTargetDependency */,
 			);
-			name = SwiftFHIRiOSTests;
+			name = "SwiftFHIR-iOSTests";
 			productName = SwiftFHIRiOSTests;
-			productReference = EE6DA85D1A5D4B3A00E00708 /* SwiftFHIRiOSTests.xctest */;
+			productReference = EE6DA85D1A5D4B3A00E00708 /* SwiftFHIR-iOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1397,10 +1395,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EE684C1D19A789BA00B5A2C0 /* SwiftFHIR-OSX */,
-				EE684C2819A789BA00B5A2C0 /* SwiftFHIRTests */,
+				EE684C1D19A789BA00B5A2C0 /* SwiftFHIR-macOS */,
+				EE684C2819A789BA00B5A2C0 /* SwiftFHIR-macOSTests */,
 				EE6DA7CD1A5D4B1000E00708 /* SwiftFHIR-iOS */,
-				EE6DA85C1A5D4B3A00E00708 /* SwiftFHIRiOSTests */,
+				EE6DA85C1A5D4B3A00E00708 /* SwiftFHIR-iOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2023,7 +2021,7 @@
 /* Begin PBXTargetDependency section */
 		EE545F3A1A66805100E17B0C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = EE684C1D19A789BA00B5A2C0 /* SwiftFHIR-OSX */;
+			target = EE684C1D19A789BA00B5A2C0 /* SwiftFHIR-macOS */;
 			targetProxy = EE545F391A66805100E17B0C /* PBXContainerItemProxy */;
 		};
 		EE6DA8651A5D4B3A00E00708 /* PBXTargetDependency */ = {
@@ -2278,7 +2276,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EE684C3119A789BA00B5A2C0 /* Build configuration list for PBXNativeTarget "SwiftFHIR-OSX" */ = {
+		EE684C3119A789BA00B5A2C0 /* Build configuration list for PBXNativeTarget "SwiftFHIR-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EE684C3219A789BA00B5A2C0 /* Debug */,
@@ -2287,7 +2285,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EE684C3419A789BA00B5A2C0 /* Build configuration list for PBXNativeTarget "SwiftFHIRTests" */ = {
+		EE684C3419A789BA00B5A2C0 /* Build configuration list for PBXNativeTarget "SwiftFHIR-macOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EE684C3519A789BA00B5A2C0 /* Debug */,
@@ -2305,7 +2303,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EE6DA8661A5D4B3A00E00708 /* Build configuration list for PBXNativeTarget "SwiftFHIRiOSTests" */ = {
+		EE6DA8661A5D4B3A00E00708 /* Build configuration list for PBXNativeTarget "SwiftFHIR-iOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EE6DA8671A5D4B3A00E00708 /* Debug */,

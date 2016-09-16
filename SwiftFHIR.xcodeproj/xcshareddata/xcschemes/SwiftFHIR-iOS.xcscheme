@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EE6DA85C1A5D4B3A00E00708"
-               BuildableName = "SwiftFHIRiOSTests.xctest"
-               BlueprintName = "SwiftFHIRiOSTests"
+               BuildableName = "SwiftFHIR-iOSTests.xctest"
+               BlueprintName = "SwiftFHIR-iOSTests"
                ReferencedContainer = "container:SwiftFHIR.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -47,8 +47,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EE6DA85C1A5D4B3A00E00708"
-               BuildableName = "SwiftFHIRiOSTests.xctest"
-               BlueprintName = "SwiftFHIRiOSTests"
+               BuildableName = "SwiftFHIR-iOSTests.xctest"
+               BlueprintName = "SwiftFHIR-iOSTests"
                ReferencedContainer = "container:SwiftFHIR.xcodeproj">
             </BuildableReference>
          </TestableReference>

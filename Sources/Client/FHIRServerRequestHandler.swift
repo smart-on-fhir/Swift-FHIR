@@ -24,7 +24,7 @@ open class FHIRServerRequestHandler {
 	}
 	
 	/// The HTTP type of the request.
-	open let type: FHIRRequestType
+	open let method: FHIRRequestType
 	
 	/// Headers to be used on the request.
 	open var headers: FHIRRequestHeaders
@@ -35,8 +35,8 @@ open class FHIRServerRequestHandler {
 	/// The receiver may hold on to a resource that supplies the request's body data.
 	open var resource: Resource?
 	
-	public init(type: FHIRRequestType, resource: Resource? = nil) {
-		self.type = type
+	public init(_ method: FHIRRequestType, resource: Resource? = nil) {
+		self.method = method
 		self.headers = type(of: self).defaultHeaders
 		self.resource = resource
 	}
@@ -73,7 +73,7 @@ open class FHIRServerRequestHandler {
 	*/
 	open func prepare(request: inout URLRequest) throws {
 		try prepareData()
-		type.prepare(request: &request, body: data)
+		method.prepare(request: &request, body: data)
 		headers.prepare(request: &request)
 	}
 	
@@ -143,7 +143,7 @@ open class FHIRServerJSONRequestHandler: FHIRServerRequestHandler {
 	}
 	
 	open override func prepare(request: inout URLRequest) throws {
-		switch type {
+		switch method {
 		case .PUT:
 			headers[.contentType] = "application/json+fhir; charset=utf-8"
 		case .POST:
@@ -172,14 +172,14 @@ open class FHIRServerDataRequestHandler: FHIRServerRequestHandler {
 	
 	init(_ type: FHIRRequestType, contentType: String) {
 		self.contentType = contentType
-		super.init(type: type, resource: nil)
+		super.init(type, resource: nil)
 	}
 	
 	override open func prepareData() throws {
 	}
 	
 	open override func prepare(request: inout URLRequest) throws {
-		switch type {
+		switch method {
 		case .GET:
 			headers[.accept] = contentType
 		case .PUT:

@@ -84,7 +84,7 @@ open class FHIROpenServer: FHIRServer {
 	- returns: An appropriate `FHIRServerRequestHandler`, for example a _FHIRServerJSONRequestHandler_ if sending and receiving JSON
 	*/
 	open func handlerForRequest(_ ofType: FHIRRequestType, resource: Resource?, headers: FHIRRequestHeaders? = nil) -> FHIRServerRequestHandler? {
-		let handler = FHIRServerJSONRequestHandler(type: ofType, resource: resource)
+		let handler = FHIRServerJSONRequestHandler(ofType, resource: resource)
 		if let headers = headers {
 			handler.add(headers: headers)
 		}

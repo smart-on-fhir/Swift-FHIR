@@ -200,7 +200,7 @@ class LocalPatientServer: FHIROpenServer {
 				pat.meta?.versionId = "\(version+1)"
 				pat.name = [HumanName(json: ["family": ["POST"]])]
 				
-				let req = FHIRServerJSONRequestHandler(type: .POST)
+				let req = FHIRServerJSONRequestHandler(.POST)
 				req.resource = pat
 				try! req.prepareData()
 				

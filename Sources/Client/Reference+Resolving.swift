@@ -80,9 +80,10 @@ extension Reference {
 	Resolves the reference, automatically determining how to resolve it from either contained, bundled or fetching from a server.
 	
 	Checks if a reference can be resolved immediately by calling `resolved(type:)` first, if not proceeds to request the referenced resource
-	from the respective location.
+	from the respective location. Contained resources are always found by `resolved(type:)`, so this method body is only executed if no
+	contained resource with the given identifier was found.
 	
-	- parameter type: The type of the resource to expect
+	- parameter type:     The type of the resource to expect
 	- parameter callback: The callback to call upon success or failure, with the resolved resource or nil
 	*/
 	public func resolve<T: Resource>(_ type: T.Type, callback: @escaping ((T?) -> Void)) {
@@ -125,7 +126,7 @@ extension Reference {
 				}
 			}
 			else {
-				fhir_warn("reference \(self) does not have a server instance, cannot resolve «\(ref)»")
+				fhir_warn("resource \(self) does not have a server instance nor does it contain «\(ref)», cannot resolve")
 				callback(nil)
 			}
 		}

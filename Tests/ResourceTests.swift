@@ -179,13 +179,15 @@ class LocalPatientServer: FHIROpenServer {
 	
 	var lastPostedResource: Resource?
 	
-	override func performPreparedRequest<R : FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: @escaping ((FHIRServerResponse) -> Void)) {
+	override func performRequest<R : FHIRServerRequestHandler>(on url: URL, handler: R, callback: (@escaping (FHIRServerResponse) -> Void)) {
+		var request = configurableRequest(for: url)
 		guard let path = request.url?.path, "/Patient" == path || path.hasPrefix("/Patient/") else {
 			let res = handler.notSent("Only supports Patient resources, trying to access «\(request.url?.path ?? "nil")»")
 			callback(res)
 			return
 		}
 		
+		try? handler.prepare(request: &request)
 		switch request.httpMethod ?? "GET" {
 		
 		case "POST":

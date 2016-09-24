@@ -127,6 +127,10 @@ open class FHIROpenServer: FHIRServer {
 	/**
 	Method to execute a request against a given absolute URL with a given request/response handler.
 	
+	This method will use the request handler to prepare the request (i.e. add headers and prepare body data), then hand it over to
+	`perform(request:completionHandler:)` to actually perform the request. Finally, the response data/URLResponse/error is handed to the
+	request handler and converted into the `FHIRServerResponse` that is delivered to you in the callback.
+	
 	- parameter url:      The full URL; may include query parts and fragment (!)
 	- parameter handler:  The RequestHandler that prepares the request and processes the response
 	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
@@ -135,7 +139,10 @@ open class FHIROpenServer: FHIRServer {
 		var request = configurableRequest(for: url)
 		do {
 			try handler.prepare(request: &request)
-			self.performPreparedRequest(request, handler: handler, callback: callback)
+			self.perform(request: request) { data, response, error in
+				let res = handler.response(response: response, data: data, error: error)
+				callback(res)
+			}
 		}
 		catch let error {
 			callback(handler.notSent("Failed to prepare request against \(url): \(error)"))
@@ -143,33 +150,17 @@ open class FHIROpenServer: FHIRServer {
 	}
 	
 	/**
-	Method to execute an already prepared request and use the given request/response handler.
+	This is the last method in the chain to actually perform a request. Uses `URLSession().dataTask(with:completionHandler:)`.
 	
-	This implementation uses the instance's URLSession to execute data tasks with the requests. Subclasses can override to supply different
-	URLSessions based on the request, if so desired.
-	
-	- parameter request: The URL request to perform
-	- parameter handler: The RequestHandler that prepares the request and processes the response
-	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
+	- parameter request:           The URL request to perform as-is
+	- parameter completionHandler: The completion handler, returning optional data, response and error instances, when all has completed
+	- returns:                     A URLSessionTask that is already under way
 	*/
-	open func performPreparedRequest<R: FHIRServerRequestHandler>(_ request: URLRequest, handler: R, callback: @escaping ((FHIRServerResponse) -> Void)) {
-		performPreparedRequest(request, withSession: URLSession(), handler: handler, callback: callback)
-	}
-	
-	/**
-	Method to execute an already prepared request with a given session and use the given request/response handler.
-	
-	- parameter request: The URL request to perform
-	- parameter withSession: The URLSession instance to use
-	- parameter handler: The RequestHandler that prepares the request and processes the response
-	- parameter callback: The callback to execute; NOT guaranteed to be performed on the main thread!
-	*/
-	open func performPreparedRequest<R: FHIRServerRequestHandler>(_ request: URLRequest, withSession session: URLSession, handler: R, callback: @escaping ((FHIRServerResponse) -> Void)) {
-		let task = session.dataTask(with: request) { data, response, error in
-			let res = handler.response(response: response, data: data, error: error)
-			callback(res)
-		}
+	@discardableResult
+	open func perform(request: URLRequest, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionTask? {
+		let task = URLSession().dataTask(with: request, completionHandler: completionHandler)
 		task.resume()
+		return task
 	}
 	
 	

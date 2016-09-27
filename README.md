@@ -1,10 +1,11 @@
 FHIR Swift Classes
 ==================
 
-These are [Swift](https://developer.apple.com/swift/) classes representing data models of [🔥 FHIR](http://www.hl7.org/fhir) resource profiles, compatible with **iOS 7** and **OS X 10.9** and later.
+These are [Swift][] classes representing data models of [🔥 FHIR][fhir] resource profiles, compatible with **iOS 7** and **OS X 10.9** and later.
 Building _Swift 3_ frameworks requires Xcode 8 or later, using frameworks on iOS requires **iOS 8**.
 
 This work is [Apache licensed](LICENSE.txt).
+FHIR® is the registered trademark of [HL7][] and is used with the permission of HL7.
 
 
 ### Versioning
@@ -15,6 +16,7 @@ See the `develop` branch or specific `feature/x` branches for new Swift or FHIR 
 
  Version |   Swift   |      FHIR     | &nbsp;
 ---------|-----------|---------------|-----------------------------
+ **2.9** |       3.0 |  `1.6.0.9663` | STU 3 Ballot, Sep 2016
  **2.8** |       3.0 |  `1.0.2.7202` | DSTU 2 (_+ technical errata_)
  **2.4** |       2.2 |  `1.6.0.9663` | STU 3 Ballot, Sept 2016
  **2.3** |       2.3 |  `1.0.2.7202` | DSTU 2 (_+ technical errata_)
@@ -30,7 +32,7 @@ See the `develop` branch or specific `feature/x` branches for new Swift or FHIR 
 SMART on FHIR
 -------------
 
-The [Swift-SMART](https://github.com/smart-on-fhir/Swift-SMART) framework utilizes these classes.
+The [Swift-SMART][] framework utilizes these classes.
 It also adds an implementation of the _FHIRServer_ protocol to make for a complete FHIR client framework.
 
 - [Programming Guide](https://github.com/smart-on-fhir/Swift-SMART/wiki) with code examples
@@ -66,7 +68,7 @@ Working, at least to some extent:
 - Serialize to JSON
 - Resolve contained/bundled/relative/absolute resource references
 - Contain resources
-- Construct searches with NoSQL-like statements (cf. [fhir.js](https://github.com/FHIR/fhir.js))
+- Construct searches with NoSQL-like statements (cf. [fhir.js][])
 - Perform operations
 - Use example resources for auto-created class unit tests
     + Tests deserialization from file
@@ -85,7 +87,7 @@ Custom classes and protocols start with `FHIR` to not make them clash with profi
 FHIR Profile Data Models
 ------------------------
 
-Classes are generated from FHIR profiles with our [Python FHIR parser](https://github.com/smart-on-fhir/fhir-parser).
+Classes are generated from FHIR profiles with our [Python FHIR parser][fhir-parser].
 
 ### Verbousness
 
@@ -146,3 +148,10 @@ If search is restricted to a reference property, this applies:
 - If the search token does contain a forward slash it is assumed to be an absolute reference and no `:InstanceType` will be appended:  
     `GET {base-url}/Thing?referenced={uri}`
 
+
+[swift]: https://developer.apple.com/swift/
+[fhir]: http://www.hl7.org/fhir
+[hl7]: http://hl7.org/
+[swift-smart]: https://github.com/smart-on-fhir/Swift-SMART
+[fhir.js]: https://github.com/FHIR/fhir.js
+[fhir-parser]: https://github.com/smart-on-fhir/fhir-parser

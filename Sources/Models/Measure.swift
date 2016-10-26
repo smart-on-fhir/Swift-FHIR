@@ -2,7 +2,7 @@
 //  Measure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Measure) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Measure) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -19,10 +19,13 @@ open class Measure: DomainResource {
 		get { return "Measure" }
 	}
 	
+	/// When measure approved by publisher.
+	public var approvalDate: FHIRDate?
+	
 	/// Clinical recommendation.
 	public var clinicalRecommendationStatement: String?
 	
-	/// Contact details of the publisher.
+	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
 	
 	/// A content contributor.
@@ -31,8 +34,8 @@ open class Measure: DomainResource {
 	/// Use and/or publishing restrictions.
 	public var copyright: String?
 	
-	/// Describes the context of use for this measure.
-	public var coverage: [UsageContext]?
+	/// Date this was last changed.
+	public var date: DateTime?
 	
 	/// A natural language definition of the measure.
 	public var definition: String?
@@ -55,11 +58,14 @@ open class Measure: DomainResource {
 	/// The guidance for the measure.
 	public var guidance: String?
 	
-	/// Logical identifier(s) for the measure.
+	/// Additional identifier for the measure.
 	public var identifier: [Identifier]?
 	
 	/// Improvement notation for the measure, e.g. higher score indicates better quality.
 	public var improvementNotation: String?
+	
+	/// Intended jurisdiction for measure (if applicable).
+	public var jurisdiction: [CodeableConcept]?
 	
 	/// Last review date for the measure.
 	public var lastReviewDate: FHIRDate?
@@ -67,16 +73,13 @@ open class Measure: DomainResource {
 	/// Logic used by the measure.
 	public var library: [Reference]?
 	
-	/// A machine-friendly name for the measure.
+	/// Name for this measure (Computer friendly).
 	public var name: String?
-	
-	/// Publication date for this version of the measure.
-	public var publicationDate: FHIRDate?
 	
 	/// Name of the publisher (Organization or individual).
 	public var publisher: String?
 	
-	/// Describes the purpose of the measure.
+	/// Why this measure is defined.
 	public var purpose: String?
 	
 	/// How is rate aggregation performed for this measure.
@@ -85,8 +88,8 @@ open class Measure: DomainResource {
 	/// Why does this measure exist.
 	public var rationale: String?
 	
-	/// Related resources for the measure.
-	public var relatedResource: [RelatedResource]?
+	/// Related artifacts for the measure.
+	public var relatedArtifact: [RelatedArtifact]?
 	
 	/// How is risk adjustment applied for this measure.
 	public var riskAdjustment: String?
@@ -97,13 +100,13 @@ open class Measure: DomainResource {
 	/// The measure set, e.g. Preventive Care and Screening.
 	public var set: String?
 	
-	/// draft | active | inactive.
+	/// draft | active | retired.
 	public var status: String?
 	
 	/// Supplemental data.
 	public var supplementalData: [MeasureSupplementalData]?
 	
-	/// A user-friendly title for the measure.
+	/// Name for this measure (Human friendly).
 	public var title: String?
 	
 	/// Descriptional topics for the measure.
@@ -112,13 +115,16 @@ open class Measure: DomainResource {
 	/// process | outcome.
 	public var type: [String]?
 	
-	/// Logical URL to reference this measure.
+	/// Logical uri to reference this measure (globally unique).
 	public var url: URL?
 	
 	/// Describes the clinical usage of the measure.
 	public var usage: String?
 	
-	/// The version of the measure, if any.
+	/// Content intends to support these contexts.
+	public var useContext: [UsageContext]?
+	
+	/// Business version of the measure.
 	public var version: String?
 	
 	
@@ -136,6 +142,15 @@ open class Measure: DomainResource {
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist = js["approvalDate"] {
+				presentKeys.insert("approvalDate")
+				if let val = exist as? String {
+					self.approvalDate = FHIRDate(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "approvalDate", wants: String.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["clinicalRecommendationStatement"] {
 				presentKeys.insert("clinicalRecommendationStatement")
 				if let val = exist as? String {
@@ -172,13 +187,13 @@ open class Measure: DomainResource {
 					errors.append(FHIRJSONError(key: "copyright", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["coverage"] {
-				presentKeys.insert("coverage")
-				if let val = exist as? [FHIRJSON] {
-					self.coverage = UsageContext.instantiate(fromArray: val, owner: self) as? [UsageContext]
+			if let exist = js["date"] {
+				presentKeys.insert("date")
+				if let val = exist as? String {
+					self.date = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "coverage", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "date", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["definition"] {
@@ -262,6 +277,15 @@ open class Measure: DomainResource {
 					errors.append(FHIRJSONError(key: "improvementNotation", wants: String.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["jurisdiction"] {
+				presentKeys.insert("jurisdiction")
+				if let val = exist as? [FHIRJSON] {
+					self.jurisdiction = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "jurisdiction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["lastReviewDate"] {
 				presentKeys.insert("lastReviewDate")
 				if let val = exist as? String {
@@ -287,15 +311,6 @@ open class Measure: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["publicationDate"] {
-				presentKeys.insert("publicationDate")
-				if let val = exist as? String {
-					self.publicationDate = FHIRDate(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "publicationDate", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["publisher"] {
@@ -334,13 +349,13 @@ open class Measure: DomainResource {
 					errors.append(FHIRJSONError(key: "rationale", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["relatedResource"] {
-				presentKeys.insert("relatedResource")
+			if let exist = js["relatedArtifact"] {
+				presentKeys.insert("relatedArtifact")
 				if let val = exist as? [FHIRJSON] {
-					self.relatedResource = RelatedResource.instantiate(fromArray: val, owner: self) as? [RelatedResource]
+					self.relatedArtifact = RelatedArtifact.instantiate(fromArray: val, owner: self) as? [RelatedArtifact]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "relatedResource", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "relatedArtifact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["riskAdjustment"] {
@@ -436,6 +451,15 @@ open class Measure: DomainResource {
 					errors.append(FHIRJSONError(key: "usage", wants: String.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["useContext"] {
+				presentKeys.insert("useContext")
+				if let val = exist as? [FHIRJSON] {
+					self.useContext = UsageContext.instantiate(fromArray: val, owner: self) as? [UsageContext]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["version"] {
 				presentKeys.insert("version")
 				if let val = exist as? String {
@@ -452,6 +476,9 @@ open class Measure: DomainResource {
 	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let approvalDate = self.approvalDate {
+			json["approvalDate"] = approvalDate.asJSON()
+		}
 		if let clinicalRecommendationStatement = self.clinicalRecommendationStatement {
 			json["clinicalRecommendationStatement"] = clinicalRecommendationStatement.asJSON()
 		}
@@ -464,8 +491,8 @@ open class Measure: DomainResource {
 		if let copyright = self.copyright {
 			json["copyright"] = copyright.asJSON()
 		}
-		if let coverage = self.coverage {
-			json["coverage"] = coverage.map() { $0.asJSON() }
+		if let date = self.date {
+			json["date"] = date.asJSON()
 		}
 		if let definition = self.definition {
 			json["definition"] = definition.asJSON()
@@ -494,6 +521,9 @@ open class Measure: DomainResource {
 		if let improvementNotation = self.improvementNotation {
 			json["improvementNotation"] = improvementNotation.asJSON()
 		}
+		if let jurisdiction = self.jurisdiction {
+			json["jurisdiction"] = jurisdiction.map() { $0.asJSON() }
+		}
 		if let lastReviewDate = self.lastReviewDate {
 			json["lastReviewDate"] = lastReviewDate.asJSON()
 		}
@@ -502,9 +532,6 @@ open class Measure: DomainResource {
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
-		}
-		if let publicationDate = self.publicationDate {
-			json["publicationDate"] = publicationDate.asJSON()
 		}
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
@@ -518,8 +545,8 @@ open class Measure: DomainResource {
 		if let rationale = self.rationale {
 			json["rationale"] = rationale.asJSON()
 		}
-		if let relatedResource = self.relatedResource {
-			json["relatedResource"] = relatedResource.map() { $0.asJSON() }
+		if let relatedArtifact = self.relatedArtifact {
+			json["relatedArtifact"] = relatedArtifact.map() { $0.asJSON() }
 		}
 		if let riskAdjustment = self.riskAdjustment {
 			json["riskAdjustment"] = riskAdjustment.asJSON()
@@ -554,6 +581,9 @@ open class Measure: DomainResource {
 		}
 		if let usage = self.usage {
 			json["usage"] = usage.asJSON()
+		}
+		if let useContext = self.useContext {
+			json["useContext"] = useContext.map() { $0.asJSON() }
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()

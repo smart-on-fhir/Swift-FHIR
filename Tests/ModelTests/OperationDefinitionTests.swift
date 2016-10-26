@@ -2,7 +2,7 @@
 //  OperationDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -60,10 +60,11 @@ class OperationDefinitionTests: XCTestCase {
 		XCTAssertEqual(inst.parameter?[1].type, "QuestionnaireResponse")
 		XCTAssertEqual(inst.parameter?[1].use, "out")
 		XCTAssertEqual(inst.publisher, "Acme Healthcare Services")
+		XCTAssertEqual(inst.resource?[0], "Questionnaire")
 		XCTAssertEqual(inst.status, "draft")
 		XCTAssertFalse(inst.system ?? true)
 		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.type?[0], "Questionnaire")
+		XCTAssertFalse(inst.type ?? true)
 		XCTAssertEqual(inst.url?.absoluteString, "http://h7.org/fhir/OperationDefinition/example")
 		XCTAssertEqual(inst.version, "B")
 		

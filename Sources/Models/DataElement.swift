@@ -2,7 +2,7 @@
 //  DataElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -19,13 +19,13 @@ open class DataElement: DomainResource {
 		get { return "DataElement" }
 	}
 	
-	/// Contact details of the publisher.
-	public var contact: [DataElementContact]?
+	/// Contact details for the publisher.
+	public var contact: [ContactDetail]?
 	
 	/// Use and/or publishing restrictions.
 	public var copyright: String?
 	
-	/// Date for this version of the data element.
+	/// Date this was last changed.
 	public var date: DateTime?
 	
 	/// Definition of element.
@@ -34,13 +34,16 @@ open class DataElement: DomainResource {
 	/// If for testing purposes, not real usage.
 	public var experimental: Bool?
 	
-	/// Logical id to reference this data element.
+	/// Additional identifier for the data element.
 	public var identifier: [Identifier]?
+	
+	/// Intended jurisdiction for data element (if applicable).
+	public var jurisdiction: [CodeableConcept]?
 	
 	/// External specification mapped to.
 	public var mapping: [DataElementMapping]?
 	
-	/// Descriptive label for this element definition.
+	/// Name for this data element (Computer friendly).
 	public var name: String?
 	
 	/// Name of the publisher (Organization or individual).
@@ -52,13 +55,16 @@ open class DataElement: DomainResource {
 	/// comparable | fully-specified | equivalent | convertable | scaleable | flexible.
 	public var stringency: String?
 	
-	/// Globally unique logical id for data element.
+	/// Name for this data element (Human friendly).
+	public var title: String?
+	
+	/// Logical uri to reference this data element (globally unique).
 	public var url: URL?
 	
 	/// Content intends to support these contexts.
-	public var useContext: [CodeableConcept]?
+	public var useContext: [UsageContext]?
 	
-	/// Logical id for this version of the data element.
+	/// Business version of the data element.
 	public var version: String?
 	
 	
@@ -80,7 +86,7 @@ open class DataElement: DomainResource {
 			if let exist = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = DataElementContact.instantiate(fromArray: val, owner: self) as? [DataElementContact]
+					self.contact = ContactDetail.instantiate(fromArray: val, owner: self) as? [ContactDetail]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -134,6 +140,15 @@ open class DataElement: DomainResource {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["jurisdiction"] {
+				presentKeys.insert("jurisdiction")
+				if let val = exist as? [FHIRJSON] {
+					self.jurisdiction = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "jurisdiction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["mapping"] {
 				presentKeys.insert("mapping")
 				if let val = exist as? [FHIRJSON] {
@@ -182,6 +197,15 @@ open class DataElement: DomainResource {
 					errors.append(FHIRJSONError(key: "stringency", wants: String.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["title"] {
+				presentKeys.insert("title")
+				if let val = exist as? String {
+					self.title = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
@@ -194,7 +218,7 @@ open class DataElement: DomainResource {
 			if let exist = js["useContext"] {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
-					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+					self.useContext = UsageContext.instantiate(fromArray: val, owner: self) as? [UsageContext]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -234,6 +258,9 @@ open class DataElement: DomainResource {
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
+		if let jurisdiction = self.jurisdiction {
+			json["jurisdiction"] = jurisdiction.map() { $0.asJSON() }
+		}
 		if let mapping = self.mapping {
 			json["mapping"] = mapping.map() { $0.asJSON() }
 		}
@@ -249,6 +276,9 @@ open class DataElement: DomainResource {
 		if let stringency = self.stringency {
 			json["stringency"] = stringency.asJSON()
 		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
+		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
 		}
@@ -257,68 +287,6 @@ open class DataElement: DomainResource {
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Contact details of the publisher.
- *
- *  Contacts to assist a user in finding and communicating with the publisher.
- */
-open class DataElementContact: BackboneElement {
-	override open class var resourceType: String {
-		get { return "DataElementContact" }
-	}
-	
-	/// Name of an individual to contact.
-	public var name: String?
-	
-	/// Contact details for individual or publisher.
-	public var telecom: [ContactPoint]?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["telecom"] {
-				presentKeys.insert("telecom")
-				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if let telecom = self.telecom {
-			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json

@@ -2,7 +2,7 @@
 //  NamingSystemTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -42,6 +42,8 @@ class NamingSystemTests: XCTestCase {
 		XCTAssertEqual(inst.date?.description, "2015-08-31")
 		XCTAssertEqual(inst.description_fhir, "Australian HI Identifier as established by relevant regulations etc")
 		XCTAssertEqual(inst.id, "example-id")
+		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "AU")
+		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
 		XCTAssertEqual(inst.kind, "identifier")
 		XCTAssertEqual(inst.name, "Austalian Healthcare Identifier - Individual")
 		XCTAssertEqual(inst.publisher, "HL7 Australia on behalf of NEHTA")
@@ -60,8 +62,6 @@ class NamingSystemTests: XCTestCase {
 		XCTAssertEqual(inst.uniqueId?[1].type, "uri")
 		XCTAssertEqual(inst.uniqueId?[1].value, "http://ns.electronichealth.net.au/id/hi/ihi/1.0")
 		XCTAssertEqual(inst.usage, "Used in Australia for identifying patients")
-		XCTAssertEqual(inst.useContext?[0].coding?[0].code, "AU")
-		XCTAssertEqual(inst.useContext?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
 		
 		return inst
 	}

@@ -2,7 +2,7 @@
 //  LibraryTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -79,13 +79,13 @@ class LibraryTests: XCTestCase {
 		XCTAssertEqual(inst.dataRequirement?[8].codeFilter?[1].path, "medication.code")
 		XCTAssertEqual(inst.dataRequirement?[8].codeFilter?[1].valueSetString, "2.16.840.1.113883.3.464.1003.196.12.1001")
 		XCTAssertEqual(inst.dataRequirement?[8].type, "MedicationStatement")
+		XCTAssertEqual(inst.date?.description, "2015-07-22")
 		XCTAssertEqual(inst.description_fhir, "Logic for CMS 146: Appropriate Testing for Children with Pharyngitis")
 		XCTAssertEqual(inst.id, "library-cms146-example")
 		XCTAssertEqual(inst.identifier?[0].use, "official")
 		XCTAssertEqual(inst.identifier?[0].value, "CMS146")
-		XCTAssertEqual(inst.publicationDate?.description, "2015-07-22")
-		XCTAssertEqual(inst.relatedResource?[0].resource?.reference, "Library/library-quick-model-definition")
-		XCTAssertEqual(inst.relatedResource?[0].type, "depends-on")
+		XCTAssertEqual(inst.relatedArtifact?[0].resource?.reference, "Library/library-quick-model-definition")
+		XCTAssertEqual(inst.relatedArtifact?[0].type, "depends-on")
 		XCTAssertEqual(inst.status, "draft")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">CMS 146 Logic</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
@@ -115,13 +115,13 @@ class LibraryTests: XCTestCase {
 		XCTAssertEqual(inst.dataRequirement?[0].codeFilter?[0].path, "code")
 		XCTAssertEqual(inst.dataRequirement?[0].codeFilter?[0].valueSetString, "Other Female Reproductive Conditions")
 		XCTAssertEqual(inst.dataRequirement?[0].type, "Condition")
+		XCTAssertEqual(inst.date?.description, "2015-07-22")
 		XCTAssertEqual(inst.description_fhir, "Common Logic for adherence to Chlamydia Screening guidelines")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].use, "official")
 		XCTAssertEqual(inst.identifier?[0].value, "ChalmydiaScreening_Common")
-		XCTAssertEqual(inst.publicationDate?.description, "2015-07-22")
-		XCTAssertEqual(inst.relatedResource?[0].resource?.reference, "Library/library-quick-model-definition")
-		XCTAssertEqual(inst.relatedResource?[0].type, "depends-on")
+		XCTAssertEqual(inst.relatedArtifact?[0].resource?.reference, "Library/library-quick-model-definition")
+		XCTAssertEqual(inst.relatedArtifact?[0].type, "depends-on")
 		XCTAssertEqual(inst.status, "draft")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Chlamydia Screening Common Library</div>")
 		XCTAssertEqual(inst.text?.status, "generated")

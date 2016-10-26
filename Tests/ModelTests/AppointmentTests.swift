@@ -2,7 +2,7 @@
 //  AppointmentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -62,6 +62,8 @@ class AppointmentTests: XCTestCase {
 		XCTAssertEqual(inst.reason?.coding?[0].code, "413095006")
 		XCTAssertEqual(inst.reason?.coding?[0].system?.absoluteString, "http://snomed.info/sct")
 		XCTAssertEqual(inst.reason?.text, "Clinical Review")
+		XCTAssertEqual(inst.requestedPeriod?[0].end?.description, "2016-06-09")
+		XCTAssertEqual(inst.requestedPeriod?[0].start?.description, "2016-06-02")
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].code, "gp")
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].display, "General Practice")
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].system?.absoluteString, "http://example.org/service-category")

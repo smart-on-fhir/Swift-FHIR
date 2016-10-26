@@ -2,7 +2,7 @@
 //  ProcessResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -37,14 +37,15 @@ class ProcessResponseTests: XCTestCase {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processresponse-example.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
-		XCTAssertEqual(inst.disposition, "Specified coverage is currently in-force.")
+		XCTAssertEqual(inst.disposition, "Adjudication processing completed, ClaimResponse and EOB ready for retrieval.")
 		XCTAssertEqual(inst.id, "SR2500")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.BenefitsInc.com/fhir/processresponse")
 		XCTAssertEqual(inst.identifier?[0].value, "881234")
-		XCTAssertEqual(inst.organizationReference?.reference, "Organization/2")
+		XCTAssertEqual(inst.organization?.reference, "Organization/2")
 		XCTAssertEqual(inst.outcome?.code, "complete")
 		XCTAssertEqual(inst.outcome?.system?.absoluteString, "http://hl7.org/fhir/processoutcomecodes")
-		XCTAssertEqual(inst.requestReference?.reference, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
+		XCTAssertEqual(inst.request?.reference, "http://happyvalley.com/fhir/claim/12345")
+		XCTAssertEqual(inst.requestOrganization?.reference, "Organization/1")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the ProcessResponse</div>")
 		XCTAssertEqual(inst.text?.status, "generated")

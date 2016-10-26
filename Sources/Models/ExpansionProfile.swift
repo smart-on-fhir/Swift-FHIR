@@ -2,7 +2,7 @@
 //  ExpansionProfile.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ExpansionProfile) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/ExpansionProfile) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -19,16 +19,16 @@ open class ExpansionProfile: DomainResource {
 		get { return "ExpansionProfile" }
 	}
 	
-	/// When the expansion profile imposes code system contraints.
-	public var codeSystem: ExpansionProfileCodeSystem?
+	/// Include or exclude inactive concepts in the expansion.
+	public var activeOnly: Bool?
 	
-	/// Contact details of the publisher.
-	public var contact: [ExpansionProfileContact]?
+	/// Contact details for the publisher.
+	public var contact: [ContactDetail]?
 	
-	/// Date for given status.
+	/// Date this was last changed.
 	public var date: DateTime?
 	
-	/// Human language description of the expansion profile.
+	/// Natural language description of the expansion profile.
 	public var description_fhir: String?
 	
 	/// When the expansion profile imposes designation contraints.
@@ -46,10 +46,16 @@ open class ExpansionProfile: DomainResource {
 	/// Include or exclude codes which are post coordinated expressions in the value set expansion.
 	public var excludePostCoordinated: Bool?
 	
+	/// Systems/Versions to be exclude.
+	public var excludedSystem: ExpansionProfileExcludedSystem?
+	
 	/// If for testing purposes, not real usage.
 	public var experimental: Bool?
 	
-	/// Additional identifier for the expansion profile (e.g. an Object Identifier).
+	/// Fix use of a code system to a particular version.
+	public var fixedVersion: [ExpansionProfileFixedVersion]?
+	
+	/// Additional identifier for the expansion profile.
 	public var identifier: Identifier?
 	
 	/// Include or exclude the value set definition in the expansion.
@@ -58,25 +64,28 @@ open class ExpansionProfile: DomainResource {
 	/// Whether the expansion should include concept designations.
 	public var includeDesignations: Bool?
 	
-	/// Include or exclude inactive concepts in the expansion.
-	public var includeInactive: Bool?
+	/// Intended jurisdiction for expansion profile (if applicable).
+	public var jurisdiction: [CodeableConcept]?
 	
 	/// Controls behaviour of the value set expand operation when value sets are too large to be completely expanded.
 	public var limitedExpansion: Bool?
 	
-	/// Informal name for this expansion profile.
+	/// Name for this expansion profile (Computer friendly).
 	public var name: String?
 	
-	/// Name of the publisher (organization or individual).
+	/// Name of the publisher (Organization or individual).
 	public var publisher: String?
 	
 	/// draft | active | retired.
 	public var status: String?
 	
-	/// Globally unique logical identifier for  expansion profile.
+	/// Logical uri to reference this expansion profile (globally unique).
 	public var url: URL?
 	
-	/// Logical identifier for this version of the expansion profile.
+	/// Content intends to support these contexts.
+	public var useContext: [UsageContext]?
+	
+	/// Business version of the expansion profile.
 	public var version: String?
 	
 	
@@ -94,19 +103,19 @@ open class ExpansionProfile: DomainResource {
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist = js["codeSystem"] {
-				presentKeys.insert("codeSystem")
-				if let val = exist as? FHIRJSON {
-					self.codeSystem = ExpansionProfileCodeSystem(json: val, owner: self)
+			if let exist = js["activeOnly"] {
+				presentKeys.insert("activeOnly")
+				if let val = exist as? Bool {
+					self.activeOnly = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "codeSystem", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "activeOnly", wants: Bool.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = ExpansionProfileContact.instantiate(fromArray: val, owner: self) as? [ExpansionProfileContact]
+					self.contact = ContactDetail.instantiate(fromArray: val, owner: self) as? [ContactDetail]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -175,6 +184,15 @@ open class ExpansionProfile: DomainResource {
 					errors.append(FHIRJSONError(key: "excludePostCoordinated", wants: Bool.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["excludedSystem"] {
+				presentKeys.insert("excludedSystem")
+				if let val = exist as? FHIRJSON {
+					self.excludedSystem = ExpansionProfileExcludedSystem(json: val, owner: self)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "excludedSystem", wants: FHIRJSON.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["experimental"] {
 				presentKeys.insert("experimental")
 				if let val = exist as? Bool {
@@ -182,6 +200,15 @@ open class ExpansionProfile: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["fixedVersion"] {
+				presentKeys.insert("fixedVersion")
+				if let val = exist as? [FHIRJSON] {
+					self.fixedVersion = ExpansionProfileFixedVersion.instantiate(fromArray: val, owner: self) as? [ExpansionProfileFixedVersion]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "fixedVersion", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["identifier"] {
@@ -211,13 +238,13 @@ open class ExpansionProfile: DomainResource {
 					errors.append(FHIRJSONError(key: "includeDesignations", wants: Bool.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["includeInactive"] {
-				presentKeys.insert("includeInactive")
-				if let val = exist as? Bool {
-					self.includeInactive = val
+			if let exist = js["jurisdiction"] {
+				presentKeys.insert("jurisdiction")
+				if let val = exist as? [FHIRJSON] {
+					self.jurisdiction = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "includeInactive", wants: Bool.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "jurisdiction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["limitedExpansion"] {
@@ -268,6 +295,15 @@ open class ExpansionProfile: DomainResource {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["useContext"] {
+				presentKeys.insert("useContext")
+				if let val = exist as? [FHIRJSON] {
+					self.useContext = UsageContext.instantiate(fromArray: val, owner: self) as? [UsageContext]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["version"] {
 				presentKeys.insert("version")
 				if let val = exist as? String {
@@ -284,8 +320,8 @@ open class ExpansionProfile: DomainResource {
 	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let codeSystem = self.codeSystem {
-			json["codeSystem"] = codeSystem.asJSON()
+		if let activeOnly = self.activeOnly {
+			json["activeOnly"] = activeOnly.asJSON()
 		}
 		if let contact = self.contact {
 			json["contact"] = contact.map() { $0.asJSON() }
@@ -311,8 +347,14 @@ open class ExpansionProfile: DomainResource {
 		if let excludePostCoordinated = self.excludePostCoordinated {
 			json["excludePostCoordinated"] = excludePostCoordinated.asJSON()
 		}
+		if let excludedSystem = self.excludedSystem {
+			json["excludedSystem"] = excludedSystem.asJSON()
+		}
 		if let experimental = self.experimental {
 			json["experimental"] = experimental.asJSON()
+		}
+		if let fixedVersion = self.fixedVersion {
+			json["fixedVersion"] = fixedVersion.map() { $0.asJSON() }
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
@@ -323,8 +365,8 @@ open class ExpansionProfile: DomainResource {
 		if let includeDesignations = self.includeDesignations {
 			json["includeDesignations"] = includeDesignations.asJSON()
 		}
-		if let includeInactive = self.includeInactive {
-			json["includeInactive"] = includeInactive.asJSON()
+		if let jurisdiction = self.jurisdiction {
+			json["jurisdiction"] = jurisdiction.map() { $0.asJSON() }
 		}
 		if let limitedExpansion = self.limitedExpansion {
 			json["limitedExpansion"] = limitedExpansion.asJSON()
@@ -341,387 +383,11 @@ open class ExpansionProfile: DomainResource {
 		if let url = self.url {
 			json["url"] = url.asJSON()
 		}
-		if let version = self.version {
-			json["version"] = version.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  When the expansion profile imposes code system contraints.
- *
- *  A set of criteria that provide the constraints imposed on the value set expansion by including or excluding codes
- *  from specific code systems (or versions).
- */
-open class ExpansionProfileCodeSystem: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ExpansionProfileCodeSystem" }
-	}
-	
-	/// Code systems to be excluded.
-	public var exclude: ExpansionProfileCodeSystemExclude?
-	
-	/// Code systems to be included.
-	public var include: ExpansionProfileCodeSystemInclude?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["exclude"] {
-				presentKeys.insert("exclude")
-				if let val = exist as? FHIRJSON {
-					self.exclude = ExpansionProfileCodeSystemExclude(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "exclude", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["include"] {
-				presentKeys.insert("include")
-				if let val = exist as? FHIRJSON {
-					self.include = ExpansionProfileCodeSystemInclude(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "include", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let exclude = self.exclude {
-			json["exclude"] = exclude.asJSON()
-		}
-		if let include = self.include {
-			json["include"] = include.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Code systems to be excluded.
- *
- *  Code systems to be excluded from value set expansions.
- */
-open class ExpansionProfileCodeSystemExclude: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ExpansionProfileCodeSystemExclude" }
-	}
-	
-	/// The code systems to be excluded.
-	public var codeSystem: [ExpansionProfileCodeSystemExcludeCodeSystem]?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(codeSystem: [ExpansionProfileCodeSystemExcludeCodeSystem]) {
-		self.init(json: nil)
-		self.codeSystem = codeSystem
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["codeSystem"] {
-				presentKeys.insert("codeSystem")
-				if let val = exist as? [FHIRJSON] {
-					self.codeSystem = ExpansionProfileCodeSystemExcludeCodeSystem.instantiate(fromArray: val, owner: self) as? [ExpansionProfileCodeSystemExcludeCodeSystem]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "codeSystem", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "codeSystem"))
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let codeSystem = self.codeSystem {
-			json["codeSystem"] = codeSystem.map() { $0.asJSON() }
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  The code systems to be excluded.
- *
- *  A data group for each code system to be excluded.
- */
-open class ExpansionProfileCodeSystemExcludeCodeSystem: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ExpansionProfileCodeSystemExcludeCodeSystem" }
-	}
-	
-	/// The specific code system to be excluded.
-	public var system: URL?
-	
-	/// Specific version of the code system referred to.
-	public var version: String?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(system: URL) {
-		self.init(json: nil)
-		self.system = system
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["system"] {
-				presentKeys.insert("system")
-				if let val = exist as? String {
-					self.system = URL(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "system", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "system"))
-			}
-			if let exist = js["version"] {
-				presentKeys.insert("version")
-				if let val = exist as? String {
-					self.version = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let system = self.system {
-			json["system"] = system.asJSON()
+		if let useContext = self.useContext {
+			json["useContext"] = useContext.map() { $0.asJSON() }
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Code systems to be included.
- *
- *  Code systems to be included in value set expansions.
- */
-open class ExpansionProfileCodeSystemInclude: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ExpansionProfileCodeSystemInclude" }
-	}
-	
-	/// The code systems to be included.
-	public var codeSystem: [ExpansionProfileCodeSystemIncludeCodeSystem]?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(codeSystem: [ExpansionProfileCodeSystemIncludeCodeSystem]) {
-		self.init(json: nil)
-		self.codeSystem = codeSystem
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["codeSystem"] {
-				presentKeys.insert("codeSystem")
-				if let val = exist as? [FHIRJSON] {
-					self.codeSystem = ExpansionProfileCodeSystemIncludeCodeSystem.instantiate(fromArray: val, owner: self) as? [ExpansionProfileCodeSystemIncludeCodeSystem]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "codeSystem", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "codeSystem"))
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let codeSystem = self.codeSystem {
-			json["codeSystem"] = codeSystem.map() { $0.asJSON() }
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  The code systems to be included.
- *
- *  A data group for each code system to be included.
- */
-open class ExpansionProfileCodeSystemIncludeCodeSystem: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ExpansionProfileCodeSystemIncludeCodeSystem" }
-	}
-	
-	/// The specific code system to be included.
-	public var system: URL?
-	
-	/// Specific version of the code system referred to.
-	public var version: String?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(system: URL) {
-		self.init(json: nil)
-		self.system = system
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["system"] {
-				presentKeys.insert("system")
-				if let val = exist as? String {
-					self.system = URL(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "system", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "system"))
-			}
-			if let exist = js["version"] {
-				presentKeys.insert("version")
-				if let val = exist as? String {
-					self.version = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let system = self.system {
-			json["system"] = system.asJSON()
-		}
-		if let version = self.version {
-			json["version"] = version.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Contact details of the publisher.
- *
- *  Contacts to assist a user in finding and communicating with the publisher.
- */
-open class ExpansionProfileContact: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ExpansionProfileContact" }
-	}
-	
-	/// Name of an individual to contact.
-	public var name: String?
-	
-	/// Contact details for individual or publisher.
-	public var telecom: [ContactPoint]?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["telecom"] {
-				presentKeys.insert("telecom")
-				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if let telecom = self.telecom {
-			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -999,6 +665,171 @@ open class ExpansionProfileDesignationIncludeDesignation: BackboneElement {
 		}
 		if let use = self.use {
 			json["use"] = use.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Systems/Versions to be exclude.
+ *
+ *  Code system, or a particular version of a code system to be excluded from value set expansions.
+ */
+open class ExpansionProfileExcludedSystem: BackboneElement {
+	override open class var resourceType: String {
+		get { return "ExpansionProfileExcludedSystem" }
+	}
+	
+	/// The specific code system to be excluded.
+	public var system: URL?
+	
+	/// Specific version of the code system referred to.
+	public var version: String?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
+		super.init(json: json, owner: owner)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(system: URL) {
+		self.init(json: nil)
+		self.system = system
+	}
+	
+	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist = js["system"] {
+				presentKeys.insert("system")
+				if let val = exist as? String {
+					self.system = URL(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "system", wants: String.self, has: type(of: exist)))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "system"))
+			}
+			if let exist = js["version"] {
+				presentKeys.insert("version")
+				if let val = exist as? String {
+					self.version = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
+				}
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let system = self.system {
+			json["system"] = system.asJSON()
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
+		}
+		
+		return json
+	}
+}
+
+
+/**
+ *  Fix use of a code system to a particular version.
+ *
+ *  Fix use of a particular code system to a particular version.
+ */
+open class ExpansionProfileFixedVersion: BackboneElement {
+	override open class var resourceType: String {
+		get { return "ExpansionProfileFixedVersion" }
+	}
+	
+	/// default | check | override.
+	public var mode: String?
+	
+	/// System to have it's version fixed.
+	public var system: URL?
+	
+	/// Specific version of the code system referred to.
+	public var version: String?
+	
+	
+	/** Initialize with a JSON object. */
+	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
+		super.init(json: json, owner: owner)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(mode: String, system: URL, version: String) {
+		self.init(json: nil)
+		self.mode = mode
+		self.system = system
+		self.version = version
+	}
+	
+	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
+		if let js = json {
+			if let exist = js["mode"] {
+				presentKeys.insert("mode")
+				if let val = exist as? String {
+					self.mode = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: type(of: exist)))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "mode"))
+			}
+			if let exist = js["system"] {
+				presentKeys.insert("system")
+				if let val = exist as? String {
+					self.system = URL(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "system", wants: String.self, has: type(of: exist)))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "system"))
+			}
+			if let exist = js["version"] {
+				presentKeys.insert("version")
+				if let val = exist as? String {
+					self.version = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "version"))
+			}
+		}
+		return errors.isEmpty ? nil : errors
+	}
+	
+	override open func asJSON() -> FHIRJSON {
+		var json = super.asJSON()
+		
+		if let mode = self.mode {
+			json["mode"] = mode.asJSON()
+		}
+		if let system = self.system {
+			json["system"] = system.asJSON()
+		}
+		if let version = self.version {
+			json["version"] = version.asJSON()
 		}
 		
 		return json

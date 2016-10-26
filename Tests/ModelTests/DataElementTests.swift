@@ -2,7 +2,7 @@
 //  DataElementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -52,33 +52,13 @@ class DataElementTests: XCTestCase {
 		XCTAssertEqual(inst.element?[0].extension_fhir?[1].valueString, "Gender")
 		XCTAssertEqual(inst.element?[0].maxLength, 13)
 		XCTAssertEqual(inst.element?[0].path, "Gender")
-		XCTAssertEqual(inst.element?[0].type?[0].code, "CodeableConcept")
+		XCTAssertEqual(inst.element?[0].type?[0].code?.absoluteString, "CodeableConcept")
 		XCTAssertEqual(inst.id, "gender")
 		XCTAssertEqual(inst.identifier?[0].value, "2179650")
 		XCTAssertEqual(inst.name, "Gender Code")
 		XCTAssertEqual(inst.publisher, "DCP")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.useContext?[0].coding?[0].display, "FBPP Pooled Database")
-		XCTAssertEqual(inst.useContext?[0].coding?[0].system?.absoluteString, "http://example.org/FBPP")
-		XCTAssertEqual(inst.useContext?[0].coding?[1].display, "Demographics")
-		XCTAssertEqual(inst.useContext?[0].coding?[1].system?.absoluteString, "http://example.org/PhenX")
-		XCTAssertEqual(inst.useContext?[0].coding?[2].display, "Pt. Administrative")
-		XCTAssertEqual(inst.useContext?[0].coding?[2].system?.absoluteString, "http://example.org/EligibilityCriteria")
-		XCTAssertEqual(inst.useContext?[0].coding?[3].display, "UAMS New CDEs")
-		XCTAssertEqual(inst.useContext?[0].coding?[3].system?.absoluteString, "http://example.org/UAMSClinicalResearch")
-		XCTAssertEqual(inst.useContext?[0].coding?[4].display, "Substance Abuse and ")
-		XCTAssertEqual(inst.useContext?[0].coding?[4].system?.absoluteString, "http://example.org/PhenX")
-		XCTAssertEqual(inst.useContext?[0].coding?[5].display, "CSAERS Adverse Event")
-		XCTAssertEqual(inst.useContext?[0].coding?[5].system?.absoluteString, "http://example.org/Category")
-		XCTAssertEqual(inst.useContext?[0].coding?[6].display, "Core: Tier 1")
-		XCTAssertEqual(inst.useContext?[0].coding?[6].system?.absoluteString, "http://example.org/PhenX")
-		XCTAssertEqual(inst.useContext?[0].coding?[7].display, "Case Report Forms")
-		XCTAssertEqual(inst.useContext?[0].coding?[7].system?.absoluteString, "http://example.org/Category")
-		XCTAssertEqual(inst.useContext?[0].coding?[8].display, "CSAERS Review Set")
-		XCTAssertEqual(inst.useContext?[0].coding?[8].system?.absoluteString, "http://example.org/Category")
-		XCTAssertEqual(inst.useContext?[0].coding?[9].display, "CIAF")
-		XCTAssertEqual(inst.useContext?[0].coding?[9].system?.absoluteString, "http://example.org/Demonstration%20Applications")
 		XCTAssertEqual(inst.version, "1.0")
 		
 		return inst
@@ -113,7 +93,7 @@ class DataElementTests: XCTestCase {
 		XCTAssertEqual(inst.element?[0].mapping?[0].map, "5964-2")
 		XCTAssertEqual(inst.element?[0].path, "prothrombin")
 		XCTAssertEqual(inst.element?[0].requirements, "This test is orderable. A plasma specimen in a 3.2% sodium citrate blue top tube is required.")
-		XCTAssertEqual(inst.element?[0].type?[0].code, "decimal")
+		XCTAssertEqual(inst.element?[0].type?[0].code?.absoluteString, "decimal")
 		XCTAssertEqual(inst.id, "prothrombin")
 		XCTAssertEqual(inst.identifier?[0].assigner?.display, "Century Hospital Laboratory")
 		XCTAssertEqual(inst.identifier?[0].period?.start?.description, "2011-05-19")

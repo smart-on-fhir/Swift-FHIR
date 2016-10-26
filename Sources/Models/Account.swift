@@ -2,7 +2,7 @@
 //  Account.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Account) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Account) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 
 
 /**
- *  None.
+ *  Tracks balance, charges, for patient or cost center.
  *
  *  A financial tool for tracking value accrued for a particular purpose.  In the healthcare field, used to track
- *  charges for a patient, cost centres, etc.
+ *  charges for a patient, cost centers, etc.
  */
 open class Account: DomainResource {
 	override open class var resourceType: String {

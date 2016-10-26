@@ -2,7 +2,7 @@
 //  ClinicalImpressionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -42,11 +42,11 @@ class ClinicalImpressionTests: XCTestCase {
 		XCTAssertEqual(inst.finding?[0].itemCodeableConcept?.coding?[0].code, "850.0")
 		XCTAssertEqual(inst.finding?[0].itemCodeableConcept?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/sid/icd-9")
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.investigations?[0].code?.text, "Initial Examination")
-		XCTAssertEqual(inst.investigations?[0].item?[0].display, "deep laceration of the scalp (left temporo-occipital)")
-		XCTAssertEqual(inst.investigations?[0].item?[1].display, "decreased level of consciousness")
-		XCTAssertEqual(inst.investigations?[0].item?[2].display, "disoriented to time and place")
-		XCTAssertEqual(inst.investigations?[0].item?[3].display, "restless")
+		XCTAssertEqual(inst.investigation?[0].code?.text, "Initial Examination")
+		XCTAssertEqual(inst.investigation?[0].item?[0].display, "deep laceration of the scalp (left temporo-occipital)")
+		XCTAssertEqual(inst.investigation?[0].item?[1].display, "decreased level of consciousness")
+		XCTAssertEqual(inst.investigation?[0].item?[2].display, "disoriented to time and place")
+		XCTAssertEqual(inst.investigation?[0].item?[3].display, "restless")
 		XCTAssertEqual(inst.plan?[0].display, "hospital standard closed head injury management protocol ")
 		XCTAssertEqual(inst.problem?[0].display, "MVA")
 		XCTAssertEqual(inst.status, "completed")

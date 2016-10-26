@@ -2,7 +2,7 @@
 //  VisionPrescriptionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -72,6 +72,7 @@ class VisionPrescriptionTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "15014")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.prescriber?.reference, "Practitioner/example")
+		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Sample Contract Lens prescription</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
@@ -114,6 +115,7 @@ class VisionPrescriptionTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].value, "15013")
 		XCTAssertEqual(inst.patient?.reference, "Patient/example")
 		XCTAssertEqual(inst.prescriber?.reference, "Practitioner/example")
+		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.status, "generated")
 		
 		return inst

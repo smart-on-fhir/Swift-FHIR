@@ -2,7 +2,7 @@
 //  ExplanationOfBenefitTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -36,8 +36,9 @@ class ExplanationOfBenefitTests: XCTestCase {
 	func runExplanationOfBenefit1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ExplanationOfBenefit {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "explanationofbenefit-example.json")
 		
-		XCTAssertEqual(inst.claimReference?.reference, "Claim/100150")
-		XCTAssertEqual(inst.coverage?.coverageReference?.reference, "Coverage/9876B1")
+		XCTAssertEqual(inst.claim?.reference, "Claim/100150")
+		XCTAssertEqual(inst.claimResponse?.reference, "ClaimResponse/R3500")
+		XCTAssertEqual(inst.coverage?.coverage?.reference, "Coverage/9876B1")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
 		XCTAssertEqual(inst.disposition, "Claim settled as per contract.")
 		XCTAssertEqual(inst.id, "EB3500")
@@ -53,7 +54,7 @@ class ExplanationOfBenefitTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].adjudication?[2].amount?.system?.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.item?[0].adjudication?[2].amount?.value, NSDecimalNumber(string: "96.0"))
 		XCTAssertEqual(inst.item?[0].adjudication?[2].category?.code, "benefit")
-		XCTAssertEqual(inst.item?[0].careTeam?[0].providerReference?.reference, "Practitioner/example")
+		XCTAssertEqual(inst.item?[0].careTeam?[0].provider?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.item?[0].net?.code, "USD")
 		XCTAssertEqual(inst.item?[0].net?.system?.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.item?[0].net?.value, NSDecimalNumber(string: "135.57"))
@@ -64,10 +65,10 @@ class ExplanationOfBenefitTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].unitPrice?.code, "USD")
 		XCTAssertEqual(inst.item?[0].unitPrice?.system?.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.item?[0].unitPrice?.value, NSDecimalNumber(string: "135.57"))
-		XCTAssertEqual(inst.organizationReference?.reference, "Organization/2")
+		XCTAssertEqual(inst.organization?.reference, "Organization/2")
 		XCTAssertEqual(inst.outcome?.code, "complete")
 		XCTAssertEqual(inst.outcome?.system?.absoluteString, "http://hl7.org/fhir/remittance-outcome")
-		XCTAssertEqual(inst.patientReference?.reference, "Patient/pat1")
+		XCTAssertEqual(inst.patient?.reference, "Patient/pat1")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the ExplanationOfBenefit</div>")
 		XCTAssertEqual(inst.text?.status, "generated")

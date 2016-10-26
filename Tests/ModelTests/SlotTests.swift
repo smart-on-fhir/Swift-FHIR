@@ -2,7 +2,7 @@
 //  SlotTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -130,7 +130,7 @@ class SlotTests: XCTestCase {
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].code, "17")
 		XCTAssertEqual(inst.serviceCategory?.coding?[0].display, "General Practice")
 		XCTAssertEqual(inst.serviceType?[0].coding?[0].code, "57")
-		XCTAssertEqual(inst.serviceType?[0].coding?[0].display, "Immunisation")
+		XCTAssertEqual(inst.serviceType?[0].coding?[0].display, "Immunization")
 		XCTAssertEqual(inst.specialty?[0].coding?[0].code, "408480009")
 		XCTAssertEqual(inst.specialty?[0].coding?[0].display, "Clinical immunology")
 		XCTAssertEqual(inst.start?.description, "2013-12-25T09:15:00Z")

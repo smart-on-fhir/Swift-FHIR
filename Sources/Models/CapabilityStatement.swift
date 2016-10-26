@@ -1,8 +1,8 @@
 //
-//  Conformance.swift
+//  CapabilityStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/CapabilityStatement) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -10,33 +10,33 @@ import Foundation
 
 
 /**
- *  A conformance statement.
+ *  A statement of system Capabilities.
  *
- *  A conformance statement is a set of capabilities of a FHIR Server that may be used as a statement of actual server
- *  functionality or a statement of required or desired server implementation.
+ *  A Capability Statement documents a set of capabilities (behaviors) of a FHIR Server that may be used as a statement
+ *  of actual server functionality or a statement of required or desired server implementation.
  */
-open class Conformance: DomainResource {
+open class CapabilityStatement: DomainResource {
 	override open class var resourceType: String {
-		get { return "Conformance" }
+		get { return "CapabilityStatement" }
 	}
 	
 	/// no | extensions | elements | both.
 	public var acceptUnknown: String?
 	
-	/// Contact details of the publisher.
-	public var contact: [ConformanceContact]?
+	/// Contact details for the publisher.
+	public var contact: [ContactDetail]?
 	
 	/// Use and/or publishing restrictions.
 	public var copyright: String?
 	
-	/// Publication Date(/time).
+	/// Date this was last changed.
 	public var date: DateTime?
 	
-	/// Human description of the conformance statement.
+	/// Natural language description of the capability statement.
 	public var description_fhir: String?
 	
 	/// Document definition.
-	public var document: [ConformanceDocument]?
+	public var document: [CapabilityStatementDocument]?
 	
 	/// If for testing purposes, not real usage.
 	public var experimental: Bool?
@@ -48,18 +48,21 @@ open class Conformance: DomainResource {
 	public var format: [String]?
 	
 	/// If this describes a specific instance.
-	public var implementation: ConformanceImplementation?
+	public var implementation: CapabilityStatementImplementation?
 	
 	/// Canonical URL of service implemented/used by software.
 	public var instantiates: [URL]?
+	
+	/// Intended jurisdiction for capability statement (if applicable).
+	public var jurisdiction: [CodeableConcept]?
 	
 	/// instance | capability | requirements.
 	public var kind: String?
 	
 	/// If messaging is supported.
-	public var messaging: [ConformanceMessaging]?
+	public var messaging: [CapabilityStatementMessaging]?
 	
-	/// Informal name for this conformance statement.
+	/// Name for this capability statement (Computer friendly).
 	public var name: String?
 	
 	/// Profiles for use cases supported.
@@ -68,25 +71,28 @@ open class Conformance: DomainResource {
 	/// Name of the publisher (Organization or individual).
 	public var publisher: String?
 	
-	/// Why this resource has been created.
-	public var requirements: String?
+	/// Why this capability statement is defined.
+	public var purpose: String?
 	
 	/// If the endpoint is a RESTful one.
-	public var rest: [ConformanceRest]?
+	public var rest: [CapabilityStatementRest]?
 	
-	/// Software that is covered by this conformance statement.
-	public var software: ConformanceSoftware?
+	/// Software that is covered by this capability statement.
+	public var software: CapabilityStatementSoftware?
 	
 	/// draft | active | retired.
 	public var status: String?
 	
-	/// Logical uri to reference this statement.
+	/// Name for this capability statement (Human friendly).
+	public var title: String?
+	
+	/// Logical uri to reference this capability statement (globally unique).
 	public var url: URL?
 	
 	/// Content intends to support these contexts.
-	public var useContext: [CodeableConcept]?
+	public var useContext: [UsageContext]?
 	
-	/// Logical id for this version of the statement.
+	/// Business version of the capability statement.
 	public var version: String?
 	
 	
@@ -124,7 +130,7 @@ open class Conformance: DomainResource {
 			if let exist = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = ConformanceContact.instantiate(fromArray: val, owner: self) as? [ConformanceContact]
+					self.contact = ContactDetail.instantiate(fromArray: val, owner: self) as? [ContactDetail]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -163,7 +169,7 @@ open class Conformance: DomainResource {
 			if let exist = js["document"] {
 				presentKeys.insert("document")
 				if let val = exist as? [FHIRJSON] {
-					self.document = ConformanceDocument.instantiate(fromArray: val, owner: self) as? [ConformanceDocument]
+					self.document = CapabilityStatementDocument.instantiate(fromArray: val, owner: self) as? [CapabilityStatementDocument]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "document", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -205,7 +211,7 @@ open class Conformance: DomainResource {
 			if let exist = js["implementation"] {
 				presentKeys.insert("implementation")
 				if let val = exist as? FHIRJSON {
-					self.implementation = ConformanceImplementation(json: val, owner: self)
+					self.implementation = CapabilityStatementImplementation(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "implementation", wants: FHIRJSON.self, has: type(of: exist)))
@@ -218,6 +224,15 @@ open class Conformance: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "instantiates", wants: Array<String>.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["jurisdiction"] {
+				presentKeys.insert("jurisdiction")
+				if let val = exist as? [FHIRJSON] {
+					self.jurisdiction = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "jurisdiction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["kind"] {
@@ -235,7 +250,7 @@ open class Conformance: DomainResource {
 			if let exist = js["messaging"] {
 				presentKeys.insert("messaging")
 				if let val = exist as? [FHIRJSON] {
-					self.messaging = ConformanceMessaging.instantiate(fromArray: val, owner: self) as? [ConformanceMessaging]
+					self.messaging = CapabilityStatementMessaging.instantiate(fromArray: val, owner: self) as? [CapabilityStatementMessaging]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "messaging", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -268,19 +283,19 @@ open class Conformance: DomainResource {
 					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["requirements"] {
-				presentKeys.insert("requirements")
+			if let exist = js["purpose"] {
+				presentKeys.insert("purpose")
 				if let val = exist as? String {
-					self.requirements = val
+					self.purpose = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "purpose", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["rest"] {
 				presentKeys.insert("rest")
 				if let val = exist as? [FHIRJSON] {
-					self.rest = ConformanceRest.instantiate(fromArray: val, owner: self) as? [ConformanceRest]
+					self.rest = CapabilityStatementRest.instantiate(fromArray: val, owner: self) as? [CapabilityStatementRest]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "rest", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -289,7 +304,7 @@ open class Conformance: DomainResource {
 			if let exist = js["software"] {
 				presentKeys.insert("software")
 				if let val = exist as? FHIRJSON {
-					self.software = ConformanceSoftware(json: val, owner: self)
+					self.software = CapabilityStatementSoftware(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "software", wants: FHIRJSON.self, has: type(of: exist)))
@@ -307,6 +322,15 @@ open class Conformance: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "status"))
 			}
+			if let exist = js["title"] {
+				presentKeys.insert("title")
+				if let val = exist as? String {
+					self.title = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
@@ -319,7 +343,7 @@ open class Conformance: DomainResource {
 			if let exist = js["useContext"] {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
-					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+					self.useContext = UsageContext.instantiate(fromArray: val, owner: self) as? [UsageContext]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -382,6 +406,9 @@ open class Conformance: DomainResource {
 			}
 			json["instantiates"] = arr
 		}
+		if let jurisdiction = self.jurisdiction {
+			json["jurisdiction"] = jurisdiction.map() { $0.asJSON() }
+		}
 		if let kind = self.kind {
 			json["kind"] = kind.asJSON()
 		}
@@ -397,8 +424,8 @@ open class Conformance: DomainResource {
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
 		}
-		if let requirements = self.requirements {
-			json["requirements"] = requirements.asJSON()
+		if let purpose = self.purpose {
+			json["purpose"] = purpose.asJSON()
 		}
 		if let rest = self.rest {
 			json["rest"] = rest.map() { $0.asJSON() }
@@ -408,6 +435,9 @@ open class Conformance: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
+		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
@@ -425,75 +455,13 @@ open class Conformance: DomainResource {
 
 
 /**
- *  Contact details of the publisher.
- *
- *  Contacts to assist a user in finding and communicating with the publisher.
- */
-open class ConformanceContact: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ConformanceContact" }
-	}
-	
-	/// Name of an individual to contact.
-	public var name: String?
-	
-	/// Contact details for individual or publisher.
-	public var telecom: [ContactPoint]?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["telecom"] {
-				presentKeys.insert("telecom")
-				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if let telecom = self.telecom {
-			json["telecom"] = telecom.map() { $0.asJSON() }
-		}
-		
-		return json
-	}
-}
-
-
-/**
  *  Document definition.
  *
  *  A document definition.
  */
-open class ConformanceDocument: BackboneElement {
+open class CapabilityStatementDocument: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ConformanceDocument" }
+		get { return "CapabilityStatementDocument" }
 	}
 	
 	/// Description of document support.
@@ -579,12 +547,12 @@ open class ConformanceDocument: BackboneElement {
 /**
  *  If this describes a specific instance.
  *
- *  Identifies a specific implementation instance that is described by the conformance statement - i.e. a particular
+ *  Identifies a specific implementation instance that is described by the capability statement - i.e. a particular
  *  installation, rather than the capabilities of a software program.
  */
-open class ConformanceImplementation: BackboneElement {
+open class CapabilityStatementImplementation: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ConformanceImplementation" }
+		get { return "CapabilityStatementImplementation" }
 	}
 	
 	/// Describes this specific instance.
@@ -653,19 +621,19 @@ open class ConformanceImplementation: BackboneElement {
  *
  *  A description of the messaging capabilities of the solution.
  */
-open class ConformanceMessaging: BackboneElement {
+open class CapabilityStatementMessaging: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ConformanceMessaging" }
+		get { return "CapabilityStatementMessaging" }
 	}
 	
 	/// Messaging interface behavior details.
 	public var documentation: String?
 	
 	/// Where messages should be sent.
-	public var endpoint: [ConformanceMessagingEndpoint]?
+	public var endpoint: [CapabilityStatementMessagingEndpoint]?
 	
 	/// Declare support for this event.
-	public var event: [ConformanceMessagingEvent]?
+	public var event: [CapabilityStatementMessagingEvent]?
 	
 	/// Reliable Message Cache Length (min).
 	public var reliableCache: UInt?
@@ -677,7 +645,7 @@ open class ConformanceMessaging: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(event: [ConformanceMessagingEvent]) {
+	public convenience init(event: [CapabilityStatementMessagingEvent]) {
 		self.init(json: nil)
 		self.event = event
 	}
@@ -697,7 +665,7 @@ open class ConformanceMessaging: BackboneElement {
 			if let exist = js["endpoint"] {
 				presentKeys.insert("endpoint")
 				if let val = exist as? [FHIRJSON] {
-					self.endpoint = ConformanceMessagingEndpoint.instantiate(fromArray: val, owner: self) as? [ConformanceMessagingEndpoint]
+					self.endpoint = CapabilityStatementMessagingEndpoint.instantiate(fromArray: val, owner: self) as? [CapabilityStatementMessagingEndpoint]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "endpoint", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -706,7 +674,7 @@ open class ConformanceMessaging: BackboneElement {
 			if let exist = js["event"] {
 				presentKeys.insert("event")
 				if let val = exist as? [FHIRJSON] {
-					self.event = ConformanceMessagingEvent.instantiate(fromArray: val, owner: self) as? [ConformanceMessagingEvent]
+					self.event = CapabilityStatementMessagingEvent.instantiate(fromArray: val, owner: self) as? [CapabilityStatementMessagingEvent]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "event", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -754,9 +722,9 @@ open class ConformanceMessaging: BackboneElement {
  *
  *  An endpoint (network accessible address) to which messages and/or replies are to be sent.
  */
-open class ConformanceMessagingEndpoint: BackboneElement {
+open class CapabilityStatementMessagingEndpoint: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ConformanceMessagingEndpoint" }
+		get { return "CapabilityStatementMessagingEndpoint" }
 	}
 	
 	/// Address of end-point.
@@ -829,9 +797,9 @@ open class ConformanceMessagingEndpoint: BackboneElement {
  *
  *  A description of the solution's support for an event at this end-point.
  */
-open class ConformanceMessagingEvent: BackboneElement {
+open class CapabilityStatementMessagingEvent: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ConformanceMessagingEvent" }
+		get { return "CapabilityStatementMessagingEvent" }
 	}
 	
 	/// Consequence | Currency | Notification.
@@ -991,9 +959,9 @@ open class ConformanceMessagingEvent: BackboneElement {
  *
  *  A definition of the restful capabilities of the solution, if any.
  */
-open class ConformanceRest: BackboneElement {
+open class CapabilityStatementRest: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ConformanceRest" }
+		get { return "CapabilityStatementRest" }
 	}
 	
 	/// Compartments served/used by system.
@@ -1003,22 +971,22 @@ open class ConformanceRest: BackboneElement {
 	public var documentation: String?
 	
 	/// What operations are supported?.
-	public var interaction: [ConformanceRestInteraction]?
+	public var interaction: [CapabilityStatementRestInteraction]?
 	
 	/// client | server.
 	public var mode: String?
 	
 	/// Definition of an operation or a custom query.
-	public var operation: [ConformanceRestOperation]?
+	public var operation: [CapabilityStatementRestOperation]?
 	
 	/// Resource served on the REST interface.
-	public var resource: [ConformanceRestResource]?
+	public var resource: [CapabilityStatementRestResource]?
 	
 	/// Search params for searching all resources.
-	public var searchParam: [ConformanceRestResourceSearchParam]?
+	public var searchParam: [CapabilityStatementRestResourceSearchParam]?
 	
 	/// Information about security of implementation.
-	public var security: ConformanceRestSecurity?
+	public var security: CapabilityStatementRestSecurity?
 	
 	
 	/** Initialize with a JSON object. */
@@ -1056,7 +1024,7 @@ open class ConformanceRest: BackboneElement {
 			if let exist = js["interaction"] {
 				presentKeys.insert("interaction")
 				if let val = exist as? [FHIRJSON] {
-					self.interaction = ConformanceRestInteraction.instantiate(fromArray: val, owner: self) as? [ConformanceRestInteraction]
+					self.interaction = CapabilityStatementRestInteraction.instantiate(fromArray: val, owner: self) as? [CapabilityStatementRestInteraction]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "interaction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -1077,7 +1045,7 @@ open class ConformanceRest: BackboneElement {
 			if let exist = js["operation"] {
 				presentKeys.insert("operation")
 				if let val = exist as? [FHIRJSON] {
-					self.operation = ConformanceRestOperation.instantiate(fromArray: val, owner: self) as? [ConformanceRestOperation]
+					self.operation = CapabilityStatementRestOperation.instantiate(fromArray: val, owner: self) as? [CapabilityStatementRestOperation]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "operation", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -1086,7 +1054,7 @@ open class ConformanceRest: BackboneElement {
 			if let exist = js["resource"] {
 				presentKeys.insert("resource")
 				if let val = exist as? [FHIRJSON] {
-					self.resource = ConformanceRestResource.instantiate(fromArray: val, owner: self) as? [ConformanceRestResource]
+					self.resource = CapabilityStatementRestResource.instantiate(fromArray: val, owner: self) as? [CapabilityStatementRestResource]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "resource", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -1095,7 +1063,7 @@ open class ConformanceRest: BackboneElement {
 			if let exist = js["searchParam"] {
 				presentKeys.insert("searchParam")
 				if let val = exist as? [FHIRJSON] {
-					self.searchParam = ConformanceRestResourceSearchParam.instantiate(fromArray: val, owner: self) as? [ConformanceRestResourceSearchParam]
+					self.searchParam = CapabilityStatementRestResourceSearchParam.instantiate(fromArray: val, owner: self) as? [CapabilityStatementRestResourceSearchParam]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "searchParam", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -1104,7 +1072,7 @@ open class ConformanceRest: BackboneElement {
 			if let exist = js["security"] {
 				presentKeys.insert("security")
 				if let val = exist as? FHIRJSON {
-					self.security = ConformanceRestSecurity(json: val, owner: self)
+					self.security = CapabilityStatementRestSecurity(json: val, owner: self)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "security", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1156,9 +1124,9 @@ open class ConformanceRest: BackboneElement {
  *
  *  A specification of restful operations supported by the system.
  */
-open class ConformanceRestInteraction: BackboneElement {
+open class CapabilityStatementRestInteraction: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ConformanceRestInteraction" }
+		get { return "CapabilityStatementRestInteraction" }
 	}
 	
 	/// transaction | batch | search-system | history-system.
@@ -1227,9 +1195,9 @@ open class ConformanceRestInteraction: BackboneElement {
  *
  *  Definition of an operation or a named query and with its parameters and their meaning and type.
  */
-open class ConformanceRestOperation: BackboneElement {
+open class CapabilityStatementRestOperation: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ConformanceRestOperation" }
+		get { return "CapabilityStatementRestOperation" }
 	}
 	
 	/// The defined operation/query.
@@ -1302,9 +1270,9 @@ open class ConformanceRestOperation: BackboneElement {
  *
  *  A specification of the restful capabilities of the solution for a specific resource type.
  */
-open class ConformanceRestResource: BackboneElement {
+open class CapabilityStatementRestResource: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ConformanceRestResource" }
+		get { return "CapabilityStatementRestResource" }
 	}
 	
 	/// If allows/uses conditional create.
@@ -1323,7 +1291,7 @@ open class ConformanceRestResource: BackboneElement {
 	public var documentation: String?
 	
 	/// What operations are supported?.
-	public var interaction: [ConformanceRestResourceInteraction]?
+	public var interaction: [CapabilityStatementRestResourceInteraction]?
 	
 	/// Base System profile for all uses of resource.
 	public var profile: Reference?
@@ -1331,11 +1299,14 @@ open class ConformanceRestResource: BackboneElement {
 	/// Whether vRead can return past versions.
 	public var readHistory: Bool?
 	
+	/// literal | logical | resolves | enforced | local.
+	public var referencePolicy: [String]?
+	
 	/// _include values supported by the server.
 	public var searchInclude: [String]?
 	
 	/// Search params supported by implementation.
-	public var searchParam: [ConformanceRestResourceSearchParam]?
+	public var searchParam: [CapabilityStatementRestResourceSearchParam]?
 	
 	/// _revinclude values supported by the server.
 	public var searchRevInclude: [String]?
@@ -1356,7 +1327,7 @@ open class ConformanceRestResource: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(interaction: [ConformanceRestResourceInteraction], type: String) {
+	public convenience init(interaction: [CapabilityStatementRestResourceInteraction], type: String) {
 		self.init(json: nil)
 		self.interaction = interaction
 		self.type = type
@@ -1413,7 +1384,7 @@ open class ConformanceRestResource: BackboneElement {
 			if let exist = js["interaction"] {
 				presentKeys.insert("interaction")
 				if let val = exist as? [FHIRJSON] {
-					self.interaction = ConformanceRestResourceInteraction.instantiate(fromArray: val, owner: self) as? [ConformanceRestResourceInteraction]
+					self.interaction = CapabilityStatementRestResourceInteraction.instantiate(fromArray: val, owner: self) as? [CapabilityStatementRestResourceInteraction]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "interaction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -1440,6 +1411,15 @@ open class ConformanceRestResource: BackboneElement {
 					errors.append(FHIRJSONError(key: "readHistory", wants: Bool.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["referencePolicy"] {
+				presentKeys.insert("referencePolicy")
+				if let val = exist as? [String] {
+					self.referencePolicy = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "referencePolicy", wants: Array<String>.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["searchInclude"] {
 				presentKeys.insert("searchInclude")
 				if let val = exist as? [String] {
@@ -1452,7 +1432,7 @@ open class ConformanceRestResource: BackboneElement {
 			if let exist = js["searchParam"] {
 				presentKeys.insert("searchParam")
 				if let val = exist as? [FHIRJSON] {
-					self.searchParam = ConformanceRestResourceSearchParam.instantiate(fromArray: val, owner: self) as? [ConformanceRestResourceSearchParam]
+					self.searchParam = CapabilityStatementRestResourceSearchParam.instantiate(fromArray: val, owner: self) as? [CapabilityStatementRestResourceSearchParam]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "searchParam", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -1528,6 +1508,13 @@ open class ConformanceRestResource: BackboneElement {
 		if let readHistory = self.readHistory {
 			json["readHistory"] = readHistory.asJSON()
 		}
+		if let referencePolicy = self.referencePolicy {
+			var arr = [Any]()
+			for val in referencePolicy {
+				arr.append(val.asJSON())
+			}
+			json["referencePolicy"] = arr
+		}
 		if let searchInclude = self.searchInclude {
 			var arr = [Any]()
 			for val in searchInclude {
@@ -1565,9 +1552,9 @@ open class ConformanceRestResource: BackboneElement {
  *
  *  Identifies a restful operation supported by the solution.
  */
-open class ConformanceRestResourceInteraction: BackboneElement {
+open class CapabilityStatementRestResourceInteraction: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ConformanceRestResourceInteraction" }
+		get { return "CapabilityStatementRestResourceInteraction" }
 	}
 	
 	/// read | vread | update | delete | history-instance | history-type | create | search-type.
@@ -1637,9 +1624,9 @@ open class ConformanceRestResourceInteraction: BackboneElement {
  *  Search parameters for implementations to support and/or make use of - either references to ones defined in the
  *  specification, or additional ones defined for/by the implementation.
  */
-open class ConformanceRestResourceSearchParam: BackboneElement {
+open class CapabilityStatementRestResourceSearchParam: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ConformanceRestResourceSearchParam" }
+		get { return "CapabilityStatementRestResourceSearchParam" }
 	}
 	
 	/// Chained names supported.
@@ -1799,13 +1786,13 @@ open class ConformanceRestResourceSearchParam: BackboneElement {
  *
  *  Information about security implementation from an interface perspective - what a client needs to know.
  */
-open class ConformanceRestSecurity: BackboneElement {
+open class CapabilityStatementRestSecurity: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ConformanceRestSecurity" }
+		get { return "CapabilityStatementRestSecurity" }
 	}
 	
 	/// Certificates associated with security profiles.
-	public var certificate: [ConformanceRestSecurityCertificate]?
+	public var certificate: [CapabilityStatementRestSecurityCertificate]?
 	
 	/// Adds CORS Headers (http://enable-cors.org/).
 	public var cors: Bool?
@@ -1828,7 +1815,7 @@ open class ConformanceRestSecurity: BackboneElement {
 			if let exist = js["certificate"] {
 				presentKeys.insert("certificate")
 				if let val = exist as? [FHIRJSON] {
-					self.certificate = ConformanceRestSecurityCertificate.instantiate(fromArray: val, owner: self) as? [ConformanceRestSecurityCertificate]
+					self.certificate = CapabilityStatementRestSecurityCertificate.instantiate(fromArray: val, owner: self) as? [CapabilityStatementRestSecurityCertificate]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "certificate", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -1889,9 +1876,9 @@ open class ConformanceRestSecurity: BackboneElement {
 /**
  *  Certificates associated with security profiles.
  */
-open class ConformanceRestSecurityCertificate: BackboneElement {
+open class CapabilityStatementRestSecurityCertificate: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ConformanceRestSecurityCertificate" }
+		get { return "CapabilityStatementRestSecurityCertificate" }
 	}
 	
 	/// Actual certificate.
@@ -1947,14 +1934,14 @@ open class ConformanceRestSecurityCertificate: BackboneElement {
 
 
 /**
- *  Software that is covered by this conformance statement.
+ *  Software that is covered by this capability statement.
  *
- *  Software that is covered by this conformance statement.  It is used when the conformance statement describes the
+ *  Software that is covered by this capability statement.  It is used when the capability statement describes the
  *  capabilities of a particular software version, independent of an installation.
  */
-open class ConformanceSoftware: BackboneElement {
+open class CapabilityStatementSoftware: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ConformanceSoftware" }
+		get { return "CapabilityStatementSoftware" }
 	}
 	
 	/// A name the software is known by.

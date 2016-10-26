@@ -1,8 +1,8 @@
 //
-//  RelatedResource.swift
+//  RelatedArtifact.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/RelatedResource) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/RelatedArtifact) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -10,19 +10,19 @@ import Foundation
 
 
 /**
- *  Related resources for the module.
+ *  Related artifacts for a knowledge resource.
  *
- *  Related resources such as additional documentation, justification, or bibliographic references.
+ *  Related artifacts such as additional documentation, justification, or bibliographic references.
  */
-open class RelatedResource: Element {
+open class RelatedArtifact: Element {
 	override open class var resourceType: String {
-		get { return "RelatedResource" }
+		get { return "RelatedArtifact" }
 	}
 	
-	/// Bibliographic citation for the resource.
+	/// Bibliographic citation for the artifact.
 	public var citation: String?
 	
-	/// Brief description of the related resource.
+	/// Brief description of the related artifact.
 	public var display: String?
 	
 	/// The related document.
@@ -34,7 +34,7 @@ open class RelatedResource: Element {
 	/// documentation | justification | citation | predecessor | successor | derived-from | depends-on | composed-of.
 	public var type: String?
 	
-	/// Url for the related resource.
+	/// Url for the related artifact.
 	public var url: URL?
 	
 	

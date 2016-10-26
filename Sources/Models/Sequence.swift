@@ -2,7 +2,7 @@
 //  Sequence.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -55,7 +55,7 @@ open class Sequence: DomainResource {
 	/// Specimen used for sequencing.
 	public var specimen: Reference?
 	
-	/// None.
+	/// Structural variant.
 	public var structureVariant: [SequenceStructureVariant]?
 	
 	/// AA | DNA | RNA.
@@ -773,8 +773,6 @@ open class SequenceRepository: BackboneElement {
 
 
 /**
- *  None.
- *
  *  Structural variant.
  */
 open class SequenceStructureVariant: BackboneElement {
@@ -782,13 +780,13 @@ open class SequenceStructureVariant: BackboneElement {
 		get { return "SequenceStructureVariant" }
 	}
 	
-	/// None.
+	/// Structural variant inner.
 	public var inner: SequenceStructureVariantInner?
 	
 	/// Structural Variant Length.
 	public var length: Int?
 	
-	/// None.
+	/// Structural variant outer.
 	public var outer: SequenceStructureVariantOuter?
 	
 	/// Precision of boundaries.
@@ -880,8 +878,6 @@ open class SequenceStructureVariant: BackboneElement {
 
 
 /**
- *  None.
- *
  *  Structural variant inner.
  */
 open class SequenceStructureVariantInner: BackboneElement {
@@ -942,8 +938,6 @@ open class SequenceStructureVariantInner: BackboneElement {
 
 
 /**
- *  None.
- *
  *  Structural variant outer.
  */
 open class SequenceStructureVariantOuter: BackboneElement {

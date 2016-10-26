@@ -2,7 +2,7 @@
 //  ConceptMapTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -86,7 +86,7 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.publisher, "FHIR project team (original source: LabMCoP)")
 		XCTAssertEqual(inst.sourceReference?.reference, "http://hl7.org/fhir/ValueSet/v2-0487")
 		XCTAssertEqual(inst.status, "draft")
-		XCTAssertEqual(inst.targetReference?.reference, "http://snomed.info/id")
+		XCTAssertEqual(inst.targetReference?.reference, "http://snomed.info/id?fhir_vs")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ConceptMap/102")
 		XCTAssertEqual(inst.version, "20130725")
@@ -134,13 +134,15 @@ class ConceptMapTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?.value, "urn:uuid:53cd62ee-033e-414c-9f58-3ca97b5ffc3b")
 		XCTAssertEqual(inst.name, "FHIR/v3 Address Use Mapping")
 		XCTAssertEqual(inst.publisher, "HL7, Inc")
-		XCTAssertEqual(inst.requirements, "To help implementers map from HL7 v3/CDA to FHIR")
+		XCTAssertEqual(inst.purpose, "To help implementers map from HL7 v3/CDA to FHIR")
 		XCTAssertEqual(inst.sourceReference?.reference, "http://hl7.org/fhir/ValueSet/address-use")
 		XCTAssertEqual(inst.status, "draft")
 		XCTAssertEqual(inst.targetReference?.reference, "http://hl7.org/fhir/ValueSet/v3-AddressUse")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ConceptMap/101")
-		XCTAssertEqual(inst.useContext?[0].text, "for CDA Usage")
+		XCTAssertEqual(inst.useContext?[0].code?.code, "venue")
+		XCTAssertEqual(inst.useContext?[0].code?.system?.absoluteString, "http://hl7.org/fhir/usage-context-type")
+		XCTAssertEqual(inst.useContext?[0].valueCodeableConcept?.text, "for CDA Usage")
 		XCTAssertEqual(inst.version, "20120613")
 		
 		return inst

@@ -2,7 +2,7 @@
 //  GuidanceResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/GuidanceResponse) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -306,7 +306,7 @@ open class GuidanceResponseAction: BackboneElement {
 	public var description_fhir: String?
 	
 	/// Supporting documentation for the intended performer of the action.
-	public var documentation: [RelatedResource]?
+	public var documentation: [RelatedArtifact]?
 	
 	/// visual-group | logical-group | sentence-group.
 	public var groupingBehavior: String?
@@ -410,7 +410,7 @@ open class GuidanceResponseAction: BackboneElement {
 			if let exist = js["documentation"] {
 				presentKeys.insert("documentation")
 				if let val = exist as? [FHIRJSON] {
-					self.documentation = RelatedResource.instantiate(fromArray: val, owner: self) as? [RelatedResource]
+					self.documentation = RelatedArtifact.instantiate(fromArray: val, owner: self) as? [RelatedArtifact]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "documentation", wants: Array<FHIRJSON>.self, has: type(of: exist)))

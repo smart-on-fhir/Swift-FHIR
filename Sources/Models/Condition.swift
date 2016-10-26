@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Condition) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Condition) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -45,8 +45,8 @@ open class Condition: DomainResource {
 	/// Anatomical location, if relevant.
 	public var bodySite: [CodeableConcept]?
 	
-	/// complaint | symptom | finding | diagnosis.
-	public var category: CodeableConcept?
+	/// problem-list-item | encounter-diagnosis.
+	public var category: [CodeableConcept]?
 	
 	/// active | relapse | remission | resolved.
 	public var clinicalStatus: String?
@@ -187,11 +187,11 @@ open class Condition: DomainResource {
 			}
 			if let exist = js["category"] {
 				presentKeys.insert("category")
-				if let val = exist as? FHIRJSON {
-					self.category = CodeableConcept(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.category = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "category", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["clinicalStatus"] {
@@ -379,7 +379,7 @@ open class Condition: DomainResource {
 			json["bodySite"] = bodySite.map() { $0.asJSON() }
 		}
 		if let category = self.category {
-			json["category"] = category.asJSON()
+			json["category"] = category.map() { $0.asJSON() }
 		}
 		if let clinicalStatus = self.clinicalStatus {
 			json["clinicalStatus"] = clinicalStatus.asJSON()

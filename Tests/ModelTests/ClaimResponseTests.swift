@@ -2,7 +2,7 @@
 //  ClaimResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -56,8 +56,8 @@ class ClaimResponseTests: XCTestCase {
 		XCTAssertEqual(inst.item?[0].adjudication?[3].amount?.value, NSDecimalNumber(string: "100.47"))
 		XCTAssertEqual(inst.item?[0].adjudication?[3].category?.code, "benefit")
 		XCTAssertEqual(inst.item?[0].sequenceLinkId, UInt(1))
-		XCTAssertEqual(inst.organizationIdentifier?.system?.absoluteString, "http://www.jurisdiction.org/insurers")
-		XCTAssertEqual(inst.organizationIdentifier?.value, "555123")
+		XCTAssertEqual(inst.organization?.identifier?.system?.absoluteString, "http://www.jurisdiction.org/insurers")
+		XCTAssertEqual(inst.organization?.identifier?.value, "555123")
 		XCTAssertEqual(inst.outcome?.code, "complete")
 		XCTAssertEqual(inst.outcome?.system?.absoluteString, "http://hl7.org/fhir/remittance-outcome")
 		XCTAssertEqual(inst.payeeType?.code, "provider")
@@ -70,7 +70,7 @@ class ClaimResponseTests: XCTestCase {
 		XCTAssertEqual(inst.payment?.identifier?.value, "201408-2-1569478")
 		XCTAssertEqual(inst.payment?.type?.code, "complete")
 		XCTAssertEqual(inst.payment?.type?.system?.absoluteString, "http://hl7.org/fhir/ValueSet/ex-paymenttype")
-		XCTAssertEqual(inst.requestReference?.reference, "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402")
+		XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the ClaimResponse</div>")
 		XCTAssertEqual(inst.text?.status, "generated")

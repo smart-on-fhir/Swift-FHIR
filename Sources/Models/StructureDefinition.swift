@@ -2,7 +2,7 @@
 //  StructureDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -26,14 +26,14 @@ open class StructureDefinition: DomainResource {
 	/// Definition that this type is constrained/specialized from.
 	public var baseDefinition: URL?
 	
-	/// Assist with indexing and finding.
-	public var code: [Coding]?
-	
-	/// Contact details of the publisher.
-	public var contact: [StructureDefinitionContact]?
+	/// Contact details for the publisher.
+	public var contact: [ContactDetail]?
 	
 	/// Where the extension can be used in instances.
 	public var context: [String]?
+	
+	/// FluentPath invariants - when the extension can be used.
+	public var contextInvariant: [String]?
 	
 	/// resource | datatype | extension.
 	public var contextType: String?
@@ -41,20 +41,17 @@ open class StructureDefinition: DomainResource {
 	/// Use and/or publishing restrictions.
 	public var copyright: String?
 	
-	/// Date for this version of the StructureDefinition.
+	/// Date this was last changed.
 	public var date: DateTime?
 	
 	/// specialization | constraint - How relates to base definition.
 	public var derivation: String?
 	
-	/// Natural language description of the StructureDefinition.
+	/// Natural language description of the structure definition.
 	public var description_fhir: String?
 	
 	/// Differential view of the structure.
 	public var differential: StructureDefinitionDifferential?
-	
-	/// Use this name when displaying the value.
-	public var display: String?
 	
 	/// If for testing purposes, not real usage.
 	public var experimental: Bool?
@@ -62,8 +59,14 @@ open class StructureDefinition: DomainResource {
 	/// FHIR Version this StructureDefinition targets.
 	public var fhirVersion: String?
 	
-	/// Other identifiers for the StructureDefinition.
+	/// Additional identifier for the structure definition.
 	public var identifier: [Identifier]?
+	
+	/// Intended jurisdiction for structure definition (if applicable).
+	public var jurisdiction: [CodeableConcept]?
+	
+	/// Assist with indexing and finding.
+	public var keyword: [Coding]?
 	
 	/// primitive-type | complex-type | resource | logical.
 	public var kind: String?
@@ -71,14 +74,14 @@ open class StructureDefinition: DomainResource {
 	/// External specification that the content is mapped to.
 	public var mapping: [StructureDefinitionMapping]?
 	
-	/// Informal name for this StructureDefinition.
+	/// Name for this structure definition (Computer friendly).
 	public var name: String?
 	
 	/// Name of the publisher (Organization or individual).
 	public var publisher: String?
 	
-	/// Scope and Usage this structure definition is for.
-	public var requirements: String?
+	/// Why this structure definition is defined.
+	public var purpose: String?
 	
 	/// Snapshot view of the structure.
 	public var snapshot: StructureDefinitionSnapshot?
@@ -86,16 +89,19 @@ open class StructureDefinition: DomainResource {
 	/// draft | active | retired.
 	public var status: String?
 	
+	/// Name for this structure definition (Human friendly).
+	public var title: String?
+	
 	/// Type defined or constrained by this structure.
 	public var type: String?
 	
-	/// Absolute URL used to reference this StructureDefinition.
+	/// Logical uri to reference this structure definition (globally unique).
 	public var url: URL?
 	
 	/// Content intends to support these contexts.
-	public var useContext: [CodeableConcept]?
+	public var useContext: [UsageContext]?
 	
-	/// Logical id for this version of the StructureDefinition.
+	/// Business version of the structure definition.
 	public var version: String?
 	
 	
@@ -139,19 +145,10 @@ open class StructureDefinition: DomainResource {
 					errors.append(FHIRJSONError(key: "baseDefinition", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["code"] {
-				presentKeys.insert("code")
-				if let val = exist as? [FHIRJSON] {
-					self.code = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "code", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
 			if let exist = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = StructureDefinitionContact.instantiate(fromArray: val, owner: self) as? [StructureDefinitionContact]
+					self.contact = ContactDetail.instantiate(fromArray: val, owner: self) as? [ContactDetail]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -164,6 +161,15 @@ open class StructureDefinition: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "context", wants: Array<String>.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["contextInvariant"] {
+				presentKeys.insert("contextInvariant")
+				if let val = exist as? [String] {
+					self.contextInvariant = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "contextInvariant", wants: Array<String>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["contextType"] {
@@ -220,15 +226,6 @@ open class StructureDefinition: DomainResource {
 					errors.append(FHIRJSONError(key: "differential", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["display"] {
-				presentKeys.insert("display")
-				if let val = exist as? String {
-					self.display = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "display", wants: String.self, has: type(of: exist)))
-				}
-			}
 			if let exist = js["experimental"] {
 				presentKeys.insert("experimental")
 				if let val = exist as? Bool {
@@ -254,6 +251,24 @@ open class StructureDefinition: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["jurisdiction"] {
+				presentKeys.insert("jurisdiction")
+				if let val = exist as? [FHIRJSON] {
+					self.jurisdiction = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "jurisdiction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["keyword"] {
+				presentKeys.insert("keyword")
+				if let val = exist as? [FHIRJSON] {
+					self.keyword = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "keyword", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["kind"] {
@@ -298,13 +313,13 @@ open class StructureDefinition: DomainResource {
 					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["requirements"] {
-				presentKeys.insert("requirements")
+			if let exist = js["purpose"] {
+				presentKeys.insert("purpose")
 				if let val = exist as? String {
-					self.requirements = val
+					self.purpose = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "purpose", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["snapshot"] {
@@ -327,6 +342,15 @@ open class StructureDefinition: DomainResource {
 			}
 			else {
 				errors.append(FHIRJSONError(key: "status"))
+			}
+			if let exist = js["title"] {
+				presentKeys.insert("title")
+				if let val = exist as? String {
+					self.title = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
+				}
 			}
 			if let exist = js["type"] {
 				presentKeys.insert("type")
@@ -355,7 +379,7 @@ open class StructureDefinition: DomainResource {
 			if let exist = js["useContext"] {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
-					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+					self.useContext = UsageContext.instantiate(fromArray: val, owner: self) as? [UsageContext]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -383,9 +407,6 @@ open class StructureDefinition: DomainResource {
 		if let baseDefinition = self.baseDefinition {
 			json["baseDefinition"] = baseDefinition.asJSON()
 		}
-		if let code = self.code {
-			json["code"] = code.map() { $0.asJSON() }
-		}
 		if let contact = self.contact {
 			json["contact"] = contact.map() { $0.asJSON() }
 		}
@@ -395,6 +416,13 @@ open class StructureDefinition: DomainResource {
 				arr.append(val.asJSON())
 			}
 			json["context"] = arr
+		}
+		if let contextInvariant = self.contextInvariant {
+			var arr = [Any]()
+			for val in contextInvariant {
+				arr.append(val.asJSON())
+			}
+			json["contextInvariant"] = arr
 		}
 		if let contextType = self.contextType {
 			json["contextType"] = contextType.asJSON()
@@ -414,9 +442,6 @@ open class StructureDefinition: DomainResource {
 		if let differential = self.differential {
 			json["differential"] = differential.asJSON()
 		}
-		if let display = self.display {
-			json["display"] = display.asJSON()
-		}
 		if let experimental = self.experimental {
 			json["experimental"] = experimental.asJSON()
 		}
@@ -425,6 +450,12 @@ open class StructureDefinition: DomainResource {
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON() }
+		}
+		if let jurisdiction = self.jurisdiction {
+			json["jurisdiction"] = jurisdiction.map() { $0.asJSON() }
+		}
+		if let keyword = self.keyword {
+			json["keyword"] = keyword.map() { $0.asJSON() }
 		}
 		if let kind = self.kind {
 			json["kind"] = kind.asJSON()
@@ -438,14 +469,17 @@ open class StructureDefinition: DomainResource {
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
 		}
-		if let requirements = self.requirements {
-			json["requirements"] = requirements.asJSON()
+		if let purpose = self.purpose {
+			json["purpose"] = purpose.asJSON()
 		}
 		if let snapshot = self.snapshot {
 			json["snapshot"] = snapshot.asJSON()
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
+		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
@@ -458,68 +492,6 @@ open class StructureDefinition: DomainResource {
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Contact details of the publisher.
- *
- *  Contacts to assist a user in finding and communicating with the publisher.
- */
-open class StructureDefinitionContact: BackboneElement {
-	override open class var resourceType: String {
-		get { return "StructureDefinitionContact" }
-	}
-	
-	/// Name of an individual to contact.
-	public var name: String?
-	
-	/// Contact details for individual or publisher.
-	public var telecom: [ContactPoint]?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["telecom"] {
-				presentKeys.insert("telecom")
-				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if let telecom = self.telecom {
-			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json

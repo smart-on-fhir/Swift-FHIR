@@ -2,7 +2,7 @@
 //  Coverage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -20,25 +20,13 @@ open class Coverage: DomainResource {
 	}
 	
 	/// Plan Beneficiary.
-	public var beneficiaryIdentifier: Identifier?
-	
-	/// Plan Beneficiary.
-	public var beneficiaryReference: Reference?
-	
-	/// BIN Number.
-	public var bin: String?
-	
-	/// An identifier for the class.
-	public var class_fhir: String?
+	public var beneficiary: Reference?
 	
 	/// Contract details.
 	public var contract: [Reference]?
 	
 	/// Dependent number.
 	public var dependent: UInt?
-	
-	/// An identifier for the group.
-	public var group: String?
 	
 	/// The primary coverage ID.
 	public var identifier: [Identifier]?
@@ -47,10 +35,10 @@ open class Coverage: DomainResource {
 	public var isAgreement: Bool?
 	
 	/// Identifier for the plan or agreement issuer.
-	public var issuerIdentifier: Identifier?
+	public var issuer: Reference?
 	
-	/// Identifier for the plan or agreement issuer.
-	public var issuerReference: Reference?
+	/// Additional coverage classifications.
+	public var level: [Coding]?
 	
 	/// Insurer network.
 	public var network: String?
@@ -58,14 +46,8 @@ open class Coverage: DomainResource {
 	/// Coverage start and end dates.
 	public var period: Period?
 	
-	/// An identifier for the plan.
-	public var plan: String?
-	
 	/// Plan holder.
-	public var planholderIdentifier: Identifier?
-	
-	/// Plan holder.
-	public var planholderReference: Reference?
+	public var planholder: Reference?
 	
 	/// Beneficiary relationship to Planholder.
 	public var relationship: Coding?
@@ -75,12 +57,6 @@ open class Coverage: DomainResource {
 	
 	/// active | cancelled | draft | entered-in-error.
 	public var status: String?
-	
-	/// An identifier for the subsection of the group.
-	public var subGroup: String?
-	
-	/// An identifier for the subsection of the plan.
-	public var subPlan: String?
 	
 	/// Type of coverage.
 	public var type: Coding?
@@ -92,14 +68,11 @@ open class Coverage: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(beneficiaryIdentifier: Identifier, beneficiaryReference: Reference, issuerIdentifier: Identifier, issuerReference: Reference, planholderIdentifier: Identifier, planholderReference: Reference, relationship: Coding, status: String) {
+	public convenience init(beneficiary: Reference, issuer: Reference, planholder: Reference, relationship: Coding, status: String) {
 		self.init(json: nil)
-		self.beneficiaryIdentifier = beneficiaryIdentifier
-		self.beneficiaryReference = beneficiaryReference
-		self.issuerIdentifier = issuerIdentifier
-		self.issuerReference = issuerReference
-		self.planholderIdentifier = planholderIdentifier
-		self.planholderReference = planholderReference
+		self.beneficiary = beneficiary
+		self.issuer = issuer
+		self.planholder = planholder
 		self.relationship = relationship
 		self.status = status
 	}
@@ -107,41 +80,17 @@ open class Coverage: DomainResource {
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist = js["beneficiaryIdentifier"] {
-				presentKeys.insert("beneficiaryIdentifier")
+			if let exist = js["beneficiary"] {
+				presentKeys.insert("beneficiary")
 				if let val = exist as? FHIRJSON {
-					self.beneficiaryIdentifier = Identifier(json: val, owner: self)
+					self.beneficiary = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "beneficiaryIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "beneficiary", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["beneficiaryReference"] {
-				presentKeys.insert("beneficiaryReference")
-				if let val = exist as? FHIRJSON {
-					self.beneficiaryReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "beneficiaryReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["bin"] {
-				presentKeys.insert("bin")
-				if let val = exist as? String {
-					self.bin = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "bin", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["class"] {
-				presentKeys.insert("class")
-				if let val = exist as? String {
-					self.class_fhir = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "class", wants: String.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRJSONError(key: "beneficiary"))
 			}
 			if let exist = js["contract"] {
 				presentKeys.insert("contract")
@@ -159,15 +108,6 @@ open class Coverage: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dependent", wants: UInt.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["group"] {
-				presentKeys.insert("group")
-				if let val = exist as? String {
-					self.group = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "group", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["identifier"] {
@@ -188,22 +128,25 @@ open class Coverage: DomainResource {
 					errors.append(FHIRJSONError(key: "isAgreement", wants: Bool.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["issuerIdentifier"] {
-				presentKeys.insert("issuerIdentifier")
+			if let exist = js["issuer"] {
+				presentKeys.insert("issuer")
 				if let val = exist as? FHIRJSON {
-					self.issuerIdentifier = Identifier(json: val, owner: self)
+					self.issuer = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "issuerIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "issuer", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["issuerReference"] {
-				presentKeys.insert("issuerReference")
-				if let val = exist as? FHIRJSON {
-					self.issuerReference = Reference(json: val, owner: self)
+			else {
+				errors.append(FHIRJSONError(key: "issuer"))
+			}
+			if let exist = js["level"] {
+				presentKeys.insert("level")
+				if let val = exist as? [FHIRJSON] {
+					self.level = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "issuerReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "level", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["network"] {
@@ -224,32 +167,17 @@ open class Coverage: DomainResource {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["plan"] {
-				presentKeys.insert("plan")
-				if let val = exist as? String {
-					self.plan = val
+			if let exist = js["planholder"] {
+				presentKeys.insert("planholder")
+				if let val = exist as? FHIRJSON {
+					self.planholder = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "plan", wants: String.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "planholder", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["planholderIdentifier"] {
-				presentKeys.insert("planholderIdentifier")
-				if let val = exist as? FHIRJSON {
-					self.planholderIdentifier = Identifier(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "planholderIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["planholderReference"] {
-				presentKeys.insert("planholderReference")
-				if let val = exist as? FHIRJSON {
-					self.planholderReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "planholderReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRJSONError(key: "planholder"))
 			}
 			if let exist = js["relationship"] {
 				presentKeys.insert("relationship")
@@ -284,24 +212,6 @@ open class Coverage: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "status"))
 			}
-			if let exist = js["subGroup"] {
-				presentKeys.insert("subGroup")
-				if let val = exist as? String {
-					self.subGroup = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "subGroup", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["subPlan"] {
-				presentKeys.insert("subPlan")
-				if let val = exist as? String {
-					self.subPlan = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "subPlan", wants: String.self, has: type(of: exist)))
-				}
-			}
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
@@ -311,17 +221,6 @@ open class Coverage: DomainResource {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			
-			// check if nonoptional expanded properties are present
-			if nil == self.beneficiaryIdentifier && nil == self.beneficiaryReference {
-				errors.append(FHIRJSONError(key: "beneficiary*"))
-			}
-			if nil == self.issuerIdentifier && nil == self.issuerReference {
-				errors.append(FHIRJSONError(key: "issuer*"))
-			}
-			if nil == self.planholderIdentifier && nil == self.planholderReference {
-				errors.append(FHIRJSONError(key: "planholder*"))
-			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -329,17 +228,8 @@ open class Coverage: DomainResource {
 	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let beneficiaryIdentifier = self.beneficiaryIdentifier {
-			json["beneficiaryIdentifier"] = beneficiaryIdentifier.asJSON()
-		}
-		if let beneficiaryReference = self.beneficiaryReference {
-			json["beneficiaryReference"] = beneficiaryReference.asJSON()
-		}
-		if let bin = self.bin {
-			json["bin"] = bin.asJSON()
-		}
-		if let class_fhir = self.class_fhir {
-			json["class"] = class_fhir.asJSON()
+		if let beneficiary = self.beneficiary {
+			json["beneficiary"] = beneficiary.asJSON()
 		}
 		if let contract = self.contract {
 			json["contract"] = contract.map() { $0.asJSON() }
@@ -347,20 +237,17 @@ open class Coverage: DomainResource {
 		if let dependent = self.dependent {
 			json["dependent"] = dependent.asJSON()
 		}
-		if let group = self.group {
-			json["group"] = group.asJSON()
-		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let isAgreement = self.isAgreement {
 			json["isAgreement"] = isAgreement.asJSON()
 		}
-		if let issuerIdentifier = self.issuerIdentifier {
-			json["issuerIdentifier"] = issuerIdentifier.asJSON()
+		if let issuer = self.issuer {
+			json["issuer"] = issuer.asJSON()
 		}
-		if let issuerReference = self.issuerReference {
-			json["issuerReference"] = issuerReference.asJSON()
+		if let level = self.level {
+			json["level"] = level.map() { $0.asJSON() }
 		}
 		if let network = self.network {
 			json["network"] = network.asJSON()
@@ -368,14 +255,8 @@ open class Coverage: DomainResource {
 		if let period = self.period {
 			json["period"] = period.asJSON()
 		}
-		if let plan = self.plan {
-			json["plan"] = plan.asJSON()
-		}
-		if let planholderIdentifier = self.planholderIdentifier {
-			json["planholderIdentifier"] = planholderIdentifier.asJSON()
-		}
-		if let planholderReference = self.planholderReference {
-			json["planholderReference"] = planholderReference.asJSON()
+		if let planholder = self.planholder {
+			json["planholder"] = planholder.asJSON()
 		}
 		if let relationship = self.relationship {
 			json["relationship"] = relationship.asJSON()
@@ -385,12 +266,6 @@ open class Coverage: DomainResource {
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
-		}
-		if let subGroup = self.subGroup {
-			json["subGroup"] = subGroup.asJSON()
-		}
-		if let subPlan = self.subPlan {
-			json["subPlan"] = subPlan.asJSON()
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()

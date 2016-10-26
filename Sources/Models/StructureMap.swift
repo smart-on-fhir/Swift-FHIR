@@ -2,7 +2,7 @@
 //  StructureMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/StructureMap) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -17,16 +17,16 @@ open class StructureMap: DomainResource {
 		get { return "StructureMap" }
 	}
 	
-	/// Contact details of the publisher.
-	public var contact: [StructureMapContact]?
+	/// Contact details for the publisher.
+	public var contact: [ContactDetail]?
 	
 	/// Use and/or publishing restrictions.
 	public var copyright: String?
 	
-	/// Date for this version of the StructureMap.
+	/// Date this was last changed.
 	public var date: DateTime?
 	
-	/// Natural language description of the StructureMap.
+	/// Natural language description of the structure map.
 	public var description_fhir: String?
 	
 	/// If for testing purposes, not real usage.
@@ -35,20 +35,23 @@ open class StructureMap: DomainResource {
 	/// Named sections for reader convenience.
 	public var group: [StructureMapGroup]?
 	
-	/// Other identifiers for the StructureMap.
+	/// Additional identifier for the structure map.
 	public var identifier: [Identifier]?
 	
 	/// Other maps used by this map (canonical URLs).
 	public var import_fhir: [URL]?
 	
-	/// Informal name for this StructureMap.
+	/// Intended jurisdiction for structure map (if applicable).
+	public var jurisdiction: [CodeableConcept]?
+	
+	/// Name for this structure map (Computer friendly).
 	public var name: String?
 	
 	/// Name of the publisher (Organization or individual).
 	public var publisher: String?
 	
-	/// Scope and Usage this structure map is for.
-	public var requirements: String?
+	/// Why this structure map is defined.
+	public var purpose: String?
 	
 	/// draft | active | retired.
 	public var status: String?
@@ -56,13 +59,16 @@ open class StructureMap: DomainResource {
 	/// Structure Definition used by this map.
 	public var structure: [StructureMapStructure]?
 	
-	/// Absolute URL used to reference this StructureMap.
+	/// Name for this structure map (Human friendly).
+	public var title: String?
+	
+	/// Logical uri to reference this structure map (globally unique).
 	public var url: URL?
 	
 	/// Content intends to support these contexts.
-	public var useContext: [CodeableConcept]?
+	public var useContext: [UsageContext]?
 	
-	/// Logical id for this version of the StructureMap.
+	/// Business version of the structure map.
 	public var version: String?
 	
 	
@@ -86,7 +92,7 @@ open class StructureMap: DomainResource {
 			if let exist = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = StructureMapContact.instantiate(fromArray: val, owner: self) as? [StructureMapContact]
+					self.contact = ContactDetail.instantiate(fromArray: val, owner: self) as? [ContactDetail]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -158,6 +164,15 @@ open class StructureMap: DomainResource {
 					errors.append(FHIRJSONError(key: "import", wants: Array<String>.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["jurisdiction"] {
+				presentKeys.insert("jurisdiction")
+				if let val = exist as? [FHIRJSON] {
+					self.jurisdiction = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "jurisdiction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
@@ -179,13 +194,13 @@ open class StructureMap: DomainResource {
 					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["requirements"] {
-				presentKeys.insert("requirements")
+			if let exist = js["purpose"] {
+				presentKeys.insert("purpose")
 				if let val = exist as? String {
-					self.requirements = val
+					self.purpose = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "purpose", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["status"] {
@@ -209,6 +224,15 @@ open class StructureMap: DomainResource {
 					errors.append(FHIRJSONError(key: "structure", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["title"] {
+				presentKeys.insert("title")
+				if let val = exist as? String {
+					self.title = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
@@ -224,7 +248,7 @@ open class StructureMap: DomainResource {
 			if let exist = js["useContext"] {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
-					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+					self.useContext = UsageContext.instantiate(fromArray: val, owner: self) as? [UsageContext]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -274,20 +298,26 @@ open class StructureMap: DomainResource {
 			}
 			json["import"] = arr
 		}
+		if let jurisdiction = self.jurisdiction {
+			json["jurisdiction"] = jurisdiction.map() { $0.asJSON() }
+		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
 		}
-		if let requirements = self.requirements {
-			json["requirements"] = requirements.asJSON()
+		if let purpose = self.purpose {
+			json["purpose"] = purpose.asJSON()
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
 		}
 		if let structure = self.structure {
 			json["structure"] = structure.map() { $0.asJSON() }
+		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
@@ -297,68 +327,6 @@ open class StructureMap: DomainResource {
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Contact details of the publisher.
- *
- *  Contacts to assist a user in finding and communicating with the publisher.
- */
-open class StructureMapContact: BackboneElement {
-	override open class var resourceType: String {
-		get { return "StructureMapContact" }
-	}
-	
-	/// Name of an individual to contact.
-	public var name: String?
-	
-	/// Contact details for individual or publisher.
-	public var telecom: [ContactPoint]?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["telecom"] {
-				presentKeys.insert("telecom")
-				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if let telecom = self.telecom {
-			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -1008,13 +976,6 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(context: String, contextType: String) {
-		self.init(json: nil)
-		self.context = context
-		self.contextType = contextType
-	}
-	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
@@ -1027,9 +988,6 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 					errors.append(FHIRJSONError(key: "context", wants: String.self, has: type(of: exist)))
 				}
 			}
-			else {
-				errors.append(FHIRJSONError(key: "context"))
-			}
 			if let exist = js["contextType"] {
 				presentKeys.insert("contextType")
 				if let val = exist as? String {
@@ -1038,9 +996,6 @@ open class StructureMapGroupRuleTarget: BackboneElement {
 				else {
 					errors.append(FHIRJSONError(key: "contextType", wants: String.self, has: type(of: exist)))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "contextType"))
 			}
 			if let exist = js["element"] {
 				presentKeys.insert("element")

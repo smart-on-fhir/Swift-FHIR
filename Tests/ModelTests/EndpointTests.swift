@@ -2,7 +2,7 @@
 //  EndpointTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -37,8 +37,8 @@ class EndpointTests: XCTestCase {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "endpoint-example.json")
 		
 		XCTAssertEqual(inst.address?.absoluteString, "http://fhir3.healthintersections.com.au/open/CarePlan")
-		XCTAssertEqual(inst.connectionType?.code, "rest-hook")
-		XCTAssertEqual(inst.connectionType?.system?.absoluteString, "http://hl7.org/fhir/ValueSet/subscription-channel-type")
+		XCTAssertEqual(inst.connectionType?.code, "hl7-fhir-rest")
+		XCTAssertEqual(inst.connectionType?.system?.absoluteString, "http://hl7.org/fhir/endpoint-connection-type")
 		XCTAssertEqual(inst.contact?[0].system, "email")
 		XCTAssertEqual(inst.contact?[0].use, "work")
 		XCTAssertEqual(inst.contact?[0].value, "endpointmanager@example.org")
@@ -47,10 +47,8 @@ class EndpointTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://example.org/enpoint-identifier")
 		XCTAssertEqual(inst.identifier?[0].value, "epcp12")
 		XCTAssertEqual(inst.managingOrganization?.reference, "Organization/hl7")
-		XCTAssertEqual(inst.method?[0].code, "PUT")
-		XCTAssertEqual(inst.method?[0].system?.absoluteString, "http://hl7.org/fhir/ValueSet/http-verb")
 		XCTAssertEqual(inst.name, "Health Intersections CarePlan Hub")
-		XCTAssertEqual(inst.payloadFormat, "application/fhir+xml")
+		XCTAssertEqual(inst.payloadMimeType?[0], "application/fhir+xml")
 		XCTAssertEqual(inst.payloadType?[0].coding?[0].code, "CarePlan")
 		XCTAssertEqual(inst.payloadType?[0].coding?[0].system?.absoluteString, "http://hl7.org/fhir/resource-types")
 		XCTAssertEqual(inst.period?.start?.description, "2014-09-01")

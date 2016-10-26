@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -469,9 +469,6 @@ open class ElementDefinition: Element {
 	/// If the element must supported.
 	public var mustSupport: Bool?
 	
-	/// Name for this particular element definition (reference target).
-	public var name: String?
-	
 	/// Path of the element in the heirarchy of elements.
 	public var path: String?
 	
@@ -597,6 +594,9 @@ open class ElementDefinition: Element {
 	
 	/// Concise definition for xml presentation.
 	public var short: String?
+	
+	/// Name for this particular element (in a set of slices).
+	public var sliceName: String?
 	
 	/// This element is sliced - slices follow.
 	public var slicing: ElementDefinitionSlicing?
@@ -1969,15 +1969,6 @@ open class ElementDefinition: Element {
 					errors.append(FHIRJSONError(key: "mustSupport", wants: Bool.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
 			if let exist = js["path"] {
 				presentKeys.insert("path")
 				if let val = exist as? String {
@@ -2357,6 +2348,15 @@ open class ElementDefinition: Element {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "short", wants: String.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["sliceName"] {
+				presentKeys.insert("sliceName")
+				if let val = exist as? String {
+					self.sliceName = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "sliceName", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["slicing"] {
@@ -2842,9 +2842,6 @@ open class ElementDefinition: Element {
 		if let mustSupport = self.mustSupport {
 			json["mustSupport"] = mustSupport.asJSON()
 		}
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
 		if let path = self.path {
 			json["path"] = path.asJSON()
 		}
@@ -2974,6 +2971,9 @@ open class ElementDefinition: Element {
 		}
 		if let short = self.short {
 			json["short"] = short.asJSON()
+		}
+		if let sliceName = self.sliceName {
+			json["sliceName"] = sliceName.asJSON()
 		}
 		if let slicing = self.slicing {
 			json["slicing"] = slicing.asJSON()
@@ -3211,6 +3211,9 @@ open class ElementDefinitionConstraint: Element {
 	/// error | warning.
 	public var severity: String?
 	
+	/// Reference to original source of constraint.
+	public var source: URL?
+	
 	/// XPath expression of constraint.
 	public var xpath: String?
 	
@@ -3221,12 +3224,12 @@ open class ElementDefinitionConstraint: Element {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(human: String, key: String, severity: String, xpath: String) {
+	public convenience init(expression: String, human: String, key: String, severity: String) {
 		self.init(json: nil)
+		self.expression = expression
 		self.human = human
 		self.key = key
 		self.severity = severity
-		self.xpath = xpath
 	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -3240,6 +3243,9 @@ open class ElementDefinitionConstraint: Element {
 				else {
 					errors.append(FHIRJSONError(key: "expression", wants: String.self, has: type(of: exist)))
 				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "expression"))
 			}
 			if let exist = js["human"] {
 				presentKeys.insert("human")
@@ -3286,6 +3292,15 @@ open class ElementDefinitionConstraint: Element {
 			else {
 				errors.append(FHIRJSONError(key: "severity"))
 			}
+			if let exist = js["source"] {
+				presentKeys.insert("source")
+				if let val = exist as? String {
+					self.source = URL(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "source", wants: String.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["xpath"] {
 				presentKeys.insert("xpath")
 				if let val = exist as? String {
@@ -3294,9 +3309,6 @@ open class ElementDefinitionConstraint: Element {
 				else {
 					errors.append(FHIRJSONError(key: "xpath", wants: String.self, has: type(of: exist)))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "xpath"))
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -3319,6 +3331,9 @@ open class ElementDefinitionConstraint: Element {
 		}
 		if let severity = self.severity {
 			json["severity"] = severity.asJSON()
+		}
+		if let source = self.source {
+			json["source"] = source.asJSON()
 		}
 		if let xpath = self.xpath {
 			json["xpath"] = xpath.asJSON()
@@ -3541,8 +3556,8 @@ open class ElementDefinitionType: Element {
 	/// contained | referenced | bundled - how aggregated.
 	public var aggregation: [String]?
 	
-	/// Name of Data type or Resource.
-	public var code: String?
+	/// Data type or Resource (reference to definition).
+	public var code: URL?
 	
 	/// Profile (StructureDefinition) to apply (or IG).
 	public var profile: URL?
@@ -3560,7 +3575,7 @@ open class ElementDefinitionType: Element {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String) {
+	public convenience init(code: URL) {
 		self.init(json: nil)
 		self.code = code
 	}
@@ -3580,7 +3595,7 @@ open class ElementDefinitionType: Element {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? String {
-					self.code = val
+					self.code = URL(string: val)
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))

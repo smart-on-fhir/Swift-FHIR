@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -19,19 +19,19 @@ open class ValueSet: DomainResource {
 		get { return "ValueSet" }
 	}
 	
-	/// When value set includes codes from elsewhere.
+	/// Definition of the content of the value set (CLD).
 	public var compose: ValueSetCompose?
 	
-	/// Contact details of the publisher.
-	public var contact: [ValueSetContact]?
+	/// Contact details for the publisher.
+	public var contact: [ContactDetail]?
 	
 	/// Use and/or publishing restrictions.
 	public var copyright: String?
 	
-	/// Date for given status.
+	/// Date this was last changed.
 	public var date: DateTime?
 	
-	/// Human language description of the value set.
+	/// Natural language description of the value set.
 	public var description_fhir: String?
 	
 	/// Used when the value set is "expanded".
@@ -43,34 +43,37 @@ open class ValueSet: DomainResource {
 	/// Whether this is intended to be used with an extensible binding.
 	public var extensible: Bool?
 	
-	/// Additional identifier for the value set (e.g. HL7 v2 / CDA).
+	/// Additional identifier for the value set.
 	public var identifier: [Identifier]?
 	
 	/// Indicates whether or not any change to the content logical definition may occur.
 	public var immutable: Bool?
 	
-	/// Fixed date for all referenced code systems and value sets.
-	public var lockedDate: FHIRDate?
+	/// Intended jurisdiction for value set (if applicable).
+	public var jurisdiction: [CodeableConcept]?
 	
-	/// Informal name for this value set.
+	/// Name for this value set (Computer friendly).
 	public var name: String?
 	
-	/// Name of the publisher (organization or individual).
+	/// Name of the publisher (Organization or individual).
 	public var publisher: String?
 	
-	/// Why needed.
-	public var requirements: String?
+	/// Why this value set is defined.
+	public var purpose: String?
 	
 	/// draft | active | retired.
 	public var status: String?
 	
-	/// Globally unique logical identifier for  value set.
+	/// Name for this value set (Human friendly).
+	public var title: String?
+	
+	/// Logical uri to reference this value set (globally unique).
 	public var url: URL?
 	
 	/// Content intends to support these contexts.
-	public var useContext: [CodeableConcept]?
+	public var useContext: [UsageContext]?
 	
-	/// Logical identifier for this version of the value set.
+	/// Business version of the value set.
 	public var version: String?
 	
 	
@@ -100,7 +103,7 @@ open class ValueSet: DomainResource {
 			if let exist = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = ValueSetContact.instantiate(fromArray: val, owner: self) as? [ValueSetContact]
+					self.contact = ContactDetail.instantiate(fromArray: val, owner: self) as? [ContactDetail]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -178,13 +181,13 @@ open class ValueSet: DomainResource {
 					errors.append(FHIRJSONError(key: "immutable", wants: Bool.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["lockedDate"] {
-				presentKeys.insert("lockedDate")
-				if let val = exist as? String {
-					self.lockedDate = FHIRDate(string: val)
+			if let exist = js["jurisdiction"] {
+				presentKeys.insert("jurisdiction")
+				if let val = exist as? [FHIRJSON] {
+					self.jurisdiction = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "lockedDate", wants: String.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "jurisdiction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["name"] {
@@ -205,13 +208,13 @@ open class ValueSet: DomainResource {
 					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["requirements"] {
-				presentKeys.insert("requirements")
+			if let exist = js["purpose"] {
+				presentKeys.insert("purpose")
 				if let val = exist as? String {
-					self.requirements = val
+					self.purpose = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "purpose", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["status"] {
@@ -226,6 +229,15 @@ open class ValueSet: DomainResource {
 			else {
 				errors.append(FHIRJSONError(key: "status"))
 			}
+			if let exist = js["title"] {
+				presentKeys.insert("title")
+				if let val = exist as? String {
+					self.title = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
@@ -238,7 +250,7 @@ open class ValueSet: DomainResource {
 			if let exist = js["useContext"] {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
-					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+					self.useContext = UsageContext.instantiate(fromArray: val, owner: self) as? [UsageContext]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -290,8 +302,8 @@ open class ValueSet: DomainResource {
 		if let immutable = self.immutable {
 			json["immutable"] = immutable.asJSON()
 		}
-		if let lockedDate = self.lockedDate {
-			json["lockedDate"] = lockedDate.asJSON()
+		if let jurisdiction = self.jurisdiction {
+			json["jurisdiction"] = jurisdiction.map() { $0.asJSON() }
 		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -299,11 +311,14 @@ open class ValueSet: DomainResource {
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
 		}
-		if let requirements = self.requirements {
-			json["requirements"] = requirements.asJSON()
+		if let purpose = self.purpose {
+			json["purpose"] = purpose.asJSON()
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
+		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
 		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
@@ -321,29 +336,35 @@ open class ValueSet: DomainResource {
 
 
 /**
- *  When value set includes codes from elsewhere.
+ *  Definition of the content of the value set (CLD).
  *
- *  A set of criteria that provide the content logical definition of the value set by including or excluding codes from
- *  outside this value set.
+ *  A set of criteria that define the content logical definition of the value set by including or excluding codes from
+ *  outside this value set. This I also known as the "Content Logical Definition" (CLD).
  */
 open class ValueSetCompose: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetCompose" }
 	}
 	
-	/// Explicitly exclude codes.
+	/// Explicitly exclude codes from a code system or other value sets.
 	public var exclude: [ValueSetComposeInclude]?
 	
-	/// Import the contents of another value set.
-	public var import_fhir: [URL]?
-	
-	/// Include one or more codes from a code system.
+	/// Include one or more codes from a code system or other value set(s).
 	public var include: [ValueSetComposeInclude]?
+	
+	/// Fixed date for all referenced code systems and value sets.
+	public var lockedDate: FHIRDate?
 	
 	
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
 		super.init(json: json, owner: owner)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(include: [ValueSetComposeInclude]) {
+		self.init(json: nil)
+		self.include = include
 	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -358,15 +379,6 @@ open class ValueSetCompose: BackboneElement {
 					errors.append(FHIRJSONError(key: "exclude", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["import"] {
-				presentKeys.insert("import")
-				if let val = exist as? [String] {
-					self.import_fhir = URL.instantiate(fromArray: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "import", wants: Array<String>.self, has: type(of: exist)))
-				}
-			}
 			if let exist = js["include"] {
 				presentKeys.insert("include")
 				if let val = exist as? [FHIRJSON] {
@@ -374,6 +386,18 @@ open class ValueSetCompose: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "include", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "include"))
+			}
+			if let exist = js["lockedDate"] {
+				presentKeys.insert("lockedDate")
+				if let val = exist as? String {
+					self.lockedDate = FHIRDate(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "lockedDate", wants: String.self, has: type(of: exist)))
 				}
 			}
 		}
@@ -386,15 +410,11 @@ open class ValueSetCompose: BackboneElement {
 		if let exclude = self.exclude {
 			json["exclude"] = exclude.map() { $0.asJSON() }
 		}
-		if let import_fhir = self.import_fhir {
-			var arr = [Any]()
-			for val in import_fhir {
-				arr.append(val.asJSON())
-			}
-			json["import"] = arr
-		}
 		if let include = self.include {
 			json["include"] = include.map() { $0.asJSON() }
+		}
+		if let lockedDate = self.lockedDate {
+			json["lockedDate"] = lockedDate.asJSON()
 		}
 		
 		return json
@@ -403,7 +423,7 @@ open class ValueSetCompose: BackboneElement {
 
 
 /**
- *  Include one or more codes from a code system.
+ *  Include one or more codes from a code system or other value set(s).
  */
 open class ValueSetComposeInclude: BackboneElement {
 	override open class var resourceType: String {
@@ -419,6 +439,9 @@ open class ValueSetComposeInclude: BackboneElement {
 	/// The system the codes come from.
 	public var system: URL?
 	
+	/// Select only contents included in this value set.
+	public var valueSet: [URL]?
+	
 	/// Specific version of the code system referred to.
 	public var version: String?
 	
@@ -426,12 +449,6 @@ open class ValueSetComposeInclude: BackboneElement {
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
 		super.init(json: json, owner: owner)
-	}
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(system: URL) {
-		self.init(json: nil)
-		self.system = system
 	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -464,8 +481,14 @@ open class ValueSetComposeInclude: BackboneElement {
 					errors.append(FHIRJSONError(key: "system", wants: String.self, has: type(of: exist)))
 				}
 			}
-			else {
-				errors.append(FHIRJSONError(key: "system"))
+			if let exist = js["valueSet"] {
+				presentKeys.insert("valueSet")
+				if let val = exist as? [String] {
+					self.valueSet = URL.instantiate(fromArray: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "valueSet", wants: Array<String>.self, has: type(of: exist)))
+				}
 			}
 			if let exist = js["version"] {
 				presentKeys.insert("version")
@@ -492,6 +515,13 @@ open class ValueSetComposeInclude: BackboneElement {
 		if let system = self.system {
 			json["system"] = system.asJSON()
 		}
+		if let valueSet = self.valueSet {
+			var arr = [Any]()
+			for val in valueSet {
+				arr.append(val.asJSON())
+			}
+			json["valueSet"] = arr
+		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
 		}
@@ -514,7 +544,7 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 	/// Code or expression from system.
 	public var code: String?
 	
-	/// Additional representations for this valueset.
+	/// Additional representations for this concept.
 	public var designation: [ValueSetComposeIncludeConceptDesignation]?
 	
 	/// Text to display for this code for this value set.
@@ -588,7 +618,7 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 
 
 /**
- *  Additional representations for this valueset.
+ *  Additional representations for this concept.
  *
  *  Additional representations for this concept when used in this value set - other languages, aliases, specialized
  *  purposes, used for particular purposes, etc.
@@ -770,68 +800,6 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 
 
 /**
- *  Contact details of the publisher.
- *
- *  Contacts to assist a user in finding and communicating with the publisher.
- */
-open class ValueSetContact: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ValueSetContact" }
-	}
-	
-	/// Name of an individual to contact.
-	public var name: String?
-	
-	/// Contact details for individual or publisher.
-	public var telecom: [ContactPoint]?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["telecom"] {
-				presentKeys.insert("telecom")
-				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if let telecom = self.telecom {
-			json["telecom"] = telecom.map() { $0.asJSON() }
-		}
-		
-		return json
-	}
-}
-
-
-/**
  *  Used when the value set is "expanded".
  *
  *  A value set can also be "expanded", where the value set is turned into a simple collection of enumerated codes. This
@@ -986,6 +954,9 @@ open class ValueSetExpansionContains: BackboneElement {
 	/// Codes contained under this entry.
 	public var contains: [ValueSetExpansionContains]?
 	
+	/// Additional representations for this item.
+	public var designation: [ValueSetComposeIncludeConceptDesignation]?
+	
 	/// User display for the concept.
 	public var display: String?
 	
@@ -1031,6 +1002,15 @@ open class ValueSetExpansionContains: BackboneElement {
 					errors.append(FHIRJSONError(key: "contains", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["designation"] {
+				presentKeys.insert("designation")
+				if let val = exist as? [FHIRJSON] {
+					self.designation = ValueSetComposeIncludeConceptDesignation.instantiate(fromArray: val, owner: self) as? [ValueSetComposeIncludeConceptDesignation]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "designation", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["display"] {
 				presentKeys.insert("display")
 				if let val = exist as? String {
@@ -1073,6 +1053,9 @@ open class ValueSetExpansionContains: BackboneElement {
 		}
 		if let contains = self.contains {
 			json["contains"] = contains.map() { $0.asJSON() }
+		}
+		if let designation = self.designation {
+			json["designation"] = designation.map() { $0.asJSON() }
 		}
 		if let display = self.display {
 			json["display"] = display.asJSON()

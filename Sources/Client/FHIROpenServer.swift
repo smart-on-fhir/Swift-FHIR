@@ -15,7 +15,7 @@ import Models
 /**
 A very basic FHIRServer implementation that deals with Open FHIR servers in JSON.
 
-It knows its base URL, can fetch and hold on to the conformance statement and perform requests and operations.
+It knows its base URL, can fetch and hold on to the cabability statement and perform requests and operations.
 
 These methods are of interest to you when you create a subclass:
 
@@ -164,22 +164,22 @@ open class FHIROpenServer: FHIRServer {
 	}
 	
 	
-	// MARK: - Server Conformance
+	// MARK: - Server Capability
 	
-	/// The server's conformance statement. Must be implicitly fetched using `getConformance()`
-	public final internal(set) var conformance: Conformance? {
+	/// The server's cabability statement. Must be implicitly fetched using `getCapabilityStatement()`
+	public final internal(set) var cabability: CapabilityStatement? {
 		didSet {
-			if let conformance = conformance {
-				didSetConformance(conformance)
+			if let cabability = cabability {
+				didSetCapabilityStatement(cabability)
 			}
 		}
 	}
 	
-	open func didSetConformance(_ conformance: Conformance) {
+	open func didSetCapabilityStatement(_ cabability: CapabilityStatement) {
 		
-		// look at ConformanceRest entries for security and operation information
-		if let rests = conformance.rest {
-			var best: ConformanceRest?
+		// look at CapabilityStatementRest entries for security and operation information
+		if let rests = cabability.rest {
+			var best: CapabilityStatementRest?
 			for rest in rests {
 				if nil == best {
 					best = rest
@@ -192,58 +192,58 @@ open class FHIROpenServer: FHIRServer {
 			
 			// use the "best" matching rest entry to extract the information we want
 			if let rest = best {
-				didFindConformanceRestStatement(rest)
+				didFindCapabilityStatementRest(rest)
 			}
 		}
 	}
 	
-	open func didFindConformanceRestStatement(_ rest: ConformanceRest) {
+	open func didFindCapabilityStatementRest(_ rest: CapabilityStatementRest) {
 		if let operations = rest.operation {
-			conformanceOperations = operations
+			cababilityOperations = operations
 		}
 	}
 	
 	/**
-	Executes a `read` action against the server's "metadata" path, as returned from `conformancePath()`, which should return the Conformance
-	statement.
+	Executes a `read` action against the server's "metadata" path, as returned from `cababilityStatementPath()`, which should return the
+	cabability statement.
 	*/
-	final func getConformance(_ callback: @escaping (_ error: FHIRError?) -> ()) {
-		if nil != conformance {
+	final func getCapabilityStatement(_ callback: @escaping (_ error: FHIRError?) -> ()) {
+		if nil != cabability {
 			callback(nil)
 			return
 		}
 		
 		// not yet fetched, fetch it
-		Conformance.readFrom(conformancePath(), server: self) { resource, error in
-			if let conf = resource as? Conformance {
-				self.conformance = conf
+		CapabilityStatement.readFrom(cababilityStatementPath(), server: self) { resource, error in
+			if let conf = resource as? CapabilityStatement {
+				self.cabability = conf
 				callback(nil)
 			}
 			else {
-				callback(error ?? FHIRError.error("Conformance.readFrom() did not return a Conformance instance but \(resource)"))
+				callback(error ?? FHIRError.error("CapabilityStatement.readFrom() did not return a CapabilityStatement instance but \(resource)"))
 			}
 		}
 	}
 	
-	/** Return the relative path to the Conformance statement. This should be "metadata", we're also adding "_summary=true" to only request
+	/** Return the relative path to the cabability statement. This should be "metadata", we're also adding "_summary=true" to only request
 	the summary, not the entire statement.
 	*/
-	open func conformancePath() -> String {
+	open func cababilityStatementPath() -> String {
 		return "metadata?_summary=true"
 	}
 	
 	
 	// MARK: - Operations
 	
-	/// The operations the server supports, as specified in the conformance statement.
+	/// The operations the server supports, as specified in the cabability statement.
 	var operations: [String: OperationDefinition]?
 	
-	/// Operations as found in the conformance statement.
-	var conformanceOperations: [ConformanceRestOperation]?
+	/// Operations as found in the cabability statement.
+	var cababilityOperations: [CapabilityStatementRestOperation]?
 	
 	/** Find operation with given name. */
-	func conformanceOperation(_ name: String) -> ConformanceRestOperation? {
-		if let defs = conformanceOperations {
+	func cababilityOperation(_ name: String) -> CapabilityStatementRestOperation? {
+		if let defs = cababilityOperations {
 			for def in defs {
 				if name == def.name {
 					return def
@@ -257,13 +257,13 @@ open class FHIROpenServer: FHIRServer {
 	Retrieve the operation definition with the given name, either from cache or load the OperationDefinition resource.
 	
 	Once an OperationDefinition has been retrieved, it is cached into the instance's `operations` dictionary. Must be used after the
-	conformance statement has been fetched, i.e. after using `ready` or `getConformance`.
+	cabability statement has been fetched, i.e. after using `ready` or `getCapabilityStatement`.
 	*/
 	open func operation(_ name: String, callback: @escaping ((OperationDefinition?) -> Void)) {
 		if let op = operations?[name] {
 			callback(op)
 		}
-		else if let def = conformanceOperation(name) {
+		else if let def = cababilityOperation(name) {
 			def.definition?.resolve(OperationDefinition.self) { optop in
 				if let op = optop {
 					if nil != self.operations {

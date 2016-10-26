@@ -2,7 +2,7 @@
 //  Endpoint.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Endpoint) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Endpoint) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -20,10 +20,10 @@ open class Endpoint: DomainResource {
 		get { return "Endpoint" }
 	}
 	
-	/// Where the channel points to.
+	/// The technical address for conneccting to this endpoint.
 	public var address: URL?
 	
-	/// rest-hook | websocket | email | sms | message.
+	/// Protocol/Profile/Standard to be used with this endpoint connection.
 	public var connectionType: Coding?
 	
 	/// Contact details for source (e.g. troubleshooting).
@@ -38,25 +38,22 @@ open class Endpoint: DomainResource {
 	/// Organization that manages this endpoint (may not be the organization that exposes the endpoint).
 	public var managingOrganization: Reference?
 	
-	/// The http verb to be used when calling this endpoint.
-	public var method: [Coding]?
-	
 	/// A name that this endpoint can be identified by.
 	public var name: String?
 	
-	/// Mimetype to send, or blank for no payload.
-	public var payloadFormat: String?
+	/// Mimetype to send. If not specified, the content could be anything (including no payload, if the connectionType defined this).
+	public var payloadMimeType: [String]?
 	
 	/// The type of content that may be used at this endpoint (e.g. XDS Discharge summaries).
 	public var payloadType: [CodeableConcept]?
 	
-	/// Interval during responsibility is assumed.
+	/// Interval the endpoint is expected to be operational.
 	public var period: Period?
 	
 	/// PKI Public keys to support secure communications.
 	public var publicKey: String?
 	
-	/// active | suspended | error | off | entered-in-error.
+	/// active | suspended | error | off | entered-in-error | test.
 	public var status: String?
 	
 	
@@ -66,11 +63,10 @@ open class Endpoint: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(address: URL, connectionType: Coding, payloadFormat: String, payloadType: [CodeableConcept], status: String) {
+	public convenience init(address: URL, connectionType: Coding, payloadType: [CodeableConcept], status: String) {
 		self.init(json: nil)
 		self.address = address
 		self.connectionType = connectionType
-		self.payloadFormat = payloadFormat
 		self.payloadType = payloadType
 		self.status = status
 	}
@@ -138,15 +134,6 @@ open class Endpoint: DomainResource {
 					errors.append(FHIRJSONError(key: "managingOrganization", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["method"] {
-				presentKeys.insert("method")
-				if let val = exist as? [FHIRJSON] {
-					self.method = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "method", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
 			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
@@ -156,17 +143,14 @@ open class Endpoint: DomainResource {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["payloadFormat"] {
-				presentKeys.insert("payloadFormat")
-				if let val = exist as? String {
-					self.payloadFormat = val
+			if let exist = js["payloadMimeType"] {
+				presentKeys.insert("payloadMimeType")
+				if let val = exist as? [String] {
+					self.payloadMimeType = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "payloadFormat", wants: String.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "payloadMimeType", wants: Array<String>.self, has: type(of: exist)))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "payloadFormat"))
 			}
 			if let exist = js["payloadType"] {
 				presentKeys.insert("payloadType")
@@ -239,14 +223,15 @@ open class Endpoint: DomainResource {
 		if let managingOrganization = self.managingOrganization {
 			json["managingOrganization"] = managingOrganization.asJSON()
 		}
-		if let method = self.method {
-			json["method"] = method.map() { $0.asJSON() }
-		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
-		if let payloadFormat = self.payloadFormat {
-			json["payloadFormat"] = payloadFormat.asJSON()
+		if let payloadMimeType = self.payloadMimeType {
+			var arr = [Any]()
+			for val in payloadMimeType {
+				arr.append(val.asJSON())
+			}
+			json["payloadMimeType"] = arr
 		}
 		if let payloadType = self.payloadType {
 			json["payloadType"] = payloadType.map() { $0.asJSON() }

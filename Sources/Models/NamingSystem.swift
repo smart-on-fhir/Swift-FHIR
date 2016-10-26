@@ -2,7 +2,7 @@
 //  NamingSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -20,19 +20,22 @@ open class NamingSystem: DomainResource {
 		get { return "NamingSystem" }
 	}
 	
-	/// Contact details of the publisher.
-	public var contact: [NamingSystemContact]?
+	/// Contact details for the publisher.
+	public var contact: [ContactDetail]?
 	
-	/// Publication Date(/time).
+	/// Date this was last changed.
 	public var date: DateTime?
 	
-	/// What does naming system identify?.
+	/// Natural language description of the naming system.
 	public var description_fhir: String?
+	
+	/// Intended jurisdiction for naming system (if applicable).
+	public var jurisdiction: [CodeableConcept]?
 	
 	/// codesystem | identifier | root.
 	public var kind: String?
 	
-	/// Human-readable label.
+	/// Name for this naming system (Computer friendly).
 	public var name: String?
 	
 	/// Name of the publisher (Organization or individual).
@@ -57,7 +60,7 @@ open class NamingSystem: DomainResource {
 	public var usage: String?
 	
 	/// Content intends to support these contexts.
-	public var useContext: [CodeableConcept]?
+	public var useContext: [UsageContext]?
 	
 	
 	/** Initialize with a JSON object. */
@@ -81,7 +84,7 @@ open class NamingSystem: DomainResource {
 			if let exist = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = NamingSystemContact.instantiate(fromArray: val, owner: self) as? [NamingSystemContact]
+					self.contact = ContactDetail.instantiate(fromArray: val, owner: self) as? [ContactDetail]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -106,6 +109,15 @@ open class NamingSystem: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["jurisdiction"] {
+				presentKeys.insert("jurisdiction")
+				if let val = exist as? [FHIRJSON] {
+					self.jurisdiction = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "jurisdiction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["kind"] {
@@ -204,7 +216,7 @@ open class NamingSystem: DomainResource {
 			if let exist = js["useContext"] {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
-					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+					self.useContext = UsageContext.instantiate(fromArray: val, owner: self) as? [UsageContext]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -225,6 +237,9 @@ open class NamingSystem: DomainResource {
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
+		}
+		if let jurisdiction = self.jurisdiction {
+			json["jurisdiction"] = jurisdiction.map() { $0.asJSON() }
 		}
 		if let kind = self.kind {
 			json["kind"] = kind.asJSON()
@@ -255,68 +270,6 @@ open class NamingSystem: DomainResource {
 		}
 		if let useContext = self.useContext {
 			json["useContext"] = useContext.map() { $0.asJSON() }
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Contact details of the publisher.
- *
- *  Contacts to assist a user in finding and communicating with the publisher.
- */
-open class NamingSystemContact: BackboneElement {
-	override open class var resourceType: String {
-		get { return "NamingSystemContact" }
-	}
-	
-	/// Name of an individual to contact.
-	public var name: String?
-	
-	/// Contact details for individual or publisher.
-	public var telecom: [ContactPoint]?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["telecom"] {
-				presentKeys.insert("telecom")
-				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if let telecom = self.telecom {
-			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json

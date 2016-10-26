@@ -2,7 +2,7 @@
 //  ParameterDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ParameterDefinition) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/ParameterDefinition) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -35,10 +35,10 @@ open class ParameterDefinition: Element {
 	/// The profile of the parameter, any.
 	public var profile: Reference?
 	
-	/// None.
+	/// Type for the parameter.
 	public var type: String?
 	
-	/// None.
+	/// input | output.
 	public var use: String?
 	
 	

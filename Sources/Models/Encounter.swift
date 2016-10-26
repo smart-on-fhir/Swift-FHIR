@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -645,7 +645,7 @@ open class EncounterParticipant: BackboneElement {
 	/// Persons involved in the encounter other than the patient.
 	public var individual: Reference?
 	
-	/// Period of time during the encounter participant was present.
+	/// Period of time during the encounter that the participant participated.
 	public var period: Period?
 	
 	/// Role of participant in encounter.

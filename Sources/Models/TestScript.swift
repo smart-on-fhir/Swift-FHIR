@@ -2,7 +2,7 @@
 //  TestScript.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -20,16 +20,16 @@ open class TestScript: DomainResource {
 		get { return "TestScript" }
 	}
 	
-	/// Contact details of the publisher.
-	public var contact: [TestScriptContact]?
+	/// Contact details for the publisher.
+	public var contact: [ContactDetail]?
 	
 	/// Use and/or publishing restrictions.
 	public var copyright: String?
 	
-	/// Date for this version of the TestScript.
+	/// Date this was last changed.
 	public var date: DateTime?
 	
-	/// Natural language description of the TestScript.
+	/// Natural language description of the test script.
 	public var description_fhir: String?
 	
 	/// An abstract server representing a destination or receiver in a message exchange.
@@ -41,13 +41,16 @@ open class TestScript: DomainResource {
 	/// Fixture in the test script - by reference (uri).
 	public var fixture: [TestScriptFixture]?
 	
-	/// External identifier.
+	/// Additional identifier for the test script.
 	public var identifier: Identifier?
+	
+	/// Intended jurisdiction for test script (if applicable).
+	public var jurisdiction: [CodeableConcept]?
 	
 	/// Required capability that is assumed to function correctly on the FHIR server being tested.
 	public var metadata: TestScriptMetadata?
 	
-	/// Informal name for this TestScript.
+	/// Name for this test script (Computer friendly).
 	public var name: String?
 	
 	/// An abstract server representing a client or sender in a message exchange.
@@ -59,8 +62,8 @@ open class TestScript: DomainResource {
 	/// Name of the publisher (Organization or individual).
 	public var publisher: String?
 	
-	/// Scope and Usage this Test Script is for.
-	public var requirements: String?
+	/// Why this test script is defined.
+	public var purpose: String?
 	
 	/// Assert rule used within the test script.
 	public var rule: [TestScriptRule]?
@@ -80,16 +83,19 @@ open class TestScript: DomainResource {
 	/// A test in this script.
 	public var test: [TestScriptTest]?
 	
-	/// Absolute URL used to reference this TestScript.
+	/// Name for this test script (Human friendly).
+	public var title: String?
+	
+	/// Logical uri to reference this test script (globally unique).
 	public var url: URL?
 	
 	/// Content intends to support these contexts.
-	public var useContext: [CodeableConcept]?
+	public var useContext: [UsageContext]?
 	
 	/// Placeholder for evaluated elements.
 	public var variable: [TestScriptVariable]?
 	
-	/// Logical id for this version of the TestScript.
+	/// Business version of the test script.
 	public var version: String?
 	
 	
@@ -112,7 +118,7 @@ open class TestScript: DomainResource {
 			if let exist = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = TestScriptContact.instantiate(fromArray: val, owner: self) as? [TestScriptContact]
+					self.contact = ContactDetail.instantiate(fromArray: val, owner: self) as? [ContactDetail]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -181,6 +187,15 @@ open class TestScript: DomainResource {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["jurisdiction"] {
+				presentKeys.insert("jurisdiction")
+				if let val = exist as? [FHIRJSON] {
+					self.jurisdiction = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "jurisdiction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["metadata"] {
 				presentKeys.insert("metadata")
 				if let val = exist as? FHIRJSON {
@@ -229,13 +244,13 @@ open class TestScript: DomainResource {
 					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["requirements"] {
-				presentKeys.insert("requirements")
+			if let exist = js["purpose"] {
+				presentKeys.insert("purpose")
 				if let val = exist as? String {
-					self.requirements = val
+					self.purpose = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "purpose", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["rule"] {
@@ -295,6 +310,15 @@ open class TestScript: DomainResource {
 					errors.append(FHIRJSONError(key: "test", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["title"] {
+				presentKeys.insert("title")
+				if let val = exist as? String {
+					self.title = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
@@ -310,7 +334,7 @@ open class TestScript: DomainResource {
 			if let exist = js["useContext"] {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
-					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+					self.useContext = UsageContext.instantiate(fromArray: val, owner: self) as? [UsageContext]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -365,6 +389,9 @@ open class TestScript: DomainResource {
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
 		}
+		if let jurisdiction = self.jurisdiction {
+			json["jurisdiction"] = jurisdiction.map() { $0.asJSON() }
+		}
 		if let metadata = self.metadata {
 			json["metadata"] = metadata.asJSON()
 		}
@@ -380,8 +407,8 @@ open class TestScript: DomainResource {
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
 		}
-		if let requirements = self.requirements {
-			json["requirements"] = requirements.asJSON()
+		if let purpose = self.purpose {
+			json["purpose"] = purpose.asJSON()
 		}
 		if let rule = self.rule {
 			json["rule"] = rule.map() { $0.asJSON() }
@@ -401,6 +428,9 @@ open class TestScript: DomainResource {
 		if let test = self.test {
 			json["test"] = test.map() { $0.asJSON() }
 		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
+		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
 		}
@@ -412,68 +442,6 @@ open class TestScript: DomainResource {
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Contact details of the publisher.
- *
- *  Contacts to assist a user in finding and communicating with the publisher.
- */
-open class TestScriptContact: BackboneElement {
-	override open class var resourceType: String {
-		get { return "TestScriptContact" }
-	}
-	
-	/// Name of an individual to contact.
-	public var name: String?
-	
-	/// Contact details for individual or publisher.
-	public var telecom: [ContactPoint]?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["telecom"] {
-				presentKeys.insert("telecom")
-				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if let telecom = self.telecom {
-			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -714,8 +682,8 @@ open class TestScriptMetadataCapability: BackboneElement {
 		get { return "TestScriptMetadataCapability" }
 	}
 	
-	/// Required Conformance.
-	public var conformance: Reference?
+	/// Required Capability Statement.
+	public var capabilities: Reference?
 	
 	/// The expected capabilities of the server.
 	public var description_fhir: String?
@@ -742,25 +710,25 @@ open class TestScriptMetadataCapability: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(conformance: Reference) {
+	public convenience init(capabilities: Reference) {
 		self.init(json: nil)
-		self.conformance = conformance
+		self.capabilities = capabilities
 	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist = js["conformance"] {
-				presentKeys.insert("conformance")
+			if let exist = js["capabilities"] {
+				presentKeys.insert("capabilities")
 				if let val = exist as? FHIRJSON {
-					self.conformance = Reference(json: val, owner: self)
+					self.capabilities = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "conformance", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "capabilities", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "conformance"))
+				errors.append(FHIRJSONError(key: "capabilities"))
 			}
 			if let exist = js["description"] {
 				presentKeys.insert("description")
@@ -823,8 +791,8 @@ open class TestScriptMetadataCapability: BackboneElement {
 	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let conformance = self.conformance {
-			json["conformance"] = conformance.asJSON()
+		if let capabilities = self.capabilities {
+			json["capabilities"] = capabilities.asJSON()
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
@@ -1490,10 +1458,13 @@ open class TestScriptSetupActionAssert: BackboneElement {
 		get { return "TestScriptSetupActionAssert" }
 	}
 	
-	/// Id of fixture used to compare the "sourceId/path" evaluations to.
+	/// The fhirpath expression to evaluate against the source fixture.
+	public var compareToSourceExpression: String?
+	
+	/// Id of the source fixture to be evaluated.
 	public var compareToSourceId: String?
 	
-	/// XPath or JSONPath expression against fixture used to compare the "sourceId/path" evaluations to.
+	/// XPath or JSONPath expression to evaluate against the source fixture.
 	public var compareToSourcePath: String?
 	
 	/// xml | json | ttl | none.
@@ -1504,6 +1475,9 @@ open class TestScriptSetupActionAssert: BackboneElement {
 	
 	/// response | request.
 	public var direction: String?
+	
+	/// The fhirpath expression to be evaluated.
+	public var expression: String?
 	
 	/// HTTP header field name.
 	public var headerField: String?
@@ -1562,6 +1536,15 @@ open class TestScriptSetupActionAssert: BackboneElement {
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
+			if let exist = js["compareToSourceExpression"] {
+				presentKeys.insert("compareToSourceExpression")
+				if let val = exist as? String {
+					self.compareToSourceExpression = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "compareToSourceExpression", wants: String.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["compareToSourceId"] {
 				presentKeys.insert("compareToSourceId")
 				if let val = exist as? String {
@@ -1605,6 +1588,15 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "direction", wants: String.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["expression"] {
+				presentKeys.insert("expression")
+				if let val = exist as? String {
+					self.expression = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "expression", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["headerField"] {
@@ -1758,6 +1750,9 @@ open class TestScriptSetupActionAssert: BackboneElement {
 	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let compareToSourceExpression = self.compareToSourceExpression {
+			json["compareToSourceExpression"] = compareToSourceExpression.asJSON()
+		}
 		if let compareToSourceId = self.compareToSourceId {
 			json["compareToSourceId"] = compareToSourceId.asJSON()
 		}
@@ -1772,6 +1767,9 @@ open class TestScriptSetupActionAssert: BackboneElement {
 		}
 		if let direction = self.direction {
 			json["direction"] = direction.asJSON()
+		}
+		if let expression = self.expression {
+			json["expression"] = expression.asJSON()
 		}
 		if let headerField = self.headerField {
 			json["headerField"] = headerField.asJSON()
@@ -2227,6 +2225,9 @@ open class TestScriptSetupActionOperation: BackboneElement {
 	/// Each operation can have one ore more header elements.
 	public var requestHeader: [TestScriptSetupActionOperationRequestHeader]?
 	
+	/// Fixture Id of mapped request.
+	public var requestId: String?
+	
 	/// Resource type.
 	public var resource: String?
 	
@@ -2335,6 +2336,15 @@ open class TestScriptSetupActionOperation: BackboneElement {
 					errors.append(FHIRJSONError(key: "requestHeader", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["requestId"] {
+				presentKeys.insert("requestId")
+				if let val = exist as? String {
+					self.requestId = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "requestId", wants: String.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["resource"] {
 				presentKeys.insert("resource")
 				if let val = exist as? String {
@@ -2422,6 +2432,9 @@ open class TestScriptSetupActionOperation: BackboneElement {
 		}
 		if let requestHeader = self.requestHeader {
 			json["requestHeader"] = requestHeader.map() { $0.asJSON() }
+		}
+		if let requestId = self.requestId {
+			json["requestId"] = requestId.asJSON()
 		}
 		if let resource = self.resource {
 			json["resource"] = resource.asJSON()
@@ -2597,6 +2610,12 @@ open class TestScriptTeardownAction: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(operation: TestScriptSetupActionOperation) {
+		self.init(json: nil)
+		self.operation = operation
+	}
+	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
@@ -2608,6 +2627,9 @@ open class TestScriptTeardownAction: BackboneElement {
 				else {
 					errors.append(FHIRJSONError(key: "operation", wants: FHIRJSON.self, has: type(of: exist)))
 				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "operation"))
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -2784,6 +2806,9 @@ open class TestScriptVariable: BackboneElement {
 	/// Default, hard-coded, or user-defined value for this variable.
 	public var defaultValue: String?
 	
+	/// The fhirpath expression against the fixture body.
+	public var expression: String?
+	
 	/// HTTP header field name for source.
 	public var headerField: String?
 	
@@ -2818,6 +2843,15 @@ open class TestScriptVariable: BackboneElement {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "defaultValue", wants: String.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["expression"] {
+				presentKeys.insert("expression")
+				if let val = exist as? String {
+					self.expression = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "expression", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["headerField"] {
@@ -2868,6 +2902,9 @@ open class TestScriptVariable: BackboneElement {
 		
 		if let defaultValue = self.defaultValue {
 			json["defaultValue"] = defaultValue.asJSON()
+		}
+		if let expression = self.expression {
+			json["expression"] = expression.asJSON()
 		}
 		if let headerField = self.headerField {
 			json["headerField"] = headerField.asJSON()

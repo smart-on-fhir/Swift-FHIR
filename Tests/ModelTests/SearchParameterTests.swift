@@ -2,7 +2,7 @@
 //  SearchParameterTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -41,9 +41,11 @@ class SearchParameterTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, "other")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.description_fhir, "Search by url for a participation agreement, which is stored in a DocumentReference")
+		XCTAssertTrue(inst.experimental ?? false)
 		XCTAssertEqual(inst.id, "example-extension")
 		XCTAssertEqual(inst.name, "Example Search Parameter on an extension")
 		XCTAssertEqual(inst.publisher, "Health Level Seven International (FHIR Infrastructure)")
+		XCTAssertEqual(inst.status, "draft")
 		XCTAssertEqual(inst.target?[0], "DocumentReference")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.type, "reference")
@@ -75,11 +77,11 @@ class SearchParameterTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.date?.description, "2013-10-23")
 		XCTAssertEqual(inst.description_fhir, "Search by resource identifier - e.g. same as the read interaction, but can return included resources")
-		XCTAssertFalse(inst.experimental ?? true)
+		XCTAssertTrue(inst.experimental ?? false)
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.name, "Example Search Parameter")
 		XCTAssertEqual(inst.publisher, "Health Level Seven International (FHIR Infrastructure)")
-		XCTAssertEqual(inst.requirements, "Need to search by identifier for various infrastructural cases - mainly retrieving packages, and matching as part of a chain")
+		XCTAssertEqual(inst.purpose, "Need to search by identifier for various infrastructural cases - mainly retrieving packages, and matching as part of a chain")
 		XCTAssertEqual(inst.status, "draft")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.type, "token")

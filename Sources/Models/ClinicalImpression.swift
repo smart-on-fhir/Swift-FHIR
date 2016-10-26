@@ -2,7 +2,7 @@
 //  ClinicalImpression.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -54,7 +54,7 @@ open class ClinicalImpression: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// One or more sets of investigations (signs, symptions, etc.).
-	public var investigations: [ClinicalImpressionInvestigations]?
+	public var investigation: [ClinicalImpressionInvestigation]?
 	
 	/// Comments made about the ClinicalImpression.
 	public var note: [Annotation]?
@@ -192,13 +192,13 @@ open class ClinicalImpression: DomainResource {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["investigations"] {
-				presentKeys.insert("investigations")
+			if let exist = js["investigation"] {
+				presentKeys.insert("investigation")
 				if let val = exist as? [FHIRJSON] {
-					self.investigations = ClinicalImpressionInvestigations.instantiate(fromArray: val, owner: self) as? [ClinicalImpressionInvestigations]
+					self.investigation = ClinicalImpressionInvestigation.instantiate(fromArray: val, owner: self) as? [ClinicalImpressionInvestigation]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "investigations", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "investigation", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["note"] {
@@ -334,8 +334,8 @@ open class ClinicalImpression: DomainResource {
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
-		if let investigations = self.investigations {
-			json["investigations"] = investigations.map() { $0.asJSON() }
+		if let investigation = self.investigation {
+			json["investigation"] = investigation.map() { $0.asJSON() }
 		}
 		if let note = self.note {
 			json["note"] = note.map() { $0.asJSON() }
@@ -473,9 +473,9 @@ open class ClinicalImpressionFinding: BackboneElement {
  *  depending on the type and context of the assessment. These investigations may include data generated during the
  *  assessment process, or data previously generated and recorded that is pertinent to the outcomes.
  */
-open class ClinicalImpressionInvestigations: BackboneElement {
+open class ClinicalImpressionInvestigation: BackboneElement {
 	override open class var resourceType: String {
-		get { return "ClinicalImpressionInvestigations" }
+		get { return "ClinicalImpressionInvestigation" }
 	}
 	
 	/// A name/code for the set.

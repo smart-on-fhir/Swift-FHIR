@@ -2,7 +2,7 @@
 //  CommunicationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -38,10 +38,6 @@ class CommunicationTests: XCTestCase {
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "SolicitedAttachment")
 		XCTAssertEqual(inst.category?.coding?[0].system?.absoluteString, "http://acme.org/messagetypes")
-		XCTAssertEqual(inst.contained?[0].id, "provider")
-		XCTAssertEqual(inst.contained?[1].id, "payor")
-		XCTAssertEqual(inst.contained?[2].id, "claim")
-		XCTAssertEqual(inst.contained?[3].id, "claimresponse")
 		XCTAssertEqual(inst.id, "fm-attachment")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.providerco.com/communication")
 		XCTAssertEqual(inst.identifier?[0].value, "12345")
@@ -54,15 +50,19 @@ class CommunicationTests: XCTestCase {
 		XCTAssertEqual(inst.payload?[1].contentAttachment?.hash, Base64Binary(value: "SGVsbG8gdGhlcmU="))
 		XCTAssertEqual(inst.payload?[1].contentAttachment?.size, UInt(104274))
 		XCTAssertEqual(inst.payload?[1].contentAttachment?.url?.absoluteString, "http://happyvalley.com/docs/AB12345")
-		XCTAssertEqual(inst.recipient?[0].reference, "#payor")
-		XCTAssertEqual(inst.sender?.reference, "#provider")
+		XCTAssertEqual(inst.recipient?[0].identifier?.system?.absoluteString, "http://www.jurisdiction.com/insurer")
+		XCTAssertEqual(inst.recipient?[0].identifier?.value, "123456")
+		XCTAssertEqual(inst.sender?.identifier?.system?.absoluteString, "http://www.jurisdiction.com/provideroffices")
+		XCTAssertEqual(inst.sender?.identifier?.value, "3456")
 		XCTAssertEqual(inst.sent?.description, "2016-06-12T18:01:10-08:00")
 		XCTAssertEqual(inst.status, "completed")
 		XCTAssertEqual(inst.subject?.reference, "Patient/1")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Attachment which is unsolicited</div>")
 		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.topic?[0].reference, "#claim")
-		XCTAssertEqual(inst.topic?[1].reference, "#claimresponse")
+		XCTAssertEqual(inst.topic?[0].identifier?.system?.absoluteString, "http://happyvalley.com/claim")
+		XCTAssertEqual(inst.topic?[0].identifier?.value, "12345")
+		XCTAssertEqual(inst.topic?[1].identifier?.system?.absoluteString, "http://www.BenefitsInc.com/fhir/claimresponse")
+		XCTAssertEqual(inst.topic?[1].identifier?.value, "R3500")
 		
 		return inst
 	}

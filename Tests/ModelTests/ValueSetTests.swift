@@ -2,7 +2,7 @@
 //  ValueSetTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -158,10 +158,10 @@ class ValueSetTests: XCTestCase {
 	func runValueSet3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ValueSet {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example-yesnodontknow.json")
 		
-		XCTAssertEqual(inst.compose?.import_fhir?[0].absoluteString, "http://hl7.org/fhir/ValueSet/v2-0136")
-		XCTAssertEqual(inst.compose?.include?[0].concept?[0].code, "asked")
-		XCTAssertEqual(inst.compose?.include?[0].concept?[0].display, "Don't know")
-		XCTAssertEqual(inst.compose?.include?[0].system?.absoluteString, "http://hl7.org/fhir/data-absent-reason")
+		XCTAssertEqual(inst.compose?.include?[0].valueSet?[0].absoluteString, "http://hl7.org/fhir/ValueSet/v2-0136")
+		XCTAssertEqual(inst.compose?.include?[1].concept?[0].code, "asked")
+		XCTAssertEqual(inst.compose?.include?[1].concept?[0].display, "Don't know")
+		XCTAssertEqual(inst.compose?.include?[1].system?.absoluteString, "http://hl7.org/fhir/data-absent-reason")
 		XCTAssertEqual(inst.description_fhir, "For Capturing simple yes-no-don't know answers")
 		XCTAssertEqual(inst.expansion?.contains?[0].code, "Y")
 		XCTAssertEqual(inst.expansion?.contains?[0].display, "Yes")
@@ -207,6 +207,7 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.compose?.include?[0].concept?[3].display, "Cholesterol [Percentile]")
 		XCTAssertEqual(inst.compose?.include?[0].system?.absoluteString, "http://loinc.org")
 		XCTAssertEqual(inst.compose?.include?[0].version, "2.36")
+		XCTAssertEqual(inst.compose?.lockedDate?.description, "2012-06-13")
 		XCTAssertEqual(inst.contact?[0].name, "FHIR project team")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, "other")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
@@ -217,7 +218,6 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.id, "example-extensional")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://acme.com/identifiers/valuesets")
 		XCTAssertEqual(inst.identifier?[0].value, "loinc-cholesterol-int")
-		XCTAssertEqual(inst.lockedDate?.description, "2012-06-13")
 		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
 		XCTAssertEqual(inst.name, "LOINC Codes for Cholesterol in Serum/Plasma")
 		XCTAssertEqual(inst.publisher, "HL7 International")
@@ -246,20 +246,20 @@ class ValueSetTests: XCTestCase {
 		XCTAssertEqual(inst.compose?.include?[0].system?.absoluteString, "http://hl7.org/fhir/list-example-use-codes")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, "other")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
-		XCTAssertEqual(inst.date?.description, "2016-08-15T16:12:42+10:00")
+		XCTAssertEqual(inst.date?.description, "2016-10-25T21:10:22+00:00")
 		XCTAssertEqual(inst.description_fhir, "Example use codes for the List resource - typical kinds of use.")
 		XCTAssertTrue(inst.experimental ?? false)
 		XCTAssertEqual(inst.id, "list-example-codes")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")
 		XCTAssertEqual(inst.identifier?[0].value, "urn:oid:2.16.840.1.113883.4.642.2.173")
-		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2016-08-15T16:12:42.052+10:00")
+		XCTAssertEqual(inst.meta?.lastUpdated?.description, "2016-10-25T21:10:22.940+00:00")
 		XCTAssertEqual(inst.meta?.profile?[0].absoluteString, "http://hl7.org/fhir/StructureDefinition/valueset-shareable-definition")
 		XCTAssertEqual(inst.name, "Example Use Codes for List")
 		XCTAssertEqual(inst.publisher, "FHIR Project")
 		XCTAssertEqual(inst.status, "draft")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/ValueSet/list-example-codes")
-		XCTAssertEqual(inst.version, "1.6.0")
+		XCTAssertEqual(inst.version, "1.7.0")
 		
 		return inst
 	}

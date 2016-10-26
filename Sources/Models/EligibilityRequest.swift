@@ -2,7 +2,7 @@
 //  EligibilityRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -30,58 +30,37 @@ open class EligibilityRequest: DomainResource {
 	public var businessArrangement: String?
 	
 	/// Insurance or medical plan.
-	public var coverageIdentifier: Identifier?
-	
-	/// Insurance or medical plan.
-	public var coverageReference: Reference?
+	public var coverage: Reference?
 	
 	/// Creation date.
 	public var created: DateTime?
 	
 	/// Author.
-	public var entererIdentifier: Identifier?
-	
-	/// Author.
-	public var entererReference: Reference?
+	public var enterer: Reference?
 	
 	/// Servicing Facility.
-	public var facilityIdentifier: Identifier?
-	
-	/// Servicing Facility.
-	public var facilityReference: Reference?
+	public var facility: Reference?
 	
 	/// Business Identifier.
 	public var identifier: [Identifier]?
 	
 	/// Target.
-	public var insurerIdentifier: Identifier?
-	
-	/// Target.
-	public var insurerReference: Reference?
+	public var insurer: Reference?
 	
 	/// Responsible organization.
-	public var organizationIdentifier: Identifier?
-	
-	/// Responsible organization.
-	public var organizationReference: Reference?
+	public var organization: Reference?
 	
 	/// Original version.
 	public var originalRuleset: Coding?
 	
 	/// The subject of the Products and Services.
-	public var patientIdentifier: Identifier?
-	
-	/// The subject of the Products and Services.
-	public var patientReference: Reference?
+	public var patient: Reference?
 	
 	/// Desired processing priority.
 	public var priority: Coding?
 	
 	/// Responsible practitioner.
-	public var providerIdentifier: Identifier?
-	
-	/// Responsible practitioner.
-	public var providerReference: Reference?
+	public var provider: Reference?
 	
 	/// Resource version.
 	public var ruleset: Coding?
@@ -137,22 +116,13 @@ open class EligibilityRequest: DomainResource {
 					errors.append(FHIRJSONError(key: "businessArrangement", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["coverageIdentifier"] {
-				presentKeys.insert("coverageIdentifier")
+			if let exist = js["coverage"] {
+				presentKeys.insert("coverage")
 				if let val = exist as? FHIRJSON {
-					self.coverageIdentifier = Identifier(json: val, owner: self)
+					self.coverage = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "coverageIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["coverageReference"] {
-				presentKeys.insert("coverageReference")
-				if let val = exist as? FHIRJSON {
-					self.coverageReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "coverageReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "coverage", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["created"] {
@@ -164,40 +134,22 @@ open class EligibilityRequest: DomainResource {
 					errors.append(FHIRJSONError(key: "created", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["entererIdentifier"] {
-				presentKeys.insert("entererIdentifier")
+			if let exist = js["enterer"] {
+				presentKeys.insert("enterer")
 				if let val = exist as? FHIRJSON {
-					self.entererIdentifier = Identifier(json: val, owner: self)
+					self.enterer = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "entererIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "enterer", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["entererReference"] {
-				presentKeys.insert("entererReference")
+			if let exist = js["facility"] {
+				presentKeys.insert("facility")
 				if let val = exist as? FHIRJSON {
-					self.entererReference = Reference(json: val, owner: self)
+					self.facility = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "entererReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["facilityIdentifier"] {
-				presentKeys.insert("facilityIdentifier")
-				if let val = exist as? FHIRJSON {
-					self.facilityIdentifier = Identifier(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "facilityIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["facilityReference"] {
-				presentKeys.insert("facilityReference")
-				if let val = exist as? FHIRJSON {
-					self.facilityReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "facilityReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "facility", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["identifier"] {
@@ -209,40 +161,22 @@ open class EligibilityRequest: DomainResource {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["insurerIdentifier"] {
-				presentKeys.insert("insurerIdentifier")
+			if let exist = js["insurer"] {
+				presentKeys.insert("insurer")
 				if let val = exist as? FHIRJSON {
-					self.insurerIdentifier = Identifier(json: val, owner: self)
+					self.insurer = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "insurerIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "insurer", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["insurerReference"] {
-				presentKeys.insert("insurerReference")
+			if let exist = js["organization"] {
+				presentKeys.insert("organization")
 				if let val = exist as? FHIRJSON {
-					self.insurerReference = Reference(json: val, owner: self)
+					self.organization = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "insurerReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["organizationIdentifier"] {
-				presentKeys.insert("organizationIdentifier")
-				if let val = exist as? FHIRJSON {
-					self.organizationIdentifier = Identifier(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "organizationIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["organizationReference"] {
-				presentKeys.insert("organizationReference")
-				if let val = exist as? FHIRJSON {
-					self.organizationReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "organizationReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["originalRuleset"] {
@@ -254,22 +188,13 @@ open class EligibilityRequest: DomainResource {
 					errors.append(FHIRJSONError(key: "originalRuleset", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["patientIdentifier"] {
-				presentKeys.insert("patientIdentifier")
+			if let exist = js["patient"] {
+				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					self.patientIdentifier = Identifier(json: val, owner: self)
+					self.patient = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "patientIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["patientReference"] {
-				presentKeys.insert("patientReference")
-				if let val = exist as? FHIRJSON {
-					self.patientReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "patientReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["priority"] {
@@ -281,22 +206,13 @@ open class EligibilityRequest: DomainResource {
 					errors.append(FHIRJSONError(key: "priority", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["providerIdentifier"] {
-				presentKeys.insert("providerIdentifier")
+			if let exist = js["provider"] {
+				presentKeys.insert("provider")
 				if let val = exist as? FHIRJSON {
-					self.providerIdentifier = Identifier(json: val, owner: self)
+					self.provider = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "providerIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["providerReference"] {
-				presentKeys.insert("providerReference")
-				if let val = exist as? FHIRJSON {
-					self.providerReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "providerReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "provider", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["ruleset"] {
@@ -354,59 +270,38 @@ open class EligibilityRequest: DomainResource {
 		if let businessArrangement = self.businessArrangement {
 			json["businessArrangement"] = businessArrangement.asJSON()
 		}
-		if let coverageIdentifier = self.coverageIdentifier {
-			json["coverageIdentifier"] = coverageIdentifier.asJSON()
-		}
-		if let coverageReference = self.coverageReference {
-			json["coverageReference"] = coverageReference.asJSON()
+		if let coverage = self.coverage {
+			json["coverage"] = coverage.asJSON()
 		}
 		if let created = self.created {
 			json["created"] = created.asJSON()
 		}
-		if let entererIdentifier = self.entererIdentifier {
-			json["entererIdentifier"] = entererIdentifier.asJSON()
+		if let enterer = self.enterer {
+			json["enterer"] = enterer.asJSON()
 		}
-		if let entererReference = self.entererReference {
-			json["entererReference"] = entererReference.asJSON()
-		}
-		if let facilityIdentifier = self.facilityIdentifier {
-			json["facilityIdentifier"] = facilityIdentifier.asJSON()
-		}
-		if let facilityReference = self.facilityReference {
-			json["facilityReference"] = facilityReference.asJSON()
+		if let facility = self.facility {
+			json["facility"] = facility.asJSON()
 		}
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
-		if let insurerIdentifier = self.insurerIdentifier {
-			json["insurerIdentifier"] = insurerIdentifier.asJSON()
+		if let insurer = self.insurer {
+			json["insurer"] = insurer.asJSON()
 		}
-		if let insurerReference = self.insurerReference {
-			json["insurerReference"] = insurerReference.asJSON()
-		}
-		if let organizationIdentifier = self.organizationIdentifier {
-			json["organizationIdentifier"] = organizationIdentifier.asJSON()
-		}
-		if let organizationReference = self.organizationReference {
-			json["organizationReference"] = organizationReference.asJSON()
+		if let organization = self.organization {
+			json["organization"] = organization.asJSON()
 		}
 		if let originalRuleset = self.originalRuleset {
 			json["originalRuleset"] = originalRuleset.asJSON()
 		}
-		if let patientIdentifier = self.patientIdentifier {
-			json["patientIdentifier"] = patientIdentifier.asJSON()
-		}
-		if let patientReference = self.patientReference {
-			json["patientReference"] = patientReference.asJSON()
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
 		}
 		if let priority = self.priority {
 			json["priority"] = priority.asJSON()
 		}
-		if let providerIdentifier = self.providerIdentifier {
-			json["providerIdentifier"] = providerIdentifier.asJSON()
-		}
-		if let providerReference = self.providerReference {
-			json["providerReference"] = providerReference.asJSON()
+		if let provider = self.provider {
+			json["provider"] = provider.asJSON()
 		}
 		if let ruleset = self.ruleset {
 			json["ruleset"] = ruleset.asJSON()

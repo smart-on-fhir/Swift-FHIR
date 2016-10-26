@@ -2,7 +2,7 @@
 //  ImplementationGuide.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -23,19 +23,19 @@ open class ImplementationGuide: DomainResource {
 	/// Image, css, script, etc..
 	public var binary: [URL]?
 	
-	/// Contact details of the publisher.
-	public var contact: [ImplementationGuideContact]?
+	/// Contact details for the publisher.
+	public var contact: [ContactDetail]?
 	
 	/// Use and/or publishing restrictions.
 	public var copyright: String?
 	
-	/// Date for this version of the Implementation Guide.
+	/// Date this was last changed.
 	public var date: DateTime?
 	
 	/// Another Implementation guide this depends on.
 	public var dependency: [ImplementationGuideDependency]?
 	
-	/// Natural language description of the Implementation Guide.
+	/// Natural language description of the implementation guide.
 	public var description_fhir: String?
 	
 	/// If for testing purposes, not real usage.
@@ -47,7 +47,10 @@ open class ImplementationGuide: DomainResource {
 	/// Profiles that apply globally.
 	public var global: [ImplementationGuideGlobal]?
 	
-	/// Informal name for this Implementation Guide.
+	/// Intended jurisdiction for implementation guide (if applicable).
+	public var jurisdiction: [CodeableConcept]?
+	
+	/// Name for this implementation guide (Computer friendly).
 	public var name: String?
 	
 	/// Group of resources as used in .page.package.
@@ -62,13 +65,13 @@ open class ImplementationGuide: DomainResource {
 	/// draft | active | retired.
 	public var status: String?
 	
-	/// Absolute URL used to reference this Implementation Guide.
+	/// Logical uri to reference this implementation guide (globally unique).
 	public var url: URL?
 	
-	/// The implementation guide is intended to support these contexts.
-	public var useContext: [CodeableConcept]?
+	/// Content intends to support these contexts.
+	public var useContext: [UsageContext]?
 	
-	/// Logical id for this version of the Implementation Guide.
+	/// Business version of the implementation guide.
 	public var version: String?
 	
 	
@@ -100,7 +103,7 @@ open class ImplementationGuide: DomainResource {
 			if let exist = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = ImplementationGuideContact.instantiate(fromArray: val, owner: self) as? [ImplementationGuideContact]
+					self.contact = ContactDetail.instantiate(fromArray: val, owner: self) as? [ContactDetail]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -169,6 +172,15 @@ open class ImplementationGuide: DomainResource {
 					errors.append(FHIRJSONError(key: "global", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["jurisdiction"] {
+				presentKeys.insert("jurisdiction")
+				if let val = exist as? [FHIRJSON] {
+					self.jurisdiction = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "jurisdiction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
@@ -235,7 +247,7 @@ open class ImplementationGuide: DomainResource {
 			if let exist = js["useContext"] {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
-					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+					self.useContext = UsageContext.instantiate(fromArray: val, owner: self) as? [UsageContext]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -288,6 +300,9 @@ open class ImplementationGuide: DomainResource {
 		if let global = self.global {
 			json["global"] = global.map() { $0.asJSON() }
 		}
+		if let jurisdiction = self.jurisdiction {
+			json["jurisdiction"] = jurisdiction.map() { $0.asJSON() }
+		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
@@ -311,68 +326,6 @@ open class ImplementationGuide: DomainResource {
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Contact details of the publisher.
- *
- *  Contacts to assist a user in finding and communicating with the publisher.
- */
-open class ImplementationGuideContact: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ImplementationGuideContact" }
-	}
-	
-	/// Name of an individual to contact.
-	public var name: String?
-	
-	/// Contact details for individual or publisher.
-	public var telecom: [ContactPoint]?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["telecom"] {
-				presentKeys.insert("telecom")
-				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if let telecom = self.telecom {
-			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -625,7 +578,7 @@ open class ImplementationGuidePackage: BackboneElement {
  *  Resource in the implementation guide.
  *
  *  A resource that is part of the implementation guide. Conformance resources (value set, structure definition,
- *  conformance statements etc.) are obvious candidates for inclusion, but any kind of resource can be included as an
+ *  capability statements etc.) are obvious candidates for inclusion, but any kind of resource can be included as an
  *  example resource.
  */
 open class ImplementationGuidePackageResource: BackboneElement {

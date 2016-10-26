@@ -2,7 +2,7 @@
 //  VisionPrescription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -43,10 +43,19 @@ open class VisionPrescription: DomainResource {
 	/// Reason or indication for writing the prescription.
 	public var reasonReference: Reference?
 	
+	/// active | cancelled | draft | entered-in-error.
+	public var status: String?
+	
 	
 	/** Initialize with a JSON object. */
 	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
 		super.init(json: json, owner: owner)
+	}
+	
+	/** Convenience initializer, taking all required properties as arguments. */
+	public convenience init(status: String) {
+		self.init(json: nil)
+		self.status = status
 	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -124,6 +133,18 @@ open class VisionPrescription: DomainResource {
 					errors.append(FHIRJSONError(key: "reasonReference", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["status"] {
+				presentKeys.insert("status")
+				if let val = exist as? String {
+					self.status = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
+				}
+			}
+			else {
+				errors.append(FHIRJSONError(key: "status"))
+			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -154,6 +175,9 @@ open class VisionPrescription: DomainResource {
 		}
 		if let reasonReference = self.reasonReference {
 			json["reasonReference"] = reasonReference.asJSON()
+		}
+		if let status = self.status {
+			json["status"] = status.asJSON()
 		}
 		
 		return json

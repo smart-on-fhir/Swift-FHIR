@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -44,7 +44,7 @@ open class ImagingStudy: DomainResource {
 	public var identifier: [Identifier]?
 	
 	/// Who interpreted images.
-	public var interpreter: Reference?
+	public var interpreter: [Reference]?
 	
 	/// All series modality if actual acquisition modalities.
 	public var modalityList: [Coding]?
@@ -159,11 +159,11 @@ open class ImagingStudy: DomainResource {
 			}
 			if let exist = js["interpreter"] {
 				presentKeys.insert("interpreter")
-				if let val = exist as? FHIRJSON {
-					self.interpreter = Reference(json: val, owner: self)
+				if let val = exist as? [FHIRJSON] {
+					self.interpreter = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "interpreter", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "interpreter", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["modalityList"] {
@@ -297,7 +297,7 @@ open class ImagingStudy: DomainResource {
 			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
 		if let interpreter = self.interpreter {
-			json["interpreter"] = interpreter.asJSON()
+			json["interpreter"] = interpreter.map() { $0.asJSON() }
 		}
 		if let modalityList = self.modalityList {
 			json["modalityList"] = modalityList.map() { $0.asJSON() }

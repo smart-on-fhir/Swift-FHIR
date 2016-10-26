@@ -2,7 +2,7 @@
 //  Claim.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Claim) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Claim) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -20,7 +20,7 @@ open class Claim: DomainResource {
 		get { return "Claim" }
 	}
 	
-	/// None.
+	/// Details about an accident.
 	public var accident: ClaimAccident?
 	
 	/// Period for charge submission.
@@ -39,16 +39,10 @@ open class Claim: DomainResource {
 	public var employmentImpacted: Period?
 	
 	/// Author.
-	public var entererIdentifier: Identifier?
-	
-	/// Author.
-	public var entererReference: Reference?
+	public var enterer: Reference?
 	
 	/// Servicing Facility.
-	public var facilityIdentifier: Identifier?
-	
-	/// Servicing Facility.
-	public var facilityReference: Reference?
+	public var facility: Reference?
 	
 	/// Funds requested to be reserved.
 	public var fundsReserve: Coding?
@@ -59,14 +53,11 @@ open class Claim: DomainResource {
 	/// Claim number.
 	public var identifier: [Identifier]?
 	
-	/// None.
+	/// Exceptions, special considerations, the condition, situation, prior or concurrent issues.
 	public var information: [ClaimInformation]?
 	
 	/// Target.
-	public var insurerIdentifier: Identifier?
-	
-	/// Target.
-	public var insurerReference: Reference?
+	public var insurer: Reference?
 	
 	/// Goods and Services.
 	public var item: [ClaimItem]?
@@ -75,34 +66,22 @@ open class Claim: DomainResource {
 	public var missingTeeth: [ClaimMissingTeeth]?
 	
 	/// Responsible organization.
-	public var organizationIdentifier: Identifier?
-	
-	/// Responsible organization.
-	public var organizationReference: Reference?
+	public var organization: Reference?
 	
 	/// Original Prescription.
-	public var originalPrescriptionIdentifier: Identifier?
-	
-	/// Original Prescription.
-	public var originalPrescriptionReference: Reference?
+	public var originalPrescription: Reference?
 	
 	/// Original specification followed.
 	public var originalRuleset: Coding?
 	
 	/// The subject of the Products and Services.
-	public var patientIdentifier: Identifier?
-	
-	/// The subject of the Products and Services.
-	public var patientReference: Reference?
+	public var patient: Reference?
 	
 	/// Party to be paid any benefits payable.
 	public var payee: ClaimPayee?
 	
 	/// Prescription.
-	public var prescriptionIdentifier: Identifier?
-	
-	/// Prescription.
-	public var prescriptionReference: Reference?
+	public var prescription: Reference?
 	
 	/// Desired processing priority.
 	public var priority: Coding?
@@ -111,16 +90,10 @@ open class Claim: DomainResource {
 	public var procedure: [ClaimProcedure]?
 	
 	/// Responsible provider.
-	public var providerIdentifier: Identifier?
-	
-	/// Responsible provider.
-	public var providerReference: Reference?
+	public var provider: Reference?
 	
 	/// Treatment Referral.
-	public var referralIdentifier: Identifier?
-	
-	/// Treatment Referral.
-	public var referralReference: Reference?
+	public var referral: Reference?
 	
 	/// Related Claims which may be revelant to processing this claimn.
 	public var related: [ClaimRelated]?
@@ -150,10 +123,9 @@ open class Claim: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patientIdentifier: Identifier, patientReference: Reference, status: String, type: Coding) {
+	public convenience init(patient: Reference, status: String, type: Coding) {
 		self.init(json: nil)
-		self.patientIdentifier = patientIdentifier
-		self.patientReference = patientReference
+		self.patient = patient
 		self.status = status
 		self.type = type
 	}
@@ -215,40 +187,22 @@ open class Claim: DomainResource {
 					errors.append(FHIRJSONError(key: "employmentImpacted", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["entererIdentifier"] {
-				presentKeys.insert("entererIdentifier")
+			if let exist = js["enterer"] {
+				presentKeys.insert("enterer")
 				if let val = exist as? FHIRJSON {
-					self.entererIdentifier = Identifier(json: val, owner: self)
+					self.enterer = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "entererIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "enterer", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["entererReference"] {
-				presentKeys.insert("entererReference")
+			if let exist = js["facility"] {
+				presentKeys.insert("facility")
 				if let val = exist as? FHIRJSON {
-					self.entererReference = Reference(json: val, owner: self)
+					self.facility = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "entererReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["facilityIdentifier"] {
-				presentKeys.insert("facilityIdentifier")
-				if let val = exist as? FHIRJSON {
-					self.facilityIdentifier = Identifier(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "facilityIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["facilityReference"] {
-				presentKeys.insert("facilityReference")
-				if let val = exist as? FHIRJSON {
-					self.facilityReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "facilityReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "facility", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["fundsReserve"] {
@@ -287,22 +241,13 @@ open class Claim: DomainResource {
 					errors.append(FHIRJSONError(key: "information", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["insurerIdentifier"] {
-				presentKeys.insert("insurerIdentifier")
+			if let exist = js["insurer"] {
+				presentKeys.insert("insurer")
 				if let val = exist as? FHIRJSON {
-					self.insurerIdentifier = Identifier(json: val, owner: self)
+					self.insurer = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "insurerIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["insurerReference"] {
-				presentKeys.insert("insurerReference")
-				if let val = exist as? FHIRJSON {
-					self.insurerReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "insurerReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "insurer", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["item"] {
@@ -323,40 +268,22 @@ open class Claim: DomainResource {
 					errors.append(FHIRJSONError(key: "missingTeeth", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["organizationIdentifier"] {
-				presentKeys.insert("organizationIdentifier")
+			if let exist = js["organization"] {
+				presentKeys.insert("organization")
 				if let val = exist as? FHIRJSON {
-					self.organizationIdentifier = Identifier(json: val, owner: self)
+					self.organization = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "organizationIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["organizationReference"] {
-				presentKeys.insert("organizationReference")
+			if let exist = js["originalPrescription"] {
+				presentKeys.insert("originalPrescription")
 				if let val = exist as? FHIRJSON {
-					self.organizationReference = Reference(json: val, owner: self)
+					self.originalPrescription = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "organizationReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["originalPrescriptionIdentifier"] {
-				presentKeys.insert("originalPrescriptionIdentifier")
-				if let val = exist as? FHIRJSON {
-					self.originalPrescriptionIdentifier = Identifier(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "originalPrescriptionIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["originalPrescriptionReference"] {
-				presentKeys.insert("originalPrescriptionReference")
-				if let val = exist as? FHIRJSON {
-					self.originalPrescriptionReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "originalPrescriptionReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "originalPrescription", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["originalRuleset"] {
@@ -368,23 +295,17 @@ open class Claim: DomainResource {
 					errors.append(FHIRJSONError(key: "originalRuleset", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["patientIdentifier"] {
-				presentKeys.insert("patientIdentifier")
+			if let exist = js["patient"] {
+				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					self.patientIdentifier = Identifier(json: val, owner: self)
+					self.patient = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "patientIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["patientReference"] {
-				presentKeys.insert("patientReference")
-				if let val = exist as? FHIRJSON {
-					self.patientReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "patientReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRJSONError(key: "patient"))
 			}
 			if let exist = js["payee"] {
 				presentKeys.insert("payee")
@@ -395,22 +316,13 @@ open class Claim: DomainResource {
 					errors.append(FHIRJSONError(key: "payee", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["prescriptionIdentifier"] {
-				presentKeys.insert("prescriptionIdentifier")
+			if let exist = js["prescription"] {
+				presentKeys.insert("prescription")
 				if let val = exist as? FHIRJSON {
-					self.prescriptionIdentifier = Identifier(json: val, owner: self)
+					self.prescription = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "prescriptionIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["prescriptionReference"] {
-				presentKeys.insert("prescriptionReference")
-				if let val = exist as? FHIRJSON {
-					self.prescriptionReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "prescriptionReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "prescription", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["priority"] {
@@ -431,40 +343,22 @@ open class Claim: DomainResource {
 					errors.append(FHIRJSONError(key: "procedure", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["providerIdentifier"] {
-				presentKeys.insert("providerIdentifier")
+			if let exist = js["provider"] {
+				presentKeys.insert("provider")
 				if let val = exist as? FHIRJSON {
-					self.providerIdentifier = Identifier(json: val, owner: self)
+					self.provider = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "providerIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "provider", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["providerReference"] {
-				presentKeys.insert("providerReference")
+			if let exist = js["referral"] {
+				presentKeys.insert("referral")
 				if let val = exist as? FHIRJSON {
-					self.providerReference = Reference(json: val, owner: self)
+					self.referral = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "providerReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["referralIdentifier"] {
-				presentKeys.insert("referralIdentifier")
-				if let val = exist as? FHIRJSON {
-					self.referralIdentifier = Identifier(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "referralIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["referralReference"] {
-				presentKeys.insert("referralReference")
-				if let val = exist as? FHIRJSON {
-					self.referralReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "referralReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "referral", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["related"] {
@@ -536,11 +430,6 @@ open class Claim: DomainResource {
 					errors.append(FHIRJSONError(key: "use", wants: String.self, has: type(of: exist)))
 				}
 			}
-			
-			// check if nonoptional expanded properties are present
-			if nil == self.patientIdentifier && nil == self.patientReference {
-				errors.append(FHIRJSONError(key: "patient*"))
-			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -566,17 +455,11 @@ open class Claim: DomainResource {
 		if let employmentImpacted = self.employmentImpacted {
 			json["employmentImpacted"] = employmentImpacted.asJSON()
 		}
-		if let entererIdentifier = self.entererIdentifier {
-			json["entererIdentifier"] = entererIdentifier.asJSON()
+		if let enterer = self.enterer {
+			json["enterer"] = enterer.asJSON()
 		}
-		if let entererReference = self.entererReference {
-			json["entererReference"] = entererReference.asJSON()
-		}
-		if let facilityIdentifier = self.facilityIdentifier {
-			json["facilityIdentifier"] = facilityIdentifier.asJSON()
-		}
-		if let facilityReference = self.facilityReference {
-			json["facilityReference"] = facilityReference.asJSON()
+		if let facility = self.facility {
+			json["facility"] = facility.asJSON()
 		}
 		if let fundsReserve = self.fundsReserve {
 			json["fundsReserve"] = fundsReserve.asJSON()
@@ -590,11 +473,8 @@ open class Claim: DomainResource {
 		if let information = self.information {
 			json["information"] = information.map() { $0.asJSON() }
 		}
-		if let insurerIdentifier = self.insurerIdentifier {
-			json["insurerIdentifier"] = insurerIdentifier.asJSON()
-		}
-		if let insurerReference = self.insurerReference {
-			json["insurerReference"] = insurerReference.asJSON()
+		if let insurer = self.insurer {
+			json["insurer"] = insurer.asJSON()
 		}
 		if let item = self.item {
 			json["item"] = item.map() { $0.asJSON() }
@@ -602,35 +482,23 @@ open class Claim: DomainResource {
 		if let missingTeeth = self.missingTeeth {
 			json["missingTeeth"] = missingTeeth.map() { $0.asJSON() }
 		}
-		if let organizationIdentifier = self.organizationIdentifier {
-			json["organizationIdentifier"] = organizationIdentifier.asJSON()
+		if let organization = self.organization {
+			json["organization"] = organization.asJSON()
 		}
-		if let organizationReference = self.organizationReference {
-			json["organizationReference"] = organizationReference.asJSON()
-		}
-		if let originalPrescriptionIdentifier = self.originalPrescriptionIdentifier {
-			json["originalPrescriptionIdentifier"] = originalPrescriptionIdentifier.asJSON()
-		}
-		if let originalPrescriptionReference = self.originalPrescriptionReference {
-			json["originalPrescriptionReference"] = originalPrescriptionReference.asJSON()
+		if let originalPrescription = self.originalPrescription {
+			json["originalPrescription"] = originalPrescription.asJSON()
 		}
 		if let originalRuleset = self.originalRuleset {
 			json["originalRuleset"] = originalRuleset.asJSON()
 		}
-		if let patientIdentifier = self.patientIdentifier {
-			json["patientIdentifier"] = patientIdentifier.asJSON()
-		}
-		if let patientReference = self.patientReference {
-			json["patientReference"] = patientReference.asJSON()
+		if let patient = self.patient {
+			json["patient"] = patient.asJSON()
 		}
 		if let payee = self.payee {
 			json["payee"] = payee.asJSON()
 		}
-		if let prescriptionIdentifier = self.prescriptionIdentifier {
-			json["prescriptionIdentifier"] = prescriptionIdentifier.asJSON()
-		}
-		if let prescriptionReference = self.prescriptionReference {
-			json["prescriptionReference"] = prescriptionReference.asJSON()
+		if let prescription = self.prescription {
+			json["prescription"] = prescription.asJSON()
 		}
 		if let priority = self.priority {
 			json["priority"] = priority.asJSON()
@@ -638,17 +506,11 @@ open class Claim: DomainResource {
 		if let procedure = self.procedure {
 			json["procedure"] = procedure.map() { $0.asJSON() }
 		}
-		if let providerIdentifier = self.providerIdentifier {
-			json["providerIdentifier"] = providerIdentifier.asJSON()
+		if let provider = self.provider {
+			json["provider"] = provider.asJSON()
 		}
-		if let providerReference = self.providerReference {
-			json["providerReference"] = providerReference.asJSON()
-		}
-		if let referralIdentifier = self.referralIdentifier {
-			json["referralIdentifier"] = referralIdentifier.asJSON()
-		}
-		if let referralReference = self.referralReference {
-			json["referralReference"] = referralReference.asJSON()
+		if let referral = self.referral {
+			json["referral"] = referral.asJSON()
 		}
 		if let related = self.related {
 			json["related"] = related.map() { $0.asJSON() }
@@ -678,7 +540,7 @@ open class Claim: DomainResource {
 
 
 /**
- *  None.
+ *  Details about an accident.
  *
  *  An accident which resulted in the need for healthcare services.
  */
@@ -795,10 +657,7 @@ open class ClaimCoverage: BackboneElement {
 	public var claimResponse: Reference?
 	
 	/// Insurance information.
-	public var coverageIdentifier: Identifier?
-	
-	/// Insurance information.
-	public var coverageReference: Reference?
+	public var coverage: Reference?
 	
 	/// Is the focal Coverage.
 	public var focal: Bool?
@@ -819,10 +678,9 @@ open class ClaimCoverage: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(coverageIdentifier: Identifier, coverageReference: Reference, focal: Bool, sequence: UInt) {
+	public convenience init(coverage: Reference, focal: Bool, sequence: UInt) {
 		self.init(json: nil)
-		self.coverageIdentifier = coverageIdentifier
-		self.coverageReference = coverageReference
+		self.coverage = coverage
 		self.focal = focal
 		self.sequence = sequence
 	}
@@ -848,23 +706,17 @@ open class ClaimCoverage: BackboneElement {
 					errors.append(FHIRJSONError(key: "claimResponse", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["coverageIdentifier"] {
-				presentKeys.insert("coverageIdentifier")
+			if let exist = js["coverage"] {
+				presentKeys.insert("coverage")
 				if let val = exist as? FHIRJSON {
-					self.coverageIdentifier = Identifier(json: val, owner: self)
+					self.coverage = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "coverageIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "coverage", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["coverageReference"] {
-				presentKeys.insert("coverageReference")
-				if let val = exist as? FHIRJSON {
-					self.coverageReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "coverageReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRJSONError(key: "coverage"))
 			}
 			if let exist = js["focal"] {
 				presentKeys.insert("focal")
@@ -908,11 +760,6 @@ open class ClaimCoverage: BackboneElement {
 			else {
 				errors.append(FHIRJSONError(key: "sequence"))
 			}
-			
-			// check if nonoptional expanded properties are present
-			if nil == self.coverageIdentifier && nil == self.coverageReference {
-				errors.append(FHIRJSONError(key: "coverage*"))
-			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -926,11 +773,8 @@ open class ClaimCoverage: BackboneElement {
 		if let claimResponse = self.claimResponse {
 			json["claimResponse"] = claimResponse.asJSON()
 		}
-		if let coverageIdentifier = self.coverageIdentifier {
-			json["coverageIdentifier"] = coverageIdentifier.asJSON()
-		}
-		if let coverageReference = self.coverageReference {
-			json["coverageReference"] = coverageReference.asJSON()
+		if let coverage = self.coverage {
+			json["coverage"] = coverage.asJSON()
 		}
 		if let focal = self.focal {
 			json["focal"] = focal.asJSON()
@@ -1060,7 +904,7 @@ open class ClaimDiagnosis: BackboneElement {
 
 
 /**
- *  None.
+ *  Exceptions, special considerations, the condition, situation, prior or concurrent issues.
  *
  *  Additional information codes regarding exceptions, special considerations, the condition, situation, prior or
  *  concurrent issues. Often there are mutiple jurisdiction specific valuesets which are required.
@@ -1204,7 +1048,7 @@ open class ClaimItem: BackboneElement {
 	/// Service Location.
 	public var bodySite: Coding?
 	
-	/// None.
+	/// Members of the care team.
 	public var careTeam: [ClaimItemCareTeam]?
 	
 	/// Type of service or product.
@@ -1582,7 +1426,7 @@ open class ClaimItem: BackboneElement {
 
 
 /**
- *  None.
+ *  Members of the care team.
  *
  *  The members of the team who provided the overall service as well as their role and whether responsible and
  *  qualifications.
@@ -1593,10 +1437,7 @@ open class ClaimItemCareTeam: BackboneElement {
 	}
 	
 	/// Provider individual or organization.
-	public var providerIdentifier: Identifier?
-	
-	/// Provider individual or organization.
-	public var providerReference: Reference?
+	public var provider: Reference?
 	
 	/// Type, classification or Specialization.
 	public var qualification: Coding?
@@ -1614,32 +1455,25 @@ open class ClaimItemCareTeam: BackboneElement {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(providerIdentifier: Identifier, providerReference: Reference) {
+	public convenience init(provider: Reference) {
 		self.init(json: nil)
-		self.providerIdentifier = providerIdentifier
-		self.providerReference = providerReference
+		self.provider = provider
 	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist = js["providerIdentifier"] {
-				presentKeys.insert("providerIdentifier")
+			if let exist = js["provider"] {
+				presentKeys.insert("provider")
 				if let val = exist as? FHIRJSON {
-					self.providerIdentifier = Identifier(json: val, owner: self)
+					self.provider = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "providerIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "provider", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["providerReference"] {
-				presentKeys.insert("providerReference")
-				if let val = exist as? FHIRJSON {
-					self.providerReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "providerReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRJSONError(key: "provider"))
 			}
 			if let exist = js["qualification"] {
 				presentKeys.insert("qualification")
@@ -1668,11 +1502,6 @@ open class ClaimItemCareTeam: BackboneElement {
 					errors.append(FHIRJSONError(key: "role", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			
-			// check if nonoptional expanded properties are present
-			if nil == self.providerIdentifier && nil == self.providerReference {
-				errors.append(FHIRJSONError(key: "provider*"))
-			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
@@ -1680,11 +1509,8 @@ open class ClaimItemCareTeam: BackboneElement {
 	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let providerIdentifier = self.providerIdentifier {
-			json["providerIdentifier"] = providerIdentifier.asJSON()
-		}
-		if let providerReference = self.providerReference {
-			json["providerReference"] = providerReference.asJSON()
+		if let provider = self.provider {
+			json["provider"] = provider.asJSON()
 		}
 		if let qualification = self.qualification {
 			json["qualification"] = qualification.asJSON()
@@ -2333,10 +2159,7 @@ open class ClaimPayee: BackboneElement {
 	}
 	
 	/// Party to receive the payable.
-	public var partyIdentifier: Identifier?
-	
-	/// Party to receive the payable.
-	public var partyReference: Reference?
+	public var party: Reference?
 	
 	/// organization | patient | practitioner | relatedperson.
 	public var resourceType: Coding?
@@ -2359,22 +2182,13 @@ open class ClaimPayee: BackboneElement {
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist = js["partyIdentifier"] {
-				presentKeys.insert("partyIdentifier")
+			if let exist = js["party"] {
+				presentKeys.insert("party")
 				if let val = exist as? FHIRJSON {
-					self.partyIdentifier = Identifier(json: val, owner: self)
+					self.party = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "partyIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["partyReference"] {
-				presentKeys.insert("partyReference")
-				if let val = exist as? FHIRJSON {
-					self.partyReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "partyReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "party", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["resourceType"] {
@@ -2405,11 +2219,8 @@ open class ClaimPayee: BackboneElement {
 	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let partyIdentifier = self.partyIdentifier {
-			json["partyIdentifier"] = partyIdentifier.asJSON()
-		}
-		if let partyReference = self.partyReference {
-			json["partyReference"] = partyReference.asJSON()
+		if let party = self.party {
+			json["party"] = party.asJSON()
 		}
 		if let resourceType = self.resourceType {
 			json["resourceType"] = resourceType.asJSON()
@@ -2542,10 +2353,7 @@ open class ClaimRelated: BackboneElement {
 	}
 	
 	/// Reference to the related claim.
-	public var claimIdentifier: Identifier?
-	
-	/// Reference to the related claim.
-	public var claimReference: Reference?
+	public var claim: Reference?
 	
 	/// Related file or case reference.
 	public var reference: Identifier?
@@ -2562,22 +2370,13 @@ open class ClaimRelated: BackboneElement {
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
-			if let exist = js["claimIdentifier"] {
-				presentKeys.insert("claimIdentifier")
+			if let exist = js["claim"] {
+				presentKeys.insert("claim")
 				if let val = exist as? FHIRJSON {
-					self.claimIdentifier = Identifier(json: val, owner: self)
+					self.claim = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "claimIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["claimReference"] {
-				presentKeys.insert("claimReference")
-				if let val = exist as? FHIRJSON {
-					self.claimReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "claimReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "claim", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["reference"] {
@@ -2605,11 +2404,8 @@ open class ClaimRelated: BackboneElement {
 	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
-		if let claimIdentifier = self.claimIdentifier {
-			json["claimIdentifier"] = claimIdentifier.asJSON()
-		}
-		if let claimReference = self.claimReference {
-			json["claimReference"] = claimReference.asJSON()
+		if let claim = self.claim {
+			json["claim"] = claim.asJSON()
 		}
 		if let reference = self.reference {
 			json["reference"] = reference.asJSON()

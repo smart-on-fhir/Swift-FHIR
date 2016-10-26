@@ -2,7 +2,7 @@
 //  PaymentReconciliation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -38,10 +38,7 @@ open class PaymentReconciliation: DomainResource {
 	public var note: [PaymentReconciliationNote]?
 	
 	/// Insurer.
-	public var organizationIdentifier: Identifier?
-	
-	/// Insurer.
-	public var organizationReference: Reference?
+	public var organization: Reference?
 	
 	/// Original version.
 	public var originalRuleset: Coding?
@@ -53,22 +50,13 @@ open class PaymentReconciliation: DomainResource {
 	public var period: Period?
 	
 	/// Claim reference.
-	public var requestIdentifier: Identifier?
+	public var request: Reference?
 	
 	/// Responsible organization.
-	public var requestOrganizationIdentifier: Identifier?
-	
-	/// Responsible organization.
-	public var requestOrganizationReference: Reference?
+	public var requestOrganization: Reference?
 	
 	/// Responsible practitioner.
-	public var requestProviderIdentifier: Identifier?
-	
-	/// Responsible practitioner.
-	public var requestProviderReference: Reference?
-	
-	/// Claim reference.
-	public var requestReference: Reference?
+	public var requestProvider: Reference?
 	
 	/// Resource version.
 	public var ruleset: Coding?
@@ -149,22 +137,13 @@ open class PaymentReconciliation: DomainResource {
 					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["organizationIdentifier"] {
-				presentKeys.insert("organizationIdentifier")
+			if let exist = js["organization"] {
+				presentKeys.insert("organization")
 				if let val = exist as? FHIRJSON {
-					self.organizationIdentifier = Identifier(json: val, owner: self)
+					self.organization = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "organizationIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["organizationReference"] {
-				presentKeys.insert("organizationReference")
-				if let val = exist as? FHIRJSON {
-					self.organizationReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "organizationReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["originalRuleset"] {
@@ -194,58 +173,31 @@ open class PaymentReconciliation: DomainResource {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["requestIdentifier"] {
-				presentKeys.insert("requestIdentifier")
+			if let exist = js["request"] {
+				presentKeys.insert("request")
 				if let val = exist as? FHIRJSON {
-					self.requestIdentifier = Identifier(json: val, owner: self)
+					self.request = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requestIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["requestOrganizationIdentifier"] {
-				presentKeys.insert("requestOrganizationIdentifier")
+			if let exist = js["requestOrganization"] {
+				presentKeys.insert("requestOrganization")
 				if let val = exist as? FHIRJSON {
-					self.requestOrganizationIdentifier = Identifier(json: val, owner: self)
+					self.requestOrganization = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requestOrganizationIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "requestOrganization", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["requestOrganizationReference"] {
-				presentKeys.insert("requestOrganizationReference")
+			if let exist = js["requestProvider"] {
+				presentKeys.insert("requestProvider")
 				if let val = exist as? FHIRJSON {
-					self.requestOrganizationReference = Reference(json: val, owner: self)
+					self.requestProvider = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requestOrganizationReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["requestProviderIdentifier"] {
-				presentKeys.insert("requestProviderIdentifier")
-				if let val = exist as? FHIRJSON {
-					self.requestProviderIdentifier = Identifier(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "requestProviderIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["requestProviderReference"] {
-				presentKeys.insert("requestProviderReference")
-				if let val = exist as? FHIRJSON {
-					self.requestProviderReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "requestProviderReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["requestReference"] {
-				presentKeys.insert("requestReference")
-				if let val = exist as? FHIRJSON {
-					self.requestReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "requestReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "requestProvider", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["ruleset"] {
@@ -306,11 +258,8 @@ open class PaymentReconciliation: DomainResource {
 		if let note = self.note {
 			json["note"] = note.map() { $0.asJSON() }
 		}
-		if let organizationIdentifier = self.organizationIdentifier {
-			json["organizationIdentifier"] = organizationIdentifier.asJSON()
-		}
-		if let organizationReference = self.organizationReference {
-			json["organizationReference"] = organizationReference.asJSON()
+		if let organization = self.organization {
+			json["organization"] = organization.asJSON()
 		}
 		if let originalRuleset = self.originalRuleset {
 			json["originalRuleset"] = originalRuleset.asJSON()
@@ -321,23 +270,14 @@ open class PaymentReconciliation: DomainResource {
 		if let period = self.period {
 			json["period"] = period.asJSON()
 		}
-		if let requestIdentifier = self.requestIdentifier {
-			json["requestIdentifier"] = requestIdentifier.asJSON()
+		if let request = self.request {
+			json["request"] = request.asJSON()
 		}
-		if let requestOrganizationIdentifier = self.requestOrganizationIdentifier {
-			json["requestOrganizationIdentifier"] = requestOrganizationIdentifier.asJSON()
+		if let requestOrganization = self.requestOrganization {
+			json["requestOrganization"] = requestOrganization.asJSON()
 		}
-		if let requestOrganizationReference = self.requestOrganizationReference {
-			json["requestOrganizationReference"] = requestOrganizationReference.asJSON()
-		}
-		if let requestProviderIdentifier = self.requestProviderIdentifier {
-			json["requestProviderIdentifier"] = requestProviderIdentifier.asJSON()
-		}
-		if let requestProviderReference = self.requestProviderReference {
-			json["requestProviderReference"] = requestProviderReference.asJSON()
-		}
-		if let requestReference = self.requestReference {
-			json["requestReference"] = requestReference.asJSON()
+		if let requestProvider = self.requestProvider {
+			json["requestProvider"] = requestProvider.asJSON()
 		}
 		if let ruleset = self.ruleset {
 			json["ruleset"] = ruleset.asJSON()
@@ -371,28 +311,16 @@ open class PaymentReconciliationDetail: BackboneElement {
 	public var date: FHIRDate?
 	
 	/// Payee.
-	public var payeeIdentifier: Identifier?
-	
-	/// Payee.
-	public var payeeReference: Reference?
+	public var payee: Reference?
 	
 	/// Claim.
-	public var requestIdentifier: Identifier?
-	
-	/// Claim.
-	public var requestReference: Reference?
+	public var request: Reference?
 	
 	/// Claim Response.
-	public var responseIdentifier: Identifier?
-	
-	/// Claim Response.
-	public var responseReference: Reference?
+	public var response: Reference?
 	
 	/// Submitter.
-	public var submitterIdentifier: Identifier?
-	
-	/// Submitter.
-	public var submitterReference: Reference?
+	public var submitter: Reference?
 	
 	/// Type code.
 	public var type: Coding?
@@ -430,76 +358,40 @@ open class PaymentReconciliationDetail: BackboneElement {
 					errors.append(FHIRJSONError(key: "date", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["payeeIdentifier"] {
-				presentKeys.insert("payeeIdentifier")
+			if let exist = js["payee"] {
+				presentKeys.insert("payee")
 				if let val = exist as? FHIRJSON {
-					self.payeeIdentifier = Identifier(json: val, owner: self)
+					self.payee = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "payeeIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "payee", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["payeeReference"] {
-				presentKeys.insert("payeeReference")
+			if let exist = js["request"] {
+				presentKeys.insert("request")
 				if let val = exist as? FHIRJSON {
-					self.payeeReference = Reference(json: val, owner: self)
+					self.request = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "payeeReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["requestIdentifier"] {
-				presentKeys.insert("requestIdentifier")
+			if let exist = js["response"] {
+				presentKeys.insert("response")
 				if let val = exist as? FHIRJSON {
-					self.requestIdentifier = Identifier(json: val, owner: self)
+					self.response = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requestIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "response", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["requestReference"] {
-				presentKeys.insert("requestReference")
+			if let exist = js["submitter"] {
+				presentKeys.insert("submitter")
 				if let val = exist as? FHIRJSON {
-					self.requestReference = Reference(json: val, owner: self)
+					self.submitter = Reference(json: val, owner: self)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requestReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["responseIdentifier"] {
-				presentKeys.insert("responseIdentifier")
-				if let val = exist as? FHIRJSON {
-					self.responseIdentifier = Identifier(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "responseIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["responseReference"] {
-				presentKeys.insert("responseReference")
-				if let val = exist as? FHIRJSON {
-					self.responseReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "responseReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["submitterIdentifier"] {
-				presentKeys.insert("submitterIdentifier")
-				if let val = exist as? FHIRJSON {
-					self.submitterIdentifier = Identifier(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "submitterIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["submitterReference"] {
-				presentKeys.insert("submitterReference")
-				if let val = exist as? FHIRJSON {
-					self.submitterReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "submitterReference", wants: FHIRJSON.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "submitter", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["type"] {
@@ -527,29 +419,17 @@ open class PaymentReconciliationDetail: BackboneElement {
 		if let date = self.date {
 			json["date"] = date.asJSON()
 		}
-		if let payeeIdentifier = self.payeeIdentifier {
-			json["payeeIdentifier"] = payeeIdentifier.asJSON()
+		if let payee = self.payee {
+			json["payee"] = payee.asJSON()
 		}
-		if let payeeReference = self.payeeReference {
-			json["payeeReference"] = payeeReference.asJSON()
+		if let request = self.request {
+			json["request"] = request.asJSON()
 		}
-		if let requestIdentifier = self.requestIdentifier {
-			json["requestIdentifier"] = requestIdentifier.asJSON()
+		if let response = self.response {
+			json["response"] = response.asJSON()
 		}
-		if let requestReference = self.requestReference {
-			json["requestReference"] = requestReference.asJSON()
-		}
-		if let responseIdentifier = self.responseIdentifier {
-			json["responseIdentifier"] = responseIdentifier.asJSON()
-		}
-		if let responseReference = self.responseReference {
-			json["responseReference"] = responseReference.asJSON()
-		}
-		if let submitterIdentifier = self.submitterIdentifier {
-			json["submitterIdentifier"] = submitterIdentifier.asJSON()
-		}
-		if let submitterReference = self.submitterReference {
-			json["submitterReference"] = submitterReference.asJSON()
+		if let submitter = self.submitter {
+			json["submitter"] = submitter.asJSON()
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()

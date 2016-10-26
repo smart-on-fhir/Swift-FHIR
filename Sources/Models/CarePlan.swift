@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -59,7 +59,7 @@ open class CarePlan: DomainResource {
 	/// Plans related to this one.
 	public var relatedPlan: [CarePlanRelatedPlan]?
 	
-	/// proposed | draft | active | completed | cancelled.
+	/// proposed | draft | active | suspended | completed | entered-in-error | cancelled.
 	public var status: String?
 	
 	/// Who care plan is for.
@@ -473,12 +473,6 @@ open class CarePlanActivityDetail: BackboneElement {
 		super.init(json: json, owner: owner)
 	}
 	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(prohibited: Bool) {
-		self.init(json: nil)
-		self.prohibited = prohibited
-	}
-	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
 		if let js = json {
@@ -580,9 +574,6 @@ open class CarePlanActivityDetail: BackboneElement {
 				else {
 					errors.append(FHIRJSONError(key: "prohibited", wants: Bool.self, has: type(of: exist)))
 				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "prohibited"))
 			}
 			if let exist = js["quantity"] {
 				presentKeys.insert("quantity")

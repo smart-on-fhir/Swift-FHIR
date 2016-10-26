@@ -2,7 +2,7 @@
 //  FHIRAbstractBase+Factory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -20,6 +20,12 @@ extension FHIRAbstractBase {
 				return ActivityDefinition(json: json, owner: owner)
 			case "ActivityDefinitionDynamicValue":
 				return ActivityDefinitionDynamicValue(json: json, owner: owner)
+			case "ActivityGroup":
+				return ActivityGroup(json: json, owner: owner)
+			case "ActivityGroupAction":
+				return ActivityGroupAction(json: json, owner: owner)
+			case "ActivityGroupActionRelatedAction":
+				return ActivityGroupActionRelatedAction(json: json, owner: owner)
 			case "Address":
 				return Address(json: json, owner: owner)
 			case "Age":
@@ -70,6 +76,36 @@ extension FHIRAbstractBase {
 				return BundleEntrySearch(json: json, owner: owner)
 			case "BundleLink":
 				return BundleLink(json: json, owner: owner)
+			case "CapabilityStatement":
+				return CapabilityStatement(json: json, owner: owner)
+			case "CapabilityStatementDocument":
+				return CapabilityStatementDocument(json: json, owner: owner)
+			case "CapabilityStatementImplementation":
+				return CapabilityStatementImplementation(json: json, owner: owner)
+			case "CapabilityStatementMessaging":
+				return CapabilityStatementMessaging(json: json, owner: owner)
+			case "CapabilityStatementMessagingEndpoint":
+				return CapabilityStatementMessagingEndpoint(json: json, owner: owner)
+			case "CapabilityStatementMessagingEvent":
+				return CapabilityStatementMessagingEvent(json: json, owner: owner)
+			case "CapabilityStatementRest":
+				return CapabilityStatementRest(json: json, owner: owner)
+			case "CapabilityStatementRestInteraction":
+				return CapabilityStatementRestInteraction(json: json, owner: owner)
+			case "CapabilityStatementRestOperation":
+				return CapabilityStatementRestOperation(json: json, owner: owner)
+			case "CapabilityStatementRestResource":
+				return CapabilityStatementRestResource(json: json, owner: owner)
+			case "CapabilityStatementRestResourceInteraction":
+				return CapabilityStatementRestResourceInteraction(json: json, owner: owner)
+			case "CapabilityStatementRestResourceSearchParam":
+				return CapabilityStatementRestResourceSearchParam(json: json, owner: owner)
+			case "CapabilityStatementRestSecurity":
+				return CapabilityStatementRestSecurity(json: json, owner: owner)
+			case "CapabilityStatementRestSecurityCertificate":
+				return CapabilityStatementRestSecurityCertificate(json: json, owner: owner)
+			case "CapabilityStatementSoftware":
+				return CapabilityStatementSoftware(json: json, owner: owner)
 			case "CarePlan":
 				return CarePlan(json: json, owner: owner)
 			case "CarePlanActivity":
@@ -136,8 +172,8 @@ extension FHIRAbstractBase {
 				return ClinicalImpression(json: json, owner: owner)
 			case "ClinicalImpressionFinding":
 				return ClinicalImpressionFinding(json: json, owner: owner)
-			case "ClinicalImpressionInvestigations":
-				return ClinicalImpressionInvestigations(json: json, owner: owner)
+			case "ClinicalImpressionInvestigation":
+				return ClinicalImpressionInvestigation(json: json, owner: owner)
 			case "CodeSystem":
 				return CodeSystem(json: json, owner: owner)
 			case "CodeSystemConcept":
@@ -146,8 +182,6 @@ extension FHIRAbstractBase {
 				return CodeSystemConceptDesignation(json: json, owner: owner)
 			case "CodeSystemConceptProperty":
 				return CodeSystemConceptProperty(json: json, owner: owner)
-			case "CodeSystemContact":
-				return CodeSystemContact(json: json, owner: owner)
 			case "CodeSystemFilter":
 				return CodeSystemFilter(json: json, owner: owner)
 			case "CodeSystemProperty":
@@ -166,8 +200,6 @@ extension FHIRAbstractBase {
 				return CommunicationRequestPayload(json: json, owner: owner)
 			case "CompartmentDefinition":
 				return CompartmentDefinition(json: json, owner: owner)
-			case "CompartmentDefinitionContact":
-				return CompartmentDefinitionContact(json: json, owner: owner)
 			case "CompartmentDefinitionResource":
 				return CompartmentDefinitionResource(json: json, owner: owner)
 			case "Composition":
@@ -180,8 +212,6 @@ extension FHIRAbstractBase {
 				return CompositionSection(json: json, owner: owner)
 			case "ConceptMap":
 				return ConceptMap(json: json, owner: owner)
-			case "ConceptMapContact":
-				return ConceptMapContact(json: json, owner: owner)
 			case "ConceptMapGroup":
 				return ConceptMapGroup(json: json, owner: owner)
 			case "ConceptMapGroupElement":
@@ -196,38 +226,6 @@ extension FHIRAbstractBase {
 				return ConditionEvidence(json: json, owner: owner)
 			case "ConditionStage":
 				return ConditionStage(json: json, owner: owner)
-			case "Conformance":
-				return Conformance(json: json, owner: owner)
-			case "ConformanceContact":
-				return ConformanceContact(json: json, owner: owner)
-			case "ConformanceDocument":
-				return ConformanceDocument(json: json, owner: owner)
-			case "ConformanceImplementation":
-				return ConformanceImplementation(json: json, owner: owner)
-			case "ConformanceMessaging":
-				return ConformanceMessaging(json: json, owner: owner)
-			case "ConformanceMessagingEndpoint":
-				return ConformanceMessagingEndpoint(json: json, owner: owner)
-			case "ConformanceMessagingEvent":
-				return ConformanceMessagingEvent(json: json, owner: owner)
-			case "ConformanceRest":
-				return ConformanceRest(json: json, owner: owner)
-			case "ConformanceRestInteraction":
-				return ConformanceRestInteraction(json: json, owner: owner)
-			case "ConformanceRestOperation":
-				return ConformanceRestOperation(json: json, owner: owner)
-			case "ConformanceRestResource":
-				return ConformanceRestResource(json: json, owner: owner)
-			case "ConformanceRestResourceInteraction":
-				return ConformanceRestResourceInteraction(json: json, owner: owner)
-			case "ConformanceRestResourceSearchParam":
-				return ConformanceRestResourceSearchParam(json: json, owner: owner)
-			case "ConformanceRestSecurity":
-				return ConformanceRestSecurity(json: json, owner: owner)
-			case "ConformanceRestSecurityCertificate":
-				return ConformanceRestSecurityCertificate(json: json, owner: owner)
-			case "ConformanceSoftware":
-				return ConformanceSoftware(json: json, owner: owner)
 			case "Consent":
 				return Consent(json: json, owner: owner)
 			case "ConsentExcept":
@@ -268,8 +266,6 @@ extension FHIRAbstractBase {
 				return Coverage(json: json, owner: owner)
 			case "DataElement":
 				return DataElement(json: json, owner: owner)
-			case "DataElementContact":
-				return DataElementContact(json: json, owner: owner)
 			case "DataElementMapping":
 				return DataElementMapping(json: json, owner: owner)
 			case "DataRequirement":
@@ -324,6 +320,8 @@ extension FHIRAbstractBase {
 				return DocumentReferenceRelatesTo(json: json, owner: owner)
 			case "DomainResource":
 				return DomainResource(json: json, owner: owner)
+			case "DosageInstruction":
+				return DosageInstruction(json: json, owner: owner)
 			case "Duration":
 				return Duration(json: json, owner: owner)
 			case "Element":
@@ -374,18 +372,6 @@ extension FHIRAbstractBase {
 				return EpisodeOfCareStatusHistory(json: json, owner: owner)
 			case "ExpansionProfile":
 				return ExpansionProfile(json: json, owner: owner)
-			case "ExpansionProfileCodeSystem":
-				return ExpansionProfileCodeSystem(json: json, owner: owner)
-			case "ExpansionProfileCodeSystemExclude":
-				return ExpansionProfileCodeSystemExclude(json: json, owner: owner)
-			case "ExpansionProfileCodeSystemExcludeCodeSystem":
-				return ExpansionProfileCodeSystemExcludeCodeSystem(json: json, owner: owner)
-			case "ExpansionProfileCodeSystemInclude":
-				return ExpansionProfileCodeSystemInclude(json: json, owner: owner)
-			case "ExpansionProfileCodeSystemIncludeCodeSystem":
-				return ExpansionProfileCodeSystemIncludeCodeSystem(json: json, owner: owner)
-			case "ExpansionProfileContact":
-				return ExpansionProfileContact(json: json, owner: owner)
 			case "ExpansionProfileDesignation":
 				return ExpansionProfileDesignation(json: json, owner: owner)
 			case "ExpansionProfileDesignationExclude":
@@ -396,6 +382,10 @@ extension FHIRAbstractBase {
 				return ExpansionProfileDesignationInclude(json: json, owner: owner)
 			case "ExpansionProfileDesignationIncludeDesignation":
 				return ExpansionProfileDesignationIncludeDesignation(json: json, owner: owner)
+			case "ExpansionProfileExcludedSystem":
+				return ExpansionProfileExcludedSystem(json: json, owner: owner)
+			case "ExpansionProfileFixedVersion":
+				return ExpansionProfileFixedVersion(json: json, owner: owner)
 			case "ExplanationOfBenefit":
 				return ExplanationOfBenefit(json: json, owner: owner)
 			case "ExplanationOfBenefitAccident":
@@ -512,8 +502,6 @@ extension FHIRAbstractBase {
 				return ImmunizationVaccinationProtocol(json: json, owner: owner)
 			case "ImplementationGuide":
 				return ImplementationGuide(json: json, owner: owner)
-			case "ImplementationGuideContact":
-				return ImplementationGuideContact(json: json, owner: owner)
 			case "ImplementationGuideDependency":
 				return ImplementationGuideDependency(json: json, owner: owner)
 			case "ImplementationGuideGlobal":
@@ -572,24 +560,14 @@ extension FHIRAbstractBase {
 				return MedicationAdministration(json: json, owner: owner)
 			case "MedicationAdministrationDosage":
 				return MedicationAdministrationDosage(json: json, owner: owner)
-			case "MedicationAdministrationEventHistory":
-				return MedicationAdministrationEventHistory(json: json, owner: owner)
 			case "MedicationDispense":
 				return MedicationDispense(json: json, owner: owner)
-			case "MedicationDispenseDosageInstruction":
-				return MedicationDispenseDosageInstruction(json: json, owner: owner)
-			case "MedicationDispenseEventHistory":
-				return MedicationDispenseEventHistory(json: json, owner: owner)
 			case "MedicationDispenseSubstitution":
 				return MedicationDispenseSubstitution(json: json, owner: owner)
 			case "MedicationOrder":
 				return MedicationOrder(json: json, owner: owner)
 			case "MedicationOrderDispenseRequest":
 				return MedicationOrderDispenseRequest(json: json, owner: owner)
-			case "MedicationOrderDosageInstruction":
-				return MedicationOrderDosageInstruction(json: json, owner: owner)
-			case "MedicationOrderEventHistory":
-				return MedicationOrderEventHistory(json: json, owner: owner)
 			case "MedicationOrderSubstitution":
 				return MedicationOrderSubstitution(json: json, owner: owner)
 			case "MedicationPackage":
@@ -604,8 +582,6 @@ extension FHIRAbstractBase {
 				return MedicationProductIngredient(json: json, owner: owner)
 			case "MedicationStatement":
 				return MedicationStatement(json: json, owner: owner)
-			case "MedicationStatementDosage":
-				return MedicationStatementDosage(json: json, owner: owner)
 			case "MessageHeader":
 				return MessageHeader(json: json, owner: owner)
 			case "MessageHeaderDestination":
@@ -616,12 +592,12 @@ extension FHIRAbstractBase {
 				return MessageHeaderSource(json: json, owner: owner)
 			case "Meta":
 				return Meta(json: json, owner: owner)
+			case "MetadataResource":
+				return MetadataResource(json: json, owner: owner)
 			case "Money":
 				return Money(json: json, owner: owner)
 			case "NamingSystem":
 				return NamingSystem(json: json, owner: owner)
-			case "NamingSystemContact":
-				return NamingSystemContact(json: json, owner: owner)
 			case "NamingSystemUniqueId":
 				return NamingSystemUniqueId(json: json, owner: owner)
 			case "Narrative":
@@ -650,8 +626,8 @@ extension FHIRAbstractBase {
 				return ObservationRelated(json: json, owner: owner)
 			case "OperationDefinition":
 				return OperationDefinition(json: json, owner: owner)
-			case "OperationDefinitionContact":
-				return OperationDefinitionContact(json: json, owner: owner)
+			case "OperationDefinitionOverload":
+				return OperationDefinitionOverload(json: json, owner: owner)
 			case "OperationDefinitionParameter":
 				return OperationDefinitionParameter(json: json, owner: owner)
 			case "OperationDefinitionParameterBinding":
@@ -764,10 +740,10 @@ extension FHIRAbstractBase {
 				return Reference(json: json, owner: owner)
 			case "ReferralRequest":
 				return ReferralRequest(json: json, owner: owner)
+			case "RelatedArtifact":
+				return RelatedArtifact(json: json, owner: owner)
 			case "RelatedPerson":
 				return RelatedPerson(json: json, owner: owner)
-			case "RelatedResource":
-				return RelatedResource(json: json, owner: owner)
 			case "Resource":
 				return Resource(json: json, owner: owner)
 			case "RiskAssessment":
@@ -780,8 +756,6 @@ extension FHIRAbstractBase {
 				return Schedule(json: json, owner: owner)
 			case "SearchParameter":
 				return SearchParameter(json: json, owner: owner)
-			case "SearchParameterContact":
-				return SearchParameterContact(json: json, owner: owner)
 			case "Sequence":
 				return Sequence(json: json, owner: owner)
 			case "SequenceQuality":
@@ -798,6 +772,8 @@ extension FHIRAbstractBase {
 				return SequenceStructureVariantOuter(json: json, owner: owner)
 			case "SequenceVariant":
 				return SequenceVariant(json: json, owner: owner)
+			case "ServiceDefinition":
+				return ServiceDefinition(json: json, owner: owner)
 			case "Signature":
 				return Signature(json: json, owner: owner)
 			case "Slot":
@@ -812,8 +788,6 @@ extension FHIRAbstractBase {
 				return SpecimenTreatment(json: json, owner: owner)
 			case "StructureDefinition":
 				return StructureDefinition(json: json, owner: owner)
-			case "StructureDefinitionContact":
-				return StructureDefinitionContact(json: json, owner: owner)
 			case "StructureDefinitionDifferential":
 				return StructureDefinitionDifferential(json: json, owner: owner)
 			case "StructureDefinitionMapping":
@@ -822,8 +796,6 @@ extension FHIRAbstractBase {
 				return StructureDefinitionSnapshot(json: json, owner: owner)
 			case "StructureMap":
 				return StructureMap(json: json, owner: owner)
-			case "StructureMapContact":
-				return StructureMapContact(json: json, owner: owner)
 			case "StructureMapGroup":
 				return StructureMapGroup(json: json, owner: owner)
 			case "StructureMapGroupInput":
@@ -864,10 +836,28 @@ extension FHIRAbstractBase {
 				return TaskInput(json: json, owner: owner)
 			case "TaskOutput":
 				return TaskOutput(json: json, owner: owner)
+			case "TestReport":
+				return TestReport(json: json, owner: owner)
+			case "TestReportParticipant":
+				return TestReportParticipant(json: json, owner: owner)
+			case "TestReportSetup":
+				return TestReportSetup(json: json, owner: owner)
+			case "TestReportSetupAction":
+				return TestReportSetupAction(json: json, owner: owner)
+			case "TestReportSetupActionAssert":
+				return TestReportSetupActionAssert(json: json, owner: owner)
+			case "TestReportSetupActionOperation":
+				return TestReportSetupActionOperation(json: json, owner: owner)
+			case "TestReportTeardown":
+				return TestReportTeardown(json: json, owner: owner)
+			case "TestReportTeardownAction":
+				return TestReportTeardownAction(json: json, owner: owner)
+			case "TestReportTest":
+				return TestReportTest(json: json, owner: owner)
+			case "TestReportTestAction":
+				return TestReportTestAction(json: json, owner: owner)
 			case "TestScript":
 				return TestScript(json: json, owner: owner)
-			case "TestScriptContact":
-				return TestScriptContact(json: json, owner: owner)
 			case "TestScriptDestination":
 				return TestScriptDestination(json: json, owner: owner)
 			case "TestScriptFixture":
@@ -940,8 +930,6 @@ extension FHIRAbstractBase {
 				return ValueSetComposeIncludeConceptDesignation(json: json, owner: owner)
 			case "ValueSetComposeIncludeFilter":
 				return ValueSetComposeIncludeFilter(json: json, owner: owner)
-			case "ValueSetContact":
-				return ValueSetContact(json: json, owner: owner)
 			case "ValueSetExpansion":
 				return ValueSetExpansion(json: json, owner: owner)
 			case "ValueSetExpansionContains":

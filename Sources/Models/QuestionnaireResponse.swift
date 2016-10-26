@@ -2,7 +2,7 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -47,7 +47,7 @@ open class QuestionnaireResponse: DomainResource {
 	/// The person who answered the questions.
 	public var source: Reference?
 	
-	/// in-progress | completed | amended.
+	/// in-progress | completed | amended | entered-in-error.
 	public var status: String?
 	
 	/// The subject of the questions.

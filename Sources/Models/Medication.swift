@@ -2,7 +2,7 @@
 //  Medication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Medication) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Medication) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -278,10 +278,10 @@ open class MedicationProduct: BackboneElement {
 		get { return "MedicationProduct" }
 	}
 	
-	/// None.
+	/// Identifies a single production run.
 	public var batch: [MedicationProductBatch]?
 	
-	/// powder | tablets | carton +.
+	/// powder | tablets | capsule +.
 	public var form: CodeableConcept?
 	
 	/// Active or inactive ingredient.
@@ -346,7 +346,7 @@ open class MedicationProduct: BackboneElement {
 
 
 /**
- *  None.
+ *  Identifies a single production run.
  *
  *  Information about a group of medication produced or packaged from one production run.
  */
@@ -355,10 +355,10 @@ open class MedicationProductBatch: BackboneElement {
 		get { return "MedicationProductBatch" }
 	}
 	
-	/// None.
+	/// When batch will expire.
 	public var expirationDate: DateTime?
 	
-	/// None.
+	/// Identifier assigned to batch.
 	public var lotNumber: String?
 	
 	

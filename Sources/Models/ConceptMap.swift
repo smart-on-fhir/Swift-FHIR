@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -20,16 +20,16 @@ open class ConceptMap: DomainResource {
 		get { return "ConceptMap" }
 	}
 	
-	/// Contact details of the publisher.
-	public var contact: [ConceptMapContact]?
+	/// Contact details for the publisher.
+	public var contact: [ContactDetail]?
 	
 	/// Use and/or publishing restrictions.
 	public var copyright: String?
 	
-	/// Date for given status.
+	/// Date this was last changed.
 	public var date: DateTime?
 	
-	/// Human language description of the concept map.
+	/// Natural language description of the concept map.
 	public var description_fhir: String?
 	
 	/// If for testing purposes, not real usage.
@@ -41,14 +41,17 @@ open class ConceptMap: DomainResource {
 	/// Additional identifier for the concept map.
 	public var identifier: Identifier?
 	
-	/// Informal name for this concept map.
+	/// Intended jurisdiction for concept map (if applicable).
+	public var jurisdiction: [CodeableConcept]?
+	
+	/// Name for this concept map (Computer friendly).
 	public var name: String?
 	
-	/// Name of the publisher (organization or individual).
+	/// Name of the publisher (Organization or individual).
 	public var publisher: String?
 	
-	/// Why needed.
-	public var requirements: String?
+	/// Why this concept map is defined.
+	public var purpose: String?
 	
 	/// Identifies the source of the concepts which are being mapped.
 	public var sourceReference: Reference?
@@ -65,13 +68,16 @@ open class ConceptMap: DomainResource {
 	/// Provides context to the mappings.
 	public var targetUri: URL?
 	
-	/// Globally unique logical id for concept map.
+	/// Name for this concept map (Human friendly).
+	public var title: String?
+	
+	/// Logical uri to reference this concept map (globally unique).
 	public var url: URL?
 	
 	/// Content intends to support these contexts.
-	public var useContext: [CodeableConcept]?
+	public var useContext: [UsageContext]?
 	
-	/// Logical id for this version of the concept map.
+	/// Business version of the concept map.
 	public var version: String?
 	
 	
@@ -96,7 +102,7 @@ open class ConceptMap: DomainResource {
 			if let exist = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = ConceptMapContact.instantiate(fromArray: val, owner: self) as? [ConceptMapContact]
+					self.contact = ContactDetail.instantiate(fromArray: val, owner: self) as? [ContactDetail]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -156,6 +162,15 @@ open class ConceptMap: DomainResource {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["jurisdiction"] {
+				presentKeys.insert("jurisdiction")
+				if let val = exist as? [FHIRJSON] {
+					self.jurisdiction = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "jurisdiction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
@@ -174,13 +189,13 @@ open class ConceptMap: DomainResource {
 					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["requirements"] {
-				presentKeys.insert("requirements")
+			if let exist = js["purpose"] {
+				presentKeys.insert("purpose")
 				if let val = exist as? String {
-					self.requirements = val
+					self.purpose = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "purpose", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["sourceReference"] {
@@ -231,6 +246,15 @@ open class ConceptMap: DomainResource {
 					errors.append(FHIRJSONError(key: "targetUri", wants: String.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["title"] {
+				presentKeys.insert("title")
+				if let val = exist as? String {
+					self.title = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
@@ -243,7 +267,7 @@ open class ConceptMap: DomainResource {
 			if let exist = js["useContext"] {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
-					self.useContext = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+					self.useContext = UsageContext.instantiate(fromArray: val, owner: self) as? [UsageContext]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -294,14 +318,17 @@ open class ConceptMap: DomainResource {
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.asJSON()
 		}
+		if let jurisdiction = self.jurisdiction {
+			json["jurisdiction"] = jurisdiction.map() { $0.asJSON() }
+		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
 		}
-		if let requirements = self.requirements {
-			json["requirements"] = requirements.asJSON()
+		if let purpose = self.purpose {
+			json["purpose"] = purpose.asJSON()
 		}
 		if let sourceReference = self.sourceReference {
 			json["sourceReference"] = sourceReference.asJSON()
@@ -318,6 +345,9 @@ open class ConceptMap: DomainResource {
 		if let targetUri = self.targetUri {
 			json["targetUri"] = targetUri.asJSON()
 		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
+		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
 		}
@@ -326,68 +356,6 @@ open class ConceptMap: DomainResource {
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
-		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Contact details of the publisher.
- *
- *  Contacts to assist a user in finding and communicating with the publisher.
- */
-open class ConceptMapContact: BackboneElement {
-	override open class var resourceType: String {
-		get { return "ConceptMapContact" }
-	}
-	
-	/// Name of an individual to contact.
-	public var name: String?
-	
-	/// Contact details for individual or publisher.
-	public var telecom: [ContactPoint]?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["telecom"] {
-				presentKeys.insert("telecom")
-				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if let telecom = self.telecom {
-			json["telecom"] = telecom.map() { $0.asJSON() }
 		}
 		
 		return json
@@ -596,7 +564,7 @@ open class ConceptMapGroupElementTarget: BackboneElement {
 	/// Other elements required for this mapping (from context).
 	public var dependsOn: [ConceptMapGroupElementTargetDependsOn]?
 	
-	/// equivalent | equal | wider | subsumes | narrower | specializes | inexact | unmatched | disjoint.
+	/// relatedto | equivalent | equal | wider | subsumes | narrower | specializes | inexact | unmatched | disjoint.
 	public var equivalence: String?
 	
 	/// Other concepts that this mapping also produces.

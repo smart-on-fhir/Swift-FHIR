@@ -2,7 +2,7 @@
 //  DeviceUseStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -10,7 +10,7 @@ import Foundation
 
 
 /**
- *  None.
+ *  Record of use of a device.
  *
  *  A record of a device being used by a patient where the record is the result of a report from the patient or another
  *  clinician.
@@ -26,34 +26,34 @@ open class DeviceUseStatement: DomainResource {
 	/// Target body site.
 	public var bodySiteReference: Reference?
 	
-	/// None.
+	/// Reference to device used.
 	public var device: Reference?
 	
-	/// None.
+	/// External identifier for this record.
 	public var identifier: [Identifier]?
 	
-	/// None.
+	/// Why device was used.
 	public var indication: [CodeableConcept]?
 	
-	/// None.
+	/// Addition details (comments, instructions).
 	public var notes: [String]?
 	
-	/// None.
+	/// When statement was recorded.
 	public var recordedOn: DateTime?
 	
-	/// None.
+	/// Patient using device.
 	public var subject: Reference?
 	
-	/// None.
+	/// How often  the device was used.
 	public var timingDateTime: DateTime?
 	
-	/// None.
+	/// How often  the device was used.
 	public var timingPeriod: Period?
 	
-	/// None.
+	/// How often  the device was used.
 	public var timingTiming: Timing?
 	
-	/// None.
+	/// Period device was used.
 	public var whenUsed: Period?
 	
 	

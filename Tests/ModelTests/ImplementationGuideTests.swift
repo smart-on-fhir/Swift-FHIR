@@ -2,7 +2,7 @@
 //  ImplementationGuideTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -52,6 +52,8 @@ class ImplementationGuideTests: XCTestCase {
 		XCTAssertEqual(inst.global?[0].profile?.reference, "StructureDefinition/daf-patient")
 		XCTAssertEqual(inst.global?[0].type, "Patient")
 		XCTAssertEqual(inst.id, "example")
+		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].code, "US")
+		XCTAssertEqual(inst.jurisdiction?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
 		XCTAssertEqual(inst.name, "Data Access Framework (DAF)")
 		XCTAssertEqual(inst.package?[0].description_fhir, "Base package (not broken up into multiple packages)")
 		XCTAssertEqual(inst.package?[0].name, "test")
@@ -74,8 +76,6 @@ class ImplementationGuideTests: XCTestCase {
 		XCTAssertEqual(inst.status, "draft")
 		XCTAssertEqual(inst.text?.status, "generated")
 		XCTAssertEqual(inst.url?.absoluteString, "http://hl7.org/fhir/daf")
-		XCTAssertEqual(inst.useContext?[0].coding?[0].code, "US")
-		XCTAssertEqual(inst.useContext?[0].coding?[0].system?.absoluteString, "urn:iso:std:iso:3166")
 		XCTAssertEqual(inst.version, "0")
 		
 		return inst

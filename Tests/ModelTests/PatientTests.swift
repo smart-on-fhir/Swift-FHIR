@@ -2,7 +2,7 @@
 //  PatientTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -430,10 +430,11 @@ class PatientTests: XCTestCase {
 		XCTAssertTrue(inst.active ?? false)
 		XCTAssertEqual(inst.birthDate?.description, "1966-04-04")
 		XCTAssertFalse(inst.deceasedBoolean ?? true)
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[0].url?.absoluteString, "ombCategory")
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[0].valueCoding?.code, "2106-3")
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[0].valueCoding?.display, "White")
+		XCTAssertEqual(inst.extension_fhir?[0].extension_fhir?[0].valueCoding?.system?.absoluteString, "http://hl7.org/fhir/v3/Race")
 		XCTAssertEqual(inst.extension_fhir?[0].url?.absoluteString, "http://hl7.org/fhir/StructureDefinition/us-core-race")
-		XCTAssertEqual(inst.extension_fhir?[0].valueCodeableConcept?.coding?[0].code, "2106-3")
-		XCTAssertEqual(inst.extension_fhir?[0].valueCodeableConcept?.coding?[0].display, "white")
-		XCTAssertEqual(inst.extension_fhir?[0].valueCodeableConcept?.coding?[0].system?.absoluteString, "urn:oid:2.16.840.1.113883.6.238")
 		XCTAssertEqual(inst.gender, "female")
 		XCTAssertEqual(inst.id, "proband")
 		XCTAssertEqual(inst.identifier?[0].assigner?.display, "Boston Massachesetts General Hospital")

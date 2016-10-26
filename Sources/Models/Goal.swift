@@ -2,7 +2,7 @@
 //  Goal.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Goal) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Goal) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -38,7 +38,7 @@ open class Goal: DomainResource {
 	/// Comments about the goal.
 	public var note: [Annotation]?
 	
-	/// What was end result of goal?.
+	/// What result was achieved regarding the goal?.
 	public var outcome: [GoalOutcome]?
 	
 	/// high | medium |low.
@@ -50,7 +50,7 @@ open class Goal: DomainResource {
 	/// When goal pursuit begins.
 	public var startDate: FHIRDate?
 	
-	/// proposed | planned | accepted | rejected | in-progress | achieved | sustaining | on-hold | cancelled | on-target | ahead-of-target | behind-target.
+	/// proposed | planned | accepted | rejected | in-progress | achieved | sustaining | on-hold | cancelled | on-target | ahead-of-target | behind-target | entered-in-error.
 	public var status: String?
 	
 	/// When goal status took effect.
@@ -296,7 +296,7 @@ open class Goal: DomainResource {
 
 
 /**
- *  What was end result of goal?.
+ *  What result was achieved regarding the goal?.
  *
  *  Identifies the change (or lack of change) at the point where the goal was deemed to be cancelled or achieved.
  */

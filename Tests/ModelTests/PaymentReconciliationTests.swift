@@ -2,7 +2,7 @@
 //  PaymentReconciliationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -41,14 +41,14 @@ class PaymentReconciliationTests: XCTestCase {
 		XCTAssertEqual(inst.detail?[0].amount?.system?.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.detail?[0].amount?.value, NSDecimalNumber(string: "1000.0"))
 		XCTAssertEqual(inst.detail?[0].date?.description, "2014-08-16")
-		XCTAssertEqual(inst.detail?[0].requestReference?.reference, "http://www.BenefitsInc.com/fhir/oralhealthclaim/225476332402")
+		XCTAssertEqual(inst.detail?[0].request?.reference, "http://www.BenefitsInc.com/fhir/oralhealthclaim/225476332402")
 		XCTAssertEqual(inst.detail?[0].type?.code, "payment")
 		XCTAssertEqual(inst.detail?[0].type?.system?.absoluteString, "http://hl7.org/fhir/paymenttype")
 		XCTAssertEqual(inst.detail?[1].amount?.code, "USD")
 		XCTAssertEqual(inst.detail?[1].amount?.system?.absoluteString, "urn:iso:std:iso:4217")
 		XCTAssertEqual(inst.detail?[1].amount?.value, NSDecimalNumber(string: "4000.0"))
 		XCTAssertEqual(inst.detail?[1].date?.description, "2014-08-12")
-		XCTAssertEqual(inst.detail?[1].requestReference?.reference, "http://www.BenefitsInc.com/fhir/oralhealthclaim/225476332699")
+		XCTAssertEqual(inst.detail?[1].request?.reference, "http://www.BenefitsInc.com/fhir/oralhealthclaim/225476332699")
 		XCTAssertEqual(inst.detail?[1].type?.code, "payment")
 		XCTAssertEqual(inst.detail?[1].type?.system?.absoluteString, "http://hl7.org/fhir/paymenttype")
 		XCTAssertEqual(inst.detail?[2].amount?.code, "USD")
@@ -61,9 +61,10 @@ class PaymentReconciliationTests: XCTestCase {
 		XCTAssertEqual(inst.id, "ER2500")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://www.BenefitsInc.com/fhir/enrollmentresponse")
 		XCTAssertEqual(inst.identifier?[0].value, "781234")
-		XCTAssertEqual(inst.organizationReference?.reference, "Organization/2")
+		XCTAssertEqual(inst.organization?.reference, "Organization/2")
 		XCTAssertEqual(inst.outcome, "complete")
-		XCTAssertEqual(inst.requestReference?.reference, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
+		XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
+		XCTAssertEqual(inst.requestOrganization?.reference, "Organization/1")
 		XCTAssertEqual(inst.status, "active")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">A human-readable rendering of the PaymentReconciliation</div>")
 		XCTAssertEqual(inst.text?.status, "generated")

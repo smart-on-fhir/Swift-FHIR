@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -271,7 +271,7 @@ open class AllergyIntoleranceReaction: BackboneElement {
 		get { return "AllergyIntoleranceReaction" }
 	}
 	
-	/// unlikely | likely | confirmed - clinical certainty about the specific substance.
+	/// unlikely | likely | confirmed | unknown.
 	public var certainty: String?
 	
 	/// Description of the event as a whole.

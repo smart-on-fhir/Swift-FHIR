@@ -2,7 +2,7 @@
 //  CompartmentDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/CompartmentDefinition) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/CompartmentDefinition) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -22,26 +22,29 @@ open class CompartmentDefinition: DomainResource {
 	/// Patient | Encounter | RelatedPerson | Practitioner | Device.
 	public var code: String?
 	
-	/// Contact details of the publisher.
-	public var contact: [CompartmentDefinitionContact]?
+	/// Contact details for the publisher.
+	public var contact: [ContactDetail]?
 	
-	/// Publication Date(/time).
+	/// Date this was last changed.
 	public var date: DateTime?
 	
-	/// Natural language description of the CompartmentDefinition.
+	/// Natural language description of the compartment definition.
 	public var description_fhir: String?
 	
 	/// If for testing purposes, not real usage.
 	public var experimental: Bool?
 	
-	/// Informal name for this compartment definition.
+	/// Intended jurisdiction for compartment definition (if applicable).
+	public var jurisdiction: [CodeableConcept]?
+	
+	/// Name for this compartment definition (Computer friendly).
 	public var name: String?
 	
 	/// Name of the publisher (Organization or individual).
 	public var publisher: String?
 	
 	/// Why this compartment definition is defined.
-	public var requirements: String?
+	public var purpose: String?
 	
 	/// How resource is related to the compartment.
 	public var resource: [CompartmentDefinitionResource]?
@@ -52,8 +55,14 @@ open class CompartmentDefinition: DomainResource {
 	/// draft | active | retired.
 	public var status: String?
 	
-	/// Absolute URL used to reference this compartment definition.
+	/// Name for this compartment definition (Human friendly).
+	public var title: String?
+	
+	/// Logical uri to reference this compartment definition (globally unique).
 	public var url: URL?
+	
+	/// Content intends to support these contexts.
+	public var useContext: [UsageContext]?
 	
 	
 	/** Initialize with a JSON object. */
@@ -62,11 +71,12 @@ open class CompartmentDefinition: DomainResource {
 	}
 	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String, name: String, search: Bool, url: URL) {
+	public convenience init(code: String, name: String, search: Bool, status: String, url: URL) {
 		self.init(json: nil)
 		self.code = code
 		self.name = name
 		self.search = search
+		self.status = status
 		self.url = url
 	}
 	
@@ -88,7 +98,7 @@ open class CompartmentDefinition: DomainResource {
 			if let exist = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
-					self.contact = CompartmentDefinitionContact.instantiate(fromArray: val, owner: self) as? [CompartmentDefinitionContact]
+					self.contact = ContactDetail.instantiate(fromArray: val, owner: self) as? [ContactDetail]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
@@ -121,6 +131,15 @@ open class CompartmentDefinition: DomainResource {
 					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["jurisdiction"] {
+				presentKeys.insert("jurisdiction")
+				if let val = exist as? [FHIRJSON] {
+					self.jurisdiction = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "jurisdiction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? String {
@@ -142,13 +161,13 @@ open class CompartmentDefinition: DomainResource {
 					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["requirements"] {
-				presentKeys.insert("requirements")
+			if let exist = js["purpose"] {
+				presentKeys.insert("purpose")
 				if let val = exist as? String {
-					self.requirements = val
+					self.purpose = val
 				}
 				else {
-					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "purpose", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["resource"] {
@@ -181,6 +200,18 @@ open class CompartmentDefinition: DomainResource {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
 				}
 			}
+			else {
+				errors.append(FHIRJSONError(key: "status"))
+			}
+			if let exist = js["title"] {
+				presentKeys.insert("title")
+				if let val = exist as? String {
+					self.title = val
+				}
+				else {
+					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["url"] {
 				presentKeys.insert("url")
 				if let val = exist as? String {
@@ -192,6 +223,15 @@ open class CompartmentDefinition: DomainResource {
 			}
 			else {
 				errors.append(FHIRJSONError(key: "url"))
+			}
+			if let exist = js["useContext"] {
+				presentKeys.insert("useContext")
+				if let val = exist as? [FHIRJSON] {
+					self.useContext = UsageContext.instantiate(fromArray: val, owner: self) as? [UsageContext]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
 			}
 		}
 		return errors.isEmpty ? nil : errors
@@ -215,14 +255,17 @@ open class CompartmentDefinition: DomainResource {
 		if let experimental = self.experimental {
 			json["experimental"] = experimental.asJSON()
 		}
+		if let jurisdiction = self.jurisdiction {
+			json["jurisdiction"] = jurisdiction.map() { $0.asJSON() }
+		}
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
 		}
-		if let requirements = self.requirements {
-			json["requirements"] = requirements.asJSON()
+		if let purpose = self.purpose {
+			json["purpose"] = purpose.asJSON()
 		}
 		if let resource = self.resource {
 			json["resource"] = resource.map() { $0.asJSON() }
@@ -233,70 +276,14 @@ open class CompartmentDefinition: DomainResource {
 		if let status = self.status {
 			json["status"] = status.asJSON()
 		}
+		if let title = self.title {
+			json["title"] = title.asJSON()
+		}
 		if let url = self.url {
 			json["url"] = url.asJSON()
 		}
-		
-		return json
-	}
-}
-
-
-/**
- *  Contact details of the publisher.
- *
- *  Contacts to assist a user in finding and communicating with the publisher.
- */
-open class CompartmentDefinitionContact: BackboneElement {
-	override open class var resourceType: String {
-		get { return "CompartmentDefinitionContact" }
-	}
-	
-	/// Name of an individual to contact.
-	public var name: String?
-	
-	/// Contact details for individual or publisher.
-	public var telecom: [ContactPoint]?
-	
-	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["telecom"] {
-				presentKeys.insert("telecom")
-				if let val = exist as? [FHIRJSON] {
-					self.telecom = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if let telecom = self.telecom {
-			json["telecom"] = telecom.map() { $0.asJSON() }
+		if let useContext = self.useContext {
+			json["useContext"] = useContext.map() { $0.asJSON() }
 		}
 		
 		return json

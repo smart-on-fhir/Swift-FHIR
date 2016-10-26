@@ -2,7 +2,7 @@
 //  Appointment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -47,6 +47,9 @@ open class Appointment: DomainResource {
 	
 	/// Reason this appointment is scheduled.
 	public var reason: CodeableConcept?
+	
+	/// Potential date/time interval(s) requested to allocate the appointment during.
+	public var requestedPeriod: [Period]?
 	
 	/// A broad categorisation of the service that is to be performed during this appointment.
 	public var serviceCategory: CodeableConcept?
@@ -175,6 +178,15 @@ open class Appointment: DomainResource {
 					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["requestedPeriod"] {
+				presentKeys.insert("requestedPeriod")
+				if let val = exist as? [FHIRJSON] {
+					self.requestedPeriod = Period.instantiate(fromArray: val, owner: self) as? [Period]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "requestedPeriod", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["serviceCategory"] {
 				presentKeys.insert("serviceCategory")
 				if let val = exist as? FHIRJSON {
@@ -268,6 +280,9 @@ open class Appointment: DomainResource {
 		}
 		if let reason = self.reason {
 			json["reason"] = reason.asJSON()
+		}
+		if let requestedPeriod = self.requestedPeriod {
+			json["requestedPeriod"] = requestedPeriod.map() { $0.asJSON() }
 		}
 		if let serviceCategory = self.serviceCategory {
 			json["serviceCategory"] = serviceCategory.asJSON()

@@ -2,7 +2,7 @@
 //  DecisionSupportServiceModuleTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -36,6 +36,7 @@ class DecisionSupportServiceModuleTests: XCTestCase {
 	func runDecisionSupportServiceModule1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DecisionSupportServiceModule {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "decisionsupportservicemodule-example.json")
 		
+		XCTAssertEqual(inst.date?.description, "2015-07-22")
 		XCTAssertEqual(inst.description_fhir, "Guideline appropriate ordering is used to assess appropriateness of an order given a patient, a proposed order, and a set of clinical indications.")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].use, "official")
@@ -56,7 +57,6 @@ class DecisionSupportServiceModuleTests: XCTestCase {
 		XCTAssertEqual(inst.parameter?[3].profile?.reference, "http://hl7.org/fhir/StructureDefinition/gao-result")
 		XCTAssertEqual(inst.parameter?[3].type, "Basic")
 		XCTAssertEqual(inst.parameter?[3].use, "out")
-		XCTAssertEqual(inst.publicationDate?.description, "2015-07-22")
 		XCTAssertEqual(inst.status, "draft")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">Guideline Appropriate Ordering Module</div>")
 		XCTAssertEqual(inst.text?.status, "generated")

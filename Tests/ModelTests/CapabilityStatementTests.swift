@@ -1,8 +1,8 @@
 //
-//  ConformanceTests.swift
+//  CapabilityStatementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -10,31 +10,31 @@ import XCTest
 import SwiftFHIR
 
 
-class ConformanceTests: XCTestCase {
+class CapabilityStatementTests: XCTestCase {
 	
-	func instantiateFrom(filename: String) throws -> SwiftFHIR.Conformance {
+	func instantiateFrom(filename: String) throws -> SwiftFHIR.CapabilityStatement {
 		return instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Conformance {
-		let instance = SwiftFHIR.Conformance(json: json)
+	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.CapabilityStatement {
+		let instance = SwiftFHIR.CapabilityStatement(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
 	}
 	
-	func testConformance1() {
+	func testCapabilityStatement1() {
 		do {
-			let instance = try runConformance1()
-			try runConformance1(instance.asJSON())
+			let instance = try runCapabilityStatement1()
+			try runCapabilityStatement1(instance.asJSON())
 		}
 		catch {
-			XCTAssertTrue(false, "Must instantiate and test Conformance successfully, but threw")
+			XCTAssertTrue(false, "Must instantiate and test CapabilityStatement successfully, but threw")
 		}
 	}
 	
 	@discardableResult
-	func runConformance1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Conformance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "conformance-example.json")
+	func runCapabilityStatement1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CapabilityStatement {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "capabilitystatement-example.json")
 		
 		XCTAssertEqual(inst.acceptUnknown, "both")
 		XCTAssertEqual(inst.contact?[0].name, "System Administrator")
@@ -42,7 +42,7 @@ class ConformanceTests: XCTestCase {
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "wile@acme.org")
 		XCTAssertEqual(inst.copyright, "Copyright © Acme Healthcare and GoodCorp EHR Systems")
 		XCTAssertEqual(inst.date?.description, "2012-01-04")
-		XCTAssertEqual(inst.description_fhir, "This is the FHIR conformance statement for the main EHR at ACME for the private interface - it does not describe the public interface")
+		XCTAssertEqual(inst.description_fhir, "This is the FHIR capability statement for the main EHR at ACME for the private interface - it does not describe the public interface")
 		XCTAssertEqual(inst.document?[0].documentation, "Basic rules for all documents in the EHR system")
 		XCTAssertEqual(inst.document?[0].mode, "consumer")
 		XCTAssertEqual(inst.document?[0].profile?.reference, "http://fhir.hl7.org/base/Profilebc054d23-75e1-4dc6-aca5-838b6b1ac81d/_history/b5fdd9fc-b021-4ea1-911a-721a60663796")
@@ -67,9 +67,9 @@ class ConformanceTests: XCTestCase {
 		XCTAssertEqual(inst.messaging?[0].event?[0].request?.reference, "StructureDefinition/daf-patient")
 		XCTAssertEqual(inst.messaging?[0].event?[0].response?.reference, "StructureDefinition/MessageHeader")
 		XCTAssertEqual(inst.messaging?[0].reliableCache, UInt(30))
-		XCTAssertEqual(inst.name, "ACME EHR Conformance statement")
+		XCTAssertEqual(inst.name, "ACME EHR capability statement")
 		XCTAssertEqual(inst.publisher, "ACME Corporation")
-		XCTAssertEqual(inst.requirements, "Main EHR conformance statement, published for contracting and operational support")
+		XCTAssertEqual(inst.purpose, "Main EHR capability statement, published for contracting and operational support")
 		XCTAssertEqual(inst.rest?[0].compartment?[0].absoluteString, "http://hl7.org/fhir/compartment/Patient")
 		XCTAssertEqual(inst.rest?[0].documentation, "Main FHIR endpoint for acem health")
 		XCTAssertEqual(inst.rest?[0].interaction?[0].code, "transaction")
@@ -85,7 +85,7 @@ class ConformanceTests: XCTestCase {
 		XCTAssertEqual(inst.rest?[0].resource?[0].interaction?[3].code, "history-instance")
 		XCTAssertEqual(inst.rest?[0].resource?[0].interaction?[4].code, "create")
 		XCTAssertEqual(inst.rest?[0].resource?[0].interaction?[5].code, "history-type")
-		XCTAssertEqual(inst.rest?[0].resource?[0].profile?.reference, "http://fhir.hl7.org/base/Profile7896271d-57f6-4231-89dc-dcc91eab2416")
+		XCTAssertEqual(inst.rest?[0].resource?[0].profile?.reference, "http://fhir.hl7.org/base/StructureDefinition/7896271d-57f6-4231-89dc-dcc91eab2416")
 		XCTAssertTrue(inst.rest?[0].resource?[0].readHistory ?? false)
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchInclude?[0], "Organization")
 		XCTAssertEqual(inst.rest?[0].resource?[0].searchParam?[0].definition?.absoluteString, "http://hl7.org/fhir/SearchParameter/Patient-identifier")
@@ -121,25 +121,25 @@ class ConformanceTests: XCTestCase {
 		return inst
 	}
 	
-	func testConformance2() {
+	func testCapabilityStatement2() {
 		do {
-			let instance = try runConformance2()
-			try runConformance2(instance.asJSON())
+			let instance = try runCapabilityStatement2()
+			try runCapabilityStatement2(instance.asJSON())
 		}
 		catch {
-			XCTAssertTrue(false, "Must instantiate and test Conformance successfully, but threw")
+			XCTAssertTrue(false, "Must instantiate and test CapabilityStatement successfully, but threw")
 		}
 	}
 	
 	@discardableResult
-	func runConformance2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Conformance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "conformance-phr-example.json")
+	func runCapabilityStatement2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CapabilityStatement {
+		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "capabilitystatement-phr-example.json")
 		
 		XCTAssertEqual(inst.acceptUnknown, "no")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, "other")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].value, "http://hl7.org/fhir")
 		XCTAssertEqual(inst.date?.description, "2013-06-18")
-		XCTAssertEqual(inst.description_fhir, "Prototype Conformance Statement for September 2013 Connectathon")
+		XCTAssertEqual(inst.description_fhir, "Prototype Capability Statement for September 2013 Connectathon")
 		XCTAssertEqual(inst.fhirVersion, "1.0.0")
 		XCTAssertEqual(inst.format?[0], "json")
 		XCTAssertEqual(inst.format?[1], "xml")
@@ -147,7 +147,7 @@ class ConformanceTests: XCTestCase {
 		XCTAssertEqual(inst.kind, "capability")
 		XCTAssertEqual(inst.name, "PHR Template")
 		XCTAssertEqual(inst.publisher, "FHIR Project")
-		XCTAssertEqual(inst.rest?[0].documentation, "Protoype server conformance statement for September 2013 Connectathon")
+		XCTAssertEqual(inst.rest?[0].documentation, "Protoype server Capability Statement for September 2013 Connectathon")
 		XCTAssertEqual(inst.rest?[0].mode, "server")
 		XCTAssertEqual(inst.rest?[0].resource?[0].interaction?[0].code, "read")
 		XCTAssertEqual(inst.rest?[0].resource?[0].interaction?[1].code, "search-type")

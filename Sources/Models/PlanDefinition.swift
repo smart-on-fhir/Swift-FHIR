@@ -2,7 +2,7 @@
 //  PlanDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.6.0.9663 (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2016-09-15.
+//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/PlanDefinition) on 2016-10-26.
 //  2016, SMART Health IT.
 //
 
@@ -24,7 +24,10 @@ open class PlanDefinition: DomainResource {
 	/// Action defined by the plan.
 	public var actionDefinition: [PlanDefinitionActionDefinition]?
 	
-	/// Contact details of the publisher.
+	/// When plan definition approved by publisher.
+	public var approvalDate: FHIRDate?
+	
+	/// Contact details for the publisher.
 	public var contact: [ContactDetail]?
 	
 	/// A content contributor.
@@ -33,46 +36,46 @@ open class PlanDefinition: DomainResource {
 	/// Use and/or publishing restrictions.
 	public var copyright: String?
 	
-	/// Describes the context of use for this asset.
-	public var coverage: [UsageContext]?
+	/// Date this was last changed.
+	public var date: DateTime?
 	
-	/// Natural language description of the asset.
+	/// Natural language description of the plan definition.
 	public var description_fhir: String?
 	
-	/// The effective date range for the asset.
+	/// The effective date range for the plan definition.
 	public var effectivePeriod: Period?
 	
 	/// If for testing purposes, not real usage.
 	public var experimental: Bool?
 	
-	/// Logical identifier(s) for the asset.
+	/// Additional identifier for the plan definition.
 	public var identifier: [Identifier]?
 	
-	/// Last review date for the asset.
+	/// Intended jurisdiction for plan definition (if applicable).
+	public var jurisdiction: [CodeableConcept]?
+	
+	/// Last review date for the plan definition.
 	public var lastReviewDate: FHIRDate?
 	
 	/// Logic used by the plan definition.
 	public var library: [Reference]?
 	
-	/// A machine-friendly name for the asset.
+	/// Name for this plan definition (Computer friendly).
 	public var name: String?
-	
-	/// Publication date for this version of the asset.
-	public var publicationDate: FHIRDate?
 	
 	/// Name of the publisher (Organization or individual).
 	public var publisher: String?
 	
-	/// Describes the purpose of the asset.
+	/// Why this plan definition is defined.
 	public var purpose: String?
 	
-	/// Related resources for the asset.
-	public var relatedResource: [RelatedResource]?
+	/// Related artifacts for the asset.
+	public var relatedArtifact: [RelatedArtifact]?
 	
-	/// draft | active | inactive.
+	/// draft | active | retired.
 	public var status: String?
 	
-	/// A user-friendly title for the asset.
+	/// Name for this plan definition (Human friendly).
 	public var title: String?
 	
 	/// Descriptional topics for the asset.
@@ -81,13 +84,16 @@ open class PlanDefinition: DomainResource {
 	/// order-set | protocol | eca-rule.
 	public var type: CodeableConcept?
 	
-	/// Logical URL to reference this asset.
+	/// Logical uri to reference this plan definition (globally unique).
 	public var url: URL?
 	
 	/// Describes the clinical usage of the asset.
 	public var usage: String?
 	
-	/// The version of the asset, if any.
+	/// Content intends to support these contexts.
+	public var useContext: [UsageContext]?
+	
+	/// Business version of the plan definition.
 	public var version: String?
 	
 	
@@ -112,6 +118,15 @@ open class PlanDefinition: DomainResource {
 				}
 				else {
 					errors.append(FHIRJSONError(key: "actionDefinition", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
+			if let exist = js["approvalDate"] {
+				presentKeys.insert("approvalDate")
+				if let val = exist as? String {
+					self.approvalDate = FHIRDate(string: val)
+				}
+				else {
+					errors.append(FHIRJSONError(key: "approvalDate", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["contact"] {
@@ -141,13 +156,13 @@ open class PlanDefinition: DomainResource {
 					errors.append(FHIRJSONError(key: "copyright", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["coverage"] {
-				presentKeys.insert("coverage")
-				if let val = exist as? [FHIRJSON] {
-					self.coverage = UsageContext.instantiate(fromArray: val, owner: self) as? [UsageContext]
+			if let exist = js["date"] {
+				presentKeys.insert("date")
+				if let val = exist as? String {
+					self.date = DateTime(string: val)
 				}
 				else {
-					errors.append(FHIRJSONError(key: "coverage", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "date", wants: String.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["description"] {
@@ -186,6 +201,15 @@ open class PlanDefinition: DomainResource {
 					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["jurisdiction"] {
+				presentKeys.insert("jurisdiction")
+				if let val = exist as? [FHIRJSON] {
+					self.jurisdiction = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "jurisdiction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["lastReviewDate"] {
 				presentKeys.insert("lastReviewDate")
 				if let val = exist as? String {
@@ -213,15 +237,6 @@ open class PlanDefinition: DomainResource {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["publicationDate"] {
-				presentKeys.insert("publicationDate")
-				if let val = exist as? String {
-					self.publicationDate = FHIRDate(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "publicationDate", wants: String.self, has: type(of: exist)))
-				}
-			}
 			if let exist = js["publisher"] {
 				presentKeys.insert("publisher")
 				if let val = exist as? String {
@@ -240,13 +255,13 @@ open class PlanDefinition: DomainResource {
 					errors.append(FHIRJSONError(key: "purpose", wants: String.self, has: type(of: exist)))
 				}
 			}
-			if let exist = js["relatedResource"] {
-				presentKeys.insert("relatedResource")
+			if let exist = js["relatedArtifact"] {
+				presentKeys.insert("relatedArtifact")
 				if let val = exist as? [FHIRJSON] {
-					self.relatedResource = RelatedResource.instantiate(fromArray: val, owner: self) as? [RelatedResource]
+					self.relatedArtifact = RelatedArtifact.instantiate(fromArray: val, owner: self) as? [RelatedArtifact]
 				}
 				else {
-					errors.append(FHIRJSONError(key: "relatedResource", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+					errors.append(FHIRJSONError(key: "relatedArtifact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 				}
 			}
 			if let exist = js["status"] {
@@ -306,6 +321,15 @@ open class PlanDefinition: DomainResource {
 					errors.append(FHIRJSONError(key: "usage", wants: String.self, has: type(of: exist)))
 				}
 			}
+			if let exist = js["useContext"] {
+				presentKeys.insert("useContext")
+				if let val = exist as? [FHIRJSON] {
+					self.useContext = UsageContext.instantiate(fromArray: val, owner: self) as? [UsageContext]
+				}
+				else {
+					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				}
+			}
 			if let exist = js["version"] {
 				presentKeys.insert("version")
 				if let val = exist as? String {
@@ -325,6 +349,9 @@ open class PlanDefinition: DomainResource {
 		if let actionDefinition = self.actionDefinition {
 			json["actionDefinition"] = actionDefinition.map() { $0.asJSON() }
 		}
+		if let approvalDate = self.approvalDate {
+			json["approvalDate"] = approvalDate.asJSON()
+		}
 		if let contact = self.contact {
 			json["contact"] = contact.map() { $0.asJSON() }
 		}
@@ -334,8 +361,8 @@ open class PlanDefinition: DomainResource {
 		if let copyright = self.copyright {
 			json["copyright"] = copyright.asJSON()
 		}
-		if let coverage = self.coverage {
-			json["coverage"] = coverage.map() { $0.asJSON() }
+		if let date = self.date {
+			json["date"] = date.asJSON()
 		}
 		if let description_fhir = self.description_fhir {
 			json["description"] = description_fhir.asJSON()
@@ -349,6 +376,9 @@ open class PlanDefinition: DomainResource {
 		if let identifier = self.identifier {
 			json["identifier"] = identifier.map() { $0.asJSON() }
 		}
+		if let jurisdiction = self.jurisdiction {
+			json["jurisdiction"] = jurisdiction.map() { $0.asJSON() }
+		}
 		if let lastReviewDate = self.lastReviewDate {
 			json["lastReviewDate"] = lastReviewDate.asJSON()
 		}
@@ -358,17 +388,14 @@ open class PlanDefinition: DomainResource {
 		if let name = self.name {
 			json["name"] = name.asJSON()
 		}
-		if let publicationDate = self.publicationDate {
-			json["publicationDate"] = publicationDate.asJSON()
-		}
 		if let publisher = self.publisher {
 			json["publisher"] = publisher.asJSON()
 		}
 		if let purpose = self.purpose {
 			json["purpose"] = purpose.asJSON()
 		}
-		if let relatedResource = self.relatedResource {
-			json["relatedResource"] = relatedResource.map() { $0.asJSON() }
+		if let relatedArtifact = self.relatedArtifact {
+			json["relatedArtifact"] = relatedArtifact.map() { $0.asJSON() }
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()
@@ -387,6 +414,9 @@ open class PlanDefinition: DomainResource {
 		}
 		if let usage = self.usage {
 			json["usage"] = usage.asJSON()
+		}
+		if let useContext = self.useContext {
+			json["useContext"] = useContext.map() { $0.asJSON() }
 		}
 		if let version = self.version {
 			json["version"] = version.asJSON()
@@ -429,7 +459,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 	public var description_fhir: String?
 	
 	/// Supporting documentation for the intended performer of the action.
-	public var documentation: [RelatedResource]?
+	public var documentation: [RelatedArtifact]?
 	
 	/// Dynamic aspects of the definition.
 	public var dynamicValue: [PlanDefinitionActionDefinitionDynamicValue]?
@@ -560,7 +590,7 @@ open class PlanDefinitionActionDefinition: BackboneElement {
 			if let exist = js["documentation"] {
 				presentKeys.insert("documentation")
 				if let val = exist as? [FHIRJSON] {
-					self.documentation = RelatedResource.instantiate(fromArray: val, owner: self) as? [RelatedResource]
+					self.documentation = RelatedArtifact.instantiate(fromArray: val, owner: self) as? [RelatedArtifact]
 				}
 				else {
 					errors.append(FHIRJSONError(key: "documentation", wants: Array<FHIRJSON>.self, has: type(of: exist)))

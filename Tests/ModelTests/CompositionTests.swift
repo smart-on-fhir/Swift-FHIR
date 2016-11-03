@@ -2,7 +2,7 @@
 //  CompositionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class CompositionTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Composition {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Composition {
-		let instance = SwiftFHIR.Composition(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Composition {
+		return try SwiftFHIR.Composition(json: json)
 	}
 	
 	func testComposition1() {
@@ -34,7 +32,7 @@ class CompositionTests: XCTestCase {
 	
 	@discardableResult
 	func runComposition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Composition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "composition-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "composition-example.json")
 		
 		XCTAssertEqual(inst.attester?[0].mode?[0], "legal")
 		XCTAssertEqual(inst.attester?[0].party?.display, "Harold Hippocrates, MD")

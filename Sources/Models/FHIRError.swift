@@ -27,10 +27,12 @@ public enum FHIRError: Error, CustomStringConvertible {
 	case requestError(Int, String)
 	case noRequestHandlerAvailable(String)
 	case noResponseReceived
+	
+	/// The "Location" response (1st string) specifies a different type than exected (2nd string).
 	case responseLocationHeaderResourceTypeMismatch(String, String)
 	case responseNoResourceReceived
 	
-	/// The resource type received (1st String) does not match the expected type (2nd String).
+	/// The resource type received (1st string) does not match the expected type (2nd string).
 	case responseResourceTypeMismatch(String, String)
 	
 	case operationConfigurationError(String)
@@ -41,6 +43,9 @@ public enum FHIRError: Error, CustomStringConvertible {
 	
 	/// JSON parsing failed for reason in 1st argument, full JSON string is 2nd argument.
 	case jsonParsingError(String, String)
+	
+	
+	// MARK: - CustomStringConvertible
 	
 	public var description: String {
 		switch self {
@@ -93,78 +98,16 @@ public enum FHIRError: Error, CustomStringConvertible {
 	}
 }
 
-
-/**
-Errors thrown during JSON parsing.
-*/
-public struct FHIRJSONError: Error, CustomStringConvertible {
+extension Error {
 	
-	/// The error type.
-	public var code: FHIRJSONErrorType
-	
-	/// The JSON property key generating the error.
-	public var key: String
-	
-	/// The type expected for values of this key.
-	public var wants: Any.Type?
-	
-	/// The type received for this key.
-	public var has: Any.Type?
-	
-	/// A problem description.
-	public var problem: String?
-	
-	
-	/** Designated initializer. */
-	init(code: FHIRJSONErrorType, key: String) {
-		self.code = code
-		self.key = key
-	}
-	
-	/** Initializer to use when a given JSON key is missing. */
-	public init(key: String) {
-		self.init(code: .missingKey, key: key)
-	}
-	
-	/** Initializer to use when a given JSON key is present but is not expected. */
-	public init(key: String, has: Any.Type) {
-		self.init(code: .unknownKey, key: key)
-		self.has = has
-	}
-	
-	/** Initializer to use when there is a problem with a given JSON key (other than the key missing or being unknown). */
-	public init(key: String, problem: String) {
-		self.init(code: .problemWithValueForKey, key: key)
-		self.problem = problem
-	}
-	
-	/** Initializer to use when the given JSON key is of a wrong type. */
-	public init(key: String, wants: Any.Type, has: Any.Type) {
-		self.init(code: .wrongValueTypeForKey, key: key)
-		self.wants = wants
-		self.has = has
-	}
-	
-	public var description: String {
-		let nul = Any.self
-		switch code {
-		case .missingKey:
-			return "Expecting nonoptional JSON property “\(key)” but it is missing"
-		case .unknownKey:
-			return "Superfluous JSON property “\(key)” of type \(has ?? nul), ignoring"
-		case .wrongValueTypeForKey:
-			return "Expecting JSON property “\(key)” to be `\(wants ?? nul)`, but is \(has ?? nul)"
-		case .problemWithValueForKey:
-			return "Problem with JSON property “\(key)”: \(problem ?? "(problem not described)")"
+	/**
+	Converts any `Error` into `FHIRError`; returns self if the receiver is a FHIRError already.
+	*/
+	public var asFHIRError: FHIRError {
+		if let ferr = self as? FHIRError {
+			return ferr
 		}
+		return FHIRError.error("\(localizedDescription)")
 	}
-}
-
-
-public enum FHIRJSONErrorType: Int {
-	case missingKey
-	case unknownKey
-	case wrongValueTypeForKey
-	case problemWithValueForKey
 }
 

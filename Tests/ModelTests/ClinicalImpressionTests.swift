@@ -2,7 +2,7 @@
 //  ClinicalImpressionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class ClinicalImpressionTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.ClinicalImpression {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.ClinicalImpression {
-		let instance = SwiftFHIR.ClinicalImpression(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ClinicalImpression {
+		return try SwiftFHIR.ClinicalImpression(json: json)
 	}
 	
 	func testClinicalImpression1() {
@@ -34,7 +32,7 @@ class ClinicalImpressionTests: XCTestCase {
 	
 	@discardableResult
 	func runClinicalImpression1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ClinicalImpression {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "clinicalimpression-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "clinicalimpression-example.json")
 		
 		XCTAssertEqual(inst.assessor?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.date?.description, "2014-12-06T22:33:00+11:00")
@@ -47,7 +45,6 @@ class ClinicalImpressionTests: XCTestCase {
 		XCTAssertEqual(inst.investigation?[0].item?[1].display, "decreased level of consciousness")
 		XCTAssertEqual(inst.investigation?[0].item?[2].display, "disoriented to time and place")
 		XCTAssertEqual(inst.investigation?[0].item?[3].display, "restless")
-		XCTAssertEqual(inst.plan?[0].display, "hospital standard closed head injury management protocol ")
 		XCTAssertEqual(inst.problem?[0].display, "MVA")
 		XCTAssertEqual(inst.status, "completed")
 		XCTAssertEqual(inst.subject?.reference, "Patient/example")

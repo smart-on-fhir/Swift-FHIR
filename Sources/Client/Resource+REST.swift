@@ -32,7 +32,7 @@ public extension Resource {
 	*/
 	public func asRelativeReference() throws -> Reference {
 		let path = try relativeURLPath()
-		let reference = Reference(json: nil)
+		let reference = Reference()
 		reference.reference = path
 		if let display = preferredRelativeReferenceDisplay() {
 			reference.display = display
@@ -196,7 +196,13 @@ public extension Resource {
 					if let id = self.id {
 						type(of: self).read(id, server: server) { resource, error in
 							if let resource = resource {
-								_ = self.populate(from: resource.asJSON())
+								do {
+									try self.populate(from: try resource.asJSON())
+								}
+								catch let error {
+									callback(error.asFHIRError)
+									return
+								}
 							}
 							callback(error)
 						}

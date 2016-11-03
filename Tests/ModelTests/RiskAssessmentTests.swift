@@ -2,7 +2,7 @@
 //  RiskAssessmentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class RiskAssessmentTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.RiskAssessment {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.RiskAssessment {
-		let instance = SwiftFHIR.RiskAssessment(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.RiskAssessment {
+		return try SwiftFHIR.RiskAssessment(json: json)
 	}
 	
 	func testRiskAssessment1() {
@@ -34,7 +32,7 @@ class RiskAssessmentTests: XCTestCase {
 	
 	@discardableResult
 	func runRiskAssessment1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.RiskAssessment {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example-cardiac.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example-cardiac.json")
 		
 		XCTAssertEqual(inst.basis?[0].reference, "Patient/example")
 		XCTAssertEqual(inst.basis?[1].reference, "DiagnosticReport/lipids")
@@ -70,7 +68,7 @@ class RiskAssessmentTests: XCTestCase {
 	
 	@discardableResult
 	func runRiskAssessment2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.RiskAssessment {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example-population.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example-population.json")
 		
 		XCTAssertEqual(inst.id, "population")
 		XCTAssertEqual(inst.status, "final")
@@ -91,7 +89,7 @@ class RiskAssessmentTests: XCTestCase {
 	
 	@discardableResult
 	func runRiskAssessment3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.RiskAssessment {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example-prognosis.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example-prognosis.json")
 		
 		XCTAssertEqual(inst.condition?.display, "Ischemic Stroke")
 		XCTAssertEqual(inst.condition?.reference, "Condition/stroke")
@@ -121,7 +119,7 @@ class RiskAssessmentTests: XCTestCase {
 	
 	@discardableResult
 	func runRiskAssessment4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.RiskAssessment {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example.json")
 		
 		XCTAssertEqual(inst.basis?[0].reference, "List/prognosis")
 		XCTAssertEqual(inst.id, "genetic")

@@ -2,7 +2,7 @@
 //  Resource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Resource) on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Resource) on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -32,56 +32,54 @@ open class Resource: FHIRAbstractResource {
 	public var meta: Meta?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["id"] {
-				presentKeys.insert("id")
-				if let val = exist as? String {
-					self.id = val
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["id"] {
+			presentKeys.insert("id")
+			if let val = exist as? String {
+				self.id = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "id", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["implicitRules"] {
+			presentKeys.insert("implicitRules")
+			if let val = exist as? String {
+				self.implicitRules = URL(string: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "implicitRules", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["language"] {
+			presentKeys.insert("language")
+			if let val = exist as? String {
+				self.language = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "language", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["meta"] {
+			presentKeys.insert("meta")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.meta = try Meta(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "id", wants: String.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "meta"))
 				}
 			}
-			if let exist = js["implicitRules"] {
-				presentKeys.insert("implicitRules")
-				if let val = exist as? String {
-					self.implicitRules = URL(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "implicitRules", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["language"] {
-				presentKeys.insert("language")
-				if let val = exist as? String {
-					self.language = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "language", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["meta"] {
-				presentKeys.insert("meta")
-				if let val = exist as? FHIRJSON {
-					self.meta = Meta(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "meta", wants: FHIRJSON.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "meta", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let id = self.id {
 			json["id"] = id.asJSON()
@@ -93,7 +91,7 @@ open class Resource: FHIRAbstractResource {
 			json["language"] = language.asJSON()
 		}
 		if let meta = self.meta {
-			json["meta"] = meta.asJSON()
+			json["meta"] = meta.asJSON(errors: &errors)
 		}
 		
 		return json

@@ -1,5 +1,5 @@
 {
-	"resourceType": "MedicationOrder",
+	"resourceType": "MedicationRequest",
 	"id": "order-ref-contained",
 	"contained": [
 		{
@@ -18,7 +18,18 @@
 			"name": "Morpheus Co."
 		}
 	],
+	"stage": {
+		"coding": [
+			{
+				"system": "http://hl7.org/fhir/ValueSet/medication-request-stage",
+				"code": "proposal"
+			}
+		]
+	},
 	"medicationReference": {
 		"reference": "#med"
+	},
+	"patient": {
+		"reference": "Patient/0"
 	}
 }

@@ -2,7 +2,7 @@
 //  LocationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class LocationTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Location {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Location {
-		let instance = SwiftFHIR.Location(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Location {
+		return try SwiftFHIR.Location(json: json)
 	}
 	
 	func testLocation1() {
@@ -34,7 +32,7 @@ class LocationTests: XCTestCase {
 	
 	@discardableResult
 	func runLocation1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Location {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-ambulance.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-ambulance.json")
 		
 		XCTAssertEqual(inst.description_fhir, "Ambulance provided by Burgers University Medical Center")
 		XCTAssertEqual(inst.id, "amb")
@@ -69,7 +67,7 @@ class LocationTests: XCTestCase {
 	
 	@discardableResult
 	func runLocation2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Location {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-hl7hq.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-hl7hq.json")
 		
 		XCTAssertEqual(inst.address?.city, "Ann Arbor")
 		XCTAssertEqual(inst.address?.country, "USA")
@@ -112,7 +110,7 @@ class LocationTests: XCTestCase {
 	
 	@discardableResult
 	func runLocation3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Location {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-patients-home.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-patients-home.json")
 		
 		XCTAssertEqual(inst.description_fhir, "Patient's Home")
 		XCTAssertEqual(inst.id, "ph")
@@ -144,7 +142,7 @@ class LocationTests: XCTestCase {
 	
 	@discardableResult
 	func runLocation4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Location {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-room.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-room.json")
 		
 		XCTAssertEqual(inst.alias?[0], "South Wing OR 5")
 		XCTAssertEqual(inst.alias?[1], "Main Wing OR 2")
@@ -182,7 +180,7 @@ class LocationTests: XCTestCase {
 	
 	@discardableResult
 	func runLocation5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Location {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-ukpharmacy.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-ukpharmacy.json")
 		
 		XCTAssertEqual(inst.description_fhir, "All Pharmacies in the United Kingdom covered by the National Pharmacy Association")
 		XCTAssertEqual(inst.id, "ukp")
@@ -213,7 +211,7 @@ class LocationTests: XCTestCase {
 	
 	@discardableResult
 	func runLocation6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Location {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example.json")
 		
 		XCTAssertEqual(inst.address?.city, "Den Burg")
 		XCTAssertEqual(inst.address?.country, "NLD")

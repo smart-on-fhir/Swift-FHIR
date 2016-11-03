@@ -2,7 +2,7 @@
 //  ClaimTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class ClaimTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Claim {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Claim {
-		let instance = SwiftFHIR.Claim(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Claim {
+		return try SwiftFHIR.Claim(json: json)
 	}
 	
 	func testClaim1() {
@@ -34,7 +32,7 @@ class ClaimTests: XCTestCase {
 	
 	@discardableResult
 	func runClaim1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-institutional.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-institutional.json")
 		
 		XCTAssertEqual(inst.coverage?[0].coverage?.reference, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage?[0].focal ?? false)
@@ -90,7 +88,7 @@ class ClaimTests: XCTestCase {
 	
 	@discardableResult
 	func runClaim2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-average.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-average.json")
 		
 		XCTAssertEqual(inst.coverage?[0].coverage?.reference, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage?[0].focal ?? false)
@@ -185,7 +183,7 @@ class ClaimTests: XCTestCase {
 	
 	@discardableResult
 	func runClaim3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-contained-identifier.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-contained-identifier.json")
 		
 		XCTAssertEqual(inst.contained?[0].id, "patient-1")
 		XCTAssertEqual(inst.coverage?[0].coverage?.reference, "http://www.jurisdiction.com/nationalplan/123AB345")
@@ -237,7 +235,7 @@ class ClaimTests: XCTestCase {
 	
 	@discardableResult
 	func runClaim4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-contained.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-contained.json")
 		
 		XCTAssertEqual(inst.contained?[0].id, "org-insurer")
 		XCTAssertEqual(inst.contained?[1].id, "org-org")
@@ -290,7 +288,7 @@ class ClaimTests: XCTestCase {
 	
 	@discardableResult
 	func runClaim5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-identifier.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-identifier.json")
 		
 		XCTAssertEqual(inst.coverage?[0].coverage?.identifier?.system?.absoluteString, "http://www.jurisdiction.com/nationalplan")
 		XCTAssertEqual(inst.coverage?[0].coverage?.identifier?.value, "123AB345")
@@ -343,7 +341,7 @@ class ClaimTests: XCTestCase {
 	
 	@discardableResult
 	func runClaim6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-orthoplan.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-orthoplan.json")
 		
 		XCTAssertEqual(inst.coverage?[0].coverage?.reference, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage?[0].focal ?? false)
@@ -482,7 +480,7 @@ class ClaimTests: XCTestCase {
 	
 	@discardableResult
 	func runClaim7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-pharmacy.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-pharmacy.json")
 		
 		XCTAssertEqual(inst.coverage?[0].coverage?.reference, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage?[0].focal ?? false)
@@ -531,7 +529,7 @@ class ClaimTests: XCTestCase {
 	
 	@discardableResult
 	func runClaim8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-professional.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-professional.json")
 		
 		XCTAssertEqual(inst.coverage?[0].coverage?.reference, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage?[0].focal ?? false)
@@ -580,7 +578,7 @@ class ClaimTests: XCTestCase {
 	
 	@discardableResult
 	func runClaim9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-vision-glasses.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-vision-glasses.json")
 		
 		XCTAssertEqual(inst.coverage?[0].coverage?.reference, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage?[0].focal ?? false)
@@ -659,7 +657,7 @@ class ClaimTests: XCTestCase {
 	
 	@discardableResult
 	func runClaim10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-vision.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-vision.json")
 		
 		XCTAssertEqual(inst.coverage?[0].coverage?.reference, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage?[0].focal ?? false)

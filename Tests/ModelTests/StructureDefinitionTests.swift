@@ -2,7 +2,7 @@
 //  StructureDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class StructureDefinitionTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.StructureDefinition {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.StructureDefinition {
-		let instance = SwiftFHIR.StructureDefinition(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.StructureDefinition {
+		return try SwiftFHIR.StructureDefinition(json: json)
 	}
 	
 	func testStructureDefinition1() {
@@ -34,7 +32,7 @@ class StructureDefinitionTests: XCTestCase {
 	
 	@discardableResult
 	func runStructureDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.StructureDefinition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "extension-structuredefinition-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "extension-structuredefinition-example.json")
 		
 		XCTAssertFalse(inst.abstract ?? true)
 		XCTAssertEqual(inst.baseDefinition?.absoluteString, "http://hl7.org/fhir/StructureDefinition/Extension")
@@ -266,7 +264,7 @@ class StructureDefinitionTests: XCTestCase {
 	
 	@discardableResult
 	func runStructureDefinition2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.StructureDefinition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "structuredefinition-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "structuredefinition-example.json")
 		
 		XCTAssertFalse(inst.abstract ?? true)
 		XCTAssertEqual(inst.baseDefinition?.absoluteString, "http://hl7.org/fhir/StructureDefinition/DiagnosticReport")

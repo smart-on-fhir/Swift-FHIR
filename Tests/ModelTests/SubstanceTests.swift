@@ -2,7 +2,7 @@
 //  SubstanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class SubstanceTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Substance {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Substance {
-		let instance = SwiftFHIR.Substance(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Substance {
+		return try SwiftFHIR.Substance(json: json)
 	}
 	
 	func testSubstance1() {
@@ -34,7 +32,7 @@ class SubstanceTests: XCTestCase {
 	
 	@discardableResult
 	func runSubstance1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Substance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-amoxicillin-clavulanate.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-amoxicillin-clavulanate.json")
 		
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "drug")
 		XCTAssertEqual(inst.category?[0].coding?[0].display, "Drug or Medicament")
@@ -81,7 +79,7 @@ class SubstanceTests: XCTestCase {
 	
 	@discardableResult
 	func runSubstance2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Substance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-f201-dust.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-f201-dust.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "406466009")
 		XCTAssertEqual(inst.code?.coding?[0].display, "House dust allergen")
@@ -104,7 +102,7 @@ class SubstanceTests: XCTestCase {
 	
 	@discardableResult
 	func runSubstance3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Substance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-f202-staphylococcus.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-f202-staphylococcus.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "3092008")
 		XCTAssertEqual(inst.code?.coding?[0].display, "Staphylococcus Aureus")
@@ -127,7 +125,7 @@ class SubstanceTests: XCTestCase {
 	
 	@discardableResult
 	func runSubstance4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Substance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-f203-potassium.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-f203-potassium.json")
 		
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "chemical")
 		XCTAssertEqual(inst.category?[0].coding?[0].display, "Chemical")
@@ -155,7 +153,7 @@ class SubstanceTests: XCTestCase {
 	
 	@discardableResult
 	func runSubstance5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Substance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-silver-nitrate-product.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-silver-nitrate-product.json")
 		
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "chemical")
 		XCTAssertEqual(inst.category?[0].coding?[0].display, "Chemical")
@@ -191,7 +189,7 @@ class SubstanceTests: XCTestCase {
 	
 	@discardableResult
 	func runSubstance6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Substance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example.json")
 		
 		XCTAssertEqual(inst.category?[0].coding?[0].code, "allergen")
 		XCTAssertEqual(inst.category?[0].coding?[0].display, "Allergen")

@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+## x.x
+
+- Change initializers: provide convenience initializers; initializers taking JSON may throw
+- Much better model validation
+
+
 ## 2.9
 
 - Update to FHIR `1.6.0.9663`

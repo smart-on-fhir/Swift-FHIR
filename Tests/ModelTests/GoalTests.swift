@@ -2,7 +2,7 @@
 //  GoalTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class GoalTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Goal {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Goal {
-		let instance = SwiftFHIR.Goal(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Goal {
+		return try SwiftFHIR.Goal(json: json)
 	}
 	
 	func testGoal1() {
@@ -34,7 +32,7 @@ class GoalTests: XCTestCase {
 	
 	@discardableResult
 	func runGoal1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Goal {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "goal-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "goal-example.json")
 		
 		XCTAssertEqual(inst.addresses?[0].display, "obesity")
 		XCTAssertEqual(inst.addresses?[0].reference, "Condition/12345")

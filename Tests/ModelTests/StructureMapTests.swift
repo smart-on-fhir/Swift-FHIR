@@ -2,7 +2,7 @@
 //  StructureMapTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class StructureMapTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.StructureMap {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.StructureMap {
-		let instance = SwiftFHIR.StructureMap(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.StructureMap {
+		return try SwiftFHIR.StructureMap(json: json)
 	}
 	
 	func testStructureMap1() {
@@ -34,7 +32,7 @@ class StructureMapTests: XCTestCase {
 	
 	@discardableResult
 	func runStructureMap1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.StructureMap {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "structuremap-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "structuremap-example.json")
 		
 		XCTAssertEqual(inst.group?[0].input?[0].mode, "source")
 		XCTAssertEqual(inst.group?[0].input?[0].name, "test")

@@ -2,7 +2,7 @@
 //  DetectedIssueTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class DetectedIssueTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.DetectedIssue {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.DetectedIssue {
-		let instance = SwiftFHIR.DetectedIssue(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.DetectedIssue {
+		return try SwiftFHIR.DetectedIssue(json: json)
 	}
 	
 	func testDetectedIssue1() {
@@ -34,7 +32,7 @@ class DetectedIssueTests: XCTestCase {
 	
 	@discardableResult
 	func runDetectedIssue1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DetectedIssue {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example-allergy.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example-allergy.json")
 		
 		XCTAssertEqual(inst.id, "allergy")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
@@ -55,7 +53,7 @@ class DetectedIssueTests: XCTestCase {
 	
 	@discardableResult
 	func runDetectedIssue2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DetectedIssue {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example-dup.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example-dup.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Device/dsp")
 		XCTAssertEqual(inst.category?.coding?[0].code, "DUPTHPY")
@@ -85,7 +83,7 @@ class DetectedIssueTests: XCTestCase {
 	
 	@discardableResult
 	func runDetectedIssue3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DetectedIssue {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example-lab.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example-lab.json")
 		
 		XCTAssertEqual(inst.id, "lab")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
@@ -106,7 +104,7 @@ class DetectedIssueTests: XCTestCase {
 	
 	@discardableResult
 	func runDetectedIssue4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DetectedIssue {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "detectedissue-example.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Device/dsp")
 		XCTAssertEqual(inst.category?.coding?[0].code, "DRG")
@@ -117,7 +115,7 @@ class DetectedIssueTests: XCTestCase {
 		XCTAssertEqual(inst.implicated?[0].display, "500 mg Acetaminophen tablet 1/day, PRN since 2010")
 		XCTAssertEqual(inst.implicated?[0].reference, "MedicationStatement/tylenol")
 		XCTAssertEqual(inst.implicated?[1].display, "Warfarin 1 MG TAB prescribed Jan. 5, 2014")
-		XCTAssertEqual(inst.implicated?[1].reference, "MedicationOrder/warfarin")
+		XCTAssertEqual(inst.implicated?[1].reference, "MedicationRequest/warfarin")
 		XCTAssertEqual(inst.mitigation?[0].action?.coding?[0].code, "13")
 		XCTAssertEqual(inst.mitigation?[0].action?.coding?[0].display, "Stopped Concurrent Therapy")
 		XCTAssertEqual(inst.mitigation?[0].action?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/v3/ActCode")

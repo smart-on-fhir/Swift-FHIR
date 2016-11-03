@@ -2,7 +2,7 @@
 //  EndpointTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class EndpointTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Endpoint {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Endpoint {
-		let instance = SwiftFHIR.Endpoint(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Endpoint {
+		return try SwiftFHIR.Endpoint(json: json)
 	}
 	
 	func testEndpoint1() {
@@ -34,7 +32,7 @@ class EndpointTests: XCTestCase {
 	
 	@discardableResult
 	func runEndpoint1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Endpoint {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "endpoint-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "endpoint-example.json")
 		
 		XCTAssertEqual(inst.address?.absoluteString, "http://fhir3.healthintersections.com.au/open/CarePlan")
 		XCTAssertEqual(inst.connectionType?.code, "hl7-fhir-rest")

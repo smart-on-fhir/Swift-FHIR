@@ -2,7 +2,7 @@
 //  SequenceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class SequenceTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Sequence {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Sequence {
-		let instance = SwiftFHIR.Sequence(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Sequence {
+		return try SwiftFHIR.Sequence(json: json)
 	}
 	
 	func testSequence1() {
@@ -34,7 +32,7 @@ class SequenceTests: XCTestCase {
 	
 	@discardableResult
 	func runSequence1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Sequence {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "sequence-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "sequence-example.json")
 		
 		XCTAssertEqual(inst.coordinateSystem, 0)
 		XCTAssertEqual(inst.id, "example")

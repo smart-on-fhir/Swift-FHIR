@@ -2,7 +2,7 @@
 //  Linkage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Linkage) on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Linkage) on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -26,53 +26,57 @@ open class Linkage: DomainResource {
 	public var item: [LinkageItem]?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(item: [LinkageItem]) {
-		self.init(json: nil)
+		self.init()
 		self.item = item
 	}
 	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["author"] {
-				presentKeys.insert("author")
-				if let val = exist as? FHIRJSON {
-					self.author = Reference(json: val, owner: self)
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["author"] {
+			presentKeys.insert("author")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.author = try Reference(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["item"] {
-				presentKeys.insert("item")
-				if let val = exist as? [FHIRJSON] {
-					self.item = LinkageItem.instantiate(fromArray: val, owner: self) as? [LinkageItem]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "item", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "author"))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "item"))
+				errors.append(FHIRValidationError(key: "author", wants: FHIRJSON.self, has: type(of: exist)))
 			}
+		}
+		if let exist = json["item"] {
+			presentKeys.insert("item")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.item = try LinkageItem.instantiate(fromArray: val, owner: self) as? [LinkageItem]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "item"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "item", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "item"))
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let author = self.author {
-			json["author"] = author.asJSON()
+			json["author"] = author.asJSON(errors: &errors)
 		}
 		if let item = self.item {
-			json["item"] = item.map() { $0.asJSON() }
+			json["item"] = item.map() { $0.asJSON(errors: &errors) }
 		}
 		
 		return json
@@ -98,54 +102,53 @@ open class LinkageItem: BackboneElement {
 	public var type: String?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(resource: Reference, type: String) {
-		self.init(json: nil)
+		self.init()
 		self.resource = resource
 		self.type = type
 	}
 	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["resource"] {
-				presentKeys.insert("resource")
-				if let val = exist as? FHIRJSON {
-					self.resource = Reference(json: val, owner: self)
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["resource"] {
+			presentKeys.insert("resource")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.resource = try Reference(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "resource", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "resource"))
-			}
-			if let exist = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? String {
-					self.type = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "resource"))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "type"))
+				errors.append(FHIRValidationError(key: "resource", wants: FHIRJSON.self, has: type(of: exist)))
 			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "resource"))
+		}
+		if let exist = json["type"] {
+			presentKeys.insert("type")
+			if let val = exist as? String {
+				self.type = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let resource = self.resource {
-			json["resource"] = resource.asJSON()
+			json["resource"] = resource.asJSON(errors: &errors)
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()

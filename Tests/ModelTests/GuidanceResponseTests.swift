@@ -2,7 +2,7 @@
 //  GuidanceResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class GuidanceResponseTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.GuidanceResponse {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.GuidanceResponse {
-		let instance = SwiftFHIR.GuidanceResponse(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.GuidanceResponse {
+		return try SwiftFHIR.GuidanceResponse(json: json)
 	}
 	
 	func testGuidanceResponse1() {
@@ -34,10 +32,10 @@ class GuidanceResponseTests: XCTestCase {
 	
 	@discardableResult
 	func runGuidanceResponse1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.GuidanceResponse {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "guidanceresponse-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "guidanceresponse-example.json")
 		
 		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.module?.reference, "DecisionSupportServiceModule/example")
+		XCTAssertEqual(inst.module?.reference, "ServiceDefinition/example")
 		XCTAssertEqual(inst.status, "success")
 		XCTAssertEqual(inst.text?.div, "<div xmlns=\"http://www.w3.org/1999/xhtml\">[Put rendering here]</div>")
 		XCTAssertEqual(inst.text?.status, "generated")

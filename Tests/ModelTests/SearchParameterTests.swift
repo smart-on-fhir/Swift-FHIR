@@ -2,7 +2,7 @@
 //  SearchParameterTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class SearchParameterTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.SearchParameter {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.SearchParameter {
-		let instance = SwiftFHIR.SearchParameter(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.SearchParameter {
+		return try SwiftFHIR.SearchParameter(json: json)
 	}
 	
 	func testSearchParameter1() {
@@ -34,7 +32,7 @@ class SearchParameterTests: XCTestCase {
 	
 	@discardableResult
 	func runSearchParameter1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.SearchParameter {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "searchparameter-example-extension.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "searchparameter-example-extension.json")
 		
 		XCTAssertEqual(inst.base, "Patient")
 		XCTAssertEqual(inst.code, "part-agree")
@@ -68,7 +66,7 @@ class SearchParameterTests: XCTestCase {
 	
 	@discardableResult
 	func runSearchParameter2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.SearchParameter {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "searchparameter-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "searchparameter-example.json")
 		
 		XCTAssertEqual(inst.base, "Resource")
 		XCTAssertEqual(inst.code, "_id")

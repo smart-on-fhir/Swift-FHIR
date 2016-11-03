@@ -2,7 +2,7 @@
 //  HumanName.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -41,83 +41,81 @@ open class HumanName: Element {
 	public var use: String?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["family"] {
-				presentKeys.insert("family")
-				if let val = exist as? [String] {
-					self.family = val
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["family"] {
+			presentKeys.insert("family")
+			if let val = exist as? [String] {
+				self.family = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "family", wants: Array<String>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["given"] {
+			presentKeys.insert("given")
+			if let val = exist as? [String] {
+				self.given = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "given", wants: Array<String>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["period"] {
+			presentKeys.insert("period")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.period = try Period(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "family", wants: Array<String>.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "period"))
 				}
 			}
-			if let exist = js["given"] {
-				presentKeys.insert("given")
-				if let val = exist as? [String] {
-					self.given = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "given", wants: Array<String>.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-			if let exist = js["period"] {
-				presentKeys.insert("period")
-				if let val = exist as? FHIRJSON {
-					self.period = Period(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
-				}
+		}
+		if let exist = json["prefix"] {
+			presentKeys.insert("prefix")
+			if let val = exist as? [String] {
+				self.prefix = val
 			}
-			if let exist = js["prefix"] {
-				presentKeys.insert("prefix")
-				if let val = exist as? [String] {
-					self.prefix = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "prefix", wants: Array<String>.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "prefix", wants: Array<String>.self, has: type(of: exist)))
 			}
-			if let exist = js["suffix"] {
-				presentKeys.insert("suffix")
-				if let val = exist as? [String] {
-					self.suffix = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "suffix", wants: Array<String>.self, has: type(of: exist)))
-				}
+		}
+		if let exist = json["suffix"] {
+			presentKeys.insert("suffix")
+			if let val = exist as? [String] {
+				self.suffix = val
 			}
-			if let exist = js["text"] {
-				presentKeys.insert("text")
-				if let val = exist as? String {
-					self.text = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "suffix", wants: Array<String>.self, has: type(of: exist)))
 			}
-			if let exist = js["use"] {
-				presentKeys.insert("use")
-				if let val = exist as? String {
-					self.use = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "use", wants: String.self, has: type(of: exist)))
-				}
+		}
+		if let exist = json["text"] {
+			presentKeys.insert("text")
+			if let val = exist as? String {
+				self.text = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "text", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["use"] {
+			presentKeys.insert("use")
+			if let val = exist as? String {
+				self.use = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "use", wants: String.self, has: type(of: exist)))
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let family = self.family {
 			var arr = [Any]()
@@ -134,7 +132,7 @@ open class HumanName: Element {
 			json["given"] = arr
 		}
 		if let period = self.period {
-			json["period"] = period.asJSON()
+			json["period"] = period.asJSON(errors: &errors)
 		}
 		if let prefix = self.prefix {
 			var arr = [Any]()

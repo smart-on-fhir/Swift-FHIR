@@ -2,7 +2,7 @@
 //  BodySiteTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class BodySiteTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.BodySite {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.BodySite {
-		let instance = SwiftFHIR.BodySite(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.BodySite {
+		return try SwiftFHIR.BodySite(json: json)
 	}
 	
 	func testBodySite1() {
@@ -34,7 +32,7 @@ class BodySiteTests: XCTestCase {
 	
 	@discardableResult
 	func runBodySite1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.BodySite {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "bodysite-example-fetus.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "bodysite-example-fetus.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "83418008")
 		XCTAssertEqual(inst.code?.coding?[0].display, "Entire fetus (body structure)")
@@ -62,7 +60,7 @@ class BodySiteTests: XCTestCase {
 	
 	@discardableResult
 	func runBodySite2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.BodySite {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "bodysite-example-skin-patch.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "bodysite-example-skin-patch.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "39937001")
 		XCTAssertEqual(inst.code?.coding?[0].display, "Skin structure (body structure)")
@@ -90,7 +88,7 @@ class BodySiteTests: XCTestCase {
 	
 	@discardableResult
 	func runBodySite3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.BodySite {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "bodysite-example-tumor.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "bodysite-example-tumor.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "4147007")
 		XCTAssertEqual(inst.code?.coding?[0].display, "Mass (morphologic abnormality)")
@@ -101,7 +99,7 @@ class BodySiteTests: XCTestCase {
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://goodhealth.org/bodysite/identifiers")
 		XCTAssertEqual(inst.identifier?[0].value, "12345")
 		XCTAssertEqual(inst.image?[0].contentType, "application/dicom")
-//		XCTAssertEqual(inst.image?[0].url?.absoluteString, "http://10.1.2.3:1000/wado?requestType=WADO&amp;wado_details…")
+		XCTAssertEqual(inst.image?[0].url?.absoluteString, "http://10.1.2.3:1000/wado?requestType=WADO&amp;wado_details…")
 		XCTAssertEqual(inst.modifier?[0].coding?[0].code, "78961009")
 		XCTAssertEqual(inst.modifier?[0].coding?[0].display, "Splenic structure (body structure)")
 		XCTAssertEqual(inst.modifier?[0].coding?[0].system?.absoluteString, "http://snomed.info/sct")

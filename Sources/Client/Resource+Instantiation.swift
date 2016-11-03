@@ -18,12 +18,12 @@ public extension Resource {
 	Attempt to instantiate a Resource of the receiving class by reading a JSON file at the given filesystem path.
 	
 	- parameter path: The local path to read the JSON file from
-	- returns: An instance of the receiving class
+	- returns:        An instance of the receiving class
 	*/
 	public class func instantiate(fromPath path: String) throws -> Self {
 		let data = try Data(contentsOf: URL(fileURLWithPath: path), options: [])
-		let json = try JSONSerialization.jsonObject(with: data, options: []) as? FHIRJSON
-		return self.init(json: json)
+		let json = try JSONSerialization.jsonObject(with: data, options: []) as! FHIRJSON
+		return try self.init(json: json, owner: nil)        // must use required initializer on dynamic type
 	}
 }
 
@@ -52,12 +52,26 @@ public extension Foundation.Bundle {
 	- returns:                A Resource subclass corresponding to the "resourceType" entry, as specified under `type`
 	*/
 	public func fhir_bundledResource<T: Resource>(_ name: String, subdirectory: String?, type: T.Type) throws -> T {
+		let json = try fhir_json(from: name, subdirectory: subdirectory)
+		if let resource = try Resource.instantiate(from: json, owner: nil) as? T {
+			return resource
+		}
+		throw FHIRError.responseResourceTypeMismatch(json["resourceType"] as? String ?? "Unknown", "\(T.self)")
+	}
+	
+	/**
+	Attempts to read a JSON file with the given name (without ".json") from the given directory. Parses the JSON and instantiates a FHIR
+	resource corresponding to "resourceType".
+	
+	- parameter name:         The filename, without ".json" extension, to read the resource from
+	- parameter subdirectory: The directory name to search for the resource; `nil` for top level
+	- parameter type:         The type the resource is expected to be; must be a subclass of `Resource`
+	- returns:                A Resource subclass corresponding to the "resourceType" entry, as specified under `type`
+	*/
+	public func fhir_json(from name: String, subdirectory: String?) throws -> FHIRJSON {
 		if let url = url(forResource: name, withExtension: "json", subdirectory: subdirectory), let data = try? Data(contentsOf: url) {
 			if let json = try JSONSerialization.jsonObject(with: data, options: []) as? FHIRJSON {
-				if let resource = Resource.instantiate(from: json, owner: nil) as? T {
-					return resource
-				}
-				throw FHIRError.responseResourceTypeMismatch(json["resourceType"] as? String ?? "Unknown", "\(T.self)")
+				return json
 			}
 			throw FHIRError.resourceFailedToInstantiate(url.description)
 		}

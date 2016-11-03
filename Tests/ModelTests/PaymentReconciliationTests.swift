@@ -2,7 +2,7 @@
 //  PaymentReconciliationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class PaymentReconciliationTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.PaymentReconciliation {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.PaymentReconciliation {
-		let instance = SwiftFHIR.PaymentReconciliation(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.PaymentReconciliation {
+		return try SwiftFHIR.PaymentReconciliation(json: json)
 	}
 	
 	func testPaymentReconciliation1() {
@@ -34,7 +32,7 @@ class PaymentReconciliationTests: XCTestCase {
 	
 	@discardableResult
 	func runPaymentReconciliation1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.PaymentReconciliation {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "paymentreconciliation-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "paymentreconciliation-example.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
 		XCTAssertEqual(inst.detail?[0].amount?.code, "USD")

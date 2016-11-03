@@ -2,7 +2,7 @@
 //  OperationOutcomeTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class OperationOutcomeTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.OperationOutcome {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.OperationOutcome {
-		let instance = SwiftFHIR.OperationOutcome(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.OperationOutcome {
+		return try SwiftFHIR.OperationOutcome(json: json)
 	}
 	
 	func testOperationOutcome1() {
@@ -34,7 +32,7 @@ class OperationOutcomeTests: XCTestCase {
 	
 	@discardableResult
 	func runOperationOutcome1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.OperationOutcome {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-allok.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-allok.json")
 		
 		XCTAssertEqual(inst.id, "allok")
 		XCTAssertEqual(inst.issue?[0].code, "informational")
@@ -57,7 +55,7 @@ class OperationOutcomeTests: XCTestCase {
 	
 	@discardableResult
 	func runOperationOutcome2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.OperationOutcome {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-break-the-glass.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-break-the-glass.json")
 		
 		XCTAssertEqual(inst.id, "break-the-glass")
 		XCTAssertEqual(inst.issue?[0].code, "suppressed")
@@ -83,7 +81,7 @@ class OperationOutcomeTests: XCTestCase {
 	
 	@discardableResult
 	func runOperationOutcome3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.OperationOutcome {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-exception.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-exception.json")
 		
 		XCTAssertEqual(inst.id, "exception")
 		XCTAssertEqual(inst.issue?[0].code, "exception")
@@ -106,7 +104,7 @@ class OperationOutcomeTests: XCTestCase {
 	
 	@discardableResult
 	func runOperationOutcome4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.OperationOutcome {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-searchfail.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-searchfail.json")
 		
 		XCTAssertEqual(inst.id, "searchfail")
 		XCTAssertEqual(inst.issue?[0].code, "code-invalid")
@@ -130,7 +128,7 @@ class OperationOutcomeTests: XCTestCase {
 	
 	@discardableResult
 	func runOperationOutcome5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.OperationOutcome {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-validationfail.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-validationfail.json")
 		
 		XCTAssertEqual(inst.id, "validationfail")
 		XCTAssertEqual(inst.issue?[0].code, "structure")
@@ -154,7 +152,7 @@ class OperationOutcomeTests: XCTestCase {
 	
 	@discardableResult
 	func runOperationOutcome6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.OperationOutcome {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example.json")
 		
 		XCTAssertEqual(inst.id, "101")
 		XCTAssertEqual(inst.issue?[0].code, "code-invalid")

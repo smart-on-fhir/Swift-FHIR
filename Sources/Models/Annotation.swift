@@ -2,7 +2,7 @@
 //  Annotation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -32,68 +32,67 @@ open class Annotation: Element {
 	public var time: DateTime?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(text: String) {
-		self.init(json: nil)
+		self.init()
 		self.text = text
 	}
 	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["authorReference"] {
-				presentKeys.insert("authorReference")
-				if let val = exist as? FHIRJSON {
-					self.authorReference = Reference(json: val, owner: self)
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["authorReference"] {
+			presentKeys.insert("authorReference")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.authorReference = try Reference(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "authorReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["authorString"] {
-				presentKeys.insert("authorString")
-				if let val = exist as? String {
-					self.authorString = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "authorString", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["text"] {
-				presentKeys.insert("text")
-				if let val = exist as? String {
-					self.text = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "authorReference"))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "text"))
+				errors.append(FHIRValidationError(key: "authorReference", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-			if let exist = js["time"] {
-				presentKeys.insert("time")
-				if let val = exist as? String {
-					self.time = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "time", wants: String.self, has: type(of: exist)))
-				}
+		}
+		if let exist = json["authorString"] {
+			presentKeys.insert("authorString")
+			if let val = exist as? String {
+				self.authorString = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "authorString", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["text"] {
+			presentKeys.insert("text")
+			if let val = exist as? String {
+				self.text = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "text", wants: String.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "text"))
+		}
+		if let exist = json["time"] {
+			presentKeys.insert("time")
+			if let val = exist as? String {
+				self.time = DateTime(string: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "time", wants: String.self, has: type(of: exist)))
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let authorReference = self.authorReference {
-			json["authorReference"] = authorReference.asJSON()
+			json["authorReference"] = authorReference.asJSON(errors: &errors)
 		}
 		if let authorString = self.authorString {
 			json["authorString"] = authorString.asJSON()

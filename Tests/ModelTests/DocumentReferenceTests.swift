@@ -2,7 +2,7 @@
 //  DocumentReferenceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class DocumentReferenceTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.DocumentReference {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.DocumentReference {
-		let instance = SwiftFHIR.DocumentReference(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.DocumentReference {
+		return try SwiftFHIR.DocumentReference(json: json)
 	}
 	
 	func testDocumentReference1() {
@@ -34,7 +32,7 @@ class DocumentReferenceTests: XCTestCase {
 	
 	@discardableResult
 	func runDocumentReference1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DocumentReference {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "documentreference-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "documentreference-example.json")
 		
 		XCTAssertEqual(inst.authenticator?.reference, "Organization/organization-example")
 		XCTAssertEqual(inst.author?[0].reference, "Practitioner/xcda1")

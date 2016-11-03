@@ -2,7 +2,7 @@
 //  Signature.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Signature) on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Signature) on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -46,112 +46,128 @@ open class Signature: Element {
 	public var whoUri: URL?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: [Coding], when: Instant, whoReference: Reference, whoUri: URL) {
-		self.init(json: nil)
+	public convenience init(type: [Coding], when: Instant, who: Any) {
+		self.init()
 		self.type = type
 		self.when = when
-		self.whoReference = whoReference
-		self.whoUri = whoUri
+		if let value = who as? URL {
+			self.whoUri = value
+		}
+		else if let value = who as? Reference {
+			self.whoReference = value
+		}
+		else {
+			fhir_warn("Type “\(type(of: who))” for property “\(who)” is invalid, ignoring")
+		}
 	}
 	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["blob"] {
-				presentKeys.insert("blob")
-				if let val = exist as? String {
-					self.blob = Base64Binary(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "blob", wants: String.self, has: type(of: exist)))
-				}
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["blob"] {
+			presentKeys.insert("blob")
+			if let val = exist as? String {
+				self.blob = Base64Binary(string: val)
 			}
-			if let exist = js["contentType"] {
-				presentKeys.insert("contentType")
-				if let val = exist as? String {
-					self.contentType = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "contentType", wants: String.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "blob", wants: String.self, has: type(of: exist)))
 			}
-			if let exist = js["onBehalfOfReference"] {
-				presentKeys.insert("onBehalfOfReference")
-				if let val = exist as? FHIRJSON {
-					self.onBehalfOfReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "onBehalfOfReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
+		}
+		if let exist = json["contentType"] {
+			presentKeys.insert("contentType")
+			if let val = exist as? String {
+				self.contentType = val
 			}
-			if let exist = js["onBehalfOfUri"] {
-				presentKeys.insert("onBehalfOfUri")
-				if let val = exist as? String {
-					self.onBehalfOfUri = URL(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "onBehalfOfUri", wants: String.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "contentType", wants: String.self, has: type(of: exist)))
 			}
-			if let exist = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? [FHIRJSON] {
-					self.type = Coding.instantiate(fromArray: val, owner: self) as? [Coding]
+		}
+		if let exist = json["onBehalfOfReference"] {
+			presentKeys.insert("onBehalfOfReference")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.onBehalfOfReference = try Reference(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "onBehalfOfReference"))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "type"))
+				errors.append(FHIRValidationError(key: "onBehalfOfReference", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-			if let exist = js["when"] {
-				presentKeys.insert("when")
-				if let val = exist as? String {
-					self.when = Instant(string: val)
+		}
+		if let exist = json["onBehalfOfUri"] {
+			presentKeys.insert("onBehalfOfUri")
+			if let val = exist as? String {
+				self.onBehalfOfUri = URL(string: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "onBehalfOfUri", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["type"] {
+			presentKeys.insert("type")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.type = try Coding.instantiate(fromArray: val, owner: self) as? [Coding]
 				}
-				else {
-					errors.append(FHIRJSONError(key: "when", wants: String.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "type"))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "when"))
+				errors.append(FHIRValidationError(key: "type", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
-			if let exist = js["whoReference"] {
-				presentKeys.insert("whoReference")
-				if let val = exist as? FHIRJSON {
-					self.whoReference = Reference(json: val, owner: self)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
+		if let exist = json["when"] {
+			presentKeys.insert("when")
+			if let val = exist as? String {
+				self.when = Instant(string: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "when", wants: String.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "when"))
+		}
+		if let exist = json["whoReference"] {
+			presentKeys.insert("whoReference")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.whoReference = try Reference(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "whoReference", wants: FHIRJSON.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "whoReference"))
 				}
 			}
-			if let exist = js["whoUri"] {
-				presentKeys.insert("whoUri")
-				if let val = exist as? String {
-					self.whoUri = URL(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "whoUri", wants: String.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "whoReference", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-			
-			// check if nonoptional expanded properties are present
-			if nil == self.whoUri && nil == self.whoReference {
-				errors.append(FHIRJSONError(key: "who*"))
+		}
+		if let exist = json["whoUri"] {
+			presentKeys.insert("whoUri")
+			if let val = exist as? String {
+				self.whoUri = URL(string: val)
 			}
+			else {
+				errors.append(FHIRValidationError(key: "whoUri", wants: String.self, has: type(of: exist)))
+			}
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
+		if nil == self.whoUri && nil == self.whoReference {
+			errors.append(FHIRValidationError(missing: "who[x]"))
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let blob = self.blob {
 			json["blob"] = blob.asJSON()
@@ -160,19 +176,19 @@ open class Signature: Element {
 			json["contentType"] = contentType.asJSON()
 		}
 		if let onBehalfOfReference = self.onBehalfOfReference {
-			json["onBehalfOfReference"] = onBehalfOfReference.asJSON()
+			json["onBehalfOfReference"] = onBehalfOfReference.asJSON(errors: &errors)
 		}
 		if let onBehalfOfUri = self.onBehalfOfUri {
 			json["onBehalfOfUri"] = onBehalfOfUri.asJSON()
 		}
 		if let type = self.type {
-			json["type"] = type.map() { $0.asJSON() }
+			json["type"] = type.map() { $0.asJSON(errors: &errors) }
 		}
 		if let when = self.when {
 			json["when"] = when.asJSON()
 		}
 		if let whoReference = self.whoReference {
-			json["whoReference"] = whoReference.asJSON()
+			json["whoReference"] = whoReference.asJSON(errors: &errors)
 		}
 		if let whoUri = self.whoUri {
 			json["whoUri"] = whoUri.asJSON()

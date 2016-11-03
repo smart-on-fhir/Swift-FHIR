@@ -2,7 +2,7 @@
 //  LibraryTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class LibraryTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Library {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Library {
-		let instance = SwiftFHIR.Library(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Library {
+		return try SwiftFHIR.Library(json: json)
 	}
 	
 	func testLibrary1() {
@@ -34,7 +32,7 @@ class LibraryTests: XCTestCase {
 	
 	@discardableResult
 	func runLibrary1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Library {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "library-cms146-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "library-cms146-example.json")
 		
 		XCTAssertEqual(inst.content?.contentType, "text/cql")
 		XCTAssertEqual(inst.content?.url?.absoluteString, "http://cqlrepository.org/CMS146.cql")
@@ -108,7 +106,7 @@ class LibraryTests: XCTestCase {
 	
 	@discardableResult
 	func runLibrary2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Library {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "library-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "library-example.json")
 		
 		XCTAssertEqual(inst.content?.contentType, "text/cql")
 		XCTAssertEqual(inst.content?.url?.absoluteString, "http://cqlrepository.org/ChlamydiaScreening_Common.cql")

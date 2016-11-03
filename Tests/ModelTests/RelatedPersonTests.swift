@@ -2,7 +2,7 @@
 //  RelatedPersonTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class RelatedPersonTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.RelatedPerson {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.RelatedPerson {
-		let instance = SwiftFHIR.RelatedPerson(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.RelatedPerson {
+		return try SwiftFHIR.RelatedPerson(json: json)
 	}
 	
 	func testRelatedPerson1() {
@@ -34,7 +32,7 @@ class RelatedPersonTests: XCTestCase {
 	
 	@discardableResult
 	func runRelatedPerson1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.RelatedPerson {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-f001-sarah.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-f001-sarah.json")
 		
 		XCTAssertEqual(inst.gender, "female")
 		XCTAssertEqual(inst.id, "f001")
@@ -70,7 +68,7 @@ class RelatedPersonTests: XCTestCase {
 	
 	@discardableResult
 	func runRelatedPerson2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.RelatedPerson {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-f002-ariadne.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-f002-ariadne.json")
 		
 		XCTAssertEqual(inst.birthDate?.description, "1963")
 		XCTAssertEqual(inst.gender, "female")
@@ -102,7 +100,7 @@ class RelatedPersonTests: XCTestCase {
 	
 	@discardableResult
 	func runRelatedPerson3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.RelatedPerson {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-peter.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example-peter.json")
 		
 		XCTAssertEqual(inst.address?[0].city, "PleasantVille")
 		XCTAssertEqual(inst.address?[0].line?[0], "534 Erewhon St")
@@ -141,7 +139,7 @@ class RelatedPersonTests: XCTestCase {
 	
 	@discardableResult
 	func runRelatedPerson4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.RelatedPerson {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "relatedperson-example.json")
 		
 		XCTAssertTrue(inst.active ?? false)
 		XCTAssertEqual(inst.address?[0].city, "Paris")

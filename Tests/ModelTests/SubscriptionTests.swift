@@ -2,7 +2,7 @@
 //  SubscriptionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class SubscriptionTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Subscription {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Subscription {
-		let instance = SwiftFHIR.Subscription(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Subscription {
+		return try SwiftFHIR.Subscription(json: json)
 	}
 	
 	func testSubscription1() {
@@ -34,7 +32,7 @@ class SubscriptionTests: XCTestCase {
 	
 	@discardableResult
 	func runSubscription1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Subscription {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "subscription-example-error.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "subscription-example-error.json")
 		
 		XCTAssertEqual(inst.channel?.endpoint?.absoluteString, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
 		XCTAssertEqual(inst.channel?.header, "Authorization: Bearer secret-token-abc-123")
@@ -68,7 +66,7 @@ class SubscriptionTests: XCTestCase {
 	
 	@discardableResult
 	func runSubscription2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Subscription {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "subscription-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "subscription-example.json")
 		
 		XCTAssertEqual(inst.channel?.endpoint?.absoluteString, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
 		XCTAssertEqual(inst.channel?.header, "Authorization: Bearer secret-token-abc-123")

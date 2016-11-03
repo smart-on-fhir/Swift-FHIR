@@ -2,7 +2,7 @@
 //  ProvenanceTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class ProvenanceTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Provenance {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Provenance {
-		let instance = SwiftFHIR.Provenance(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Provenance {
+		return try SwiftFHIR.Provenance(json: json)
 	}
 	
 	func testProvenance1() {
@@ -34,7 +32,7 @@ class ProvenanceTests: XCTestCase {
 	
 	@discardableResult
 	func runProvenance1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Provenance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "provenance-example-sig.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "provenance-example-sig.json")
 		
 		XCTAssertEqual(inst.activity?.code, "AU")
 		XCTAssertEqual(inst.activity?.display, "authenticated")
@@ -75,7 +73,7 @@ class ProvenanceTests: XCTestCase {
 	
 	@discardableResult
 	func runProvenance2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Provenance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "provenance-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "provenance-example.json")
 		
 		XCTAssertEqual(inst.agent?[0].actor?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.agent?[0].relatedAgent?[0].target?.absoluteString, "#a1")

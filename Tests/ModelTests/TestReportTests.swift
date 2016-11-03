@@ -2,7 +2,7 @@
 //  TestReportTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class TestReportTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.TestReport {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.TestReport {
-		let instance = SwiftFHIR.TestReport(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.TestReport {
+		return try SwiftFHIR.TestReport(json: json)
 	}
 	
 	func testTestReport1() {
@@ -34,7 +32,7 @@ class TestReportTests: XCTestCase {
 	
 	@discardableResult
 	func runTestReport1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.TestReport {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "testreport-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "testreport-example.json")
 		
 		XCTAssertEqual(inst.id, "testreport-example")
 		XCTAssertEqual(inst.issued?.description, "2016-10-07T08:25:34-05:00")

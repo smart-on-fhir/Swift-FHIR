@@ -2,7 +2,7 @@
 //  ServiceDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class ServiceDefinitionTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.ServiceDefinition {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.ServiceDefinition {
-		let instance = SwiftFHIR.ServiceDefinition(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ServiceDefinition {
+		return try SwiftFHIR.ServiceDefinition(json: json)
 	}
 	
 	func testServiceDefinition1() {
@@ -34,7 +32,7 @@ class ServiceDefinitionTests: XCTestCase {
 	
 	@discardableResult
 	func runServiceDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ServiceDefinition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "servicedefinition-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "servicedefinition-example.json")
 		
 		XCTAssertEqual(inst.date?.description, "2015-07-22")
 		XCTAssertEqual(inst.description_fhir, "Guideline appropriate ordering is used to assess appropriateness of an order given a patient, a proposed order, and a set of clinical indications.")

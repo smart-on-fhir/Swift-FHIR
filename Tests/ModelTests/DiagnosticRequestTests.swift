@@ -2,7 +2,7 @@
 //  DiagnosticRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class DiagnosticRequestTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.DiagnosticRequest {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.DiagnosticRequest {
-		let instance = SwiftFHIR.DiagnosticRequest(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.DiagnosticRequest {
+		return try SwiftFHIR.DiagnosticRequest(json: json)
 	}
 	
 	func testDiagnosticRequest1() {
@@ -34,7 +32,7 @@ class DiagnosticRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runDiagnosticRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticrequest-example-di.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticrequest-example-di.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "24627-2")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://loinc.org")
@@ -65,7 +63,7 @@ class DiagnosticRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runDiagnosticRequest2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticrequest-example-ft4.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticrequest-example-ft4.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "3024-7")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://loinc.org")
@@ -94,7 +92,7 @@ class DiagnosticRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runDiagnosticRequest3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticrequest-example-lipid.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticrequest-example-lipid.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "LIPID")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://acme.org/tests")
@@ -136,7 +134,7 @@ class DiagnosticRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runDiagnosticRequest4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.DiagnosticRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticrequest-genetics-example-1.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticrequest-genetics-example-1.json")
 		
 		XCTAssertEqual(inst.code?.coding?[0].code, "49874-1")
 		XCTAssertEqual(inst.code?.coding?[0].system?.absoluteString, "http://loinc.org")

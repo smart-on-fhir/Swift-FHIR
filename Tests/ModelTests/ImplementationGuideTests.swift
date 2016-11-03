@@ -2,7 +2,7 @@
 //  ImplementationGuideTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class ImplementationGuideTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.ImplementationGuide {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.ImplementationGuide {
-		let instance = SwiftFHIR.ImplementationGuide(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ImplementationGuide {
+		return try SwiftFHIR.ImplementationGuide(json: json)
 	}
 	
 	func testImplementationGuide1() {
@@ -34,7 +32,7 @@ class ImplementationGuideTests: XCTestCase {
 	
 	@discardableResult
 	func runImplementationGuide1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ImplementationGuide {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "implementationguide-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "implementationguide-example.json")
 		
 		XCTAssertEqual(inst.binary?[0].absoluteString, "http://h7.org/fhir/fhir.css")
 		XCTAssertEqual(inst.contact?[0].name, "ONC")

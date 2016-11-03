@@ -1,0 +1,33 @@
+{
+	"fhir_comments": "Top level is missing “resourceType” and “status”",
+	"id": "questionnaire-missing",
+	"item": [
+		{
+			"type": "display",
+			"text": "Hi unit tester!"
+		},
+		{
+			"type": "group",
+			"item": [
+				{
+					"fhir_comments": "is missing “type”"
+				},
+				{
+					"fhir_comments": "invalid “type”",
+					"type": "invalid"
+				}
+			]
+		},
+		{
+			"fhir_comments": "is also missing “type”",
+			"option": [
+				{
+					"valueString": "I’m here!"	
+				},
+				{
+					"fhir_comments": "is missing “value[x]”"
+				}
+			]
+		}
+	]
+}

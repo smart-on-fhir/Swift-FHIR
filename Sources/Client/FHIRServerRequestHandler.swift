@@ -136,7 +136,7 @@ open class FHIRServerJSONRequestHandler: FHIRServerRequestHandler {
 			return
 		}
 		if nil == json {
-			json = resource?.asJSON()
+			json = try resource?.asJSON()
 		}
 		if let json = json {
 			data = try JSONSerialization.data(withJSONObject: json, options: [])

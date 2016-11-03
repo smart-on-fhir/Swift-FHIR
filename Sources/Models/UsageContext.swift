@@ -2,7 +2,7 @@
 //  UsageContext.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/UsageContext) on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/UsageContext) on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -34,85 +34,108 @@ open class UsageContext: Element {
 	public var valueRange: Range?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
 	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding, valueCodeableConcept: CodeableConcept, valueQuantity: Quantity, valueRange: Range) {
-		self.init(json: nil)
+	public convenience init(code: Coding, value: Any) {
+		self.init()
 		self.code = code
-		self.valueCodeableConcept = valueCodeableConcept
-		self.valueQuantity = valueQuantity
-		self.valueRange = valueRange
+		if let value = value as? CodeableConcept {
+			self.valueCodeableConcept = value
+		}
+		else if let value = value as? Quantity {
+			self.valueQuantity = value
+		}
+		else if let value = value as? Range {
+			self.valueRange = value
+		}
+		else {
+			fhir_warn("Type “\(type(of: value))” for property “\(value)” is invalid, ignoring")
+		}
 	}
 	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["code"] {
-				presentKeys.insert("code")
-				if let val = exist as? FHIRJSON {
-					self.code = Coding(json: val, owner: self)
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["code"] {
+			presentKeys.insert("code")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.code = try Coding(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "code"))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "code"))
+				errors.append(FHIRValidationError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-			if let exist = js["valueCodeableConcept"] {
-				presentKeys.insert("valueCodeableConcept")
-				if let val = exist as? FHIRJSON {
-					self.valueCodeableConcept = CodeableConcept(json: val, owner: self)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "code"))
+		}
+		if let exist = json["valueCodeableConcept"] {
+			presentKeys.insert("valueCodeableConcept")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.valueCodeableConcept = try CodeableConcept(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "valueCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueQuantity"] {
-				presentKeys.insert("valueQuantity")
-				if let val = exist as? FHIRJSON {
-					self.valueQuantity = Quantity(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueQuantity", wants: FHIRJSON.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "valueCodeableConcept"))
 				}
 			}
-			if let exist = js["valueRange"] {
-				presentKeys.insert("valueRange")
-				if let val = exist as? FHIRJSON {
-					self.valueRange = Range(json: val, owner: self)
+			else {
+				errors.append(FHIRValidationError(key: "valueCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["valueQuantity"] {
+			presentKeys.insert("valueQuantity")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.valueQuantity = try Quantity(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "valueRange", wants: FHIRJSON.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "valueQuantity"))
 				}
 			}
-			
-			// check if nonoptional expanded properties are present
-			if nil == self.valueCodeableConcept && nil == self.valueQuantity && nil == self.valueRange {
-				errors.append(FHIRJSONError(key: "value*"))
+			else {
+				errors.append(FHIRValidationError(key: "valueQuantity", wants: FHIRJSON.self, has: type(of: exist)))
 			}
+		}
+		if let exist = json["valueRange"] {
+			presentKeys.insert("valueRange")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.valueRange = try Range(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "valueRange"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "valueRange", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		
+		// check if nonoptional expanded properties (i.e. at least one "answer" for "answer[x]") are present
+		if nil == self.valueCodeableConcept && nil == self.valueQuantity && nil == self.valueRange {
+			errors.append(FHIRValidationError(missing: "value[x]"))
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let code = self.code {
-			json["code"] = code.asJSON()
+			json["code"] = code.asJSON(errors: &errors)
 		}
 		if let valueCodeableConcept = self.valueCodeableConcept {
-			json["valueCodeableConcept"] = valueCodeableConcept.asJSON()
+			json["valueCodeableConcept"] = valueCodeableConcept.asJSON(errors: &errors)
 		}
 		if let valueQuantity = self.valueQuantity {
-			json["valueQuantity"] = valueQuantity.asJSON()
+			json["valueQuantity"] = valueQuantity.asJSON(errors: &errors)
 		}
 		if let valueRange = self.valueRange {
-			json["valueRange"] = valueRange.asJSON()
+			json["valueRange"] = valueRange.asJSON(errors: &errors)
 		}
 		
 		return json

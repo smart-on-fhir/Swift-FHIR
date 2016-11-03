@@ -2,7 +2,7 @@
 //  EligibilityRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -75,242 +75,306 @@ open class EligibilityRequest: DomainResource {
 	public var status: String?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(status: String) {
-		self.init(json: nil)
+		self.init()
 		self.status = status
 	}
 	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["benefitCategory"] {
-				presentKeys.insert("benefitCategory")
-				if let val = exist as? FHIRJSON {
-					self.benefitCategory = Coding(json: val, owner: self)
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["benefitCategory"] {
+			presentKeys.insert("benefitCategory")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.benefitCategory = try Coding(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "benefitCategory", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["benefitSubCategory"] {
-				presentKeys.insert("benefitSubCategory")
-				if let val = exist as? FHIRJSON {
-					self.benefitSubCategory = Coding(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "benefitSubCategory", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["businessArrangement"] {
-				presentKeys.insert("businessArrangement")
-				if let val = exist as? String {
-					self.businessArrangement = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "businessArrangement", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["coverage"] {
-				presentKeys.insert("coverage")
-				if let val = exist as? FHIRJSON {
-					self.coverage = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "coverage", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["created"] {
-				presentKeys.insert("created")
-				if let val = exist as? String {
-					self.created = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "created", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["enterer"] {
-				presentKeys.insert("enterer")
-				if let val = exist as? FHIRJSON {
-					self.enterer = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "enterer", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["facility"] {
-				presentKeys.insert("facility")
-				if let val = exist as? FHIRJSON {
-					self.facility = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "facility", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["insurer"] {
-				presentKeys.insert("insurer")
-				if let val = exist as? FHIRJSON {
-					self.insurer = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "insurer", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["organization"] {
-				presentKeys.insert("organization")
-				if let val = exist as? FHIRJSON {
-					self.organization = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["originalRuleset"] {
-				presentKeys.insert("originalRuleset")
-				if let val = exist as? FHIRJSON {
-					self.originalRuleset = Coding(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "originalRuleset", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["patient"] {
-				presentKeys.insert("patient")
-				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["priority"] {
-				presentKeys.insert("priority")
-				if let val = exist as? FHIRJSON {
-					self.priority = Coding(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "priority", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["provider"] {
-				presentKeys.insert("provider")
-				if let val = exist as? FHIRJSON {
-					self.provider = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "provider", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["ruleset"] {
-				presentKeys.insert("ruleset")
-				if let val = exist as? FHIRJSON {
-					self.ruleset = Coding(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "ruleset", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["servicedDate"] {
-				presentKeys.insert("servicedDate")
-				if let val = exist as? String {
-					self.servicedDate = FHIRDate(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "servicedDate", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["servicedPeriod"] {
-				presentKeys.insert("servicedPeriod")
-				if let val = exist as? FHIRJSON {
-					self.servicedPeriod = Period(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "servicedPeriod", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["status"] {
-				presentKeys.insert("status")
-				if let val = exist as? String {
-					self.status = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "benefitCategory"))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "status"))
+				errors.append(FHIRValidationError(key: "benefitCategory", wants: FHIRJSON.self, has: type(of: exist)))
 			}
+		}
+		if let exist = json["benefitSubCategory"] {
+			presentKeys.insert("benefitSubCategory")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.benefitSubCategory = try Coding(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "benefitSubCategory"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "benefitSubCategory", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["businessArrangement"] {
+			presentKeys.insert("businessArrangement")
+			if let val = exist as? String {
+				self.businessArrangement = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "businessArrangement", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["coverage"] {
+			presentKeys.insert("coverage")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.coverage = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "coverage"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "coverage", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["created"] {
+			presentKeys.insert("created")
+			if let val = exist as? String {
+				self.created = DateTime(string: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "created", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["enterer"] {
+			presentKeys.insert("enterer")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.enterer = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "enterer"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "enterer", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["facility"] {
+			presentKeys.insert("facility")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.facility = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "facility"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "facility", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["identifier"] {
+			presentKeys.insert("identifier")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.identifier = try Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "identifier"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["insurer"] {
+			presentKeys.insert("insurer")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.insurer = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "insurer"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "insurer", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["organization"] {
+			presentKeys.insert("organization")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.organization = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "organization"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["originalRuleset"] {
+			presentKeys.insert("originalRuleset")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.originalRuleset = try Coding(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "originalRuleset"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "originalRuleset", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["patient"] {
+			presentKeys.insert("patient")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.patient = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "patient"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["priority"] {
+			presentKeys.insert("priority")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.priority = try Coding(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "priority"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "priority", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["provider"] {
+			presentKeys.insert("provider")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.provider = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "provider"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "provider", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["ruleset"] {
+			presentKeys.insert("ruleset")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.ruleset = try Coding(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "ruleset"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "ruleset", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["servicedDate"] {
+			presentKeys.insert("servicedDate")
+			if let val = exist as? String {
+				self.servicedDate = FHIRDate(string: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "servicedDate", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["servicedPeriod"] {
+			presentKeys.insert("servicedPeriod")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.servicedPeriod = try Period(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "servicedPeriod"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "servicedPeriod", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["status"] {
+			presentKeys.insert("status")
+			if let val = exist as? String {
+				self.status = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "status", wants: String.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "status"))
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let benefitCategory = self.benefitCategory {
-			json["benefitCategory"] = benefitCategory.asJSON()
+			json["benefitCategory"] = benefitCategory.asJSON(errors: &errors)
 		}
 		if let benefitSubCategory = self.benefitSubCategory {
-			json["benefitSubCategory"] = benefitSubCategory.asJSON()
+			json["benefitSubCategory"] = benefitSubCategory.asJSON(errors: &errors)
 		}
 		if let businessArrangement = self.businessArrangement {
 			json["businessArrangement"] = businessArrangement.asJSON()
 		}
 		if let coverage = self.coverage {
-			json["coverage"] = coverage.asJSON()
+			json["coverage"] = coverage.asJSON(errors: &errors)
 		}
 		if let created = self.created {
 			json["created"] = created.asJSON()
 		}
 		if let enterer = self.enterer {
-			json["enterer"] = enterer.asJSON()
+			json["enterer"] = enterer.asJSON(errors: &errors)
 		}
 		if let facility = self.facility {
-			json["facility"] = facility.asJSON()
+			json["facility"] = facility.asJSON(errors: &errors)
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = identifier.map() { $0.asJSON() }
+			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
 		}
 		if let insurer = self.insurer {
-			json["insurer"] = insurer.asJSON()
+			json["insurer"] = insurer.asJSON(errors: &errors)
 		}
 		if let organization = self.organization {
-			json["organization"] = organization.asJSON()
+			json["organization"] = organization.asJSON(errors: &errors)
 		}
 		if let originalRuleset = self.originalRuleset {
-			json["originalRuleset"] = originalRuleset.asJSON()
+			json["originalRuleset"] = originalRuleset.asJSON(errors: &errors)
 		}
 		if let patient = self.patient {
-			json["patient"] = patient.asJSON()
+			json["patient"] = patient.asJSON(errors: &errors)
 		}
 		if let priority = self.priority {
-			json["priority"] = priority.asJSON()
+			json["priority"] = priority.asJSON(errors: &errors)
 		}
 		if let provider = self.provider {
-			json["provider"] = provider.asJSON()
+			json["provider"] = provider.asJSON(errors: &errors)
 		}
 		if let ruleset = self.ruleset {
-			json["ruleset"] = ruleset.asJSON()
+			json["ruleset"] = ruleset.asJSON(errors: &errors)
 		}
 		if let servicedDate = self.servicedDate {
 			json["servicedDate"] = servicedDate.asJSON()
 		}
 		if let servicedPeriod = self.servicedPeriod {
-			json["servicedPeriod"] = servicedPeriod.asJSON()
+			json["servicedPeriod"] = servicedPeriod.asJSON(errors: &errors)
 		}
 		if let status = self.status {
 			json["status"] = status.asJSON()

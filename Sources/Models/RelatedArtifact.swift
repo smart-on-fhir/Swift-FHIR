@@ -2,7 +2,7 @@
 //  RelatedArtifact.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/RelatedArtifact) on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/RelatedArtifact) on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -38,83 +38,87 @@ open class RelatedArtifact: Element {
 	public var url: URL?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(type: String) {
-		self.init(json: nil)
+		self.init()
 		self.type = type
 	}
 	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["citation"] {
-				presentKeys.insert("citation")
-				if let val = exist as? String {
-					self.citation = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "citation", wants: String.self, has: type(of: exist)))
-				}
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["citation"] {
+			presentKeys.insert("citation")
+			if let val = exist as? String {
+				self.citation = val
 			}
-			if let exist = js["display"] {
-				presentKeys.insert("display")
-				if let val = exist as? String {
-					self.display = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "display", wants: String.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "citation", wants: String.self, has: type(of: exist)))
 			}
-			if let exist = js["document"] {
-				presentKeys.insert("document")
-				if let val = exist as? FHIRJSON {
-					self.document = Attachment(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "document", wants: FHIRJSON.self, has: type(of: exist)))
-				}
+		}
+		if let exist = json["display"] {
+			presentKeys.insert("display")
+			if let val = exist as? String {
+				self.display = val
 			}
-			if let exist = js["resource"] {
-				presentKeys.insert("resource")
-				if let val = exist as? FHIRJSON {
-					self.resource = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "resource", wants: FHIRJSON.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "display", wants: String.self, has: type(of: exist)))
 			}
-			if let exist = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? String {
-					self.type = val
+		}
+		if let exist = json["document"] {
+			presentKeys.insert("document")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.document = try Attachment(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "document"))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "type"))
+				errors.append(FHIRValidationError(key: "document", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-			if let exist = js["url"] {
-				presentKeys.insert("url")
-				if let val = exist as? String {
-					self.url = URL(string: val)
+		}
+		if let exist = json["resource"] {
+			presentKeys.insert("resource")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.resource = try Reference(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "resource"))
 				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "resource", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["type"] {
+			presentKeys.insert("type")
+			if let val = exist as? String {
+				self.type = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
+		if let exist = json["url"] {
+			presentKeys.insert("url")
+			if let val = exist as? String {
+				self.url = URL(string: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let citation = self.citation {
 			json["citation"] = citation.asJSON()
@@ -123,10 +127,10 @@ open class RelatedArtifact: Element {
 			json["display"] = display.asJSON()
 		}
 		if let document = self.document {
-			json["document"] = document.asJSON()
+			json["document"] = document.asJSON(errors: &errors)
 		}
 		if let resource = self.resource {
-			json["resource"] = resource.asJSON()
+			json["resource"] = resource.asJSON(errors: &errors)
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()

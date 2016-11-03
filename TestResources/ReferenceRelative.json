@@ -1,7 +1,18 @@
 {
-	"resourceType": "MedicationOrder",
+	"resourceType": "MedicationRequest",
 	"id": "order-ref-relative",
+	"stage": {
+		"coding": [
+			{
+				"system": "http://hl7.org/fhir/ValueSet/medication-request-stage",
+				"code": "proposal"
+			}
+		]
+	},
 	"medicationReference": {
 		"reference": "Medication/med-1234"
+	},
+	"patient": {
+		"reference": "Patient/0"
 	}
 }

@@ -2,7 +2,7 @@
 //  FHIRAbstractBase+Factory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -12,936 +12,930 @@ Extension to FHIRAbstractBase to be able to instantiate by class name.
 */
 extension FHIRAbstractBase {
 	
-	public class func factory(_ className: String, json: FHIRJSON, owner: FHIRAbstractBase?) -> FHIRAbstractBase {
+	public class func factory(_ className: String, json: FHIRJSON, owner: FHIRAbstractBase?) throws -> FHIRAbstractBase {
 		switch className {
 			case "Account":
-				return Account(json: json, owner: owner)
+				return try Account(json: json, owner: owner)
 			case "ActivityDefinition":
-				return ActivityDefinition(json: json, owner: owner)
+				return try ActivityDefinition(json: json, owner: owner)
 			case "ActivityDefinitionDynamicValue":
-				return ActivityDefinitionDynamicValue(json: json, owner: owner)
-			case "ActivityGroup":
-				return ActivityGroup(json: json, owner: owner)
-			case "ActivityGroupAction":
-				return ActivityGroupAction(json: json, owner: owner)
-			case "ActivityGroupActionRelatedAction":
-				return ActivityGroupActionRelatedAction(json: json, owner: owner)
+				return try ActivityDefinitionDynamicValue(json: json, owner: owner)
 			case "Address":
-				return Address(json: json, owner: owner)
+				return try Address(json: json, owner: owner)
 			case "Age":
-				return Age(json: json, owner: owner)
+				return try Age(json: json, owner: owner)
 			case "AllergyIntolerance":
-				return AllergyIntolerance(json: json, owner: owner)
+				return try AllergyIntolerance(json: json, owner: owner)
 			case "AllergyIntoleranceReaction":
-				return AllergyIntoleranceReaction(json: json, owner: owner)
+				return try AllergyIntoleranceReaction(json: json, owner: owner)
 			case "Annotation":
-				return Annotation(json: json, owner: owner)
+				return try Annotation(json: json, owner: owner)
 			case "Appointment":
-				return Appointment(json: json, owner: owner)
+				return try Appointment(json: json, owner: owner)
 			case "AppointmentParticipant":
-				return AppointmentParticipant(json: json, owner: owner)
+				return try AppointmentParticipant(json: json, owner: owner)
 			case "AppointmentResponse":
-				return AppointmentResponse(json: json, owner: owner)
+				return try AppointmentResponse(json: json, owner: owner)
 			case "Attachment":
-				return Attachment(json: json, owner: owner)
+				return try Attachment(json: json, owner: owner)
 			case "AuditEvent":
-				return AuditEvent(json: json, owner: owner)
+				return try AuditEvent(json: json, owner: owner)
 			case "AuditEventAgent":
-				return AuditEventAgent(json: json, owner: owner)
+				return try AuditEventAgent(json: json, owner: owner)
 			case "AuditEventAgentNetwork":
-				return AuditEventAgentNetwork(json: json, owner: owner)
+				return try AuditEventAgentNetwork(json: json, owner: owner)
 			case "AuditEventEntity":
-				return AuditEventEntity(json: json, owner: owner)
+				return try AuditEventEntity(json: json, owner: owner)
 			case "AuditEventEntityDetail":
-				return AuditEventEntityDetail(json: json, owner: owner)
+				return try AuditEventEntityDetail(json: json, owner: owner)
 			case "AuditEventSource":
-				return AuditEventSource(json: json, owner: owner)
+				return try AuditEventSource(json: json, owner: owner)
 			case "BackboneElement":
-				return BackboneElement(json: json, owner: owner)
+				return try BackboneElement(json: json, owner: owner)
 			case "Basic":
-				return Basic(json: json, owner: owner)
+				return try Basic(json: json, owner: owner)
 			case "Binary":
-				return Binary(json: json, owner: owner)
+				return try Binary(json: json, owner: owner)
 			case "BodySite":
-				return BodySite(json: json, owner: owner)
+				return try BodySite(json: json, owner: owner)
 			case "Bundle":
-				return Bundle(json: json, owner: owner)
+				return try Bundle(json: json, owner: owner)
 			case "BundleEntry":
-				return BundleEntry(json: json, owner: owner)
+				return try BundleEntry(json: json, owner: owner)
 			case "BundleEntryRequest":
-				return BundleEntryRequest(json: json, owner: owner)
+				return try BundleEntryRequest(json: json, owner: owner)
 			case "BundleEntryResponse":
-				return BundleEntryResponse(json: json, owner: owner)
+				return try BundleEntryResponse(json: json, owner: owner)
 			case "BundleEntrySearch":
-				return BundleEntrySearch(json: json, owner: owner)
+				return try BundleEntrySearch(json: json, owner: owner)
 			case "BundleLink":
-				return BundleLink(json: json, owner: owner)
+				return try BundleLink(json: json, owner: owner)
 			case "CapabilityStatement":
-				return CapabilityStatement(json: json, owner: owner)
+				return try CapabilityStatement(json: json, owner: owner)
 			case "CapabilityStatementDocument":
-				return CapabilityStatementDocument(json: json, owner: owner)
+				return try CapabilityStatementDocument(json: json, owner: owner)
 			case "CapabilityStatementImplementation":
-				return CapabilityStatementImplementation(json: json, owner: owner)
+				return try CapabilityStatementImplementation(json: json, owner: owner)
 			case "CapabilityStatementMessaging":
-				return CapabilityStatementMessaging(json: json, owner: owner)
+				return try CapabilityStatementMessaging(json: json, owner: owner)
 			case "CapabilityStatementMessagingEndpoint":
-				return CapabilityStatementMessagingEndpoint(json: json, owner: owner)
+				return try CapabilityStatementMessagingEndpoint(json: json, owner: owner)
 			case "CapabilityStatementMessagingEvent":
-				return CapabilityStatementMessagingEvent(json: json, owner: owner)
+				return try CapabilityStatementMessagingEvent(json: json, owner: owner)
 			case "CapabilityStatementRest":
-				return CapabilityStatementRest(json: json, owner: owner)
+				return try CapabilityStatementRest(json: json, owner: owner)
 			case "CapabilityStatementRestInteraction":
-				return CapabilityStatementRestInteraction(json: json, owner: owner)
+				return try CapabilityStatementRestInteraction(json: json, owner: owner)
 			case "CapabilityStatementRestOperation":
-				return CapabilityStatementRestOperation(json: json, owner: owner)
+				return try CapabilityStatementRestOperation(json: json, owner: owner)
 			case "CapabilityStatementRestResource":
-				return CapabilityStatementRestResource(json: json, owner: owner)
+				return try CapabilityStatementRestResource(json: json, owner: owner)
 			case "CapabilityStatementRestResourceInteraction":
-				return CapabilityStatementRestResourceInteraction(json: json, owner: owner)
+				return try CapabilityStatementRestResourceInteraction(json: json, owner: owner)
 			case "CapabilityStatementRestResourceSearchParam":
-				return CapabilityStatementRestResourceSearchParam(json: json, owner: owner)
+				return try CapabilityStatementRestResourceSearchParam(json: json, owner: owner)
 			case "CapabilityStatementRestSecurity":
-				return CapabilityStatementRestSecurity(json: json, owner: owner)
+				return try CapabilityStatementRestSecurity(json: json, owner: owner)
 			case "CapabilityStatementRestSecurityCertificate":
-				return CapabilityStatementRestSecurityCertificate(json: json, owner: owner)
+				return try CapabilityStatementRestSecurityCertificate(json: json, owner: owner)
 			case "CapabilityStatementSoftware":
-				return CapabilityStatementSoftware(json: json, owner: owner)
+				return try CapabilityStatementSoftware(json: json, owner: owner)
 			case "CarePlan":
-				return CarePlan(json: json, owner: owner)
+				return try CarePlan(json: json, owner: owner)
 			case "CarePlanActivity":
-				return CarePlanActivity(json: json, owner: owner)
+				return try CarePlanActivity(json: json, owner: owner)
 			case "CarePlanActivityDetail":
-				return CarePlanActivityDetail(json: json, owner: owner)
+				return try CarePlanActivityDetail(json: json, owner: owner)
 			case "CarePlanRelatedPlan":
-				return CarePlanRelatedPlan(json: json, owner: owner)
+				return try CarePlanRelatedPlan(json: json, owner: owner)
 			case "CareTeam":
-				return CareTeam(json: json, owner: owner)
+				return try CareTeam(json: json, owner: owner)
 			case "CareTeamParticipant":
-				return CareTeamParticipant(json: json, owner: owner)
+				return try CareTeamParticipant(json: json, owner: owner)
 			case "Claim":
-				return Claim(json: json, owner: owner)
+				return try Claim(json: json, owner: owner)
 			case "ClaimAccident":
-				return ClaimAccident(json: json, owner: owner)
+				return try ClaimAccident(json: json, owner: owner)
 			case "ClaimCoverage":
-				return ClaimCoverage(json: json, owner: owner)
+				return try ClaimCoverage(json: json, owner: owner)
 			case "ClaimDiagnosis":
-				return ClaimDiagnosis(json: json, owner: owner)
+				return try ClaimDiagnosis(json: json, owner: owner)
 			case "ClaimInformation":
-				return ClaimInformation(json: json, owner: owner)
+				return try ClaimInformation(json: json, owner: owner)
 			case "ClaimItem":
-				return ClaimItem(json: json, owner: owner)
+				return try ClaimItem(json: json, owner: owner)
 			case "ClaimItemCareTeam":
-				return ClaimItemCareTeam(json: json, owner: owner)
+				return try ClaimItemCareTeam(json: json, owner: owner)
 			case "ClaimItemDetail":
-				return ClaimItemDetail(json: json, owner: owner)
+				return try ClaimItemDetail(json: json, owner: owner)
 			case "ClaimItemDetailSubDetail":
-				return ClaimItemDetailSubDetail(json: json, owner: owner)
+				return try ClaimItemDetailSubDetail(json: json, owner: owner)
 			case "ClaimItemProsthesis":
-				return ClaimItemProsthesis(json: json, owner: owner)
+				return try ClaimItemProsthesis(json: json, owner: owner)
 			case "ClaimMissingTeeth":
-				return ClaimMissingTeeth(json: json, owner: owner)
+				return try ClaimMissingTeeth(json: json, owner: owner)
 			case "ClaimPayee":
-				return ClaimPayee(json: json, owner: owner)
+				return try ClaimPayee(json: json, owner: owner)
 			case "ClaimProcedure":
-				return ClaimProcedure(json: json, owner: owner)
+				return try ClaimProcedure(json: json, owner: owner)
 			case "ClaimRelated":
-				return ClaimRelated(json: json, owner: owner)
+				return try ClaimRelated(json: json, owner: owner)
 			case "ClaimResponse":
-				return ClaimResponse(json: json, owner: owner)
+				return try ClaimResponse(json: json, owner: owner)
 			case "ClaimResponseAddItem":
-				return ClaimResponseAddItem(json: json, owner: owner)
+				return try ClaimResponseAddItem(json: json, owner: owner)
 			case "ClaimResponseAddItemDetail":
-				return ClaimResponseAddItemDetail(json: json, owner: owner)
+				return try ClaimResponseAddItemDetail(json: json, owner: owner)
 			case "ClaimResponseCoverage":
-				return ClaimResponseCoverage(json: json, owner: owner)
+				return try ClaimResponseCoverage(json: json, owner: owner)
 			case "ClaimResponseError":
-				return ClaimResponseError(json: json, owner: owner)
+				return try ClaimResponseError(json: json, owner: owner)
 			case "ClaimResponseItem":
-				return ClaimResponseItem(json: json, owner: owner)
+				return try ClaimResponseItem(json: json, owner: owner)
 			case "ClaimResponseItemAdjudication":
-				return ClaimResponseItemAdjudication(json: json, owner: owner)
+				return try ClaimResponseItemAdjudication(json: json, owner: owner)
 			case "ClaimResponseItemDetail":
-				return ClaimResponseItemDetail(json: json, owner: owner)
+				return try ClaimResponseItemDetail(json: json, owner: owner)
 			case "ClaimResponseItemDetailSubDetail":
-				return ClaimResponseItemDetailSubDetail(json: json, owner: owner)
+				return try ClaimResponseItemDetailSubDetail(json: json, owner: owner)
 			case "ClaimResponseNote":
-				return ClaimResponseNote(json: json, owner: owner)
+				return try ClaimResponseNote(json: json, owner: owner)
 			case "ClaimResponsePayment":
-				return ClaimResponsePayment(json: json, owner: owner)
+				return try ClaimResponsePayment(json: json, owner: owner)
 			case "ClinicalImpression":
-				return ClinicalImpression(json: json, owner: owner)
+				return try ClinicalImpression(json: json, owner: owner)
 			case "ClinicalImpressionFinding":
-				return ClinicalImpressionFinding(json: json, owner: owner)
+				return try ClinicalImpressionFinding(json: json, owner: owner)
 			case "ClinicalImpressionInvestigation":
-				return ClinicalImpressionInvestigation(json: json, owner: owner)
+				return try ClinicalImpressionInvestigation(json: json, owner: owner)
 			case "CodeSystem":
-				return CodeSystem(json: json, owner: owner)
+				return try CodeSystem(json: json, owner: owner)
 			case "CodeSystemConcept":
-				return CodeSystemConcept(json: json, owner: owner)
+				return try CodeSystemConcept(json: json, owner: owner)
 			case "CodeSystemConceptDesignation":
-				return CodeSystemConceptDesignation(json: json, owner: owner)
+				return try CodeSystemConceptDesignation(json: json, owner: owner)
 			case "CodeSystemConceptProperty":
-				return CodeSystemConceptProperty(json: json, owner: owner)
+				return try CodeSystemConceptProperty(json: json, owner: owner)
 			case "CodeSystemFilter":
-				return CodeSystemFilter(json: json, owner: owner)
+				return try CodeSystemFilter(json: json, owner: owner)
 			case "CodeSystemProperty":
-				return CodeSystemProperty(json: json, owner: owner)
+				return try CodeSystemProperty(json: json, owner: owner)
 			case "CodeableConcept":
-				return CodeableConcept(json: json, owner: owner)
+				return try CodeableConcept(json: json, owner: owner)
 			case "Coding":
-				return Coding(json: json, owner: owner)
+				return try Coding(json: json, owner: owner)
 			case "Communication":
-				return Communication(json: json, owner: owner)
+				return try Communication(json: json, owner: owner)
 			case "CommunicationPayload":
-				return CommunicationPayload(json: json, owner: owner)
+				return try CommunicationPayload(json: json, owner: owner)
 			case "CommunicationRequest":
-				return CommunicationRequest(json: json, owner: owner)
+				return try CommunicationRequest(json: json, owner: owner)
 			case "CommunicationRequestPayload":
-				return CommunicationRequestPayload(json: json, owner: owner)
+				return try CommunicationRequestPayload(json: json, owner: owner)
 			case "CompartmentDefinition":
-				return CompartmentDefinition(json: json, owner: owner)
+				return try CompartmentDefinition(json: json, owner: owner)
 			case "CompartmentDefinitionResource":
-				return CompartmentDefinitionResource(json: json, owner: owner)
+				return try CompartmentDefinitionResource(json: json, owner: owner)
 			case "Composition":
-				return Composition(json: json, owner: owner)
+				return try Composition(json: json, owner: owner)
 			case "CompositionAttester":
-				return CompositionAttester(json: json, owner: owner)
+				return try CompositionAttester(json: json, owner: owner)
 			case "CompositionEvent":
-				return CompositionEvent(json: json, owner: owner)
+				return try CompositionEvent(json: json, owner: owner)
 			case "CompositionSection":
-				return CompositionSection(json: json, owner: owner)
+				return try CompositionSection(json: json, owner: owner)
 			case "ConceptMap":
-				return ConceptMap(json: json, owner: owner)
+				return try ConceptMap(json: json, owner: owner)
 			case "ConceptMapGroup":
-				return ConceptMapGroup(json: json, owner: owner)
+				return try ConceptMapGroup(json: json, owner: owner)
 			case "ConceptMapGroupElement":
-				return ConceptMapGroupElement(json: json, owner: owner)
+				return try ConceptMapGroupElement(json: json, owner: owner)
 			case "ConceptMapGroupElementTarget":
-				return ConceptMapGroupElementTarget(json: json, owner: owner)
+				return try ConceptMapGroupElementTarget(json: json, owner: owner)
 			case "ConceptMapGroupElementTargetDependsOn":
-				return ConceptMapGroupElementTargetDependsOn(json: json, owner: owner)
+				return try ConceptMapGroupElementTargetDependsOn(json: json, owner: owner)
 			case "Condition":
-				return Condition(json: json, owner: owner)
+				return try Condition(json: json, owner: owner)
 			case "ConditionEvidence":
-				return ConditionEvidence(json: json, owner: owner)
+				return try ConditionEvidence(json: json, owner: owner)
 			case "ConditionStage":
-				return ConditionStage(json: json, owner: owner)
+				return try ConditionStage(json: json, owner: owner)
 			case "Consent":
-				return Consent(json: json, owner: owner)
+				return try Consent(json: json, owner: owner)
 			case "ConsentExcept":
-				return ConsentExcept(json: json, owner: owner)
+				return try ConsentExcept(json: json, owner: owner)
 			case "ConsentExceptActor":
-				return ConsentExceptActor(json: json, owner: owner)
+				return try ConsentExceptActor(json: json, owner: owner)
 			case "ConsentExceptData":
-				return ConsentExceptData(json: json, owner: owner)
+				return try ConsentExceptData(json: json, owner: owner)
 			case "ContactDetail":
-				return ContactDetail(json: json, owner: owner)
+				return try ContactDetail(json: json, owner: owner)
 			case "ContactPoint":
-				return ContactPoint(json: json, owner: owner)
+				return try ContactPoint(json: json, owner: owner)
 			case "Contract":
-				return Contract(json: json, owner: owner)
+				return try Contract(json: json, owner: owner)
 			case "ContractAgent":
-				return ContractAgent(json: json, owner: owner)
+				return try ContractAgent(json: json, owner: owner)
 			case "ContractFriendly":
-				return ContractFriendly(json: json, owner: owner)
+				return try ContractFriendly(json: json, owner: owner)
 			case "ContractLegal":
-				return ContractLegal(json: json, owner: owner)
+				return try ContractLegal(json: json, owner: owner)
 			case "ContractRule":
-				return ContractRule(json: json, owner: owner)
+				return try ContractRule(json: json, owner: owner)
 			case "ContractSigner":
-				return ContractSigner(json: json, owner: owner)
+				return try ContractSigner(json: json, owner: owner)
 			case "ContractTerm":
-				return ContractTerm(json: json, owner: owner)
+				return try ContractTerm(json: json, owner: owner)
 			case "ContractTermAgent":
-				return ContractTermAgent(json: json, owner: owner)
+				return try ContractTermAgent(json: json, owner: owner)
 			case "ContractTermValuedItem":
-				return ContractTermValuedItem(json: json, owner: owner)
+				return try ContractTermValuedItem(json: json, owner: owner)
 			case "ContractValuedItem":
-				return ContractValuedItem(json: json, owner: owner)
+				return try ContractValuedItem(json: json, owner: owner)
 			case "Contributor":
-				return Contributor(json: json, owner: owner)
+				return try Contributor(json: json, owner: owner)
 			case "Count":
-				return Count(json: json, owner: owner)
+				return try Count(json: json, owner: owner)
 			case "Coverage":
-				return Coverage(json: json, owner: owner)
+				return try Coverage(json: json, owner: owner)
 			case "DataElement":
-				return DataElement(json: json, owner: owner)
+				return try DataElement(json: json, owner: owner)
 			case "DataElementMapping":
-				return DataElementMapping(json: json, owner: owner)
+				return try DataElementMapping(json: json, owner: owner)
 			case "DataRequirement":
-				return DataRequirement(json: json, owner: owner)
+				return try DataRequirement(json: json, owner: owner)
 			case "DataRequirementCodeFilter":
-				return DataRequirementCodeFilter(json: json, owner: owner)
+				return try DataRequirementCodeFilter(json: json, owner: owner)
 			case "DataRequirementDateFilter":
-				return DataRequirementDateFilter(json: json, owner: owner)
-			case "DecisionSupportServiceModule":
-				return DecisionSupportServiceModule(json: json, owner: owner)
+				return try DataRequirementDateFilter(json: json, owner: owner)
 			case "DetectedIssue":
-				return DetectedIssue(json: json, owner: owner)
+				return try DetectedIssue(json: json, owner: owner)
 			case "DetectedIssueMitigation":
-				return DetectedIssueMitigation(json: json, owner: owner)
+				return try DetectedIssueMitigation(json: json, owner: owner)
 			case "Device":
-				return Device(json: json, owner: owner)
+				return try Device(json: json, owner: owner)
 			case "DeviceComponent":
-				return DeviceComponent(json: json, owner: owner)
+				return try DeviceComponent(json: json, owner: owner)
 			case "DeviceComponentProductionSpecification":
-				return DeviceComponentProductionSpecification(json: json, owner: owner)
+				return try DeviceComponentProductionSpecification(json: json, owner: owner)
 			case "DeviceMetric":
-				return DeviceMetric(json: json, owner: owner)
+				return try DeviceMetric(json: json, owner: owner)
 			case "DeviceMetricCalibration":
-				return DeviceMetricCalibration(json: json, owner: owner)
+				return try DeviceMetricCalibration(json: json, owner: owner)
 			case "DeviceUseRequest":
-				return DeviceUseRequest(json: json, owner: owner)
+				return try DeviceUseRequest(json: json, owner: owner)
 			case "DeviceUseStatement":
-				return DeviceUseStatement(json: json, owner: owner)
+				return try DeviceUseStatement(json: json, owner: owner)
 			case "DiagnosticReport":
-				return DiagnosticReport(json: json, owner: owner)
+				return try DiagnosticReport(json: json, owner: owner)
 			case "DiagnosticReportImage":
-				return DiagnosticReportImage(json: json, owner: owner)
+				return try DiagnosticReportImage(json: json, owner: owner)
 			case "DiagnosticRequest":
-				return DiagnosticRequest(json: json, owner: owner)
+				return try DiagnosticRequest(json: json, owner: owner)
 			case "Distance":
-				return Distance(json: json, owner: owner)
+				return try Distance(json: json, owner: owner)
 			case "DocumentManifest":
-				return DocumentManifest(json: json, owner: owner)
+				return try DocumentManifest(json: json, owner: owner)
 			case "DocumentManifestContent":
-				return DocumentManifestContent(json: json, owner: owner)
+				return try DocumentManifestContent(json: json, owner: owner)
 			case "DocumentManifestRelated":
-				return DocumentManifestRelated(json: json, owner: owner)
+				return try DocumentManifestRelated(json: json, owner: owner)
 			case "DocumentReference":
-				return DocumentReference(json: json, owner: owner)
+				return try DocumentReference(json: json, owner: owner)
 			case "DocumentReferenceContent":
-				return DocumentReferenceContent(json: json, owner: owner)
+				return try DocumentReferenceContent(json: json, owner: owner)
 			case "DocumentReferenceContext":
-				return DocumentReferenceContext(json: json, owner: owner)
+				return try DocumentReferenceContext(json: json, owner: owner)
 			case "DocumentReferenceContextRelated":
-				return DocumentReferenceContextRelated(json: json, owner: owner)
+				return try DocumentReferenceContextRelated(json: json, owner: owner)
 			case "DocumentReferenceRelatesTo":
-				return DocumentReferenceRelatesTo(json: json, owner: owner)
+				return try DocumentReferenceRelatesTo(json: json, owner: owner)
 			case "DomainResource":
-				return DomainResource(json: json, owner: owner)
+				return try DomainResource(json: json, owner: owner)
 			case "DosageInstruction":
-				return DosageInstruction(json: json, owner: owner)
+				return try DosageInstruction(json: json, owner: owner)
 			case "Duration":
-				return Duration(json: json, owner: owner)
+				return try Duration(json: json, owner: owner)
 			case "Element":
-				return Element(json: json, owner: owner)
+				return try Element(json: json, owner: owner)
 			case "ElementDefinition":
-				return ElementDefinition(json: json, owner: owner)
+				return try ElementDefinition(json: json, owner: owner)
 			case "ElementDefinitionBase":
-				return ElementDefinitionBase(json: json, owner: owner)
+				return try ElementDefinitionBase(json: json, owner: owner)
 			case "ElementDefinitionBinding":
-				return ElementDefinitionBinding(json: json, owner: owner)
+				return try ElementDefinitionBinding(json: json, owner: owner)
 			case "ElementDefinitionConstraint":
-				return ElementDefinitionConstraint(json: json, owner: owner)
+				return try ElementDefinitionConstraint(json: json, owner: owner)
 			case "ElementDefinitionMapping":
-				return ElementDefinitionMapping(json: json, owner: owner)
+				return try ElementDefinitionMapping(json: json, owner: owner)
 			case "ElementDefinitionSlicing":
-				return ElementDefinitionSlicing(json: json, owner: owner)
+				return try ElementDefinitionSlicing(json: json, owner: owner)
 			case "ElementDefinitionType":
-				return ElementDefinitionType(json: json, owner: owner)
+				return try ElementDefinitionType(json: json, owner: owner)
 			case "EligibilityRequest":
-				return EligibilityRequest(json: json, owner: owner)
+				return try EligibilityRequest(json: json, owner: owner)
 			case "EligibilityResponse":
-				return EligibilityResponse(json: json, owner: owner)
+				return try EligibilityResponse(json: json, owner: owner)
 			case "EligibilityResponseBenefitBalance":
-				return EligibilityResponseBenefitBalance(json: json, owner: owner)
+				return try EligibilityResponseBenefitBalance(json: json, owner: owner)
 			case "EligibilityResponseBenefitBalanceFinancial":
-				return EligibilityResponseBenefitBalanceFinancial(json: json, owner: owner)
+				return try EligibilityResponseBenefitBalanceFinancial(json: json, owner: owner)
 			case "EligibilityResponseError":
-				return EligibilityResponseError(json: json, owner: owner)
+				return try EligibilityResponseError(json: json, owner: owner)
 			case "Encounter":
-				return Encounter(json: json, owner: owner)
+				return try Encounter(json: json, owner: owner)
 			case "EncounterHospitalization":
-				return EncounterHospitalization(json: json, owner: owner)
+				return try EncounterHospitalization(json: json, owner: owner)
 			case "EncounterLocation":
-				return EncounterLocation(json: json, owner: owner)
+				return try EncounterLocation(json: json, owner: owner)
 			case "EncounterParticipant":
-				return EncounterParticipant(json: json, owner: owner)
+				return try EncounterParticipant(json: json, owner: owner)
 			case "EncounterStatusHistory":
-				return EncounterStatusHistory(json: json, owner: owner)
+				return try EncounterStatusHistory(json: json, owner: owner)
 			case "Endpoint":
-				return Endpoint(json: json, owner: owner)
+				return try Endpoint(json: json, owner: owner)
 			case "EnrollmentRequest":
-				return EnrollmentRequest(json: json, owner: owner)
+				return try EnrollmentRequest(json: json, owner: owner)
 			case "EnrollmentResponse":
-				return EnrollmentResponse(json: json, owner: owner)
+				return try EnrollmentResponse(json: json, owner: owner)
 			case "EpisodeOfCare":
-				return EpisodeOfCare(json: json, owner: owner)
+				return try EpisodeOfCare(json: json, owner: owner)
 			case "EpisodeOfCareStatusHistory":
-				return EpisodeOfCareStatusHistory(json: json, owner: owner)
+				return try EpisodeOfCareStatusHistory(json: json, owner: owner)
 			case "ExpansionProfile":
-				return ExpansionProfile(json: json, owner: owner)
+				return try ExpansionProfile(json: json, owner: owner)
 			case "ExpansionProfileDesignation":
-				return ExpansionProfileDesignation(json: json, owner: owner)
+				return try ExpansionProfileDesignation(json: json, owner: owner)
 			case "ExpansionProfileDesignationExclude":
-				return ExpansionProfileDesignationExclude(json: json, owner: owner)
+				return try ExpansionProfileDesignationExclude(json: json, owner: owner)
 			case "ExpansionProfileDesignationExcludeDesignation":
-				return ExpansionProfileDesignationExcludeDesignation(json: json, owner: owner)
+				return try ExpansionProfileDesignationExcludeDesignation(json: json, owner: owner)
 			case "ExpansionProfileDesignationInclude":
-				return ExpansionProfileDesignationInclude(json: json, owner: owner)
+				return try ExpansionProfileDesignationInclude(json: json, owner: owner)
 			case "ExpansionProfileDesignationIncludeDesignation":
-				return ExpansionProfileDesignationIncludeDesignation(json: json, owner: owner)
+				return try ExpansionProfileDesignationIncludeDesignation(json: json, owner: owner)
 			case "ExpansionProfileExcludedSystem":
-				return ExpansionProfileExcludedSystem(json: json, owner: owner)
+				return try ExpansionProfileExcludedSystem(json: json, owner: owner)
 			case "ExpansionProfileFixedVersion":
-				return ExpansionProfileFixedVersion(json: json, owner: owner)
+				return try ExpansionProfileFixedVersion(json: json, owner: owner)
 			case "ExplanationOfBenefit":
-				return ExplanationOfBenefit(json: json, owner: owner)
+				return try ExplanationOfBenefit(json: json, owner: owner)
 			case "ExplanationOfBenefitAccident":
-				return ExplanationOfBenefitAccident(json: json, owner: owner)
+				return try ExplanationOfBenefitAccident(json: json, owner: owner)
 			case "ExplanationOfBenefitAddItem":
-				return ExplanationOfBenefitAddItem(json: json, owner: owner)
+				return try ExplanationOfBenefitAddItem(json: json, owner: owner)
 			case "ExplanationOfBenefitAddItemDetail":
-				return ExplanationOfBenefitAddItemDetail(json: json, owner: owner)
+				return try ExplanationOfBenefitAddItemDetail(json: json, owner: owner)
 			case "ExplanationOfBenefitBenefitBalance":
-				return ExplanationOfBenefitBenefitBalance(json: json, owner: owner)
+				return try ExplanationOfBenefitBenefitBalance(json: json, owner: owner)
 			case "ExplanationOfBenefitBenefitBalanceFinancial":
-				return ExplanationOfBenefitBenefitBalanceFinancial(json: json, owner: owner)
+				return try ExplanationOfBenefitBenefitBalanceFinancial(json: json, owner: owner)
 			case "ExplanationOfBenefitCoverage":
-				return ExplanationOfBenefitCoverage(json: json, owner: owner)
+				return try ExplanationOfBenefitCoverage(json: json, owner: owner)
 			case "ExplanationOfBenefitDiagnosis":
-				return ExplanationOfBenefitDiagnosis(json: json, owner: owner)
+				return try ExplanationOfBenefitDiagnosis(json: json, owner: owner)
 			case "ExplanationOfBenefitInformation":
-				return ExplanationOfBenefitInformation(json: json, owner: owner)
+				return try ExplanationOfBenefitInformation(json: json, owner: owner)
 			case "ExplanationOfBenefitItem":
-				return ExplanationOfBenefitItem(json: json, owner: owner)
+				return try ExplanationOfBenefitItem(json: json, owner: owner)
 			case "ExplanationOfBenefitItemAdjudication":
-				return ExplanationOfBenefitItemAdjudication(json: json, owner: owner)
+				return try ExplanationOfBenefitItemAdjudication(json: json, owner: owner)
 			case "ExplanationOfBenefitItemCareTeam":
-				return ExplanationOfBenefitItemCareTeam(json: json, owner: owner)
+				return try ExplanationOfBenefitItemCareTeam(json: json, owner: owner)
 			case "ExplanationOfBenefitItemDetail":
-				return ExplanationOfBenefitItemDetail(json: json, owner: owner)
+				return try ExplanationOfBenefitItemDetail(json: json, owner: owner)
 			case "ExplanationOfBenefitItemDetailSubDetail":
-				return ExplanationOfBenefitItemDetailSubDetail(json: json, owner: owner)
+				return try ExplanationOfBenefitItemDetailSubDetail(json: json, owner: owner)
 			case "ExplanationOfBenefitItemProsthesis":
-				return ExplanationOfBenefitItemProsthesis(json: json, owner: owner)
+				return try ExplanationOfBenefitItemProsthesis(json: json, owner: owner)
 			case "ExplanationOfBenefitMissingTeeth":
-				return ExplanationOfBenefitMissingTeeth(json: json, owner: owner)
+				return try ExplanationOfBenefitMissingTeeth(json: json, owner: owner)
 			case "ExplanationOfBenefitNote":
-				return ExplanationOfBenefitNote(json: json, owner: owner)
+				return try ExplanationOfBenefitNote(json: json, owner: owner)
 			case "ExplanationOfBenefitPayee":
-				return ExplanationOfBenefitPayee(json: json, owner: owner)
+				return try ExplanationOfBenefitPayee(json: json, owner: owner)
 			case "ExplanationOfBenefitPayment":
-				return ExplanationOfBenefitPayment(json: json, owner: owner)
+				return try ExplanationOfBenefitPayment(json: json, owner: owner)
 			case "ExplanationOfBenefitProcedure":
-				return ExplanationOfBenefitProcedure(json: json, owner: owner)
+				return try ExplanationOfBenefitProcedure(json: json, owner: owner)
 			case "ExplanationOfBenefitRelated":
-				return ExplanationOfBenefitRelated(json: json, owner: owner)
+				return try ExplanationOfBenefitRelated(json: json, owner: owner)
 			case "Extension":
-				return Extension(json: json, owner: owner)
+				return try Extension(json: json, owner: owner)
 			case "FamilyMemberHistory":
-				return FamilyMemberHistory(json: json, owner: owner)
+				return try FamilyMemberHistory(json: json, owner: owner)
 			case "FamilyMemberHistoryCondition":
-				return FamilyMemberHistoryCondition(json: json, owner: owner)
+				return try FamilyMemberHistoryCondition(json: json, owner: owner)
 			case "Flag":
-				return Flag(json: json, owner: owner)
+				return try Flag(json: json, owner: owner)
 			case "Goal":
-				return Goal(json: json, owner: owner)
+				return try Goal(json: json, owner: owner)
 			case "GoalOutcome":
-				return GoalOutcome(json: json, owner: owner)
+				return try GoalOutcome(json: json, owner: owner)
 			case "Group":
-				return Group(json: json, owner: owner)
+				return try Group(json: json, owner: owner)
 			case "GroupCharacteristic":
-				return GroupCharacteristic(json: json, owner: owner)
+				return try GroupCharacteristic(json: json, owner: owner)
 			case "GroupMember":
-				return GroupMember(json: json, owner: owner)
+				return try GroupMember(json: json, owner: owner)
 			case "GuidanceResponse":
-				return GuidanceResponse(json: json, owner: owner)
-			case "GuidanceResponseAction":
-				return GuidanceResponseAction(json: json, owner: owner)
-			case "GuidanceResponseActionRelatedAction":
-				return GuidanceResponseActionRelatedAction(json: json, owner: owner)
+				return try GuidanceResponse(json: json, owner: owner)
 			case "HealthcareService":
-				return HealthcareService(json: json, owner: owner)
+				return try HealthcareService(json: json, owner: owner)
 			case "HealthcareServiceAvailableTime":
-				return HealthcareServiceAvailableTime(json: json, owner: owner)
+				return try HealthcareServiceAvailableTime(json: json, owner: owner)
 			case "HealthcareServiceNotAvailable":
-				return HealthcareServiceNotAvailable(json: json, owner: owner)
+				return try HealthcareServiceNotAvailable(json: json, owner: owner)
 			case "HumanName":
-				return HumanName(json: json, owner: owner)
+				return try HumanName(json: json, owner: owner)
 			case "Identifier":
-				return Identifier(json: json, owner: owner)
+				return try Identifier(json: json, owner: owner)
 			case "ImagingManifest":
-				return ImagingManifest(json: json, owner: owner)
+				return try ImagingManifest(json: json, owner: owner)
 			case "ImagingManifestStudy":
-				return ImagingManifestStudy(json: json, owner: owner)
+				return try ImagingManifestStudy(json: json, owner: owner)
 			case "ImagingManifestStudyBaseLocation":
-				return ImagingManifestStudyBaseLocation(json: json, owner: owner)
+				return try ImagingManifestStudyBaseLocation(json: json, owner: owner)
 			case "ImagingManifestStudySeries":
-				return ImagingManifestStudySeries(json: json, owner: owner)
+				return try ImagingManifestStudySeries(json: json, owner: owner)
 			case "ImagingManifestStudySeriesBaseLocation":
-				return ImagingManifestStudySeriesBaseLocation(json: json, owner: owner)
+				return try ImagingManifestStudySeriesBaseLocation(json: json, owner: owner)
 			case "ImagingManifestStudySeriesInstance":
-				return ImagingManifestStudySeriesInstance(json: json, owner: owner)
+				return try ImagingManifestStudySeriesInstance(json: json, owner: owner)
 			case "ImagingStudy":
-				return ImagingStudy(json: json, owner: owner)
+				return try ImagingStudy(json: json, owner: owner)
 			case "ImagingStudyBaseLocation":
-				return ImagingStudyBaseLocation(json: json, owner: owner)
+				return try ImagingStudyBaseLocation(json: json, owner: owner)
 			case "ImagingStudySeries":
-				return ImagingStudySeries(json: json, owner: owner)
+				return try ImagingStudySeries(json: json, owner: owner)
 			case "ImagingStudySeriesBaseLocation":
-				return ImagingStudySeriesBaseLocation(json: json, owner: owner)
+				return try ImagingStudySeriesBaseLocation(json: json, owner: owner)
 			case "ImagingStudySeriesInstance":
-				return ImagingStudySeriesInstance(json: json, owner: owner)
+				return try ImagingStudySeriesInstance(json: json, owner: owner)
 			case "Immunization":
-				return Immunization(json: json, owner: owner)
+				return try Immunization(json: json, owner: owner)
 			case "ImmunizationExplanation":
-				return ImmunizationExplanation(json: json, owner: owner)
+				return try ImmunizationExplanation(json: json, owner: owner)
 			case "ImmunizationReaction":
-				return ImmunizationReaction(json: json, owner: owner)
+				return try ImmunizationReaction(json: json, owner: owner)
 			case "ImmunizationRecommendation":
-				return ImmunizationRecommendation(json: json, owner: owner)
+				return try ImmunizationRecommendation(json: json, owner: owner)
 			case "ImmunizationRecommendationRecommendation":
-				return ImmunizationRecommendationRecommendation(json: json, owner: owner)
+				return try ImmunizationRecommendationRecommendation(json: json, owner: owner)
 			case "ImmunizationRecommendationRecommendationDateCriterion":
-				return ImmunizationRecommendationRecommendationDateCriterion(json: json, owner: owner)
+				return try ImmunizationRecommendationRecommendationDateCriterion(json: json, owner: owner)
 			case "ImmunizationRecommendationRecommendationProtocol":
-				return ImmunizationRecommendationRecommendationProtocol(json: json, owner: owner)
+				return try ImmunizationRecommendationRecommendationProtocol(json: json, owner: owner)
 			case "ImmunizationVaccinationProtocol":
-				return ImmunizationVaccinationProtocol(json: json, owner: owner)
+				return try ImmunizationVaccinationProtocol(json: json, owner: owner)
 			case "ImplementationGuide":
-				return ImplementationGuide(json: json, owner: owner)
+				return try ImplementationGuide(json: json, owner: owner)
 			case "ImplementationGuideDependency":
-				return ImplementationGuideDependency(json: json, owner: owner)
+				return try ImplementationGuideDependency(json: json, owner: owner)
 			case "ImplementationGuideGlobal":
-				return ImplementationGuideGlobal(json: json, owner: owner)
+				return try ImplementationGuideGlobal(json: json, owner: owner)
 			case "ImplementationGuidePackage":
-				return ImplementationGuidePackage(json: json, owner: owner)
+				return try ImplementationGuidePackage(json: json, owner: owner)
 			case "ImplementationGuidePackageResource":
-				return ImplementationGuidePackageResource(json: json, owner: owner)
+				return try ImplementationGuidePackageResource(json: json, owner: owner)
 			case "ImplementationGuidePage":
-				return ImplementationGuidePage(json: json, owner: owner)
+				return try ImplementationGuidePage(json: json, owner: owner)
 			case "Library":
-				return Library(json: json, owner: owner)
+				return try Library(json: json, owner: owner)
 			case "Linkage":
-				return Linkage(json: json, owner: owner)
+				return try Linkage(json: json, owner: owner)
 			case "LinkageItem":
-				return LinkageItem(json: json, owner: owner)
+				return try LinkageItem(json: json, owner: owner)
 			case "List":
-				return List(json: json, owner: owner)
+				return try List(json: json, owner: owner)
 			case "ListEntry":
-				return ListEntry(json: json, owner: owner)
+				return try ListEntry(json: json, owner: owner)
 			case "Location":
-				return Location(json: json, owner: owner)
+				return try Location(json: json, owner: owner)
 			case "LocationPosition":
-				return LocationPosition(json: json, owner: owner)
+				return try LocationPosition(json: json, owner: owner)
 			case "Measure":
-				return Measure(json: json, owner: owner)
+				return try Measure(json: json, owner: owner)
 			case "MeasureGroup":
-				return MeasureGroup(json: json, owner: owner)
+				return try MeasureGroup(json: json, owner: owner)
 			case "MeasureGroupPopulation":
-				return MeasureGroupPopulation(json: json, owner: owner)
+				return try MeasureGroupPopulation(json: json, owner: owner)
 			case "MeasureGroupStratifier":
-				return MeasureGroupStratifier(json: json, owner: owner)
+				return try MeasureGroupStratifier(json: json, owner: owner)
 			case "MeasureReport":
-				return MeasureReport(json: json, owner: owner)
+				return try MeasureReport(json: json, owner: owner)
 			case "MeasureReportGroup":
-				return MeasureReportGroup(json: json, owner: owner)
+				return try MeasureReportGroup(json: json, owner: owner)
 			case "MeasureReportGroupPopulation":
-				return MeasureReportGroupPopulation(json: json, owner: owner)
+				return try MeasureReportGroupPopulation(json: json, owner: owner)
 			case "MeasureReportGroupStratifier":
-				return MeasureReportGroupStratifier(json: json, owner: owner)
+				return try MeasureReportGroupStratifier(json: json, owner: owner)
 			case "MeasureReportGroupStratifierGroup":
-				return MeasureReportGroupStratifierGroup(json: json, owner: owner)
+				return try MeasureReportGroupStratifierGroup(json: json, owner: owner)
 			case "MeasureReportGroupStratifierGroupPopulation":
-				return MeasureReportGroupStratifierGroupPopulation(json: json, owner: owner)
+				return try MeasureReportGroupStratifierGroupPopulation(json: json, owner: owner)
 			case "MeasureReportGroupSupplementalData":
-				return MeasureReportGroupSupplementalData(json: json, owner: owner)
+				return try MeasureReportGroupSupplementalData(json: json, owner: owner)
 			case "MeasureReportGroupSupplementalDataGroup":
-				return MeasureReportGroupSupplementalDataGroup(json: json, owner: owner)
+				return try MeasureReportGroupSupplementalDataGroup(json: json, owner: owner)
 			case "MeasureSupplementalData":
-				return MeasureSupplementalData(json: json, owner: owner)
+				return try MeasureSupplementalData(json: json, owner: owner)
 			case "Media":
-				return Media(json: json, owner: owner)
+				return try Media(json: json, owner: owner)
 			case "Medication":
-				return Medication(json: json, owner: owner)
+				return try Medication(json: json, owner: owner)
 			case "MedicationAdministration":
-				return MedicationAdministration(json: json, owner: owner)
+				return try MedicationAdministration(json: json, owner: owner)
 			case "MedicationAdministrationDosage":
-				return MedicationAdministrationDosage(json: json, owner: owner)
+				return try MedicationAdministrationDosage(json: json, owner: owner)
 			case "MedicationDispense":
-				return MedicationDispense(json: json, owner: owner)
+				return try MedicationDispense(json: json, owner: owner)
 			case "MedicationDispenseSubstitution":
-				return MedicationDispenseSubstitution(json: json, owner: owner)
-			case "MedicationOrder":
-				return MedicationOrder(json: json, owner: owner)
-			case "MedicationOrderDispenseRequest":
-				return MedicationOrderDispenseRequest(json: json, owner: owner)
-			case "MedicationOrderSubstitution":
-				return MedicationOrderSubstitution(json: json, owner: owner)
+				return try MedicationDispenseSubstitution(json: json, owner: owner)
 			case "MedicationPackage":
-				return MedicationPackage(json: json, owner: owner)
+				return try MedicationPackage(json: json, owner: owner)
 			case "MedicationPackageContent":
-				return MedicationPackageContent(json: json, owner: owner)
+				return try MedicationPackageContent(json: json, owner: owner)
 			case "MedicationProduct":
-				return MedicationProduct(json: json, owner: owner)
+				return try MedicationProduct(json: json, owner: owner)
 			case "MedicationProductBatch":
-				return MedicationProductBatch(json: json, owner: owner)
+				return try MedicationProductBatch(json: json, owner: owner)
 			case "MedicationProductIngredient":
-				return MedicationProductIngredient(json: json, owner: owner)
+				return try MedicationProductIngredient(json: json, owner: owner)
+			case "MedicationRequest":
+				return try MedicationRequest(json: json, owner: owner)
+			case "MedicationRequestDispenseRequest":
+				return try MedicationRequestDispenseRequest(json: json, owner: owner)
+			case "MedicationRequestSubstitution":
+				return try MedicationRequestSubstitution(json: json, owner: owner)
 			case "MedicationStatement":
-				return MedicationStatement(json: json, owner: owner)
+				return try MedicationStatement(json: json, owner: owner)
 			case "MessageHeader":
-				return MessageHeader(json: json, owner: owner)
+				return try MessageHeader(json: json, owner: owner)
 			case "MessageHeaderDestination":
-				return MessageHeaderDestination(json: json, owner: owner)
+				return try MessageHeaderDestination(json: json, owner: owner)
 			case "MessageHeaderResponse":
-				return MessageHeaderResponse(json: json, owner: owner)
+				return try MessageHeaderResponse(json: json, owner: owner)
 			case "MessageHeaderSource":
-				return MessageHeaderSource(json: json, owner: owner)
+				return try MessageHeaderSource(json: json, owner: owner)
 			case "Meta":
-				return Meta(json: json, owner: owner)
+				return try Meta(json: json, owner: owner)
 			case "MetadataResource":
-				return MetadataResource(json: json, owner: owner)
+				return try MetadataResource(json: json, owner: owner)
 			case "Money":
-				return Money(json: json, owner: owner)
+				return try Money(json: json, owner: owner)
 			case "NamingSystem":
-				return NamingSystem(json: json, owner: owner)
+				return try NamingSystem(json: json, owner: owner)
 			case "NamingSystemUniqueId":
-				return NamingSystemUniqueId(json: json, owner: owner)
+				return try NamingSystemUniqueId(json: json, owner: owner)
 			case "Narrative":
-				return Narrative(json: json, owner: owner)
+				return try Narrative(json: json, owner: owner)
 			case "NutritionRequest":
-				return NutritionRequest(json: json, owner: owner)
+				return try NutritionRequest(json: json, owner: owner)
 			case "NutritionRequestEnteralFormula":
-				return NutritionRequestEnteralFormula(json: json, owner: owner)
+				return try NutritionRequestEnteralFormula(json: json, owner: owner)
 			case "NutritionRequestEnteralFormulaAdministration":
-				return NutritionRequestEnteralFormulaAdministration(json: json, owner: owner)
+				return try NutritionRequestEnteralFormulaAdministration(json: json, owner: owner)
 			case "NutritionRequestOralDiet":
-				return NutritionRequestOralDiet(json: json, owner: owner)
+				return try NutritionRequestOralDiet(json: json, owner: owner)
 			case "NutritionRequestOralDietNutrient":
-				return NutritionRequestOralDietNutrient(json: json, owner: owner)
+				return try NutritionRequestOralDietNutrient(json: json, owner: owner)
 			case "NutritionRequestOralDietTexture":
-				return NutritionRequestOralDietTexture(json: json, owner: owner)
+				return try NutritionRequestOralDietTexture(json: json, owner: owner)
 			case "NutritionRequestSupplement":
-				return NutritionRequestSupplement(json: json, owner: owner)
+				return try NutritionRequestSupplement(json: json, owner: owner)
 			case "Observation":
-				return Observation(json: json, owner: owner)
+				return try Observation(json: json, owner: owner)
 			case "ObservationComponent":
-				return ObservationComponent(json: json, owner: owner)
+				return try ObservationComponent(json: json, owner: owner)
 			case "ObservationReferenceRange":
-				return ObservationReferenceRange(json: json, owner: owner)
+				return try ObservationReferenceRange(json: json, owner: owner)
 			case "ObservationRelated":
-				return ObservationRelated(json: json, owner: owner)
+				return try ObservationRelated(json: json, owner: owner)
 			case "OperationDefinition":
-				return OperationDefinition(json: json, owner: owner)
+				return try OperationDefinition(json: json, owner: owner)
 			case "OperationDefinitionOverload":
-				return OperationDefinitionOverload(json: json, owner: owner)
+				return try OperationDefinitionOverload(json: json, owner: owner)
 			case "OperationDefinitionParameter":
-				return OperationDefinitionParameter(json: json, owner: owner)
+				return try OperationDefinitionParameter(json: json, owner: owner)
 			case "OperationDefinitionParameterBinding":
-				return OperationDefinitionParameterBinding(json: json, owner: owner)
+				return try OperationDefinitionParameterBinding(json: json, owner: owner)
 			case "OperationOutcome":
-				return OperationOutcome(json: json, owner: owner)
+				return try OperationOutcome(json: json, owner: owner)
 			case "OperationOutcomeIssue":
-				return OperationOutcomeIssue(json: json, owner: owner)
+				return try OperationOutcomeIssue(json: json, owner: owner)
 			case "Organization":
-				return Organization(json: json, owner: owner)
+				return try Organization(json: json, owner: owner)
 			case "OrganizationContact":
-				return OrganizationContact(json: json, owner: owner)
+				return try OrganizationContact(json: json, owner: owner)
 			case "ParameterDefinition":
-				return ParameterDefinition(json: json, owner: owner)
+				return try ParameterDefinition(json: json, owner: owner)
 			case "Parameters":
-				return Parameters(json: json, owner: owner)
+				return try Parameters(json: json, owner: owner)
 			case "ParametersParameter":
-				return ParametersParameter(json: json, owner: owner)
+				return try ParametersParameter(json: json, owner: owner)
 			case "Patient":
-				return Patient(json: json, owner: owner)
+				return try Patient(json: json, owner: owner)
 			case "PatientAnimal":
-				return PatientAnimal(json: json, owner: owner)
+				return try PatientAnimal(json: json, owner: owner)
 			case "PatientCommunication":
-				return PatientCommunication(json: json, owner: owner)
+				return try PatientCommunication(json: json, owner: owner)
 			case "PatientContact":
-				return PatientContact(json: json, owner: owner)
+				return try PatientContact(json: json, owner: owner)
 			case "PatientLink":
-				return PatientLink(json: json, owner: owner)
+				return try PatientLink(json: json, owner: owner)
 			case "PaymentNotice":
-				return PaymentNotice(json: json, owner: owner)
+				return try PaymentNotice(json: json, owner: owner)
 			case "PaymentReconciliation":
-				return PaymentReconciliation(json: json, owner: owner)
+				return try PaymentReconciliation(json: json, owner: owner)
 			case "PaymentReconciliationDetail":
-				return PaymentReconciliationDetail(json: json, owner: owner)
+				return try PaymentReconciliationDetail(json: json, owner: owner)
 			case "PaymentReconciliationNote":
-				return PaymentReconciliationNote(json: json, owner: owner)
+				return try PaymentReconciliationNote(json: json, owner: owner)
 			case "Period":
-				return Period(json: json, owner: owner)
+				return try Period(json: json, owner: owner)
 			case "Person":
-				return Person(json: json, owner: owner)
+				return try Person(json: json, owner: owner)
 			case "PersonLink":
-				return PersonLink(json: json, owner: owner)
+				return try PersonLink(json: json, owner: owner)
 			case "PlanDefinition":
-				return PlanDefinition(json: json, owner: owner)
+				return try PlanDefinition(json: json, owner: owner)
 			case "PlanDefinitionActionDefinition":
-				return PlanDefinitionActionDefinition(json: json, owner: owner)
+				return try PlanDefinitionActionDefinition(json: json, owner: owner)
 			case "PlanDefinitionActionDefinitionCondition":
-				return PlanDefinitionActionDefinitionCondition(json: json, owner: owner)
+				return try PlanDefinitionActionDefinitionCondition(json: json, owner: owner)
 			case "PlanDefinitionActionDefinitionDynamicValue":
-				return PlanDefinitionActionDefinitionDynamicValue(json: json, owner: owner)
+				return try PlanDefinitionActionDefinitionDynamicValue(json: json, owner: owner)
 			case "PlanDefinitionActionDefinitionRelatedAction":
-				return PlanDefinitionActionDefinitionRelatedAction(json: json, owner: owner)
+				return try PlanDefinitionActionDefinitionRelatedAction(json: json, owner: owner)
 			case "Practitioner":
-				return Practitioner(json: json, owner: owner)
+				return try Practitioner(json: json, owner: owner)
 			case "PractitionerPractRole":
-				return PractitionerPractRole(json: json, owner: owner)
+				return try PractitionerPractRole(json: json, owner: owner)
 			case "PractitionerQualification":
-				return PractitionerQualification(json: json, owner: owner)
+				return try PractitionerQualification(json: json, owner: owner)
 			case "PractitionerRole":
-				return PractitionerRole(json: json, owner: owner)
+				return try PractitionerRole(json: json, owner: owner)
 			case "PractitionerRoleAvailableTime":
-				return PractitionerRoleAvailableTime(json: json, owner: owner)
+				return try PractitionerRoleAvailableTime(json: json, owner: owner)
 			case "PractitionerRoleNotAvailable":
-				return PractitionerRoleNotAvailable(json: json, owner: owner)
+				return try PractitionerRoleNotAvailable(json: json, owner: owner)
 			case "Procedure":
-				return Procedure(json: json, owner: owner)
+				return try Procedure(json: json, owner: owner)
 			case "ProcedureFocalDevice":
-				return ProcedureFocalDevice(json: json, owner: owner)
+				return try ProcedureFocalDevice(json: json, owner: owner)
 			case "ProcedurePerformer":
-				return ProcedurePerformer(json: json, owner: owner)
+				return try ProcedurePerformer(json: json, owner: owner)
 			case "ProcedureRequest":
-				return ProcedureRequest(json: json, owner: owner)
+				return try ProcedureRequest(json: json, owner: owner)
 			case "ProcessRequest":
-				return ProcessRequest(json: json, owner: owner)
+				return try ProcessRequest(json: json, owner: owner)
 			case "ProcessRequestItem":
-				return ProcessRequestItem(json: json, owner: owner)
+				return try ProcessRequestItem(json: json, owner: owner)
 			case "ProcessResponse":
-				return ProcessResponse(json: json, owner: owner)
+				return try ProcessResponse(json: json, owner: owner)
 			case "ProcessResponseNotes":
-				return ProcessResponseNotes(json: json, owner: owner)
+				return try ProcessResponseNotes(json: json, owner: owner)
 			case "Provenance":
-				return Provenance(json: json, owner: owner)
+				return try Provenance(json: json, owner: owner)
 			case "ProvenanceAgent":
-				return ProvenanceAgent(json: json, owner: owner)
+				return try ProvenanceAgent(json: json, owner: owner)
 			case "ProvenanceAgentRelatedAgent":
-				return ProvenanceAgentRelatedAgent(json: json, owner: owner)
+				return try ProvenanceAgentRelatedAgent(json: json, owner: owner)
 			case "ProvenanceEntity":
-				return ProvenanceEntity(json: json, owner: owner)
+				return try ProvenanceEntity(json: json, owner: owner)
 			case "Quantity":
-				return Quantity(json: json, owner: owner)
+				return try Quantity(json: json, owner: owner)
 			case "Questionnaire":
-				return Questionnaire(json: json, owner: owner)
+				return try Questionnaire(json: json, owner: owner)
 			case "QuestionnaireItem":
-				return QuestionnaireItem(json: json, owner: owner)
+				return try QuestionnaireItem(json: json, owner: owner)
 			case "QuestionnaireItemEnableWhen":
-				return QuestionnaireItemEnableWhen(json: json, owner: owner)
+				return try QuestionnaireItemEnableWhen(json: json, owner: owner)
 			case "QuestionnaireItemOption":
-				return QuestionnaireItemOption(json: json, owner: owner)
+				return try QuestionnaireItemOption(json: json, owner: owner)
 			case "QuestionnaireResponse":
-				return QuestionnaireResponse(json: json, owner: owner)
+				return try QuestionnaireResponse(json: json, owner: owner)
 			case "QuestionnaireResponseItem":
-				return QuestionnaireResponseItem(json: json, owner: owner)
+				return try QuestionnaireResponseItem(json: json, owner: owner)
 			case "QuestionnaireResponseItemAnswer":
-				return QuestionnaireResponseItemAnswer(json: json, owner: owner)
+				return try QuestionnaireResponseItemAnswer(json: json, owner: owner)
 			case "Range":
-				return Range(json: json, owner: owner)
+				return try Range(json: json, owner: owner)
 			case "Ratio":
-				return Ratio(json: json, owner: owner)
+				return try Ratio(json: json, owner: owner)
 			case "Reference":
-				return Reference(json: json, owner: owner)
+				return try Reference(json: json, owner: owner)
 			case "ReferralRequest":
-				return ReferralRequest(json: json, owner: owner)
+				return try ReferralRequest(json: json, owner: owner)
 			case "RelatedArtifact":
-				return RelatedArtifact(json: json, owner: owner)
+				return try RelatedArtifact(json: json, owner: owner)
 			case "RelatedPerson":
-				return RelatedPerson(json: json, owner: owner)
+				return try RelatedPerson(json: json, owner: owner)
+			case "RequestGroup":
+				return try RequestGroup(json: json, owner: owner)
+			case "RequestGroupAction":
+				return try RequestGroupAction(json: json, owner: owner)
+			case "RequestGroupActionRelatedAction":
+				return try RequestGroupActionRelatedAction(json: json, owner: owner)
 			case "Resource":
-				return Resource(json: json, owner: owner)
+				return try Resource(json: json, owner: owner)
 			case "RiskAssessment":
-				return RiskAssessment(json: json, owner: owner)
+				return try RiskAssessment(json: json, owner: owner)
 			case "RiskAssessmentPrediction":
-				return RiskAssessmentPrediction(json: json, owner: owner)
+				return try RiskAssessmentPrediction(json: json, owner: owner)
 			case "SampledData":
-				return SampledData(json: json, owner: owner)
+				return try SampledData(json: json, owner: owner)
 			case "Schedule":
-				return Schedule(json: json, owner: owner)
+				return try Schedule(json: json, owner: owner)
 			case "SearchParameter":
-				return SearchParameter(json: json, owner: owner)
+				return try SearchParameter(json: json, owner: owner)
 			case "Sequence":
-				return Sequence(json: json, owner: owner)
+				return try Sequence(json: json, owner: owner)
 			case "SequenceQuality":
-				return SequenceQuality(json: json, owner: owner)
+				return try SequenceQuality(json: json, owner: owner)
 			case "SequenceReferenceSeq":
-				return SequenceReferenceSeq(json: json, owner: owner)
+				return try SequenceReferenceSeq(json: json, owner: owner)
 			case "SequenceRepository":
-				return SequenceRepository(json: json, owner: owner)
+				return try SequenceRepository(json: json, owner: owner)
 			case "SequenceStructureVariant":
-				return SequenceStructureVariant(json: json, owner: owner)
+				return try SequenceStructureVariant(json: json, owner: owner)
 			case "SequenceStructureVariantInner":
-				return SequenceStructureVariantInner(json: json, owner: owner)
+				return try SequenceStructureVariantInner(json: json, owner: owner)
 			case "SequenceStructureVariantOuter":
-				return SequenceStructureVariantOuter(json: json, owner: owner)
+				return try SequenceStructureVariantOuter(json: json, owner: owner)
 			case "SequenceVariant":
-				return SequenceVariant(json: json, owner: owner)
+				return try SequenceVariant(json: json, owner: owner)
 			case "ServiceDefinition":
-				return ServiceDefinition(json: json, owner: owner)
+				return try ServiceDefinition(json: json, owner: owner)
 			case "Signature":
-				return Signature(json: json, owner: owner)
+				return try Signature(json: json, owner: owner)
 			case "Slot":
-				return Slot(json: json, owner: owner)
+				return try Slot(json: json, owner: owner)
 			case "Specimen":
-				return Specimen(json: json, owner: owner)
+				return try Specimen(json: json, owner: owner)
 			case "SpecimenCollection":
-				return SpecimenCollection(json: json, owner: owner)
+				return try SpecimenCollection(json: json, owner: owner)
 			case "SpecimenContainer":
-				return SpecimenContainer(json: json, owner: owner)
+				return try SpecimenContainer(json: json, owner: owner)
 			case "SpecimenTreatment":
-				return SpecimenTreatment(json: json, owner: owner)
+				return try SpecimenTreatment(json: json, owner: owner)
 			case "StructureDefinition":
-				return StructureDefinition(json: json, owner: owner)
+				return try StructureDefinition(json: json, owner: owner)
 			case "StructureDefinitionDifferential":
-				return StructureDefinitionDifferential(json: json, owner: owner)
+				return try StructureDefinitionDifferential(json: json, owner: owner)
 			case "StructureDefinitionMapping":
-				return StructureDefinitionMapping(json: json, owner: owner)
+				return try StructureDefinitionMapping(json: json, owner: owner)
 			case "StructureDefinitionSnapshot":
-				return StructureDefinitionSnapshot(json: json, owner: owner)
+				return try StructureDefinitionSnapshot(json: json, owner: owner)
 			case "StructureMap":
-				return StructureMap(json: json, owner: owner)
+				return try StructureMap(json: json, owner: owner)
 			case "StructureMapGroup":
-				return StructureMapGroup(json: json, owner: owner)
+				return try StructureMapGroup(json: json, owner: owner)
 			case "StructureMapGroupInput":
-				return StructureMapGroupInput(json: json, owner: owner)
+				return try StructureMapGroupInput(json: json, owner: owner)
 			case "StructureMapGroupRule":
-				return StructureMapGroupRule(json: json, owner: owner)
+				return try StructureMapGroupRule(json: json, owner: owner)
 			case "StructureMapGroupRuleDependent":
-				return StructureMapGroupRuleDependent(json: json, owner: owner)
+				return try StructureMapGroupRuleDependent(json: json, owner: owner)
 			case "StructureMapGroupRuleSource":
-				return StructureMapGroupRuleSource(json: json, owner: owner)
+				return try StructureMapGroupRuleSource(json: json, owner: owner)
 			case "StructureMapGroupRuleTarget":
-				return StructureMapGroupRuleTarget(json: json, owner: owner)
+				return try StructureMapGroupRuleTarget(json: json, owner: owner)
 			case "StructureMapGroupRuleTargetParameter":
-				return StructureMapGroupRuleTargetParameter(json: json, owner: owner)
+				return try StructureMapGroupRuleTargetParameter(json: json, owner: owner)
 			case "StructureMapStructure":
-				return StructureMapStructure(json: json, owner: owner)
+				return try StructureMapStructure(json: json, owner: owner)
 			case "Subscription":
-				return Subscription(json: json, owner: owner)
+				return try Subscription(json: json, owner: owner)
 			case "SubscriptionChannel":
-				return SubscriptionChannel(json: json, owner: owner)
+				return try SubscriptionChannel(json: json, owner: owner)
 			case "Substance":
-				return Substance(json: json, owner: owner)
+				return try Substance(json: json, owner: owner)
 			case "SubstanceIngredient":
-				return SubstanceIngredient(json: json, owner: owner)
+				return try SubstanceIngredient(json: json, owner: owner)
 			case "SubstanceInstance":
-				return SubstanceInstance(json: json, owner: owner)
+				return try SubstanceInstance(json: json, owner: owner)
 			case "SupplyDelivery":
-				return SupplyDelivery(json: json, owner: owner)
+				return try SupplyDelivery(json: json, owner: owner)
 			case "SupplyRequest":
-				return SupplyRequest(json: json, owner: owner)
+				return try SupplyRequest(json: json, owner: owner)
 			case "SupplyRequestWhen":
-				return SupplyRequestWhen(json: json, owner: owner)
+				return try SupplyRequestWhen(json: json, owner: owner)
 			case "Task":
-				return Task(json: json, owner: owner)
+				return try Task(json: json, owner: owner)
 			case "TaskFulfillment":
-				return TaskFulfillment(json: json, owner: owner)
+				return try TaskFulfillment(json: json, owner: owner)
 			case "TaskInput":
-				return TaskInput(json: json, owner: owner)
+				return try TaskInput(json: json, owner: owner)
 			case "TaskOutput":
-				return TaskOutput(json: json, owner: owner)
+				return try TaskOutput(json: json, owner: owner)
 			case "TestReport":
-				return TestReport(json: json, owner: owner)
+				return try TestReport(json: json, owner: owner)
 			case "TestReportParticipant":
-				return TestReportParticipant(json: json, owner: owner)
+				return try TestReportParticipant(json: json, owner: owner)
 			case "TestReportSetup":
-				return TestReportSetup(json: json, owner: owner)
+				return try TestReportSetup(json: json, owner: owner)
 			case "TestReportSetupAction":
-				return TestReportSetupAction(json: json, owner: owner)
+				return try TestReportSetupAction(json: json, owner: owner)
 			case "TestReportSetupActionAssert":
-				return TestReportSetupActionAssert(json: json, owner: owner)
+				return try TestReportSetupActionAssert(json: json, owner: owner)
 			case "TestReportSetupActionOperation":
-				return TestReportSetupActionOperation(json: json, owner: owner)
+				return try TestReportSetupActionOperation(json: json, owner: owner)
 			case "TestReportTeardown":
-				return TestReportTeardown(json: json, owner: owner)
+				return try TestReportTeardown(json: json, owner: owner)
 			case "TestReportTeardownAction":
-				return TestReportTeardownAction(json: json, owner: owner)
+				return try TestReportTeardownAction(json: json, owner: owner)
 			case "TestReportTest":
-				return TestReportTest(json: json, owner: owner)
+				return try TestReportTest(json: json, owner: owner)
 			case "TestReportTestAction":
-				return TestReportTestAction(json: json, owner: owner)
+				return try TestReportTestAction(json: json, owner: owner)
 			case "TestScript":
-				return TestScript(json: json, owner: owner)
+				return try TestScript(json: json, owner: owner)
 			case "TestScriptDestination":
-				return TestScriptDestination(json: json, owner: owner)
+				return try TestScriptDestination(json: json, owner: owner)
 			case "TestScriptFixture":
-				return TestScriptFixture(json: json, owner: owner)
+				return try TestScriptFixture(json: json, owner: owner)
 			case "TestScriptMetadata":
-				return TestScriptMetadata(json: json, owner: owner)
+				return try TestScriptMetadata(json: json, owner: owner)
 			case "TestScriptMetadataCapability":
-				return TestScriptMetadataCapability(json: json, owner: owner)
+				return try TestScriptMetadataCapability(json: json, owner: owner)
 			case "TestScriptMetadataLink":
-				return TestScriptMetadataLink(json: json, owner: owner)
+				return try TestScriptMetadataLink(json: json, owner: owner)
 			case "TestScriptOrigin":
-				return TestScriptOrigin(json: json, owner: owner)
+				return try TestScriptOrigin(json: json, owner: owner)
 			case "TestScriptRule":
-				return TestScriptRule(json: json, owner: owner)
+				return try TestScriptRule(json: json, owner: owner)
 			case "TestScriptRuleParam":
-				return TestScriptRuleParam(json: json, owner: owner)
+				return try TestScriptRuleParam(json: json, owner: owner)
 			case "TestScriptRuleset":
-				return TestScriptRuleset(json: json, owner: owner)
+				return try TestScriptRuleset(json: json, owner: owner)
 			case "TestScriptRulesetRule":
-				return TestScriptRulesetRule(json: json, owner: owner)
+				return try TestScriptRulesetRule(json: json, owner: owner)
 			case "TestScriptRulesetRuleParam":
-				return TestScriptRulesetRuleParam(json: json, owner: owner)
+				return try TestScriptRulesetRuleParam(json: json, owner: owner)
 			case "TestScriptSetup":
-				return TestScriptSetup(json: json, owner: owner)
+				return try TestScriptSetup(json: json, owner: owner)
 			case "TestScriptSetupAction":
-				return TestScriptSetupAction(json: json, owner: owner)
+				return try TestScriptSetupAction(json: json, owner: owner)
 			case "TestScriptSetupActionAssert":
-				return TestScriptSetupActionAssert(json: json, owner: owner)
+				return try TestScriptSetupActionAssert(json: json, owner: owner)
 			case "TestScriptSetupActionAssertRule":
-				return TestScriptSetupActionAssertRule(json: json, owner: owner)
+				return try TestScriptSetupActionAssertRule(json: json, owner: owner)
 			case "TestScriptSetupActionAssertRuleParam":
-				return TestScriptSetupActionAssertRuleParam(json: json, owner: owner)
+				return try TestScriptSetupActionAssertRuleParam(json: json, owner: owner)
 			case "TestScriptSetupActionAssertRuleset":
-				return TestScriptSetupActionAssertRuleset(json: json, owner: owner)
+				return try TestScriptSetupActionAssertRuleset(json: json, owner: owner)
 			case "TestScriptSetupActionAssertRulesetRule":
-				return TestScriptSetupActionAssertRulesetRule(json: json, owner: owner)
+				return try TestScriptSetupActionAssertRulesetRule(json: json, owner: owner)
 			case "TestScriptSetupActionAssertRulesetRuleParam":
-				return TestScriptSetupActionAssertRulesetRuleParam(json: json, owner: owner)
+				return try TestScriptSetupActionAssertRulesetRuleParam(json: json, owner: owner)
 			case "TestScriptSetupActionOperation":
-				return TestScriptSetupActionOperation(json: json, owner: owner)
+				return try TestScriptSetupActionOperation(json: json, owner: owner)
 			case "TestScriptSetupActionOperationRequestHeader":
-				return TestScriptSetupActionOperationRequestHeader(json: json, owner: owner)
+				return try TestScriptSetupActionOperationRequestHeader(json: json, owner: owner)
 			case "TestScriptTeardown":
-				return TestScriptTeardown(json: json, owner: owner)
+				return try TestScriptTeardown(json: json, owner: owner)
 			case "TestScriptTeardownAction":
-				return TestScriptTeardownAction(json: json, owner: owner)
+				return try TestScriptTeardownAction(json: json, owner: owner)
 			case "TestScriptTest":
-				return TestScriptTest(json: json, owner: owner)
+				return try TestScriptTest(json: json, owner: owner)
 			case "TestScriptTestAction":
-				return TestScriptTestAction(json: json, owner: owner)
+				return try TestScriptTestAction(json: json, owner: owner)
 			case "TestScriptVariable":
-				return TestScriptVariable(json: json, owner: owner)
+				return try TestScriptVariable(json: json, owner: owner)
 			case "Timing":
-				return Timing(json: json, owner: owner)
+				return try Timing(json: json, owner: owner)
 			case "TimingRepeat":
-				return TimingRepeat(json: json, owner: owner)
+				return try TimingRepeat(json: json, owner: owner)
 			case "TriggerDefinition":
-				return TriggerDefinition(json: json, owner: owner)
+				return try TriggerDefinition(json: json, owner: owner)
 			case "UsageContext":
-				return UsageContext(json: json, owner: owner)
+				return try UsageContext(json: json, owner: owner)
 			case "ValueSet":
-				return ValueSet(json: json, owner: owner)
+				return try ValueSet(json: json, owner: owner)
 			case "ValueSetCompose":
-				return ValueSetCompose(json: json, owner: owner)
+				return try ValueSetCompose(json: json, owner: owner)
 			case "ValueSetComposeInclude":
-				return ValueSetComposeInclude(json: json, owner: owner)
+				return try ValueSetComposeInclude(json: json, owner: owner)
 			case "ValueSetComposeIncludeConcept":
-				return ValueSetComposeIncludeConcept(json: json, owner: owner)
+				return try ValueSetComposeIncludeConcept(json: json, owner: owner)
 			case "ValueSetComposeIncludeConceptDesignation":
-				return ValueSetComposeIncludeConceptDesignation(json: json, owner: owner)
+				return try ValueSetComposeIncludeConceptDesignation(json: json, owner: owner)
 			case "ValueSetComposeIncludeFilter":
-				return ValueSetComposeIncludeFilter(json: json, owner: owner)
+				return try ValueSetComposeIncludeFilter(json: json, owner: owner)
 			case "ValueSetExpansion":
-				return ValueSetExpansion(json: json, owner: owner)
+				return try ValueSetExpansion(json: json, owner: owner)
 			case "ValueSetExpansionContains":
-				return ValueSetExpansionContains(json: json, owner: owner)
+				return try ValueSetExpansionContains(json: json, owner: owner)
 			case "ValueSetExpansionParameter":
-				return ValueSetExpansionParameter(json: json, owner: owner)
+				return try ValueSetExpansionParameter(json: json, owner: owner)
 			case "VisionPrescription":
-				return VisionPrescription(json: json, owner: owner)
+				return try VisionPrescription(json: json, owner: owner)
 			case "VisionPrescriptionDispense":
-				return VisionPrescriptionDispense(json: json, owner: owner)
+				return try VisionPrescriptionDispense(json: json, owner: owner)
 			default:
-				return FHIRAbstractBase(json: json, owner: owner)
+				return try FHIRAbstractBase(json: json, owner: owner)
 		}
 	}
 }

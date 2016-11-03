@@ -2,7 +2,7 @@
 //  ImagingStudyTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class ImagingStudyTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.ImagingStudy {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.ImagingStudy {
-		let instance = SwiftFHIR.ImagingStudy(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ImagingStudy {
+		return try SwiftFHIR.ImagingStudy(json: json)
 	}
 	
 	func testImagingStudy1() {
@@ -34,7 +32,7 @@ class ImagingStudyTests: XCTestCase {
 	
 	@discardableResult
 	func runImagingStudy1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ImagingStudy {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "imagingstudy-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "imagingstudy-example.json")
 		
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.numberOfInstances, UInt(1))

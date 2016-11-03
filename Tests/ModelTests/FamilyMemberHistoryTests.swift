@@ -2,7 +2,7 @@
 //  FamilyMemberHistoryTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class FamilyMemberHistoryTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.FamilyMemberHistory {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.FamilyMemberHistory {
-		let instance = SwiftFHIR.FamilyMemberHistory(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.FamilyMemberHistory {
+		return try SwiftFHIR.FamilyMemberHistory(json: json)
 	}
 	
 	func testFamilyMemberHistory1() {
@@ -34,7 +32,7 @@ class FamilyMemberHistoryTests: XCTestCase {
 	
 	@discardableResult
 	func runFamilyMemberHistory1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.FamilyMemberHistory {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "familymemberhistory-example-mother.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "familymemberhistory-example-mother.json")
 		
 		XCTAssertEqual(inst.condition?[0].code?.coding?[0].code, "371041009")
 		XCTAssertEqual(inst.condition?[0].code?.coding?[0].display, "Embolic Stroke")
@@ -68,7 +66,7 @@ class FamilyMemberHistoryTests: XCTestCase {
 	
 	@discardableResult
 	func runFamilyMemberHistory2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.FamilyMemberHistory {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "familymemberhistory-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "familymemberhistory-example.json")
 		
 		XCTAssertEqual(inst.condition?[0].code?.coding?[0].code, "315619001")
 		XCTAssertEqual(inst.condition?[0].code?.coding?[0].display, "Myocardial Infarction")

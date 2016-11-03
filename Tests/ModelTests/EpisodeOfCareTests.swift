@@ -2,7 +2,7 @@
 //  EpisodeOfCareTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class EpisodeOfCareTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.EpisodeOfCare {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.EpisodeOfCare {
-		let instance = SwiftFHIR.EpisodeOfCare(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.EpisodeOfCare {
+		return try SwiftFHIR.EpisodeOfCare(json: json)
 	}
 	
 	func testEpisodeOfCare1() {
@@ -34,7 +32,7 @@ class EpisodeOfCareTests: XCTestCase {
 	
 	@discardableResult
 	func runEpisodeOfCare1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.EpisodeOfCare {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "episodeofcare-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "episodeofcare-example.json")
 		
 		XCTAssertEqual(inst.account?[0].display, "example account")
 		XCTAssertEqual(inst.account?[0].reference, "Account/example")

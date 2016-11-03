@@ -2,7 +2,7 @@
 //  AppointmentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class AppointmentTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Appointment {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Appointment {
-		let instance = SwiftFHIR.Appointment(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Appointment {
+		return try SwiftFHIR.Appointment(json: json)
 	}
 	
 	func testAppointment1() {
@@ -34,7 +32,7 @@ class AppointmentTests: XCTestCase {
 	
 	@discardableResult
 	func runAppointment1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Appointment {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "appointment-example-request.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "appointment-example-request.json")
 		
 		XCTAssertEqual(inst.appointmentType?.coding?[0].code, "wi")
 		XCTAssertEqual(inst.appointmentType?.coding?[0].display, "Walk in")
@@ -90,7 +88,7 @@ class AppointmentTests: XCTestCase {
 	
 	@discardableResult
 	func runAppointment2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Appointment {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "appointment-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "appointment-example.json")
 		
 		XCTAssertEqual(inst.appointmentType?.coding?[0].code, "follow")
 		XCTAssertEqual(inst.appointmentType?.coding?[0].display, "Followup")
@@ -143,7 +141,7 @@ class AppointmentTests: XCTestCase {
 	
 	@discardableResult
 	func runAppointment3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Appointment {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "appointment-example2doctors.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "appointment-example2doctors.json")
 		
 		XCTAssertEqual(inst.appointmentType?.coding?[0].code, "wi")
 		XCTAssertEqual(inst.appointmentType?.coding?[0].display, "Walk in")

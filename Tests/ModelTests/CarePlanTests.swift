@@ -2,7 +2,7 @@
 //  CarePlanTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class CarePlanTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.CarePlan {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.CarePlan {
-		let instance = SwiftFHIR.CarePlan(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.CarePlan {
+		return try SwiftFHIR.CarePlan(json: json)
 	}
 	
 	func testCarePlan1() {
@@ -34,7 +32,7 @@ class CarePlanTests: XCTestCase {
 	
 	@discardableResult
 	func runCarePlan1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f001-heart.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.activity?[0].detail?.category?.coding?[0].code, "procedure")
 		XCTAssertEqual(inst.activity?[0].detail?.category?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/care-plan-activity-category")
@@ -79,7 +77,7 @@ class CarePlanTests: XCTestCase {
 	
 	@discardableResult
 	func runCarePlan2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f002-lung.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.activity?[0].detail?.category?.coding?[0].code, "procedure")
 		XCTAssertEqual(inst.activity?[0].detail?.category?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/care-plan-activity-category")
@@ -124,7 +122,7 @@ class CarePlanTests: XCTestCase {
 	
 	@discardableResult
 	func runCarePlan3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f003-pharynx.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f003-pharynx.json")
 		
 		XCTAssertEqual(inst.activity?[0].detail?.category?.coding?[0].code, "procedure")
 		XCTAssertEqual(inst.activity?[0].detail?.category?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/care-plan-activity-category")
@@ -169,7 +167,7 @@ class CarePlanTests: XCTestCase {
 	
 	@discardableResult
 	func runCarePlan4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f201-renal.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f201-renal.json")
 		
 		XCTAssertEqual(inst.activity?[0].detail?.category?.coding?[0].code, "diet")
 		XCTAssertEqual(inst.activity?[0].detail?.category?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/care-plan-activity-category")
@@ -222,7 +220,7 @@ class CarePlanTests: XCTestCase {
 	
 	@discardableResult
 	func runCarePlan5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f202-malignancy.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f202-malignancy.json")
 		
 		XCTAssertEqual(inst.activity?[0].actionResulting?[0].display, "Roel's Chemotherapy")
 		XCTAssertEqual(inst.activity?[0].actionResulting?[0].reference, "Procedure/f201")
@@ -265,7 +263,7 @@ class CarePlanTests: XCTestCase {
 	
 	@discardableResult
 	func runCarePlan6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f203-sepsis.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f203-sepsis.json")
 		
 		XCTAssertEqual(inst.activity?[0].detail?.category?.coding?[0].code, "observation")
 		XCTAssertEqual(inst.activity?[0].detail?.category?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/care-plan-activity-category")
@@ -304,7 +302,7 @@ class CarePlanTests: XCTestCase {
 	
 	@discardableResult
 	func runCarePlan7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-GPVisit.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-GPVisit.json")
 		
 		XCTAssertEqual(inst.activity?[0].actionResulting?[0].reference, "Encounter/example")
 		XCTAssertEqual(inst.activity?[0].detail?.category?.coding?[0].code, "encounter")
@@ -356,7 +354,7 @@ class CarePlanTests: XCTestCase {
 	
 	@discardableResult
 	func runCarePlan8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-integrated.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-integrated.json")
 		
 		XCTAssertEqual(inst.activity?[0].detail?.category?.coding?[0].code, "other")
 		XCTAssertEqual(inst.activity?[0].detail?.category?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/care-plan-activity-category")
@@ -512,7 +510,7 @@ class CarePlanTests: XCTestCase {
 	
 	@discardableResult
 	func runCarePlan9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-pregnancy.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-pregnancy.json")
 		
 		XCTAssertEqual(inst.activity?[0].detail?.category?.coding?[0].code, "encounter")
 		XCTAssertEqual(inst.activity?[0].detail?.category?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/care-plan-activity-category")
@@ -586,7 +584,7 @@ class CarePlanTests: XCTestCase {
 	
 	@discardableResult
 	func runCarePlan10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example.json")
 		
 		XCTAssertEqual(inst.activity?[0].detail?.category?.coding?[0].code, "observation")
 		XCTAssertEqual(inst.activity?[0].detail?.category?.coding?[0].system?.absoluteString, "http://hl7.org/fhir/care-plan-activity-category")

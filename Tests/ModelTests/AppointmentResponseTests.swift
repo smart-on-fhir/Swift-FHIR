@@ -2,7 +2,7 @@
 //  AppointmentResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class AppointmentResponseTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.AppointmentResponse {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.AppointmentResponse {
-		let instance = SwiftFHIR.AppointmentResponse(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.AppointmentResponse {
+		return try SwiftFHIR.AppointmentResponse(json: json)
 	}
 	
 	func testAppointmentResponse1() {
@@ -34,7 +32,7 @@ class AppointmentResponseTests: XCTestCase {
 	
 	@discardableResult
 	func runAppointmentResponse1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AppointmentResponse {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "appointmentresponse-example-req.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "appointmentresponse-example-req.json")
 		
 		XCTAssertEqual(inst.actor?.display, "Dr Adam Careful")
 		XCTAssertEqual(inst.actor?.reference, "Practitioner/example")
@@ -67,7 +65,7 @@ class AppointmentResponseTests: XCTestCase {
 	
 	@discardableResult
 	func runAppointmentResponse2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.AppointmentResponse {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "appointmentresponse-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "appointmentresponse-example.json")
 		
 		XCTAssertEqual(inst.actor?.display, "Peter James Chalmers")
 		XCTAssertEqual(inst.actor?.reference, "Patient/example")

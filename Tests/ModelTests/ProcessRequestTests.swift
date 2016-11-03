@@ -2,7 +2,7 @@
 //  ProcessRequestTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class ProcessRequestTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.ProcessRequest {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.ProcessRequest {
-		let instance = SwiftFHIR.ProcessRequest(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ProcessRequest {
+		return try SwiftFHIR.ProcessRequest(json: json)
 	}
 	
 	func testProcessRequest1() {
@@ -34,7 +32,7 @@ class ProcessRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessRequest1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-eob.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-eob.json")
 		
 		XCTAssertEqual(inst.action, "poll")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -61,7 +59,7 @@ class ProcessRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessRequest2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-exclusive.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-exclusive.json")
 		
 		XCTAssertEqual(inst.action, "poll")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -90,7 +88,7 @@ class ProcessRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessRequest3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-inclusive.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-inclusive.json")
 		
 		XCTAssertEqual(inst.action, "poll")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -118,7 +116,7 @@ class ProcessRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessRequest4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-payrec.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-payrec.json")
 		
 		XCTAssertEqual(inst.action, "poll")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -148,7 +146,7 @@ class ProcessRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessRequest5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-specific.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-specific.json")
 		
 		XCTAssertEqual(inst.action, "poll")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -176,7 +174,7 @@ class ProcessRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessRequest6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-reprocess.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-reprocess.json")
 		
 		XCTAssertEqual(inst.action, "reprocess")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -206,7 +204,7 @@ class ProcessRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessRequest7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-reverse.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-reverse.json")
 		
 		XCTAssertEqual(inst.action, "cancel")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -235,7 +233,7 @@ class ProcessRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessRequest8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-status.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-status.json")
 		
 		XCTAssertEqual(inst.action, "status")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -264,7 +262,7 @@ class ProcessRequestTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessRequest9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example.json")
 		
 		XCTAssertEqual(inst.action, "poll")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")

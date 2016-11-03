@@ -2,7 +2,7 @@
 //  PlanDefinitionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class PlanDefinitionTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.PlanDefinition {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.PlanDefinition {
-		let instance = SwiftFHIR.PlanDefinition(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.PlanDefinition {
+		return try SwiftFHIR.PlanDefinition(json: json)
 	}
 	
 	func testPlanDefinition1() {
@@ -34,7 +32,60 @@ class PlanDefinitionTests: XCTestCase {
 	
 	@discardableResult
 	func runPlanDefinition1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.PlanDefinition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-example-kdn5-simplified.json")
+		
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].activityDefinition?.reference, "#1111")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].textEquivalent, "Gemcitabine 1250 mg/m² IV over 30 minutes on days 1 and 8")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[1].activityDefinition?.reference, "#2222")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[1].textEquivalent, "CARBOplatin AUC 5 IV over 30 minutes on Day 1")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionIdentifier?.system?.absoluteString, "http://nccn.org/ordertemplates/KDN5")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionIdentifier?.value, "cycle-definition-1")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].cardinalityBehavior, "multiple")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].textEquivalent, "21-day cycle for 6 cycles")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].timingTiming?.repeat_fhir?.count, 6)
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].timingTiming?.repeat_fhir?.duration, NSDecimalNumber(string: "21"))
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].timingTiming?.repeat_fhir?.durationUnit, "d")
+		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].groupingBehavior, "sentence-group")
+		XCTAssertEqual(inst.approvalDate?.description, "2016-07-27")
+		XCTAssertEqual(inst.contained?[0].id, "1111")
+		XCTAssertEqual(inst.contained?[1].id, "2222")
+		XCTAssertEqual(inst.contributor?[0].name, "Lee Surprenant")
+		XCTAssertEqual(inst.contributor?[0].type, "author")
+		XCTAssertEqual(inst.copyright, "All rights reserved.")
+		XCTAssertTrue(inst.experimental ?? false)
+		XCTAssertEqual(inst.id, "KDN5")
+		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "http://nccn.org/ordertemplates")
+		XCTAssertEqual(inst.identifier?[0].value, "KDN5")
+		XCTAssertEqual(inst.lastReviewDate?.description, "2016-07-27")
+		XCTAssertEqual(inst.publisher, "National Comprehensive Cancer Network, Inc.")
+		XCTAssertEqual(inst.relatedArtifact?[0].display, "NCCN Guidelines for Kidney Cancer. V.2.2016")
+		XCTAssertEqual(inst.relatedArtifact?[0].type, "derived-from")
+		XCTAssertEqual(inst.relatedArtifact?[0].url?.absoluteString, "http://www.nccn.org/professionals/physician_gls/PDF/kidney.pdf")
+		XCTAssertEqual(inst.relatedArtifact?[1].citation, "Oudard S, et al. J Urol. 2007;177(5):1698-702")
+		XCTAssertEqual(inst.relatedArtifact?[1].type, "citation")
+		XCTAssertEqual(inst.relatedArtifact?[1].url?.absoluteString, "http://www.ncbi.nlm.nih.gov/pubmed/17437788")
+		XCTAssertEqual(inst.status, "draft")
+		XCTAssertEqual(inst.text?.status, "additional")
+		XCTAssertEqual(inst.title, "Gemcitabine/CARBOplatin")
+		XCTAssertEqual(inst.type?.text, "Chemotherapy Order Template")
+		XCTAssertEqual(inst.version, "1")
+		
+		return inst
+	}
+	
+	func testPlanDefinition2() {
+		do {
+			let instance = try runPlanDefinition2()
+			try runPlanDefinition2(instance.asJSON())
+		}
+		catch {
+			XCTAssertTrue(false, "Must instantiate and test PlanDefinition successfully, but threw")
+		}
+	}
+	
+	@discardableResult
+	func runPlanDefinition2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.PlanDefinition {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-example.json")
 		
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].activityDefinition?.reference, "#referralToMentalHealthCare")
 		XCTAssertEqual(inst.actionDefinition?[0].actionDefinition?[0].actionDefinition?[0].dynamicValue?[0].expression, "Now()")
@@ -162,10 +213,10 @@ class PlanDefinitionTests: XCTestCase {
 		return inst
 	}
 	
-	func testPlanDefinition2() {
+	func testPlanDefinition3() {
 		do {
-			let instance = try runPlanDefinition2()
-			try runPlanDefinition2(instance.asJSON())
+			let instance = try runPlanDefinition3()
+			try runPlanDefinition3(instance.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test PlanDefinition successfully, but threw")
@@ -173,8 +224,8 @@ class PlanDefinitionTests: XCTestCase {
 	}
 	
 	@discardableResult
-	func runPlanDefinition2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.PlanDefinition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-protocol-example.json")
+	func runPlanDefinition3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.PlanDefinition {
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "plandefinition-protocol-example.json")
 		
 		XCTAssertEqual(inst.actionDefinition?[0].activityDefinition?.reference, "#procedure")
 		XCTAssertEqual(inst.actionDefinition?[0].condition?.expression, "Observation of Obesity or BMI Measured in Past 2 Years")

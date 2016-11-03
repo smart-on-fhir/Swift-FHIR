@@ -2,7 +2,7 @@
 //  LinkageTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class LinkageTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Linkage {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Linkage {
-		let instance = SwiftFHIR.Linkage(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Linkage {
+		return try SwiftFHIR.Linkage(json: json)
 	}
 	
 	func testLinkage1() {
@@ -34,7 +32,7 @@ class LinkageTests: XCTestCase {
 	
 	@discardableResult
 	func runLinkage1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Linkage {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "linkage-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "linkage-example.json")
 		
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.item?[0].resource?.display, "Severe burn of left ear (Date: 24-May 2012)")

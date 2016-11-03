@@ -2,7 +2,7 @@
 //  SpecimenTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class SpecimenTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Specimen {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Specimen {
-		let instance = SwiftFHIR.Specimen(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Specimen {
+		return try SwiftFHIR.Specimen(json: json)
 	}
 	
 	func testSpecimen1() {
@@ -34,7 +32,7 @@ class SpecimenTests: XCTestCase {
 	
 	@discardableResult
 	func runSpecimen1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Specimen {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example-isolate.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example-isolate.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier?.system?.absoluteString, "http://lab.acme.org/specimens/2011")
 		XCTAssertEqual(inst.accessionIdentifier?.value, "X352356-ISO1")
@@ -69,7 +67,7 @@ class SpecimenTests: XCTestCase {
 	
 	@discardableResult
 	func runSpecimen2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Specimen {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example-serum.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example-serum.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier?.system?.absoluteString, "http://acme.com/labs/accession-ids")
 		XCTAssertEqual(inst.accessionIdentifier?.value, "20150816-00124")
@@ -101,7 +99,7 @@ class SpecimenTests: XCTestCase {
 	
 	@discardableResult
 	func runSpecimen3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Specimen {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example-urine.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example-urine.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier?.system?.absoluteString, "http://lab.acme.org/specimens/2015")
 		XCTAssertEqual(inst.accessionIdentifier?.value, "X352356")
@@ -139,7 +137,7 @@ class SpecimenTests: XCTestCase {
 	
 	@discardableResult
 	func runSpecimen4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Specimen {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier?.system?.absoluteString, "http://lab.acme.org/specimens/2011")
 		XCTAssertEqual(inst.accessionIdentifier?.value, "X352356")

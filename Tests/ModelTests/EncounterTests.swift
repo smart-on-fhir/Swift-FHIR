@@ -2,7 +2,7 @@
 //  EncounterTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class EncounterTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Encounter {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Encounter {
-		let instance = SwiftFHIR.Encounter(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Encounter {
+		return try SwiftFHIR.Encounter(json: json)
 	}
 	
 	func testEncounter1() {
@@ -34,7 +32,7 @@ class EncounterTests: XCTestCase {
 	
 	@discardableResult
 	func runEncounter1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f001-heart.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.class_fhir?.code, "AMB")
 		XCTAssertEqual(inst.class_fhir?.display, "ambulatory")
@@ -89,7 +87,7 @@ class EncounterTests: XCTestCase {
 	
 	@discardableResult
 	func runEncounter2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f002-lung.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.class_fhir?.code, "AMB")
 		XCTAssertEqual(inst.class_fhir?.display, "ambulatory")
@@ -144,7 +142,7 @@ class EncounterTests: XCTestCase {
 	
 	@discardableResult
 	func runEncounter3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f003-abscess.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f003-abscess.json")
 		
 		XCTAssertEqual(inst.class_fhir?.code, "AMB")
 		XCTAssertEqual(inst.class_fhir?.display, "ambulatory")
@@ -200,7 +198,7 @@ class EncounterTests: XCTestCase {
 	
 	@discardableResult
 	func runEncounter4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f201-20130404.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f201-20130404.json")
 		
 		XCTAssertEqual(inst.class_fhir?.code, "AMB")
 		XCTAssertEqual(inst.class_fhir?.display, "ambulatory")
@@ -237,7 +235,7 @@ class EncounterTests: XCTestCase {
 	
 	@discardableResult
 	func runEncounter5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f202-20130128.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f202-20130128.json")
 		
 		XCTAssertEqual(inst.class_fhir?.code, "AMB")
 		XCTAssertEqual(inst.class_fhir?.display, "ambulatory")
@@ -284,7 +282,7 @@ class EncounterTests: XCTestCase {
 	
 	@discardableResult
 	func runEncounter6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f203-20130311.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-f203-20130311.json")
 		
 		XCTAssertEqual(inst.account?[0].reference, "Account/example")
 		XCTAssertEqual(inst.appointment?.reference, "Appointment/example")
@@ -349,7 +347,7 @@ class EncounterTests: XCTestCase {
 	
 	@discardableResult
 	func runEncounter7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-home.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-home.json")
 		
 		XCTAssertEqual(inst.class_fhir?.code, "HH")
 		XCTAssertEqual(inst.class_fhir?.display, "home health")
@@ -387,7 +385,7 @@ class EncounterTests: XCTestCase {
 	
 	@discardableResult
 	func runEncounter8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-xcda.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example-xcda.json")
 		
 		XCTAssertEqual(inst.class_fhir?.code, "AMB")
 		XCTAssertEqual(inst.class_fhir?.display, "ambulatory")
@@ -419,7 +417,7 @@ class EncounterTests: XCTestCase {
 	
 	@discardableResult
 	func runEncounter9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Encounter {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "encounter-example.json")
 		
 		XCTAssertEqual(inst.class_fhir?.code, "IMP")
 		XCTAssertEqual(inst.class_fhir?.display, "inpatient encounter")

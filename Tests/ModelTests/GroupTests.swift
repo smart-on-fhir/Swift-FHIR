@@ -2,7 +2,7 @@
 //  GroupTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class GroupTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Group {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Group {
-		let instance = SwiftFHIR.Group(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Group {
+		return try SwiftFHIR.Group(json: json)
 	}
 	
 	func testGroup1() {
@@ -34,7 +32,7 @@ class GroupTests: XCTestCase {
 	
 	@discardableResult
 	func runGroup1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Group {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "group-example-member.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "group-example-member.json")
 		
 		XCTAssertTrue(inst.actual ?? false)
 		XCTAssertEqual(inst.id, "102")
@@ -65,7 +63,7 @@ class GroupTests: XCTestCase {
 	
 	@discardableResult
 	func runGroup2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Group {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "group-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "group-example.json")
 		
 		XCTAssertTrue(inst.actual ?? false)
 		XCTAssertEqual(inst.characteristic?[0].code?.text, "gender")

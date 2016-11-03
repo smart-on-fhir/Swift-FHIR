@@ -2,7 +2,7 @@
 //  MediaTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class MediaTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Media {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Media {
-		let instance = SwiftFHIR.Media(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Media {
+		return try SwiftFHIR.Media(json: json)
 	}
 	
 	func testMedia1() {
@@ -34,7 +32,7 @@ class MediaTests: XCTestCase {
 	
 	@discardableResult
 	func runMedia1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Media {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example-dicom.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example-dicom.json")
 		
 		XCTAssertEqual(inst.content?.contentType, "application/dicom")
 		XCTAssertEqual(inst.deviceName, "G.E. Medical Systems")
@@ -80,7 +78,7 @@ class MediaTests: XCTestCase {
 	
 	@discardableResult
 	func runMedia2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Media {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example-sound.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example-sound.json")
 		
 		XCTAssertEqual(inst.content?.contentType, "audio/mpeg")
 		XCTAssertEqual(inst.content?.data, Base64Binary(value: "dG9vIGJpZyB0b28gaW5jbHVkZSB0aGUgd2hvbGU="))
@@ -108,7 +106,7 @@ class MediaTests: XCTestCase {
 	
 	@discardableResult
 	func runMedia3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Media {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example.json")
 		
 		XCTAssertEqual(inst.content?.contentType, "image/gif")
 		XCTAssertEqual(inst.content?.creation?.description, "2009-09-03")

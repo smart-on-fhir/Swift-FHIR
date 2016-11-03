@@ -2,7 +2,7 @@
 //  Element.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Element) on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Element) on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -26,41 +26,39 @@ open class Element: FHIRAbstractBase {
 	public var id: String?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["extension"] {
-				presentKeys.insert("extension")
-				if let val = exist as? [FHIRJSON] {
-					self.extension_fhir = Extension.instantiate(fromArray: val, owner: self) as? [Extension]
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["extension"] {
+			presentKeys.insert("extension")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.extension_fhir = try Extension.instantiate(fromArray: val, owner: self) as? [Extension]
 				}
-				else {
-					errors.append(FHIRJSONError(key: "extension", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "extension"))
 				}
 			}
-			if let exist = js["id"] {
-				presentKeys.insert("id")
-				if let val = exist as? String {
-					self.id = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "id", wants: String.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "extension", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["id"] {
+			presentKeys.insert("id")
+			if let val = exist as? String {
+				self.id = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "id", wants: String.self, has: type(of: exist)))
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let extension_fhir = self.extension_fhir {
-			json["extension"] = extension_fhir.map() { $0.asJSON() }
+			json["extension"] = extension_fhir.map() { $0.asJSON(errors: &errors) }
 		}
 		if let id = self.id {
 			json["id"] = id.asJSON()

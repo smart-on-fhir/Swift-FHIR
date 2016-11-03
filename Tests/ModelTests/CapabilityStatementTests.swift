@@ -2,7 +2,7 @@
 //  CapabilityStatementTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class CapabilityStatementTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.CapabilityStatement {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.CapabilityStatement {
-		let instance = SwiftFHIR.CapabilityStatement(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.CapabilityStatement {
+		return try SwiftFHIR.CapabilityStatement(json: json)
 	}
 	
 	func testCapabilityStatement1() {
@@ -34,7 +32,7 @@ class CapabilityStatementTests: XCTestCase {
 	
 	@discardableResult
 	func runCapabilityStatement1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CapabilityStatement {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "capabilitystatement-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "capabilitystatement-example.json")
 		
 		XCTAssertEqual(inst.acceptUnknown, "both")
 		XCTAssertEqual(inst.contact?[0].name, "System Administrator")
@@ -133,7 +131,7 @@ class CapabilityStatementTests: XCTestCase {
 	
 	@discardableResult
 	func runCapabilityStatement2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.CapabilityStatement {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "capabilitystatement-phr-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "capabilitystatement-phr-example.json")
 		
 		XCTAssertEqual(inst.acceptUnknown, "no")
 		XCTAssertEqual(inst.contact?[0].telecom?[0].system, "other")

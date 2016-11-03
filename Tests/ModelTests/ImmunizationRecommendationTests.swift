@@ -2,7 +2,7 @@
 //  ImmunizationRecommendationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class ImmunizationRecommendationTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.ImmunizationRecommendation {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.ImmunizationRecommendation {
-		let instance = SwiftFHIR.ImmunizationRecommendation(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ImmunizationRecommendation {
+		return try SwiftFHIR.ImmunizationRecommendation(json: json)
 	}
 	
 	func testImmunizationRecommendation1() {
@@ -34,7 +32,7 @@ class ImmunizationRecommendationTests: XCTestCase {
 	
 	@discardableResult
 	func runImmunizationRecommendation1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ImmunizationRecommendation {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "immunizationrecommendation-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "immunizationrecommendation-example.json")
 		
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier?[0].system?.absoluteString, "urn:ietf:rfc:3986")

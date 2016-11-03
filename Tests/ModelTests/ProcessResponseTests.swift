@@ -2,7 +2,7 @@
 //  ProcessResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class ProcessResponseTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.ProcessResponse {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.ProcessResponse {
-		let instance = SwiftFHIR.ProcessResponse(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.ProcessResponse {
+		return try SwiftFHIR.ProcessResponse(json: json)
 	}
 	
 	func testProcessResponse1() {
@@ -34,7 +32,7 @@ class ProcessResponseTests: XCTestCase {
 	
 	@discardableResult
 	func runProcessResponse1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.ProcessResponse {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processresponse-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "processresponse-example.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
 		XCTAssertEqual(inst.disposition, "Adjudication processing completed, ClaimResponse and EOB ready for retrieval.")

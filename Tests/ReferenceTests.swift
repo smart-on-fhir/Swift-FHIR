@@ -17,7 +17,7 @@ class ReferenceTests: XCTestCase {
 	
 	func testContainedReference() {
 		if let path = Bundle(for: type(of: self)).path(forResource: "ReferenceContained1", ofType: "json", inDirectory: "TestResources") {
-			let order1 = try! MedicationOrder.instantiate(fromPath: path)
+			let order1 = try! MedicationRequest.instantiate(fromPath: path)
 			XCTAssertEqual("order-ref-contained", order1.id)
 			XCTAssertNotNil(order1.medicationReference)
 			XCTAssertEqual("Red Pill", order1.medicationReference?.resolved(Medication.self)?.code?.text ?? "missing")
@@ -29,7 +29,7 @@ class ReferenceTests: XCTestCase {
 		}
 		
 		if let path = Bundle(for: type(of: self)).path(forResource: "ReferenceContained2", ofType: "json", inDirectory: "TestResources") {
-			let order1 = try! MedicationOrder.instantiate(fromPath: path)
+			let order1 = try! MedicationRequest.instantiate(fromPath: path)
 			XCTAssertEqual("order-ref-contained-wrong", order1.id)
 			XCTAssertNotNil(order1.medicationReference)
 			XCTAssertNil(order1.medicationReference?.resolved(Medication.self), "Must not resolve contained resource with wrong type")
@@ -90,7 +90,7 @@ class ReferenceTests: XCTestCase {
 	
 	func testRelativeReference() {
 		if let path = Bundle(for: type(of: self)).path(forResource: "ReferenceRelative", ofType: "json", inDirectory: "TestResources") {
-			let order1 = try! MedicationOrder.instantiate(fromPath: path)
+			let order1 = try! MedicationRequest.instantiate(fromPath: path)
 			XCTAssertEqual("order-ref-relative", order1.id)
 			XCTAssertEqual("Medication/med-1234", order1.medicationReference?.reference)
 			XCTAssertNil(order1.medicationReference?.resolved(Medication.self), "Cannot already be resolved")
@@ -111,7 +111,7 @@ class ReferenceTests: XCTestCase {
 	
 	func testAbsoluteReference() {
 		if let path = Bundle(for: type(of: self)).path(forResource: "ReferenceAbsolute", ofType: "json", inDirectory: "TestResources") {
-			let order1 = try! MedicationOrder.instantiate(fromPath: path)
+			let order1 = try! MedicationRequest.instantiate(fromPath: path)
 			XCTAssertEqual("order-ref-absolute", order1.id)
 			XCTAssertEqual("https://fhir-open-api-dstu2.smarthealthit.org/Medication/1", order1.medicationReference?.reference)
 			XCTAssertNil(order1.medicationReference?.resolved(Medication.self), "Cannot already be resolved")

@@ -2,7 +2,7 @@
 //  Media.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Media) on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Media) on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -55,144 +55,168 @@ open class Media: DomainResource {
 	public var width: UInt?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(content: Attachment, type: String) {
-		self.init(json: nil)
+		self.init()
 		self.content = content
 		self.type = type
 	}
 	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["content"] {
-				presentKeys.insert("content")
-				if let val = exist as? FHIRJSON {
-					self.content = Attachment(json: val, owner: self)
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["content"] {
+			presentKeys.insert("content")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.content = try Attachment(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "content", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "content"))
-			}
-			if let exist = js["deviceName"] {
-				presentKeys.insert("deviceName")
-				if let val = exist as? String {
-					self.deviceName = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "deviceName", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["duration"] {
-				presentKeys.insert("duration")
-				if let val = exist as? UInt {
-					self.duration = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "duration", wants: UInt.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["frames"] {
-				presentKeys.insert("frames")
-				if let val = exist as? UInt {
-					self.frames = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "frames", wants: UInt.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["height"] {
-				presentKeys.insert("height")
-				if let val = exist as? UInt {
-					self.height = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "height", wants: UInt.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["operator"] {
-				presentKeys.insert("operator")
-				if let val = exist as? FHIRJSON {
-					self.operator_fhir = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "operator", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["subject"] {
-				presentKeys.insert("subject")
-				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["subtype"] {
-				presentKeys.insert("subtype")
-				if let val = exist as? FHIRJSON {
-					self.subtype = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "subtype", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? String {
-					self.type = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "content"))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "type"))
+				errors.append(FHIRValidationError(key: "content", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-			if let exist = js["view"] {
-				presentKeys.insert("view")
-				if let val = exist as? FHIRJSON {
-					self.view = CodeableConcept(json: val, owner: self)
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "content"))
+		}
+		if let exist = json["deviceName"] {
+			presentKeys.insert("deviceName")
+			if let val = exist as? String {
+				self.deviceName = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "deviceName", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["duration"] {
+			presentKeys.insert("duration")
+			if let val = exist as? UInt {
+				self.duration = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "duration", wants: UInt.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["frames"] {
+			presentKeys.insert("frames")
+			if let val = exist as? UInt {
+				self.frames = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "frames", wants: UInt.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["height"] {
+			presentKeys.insert("height")
+			if let val = exist as? UInt {
+				self.height = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "height", wants: UInt.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["identifier"] {
+			presentKeys.insert("identifier")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.identifier = try Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
-				else {
-					errors.append(FHIRJSONError(key: "view", wants: FHIRJSON.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "identifier"))
 				}
 			}
-			if let exist = js["width"] {
-				presentKeys.insert("width")
-				if let val = exist as? UInt {
-					self.width = val
+			else {
+				errors.append(FHIRValidationError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["operator"] {
+			presentKeys.insert("operator")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.operator_fhir = try Reference(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "width", wants: UInt.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "operator"))
 				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "operator", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["subject"] {
+			presentKeys.insert("subject")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.subject = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "subject"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["subtype"] {
+			presentKeys.insert("subtype")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.subtype = try CodeableConcept(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "subtype"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "subtype", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["type"] {
+			presentKeys.insert("type")
+			if let val = exist as? String {
+				self.type = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
+		if let exist = json["view"] {
+			presentKeys.insert("view")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.view = try CodeableConcept(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "view"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "view", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["width"] {
+			presentKeys.insert("width")
+			if let val = exist as? UInt {
+				self.width = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "width", wants: UInt.self, has: type(of: exist)))
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let content = self.content {
-			json["content"] = content.asJSON()
+			json["content"] = content.asJSON(errors: &errors)
 		}
 		if let deviceName = self.deviceName {
 			json["deviceName"] = deviceName.asJSON()
@@ -207,22 +231,22 @@ open class Media: DomainResource {
 			json["height"] = height.asJSON()
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = identifier.map() { $0.asJSON() }
+			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
 		}
 		if let operator_fhir = self.operator_fhir {
-			json["operator"] = operator_fhir.asJSON()
+			json["operator"] = operator_fhir.asJSON(errors: &errors)
 		}
 		if let subject = self.subject {
-			json["subject"] = subject.asJSON()
+			json["subject"] = subject.asJSON(errors: &errors)
 		}
 		if let subtype = self.subtype {
-			json["subtype"] = subtype.asJSON()
+			json["subtype"] = subtype.asJSON(errors: &errors)
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
 		}
 		if let view = self.view {
-			json["view"] = view.asJSON()
+			json["view"] = view.asJSON(errors: &errors)
 		}
 		if let width = self.width {
 			json["width"] = width.asJSON()

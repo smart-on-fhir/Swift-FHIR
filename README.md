@@ -47,14 +47,12 @@ Here's a rough list of what still needs to be done.
 
 ```
 [ ] Update/modernize FHIRSearch
-[ ] Add convenience methods to working with resources in code
+[ ] More convenience methods to working with resources in code
 [ ] Create enums for `code` type properties
 [ ] Nice support for simple PATCH operations
 [ ] Handle resource versions nicely
 [ ] Create a default behavior when a modifierExtension is detected
 [ ] Search: report search parameters that the server ignored
-[?] Use non-optional properties and implement failable initializers (see
-    @smart-on-fhir/fhir-parser:feature/swift-failable-init)
 ```
 
 Working, at least to some extent:
@@ -65,7 +63,11 @@ Working, at least to some extent:
 - Create elements and resources programmatically
 - Use a FHIR server protocol for REST interactions with a server
 - Deserialize from JSON
+    + Tells you which mandatory properties were missing,
+    + which properties were not expected or
+    + which were of a wrong type
 - Serialize to JSON
+    + Refuses to serialize incomplete elements
 - Resolve contained/bundled/relative/absolute resource references
 - Contain resources
 - Construct searches with NoSQL-like statements (cf. [fhir.js][])
@@ -110,8 +112,9 @@ To contain a resource and receive a `Reference` instance, call `parent.containRe
 
 ```swift
 // create a prescription with a contained medication
-let order = MedicationOrder(json: nil)
-let medication = Medication(json: {"id": "med"})
+let order = MedicationRequest()
+let medication = Medication()
+medication.id = "med"
 do {
     order.medicationReference = try order.containResource(medication)
 }

@@ -2,7 +2,7 @@
 
 from Swift3.settings import *
 
-specification_url = 'http://hl7-fhir.github.io'
+specification_url = 'http://build.fhir.org'
 
 write_resources = True
 write_searchparams = False

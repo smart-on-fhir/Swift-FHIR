@@ -16,8 +16,11 @@ Test resource containment and `create` calls.
 class ResourceTests: XCTestCase {
 	
 	func testContaining() {
-		let patient = Patient(json: ["id": "subject"])
-		let org = Organization(json: ["id": "org", "active": true])
+		let patient = Patient()
+		patient.id = "subject"
+		let org = Organization()
+		org.id = "org"
+		org.active = true
 		do {
 			patient.managingOrganization = try patient.contain(resource: org)
 		}
@@ -27,8 +30,10 @@ class ResourceTests: XCTestCase {
 	}
 	
 	func testContainingNoId() {
-		let patient = Patient(json: ["id": "subject"])
-		let org = Organization(json: ["active": true])
+		let patient = Patient()
+		patient.id = "subject"
+		let org = Organization()
+		org.active = true
 		do {
 			patient.managingOrganization = try patient.contain(resource: org)
 			XCTAssertTrue(false, "Should have raised exception when attempting to contain resource without id")
@@ -38,7 +43,8 @@ class ResourceTests: XCTestCase {
 	}
 	
 	func testContainingItself() {
-		let patient = Patient(json: ["id": "subject"])
+		let patient = Patient()
+		patient.id = "subject"
 		do {
 			patient.managingOrganization = try patient.contain(resource: patient)
 			XCTAssertTrue(false, "Should have raised exception when attempting to contain itself")
@@ -55,7 +61,8 @@ class ResourceTests: XCTestCase {
 		let server = LocalPatientServer(baseURL: base)
 		
 		// normal `create`
-		let patient = Patient(json: ["gender": "female"])
+		let patient = Patient()
+		patient.gender = "female"
 		patient.create(server) { error in
 			XCTAssertNil(error)
 			XCTAssertNotNil(patient.id)
@@ -109,7 +116,8 @@ class ResourceTests: XCTestCase {
 		let server = LocalPatientServer(baseURL: base)
 		
 		// normal `createAndReturn`
-		let patient = Patient(json: ["gender": "female"])
+		let patient = Patient()
+		patient.gender = "female"
 		patient.createAndReturn(server) { error in
 			XCTAssertNil(error)
 			XCTAssertNotNil(patient.id)
@@ -198,9 +206,9 @@ class LocalPatientServer: FHIROpenServer {
 			
 			let prefer = request.allHTTPHeaderFields?["Prefer"] ?? "minimal"
 			if prefer.hasSuffix("representation") != negatePreferHeader {
-				let pat = Patient(json: handler.resource?.asJSON())			// to not manipulate handler.resource
+				let pat = try! Patient(json: try! handler.resource!.asJSON())			// to not manipulate handler.resource
 				pat.meta?.versionId = "\(version+1)"
-				pat.name = [HumanName(json: ["family": ["POST"]])]
+				pat.name = [try! HumanName(json: ["family": ["POST"]])]
 				
 				let req = FHIRServerJSONRequestHandler(.POST)
 				req.resource = pat
@@ -219,7 +227,7 @@ class LocalPatientServer: FHIROpenServer {
 				let headers = ["ETag": "W/\"\(version)\"", "Last-Modified": "Friday, 06-May-15 17:49:37 GMT"]
 				let http = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "1.1", headerFields: headers)
 				
-				last.name = [HumanName(json: ["family": ["GET"]])]
+				last.name = [try! HumanName(json: ["family": ["GET"]])]
 				last.meta = nil
 				handler.resource = last
 				try! handler.prepareData()

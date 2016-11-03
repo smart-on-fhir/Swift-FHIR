@@ -2,7 +2,7 @@
 //  ImmunizationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class ImmunizationTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Immunization {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Immunization {
-		let instance = SwiftFHIR.Immunization(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Immunization {
+		return try SwiftFHIR.Immunization(json: json)
 	}
 	
 	func testImmunization1() {
@@ -34,7 +32,7 @@ class ImmunizationTests: XCTestCase {
 	
 	@discardableResult
 	func runImmunization1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Immunization {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "immunization-example-refused.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "immunization-example-refused.json")
 		
 		XCTAssertEqual(inst.date?.description, "2013-01-10")
 		XCTAssertEqual(inst.explanation?.reasonNotGiven?[0].coding?[0].code, "MEDPREC")
@@ -65,7 +63,7 @@ class ImmunizationTests: XCTestCase {
 	
 	@discardableResult
 	func runImmunization2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Immunization {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "immunization-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "immunization-example.json")
 		
 		XCTAssertEqual(inst.date?.description, "2013-01-10")
 		XCTAssertEqual(inst.doseQuantity?.code, "mg")

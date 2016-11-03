@@ -149,26 +149,31 @@ open class FHIRSearch
 			}
 			else {
 				let jsonres = response as! FHIRServerJSONResponse
-				let bundle = Bundle(json: jsonres.json)
-				bundle._server = server
-				if let entries = bundle.entry {
-					for entry in entries {
-						entry.resource?._server = server		// workaround for when "Bundle" gets deallocated
-					}
-				}
-				
-				// is there more?
-				self.nextPageURL = nil
-				if let links = bundle.link {
-					for link in links {
-						if "next" == link.relation {
-							self.nextPageURL = link.url
-							break
+				do {
+					let bundle = try SwiftFHIR.Bundle(json: jsonres.json ?? FHIRJSON())
+					bundle._server = server
+					if let entries = bundle.entry {
+						for entry in entries {
+							entry.resource?._server = server		// workaround for when "Bundle" gets deallocated
 						}
 					}
+					
+					// is there more?
+					self.nextPageURL = nil
+					if let links = bundle.link {
+						for link in links {
+							if "next" == link.relation {
+								self.nextPageURL = link.url
+								break
+							}
+						}
+					}
+					
+					callback(bundle, nil)
 				}
-				
-				callback(bundle, nil)
+				catch let error {
+					callback(nil, error.asFHIRError)
+				}
 			}
 		}
 	}

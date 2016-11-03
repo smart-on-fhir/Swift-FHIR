@@ -2,7 +2,7 @@
 //  TaskTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class TaskTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Task {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Task {
-		let instance = SwiftFHIR.Task(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Task {
+		return try SwiftFHIR.Task(json: json)
 	}
 	
 	func testTask1() {
@@ -34,11 +32,11 @@ class TaskTests: XCTestCase {
 	
 	@discardableResult
 	func runTask1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Task {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "task-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "task-example.json")
 		
 		XCTAssertEqual(inst.code?.text, "Refill Request")
 		XCTAssertEqual(inst.created?.description, "2016-03-10T22:39:32-04:00")
-		XCTAssertEqual(inst.focus?.reference, "MedicationOrder/medrx001")
+		XCTAssertEqual(inst.focus?.reference, "MedicationRequest/medrx001")
 		XCTAssertEqual(inst.for_fhir?.reference, "Patient/f001")
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.lastModified?.description, "2016-03-10T22:39:32-04:00")

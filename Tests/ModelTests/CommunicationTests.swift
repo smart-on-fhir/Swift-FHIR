@@ -2,7 +2,7 @@
 //  CommunicationTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class CommunicationTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Communication {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Communication {
-		let instance = SwiftFHIR.Communication(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Communication {
+		return try SwiftFHIR.Communication(json: json)
 	}
 	
 	func testCommunication1() {
@@ -34,7 +32,7 @@ class CommunicationTests: XCTestCase {
 	
 	@discardableResult
 	func runCommunication1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Communication {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example-fm-attachment.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example-fm-attachment.json")
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "SolicitedAttachment")
 		XCTAssertEqual(inst.category?.coding?[0].system?.absoluteString, "http://acme.org/messagetypes")
@@ -79,7 +77,7 @@ class CommunicationTests: XCTestCase {
 	
 	@discardableResult
 	func runCommunication2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Communication {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example-fm-solicited-attachment.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example-fm-solicited-attachment.json")
 		
 		XCTAssertEqual(inst.basedOn?[0].reference, "#request")
 		XCTAssertEqual(inst.category?.coding?[0].code, "SolicitedAttachment")
@@ -122,7 +120,7 @@ class CommunicationTests: XCTestCase {
 	
 	@discardableResult
 	func runCommunication3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Communication {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example.json")
 		
 		XCTAssertEqual(inst.category?.coding?[0].code, "Alert")
 		XCTAssertEqual(inst.category?.coding?[0].system?.absoluteString, "http://acme.org/messagetypes")

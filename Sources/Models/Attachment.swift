@@ -2,7 +2,7 @@
 //  Attachment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -44,92 +44,85 @@ open class Attachment: Element {
 	public var url: URL?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["contentType"] {
-				presentKeys.insert("contentType")
-				if let val = exist as? String {
-					self.contentType = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "contentType", wants: String.self, has: type(of: exist)))
-				}
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["contentType"] {
+			presentKeys.insert("contentType")
+			if let val = exist as? String {
+				self.contentType = val
 			}
-			if let exist = js["creation"] {
-				presentKeys.insert("creation")
-				if let val = exist as? String {
-					self.creation = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "creation", wants: String.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "contentType", wants: String.self, has: type(of: exist)))
 			}
-			if let exist = js["data"] {
-				presentKeys.insert("data")
-				if let val = exist as? String {
-					self.data = Base64Binary(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "data", wants: String.self, has: type(of: exist)))
-				}
+		}
+		if let exist = json["creation"] {
+			presentKeys.insert("creation")
+			if let val = exist as? String {
+				self.creation = DateTime(string: val)
 			}
-			if let exist = js["hash"] {
-				presentKeys.insert("hash")
-				if let val = exist as? String {
-					self.hash = Base64Binary(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "hash", wants: String.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "creation", wants: String.self, has: type(of: exist)))
 			}
-			if let exist = js["language"] {
-				presentKeys.insert("language")
-				if let val = exist as? String {
-					self.language = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "language", wants: String.self, has: type(of: exist)))
-				}
+		}
+		if let exist = json["data"] {
+			presentKeys.insert("data")
+			if let val = exist as? String {
+				self.data = Base64Binary(string: val)
 			}
-			if let exist = js["size"] {
-				presentKeys.insert("size")
-				if let val = exist as? UInt {
-					self.size = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "size", wants: UInt.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "data", wants: String.self, has: type(of: exist)))
 			}
-			if let exist = js["title"] {
-				presentKeys.insert("title")
-				if let val = exist as? String {
-					self.title = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
-				}
+		}
+		if let exist = json["hash"] {
+			presentKeys.insert("hash")
+			if let val = exist as? String {
+				self.hash = Base64Binary(string: val)
 			}
-			if let exist = js["url"] {
-				presentKeys.insert("url")
-				if let val = exist as? String {
-					self.url = URL(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "hash", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["language"] {
+			presentKeys.insert("language")
+			if let val = exist as? String {
+				self.language = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "language", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["size"] {
+			presentKeys.insert("size")
+			if let val = exist as? UInt {
+				self.size = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "size", wants: UInt.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["title"] {
+			presentKeys.insert("title")
+			if let val = exist as? String {
+				self.title = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "title", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["url"] {
+			presentKeys.insert("url")
+			if let val = exist as? String {
+				self.url = URL(string: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let contentType = self.contentType {
 			json["contentType"] = contentType.asJSON()

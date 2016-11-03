@@ -2,7 +2,7 @@
 //  EligibilityResponseTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class EligibilityResponseTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.EligibilityResponse {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.EligibilityResponse {
-		let instance = SwiftFHIR.EligibilityResponse(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.EligibilityResponse {
+		return try SwiftFHIR.EligibilityResponse(json: json)
 	}
 	
 	func testEligibilityResponse1() {
@@ -34,7 +32,7 @@ class EligibilityResponseTests: XCTestCase {
 	
 	@discardableResult
 	func runEligibilityResponse1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.EligibilityResponse {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "eligibilityresponse-example-benefits.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "eligibilityresponse-example-benefits.json")
 		
 		XCTAssertEqual(inst.benefitBalance?[0].category?.code, "medical")
 		XCTAssertEqual(inst.benefitBalance?[0].category?.system?.absoluteString, "http://hl7.org/fhir/benefit-category")
@@ -147,7 +145,7 @@ class EligibilityResponseTests: XCTestCase {
 	
 	@discardableResult
 	func runEligibilityResponse2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.EligibilityResponse {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "eligibilityresponse-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "eligibilityresponse-example.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
 		XCTAssertEqual(inst.disposition, "Policy is currently in-force.")

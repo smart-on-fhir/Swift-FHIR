@@ -36,7 +36,7 @@ extension FHIRServerResponse {
 					
 					resource.id = components[1]
 					if components.count > 3 && "_history" == components[2] {
-						resource.meta = resource.meta ?? Meta(json: nil)
+						resource.meta = resource.meta ?? Meta()
 						resource.meta!.versionId = components[3]
 					}
 				}
@@ -51,7 +51,7 @@ extension FHIRServerResponse {
 		
 		// inspect Last-Modified header
 		if let modified = headers["Last-Modified"] {
-			resource.meta = resource.meta ?? Meta(json: nil)
+			resource.meta = resource.meta ?? Meta()
 			resource.meta!.lastUpdated = Instant.fromHttpDate(modified)
 		}
 		
@@ -66,7 +66,7 @@ extension FHIRServerResponse {
 			if etag.hasSuffix("\"") {
 				etag = etag[etag.startIndex..<etag.index(etag.endIndex, offsetBy: -1)]
 			}
-			resource.meta = resource.meta ?? Meta(json: nil)
+			resource.meta = resource.meta ?? Meta()
 			resource.meta!.versionId = etag
 		}
 	}
@@ -226,11 +226,8 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 					self.error = FHIRError.jsonParsingError(error.localizedDescription, raw)
 				}
 			}
-			catch let error as FHIRError {
-				self.error = error
-			}
 			catch let error {
-				self.error = FHIRError.error("\(error)")
+				self.error = error.asFHIRError
 			}
 		}
 	}
@@ -245,15 +242,20 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 	*/
 	override open func responseResource<T: Resource>(ofType: T.Type) -> T? {
 		if let json = json {
-			let resource = Resource.instantiate(from: json, owner: nil)
-			return resource as? T
+			do {
+				let resource = try Resource.instantiate(from: json, owner: nil)
+				return resource as? T
+			}
+			catch let error {
+				fhir_warn("\(error)")
+			}
 		}
 		return nil
 	}
 	
 	/**
 	The response's body data is used to update the resource by calling `resource.populateFrom(json: )`. Will throw
-	`FHIRError.ResponseNoResourceReceived` if body is nil.
+	`FHIRError.responseNoResourceReceived` if body is nil.
 	
 	This method must not be called if the response has a non-nil error.
 	
@@ -267,11 +269,7 @@ open class FHIRServerJSONResponse: FHIRServerDataResponse {
 		if let resourceType = json["resourceType"] as? String, resourceType != type(of: resource).resourceType {
 			throw FHIRError.responseResourceTypeMismatch(resourceType, type(of: resource).resourceType)
 		}
-		if let errors = resource.populate(from: json) {
-			for error in errors {
-				fhir_warn("\(resource) \(error)")
-			}
-		}
+		try resource.populate(from: json)
 	}
 }
 

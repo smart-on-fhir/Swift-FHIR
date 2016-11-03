@@ -2,7 +2,7 @@
 //  PractitionerTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class PractitionerTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Practitioner {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Practitioner {
-		let instance = SwiftFHIR.Practitioner(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Practitioner {
+		return try SwiftFHIR.Practitioner(json: json)
 	}
 	
 	func testPractitioner1() {
@@ -34,7 +32,7 @@ class PractitionerTests: XCTestCase {
 	
 	@discardableResult
 	func runPractitioner1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f001-evdb.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f001-evdb.json")
 		
 		XCTAssertEqual(inst.address?[0].city, "Den Burg")
 		XCTAssertEqual(inst.address?[0].country, "NLD")
@@ -90,7 +88,7 @@ class PractitionerTests: XCTestCase {
 	
 	@discardableResult
 	func runPractitioner2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f002-pv.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f002-pv.json")
 		
 		XCTAssertEqual(inst.address?[0].city, "Den Burg")
 		XCTAssertEqual(inst.address?[0].country, "NLD")
@@ -146,7 +144,7 @@ class PractitionerTests: XCTestCase {
 	
 	@discardableResult
 	func runPractitioner3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f003-mv.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f003-mv.json")
 		
 		XCTAssertEqual(inst.address?[0].city, "Amsterdam")
 		XCTAssertEqual(inst.address?[0].country, "NLD")
@@ -205,7 +203,7 @@ class PractitionerTests: XCTestCase {
 	
 	@discardableResult
 	func runPractitioner4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f004-rb.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f004-rb.json")
 		
 		XCTAssertEqual(inst.address?[0].city, "Amsterdam")
 		XCTAssertEqual(inst.address?[0].country, "NLD")
@@ -265,7 +263,7 @@ class PractitionerTests: XCTestCase {
 	
 	@discardableResult
 	func runPractitioner5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f005-al.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f005-al.json")
 		
 		XCTAssertEqual(inst.address?[0].city, "Amsterdam")
 		XCTAssertEqual(inst.address?[0].country, "NLD")
@@ -325,7 +323,7 @@ class PractitionerTests: XCTestCase {
 	
 	@discardableResult
 	func runPractitioner6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f006-rvdb.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f006-rvdb.json")
 		
 		XCTAssertEqual(inst.address?[0].city, "Den Burg")
 		XCTAssertEqual(inst.address?[0].country, "NLD")
@@ -381,7 +379,7 @@ class PractitionerTests: XCTestCase {
 	
 	@discardableResult
 	func runPractitioner7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f007-sh.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f007-sh.json")
 		
 		XCTAssertEqual(inst.address?[0].city, "Den Burg")
 		XCTAssertEqual(inst.address?[0].country, "NLD")
@@ -437,7 +435,7 @@ class PractitionerTests: XCTestCase {
 	
 	@discardableResult
 	func runPractitioner8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f201-ab.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f201-ab.json")
 		
 		XCTAssertTrue(inst.active ?? false)
 		XCTAssertEqual(inst.address?[0].city, "Den helder")
@@ -489,7 +487,7 @@ class PractitionerTests: XCTestCase {
 	
 	@discardableResult
 	func runPractitioner9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f202-lm.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f202-lm.json")
 		
 		XCTAssertTrue(inst.active ?? false)
 		XCTAssertEqual(inst.address?[0].city, "Den helder")
@@ -542,7 +540,7 @@ class PractitionerTests: XCTestCase {
 	
 	@discardableResult
 	func runPractitioner10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f203-jvg.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f203-jvg.json")
 		
 		XCTAssertTrue(inst.active ?? false)
 		XCTAssertEqual(inst.address?[0].city, "Den helder")

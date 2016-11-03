@@ -66,7 +66,7 @@ extension DomainResource {
 		didResolveReference(refid, resolved: resource)
 		
 		// return reference
-		let ref = Reference(json: nil, owner: self)
+		let ref = Reference(owner: self)
 		ref.reference = "#\(refid)"
 		ref.display = display
 		return ref
@@ -99,7 +99,7 @@ extension DomainResource {
 	- returns:            A `Reference`, ready for use
 	*/
 	open func reference(resource: Resource, withDisplay display: String? = nil) throws -> Reference {
-		let ref = Reference(json: nil, owner: self)
+		let ref = Reference(owner: self)
 		ref.display = display
 		
 		// determine whether reference is absolute (resources not on same server)

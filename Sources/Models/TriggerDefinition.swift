@@ -2,7 +2,7 @@
 //  TriggerDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/TriggerDefinition) on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/TriggerDefinition) on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -41,95 +41,104 @@ open class TriggerDefinition: Element {
 	public var type: String?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(type: String) {
-		self.init(json: nil)
+		self.init()
 		self.type = type
 	}
 	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["eventData"] {
-				presentKeys.insert("eventData")
-				if let val = exist as? FHIRJSON {
-					self.eventData = DataRequirement(json: val, owner: self)
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["eventData"] {
+			presentKeys.insert("eventData")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.eventData = try DataRequirement(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "eventData", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["eventName"] {
-				presentKeys.insert("eventName")
-				if let val = exist as? String {
-					self.eventName = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "eventName", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["eventTimingDate"] {
-				presentKeys.insert("eventTimingDate")
-				if let val = exist as? String {
-					self.eventTimingDate = FHIRDate(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "eventTimingDate", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["eventTimingDateTime"] {
-				presentKeys.insert("eventTimingDateTime")
-				if let val = exist as? String {
-					self.eventTimingDateTime = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "eventTimingDateTime", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["eventTimingReference"] {
-				presentKeys.insert("eventTimingReference")
-				if let val = exist as? FHIRJSON {
-					self.eventTimingReference = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "eventTimingReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["eventTimingTiming"] {
-				presentKeys.insert("eventTimingTiming")
-				if let val = exist as? FHIRJSON {
-					self.eventTimingTiming = Timing(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "eventTimingTiming", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? String {
-					self.type = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "eventData"))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "type"))
+				errors.append(FHIRValidationError(key: "eventData", wants: FHIRJSON.self, has: type(of: exist)))
 			}
+		}
+		if let exist = json["eventName"] {
+			presentKeys.insert("eventName")
+			if let val = exist as? String {
+				self.eventName = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "eventName", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["eventTimingDate"] {
+			presentKeys.insert("eventTimingDate")
+			if let val = exist as? String {
+				self.eventTimingDate = FHIRDate(string: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "eventTimingDate", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["eventTimingDateTime"] {
+			presentKeys.insert("eventTimingDateTime")
+			if let val = exist as? String {
+				self.eventTimingDateTime = DateTime(string: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "eventTimingDateTime", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["eventTimingReference"] {
+			presentKeys.insert("eventTimingReference")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.eventTimingReference = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "eventTimingReference"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "eventTimingReference", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["eventTimingTiming"] {
+			presentKeys.insert("eventTimingTiming")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.eventTimingTiming = try Timing(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "eventTimingTiming"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "eventTimingTiming", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["type"] {
+			presentKeys.insert("type")
+			if let val = exist as? String {
+				self.type = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let eventData = self.eventData {
-			json["eventData"] = eventData.asJSON()
+			json["eventData"] = eventData.asJSON(errors: &errors)
 		}
 		if let eventName = self.eventName {
 			json["eventName"] = eventName.asJSON()
@@ -141,10 +150,10 @@ open class TriggerDefinition: Element {
 			json["eventTimingDateTime"] = eventTimingDateTime.asJSON()
 		}
 		if let eventTimingReference = self.eventTimingReference {
-			json["eventTimingReference"] = eventTimingReference.asJSON()
+			json["eventTimingReference"] = eventTimingReference.asJSON(errors: &errors)
 		}
 		if let eventTimingTiming = self.eventTimingTiming {
-			json["eventTimingTiming"] = eventTimingTiming.asJSON()
+			json["eventTimingTiming"] = eventTimingTiming.asJSON(errors: &errors)
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()

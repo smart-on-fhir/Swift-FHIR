@@ -2,7 +2,7 @@
 //  ConsentTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class ConsentTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.Consent {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.Consent {
-		let instance = SwiftFHIR.Consent(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.Consent {
+		return try SwiftFHIR.Consent(json: json)
 	}
 	
 	func testConsent1() {
@@ -34,7 +32,7 @@ class ConsentTests: XCTestCase {
 	
 	@discardableResult
 	func runConsent1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-Emergency.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-Emergency.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2015-11-18")
 		XCTAssertEqual(inst.except?[0].actor?[0].reference?.display, "Good Health Psychiatric Hospital")
@@ -74,7 +72,7 @@ class ConsentTests: XCTestCase {
 	
 	@discardableResult
 	func runConsent2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-grantor.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-grantor.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2015-11-18")
 		XCTAssertEqual(inst.except?[0].action?[0].coding?[0].code, "access")
@@ -113,7 +111,7 @@ class ConsentTests: XCTestCase {
 	
 	@discardableResult
 	func runConsent3(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-notAuthor.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-notAuthor.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2015-11-18")
 		XCTAssertEqual(inst.except?[0].actor?[0].reference?.display, "Good Health Clinic")
@@ -146,7 +144,7 @@ class ConsentTests: XCTestCase {
 	
 	@discardableResult
 	func runConsent4(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-notOrg.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-notOrg.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2015-11-18")
 		XCTAssertEqual(inst.except?[0].action?[0].coding?[0].code, "access")
@@ -183,7 +181,7 @@ class ConsentTests: XCTestCase {
 	
 	@discardableResult
 	func runConsent5(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-notThem.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-notThem.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2015-11-18")
 		XCTAssertEqual(inst.except?[0].action?[0].coding?[0].code, "access")
@@ -220,7 +218,7 @@ class ConsentTests: XCTestCase {
 	
 	@discardableResult
 	func runConsent6(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-notThis.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-notThis.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2015-11-18")
 		XCTAssertEqual(inst.except?[0].data?[0].meaning, "related")
@@ -251,7 +249,7 @@ class ConsentTests: XCTestCase {
 	
 	@discardableResult
 	func runConsent7(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-notTime.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-notTime.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2015-11-18")
 		XCTAssertEqual(inst.except?[0].period?.end?.description, "2015-02-01")
@@ -282,7 +280,7 @@ class ConsentTests: XCTestCase {
 	
 	@discardableResult
 	func runConsent8(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-Out.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-Out.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2015-11-18")
 		XCTAssertEqual(inst.except?[0].actor?[0].reference?.display, "Good Health Psychiatric Hospital")
@@ -315,7 +313,7 @@ class ConsentTests: XCTestCase {
 	
 	@discardableResult
 	func runConsent9(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-pkb.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-pkb.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2016-06-16")
 		XCTAssertEqual(inst.except?[0].action?[0].coding?[0].code, "access")
@@ -432,7 +430,7 @@ class ConsentTests: XCTestCase {
 	
 	@discardableResult
 	func runConsent10(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.Consent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-signature.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "consent-example-signature.json")
 		
 		XCTAssertEqual(inst.consentor?[0].reference, "Patient/72")
 		XCTAssertEqual(inst.dateTime?.description, "2016-05-26T00:41:10-04:00")

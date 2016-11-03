@@ -2,7 +2,7 @@
 //  VisionPrescriptionTests.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -13,13 +13,11 @@ import SwiftFHIR
 class VisionPrescriptionTests: XCTestCase {
 	
 	func instantiateFrom(filename: String) throws -> SwiftFHIR.VisionPrescription {
-		return instantiateFrom(json: try readJSONFile(filename))
+		return try instantiateFrom(json: try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> SwiftFHIR.VisionPrescription {
-		let instance = SwiftFHIR.VisionPrescription(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(json: FHIRJSON) throws -> SwiftFHIR.VisionPrescription {
+		return try SwiftFHIR.VisionPrescription(json: json)
 	}
 	
 	func testVisionPrescription1() {
@@ -34,7 +32,7 @@ class VisionPrescriptionTests: XCTestCase {
 	
 	@discardableResult
 	func runVisionPrescription1(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.VisionPrescription {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "visionprescription-example-1.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "visionprescription-example-1.json")
 		
 		XCTAssertEqual(inst.dateWritten?.description, "2014-06-15")
 		XCTAssertEqual(inst.dispense?[0].add, NSDecimalNumber(string: "1.75"))
@@ -91,7 +89,7 @@ class VisionPrescriptionTests: XCTestCase {
 	
 	@discardableResult
 	func runVisionPrescription2(_ json: FHIRJSON? = nil) throws -> SwiftFHIR.VisionPrescription {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "visionprescription-example.json")
+		let inst = (nil != json) ? try instantiateFrom(json: json!) : try instantiateFrom(filename: "visionprescription-example.json")
 		
 		XCTAssertEqual(inst.dateWritten?.description, "2014-06-15")
 		XCTAssertEqual(inst.dispense?[0].add, NSDecimalNumber(string: "2.0"))

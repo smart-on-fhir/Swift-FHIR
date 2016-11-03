@@ -2,7 +2,7 @@
 //  Sequence.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.7.0.10073 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2016-10-26.
+//  Generated from FHIR 1.7.0.10104 (http://hl7.org/fhir/StructureDefinition/Sequence) on 2016-11-03.
 //  2016, SMART Health IT.
 //
 
@@ -65,213 +65,262 @@ open class Sequence: DomainResource {
 	public var variant: [SequenceVariant]?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(coordinateSystem: Int, type: String) {
-		self.init(json: nil)
+		self.init()
 		self.coordinateSystem = coordinateSystem
 		self.type = type
 	}
 	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["coordinateSystem"] {
-				presentKeys.insert("coordinateSystem")
-				if let val = exist as? Int {
-					self.coordinateSystem = val
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["coordinateSystem"] {
+			presentKeys.insert("coordinateSystem")
+			if let val = exist as? Int {
+				self.coordinateSystem = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "coordinateSystem", wants: Int.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "coordinateSystem"))
+		}
+		if let exist = json["device"] {
+			presentKeys.insert("device")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.device = try Reference(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "coordinateSystem", wants: Int.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "device"))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "coordinateSystem"))
+				errors.append(FHIRValidationError(key: "device", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-			if let exist = js["device"] {
-				presentKeys.insert("device")
-				if let val = exist as? FHIRJSON {
-					self.device = Reference(json: val, owner: self)
+		}
+		if let exist = json["identifier"] {
+			presentKeys.insert("identifier")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.identifier = try Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
 				}
-				else {
-					errors.append(FHIRJSONError(key: "device", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? [FHIRJSON] {
-					self.identifier = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["observedSeq"] {
-				presentKeys.insert("observedSeq")
-				if let val = exist as? String {
-					self.observedSeq = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "observedSeq", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["patient"] {
-				presentKeys.insert("patient")
-				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["pointer"] {
-				presentKeys.insert("pointer")
-				if let val = exist as? [FHIRJSON] {
-					self.pointer = Reference.instantiate(fromArray: val, owner: self) as? [Reference]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "pointer", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["quality"] {
-				presentKeys.insert("quality")
-				if let val = exist as? [FHIRJSON] {
-					self.quality = SequenceQuality.instantiate(fromArray: val, owner: self) as? [SequenceQuality]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "quality", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["quantity"] {
-				presentKeys.insert("quantity")
-				if let val = exist as? FHIRJSON {
-					self.quantity = Quantity(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["readCoverage"] {
-				presentKeys.insert("readCoverage")
-				if let val = exist as? Int {
-					self.readCoverage = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "readCoverage", wants: Int.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["referenceSeq"] {
-				presentKeys.insert("referenceSeq")
-				if let val = exist as? FHIRJSON {
-					self.referenceSeq = SequenceReferenceSeq(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "referenceSeq", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["repository"] {
-				presentKeys.insert("repository")
-				if let val = exist as? [FHIRJSON] {
-					self.repository = SequenceRepository.instantiate(fromArray: val, owner: self) as? [SequenceRepository]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "repository", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["specimen"] {
-				presentKeys.insert("specimen")
-				if let val = exist as? FHIRJSON {
-					self.specimen = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "specimen", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["structureVariant"] {
-				presentKeys.insert("structureVariant")
-				if let val = exist as? [FHIRJSON] {
-					self.structureVariant = SequenceStructureVariant.instantiate(fromArray: val, owner: self) as? [SequenceStructureVariant]
-				}
-				else {
-					errors.append(FHIRJSONError(key: "structureVariant", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? String {
-					self.type = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "identifier"))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "type"))
+				errors.append(FHIRValidationError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
-			if let exist = js["variant"] {
-				presentKeys.insert("variant")
-				if let val = exist as? [FHIRJSON] {
-					self.variant = SequenceVariant.instantiate(fromArray: val, owner: self) as? [SequenceVariant]
+		}
+		if let exist = json["observedSeq"] {
+			presentKeys.insert("observedSeq")
+			if let val = exist as? String {
+				self.observedSeq = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "observedSeq", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["patient"] {
+			presentKeys.insert("patient")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.patient = try Reference(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "variant", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "patient"))
 				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["pointer"] {
+			presentKeys.insert("pointer")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.pointer = try Reference.instantiate(fromArray: val, owner: self) as? [Reference]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "pointer"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "pointer", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["quality"] {
+			presentKeys.insert("quality")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.quality = try SequenceQuality.instantiate(fromArray: val, owner: self) as? [SequenceQuality]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "quality"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "quality", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["quantity"] {
+			presentKeys.insert("quantity")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.quantity = try Quantity(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "quantity"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["readCoverage"] {
+			presentKeys.insert("readCoverage")
+			if let val = exist as? Int {
+				self.readCoverage = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "readCoverage", wants: Int.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["referenceSeq"] {
+			presentKeys.insert("referenceSeq")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.referenceSeq = try SequenceReferenceSeq(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "referenceSeq"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "referenceSeq", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["repository"] {
+			presentKeys.insert("repository")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.repository = try SequenceRepository.instantiate(fromArray: val, owner: self) as? [SequenceRepository]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "repository"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "repository", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["specimen"] {
+			presentKeys.insert("specimen")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.specimen = try Reference(json: val, owner: self)
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "specimen"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "specimen", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["structureVariant"] {
+			presentKeys.insert("structureVariant")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.structureVariant = try SequenceStructureVariant.instantiate(fromArray: val, owner: self) as? [SequenceStructureVariant]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "structureVariant"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "structureVariant", wants: Array<FHIRJSON>.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["type"] {
+			presentKeys.insert("type")
+			if let val = exist as? String {
+				self.type = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "type", wants: String.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "type"))
+		}
+		if let exist = json["variant"] {
+			presentKeys.insert("variant")
+			if let val = exist as? [FHIRJSON] {
+				do {
+					self.variant = try SequenceVariant.instantiate(fromArray: val, owner: self) as? [SequenceVariant]
+				}
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "variant"))
+				}
+			}
+			else {
+				errors.append(FHIRValidationError(key: "variant", wants: Array<FHIRJSON>.self, has: type(of: exist)))
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let coordinateSystem = self.coordinateSystem {
 			json["coordinateSystem"] = coordinateSystem.asJSON()
 		}
 		if let device = self.device {
-			json["device"] = device.asJSON()
+			json["device"] = device.asJSON(errors: &errors)
 		}
 		if let identifier = self.identifier {
-			json["identifier"] = identifier.map() { $0.asJSON() }
+			json["identifier"] = identifier.map() { $0.asJSON(errors: &errors) }
 		}
 		if let observedSeq = self.observedSeq {
 			json["observedSeq"] = observedSeq.asJSON()
 		}
 		if let patient = self.patient {
-			json["patient"] = patient.asJSON()
+			json["patient"] = patient.asJSON(errors: &errors)
 		}
 		if let pointer = self.pointer {
-			json["pointer"] = pointer.map() { $0.asJSON() }
+			json["pointer"] = pointer.map() { $0.asJSON(errors: &errors) }
 		}
 		if let quality = self.quality {
-			json["quality"] = quality.map() { $0.asJSON() }
+			json["quality"] = quality.map() { $0.asJSON(errors: &errors) }
 		}
 		if let quantity = self.quantity {
-			json["quantity"] = quantity.asJSON()
+			json["quantity"] = quantity.asJSON(errors: &errors)
 		}
 		if let readCoverage = self.readCoverage {
 			json["readCoverage"] = readCoverage.asJSON()
 		}
 		if let referenceSeq = self.referenceSeq {
-			json["referenceSeq"] = referenceSeq.asJSON()
+			json["referenceSeq"] = referenceSeq.asJSON(errors: &errors)
 		}
 		if let repository = self.repository {
-			json["repository"] = repository.map() { $0.asJSON() }
+			json["repository"] = repository.map() { $0.asJSON(errors: &errors) }
 		}
 		if let specimen = self.specimen {
-			json["specimen"] = specimen.asJSON()
+			json["specimen"] = specimen.asJSON(errors: &errors)
 		}
 		if let structureVariant = self.structureVariant {
-			json["structureVariant"] = structureVariant.map() { $0.asJSON() }
+			json["structureVariant"] = structureVariant.map() { $0.asJSON(errors: &errors) }
 		}
 		if let type = self.type {
 			json["type"] = type.asJSON()
 		}
 		if let variant = self.variant {
-			json["variant"] = variant.map() { $0.asJSON() }
+			json["variant"] = variant.map() { $0.asJSON(errors: &errors) }
 		}
 		
 		return json
@@ -330,137 +379,145 @@ open class SequenceQuality: BackboneElement {
 	public var truthTP: NSDecimalNumber?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["end"] {
-				presentKeys.insert("end")
-				if let val = exist as? Int {
-					self.end = val
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["end"] {
+			presentKeys.insert("end")
+			if let val = exist as? Int {
+				self.end = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "end", wants: Int.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["fScore"] {
+			presentKeys.insert("fScore")
+			if let val = exist as? NSNumber {
+				self.fScore = NSDecimalNumber(json: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "fScore", wants: NSNumber.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["gtFP"] {
+			presentKeys.insert("gtFP")
+			if let val = exist as? NSNumber {
+				self.gtFP = NSDecimalNumber(json: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "gtFP", wants: NSNumber.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["method"] {
+			presentKeys.insert("method")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.method = try CodeableConcept(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "end", wants: Int.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "method"))
 				}
 			}
-			if let exist = js["fScore"] {
-				presentKeys.insert("fScore")
-				if let val = exist as? NSNumber {
-					self.fScore = NSDecimalNumber(json: val)
+			else {
+				errors.append(FHIRValidationError(key: "method", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["precision"] {
+			presentKeys.insert("precision")
+			if let val = exist as? NSNumber {
+				self.precision = NSDecimalNumber(json: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "precision", wants: NSNumber.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["queryFP"] {
+			presentKeys.insert("queryFP")
+			if let val = exist as? NSNumber {
+				self.queryFP = NSDecimalNumber(json: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "queryFP", wants: NSNumber.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["queryTP"] {
+			presentKeys.insert("queryTP")
+			if let val = exist as? NSNumber {
+				self.queryTP = NSDecimalNumber(json: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "queryTP", wants: NSNumber.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["recall"] {
+			presentKeys.insert("recall")
+			if let val = exist as? NSNumber {
+				self.recall = NSDecimalNumber(json: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "recall", wants: NSNumber.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["score"] {
+			presentKeys.insert("score")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.score = try Quantity(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "fScore", wants: NSNumber.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "score"))
 				}
 			}
-			if let exist = js["gtFP"] {
-				presentKeys.insert("gtFP")
-				if let val = exist as? NSNumber {
-					self.gtFP = NSDecimalNumber(json: val)
+			else {
+				errors.append(FHIRValidationError(key: "score", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["standardSequence"] {
+			presentKeys.insert("standardSequence")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.standardSequence = try CodeableConcept(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "gtFP", wants: NSNumber.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "standardSequence"))
 				}
 			}
-			if let exist = js["method"] {
-				presentKeys.insert("method")
-				if let val = exist as? FHIRJSON {
-					self.method = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "method", wants: FHIRJSON.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "standardSequence", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-			if let exist = js["precision"] {
-				presentKeys.insert("precision")
-				if let val = exist as? NSNumber {
-					self.precision = NSDecimalNumber(json: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "precision", wants: NSNumber.self, has: type(of: exist)))
-				}
+		}
+		if let exist = json["start"] {
+			presentKeys.insert("start")
+			if let val = exist as? Int {
+				self.start = val
 			}
-			if let exist = js["queryFP"] {
-				presentKeys.insert("queryFP")
-				if let val = exist as? NSNumber {
-					self.queryFP = NSDecimalNumber(json: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "queryFP", wants: NSNumber.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "start", wants: Int.self, has: type(of: exist)))
 			}
-			if let exist = js["queryTP"] {
-				presentKeys.insert("queryTP")
-				if let val = exist as? NSNumber {
-					self.queryTP = NSDecimalNumber(json: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "queryTP", wants: NSNumber.self, has: type(of: exist)))
-				}
+		}
+		if let exist = json["truthFN"] {
+			presentKeys.insert("truthFN")
+			if let val = exist as? NSNumber {
+				self.truthFN = NSDecimalNumber(json: val)
 			}
-			if let exist = js["recall"] {
-				presentKeys.insert("recall")
-				if let val = exist as? NSNumber {
-					self.recall = NSDecimalNumber(json: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "recall", wants: NSNumber.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "truthFN", wants: NSNumber.self, has: type(of: exist)))
 			}
-			if let exist = js["score"] {
-				presentKeys.insert("score")
-				if let val = exist as? FHIRJSON {
-					self.score = Quantity(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "score", wants: FHIRJSON.self, has: type(of: exist)))
-				}
+		}
+		if let exist = json["truthTP"] {
+			presentKeys.insert("truthTP")
+			if let val = exist as? NSNumber {
+				self.truthTP = NSDecimalNumber(json: val)
 			}
-			if let exist = js["standardSequence"] {
-				presentKeys.insert("standardSequence")
-				if let val = exist as? FHIRJSON {
-					self.standardSequence = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "standardSequence", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["start"] {
-				presentKeys.insert("start")
-				if let val = exist as? Int {
-					self.start = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "start", wants: Int.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["truthFN"] {
-				presentKeys.insert("truthFN")
-				if let val = exist as? NSNumber {
-					self.truthFN = NSDecimalNumber(json: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "truthFN", wants: NSNumber.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["truthTP"] {
-				presentKeys.insert("truthTP")
-				if let val = exist as? NSNumber {
-					self.truthTP = NSDecimalNumber(json: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "truthTP", wants: NSNumber.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "truthTP", wants: NSNumber.self, has: type(of: exist)))
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let end = self.end {
 			json["end"] = end.asJSON()
@@ -472,7 +529,7 @@ open class SequenceQuality: BackboneElement {
 			json["gtFP"] = gtFP.asJSON()
 		}
 		if let method = self.method {
-			json["method"] = method.asJSON()
+			json["method"] = method.asJSON(errors: &errors)
 		}
 		if let precision = self.precision {
 			json["precision"] = precision.asJSON()
@@ -487,10 +544,10 @@ open class SequenceQuality: BackboneElement {
 			json["recall"] = recall.asJSON()
 		}
 		if let score = self.score {
-			json["score"] = score.asJSON()
+			json["score"] = score.asJSON(errors: &errors)
 		}
 		if let standardSequence = self.standardSequence {
-			json["standardSequence"] = standardSequence.asJSON()
+			json["standardSequence"] = standardSequence.asJSON(errors: &errors)
 		}
 		if let start = self.start {
 			json["start"] = start.asJSON()
@@ -542,125 +599,134 @@ open class SequenceReferenceSeq: BackboneElement {
 	public var windowStart: Int?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
 	/** Convenience initializer, taking all required properties as arguments. */
 	public convenience init(referenceSeqId: CodeableConcept, strand: Int, windowEnd: Int, windowStart: Int) {
-		self.init(json: nil)
+		self.init()
 		self.referenceSeqId = referenceSeqId
 		self.strand = strand
 		self.windowEnd = windowEnd
 		self.windowStart = windowStart
 	}
 	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["chromosome"] {
-				presentKeys.insert("chromosome")
-				if let val = exist as? FHIRJSON {
-					self.chromosome = CodeableConcept(json: val, owner: self)
+	
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["chromosome"] {
+			presentKeys.insert("chromosome")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.chromosome = try CodeableConcept(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "chromosome", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["genomeBuild"] {
-				presentKeys.insert("genomeBuild")
-				if let val = exist as? String {
-					self.genomeBuild = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "genomeBuild", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["referenceSeqId"] {
-				presentKeys.insert("referenceSeqId")
-				if let val = exist as? FHIRJSON {
-					self.referenceSeqId = CodeableConcept(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "referenceSeqId", wants: FHIRJSON.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "chromosome"))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "referenceSeqId"))
+				errors.append(FHIRValidationError(key: "chromosome", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-			if let exist = js["referenceSeqPointer"] {
-				presentKeys.insert("referenceSeqPointer")
-				if let val = exist as? FHIRJSON {
-					self.referenceSeqPointer = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "referenceSeqPointer", wants: FHIRJSON.self, has: type(of: exist)))
-				}
+		}
+		if let exist = json["genomeBuild"] {
+			presentKeys.insert("genomeBuild")
+			if let val = exist as? String {
+				self.genomeBuild = val
 			}
-			if let exist = js["referenceSeqString"] {
-				presentKeys.insert("referenceSeqString")
-				if let val = exist as? String {
-					self.referenceSeqString = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "referenceSeqString", wants: String.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "genomeBuild", wants: String.self, has: type(of: exist)))
 			}
-			if let exist = js["strand"] {
-				presentKeys.insert("strand")
-				if let val = exist as? Int {
-					self.strand = val
+		}
+		if let exist = json["referenceSeqId"] {
+			presentKeys.insert("referenceSeqId")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.referenceSeqId = try CodeableConcept(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "strand", wants: Int.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "referenceSeqId"))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "strand"))
+				errors.append(FHIRValidationError(key: "referenceSeqId", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-			if let exist = js["windowEnd"] {
-				presentKeys.insert("windowEnd")
-				if let val = exist as? Int {
-					self.windowEnd = val
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "referenceSeqId"))
+		}
+		if let exist = json["referenceSeqPointer"] {
+			presentKeys.insert("referenceSeqPointer")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.referenceSeqPointer = try Reference(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "windowEnd", wants: Int.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "windowEnd"))
-			}
-			if let exist = js["windowStart"] {
-				presentKeys.insert("windowStart")
-				if let val = exist as? Int {
-					self.windowStart = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "windowStart", wants: Int.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "referenceSeqPointer"))
 				}
 			}
 			else {
-				errors.append(FHIRJSONError(key: "windowStart"))
+				errors.append(FHIRValidationError(key: "referenceSeqPointer", wants: FHIRJSON.self, has: type(of: exist)))
 			}
+		}
+		if let exist = json["referenceSeqString"] {
+			presentKeys.insert("referenceSeqString")
+			if let val = exist as? String {
+				self.referenceSeqString = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "referenceSeqString", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["strand"] {
+			presentKeys.insert("strand")
+			if let val = exist as? Int {
+				self.strand = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "strand", wants: Int.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "strand"))
+		}
+		if let exist = json["windowEnd"] {
+			presentKeys.insert("windowEnd")
+			if let val = exist as? Int {
+				self.windowEnd = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "windowEnd", wants: Int.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "windowEnd"))
+		}
+		if let exist = json["windowStart"] {
+			presentKeys.insert("windowStart")
+			if let val = exist as? Int {
+				self.windowStart = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "windowStart", wants: Int.self, has: type(of: exist)))
+			}
+		}
+		else {
+			errors.append(FHIRValidationError(missing: "windowStart"))
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let chromosome = self.chromosome {
-			json["chromosome"] = chromosome.asJSON()
+			json["chromosome"] = chromosome.asJSON(errors: &errors)
 		}
 		if let genomeBuild = self.genomeBuild {
 			json["genomeBuild"] = genomeBuild.asJSON()
 		}
 		if let referenceSeqId = self.referenceSeqId {
-			json["referenceSeqId"] = referenceSeqId.asJSON()
+			json["referenceSeqId"] = referenceSeqId.asJSON(errors: &errors)
 		}
 		if let referenceSeqPointer = self.referenceSeqPointer {
-			json["referenceSeqPointer"] = referenceSeqPointer.asJSON()
+			json["referenceSeqPointer"] = referenceSeqPointer.asJSON(errors: &errors)
 		}
 		if let referenceSeqString = self.referenceSeqString {
 			json["referenceSeqString"] = referenceSeqString.asJSON()
@@ -703,56 +769,49 @@ open class SequenceRepository: BackboneElement {
 	public var variantId: String?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["name"] {
+			presentKeys.insert("name")
+			if let val = exist as? String {
+				self.name = val
 			}
-			if let exist = js["readId"] {
-				presentKeys.insert("readId")
-				if let val = exist as? String {
-					self.readId = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "readId", wants: String.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "name", wants: String.self, has: type(of: exist)))
 			}
-			if let exist = js["url"] {
-				presentKeys.insert("url")
-				if let val = exist as? String {
-					self.url = URL(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
-				}
+		}
+		if let exist = json["readId"] {
+			presentKeys.insert("readId")
+			if let val = exist as? String {
+				self.readId = val
 			}
-			if let exist = js["variantId"] {
-				presentKeys.insert("variantId")
-				if let val = exist as? String {
-					self.variantId = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "variantId", wants: String.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "readId", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["url"] {
+			presentKeys.insert("url")
+			if let val = exist as? String {
+				self.url = URL(string: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "url", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["variantId"] {
+			presentKeys.insert("variantId")
+			if let val = exist as? String {
+				self.variantId = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "variantId", wants: String.self, has: type(of: exist)))
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let name = self.name {
 			json["name"] = name.asJSON()
@@ -796,74 +855,77 @@ open class SequenceStructureVariant: BackboneElement {
 	public var reportedaCGHRatio: NSDecimalNumber?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["inner"] {
-				presentKeys.insert("inner")
-				if let val = exist as? FHIRJSON {
-					self.inner = SequenceStructureVariantInner(json: val, owner: self)
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["inner"] {
+			presentKeys.insert("inner")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.inner = try SequenceStructureVariantInner(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "inner", wants: FHIRJSON.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "inner"))
 				}
 			}
-			if let exist = js["length"] {
-				presentKeys.insert("length")
-				if let val = exist as? Int {
-					self.length = val
+			else {
+				errors.append(FHIRValidationError(key: "inner", wants: FHIRJSON.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["length"] {
+			presentKeys.insert("length")
+			if let val = exist as? Int {
+				self.length = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "length", wants: Int.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["outer"] {
+			presentKeys.insert("outer")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.outer = try SequenceStructureVariantOuter(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "length", wants: Int.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "outer"))
 				}
 			}
-			if let exist = js["outer"] {
-				presentKeys.insert("outer")
-				if let val = exist as? FHIRJSON {
-					self.outer = SequenceStructureVariantOuter(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "outer", wants: FHIRJSON.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "outer", wants: FHIRJSON.self, has: type(of: exist)))
 			}
-			if let exist = js["precisionOfBoundaries"] {
-				presentKeys.insert("precisionOfBoundaries")
-				if let val = exist as? String {
-					self.precisionOfBoundaries = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "precisionOfBoundaries", wants: String.self, has: type(of: exist)))
-				}
+		}
+		if let exist = json["precisionOfBoundaries"] {
+			presentKeys.insert("precisionOfBoundaries")
+			if let val = exist as? String {
+				self.precisionOfBoundaries = val
 			}
-			if let exist = js["reportedaCGHRatio"] {
-				presentKeys.insert("reportedaCGHRatio")
-				if let val = exist as? NSNumber {
-					self.reportedaCGHRatio = NSDecimalNumber(json: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "reportedaCGHRatio", wants: NSNumber.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "precisionOfBoundaries", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["reportedaCGHRatio"] {
+			presentKeys.insert("reportedaCGHRatio")
+			if let val = exist as? NSNumber {
+				self.reportedaCGHRatio = NSDecimalNumber(json: val)
+			}
+			else {
+				errors.append(FHIRValidationError(key: "reportedaCGHRatio", wants: NSNumber.self, has: type(of: exist)))
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let inner = self.inner {
-			json["inner"] = inner.asJSON()
+			json["inner"] = inner.asJSON(errors: &errors)
 		}
 		if let length = self.length {
 			json["length"] = length.asJSON()
 		}
 		if let outer = self.outer {
-			json["outer"] = outer.asJSON()
+			json["outer"] = outer.asJSON(errors: &errors)
 		}
 		if let precisionOfBoundaries = self.precisionOfBoundaries {
 			json["precisionOfBoundaries"] = precisionOfBoundaries.asJSON()
@@ -892,38 +954,31 @@ open class SequenceStructureVariantInner: BackboneElement {
 	public var start: Int?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["end"] {
-				presentKeys.insert("end")
-				if let val = exist as? Int {
-					self.end = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "end", wants: Int.self, has: type(of: exist)))
-				}
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["end"] {
+			presentKeys.insert("end")
+			if let val = exist as? Int {
+				self.end = val
 			}
-			if let exist = js["start"] {
-				presentKeys.insert("start")
-				if let val = exist as? Int {
-					self.start = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "start", wants: Int.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "end", wants: Int.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["start"] {
+			presentKeys.insert("start")
+			if let val = exist as? Int {
+				self.start = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "start", wants: Int.self, has: type(of: exist)))
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let end = self.end {
 			json["end"] = end.asJSON()
@@ -952,38 +1007,31 @@ open class SequenceStructureVariantOuter: BackboneElement {
 	public var start: Int?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["end"] {
-				presentKeys.insert("end")
-				if let val = exist as? Int {
-					self.end = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "end", wants: Int.self, has: type(of: exist)))
-				}
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["end"] {
+			presentKeys.insert("end")
+			if let val = exist as? Int {
+				self.end = val
 			}
-			if let exist = js["start"] {
-				presentKeys.insert("start")
-				if let val = exist as? Int {
-					self.start = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "start", wants: Int.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "end", wants: Int.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["start"] {
+			presentKeys.insert("start")
+			if let val = exist as? Int {
+				self.start = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "start", wants: Int.self, has: type(of: exist)))
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let end = self.end {
 			json["end"] = end.asJSON()
@@ -1028,74 +1076,72 @@ open class SequenceVariant: BackboneElement {
 	public var variantPointer: Reference?
 	
 	
-	/** Initialize with a JSON object. */
-	public required init(json: FHIRJSON?, owner: FHIRAbstractBase? = nil) {
-		super.init(json: json, owner: owner)
-	}
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["cigar"] {
-				presentKeys.insert("cigar")
-				if let val = exist as? String {
-					self.cigar = val
+	override open func populate(from json: FHIRJSON, presentKeys: inout Set<String>) throws -> [FHIRValidationError]? {
+		var errors = try super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRValidationError]()
+		if let exist = json["cigar"] {
+			presentKeys.insert("cigar")
+			if let val = exist as? String {
+				self.cigar = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "cigar", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["end"] {
+			presentKeys.insert("end")
+			if let val = exist as? Int {
+				self.end = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "end", wants: Int.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["observedAllele"] {
+			presentKeys.insert("observedAllele")
+			if let val = exist as? String {
+				self.observedAllele = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "observedAllele", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["referenceAllele"] {
+			presentKeys.insert("referenceAllele")
+			if let val = exist as? String {
+				self.referenceAllele = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "referenceAllele", wants: String.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["start"] {
+			presentKeys.insert("start")
+			if let val = exist as? Int {
+				self.start = val
+			}
+			else {
+				errors.append(FHIRValidationError(key: "start", wants: Int.self, has: type(of: exist)))
+			}
+		}
+		if let exist = json["variantPointer"] {
+			presentKeys.insert("variantPointer")
+			if let val = exist as? FHIRJSON {
+				do {
+					self.variantPointer = try Reference(json: val, owner: self)
 				}
-				else {
-					errors.append(FHIRJSONError(key: "cigar", wants: String.self, has: type(of: exist)))
+				catch let error as FHIRValidationError {
+					errors.append(error.prefixed(with: "variantPointer"))
 				}
 			}
-			if let exist = js["end"] {
-				presentKeys.insert("end")
-				if let val = exist as? Int {
-					self.end = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "end", wants: Int.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["observedAllele"] {
-				presentKeys.insert("observedAllele")
-				if let val = exist as? String {
-					self.observedAllele = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "observedAllele", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["referenceAllele"] {
-				presentKeys.insert("referenceAllele")
-				if let val = exist as? String {
-					self.referenceAllele = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "referenceAllele", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["start"] {
-				presentKeys.insert("start")
-				if let val = exist as? Int {
-					self.start = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "start", wants: Int.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["variantPointer"] {
-				presentKeys.insert("variantPointer")
-				if let val = exist as? FHIRJSON {
-					self.variantPointer = Reference(json: val, owner: self)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "variantPointer", wants: FHIRJSON.self, has: type(of: exist)))
-				}
+			else {
+				errors.append(FHIRValidationError(key: "variantPointer", wants: FHIRJSON.self, has: type(of: exist)))
 			}
 		}
 		return errors.isEmpty ? nil : errors
 	}
 	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
+	override open func asJSON(errors: inout [FHIRValidationError]) -> FHIRJSON {
+		var json = super.asJSON(errors: &errors)
 		
 		if let cigar = self.cigar {
 			json["cigar"] = cigar.asJSON()
@@ -1113,7 +1159,7 @@ open class SequenceVariant: BackboneElement {
 			json["start"] = start.asJSON()
 		}
 		if let variantPointer = self.variantPointer {
-			json["variantPointer"] = variantPointer.asJSON()
+			json["variantPointer"] = variantPointer.asJSON(errors: &errors)
 		}
 		
 		return json
